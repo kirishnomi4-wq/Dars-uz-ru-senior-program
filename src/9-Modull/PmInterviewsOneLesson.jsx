@@ -274,7 +274,7 @@ const RECAPS = {
   8: { title: { uz: 'Airbnb — odam oldiga borish', ru: 'Airbnb — прийти к человеку' }, cards: [
     { ic: '1', h: { uz: "2007-yilda asoschilar o'z uyida uchta havo to'shagini ijaraga bergan.", ru: 'В 2007 году основатели сдали у себя дома три надувных матраса.' } },
     { ic: '2', h: { uz: "Saytga yangi odamlar qo'shilmay qolganda, ular Nyu-Yorkdagi kvartiralarni o'zlari aylangan.", ru: 'Когда новые люди перестали приходить на сайт, они сами обошли квартиры в Нью-Йорке.' } },
-    { ic: '3', h: { uz: "Yomon suratlar xalaqit berayotganini o'sha yerda bilgan.", ru: 'Там они узнали, что мешают плохие фото.' }, ask: { uz: "Ikki g'oyangiz odamlarini qayerda uchratasiz?", ru: 'Где вы встретите людей ваших двух идей?' } }
+    { ic: '3', h: { uz: "Yomon suratlar xalaqit berayotganini o'sha yerda bilgan.", ru: 'Там они узнали, что мешают плохие фото.' }, ask: { uz: "Ikki g'oyangiz odamlarini qayerda uchratasiz?", ru: "Где вы встретите людей для двух ваших идей?" } }
   ] },
   12: { title: { uz: 'Harakat belgisi', ru: 'Знак действия' }, cards: [
     { ic: '1', h: { uz: "Intervyu oxirida odam so'z bilan emas, ish bilan ko'rsatgan qiziqish — harakat belgisi.", ru: 'Интерес, который человек в конце интервью показал не словом, а делом, — знак действия.' } },
@@ -693,7 +693,7 @@ const SHABLON = [
   { kalit: 'kim', nom: { uz: 'Kim', ru: 'Кто' } },
   { kalit: 'oxirgi', nom: { uz: 'Oxirgi marta', ru: 'В последний раз' }, savol: { uz: "Oxirgi marta {bolak} qachon bo'ldi?", ru: 'Когда вы в последний раз {bolak}?' } },
   { kalit: 'qanday', nom: { uz: 'Qanday qildi', ru: 'Как поступил' }, savol: { uz: "O'shanda qanday qildingiz?", ru: 'Как вы тогда поступили?' } },
-  { kalit: 'qiyin', nom: { uz: 'Eng qiyini', ru: 'Самое трудное' }, savol: { uz: "Eng qiyini nima bo'ldi?", ru: 'Что было самым трудным?' } },
+  { kalit: 'qiyin', nom: { uz: 'Eng qiyini', ru: 'Самое трудное' }, savol: { uz: "Eng qiyini nima bo'ldi?", ru: "Что было труднее всего?" } },
   { kalit: 'hozir', nom: { uz: 'Hozir nima bilan', ru: 'Чем сейчас' }, savol: { uz: 'Hozir buni nima bilan hal qilyapsiz?', ru: 'Чем вы сейчас это решаете?' } },
   { kalit: 'belgi', nom: { uz: 'Harakat belgisi', ru: 'Знак действия' }, savol: { uz: "Birinchi versiya tayyor bo'lganda, uni sinab ko'rishga 10 daqiqa vaqt berasizmi? Qaysi kunni belgilaysiz?", ru: 'Когда первая версия будет готова, дадите 10 минут, чтобы её попробовать? Какой день назначите?' } }
 ];
@@ -960,7 +960,7 @@ const S2_SAVOLLAR = [
   { matn: { uz: "«Oxirgi marta o'yinga odam yig'ganingiz qachon bo'ldi?»", ru: '«Когда вы в последний раз собирали людей на игру?»' }, tomon: 'voqea', qator: 'oxirgi' },
   { matn: { uz: "«Odam yig'ish qiyin, shundaymi?»", ru: '«Собирать людей трудно, да?»' }, tomon: 'bosh', javob: { uz: 'Ha, qiyin.', ru: 'Да, трудно.' }, yorliq: { uz: 'javob savolda', ru: 'ответ в вопросе' }, xato: { uz: "Javobni savolning o'zi aytib qo'ydi.", ru: 'Ответ подсказал сам вопрос.' } },
   { matn: { uz: "«O'shanda qanday qildingiz?»", ru: '«Как вы тогда поступили?»' }, tomon: 'voqea', qator: 'qanday' },
-  { matn: { uz: "«Eng qiyini nima bo'ldi?»", ru: '«Что было самым трудным?»' }, tomon: 'voqea', qator: 'qiyin' }
+  { matn: { uz: "«Eng qiyini nima bo'ldi?»", ru: "«Что было труднее всего?»" }, tomon: 'voqea', qator: 'qiyin' }
 ];
 const S2_VOQEA_XATO = { uz: "Bu savol bo'lib o'tgan kunni so'rayapti.", ru: 'Этот вопрос спрашивает о прошедшем дне.' };
 const TOMON = [
@@ -1023,7 +1023,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     return {
       uch: `s2t-${q}`, yangi: !almashdi,
       ichi: q === 'oxirgi' ? <SavolT kalit="oxirgi" bolak={ustunlar[1].bolak} bolakKey={almashdi ? 'b2' : 'b1'} /> : undefined,
-      tepada: q === 'oxirgi' && almashdi && <span className="io-kul io-bolak-y fade-step">{tr({ uz: "bo'lak — g'oyaga qarab almashadi", ru: 'часть — меняется по идее' })}</span>,
+      tepada: q === 'oxirgi' && almashdi && <span className="io-kul io-bolak-y fade-step">{tr({ uz: "bo'lak — g'oyaga qarab almashadi", ru: "часть — меняется под идею" })}</span>,
       osti: q !== 'oxirgi' && almashdi && <span className="io-ozg fade-step">✓ {tr({ uz: "o'zgarmadi", ru: 'не изменился' })}</span>
     };
   };
@@ -1057,14 +1057,14 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
   return (
     <Stage eyebrow={tr({ uz: 'Takror · 9-Modul qoidasi', ru: 'Повтор · правило 9-го модуля' })} screen={screen}
-      navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !saralandi ? `${tr({ uz: 'Savollarni joylang', ru: 'Разместите вопросы' })} (${i}/5)` : tr({ uz: "To'garakka moslang", ru: 'Приспособьте к кружкам' })} onClick={onNext} /></>}>
+      navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !saralandi ? `${tr({ uz: 'Savollarni joylang', ru: 'Разместите вопросы' })} (${i}/5)` : tr({ uz: "To'garakka moslang", ru: "Подстройте под кружки" })} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} vizualAvval={false}
-        sarlavha={tr({ uz: <>Ikkinchi g'oyaga <A>qaysi savollarni</A> berasiz?</>, ru: <>Какие <A>вопросы</A> зададите по второй идее?</> })}
+        sarlavha={tr({ uz: <>Ikkinchi g'oyaga <A>qaysi savollarni</A> berasiz?</>, ru: <><A>Какие вопросы</A> зададите по второй идее?</> })}
         mentor={<Mentor>{tr({ uz: "Jamoa yig'ish uchun beshta savol yozdim — har birini o'z tomoniga joylang.", ru: 'Я написал пять вопросов для сбора команды — поставьте каждый на свою сторону.' })}</Mentor>}
         harakat={harakat}
         vizual={<div className={cxx('io-s2v', tugadi && 'tinch')}>
           <IkkiShablon ustunlar={ustunlar} qatorlar={['kim', ...joy]} yangi={yangiQ ? { [yangiQ]: true } : {}} kat={kat} chiziq={almashdi} />
-          {saralandi && !moslandi && <div className="io-amal fade-step"><QTugma className="io-halqa" onClick={moslash}>{tr({ uz: "To'garakka moslash", ru: 'Приспособить к кружкам' })}</QTugma></div>}
+          {saralandi && !moslandi && <div className="io-amal fade-step"><QTugma className="io-halqa" onClick={moslash}>{tr({ uz: "To'garakka moslash", ru: "Подстроить под кружки" })}</QTugma></div>}
         </div>}
         natija={!saralandi && ipucha && <QIzoh>{tr({ uz: "Bu savolning javobida kun yoki qilingan ish bo'ladimi?", ru: 'Будет ли в ответе на этот вопрос день или сделанное дело?' })}</QIzoh>}
         xulosa={done && tr({ uz: "Savollar ikkala g'oyaga bir xil — shunda javoblarni qatorma-qator solishtirasiz.", ru: 'Вопросы для обеих идей одинаковые — так вы сравните ответы строка за строкой.' })}
@@ -1190,7 +1190,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: "Tushuncha · to'rtinchi savol", ru: 'Понятие · четвёртый вопрос' })} screen={screen}
       navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Savolni bering', ru: 'Задайте вопрос' })} (${n}/5)`} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
-        sarlavha={tr({ uz: <>Odamlar bu muammoni <A>hozir nima bilan</A> hal qilyapti?</>, ru: <>Чем люди <A>сейчас</A> решают эту проблему?</> })}
+        sarlavha={tr({ uz: <>Odamlar bu muammoni <A>hozir nima bilan</A> hal qilyapti?</>, ru: <><A>Чем сейчас</A> люди решают эту проблему?</> })}
         mentor={<Mentor>{tr({ uz: "Birinchi beshta intervyuda shu savolni ham berdim — har odamga «Savolni berish»ni bosing.", ru: 'В первых пяти интервью я задал и этот вопрос — нажимайте «Задать вопрос» для каждого человека.' })}</Mentor>}
         vizual={<div className={cxx('io-s4', tugadi && 'tinch')}>
           {!tugadi
@@ -1226,14 +1226,14 @@ const Screen5 = (props) => (
     options={[
       { uz: 'Yangi yechim sinf chati bilan solishtiriladi', ru: 'Новое решение сравнивают с чатом класса' },
       { uz: "Uy vazifasi bo'yicha unda hech muammo yo'q ekan", ru: 'С домашним заданием у него проблем нет' },
-      { uz: 'Vazifalar ilovasi chiqsa, uni ishlatib ko\'radi', ru: 'Если выйдет приложение заданий, он его попробует' },
+      { uz: 'Vazifalar ilovasi chiqsa, uni ishlatib ko\'radi', ru: "Если выйдет приложение для заданий, он его попробует" },
       { uz: 'Yangi ilovani sinf chatiga o\'xshatib qurasiz', ru: 'Новое приложение вы построите похожим на чат класса' }
     ]} correctIdx={0}
     explainCorrect={{ uz: 'Odam muammoni hozir sinf chati bilan hal qilyapti — yangi yechim shu bilan solishtiriladi.', ru: 'Человек сейчас решает проблему чатом класса — с ним и сравнивают новое решение.' }}
     explainWrong={{
       1: { uz: 'Chatdan qidirish ham mehnat — muammo yo\'q demadi.', ru: 'Искать в чате — тоже труд: он не говорил, что проблемы нет.' },
       2: { uz: 'U ilova haqida gapirmadi — bu sizning taxminingiz.', ru: 'Он не говорил о приложении — это ваше предположение.' },
-      3: { uz: 'Javob hozirgi ishini aytdi, ilova qanday bo\'lishini emas.', ru: 'Ответ сказал, что он делает сейчас, а не каким быть приложению.' },
+      3: { uz: 'Javob hozirgi ishini aytdi, ilova qanday bo\'lishini emas.', ru: "Ответ говорит о том, что он делает сейчас, а не о том, каким быть приложению." },
       default: { uz: 'U hozir nima bilan hal qilyapti — shuni toping.', ru: 'Чем он решает это сейчас — найдите это.' }
     }}
     vizual={<div className="io-s5v"><span className="io-s5v-k">{tr({ uz: "o'quvchi", ru: 'ученик' })}</span><span className="io-s5v-q"><span className="io-sh-l">{tr(SH.hozir.nom)}</span><b>{tr({ uz: 'sinf chati', ru: 'чат класса' })}</b></span></div>} />
@@ -1258,7 +1258,7 @@ const TaxminQator = ({ tx, haqiqat }) => (
 );
 const SinovKunlari = ({ belgilar, joriy }) => (
   <div className="io-sk">
-    <div className="io-sk-h"><b>{tr({ uz: 'Sinov kunlari', ru: 'Дни проверки' })}</b></div>
+    <div className="io-sk-h"><b>{tr({ uz: 'Sinov kunlari', ru: "Дни пробы" })}</b></div>
     <div className="io-sk-ro">
       {KUNLAR.map(d => {
         const bu = belgilar.filter(b => b.kun === d.k);
@@ -1314,7 +1314,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: "Tushuncha · so'z va ish", ru: 'Понятие · слово и дело' })} screen={screen}
       navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Yozuvlarni yakunlang', ru: 'Завершите записи' })} (${k}/5)`} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
-        sarlavha={tr({ uz: <>Odam rostdan <A>qiziqqanini</A> qanday bilasiz?</>, ru: <>Как узнать, что человек <A>действительно заинтересован</A>?</> })}
+        sarlavha={tr({ uz: <>Odam rostdan <A>qiziqqanini</A> qanday bilasiz?</>, ru: <>Как понять, что <A>интерес настоящий</A>?</> })}
         mentor={<Mentor>{tr({ uz: "Oxirgi savolni muammo haqidagi savollardan keyin berdim — beshta yozuvni birma-bir yakunlang.", ru: 'Последний вопрос я задал после вопросов о проблеме — завершите пять записей по одной.' })}</Mentor>}
         vizual={<div className={cxx('io-s6', done && 'tayyor', tugadi && 'tinch')}>
           {!tugadi && <Telefon className="io-s6-tel"><SinovKunlari belgilar={belgilar} joriy={sorov ? y.belgi : null} /></Telefon>}
@@ -1446,7 +1446,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {done && xulosaVaqt && <QXulosa>{tx && <TaxminQator tx={tx} haqiqat={{ uz: "kvartiralarga o'zlari borgan", ru: 'сами поехали в квартиры' }} />}{tr({ uz: "Airbnb asoschilari muammoni saytga qarab emas, kvartiralarga o'zlari borib bilgan.", ru: 'Основатели Airbnb узнали о проблеме не глядя на сайт, а сами придя в квартиры.' })}</QXulosa>}
         </div>}
       >
-        <MentorNote>{tr({ uz: "Airbnb 7-Modulda («Botingizni ishlatgan odamdan nimani so'raysiz?») ham bo'lgan — bugungi savol boshqa: muammoni qayerda bilgan. Ko'prik og'zaki: intervyu ham shunday — odamning oldiga borib, uning voqeasini o'zingiz eshitasiz. Bankdan tashqari son va natija qo'shmang («band qilishlar ko'paydi» — bankda yo'q).", ru: 'Airbnb был и в 7-м модуле («Что спросить у человека, который пользовался вашим ботом?») — сегодня вопрос другой: где узнали о проблеме. Мостик устно: интервью — то же самое: вы приходите к человеку и сами слышите его историю. Не добавляйте чисел и результатов вне банка («бронирований стало больше» — в банке нет).' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Airbnb 7-Modulda («Botingizni ishlatgan odamdan nimani so'raysiz?») ham bo'lgan — bugungi savol boshqa: muammoni qayerda bilgan. Ko'prik og'zaki: intervyu ham shunday — odamning oldiga borib, uning voqeasini o'zingiz eshitasiz. Bankdan tashqari son va natija qo'shmang («band qilishlar ko'paydi» — bankda yo'q).", ru: "Airbnb был и в 7-м модуле («О чём спросить человека, который пользовался вашим ботом?») — сегодня вопрос другой: где узнали о проблеме. Мостик устно: интервью — то же самое: вы приходите к человеку и сами слышите его историю. Не добавляйте чисел и результатов вне банка («бронирований стало больше» — в банке нет)." })}</MentorNote>
       </QVoqea>
     </Stage>
   );
@@ -1456,7 +1456,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen8 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: "Tekshiruv · Airbnb'dagidek", ru: 'Проверка · как в Airbnb' })}
     questionText="Airbnb asoschilaridek, to'garak muammosini qanday bilasiz?"
-    question={tr({ uz: <h2 className="title h-ask"><Airbnb /> asoschilaridek, to'garak muammosini <A>qanday bilasiz?</A></h2>, ru: <h2 className="title h-ask">Как вы, подобно основателям <Airbnb />, <A>узнаете проблему кружков?</A></h2> })}
+    question={tr({ uz: <h2 className="title h-ask"><Airbnb /> asoschilaridek, to'garak muammosini <A>qanday bilasiz?</A></h2>, ru: <h2 className="title h-ask">Как вы, подобно основателям <Airbnb />, <A>узнаете о проблеме кружков?</A></h2> })}
     options={[
       { uz: "Internetda to'garaklar haqidagi sharhlarni o'qiysiz", ru: 'Прочитаете в интернете отзывы о кружках' },
       { uz: "Sinf chatiga «to'garak kerakmi?» deb yozib so'raysiz", ru: 'Спросите в чате класса «нужен ли кружок?»' },
@@ -1466,7 +1466,7 @@ const Screen8 = (props) => (
     explainCorrect={{ uz: "Asoschilar kvartiralarga o'zlari borib ko'rgan; siz odamning oldiga borib, voqeasini o'zingiz eshitasiz.", ru: 'Основатели сами пришли в квартиры; вы приходите к человеку и сами слышите его историю.' }}
     explainWrong={{
       0: { uz: "Sharhni boshqalar yozgan — odamni o'zingiz ko'rmadingiz.", ru: 'Отзывы писали другие — вы сами человека не видели.' },
-      1: { uz: "Bu savolga va'da yoki baho keladi, voqea emas.", ru: 'На такой вопрос приходит обещание или оценка, а не история.' },
+      1: { uz: "Bu savolga va'da yoki baho keladi, voqea emas.", ru: "На такой вопрос приходит обещание или оценка, а не событие." },
       2: { uz: "Xaritani ko'rsatsangiz, g'oyangizga baho eshitasiz.", ru: 'Покажете карту — услышите оценку вашей идеи.' },
       default: { uz: 'Asoschilar muammoni qayerda bilganini eslang.', ru: 'Вспомните, где основатели узнали о проблеме.' }
     }}
@@ -1474,9 +1474,9 @@ const Screen8 = (props) => (
 );
 
 // ===== SCREEN 9 — IKKI G'OYANGIZGA SHABLON (QMustaqil, USTAXONA — ketma-ket karta; SABOQ 9, 13, 17, 29) · artefakt pm-m9d3-intervyu · nishon twoIdeas =====
-const KENG_KIM = ['hamma', 'odamlar', 'har kim', 'hamma odamlar', 'barcha odamlar', 'barcha'];
-const KELAJAK_RE = /(bo'lsa|armidingiz|ardingiz|kelasi|keyingi)/;
-const GOYA_SOZ_RE = /(^|\s)(ilova|sayt|bot|g'oya)/;
+const KENG_KIM = ['hamma', 'odamlar', 'har kim', 'hamma odamlar', 'barcha odamlar', 'barcha', 'все', 'люди', 'все люди', 'каждый'];
+const KELAJAK_RE = /(bo'lsa|armidingiz|ardingiz|kelasi|keyingi|(^|\s)бы(\s|$)|будет|будете|будут|следующ)/; // ru rejimi ham (F-1007-291)
+const GOYA_SOZ_RE = /(^|\s)(ilova|sayt|bot|g'oya|приложени|сайт|бот|иде[яюи])/;
 const S9_XATO = {
   keng: { uz: '"Hamma" — juda keng. Aynan kim duch keladi?', ru: '«Все» — слишком широко. Кто именно сталкивается?' },
   kelajak: { uz: "Bu ish hali bo'lmagan — o'tgan kunni so'rang.", ru: 'Этого ещё не было — спросите о прошедшем дне.' },
@@ -1563,7 +1563,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const karta = qadam < 2 ? (
     <div className="io-s9k io-kir" key={`k${qadam}`} ref={kartaRef}>
       <span className="io-s9k-h">{tr(S9_QADAM[qadam])}{!matnKerak && qor.matn ? <> · <b>{qisqa(qor.matn, 48)}</b></> : null}</span>
-      {matnKerak && <label className="io-s9-q"><span className="io-sh-l">{tr(QISM_L.muammo)}</span><input className={cxx('io-inp', !qor.matn.trim() && 'io-halqa-i')} value={qor.matn} placeholder={tr({ uz: 'Odamlar nimadan qiynaladi?', ru: 'От чего страдают люди?' })} onChange={(e) => ozgar('matn', e.target.value)} /></label>}
+      {matnKerak && <label className="io-s9-q"><span className="io-sh-l">{tr(QISM_L.muammo)}</span><input className={cxx('io-inp', !qor.matn.trim() && 'io-halqa-i')} value={qor.matn} placeholder={tr({ uz: 'Odamlar nimadan qiynaladi?', ru: "С чем людям трудно?" })} onChange={(e) => ozgar('matn', e.target.value)} /></label>}
       <label className={cxx('io-s9-q', xato && xato.k === 'kim' && 'err')}><span className="io-sh-l">{tr({ uz: "Kimdan so'raysiz", ru: 'У кого спросите' })}</span><input className={cxx('io-inp', !qor.kim.trim() && (!matnKerak || qor.matn.trim()) && 'io-halqa-i')} value={qor.kim} placeholder={tr({ uz: 'Bu muammoga kim duch keladi?', ru: 'Кто сталкивается с этой проблемой?' })} onChange={(e) => ozgar('kim', e.target.value)} /></label>
       <div className={cxx('io-s9-q', xato && xato.k === 'bolak' && 'err')}>
         <span className="io-sh-l">{tr({ uz: "Bo'lak", ru: 'Часть' })}</span>
@@ -1588,7 +1588,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Mustaqil ish', ru: 'Самостоятельная работа' })} screen={screen} scrollSignal={qadam}
       navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Uch qadamni bajaring', ru: 'Выполните три шага' })} (${Math.min(qadam, 3)}/3)`} onClick={onNext} /></>}>
       <QMustaqil
-        sarlavha={tr({ uz: <>Ikki g'oyangiz bo'yicha <A>kimdan nimani</A> so'raysiz?</>, ru: <>Кого и <A>о чём</A> спросите по двум идеям?</> })}
+        sarlavha={tr({ uz: <>Ikki g'oyangiz bo'yicha <A>kimdan nimani</A> so'raysiz?</>, ru: <><A>Кого и о чём</A> спросите по двум своим идеям?</> })}
         mentor={<Mentor>{tr({ uz: "Har g'oya uchun kimdan so'rashni va 1-savoldagi bo'lakni yozing: qolgan to'rt savol ikkalasiga bir xil.", ru: 'Для каждой идеи напишите, у кого спросить, и часть 1-го вопроса: остальные четыре вопроса у обеих одинаковые.' })}</Mentor>}
         qadamlar={isMentor
           ? <MentorSanoq screen={screen} yorliqlar={[{ uz: 'Bajardi', ru: 'Выполнили' }, { uz: 'Hali bajarmoqda', ru: 'Ещё выполняют' }]} hisob={(rows, jami) => [String(rows.length), String(Math.max(0, jami - rows.length))]} />
@@ -1611,7 +1611,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 10 — SINFDOSH BILAN INTERVYU (QMustaqil, juftlik 3 qadam; yakka rejim bilan) · pm-m9d3-intervyu.yozuvlar · nishon firstInterview =====
 const S10_QADAM = [{ uz: 'Kim', ru: 'Кто' }, { uz: 'Savollar', ru: 'Вопросы' }, { uz: 'Harakat belgisi', ru: 'Знак действия' }];
 const S10_SAVOL = ['oxirgi', 'qanday', 'qiyin', 'hozir'];
-const XULOSA_SOZ_RE = /(^|\s)(kerak|hamma|ko'pchilik|odatda)(\s|$)/;
+const XULOSA_SOZ_RE = /(^|\s)(kerak|hamma|ko'pchilik|odatda|нужно|все|многие|обычно)(\s|$)/;
 const bosh10 = () => ({ goya: null, tur: null, mashqGoya: null, kim: tr({ uz: 'sinfdosh', ru: 'одноклассник' }), javob: [], belgi: null });
 const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const { live, isMentor, isStudent } = useJonli();
@@ -1682,7 +1682,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const kartaIchi = (
     <div className="io-s10k io-kir" key={`f${yozuvlar.length}`} ref={kartaRef}>
       {qadam === 0 && <div className="io-s10-kim">
-        <span className="io-s10-s">{tr({ uz: "Sherigingiz qaysi g'oyangizning «Kim uchun» qatoriga mos keladi?", ru: 'Строке «Для кого» какой вашей идеи подходит партнёр?' })}</span>
+        <span className="io-s10-s">{tr({ uz: "Sherigingiz qaysi g'oyangizning «Kim uchun» qatoriga mos keladi?", ru: "Под строку «Для кого» какой из ваших идей подходит партнёр?" })}</span>
         <div className={cxx('io-s10-g', d.tur === null && 'io-guruh')}>
           {goyalar.map((g, i) => <div key={i} className="io-s10-gu"><QChip holat={d.tur === 'haqiqiy' && d.goya === i ? 'on' : undefined} onClick={() => tanla(i)}>«{tr(g.nom)}»</QChip>{g.kim && <span className="io-s10-ku">{tr(QISM_L.kim)}: {g.kim}</span>}</div>)}
           <div className="io-s10-gu"><QChip holat={d.tur === 'mashq' ? 'on' : undefined} onClick={() => tanla(-1)}>{tr({ uz: 'Hech biri', ru: 'Никакой' })}</QChip></div>
@@ -1736,16 +1736,16 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           : <div className="io-s9q"><QQadamlar joriy={!forma ? undefined : qadam} qadamlar={S10_QADAM.map(tr)} />{sh && <ShStrip />}</div>}
         forma={isMentor ? shablon : <div className={cxx('io-s10', !forma && 'tayyor')}>
           {forma && kartaIchi}
+          {yakka && forma && <QIzoh>{tr({ uz: "Yoningizda odam bo'lmasa, uydagilardan biriga qo'ng'iroq qilib so'rang yoki bu qadamni uyda bajaring.", ru: 'Если рядом никого нет — позвоните кому-то из домашних или выполните этот шаг дома.' })}</QIzoh>}{/* yakka rejim izohi karta ostida — 1280×800 da shablonlar ostiga tushmasin (F-1007-289) */}
           {shablon}
           {mashqlar.length > 0 && <div className="io-s10-mashq"><span className="io-joy-y">{tr({ uz: 'Mashq', ru: 'Тренировка' })}</span><div className="io-joy-ro">{mashqlar.map(y => <YozuvKarta key={y.id} y={y} ixcham uch={y.uch} />)}</div></div>}
           {!forma && yozuvlar.length < 2 && <div className="io-amal"><QTugma ikkinchi onClick={() => setForma(true)}>{tr({ uz: 'Yana bitta yozuv', ru: 'Ещё одна запись' })}</QTugma></div>}
         </div>}
-        yordam={yakka && forma && <QIzoh>{tr({ uz: "Yoningizda odam bo'lmasa, uydagilardan biriga qo'ng'iroq qilib so'rang yoki bu qadamni uyda bajaring.", ru: 'Если рядом никого нет — позвоните кому-то из домашних или выполните этот шаг дома.' })}</QIzoh>}
       >
         {done && oxirgiY && <QXulosa>{oxirgiY.tur === 'haqiqiy'
           ? tr({ uz: "Haqiqiy yozuv tayyor: u shu g'oya ustunidagi beshtaning birinchisi.", ru: 'Настоящая запись готова: она первая из пяти в колонке этой идеи.' })
           : tr({ uz: "Mashq yozuvi tayyor: savollarni sinadingiz, lekin u o'ntaga kirmaydi.", ru: 'Тренировочная запись готова: вы опробовали вопросы, но в десятку она не входит.' })}</QXulosa>}
-        <MentorNote>{tr({ uz: "Juftlikka 8 daqiqa — 4 daqiqa birinchisi so'raydi, 4 daqiqa ikkinchisi. Sinfdosh ko'p g'oyaning auditoriyasi (o'smirlar, sinfdoshlar) — bo'lmasa mashq: bu ham foydali. Telefon raqami so'ralmaydi: odam faqat sinab ko'rish uchun kun belgilaydi, yozuvga «ha» / «yo'q». Sherigida voqea bo'lmagan bo'lsa — aynan shuni yozsin; «muammo yo'q» degan xulosani o'zi qo'shmasin.", ru: 'На пару 8 минут — 4 минуты спрашивает первый, 4 минуты второй. Одноклассник — аудитория многих идей (подростки, одноклассники); если нет — тренировка: это тоже полезно. Номер телефона не спрашивают: человек только назначает день для проверки, в запись — «да» / «нет». Если у партнёра такого случая не было — пусть так и запишет; вывод «проблемы нет» сам не добавляет.' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Juftlikka 8 daqiqa — 4 daqiqa birinchisi so'raydi, 4 daqiqa ikkinchisi. Sinfdosh ko'p g'oyaning auditoriyasi (o'smirlar, sinfdoshlar) — bo'lmasa mashq: bu ham foydali. Telefon raqami so'ralmaydi: odam faqat sinab ko'rish uchun kun belgilaydi, yozuvga «ha» / «yo'q». Sherigida voqea bo'lmagan bo'lsa — aynan shuni yozsin; «muammo yo'q» degan xulosani o'zi qo'shmasin.", ru: "На пару 8 минут — 4 минуты спрашивает первый, 4 минуты второй. Одноклассник — аудитория многих идей (подростки, одноклассники); если нет — тренировка: это тоже полезно. Номер телефона не спрашивают: человек только назначает день, чтобы попробовать, в запись — «да» / «нет». Если у партнёра такого случая не было — пусть так и запишет; вывод «проблемы нет» сам не добавляет." })}</MentorNote>
       </QMustaqil>
     </Stage>
   );
@@ -1754,6 +1754,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 11 — KOD YOZISH (QKod + HtmlCompiler; tayanch 4, PM-082): umumiy savollar massivi va ikki g'oyaning bo'lagi → sahifada ikki ustunli shablon =====
 // Starter matni oddiy satrlardan yig'iladi (backtick yo'q). Qatorlar ≤ 70 belgi (SABOQ 37): uzun 5-savol «+» bilan ikki satrga bo'lingan.
 // Tekshiruv ma'lumotdan mustaqil (SABOQ 37): funksiya o'z namuna obyekti bilan chaqiriladi; ustunlar soni — goyalar uzunligiga teng (node sinovi: scratchpad 03-qurish/kod-sinov.mjs).
+// ru-qoldiq-istisno s11: savollar yig'ish o'yinga odam yig'ganingiz to'garaklari to'garak
 const KOD_DATA = [
   'const goyalar = [',
   '  {',
@@ -1875,8 +1876,8 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Kod yozish', ru: 'Пишем код' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !stage2 ? tr({ uz: '① Kod-savolini yeching', ru: '① Решите вопрос о коде' }) : tr({ uz: '② Kodni yozing', ru: '② Напишите код' })} onClick={onNext} /></>}>
       <QKod
-        sarlavha={tr({ uz: <>Savollarni ikki g'oyaga moslaydigan <A>kod yozamiz</A>.</>, ru: <>Пишем <A>код</A>, который подстраивает вопросы под две идеи.</> })}
-        mentor={<Mentor>{tr({ uz: "Shablon kodda turibdi: har g'oya uchun besh savollik ro'yxat yig'asiz.", ru: 'Шаблон лежит в коде: для каждой идеи вы соберёте список из пяти вопросов.' })}</Mentor>}
+        sarlavha={tr({ uz: <>Savollarni ikki g'oyaga moslaydigan <A>kod yozamiz</A>.</>, ru: <><A>Код</A> подстроит вопросы под две идеи.</> })}
+        mentor={<Mentor>{tr({ uz: "Shablon kodda turibdi: har g'oya uchun besh savollik ro'yxat yig'asiz.", ru: "Шаблон уже в коде: для каждой идеи вы соберёте список из пяти вопросов." })}</Mentor>}
         vazifa={<>
           <ShStrip />
           <div className="io-darvoza">
@@ -1927,7 +1928,7 @@ const Screen12 = (props) => (
     questionText="Harakat belgisi qatoriga nima yozasiz?"
     question={tr({
       uz: <><Iqtibos kim="Sinfdosh:" odam={{ kiyim: 4, teri: 1, soch: 0 }} osti="sinab ko'rishga kun belgilamadi">«Ajoyib g'oya, men ishlatardim!»</Iqtibos><h2 className="title h-ask">Harakat belgisi qatoriga <A>nima yozasiz?</A></h2></>,
-      ru: <><Iqtibos kim="Одноклассник:" odam={{ kiyim: 4, teri: 1, soch: 0 }} osti="день для проверки не назначил">«Отличная идея, я бы пользовался!»</Iqtibos><h2 className="title h-ask">Что вы <A>запишете</A> в строку «Знак действия»?</h2></>
+      ru: <><Iqtibos kim="Одноклассник:" odam={{ kiyim: 4, teri: 1, soch: 0 }} osti="не назначил день, чтобы попробовать">«Отличная идея, я бы пользовался!»</Iqtibos><h2 className="title h-ask">Что вы <A>запишете</A> в строку «Знак действия»?</h2></>
     })}
     options={[
       { uz: '«ha» — ishlatishini o\'zi aytdi', ru: '«да» — сам сказал, что будет пользоваться' },
@@ -2011,7 +2012,7 @@ const Confetti = () => {
 
 // Podium savol yorliqlari (SCORED_IDX: 3, 5, 8, 12)
 const Q_LABELS = {
-  3: { uz: "1 — To'garakka birinchi savol", ru: '1 — Первый вопрос о кружке' },
+  3: { uz: "1 — To'garakka birinchi savol", ru: "1 — Первый вопрос для кружков" },
   5: { uz: '2 — Hozir nima bilan', ru: '2 — Чем сейчас' },
   8: { uz: "3 — Airbnb'dagidek", ru: '3 — Как в Airbnb' },
   12: { uz: '4 — Harakat belgisi', ru: '4 — Знак действия' }
@@ -2030,14 +2031,14 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob o'rni A 1·6·11 · B 4·8·12 · C 2·5·9 · D 3·7·10 (MD; har biri 3 marta)
 const QUIZ_BANK = [
-  { q: { uz: "Ikki g'oyani intervyuda qanday savollar bilan tekshirasiz?", ru: 'Какими вопросами вы проверите две идеи на интервью?' }, opts: [{ uz: 'Ikkalasiga bir xil savollar bilan', ru: 'Одинаковыми вопросами для обеих' }, { uz: 'Har biriga alohida savollar bilan', ru: 'Отдельными вопросами для каждой' }, { uz: "Kuchlirog'iga ko'proq savollar bilan", ru: 'Сильной — больше вопросов' }, { uz: 'Har biriga bitta-ikkita savol bilan', ru: 'По одному-два вопроса каждой' }], correct: 0 },
+  { q: { uz: "Ikki g'oyani intervyuda qanday savollar bilan tekshirasiz?", ru: 'Какими вопросами вы проверите две идеи на интервью?' }, opts: [{ uz: 'Ikkalasiga bir xil savollar bilan', ru: 'Одинаковыми вопросами для обеих' }, { uz: 'Har biriga alohida savollar bilan', ru: 'Отдельными вопросами для каждой' }, { uz: "Kuchlirog'iga ko'proq savollar bilan", ru: "Более сильной — больше вопросов" }, { uz: 'Har biriga bitta-ikkita savol bilan', ru: 'По одному-два вопроса каждой' }], correct: 0 },
   { q: { uz: "To'garak g'oyasida savollarning nimasi almashadi?", ru: 'Что меняется в вопросах для идеи кружков?' }, opts: [{ uz: 'Beshala savolning hammasi birdan', ru: 'Все пять вопросов сразу' }, { uz: "Faqat oxirgi savoldagi bitta so'z", ru: 'Только одно слово в последнем вопросе' }, { uz: "Faqat birinchi savoldagi bo'lak", ru: 'Только часть в первом вопросе' }, { uz: 'Savollar qaysi tartibda kelishi', ru: 'Порядок вопросов' }], correct: 2 },
   { q: { uz: "To'garak izlagan odamga qaysi savol voqeani ochadi?", ru: 'Какой вопрос откроет историю человека, искавшего кружок?' }, opts: [{ uz: "«Xaritasi bo'lsa, ochib ko'rardingizmi?»", ru: '«Была бы карта — открыли бы?»' }, { uz: "«Yozda to'garak topish qiyin edimi?»", ru: '«Летом было трудно найти кружок?»' }, { uz: "«Odatda to'garakni qanday tanlaysiz?»", ru: '«Как вы обычно выбираете кружок?»' }, { uz: "«Yozda to'garakni qanday qidirdingiz?»", ru: '«Как вы искали кружок летом?»' }], correct: 3 },
   { q: { uz: '«Hozir buni nima bilan hal qilyapsiz?» savoli nimani ochadi?', ru: 'Что открывает вопрос «Чем вы сейчас это решаете?»' }, opts: [{ uz: 'Odam ilovani qaysi kuni yuklab olishini', ru: 'В какой день человек скачает приложение' }, { uz: "Muammo chiqqanda odam bugun qanday yo'l tutishini", ru: 'Как человек сегодня поступает, когда возникает проблема' }, { uz: "Odamga ikki g'oyadan qaysi biri yoqishini", ru: 'Какая из двух идей нравится человеку' }, { uz: 'Odam bu muammoni kimdan eshitib qolganini', ru: 'От кого человек услышал об этой проблеме' }], correct: 1 },
-  { q: { uz: "Mentor misolida o'yinchilar jamoani hozir qanday yig'adi?", ru: 'Как в примере Ментора игроки сейчас собирают команду?' }, opts: [{ uz: "Maktabdagi e'lon taxtasi orqali", ru: 'Через доску объявлений в школе' }, { uz: "Maydon egasiga qo'ng'iroq qilib", ru: 'Звонят хозяину поля' }, { uz: "Telegram guruhiga yozib, so'rab", ru: 'Пишут и спрашивают в Telegram-группе' }, { uz: 'Maxsus futbol ilovasi orqali yozib', ru: 'Пишут через особое футбольное приложение' }], correct: 2 },
-  { q: { uz: 'Mentor misolida qaysi biri harakat belgisi?', ru: 'Что в примере Ментора — знак действия?' }, opts: [{ uz: 'Sinovga kun belgiladi', ru: 'Назначил день проверки' }, { uz: "«Ajoyib g'oya» deb maqtadi", ru: 'Похвалил: «Отличная идея»' }, { uz: '«Ishlatardim» deb aytdi', ru: 'Сказал «пользовался бы»' }, { uz: 'Intervyuda uzoq gapirdi', ru: 'Долго говорил на интервью' }], correct: 0 },
+  { q: { uz: "Mentor misolida o'yinchilar jamoani hozir qanday yig'adi?", ru: 'Как в примере Ментора игроки сейчас собирают команду?' }, opts: [{ uz: "Maktabdagi e'lon taxtasi orqali", ru: 'Через доску объявлений в школе' }, { uz: "Maydon egasiga qo'ng'iroq qilib", ru: 'Звонят хозяину поля' }, { uz: "Telegram guruhiga yozib, so'rab", ru: 'Пишут и спрашивают в Telegram-группе' }, { uz: 'Maxsus futbol ilovasi orqali yozib', ru: "Через специальное футбольное приложение" }], correct: 2 },
+  { q: { uz: 'Mentor misolida qaysi biri harakat belgisi?', ru: 'Что в примере Ментора — знак действия?' }, opts: [{ uz: 'Sinovga kun belgiladi', ru: "Назначил день пробы" }, { uz: "«Ajoyib g'oya» deb maqtadi", ru: 'Похвалил: «Отличная идея»' }, { uz: '«Ishlatardim» deb aytdi', ru: 'Сказал «пользовался бы»' }, { uz: 'Intervyuda uzoq gapirdi', ru: 'Долго говорил на интервью' }], correct: 0 },
   { q: { uz: 'Harakat belgisi savoli intervyuning qayerida beriladi?', ru: 'Где в интервью задают вопрос о знаке действия?' }, opts: [{ uz: 'Eng boshida, salomlashgandan keyin', ru: 'В самом начале, после приветствия' }, { uz: 'Birinchi savolni berishdan oldin', ru: 'Перед первым вопросом' }, { uz: "Uchinchi savoldan keyin, o'rtada", ru: 'После третьего вопроса, в середине' }, { uz: "Oxirida, muammo haqida so'ragach", ru: 'В конце, после вопросов о проблеме' }], correct: 3 },
-  { q: { uz: 'Yozuvning harakat belgisi qatoriga nima tushadi?', ru: 'Что попадает в строку «Знак действия» записи?' }, opts: [{ uz: 'Odamning ismi va sinov kuni', ru: 'Имя человека и день проверки' }, { uz: "Faqat «ha» yoki «yo'q» belgisi", ru: 'Только знак «да» или «нет»' }, { uz: 'Odamning «ishlatardim» degan gapi', ru: 'Его слова «пользовался бы»' }, { uz: "Sizning g'oya haqidagi fikringiz", ru: 'Ваше мнение об идее' }], correct: 1 },
+  { q: { uz: 'Yozuvning harakat belgisi qatoriga nima tushadi?', ru: 'Что попадает в строку «Знак действия» записи?' }, opts: [{ uz: 'Odamning ismi va sinov kuni', ru: "Имя человека и день пробы" }, { uz: "Faqat «ha» yoki «yo'q» belgisi", ru: 'Только знак «да» или «нет»' }, { uz: 'Odamning «ishlatardim» degan gapi', ru: 'Его слова «пользовался бы»' }, { uz: "Sizning g'oya haqidagi fikringiz", ru: 'Ваше мнение об идее' }], correct: 1 },
   { q: { uz: "Saytga yangi odamlar qo'shilmay qolganda Airbnb asoschilari nima qilgan?", ru: 'Что сделали основатели Airbnb, когда новые люди перестали приходить на сайт?' }, opts: [{ uz: "Saytdagi tugmalarni o'zgartirgan", ru: 'Поменяли кнопки на сайте' }, { uz: 'Uy egalariga uzun xatlar yozgan', ru: 'Писали хозяевам длинные письма' }, { uz: "Kvartiralarni o'zlari aylangan", ru: 'Сами обошли квартиры' }, { uz: "Saytga ko'proq reklama bergan", ru: 'Дали больше рекламы сайту' }], correct: 2 },
   { q: { uz: 'Airbnb asoschilari kvartiralarda nimani bilgan?', ru: 'Что основатели Airbnb узнали в квартирах?' }, opts: [{ uz: 'Uylarning narxi juda balandligini', ru: 'Что цены на жильё слишком высокие' }, { uz: 'Uy egalari saytni bilmasligini', ru: 'Что хозяева не знают сайт' }, { uz: 'Mehmonlar uyda shovqin qilishini', ru: 'Что гости шумят дома' }, { uz: 'Yomon suratlar xalaqit berishini', ru: 'Что мешают плохие фото' }], correct: 3 },
   { q: { uz: "Sherigingiz g'oya auditoriyasidan emas. Uning yozuvi qanday bo'ladi?", ru: 'Партнёр не из аудитории идеи. Какой будет его запись?' }, opts: [{ uz: "Mashq yozuvi — o'ntaga kirmaydi", ru: 'Тренировочная — не входит в десятку' }, { uz: "Haqiqiy yozuv — o'ntaga qo'shiladi", ru: 'Настоящая — добавится в десятку' }, { uz: 'Yozuv olinmaydi — vaqt bekor ketadi', ru: 'Запись не берут — время потеряно' }, { uz: "Ikki yozuv — har g'oyaga bittadan", ru: 'Две записи — по одной на идею' }], correct: 0 },
@@ -2598,7 +2599,7 @@ const KARTOCHKALAR = [
   { front: { uz: '«Hozir buni nima bilan hal qilyapsiz?» savoli nimani ochadi?', ru: 'Что открывает вопрос «Чем вы сейчас это решаете?»' }, back: { uz: 'Odam muammoni hozir nima bilan hal qilayotganini — yangi yechim shu bilan solishtiriladi', ru: 'Чем человек решает проблему сейчас — с этим сравнивают новое решение' } },
   { front: { uz: 'Harakat belgisi nima?', ru: 'Что такое знак действия?' }, back: { uz: "Intervyu oxirida odam so'z bilan emas, ish bilan ko'rsatgan qiziqish", ru: 'Интерес, который человек в конце интервью показал не словом, а делом' } },
   { front: { uz: 'Mentor misolida harakat belgisi qaysi ish edi?', ru: 'Каким делом был знак действия в примере Ментора?' }, back: { uz: "Odam sinab ko'rishga kun belgiladimi — «ha» yoki «yo'q»", ru: 'Назначил ли человек день, чтобы попробовать, — «да» или «нет»' } },
-  { front: { uz: 'Odam sinovga kun belgiladi. Bu nega maqtovdan kuchliroq?', ru: 'Человек назначил день проверки. Почему это сильнее похвалы?' }, back: { uz: "U o'z vaqtini berishga rozi bo'ldi — maqtov esa hech narsa talab qilmaydi", ru: 'Он согласился отдать своё время, а похвала ничего не требует' } },
+  { front: { uz: 'Odam sinovga kun belgiladi. Bu nega maqtovdan kuchliroq?', ru: "Человек назначил день пробы. Почему это сильнее похвалы?" }, back: { uz: "U o'z vaqtini berishga rozi bo'ldi — maqtov esa hech narsa talab qilmaydi", ru: 'Он согласился отдать своё время, а похвала ничего не требует' } },
   { front: { uz: 'Odam «ishlatardim» dedi, lekin kun belgilamadi. Belgi qanday?', ru: 'Человек сказал «пользовался бы», но день не назначил. Какой знак?' }, back: { uz: "«Yo'q»: so'z bor, ish yo'q", ru: '«Нет»: слово есть, дела нет' } },
   { front: { uz: 'Airbnb asoschilari yomon suratlarni qanday bilgan?', ru: 'Как основатели Airbnb узнали о плохих фото?' }, back: { uz: 'Nyu-Yorkdagi kvartiralarni o\'zlari aylanib, suratga olib', ru: 'Сами обошли квартиры в Нью-Йорке и сфотографировали их' } },
   { front: { uz: "Sherigingiz g'oyangiz auditoriyasidan bo'lmasa, yozuv qanday bo'ladi?", ru: 'Если партнёр не из аудитории вашей идеи, какой будет запись?' }, back: { uz: "Mashq yozuvi: u o'ntaga kirmaydi", ru: 'Тренировочная: она не входит в десятку' } }
@@ -2628,10 +2629,10 @@ const HW_KARTA = [
   { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
 ];
 const HW_QADAM = [
-  { uz: "Har g'oya uchun «Kim uchun» qatoridagi odamlardan beshtasini toping — 1-darsdagi qog'ozingizdan boshlang.", ru: 'Для каждой идеи найдите пятерых людей из строки «Для кого» — начните с бумаги из 1-го урока.' },
+  { uz: "Har g'oya uchun «Kim uchun» qatoridagi odamlardan beshtasini toping — 1-darsdagi qog'ozingizdan boshlang.", ru: "Для каждой идеи найдите пятерых людей из строки «Для кого» — начните со своего листа из 1-го урока." },
   { uz: "Har biriga shablondagi besh savolni bering: g'oyangizni faqat oxirgi savolda aytasiz.", ru: 'Задайте каждому пять вопросов шаблона: свою идею называете только в последнем вопросе.' },
   { uz: "Javobni o'sha zahoti, u aytganidek qog'ozga yozing; harakat belgisiga faqat «ha» yoki «yo'q».", ru: 'Записывайте ответ на бумагу сразу и так, как он сказал; в знак действия — только «да» или «нет».' },
-  { uz: "O'nta yozuvli qog'ozni keyingi darsga olib keling — darsdagi haqiqiy yozuv ham shu o'ntaga kiradi.", ru: 'Принесите бумагу с десятью записями на следующий урок — настоящая запись с урока тоже входит в десятку.' }
+  { uz: "O'nta yozuvli qog'ozni keyingi darsga olib keling — darsdagi haqiqiy yozuv ham shu o'ntaga kiradi.", ru: "Принесите лист с десятью записями на следующий урок — настоящая запись с урока тоже входит в десятку." }
 ];
 const HwCard = ({ keyingi }) => (
   <div className="card io-hw fade-up">
@@ -2900,8 +2901,7 @@ export default function PmInterviewsOneLesson({ lang: langProp, onFinished, live
         .io-sh-k.bosh { border-top: 1px solid ${T.line}; border-radius: 14px 14px 0 0; box-shadow: 0 -6px 18px -14px rgba(${T.shadowBase},0.3); padding-top: 12px; }
         .io-sh-k.oxir { border-bottom: 1px solid ${T.line}; border-radius: 0 0 14px 14px; padding-bottom: 12px; }
         .io-sh-k.bosh.oxir { border-radius: 14px; }
-        .io-sh-k.faol { border-left-color: ${T.accent}; border-right-color: ${T.accent}; }
-        .io-sh-k.faol.bosh { border-top-color: ${T.accent}; } .io-sh-k.faol.oxir { border-bottom-color: ${T.accent}; }
+        .io-sh-k.faol { border-color: ${T.accent}; } /* 1px ramka (yon chiziq emas); bosh/oxir ham shu rang — oldingi to'rt qoida bilan ko'rinish bir xil */
         .io-sh-k.yangi { animation: io-kir 0.4s ease-out both, io-yashil 1.3s ease-out 0.1s both; animation-delay: calc(var(--r, 0) * 0.06s), 0.1s; }
         .io-sh-k.kul { opacity: 0.6; }
         .io-sh-k.ostida { box-shadow: inset 0 1px 0 ${T.line}; background: ${T.bg}; padding-top: 10px; }
@@ -3143,6 +3143,7 @@ export default function PmInterviewsOneLesson({ lang: langProp, onFinished, live
         .io-mgap img { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; }
         .io-kod { margin: 0; padding: 12px 14px; border-radius: 12px; background: ${CODE.bg}; color: ${CODE.text}; font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere; user-select: none; -webkit-user-select: none; }
         .io-kod-iz { color: ${CODE.comment}; font-style: italic; }
+        @media (min-width: 761px) { .io-kod { max-height: max(200px, calc(100vh - 480px)); overflow-y: auto; scrollbar-width: thin; } } /* 1280×800: chap karta va tugma sig'sin, kod oyna ichida suriladi (F-1007-289) */
         .io-kod-b { font-weight: 500; color: ${CODE.str}; border-radius: 4px; transition: background 0.3s, color 0.3s; }
         .io-kod.ajrat .io-kod-b { background: ${T.accentSoft}; color: ${T.accent}; }
         .io-kod-natija { display: flex; flex-direction: column; gap: 6px; }

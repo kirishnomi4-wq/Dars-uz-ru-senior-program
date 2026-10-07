@@ -86,7 +86,7 @@ Vaqt: ≈ 90 daqiqa — 0–3 ≈ 15 · 4–9 ≈ 20 · 10–14 ≈ 20 · A1 ≈
 - Sarlavha: **Ilovada qo'shilgan o'yinchini sayt qanday ko'rdi?** (49)
 - Mentor (bosqichga qarab, SABOQ 11):
   - boshida: Maydon Jamoa ilova ham, sayt ham bo'lishi mumkin — ilovada «Qo'shilaman» ni bosing, keyin saytni yangilang.
-  - variantlar ochilgach: Endi o'ngdagi javoblardan birini tanlang.
+  - variantlar ochilgach: Endi javoblardan birini tanlang. (07.10, F-1007-289: «o'ngdagi» olindi — telefonda javoblar pastda)
 - Maket (chap, ikki maket yonma-yon, bir balandlikda):
   - **telefon** — ustida yorliq «ilova»; «Maydon Jamoa» O'yin ekrani: «‹ O'yinlar» · «Shanba, 18:00» · «Mahalla maydoni» · «8 / 10» · 8 to'la doira + 2 bo'sh joy · «Qo'shilaman» (halqa + yengil pulsatsiya — faol element).
   - **brauzer oynasi** — ustida yorliq «sayt»; o'sha O'yin sahifasi, «8 / 10». Manzil qatorida ↻ «Yangilash» (xira — «Qo'shilaman» bosilgach faollashadi va halqaga o'tadi).

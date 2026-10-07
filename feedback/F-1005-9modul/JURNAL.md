@@ -205,6 +205,13 @@ Seans chegarasi: `konveyer/0-YANGI-MODUL.md` 2-bo'lim. F-ID: F-1005-50 dan.
   Vercel yangi loyiha `coddycamp-9modul` (akkaunt kirishnomi6-9875, prj_ICFUGCPdEJTqOmfwluewSvjprw6X) → **https://coddycamp-9modul.vercel.app** (dpl_2AswqnPtdNTWPT7tfid3FCrgqNDc, READY) · `sayt-smoke` 24/24 (uz+ru).
   `dist-m7` .gitignore da yo'q (umumiy fayl — tegilmadi), commit ga kirmaydi.
 
+- **2026-10-07 10:04 · F-1007-290 · TASHQI O'ZGARISH (11-Modul seansi, foydalanuvchi rejasi 06.10 ~19:10 «9–10-Modullarda zoomable muammosini ehtiyotkorlikda tuzat») — ⛶ 12/12 dars.**
+  Sabab: skeletda `.zoom-on { position: fixed … }` qoidasi yo'q (MEXANIZM-TAKLIF 10) — ⛶ bosilganda oyna joyida kattalashardi (10-Modul m8-03 da 7 tadan 6 tasi buzuq — o'lchov); qolip `.q-fokus` va dars voqea konteyneri kirish animatsiyasi (fill both) `transform` qoldiradi — oyna siljirdi.
+  Har faylga `@keyframes zoom-pop` dan oldin 2 qator (`.zoom-on`, `.q-fokus:has(.zoom-on)`); voqea ekranli 5 faylga yana 1 qator (`.pp-/.im-/.ut-/.ps-/.yp-voqea:has(.zoom-on)`). Boshqa hech narsa o'zgarmadi (diff — 2–3 qator).
+  Zaxira `arxiv/F-1007-290-zoom-oldin-2026-10-07/` (7-Modull 12, 8-Modull 11). Sinov (`11-Modul scratchpad/zoomtest.mjs`): 23 dars, 177 ta ⛶ — boshlang'ich holat va yakuniy holat (14 bosish, `q-fokus` 19 marta) nuqson 0; gates 12/12 × 23, lint:jsx toza.
+  QA sayti (dist) qayta yig'ilmagan — deploy foydalanuvchi buyrug'i bilan. Commit yo'q.
+
+
 ## MEXANIZM-TAKLIF (asosiy seans uchun — bu seans tegmaydi)
 
 1. **App.jsx `period` hamma modulda eski hisobda** (masalan 6-Modul «oy 11–12.5», dastur v9 da 8.5–10; 7-Modul «oy 9–10.5», dasturda 10–11).

@@ -62,10 +62,12 @@ function useIsMobile(breakpoint = 640) {
   return isMobile;
 }
 
-const LESSON_META = { lessonId: 'm9-10-v1', lessonTitle: { uz: "Loyiha kuni: poydevor — Database, kirish, deploy", ru: 'День проекта: фундамент — база данных, вход, деплой' } };
+const LESSON_META = { lessonId: 'm9-10-v1', lessonTitle: { uz: "Loyiha kuni: poydevor — Database, kirish, deploy", ru: "День проекта: фундамент — Database, вход, деплой" } };
 // 12 ekran · oqim: kirish → reja → tushuncha → amaliyot 1 → 1-savol → tushuncha → amaliyot 2 → 2-savol → amaliyot 3 → podium → kartochkalar → yakun
+// RU-qoldiq istisnosi — Database ustun nomlari (kod, jadval maketida ko'rinadi; tarjima qilinmaydi):
+// ru-qoldiq-istisno: ism kerak
 const HW_TOKENS = [
-  { t: { uz: 'poydevor', ru: 'фундамент' }, l: 8, tp: 22, s: 13, d: 6 },
+  { t: { uz: 'poydevor', ru: "фундамент" }, l: 8, tp: 22, s: 13, d: 6 },
   { t: 'token', l: 68, tp: 16, s: 12, d: 7.5 },
   { t: 'Database', l: 24, tp: 70, s: 12, d: 8.5 },
   { t: 'Render', l: 78, tp: 68, s: 13, d: 6.8 }
@@ -252,19 +254,19 @@ const INLINE_KEYS = { s3: 2, s5: 1, practice: -1 };
 // 📖 RECAPS — har ballik test uchun 3 karta (kalit = ekran INDEKSI: 4 — 1-savol, 7 — 2-savol). Emoji o'rniga koddan bitta qator (S-026).
 const RECAPS = {
   4: {
-    title: { uz: 'Parol bir marta, keyin token', ru: 'Пароль один раз, потом токен' },
+    title: { uz: 'Parol bir marta, keyin token', ru: "Пароль один раз, потом токен" },
     cards: [
-      { ic: <code className="fd-rc-kod">POST /kirish</code>, h: { uz: 'Kirish', ru: 'Вход' }, body: { uz: "Telefon va parol to'g'ri bo'lsa, Backend token beradi.", ru: 'Если телефон и пароль верны, Backend выдаёт токен.' } },
-      { ic: <code className="fd-rc-kod">SecureStore.setItemAsync('token', token)</code>, h: { uz: 'Saqlash', ru: 'Хранение' }, body: { uz: 'Token telefonda shifrlab saqlanadi.', ru: 'Токен хранится на телефоне в зашифрованном виде.' } },
-      { ic: <code className="fd-rc-kod">{'Authorization: Bearer <token>'}</code>, h: { uz: "So'rov", ru: 'Запрос' }, body: { uz: "Ilova yopiq so'rovlarga tokenni qo'shadi.", ru: 'Приложение добавляет токен к закрытым запросам.' }, ask: { uz: "Ilova qayta ochilganda parol nega so'ralmaydi?", ru: 'Почему при повторном открытии приложение не спрашивает пароль?' } }
+      { ic: <code className="fd-rc-kod">POST /kirish</code>, h: { uz: 'Kirish', ru: "Вход" }, body: { uz: "Telefon va parol to'g'ri bo'lsa, Backend token beradi.", ru: "Если телефон и пароль верны, Backend выдаёт токен." } },
+      { ic: <code className="fd-rc-kod">SecureStore.setItemAsync('token', token)</code>, h: { uz: 'Saqlash', ru: "Хранение" }, body: { uz: 'Token telefonda shifrlab saqlanadi.', ru: "Токен хранится на телефоне в зашифрованном виде." } },
+      { ic: <code className="fd-rc-kod">{'Authorization: Bearer <token>'}</code>, h: { uz: "So'rov", ru: "Запрос" }, body: { uz: "Ilova yopiq so'rovlarga tokenni qo'shadi.", ru: "Приложение добавляет токен к закрытым запросам." }, ask: { uz: "Ilova qayta ochilganda parol nega so'ralmaydi?", ru: "Почему при повторном открытии приложение не спрашивает пароль?" } }
     ]
   },
   7: {
-    title: { uz: "Maxfiy kalit — faqat Backend'da", ru: 'Секретный ключ — только в Backend' },
+    title: { uz: "Maxfiy kalit — faqat Backend'da", ru: "Секретный ключ — только в Backend" },
     cards: [
-      { ic: <code className="fd-rc-kod">EXPO_PUBLIC_API_URL=https://…</code>, h: { uz: 'Ilova', ru: 'Приложение' }, body: { uz: "Bu qiymat ilova ichida ochiq ko'rinadi.", ru: 'Это значение видно внутри приложения открыто.' } },
-      { ic: <code className="fd-rc-kod">JWT_SECRET</code>, h: { uz: 'Maxfiy kalit', ru: 'Секретный ключ' }, body: { uz: <><code className="qcode">backend/.env</code> da va Render sozlamasida turadi.</>, ru: <>Хранится в <code className="qcode">backend/.env</code> и в настройках Render.</> } },
-      { ic: <code className="fd-rc-kod">.gitignore</code>, h: { uz: 'Repo', ru: 'Репо' }, body: { uz: <><code className="qcode">.env</code> GitHub'ga chiqmaydi.</>, ru: <><code className="qcode">.env</code> не попадает на GitHub.</> }, ask: { uz: "Ilovani olgan odam qaysi qiymatni ko'ra oladi?", ru: 'Какое значение может увидеть человек, у которого есть приложение?' } }
+      { ic: <code className="fd-rc-kod">EXPO_PUBLIC_API_URL=https://…</code>, h: { uz: 'Ilova', ru: "Приложение" }, body: { uz: "Bu qiymat ilova ichida ochiq ko'rinadi.", ru: "Это значение видно в приложении открытым текстом." } },
+      { ic: <code className="fd-rc-kod">JWT_SECRET</code>, h: { uz: 'Maxfiy kalit', ru: "Секретный ключ" }, body: { uz: <><code className="qcode">backend/.env</code> da va Render sozlamasida turadi.</>, ru: <>Хранится в <code className="qcode">backend/.env</code> и в настройках Render.</> } },
+      { ic: <code className="fd-rc-kod">.gitignore</code>, h: { uz: 'Repo', ru: "Репо" }, body: { uz: <><code className="qcode">.env</code> GitHub'ga chiqmaydi.</>, ru: <><code className="qcode">.env</code> не попадает на GitHub.</> }, ask: { uz: "Ilovani olgan odam qaysi qiymatni ko'ra oladi?", ru: "Какое значение может увидеть тот, у кого есть приложение?" } }
     ]
   }
 };
@@ -555,14 +557,14 @@ const useKeyin = () => {
 const POYDEVOR = {
   ilova: { nom: 'Maydon Jamoa', tex: 'Expo Go', qulf: 'expo-secure-store' },
   ekran: {
-    royxat: { uz: "Ro'yxatdan o'tish", ru: 'Регистрация' },
-    kirish: { uz: 'Kirish', ru: 'Вход' },
-    oyinlar: { uz: "O'yinlar", ru: 'Игры' }
+    royxat: { uz: "Ro'yxatdan o'tish", ru: "Регистрация" },
+    kirish: { uz: 'Kirish', ru: "Вход" },
+    oyinlar: { uz: "O'yinlar", ru: "Игры" }
   },
   forma: [
-    { k: 'ism', l: { uz: 'Ism', ru: 'Имя' }, v: 'Ali' },
-    { k: 'telefon', l: { uz: 'Telefon', ru: 'Телефон' }, v: '+998 90 000 00 01' },
-    { k: 'parol', l: { uz: 'Parol', ru: 'Пароль' }, v: '••••••••' }
+    { k: 'ism', l: { uz: 'Ism', ru: "Имя" }, v: 'Ali' },
+    { k: 'telefon', l: { uz: 'Telefon', ru: "Телефон" }, v: '+998 90 000 00 01' },
+    { k: 'parol', l: { uz: 'Parol', ru: "Пароль" }, v: '••••••••' }
   ],
   backend: {
     joy: { laptop: 'localhost:3000 · laptop', render: 'maydon-jamoa-….onrender.com · Render' },
@@ -572,17 +574,17 @@ const POYDEVOR = {
     nom: 'Database · Neon',
     oyinchilar: ['id', 'ism', 'telefon', 'parol_hash'],
     oyinlar: ['id', 'kun', 'soat', 'maydon', 'kerak'],
-    tashkilotchi: ['1', { uz: 'Namuna tashkilotchi', ru: 'Организатор-образец' }, '+998 90 000 00 00', '$2b$10$…'],
+    tashkilotchi: ['1', { uz: 'Namuna tashkilotchi', ru: "Организатор-образец" }, '+998 90 000 00 00', '$2b$10$…'],
     ali: ['2', 'Ali', '+998 90 000 00 01', '$2b$10$Qe…']
   },
-  ichi: { nom: { uz: 'ilova ichi', ru: 'внутри приложения' }, fayl: 'mobil/.env' }
+  ichi: { nom: { uz: 'ilova ichi', ru: "внутри приложения" }, fayl: 'mobil/.env' }
 };
 // Namuna o'yinlar (tayanch 9.2, 7/9-dars namuna.js bilan bir): Database'da yaratilish tartibida; ilova ro'yxati eng yangisini tepada ko'rsatadi (9.29). kun — sana (9.30)
 const OYINLAR = [
-  { id: 1, kun: { uz: 'Shanba', ru: 'Суббота' }, sana: '2026-10-10', soat: '18:00', maydon: { uz: 'Mahalla maydoni', ru: 'Поле махалли' }, kerak: 10 },
-  { id: 2, kun: { uz: 'Shanba', ru: 'Суббота' }, sana: '2026-10-10', soat: '20:00', maydon: { uz: 'Maktab maydoni', ru: 'Школьное поле' }, kerak: 10 },
-  { id: 3, kun: { uz: 'Yakshanba', ru: 'Воскресенье' }, sana: '2026-10-11', soat: '10:00', maydon: { uz: 'Park maydoni', ru: 'Поле в парке' }, kerak: 8 },
-  { id: 4, kun: { uz: 'Yakshanba', ru: 'Воскресенье' }, sana: '2026-10-11', soat: '17:00', maydon: { uz: 'Mahalla maydoni', ru: 'Поле махалли' }, kerak: 10 }
+  { id: 1, kun: { uz: 'Shanba', ru: "Суббота" }, sana: '2026-10-10', soat: '18:00', maydon: { uz: 'Mahalla maydoni', ru: "Поле махалли" }, kerak: 10 },
+  { id: 2, kun: { uz: 'Shanba', ru: "Суббота" }, sana: '2026-10-10', soat: '20:00', maydon: { uz: 'Maktab maydoni', ru: "Школьное поле" }, kerak: 10 },
+  { id: 3, kun: { uz: 'Yakshanba', ru: "Воскресенье" }, sana: '2026-10-11', soat: '10:00', maydon: { uz: 'Park maydoni', ru: "Поле в парке" }, kerak: 8 },
+  { id: 4, kun: { uz: 'Yakshanba', ru: "Воскресенье" }, sana: '2026-10-11', soat: '17:00', maydon: { uz: 'Mahalla maydoni', ru: "Поле махалли" }, kerak: 10 }
 ];
 const OYINLAR_YANGI = [...OYINLAR].reverse();
 const OYINLAR_QATOR = OYINLAR.map(o => ({ k: 'o' + o.id, c: [String(o.id), o.sana, o.soat, o.maydon, String(o.kerak)] }));
@@ -621,7 +623,7 @@ const OyinEkran = ({ qoshildi, bosildi }) => {
       <span className="fd-oyin-joy">{tr(o.maydon)}</span>
       <b key={son} className={cxx('fd-son', qoshildi && 'yangi')}>{son} / {o.kerak}</b>
       <span className="fd-doiralar" aria-hidden="true">{Array.from({ length: o.kerak }, (_, i) => <i key={i} className={cxx(i < son && 'bor', qoshildi && i === son - 1 && 'yangi')} />)}</span>
-      <span className={cxx('fd-tel-btn', bosildi && 'bos', qoshildi && 'off')}>{qoshildi ? tr({ uz: "Qo'shildingiz", ru: 'Вы присоединились' }) : tr({ uz: "Qo'shilaman", ru: 'Присоединяюсь' })}</span>
+      <span className={cxx('fd-tel-btn', bosildi && 'bos', qoshildi && 'off')}>{qoshildi ? tr({ uz: "Qo'shildingiz", ru: "Вы присоединились" }) : tr({ uz: "Qo'shilaman", ru: "Присоединяюсь" })}</span>
     </span>
   );
 };
@@ -690,7 +692,7 @@ const BackendQuti = ({ joy, yol = {}, yollar = true, solishtir, getOchiq, jwt, j
     {yollar && POYDEVOR.backend.yollar.map(y => (
       <span key={y.k} className={cxx('fd-yol', yol[y.k])} data-yol={y.k}><code>{y.t}</code>{y.qulf && <i className={cxx('fd-qulf-b', getOchiq && 'ochiq')} aria-hidden="true" />}</span>
     ))}
-    {solishtir && <span className="fd-solish">{tr({ uz: 'parol', ru: 'пароль' })} ↔ <code>parol_hash</code><b>✓</b></span>}
+    {solishtir && <span className="fd-solish">{tr({ uz: 'parol', ru: "пароль" })} ↔ <code>parol_hash</code><b>✓</b></span>}
     {jwt && <span className={cxx('fd-jwt', jwtYon && 'yon')}><i className="fd-qulf-b" aria-hidden="true" /><code>JWT_SECRET</code></span>}
   </div>
 );
@@ -719,7 +721,7 @@ const DbQuti = ({ ixcham, ali, yangiK, hashYon, oyinlarYon, faqatOyinchi }) => {
     <div className="fd-db">
       <span className="fd-db-h">{POYDEVOR.db.nom}</span>
       <Jadval nom="oyinchilar" ustun={POYDEVOR.db.oyinchilar} qatorlar={oq} yangiK={yangiK}>
-        {hashYon && <span className="fd-hash-y">{tr({ uz: "paroldan yasalgan satr — parolning o'zi emas", ru: 'строка, сделанная из пароля, — не сам пароль' })}</span>}
+        {hashYon && <span className="fd-hash-y">{tr({ uz: "paroldan yasalgan satr — parolning o'zi emas", ru: "строка, сделанная из пароля, — не сам пароль" })}</span>}
       </Jadval>
       <Jadval nom="oyinlar" ustun={POYDEVOR.db.oyinlar} qatorlar={OYINLAR_QATOR} yon={oyinlarYon} xira={faqatOyinchi} bosh={faqatOyinchi} />
       <Jadval nom="ishtirokchilar" bosh xira />
@@ -751,7 +753,7 @@ const Bashorat = ({ savol, variantlar, tanlov, onTanla, done }) => (!tanlov
 // Natija bloki (SABOQ 25): bitta yashil blok — birinchi qator taxmin, so'ng joriy qator (bo'lsa) va xulosa
 const NatijaBlok = ({ togri, haqiqat, izoh, xulosa }) => (
   <div className="q-xulosa fd-nb">
-    <span className={cxx('fd-nb-t', togri && 'ok')}>{togri ? <>✓ {tr({ uz: "Taxminingiz to'g'ri chiqdi", ru: 'Ваше предположение подтвердилось' })}</> : haqiqat}</span>
+    <span className={cxx('fd-nb-t', togri && 'ok')}>{togri ? <>✓ {tr({ uz: "Taxminingiz to'g'ri chiqdi", ru: "Ваше предположение подтвердилось" })}</> : haqiqat}</span>
     {izoh && <span className="fd-nb-i">{izoh}</span>}
     <span className="fd-nb-x">{xulosa}</span>
   </div>
@@ -760,9 +762,9 @@ const Haqiqat = ({ taxmin, haqiqat }) => <>{tr({ uz: 'Taxminingiz', ru: 'Ваш�
 
 // ===== SCREEN 0 — KIRISH (QKirish): ikki telefonda prototip, «Qo'shilaman» — tashkilotchi ko'radimi? Ballsiz (J-026) =====
 const HOOK_OPTS = [
-  { id: 'a', t: { uz: "Ko'radi — ikkala telefonda bir xil ilova turibdi", ru: 'Увидит — на обоих телефонах одно и то же приложение' } },
-  { id: 'b', t: { uz: "Ko'rmaydi — bosish faqat o'yinchi telefonida qoladi", ru: 'Не увидит — нажатие остаётся только на телефоне игрока' } },
-  { id: 'c', t: { uz: "Ko'rmaydi — tashkilotchi ilovani qayta ochmaguncha", ru: 'Не увидит — пока организатор не откроет приложение заново' } }
+  { id: 'a', t: { uz: "Ko'radi — ikkala telefonda bir xil ilova turibdi", ru: "Увидит — на обоих телефонах одно и то же приложение" } },
+  { id: 'b', t: { uz: "Ko'rmaydi — bosish faqat o'yinchi telefonida qoladi", ru: "Не увидит — нажатие остаётся только на телефоне игрока" } },
+  { id: 'c', t: { uz: "Ko'rmaydi — tashkilotchi ilovani qayta ochmaguncha", ru: "Не увидит — пока организатор не откроет приложение заново" } }
 ];
 const HOOK_JAVOB = {
   a: { uz: <><b>Qiziq fikr!</b> Ilova bir xil, lekin ma'lumot har telefonning o'zida. Ikkala telefon so'raydigan umumiy joy hali yo'q.</>, ru: <><b>Интересная мысль!</b> Приложение одно, но данные — на каждом телефоне свои. Общего места, к которому обращаются оба телефона, пока нет.</> },
@@ -788,18 +790,18 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     keyin(() => { setOrada(true); setSc(n => n + 1); }, ms(1500));
   };
   return (
-    <Stage eyebrow={tr({ uz: 'Loyiha kuni · kirish', ru: 'День проекта · введение' })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
+    <Stage eyebrow={tr({ uz: 'Loyiha kuni · kirish', ru: "День проекта · введение" })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <QKirish zoom={Zoomable}
         sarlavha={tr({ uz: <>Qo'shilgan o'yinchini <span className="italic" style={{ color: T.accent }}>tashkilotchi telefoni</span> ko'radimi?</>, ru: <>Увидит ли <span className="italic" style={{ color: T.accent }}>телефон организатора</span> нового игрока?</> })}
         mentor={<Mentor>{picked === null
-          ? tr({ uz: "Ikki telefonda 9-darsdagi prototip ochiq: chapda o'yinchi, o'ngda tashkilotchi. O'yinchi Shanba 18:00 dagi o'yinga qo'shilmoqchi — avval javobni tanlang.", ru: 'На двух телефонах открыт прототип из 9-го урока: слева игрок, справа организатор. Игрок хочет присоединиться к игре в субботу в 18:00 — сначала выберите ответ.' })
-          : tr({ uz: "«Davom etish»ni bosing — bugungi rejani ko'rasiz.", ru: 'Нажмите «Продолжить» — увидите план на сегодня.' })}</Mentor>}
+          ? tr({ uz: "Ikki telefonda 9-darsdagi prototip ochiq: chapda o'yinchi, o'ngda tashkilotchi. O'yinchi Shanba 18:00 dagi o'yinga qo'shilmoqchi — avval javobni tanlang.", ru: "На двух телефонах открыт прототип из 9-го урока: слева игрок, справа организатор. Игрок хочет присоединиться к игре в субботу в 18:00 — сначала выберите ответ." })
+          : tr({ uz: "«Davom etish»ni bosing — bugungi rejani ko'rasiz.", ru: "Нажмите «Продолжить» — увидите план на сегодня." })}</Mentor>}
         maket={<div className={cxx('fd-ikki', picked === null && 'kutish')}>
-          <Telefon ekran="oyin" tex={false} yorliq={<span className="fd-tel-yorliq b1">{tr({ uz: "1-telefon · o'yinchi", ru: 'Телефон 1 · игрок' })}</span>} qoshildi={qoshildi} bosildi={bos} className="fd-t1" />
-          <Telefon ekran="oyin" tex={false} yorliq={<span className="fd-tel-yorliq b2">{tr({ uz: '2-telefon · tashkilotchi', ru: 'Телефон 2 · организатор' })}</span>} className="fd-t2" />
-          {orada && <div className="fd-orada"><i className="fd-orada-ch" aria-hidden="true" /><span className="fd-orada-k">{tr({ uz: "umumiy joy — hali yo'q", ru: 'общего места — пока нет' })}</span></div>}
+          <Telefon ekran="oyin" tex={false} yorliq={<span className="fd-tel-yorliq b1">{tr({ uz: "1-telefon · o'yinchi", ru: "Телефон 1 · игрок" })}</span>} qoshildi={qoshildi} bosildi={bos} className="fd-t1" />
+          <Telefon ekran="oyin" tex={false} yorliq={<span className="fd-tel-yorliq b2">{tr({ uz: '2-telefon · tashkilotchi', ru: "Телефон 2 · организатор" })}</span>} className="fd-t2" />
+          {orada && <div className="fd-orada"><i className="fd-orada-ch" aria-hidden="true" /><span className="fd-orada-k">{tr({ uz: "umumiy joy — hali yo'q", ru: "общего места — пока нет" })}</span></div>}
         </div>}
-        savol={tr({ uz: 'Sizningcha, qaysi biri?', ru: 'Как вы думаете, какой вариант?' })}
+        savol={tr({ uz: 'Sizningcha, qaysi biri?', ru: "Как вы думаете, какой вариант?" })}
         variantlar={HOOK_OPTS.map(o => ({ id: o.id, t: tr(o.t) }))} tanlov={picked} onTanla={pick}
         javob={picked !== null && <p className="hook-ack fade-step">{tr(HOOK_JAVOB[picked])}</p>}
       />
@@ -809,9 +811,9 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja): chapda «Dars oxirida» — xarita tayyor holatda bir marta o'zi yuradi (DE-200); o'ngda 3 qadam (tegsiz, 172) =====
 const REJA = [
-  { uz: "Database va kirish: o'yinchi kiradi va token oladi", ru: 'Database и вход: игрок входит и получает токен' },
-  { uz: "Backend Render'da: telefon unga Internet orqali ulanadi", ru: 'Backend на Render: телефон подключается к нему через Интернет' },
-  { uz: "Ilova Backend'ga ulanadi: o'yinlar Database'dan keladi", ru: 'Приложение подключается к Backend: игры приходят из Database' }
+  { uz: "Database va kirish: o'yinchi kiradi va token oladi", ru: "Database и вход: игрок входит и получает токен" },
+  { uz: "Backend Render'da: telefon unga Internet orqali ulanadi", ru: "Backend на Render: телефон подключается к нему через Интернет" },
+  { uz: "Ilova Backend'ga ulanadi: o'yinlar Database'dan keladi", ru: "Приложение подключается к Backend: игры приходят из Database" }
 ];
 const RejaXarita = () => {
   const { box, parvoz, uchir, kam, keyin } = useParvoz();
@@ -838,25 +840,25 @@ const RejaXarita = () => {
   );
 };
 const Screen1 = ({ screen, onNext, onPrev }) => (
-  <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz', ru: 'Начинаем' })} onClick={onNext} /></>}>
+  <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz', ru: "Начинаем" })} onClick={onNext} /></>}>
     <QReja zoom={Zoomable}
-      sarlavha={tr({ uz: <>Dars oxirida ilova <span className="italic" style={{ color: T.accent }}>internetdagi Backend'ga</span> ulanadi.</>, ru: <>К концу урока приложение <span className="italic" style={{ color: T.accent }}>подключится к Backend</span> в сети.</> })}
-      mentor={<Mentor>{tr({ uz: "Bugun tanlangan stekda ilova Backend'ga ulanadi. Database, kirish va deploy — har funksiyadan oldin kerak bo'lgan bu qism poydevor deyiladi.", ru: 'Сегодня в выбранном стеке приложение подключается к Backend. Database, вход и деплой — эта часть, нужная перед каждой функцией, называется фундаментом.' })}</Mentor>}
-      chapYorliq={tr({ uz: 'Dars oxirida', ru: 'К концу урока' })}
+      sarlavha={tr({ uz: <>Dars oxirida ilova <span className="italic" style={{ color: T.accent }}>internetdagi Backend'ga</span> ulanadi.</>, ru: <>Приложение подключится <span className="italic" style={{ color: T.accent }}>к Backend в интернете</span>.</> })}
+      mentor={<Mentor>{tr({ uz: "Bugun tanlangan stekda ilova Backend'ga ulanadi. Database, kirish va deploy — har funksiyadan oldin kerak bo'lgan bu qism poydevor deyiladi.", ru: "Сегодня в выбранном стеке приложение подключается к Backend. Database, вход и деплой — эта часть, нужная перед каждой функцией, называется фундаментом." })}</Mentor>}
+      chapYorliq={tr({ uz: 'Dars oxirida', ru: "К концу урока" })}
       chap={<RejaXarita />}
       ongYorliq={tr({ uz: 'Bugungi 3 qadam', ru: '3 шага на сегодня' })}
       qadamlar={REJA.map(t => ({ t: tr(t) }))}>
       <div className="fd-reja-past fade-up">
-        <p className="fd-reja-repo">repo <code>maydon-jamoa</code> · {tr({ uz: "boshlang'ich holat", ru: 'начальное состояние' })} <code>m11-dars-10-start</code> · {tr({ uz: 'namuna', ru: 'образец' })} <code>m11-dars-10-done</code></p>
-        <p className="fd-reja-izoh">{tr({ uz: "«Maydon Jamoa» — namuna; amaliyotlarni o'z mahsulotingizda bajarasiz.", ru: '«Maydon Jamoa» — образец; практику вы делаете на своём продукте.' })}</p>
+        <p className="fd-reja-repo">repo <code>maydon-jamoa</code> · {tr({ uz: "boshlang'ich holat", ru: "начальное состояние" })} <code>m11-dars-10-start</code> · {tr({ uz: 'namuna', ru: "образец" })} <code>m11-dars-10-done</code></p>
+        <p className="fd-reja-izoh">{tr({ uz: "«Maydon Jamoa» — namuna; amaliyotlarni o'z mahsulotingizda bajarasiz.", ru: "«Maydon Jamoa» — образец; практику вы выполняете на своём продукте." })}</p>
       </div>
     </QReja>
   </Stage>
 );
 
 // ===== SCREEN 2 — TUSHUNCHA (QTushuncha keng): parol bir marta, keyin token. Bashorat → uch tugma navbat bilan (telefon ostida, SABOQ 21) → konvertlar → natija =====
-const S2_TAXMIN = [{ k: 'kirish', t: { uz: '«Kirish» ekranini', ru: 'Экран «Вход»' } }, { k: 'oyinlar', t: { uz: "«O'yinlar» ro'yxatini", ru: 'Список «Игры»' } }];
-const S2_QADAM = [{ uz: "Ro'yxatdan o'tish", ru: 'Регистрация' }, { uz: 'Kirish', ru: 'Вход' }, { uz: 'Ilovani qayta ochish', ru: 'Открыть приложение заново' }];
+const S2_TAXMIN = [{ k: 'kirish', t: { uz: '«Kirish» ekranini', ru: "Экран «Вход»" } }, { k: 'oyinlar', t: { uz: "«O'yinlar» ro'yxatini", ru: "Список «Игры»" } }];
+const S2_QADAM = [{ uz: "Ro'yxatdan o'tish", ru: "Регистрация" }, { uz: 'Kirish', ru: "Вход" }, { uz: 'Ilovani qayta ochish', ru: "Открыть приложение заново" }];
 const S2_BOSH = { tel: 'royxat', bos: false, qulf: '', qulfYon: false, yol: {}, solish: false, getOchiq: false, ali: false, yangiK: null, hashYon: false, oyinlarYon: false, qora: false, royxat: 'tola', beHolat: '' };
 const S2_OXIRI = { ...S2_BOSH, tel: 'oyinlar', qulf: 'token', yol: { royxat: 'ok', kirish: 'ok', oyinlar: 'ok' }, solish: true, getOchiq: true, ali: true, hashYon: true };
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -907,24 +909,24 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const qi = Math.min(n, 2);
   const tx2 = S2_TAXMIN.find(x => x.k === taxmin);
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · kirish', ru: 'Понятие · вход' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={!taxmin ? tr({ uz: 'Avval taxminingizni belgilang', ru: 'Сначала отметьте предположение' }) : !done ? tr({ uz: 'Tugmalarni navbat bilan bosing', ru: 'Нажимайте кнопки по очереди' }) : tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · kirish', ru: "Понятие · вход" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={!taxmin ? tr({ uz: 'Avval taxminingizni belgilang', ru: 'Сначала отметьте предположение' }) : !done ? tr({ uz: 'Tugmalarni navbat bilan bosing', ru: "Нажимайте кнопки по очереди" }) : tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
-        sarlavha={tr({ uz: <>Ilova qayta ochilsa, <span className="italic" style={{ color: T.accent }}>parol yana so'raladimi</span>?</>, ru: <>Если открыть приложение снова, <span className="italic" style={{ color: T.accent }}>спросит ли оно пароль</span>?</> })}
+        sarlavha={tr({ uz: <>Ilova qayta ochilsa, <span className="italic" style={{ color: T.accent }}>parol yana so'raladimi</span>?</>, ru: <>При повторном открытии <span className="italic" style={{ color: T.accent }}>снова спросят пароль</span>?</> })}
         mentor={<Mentor>{!taxmin
-          ? tr({ uz: "Avval taxminingizni belgilang, keyin o'yinchi bo'lib ro'yxatdan o'ting.", ru: 'Сначала отметьте предположение, потом зарегистрируйтесь как игрок.' })
-          : !done ? tr({ uz: 'Navbatdagi tugmani bosing va Database bilan telefonda nima o\'zgarishini kuzating.', ru: 'Нажмите следующую кнопку и следите, что меняется в Database и на телефоне.' })
-            : tr({ uz: 'Uchala qadam tugadi — natijani taxminingiz bilan solishtiring.', ru: 'Все три шага пройдены — сравните результат со своим предположением.' })}</Mentor>}
-        bashorat={<Bashorat savol={tr({ uz: 'Qayta ochilganda ilova nima ko\'rsatadi?', ru: 'Что покажет приложение при повторном открытии?' })} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
+          ? tr({ uz: "Avval taxminingizni belgilang, keyin o'yinchi bo'lib ro'yxatdan o'ting.", ru: "Сначала отметьте своё предположение, потом зарегистрируйтесь как игрок." })
+          : !done ? tr({ uz: 'Navbatdagi tugmani bosing va Database bilan telefonda nima o\'zgarishini kuzating.', ru: "Нажмите следующую кнопку и следите, что меняется в Database и на телефоне." })
+            : tr({ uz: 'Uchala qadam tugadi — natijani taxminingiz bilan solishtiring.', ru: "Все три шага пройдены — сравните результат со своим предположением." })}</Mentor>}
+        bashorat={<Bashorat savol={tr({ uz: 'Qayta ochilganda ilova nima ko\'rsatadi?', ru: "Что покажет приложение при повторном открытии?" })} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
         vizual={<PoydevorXarita boxRef={box} parvoz={parvoz}
           tel={<Telefon ekran={v.tel} bosildi={v.bos} qulf={v.qulf} qulfYon={v.qulfYon} fokus={tugadi} qora={v.qora} royxat={v.royxat}>
             {taxmin && !done && <QTugma className={yur ? undefined : 'fd-navbat'} disabled={yur} onClick={qadam}>{tr(S2_QADAM[qi])}<small className="fd-qn">{qi + 1}/3</small></QTugma>}
           </Telefon>}
           be={<BackendQuti yol={v.yol} solishtir={v.solish} getOchiq={v.getOchiq} holat={v.beHolat} />}
           db={<DbQuti ali={v.ali} yangiK={v.yangiK} hashYon={v.hashYon} oyinlarYon={v.oyinlarYon} faqatOyinchi={tugadi} />}
-          pastki={n >= 2 && !done && <p className="fd-joriy fade-step">{tx({ uz: 'Token telefonda `expo-secure-store` da turadi — u qiymatni shifrlab saqlaydi.', ru: 'Токен хранится на телефоне в `expo-secure-store` — он сохраняет значение в зашифрованном виде.' })}</p>} />}
+          pastki={n >= 2 && !done && <p className="fd-joriy fade-step">{tx({ uz: 'Token telefonda `expo-secure-store` da turadi — u qiymatni shifrlab saqlaydi.', ru: "Токен хранится на телефоне в `expo-secure-store` — он сохраняет значение в зашифрованном виде." })}</p>} />}
         natija={done && tx2 && <NatijaBlok togri={taxmin === 'oyinlar'}
-          haqiqat={<Haqiqat taxmin={tr(tx2.t)} haqiqat={tr({ uz: "«O'yinlar» — token telefonda saqlangan edi", ru: '«Игры» — токен был сохранён на телефоне' })} />}
-          xulosa={tr({ uz: "Kirishda parol yoziladi; token telefonda saqlansa, qayta ochganda parol so'ralmaydi.", ru: 'При входе вводится пароль; если токен сохранён на телефоне, при повторном открытии пароль не спрашивается.' })} />}
+          haqiqat={<Haqiqat taxmin={tr(tx2.t)} haqiqat={tr({ uz: "«O'yinlar» — token telefonda saqlangan edi", ru: "«Игры» — токен был сохранён на телефоне" })} />}
+          xulosa={tr({ uz: "Kirishda parol yoziladi; token telefonda saqlansa, qayta ochganda parol so'ralmaydi.", ru: "При входе вводится пароль; если токен сохранён на телефоне, при повторном открытии пароль не спрашивается." })} />}
       />
     </Stage>
   );
@@ -936,25 +938,25 @@ const Screen3 = (props) => (
     questionText="O'yinchi ilovani yopib, kechqurun qayta ochdi. Ilova uni qanday taniydi?"
     question={tr({ uz: <h2 className="title h-ask">O'yinchi ilovani yopib, kechqurun qayta ochdi. Ilova uni <span className="italic" style={{ color: T.accent }}>qanday taniydi</span>?</h2>, ru: <h2 className="title h-ask">Игрок закрыл приложение и вечером открыл снова. <span className="italic" style={{ color: T.accent }}>Как приложение его узнаёт</span>?</h2> })}
     options={[
-      { uz: "Telefon raqamini Database'dan qidirib topadi", ru: 'Ищет номер телефона в Database' },
-      { uz: "Telefonda saqlangan parolni Backend'ga qayta yuboradi", ru: 'Снова отправляет в Backend пароль, сохранённый на телефоне' },
-      { uz: "Telefonda saqlangan tokenni so'rovga qo'shadi", ru: 'Добавляет к запросу токен, сохранённый на телефоне' },
-      { uz: "Database'dagi tokenni o'qib, o'zi tekshirib ko'radi", ru: 'Читает токен из Database и сам его проверяет' }
+      { uz: "Telefon raqamini Database'dan qidirib topadi", ru: "Ищет номер телефона в Database" },
+      { uz: "Telefonda saqlangan parolni Backend'ga qayta yuboradi", ru: "Снова отправляет в Backend пароль, сохранённый на телефоне" },
+      { uz: "Telefonda saqlangan tokenni so'rovga qo'shadi", ru: "Добавляет к запросу токен, сохранённый на телефоне" },
+      { uz: "Database'dagi tokenni o'qib, o'zi tekshirib ko'radi", ru: "Читает токен из Database и сам его проверяет" }
     ]} correctIdx={2}
-    explainCorrect={{ uz: "Token telefonda saqlangan — ilova uni yopiq so'rovlarga qo'shadi.", ru: 'Токен сохранён на телефоне — приложение добавляет его к закрытым запросам.' }}
+    explainCorrect={{ uz: "Token telefonda saqlangan — ilova uni yopiq so'rovlarga qo'shadi.", ru: "Токен сохранён на телефоне — приложение добавляет его к закрытым запросам." }}
     explainWrong={{
-      0: { uz: "Telefon raqami ochiq — u o'yinchi kimligini isbotlamaydi.", ru: 'Номер телефона открыт — он не доказывает, кто игрок.' },
-      1: { uz: "Parol telefonda saqlanmaydi — u kirishda yoziladi.", ru: 'Пароль не хранится на телефоне — его вводят при входе.' },
-      3: { uz: "Token Database'ga yozilmaydi. Backend uni kimga bergan edi?", ru: 'Токен не записывается в Database. Кому его выдал Backend?' }
+      0: { uz: "Telefon raqami ochiq — u o'yinchi kimligini isbotlamaydi.", ru: "Номер телефона открыт — он не доказывает, кто игрок." },
+      1: { uz: "Parol telefonda saqlanmaydi — u kirishda yoziladi.", ru: "Пароль не хранится на телефоне — его вводят при входе." },
+      3: { uz: "Token Database'ga yozilmaydi. Backend uni kimga bergan edi?", ru: "Токен не записывается в Database. Кому его выдал Backend?" }
     }} />
 );
 
 // ===== SCREEN 4 — TUSHUNCHA (QTushuncha keng, harakat tepada): ilova .env iga qaysi qator? Qatorlar bittadan katta karta (SABOQ 9, 13) =====
-const S4_TAXMIN = [{ k: '1', t: { uz: 'Bittasi', ru: 'Одна' } }, { k: '2', t: { uz: 'Ikkitasi', ru: 'Две' } }, { k: '3', t: { uz: 'Uchalasi', ru: 'Все три' } }];
+const S4_TAXMIN = [{ k: '1', t: { uz: 'Bittasi', ru: "Одна" } }, { k: '2', t: { uz: 'Ikkitasi', ru: "Две" } }, { k: '3', t: { uz: 'Uchalasi', ru: "Все три" } }];
 const S4_QATORLAR = [
-  { kalit: 'EXPO_PUBLIC_API_URL', qiymat: 'http://localhost:3000', natija: 'xato', yorliq: { uz: "Telefonda `localhost` — telefonning o'zi.", ru: 'На телефоне `localhost` — это сам телефон.' } },
-  { kalit: 'EXPO_PUBLIC_JWT_SECRET', qiymat: 'k3J9…', natija: 'xato', yorliq: { uz: "Ilovani olgan har kim bu qiymatni o'qiy oladi.", ru: 'Любой, у кого есть приложение, может прочитать это значение.' } },
-  { kalit: 'EXPO_PUBLIC_API_URL', qiymat: 'https://maydon-jamoa-….onrender.com', natija: 'ok', yorliq: { uz: "Internetdagi manzil — telefon uni topadi.", ru: 'Адрес в интернете — телефон его находит.' } }
+  { kalit: 'EXPO_PUBLIC_API_URL', qiymat: 'http://localhost:3000', natija: 'xato', yorliq: { uz: "Telefonda `localhost` — telefonning o'zi.", ru: "На телефоне `localhost` — это сам телефон." } },
+  { kalit: 'EXPO_PUBLIC_JWT_SECRET', qiymat: 'k3J9…', natija: 'xato', yorliq: { uz: "Ilovani olgan har kim bu qiymatni o'qiy oladi.", ru: "Любой, у кого есть приложение, может прочитать это значение." } },
+  { kalit: 'EXPO_PUBLIC_API_URL', qiymat: 'https://maydon-jamoa-….onrender.com', natija: 'ok', yorliq: { uz: "Internetdagi manzil — telefon uni topadi.", ru: "Адрес в интернете — телефон его находит." } }
 ];
 const IlovaIchi = ({ qatorlar }) => (
   <div className="fd-ichi">
@@ -998,7 +1000,7 @@ const QatorKarta = ({ i, natija, yur, onYoz }) => {
       <code className="fd-qk-t">{q.kalit}={q.qiymat}</code>
       {natija
         ? <span className="fd-qk-n"><b>{natija === 'ok' ? '✓' : '✗'}</b>{i !== 1 && <span>{tx(q.yorliq)}</span>}</span>
-        : <QTugma className={cxx(!yur && 'fd-navbat')} disabled={yur} onClick={onYoz}>{tr({ uz: "Yozib ko'rish", ru: 'Записать' })}</QTugma>}
+        : <QTugma className={cxx(!yur && 'fd-navbat')} disabled={yur} onClick={onYoz}>{tr({ uz: "Yozib ko'rish", ru: "Записать" })}</QTugma>}
     </QKarta>
   );
 };
@@ -1049,22 +1051,22 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   };
   const tx4 = S4_TAXMIN.find(x => x.k === taxmin);
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · ilova manzili', ru: 'Понятие · адрес приложения' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={!taxmin ? tr({ uz: 'Avval taxminingizni belgilang', ru: 'Сначала отметьте предположение' }) : !done ? tr({ uz: "Qatorlarni yozib ko'ring", ru: 'Запишите строки' }) : tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · ilova manzili', ru: "Понятие · адрес приложения" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={!taxmin ? tr({ uz: 'Avval taxminingizni belgilang', ru: 'Сначала отметьте предположение' }) : !done ? tr({ uz: "Qatorlarni yozib ko'ring", ru: "Запишите строки" }) : tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng harakatAvval
         sarlavha={tr({ uz: <>Ilovaning <code className="qcode">.env</code> fayliga <span className="italic" style={{ color: T.accent }}>qaysi qator</span> yoziladi?</>, ru: <>Какая строка пишется <span className="italic" style={{ color: T.accent }}>в файл <code className="qcode">.env</code></span> приложения?</> })}
         mentor={<Mentor>{!taxmin
-          ? tr({ uz: "Avval taxminingizni belgilang, keyin qatorlarni bittadan yozib ko'ring.", ru: 'Сначала отметьте предположение, потом запишите строки по одной.' })
-          : !done ? tr({ uz: "«Yozib ko'rish»ni bosing — telefon va «ilova ichi» kartasida nima bo'lishini kuzating.", ru: 'Нажмите «Записать» — следите, что происходит на телефоне и в карточке «внутри приложения».' })
-            : tr({ uz: "Uchala qator yozib ko'rildi — natijani taxminingiz bilan solishtiring.", ru: 'Все три строки проверены — сравните результат со своим предположением.' })}</Mentor>}
-        bashorat={<Bashorat savol={tr({ uz: 'Uch qatordan nechtasi ilovaga yoziladi?', ru: 'Сколько из трёх строк пишется в приложение?' })} variantlar={S4_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
+          ? tr({ uz: "Avval taxminingizni belgilang, keyin qatorlarni bittadan yozib ko'ring.", ru: "Сначала отметьте предположение, потом запишите строки по одной." })
+          : !done ? tr({ uz: "«Yozib ko'rish»ni bosing — telefon va «ilova ichi» kartasida nima bo'lishini kuzating.", ru: "Нажмите «Записать» — следите, что происходит на телефоне и в карточке «внутри приложения»." })
+            : tr({ uz: "Uchala qator yozib ko'rildi — natijani taxminingiz bilan solishtiring.", ru: "Все три строки записаны — сравните результат со своим предположением." })}</Mentor>}
+        bashorat={<Bashorat savol={tr({ uz: 'Uch qatordan nechtasi ilovaga yoziladi?', ru: "Сколько из трёх строк пишется в приложение?" })} variantlar={S4_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
         harakat={taxmin && !done && <QatorKarta i={Math.min(i, 2)} natija={natija} yur={yur} onYoz={yoz} />}
         vizual={<ManzilXarita boxRef={box} parvoz={parvoz} renderYon={renderYon} jwtYon={jwtYon} tugadi={tugadi}
           tel={<Telefon ekran="oyinlar" royxat={royxat} />}
           ichi={<IlovaIchi qatorlar={env} />} />}
         natija={done && tx4 && <NatijaBlok togri={taxmin === '1'}
-          haqiqat={<Haqiqat taxmin={tr(tx4.t)} haqiqat={tr({ uz: 'bittasi — internetdagi Backend manzili', ru: 'одна — адрес Backend в интернете' })} />}
-          izoh={tx({ uz: "`EXPO_PUBLIC_` bilan boshlangan qiymat ilova ichiga ochiq matn bo'lib yoziladi.", ru: 'Значение, начинающееся с `EXPO_PUBLIC_`, записывается внутрь приложения открытым текстом.' })}
-          xulosa={tr({ uz: "Ilovaga faqat internetdagi Backend manzili yoziladi. Maxfiy kalit faqat Backend'da turadi.", ru: 'В приложение пишется только адрес Backend в интернете. Секретный ключ хранится только в Backend.' })} />}
+          haqiqat={<Haqiqat taxmin={tr(tx4.t)} haqiqat={tr({ uz: 'bittasi — internetdagi Backend manzili', ru: "одна — адрес Backend в интернете" })} />}
+          izoh={tx({ uz: "`EXPO_PUBLIC_` bilan boshlangan qiymat ilova ichiga ochiq matn bo'lib yoziladi.", ru: "Значение, начинающееся с `EXPO_PUBLIC_`, записывается внутрь приложения открытым текстом." })}
+          xulosa={tr({ uz: "Ilovaga faqat internetdagi Backend manzili yoziladi. Maxfiy kalit faqat Backend'da turadi.", ru: "В приложение пишется только адрес Backend в интернете. Секретный ключ хранится только в Backend." })} />}
       />
     </Stage>
   );
@@ -1072,28 +1074,28 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 5 — TEST 2 (QuestionScreen → QTest; INLINE_KEYS.s5 = 1, B) =====
 const Screen5 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Упражнение · вопрос 2' })}
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: "Упражнение · вопрос 2" })}
     questionText="Backend Render'ga chiqdi. JWT_SECRET qayerda turishi kerak?"
     question={tr({ uz: <h2 className="title h-ask">Backend Render'ga chiqdi. <code className="qcode">JWT_SECRET</code> <span className="italic" style={{ color: T.accent }}>qayerda turishi</span> kerak?</h2>, ru: <h2 className="title h-ask">Backend вышел на Render. <span className="italic" style={{ color: T.accent }}>Где должен храниться</span> <code className="qcode">JWT_SECRET</code>?</h2> })}
     options={[
-      { uz: "Ilovaning `.env` ida — `EXPO_PUBLIC_` bilan boshlanib", ru: 'В `.env` приложения — с приставкой `EXPO_PUBLIC_`' },
-      { uz: "Render'da — Backend'ning Environment bo'limida", ru: 'На Render — в разделе Environment у Backend' },
-      { uz: 'Talab matnida — agent ham bilib tursin deb', ru: 'В тексте требования — чтобы агент тоже знал' },
-      { uz: "`README.md` da — Render uni o'sha yerdan o'qisin deb", ru: 'В `README.md` — чтобы Render читал его оттуда' }
+      { uz: "Ilovaning `.env` ida — `EXPO_PUBLIC_` bilan boshlanib", ru: "В `.env` приложения — с приставкой `EXPO_PUBLIC_`" },
+      { uz: "Render'da — Backend'ning Environment bo'limida", ru: "На Render — в разделе Environment у Backend" },
+      { uz: 'Talab matnida — agent ham bilib tursin deb', ru: "В тексте требования — чтобы агент тоже знал" },
+      { uz: "`README.md` da — Render uni o'sha yerdan o'qisin deb", ru: "В `README.md` — чтобы Render читал его оттуда" }
     ]} correctIdx={1}
-    explainCorrect={{ uz: "Maxfiy kalit Backend'da turadi: ilova va repo uni ko'rmaydi.", ru: 'Секретный ключ хранится в Backend: ни приложение, ни репо его не видят.' }}
+    explainCorrect={{ uz: "Maxfiy kalit Backend'da turadi: ilova va repo uni ko'rmaydi.", ru: "Секретный ключ хранится в Backend: ни приложение, ни репо его не видят." }}
     explainWrong={{
-      0: { uz: "`EXPO_PUBLIC_` qiymati ilova ichida ochiq ko'rinadi.", ru: 'Значение `EXPO_PUBLIC_` видно внутри приложения открыто.' },
-      2: { uz: "Talab README'da va chatda qoladi — kalitga joy emas.", ru: 'Требование остаётся в README и в чате — это не место для ключа.' },
-      3: { uz: "README'da faqat nomlar turadi — u GitHub'da ochiq.", ru: 'В README только названия — он открыт на GitHub.' }
+      0: { uz: "`EXPO_PUBLIC_` qiymati ilova ichida ochiq ko'rinadi.", ru: "Значение `EXPO_PUBLIC_` видно в приложении открытым текстом." },
+      2: { uz: "Talab README'da va chatda qoladi — kalitga joy emas.", ru: "Требование остаётся в README и в чате — это не место для ключа." },
+      3: { uz: "README'da faqat nomlar turadi — u GitHub'da ochiq.", ru: "В README только названия — он открыт на GitHub." }
     }} />
 );
 
 // ===== 🏅 BADGES (nishonlar, 3) — ikki savol (birinchi urinish) + bonus: 3-amaliyot oxirgi «Bajardim» (birinchi urinish sharti yo'q) =====
 const ACHIEVEMENTS = {
-  tokenKeeper: { icon: '🔑', name: 'Token Keeper', desc: { uz: "Ilova o'yinchini telefondagi token bilan tanishini topdingiz", ru: 'Вы нашли, что приложение узнаёт игрока по токену на телефоне' } },
-  secretSafe: { icon: '🛡️', name: 'Secret Safe', desc: { uz: "Maxfiy kalit Backend'da turishini topdingiz", ru: 'Вы нашли, что секретный ключ хранится в Backend' } },
-  foundationReady: { icon: '🧱', name: 'Foundation Ready', desc: { uz: 'Uch amaliyot blokini oxirigacha bajardingiz', ru: 'Вы выполнили все три блока практики до конца' } }
+  tokenKeeper: { icon: '🔑', name: 'Token Keeper', desc: { uz: "Ilova o'yinchini telefondagi token bilan tanishini topdingiz", ru: "Вы нашли, что приложение узнаёт игрока по токену на телефоне" } },
+  secretSafe: { icon: '🛡️', name: 'Secret Safe', desc: { uz: "Maxfiy kalit Backend'da turishini topdingiz", ru: "Вы нашли, что секретный ключ хранится в Backend" } },
+  foundationReady: { icon: '🧱', name: 'Foundation Ready', desc: { uz: 'Uch amaliyot blokini oxirigacha bajardingiz', ru: "Вы выполнили все три блока практики до конца" } }
 };
 // Ekran id → nishon. Savollar — birinchi urinishda to'g'ri; a3 — oxirgi «Bajardim» (bonus).
 const ACH_TRIGGERS = { s3: 'tokenKeeper', s5: 'secretSafe', a3: 'foundationReady' };
@@ -1154,13 +1156,13 @@ const Confetti = () => {
 
 // Podium savol yorliqlari (SCORED_IDX: 4, 7)
 const Q_LABELS = {
-  4: { uz: '1 — Token telefonda', ru: '1 — Токен на телефоне' },
-  7: { uz: '2 — Maxfiy kalit joyi', ru: '2 — Место секретного ключа' }
+  4: { uz: '1 — Token telefonda', ru: "1 — Токен на телефоне" },
+  7: { uz: '2 — Maxfiy kalit joyi', ru: "2 — Место секретного ключа" }
 };
 const QUIZ_MS = 15000;
 // Kapsula ichida suzuvchi fon so'zlari — darsning o'z atamalari (MD, R-008: o'quvchi so'zi {uz, ru}; kod-belgi va nom o'zgarmaydi)
 const QZ_BG_SHAPES = [
-  { ch: { uz: 'poydevor', ru: 'фундамент' }, l: 5, t: 10, s: 28, d: 19, dl: 0 },
+  { ch: { uz: 'poydevor', ru: "фундамент" }, l: 5, t: 10, s: 28, d: 19, dl: 0 },
   { ch: 'Database', l: 80, t: 8, s: 26, d: 23, dl: 1.5 },
   { ch: 'Backend', l: 8, t: 72, s: 26, d: 27, dl: 0.8 },
   { ch: 'token', l: 74, t: 66, s: 26, d: 21, dl: 2.2 },
@@ -1175,18 +1177,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol (MD), to'g'ri javob o'rni A·B·C·D ×3 (3/3/3/3).
 const QUIZ_BANK = [
-  { q: { uz: 'Ilova kirgan o\'yinchini keyingi so\'rovlarda qanday taniydi?', ru: 'Как приложение узнаёт вошедшего игрока в следующих запросах?' }, opts: [{ uz: 'Telefonda saqlangan token orqali', ru: 'По токену, сохранённому на телефоне' }, { uz: 'Har safar telefon raqamini so\'rab', ru: 'Каждый раз спрашивая номер телефона' }, { uz: 'Database\'dagi parolni o\'qib chiqib', ru: 'Прочитав пароль из Database' }, { uz: 'Expo Go akkauntining nomi orqali', ru: 'По имени аккаунта Expo Go' }], correct: 0 },
-  { q: { uz: '`oyinchilar` jadvalida parol qanday turadi?', ru: 'Как хранится пароль в таблице `oyinchilar`?' }, opts: [{ uz: 'Parolning o\'zi, ochiq matn bo\'lib', ru: 'Сам пароль, открытым текстом' }, { uz: 'Paroldan yasalgan hash bo\'lib', ru: 'Хешем, сделанным из пароля' }, { uz: 'Telefon raqamiga qo\'shib yozilib', ru: 'Дописанным к номеру телефона' }, { uz: 'Token ichiga joylab qo\'yilib', ru: 'Вложенным внутрь токена' }], correct: 1 },
-  { q: { uz: 'Tokensiz `GET /oyinlar` so\'rovi kelsa, Backend nima qiladi?', ru: 'Что делает Backend, если пришёл `GET /oyinlar` без токена?' }, opts: [{ uz: 'O\'yinlarning to\'liq ro\'yxatini beradi', ru: 'Отдаёт полный список игр' }, { uz: 'Faqat birinchi o\'yinni qaytaradi', ru: 'Возвращает только первую игру' }, { uz: '401 qaytaradi, ro\'yxatni bermaydi', ru: 'Возвращает 401, список не отдаёт' }, { uz: '«Kirish» ekranini o\'zi ochib beradi', ru: 'Сам открывает экран «Kirish»' }], correct: 2 },
-  { q: { uz: 'Token telefonda qayerda saqlanadi?', ru: 'Где на телефоне хранится токен?' }, opts: [{ uz: 'Database\'dagi `oyinchilar` jadvalida', ru: 'В таблице `oyinchilar` в Database' }, { uz: 'Ilovaning `.env` faylidagi qatorda', ru: 'В строке файла `.env` приложения' }, { uz: 'Repo\'dagi `README.md` bo\'limida', ru: 'В разделе `README.md` в репо' }, { uz: '`expo-secure-store` da, shifrlab', ru: 'В `expo-secure-store`, зашифрованным' }], correct: 3 },
-  { q: { uz: 'Telefondagi ilova uchun `localhost` nimani bildiradi?', ru: 'Что означает `localhost` для приложения на телефоне?' }, opts: [{ uz: 'Telefonning o\'zini', ru: 'Сам телефон' }, { uz: 'Laptopdagi Backend\'ni', ru: 'Backend на ноутбуке' }, { uz: 'Render\'dagi Backend\'ni', ru: 'Backend на Render' }, { uz: 'Neon\'dagi Database\'ni', ru: 'Database на Neon' }], correct: 0 },
-  { q: { uz: 'Nega Backend shu darsda Render\'ga chiqadi?', ru: 'Почему на этом уроке Backend выходит на Render?' }, opts: [{ uz: 'Laptopda u sekin ishlagani uchun', ru: 'Потому что на ноутбуке он медленный' }, { uz: 'Telefon Internet orqali ulanishi uchun', ru: 'Чтобы телефон подключался через Интернет' }, { uz: 'Render Database\'ni o\'zi yaratgani uchun', ru: 'Потому что Render сам создаёт Database' }, { uz: 'Expo Go faqat Render bilan ishlagani uchun', ru: 'Потому что Expo Go работает только с Render' }], correct: 1 },
-  { q: { uz: 'Ilovaning `EXPO_PUBLIC_API_URL` qatoriga nima yoziladi?', ru: 'Что пишется в строку `EXPO_PUBLIC_API_URL` приложения?' }, opts: [{ uz: '`http://localhost:3000` manzili', ru: 'Адрес `http://localhost:3000`' }, { uz: '`JWT_SECRET` kalitining qiymati', ru: 'Значение ключа `JWT_SECRET`' }, { uz: 'Render\'dagi Backend manzili', ru: 'Адрес Backend на Render' }, { uz: 'Neon\'dagi `DATABASE_URL` satri', ru: 'Строка `DATABASE_URL` из Neon' }], correct: 2 },
-  { q: { uz: 'Nega `EXPO_PUBLIC_` qatoriga maxfiy kalit yozilmaydi?', ru: 'Почему в строку `EXPO_PUBLIC_` не пишут секретный ключ?' }, opts: [{ uz: 'Ilova ochilishi sekinlashib qoladi', ru: 'Приложение станет медленнее открываться' }, { uz: 'Expo Go bunday qatorni o\'chirib tashlaydi', ru: 'Expo Go удалит такую строку' }, { uz: 'Render bu qatorni o\'qiy olmay qoladi', ru: 'Render не сможет прочитать эту строку' }, { uz: 'U ilova ichida ochiq matn bo\'lib turadi', ru: 'Оно лежит внутри приложения открытым текстом' }], correct: 3 },
-  { q: { uz: 'Internetdagi Backend uchun `JWT_SECRET` qayerda turadi?', ru: 'Где хранится `JWT_SECRET` для Backend в интернете?' }, opts: [{ uz: 'Render\'dagi Environment bo\'limida', ru: 'В разделе Environment на Render' }, { uz: 'Ilovaning `mobil/.env` faylidagi qatorda', ru: 'В строке файла `mobil/.env` приложения' }, { uz: 'GitHub\'dagi `README.md` faylida', ru: 'В файле `README.md` на GitHub' }, { uz: 'Agentga yozilgan talab matnida', ru: 'В тексте требования для агента' }], correct: 0 },
-  { q: { uz: 'Telefon brauzerida Render manzili `/oyinlar` — 401 chiqdi. Bu nimani bildiradi?', ru: 'В браузере телефона адрес Render `/oyinlar` — вышло 401. Что это значит?' }, opts: [{ uz: 'Backend ishlamayapti — Render xato berdi', ru: 'Backend не работает — Render выдал ошибку' }, { uz: 'Backend internetda va tokensiz yopiq', ru: 'Backend в интернете и без токена закрыт' }, { uz: 'Database\'da o\'yinlar hali yozilmagan', ru: 'В Database ещё нет игр' }, { uz: 'Telefonning o\'zi Internetga ulanmagan', ru: 'Сам телефон не подключён к Интернету' }], correct: 1 },
-  { q: { uz: 'Push\'dan oldin fayllarni qanday qo\'shasiz?', ru: 'Как добавить файлы перед push?' }, opts: [{ uz: '`git add .` bilan hammasini birdan', ru: 'Все сразу через `git add .`' }, { uz: '`.env` ni ham qo\'shib, hammasini', ru: 'Все, вместе с `.env`' }, { uz: 'Agent aytgan fayllarni bittadan', ru: 'По одному — файлы, которые назвал агент' }, { uz: 'Faqat `README.md` faylini qo\'shib', ru: 'Только файл `README.md`' }], correct: 2 },
-  { q: { uz: 'Ilova `GET /oyinlar` dan `401` oldi. Ilova nima qiladi?', ru: 'Приложение получило `401` от `GET /oyinlar`. Что оно делает?' }, opts: [{ uz: 'O\'yinlarni namunadan ko\'rsataveradi', ru: 'Продолжает показывать игры из образца' }, { uz: 'Parolni o\'zi qayta yuborib turadi', ru: 'Само снова отправляет пароль' }, { uz: 'Render\'dagi Backend\'ni qayta yoqadi', ru: 'Перезапускает Backend на Render' }, { uz: 'Tokenni o\'chirib, «Kirish»ni ochadi', ru: 'Удаляет токен и открывает «Kirish»' }], correct: 3 },
+  { q: { uz: 'Ilova kirgan o\'yinchini keyingi so\'rovlarda qanday taniydi?', ru: "Как приложение узнаёт вошедшего игрока в следующих запросах?" }, opts: [{ uz: 'Telefonda saqlangan token orqali', ru: "По токену, сохранённому на телефоне" }, { uz: 'Har safar telefon raqamini so\'rab', ru: "Каждый раз спрашивая номер телефона" }, { uz: 'Database\'dagi parolni o\'qib chiqib', ru: "Прочитав пароль из Database" }, { uz: 'Expo Go akkauntining nomi orqali', ru: "По имени аккаунта Expo Go" }], correct: 0 },
+  { q: { uz: '`oyinchilar` jadvalida parol qanday turadi?', ru: "Как хранится пароль в таблице `oyinchilar`?" }, opts: [{ uz: 'Parolning o\'zi, ochiq matn bo\'lib', ru: "Сам пароль, открытым текстом" }, { uz: 'Paroldan yasalgan hash bo\'lib', ru: "Хешем, сделанным из пароля" }, { uz: 'Telefon raqamiga qo\'shib yozilib', ru: "Дописанным к номеру телефона" }, { uz: 'Token ichiga joylab qo\'yilib', ru: "Вложенным внутрь токена" }], correct: 1 },
+  { q: { uz: 'Tokensiz `GET /oyinlar` so\'rovi kelsa, Backend nima qiladi?', ru: "Что делает Backend, если пришёл `GET /oyinlar` без токена?" }, opts: [{ uz: 'O\'yinlarning to\'liq ro\'yxatini beradi', ru: "Отдаёт полный список игр" }, { uz: 'Faqat birinchi o\'yinni qaytaradi', ru: "Возвращает только первую игру" }, { uz: '401 qaytaradi, ro\'yxatni bermaydi', ru: "Возвращает 401, список не отдаёт" }, { uz: '«Kirish» ekranini o\'zi ochib beradi', ru: "Сам открывает экран «Вход»" }], correct: 2 },
+  { q: { uz: 'Token telefonda qayerda saqlanadi?', ru: "Где на телефоне хранится токен?" }, opts: [{ uz: 'Database\'dagi `oyinchilar` jadvalida', ru: "В таблице `oyinchilar` в Database" }, { uz: 'Ilovaning `.env` faylidagi qatorda', ru: "В строке файла `.env` приложения" }, { uz: 'Repo\'dagi `README.md` bo\'limida', ru: "В разделе `README.md` в репо" }, { uz: '`expo-secure-store` da, shifrlab', ru: "В `expo-secure-store`, зашифрованным" }], correct: 3 },
+  { q: { uz: 'Telefondagi ilova uchun `localhost` nimani bildiradi?', ru: "Что означает `localhost` для приложения на телефоне?" }, opts: [{ uz: 'Telefonning o\'zini', ru: "Сам телефон" }, { uz: 'Laptopdagi Backend\'ni', ru: "Backend на ноутбуке" }, { uz: 'Render\'dagi Backend\'ni', ru: "Backend на Render" }, { uz: 'Neon\'dagi Database\'ni', ru: "Database на Neon" }], correct: 0 },
+  { q: { uz: 'Nega Backend shu darsda Render\'ga chiqadi?', ru: "Почему на этом уроке Backend выходит на Render?" }, opts: [{ uz: 'Laptopda u sekin ishlagani uchun', ru: "Потому что на ноутбуке он медленный" }, { uz: 'Telefon Internet orqali ulanishi uchun', ru: "Чтобы телефон подключался через Интернет" }, { uz: 'Render Database\'ni o\'zi yaratgani uchun', ru: "Потому что Render сам создаёт Database" }, { uz: 'Expo Go faqat Render bilan ishlagani uchun', ru: "Потому что Expo Go работает только с Render" }], correct: 1 },
+  { q: { uz: 'Ilovaning `EXPO_PUBLIC_API_URL` qatoriga nima yoziladi?', ru: "Что пишется в строку `EXPO_PUBLIC_API_URL` приложения?" }, opts: [{ uz: '`http://localhost:3000` manzili', ru: "Адрес `http://localhost:3000`" }, { uz: '`JWT_SECRET` kalitining qiymati', ru: "Значение ключа `JWT_SECRET`" }, { uz: 'Render\'dagi Backend manzili', ru: "Адрес Backend на Render" }, { uz: 'Neon\'dagi `DATABASE_URL` satri', ru: "Строка `DATABASE_URL` из Neon" }], correct: 2 },
+  { q: { uz: 'Nega `EXPO_PUBLIC_` qatoriga maxfiy kalit yozilmaydi?', ru: "Почему в строку `EXPO_PUBLIC_` не пишут секретный ключ?" }, opts: [{ uz: 'Ilova ochilishi sekinlashib qoladi', ru: "Приложение станет медленнее открываться" }, { uz: 'Expo Go bunday qatorni o\'chirib tashlaydi', ru: "Expo Go удалит такую строку" }, { uz: 'Render bu qatorni o\'qiy olmay qoladi', ru: "Render не сможет прочитать эту строку" }, { uz: 'U ilova ichida ochiq matn bo\'lib turadi', ru: "Оно лежит внутри приложения открытым текстом" }], correct: 3 },
+  { q: { uz: 'Internetdagi Backend uchun `JWT_SECRET` qayerda turadi?', ru: "Где хранится `JWT_SECRET` для Backend в интернете?" }, opts: [{ uz: 'Render\'dagi Environment bo\'limida', ru: "В разделе Environment на Render" }, { uz: 'Ilovaning `mobil/.env` faylidagi qatorda', ru: "В строке файла `mobil/.env` приложения" }, { uz: 'GitHub\'dagi `README.md` faylida', ru: "В файле `README.md` на GitHub" }, { uz: 'Agentga yozilgan talab matnida', ru: "В тексте требования для агента" }], correct: 0 },
+  { q: { uz: 'Telefon brauzerida Render manzili `/oyinlar` — 401 chiqdi. Bu nimani bildiradi?', ru: "В браузере телефона по адресу Render `/oyinlar` — ответ 401. Что это значит?" }, opts: [{ uz: 'Backend ishlamayapti — Render xato berdi', ru: "Backend не работает — Render выдал ошибку" }, { uz: 'Backend internetda va tokensiz yopiq', ru: "Backend в интернете и без токена закрыт" }, { uz: 'Database\'da o\'yinlar hali yozilmagan', ru: "В Database ещё нет игр" }, { uz: 'Telefonning o\'zi Internetga ulanmagan', ru: "Сам телефон не подключён к Интернету" }], correct: 1 },
+  { q: { uz: 'Push\'dan oldin fayllarni qanday qo\'shasiz?', ru: "Как добавить файлы перед push?" }, opts: [{ uz: '`git add .` bilan hammasini birdan', ru: "Все сразу через `git add .`" }, { uz: '`.env` ni ham qo\'shib, hammasini', ru: "Все, вместе с `.env`" }, { uz: 'Agent aytgan fayllarni bittadan', ru: "По одному — файлы, которые назвал агент" }, { uz: 'Faqat `README.md` faylini qo\'shib', ru: "Только файл `README.md`" }], correct: 2 },
+  { q: { uz: 'Ilova `GET /oyinlar` dan `401` oldi. Ilova nima qiladi?', ru: "Приложение получило `401` от `GET /oyinlar`. Что оно делает?" }, opts: [{ uz: 'O\'yinlarni namunadan ko\'rsataveradi', ru: "Продолжает показывать игры из образца" }, { uz: 'Parolni o\'zi qayta yuborib turadi', ru: "Само снова отправляет пароль" }, { uz: 'Render\'dagi Backend\'ni qayta yoqadi', ru: "Перезапускает Backend на Render" }, { uz: 'Tokenni o\'chirib, «Kirish»ni ochadi', ru: "Удаляет токен и открывает «Вход»" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1754,7 +1756,7 @@ const FdPrompt = ({ satrlar, namuna = [] }) => {
   const nusxa = async () => { try { await navigator.clipboard.writeText(matn.join('\n')); setOk(true); setTimeout(() => setOk(false), 1600); } catch { /* clipboard yopiq — o'quvchi matnni qo'lda belgilaydi */ } };
   return (
     <span className="q-prompt">
-      <span className="q-prompt-h"><span className="q-prompt-kim">{tr({ uz: 'Siz → Antigravity', ru: 'Вы → Antigravity' })}</span><button type="button" className="q-prompt-nusxa" onClick={nusxa}>{ok ? tr({ uz: '✓ Nusxalandi', ru: '✓ Скопировано' }) : tr({ uz: 'Nusxalash', ru: 'Скопировать' })}</button></span>
+      <span className="q-prompt-h"><span className="q-prompt-kim">{tr({ uz: 'Siz → Antigravity', ru: 'Вы → Antigravity' })}</span><button type="button" className="q-prompt-nusxa" onClick={nusxa}>{ok ? tr({ uz: '✓ Nusxalandi', ru: "✓ Скопировано" }) : tr({ uz: 'Nusxalash', ru: "Скопировать" })}</button></span>
       {matn.map((l, i) => <span key={i} className="fd-ps">{joy(l, i)}</span>)}
     </span>
   );
@@ -1768,7 +1770,7 @@ const Yordam = ({ guruhlar }) => {
   }, [ochiq]);
   return (
     <>
-      <QTugma ikkinchi className="fd-yordam-btn" aria-expanded={ochiq} onClick={() => setOchiq(o => !o)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>
+      <QTugma ikkinchi className="fd-yordam-btn" aria-expanded={ochiq} onClick={() => setOchiq(o => !o)}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>
       {ochiq && <span className="fd-yordam fade-step">{guruhlar.map((g, gi) => (
         <React.Fragment key={gi}>
           {g.yorliq && <span className="fd-yordam-l">{tr(g.yorliq)}</span>}
@@ -1781,9 +1783,9 @@ const Yordam = ({ guruhlar }) => {
 };
 const ORTDA = ['git clone https://github.com/Azizbekcrypto/maydon-jamoa', 'git checkout -f m11-dars-10-done'];
 const Ortda = ({ oxiri }) => (
-  <p className="fd-ortda">{tr({ uz: 'Ortda qoldingizmi — Mentor misolini oching:', ru: 'Отстали — откройте пример Ментора:' })} <code className="fd-buyruq">{ORTDA[0]}</code> · <code className="fd-buyruq">{ORTDA[1]}</code>{oxiri && <> {tx(oxiri)}</>}</p>
+  <p className="fd-ortda">{tr({ uz: 'Ortda qoldingizmi — Mentor misolini oching:', ru: "Отстали — откройте пример Ментора:" })} <code className="fd-buyruq">{ORTDA[0]}</code> · <code className="fd-buyruq">{ORTDA[1]}</code>{oxiri && <> {tx(oxiri)}</>}</p>
 );
-const BLOK_TUGADI = { uz: "Blok tugadi — «Davom etish»ni bosing.", ru: 'Блок завершён — нажмите «Продолжить».' }; // S3 (F-1006-287): 14-dars naqshi
+const BLOK_TUGADI = { uz: "Blok tugadi — «Davom etish»ni bosing.", ru: "Блок завершён — нажмите «Продолжить»." }; // S3 (F-1006-287): 14-dars naqshi
 function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyebrow, title, mentor, steps, natija, ortda, doneText, izoh }) {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = live || _gate.live;
@@ -1809,7 +1811,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   }, [stepN]);
   // SABOQ 8 / S3 (F-1006-287, 14-dars naqshi): Mentor har holatda keyingi harakatni aytadi — boshida MD gapi, qadamlar orasida keyingi qadam, blok tugagach «Davom etish»
   const mGap = done ? BLOK_TUGADI : stepN === 0 ? mentor
-    : { uz: `Keyingi qadam — «${stepN + 1} · ${tr(steps[stepN].h)}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующий шаг — «${stepN + 1} · ${tr(steps[stepN].h)}»: выполните и нажмите «Bajardim».` };
+    : { uz: `Keyingi qadam — «${stepN + 1} · ${tr(steps[stepN].h)}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующий шаг — «${stepN + 1} · ${tr(steps[stepN].h)}»: выполните и нажмите «Готово».` };
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
@@ -1826,12 +1828,12 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
     </Stage>
   );
 }
-const NATIJA_YORLIQ = { uz: 'kutilgan natija · namuna: Maydon Jamoa', ru: 'ожидаемый результат · образец: Maydon Jamoa' };
+const NATIJA_YORLIQ = { uz: 'kutilgan natija · namuna: Maydon Jamoa', ru: "ожидаемый результат · образец: Maydon Jamoa" };
 const QADAM = {
-  ochish: { uz: 'Ochish', ru: 'Открыть' }, prompt: { uz: 'Prompt', ru: 'Промпт' }, ishga: { uz: 'Ishga tushirish', ru: 'Запуск' },
-  brauzer: { uz: 'Brauzerda tekshirish', ru: 'Проверка в браузере' }, telefon: { uz: 'Telefonda tekshirish', ru: 'Проверка на телефоне' }
+  ochish: { uz: 'Ochish', ru: 'Открыть' }, prompt: { uz: 'Prompt', ru: 'Промпт' }, ishga: { uz: 'Ishga tushirish', ru: "Запуск" },
+  brauzer: { uz: 'Brauzerda tekshirish', ru: "Проверка в браузере" }, telefon: { uz: 'Telefonda tekshirish', ru: "Проверка на телефоне" }
 };
-const XATO_GAP = { uz: "Xato bo'lsa — xato qatorini agentga yuboring (`.env` qiymatlari va tokenni emas): «Shu xato chiqdi: {xato}. Tuzat.»", ru: 'Если ошибка — отправьте агенту строку ошибки (не значения `.env` и не токен): «Вышла такая ошибка: {ошибка}. Исправь.»' };
+const XATO_GAP = { uz: "Xato bo'lsa — xato qatorini agentga yuboring (`.env` qiymatlari va tokenni emas): «Shu xato chiqdi: {xato}. Tuzat.»", ru: "Если ошибка — отправьте агенту строку ошибки (не значения `.env` и не токен): «Вышла такая ошибка: {ошибка}. Исправь.»" };
 
 // Kutilgan natija maketlari (o'ng) — bitta manbadan (POYDEVOR, OYINLAR, Telefon); kirishda navbat bilan chiqadi
 const SqlKarta = ({ ali, d }) => (
@@ -1882,149 +1884,149 @@ const A3Natija = () => {
 };
 
 const ScreenA1 = (props) => (
-  <ScreenBlok {...props} eyebrow={{ uz: 'Amaliyot 1 · Database va kirish', ru: 'Практика 1 · Database и вход' }}
-    title={{ uz: <>Foydalanuvchi ro'yxatdan o'tib, <span className="italic" style={{ color: T.accent }}>kira oladigan</span> bo'lsin.</>, ru: <>Пусть пользователь <span className="italic" style={{ color: T.accent }}>регистрируется и входит</span>.</> }}
-    mentor={{ uz: <>Talab tayyor — kulrang namunalar o'rniga o'z mahsulotingiz nomlarini va parol qatorini yozasiz; <b style={{ color: T.ink }}>«1 · Ochish»</b>dan boshlang.</>, ru: <>Требование готово — вместо серых образцов пишете названия своего продукта и строку о пароле; начните с <b style={{ color: T.ink }}>«1 · Открыть»</b>.</> }}
+  <ScreenBlok {...props} eyebrow={{ uz: 'Amaliyot 1 · Database va kirish', ru: "Практика 1 · Database и вход" }}
+    title={{ uz: <>Foydalanuvchi ro'yxatdan o'tib, <span className="italic" style={{ color: T.accent }}>kira oladigan</span> bo'lsin.</>, ru: <>Пусть пользователь зарегистрируется и <span className="italic" style={{ color: T.accent }}>сможет войти</span>.</> }}
+    mentor={{ uz: <>Talab tayyor — kulrang namunalar o'rniga o'z mahsulotingiz nomlarini va parol qatorini yozasiz; <b style={{ color: T.ink }}>«1 · Ochish»</b>dan boshlang.</>, ru: <>Требование готово — вместо серых образцов впишите названия своего продукта и строку о пароле; начните с <b style={{ color: T.ink }}>«1 · Открыть»</b>.</> }}
     steps={[
-      { h: QADAM.ochish, t: { uz: "Antigravity'da o'z repo'ngizni oching (9-darsdagi holat: ilova papkasi va `prototip/` bor, `backend/` hali yo'q). neon.tech'da mahsulotingiz uchun yangi loyiha oching, «Connect»ni bosing va ulanish satrini (connection string) nusxalang.", ru: 'Откройте свой репо в Antigravity (состояние после 9-го урока: есть папка приложения и `prototip/`, `backend/` ещё нет). На neon.tech откройте новый проект для своего продукта, нажмите «Connect» и скопируйте строку подключения (connection string).' } },
-      { h: QADAM.prompt, t: { uz: "joylarni to'ldiring (har joy yonida kulrang namuna — Mentor misolidan), «Nusxalash»ni bosing, Antigravity'ga yuboring:", ru: 'заполните места (рядом с каждым — серый образец из примера Ментора), нажмите «Скопировать», отправьте в Antigravity:' },
+      { h: QADAM.ochish, t: { uz: "Antigravity'da o'z repo'ngizni oching (9-darsdagi holat: ilova papkasi va `prototip/` bor, `backend/` hali yo'q). neon.tech'da mahsulotingiz uchun yangi loyiha oching, «Connect»ni bosing va ulanish satrini (connection string) nusxalang.", ru: "Откройте свой репо в Antigravity (состояние после 9-го урока: есть папка приложения и `prototip/`, `backend/` ещё нет). На neon.tech откройте новый проект для своего продукта, нажмите «Connect» и скопируйте строку подключения (connection string)." } },
+      { h: QADAM.prompt, t: { uz: "joylarni to'ldiring (har joy yonida kulrang namuna — Mentor misolidan), «Nusxalash»ni bosing, Antigravity'ga yuboring:", ru: "заполните места (рядом с каждым — серый образец из примера Ментора), нажмите «Скопировать», отправьте в Antigravity:" },
         prompt: [
-          { uz: "Qayerda: repo'da yangi backend/ — README.md dagi arxitektura bo'yicha, port 3000.", ru: 'Где: новый backend/ в репо — по архитектуре из README.md, порт 3000.' },
-          { uz: "Nima qilsin: README'dagi jadvallarni yarat (ustunlari README'dagidek).", ru: 'Что сделать: создай таблицы из README (столбцы — как в README).' },
-          { uz: "POST /royxat (ism, telefon, parol) foydalanuvchini {foydalanuvchilar jadvali} ga yozsin; parol jadvalda {parol jadvalda qanday tursin}. Bitta telefon ikki marta yozilmasin.", ru: 'POST /royxat (имя, телефон, пароль) пусть пишет пользователя в {таблица пользователей}; пароль в таблице {как хранится пароль}. Один телефон не записывается дважды.' },
-          { uz: "POST /kirish (telefon, parol) to'g'ri bo'lsa token bersin. GET /{asosiy ro'yxat} ro'yxatni faqat token bilan bersin, tokensiz — 401; eng yangi yozuv tepada (yaratilgan bo'yicha kamayib).", ru: 'POST /kirish (телефон, пароль) при верных данных пусть выдаёт токен. GET /{главный список} отдаёт список только с токеном, без токена — 401; самая новая запись сверху (по yaratilgan, по убыванию).' },
-          { uz: "Tekshirish uchun bitta namuna foydalanuvchi va to'rtta namuna {asosiy ro'yxat} yozuvi qo'sh; bor bo'lsa, qayta qo'shma.", ru: 'Для проверки добавь одного пользователя-образца и четыре записи-образца {главный список}; если есть — не добавляй повторно.' },
-          { uz: "Nima buzilmasin: {ilova papkasi} va prototip/ papkalari. DATABASE_URL va JWT_SECRET faqat backend/.env da tursin, .env — .gitignore da. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: 'Что не сломать: папки {папка приложения} и prototip/. DATABASE_URL и JWT_SECRET — только в backend/.env, .env — в .gitignore. Больше ничего не трогай, назови изменённые файлы.' }
+          { uz: "Qayerda: repo'da yangi backend/ — README.md dagi arxitektura bo'yicha, port 3000.", ru: "Где: новый backend/ в репо — по архитектуре из README.md, порт 3000." },
+          { uz: "Nima qilsin: README'dagi jadvallarni yarat (ustunlari README'dagidek).", ru: "Что сделать: создай таблицы из README (столбцы — как в README)." },
+          { uz: "POST /royxat (ism, telefon, parol) foydalanuvchini {foydalanuvchilar jadvali} ga yozsin; parol jadvalda {parol jadvalda qanday tursin}. Bitta telefon ikki marta yozilmasin.", ru: "POST /royxat (имя, телефон, пароль) пусть пишет пользователя в {таблица пользователей}; пароль в таблице {как хранится пароль}. Один телефон не должен записываться дважды." },
+          { uz: "POST /kirish (telefon, parol) to'g'ri bo'lsa token bersin. GET /{asosiy ro'yxat} ro'yxatni faqat token bilan bersin, tokensiz — 401; eng yangi yozuv tepada (yaratilgan bo'yicha kamayib).", ru: "POST /kirish (телефон, пароль) при верных данных пусть выдаёт токен. GET /{главный список} отдаёт список только с токеном, без токена — 401; самая новая запись сверху (по yaratilgan, по убыванию)." },
+          { uz: "Tekshirish uchun bitta namuna foydalanuvchi va to'rtta namuna {asosiy ro'yxat} yozuvi qo'sh; bor bo'lsa, qayta qo'shma.", ru: "Для проверки добавь одного пользователя-образца и четыре записи-образца в {главный список}; если есть — не добавляй повторно." },
+          { uz: "Nima buzilmasin: {ilova papkasi} va prototip/ papkalari. DATABASE_URL va JWT_SECRET faqat backend/.env da tursin, .env — .gitignore da. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: "Что не сломать: папки {папка приложения} и prototip/. DATABASE_URL и JWT_SECRET — только в backend/.env, .env — в .gitignore. Больше ничего не трогай, назови изменённые файлы." }
         ],
         namuna: [
-          { joy: { uz: '{foydalanuvchilar jadvali}', ru: '{таблица пользователей}' }, n: { uz: 'masalan: `oyinchilar`', ru: 'например: `oyinchilar`' } },
-          { joy: { uz: "{parol jadvalda qanday tursin}", ru: '{как хранится пароль}' }, n: { uz: "ro'yxatdan o'tish mashqidagi `parol_hash` katagini eslang", ru: 'вспомните ячейку `parol_hash` из упражнения с регистрацией' } },
-          { joy: { uz: "{asosiy ro'yxat}", ru: '{главный список}' }, n: { uz: 'masalan: `oyinlar`', ru: 'например: `oyinlar`' } },
-          { joy: { uz: '{ilova papkasi}', ru: '{папка приложения}' }, n: { uz: 'masalan: `mobil/`', ru: 'например: `mobil/`' } }
+          { joy: { uz: '{foydalanuvchilar jadvali}', ru: "{таблица пользователей}" }, n: { uz: 'masalan: `oyinchilar`', ru: "например: `oyinchilar`" } },
+          { joy: { uz: "{parol jadvalda qanday tursin}", ru: "{как хранится пароль}" }, n: { uz: "ro'yxatdan o'tish mashqidagi `parol_hash` katagini eslang", ru: "вспомните ячейку `parol_hash` из упражнения с регистрацией" } },
+          { joy: { uz: "{asosiy ro'yxat}", ru: "{главный список}" }, n: { uz: 'masalan: `oyinlar`', ru: "например: `oyinlar`" } },
+          { joy: { uz: '{ilova papkasi}', ru: "{папка приложения}" }, n: { uz: 'masalan: `mobil/`', ru: "например: `mobil/`" } }
         ],
         yordam: [{ satrlar: [
-          { uz: "Qayerda: `maydon-jamoa` papkasida yangi `backend/` — `README.md` dagi arxitektura bo'yicha, port 3000.", ru: 'Где: новый `backend/` в папке `maydon-jamoa` — по архитектуре из `README.md`, порт 3000.' },
-          { uz: "Nima qilsin: uch jadval yarat — `oyinchilar`, `oyinlar`, `ishtirokchilar` (ustunlari README'dagidek).", ru: 'Что сделать: создай три таблицы — `oyinchilar`, `oyinlar`, `ishtirokchilar` (столбцы — как в README).' },
-          { uz: "`POST /royxat` (ism, telefon, parol) o'yinchini `oyinchilar` ga yozsin; parol jadvalda o'zi emas, faqat hash'i (`parol_hash`) tursin. Bitta telefon ikki marta yozilmasin.", ru: '`POST /royxat` (имя, телефон, пароль) пусть пишет игрока в `oyinchilar`; в таблице хранится не сам пароль, а только его хеш (`parol_hash`). Один телефон не записывается дважды.' },
-          { uz: "`POST /kirish` (telefon, parol) to'g'ri bo'lsa token bersin. `GET /oyinlar` o'yinlar ro'yxatini faqat token bilan bersin, tokensiz — `401`; eng yangi o'yin tepada (`yaratilgan` bo'yicha kamayib).", ru: '`POST /kirish` (телефон, пароль) при верных данных пусть выдаёт токен. `GET /oyinlar` отдаёт список игр только с токеном, без токена — `401`; самая новая игра сверху (по `yaratilgan`, по убыванию).' },
-          { uz: "Tekshirish uchun bitta namuna tashkilotchi va to'rtta namuna o'yin qo'sh; bor bo'lsa, qayta qo'shma.", ru: 'Для проверки добавь одного организатора-образца и четыре игры-образца; если есть — не добавляй повторно.' },
-          { uz: "Nima buzilmasin: `mobil/` va `prototip/` papkalari. `DATABASE_URL` va `JWT_SECRET` faqat `backend/.env` da tursin, `.env` — `.gitignore` da. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: 'Что не сломать: папки `mobil/` и `prototip/`. `DATABASE_URL` и `JWT_SECRET` — только в `backend/.env`, `.env` — в `.gitignore`. Больше ничего не трогай, назови изменённые файлы.' }
+          { uz: "Qayerda: `maydon-jamoa` papkasida yangi `backend/` — `README.md` dagi arxitektura bo'yicha, port 3000.", ru: "Где: новый `backend/` в папке `maydon-jamoa` — по архитектуре из `README.md`, порт 3000." },
+          { uz: "Nima qilsin: uch jadval yarat — `oyinchilar`, `oyinlar`, `ishtirokchilar` (ustunlari README'dagidek).", ru: "Что сделать: создай три таблицы — `oyinchilar`, `oyinlar`, `ishtirokchilar` (столбцы — как в README)." },
+          { uz: "`POST /royxat` (ism, telefon, parol) o'yinchini `oyinchilar` ga yozsin; parol jadvalda o'zi emas, faqat hash'i (`parol_hash`) tursin. Bitta telefon ikki marta yozilmasin.", ru: "`POST /royxat` (имя, телефон, пароль) пусть пишет игрока в `oyinchilar`; в таблице хранится не сам пароль, а только его хеш (`parol_hash`). Один телефон не должен записываться дважды." },
+          { uz: "`POST /kirish` (telefon, parol) to'g'ri bo'lsa token bersin. `GET /oyinlar` o'yinlar ro'yxatini faqat token bilan bersin, tokensiz — `401`; eng yangi o'yin tepada (`yaratilgan` bo'yicha kamayib).", ru: "`POST /kirish` (телефон, пароль) при верных данных пусть выдаёт токен. `GET /oyinlar` отдаёт список игр только с токеном, без токена — `401`; самая новая игра сверху (по `yaratilgan`, по убыванию)." },
+          { uz: "Tekshirish uchun bitta namuna tashkilotchi va to'rtta namuna o'yin qo'sh; bor bo'lsa, qayta qo'shma.", ru: "Для проверки добавь одного организатора-образца и четыре игры-образца; если есть — не добавляй повторно." },
+          { uz: "Nima buzilmasin: `mobil/` va `prototip/` papkalari. `DATABASE_URL` va `JWT_SECRET` faqat `backend/.env` da tursin, `.env` — `.gitignore` da. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: "Что не сломать: папки `mobil/` и `prototip/`. `DATABASE_URL` и `JWT_SECRET` — только в `backend/.env`, `.env` — в `.gitignore`. Больше ничего не трогай, назови изменённые файлы." }
         ] }] },
-      { h: QADAM.ishga, t: { uz: "`backend/.env` ga ikki qator yozing: `DATABASE_URL=` va Neon'dan nusxa · `JWT_SECRET=` va uzun tasodifiy satr (tokenni imzolaydi). Terminalda `cd backend`, `npm run start:dev` — xato yo'q.", ru: 'Запишите в `backend/.env` две строки: `DATABASE_URL=` и копия из Neon · `JWT_SECRET=` и длинная случайная строка (подписывает токен). В терминале `cd backend`, `npm run start:dev` — ошибок нет.' }, err: XATO_GAP },
-      { h: QADAM.brauzer, t: { uz: 'talabning har qatorini tekshiring:', ru: 'проверьте каждую строку требования:' },
+      { h: QADAM.ishga, t: { uz: "`backend/.env` ga ikki qator yozing: `DATABASE_URL=` va Neon'dan nusxa · `JWT_SECRET=` va uzun tasodifiy satr (tokenni imzolaydi). Terminalda `cd backend`, `npm run start:dev` — xato yo'q.", ru: "Запишите в `backend/.env` две строки: `DATABASE_URL=` и копия из Neon · `JWT_SECRET=` и длинная случайная строка (подписывает токен). В терминале `cd backend`, `npm run start:dev` — ошибок нет." }, err: XATO_GAP },
+      { h: QADAM.brauzer, t: { uz: 'talabning har qatorini tekshiring:', ru: "проверьте каждую строку требования:" },
         bandlar: [
-          { uz: "(1) Brauzerda `http://localhost:3000/{asosiy ro'yxat}` (masalan `/oyinlar`) — yozuvlar emas, `401` chiqsin: tokensiz yopiq.", ru: '(1) В браузере `http://localhost:3000/{главный список}` (например `/oyinlar`) — должно выйти не записи, а `401`: без токена закрыто.' },
-          { uz: "(2) Neon'dagi SQL Editor'da foydalanuvchilar jadvalingizni oching (`SELECT ism, parol_hash FROM …;`) — namuna foydalanuvchi; `parol_hash` ustunida parolning o'zi yo'q — boshqa satr.", ru: '(2) В SQL Editor на Neon откройте таблицу пользователей (`SELECT ism, parol_hash FROM …;`) — пользователь-образец; в столбце `parol_hash` нет самого пароля — другая строка.' },
-          { uz: "(3) Asosiy ro'yxat jadvalida — to'rtta namuna yozuv.", ru: '(3) В таблице главного списка — четыре записи-образца.' },
-          { uz: "(4) Agent aytgan fayllarda README'dagi jadvallar va uch yo'l bor; `git status` da `backend/.env` ko'rinmaydi.", ru: '(4) В файлах, которые назвал агент, есть таблицы из README и три пути; в `git status` не видно `backend/.env`.' },
-          { uz: 'Mos kelmagan qatorni uch qism bilan agentga yozing.', ru: 'Несовпавшую строку напишите агенту тремя частями.' }
+          { uz: "(1) Brauzerda `http://localhost:3000/{asosiy ro'yxat}` (masalan `/oyinlar`) — yozuvlar emas, `401` chiqsin: tokensiz yopiq.", ru: "(1) В браузере `http://localhost:3000/{главный список}` (например `/oyinlar`) — должен появиться не список записей, а `401`: без токена закрыто." },
+          { uz: "(2) Neon'dagi SQL Editor'da foydalanuvchilar jadvalingizni oching (`SELECT ism, parol_hash FROM …;`) — namuna foydalanuvchi; `parol_hash` ustunida parolning o'zi yo'q — boshqa satr.", ru: "(2) В SQL Editor на Neon откройте таблицу пользователей (`SELECT ism, parol_hash FROM …;`) — пользователь-образец; в столбце `parol_hash` нет самого пароля — другая строка." },
+          { uz: "(3) Asosiy ro'yxat jadvalida — to'rtta namuna yozuv.", ru: "(3) В таблице главного списка — четыре записи-образца." },
+          { uz: "(4) Agent aytgan fayllarda README'dagi jadvallar va uch yo'l bor; `git status` da `backend/.env` ko'rinmaydi.", ru: "(4) В файлах, которые назвал агент, есть таблицы из README и три пути; в `git status` не видно `backend/.env`." },
+          { uz: 'Mos kelmagan qatorni uch qism bilan agentga yozing.', ru: "Несовпавшую строку напишите агенту тремя частями." }
         ] }
     ]}
     natija={<A1Natija />}
-    ortda={{ uz: "— qanday ishlashini ko'rasiz, o'z repo'ngizdagi qadamni shunga qarab qaytarasiz (`backend/.env` ga o'z qiymatlaringizni yozasiz).", ru: '— увидите, как это работает, и повторите шаг в своём репо по образцу (в `backend/.env` пишете свои значения).' }}
-    doneText={{ uz: "Backend ishlayapti: foydalanuvchi yoziladi, parolning faqat hash'i saqlanadi, ro'yxat token bilan beriladi.", ru: 'Backend работает: пользователь записывается, хранится только хеш пароля, список выдаётся по токену.' }} />
+    ortda={{ uz: "— qanday ishlashini ko'rasiz, o'z repo'ngizdagi qadamni shunga qarab qaytarasiz (`backend/.env` ga o'z qiymatlaringizni yozasiz).", ru: "— увидите, как это работает, и повторите шаг в своём репо по образцу (в `backend/.env` пишете свои значения)." }}
+    doneText={{ uz: "Backend ishlayapti: foydalanuvchi yoziladi, parolning faqat hash'i saqlanadi, ro'yxat token bilan beriladi.", ru: "Backend работает: пользователь записывается, хранится только хеш пароля, список выдаётся по токену." }} />
 );
 
 const ScreenA2 = (props) => (
-  <ScreenBlok {...props} eyebrow={{ uz: 'Amaliyot 2 · deploy', ru: 'Практика 2 · деплой' }}
-    title={{ uz: <>Backend internetga chiqsin: <span className="italic" style={{ color: T.accent }}>telefon uni topsin</span>.</>, ru: <>Backend выходит в интернет: <span className="italic" style={{ color: T.accent }}>телефон его находит</span>.</> }}
-    mentor={{ uz: <>Endi «Nima buzilmasin» qatorini o'zingiz yozasiz, namuna «Yordam»da; <b style={{ color: T.ink }}>«1 · Ochish»</b>dan boshlang.</>, ru: <>Теперь строку «Что не сломать» пишете сами, образец — в «Помощи»; начните с <b style={{ color: T.ink }}>«1 · Открыть»</b>.</> }}
+  <ScreenBlok {...props} eyebrow={{ uz: 'Amaliyot 2 · deploy', ru: "Практика 2 · деплой" }}
+    title={{ uz: <>Backend internetga chiqsin: <span className="italic" style={{ color: T.accent }}>telefon uni topsin</span>.</>, ru: <>Пусть Backend выйдет в интернет: <span className="italic" style={{ color: T.accent }}>телефон его найдёт</span>.</> }}
+    mentor={{ uz: <>Endi «Nima buzilmasin» qatorini o'zingiz yozasiz, namuna «Yordam»da; <b style={{ color: T.ink }}>«1 · Ochish»</b>dan boshlang.</>, ru: <>Теперь строку «Что не сломать» пишете сами, образец — в «Подсказке»; начните с <b style={{ color: T.ink }}>«1 · Открыть»</b>.</> }}
     steps={[
-      { h: QADAM.ochish, t: { uz: "o'z Backend'ingiz laptopda ishlab tursin. render.com'ga GitHub akkauntingiz bilan kiring — 9-Modulda «Maydon»ni shu yerga chiqargansiz.", ru: 'пусть ваш Backend работает на ноутбуке. Войдите на render.com через аккаунт GitHub — в 9-м модуле вы выкладывали сюда «Maydon».' } },
-      { h: QADAM.prompt, t: { uz: "`{nima buzilmasin}` qatorini o'zingiz yozing, «Nusxalash»ni bosing, Antigravity'ga yuboring:", ru: 'строку `{что не сломать}` напишите сами, нажмите «Скопировать», отправьте в Antigravity:' },
+      { h: QADAM.ochish, t: { uz: "o'z Backend'ingiz laptopda ishlab tursin. render.com'ga GitHub akkauntingiz bilan kiring — 9-Modulda «Maydon»ni shu yerga chiqargansiz.", ru: "пусть ваш Backend работает на ноутбуке. Войдите на render.com через аккаунт GitHub — в 9-м модуле вы выкладывали сюда «Maydon»." } },
+      { h: QADAM.prompt, t: { uz: "`{nima buzilmasin}` qatorini o'zingiz yozing, «Nusxalash»ni bosing, Antigravity'ga yuboring:", ru: "строку `{что не сломать}` напишите сами, нажмите «Скопировать», отправьте в Antigravity:" },
         prompt: [
-          { uz: "Qayerda: backend/ — Render'ga chiqarish uchun.", ru: 'Где: backend/ — для выкладки на Render.' },
-          { uz: "Nima qilsin: port PORT o'zgaruvchisidan olinsin, u bo'lmasa — 3000. README.md ga «Internetga chiqarish» bo'limini yoz: Render uchun Root Directory, Build Command, Start Command va kerakli o'zgaruvchilar nomi — qiymatsiz.", ru: 'Что сделать: порт бери из переменной PORT, если её нет — 3000. Напиши в README.md раздел «Internetga chiqarish»: для Render — Root Directory, Build Command, Start Command и названия нужных переменных — без значений.' },
-          { uz: 'Nima buzilmasin: {nima buzilmasin}', ru: 'Что не сломать: {что не сломать}' }
+          { uz: "Qayerda: backend/ — Render'ga chiqarish uchun.", ru: "Где: backend/ — для выкладки на Render." },
+          { uz: "Nima qilsin: port PORT o'zgaruvchisidan olinsin, u bo'lmasa — 3000. README.md ga «Internetga chiqarish» bo'limini yoz: Render uchun Root Directory, Build Command, Start Command va kerakli o'zgaruvchilar nomi — qiymatsiz.", ru: "Что сделать: порт бери из переменной PORT, если её нет — 3000. Напиши в README.md раздел «Internetga chiqarish»: для Render — Root Directory, Build Command, Start Command и названия нужных переменных — без значений." },
+          { uz: 'Nima buzilmasin: {nima buzilmasin}', ru: "Что не сломать: {что не сломать}" }
         ],
         yordam: [{ satrlar: [
-          { uz: "Nima buzilmasin: `DATABASE_URL` va `JWT_SECRET` kodda ham, repo'da ham bo'lmasin — faqat `.env` da va Render sozlamasida. Laptopda `npm run start:dev` avvalgidek ishlasin. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: 'Что не сломать: `DATABASE_URL` и `JWT_SECRET` не должно быть ни в коде, ни в репо — только в `.env` и в настройках Render. На ноутбуке `npm run start:dev` работает как раньше. Больше ничего не трогай, назови изменённые файлы.' }
+          { uz: "Nima buzilmasin: `DATABASE_URL` va `JWT_SECRET` kodda ham, repo'da ham bo'lmasin — faqat `.env` da va Render sozlamasida. Laptopda `npm run start:dev` avvalgidek ishlasin. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: "Что не сломать: `DATABASE_URL` и `JWT_SECRET` не должно быть ни в коде, ни в репо — только в `.env` и в настройках Render. На ноутбуке `npm run start:dev` пусть работает как раньше. Больше ничего не трогай, назови изменённые файлы." }
         ] }] },
-      { h: QADAM.ishga, t: { uz: "(a) `git status` — o'zgargan fayllar agent aytgani bilan bir xil, `.env` ro'yxatda yo'q; har faylni `git add <fayl>` bilan qo'shing, `git commit -m \"backend: Render\"`, `git push`.", ru: '(a) `git status` — изменённые файлы совпадают с тем, что сказал агент, `.env` в списке нет; добавляйте каждый файл через `git add <fayl>`, `git commit -m "backend: Render"`, `git push`.' },
+      { h: QADAM.ishga, t: { uz: "(a) `git status` — o'zgargan fayllar agent aytgani bilan bir xil, `.env` ro'yxatda yo'q; har faylni `git add <fayl>` bilan qo'shing, `git commit -m \"backend: Render\"`, `git push`.", ru: "(a) `git status` — изменённые файлы совпадают с тем, что сказал агент, `.env` в списке нет; добавляйте каждый файл через `git add <fayl>`, `git commit -m \"backend: Render\"`, `git push`." },
         bandlar: [
-          { uz: "(b) Render'da «New > Web Service» → o'z repo'ngiz; Root Directory — `backend`; Build Command va Start Command — `README.md` dagi; tarif **Free**. Environment bo'limiga ikki qator: `DATABASE_URL` va `JWT_SECRET` — qiymatlari `backend/.env` dan. Keyin «Create Web Service» — tayyor bo'lgach manzil chiqadi: `….onrender.com`.", ru: '(b) На Render «New > Web Service» → свой репо; Root Directory — `backend`; Build Command и Start Command — из `README.md`; тариф **Free**. В раздел Environment две строки: `DATABASE_URL` и `JWT_SECRET` — значения из `backend/.env`. Затем «Create Web Service» — когда будет готово, появится адрес: `….onrender.com`.' }
+          { uz: "(b) Render'da «New > Web Service» → o'z repo'ngiz; Root Directory — `backend`; Build Command va Start Command — `README.md` dagi; tarif **Free**. Environment bo'limiga ikki qator: `DATABASE_URL` va `JWT_SECRET` — qiymatlari `backend/.env` dan. Keyin «Create Web Service» — tayyor bo'lgach manzil chiqadi: `….onrender.com`.", ru: "(b) На Render «New > Web Service» → свой репо; Root Directory — `backend`; Build Command и Start Command — из `README.md`; тариф **Free**. В раздел Environment две строки: `DATABASE_URL` и `JWT_SECRET` — значения из `backend/.env`. Затем «Create Web Service» — когда будет готово, появится адрес: `….onrender.com`." }
         ],
-        err: { uz: "Xato bo'lsa — Render'dagi log qatorini agentga yuboring (`.env` qiymatlari va tokenni emas): «Shu xato chiqdi: {xato}. Tuzat.» Web-trekda ham Backend shu yo'l bilan chiqadi.", ru: 'Если ошибка — отправьте агенту строку лога из Render (не значения `.env` и не токен): «Вышла такая ошибка: {ошибка}. Исправь.» В веб-треке Backend выходит тем же путём.' } },
-      { h: QADAM.telefon, t: { uz: "telefon brauzerida Render manzilingizni va asosiy ro'yxatingiz nomini oching (`https://….onrender.com/…`) — `401` chiqsin: Backend internetda, tokensiz yopiq. Mobil internet bo'lsa, Wi-Fi'ni o'chirib ham oching — natija o'sha. Bepul Backend uxlab qolgan bo'lsa, birinchi javob bir daqiqagacha kechikishi mumkin.", ru: 'в браузере телефона откройте свой адрес Render и название главного списка (`https://….onrender.com/…`) — должно выйти `401`: Backend в интернете, без токена закрыт. Если есть мобильный интернет, откройте и с выключенным Wi-Fi — результат тот же. Если бесплатный Backend уснул, первый ответ может задержаться до минуты.' },
+        err: { uz: "Xato bo'lsa — Render'dagi log qatorini agentga yuboring (`.env` qiymatlari va tokenni emas): «Shu xato chiqdi: {xato}. Tuzat.» Web-trekda ham Backend shu yo'l bilan chiqadi.", ru: "Если ошибка — отправьте агенту строку лога из Render (не значения `.env` и не токен): «Вышла такая ошибка: {ошибка}. Исправь.» В веб-треке Backend выходит тем же путём." } },
+      { h: QADAM.telefon, t: { uz: "telefon brauzerida Render manzilingizni va asosiy ro'yxatingiz nomini oching (`https://….onrender.com/…`) — `401` chiqsin: Backend internetda, tokensiz yopiq. Mobil internet bo'lsa, Wi-Fi'ni o'chirib ham oching — natija o'sha. Bepul Backend uxlab qolgan bo'lsa, birinchi javob bir daqiqagacha kechikishi mumkin.", ru: "в браузере телефона откройте свой адрес Render с названием главного списка (`https://….onrender.com/…`) — должен появиться `401`: Backend в интернете, без токена закрыт. Если есть мобильный интернет, откройте и с выключенным Wi-Fi — результат тот же. Если бесплатный Backend уснул, первый ответ может задержаться до минуты." },
         bandlar: [
-          { uz: "Render manzilingizni `README.md` ning «Internetga chiqarish» bo'limiga yozing — ilovangiz unga ulanadi (manzil — ochiq qiymat).", ru: 'Запишите свой адрес Render в раздел «Internetga chiqarish» в `README.md` — к нему подключится ваше приложение (адрес — открытое значение).' }
+          { uz: "Render manzilingizni `README.md` ning «Internetga chiqarish» bo'limiga yozing — ilovangiz unga ulanadi (manzil — ochiq qiymat).", ru: "Запишите свой адрес Render в раздел «Internetga chiqarish» в `README.md` — к нему подключится ваше приложение (адрес — открытое значение)." }
         ] }
     ]}
     natija={<A2Natija />}
-    izoh={{ uz: 'Render bepul xizmatni prod uchun tavsiya qilmaydi. Bu modulda u ilovani tekshirish uchun ishlatiladi.', ru: 'Render не рекомендует бесплатный сервис для прода. В этом модуле он нужен, чтобы проверять приложение.' }}
-    doneText={{ uz: 'Backend internetda: telefon uni Render manzili bilan topadi, tokensiz `401` oladi.', ru: 'Backend в интернете: телефон находит его по адресу Render и без токена получает `401`.' }} />
+    izoh={{ uz: 'Render bepul xizmatni prod uchun tavsiya qilmaydi. Bu modulda u ilovani tekshirish uchun ishlatiladi.', ru: "Render не рекомендует бесплатный сервис для прода. В этом модуле он нужен, чтобы проверять приложение." }}
+    doneText={{ uz: 'Backend internetda: telefon uni Render manzili bilan topadi, tokensiz `401` oladi.', ru: "Backend в интернете: телефон находит его по адресу Render и без токена получает `401`." }} />
 );
 
 // A3 trek qatorlari (9.7): 1 va 3-qadamda bir qator, «Yordam» ostida — trek prompti; kalit yo'q bo'lsa ikkala qator ham
 const A3_YORDAM_MOBIL = [
-  { uz: "Qayerda: `mobil/` — yangi «Ro'yxatdan o'tish» va «Kirish» ekranlari; «O'yinlar» ekrani (`src/app/index.tsx`).", ru: 'Где: `mobil/` — новые экраны «Ro\'yxatdan o\'tish» и «Kirish»; экран «O\'yinlar» (`src/app/index.tsx`).' },
-  { uz: "Nima qilsin: Backend manzilini `.env` dagi `EXPO_PUBLIC_API_URL` dan ol. «Ro'yxatdan o'tish» — `POST /royxat` (ism, telefon, parol), keyin «Kirish» ochilsin.", ru: 'Что сделать: адрес Backend бери из `EXPO_PUBLIC_API_URL` в `.env`. «Ro\'yxatdan o\'tish» — `POST /royxat` (имя, телефон, пароль), потом открывается «Kirish».' },
-  { uz: "«Kirish» — `POST /kirish`; olingan tokenni `expo-secure-store` ga saqla. Ilova ochilganda token bo'lsa — «O'yinlar», bo'lmasa — «Kirish».", ru: '«Kirish» — `POST /kirish`; полученный токен сохрани в `expo-secure-store`. При открытии приложения: есть токен — «O\'yinlar», нет — «Kirish».' },
-  { uz: "«O'yinlar» ro'yxatni `GET /oyinlar` dan token bilan olsin: kartada kun, soat, maydon va nechta odam kerakligi. Javob `401` bo'lsa — tokenni o'chirib, «Kirish»ni och. «O'yinlar» ekranida «Hisobdan chiqish» tugmasi — tokenni o'chirib, «Kirish»ni ochsin.", ru: '«O\'yinlar» берёт список из `GET /oyinlar` с токеном: в карточке день, время, поле и сколько людей нужно. Если ответ `401` — удали токен и открой «Kirish». На экране «O\'yinlar» кнопка «Hisobdan chiqish» — удаляет токен и открывает «Kirish».' },
-  { uz: "Nima buzilmasin: «O'yin» va «E'lon berish» ekranlari, animatsiyalar. `.env` ga Backend manzilidan boshqa qiymat yozilmasin. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: 'Что не сломать: экраны «O\'yin» и «E\'lon berish», анимации. В `.env` не пишется ничего, кроме адреса Backend. Больше ничего не трогай, назови изменённые файлы.' }
+  { uz: "Qayerda: `mobil/` — yangi «Ro'yxatdan o'tish» va «Kirish» ekranlari; «O'yinlar» ekrani (`src/app/index.tsx`).", ru: "Где: `mobil/` — новые экраны «Ro'yxatdan o'tish» («Регистрация») и «Kirish» («Вход»); экран «O'yinlar» («Игры», `src/app/index.tsx`)." },
+  { uz: "Nima qilsin: Backend manzilini `.env` dagi `EXPO_PUBLIC_API_URL` dan ol. «Ro'yxatdan o'tish» — `POST /royxat` (ism, telefon, parol), keyin «Kirish» ochilsin.", ru: "Что сделать: адрес Backend бери из `EXPO_PUBLIC_API_URL` в `.env`. «Ro'yxatdan o'tish» — `POST /royxat` (имя, телефон, пароль), потом открывается «Kirish»." },
+  { uz: "«Kirish» — `POST /kirish`; olingan tokenni `expo-secure-store` ga saqla. Ilova ochilganda token bo'lsa — «O'yinlar», bo'lmasa — «Kirish».", ru: "«Kirish» — `POST /kirish`; полученный токен сохрани в `expo-secure-store`. При открытии приложения: есть токен — «O'yinlar», нет — «Kirish»." },
+  { uz: "«O'yinlar» ro'yxatni `GET /oyinlar` dan token bilan olsin: kartada kun, soat, maydon va nechta odam kerakligi. Javob `401` bo'lsa — tokenni o'chirib, «Kirish»ni och. «O'yinlar» ekranida «Hisobdan chiqish» tugmasi — tokenni o'chirib, «Kirish»ni ochsin.", ru: "«O'yinlar» берёт список из `GET /oyinlar` с токеном: в карточке день, время, поле и сколько людей нужно. Если ответ `401` — удали токен и открой «Kirish». На экране «O'yinlar» кнопка «Hisobdan chiqish» («Выйти из аккаунта») — удаляет токен и открывает «Kirish»." },
+  { uz: "Nima buzilmasin: «O'yin» va «E'lon berish» ekranlari, animatsiyalar. `.env` ga Backend manzilidan boshqa qiymat yozilmasin. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: "Что не сломать: экраны «O'yin» и «E'lon berish», анимации. В `.env` не пишется ничего, кроме адреса Backend. Больше ничего не трогай, назови изменённые файлы." }
 ];
 const A3_YORDAM_WEB = [
-  { uz: "Qayerda: `prototip/` — yangi «Ro'yxatdan o'tish» va «Kirish» sahifalari; asosiy ro'yxat sahifasi. Backend'da `WEB_ORIGIN`.", ru: 'Где: `prototip/` — новые страницы «Ro\'yxatdan o\'tish» и «Kirish»; страница главного списка. В Backend — `WEB_ORIGIN`.' },
-  { uz: "Nima qilsin: Backend manzilini `.env` dagi `VITE_API_URL` dan ol. «Ro'yxatdan o'tish» — `POST /royxat`, keyin «Kirish». «Kirish» — `POST /kirish`; token `localStorage` da tursin.", ru: 'Что сделать: адрес Backend бери из `VITE_API_URL` в `.env`. «Ro\'yxatdan o\'tish» — `POST /royxat`, потом «Kirish». «Kirish» — `POST /kirish`; токен хранится в `localStorage`.' },
-  { uz: "Sahifa ochilganda token bo'lsa — ro'yxat `GET /{asosiy ro'yxat}` dan token bilan, bo'lmasa — «Kirish». `401` kelsa — tokenni o'chirib «Kirish»ni och. «Hisobdan chiqish» — tokenni o'chirsin.", ru: 'При открытии страницы: есть токен — список из `GET /{главный список}` с токеном, нет — «Kirish». Пришёл `401` — удали токен и открой «Kirish». «Hisobdan chiqish» — удаляет токен.' },
-  { uz: 'Backend CORS faqat `WEB_ORIGIN` dagi Netlify manziliga ruxsat bersin.', ru: 'CORS в Backend разрешает только адрес Netlify из `WEB_ORIGIN`.' },
-  { uz: "Nima buzilmasin: dizayn va animatsiyalar; foydalanuvchi matni sahifaga HTML bo'lib chiqmasin. `.env` ga Backend manzilidan boshqa qiymat yozilmasin. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: 'Что не сломать: дизайн и анимации; текст пользователя не выводится на страницу как HTML. В `.env` не пишется ничего, кроме адреса Backend. Больше ничего не трогай, назови изменённые файлы.' }
+  { uz: "Qayerda: `prototip/` — yangi «Ro'yxatdan o'tish» va «Kirish» sahifalari; asosiy ro'yxat sahifasi. Backend'da `WEB_ORIGIN`.", ru: "Где: `prototip/` — новые страницы «Ro'yxatdan o'tish» («Регистрация») и «Kirish» («Вход»); страница главного списка. В Backend — `WEB_ORIGIN`." },
+  { uz: "Nima qilsin: Backend manzilini `.env` dagi `VITE_API_URL` dan ol. «Ro'yxatdan o'tish» — `POST /royxat`, keyin «Kirish». «Kirish» — `POST /kirish`; token `localStorage` da tursin.", ru: "Что сделать: адрес Backend бери из `VITE_API_URL` в `.env`. «Ro'yxatdan o'tish» — `POST /royxat`, потом «Kirish». «Kirish» — `POST /kirish`; токен хранится в `localStorage`." },
+  { uz: "Sahifa ochilganda token bo'lsa — ro'yxat `GET /{asosiy ro'yxat}` dan token bilan, bo'lmasa — «Kirish». `401` kelsa — tokenni o'chirib «Kirish»ni och. «Hisobdan chiqish» — tokenni o'chirsin.", ru: "При открытии страницы: есть токен — список из `GET /{главный список}` с токеном, нет — «Kirish». Пришёл `401` — удали токен и открой «Kirish». «Hisobdan chiqish» («Выйти из аккаунта») — удаляет токен." },
+  { uz: 'Backend CORS faqat `WEB_ORIGIN` dagi Netlify manziliga ruxsat bersin.', ru: "CORS в Backend разрешает только адрес Netlify из `WEB_ORIGIN`." },
+  { uz: "Nima buzilmasin: dizayn va animatsiyalar; foydalanuvchi matni sahifaga HTML bo'lib chiqmasin. `.env` ga Backend manzilidan boshqa qiymat yozilmasin. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: "Что не сломать: дизайн и анимации; текст пользователя не выводится на страницу как HTML. В `.env` не пишется ничего, кроме адреса Backend. Больше ничего не трогай, назови изменённые файлы." }
 ];
-const A3_WEB_GAP = { uz: "Render'da Environment'ga `WEB_ORIGIN` — Netlify manzilingiz (9-Moduldagidek).", ru: 'На Render в Environment добавьте `WEB_ORIGIN` — ваш адрес Netlify (как в 9-м модуле).' };
+const A3_WEB_GAP = { uz: "Render'da Environment'ga `WEB_ORIGIN` — Netlify manzilingiz (9-Moduldagidek).", ru: "На Render в Environment добавьте `WEB_ORIGIN` — ваш адрес Netlify (как в 9-м модуле)." };
 const a3Qadamlar = (trek) => {
   const mob = trek !== 'web', web = trek !== 'mobil', ikkala = mob && web;
-  const env = [mob && { uz: 'mobil trekda `EXPO_PUBLIC_API_URL=`', ru: 'в мобильном треке `EXPO_PUBLIC_API_URL=`' }, web && { uz: 'web-trekda `VITE_API_URL=`', ru: 'в веб-треке `VITE_API_URL=`' }].filter(Boolean);
+  const env = [mob && { uz: 'mobil trekda `EXPO_PUBLIC_API_URL=`', ru: "в мобильном треке `EXPO_PUBLIC_API_URL=`" }, web && { uz: 'web-trekda `VITE_API_URL=`', ru: "в веб-треке `VITE_API_URL=`" }].filter(Boolean);
   const ishga = [
-    mob && { uz: "mobil trekda: `npx expo start`, QR'ni telefonda Expo Go bilan oching (9-darsdagidek); QR ochilmasa — telefon va laptop bitta Wi-Fi'dami? Bo'lmasa: `npx expo start --tunnel`.", ru: 'в мобильном треке: `npx expo start`, откройте QR на телефоне через Expo Go (как на 9-м уроке); если QR не открывается — телефон и ноутбук в одной Wi-Fi? Если нет: `npx expo start --tunnel`.' },
-    web && { uz: 'Web-trekda: `npm run dev`, keyin push — Netlify o\'zi yangilanadi.', ru: 'В веб-треке: `npm run dev`, потом push — Netlify обновится сам.' }
+    mob && { uz: "mobil trekda: `npx expo start`, QR'ni telefonda Expo Go bilan oching (9-darsdagidek); QR ochilmasa — telefon va laptop bitta Wi-Fi'dami? Bo'lmasa: `npx expo start --tunnel`.", ru: "в мобильном треке: `npx expo start`, откройте QR на телефоне через Expo Go (как на 9-м уроке); если QR не открывается — телефон и ноутбук в одной сети Wi-Fi? Если нет: `npx expo start --tunnel`." },
+    web && { uz: 'Web-trekda: `npm run dev`, keyin push — Netlify o\'zi yangilanadi.', ru: "В веб-треке: `npm run dev`, потом push — Netlify обновится сам." }
   ].filter(Boolean);
   const yordam = [
-    mob && { yorliq: ikkala && { uz: 'mobil trek', ru: 'мобильный трек' }, satrlar: A3_YORDAM_MOBIL },
-    web && { yorliq: ikkala && { uz: 'web-trek', ru: 'веб-трек' }, satrlar: A3_YORDAM_WEB, gap: A3_WEB_GAP }
+    mob && { yorliq: ikkala && { uz: 'mobil trek', ru: "мобильный трек" }, satrlar: A3_YORDAM_MOBIL },
+    web && { yorliq: ikkala && { uz: 'web-trek', ru: "веб-трек" }, satrlar: A3_YORDAM_WEB, gap: A3_WEB_GAP }
   ].filter(Boolean);
   return [
     { h: QADAM.ochish, t: { uz: `ilova papkangizda \`.env\` fayl yarating, bitta qator: ${env.map(x => x.uz).join(', ')} — va Render manzilingiz (oxirida \`/\` siz).`, ru: `в папке приложения создайте файл \`.env\`, одна строка: ${env.map(x => x.ru).join(', ')} — и ваш адрес Render (без \`/\` в конце).` } },
-    { h: QADAM.prompt, t: { uz: "vazifa: ilovangizda «Ro'yxatdan o'tish» va «Kirish» bo'lsin, token saqlansin, asosiy ro'yxat Backend'dan kelsin. Uch qatorni o'zingiz yozing, «Nusxalash»ni bosing, Antigravity'ga yuboring:", ru: 'задача: в приложении есть «Ro\'yxatdan o\'tish» и «Kirish», токен сохраняется, главный список приходит из Backend. Напишите три строки сами, нажмите «Скопировать», отправьте в Antigravity:' },
-      prompt: [{ uz: 'Qayerda: {qayerda}', ru: 'Где: {где}' }, { uz: 'Nima qilsin: {nima qilsin}', ru: 'Что сделать: {что сделать}' }, { uz: 'Nima buzilmasin: {nima buzilmasin}', ru: 'Что не сломать: {что не сломать}' }],
+    { h: QADAM.prompt, t: { uz: "vazifa: ilovangizda «Ro'yxatdan o'tish» va «Kirish» bo'lsin, token saqlansin, asosiy ro'yxat Backend'dan kelsin. Uch qatorni o'zingiz yozing, «Nusxalash»ni bosing, Antigravity'ga yuboring:", ru: "задача: в приложении есть «Регистрация» и «Вход», токен сохраняется, главный список приходит из Backend. Напишите три строки сами, нажмите «Скопировать», отправьте в Antigravity:" },
+      prompt: [{ uz: 'Qayerda: {qayerda}', ru: "Где: {где}" }, { uz: 'Nima qilsin: {nima qilsin}', ru: "Что сделать: {что сделать}" }, { uz: 'Nima buzilmasin: {nima buzilmasin}', ru: "Что не сломать: {что не сломать}" }],
       yordam },
     { h: QADAM.ishga, t: ishga[0], bandlar: ishga.slice(1), err: XATO_GAP },
-    { h: QADAM.telefon, t: { uz: 'talabning har qatorini tekshiring:', ru: 'проверьте каждую строку требования:' },
+    { h: QADAM.telefon, t: { uz: 'talabning har qatorini tekshiring:', ru: "проверьте каждую строку требования:" },
       bandlar: [
-        { uz: "(1) Ro'yxatdan o'ting, keyin kiring — asosiy ro'yxatda to'rtta namuna yozuv (eng yangisi tepada).", ru: '(1) Зарегистрируйтесь, потом войдите — в главном списке четыре записи-образца (самая новая сверху).' },
-        { uz: "(2) Mobil trekda terminalda `r` ni bosing (web-trekda sahifani yangilang) — ilova qayta yuklanadi: «Kirish» so'ralmaydi, ro'yxat ochiladi.", ru: '(2) В мобильном треке нажмите `r` в терминале (в веб-треке обновите страницу) — приложение перезагрузится: «Kirish» не спрашивается, открывается список.' },
-        { uz: "(3) «Hisobdan chiqish»ni bosing — «Kirish» ochiladi; qayta kiring (bu — kirish poydevorining qismi, roadmap funksiyasi emas).", ru: '(3) Нажмите «Hisobdan chiqish» — откроется «Kirish»; войдите снова (это часть фундамента входа, не функция из roadmap).' },
-        { uz: "(4) Neon'dagi SQL Editor'da foydalanuvchilar jadvalingiz — sizning qatoringiz, `parol_hash` da parolingiz emas.", ru: '(4) В SQL Editor на Neon в таблице пользователей — ваша строка, в `parol_hash` не ваш пароль.' },
-        { uz: "Bepul Backend uxlab qolgan bo'lsa, birinchi javob bir daqiqagacha kechikishi mumkin. Oxirida `git status` → `git add <fayl>` (`.env` emas) → commit → `git push`.", ru: 'Если бесплатный Backend уснул, первый ответ может задержаться до минуты. В конце `git status` → `git add <fayl>` (не `.env`) → commit → `git push`.' }
+        { uz: "(1) Ro'yxatdan o'ting, keyin kiring — asosiy ro'yxatda to'rtta namuna yozuv (eng yangisi tepada).", ru: "(1) Зарегистрируйтесь, потом войдите — в главном списке четыре записи-образца (самая новая сверху)." },
+        { uz: "(2) Mobil trekda terminalda `r` ni bosing (web-trekda sahifani yangilang) — ilova qayta yuklanadi: «Kirish» so'ralmaydi, ro'yxat ochiladi.", ru: "(2) В мобильном треке нажмите `r` в терминале (в веб-треке обновите страницу) — приложение перезагрузится: «Вход» не появляется, открывается список." },
+        { uz: "(3) «Hisobdan chiqish»ni bosing — «Kirish» ochiladi; qayta kiring (bu — kirish poydevorining qismi, roadmap funksiyasi emas).", ru: "(3) Нажмите «Выйти из аккаунта» — откроется «Вход»; войдите снова (это часть фундамента входа, не функция из roadmap)." },
+        { uz: "(4) Neon'dagi SQL Editor'da foydalanuvchilar jadvalingiz — sizning qatoringiz, `parol_hash` da parolingiz emas.", ru: "(4) В SQL Editor на Neon в таблице пользователей — ваша строка, в `parol_hash` — не ваш пароль." },
+        { uz: "Bepul Backend uxlab qolgan bo'lsa, birinchi javob bir daqiqagacha kechikishi mumkin. Oxirida `git status` → `git add <fayl>` (`.env` emas) → commit → `git push`.", ru: "Если бесплатный Backend уснул, первый ответ может задержаться до минуты. В конце `git status` → `git add <fayl>` (не `.env`) → commit → `git push`." }
       ] }
   ];
 };
 const ScreenA3 = (props) => {
   const [trek] = useState(trekOqi);
   return (
-    <ScreenBlok {...props} eyebrow={{ uz: 'Amaliyot 3 · ilova → Backend', ru: 'Практика 3 · приложение → Backend' }}
-      title={{ uz: <>Ilova Backend'ga ulansin: <span className="italic" style={{ color: T.accent }}>kirish va asosiy ro'yxat</span>.</>, ru: <>Приложение подключается к Backend: <span className="italic" style={{ color: T.accent }}>вход и главный список</span>.</> }}
-      mentor={{ uz: <>Uch qatorning hammasi sizdan, namuna «Yordam»da; <b style={{ color: T.ink }}>«1 · Ochish»</b>dan boshlang.</>, ru: <>Все три строки — ваши, образец — в «Помощи»; начните с <b style={{ color: T.ink }}>«1 · Открыть»</b>.</> }}
+    <ScreenBlok {...props} eyebrow={{ uz: 'Amaliyot 3 · ilova → Backend', ru: "Практика 3 · приложение → Backend" }}
+      title={{ uz: <>Ilova Backend'ga ulansin: <span className="italic" style={{ color: T.accent }}>kirish va asosiy ro'yxat</span>.</>, ru: <>Приложение к Backend: <span className="italic" style={{ color: T.accent }}>вход и главный список</span>.</> }}
+      mentor={{ uz: <>Uch qatorning hammasi sizdan, namuna «Yordam»da; <b style={{ color: T.ink }}>«1 · Ochish»</b>dan boshlang.</>, ru: <>Все три строки — ваши, образец — в «Подсказке»; начните с <b style={{ color: T.ink }}>«1 · Открыть»</b>.</> }}
       steps={a3Qadamlar(trek)}
       natija={<A3Natija />}
-      izoh={trek !== 'web' && { uz: "Expo Go'da ilova kodi hozircha laptopdan keladi, o'yinlar esa Render'dagi Backend'dan.", ru: 'В Expo Go код приложения пока приходит с ноутбука, а игры — из Backend на Render.' }}
-      doneText={{ uz: "Ilova internetdagi Backend'ga ulandi: foydalanuvchi kiradi, ro'yxat Database'dan keladi.", ru: 'Приложение подключено к Backend в интернете: пользователь входит, список приходит из Database.' }} />
+      izoh={trek !== 'web' && { uz: "Expo Go'da ilova kodi hozircha laptopdan keladi, o'yinlar esa Render'dagi Backend'dan.", ru: "В Expo Go код приложения пока приходит с ноутбука, а игры — из Backend на Render." }}
+      doneText={{ uz: "Ilova internetdagi Backend'ga ulandi: foydalanuvchi kiradi, ro'yxat Database'dan keladi.", ru: "Приложение подключено к Backend в интернете: пользователь входит, список приходит из Database." }} />
   );
 };
 
 // 🃏 KARTOCHKALAR (12) — alohida ekran sflash (SABOQ 12, 16), qolipdagi QKartochka (DE-204). Orqa tomon — oddiy matn (kod-belgisiz); old va izoh — tx.
 const KARTALAR = [
-  { front: { uz: 'Poydevor nima?', ru: 'Что такое фундамент?' }, back: { uz: "Database, kirish va deploy — har funksiyadan oldin kerak bo'lgan qism", ru: 'Database, вход и деплой — часть, нужная перед каждой функцией' }, note: { uz: "Mentor misolida: uch jadval, kirish yo'llari, Backend Render'da", ru: 'В примере Ментора: три таблицы, пути входа, Backend на Render' } },
-  { front: { uz: "Prototipda bir telefondagi «Qo'shilaman»ni ikkinchisi nega ko'rmaydi?", ru: 'Почему в прототипе второй телефон не видит «Qo\'shilaman» с первого?' }, back: { uz: "Ma'lumot har telefonning o'zida", ru: 'Данные — на каждом телефоне свои' }, note: { uz: "Ikkala telefon so'raydigan umumiy Database yo'q", ru: 'Нет общей Database, к которой обращаются оба телефона' } },
-  { front: { uz: "«Maydon Jamoa» Database'ida qaysi uch jadval bor?", ru: 'Какие три таблицы есть в Database «Maydon Jamoa»?' }, back: { uz: 'oyinchilar, oyinlar, ishtirokchilar', ru: 'oyinchilar, oyinlar, ishtirokchilar' }, note: { uz: "`ishtirokchilar` — kim qaysi o'yinga qo'shilgani", ru: '`ishtirokchilar` — кто к какой игре присоединился' } },
-  { front: { uz: '`oyinchilar` jadvalida parol qanday turadi?', ru: 'Как хранится пароль в таблице `oyinchilar`?' }, back: { uz: "Hash bo'lib — parolning o'zi emas", ru: 'Хешем — не сам пароль' }, note: { uz: "Hash — paroldan yasalgan satr: undan parolni qaytarib bo'lmaydi", ru: 'Хеш — строка, сделанная из пароля: пароль из неё не восстановить' } },
-  { front: { uz: '`POST /kirish` nima qaytaradi?', ru: 'Что возвращает `POST /kirish`?' }, back: { uz: 'Token', ru: 'Токен' }, note: { uz: "Telefon va parol to'g'ri bo'lsa", ru: 'Если телефон и пароль верны' } },
-  { front: { uz: 'Token telefonda qayerda saqlanadi?', ru: 'Где на телефоне хранится токен?' }, back: { uz: 'expo-secure-store da', ru: 'в expo-secure-store' }, note: { uz: "Qiymatni shifrlab saqlaydi — 8-Moduldagi AsyncStorage'dan farqi shu", ru: 'Хранит значение зашифрованным — в этом отличие от AsyncStorage из 8-го модуля' } },
-  { front: { uz: "Ilova qayta ochilganda «Kirish» nega so'ralmaydi?", ru: 'Почему при повторном открытии не спрашивается «Kirish»?' }, back: { uz: 'Token telefonda saqlangan', ru: 'Токен сохранён на телефоне' }, note: { uz: "Ilova uni yopiq so'rovlarga qo'shadi; muddati tugasa — yana «Kirish»", ru: 'Приложение добавляет его к закрытым запросам; срок истёк — снова «Kirish»' } },
-  { front: { uz: '`GET /oyinlar` tokensiz nima qaytaradi?', ru: 'Что возвращает `GET /oyinlar` без токена?' }, back: { uz: '401', ru: '401' }, note: { uz: "Ilova tokenni o'chirib, «Kirish»ni ochadi", ru: 'Приложение удаляет токен и открывает «Kirish»' } },
-  { front: { uz: 'Telefondagi ilova uchun `localhost` nima?', ru: 'Что такое `localhost` для приложения на телефоне?' }, back: { uz: "Telefonning o'zi", ru: 'Сам телефон' }, note: { uz: "So'rov laptopdagi Backend'ga yetmaydi", ru: 'Запрос не доходит до Backend на ноутбуке' } },
-  { front: { uz: "Nega Backend shu darsda Render'ga chiqadi?", ru: 'Почему на этом уроке Backend выходит на Render?' }, back: { uz: 'Telefon unga Internet orqali ulanadi', ru: 'Телефон подключается к нему через Интернет' }, note: { uz: "Laptopdagi Backend'ga telefon ulana olmasligi mumkin", ru: 'К Backend на ноутбуке телефон может не подключиться' } },
-  { front: { uz: '`EXPO_PUBLIC_API_URL` ga nima yoziladi?', ru: 'Что пишется в `EXPO_PUBLIC_API_URL`?' }, back: { uz: "Render'dagi Backend manzili", ru: 'Адрес Backend на Render' }, note: { uz: "Maxfiy emas — ilovada ochiq ko'rinadi", ru: 'Не секрет — в приложении виден открыто' } },
-  { front: { uz: '`JWT_SECRET` va `DATABASE_URL` qayerda turadi?', ru: 'Где хранятся `JWT_SECRET` и `DATABASE_URL`?' }, back: { uz: "backend/.env da va Render'da", ru: 'в backend/.env и на Render' }, note: { uz: "Ilovada ham, GitHub'da ham emas", ru: 'Ни в приложении, ни на GitHub' } }
+  { front: { uz: 'Poydevor nima?', ru: "Что такое фундамент?" }, back: { uz: "Database, kirish va deploy — har funksiyadan oldin kerak bo'lgan qism", ru: "Database, вход и деплой — часть, нужная перед каждой функцией" }, note: { uz: "Mentor misolida: uch jadval, kirish yo'llari, Backend Render'da", ru: "В примере Ментора: три таблицы, пути входа, Backend на Render" } },
+  { front: { uz: "Prototipda bir telefondagi «Qo'shilaman»ni ikkinchisi nega ko'rmaydi?", ru: "Почему в прототипе второй телефон не видит нажатие «Присоединяюсь» на первом?" }, back: { uz: "Ma'lumot har telefonning o'zida", ru: "Данные — на каждом телефоне свои" }, note: { uz: "Ikkala telefon so'raydigan umumiy Database yo'q", ru: "Нет общей Database, к которой обращаются оба телефона" } },
+  { front: { uz: "«Maydon Jamoa» Database'ida qaysi uch jadval bor?", ru: "Какие три таблицы есть в Database «Maydon Jamoa»?" }, back: { uz: 'oyinchilar, oyinlar, ishtirokchilar', ru: "oyinchilar, oyinlar, ishtirokchilar" }, note: { uz: "`ishtirokchilar` — kim qaysi o'yinga qo'shilgani", ru: "`ishtirokchilar` — кто к какой игре присоединился" } },
+  { front: { uz: '`oyinchilar` jadvalida parol qanday turadi?', ru: "Как хранится пароль в таблице `oyinchilar`?" }, back: { uz: "Hash bo'lib — parolning o'zi emas", ru: "Хешем — не сам пароль" }, note: { uz: "Hash — paroldan yasalgan satr: undan parolni qaytarib bo'lmaydi", ru: "Хеш — строка, сделанная из пароля: пароль из неё не восстановить" } },
+  { front: { uz: '`POST /kirish` nima qaytaradi?', ru: "Что возвращает `POST /kirish`?" }, back: { uz: 'Token', ru: "Токен" }, note: { uz: "Telefon va parol to'g'ri bo'lsa", ru: "Если телефон и пароль верны" } },
+  { front: { uz: 'Token telefonda qayerda saqlanadi?', ru: "Где на телефоне хранится токен?" }, back: { uz: 'expo-secure-store da', ru: "в expo-secure-store" }, note: { uz: "Qiymatni shifrlab saqlaydi — 8-Moduldagi AsyncStorage'dan farqi shu", ru: "Хранит значение зашифрованным — в этом отличие от AsyncStorage из 8-го модуля" } },
+  { front: { uz: "Ilova qayta ochilganda «Kirish» nega so'ralmaydi?", ru: "Почему при повторном открытии не появляется «Вход»?" }, back: { uz: 'Token telefonda saqlangan', ru: "Токен сохранён на телефоне" }, note: { uz: "Ilova uni yopiq so'rovlarga qo'shadi; muddati tugasa — yana «Kirish»", ru: "Приложение добавляет его к закрытым запросам; срок истёк — снова «Вход»" } },
+  { front: { uz: '`GET /oyinlar` tokensiz nima qaytaradi?', ru: "Что возвращает `GET /oyinlar` без токена?" }, back: { uz: '401', ru: "401" }, note: { uz: "Ilova tokenni o'chirib, «Kirish»ni ochadi", ru: "Приложение удаляет токен и открывает «Вход»" } },
+  { front: { uz: 'Telefondagi ilova uchun `localhost` nima?', ru: "Что такое `localhost` для приложения на телефоне?" }, back: { uz: "Telefonning o'zi", ru: "Сам телефон" }, note: { uz: "So'rov laptopdagi Backend'ga yetmaydi", ru: "Запрос не доходит до Backend на ноутбуке" } },
+  { front: { uz: "Nega Backend shu darsda Render'ga chiqadi?", ru: "Почему на этом уроке Backend выходит на Render?" }, back: { uz: 'Telefon unga Internet orqali ulanadi', ru: "Телефон подключается к нему через Интернет" }, note: { uz: "Laptopdagi Backend'ga telefon ulana olmasligi mumkin", ru: "К Backend на ноутбуке телефон может не подключиться" } },
+  { front: { uz: '`EXPO_PUBLIC_API_URL` ga nima yoziladi?', ru: "Что пишется в `EXPO_PUBLIC_API_URL`?" }, back: { uz: "Render'dagi Backend manzili", ru: "Адрес Backend на Render" }, note: { uz: "Maxfiy emas — ilovada ochiq ko'rinadi", ru: "Не секрет — в приложении виден открыто" } },
+  { front: { uz: '`JWT_SECRET` va `DATABASE_URL` qayerda turadi?', ru: "Где хранятся `JWT_SECRET` и `DATABASE_URL`?" }, back: { uz: "backend/.env da va Render'da", ru: "в backend/.env и на Render" }, note: { uz: "Ilovada ham, GitHub'da ham emas", ru: "Ни в приложении, ни на GitHub" } }
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2037,7 +2039,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
         {/* SABOQ 16: Mentor yo'q (KORPUS §61); birinchi bosishgacha karta yuzi halqada, ostida ko'rsatma */}
         <div className={cxx('fd-flash', !bosildi && 'yangi')} onClickCapture={bos} onKeyDownCapture={e => { if (e.key === 'Enter' || e.key === ' ') bos(e); }}>
           <QKartochka til={__lang} cards={KARTALAR.map(c => ({ front: tx(c.front), back: tr(c.back), note: c.note && tx(c.note) }))} />
-          {!bosildi && <p className="fd-fc-ipucha"><i aria-hidden="true" />{tr({ uz: 'Kartani bosing — javob ochiladi', ru: 'Нажмите на карточку — откроется ответ' })}</p>}
+          {!bosildi && <p className="fd-fc-ipucha"><i aria-hidden="true" />{tr({ uz: 'Kartani bosing — javob ochiladi', ru: "Нажмите на карточку — откроется ответ" })}</p>}
         </div>
       </div>
     </Stage>
@@ -2046,10 +2048,10 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 
 // ===== YAKUN — QYakun (DE-204) + «Keyingi dars» qatori; kartochkalar — oldingi alohida ekranda; uyga vazifa yo'q (P-058). Sarlavha holatga qarab (P-046; 10-FILTR 37) =====
 const YAKUN_SARLAVHA = {
-  a3: { uz: "Poydevor tayyor: ro'yxatingiz Backend'dan keladi.", ru: 'Фундамент готов: ваш список приходит из Backend.' },
-  a2: { uz: 'Backend internetda — ilovaga ulash qoldi.', ru: 'Backend в интернете — осталось подключить приложение.' },
-  a1: { uz: 'Database va kirish tayyor — deploy qoldi.', ru: 'Database и вход готовы — остался деплой.' },
-  yoq: { uz: 'Poydevor boshlandi — qolgan qadamni tugating.', ru: 'Фундамент начат — завершите оставшийся шаг.' }
+  a3: { uz: "Poydevor tayyor: ro'yxatingiz Backend'dan keladi.", ru: "Фундамент готов: ваш список приходит из Backend." },
+  a2: { uz: 'Backend internetda — ilovaga ulash qoldi.', ru: "Backend в интернете — осталось подключить приложение." },
+  a1: { uz: 'Database va kirish tayyor — deploy qoldi.', ru: "Database и вход готовы — остался деплой." },
+  yoq: { uz: 'Poydevor boshlandi — qolgan qadamni tugating.', ru: "Фундамент начат — завершите оставшийся шаг." }
 };
 const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
   const _gate = useContext(LiveGateCtx) || {};
@@ -2071,19 +2073,19 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const holat = bajarildi('a3') ? 'a3' : bajarildi('a2') ? 'a2' : bajarildi('a1') ? 'a1' : 'yoq';
   const belgisiz = holat !== 'a3';
   const RECAP = [
-    { uz: "Ro'yxatdan o'tgan o'yinchi Database'da turadi; parolning o'zi emas, hash'i saqlanadi.", ru: 'Зарегистрированный игрок хранится в Database; сохраняется не сам пароль, а его хеш.' },
-    { uz: "Kirishda parol yoziladi: token telefonda saqlanadi va yopiq so'rovlarga qo'shiladi.", ru: 'При входе вводится пароль: токен сохраняется на телефоне и добавляется к закрытым запросам.' },
-    { uz: "Telefon `localhost` bilan laptopdagi Backend'ni topmaydi — bu darsda Backend barqaror manzil uchun internetga chiqadi.", ru: 'По `localhost` телефон не находит Backend на ноутбуке — на этом уроке Backend выходит в интернет ради постоянного адреса.' },
-    { uz: "`EXPO_PUBLIC_` qiymati ilovada ochiq ko'rinadi: unga faqat Backend manzili yoziladi.", ru: 'Значение `EXPO_PUBLIC_` в приложении видно открыто: туда пишется только адрес Backend.' }
+    { uz: "Ro'yxatdan o'tgan o'yinchi Database'da turadi; parolning o'zi emas, hash'i saqlanadi.", ru: "Зарегистрированный игрок хранится в Database; сохраняется не сам пароль, а его хеш." },
+    { uz: "Kirishda parol yoziladi: token telefonda saqlanadi va yopiq so'rovlarga qo'shiladi.", ru: "При входе вводится пароль: токен сохраняется на телефоне и добавляется к закрытым запросам." },
+    { uz: "Telefon `localhost` bilan laptopdagi Backend'ni topmaydi — bu darsda Backend barqaror manzil uchun internetga chiqadi.", ru: "По `localhost` телефон не находит Backend на ноутбуке — на этом уроке Backend выходит в интернет ради постоянного адреса." },
+    { uz: "`EXPO_PUBLIC_` qiymati ilovada ochiq ko'rinadi: unga faqat Backend manzili yoziladi.", ru: "Значение `EXPO_PUBLIC_` в приложении видно открыто: туда пишется только адрес Backend." }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   return (
-    <Stage eyebrow={tr({ uz: 'Yakun', ru: 'Итог' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash', ru: 'Завершить' })}</button></>}>
+    <Stage eyebrow={tr({ uz: 'Yakun', ru: "Итог" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash', ru: "Завершить" })}</button></>}>
       {/* Belgi «✓ Poydevor tayyor» — faqat 3-amaliyot bajarilganda; aks holda belgisiz (MD 7) */}
       <div className={cxx('fd-yakun', belgisiz && 'belgisiz')}>
         <QYakun til={__lang}
-          chip={tr({ uz: 'Poydevor tayyor', ru: 'Фундамент готов' })}
+          chip={tr({ uz: 'Poydevor tayyor', ru: "Фундамент готов" })}
           togri={correct} jami={total}
           sarlavha={tr(YAKUN_SARLAVHA[holat])}
           cta={<>

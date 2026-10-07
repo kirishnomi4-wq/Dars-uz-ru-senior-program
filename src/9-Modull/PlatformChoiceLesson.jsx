@@ -11,6 +11,9 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // O'qiydi: pm-m9d5-prd.funksiyalar (A1 prompti) — kalit yo'q bo'lsa ham ekran ishlaydi.
 // JONLI: useLiveSession + INLINE_KEYS + CodeStrike arena + Podium. PRODUCTION: <style> ichidagi @import OLIB TASHLANADI.
 // ============================================================
+// RU qoldiq-istisno (6-RU qoida 4): Database ustun nomlari — kod, tarjima qilinmaydi (s4 variantlar, s15 README namunasi)
+// ru-qoldiq-istisno s4: kerak
+// ru-qoldiq-istisno s15: ism kerak
 
 // D3: palitra umumiy qolipdan — neytral 5 · modul rangi 2 · holat 2 (shadowBase — soya, rang tokeni emas)
 const T = { ...qolipRang('tex'), shadowBase: '58, 53, 48' };
@@ -276,7 +279,7 @@ const RECAPS = {
     cards: [
       { ic: null, h: { uz: "1 · Ekran ochilganda ilova Backend'dan so'raydi.", ru: '1 · При открытии экрана приложение запрашивает Backend.' } },
       { ic: null, h: { uz: "2 · Pastga tortib yangilaganda yana so'raydi.", ru: '2 · При потягивании вниз запрашивает снова.' } },
-      { ic: null, h: { uz: "3 · Ekran o'zi yangilanishi (WebSocket) — keyinroq ufqda, 12-Modulda.", ru: '3 · Самообновление экрана (WebSocket) — позже, в 12-м модуле.' }, ask: { uz: "Tashkilotchi ekranni yangilamasa, «Kelaman» belgilarini qachon ko'radi?", ru: 'Если организатор не обновит экран, когда он увидит отметки «Kelaman»?' } }
+      { ic: null, h: { uz: "3 · Ekran o'zi yangilanishi (WebSocket) — keyinroq ufqda, 12-Modulda.", ru: "3 · Самообновление экрана (WebSocket) — на горизонте «Позже», в 12-м модуле." }, ask: { uz: "Tashkilotchi ekranni yangilamasa, «Kelaman» belgilarini qachon ko'radi?", ru: "Если организатор не обновит экран, когда он увидит отметки «Приду»?" } }
     ]
   },
   9: {
@@ -625,7 +628,7 @@ const JAMOA_CHIZMA = {
   bog: { tashkilotchi_id: 'oyinchilar', oyin_id: 'oyinlar', oyinchi_id: 'oyinchilar' },
   realVaqt: ['son', 'doira', 'kelaman']
 };
-const TEL_EKRAN = { oyinlar: { uz: "O'yinlar", ru: 'Игры' }, elon: { uz: "E'lon berish", ru: 'Подать объявление' }, royxat: { uz: "Ro'yxatdan o'tish", ru: 'Регистрация' } };
+const TEL_EKRAN = { oyinlar: { uz: "O'yinlar", ru: 'Игры' }, elon: { uz: "E'lon berish", ru: 'Объявить игру' }, royxat: { uz: "Ro'yxatdan o'tish", ru: 'Регистрация' } };
 const ELON_FORMA = [
   { k: 'kun', l: { uz: 'Kun', ru: 'День' }, v: { uz: 'Yakshanba', ru: 'Воскресенье' } },
   { k: 'soat', l: { uz: 'Soat', ru: 'Время' }, v: { uz: '10:00', ru: '10:00' } },
@@ -910,10 +913,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Dars · kirish', ru: 'Урок · введение' })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <QKirish zoom={Zoomable}
-        sarlavha={tr({ uz: <>Ilovada qo'shilgan o'yinchini <span className="italic" style={{ color: T.accent }}>sayt qanday ko'rdi?</span></>, ru: <>Как сайт <span className="italic" style={{ color: T.accent }}>увидел игрока</span>, присоединившегося в приложении?</> })}
+        sarlavha={tr({ uz: <>Ilovada qo'shilgan o'yinchini <span className="italic" style={{ color: T.accent }}>sayt qanday ko'rdi?</span></>, ru: <>Игрок из приложения: <span className="italic" style={{ color: T.accent }}>как его увидел сайт?</span></> })}
         mentor={<Mentor>{!yang
-          ? tr({ uz: "Maydon Jamoa ilova ham, sayt ham bo'lishi mumkin — ilovada «Qo'shilaman» ni bosing, keyin saytni yangilang.", ru: 'Maydon Jamoa может быть и приложением, и сайтом — нажмите «Qo\'shilaman» в приложении, потом обновите сайт.' })
-          : tr({ uz: "Endi o'ngdagi javoblardan birini tanlang.", ru: 'Теперь выберите один из ответов справа.' })}</Mentor>}
+          ? tr({ uz: "Maydon Jamoa ilova ham, sayt ham bo'lishi mumkin — ilovada «Qo'shilaman» ni bosing, keyin saytni yangilang.", ru: "Maydon Jamoa может быть и приложением, и сайтом — нажмите «Присоединяюсь» в приложении, потом обновите сайт." })
+          : tr({ uz: 'Endi javoblardan birini tanlang.', ru: 'Теперь выберите один из ответов.' })}</Mentor>}
         maket={<div className="pc-hook">
           <div className="pc-hook-q">
             <Ramka tur="tel" yorliq={picked ? tr({ uz: 'ilova · ?', ru: 'приложение · ?' }) : tr({ uz: 'ilova', ru: 'приложение' })}>
@@ -962,7 +965,7 @@ const RejaChizma = () => {
 const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz', ru: 'Начинаем' })} onClick={onNext} /></>}>
     <QReja zoom={Zoomable}
-      sarlavha={tr({ uz: <>Bugun qismlarni chizib, <span className="italic" style={{ color: T.accent }}>sayt yoki ilovani</span> tanlaysiz.</>, ru: <>Сегодня вы нарисуете части и выберете <span className="italic" style={{ color: T.accent }}>сайт или приложение</span>.</> })}
+      sarlavha={tr({ uz: <>Bugun qismlarni chizib, <span className="italic" style={{ color: T.accent }}>sayt yoki ilovani</span> tanlaysiz.</>, ru: <>Рисуем части, выбираем <span className="italic" style={{ color: T.accent }}>сайт или приложение</span>.</> })}
       mentor={<Mentor>{tr({ uz: "Har qadamni avval Maydon Jamoa misolida ko'rasiz, keyin o'z mahsulotingiz uchun README'ga yozdirasiz.", ru: 'Каждый шаг вы сначала увидите на примере Maydon Jamoa, потом попросите записать его в README для своего продукта.' })}</Mentor>}
       chapYorliq={tr({ uz: 'Dars oxirida', ru: 'К концу урока' })}
       chap={<RejaChizma />}
@@ -1018,7 +1021,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Tushuncha · qismlar', ru: 'Понятие · части' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={!taxmin ? tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' }) : !done ? tr({ uz: `Qadamlarni bajaring (${n}/2)`, ru: `Выполните шаги (${n}/2)` }) : tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng harakatAvval
         sarlavha={tr({ uz: <>E'lon yo'lida <span className="italic" style={{ color: T.accent }}>har qism nima qiladi?</span></>, ru: <>Что делает <span className="italic" style={{ color: T.accent }}>каждая часть</span> на пути объявления?</> })}
-        mentor={<Mentor>{tr({ uz: "Avval tashkilotchi telefonida «Yuborish» ni bosing, keyin o'yinchi telefonida «O'yinlar» ni oching.", ru: 'Сначала нажмите «Yuborish» на телефоне организатора, потом откройте «O\'yinlar» на телефоне игрока.' })}</Mentor>}
+        mentor={<Mentor>{tr({ uz: "Avval tashkilotchi telefonida «Yuborish» ni bosing, keyin o'yinchi telefonida «O'yinlar» ni oching.", ru: "Сначала нажмите «Отправить» на телефоне организатора, потом откройте «Игры» на телефоне игрока." })}</Mentor>}
         bashorat={<Bashorat savol={tr({ uz: "E'lonni qaysi qism saqlaydi?", ru: 'Какая часть хранит объявление?' })} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
         harakat={taxmin && !done && <div className="pc-qadam-q"><QQadamlar qadamlar={S2_QADAM.map(tr)} joriy={n} /></div>}
         vizual={<JamoaChizma boxRef={box} parvoz={parvoz}
@@ -1129,7 +1132,7 @@ const S5_BOLAK = [
   { t: { uz: '«8 / 10»', ru: '«8 / 10»' }, joy: 'son', oz: true },
   { t: { uz: '«Shanba, 18:00 · Mahalla maydoni»', ru: '«Суббота, 18:00 · Поле махалли»' }, joy: 'vaqt', oz: false },
   { t: { uz: "Qo'shilganlar doiralari", ru: 'Кружки присоединившихся' }, joy: 'doira', oz: true },
-  { t: { uz: "O'yin kunidagi «Kelaman» belgilari", ru: 'Отметки «Kelaman» в день игры' }, joy: 'kelaman', oz: true }
+  { t: { uz: "O'yin kunidagi «Kelaman» belgilari", ru: "Отметки «Приду» в день игры" }, joy: 'kelaman', oz: true }
 ];
 const S5_XATO = { oz: { uz: "Kimdir qo'shilsa yoki tasdiqlasa, bu ma'lumot o'zgaradi.", ru: 'Если кто-то присоединится или подтвердит, эти данные изменятся.' }, yoq: { uz: "Kun, soat va maydonni tashkilotchi e'londa yozgan.", ru: 'День, время и поле организатор указал в объявлении.' } };
 const S5_HAMMA = { son: true, vaqt: true, doira: true, kelaman: true };
@@ -1157,7 +1160,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Tushuncha · real vaqt', ru: 'Понятие · реальное время' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={!done ? tr({ uz: `Bo'laklarni saralang (${k}/4)`, ru: `Рассортируйте части (${k}/4)` }) : tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
         sarlavha={tr({ uz: <>Boshqa odam sabab <span className="italic" style={{ color: T.accent }}>qaysi ma'lumot</span> o'zgaradi?</>, ru: <>Какие <span className="italic" style={{ color: T.accent }}>данные</span> меняются из-за другого человека?</> })}
-        mentor={<Mentor>{tr({ uz: "Ekran ochiq turibdi — har bo'lak uchun tanlang: «Ma'lumoti o'zgaradi» yoki «O'zgarmaydi».", ru: 'Экран открыт — для каждой части выберите: «Ma\'lumoti o\'zgaradi» или «O\'zgarmaydi».' })}</Mentor>}
+        mentor={<Mentor>{tr({ uz: "Ekran ochiq turibdi — har bo'lak uchun tanlang: «Ma'lumoti o'zgaradi» yoki «O'zgarmaydi».", ru: "Экран открыт — для каждой части выберите: «Данные меняются» или «Не меняется»." })}</Mentor>}
         vizual={<div className={cxx('pc-s5', tugadi && 'tugadi')}>
           <Ramka rol={{ k: 'b1', t: tr({ uz: '1-telefon · siz', ru: 'телефон 1 · вы' }) }}>
             <OyinEkran kun={k >= 3} joriy={!done && b ? b.joy : undefined} belgi={belgi} />
@@ -1175,7 +1178,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>}
           {done && <NomQator>{tr({ uz: "Ekran ochiq turganda boshqa odam tufayli ma'lumoti o'zgarishi mumkin bo'lgan joy — real vaqt nuqtasi.", ru: 'Место, данные которого могут измениться из-за другого человека, пока экран открыт, — точка реального времени.' })}</NomQator>}
         </div>}
-        natija={done && <NatijaBlok xulosa={tr({ uz: "Bu misolda uchta real vaqt nuqtasi: «8 / 10», qo'shilganlar va «Kelaman» belgilari.", ru: 'В этом примере три точки реального времени: «8 / 10», присоединившиеся и отметки «Kelaman».' })} />}
+        natija={done && <NatijaBlok xulosa={tr({ uz: "Bu misolda uchta real vaqt nuqtasi: «8 / 10», qo'shilganlar va «Kelaman» belgilari.", ru: "В этом примере три точки реального времени: «8 / 10», присоединившиеся и отметки «Приду»." })} />}
       />
     </Stage>
   );
@@ -1243,8 +1246,8 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Tajriba · so\'rov', ru: 'Опыт · запрос' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={!taxmin ? tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' }) : !done ? tr({ uz: `Qadamlarni bajaring (${n}/2)`, ru: `Выполните шаги (${n}/2)` }) : tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng harakatAvval
-        sarlavha={tr({ uz: <>O'yinchi qo'shilsa, ekraningizdagi <span className="italic" style={{ color: T.accent }}>son o'zgaradimi?</span></>, ru: <>Если игрок присоединится, <span className="italic" style={{ color: T.accent }}>изменится ли число</span> на вашем экране?</> })}
-        mentor={<Mentor>{tr({ uz: "Ikkinchi telefonda «Qo'shilaman» ni bosing va birinchisiga qarang.", ru: 'Нажмите «Qo\'shilaman» на втором телефоне и посмотрите на первый.' })}</Mentor>}
+        sarlavha={tr({ uz: <>O'yinchi qo'shilsa, ekraningizdagi <span className="italic" style={{ color: T.accent }}>son o'zgaradimi?</span></>, ru: <>Игрок присоединился — <span className="italic" style={{ color: T.accent }}>число у вас изменится?</span></> })}
+        mentor={<Mentor>{tr({ uz: "Ikkinchi telefonda «Qo'shilaman» ni bosing va birinchisiga qarang.", ru: "Нажмите «Присоединяюсь» на втором телефоне и посмотрите на первый." })}</Mentor>}
         bashorat={<Bashorat savol={tr({ uz: 'Birinchi telefonda «8 / 10» qachon «9 / 10» bo\'ladi?', ru: 'Когда на первом телефоне «8 / 10» станет «9 / 10»?' })} variantlar={S6_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
         harakat={taxmin && !done && <div className="pc-qadam-q"><QQadamlar qadamlar={S6_QADAM.map(tr)} joriy={n} /></div>}
         vizual={<JamoaChizma boxRef={box} parvoz={parvoz}
@@ -1263,7 +1266,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         natija={done && tx6 && <NatijaBlok togri={taxmin === 'sora'}
           haqiqat={<Haqiqat taxmin={tr(tx6.t)} haqiqat={tr({ uz: "ilova qayta so'raganda", ru: 'когда приложение запросит снова' })} />}
           xulosa={tr({ uz: "Bu modulda ilova so'raganda yangilanadi: ekran ochilganda va pastga tortib yangilaganda.", ru: 'В этом модуле приложение обновляется, когда запрашивает: при открытии экрана и при потягивании вниз.' })}
-          izoh={tr({ uz: "Ekran o'zi yangilanadigan yo'llardan biri — WebSocket; roadmap'da u keyinroq ufqda, 12-Modulda.", ru: 'Один из способов, чтобы экран обновлялся сам, — WebSocket; в roadmap он на горизонте «позже», в 12-м модуле.' })} />}
+          izoh={tr({ uz: "Ekran o'zi yangilanadigan yo'llardan biri — WebSocket; roadmap'da u keyinroq ufqda, 12-Modulda.", ru: "Один из способов, чтобы экран обновлялся сам, — WebSocket; в roadmap он на горизонте «Позже», в 12-м модуле." })} />}
       />
     </Stage>
   );
@@ -1273,7 +1276,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen7 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Упражнение · вопрос 2' })}
     questionText="Ekran ochiq. Uch o'yinchi «Kelaman» ni bosdi. Tashkilotchi qachon ko'radi?"
-    question={tr({ uz: <h2 className="title h-ask">Ekran ochiq. Uch o'yinchi «Kelaman» ni bosdi. Tashkilotchi <span className="italic" style={{ color: T.accent }}>qachon ko'radi?</span></h2>, ru: <h2 className="title h-ask">Экран открыт. Три игрока нажали «Kelaman». <span className="italic" style={{ color: T.accent }}>Когда увидит</span> организатор?</h2> })}
+    question={tr({ uz: <h2 className="title h-ask">Ekran ochiq. Uch o'yinchi «Kelaman» ni bosdi. Tashkilotchi <span className="italic" style={{ color: T.accent }}>qachon ko'radi?</span></h2>, ru: <h2 className="title h-ask">Экран открыт. Три игрока нажали «Приду». <span className="italic" style={{ color: T.accent }}>Когда увидит</span> организатор?</h2> })}
     options={[
       { uz: 'Ekranni pastga tortib yangilaganda', ru: 'Когда обновит экран, потянув вниз' },
       { uz: 'Har bosishda o\'sha soniyaning o\'zida', ru: 'При каждом нажатии в ту же секунду' },
@@ -1282,7 +1285,7 @@ const Screen7 = (props) => (
     ]} correctIdx={0}
     explainCorrect={{ uz: "Bu modulda ilova so'raganda yangilanadi: ekran ochilganda yoki pastga tortilganda.", ru: 'В этом модуле приложение обновляется, когда запрашивает: при открытии экрана или при потягивании вниз.' }}
     explainWrong={{
-      1: { uz: 'Ekran o\'zi yangilanishi — keyinroq ufqda, bu modulda emas.', ru: 'Самообновление экрана — на горизонте «позже», не в этом модуле.' },
+      1: { uz: 'Ekran o\'zi yangilanishi — keyinroq ufqda, bu modulda emas.', ru: "Самообновление экрана — на горизонте «Позже», не в этом модуле." },
       2: { uz: "Belgilar Database'da allaqachon bor — so'rash yetadi.", ru: 'Отметки уже есть в Database — достаточно запросить.' },
       3: { uz: "Xabar shart emas — belgilar Database'ga yozilgan.", ru: 'Сообщение не нужно — отметки записаны в Database.' },
       default: { uz: "Bu modulda ilova so'raganda yangilanadi.", ru: 'В этом модуле приложение обновляется, когда запрашивает.' }
@@ -1308,7 +1311,7 @@ const KOD_SHART_IFODA = [
 const KOD_VAZIFA = [
   { uz: 'Sahifa ochilganda `korsat()` ni bir marta chaqiring.', ru: 'Когда страница открывается, вызовите `korsat()` один раз.' },
   { uz: "`yangila` tugmasi bosilganda `korsat` ishlasin: `addEventListener('click', …)`.", ru: "Пусть при нажатии кнопки `yangila` срабатывает `korsat`: `addEventListener('click', …)`." },
-  { uz: "Natija oynasida «Yangilash» ni ikki marta bosing — son 8 dan oshib borsin.", ru: 'В окне результата дважды нажмите «Yangilash» — число растёт от 8.' }
+  { uz: "Natija oynasida «Yangilash» ni ikki marta bosing — son 8 dan oshib borsin.", ru: "В окне результата дважды нажмите «Обновить» — число должно стать больше 8." }
 ];
 const KOD_SHART = [
   { uz: '`korsat()` sahifa ochilganda bir marta chaqirilsin.', ru: 'Пусть `korsat()` вызывается один раз при открытии страницы.' },
@@ -1367,15 +1370,15 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Kod yozish · so\'rov', ru: 'Пишем код · запрос' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
       <QKod
-        sarlavha={tr({ uz: <>Sonni qayta so'rab ko'rsatadigan <span className="italic" style={{ color: T.accent }}>kod yozamiz</span>.</>, ru: <>Пишем <span className="italic" style={{ color: T.accent }}>код</span>, который заново запрашивает и показывает число.</> })}
-        mentor={<Mentor>{tr({ uz: "Kod oynasida telefon yo'q — pastga tortish o'rnida «Yangilash» tugmasi; ikki qatorni o'zingiz terib yozasiz, qo'lda yozganda o'rganiladi.", ru: 'В окне кода нет телефона — вместо потягивания вниз кнопка «Yangilash»; две строки вы набираете сами, так запоминается лучше.' })}</Mentor>}
+        sarlavha={tr({ uz: <>Sonni qayta so'rab ko'rsatadigan <span className="italic" style={{ color: T.accent }}>kod yozamiz</span>.</>, ru: <>Пишем <span className="italic" style={{ color: T.accent }}>код</span>: запросить число заново и показать.</> })}
+        mentor={<Mentor>{tr({ uz: "Kod oynasida telefon yo'q — pastga tortish o'rnida «Yangilash» tugmasi; ikki qatorni o'zingiz terib yozasiz, qo'lda yozganda o'rganiladi.", ru: "В окне кода нет телефона — вместо потягивания вниз кнопка «Yangilash» («Обновить»); две строки вы набираете сами, так запоминается лучше." })}</Mentor>}
         vazifa={<>
           <ol className={cxx('pc-vazifa', done && 'ixcham')}>{KOD_VAZIFA.map((v, i) => <li key={i} className={cxx(qadamOk(i) && 'ok')}><i>{qadamOk(i) ? '✓' : i + 1}</i><span>{tx(v)}</span></li>)}</ol>
-          {done && <NatijaBlok xulosa={tr({ uz: "Son ochilganda bir marta, keyin har «Yangilash» da so'raladi; so'ralmasa, eskisi turadi.", ru: 'Число запрашивается один раз при открытии, потом при каждом «Yangilash»; если не запросить, остаётся старое.' })}
-            izoh={tr({ uz: "Telefon ilovasida «Yangilash» o'rnida — ro'yxatni pastga tortish.", ru: 'В приложении на телефоне вместо «Yangilash» — потянуть список вниз.' })} />}
+          {done && <NatijaBlok xulosa={tr({ uz: "Son ochilganda bir marta, keyin har «Yangilash» da so'raladi; so'ralmasa, eskisi turadi.", ru: "Число запрашивается один раз при открытии, потом при каждом нажатии «Обновить»; если не запросить, остаётся старое." })}
+            izoh={tr({ uz: "Telefon ilovasida «Yangilash» o'rnida — ro'yxatni pastga tortish.", ru: "В приложении на телефоне вместо «Обновить» — потянуть список вниз." })} />}
         </>}
         yordam={!done && <div className="pc-kyordam">
-          <QTugma ikkinchi aria-expanded={yordam} onClick={() => setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>
+          <QTugma ikkinchi aria-expanded={yordam} onClick={() => setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: 'Подсказка' })}</QTugma>
           {yordam && <QIzoh>{tx({ uz: "Son «…» bo'lib qolsa, `korsat();` qatori oxirida qavslar borligini tekshiring. Tugma ishlamasa — `addEventListener` ga `korsat` qavssiz beriladi.", ru: 'Если число осталось «…», проверьте скобки в конце строки `korsat();`. Если кнопка не работает — `korsat` передаётся в `addEventListener` без скобок.' })}</QIzoh>}
         </div>}
         bajardim={!done && <div className="pc-bajardim"><QTugma className={halqa(shart)} disabled={!shart} onClick={bajardim}>{tr({ uz: 'Bajardim', ru: 'Готово' })}</QTugma></div>}
@@ -1425,7 +1428,7 @@ const TORT_SAVOL = [
     chip13: [{ t: { uz: "Yo'lda yoki ko'chada, telefonda", ru: 'В пути или на улице, на телефоне' }, tomon: 'mobil' }, { t: { uz: 'Uyda yoki darsda, kompyuterda', ru: 'Дома или на уроке, на компьютере' }, tomon: 'web' }, { t: { uz: 'Ikkalasida ham', ru: 'И там, и там' }, tomon: 'teng' }] },
   { n: 2, tur: 'signal', qisqa: { uz: 'telefon imkoniyati', ru: 'возможности телефона' },
     s: { uz: 'Telefonning o\'z imkoniyati kerakmi — kamera, joylashuv yoki telefonga keladigan eslatma?', ru: 'Нужны ли возможности самого телефона — камера, геолокация или напоминание на телефон?' }, s13: { uz: 'Telefonning o\'z imkoniyati kerakmi — kamera, joylashuv yoki eslatma?', ru: 'Нужны ли возможности самого телефона — камера, геолокация или напоминание?' },
-    togri: { t: { uz: "Ha — o'yindan oldin eslatma", ru: 'Да — напоминание перед игрой' }, tomon: 'mobil', izoh: { uz: "Mobil tomonga tortadi — web'da umuman yo'q degani emas.", ru: 'Тянет к мобильному — это не значит, что в вебе этого совсем нет.' } }, xato: { t: { uz: "Yo'q — hammasi ekranda", ru: 'Нет — всё на экране' }, x: { uz: "PRD dagi «Keyin» ro'yxatida eslatma bor.", ru: 'В списке «Keyin» в PRD есть напоминание.' } }, avval: 'xato',
+    togri: { t: { uz: "Ha — o'yindan oldin eslatma", ru: 'Да — напоминание перед игрой' }, tomon: 'mobil', izoh: { uz: "Mobil tomonga tortadi — web'da umuman yo'q degani emas.", ru: 'Тянет к мобильному — это не значит, что в вебе этого совсем нет.' } }, xato: { t: { uz: "Yo'q — hammasi ekranda", ru: 'Нет — всё на экране' }, x: { uz: "PRD dagi «Keyin» ro'yxatida eslatma bor.", ru: "В списке «Потом» в PRD есть напоминание." } }, avval: 'xato',
     chip13: [{ t: { uz: 'Ha, kerak', ru: 'Да, нужны' }, tomon: 'mobil' }, { t: { uz: "Yo'q, kerak emas", ru: 'Нет, не нужны' }, tomon: 'teng' }] },
   { n: 3, tur: 'signal', qisqa: { uz: 'havola bilan ulashish', ru: 'поделиться ссылкой' },
     s: { uz: "Odamlar uni hech narsa o'rnatmasdan havoladan darhol ochishi muhimmi?", ru: 'Важно ли, чтобы люди открывали его по ссылке сразу, ничего не устанавливая?' }, s13: { uz: "Odamlar uni hech narsa o'rnatmasdan havoladan ochishi muhimmi?", ru: 'Важно ли, чтобы люди открывали его по ссылке, ничего не устанавливая?' },
@@ -1664,7 +1667,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   placeholder={tr({ uz: "masalan: o'yinchi maydonda, qo'lida telefon; eslatma telefonga kelishi kerak", ru: 'например: игрок на поле, в руке телефон; напоминание должно приходить на телефон' })}
                   onChange={(e) => qoy({ asos: e.target.value })} onKeyDown={(e) => { if (e.key === 'Enter') saqla(); }} />
                 <div className="pc-ms-amal">
-                  <QTugma ikkinchi aria-expanded={yordam} onClick={() => setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>
+                  <QTugma ikkinchi aria-expanded={yordam} onClick={() => setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: 'Подсказка' })}</QTugma>
                   <QTugma className={halqa(msToliq(f))} onClick={saqla}>{tr({ uz: 'Saqlash', ru: 'Сохранить' })}</QTugma>
                 </div>
                 {xato && <QXato>{tr({ uz: 'Javoblar, hal qiluvchi signal va asos kerak.', ru: 'Нужны ответы, решающий сигнал и обоснование.' })}</QXato>}
@@ -1683,7 +1686,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 14 — FINAL (QTartib: uyalar raqamli, izohi «bu yerga qo'ying» — tartibni ochmaydi; ball — birinchi to'liq urinish, sentinel 0) =====
 const QOSHILISH_YOLI = [
-  { id: 'bos', label: { uz: "O'yinchi «Qo'shilaman» ni bosadi", ru: 'Игрок нажимает «Qo\'shilaman»' } },
+  { id: 'bos', label: { uz: "O'yinchi «Qo'shilaman» ni bosadi", ru: "Игрок нажимает «Присоединяюсь»" } },
   { id: 'sorov', label: { uz: "Ilova Backend'ga so'rov yuboradi", ru: 'Приложение отправляет запрос в Backend' } },
   { id: 'tekshir', label: { uz: "Backend o'yinda joy borligini tekshiradi", ru: 'Backend проверяет, есть ли место в игре' } },
   { id: 'yoz', label: { uz: 'Database `ishtirokchilar` ga qator yozadi', ru: 'Database записывает строку в `ishtirokchilar`' } },
@@ -1707,7 +1710,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Yakuniy · tartib', ru: 'Итог · порядок' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qo'shilish boshqa telefonga <span className="italic" style={{ color: T.accent }}>qaysi tartibda</span> yetadi?</>, ru: <>В каком <span className="italic" style={{ color: T.accent }}>порядке</span> присоединение доходит до другого телефона?</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qo'shilish boshqa telefonga <span className="italic" style={{ color: T.accent }}>qaysi tartibda</span> yetadi?</>, ru: <>В каком <span className="italic" style={{ color: T.accent }}>порядке</span> присоединение доходит до других?</> })}</h2></div>
         <Mentor>{tr({ uz: "Bo'laklarni bajariladigan tartibda joylang.", ru: 'Разложите части в порядке выполнения.' })}</Mentor>
         <Zoomable>
           <QTartib onWrong={onWrong}
@@ -1793,7 +1796,7 @@ const Confetti = () => {
 // Podium savol yorliqlari (SCORED_IDX indekslariga mos: 4, 7, 9, 11, 14)
 const Q_LABELS = {
   4: { uz: '1 — «8 / 10» qayerdan', ru: '1 — откуда «8 / 10»' },
-  7: { uz: "2 — «Kelaman» qachon ko'rinadi", ru: '2 — когда видно «Kelaman»' },
+  7: { uz: "2 — «Kelaman» qachon ko'rinadi", ru: "2 — когда видно «Приду»" },
   9: { uz: '3 — «Yangilash» qatori', ru: '3 — строка «Yangilash»' },
   11: { uz: '4 — Platforma tanlovi', ru: '4 — Выбор платформы' },
   14: { uz: "Yakuniy — qo'shilish yo'li", ru: 'Итог — путь присоединения' }
@@ -2396,7 +2399,7 @@ const PcPrompt = ({ satrlar, joylar, onJoy, yordam }) => {
   return (
     <span className="q-prompt pc-prompt">
       <span className="q-prompt-h"><span className="q-prompt-kim">{ochiq ? tr({ uz: 'Mentor misolidagi to\'liq talab', ru: 'Полное требование из примера Ментора' }) : tr({ uz: 'Siz → Antigravity', ru: 'Вы → Antigravity' })}</span>
-        <span className="pc-prompt-tug">{yordam && <button type="button" className={cxx('q-prompt-nusxa', ochiq && 'pc-ochiq')} aria-expanded={ochiq} onClick={() => setOchiq(o => !o)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</button>}
+        <span className="pc-prompt-tug">{yordam && <button type="button" className={cxx('q-prompt-nusxa', ochiq && 'pc-ochiq')} aria-expanded={ochiq} onClick={() => setOchiq(o => !o)}>{tr({ uz: 'Yordam', ru: 'Подсказка' })}</button>}
           {!ochiq && <button type="button" className="q-prompt-nusxa" onClick={nusxa}>{ok ? tr({ uz: '✓ Nusxalandi', ru: '✓ Скопировано' }) : tr({ uz: 'Nusxalash', ru: 'Скопировать' })}</button>}</span></span>
       {ochiq && yordam.map((l, i) => <span key={'y' + i} className="pc-ps pc-yordam-s">{pcMatn(tr(l), 'y' + i)}</span>)}
       {!ochiq && matn.map((l, li) => (
@@ -2440,7 +2443,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   }, [stepN]);
   // SABOQ 8 / S3 (F-1006-287, 14-dars naqshi): Mentor har holatda keyingi harakatni aytadi — boshida MD gapi, qadamlar orasida keyingi qadam, blok tugagach «Davom etish»
   const mGap = done ? BLOK_TUGADI : stepN === 0 ? mentor
-    : { uz: `Keyingi qadam — «${stepN + 1} · ${tr(steps[stepN].h)}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующий шаг — «${stepN + 1} · ${tr(steps[stepN].h)}»: выполните и нажмите «Bajardim».` };
+    : { uz: `Keyingi qadam — «${stepN + 1} · ${tr(steps[stepN].h)}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующий шаг — «${stepN + 1} · ${tr(steps[stepN].h)}»: выполните и нажмите «Готово».` };
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
@@ -2465,7 +2468,7 @@ const ORTDA = { uz: "Ortda qoldingizmi — Mentor misolini alohida papkada ochib
 const ReadmeMock = ({ a2 }) => (
   <div className="pc-md">
     <span className="pc-md-tab"><code>README.md</code></span>
-    <span className="pc-md-h">{tr({ uz: 'Arxitektura', ru: 'Архитектура' })}</span>
+    <span className="pc-md-h">{tr({ uz: 'Arxitektura', ru: "Arxitektura" })}</span>
     <code className={cxx('pc-md-kod', a2 && 'xira')}>ilova (Expo) → Backend (NestJS) → Database (Neon)</code>
     {!a2 && <>
       <span className="pc-md-j">{tx({ uz: '`oyinchilar` — `id` · `ism` · `telefon` · `parol_hash`', ru: '`oyinchilar` — `id` · `ism` · `telefon` · `parol_hash`' })}</span>
@@ -2473,10 +2476,10 @@ const ReadmeMock = ({ a2 }) => (
       <span className="pc-md-j">{tx({ uz: '`ishtirokchilar` — `oyin_id` → `oyinlar` · `oyinchi_id` → `oyinchilar` · `holat` · `yaratilgan`', ru: '`ishtirokchilar` — `oyin_id` → `oyinlar` · `oyinchi_id` → `oyinchilar` · `holat` · `yaratilgan`' })}</span>
     </>}
     {a2 && <>
-      <span className="pc-md-b"><b>{tr({ uz: 'Real vaqt nuqtalari', ru: 'Точки реального времени' })}</b> — {tr({ uz: "«8 / 10» · qo'shilganlar ro'yxati · «Kelaman» belgilari — ekran ochilganda va pastga tortib yangilaganda so'raydi", ru: '«8 / 10» · список присоединившихся · отметки «Kelaman» — запрашивает при открытии экрана и при потягивании вниз' })}</span>
-      <span className="pc-md-b"><b>{tr({ uz: 'Platforma', ru: 'Платформа' })}</b> — {tr({ uz: "mobil: o'yinchi maydonda, qo'lida telefon; eslatma telefonga kelishi kerak", ru: 'мобильное: игрок на поле, в руке телефон; напоминание должно приходить на телефон' })}</span>
-      <span className="pc-md-b"><b>{tr({ uz: 'Stek', ru: 'Стек' })}</b> — Expo (React Native) · NestJS + TypeORM, Render · Neon (PostgreSQL)</span>
-      <span className="pc-gh"><span className="pc-gh-r"><i className="pc-gh-ic" aria-hidden="true" /><b>maydon-jamoa</b></span><span className="pc-gh-f"><code>README.md</code> — «{tr({ uz: 'Arxitektura', ru: 'Архитектура' })}»</span></span>
+      <span className="pc-md-b"><b>{tr({ uz: 'Real vaqt nuqtalari', ru: "Real vaqt nuqtalari" })}</b> — {tr({ uz: "«8 / 10» · qo'shilganlar ro'yxati · «Kelaman» belgilari — ekran ochilganda va pastga tortib yangilaganda so'raydi", ru: "«8 / 10» · список присоединившихся · отметки «Приду» — запрашивает при открытии экрана и при потягивании вниз" })}</span>
+      <span className="pc-md-b"><b>{tr({ uz: 'Platforma', ru: "Platforma" })}</b> — {tr({ uz: "mobil: o'yinchi maydonda, qo'lida telefon; eslatma telefonga kelishi kerak", ru: 'мобильное: игрок на поле, в руке телефон; напоминание должно приходить на телефон' })}</span>
+      <span className="pc-md-b"><b>{tr({ uz: 'Stek', ru: "Stek" })}</b> — Expo (React Native) · NestJS + TypeORM, Render · Neon (PostgreSQL)</span>
+      <span className="pc-gh"><span className="pc-gh-r"><i className="pc-gh-ic" aria-hidden="true" /><b>maydon-jamoa</b></span><span className="pc-gh-f"><code>README.md</code> — «{tr({ uz: 'Arxitektura', ru: "Arxitektura" })}»</span></span>
     </>}
   </div>
 );
@@ -2507,20 +2510,20 @@ const ScreenA1 = (props) => {
   return (
     <ScreenBlok {...props} eyebrow={{ uz: "Amaliyot 1 · o'z repo'ngiz", ru: 'Практика 1 · ваш репозиторий' }}
       title={{ uz: <>README'ga chizma va <span className="italic" style={{ color: T.accent }}>jadvallarni yozdiring</span>.</>, ru: <>Попросите записать в README <span className="italic" style={{ color: T.accent }}>схему и таблицы</span>.</> }}
-      mentor={{ uz: <>Hamma qadamni o'z mahsulotingiz bilan qilasiz, o'ngda — namuna; <b style={{ color: T.ink }}>«1 · Ochish»</b>dan boshlang.</>, ru: <>Все шаги вы делаете со своим продуктом, справа — образец; начните с <b style={{ color: T.ink }}>«1 · Ochish»</b>.</> }}
+      mentor={{ uz: <>Hamma qadamni o'z mahsulotingiz bilan qilasiz, o'ngda — namuna; <b style={{ color: T.ink }}>«1 · Ochish»</b>dan boshlang.</>, ru: <>Все шаги вы делаете со своим продуктом, справа — образец; начните с <b style={{ color: T.ink }}>«1 · Открыть»</b>.</> }}
       steps={[
         { h: QADAM.ochish, t: { uz: "7-darsdagi repo papkangizni Antigravity'da oching: `README.md` da talab va wireframe surati turibdi.", ru: 'Откройте в Antigravity папку репозитория из 7-го урока: в `README.md` лежат требование и снимок wireframe.' },
           bandlar: [{ uz: "Papka bu kompyuterda yo'q bo'lsa — terminalda `git clone https://github.com/{login}/{repo}.git` · `cd {repo}`.", ru: 'Если папки нет на этом компьютере — в терминале `git clone https://github.com/{login}/{repo}.git` · `cd {repo}`.' }] },
-        { h: QADAM.prompt, t: oldin ? { uz: "qavslarning bir qismi mustaqil ishdagi tanlovingiz va PRD'ingizdan to'ldirilgan; tekshiring, bo'sh qavsni o'zingiz yozing, «Nusxalash»ni bosing va Antigravity'ga yuboring:", ru: 'часть скобок заполнена из вашего выбора в самостоятельной работе и PRD; проверьте, впишите пустые сами, нажмите «Nusxalash» и отправьте в Antigravity:' }
-          : { uz: "qavslarni o'z mahsulotingiz bilan to'ldiring, «Nusxalash»ni bosing va Antigravity'ga yuboring:", ru: 'заполните скобки по своему продукту, нажмите «Nusxalash» и отправьте в Antigravity:' },
+        { h: QADAM.prompt, t: oldin ? { uz: "qavslarning bir qismi mustaqil ishdagi tanlovingiz va PRD'ingizdan to'ldirilgan; tekshiring, bo'sh qavsni o'zingiz yozing, «Nusxalash»ni bosing va Antigravity'ga yuboring:", ru: "часть скобок заполнена из вашего выбора в самостоятельной работе и PRD; проверьте, впишите пустые сами, нажмите «Скопировать» и отправьте в Antigravity:" }
+          : { uz: "qavslarni o'z mahsulotingiz bilan to'ldiring, «Nusxalash»ni bosing va Antigravity'ga yuboring:", ru: "заполните скобки по своему продукту, нажмите «Скопировать» и отправьте в Antigravity:" },
           prompt: <PcPrompt satrlar={A1_PROMPT} joylar={joylar} onJoy={onJoy} yordam={A1_YORDAM} /> },
-        { h: QADAM.korish, t: { uz: "Antigravity'da `README.md` ni oching: «Arxitektura» bo'limida chizma va jadvallar bor. Agent boshqa faylni ham o'zgartirgan bo'lsa: «Faqat README.md ni o'zgartir, qolganini qaytar.»", ru: 'Откройте `README.md` в Antigravity: в разделе «Arxitektura» есть схема и таблицы. Если агент изменил и другой файл: «Faqat README.md ni o\'zgartir, qolganini qaytar.»' } },
+        { h: QADAM.korish, t: { uz: "Antigravity'da `README.md` ni oching: «Arxitektura» bo'limida chizma va jadvallar bor. Agent boshqa faylni ham o'zgartirgan bo'lsa: «Faqat README.md ni o'zgartir, qolganini qaytar.»", ru: "Откройте `README.md` в Antigravity: в разделе «Arxitektura» есть схема и таблицы. Если агент изменил и другой файл: «Меняй только README.md, остальное верни как было.»" } },
         { h: QADAM.tekshir, t: { uz: "har funksiyangizni oling va README'dan toping: u qaysi jadvalga nima yozadi? Talabning har qatori:", ru: 'возьмите каждую свою функцию и найдите в README: что и в какую таблицу она пишет? Каждая строка требования:' },
           bandlar: [
             { uz: 'qayerda — o\'zgargan fayl faqat `README.md`', ru: 'где — изменён только `README.md`' },
             { uz: "nima qilsin — chizmada uch qism, har jadvalda ustunlar va izohi, bog'lovchi ustunlar bog'langan jadvali bilan, siz yozgan har ma'lumot jadvalda bor", ru: 'что сделать — на схеме три части, в каждой таблице столбцы с пояснением, связующие столбцы со своей таблицей, каждое ваше данное есть в таблице' },
             { uz: "nima buzilmasin — kod o'zgarmagan", ru: 'что не сломать — код не изменён' },
-            { uz: "Funksiya joy topmasa, agentga: «{funksiya} uchun jadvalda joy yo'q: {nima saqlansin}. Faqat README.md ni o'zgartir.»", ru: 'Если функции не нашлось места, агенту: «{funksiya} uchun jadvalda joy yo\'q: {nima saqlansin}. Faqat README.md ni o\'zgartir.»' }
+            { uz: "Funksiya joy topmasa, agentga: «{funksiya} uchun jadvalda joy yo'q: {nima saqlansin}. Faqat README.md ni o'zgartir.»", ru: "Если функции не нашлось места, агенту: «Для {функция} в таблице нет места: {что хранить}. Меняй только README.md.»" }
           ] }
       ]}
       natija={<ReadmeMock />}
@@ -2537,13 +2540,13 @@ const A2_PROMPT = [
 ];
 const A2_YORDAM = [
   { uz: 'Qayerda: `README.md` — «Arxitektura» bo\'limining oxiri.', ru: 'Где: `README.md` — конец раздела «Arxitektura».' },
-  { uz: "Nima qilsin: «Real vaqt nuqtalari» kichik bo'limi: «8 / 10», qo'shilganlar ro'yxati, o'yin kunidagi «Kelaman» belgilari; har biriga yoz: ilova uni ekran ochilganda va pastga tortib yangilaganda so'raydi, ekran o'zi yangilanishi hozircha yo'q.", ru: "Что сделать: подраздел «Real vaqt nuqtalari»: «8 / 10», список присоединившихся, отметки «Kelaman» в день игры; для каждой напиши: приложение запрашивает её при открытии экрана и при потягивании вниз, самообновления экрана пока нет." },
+  { uz: "Nima qilsin: «Real vaqt nuqtalari» kichik bo'limi: «8 / 10», qo'shilganlar ro'yxati, o'yin kunidagi «Kelaman» belgilari; har biriga yoz: ilova uni ekran ochilganda va pastga tortib yangilaganda so'raydi, ekran o'zi yangilanishi hozircha yo'q.", ru: "Что сделать: подраздел «Real vaqt nuqtalari»: «8 / 10», список присоединившихся, отметки «Kelaman» («Приду») в день игры; для каждой напиши: приложение запрашивает её при открытии экрана и при потягивании вниз, самообновления экрана пока нет." },
   { uz: "«Platforma» kichik bo'limi: mobil — o'yinchi maydonda, qo'lida telefon; eslatma telefonga kelishi kerak. «Stek» kichik bo'limi: ilova — Expo (React Native), telefonda Expo Go orqali; Backend — NestJS va TypeORM, Render; Database — Neon (PostgreSQL).", ru: "Подраздел «Platforma»: mobil — o'yinchi maydonda, qo'lida telefon; eslatma telefonga kelishi kerak. Подраздел «Stek»: ilova — Expo (React Native), на телефоне через Expo Go; Backend — NestJS и TypeORM, Render; Database — Neon (PostgreSQL)." },
   { uz: "Nima buzilmasin: faqat `README.md`; boshqa bo'lim va fayllarga tegma. O'zgargan fayllarni ayt.", ru: 'Что не сломать: только `README.md`; не трогай другие разделы и файлы. Назови изменённые файлы.' }
 ];
 const A2_TREK = {
   mobil: { qachon: { uz: 'ekran ochilganda va pastga tortib yangilaganda', ru: 'при открытии экрана и при потягивании вниз' }, tex: { uz: 'ilova — Expo (React Native), telefonda Expo Go orqali', ru: 'ilova — Expo (React Native), на телефоне через Expo Go' } },
-  web: { qachon: { uz: 'sahifa ochilganda va «Yangilash» bosilganda', ru: 'при открытии страницы и при нажатии «Yangilash»' }, tex: { uz: 'sayt — React (Vite), Netlify', ru: 'sayt — React (Vite), Netlify' } }
+  web: { qachon: { uz: 'sahifa ochilganda va «Yangilash» bosilganda', ru: "при открытии страницы и при нажатии «Обновить»" }, tex: { uz: 'sayt — React (Vite), Netlify', ru: 'sayt — React (Vite), Netlify' } }
 };
 const ScreenA2 = (props) => {
   const p = useMemo(() => lsOqi(PLATFORMA_KEY), []);
@@ -2552,7 +2555,7 @@ const ScreenA2 = (props) => {
   const [q0] = useState(q); // boshlang'ich holat: platforma qatori kalitdan to'ldirilganmi (F-1006-281)
   const ikkala = (k) => ({ uz: 'masalan: mobil — ' + ou(A2_TREK.mobil[k]) + ' · web — ' + ou(A2_TREK.web[k]), ru: 'например: mobil — ' + A2_TREK.mobil[k].ru + ' · web — ' + A2_TREK.web[k].ru });
   const joylar = {
-    rv: { nom: { uz: '{real vaqt nuqtalari}', ru: '{точки реального времени}' }, qiymat: q.rv, namuna: { uz: "masalan: «8 / 10», qo'shilganlar ro'yxati, «Kelaman» belgilari", ru: "например: «8 / 10», список присоединившихся, отметки «Kelaman»" } },
+    rv: { nom: { uz: '{real vaqt nuqtalari}', ru: '{точки реального времени}' }, qiymat: q.rv, namuna: { uz: "masalan: «8 / 10», qo'shilganlar ro'yxati, «Kelaman» belgilari", ru: "например: «8 / 10», список присоединившихся, отметки «Приду»" } },
     platforma: { nom: { uz: '{platforma va asos}', ru: '{платформа и обоснование}' }, qiymat: q.platforma, namuna: { uz: "masalan: mobil — o'yinchi maydonda, qo'lida telefon; eslatma telefonga kelishi kerak", ru: 'например: mobil — игрок на поле, в руке телефон; напоминание должно приходить на телефон' } },
     qachon: trek ? { qotgan: tr(A2_TREK[trek].qachon) } : { nom: { uz: "{qachon so'raydi}", ru: '{когда запрашивает}' }, qiymat: q.qachon, namuna: ikkala('qachon') },
     tex: trek ? { qotgan: tr(A2_TREK[trek].tex) } : { nom: { uz: '{ilova yoki sayt texnologiyasi}', ru: '{технология приложения или сайта}' }, qiymat: q.tex, namuna: ikkala('tex') }
@@ -2560,18 +2563,18 @@ const ScreenA2 = (props) => {
   const onJoy = (id, v) => setQ(x => ({ ...x, [id]: v }));
   return (
     <ScreenBlok {...props} eyebrow={{ uz: "Amaliyot 2 · o'z repo'ngiz", ru: 'Практика 2 · ваш репозиторий' }}
-      title={{ uz: <>Real vaqt nuqtalari va platformani <span className="italic" style={{ color: T.accent }}>README'ga qo'shing</span>.</>, ru: <>Добавьте в README <span className="italic" style={{ color: T.accent }}>точки реального времени и платформу</span>.</> }}
-      mentor={q0.platforma ? { uz: <>Platforma tanlovingiz allaqachon talabda — real vaqt nuqtalarini o'zingiz yozasiz; <b style={{ color: T.ink }}>«1 · Ochish»</b>dan boshlang.</>, ru: <>Ваш выбор платформы уже в требовании — точки реального времени напишете сами; начните с <b style={{ color: T.ink }}>«1 · Ochish»</b>.</> }
-        : { uz: <>Platforma va real vaqt nuqtalarini o'zingiz yozasiz; <b style={{ color: T.ink }}>«1 · Ochish»</b>dan boshlang.</>, ru: <>Платформу и точки реального времени напишете сами; начните с <b style={{ color: T.ink }}>«1 · Ochish»</b>.</> }}
+      title={{ uz: <>Real vaqt nuqtalari va platformani <span className="italic" style={{ color: T.accent }}>README'ga qo'shing</span>.</>, ru: <>Точки реального времени и платформа — <span className="italic" style={{ color: T.accent }}>в README</span>.</> }}
+      mentor={q0.platforma ? { uz: <>Platforma tanlovingiz allaqachon talabda — real vaqt nuqtalarini o'zingiz yozasiz; <b style={{ color: T.ink }}>«1 · Ochish»</b>dan boshlang.</>, ru: <>Ваш выбор платформы уже в требовании — точки реального времени напишете сами; начните с <b style={{ color: T.ink }}>«1 · Открыть»</b>.</> }
+        : { uz: <>Platforma va real vaqt nuqtalarini o'zingiz yozasiz; <b style={{ color: T.ink }}>«1 · Ochish»</b>dan boshlang.</>, ru: <>Платформу и точки реального времени напишете сами; начните с <b style={{ color: T.ink }}>«1 · Открыть»</b>.</> }}
       steps={[
         { h: QADAM.ochish, t: { uz: "`README.md` ochiq, «Arxitektura» bo'limi ko'rinib turibdi. Prototipingizning eng ko'p ishlatiladigan ekranini eslang: unda boshqa odam nimani o'zgartiradi?", ru: '`README.md` открыт, раздел «Arxitektura» виден. Вспомните самый используемый экран прототипа: что на нём меняет другой человек?' } },
-        { h: QADAM.prompt, t: { uz: "qavsni to'ldiring, platforma qatorini tekshiring, «Nusxalash»ni bosing va Antigravity'ga yuboring:", ru: 'заполните скобки, проверьте строку платформы, нажмите «Nusxalash» и отправьте в Antigravity:' },
+        { h: QADAM.prompt, t: { uz: "qavsni to'ldiring, platforma qatorini tekshiring, «Nusxalash»ni bosing va Antigravity'ga yuboring:", ru: "заполните скобки, проверьте строку платформы, нажмите «Скопировать» и отправьте в Antigravity:" },
           prompt: <PcPrompt satrlar={A2_PROMPT} joylar={joylar} onJoy={onJoy} yordam={A2_YORDAM} /> },
         { h: QADAM.korish, t: { uz: "`README.md` da «Arxitektura» bo'limi to'liq: chizma · jadvallar · real vaqt nuqtalari · platforma · stek.", ru: 'в `README.md` раздел «Arxitektura» полный: схема · таблицы · точки реального времени · платформа · стек.' } },
         { h: QADAM.github, t: { uz: "talabning har qatori: har real vaqt nuqtasi yonida qachon so'rashi yozilgan · platforma va asos — siz saqlagandek · stek trekingizga mos · boshqa fayl o'zgarmagan.", ru: 'каждая строка требования: у каждой точки реального времени написано, когда она запрашивается · платформа и обоснование — как вы сохранили · стек подходит вашему треку · другие файлы не изменены.' },
           bandlar: [
             { uz: "Hammasi mos bo'lsa — repo papkasida `git status`: o'zgargan fayl faqat `README.md` bo'lsin; keyin `git add README.md`, `git commit -m \"arxitektura va platforma\"`, `git push`.", ru: 'Если всё совпадает — в папке репозитория `git status`: изменён только `README.md`; затем `git add README.md`, `git commit -m "arxitektura va platforma"`, `git push`.' },
-            { uz: "GitHub'da repo sahifasini yangilang — README'da «Arxitektura» bo'limi ko'rinadi. `git push` xato bersa: «Shu xato chiqdi: {xato}. Tuzat.»", ru: 'Обновите страницу репозитория на GitHub — в README виден раздел «Arxitektura». Если `git push` выдаст ошибку: «Shu xato chiqdi: {xato}. Tuzat.»' }
+            { uz: "GitHub'da repo sahifasini yangilang — README'da «Arxitektura» bo'limi ko'rinadi. `git push` xato bersa: «Shu xato chiqdi: {xato}. Tuzat.»", ru: "Обновите страницу репозитория на GitHub — в README виден раздел «Arxitektura». Если `git push` выдаст ошибку: «Вышла такая ошибка: {ошибка}. Исправь.»" }
           ] }
       ]}
       natija={<ReadmeMock a2 />}
@@ -2584,9 +2587,9 @@ const KARTALAR = [
   { front: { uz: 'Bu misolda qaysi uch qism bor?', ru: 'Какие три части в этом примере?' }, back: { uz: 'Ilova, Backend va Database', ru: 'Приложение, Backend и Database' }, note: { uz: "Ilova ko'rsatadi, Backend tekshiradi, Database saqlaydi", ru: 'Приложение показывает, Backend проверяет, Database хранит' } },
   { front: { uz: "Chizma (arxitektura) nimani ko'rsatadi?", ru: 'Что показывает схема (архитектура)?' }, back: { uz: "Qismlar va ular orasidagi so'rovlar", ru: 'Части и запросы между ними' }, note: { uz: 'Jadvallar — Database ostida', ru: 'Таблицы — под Database' } },
   { front: { uz: "Maydon Jamoa'da qaysi uch jadval bor?", ru: 'Какие три таблицы в Maydon Jamoa?' }, back: { uz: 'oyinchilar, oyinlar, ishtirokchilar', ru: 'oyinchilar, oyinlar, ishtirokchilar' }, note: { uz: "Kim · qaysi o'yin · kim qaysi o'yinda", ru: 'Кто · какая игра · кто в какой игре' } },
-  { front: { uz: "«Qo'shilaman» bosilsa, qaysi jadvalga qator tushadi?", ru: 'Если нажать «Qo\'shilaman», в какую таблицу попадёт строка?' }, back: { uz: 'ishtirokchilar', ru: 'ishtirokchilar' }, note: { uz: '`holat` — `qoshildi`', ru: '`holat` — `qoshildi`' } },
+  { front: { uz: "«Qo'shilaman» bosilsa, qaysi jadvalga qator tushadi?", ru: "Если нажать «Присоединяюсь», в какую таблицу попадёт строка?" }, back: { uz: 'ishtirokchilar', ru: 'ishtirokchilar' }, note: { uz: '`holat` — `qoshildi`', ru: '`holat` — `qoshildi`' } },
   { front: { uz: "Bog'lovchi ustun nima?", ru: 'Что такое связующий столбец?' }, back: { uz: "Boshqa jadvaldagi qatorni ko'rsatadigan ustun", ru: 'Столбец, указывающий на строку в другой таблице' }, note: { uz: "Masalan, `oyin_id` — `oyinlar` dagi o'yin", ru: 'Например, `oyin_id` — игра в `oyinlar`' } },
-  { front: { uz: 'Real vaqt nuqtasi nima?', ru: 'Что такое точка реального времени?' }, back: { uz: "Ekran ochiq turganda boshqa odam tufayli ma'lumoti o'zgarishi mumkin bo'lgan joy", ru: 'Место, данные которого могут измениться из-за другого человека, пока экран открыт' }, note: { uz: "«8 / 10», qo'shilganlar, «Kelaman» belgilari", ru: '«8 / 10», присоединившиеся, отметки «Kelaman»' } },
+  { front: { uz: 'Real vaqt nuqtasi nima?', ru: 'Что такое точка реального времени?' }, back: { uz: "Ekran ochiq turganda boshqa odam tufayli ma'lumoti o'zgarishi mumkin bo'lgan joy", ru: 'Место, данные которого могут измениться из-за другого человека, пока экран открыт' }, note: { uz: "«8 / 10», qo'shilganlar, «Kelaman» belgilari", ru: "«8 / 10», присоединившиеся, отметки «Приду»" } },
   { front: { uz: "Bu modulda ilova qachon so'raydi?", ru: 'Когда в этом модуле запрашивает приложение?' }, back: { uz: 'Ekran ochilganda va pastga tortib yangilaganda', ru: 'При открытии экрана и при потягивании вниз' }, note: { uz: "O'zi yangilanishi — 12-Modulda (WebSocket)", ru: 'Самообновление — в 12-м модуле (WebSocket)' } },
   { front: { uz: 'Kod oynasida «Yangilash» ga `korsat` qanday ulanadi?', ru: 'Как в окне кода подключить `korsat` к «Yangilash»?' }, back: { uz: "yangila.addEventListener('click', korsat)", ru: "yangila.addEventListener('click', korsat)" }, note: { uz: 'Telefonda — ro\'yxatni pastga tortish', ru: 'На телефоне — потянуть список вниз' } },
   { front: { uz: "Platforma tanlovidagi to'rt savol qaysilar?", ru: 'Какие четыре вопроса при выборе платформы?' }, back: { uz: TORT_SAVOL.map(q => q.qisqa.uz).join(' · '), ru: TORT_SAVOL.map(q => q.qisqa.ru).join(' · ') }, note: { uz: 'Natija: web yoki mobil + bir gapli asos', ru: 'Итог: веб или мобильное + обоснование одним предложением' } },
@@ -3001,10 +3004,10 @@ export default function PlatformChoiceLesson({ lang: langProp, onFinished, liveT
         .pc-sig { width: 24px; height: 24px; flex: none; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-style: normal; font-size: 12px; font-weight: 800; background: ${T.ink}; color: ${T.paper}; animation: pc-tush 0.45s cubic-bezier(.3,1.4,.5,1) both; transition: background 0.4s, box-shadow 0.4s; }
         .pc-sig.hal { background: ${T.accent}; box-shadow: 0 0 0 3px ${T.accentSoft}, 0 0 0 5px ${T.accent}; }
         .pc-sig-iz { font-size: 11.5px; line-height: 1.35; color: ${T.ink2}; }
-        .pc-ust2.kichik { grid-template-columns: minmax(0,1fr) 34px minmax(0,1fr); gap: 6px; }
-        .pc-ust2.kichik .pc-ustun { min-height: 70px; padding: 8px; }
-        .pc-ust2.kichik .pc-ustun-h { font-size: 12px; }
-        .pc-ust2.kichik .pc-teng-h { font-size: 9.5px; }
+        .pc-ust2.kichik { grid-template-columns: minmax(0,1fr) 46px minmax(0,1fr); gap: 4px; } /* ru «поровну», «мобильное» sig'adi (F-1007-291) */
+        .pc-ust2.kichik .pc-ustun { min-height: 70px; padding: 8px 6px; }
+        .pc-ust2.kichik .pc-ustun-h { font-size: 11px; gap: 6px; flex-wrap: wrap; }
+        .pc-ust2.kichik .pc-teng-h { font-size: 9px; letter-spacing: 0.01em; padding: 0 2px; }
         .pc-ust2.kichik .pc-sig { width: 20px; height: 20px; font-size: 11px; }
         /* 8 · kod */
         .lesson-root ol.pc-vazifa { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }

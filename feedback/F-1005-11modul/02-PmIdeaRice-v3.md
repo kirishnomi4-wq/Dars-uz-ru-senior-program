@@ -622,7 +622,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144): boshqa holat, boshqa so'z. 
 11. **Intercom izohi** «mijozlar bilan yozishadigan chat dasturi» (S-018 — brend nimaligi) va «RICE Intercom kompaniyasida o'ylab topilgan» — maqoladagi «we began developing our own scoring system» dan. «Jamoa» so'zi ishlatilmadi (Qaror-0 3).
 12. **Yakka rejimdagi Mentor pufaklari** (10-ekran, to'rt izoh: «ularni sanamaganman», «har kuni kerak bo'ladigan narsa emas», «hech kim bilan gaplashmaganman», «ikki ekran — ikki hafta») — o'ylab topildi;
     tayanch 1.2 sonlariga mos, yangi son yo'q.
-13. **Saralash sabab yorliqlari** (A-bo'lim jadvali): 6 «pul va yetkazish kerak», 7 «repetitorlarni yig'ish kerak», 5 va 9 «kamida 5 tanish topilmadi», 10 «qiziq emas» — 1.2 dagi so'zlar; 5 va 9 uchun «topilmadi»
+13. **Saralash sabab yorliqlari** (A-bo'lim jadvali, 6 g'oya — F-1006-272): 5 «pul va yetkazish kerak», 6 «kamida 5 tanish topilmadi» — 1.2 dagi so'zlar; 6 uchun «topilmadi» (07.10, F-1007-289: raqamlar 10 g'oyalik ro'yxatdan yangilandi)
     (tanishlar soni aytilmaydi — o'ylab topilgan son bo'lmasin).
 14. **`sort` JavaScript darslarida o'tilmagan** (grep: faqat ichki kodda) — 11-ekranda «bu qism tayyor», izoh va Yordam bilan; darvoza-savol shu qatorni o'qitadi. Muqobil — o'quvchi `if` bilan eng kattasini topadi (uzunroq).
 15. **Qamrov «bir oyda»** — o'quvchining hali yo'q mahsuloti uchun taxmin; Yordam «maktabingiz, mahallangiz yoki Telegram guruhingizdagi shunday odamlarni sanang». Yumshoq chegara 1000 — o'zim tanladim.

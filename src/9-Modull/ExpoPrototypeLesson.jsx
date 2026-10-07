@@ -13,6 +13,8 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 //   NAMUNA_FLASHCARDS (darsda 10–12) · SummaryScreen matnlari · screens massivi · export nomi · .nd- CSS bo'limi.
 // JONLI: useLiveSession + INLINE_KEYS + CodeStrike arena + Podium. PRODUCTION: <style> ichidagi @import OLIB TASHLANADI.
 // ============================================================
+// ru-qoldiq-istisno s9: gap
+// ru-qoldiq-istisno s10: gap
 
 // D3: palitra umumiy qolipdan — neytral 5 · modul rangi 2 · holat 2 (shadowBase — soya, rang tokeni emas)
 const T = { ...qolipRang('tex'), shadowBase: '58, 53, 48' };
@@ -274,8 +276,8 @@ const RECAPS = {
   6: {
     title: { uz: 'Ekran fayli va manzil', ru: 'Файл экрана и адрес' },
     cards: [
-      { ic: null, h: { uz: "O'yinlar", ru: 'O\'yinlar' }, body: { uz: '`src/app/index.tsx` · manzil `/`', ru: '`src/app/index.tsx` · адрес `/`' } },
-      { ic: null, h: { uz: "E'lon berish", ru: 'E\'lon berish' }, body: { uz: '`src/app/elon.tsx` · manzil `/elon`', ru: '`src/app/elon.tsx` · адрес `/elon`' } },
+      { ic: null, h: { uz: "O'yinlar", ru: "Игры" }, body: { uz: '`src/app/index.tsx` · manzil `/`', ru: '`src/app/index.tsx` · адрес `/`' } },
+      { ic: null, h: { uz: "E'lon berish", ru: "Объявить игру" }, body: { uz: '`src/app/elon.tsx` · manzil `/elon`', ru: '`src/app/elon.tsx` · адрес `/elon`' } },
       { ic: null, h: { uz: "Ekranlar Stack'da", ru: 'Экраны в Stack' }, body: { uz: '`src/app/_layout.tsx` · `<Stack />`', ru: '`src/app/_layout.tsx` · `<Stack />`' }, ask: { uz: '«Kirish» ekrani qaysi manzilda ochiladi?', ru: 'По какому адресу откроется экран «Вход»?' } }
     ]
   },
@@ -284,15 +286,15 @@ const RECAPS = {
     cards: [
       { ic: null, h: { uz: 'Bitta Wi-Fi', ru: 'Одна Wi-Fi' }, body: { uz: 'telefon kompyuterni tarmoqda topadi · `npx expo start`', ru: 'телефон находит компьютер в сети · `npx expo start`' } },
       { ic: null, h: { uz: "Bitta tarmoq yo'q yoki u to'sadi", ru: 'Общей сети нет или она блокирует' }, body: { uz: 'internet orqali · `npx expo start --tunnel`', ru: 'через интернет · `npx expo start --tunnel`' } },
-      { ic: null, h: { uz: 'iPhone', ru: 'iPhone' }, body: { uz: 'ikkalasida bitta Expo akkaunti · `npx expo login`', ru: 'один аккаунт Expo на обоих · `npx expo login`' }, ask: { uz: 'Tunnel bilan ilova nega sekinroq yangilanadi?', ru: 'Почему через туннель приложение обновляется медленнее?' } }
+      { ic: null, h: { uz: 'iPhone', ru: 'iPhone' }, body: { uz: 'ikkalasida bitta Expo akkaunti · `npx expo login`', ru: 'один аккаунт Expo на обоих · `npx expo login`' }, ask: { uz: 'Tunnel bilan ilova nega sekinroq yangilanadi?', ru: "Почему через tunnel приложение обновляется медленнее?" } }
     ]
   },
   12: {
     title: { uz: 'PWA uchun nima kerak', ru: 'Что нужно для PWA' },
     cards: [
-      { ic: null, h: { uz: 'Manifest', ru: 'Манифест' }, body: { uz: 'nom, ikonkalar, ochiladigan sahifa · `"start_url": "/"`', ru: 'имя, иконки, открываемая страница · `"start_url": "/"`' } },
+      { ic: null, h: { uz: 'Manifest', ru: "Manifest" }, body: { uz: 'nom, ikonkalar, ochiladigan sahifa · `"start_url": "/"`', ru: 'имя, иконки, открываемая страница · `"start_url": "/"`' } },
       { ic: null, h: { uz: 'Ilova kabi ochilish', ru: 'Открытие как приложение' }, body: { uz: '`"display": "standalone"`', ru: '`"display": "standalone"`' } },
-      { ic: null, h: { uz: 'HTTPS manzil', ru: 'Адрес HTTPS' }, body: { uz: "Netlify'da o'zi bor · `….netlify.app`", ru: 'на Netlify есть сам · `….netlify.app`' }, ask: { uz: "Nega telefon `localhost` dagi saytni o'rnata olmaydi?", ru: 'Почему телефон не может установить сайт с `localhost`?' } }
+      { ic: null, h: { uz: 'HTTPS manzil', ru: "HTTPS-адрес" }, body: { uz: "Netlify'da o'zi bor · `….netlify.app`", ru: "Netlify даёт его сам · `….netlify.app`" }, ask: { uz: "Nega telefon `localhost` dagi saytni o'rnata olmaydi?", ru: 'Почему телефон не может установить сайт с `localhost`?' } }
     ]
   },
   13: {
@@ -606,7 +608,7 @@ const JAMOA_NOM = 'Maydon Jamoa';
 const JAMOA_EKRANLAR = {
   oyinlar: { uz: "O'yinlar", ru: 'Игры' },
   oyin: { uz: "O'yin", ru: 'Игра' },
-  elon: { uz: "E'lon berish", ru: 'Подать объявление' }
+  elon: { uz: "E'lon berish", ru: 'Объявить игру' }
 };
 // Namuna o'yinlar (tayanch 9.2, aynan; id — satr, TAYANCHGA SAVOL 7): bor / kerak
 const NAMUNA_OYINLAR = [
@@ -807,7 +809,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Dars · kirish', ru: 'Урок · введение' })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={bosq < 2} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <QKirish zoom={Zoomable}
-        sarlavha={tr({ uz: <>Telefonda <code className="qcode">localhost:5173</code> ni ochsangiz, <span className="italic" style={{ color: T.accent }}>nima chiqadi</span>?</>, ru: <>Если открыть на телефоне <code className="qcode">localhost:5173</code>, <span className="italic" style={{ color: T.accent }}>что появится</span>?</> })}
+        sarlavha={tr({ uz: <>Telefonda <code className="qcode">localhost:5173</code> ni ochsangiz, <span className="italic" style={{ color: T.accent }}>nima chiqadi</span>?</>, ru: <><code className="qcode">localhost:5173</code> на телефоне — <span className="italic" style={{ color: T.accent }}>что появится</span>?</> })}
         mentor={<Mentor>{picked === null
           ? tx({ uz: "Jonli prototipingiz kompyuterda `localhost:5173` da ishlayapti, endi uni telefonda ochmoqchisiz — avval javobni tanlang.", ru: 'Ваш живой прототип работает на компьютере на `localhost:5173`, теперь вы хотите открыть его на телефоне — сначала выберите ответ.' })
           : bosq < 2 ? tr({ uz: "Endi telefon ostidagi «Ochib ko'rish»ni bosing.", ru: 'Теперь нажмите «Открыть» под телефоном.' })
@@ -941,7 +943,7 @@ const Screen3 = (props) => (
     options={[
       { uz: '`View` ni `div` bilan almashtiraman', ru: 'Заменю `View` на `div`' },
       { uz: 'Matnni `<Text>` ichiga olaman', ru: 'Помещу текст внутрь `<Text>`' },
-      { uz: '`style` ni `className` qilaman', ru: 'Сделаю `style` через `className`' },
+      { uz: '`style` ni `className` qilaman', ru: "Заменю `style` на `className`" },
       { uz: 'Matnni `<p>` ichiga olaman', ru: 'Помещу текст внутрь `<p>`' }
     ]} correctIdx={1}
     explainCorrect={{ uz: "React Native'da matn `<Text>` ichida turadi — `View` faqat quti.", ru: 'В React Native текст стоит внутри `<Text>` — `View` только коробка.' }}
@@ -1239,7 +1241,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>
           {parvoz.map(p => <Konvert key={p.k} p={p} />)}
         </div>}
-        natija={nom && <p className="ep-nom fade-step">{tr({ uz: <><b>Tunnel</b> — telefon kompyuterga internet orqali ulanadigan yo'l: sekinroq, lekin umumiy tarmoqda yordam berishi mumkin.</>, ru: <><b>Туннель</b> — путь, по которому телефон подключается к компьютеру через интернет: медленнее, но в общей сети может помочь.</> })}</p>}
+        natija={nom && <p className="ep-nom fade-step">{tr({ uz: <><b>Tunnel</b> — telefon kompyuterga internet orqali ulanadigan yo'l: sekinroq, lekin umumiy tarmoqda yordam berishi mumkin.</>, ru: <><b>Tunnel</b> — путь, по которому телефон подключается к компьютеру через интернет: медленнее, но в общей сети может помочь.</> })}</p>}
         xulosa={done && tx({ uz: "Bu darsda QR odatda bitta Wi-Fi'da ochiladi; ochilmasa — `--tunnel`, iPhone'da — bitta Expo akkaunti.", ru: 'На этом уроке QR обычно открывается в одной Wi-Fi; если нет — `--tunnel`, на iPhone — один аккаунт Expo.' })}
       />
     </Stage>
@@ -1257,12 +1259,12 @@ const Screen8 = (props) => (
       { uz: 'Loyihani boshqa nom bilan qayta yarataman', ru: 'Создам проект заново под другим именем' },
       { uz: "QR'ni kompyuter kamerasi bilan skanerlayman", ru: 'Отсканирую QR камерой компьютера' }
     ]} correctIdx={0}
-    explainCorrect={{ uz: 'Tunnel telefonni kompyuterga internet orqali ulaydi — bitta Wi-Fi shart emas.', ru: 'Туннель подключает телефон к компьютеру через интернет — одна Wi-Fi не нужна.' }}
+    explainCorrect={{ uz: 'Tunnel telefonni kompyuterga internet orqali ulaydi — bitta Wi-Fi shart emas.', ru: "Tunnel подключает телефон к компьютеру через интернет — одна Wi-Fi не нужна." }}
     explainWrong={{
       1: { uz: 'Expo Go joyida: telefon kompyuterga yetib bormayapti.', ru: 'Expo Go в порядке: телефон не достаёт до компьютера.' },
       2: { uz: "Loyiha nomi ulanishga ta'sir qilmaydi.", ru: 'Имя проекта не влияет на подключение.' },
       3: { uz: 'QR\'ni telefon skanerlaydi, kompyuter uni faqat ko\'rsatadi.', ru: 'QR сканирует телефон, компьютер его только показывает.' },
-      default: { uz: 'Tunnel telefonni kompyuterga internet orqali ulaydi.', ru: 'Туннель подключает телефон к компьютеру через интернет.' }
+      default: { uz: 'Tunnel telefonni kompyuterga internet orqali ulaydi.', ru: "Tunnel подключает телефон к компьютеру через интернет." }
     }} />
 );
 
@@ -1326,7 +1328,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         natija={done && tx9 && <NatijaBlok togri={taxmin === 'qisil'}
           haqiqat={<Haqiqat taxmin={tr(tx9.t)} haqiqat={tr({ uz: 'yonma-yon qisiladi', ru: 'сжимаются рядом' })} />}
           izoh={tr({ uz: <>Telefon kengligiga moslashadigan sayt <b>adaptiv sayt</b> deyiladi.</>, ru: <>Сайт, который подстраивается под ширину телефона, называется <b>адаптивным сайтом</b>.</> })}
-          xulosa={tx({ uz: "Bu misolda `@media` oyna kengligini so'raydi: 600 px dan tor oynada kartalar ustma-ust turadi.", ru: 'В этом примере `@media` спрашивает ширину окна: в окне уже 600 px карточки стоят друг под другом.' })} />}
+          xulosa={tx({ uz: "Bu misolda `@media` oyna kengligini so'raydi: 600 px dan tor oynada kartalar ustma-ust turadi.", ru: "В этом примере `@media` спрашивает ширину окна: в окне меньше 600 px карточки стоят друг под другом." })} />}
       />
     </Stage>
   );
@@ -1443,11 +1445,11 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Kod yozish · adaptiv sayt', ru: 'Пишем код · адаптивный сайт' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <QKod
-        sarlavha={tr({ uz: <>Telefonda kartalarni <span className="italic" style={{ color: T.accent }}>ustma-ust qo'yadigan</span> kod yozamiz.</>, ru: <>Пишем код, который ставит карточки <span className="italic" style={{ color: T.accent }}>друг под другом</span> на телефоне.</> })}
+        sarlavha={tr({ uz: <>Telefonda kartalarni <span className="italic" style={{ color: T.accent }}>ustma-ust qo'yadigan</span> kod yozamiz.</>, ru: <>Пишем код: на телефоне карточки <span className="italic" style={{ color: T.accent }}>друг под другом</span>.</> })}
         mentor={<Mentor>{tx({ uz: "9-Modulda `@media` bilan harakatni o'chirgansiz, bugun u oyna kengligini so'raydi — kodni o'zingiz terib yozasiz, nusxalab bo'lmaydi: qo'lda yozganda o'rganiladi.", ru: 'В 9-м модуле вы отключали движение через `@media`, сегодня он спрашивает ширину окна — код набираете сами, скопировать нельзя: учатся, когда пишут руками.' })}</Mentor>}
         vazifa={<ol className="ep-vazifa">{KOD_VAZIFA.map((v, i) => <li key={i} className={bandOk[i] ? 'ok' : undefined}><i>{bandOk[i] ? '✓' : i + 1}</i><span>{tx(v)}</span></li>)}</ol>}
         yordam={<div className="ep-yordam-k">
-          <QTugma ikkinchi onClick={() => setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>
+          <QTugma ikkinchi onClick={() => setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>
           {yordam && <QIzoh>{tx({ uz: "Kartalar o'zgarmasa, `max-width` dan keyin ikki nuqta borligini va `.oyinlar` qoidasi `@media` qavslari ichida turganini tekshiring.", ru: 'Если карточки не меняются, проверьте двоеточие после `max-width` и что правило `.oyinlar` стоит внутри скобок `@media`.' })}</QIzoh>}
         </div>}
         bajardim={<div className="ep-bajardim"><QTugma className={otdi && telKordi && !done ? 'ep-halqa' : undefined} disabled={!otdi || !telKordi || done} onClick={bajardim}>{tr({ uz: 'Bajardim', ru: 'Готово' })}</QTugma></div>}
@@ -1520,7 +1522,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Sayt telefonning bosh ekraniga <span className="italic" style={{ color: T.accent }}>qanday qo'shiladi</span>?</>, ru: <>Как сайт <span className="italic" style={{ color: T.accent }}>попадает на главный экран</span> телефона?</> })}
         mentor={<Mentor>{n < 4
           ? tr({ uz: "Chrome saytni o'rnatishni taklif qilishi uchun sayt o'zi haqida kichik fayl beradi — uning maydonlarini birma-bir qo'shing.", ru: 'Чтобы Chrome предложил установить сайт, сайт отдаёт небольшой файл о себе — добавьте его поля по одному.' })
-          : tr({ uz: "Endi «Netlify'ga chiqarish»ni bosing — telefon saytni HTTPS manzilda ochadi.", ru: 'Теперь нажмите «Выложить на Netlify» — телефон откроет сайт по адресу HTTPS.' })}</Mentor>}
+          : tr({ uz: "Endi «Netlify'ga chiqarish»ni bosing — telefon saytni HTTPS manzilda ochadi.", ru: "Теперь нажмите «Выложить на Netlify» — телефон откроет сайт по HTTPS-адресу." })}</Mentor>}
         vizual={<div className="ep-yonma">
           <div className="ep-s11-chap">
             {tel}
@@ -1550,7 +1552,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>
         </div>}
         natija={done && <p className="ep-nom fade-step">{tr({ uz: <>Bosh ekranga ilova kabi qo'shiladigan sayt <b>PWA (Progressive Web App)</b> deyiladi.</>, ru: <>Сайт, который добавляется на главный экран как приложение, называется <b>PWA (Progressive Web App)</b>.</> })}</p>}
-        xulosa={done && tr({ uz: "Bu misolda manifestdagi to'rt maydon va HTTPS manzil saytni telefonga o'rnatiladigan qildi.", ru: 'В этом примере четыре поля манифеста и адрес HTTPS сделали сайт устанавливаемым на телефон.' })}
+        xulosa={done && tr({ uz: "Bu misolda manifestdagi to'rt maydon va HTTPS manzil saytni telefonga o'rnatiladigan qildi.", ru: "В этом примере четыре поля manifest и HTTPS-адрес сделали сайт устанавливаемым на телефон." })}
       />
     </Stage>
   );
@@ -1562,17 +1564,17 @@ const Screen12 = (props) => (
     questionText="Bugungi web-trekda saytni bosh ekranga qo'shish uchun nima tayyorlaysiz?"
     question={tr({ uz: <h2 className="title h-ask">Bugungi web-trekda saytni bosh ekranga qo'shish uchun <span className="italic" style={{ color: T.accent }}>nima tayyorlaysiz?</span></h2>, ru: <h2 className="title h-ask">Что подготовите в сегодняшнем веб-треке, чтобы <span className="italic" style={{ color: T.accent }}>добавить сайт на главный экран?</span></h2> })}
     options={[
-      { uz: 'Sayt kompyuterdagi `localhost:5173` da ishlab tursin', ru: 'Сайт пусть работает на компьютере на `localhost:5173`' },
+      { uz: 'Sayt kompyuterdagi `localhost:5173` da ishlab tursin', ru: "Пусть сайт работает на компьютере на `localhost:5173`" },
       { uz: "Telefonga Expo Go ilovasi o'rnatilgan bo'lsin", ru: 'На телефоне пусть стоит приложение Expo Go' },
-      { uz: 'Sayt manifesti bilan HTTPS manzilda tursin', ru: 'Сайт с манифестом пусть стоит на адресе HTTPS' },
-      { uz: "Sayt Play Market'ga ilova bo'lib yuklansin", ru: 'Сайт пусть загрузят в Play Market как приложение' }
+      { uz: 'Sayt manifesti bilan HTTPS manzilda tursin', ru: "Пусть сайт с manifest будет на HTTPS-адресе" },
+      { uz: "Sayt Play Market'ga ilova bo'lib yuklansin", ru: "Пусть сайт загрузят в Play Market как приложение" }
     ]} correctIdx={2}
-    explainCorrect={{ uz: "Bugun manifest va HTTPS manzil tayyorlanadi — telefon saytni bosh ekranga shundan qo'shadi.", ru: 'Сегодня готовят манифест и адрес HTTPS — по ним телефон добавляет сайт на главный экран.' }}
+    explainCorrect={{ uz: "Bugun manifest va HTTPS manzil tayyorlanadi — telefon saytni bosh ekranga shundan qo'shadi.", ru: "Сегодня готовят manifest и HTTPS-адрес — по ним телефон добавляет сайт на главный экран." }}
     explainWrong={{
       0: { uz: "`localhost` — telefonning o'zi: sayt u yerda yo'q.", ru: '`localhost` — это сам телефон: сайта там нет.' },
       1: { uz: 'Expo Go — React Native ilovasi uchun, sayt uchun emas.', ru: 'Expo Go — для приложения React Native, не для сайта.' },
       3: { uz: "PWA do'kondan emas, brauzerdan qo'shiladi.", ru: 'PWA добавляют не из магазина, а из браузера.' },
-      default: { uz: 'Bugun manifest va HTTPS manzil tayyorlanadi.', ru: 'Сегодня готовят манифест и адрес HTTPS.' }
+      default: { uz: 'Bugun manifest va HTTPS manzil tayyorlanadi.', ru: "Сегодня готовят manifest и HTTPS-адрес." }
     }} />
 );
 
@@ -1615,9 +1617,9 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== 🏅 BADGES (nishonlar, 4) — uch savol (birinchi urinish) + bonus: 2-amaliyot oxirgi «Bajardim» (ikkala trekda, birinchi urinish sharti yo'q — 152) =====
 const ACHIEVEMENTS = {
-  nativeCard: { icon: '🧩', name: 'Native Card', desc: { uz: 'Matn <Text> ichida turishini topdingiz', ru: 'Вы нашли, что текст стоит внутри <Text>' } },
+  nativeCard: { icon: '🧩', name: 'Native Card', desc: { uz: 'Matn <Text> ichida turishini topdingiz', ru: "Вы поняли: текст стоит внутри <Text>" } },
   fileRouter: { icon: '🗂️', name: 'File Router', desc: { uz: 'Yangi ekran uchun yangi fayl ochishni bildingiz', ru: 'Вы знаете: для нового экрана — новый файл' } },
-  tunnelFix: { icon: '🛰️', name: 'Tunnel Fix', desc: { uz: "Wi-Fi'siz QR'ni tunnel bilan ochishni bildingiz", ru: 'Вы знаете, как открыть QR без Wi-Fi через туннель' } },
+  tunnelFix: { icon: '🛰️', name: 'Tunnel Fix', desc: { uz: "Wi-Fi'siz QR'ni tunnel bilan ochishni bildingiz", ru: "Вы знаете, как открыть QR без Wi-Fi через tunnel" } },
   pocketPrototype: { icon: '📱', name: 'Pocket Prototype', desc: { uz: 'Ikkala amaliyot blokini oxirigacha bajardingiz', ru: 'Вы выполнили оба блока практики до конца' } }
 };
 // Ekran id → nishon. Savollarda — birinchi urinish; a2 — bonus (152)
@@ -1697,7 +1699,7 @@ const QZ_BG_SHAPES = [
   { ch: '--tunnel', l: 24, t: 34, s: 22, d: 20, dl: 1.9 },
   { ch: '@media', l: 18, t: 16, s: 22, d: 18, dl: 2.9 },
   { ch: 'PWA', l: 88, t: 44, s: 24, d: 22, dl: 0.6 },
-  { ch: { uz: 'manifest', ru: 'манифест' }, l: 36, t: 58, s: 20, d: 24, dl: 1.3 },
+  { ch: { uz: 'manifest', ru: "manifest" }, l: 36, t: 58, s: 20, d: 24, dl: 1.3 },
   { ch: 'QR', l: 54, t: 4, s: 22, d: 20, dl: 2.5 },
   { ch: 'Wi-Fi', l: 90, t: 84, s: 20, d: 26, dl: 0.2 },
   { ch: 'Expo', l: 2, t: 46, s: 22, d: 21, dl: 1.7 },
@@ -1709,14 +1711,14 @@ const QUIZ_BANK = [
   { q: { uz: "Prototipdagi `onClick` React Native'da nimaga almashadi?", ru: 'На что в React Native меняется `onClick` из прототипа?' }, opts: [{ uz: '`onChange`', ru: '`onChange`' }, { uz: '`onPress`', ru: '`onPress`' }, { uz: '`onSubmit`', ru: '`onSubmit`' }, { uz: '`onInput`', ru: '`onInput`' }], correct: 1 },
   { q: { uz: 'Ilova `/oyin/3` manzilini ochdi. Qaysi fayl ishlaydi?', ru: 'Приложение открыло адрес `/oyin/3`. Какой файл работает?' }, opts: [{ uz: '`src/app/oyin/index.tsx`', ru: '`src/app/oyin/index.tsx`' }, { uz: '`src/app/oyin/3.tsx`', ru: '`src/app/oyin/3.tsx`' }, { uz: '`src/app/oyin/[id].tsx`', ru: '`src/app/oyin/[id].tsx`' }, { uz: '`src/app/oyinlar.tsx`', ru: '`src/app/oyinlar.tsx`' }], correct: 2 },
   { q: { uz: '`_layout.tsx` dagi `<Stack />` nima qiladi?', ru: 'Что делает `<Stack />` в `_layout.tsx`?' }, opts: [{ uz: 'Ekranlarni pastdagi tablarga joylaydi', ru: 'Раскладывает экраны по нижним вкладкам' }, { uz: 'Har ekranga o\'z rangi va shriftini beradi', ru: 'Даёт каждому экрану свой цвет и шрифт' }, { uz: '`src/app/` da yangi fayllar yaratadi', ru: 'Создаёт новые файлы в `src/app/`' }, { uz: "Ekranlarni ustma-ust qo'yib boshqaradi", ru: 'Складывает экраны стопкой и управляет ими' }], correct: 3 },
-  { q: { uz: "`router.push('/elon')` ishlaganda nima bo'ladi?", ru: "Что произойдёт, когда сработает `router.push('/elon')`?" }, opts: [{ uz: "E'lon berish ekrani ustiga ochiladi", ru: 'Сверху откроется экран «Подать объявление»' }, { uz: 'Ilova butunlay boshidan qayta yuklanadi', ru: 'Приложение полностью перезагрузится' }, { uz: '`elon.tsx` fayli yangidan yaratiladi', ru: 'Файл `elon.tsx` создастся заново' }, { uz: "O'yinlar ro'yxati qaytadan chiziladi", ru: 'Список игр нарисуется заново' }], correct: 0 },
-  { q: { uz: 'Telefonda QR ochilishi uchun odatda nima kerak?', ru: 'Что обычно нужно, чтобы QR открылся на телефоне?' }, opts: [{ uz: 'Telefonda Chrome brauzeri ochiq tursin', ru: 'Пусть на телефоне будет открыт Chrome' }, { uz: "Telefon va kompyuter bitta Wi-Fi'da tursin", ru: 'Телефон и компьютер пусть будут в одной Wi-Fi' }, { uz: "Kompyuterga ham Expo Go o'rnatilsin", ru: 'Пусть Expo Go установят и на компьютер' }, { uz: "Telefonda mobil internet ham yoqilgan bo'lsin", ru: 'Пусть на телефоне ещё включат мобильный интернет' }], correct: 1 },
+  { q: { uz: "`router.push('/elon')` ishlaganda nima bo'ladi?", ru: "Что произойдёт, когда сработает `router.push('/elon')`?" }, opts: [{ uz: "E'lon berish ekrani ustiga ochiladi", ru: 'Сверху откроется экран «Объявить игру»' }, { uz: 'Ilova butunlay boshidan qayta yuklanadi', ru: 'Приложение полностью перезагрузится' }, { uz: '`elon.tsx` fayli yangidan yaratiladi', ru: 'Файл `elon.tsx` создастся заново' }, { uz: "O'yinlar ro'yxati qaytadan chiziladi", ru: 'Список игр нарисуется заново' }], correct: 0 },
+  { q: { uz: 'Telefonda QR ochilishi uchun odatda nima kerak?', ru: 'Что обычно нужно, чтобы QR открылся на телефоне?' }, opts: [{ uz: 'Telefonda Chrome brauzeri ochiq tursin', ru: 'Пусть на телефоне будет открыт Chrome' }, { uz: "Telefon va kompyuter bitta Wi-Fi'da tursin", ru: "Пусть телефон и компьютер будут в одной Wi-Fi" }, { uz: "Kompyuterga ham Expo Go o'rnatilsin", ru: 'Пусть Expo Go установят и на компьютер' }, { uz: "Telefonda mobil internet ham yoqilgan bo'lsin", ru: 'Пусть на телефоне ещё включат мобильный интернет' }], correct: 1 },
   { q: { uz: '`--tunnel` bilan ulanish qanday ishlaydi?', ru: 'Как работает подключение через `--tunnel`?' }, opts: [{ uz: 'Faqat bitta Wi-Fi ichida, tezroq ulanadi', ru: 'Только внутри одной Wi-Fi, быстрее' }, { uz: 'Faqat iPhone telefonlarida ulanadi', ru: 'Подключается только на iPhone' }, { uz: 'Internet orqali ulanadi, lekin sekinroq', ru: 'Через интернет, но медленнее' }, { uz: "Kompyutersiz, to'g'ridan telefonda ishlaydi", ru: 'Без компьютера, прямо на телефоне' }], correct: 2 },
   { q: { uz: "iPhone'da Expo Go akkaunt so'radi. Nima qilasiz?", ru: 'Expo Go на iPhone просит аккаунт. Что сделаете?' }, opts: [{ uz: "Expo Go ilovasini o'chirib, qayta o'rnataman", ru: 'Удалю Expo Go и установлю заново' }, { uz: 'Loyihani boshqa nom bilan yarataman', ru: 'Создам проект под другим именем' }, { uz: "QR'ni boshqa telefon bilan ochaman", ru: 'Открою QR другим телефоном' }, { uz: 'Ikkalasida bitta Expo akkauntiga kiraman', ru: 'Войду в один аккаунт Expo на обоих' }], correct: 3 },
   { q: { uz: "Expo Go'dagi ilova kodi qayerdan keladi?", ru: 'Откуда приходит код приложения в Expo Go?' }, opts: [{ uz: 'Kompyuterdagi npx expo start dan', ru: 'Из npx expo start на компьютере' }, { uz: "Play Market'dagi ilova sahifasidan", ru: 'Со страницы приложения в Play Market' }, { uz: "Netlify'dagi sayt manzilidan", ru: 'С адреса сайта на Netlify' }, { uz: 'Telefon xotirasidagi papkadan', ru: 'Из папки в памяти телефона' }], correct: 0 },
   { q: { uz: 'Adaptiv sayt nima?', ru: 'Что такое адаптивный сайт?' }, opts: [{ uz: 'Faqat telefonda ochiladigan sayt', ru: 'Сайт, который открывается только на телефоне' }, { uz: 'Telefon kengligiga moslashadigan sayt', ru: 'Сайт, который подстраивается под ширину телефона' }, { uz: "Telefonga o'rnatiladigan do'kon ilovasi", ru: 'Приложение из магазина для телефона' }, { uz: 'Animatsiyalari bor, bosiladigan sayt', ru: 'Сайт с анимациями, который можно нажимать' }], correct: 1 },
-  { q: { uz: "PWA telefonga qayerdan qo'shiladi?", ru: 'Откуда PWA добавляется на телефон?' }, opts: [{ uz: "Play Market do'konidan yuklab", ru: 'Скачать из магазина Play Market' }, { uz: 'Expo Go ilovasidagi QR orqali', ru: 'Через QR в приложении Expo Go' }, { uz: "Brauzerdan, saytning o'zidan", ru: 'Из браузера, с самого сайта' }, { uz: "App Store do'konidan yuklab", ru: 'Скачать из магазина App Store' }], correct: 2 },
-  { q: { uz: "Telefon saytni o'rnatishi uchun manzil qanday bo'ladi?", ru: 'Каким должен быть адрес, чтобы телефон установил сайт?' }, opts: [{ uz: "Kompyuterdagi `localhost` manzil", ru: 'Адрес `localhost` на компьютере' }, { uz: "Uydagi Wi-Fi tarmog'idagi manzil", ru: 'Адрес в домашней сети Wi-Fi' }, { uz: '`http://` bilan boshlanadigan manzil', ru: 'Адрес, начинающийся с `http://`' }, { uz: "HTTPS manzil, masalan Netlify'da", ru: 'Адрес HTTPS, например на Netlify' }], correct: 3 }
+  { q: { uz: "PWA telefonga qayerdan qo'shiladi?", ru: 'Откуда PWA добавляется на телефон?' }, opts: [{ uz: "Play Market do'konidan yuklab", ru: "Скачав из магазина Play Market" }, { uz: 'Expo Go ilovasidagi QR orqali', ru: 'Через QR в приложении Expo Go' }, { uz: "Brauzerdan, saytning o'zidan", ru: 'Из браузера, с самого сайта' }, { uz: "App Store do'konidan yuklab", ru: "Скачав из магазина App Store" }], correct: 2 },
+  { q: { uz: "Telefon saytni o'rnatishi uchun manzil qanday bo'ladi?", ru: 'Каким должен быть адрес, чтобы телефон установил сайт?' }, opts: [{ uz: "Kompyuterdagi `localhost` manzil", ru: 'Адрес `localhost` на компьютере' }, { uz: "Uydagi Wi-Fi tarmog'idagi manzil", ru: 'Адрес в домашней сети Wi-Fi' }, { uz: '`http://` bilan boshlanadigan manzil', ru: 'Адрес, начинающийся с `http://`' }, { uz: "HTTPS manzil, masalan Netlify'da", ru: "HTTPS-адрес, например на Netlify" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2312,7 +2314,7 @@ const Yordam = ({ satrlar, gap }) => {
   }, [ochiq]);
   return (
     <>
-      <QTugma ikkinchi className="ep-yordam-btn" aria-expanded={ochiq} onClick={() => setOchiq(o => !o)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>
+      <QTugma ikkinchi className="ep-yordam-btn" aria-expanded={ochiq} onClick={() => setOchiq(o => !o)}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>
       {ochiq && <span className="ep-yordam fade-step">
         <span className="ep-yordam-l">{tr({ uz: "Mentor misolidagi to'liq talab", ru: 'Полное требование в примере Ментора' })}</span>
         {satrlar.map((l, i) => <span key={i} className="ep-yordam-s">{tx(l)}</span>)}
@@ -2329,7 +2331,7 @@ const TrekTanlov = ({ trek, onTanla, qulf }) => (
   </div>
 );
 const BLOK_TUGADI = { uz: "Blok tugadi — «Davom etish»ni bosing.", ru: 'Блок завершён — нажмите «Продолжить».' }; // S3 (F-1006-287): 14-dars naqshi
-const TREK_AVVAL = { uz: "Avval trekingizni tanlang: «Mobil trek» yoki «Web-trek».", ru: 'Сначала выберите трек: «Mobil trek» или «Web-trek».' };
+const TREK_AVVAL = { uz: "Avval trekingizni tanlang: «Mobil trek» yoki «Web-trek».", ru: "Сначала выберите трек: «Мобильный трек» или «Веб-трек»." };
 function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyebrow, title, mentor, steps, natija, ortda, doneText, izoh }) {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = live || _gate.live;
@@ -2360,7 +2362,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   const izohT = izoh && izoh[T_];
   // SABOQ 8 / S3 (F-1006-287, 14-dars naqshi): Mentor har holatda keyingi harakatni aytadi — trek tanlanmagan bo'lsa avval trek, qadamlar orasida keyingi qadam, blok tugagach «Davom etish»
   const mGap = !trek && !isMentorLive ? TREK_AVVAL : done ? BLOK_TUGADI : stepN === 0 ? mentor
-    : { uz: `Keyingi qadam — «${stepN + 1} · ${tr(qadamlar[stepN].h)}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующий шаг — «${stepN + 1} · ${tr(qadamlar[stepN].h)}»: выполните и нажмите «Bajardim».` };
+    : { uz: `Keyingi qadam — «${stepN + 1} · ${tr(qadamlar[stepN].h)}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующий шаг — «${stepN + 1} · ${tr(qadamlar[stepN].h)}»: выполните и нажмите «Готово».` };
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className={cxx('ep-blok', !trek && !isMentorLive && 'qulf')}>
@@ -2379,7 +2381,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
     </Stage>
   );
 }
-const NATIJA_YORLIQ = { uz: 'kutilgan natija · namuna: Maydon Jamoa', ru: 'ожидаемый результат · образец: Maydon Jamoa' };
+const NATIJA_YORLIQ = { uz: 'kutilgan natija · namuna: Maydon Jamoa', ru: "результат · образец: Maydon Jamoa" };
 const QADAM = {
   ochish: { uz: 'Ochish', ru: 'Открыть' }, prompt: { uz: 'Prompt', ru: 'Промпт' }, ishga: { uz: 'Ishga tushirish', ru: 'Запуск' },
   tekshir: { uz: 'Tekshirish', ru: 'Проверка' }, telefon: { uz: 'Telefonda tekshirish', ru: 'Проверка на телефоне' }
@@ -2389,12 +2391,12 @@ const XATO_GAP = { uz: "Xato bo'lsa: «Shu xato chiqdi: {xato}. Tuzat.»", ru: '
 const a1Joylar = (trek) => {
   const w = wireframeOqi();
   if (trek === 'web') return [
-    { id: 'ekranlar', nom: { uz: 'ekranlar', ru: 'экраны' }, boshi: w ? w.map(e => String(e.nom).trim()).join(', ') : '', namuna: { uz: "masalan: O'yinlar, O'yin va E'lon berish ekranlari", ru: 'например: экраны O\'yinlar, O\'yin и E\'lon berish' } },
-    { id: 'qismlar', nom: { uz: 'ustma-ust turadigan qismlar', ru: 'части, которые встанут столбиком' }, namuna: { uz: "masalan: O'yinlar ekranidagi o'yin kartalari", ru: 'например: карточки игр на экране O\'yinlar' } }
+    { id: 'ekranlar', nom: { uz: 'ekranlar', ru: 'экраны' }, boshi: w ? w.map(e => String(e.nom).trim()).join(', ') : '', namuna: { uz: "masalan: O'yinlar, O'yin va E'lon berish ekranlari", ru: "например: экраны «Игры», «Игра» и «Объявить игру»" } },
+    { id: 'qismlar', nom: { uz: 'ustma-ust turadigan qismlar', ru: 'части, которые встанут столбиком' }, namuna: { uz: "masalan: O'yinlar ekranidagi o'yin kartalari", ru: "например: карточки игр на экране «Игры»" } }
   ];
   return [
-    { id: 'ekranlar', nom: { uz: 'ekranlar va ularning fayllari', ru: 'экраны и их файлы' }, boshi: w ? w.map(e => String(e.nom).trim() + ' — ').join(', ') : '', namuna: { uz: "masalan: O'yinlar — `index.tsx`, O'yin — `oyin/[id].tsx`, E'lon berish — `elon.tsx`", ru: 'например: O\'yinlar — `index.tsx`, O\'yin — `oyin/[id].tsx`, E\'lon berish — `elon.tsx`' } },
-    { id: 'yollar', nom: { uz: 'qaysi tugma qaysi ekranni ochadi', ru: 'какая кнопка какой экран открывает' }, boshi: w ? w.map(e => String(e.tugma || '').trim()).filter(Boolean).join(', ') : '', namuna: { uz: "masalan: karta → O'yin, «E'lon berish» → E'lon berish, «Yuborish» → O'yinlar", ru: 'например: карточка → O\'yin, «E\'lon berish» → E\'lon berish, «Yuborish» → O\'yinlar' } }
+    { id: 'ekranlar', nom: { uz: 'ekranlar va ularning fayllari', ru: 'экраны и их файлы' }, boshi: w ? w.map(e => String(e.nom).trim() + ' — ').join(', ') : '', namuna: { uz: "masalan: O'yinlar — `index.tsx`, O'yin — `oyin/[id].tsx`, E'lon berish — `elon.tsx`", ru: "например: Игры — `index.tsx`, Игра — `oyin/[id].tsx`, Объявить игру — `elon.tsx`" } },
+    { id: 'yollar', nom: { uz: 'qaysi tugma qaysi ekranni ochadi', ru: 'какая кнопка какой экран открывает' }, boshi: w ? w.map(e => String(e.tugma || '').trim()).filter(Boolean).join(', ') : '', namuna: { uz: "masalan: karta → O'yin, «E'lon berish» → E'lon berish, «Yuborish» → O'yinlar", ru: "например: карточка → Игра, «Объявить игру» → Объявить игру, «Отправить» → Игры" } }
   ];
 };
 const A1_PROMPT = {
@@ -2406,21 +2408,21 @@ const A1_PROMPT = {
   ],
   web: [
     { uz: 'Qayerda: `prototip/` — CSS fayllari.', ru: 'Где: `prototip/` — файлы CSS.' },
-    { uz: 'Nima qilsin: {ekranlar} telefon kengligiga moslashsin: 600 px dan tor oynada {qismlar} bitta ustunda, har biri to\'liq enida tursin. Kompyuterda ko\'rinish o\'zgarmasin.', ru: 'Что сделать: {ekranlar} подстраиваются под ширину телефона: в окне уже 600 px {qismlar} стоят в один столбец, каждая во всю ширину. На компьютере вид не меняется.' },
-    { uz: "Nima buzilmasin: ekranlar, namuna ma'lumot, bosish yo'llari va animatsiyalar o'zgarmasin. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: 'Что не сломать: экраны, образцы данных, пути нажатий и анимации не меняются. Больше ничего не трогай, назови изменённые файлы.' }
+    { uz: 'Nima qilsin: {ekranlar} telefon kengligiga moslashsin: 600 px dan tor oynada {qismlar} bitta ustunda, har biri to\'liq enida tursin. Kompyuterda ko\'rinish o\'zgarmasin.', ru: "Что сделать: пусть {ekranlar} подстраиваются под ширину телефона: в окне меньше 600 px {qismlar} стоят в один столбец, на всю ширину. На компьютере вид не меняется." },
+    { uz: "Nima buzilmasin: ekranlar, namuna ma'lumot, bosish yo'llari va animatsiyalar o'zgarmasin. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: "Что не сломать: экраны, данные-образцы, пути нажатий и анимации не меняются. Больше ничего не трогай, назови изменённые файлы." }
   ]
 };
 const A1_YORDAM = {
   mobil: [
     A1_PROMPT.mobil[0],
-    { uz: "Nima qilsin: `prototip/` dagi ekranlarni React Native'ga ko'chir: O'yinlar — `src/app/index.tsx`, O'yin — `src/app/oyin/[id].tsx`, E'lon berish — `src/app/elon.tsx`.", ru: 'Что сделать: перенеси экраны из `prototip/` на React Native: O\'yinlar — `src/app/index.tsx`, O\'yin — `src/app/oyin/[id].tsx`, E\'lon berish — `src/app/elon.tsx`.' },
+    { uz: "Nima qilsin: `prototip/` dagi ekranlarni React Native'ga ko'chir: O'yinlar — `src/app/index.tsx`, O'yin — `src/app/oyin/[id].tsx`, E'lon berish — `src/app/elon.tsx`.", ru: "Что сделать: перенеси экраны из `prototip/` на React Native: O'yinlar («Игры») — `src/app/index.tsx`, O'yin («Игра») — `src/app/oyin/[id].tsx`, E'lon berish («Объявить игру») — `src/app/elon.tsx`." },
     { uz: "`src/app/_layout.tsx` da `<Stack />` bo'lsin; shablondagi namuna ekranlar va pastki tablar olib tashlansin (hozirgi shablonda — `explore` ekrani) — `src/app/` da faqat mahsulot ekranlari va `_layout.tsx` qolsin.", ru: 'В `src/app/_layout.tsx` пусть будет `<Stack />`; образцовые экраны шаблона и нижние вкладки убери (в текущем шаблоне — экран `explore`) — в `src/app/` останутся только экраны продукта и `_layout.tsx`.' },
-    { uz: "Ma'lumot `prototip/src/namuna.js` dagidek (4 ta o'yin, har biriga `id`), `mobil/` ichida. Bosish yo'llari prototipdagidek: karta → O'yin, «E'lon berish» → E'lon berish, «Yuborish» → O'yinlar; «Qo'shilaman» sonni bittaga oshirsin.", ru: 'Данные — как в `prototip/src/namuna.js` (4 игры, у каждой `id`), внутри `mobil/`. Пути нажатий — как в прототипе: карточка → O\'yin, «E\'lon berish» → E\'lon berish, «Yuborish» → O\'yinlar; «Qo\'shilaman» увеличивает число на один.' },
+    { uz: "Ma'lumot `prototip/src/namuna.js` dagidek (4 ta o'yin, har biriga `id`), `mobil/` ichida. Bosish yo'llari prototipdagidek: karta → O'yin, «E'lon berish» → E'lon berish, «Yuborish» → O'yinlar; «Qo'shilaman» sonni bittaga oshirsin.", ru: "Данные — как в `prototip/src/namuna.js` (4 игры, у каждой `id`), внутри `mobil/`. Пути нажатий — как в прототипе: карточка → O'yin, «E'lon berish» → E'lon berish, «Yuborish» («Отправить») → O'yinlar; «Qo'shilaman» («Присоединяюсь») увеличивает число на один." },
     A1_PROMPT.mobil[3]
   ],
   web: [
     A1_PROMPT.web[0],
-    { uz: "Nima qilsin: O'yinlar, O'yin va E'lon berish ekranlari telefon kengligiga moslashsin: 600 px dan tor oynada O'yinlar ekranidagi o'yin kartalari bitta ustunda, har biri to'liq enida tursin. Kompyuterda ko'rinish o'zgarmasin.", ru: 'Что сделать: экраны O\'yinlar, O\'yin и E\'lon berish подстраиваются под ширину телефона: в окне уже 600 px карточки игр на экране O\'yinlar стоят в один столбец, каждая во всю ширину. На компьютере вид не меняется.' },
+    { uz: "Nima qilsin: O'yinlar, O'yin va E'lon berish ekranlari telefon kengligiga moslashsin: 600 px dan tor oynada O'yinlar ekranidagi o'yin kartalari bitta ustunda, har biri to'liq enida tursin. Kompyuterda ko'rinish o'zgarmasin.", ru: "Что сделать: пусть экраны O'yinlar («Игры»), O'yin («Игра») и E'lon berish («Объявить игру») подстраиваются под ширину телефона: в окне меньше 600 px карточки игр на экране O'yinlar стоят в один столбец, на всю ширину. На компьютере вид не меняется." },
     A1_PROMPT.web[2]
   ]
 };
@@ -2430,7 +2432,7 @@ const A1_QADAMLAR = {
       bandlar: [
         { uz: "`npx create-expo-app@latest mobil` (terminal «Skip initializing a new git repository?» deb so'rasa — Enter: yangi git ochilmaydi, `mobil/` repo'ingiz ichida qoladi), keyin `cd mobil` va `npx expo start`.", ru: '`npx create-expo-app@latest mobil` (если терминал спросит «Skip initializing a new git repository?» — Enter: новый git не создаётся, `mobil/` остаётся внутри вашего репо), потом `cd mobil` и `npx expo start`.' },
         { uz: "Terminaldagi QR'ni skanerlang: Android'da — Expo Go'dagi «Scan QR code» bilan, iPhone'da — standart kamera ilovasi bilan. Telefonda shablon ilovasi ochiladi.", ru: 'Отсканируйте QR из терминала: на Android — через «Scan QR code» в Expo Go, на iPhone — стандартной камерой. На телефоне откроется приложение-шаблон.' },
-        { uz: "Ochilmasa: telefon va kompyuter bitta Wi-Fi'dami? Bitta bo'lsa ham ochilmasa — tunnel bilan urinib ko'ring: `npm i -g @expo/ngrok`, keyin `npx expo start --tunnel`.", ru: 'Не открылось: телефон и компьютер в одной Wi-Fi? Если в одной, но не открывается — попробуйте туннель: `npm i -g @expo/ngrok`, потом `npx expo start --tunnel`.' },
+        { uz: "Ochilmasa: telefon va kompyuter bitta Wi-Fi'dami? Bitta bo'lsa ham ochilmasa — tunnel bilan urinib ko'ring: `npm i -g @expo/ngrok`, keyin `npx expo start --tunnel`.", ru: "Не открылось: телефон и компьютер в одной Wi-Fi? Если в одной, но не открывается — попробуйте tunnel: `npm i -g @expo/ngrok`, потом `npx expo start --tunnel`." },
         { uz: "iPhone'da akkaunt so'rasa — kompyuterda `npx expo login`, Expo Go'da o'ng yuqoridagi akkaunt belgisi orqali o'sha akkauntga kiring.", ru: 'Если iPhone просит аккаунт — на компьютере `npx expo login`, в Expo Go войдите в тот же аккаунт через значок аккаунта справа вверху.' }
       ] },
     { h: QADAM.prompt, get t() { return wireframeOqi()
@@ -2442,12 +2444,12 @@ const A1_QADAMLAR = {
       bandlar: [
         { uz: 'qayerda — ekranlaringiz `mobil/src/app/` da, `git status` da `prototip/` o\'zgarmagan', ru: 'где — ваши экраны в `mobil/src/app/`, в `git status` `prototip/` не изменён' },
         { uz: "nima qilsin — ekranlar prototipdagidek, har tugma kerakli ekranni ochadi, «‹» orqaga qaytaradi", ru: 'что сделать — экраны как в прототипе, каждая кнопка открывает нужный экран, «‹» возвращает назад' },
-        { uz: "nima buzilmasin — Backend yo'q: terminalda `r` bosilsa, namuna boshidan ochiladi.", ru: 'что не сломать — Backend нет: если нажать `r` в терминале, образец откроется с начала.' },
-        { uz: "Farq bo'lsa, agentga: «{nima} prototipdagidek emas: {qanday bo'lsin}. Boshqa joyga tegma, o'zgargan fayllarni ayt.»", ru: 'Есть отличие — агенту: «{что} не как в прототипе: {как должно быть}. Больше ничего не трогай, назови изменённые файлы.»' }
+        { uz: "nima buzilmasin — Backend yo'q: terminalda `r` bosilsa, namuna boshidan ochiladi.", ru: "что не сломать — Backend нет: если нажать `r` в терминале, данные-образцы откроются с начала." },
+        { uz: "Farq bo'lsa, agentga: «{nima} prototipdagidek emas: {qanday bo'lsin}. Boshqa joyga tegma, o'zgargan fayllarni ayt.»", ru: "Если есть отличие — агенту: «{что} не как в прототипе: {как должно быть}. Больше ничего не трогай, назови изменённые файлы.»" }
       ] }
   ],
   web: [
-    { h: QADAM.ochish, t: { uz: "Antigravity'da o'z repo'ngizni oching, terminalda `cd prototip` va `npm run dev`. Chrome'da terminal ko'rsatgan manzilni oching va telefon ko'rinishini yoqing: F12, keyin Ctrl+Shift+M (Mac: Cmd+Option+I, keyin Cmd+Shift+M). Qaysi ekranda nima qisilib qolganini ko'ring.", ru: 'Откройте свой репо в Antigravity, в терминале `cd prototip` и `npm run dev`. Откройте в Chrome адрес из терминала и включите вид телефона: F12, потом Ctrl+Shift+M (Mac: Cmd+Option+I, потом Cmd+Shift+M). Посмотрите, что и на каком экране сжалось.' } },
+    { h: QADAM.ochish, t: { uz: "Antigravity'da o'z repo'ngizni oching, terminalda `cd prototip` va `npm run dev`. Chrome'da terminal ko'rsatgan manzilni oching va telefon ko'rinishini yoqing: F12, keyin Ctrl+Shift+M (Mac: Cmd+Option+I, keyin Cmd+Shift+M). Qaysi ekranda nima qisilib qolganini ko'ring.", ru: 'откройте свой репо в Antigravity, в терминале `cd prototip` и `npm run dev`. Откройте в Chrome адрес из терминала и включите вид телефона: F12, потом Ctrl+Shift+M (Mac: Cmd+Option+I, потом Cmd+Shift+M). Посмотрите, что и на каком экране сжалось.' } },
     { h: QADAM.prompt, t: { uz: "qavslarni tekshiring (birinchisi wireframe yozuvingizdan), «Nusxalash»ni bosing va Antigravity'ga yuboring:", ru: 'проверьте скобки (первая — из вашей записи wireframe), нажмите «Скопировать» и отправьте в Antigravity:' },
       prompt: A1_PROMPT.web, joylar: () => a1Joylar('web'), yordam: A1_YORDAM.web },
     { h: QADAM.ishga, t: { uz: "sahifa o'zi yangilanadi, terminalda xato yo'q.", ru: 'страница обновляется сама, в терминале нет ошибок.' }, err: XATO_GAP },
@@ -2456,7 +2458,7 @@ const A1_QADAMLAR = {
         { uz: "qayerda — o'zgarish faqat `prototip/` da", ru: 'где — изменения только в `prototip/`' },
         { uz: "nima qilsin — telefon kengligida kartalar bitta ustunda, yozuvlar uzilmagan; kompyuterda — avvalgidek", ru: 'что сделать — на ширине телефона карточки в один столбец, надписи не разорваны; на компьютере — как раньше' },
         { uz: 'nima buzilmasin — har tugma kerakli ekranni ochadi, animatsiyalar ishlaydi.', ru: 'что не сломать — каждая кнопка открывает нужный экран, анимации работают.' },
-        { uz: "Farq bo'lsa, agentga: «{nima} telefon kengligida {qanday}: {qanday bo'lsin}. Boshqa joyga tegma, o'zgargan fayllarni ayt.»", ru: 'Есть отличие — агенту: «{что} на ширине телефона {как}: {как должно быть}. Больше ничего не трогай, назови изменённые файлы.»' }
+        { uz: "Farq bo'lsa, agentga: «{nima} telefon kengligida {qanday}: {qanday bo'lsin}. Boshqa joyga tegma, o'zgargan fayllarni ayt.»", ru: "Если есть отличие — агенту: «{что} на ширине телефона {как}: {как должно быть}. Больше ничего не трогай, назови изменённые файлы.»" }
       ] }
   ]
 };
@@ -2510,12 +2512,12 @@ const A2_PROMPT = {
   mobil: [
     { uz: '`mobil/src/app/` — mavjud ekranlar.', ru: '`mobil/src/app/` — существующие экраны.' },
     { uz: "{bosiladigan} bosilganda kichrayib qaytsin — 0,15 soniya. {ozgaradigan} o'zgarganda bir lahza kattalashib, 0,3 soniyada silliq qaytsin. Ekrandan ekranga o'tish Stack'nikidek silliq qolsin.", ru: '{bosiladigan} при нажатии уменьшается и возвращается — 0,15 секунды. {ozgaradigan} при изменении на миг увеличивается и плавно возвращается за 0,3 секунды. Переход между экранами остаётся плавным, как у Stack.' },
-    { uz: "ekranlar, namuna ma'lumot va bosish yo'llari o'zgarmasin; telefonda harakatni kamaytirish yoqilgan bo'lsa, kichrayish va kattalashish bo'lmasin. Paket kerak bo'lsa — faqat `npx expo install` bilan. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: 'экраны, образцы данных и пути нажатий не меняются; если на телефоне включено уменьшение движения, уменьшения и увеличения нет. Нужен пакет — только через `npx expo install`. Больше ничего не трогай, назови изменённые файлы.' }
+    { uz: "ekranlar, namuna ma'lumot va bosish yo'llari o'zgarmasin; telefonda harakatni kamaytirish yoqilgan bo'lsa, kichrayish va kattalashish bo'lmasin. Paket kerak bo'lsa — faqat `npx expo install` bilan. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: "экраны, данные-образцы и пути нажатий не меняются; если на телефоне уменьшено движение — пусть ничего не уменьшается и не увеличивается. Нужен пакет — только через `npx expo install`. Больше ничего не трогай, назови изменённые файлы." }
   ],
   web: [
-    { uz: '`prototip/` — `public/manifest.webmanifest`, ikonkalar `public/` da, `index.html` da manifestga havola.', ru: '`prototip/` — `public/manifest.webmanifest`, иконки в `public/`, в `index.html` ссылка на манифест.' },
-    { uz: "manifestda `name` va `short_name` — {nom}, `start_url` — `/`, `display` — `standalone`, `icons` — 192 va 512 piksel PNG ({rang}, matnsiz oddiy shakl). Ikonka faylini yarata olmasang — bitta kvadrat rasmdan shu ikki o'lchamni qanday tayyorlashni menga ayt.", ru: 'в манифесте `name` и `short_name` — {nom}, `start_url` — `/`, `display` — `standalone`, `icons` — PNG 192 и 512 пикселей ({rang}, простая фигура без текста). Если не можешь создать файл иконки — скажи мне, как подготовить эти два размера из одной квадратной картинки.' },
-    { uz: "ekranlar, namuna ma'lumot, bosish yo'llari va animatsiyalar o'zgarmasin. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: 'экраны, образцы данных, пути нажатий и анимации не меняются. Больше ничего не трогай, назови изменённые файлы.' }
+    { uz: '`prototip/` — `public/manifest.webmanifest`, ikonkalar `public/` da, `index.html` da manifestga havola.', ru: "`prototip/` — `public/manifest.webmanifest`, иконки в `public/`, в `index.html` ссылка на manifest." },
+    { uz: "manifestda `name` va `short_name` — {nom}, `start_url` — `/`, `display` — `standalone`, `icons` — 192 va 512 piksel PNG ({rang}, matnsiz oddiy shakl). Ikonka faylini yarata olmasang — bitta kvadrat rasmdan shu ikki o'lchamni qanday tayyorlashni menga ayt.", ru: "в manifest `name` и `short_name` — {nom}, `start_url` — `/`, `display` — `standalone`, `icons` — PNG 192 и 512 пикселей ({rang}, простая фигура без текста). Если не можешь создать файл иконки — скажи мне, как подготовить эти два размера из одной квадратной картинки." },
+    { uz: "ekranlar, namuna ma'lumot, bosish yo'llari va animatsiyalar o'zgarmasin. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: "экраны, данные-образцы, пути нажатий и анимации не меняются. Больше ничего не трогай, назови изменённые файлы." }
   ]
 };
 // Talab satrlari «Qayerda · Nima qilsin · Nima buzilmasin» (MD aynan): yorliq + matn
@@ -2528,7 +2530,7 @@ const A2_QADAMLAR = {
     { h: QADAM.prompt, t: { uz: "qavslarni to'ldiring, «Nusxalash»ni bosing va Antigravity'ga yuboring:", ru: 'заполните скобки, нажмите «Скопировать» и отправьте в Antigravity:' },
       prompt: talab(A2_PROMPT.mobil), joylar: A2_JOYLAR.mobil,
       yordam: talab(toldir(A2_PROMPT.mobil, { bosiladigan: { uz: "o'yin kartasi", ru: 'карточка игры' }, ozgaradigan: { uz: '«8 / 10» dagi son', ru: 'число в «8 / 10»' } })),
-      yordamGap: { uz: 'Motion — web uchun; ilovada animatsiyani agent React Native vositasi bilan yozadi.', ru: 'Motion — для веба; в приложении анимацию агент пишет средством React Native.' } },
+      yordamGap: { uz: 'Motion — web uchun; ilovada animatsiyani agent React Native vositasi bilan yozadi.', ru: "Motion — для веба; в приложении анимацию агент пишет средствами React Native." } },
     { h: QADAM.ishga, t: { uz: 'ilova telefonda o\'zi yangilanadi; yangilanmasa — terminalda `r`.', ru: 'приложение на телефоне обновляется само; не обновилось — `r` в терминале.' }, err: XATO_GAP },
     { h: QADAM.telefon, t: { uz: "talabning har qatori: karta kichrayib qaytadimi · son kattalashib qaytadimi · ekranlar silliq almashadimi · ekranlar va bosish yo'llari o'sha-o'shami.", ru: 'каждая строка требования: карточка уменьшается и возвращается? · число увеличивается и возвращается? · экраны сменяются плавно? · экраны и пути нажатий те же?' },
       bandlar: [
@@ -2593,7 +2595,7 @@ const ScreenA2 = (props) => (
       mobil: { uz: <>Telefondagi ilovangiz ham <span className="italic" style={{ color: T.accent }}>jonli bo'lsin</span>.</>, ru: <>Пусть приложение на телефоне тоже <span className="italic" style={{ color: T.accent }}>оживёт</span>.</> },
       web: { uz: <>Saytingizni telefonga <span className="italic" style={{ color: T.accent }}>ilova kabi</span> o'rnating.</>, ru: <>Установите сайт на телефон <span className="italic" style={{ color: T.accent }}>как приложение</span>.</> }
     }}
-    mentor={{ uz: <>Talab tayyor — bir-ikki joyni o'z mahsulotingiz bilan to'ldirasiz; <b style={{ color: T.ink }}>«1 · Ochish»</b>dan boshlang.</>, ru: <>Требование готово — одно-два места заполняете своим продуктом; начните с <b style={{ color: T.ink }}>«1 · Открыть»</b>.</> }}
+    mentor={{ uz: <>Talab tayyor — bir-ikki joyni o'z mahsulotingiz bilan to'ldirasiz; <b style={{ color: T.ink }}>«1 · Ochish»</b>dan boshlang.</>, ru: <>Требование готово — впишите свой продукт в пару мест; начните с <b style={{ color: T.ink }}>«1 · Открыть»</b>.</> }}
     steps={A2_QADAMLAR}
     natija={(trek) => <A2Natija trek={trek} />}
     izoh={{ mobil: { uz: "Expo Go'da ilova kompyuteringizdan keladi: `npx expo start` to'xtasa, telefonda ham ochilmaydi.", ru: 'В Expo Go приложение приходит с вашего компьютера: если `npx expo start` остановится, на телефоне оно тоже не откроется.' } }}
@@ -2614,9 +2616,9 @@ const KARTALAR = [
   { front: { uz: "QR ochilishi uchun telefon va kompyuter qayerda bo'ladi?", ru: 'Где должны быть телефон и компьютер, чтобы открылся QR?' }, back: { uz: "Bitta Wi-Fi'da", ru: 'В одной Wi-Fi' }, note: { uz: 'Ochilmasa — `npx expo start --tunnel`', ru: 'Не открылся — `npx expo start --tunnel`' } },
   { front: { uz: "iPhone'da Expo Go loyihani ochishi uchun nima kerak?", ru: 'Что нужно, чтобы Expo Go на iPhone открыл проект?' }, back: { uz: "Kompyuterda va Expo Go'da bitta Expo akkaunti", ru: 'Один аккаунт Expo на компьютере и в Expo Go' }, note: { uz: 'Kompyuterda — `npx expo login`', ru: 'На компьютере — `npx expo login`' } },
   { front: { uz: "Expo Go'dagi ilova kodi qayerdan keladi?", ru: 'Откуда приходит код приложения в Expo Go?' }, back: { uz: 'Kompyuterdagi npx expo start dan', ru: 'Из npx expo start на компьютере' }, note: { uz: "U to'xtasa, ilova ham ochilmaydi", ru: 'Остановится он — не откроется и приложение' } },
-  { front: { uz: 'Adaptiv sayt nima?', ru: 'Что такое адаптивный сайт?' }, back: { uz: 'Telefon kengligiga moslashadigan sayt', ru: 'Сайт, который подстраивается под ширину телефона' }, note: { uz: 'Bu darsda 600 px dan tor oynada bitta ustun', ru: 'На этом уроке в окне уже 600 px — один столбец' } },
+  { front: { uz: 'Adaptiv sayt nima?', ru: 'Что такое адаптивный сайт?' }, back: { uz: 'Telefon kengligiga moslashadigan sayt', ru: 'Сайт, который подстраивается под ширину телефона' }, note: { uz: 'Bu darsda 600 px dan tor oynada bitta ustun', ru: "На этом уроке в окне меньше 600 px — один столбец" } },
   { front: { uz: 'PWA nima?', ru: 'Что такое PWA?' }, back: { uz: "Telefonning bosh ekraniga ilova kabi qo'shiladigan sayt", ru: 'Сайт, который добавляется на главный экран телефона как приложение' }, note: { uz: "Do'kondan emas, brauzerdan qo'shiladi", ru: 'Добавляют не из магазина, а из браузера' } },
-  { front: { uz: 'Sayt telefonda manzil qatorisiz ochilishi uchun manifestda nima yoziladi?', ru: 'Что пишут в манифесте, чтобы сайт открывался на телефоне без адресной строки?' }, back: { uz: '"display": "standalone"', ru: '"display": "standalone"' }, note: { uz: 'Yana kerak: nom, ikonkalar, `start_url`', ru: 'Ещё нужны: имя, иконки, `start_url`' } }
+  { front: { uz: 'Sayt telefonda manzil qatorisiz ochilishi uchun manifestda nima yoziladi?', ru: "Что пишут в manifest, чтобы сайт открывался на телефоне без адресной строки?" }, back: { uz: '"display": "standalone"', ru: '"display": "standalone"' }, note: { uz: 'Yana kerak: nom, ikonkalar, `start_url`', ru: 'Ещё нужны: имя, иконки, `start_url`' } }
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2694,7 +2696,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           keyingi={tr({ uz: "Kim uchun — o'z mahsulotingiz · Muddat — keyingi darsgacha", ru: 'Для кого — ваш продукт · Срок — до следующего урока' })}
           hwTokens={HW_TOKENS.map(k => ({ ...k, t: tr(k.t) }))}
           nishonlar={isMentorL ? null : Object.entries(ACHIEVEMENTS).map(([id, a]) => ({ id, icon: a.icon, name: a.name, desc: tr(a.desc), got: !!(achievements && achievements.has(id)) }))}>
-          <p className="ep-keyingi fade-up" style={{ animationDelay: '0.35s' }}>{tr({ uz: <>Keyingi dars — <b>«Loyiha kuni: poydevor — Database, kirish, deploy»</b>: prototip telefonda ochiladi, endi uning ortidagi umumiy Database va kirish navbati.</>, ru: <>Следующий урок — <b>«День проекта: фундамент — база данных, вход, деплой»</b>: прототип открывается на телефоне, теперь очередь общей Database и входа за ним.</> })}</p>
+          <p className="ep-keyingi fade-up" style={{ animationDelay: '0.35s' }}>{tr({ uz: <>Keyingi dars — <b>«Loyiha kuni: poydevor — Database, kirish, deploy»</b>: prototip telefonda ochiladi, endi uning ortidagi umumiy Database va kirish navbati.</>, ru: <>Следующий урок — <b>«День проекта: фундамент — Database, вход, деплой»</b>: прототип открывается на телефоне, теперь очередь общей Database и входа, которые стоят за ним.</> })}</p>
         </QYakun>
       </div>
     </Stage>

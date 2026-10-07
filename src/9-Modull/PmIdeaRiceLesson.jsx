@@ -9,6 +9,7 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // Saqlash: o'qiydi pm-m9d1-goyalar (1-dars) · yozadi pm-m9d2-rice (3, 6-darslar o'qiydi; tayanch 8 aynan).
 // JONLI: useLiveSession + INLINE_KEYS + CodeStrike arena + Podium. PRODUCTION: <style> ichidagi @import OLIB TASHLANADI.
 // ============================================================
+// ru-qoldiq-istisno s11: yig'ish bo'lishish to'garaklari sinf uy
 
 // D3: palitra umumiy qolipdan — neytral 5 · modul rangi 2 · holat 2 (shadowBase — soya, rang tokeni emas)
 const T = { ...qolipRang('pm'), shadowBase: '27, 22, 48' };
@@ -258,8 +259,8 @@ const INLINE_KEYS = { s3: 1, s5: 3, s7: 0, s12: 2, saralash: -1, rice: -1, juftl
 const RECAPS = {
   3: { title: { uz: 'Real auditoriya', ru: 'Реальная аудитория' }, cards: [
     { ic: '1', h: { uz: 'Uch savol: bajariladimi, real auditoriya bormi, qiziqmi.', ru: 'Три вопроса: выполнимо ли, есть ли реальная аудитория, интересно ли.' } },
-    { ic: '2', h: { uz: 'Real auditoriya savoli — gaplasha oladigan kamida 5 tanishingiz bormi.', ru: 'Вопрос о реальной аудитории — есть ли хотя бы 5 знакомых для разговора.' } },
-    { ic: '3', h: { uz: "Bitta «yo'q» bo'lsa, g'oya chetda qoladi.", ru: 'При одном «нет» идея остаётся в стороне.' }, ask: { uz: "Qog'ozingizdagi tanishga o'xshash yana kimlarni bilasiz?", ru: 'Кого ещё, похожего на знакомого с вашего листка, вы знаете?' } }
+    { ic: '2', h: { uz: 'Real auditoriya savoli — gaplasha oladigan kamida 5 tanishingiz bormi.', ru: "Вопрос о реальной аудитории — есть ли хотя бы 5 знакомых, с кем можно поговорить." } },
+    { ic: '3', h: { uz: "Bitta «yo'q» bo'lsa, g'oya chetda qoladi.", ru: 'При одном «нет» идея остаётся в стороне.' }, ask: { uz: "Qog'ozingizdagi tanishga o'xshash yana kimlarni bilasiz?", ru: "Кого ещё вы знаете, похожего на знакомого с вашего листка?" } }
   ] },
   5: { title: { uz: 'RICE hisobi', ru: 'Расчёт RICE' }, cards: [
     { ic: '1', h: { uz: "Qamrovni ta'sirga ko'paytiring.", ru: 'Умножьте охват на влияние.' } },
@@ -268,12 +269,12 @@ const RECAPS = {
   ] },
   7: { title: { uz: 'Instagram Stories', ru: 'Instagram Stories' }, cards: [
     { ic: '1', h: { uz: "Stories'ni Snapchat o'ylab topgan.", ru: 'Stories придумал Snapchat.' } },
-    { ic: '2', h: { uz: "2016-yilda Instagram formatni ochiq oldi; u yerda tayyor katta auditoriya bor edi.", ru: 'В 2016 году Instagram открыто взял формат; там уже была большая аудитория.' } },
+    { ic: '2', h: { uz: "2016-yilda Instagram formatni ochiq oldi; u yerda tayyor katta auditoriya bor edi.", ru: "В 2016 году Instagram открыто перенял формат; там уже была большая аудитория." } },
     { ic: '3', h: { uz: "Format Instagram'da ko'proq ishlatildi — RICE da bu qamrov.", ru: 'Формат больше использовали в Instagram — в RICE это охват.' }, ask: { uz: "G'oyangiz qayerda ko'proq odamga yetadi?", ru: 'Где ваша идея дойдёт до большего числа людей?' } }
   ] },
   12: { title: { uz: 'RICE — hukm emas', ru: 'RICE — не приговор' }, cards: [
-    { ic: '1', h: { uz: 'RICE sonlari — taxmin.', ru: 'Числа RICE — догадки.' } },
-    { ic: '2', h: { uz: 'Qarorga sonlardan tashqari dalil ham kerak.', ru: 'Для решения нужны доказательства помимо чисел.' } },
+    { ic: '1', h: { uz: 'RICE sonlari — taxmin.', ru: "Числа RICE — предположения." } },
+    { ic: '2', h: { uz: 'Qarorga sonlardan tashqari dalil ham kerak.', ru: 'Для решения кроме чисел нужны и доводы.' } },
     { ic: '3', h: { uz: 'Ikkitani almashtirsangiz, sababini yozasiz.', ru: 'Если заменяете две, пишете причину.' }, ask: { uz: "RICE da uchinchi bo'lgan g'oyani qachon tanlasa bo'ladi?", ru: 'Когда можно выбрать идею, ставшую в RICE третьей?' } }
   ] }
 };
@@ -412,6 +413,12 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
 }
 
 // Testdan keyingi karta (MD: javob topilgach savol ostida) — paydo bo'lgach ko'rinadigan joyga silliq suriladi
+// Ochilgan yordam/izoh 1280×800 da panel ostida qolmasin — bir marta ko'rinadigan joyga suriladi (F-1007-289)
+const Korinsin = ({ className, children }) => {
+  const ref = useRef(null);
+  useEffect(() => { const t = setTimeout(() => { const el = ref.current; if (el && el.scrollIntoView) el.scrollIntoView({ behavior: window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' }); }, 120); return () => clearTimeout(t); }, []);
+  return <div ref={ref} className={className}>{children}</div>;
+};
 const TestViz = ({ children }) => {
   const ref = useRef(null);
   useEffect(() => { const t = setTimeout(() => { if (ref.current && ref.current.scrollIntoView) ref.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 650); return () => clearTimeout(t); }, []);
@@ -712,7 +719,7 @@ const TaxminQator = ({ togri, javob, haqiqat }) => (
 );
 
 // ----- Ma'lumot: Mentorning 6 g'oyasi (tayanch 1.1 aynan — 1-dars bilan bir), saralash va RICE (tayanch 1.2 aynan) -----
-const MANBA_T = { royxat: { uz: "9-Modul ro'yxati", ru: 'Список 9-го модуля' }, keyin: { uz: '«Keyin» qutisi', ru: 'Коробка «Потом»' }, kuzatuv: { uz: 'Yangi kuzatuv', ru: 'Новое наблюдение' } };
+const MANBA_T = { royxat: { uz: "9-Modul ro'yxati", ru: 'Список 9-го модуля' }, keyin: { uz: '«Keyin» qutisi', ru: 'Коробка «Потом»' }, kuzatuv: { uz: 'Yangi kuzatuv', ru: 'Наблюдение' } };
 const QISM = [
   { k: 'muammo', t: { uz: 'Muammo', ru: 'Проблема' } },
   { k: 'kim', t: { uz: 'Kim uchun', ru: 'Для кого' } },
@@ -720,7 +727,7 @@ const QISM = [
 ];
 const MENTOR_GOYALAR = [
   { nom: { uz: "Jamoa yig'ish", ru: 'Сбор команды' }, muammo: { uz: "o'yinga odam yetmaydi, kim kelishi noma'lum", ru: 'на игру не хватает людей, неизвестно, кто придёт' }, kim: { uz: "mahalladagi o'yinchilar", ru: 'игроки из махалли' }, yechim: { uz: "o'yin e'loni va «Qo'shilaman»", ru: 'объявление об игре и «Присоединяюсь»' }, manba: 'keyin' },
-  { nom: { uz: "Maydon pulini bo'lishish", ru: 'Делить плату за поле' }, muammo: { uz: "kim qancha to'lagani unutiladi", ru: 'забывается, кто сколько заплатил' }, kim: { uz: "maydonni birga band qiladigan o'yinchilar", ru: 'игроки, которые вместе бронируют поле' }, yechim: { uz: "kim to'lagani ro'yxati", ru: 'список, кто заплатил' }, manba: 'keyin' },
+  { nom: { uz: "Maydon pulini bo'lishish", ru: 'Делить плату за поле' }, muammo: { uz: "kim qancha to'lagani unutiladi", ru: 'забывается, кто сколько заплатил' }, kim: { uz: "maydonni birga band qiladigan o'yinchilar", ru: "игроки, которые вместе снимают поле" }, yechim: { uz: "kim to'lagani ro'yxati", ru: 'список, кто заплатил' }, manba: 'keyin' },
   { nom: { uz: "Mahalla to'garaklari", ru: 'Кружки махалли' }, muammo: { uz: "qaysi to'garak qayerda va qachon — bilinmaydi", ru: 'какой кружок где и когда — неизвестно' }, kim: { uz: "to'garak izlayotgan o'smirlar", ru: 'подростки, которые ищут кружок' }, yechim: { uz: "to'garaklar xaritasi va jadvali", ru: 'карта и расписание кружков' }, manba: 'kuzatuv' },
   { nom: { uz: 'Sinf uy vazifalari', ru: 'Домашние задания класса' }, muammo: { uz: "uy vazifasi chatlarda yo'qoladi", ru: 'домашнее задание теряется в чатах' }, kim: { uz: 'sinfdoshlar', ru: 'одноклассники' }, yechim: { uz: "har fan bo'yicha vazifalar bir joyda", ru: 'задания по каждому предмету в одном месте' }, manba: 'kuzatuv' },
   { nom: { uz: 'Eski darsliklar', ru: 'Старые учебники' }, muammo: { uz: 'eski darsligini kimga berishni bilmaydi, u uyda yillab turadi', ru: 'не знает, кому отдать старый учебник, и он годами лежит дома' }, kim: { uz: "o'quvchilar", ru: 'ученики' }, yechim: { uz: "ishlatilgan darsliklar e'loni", ru: 'объявления о б/у учебниках' }, manba: 'royxat' },
@@ -750,14 +757,14 @@ const TASIR_SHKALA = [
   { v: 0.5, t: { uz: 'kichik', ru: 'малое' } }, { v: 0.25, t: { uz: 'juda kichik', ru: 'очень малое' } }
 ];
 const ISHONCH_SHKALA = [
-  { v: 1, t: { uz: "o'lchangan son bor", ru: 'есть измеренное число' } }, { v: 0.8, t: { uz: 'dalil bor', ru: 'есть доказательство' } }, { v: 0.5, t: { uz: 'faqat taxmin', ru: 'только догадка' } }
+  { v: 1, t: { uz: "o'lchangan son bor", ru: 'есть замер' } }, { v: 0.8, t: { uz: 'dalil bor', ru: 'есть довод' } }, { v: 0.5, t: { uz: 'faqat taxmin', ru: "только предположение" } }
 ];
 const MEHNAT_HAFTA = [1, 2, 3, 4, 5, 6];
 // RICE ustunlari: sarlavha avval savol, ochilgach nom (T-011)
 const USTUNLAR = [
-  { k: 'qamrov', n: { uz: 'Qamrov', ru: 'Охват' }, s: { uz: 'Bir oyda nechta odamga yetadi?', ru: 'Скольким людям в месяц дойдёт?' } },
-  { k: 'tasir', n: { uz: "Ta'sir", ru: 'Влияние' }, s: { uz: 'Bitta odamga qancha foyda?', ru: 'Сколько пользы одному человеку?' } },
-  { k: 'ishonch', n: { uz: 'Ishonch', ru: 'Уверенность' }, s: { uz: 'Taxminga qanchalik ishonasiz?', ru: 'Насколько вы уверены в догадке?' } },
+  { k: 'qamrov', n: { uz: 'Qamrov', ru: 'Охват' }, s: { uz: 'Bir oyda nechta odamga yetadi?', ru: "Сколько людей за месяц?" } },
+  { k: 'tasir', n: { uz: "Ta'sir", ru: 'Влияние' }, s: { uz: 'Bitta odamga qancha foyda?', ru: 'Сколько пользы каждому?' } },
+  { k: 'ishonch', n: { uz: 'Ishonch', ru: 'Уверенность' }, s: { uz: 'Taxminga qanchalik ishonasiz?', ru: "Насколько вы уверены?" } },
   { k: 'mehnat', n: { uz: 'Mehnat', ru: 'Усилия' }, s: { uz: 'Bitta odam necha hafta ishlaydi?', ru: 'Сколько недель работает один человек?' } },
   { k: 'rice', n: { uz: 'RICE', ru: 'RICE' }, s: { uz: 'Hisoblash', ru: 'Посчитать' } }
 ];
@@ -895,7 +902,7 @@ const guruh = (on) => (on ? 'ri-guruh' : undefined);
 
 // ===== SCREEN 0 — KIRISH (QKirish: sof so'rovnoma, J-026 — hammaga correct: false, maqtovsiz) =====
 const HOOK_OPTS = [
-  { id: 'qiziq', t: { uz: "O'zimga eng qiziq bo'lgan g'oyalar", ru: 'Самые интересные мне идеи' } },
+  { id: 'qiziq', t: { uz: "O'zimga eng qiziq bo'lgan g'oyalar", ru: "Самые интересные для меня идеи" } },
   { id: 'kerak', t: { uz: "Ko'p odamga kerakli bo'lgan g'oyalar", ru: 'Идеи, нужные многим людям' } },
   { id: 'tez', t: { uz: "Eng tez qurib bo'ladigan g'oyalar", ru: 'Идеи, которые быстрее всего построить' } }
 ];
@@ -935,7 +942,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
       <div className={cxx('ri-s0', picked === null && !isMentor && 'tanlovsiz')}>
         <QKirish zoom={Zoomable}
           sarlavha={tr({ uz: <>Oltita g'oyadan <A>qaysi uchtasi</A> qoladi?</>, ru: <>Какие <A>три из шести</A> идей останутся?</> })}
-          mentor={<Mentor>{tr({ uz: "O'tgan darsda oltita g'oya yozildi, bitiruvgacha esa bittasi quriladi. O'zingizga yaqin javobni belgilang.", ru: 'На прошлом уроке написали шесть идей, а до выпуска будет построена одна. Отметьте близкий вам ответ.' })}</Mentor>}
+          mentor={<Mentor>{tr({ uz: "O'tgan darsda oltita g'oya yozildi, bitiruvgacha esa bittasi quriladi. O'zingizga yaqin javobni belgilang.", ru: "На прошлом уроке вы записали шесть идей, а до выпуска будете строить одну. Отметьте близкий вам ответ." })}</Mentor>}
           maket={<HookMaket tanlandi={picked !== null} />}
           variantlar={HOOK_OPTS.map(o => ({ id: o.id, t: tr(o.t) }))} tanlov={picked} onTanla={pick} yopiq={isMentor}
           javob={<>
@@ -952,7 +959,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // ===== SCREEN 1 — REJA (QReja: chapda «Dars oxirida» — Mentorning oltita g'oyasi uch «?» katagi bilan, pastda «Uchta» uchun uch bo'sh joy; natija ochilmaydi — P-036, SABOQ 33) =====
 const REJA = [
   { t: { uz: "Har g'oyaga uchta «ha / yo'q» savol berasiz", ru: 'Зададите каждой идее три вопроса «да / нет»' }, teg: { uz: 'saralash', ru: 'отбор' } },
-  { t: { uz: "Savollardan o'tgan g'oyalarni to'rt son bilan baholaysiz", ru: 'Оцените прошедшие вопросы идеи четырьмя числами' }, teg: { uz: 'RICE', ru: 'RICE' } },
+  { t: { uz: "Savollardan o'tgan g'oyalarni to'rt son bilan baholaysiz", ru: "Оцените четырьмя числами идеи, прошедшие вопросы" }, teg: { uz: 'RICE', ru: 'RICE' } },
   { t: { uz: <><Instagram /> Stories qayerda ko'p ishlatilganini ko'rasiz</>, ru: <>Увидите, где больше пользовались <Instagram /> Stories</> }, teg: { uz: 'voqea', ru: 'история' } },
   { t: { uz: 'Bitta soningizni sherigingizga tushuntirasiz', ru: 'Объясните партнёру одно своё число' }, teg: { uz: 'juftlik', ru: 'пара' } }
 ];
@@ -1018,7 +1025,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Tushuncha · saralash', ru: 'Понятие · отбор' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Savollarni bosing', ru: 'Нажмите на вопросы' })} (${q}/3)`} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
         sarlavha={tr({ uz: <>Mentorning qaysi g'oyalari <A>uch savoldan</A> o'tadi?</>, ru: <>Какие идеи Ментора пройдут <A>три вопроса?</A></> })}
-        mentor={<Mentor>{tr({ uz: "Savollarni tartib bilan bosing — har biridan keyin ro'yxatga qarang.", ru: 'Нажимайте вопросы по порядку — после каждого смотрите на список.' })}</Mentor>}
+        mentor={<Mentor>{tr({ uz: "Savollarni tartib bilan bosing — har biridan keyin ro'yxatga qarang.", ru: "Нажимайте на вопросы по порядку — после каждого смотрите на список." })}</Mentor>}
         bashorat={!taxmin
           ? <div className="ri-bash"><QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr(S2_SAVOL)} variantlar={S2_TAXMIN.map(t => ({ k: t.k, t: tr(t.t) }))} tanlov={taxmin} onTanla={setTaxmin} /></div>
           : !done && <BashQator savol={tr(S2_SAVOL)} javob={tr(tx.t)} />}
@@ -1032,7 +1039,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         natija={!done && ipucha && <QIzoh>{tr({ uz: "Yoqilgan savolni bosing — ro'yxatda nima o'zgarishini ko'ring.", ru: 'Нажмите активный вопрос — посмотрите, что изменится в списке.' })}</QIzoh>}
         xulosa={done && <>{tx && <TaxminQator togri={taxmin === '4'} javob={tr(tx.t)} haqiqat={tr({ uz: '4 ta', ru: '4' })} />}{tr({ uz: "Bu misolda oltitadan to'rtta g'oya o'tdi. Qolgan ikkitasi o'chirilmadi — chetda turibdi.", ru: 'В этом примере из шести прошли четыре идеи. Остальные две не удалены — стоят в стороне.' })}</>}
       />
-      <MentorNote>{tr({ uz: "6 hafta — shu modulning taxminiy davomi: birinchi versiya Demo Day 7 gacha quriladi. Chetdagi g'oyalar yomon emas — bu modulga mos kelmadi, xolos. Real auditoriya savoli muammo borligini isbotlamaydi — u faqat gaplashadigan odamlar borligini tekshiradi; muammoni odamlar bilan suhbat tekshiradi. Sinfdan so'rang: «Yo'qolgan buyumlar g'oyasi uchun 5 tanishni kimdan topsa bo'lardi?» — real auditoriya savoli 8-ekranda uyga vazifa qog'ozidan boshlanadi.", ru: '6 недель — примерная длина этого модуля: первая версия строится до Demo Day 7. Идеи в стороне не плохие — просто не подошли этому модулю. Вопрос о реальной аудитории не доказывает проблему — он лишь проверяет, есть ли люди для разговора; проблему проверяет разговор с людьми. Спросите класс: «Где для идеи о потерянных вещах можно найти 5 знакомых?» — на 8-м экране вопрос о реальной аудитории начинается с листка из домашнего задания.' })}</MentorNote>
+      <MentorNote>{tr({ uz: "6 hafta — shu modulning taxminiy davomi: birinchi versiya Demo Day 7 gacha quriladi. Chetdagi g'oyalar yomon emas — bu modulga mos kelmadi, xolos. Real auditoriya savoli muammo borligini isbotlamaydi — u faqat gaplashadigan odamlar borligini tekshiradi; muammoni odamlar bilan suhbat tekshiradi. Sinfdan so'rang: «Yo'qolgan buyumlar g'oyasi uchun 5 tanishni kimdan topsa bo'lardi?» — real auditoriya savoli 8-ekranda uyga vazifa qog'ozidan boshlanadi.", ru: "6 недель — примерная длина этого модуля: первая версия строится до Demo Day 7. Идеи в стороне не плохие — просто не подошли этому модулю. Вопрос о реальной аудитории не доказывает проблему — он лишь проверяет, есть ли люди для разговора; проблему проверяет разговор с людьми. Спросите класс: «Среди кого можно найти 5 знакомых для идеи о потерянных вещах?» — на 8-м экране вопрос о реальной аудитории начинается с листка из домашнего задания." })}</MentorNote>
     </Stage>
   );
 };
@@ -1057,9 +1064,9 @@ const Screen3 = (props) => (
       { uz: 'Bajariladimi — 6 haftada qura oladimi', ru: 'Выполнимо — сможет ли построить за 6 недель' },
       { uz: 'Real auditoriya bormi — 5 tanishi bormi', ru: 'Есть реальная аудитория — есть ли 5 знакомых' },
       { uz: 'Qiziqmi — shu ustida ishlashni xohlaydimi', ru: 'Интересно — хочет ли над этим работать' },
-      { uz: 'Hech biriga — tanishlar keyin ham topiladi', ru: 'Ни на какой — знакомых можно найти и потом' }
+      { uz: 'Hech biriga — tanishlar keyin ham topiladi', ru: "Ни на один — знакомых можно найти и потом" }
     ]} correctIdx={1}
-    explainCorrect={{ uz: "Gaplasha oladigan kamida 5 tanish bo'lmasa, real auditoriya savoliga «yo'q».", ru: 'Если нет хотя бы 5 знакомых для разговора — на вопрос о реальной аудитории «нет».' }}
+    explainCorrect={{ uz: "Gaplasha oladigan kamida 5 tanish bo'lmasa, real auditoriya savoliga «yo'q».", ru: "Если нет хотя бы 5 знакомых, с кем можно поговорить, — на вопрос о реальной аудитории «нет»." }}
     explainWrong={{
       0: { uz: "Qura olish haqida savolda hech narsa yo'q.", ru: 'В вопросе ничего нет о том, сможет ли он построить.' },
       2: { uz: "Qiziqish haqida savolda gap yo'q — odamlarga qarang.", ru: 'Об интересе в вопросе речи нет — смотрите на людей.' },
@@ -1071,7 +1078,7 @@ const Screen3 = (props) => (
 
 // ===== SCREEN 4 — TO'RT SON (QTushuncha markaziy, keng: ustun sarlavhalari — savol-tugmalar; «Hisoblash» → RiceFormula, RICE ustuni, qayta tartiblash, «Uchta» / «Ikkita») =====
 const S4_TAXMIN = [{ k: '1', t: { uz: 'Birinchi', ru: 'Первой' } }, { k: '2', t: { uz: 'Ikkinchi', ru: 'Второй' } }, { k: '3', t: { uz: 'Uchinchi', ru: 'Третьей' } }];
-const S4_SAVOL = { uz: "Qamrovi eng katta «Mahalla to'garaklari» oxirida nechanchi bo'ladi?", ru: 'Какой по счёту в конце окажется «Кружки махалли» с самым большим охватом?' };
+const S4_SAVOL = { uz: "Qamrovi eng katta «Mahalla to'garaklari» oxirida nechanchi bo'ladi?", ru: "Какой по счёту в конце станет идея «Кружки махалли» с самым большим охватом?" };
 const MENTOR_FK = (i) => `r${MENTOR_RICE[i].goya}`;
 // Shkala qatori (ustun ostida): ta'sir — besh qiymat, ishonch — «Bu kursda:» bilan (02-FILTR 1); ishlatilgan qiymatlar bir lahza yonadi
 const Shkala = ({ tur }) => (tur === 'tasir'
@@ -1125,7 +1132,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {!tugadi && ochiq < 5 && <div className="ri-mob-ust"><button type="button" className={cxx('ri-th-b', faol && 'ri-halqa')} disabled={!faol} onClick={ustunBos}><b>{ochiq + 1}/5</b> {tr(USTUNLAR[ochiq].s)}</button></div>}
           <GoyaJadval tur="rice" qatorlar={qatorlar} ochiq={ochiq} joriy={!tugadi && ochiq < 5 ? ochiq : null} onUstun={ustunBos} faol={faol}
             uchta={rq >= 6 ? ['r0', 'r2', 'r1'] : []} ikkita={rq >= 6 ? ['r0', 'r2'] : []}
-            tepaYorliq={ochiq >= 1 && <span className="ri-kul fade-step">{tr({ uz: 'Sonlar — Mentorning taxmini', ru: 'Числа — догадка Ментора' })}</span>} />
+            tepaYorliq={ochiq >= 1 && <span className="ri-kul fade-step">{tr({ uz: 'Sonlar — Mentorning taxmini', ru: "Числа — предположения Ментора" })}</span>} />
           {ochiq === 2 && <Shkala tur="tasir" />}
           {ochiq === 3 && <Shkala tur="ishonch" />}
           {rq >= 1 && <RiceFormula b={MENTOR_RICE[0]} uchKalit="s4f">
@@ -1136,7 +1143,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         natija={!done && ipucha && <QIzoh>{tr({ uz: 'Yoqilgan ustun sarlavhasini bosing — kataklarga sonlar yoziladi.', ru: 'Нажмите активный заголовок столбца — в клетки впишутся числа.' })}</QIzoh>}
         xulosa={done && <>{tx && <TaxminQator togri={taxmin === '2'} javob={tr(tx.t).toLowerCase()} haqiqat={tr({ uz: 'ikkinchi', ru: 'второй' })} />}{tr({ uz: "Bu misolda qamrovi eng katta g'oya ikkinchi bo'ldi. RICE — tanlovga yordam, hukm emas.", ru: 'В этом примере идея с самым большим охватом стала второй. RICE — помощь в выборе, а не приговор.' })}</>}
       />
-      <MentorNote>{tr({ uz: "Ko'prik — «Qaysi ishni birinchi qilasiz?» darsidagi ikki savol («nechta odam so'raydi», «qancha vaqt oladi») RICE da qamrov va mehnat bo'ldi; yangisi — ta'sir va ishonch. Jamoa yig'ishda ishonch 80% — 9-Modul intervyusidagi dalil; qolganlarida dalil yo'q — 50%. Mehnati eng ko'p g'oya birinchi chiqdi: ta'sir va ishonch uni ko'tardi — shuni sinf bilan ko'ring. «Ikkita» — jamoa yig'ish va mahalla to'garaklari: Mentor ular bo'yicha odamlar bilan gaplashadi (3–4-darslar; o'quvchilarga va'da qilib aytmang).", ru: 'Мостик — два вопроса из урока «Какую работу делать первой?» («сколько людей просит», «сколько времени займёт») в RICE стали охватом и усилиями; новое — влияние и уверенность. У сбора команды уверенность 80% — доказательство из интервью 9-го модуля; у остальных доказательств нет — 50%. Первой вышла идея с самыми большими усилиями: её подняли влияние и уверенность — разберите это с классом. «Две» — сбор команды и кружки махалли: по ним Ментор будет говорить с людьми (уроки 3–4; не обещайте ученикам).' })}</MentorNote>
+      <MentorNote>{tr({ uz: "Ko'prik — «Qaysi ishni birinchi qilasiz?» darsidagi ikki savol («nechta odam so'raydi», «qancha vaqt oladi») RICE da qamrov va mehnat bo'ldi; yangisi — ta'sir va ishonch. Jamoa yig'ishda ishonch 80% — 9-Modul intervyusidagi dalil; qolganlarida dalil yo'q — 50%. Mehnati eng ko'p g'oya birinchi chiqdi: ta'sir va ishonch uni ko'tardi — shuni sinf bilan ko'ring. «Ikkita» — jamoa yig'ish va mahalla to'garaklari: Mentor ular bo'yicha odamlar bilan gaplashadi (3–4-darslar; o'quvchilarga va'da qilib aytmang).", ru: "Мостик — два вопроса из урока «Какую задачу сделаете первой?» («сколько людей просит», «сколько времени займёт») в RICE стали охватом и усилиями; новое — влияние и уверенность. У сбора команды уверенность 80% — довод из интервью 9-го модуля; у остальных доводов нет — 50%. Первой вышла идея с самыми большими усилиями: её подняли влияние и уверенность — разберите это с классом. «Две» — сбор команды и кружки махалли: по ним Ментор будет говорить с людьми (уроки 3–4; не обещайте ученикам)." })}</MentorNote>
     </Stage>
   );
 };
@@ -1145,7 +1152,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen5 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Tekshiruv · RICE hisobi', ru: 'Проверка · расчёт RICE' })}
     questionText="G'oyangizda qamrov 120, ta'sir 0,5, ishonch 80%, mehnat 3. RICE qancha?"
-    question={tr({ uz: <h2 className="title h-ask">G'oyangizda qamrov 120, ta'sir 0,5, ishonch 80%, mehnat 3. <A>RICE qancha?</A></h2>, ru: <h2 className="title h-ask">У вашей идеи охват 120, влияние 0,5, уверенность 80%, усилия 3. <A>Сколько RICE?</A></h2> })}
+    question={tr({ uz: <h2 className="title h-ask">G'oyangizda qamrov 120, ta'sir 0,5, ishonch 80%, mehnat 3. <A>RICE qancha?</A></h2>, ru: <h2 className="title h-ask">У вашей идеи охват 120, влияние 0,5, уверенность 80%, усилия 3. <A>Чему равен RICE?</A></h2> })}
     options={['32', '48', '20', '16']} correctIdx={3}
     explainCorrect={{ uz: "120 ni 0,5 ga va 80% ga ko'paytirib, 3 ga bo'lsangiz, 16 chiqadi.", ru: 'Умножив 120 на 0,5 и на 80% и разделив на 3, получите 16.' }}
     explainWrong={{
@@ -1161,12 +1168,12 @@ const Screen5 = (props) => (
 // Manba (o'quvchi ko'rmaydi): PM_Prompt_v8.md K14 (raqamsiz, 2016) · tayanch 5 · Snapchat izohi — MATN_KORPUS §189 · Stories izohi — m3-05 (PmLesson8) bilan bir ma'noda.
 const STORIES_BOSQICH = [
   { h: { uz: "Snapchat'da yangi format", ru: 'Новый формат в Snapchat' }, m: { uz: "Snapchat (yuborilgan surat ko'rilgach yo'qoladigan ilova) Stories'ni o'ylab topgan. Stories — bir kundan keyin o'chib ketadigan surat va videolar.", ru: 'Snapchat (приложение, где отправленное фото исчезает после просмотра) придумал Stories. Stories — фото и видео, которые исчезают через день.' } },
-  { h: { uz: 'Instagram ham qo\'shdi', ru: 'Instagram тоже добавил' }, m: { uz: "2016-yilda Instagram shu formatni ochiq oldi. Instagram'da tayyor katta auditoriya bor edi.", ru: 'В 2016 году Instagram открыто взял этот формат. У Instagram уже была большая аудитория.' } },
+  { h: { uz: 'Instagram ham qo\'shdi', ru: 'Instagram тоже добавил' }, m: { uz: "2016-yilda Instagram shu formatni ochiq oldi. Instagram'da tayyor katta auditoriya bor edi.", ru: "В 2016 году Instagram открыто перенял этот формат. У Instagram уже была большая аудитория." } },
   { h: { uz: "Format qayerda ko'p ishlatildi", ru: 'Где формат использовали больше' }, m: { uz: "Format aynan Instagram'da ko'proq ishlatildi. Bu voqeada g'oya muallifi emas, foydalanuvchiga yaxshiroq yetkazgan yutdi.", ru: 'Формат больше использовали именно в Instagram. В этой истории выиграл не автор идеи, а тот, кто лучше донёс её до пользователей.' } }
 ];
 const ST_TAXMIN = [
   { k: 'snap', t: { uz: "Snapchat'da", ru: 'В Snapchat' } },
-  { k: 'teng', t: { uz: 'Ikkalasida teng', ru: 'Поровну в обоих' } },
+  { k: 'teng', t: { uz: 'Ikkalasida teng', ru: "В обоих одинаково" } },
   { k: 'insta', ok: true, t: { uz: "Instagram'da", ru: 'В Instagram' } }
 ];
 const ST_SAVOL = { uz: "Instagram ham Stories qo'shsa, format qayerda ko'proq ishlatiladi?", ru: 'Если Instagram тоже добавит Stories, где формат будут использовать больше?' };
@@ -1283,7 +1290,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {done && xulosaVaqt && <QXulosa>{tx && <TaxminQator togri={!!tx.ok} javob={tr(tx.t)} haqiqat={tr({ uz: "Instagram'da", ru: 'в Instagram' })} />}{tr({ uz: "Bu voqeada tayyor katta auditoriya formatni ko'proq odamga yetkazdi — RICE da buni qamrov o'lchaydi.", ru: 'В этой истории готовая большая аудитория донесла формат до большего числа людей — в RICE это измеряет охват.' })}</QXulosa>}
         </div>}
       >
-        <MentorNote>{tr({ uz: "Bu voqea «Qaysi ishni birinchi qilasiz?» darsida ham chiqqan — eslating: u yerda «nechta odam so'raydi» savoli edi, bugun u RICE ning qamrov bo'lagi. «Snapchat yutqazdi» demang, foydalanuvchilar soni va boshqa sana qo'shmang — bankda yo'q. Siluetlar — «tayyor katta auditoriya» chizmasi, son emas. Sinfdan so'rang: «G'oyangiz ko'proq odamga qayerda yetadi — maktabdami, mahallada yoki Telegram guruhidami?»", ru: 'Эта история уже была в уроке «Какую работу делать первой?» — напомните: там был вопрос «сколько людей просит», сегодня это часть RICE — охват. Не говорите «Snapchat проиграл», не добавляйте число пользователей и другие даты — их нет в банке. Фигуры — рисунок «готовой большой аудитории», а не число. Спросите класс: «Где ваша идея дойдёт до большего числа людей — в школе, в махалле или в Telegram-группе?»' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Bu voqea «Qaysi ishni birinchi qilasiz?» darsida ham chiqqan — eslating: u yerda «nechta odam so'raydi» savoli edi, bugun u RICE ning qamrov bo'lagi. «Snapchat yutqazdi» demang, foydalanuvchilar soni va boshqa sana qo'shmang — bankda yo'q. Siluetlar — «tayyor katta auditoriya» chizmasi, son emas. Sinfdan so'rang: «G'oyangiz ko'proq odamga qayerda yetadi — maktabdami, mahallada yoki Telegram guruhidami?»", ru: "Эта история уже была в уроке «Какую задачу сделаете первой?» — напомните: там был вопрос «сколько людей просит», сегодня это часть RICE — охват. Не говорите «Snapchat проиграл», не добавляйте число пользователей и другие даты — их нет в банке. Фигуры — рисунок «готовой большой аудитории», а не число. Спросите класс: «Где ваша идея дойдёт до большего числа людей — в школе, в махалле или в Telegram-группе?»" })}</MentorNote>
       </QVoqea>
     </Stage>
   );
@@ -1301,15 +1308,15 @@ const Screen7 = (props) => (
     questionText="Stories voqeasi RICE ning qaysi bo'lagini ko'rsatadi?"
     question={tr({ uz: <h2 className="title h-ask">Stories voqeasi RICE ning <A>qaysi bo'lagini</A> ko'rsatadi?</h2>, ru: <h2 className="title h-ask">Какую <A>часть RICE</A> показывает история Stories?</h2> })}
     options={[
-      { uz: 'Qamrov — bir oyda nechta odamga yetadi', ru: 'Охват — скольким людям дойдёт за месяц' },
+      { uz: 'Qamrov — bir oyda nechta odamga yetadi', ru: "Охват — до скольких людей дойдёт за месяц" },
       { uz: "Ta'sir — bitta odamga qancha foyda beradi", ru: 'Влияние — сколько пользы даёт одному человеку' },
-      { uz: 'Ishonch — taxminga qanchalik ishonasiz', ru: 'Уверенность — насколько уверены в догадке' },
+      { uz: 'Ishonch — taxminga qanchalik ishonasiz', ru: "Уверенность — насколько вы уверены в предположении" },
       { uz: 'Mehnat — bitta odam necha hafta ishlaydi', ru: 'Усилия — сколько недель работает один человек' }
     ]} correctIdx={0}
     explainCorrect={{ uz: "Instagram'dagi tayyor katta auditoriya formatni ko'proq odamga yetkazdi.", ru: 'Готовая большая аудитория Instagram донесла формат до большего числа людей.' }}
     explainWrong={{
       1: { uz: 'Format ikkala ilovada bir xil edi — farq boshqa joyda.', ru: 'Формат в обоих приложениях был одинаковым — разница в другом.' },
-      2: { uz: "Voqeada taxmin haqida gap bo'lmadi.", ru: 'В истории не было речи о догадке.' },
+      2: { uz: "Voqeada taxmin haqida gap bo'lmadi.", ru: "В истории не было речи о предположении." },
       3: { uz: "Voqeada qurish vaqti haqida gap bo'lmadi.", ru: 'В истории не было речи о времени на постройку.' },
       default: { uz: "Instagram'da nima ko'p edi — shuni eslang.", ru: 'Вспомните, чего было много в Instagram.' }
     }}
@@ -1317,7 +1324,7 @@ const Screen7 = (props) => (
 );
 
 // ===== SCREEN 8 — SARALASH (QMustaqil, USTAXONA — ketma-ket karta; SABOQ 9, 13, 17, 29) · o'qiydi pm-m9d1-goyalar · yozadi pm-m9d2-rice.otdi · nishon sortedIt =====
-const PH8 = { muammo: { uz: 'Odamlar nimadan qiynaladi?', ru: 'От чего страдают люди?' }, kim: { uz: 'Aynan qanday odamlar?', ru: 'Какие именно люди?' }, yechim: { uz: 'Mahsulot nima qiladi?', ru: 'Что делает продукт?' } };
+const PH8 = { muammo: { uz: 'Odamlar nimadan qiynaladi?', ru: 'С чем людям трудно?' }, kim: { uz: 'Aynan qanday odamlar?', ru: 'Какие именно люди?' }, yechim: { uz: 'Mahsulot nima qiladi?', ru: 'Что делает продукт?' } };
 const SAQLASH = { uz: 'Saqlash', ru: 'Сохранить' };
 const YORDAM_T = { uz: 'Yordam', ru: 'Подсказка' };
 const QOLDIR = { uz: 'Shunday qoldirsangiz — yana «Saqlash»ni bosing.', ru: 'Если оставить так — снова нажмите «Сохранить».' };
@@ -1467,11 +1474,11 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           : roy}
         forma={!isMentor && !done && (karta || formaEl)}
       >
-        {!isMentor && done && k < 3 && <QIzoh>{tr({ uz: "Uchtasini ajratish uchun kamida uchta g'oya o'tishi kerak: «Chetda» gi g'oyani ✎ bilan qayta ko'ring.", ru: 'Чтобы выделить три, должны пройти хотя бы три идеи: пересмотрите идею «В стороне» через ✎.' })}</QIzoh>}
+        {!isMentor && done && k < 3 && <QIzoh>{tr({ uz: "Uchtasini ajratish uchun kamida uchta g'oya o'tishi kerak: «Chetda» gi g'oyani ✎ bilan qayta ko'ring.", ru: "Чтобы выделить три, должны пройти хотя бы три идеи: пересмотрите идею из «В стороне» через ✎." })}</QIzoh>}
         {!isMentor && done && k === N && N >= 6 && <QIzoh>{tr({ uz: "Oltitasi ham o'tdi — har biriga 5 tanishni ayta olasizmi? Kerak bo'lsa ✎ bilan qayta ko'ring.", ru: 'Прошли все шесть — сможете назвать по 5 знакомых для каждой? Если нужно — пересмотрите через ✎.' })}</QIzoh>}
-        {!isMentor && !done && (yoqBor || yordamOn) && <div className="ri-yordam fade-step"><span className="ri-yordam-l">{tr(YORDAM_T)}</span><QIzoh>{tr({ uz: "Bitta «yo'q» g'oyani chetga chiqaradi, lekin o'chirmaydi. Qaysi savolga ishonchingiz komil emasligini sherigingiz bilan ko'ring.", ru: 'Одно «нет» отводит идею в сторону, но не удаляет её. С какими вопросами вы не уверены — посмотрите с партнёром.' })}</QIzoh></div>}
+        {!isMentor && !done && (yoqBor || yordamOn) && <div className="ri-yordam fade-step"><span className="ri-yordam-l">{tr(YORDAM_T)}</span><QIzoh>{tr({ uz: "Bitta «yo'q» g'oyani chetga chiqaradi, lekin o'chirmaydi. Qaysi savolga ishonchingiz komil emasligini sherigingiz bilan ko'ring.", ru: "Одно «нет» отводит идею в сторону, но не удаляет её. В каком вопросе вы не уверены — проверьте с партнёром." })}</QIzoh></div>}
         {!isMentor && done && <QXulosa>{tr({ uz: `${N} ta g'oyadan ${k} tasi uch savoldan o'tdi, ${N - k} tasi chetda turibdi.`, ru: `Из ${N} идей три вопроса прошли ${k}, в стороне — ${N - k}.` })}</QXulosa>}
-        <MentorNote>{tr({ uz: "Eng ko'p ikkilanish — real auditoriya: «5 tanish» — o'quvchi bugun-erta gaplasha oladigan odamlar (ismi emas, kimligi). Uyga vazifa qog'ozi yo'q o'quvchi og'zaki sanaydi. Hamma g'oyasi o'tgan o'quvchidan bittasini so'rang: «Shu g'oya uchun 5 kishini ayting». G'oyani «yomon» demang.", ru: 'Чаще всего сомневаются в реальной аудитории: «5 знакомых» — люди, с которыми ученик может поговорить сегодня-завтра (не имя, а кто это). Без листка домашнего задания ученик считает устно. У ученика, у которого прошли все идеи, спросите одну: «Назовите 5 человек для этой идеи». Не называйте идею «плохой».' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Eng ko'p ikkilanish — real auditoriya: «5 tanish» — o'quvchi bugun-erta gaplasha oladigan odamlar (ismi emas, kimligi). Uyga vazifa qog'ozi yo'q o'quvchi og'zaki sanaydi. Hamma g'oyasi o'tgan o'quvchidan bittasini so'rang: «Shu g'oya uchun 5 kishini ayting». G'oyani «yomon» demang.", ru: "Чаще всего сомневаются в реальной аудитории: «5 знакомых» — люди, с которыми ученик может поговорить сегодня-завтра (не имя, а кто это). Без листка домашнего задания ученик считает устно. Ученика, у которого прошли все идеи, спросите про одну: «Назовите 5 человек для этой идеи». Не называйте идею «плохой»." })}</MentorNote>
       </QMustaqil>
     </Stage>
   );
@@ -1600,7 +1607,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <QTugma className={halqa(toliq)} onClick={saqla}>{tr(SAQLASH)}</QTugma>
         </div>
         {yordam && <div className="ri-yordam fade-step">
-          <QIzoh>{tr({ uz: "Qamrov — maktabingiz, mahallangiz yoki Telegram guruhingizdagi shunday odamlarni sanang. Ta'sir — taxmin: g'oya bitta odamning muammosini qanchalik yengillashtiradi — juda ko'p bo'lsa 3, sezilmas bo'lsa 0,25.", ru: 'Охват — посчитайте таких людей в вашей школе, махалле или Telegram-группе. Влияние — догадка: насколько идея облегчает проблему одного человека — если очень сильно, 3, если незаметно, 0,25.' })}</QIzoh>
+          <QIzoh>{tr({ uz: "Qamrov — maktabingiz, mahallangiz yoki Telegram guruhingizdagi shunday odamlarni sanang. Ta'sir — taxmin: g'oya bitta odamning muammosini qanchalik yengillashtiradi — juda ko'p bo'lsa 3, sezilmas bo'lsa 0,25.", ru: "Охват — посчитайте таких людей в вашей школе, махалле или Telegram-группе. Влияние — предположение: насколько идея облегчает проблему одного человека — 3, если очень сильно, 0,25, если незаметно." })}</QIzoh>
           <QIzoh>{tr({ uz: "Ishonch — odamlar shu muammoni aytgan bo'lsa 80%, faqat o'zingiz o'ylagan bo'lsa 50%. Mehnatga 6 hafta qo'ysangiz, «Bajariladimi?» javobini qayta ko'ring: shu modulda boshqa ishga vaqt qolmaydi.", ru: 'Уверенность — 80%, если люди называли эту проблему, 50%, если вы придумали сами. Если ставите на усилия 6 недель, пересмотрите ответ «Выполнимо?»: на другую работу в этом модуле времени не останется.' })}</QIzoh>
         </div>}
       </div>
@@ -1641,7 +1648,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         {!isMentor && tayyor && <QXulosa>{ozgardi
           ? tr({ uz: "RICE jadvalida yuqori uchta g'oya chiqdi; ikkitasini sababi bilan o'zingiz belgiladingiz.", ru: 'В таблице RICE вверху оказались три идеи; две вы отметили сами, с причиной.' })
           : tr({ uz: "RICE jadvalida yuqori uchta g'oya chiqdi; ikkitasi — RICE taklif qilgani.", ru: 'В таблице RICE вверху оказались три идеи; две — те, что предложил RICE.' })}</QXulosa>}
-        <MentorNote>{tr({ uz: "Sonlar taxmin — «to'g'ri son» yo'q. Qamrovi katta chiqqan o'quvchidan so'rang: «Bu odamlar kimlar, qayerda?» Ishonch 100% qo'ygan o'quvchidan — qaysi son o'lchangan. Ikkitasini almashtirgan o'quvchi sababini sinfga aytsin: RICE — tanlovga yordam, hukm emas.", ru: 'Числа — догадки, «правильного числа» нет. У ученика с большим охватом спросите: «Кто эти люди, где они?» У поставившего уверенность 100% — какое число измерено. Пусть ученик, заменивший две, скажет классу причину: RICE — помощь в выборе, а не приговор.' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Sonlar taxmin — «to'g'ri son» yo'q. Qamrovi katta chiqqan o'quvchidan so'rang: «Bu odamlar kimlar, qayerda?» Ishonch 100% qo'ygan o'quvchidan — qaysi son o'lchangan. Ikkitasini almashtirgan o'quvchi sababini sinfga aytsin: RICE — tanlovga yordam, hukm emas.", ru: "Числа — предположения, «правильного числа» нет. У ученика с большим охватом спросите: «Кто эти люди, где они?» У поставившего уверенность 100% — какое число измерено. Пусть ученик, заменивший две, скажет классу причину: RICE — помощь в выборе, а не приговор." })}</MentorNote>
       </QMustaqil>
     </Stage>
   );
@@ -1650,14 +1657,14 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 10 — SHERIK «NEGA?» DEYDI (QMustaqil, juftlik 3 qadam; P-057 solishtirish sahnasi) · pm-m9d2-rice yangilanadi · nishon pairReview =====
 const S10_QADAM = {
   juft: [{ uz: 'Sonni tanlang', ru: 'Выберите число' }, { uz: 'Sababini ayting', ru: 'Назовите причину' }, { uz: 'Qaror', ru: 'Решение' }],
-  yakka: [{ uz: 'Sonni tanlang', ru: 'Выберите число' }, { uz: 'Mentorni o\'qing', ru: 'Прочитайте Ментора' }, { uz: 'Qaror', ru: 'Решение' }]
+  yakka: [{ uz: 'Sonni tanlang', ru: 'Выберите число' }, { uz: 'Mentorni o\'qing', ru: "Прочитайте ответ" }, { uz: 'Qaror', ru: 'Решение' }]
 };
 // Mentorning sabablari (tayanch 1.2 oxiri, 9.52) — «Mahalla to'garaklari» kartasi
 const MENTOR_SABAB = {
-  qamrov: { uz: "Mahallada to'garak izlaydigan o'smirlar ko'p deb o'yladim, lekin ularni sanamaganman.", ru: 'Я думал, что подростков, ищущих кружок в махалле, много, но я их не считал.' },
+  qamrov: { uz: "Mahallada to'garak izlaydigan o'smirlar ko'p deb o'yladim, lekin ularni sanamaganman.", ru: "Я думал, что в махалле много подростков, которые ищут кружок, но я их не считал." },
   tasir: { uz: "To'garak topilsa foydasi bor, lekin u har kuni kerak bo'ladigan narsa emas.", ru: 'Если кружок найдётся, польза есть, но это не то, что нужно каждый день.' },
-  ishonch: { uz: "Bu g'oya bo'yicha hali hech kim bilan gaplashmaganman — faqat taxmin.", ru: 'По этой идее я ещё ни с кем не говорил — только догадка.' },
-  mehnat: { uz: "Xarita va jadval — ikki ekran: bir o'zim ikki haftada qura olaman deb o'yladim.", ru: 'Карта и расписание — два экрана: думал, что один построю за две недели.' }
+  ishonch: { uz: "Bu g'oya bo'yicha hali hech kim bilan gaplashmaganman — faqat taxmin.", ru: "По этой идее я ещё ни с кем не говорил — только предположение." },
+  mehnat: { uz: "Xarita va jadval — ikki ekran: bir o'zim ikki haftada qura olaman deb o'yladim.", ru: "Карта и расписание — два экрана: я думал, что построю их один за две недели." }
 };
 const TAYMER_R = 46;
 function PairTimer({ soniya = 60, onBosh }) {
@@ -1754,17 +1761,17 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     </div>
   );
   const xulosa = {
-    qoldi: { uz: "Soningizni sabab bilan tushuntirdingiz — baho o'zgarmadi.", ru: 'Вы объяснили своё число причиной — оценка не изменилась.' },
-    ozgardi: { uz: "Bitta son o'zgardi va baho ham o'zgardi: RICE sonlari — taxmin.", ru: 'Изменилось одно число — изменилась и оценка: числа RICE — догадки.' },
-    orin: { uz: "Bitta son o'zgardi va g'oyalar o'rni almashdi: RICE sonlari — taxmin.", ru: 'Изменилось одно число — и идеи поменялись местами: числа RICE — догадки.' },
-    ishonarli: { uz: 'Sababi bor — son qoladi. Lekin bu misolda ishonch 50%: sonlar hali taxmin.', ru: 'Причина есть — число остаётся. Но в этом примере уверенность 50%: числа пока догадки.' },
-    ishonarsiz: { uz: "Ishonarsiz son pasaysa, g'oya o'rni o'zgarishi mumkin: RICE sonlari — taxmin.", ru: 'Если неубедительное число снизить, место идеи может измениться: числа RICE — догадки.' }
+    qoldi: { uz: "Soningizni sabab bilan tushuntirdingiz — baho o'zgarmadi.", ru: "Вы объяснили причину своего числа — оценка не изменилась." },
+    ozgardi: { uz: "Bitta son o'zgardi va baho ham o'zgardi: RICE sonlari — taxmin.", ru: "Изменилось одно число — изменилась и оценка: числа RICE — предположения." },
+    orin: { uz: "Bitta son o'zgardi va g'oyalar o'rni almashdi: RICE sonlari — taxmin.", ru: "Изменилось одно число — и идеи поменялись местами: числа RICE — предположения." },
+    ishonarli: { uz: 'Sababi bor — son qoladi. Lekin bu misolda ishonch 50%: sonlar hali taxmin.', ru: "Причина есть — число остаётся. Но в этом примере уверенность 50%: числа пока предположения." },
+    ishonarsiz: { uz: "Ishonarsiz son pasaysa, g'oya o'rni o'zgarishi mumkin: RICE sonlari — taxmin.", ru: "Если неубедительное число снизить, место идеи может измениться: числа RICE — предположения." }
   };
   const sarlavha = yakka && !isMentor
     ? tr({ uz: <>Mentorning qaysi soniga <A>«nega?»</A> der edingiz?</>, ru: <>Про какое число Ментора вы бы спросили <A>«почему?»</A></> })
     : tr({ uz: <>Sherigingiz qaysi soningizga <A>«nega?»</A> deydi?</>, ru: <>Про какое ваше число партнёр спросит <A>«почему?»</A></> });
   const mentorGap = yakka && !isMentor
-    ? tr({ uz: "Mentorning ikkinchi g'oyasidan bitta sonni tanlang — Mentor sababini aytadi.", ru: 'Выберите одно число второй идеи Ментора — Ментор назовёт причину.' })
+    ? tr({ uz: "Mentorning ikkinchi g'oyasidan bitta sonni tanlang — Mentor sababini aytadi.", ru: "Выберите одно число во второй идее Ментора — Ментор назовёт причину." })
     : tr({ uz: "Birinchi o'rindagi g'oyangizni sherigingizga ko'rsating — u bitta sonni tanlab, «nega?» deb so'raydi.", ru: 'Покажите партнёру идею на первом месте — он выберет одно число и спросит «почему?».' });
   return (
     <Stage eyebrow={yakka && !isMentor ? tr({ uz: 'Mustaqil ish', ru: 'Самостоятельная работа' }) : tr({ uz: 'Juftlikda ish', ru: 'Работа в парах' })} screen={screen}
@@ -1793,7 +1800,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       >
         {done && <QXulosa>{tr(xulosa[natija])}</QXulosa>}
         <MentorSanoq screen={screen} yorliqlar={[{ uz: 'Son qoldi', ru: 'Число осталось' }, { uz: "Son o'zgardi", ru: 'Число изменилось' }, { uz: "O'rin almashdi", ru: 'Места поменялись' }]} hisob={(rows) => [0, 1, 2].map(p => String(rows.filter(r => r.picked === p).length))} />
-        <MentorNote>{tr({ uz: "1 daqiqadan keyin «O'rin almashing» deng. Sonni o'zgartirgan 2–3 o'quvchidan so'rang: qaysi son, nega va o'rin o'zgardimi? O'zgarish — xato emas: sonlar taxmin.", ru: 'Через минуту скажите «Поменяйтесь местами». Спросите 2–3 учеников, изменивших число: какое число, почему и поменялось ли место? Изменение — не ошибка: числа — догадки.' })}</MentorNote>
+        <MentorNote>{tr({ uz: "1 daqiqadan keyin «O'rin almashing» deng. Sonni o'zgartirgan 2–3 o'quvchidan so'rang: qaysi son, nega va o'rin o'zgardimi? O'zgarish — xato emas: sonlar taxmin.", ru: "Через минуту скажите «Поменяйтесь местами». Спросите 2–3 учеников, изменивших число: какое число, почему и поменялось ли место? Изменение — не ошибка: числа — предположения." })}</MentorNote>
       </QMustaqil>
     </Stage>
   );
@@ -1854,8 +1861,7 @@ const KD_KOD = {
     '  return 0;   // это место пишете вы',
     '}',
     '',
-    '// каждой идее добавляем оценку и сортируем',
-    '// от большей к меньшей',
+    '// каждой идее добавляем оценку и сортируем по убыванию',
     '// (эта часть готова)',
     'goyalar.forEach(function (g) { g.baho = rice(g); });',
     'goyalar.sort(function (a, b) { return b.baho - a.baho; });',
@@ -1958,7 +1964,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>RICE bahosini hisoblaydigan <A>kod</A> yozamiz.</>, ru: <>Пишем <A>код</A>, который считает оценку RICE.</> })}
         mentor={<Mentor key={stage2 ? 'k2' : 'k1'}>{!stage2
           ? tr({ uz: "Avval bitta savol — so'ng kod yoziladi.", ru: 'Сначала один вопрос — потом пишем код.' })
-          : tr({ uz: <>Jadvalda ko'rgan hisobni endi kod qiladi: <code className="qcode">rice</code> funksiyasini va eng yuqori uchtasini yozing.</>, ru: <>Расчёт, который вы видели в таблице, теперь делает код: напишите функцию <code className="qcode">rice</code> и три верхние.</> })}</Mentor>}
+          : tr({ uz: <>Jadvalda ko'rgan hisobni endi kod qiladi: <code className="qcode">rice</code> funksiyasini va eng yuqori uchtasini yozing.</>, ru: <>Расчёт, который вы видели в таблице, теперь делает код: напишите функцию <code className="qcode">rice</code> и выведите три верхние.</> })}</Mentor>}
         vazifa={!stage2
           ? <div className="ri-darvoza">
               <span className="ri-darvoza-s">{tr({ uz: <>Kodda <code className="qcode">sort</code> dan keyin <code className="qcode">goyalar[0]</code> da qaysi g'oya turadi?</>, ru: <>Какая идея окажется в <code className="qcode">goyalar[0]</code> после <code className="qcode">sort</code>?</> })}</span>
@@ -1971,16 +1977,17 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </>}
         yordam={stage2 && <div className="ri-kyordam">
           <QTugma ikkinchi onClick={() => setYordam(o => !o)}>{tr(YORDAM_T)} {yordam ? '▾' : '▸'}</QTugma>
-          {yordam && <div className="ri-kyordam-b fade-step">
+        </div>}
+        bajardim={stage2 && <><div className="ri-amal">
+          <QTugma className={!done && !isMentor ? 'ri-halqa' : undefined} disabled={done || isMentor} onClick={bajardim}>{done ? '✓ ' : ''}{tr({ uz: 'Bajardim — uch qator chiqdi', ru: 'Готово — вывелись три строки' })}</QTugma>
+        </div>
+          {yordam && <Korinsin className="ri-kyordam-b fade-step">
             <span className="ri-kyordam-h">{tr({ uz: 'Eslatma (JavaScript darslaridan)', ru: 'Напоминание (из уроков JavaScript)' })}</span>
             <ul className="ri-esl">{KD_ESLATMA.map((e, k) => <li key={k}>{e.k === null ? tr(e.t) : <>{e.plain ? <b>{e.k}</b> : <code className="qcode">{e.k}</code>} — {tr(e.t)}</>}</li>)}</ul>
             <span className="ri-kyordam-h">{tr({ uz: 'Uch qadam', ru: 'Три шага' })}</span>
             <ol className="ri-vazifa">{KD_QADAM.map((q, i) => <li key={i}><i>{i + 1}</i><span>{tr(q)}</span></li>)}</ol>
-          </div>}
-        </div>}
-        bajardim={stage2 && <div className="ri-amal">
-          <QTugma className={!done && !isMentor ? 'ri-halqa' : undefined} disabled={done || isMentor} onClick={bajardim}>{done ? '✓ ' : ''}{tr({ uz: 'Bajardim — uch qator chiqdi', ru: 'Готово — вывелись три строки' })}</QTugma>
-        </div>}
+          </Korinsin>}
+        </>}
         {...{ [QKOD_ONG]: <div className="ri-kodoyna"><KodNamuna tayyor={done} ajrat={ajrat} /></div> }}
       >
         {isLive && stage2 && <SinfSanoq live={live} screen={screen} />}
@@ -1995,7 +2002,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 12 — YAKUNIY SAVOL (QuestionScreen; ✔ C, INLINE_KEYS.s12 = 2; RICE — tanlovga yordam, hukm emas) =====
 const S12Vizual = () => (
   <div className="ri-tv12">
-    <span className="ri-kul">{tr({ uz: 'taxmin', ru: 'догадка' })}</span>
+    <span className="ri-kul">{tr({ uz: 'taxmin', ru: "предположение" })}</span>
     {[20, 18].map((v, i) => <div key={v} className="ri-tv12-q"><b>{v}</b><span className="ri-tv12-y"><i style={{ width: `${v * 4}%`, animationDelay: `${0.2 + i * 0.15}s` }} /></span></div>)}
   </div>
 );
@@ -2006,13 +2013,13 @@ const Screen12 = (props) => (
     options={[
       { uz: "Birinchisi g'olib — ikkinchisini o'chirasiz", ru: 'Первая — победитель, вторую удаляете' },
       { uz: 'Birinchisini qurasiz — gaplashish shart emas', ru: 'Строите первую — говорить не обязательно' },
-      { uz: 'Sonlar taxmin — boshqa dalil ham kerak', ru: 'Числа — догадки, нужны и другие доказательства' },
+      { uz: 'Sonlar taxmin — boshqa dalil ham kerak', ru: "Числа — предположения, нужны и другие доводы" },
       { uz: 'Ikkinchisi yomon — RICE uni chetga chiqardi', ru: 'Вторая плохая — RICE её отвёл в сторону' }
     ]} correctIdx={2}
-    explainCorrect={{ uz: 'RICE — tanlovga yordam, hukm emas: sonlar taxmin, qarorga boshqa dalil ham kerak.', ru: 'RICE — помощь в выборе, а не приговор: числа — догадки, для решения нужны и другие доказательства.' }}
+    explainCorrect={{ uz: 'RICE — tanlovga yordam, hukm emas: sonlar taxmin, qarorga boshqa dalil ham kerak.', ru: "RICE — помощь в выборе, а не приговор: числа — предположения, для решения нужны и другие доводы." }}
     explainWrong={{
-      0: { uz: 'RICE hukm emas: 20 ham, 18 ham — taxmindan chiqqan son.', ru: 'RICE — не приговор: и 20, и 18 — числа из догадок.' },
-      1: { uz: 'Baho — taxmin, isbot emas.', ru: 'Оценка — догадка, а не доказательство.' },
+      0: { uz: 'RICE hukm emas: 20 ham, 18 ham — taxmindan chiqqan son.', ru: "RICE — не приговор: и 20, и 18 получены из предположений." },
+      1: { uz: 'Baho — taxmin, isbot emas.', ru: "Оценка — предположение, а не доказательство." },
       3: { uz: 'RICE chetga chiqarmaydi — u faqat tartiblaydi.', ru: 'RICE не отводит в сторону — он только упорядочивает.' },
       default: { uz: 'RICE nimaga yordam berishini eslang.', ru: 'Вспомните, в чём помогает RICE.' }
     }}
@@ -2022,8 +2029,8 @@ const Screen12 = (props) => (
 // ===== 🏅 BADGES (nishonlar) — ish qilingan ekranlarda, tekin bonus yo'q (S-034); medal belgisi — o'yin qatlami =====
 const ACHIEVEMENTS = {
   sortedIt: { icon: '🗂️', name: 'Sorted It!', desc: { uz: 'G\'oyalaringizni uch savol bilan saraladingiz', ru: 'Вы отобрали свои идеи тремя вопросами' } },
-  riceRated: { icon: '⚖️', name: 'RICE Rated!', desc: { uz: "Savollardan o'tgan g'oyalaringizni RICE bilan baholab, ikkitasini belgiladingiz", ru: 'Вы оценили прошедшие вопросы идеи по RICE и отметили две' } },
-  pairReview: { icon: '🤝', name: 'Pair Review!', desc: { uz: 'Bitta soningizni sabab bilan tushuntirdingiz', ru: 'Вы объяснили одно своё число причиной' } },
+  riceRated: { icon: '⚖️', name: 'RICE Rated!', desc: { uz: "Savollardan o'tgan g'oyalaringizni RICE bilan baholab, ikkitasini belgiladingiz", ru: "Вы оценили по RICE идеи, прошедшие вопросы, и отметили две" } },
+  pairReview: { icon: '🤝', name: 'Pair Review!', desc: { uz: 'Bitta soningizni sabab bilan tushuntirdingiz', ru: "Вы объяснили причину одного своего числа" } },
   riceCoder: { icon: '🧮', name: 'RICE Coder!', desc: { uz: 'RICE bahosini hisoblaydigan kod yozdingiz', ru: 'Вы написали код, который считает оценку RICE' } }
 };
 // Ekran id → nishon (onAnswer correct: true bo'lganda; s11 — darvoza-savol birinchi urinishda va «Bajardim»)
@@ -2108,12 +2115,12 @@ const QUIZ_BANK = [
   { q: { uz: '«Real auditoriya bormi?» savoli nimani so\'raydi?', ru: 'О чём спрашивает вопрос «Есть реальная аудитория?»' }, opts: [{ uz: '6 hafta ichida qura olasizmi', ru: 'Сможете ли построить за 6 недель' }, { uz: 'Kamida 5 tanishingiz bormi', ru: 'Есть ли хотя бы 5 знакомых' }, { uz: "Shu g'oya o'zingizga qiziqmi", ru: 'Интересна ли вам эта идея' }, { uz: 'Ilovani necha kishi yuklaydi', ru: 'Сколько человек скачает приложение' }], correct: 1 },
   { q: { uz: "Qaysi g'oyaning birinchi versiyasini 6 haftada qurish qiyin?", ru: 'Первую версию какой идеи трудно построить за 6 недель?' }, opts: [{ uz: "Sinf vazifalari ro'yxati", ru: 'Список заданий класса' }, { uz: 'Oshxona menyusi sahifasi', ru: 'Страница меню столовой' }, { uz: 'Uyga ovqat yetkazish xizmati', ru: 'Служба доставки еды на дом' }, { uz: "To'garaklar jadvali sahifasi", ru: 'Страница расписания кружков' }], correct: 2 },
   { q: { uz: "Ta'sir 3 nimani bildiradi?", ru: 'Что означает влияние 3?' }, opts: [{ uz: 'Uch kishiga foyda yetkazadi', ru: 'Приносит пользу трём людям' }, { uz: 'Uch hafta mehnat talab qiladi', ru: 'Требует трёх недель усилий' }, { uz: "Ro'yxatda uchinchi o'rinda", ru: 'На третьем месте в списке' }, { uz: 'Har odamga juda katta foyda', ru: 'Очень большая польза каждому' }], correct: 3 },
-  { q: { uz: "Bu kursda ishonch 50% qachon qo'yiladi?", ru: 'Когда в этом курсе ставят уверенность 50%?' }, opts: [{ uz: "Dalil yo'q, faqat taxmin bo'lsa", ru: 'Если доказательств нет, только догадка' }, { uz: "O'lchangan aniq son bor bo'lsa", ru: 'Если есть точное измеренное число' }, { uz: "Ko'p odamlar shuni aytgan bo'lsa", ru: 'Если об этом сказали многие' }, { uz: "G'oyaning yarmi qurilgan bo'lsa", ru: 'Если идея построена наполовину' }], correct: 0 },
+  { q: { uz: "Bu kursda ishonch 50% qachon qo'yiladi?", ru: 'Когда в этом курсе ставят уверенность 50%?' }, opts: [{ uz: "Dalil yo'q, faqat taxmin bo'lsa", ru: "Если доводов нет, только предположение" }, { uz: "O'lchangan aniq son bor bo'lsa", ru: 'Если есть точное измеренное число' }, { uz: "Ko'p odamlar shuni aytgan bo'lsa", ru: 'Если об этом сказали многие' }, { uz: "G'oyaning yarmi qurilgan bo'lsa", ru: 'Если идея построена наполовину' }], correct: 0 },
   { q: { uz: 'Bu kursda mehnat qanday sanaladi?', ru: 'Как в этом курсе считают усилия?' }, opts: [{ uz: 'Odam-oyda — bitta odam bir oyda', ru: 'В человеко-месяцах — один человек за месяц' }, { uz: 'Haftada — bir odam necha hafta', ru: 'В неделях — сколько недель один человек' }, { uz: 'Kunda — butun sinf necha kun', ru: 'В днях — сколько дней весь класс' }, { uz: 'Soatda — kod necha soat oladi', ru: 'В часах — сколько часов займёт код' }], correct: 1 },
-  { q: { uz: "Qamrov 90, ta'sir 2, ishonch 50%, mehnat 3. RICE qancha?", ru: 'Охват 90, влияние 2, уверенность 50%, усилия 3. Сколько RICE?' }, opts: [{ uz: '15', ru: '15' }, { uz: '60', ru: '60' }, { uz: '30', ru: '30' }, { uz: '90', ru: '90' }], correct: 2 },
+  { q: { uz: "Qamrov 90, ta'sir 2, ishonch 50%, mehnat 3. RICE qancha?", ru: "Охват 90, влияние 2, уверенность 50%, усилия 3. Чему равен RICE?" }, opts: [{ uz: '15', ru: '15' }, { uz: '60', ru: '60' }, { uz: '30', ru: '30' }, { uz: '90', ru: '90' }], correct: 2 },
   { q: { uz: "Qamrovi katta g'oyaning bahosi nega past chiqishi mumkin?", ru: 'Почему у идеи с большим охватом оценка может выйти низкой?' }, opts: [{ uz: "Odam ko'p bo'lsa, baho o'zi pasayadi", ru: 'Когда людей много, оценка сама падает' }, { uz: 'Qamrov bahoda umuman sanalmaydi', ru: 'Охват в оценке вообще не считается' }, { uz: "Mehnati juda kam bo'lgani uchun", ru: 'Потому что усилия очень малы' }, { uz: "Ta'sir yoki ishonch kichik bo'lsa", ru: 'Если влияние или уверенность малы' }], correct: 3 },
   { q: { uz: 'Stories voqeasidan qaysi xulosa chiqadi?', ru: 'Какой вывод следует из истории Stories?' }, opts: [{ uz: 'Yaxshiroq yetkazgan ilova yutdi', ru: 'Выиграло приложение, лучше донёсшее формат' }, { uz: 'Uni birinchi o\'ylab topgan yutdi', ru: 'Выиграл тот, кто придумал первым' }, { uz: 'Arzonroq bo\'lgan ilova yutdi', ru: 'Выиграло более дешёвое приложение' }, { uz: 'Eng keyin chiqqan ilova yutdi', ru: 'Выиграло приложение, вышедшее последним' }], correct: 0 },
-  { q: { uz: 'Sherigingiz bitta soningizga «nega?» dedi. Nima qilasiz?', ru: 'Партнёр спросил «почему?» про ваше число. Что сделаете?' }, opts: [{ uz: 'Hech narsa demay, sonni o\'zgartirmaysiz', ru: 'Ничего не говорите и не меняете число' }, { uz: 'Sababini aytib, kerak bo\'lsa tuzatasiz', ru: 'Называете причину и при нужде исправляете' }, { uz: "G'oyani butunlay chetga chiqarasiz", ru: 'Полностью отводите идею в сторону' }, { uz: 'Sherigingiz aytgan sonni yozib qo\'yasiz', ru: 'Записываете число, которое назвал партнёр' }], correct: 1 },
+  { q: { uz: 'Sherigingiz bitta soningizga «nega?» dedi. Nima qilasiz?', ru: "Партнёр спросил «почему?» про одно ваше число. Что сделаете?" }, opts: [{ uz: 'Hech narsa demay, sonni o\'zgartirmaysiz', ru: 'Ничего не говорите и не меняете число' }, { uz: 'Sababini aytib, kerak bo\'lsa tuzatasiz', ru: "Называете причину и при необходимости исправляете" }, { uz: "G'oyani butunlay chetga chiqarasiz", ru: 'Полностью отводите идею в сторону' }, { uz: 'Sherigingiz aytgan sonni yozib qo\'yasiz', ru: 'Записываете число, которое назвал партнёр' }], correct: 1 },
   { q: { uz: "Mentorning jamoa yig'ish g'oyasida ishonch nega 80%?", ru: 'Почему в идее Ментора о сборе команды уверенность 80%?' }, opts: [{ uz: 'Mentorga bu g\'oya hammasidan qiziq', ru: 'Ментору эта идея интереснее всех' }, { uz: "Bu g'oyaning ta'siri ikkiga teng", ru: 'Влияние этой идеи равно двум' }, { uz: '9-Modulda 5 kishidan 2 tasi aytgan', ru: 'В 9-м модуле так сказали 2 из 5 человек' }, { uz: "Uning mehnati 4 hafta — eng ko'p", ru: 'Её усилия — 4 недели, больше всех' }], correct: 2 },
   { q: { uz: '`rice(g)` funksiyasi nimani qaytaradi?', ru: 'Что возвращает функция `rice(g)`?' }, opts: [{ uz: "Bitta g'oyaning qisqa nomini", ru: 'Короткое название одной идеи' }, { uz: "Eng yuqori uchta g'oya nomini", ru: 'Названия трёх верхних идей' }, { uz: "Ro'yxatdagi g'oyalar sonini", ru: 'Число идей в списке' }, { uz: "Bitta g'oyaning bahosini", ru: 'Оценку одной идеи' }], correct: 3 },
 ];
@@ -2667,16 +2674,16 @@ const MentorPracticeStats = ({ live, screen }) => {
 const KARTOCHKALAR = [
   { front: { uz: "G'oyani saralashda qaysi uch savol beriladi?", ru: 'Какие три вопроса задают при отборе идеи?' }, back: { uz: 'Bajariladimi, real auditoriya bormi va qiziqmi', ru: 'Выполнимо ли, есть ли реальная аудитория и интересно ли' } },
   { front: { uz: '«Bajariladimi?» savoli nimani so\'raydi?', ru: 'О чём спрашивает вопрос «Выполнимо?»' }, back: { uz: 'Birinchi versiyasini shu modulning 6 haftasida qura olasizmi', ru: 'Сможете ли построить первую версию за 6 недель этого модуля' } },
-  { front: { uz: 'Real auditoriya savoli nimani tekshiradi?', ru: 'Что проверяет вопрос о реальной аудитории?' }, back: { uz: 'Gaplasha oladigan kamida 5 tanishingiz borligini — muammo borligini emas', ru: 'Есть ли хотя бы 5 знакомых для разговора — а не есть ли проблема' } },
+  { front: { uz: 'Real auditoriya savoli nimani tekshiradi?', ru: 'Что проверяет вопрос о реальной аудитории?' }, back: { uz: 'Gaplasha oladigan kamida 5 tanishingiz borligini — muammo borligini emas', ru: "Есть ли хотя бы 5 знакомых, с кем можно поговорить, — а не есть ли проблема" } },
   { front: { uz: "Qaysi g'oya RICE ga o'tadi?", ru: 'Какая идея переходит к RICE?' }, back: { uz: "Uchala savolga «ha» olgan g'oya", ru: 'Идея, получившая «да» на все три вопроса' } },
   { front: { uz: 'RICE ni qanday hisoblaysiz?', ru: 'Как считают RICE?' }, back: { uz: "Qamrovni ta'sirga va ishonchga ko'paytirib, mehnatga bo'lasiz", ru: 'Умножаете охват на влияние и уверенность и делите на усилия' } },
-  { front: { uz: "Qamrov nimani o'lchaydi?", ru: 'Что измеряет охват?' }, back: { uz: "G'oya bir oyda nechta odamga yetishini", ru: 'Скольким людям идея дойдёт за месяц' } },
+  { front: { uz: "Qamrov nimani o'lchaydi?", ru: 'Что измеряет охват?' }, back: { uz: "G'oya bir oyda nechta odamga yetishini", ru: "До скольких людей идея дойдёт за месяц" } },
   { front: { uz: "Ta'sir qaysi sonlar bilan belgilanadi?", ru: 'Какими числами обозначают влияние?' }, back: { uz: "3 juda katta, 2 katta, 1 o'rta, 0,5 kichik, 0,25 juda kichik", ru: '3 очень большое, 2 большое, 1 среднее, 0,5 малое, 0,25 очень малое' } },
-  { front: { uz: "Bu kursda ishonch qachon 80% bo'ladi?", ru: 'Когда в этом курсе уверенность 80%?' }, back: { uz: 'Dalil bo\'lsa: masalan, odamlar shu muammoni aytgan', ru: 'Когда есть доказательство: например, люди назвали эту проблему' } },
+  { front: { uz: "Bu kursda ishonch qachon 80% bo'ladi?", ru: "Когда в этом курсе уверенность — 80%?" }, back: { uz: 'Dalil bo\'lsa: masalan, odamlar shu muammoni aytgan', ru: 'Когда есть довод: например, люди назвали эту проблему' } },
   { front: { uz: 'Bu kursda mehnat qanday sanaladi?', ru: 'Как в этом курсе считают усилия?' }, back: { uz: 'Bitta odam necha hafta ishlashi bilan', ru: 'Тем, сколько недель работает один человек' } },
   { front: { uz: "Nega Stories Instagram'da ko'proq ishlatildi?", ru: 'Почему Stories больше использовали в Instagram?' }, back: { uz: "U yerda tayyor katta auditoriya bor edi — format ko'proq odamga yetdi", ru: 'Там уже была большая аудитория — формат дошёл до большего числа людей' } },
-  { front: { uz: "Mentorning qaysi g'oyasi RICE da birinchi bo'ldi va nega?", ru: 'Какая идея Ментора стала первой в RICE и почему?' }, back: { uz: "Jamoa yig'ish: ta'siri katta va ishonchi 80% — dalil bor", ru: 'Сбор команды: большое влияние и уверенность 80% — есть доказательство' } },
-  { front: { uz: 'RICE tanlovni o\'zi hal qiladimi?', ru: 'Решает ли RICE выбор сам?' }, back: { uz: "Yo'q: u faqat tartiblaydi, sonlar esa taxmin", ru: 'Нет: он только упорядочивает, а числа — догадки' } }
+  { front: { uz: "Mentorning qaysi g'oyasi RICE da birinchi bo'ldi va nega?", ru: 'Какая идея Ментора стала первой в RICE и почему?' }, back: { uz: "Jamoa yig'ish: ta'siri katta va ishonchi 80% — dalil bor", ru: 'Сбор команды: большое влияние и уверенность 80% — есть довод' } },
+  { front: { uz: 'RICE tanlovni o\'zi hal qiladimi?', ru: 'Решает ли RICE выбор сам?' }, back: { uz: "Yo'q: u faqat tartiblaydi, sonlar esa taxmin", ru: "Нет: он только упорядочивает, а числа — предположения" } }
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2704,8 +2711,8 @@ const HW_KARTA = [
 ];
 const HW_QADAM = [
   { uz: "Darsda ulgurmagan g'oyalarni saralang va baholang — «Uchta g'oyam» ro'yxatida.", ru: 'Отберите и оцените идеи, до которых не дошли на уроке, — в списке «Мои три идеи».' },
-  { uz: "Uchta g'oyangizning RICE sonlarini uydagilardan biriga ko'rsating. U qaysi soniga «nega?» desa, o'sha sonni qayta ko'ring.", ru: 'Покажите числа RICE своих трёх идей кому-то из домашних. Про какое число он спросит «почему?», то и пересмотрите.' },
-  { uz: "Belgilangan ikki g'oyangizning har biri uchun gaplasha oladigan 5 kishini qog'ozga yozing: ismi emas, kimligi.", ru: 'Для каждой из двух отмеченных идей запишите на бумаге 5 человек, с кем можно поговорить: не имя, а кто это.' }
+  { uz: "Uchta g'oyangizning RICE sonlarini uydagilardan biriga ko'rsating. U qaysi soniga «nega?» desa, o'sha sonni qayta ko'ring.", ru: "Покажите числа RICE трёх своих идей кому-то из домашних. О каком числе он спросит «почему?» — то и пересмотрите." },
+  { uz: "Belgilangan ikki g'oyangizning har biri uchun gaplasha oladigan 5 kishini qog'ozga yozing: ismi emas, kimligi.", ru: "Для каждой из двух отмеченных идей запишите на бумаге 5 человек, с которыми можно поговорить: не имя, а кто это." }
 ];
 const HwCard = ({ keyingi }) => (
   <div className="card ri-hw fade-up">
@@ -3097,7 +3104,7 @@ export default function PmIdeaRiceLesson({ lang: langProp, onFinished, liveToken
         .ri-voqea > .zoomable.zoom-on { display: flex; justify-content: center; }
         .ri-voqea-h { font-weight: 800; font-size: clamp(16px,1.8vw,19px); color: ${T.ink}; animation: ri-kir 0.35s ease-out both; }
         .ri-voqea .ri-bash, .ri-voqea .ri-bashq, .ri-voqea p.q-xulosa { width: 100%; max-width: 680px; text-align: left; }
-        .ri-st { display: block; width: 100%; max-width: 500px; height: auto; }
+        .ri-st { display: block; width: 100%; max-width: 440px; height: auto; } /* 1280×800 da bashorat kartasi panel ustida (F-1007-289) */
         .ri-st-nom { font-family: 'Manrope', sans-serif; font-size: 15px; font-weight: 800; }
         .ri-st-nom.ig { font-size: 18px; }
         .ri-st-d.kir { animation: ri-kir 0.4s ease-out both; animation-delay: calc(var(--i) * 0.22s); transform-box: fill-box; transform-origin: center; }
@@ -3241,6 +3248,7 @@ export default function PmIdeaRiceLesson({ lang: langProp, onFinished, liveToken
         .ri-kyordam { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
         .ri-kyordam .q-btn { align-self: flex-start; }
         .ri-kyordam-b { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border-radius: 12px; background: ${T.bg}; }
+        .ri-amal + .ri-kyordam-b { margin-top: 10px; } /* eslatma «Bajardim» ostida — tugma doim ko'rinadi (F-1007-289) */
         .ri-kyordam-h { font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: ${T.ink2}; }
         .ri-kyordam-b .qcode { white-space: normal; overflow-wrap: anywhere; }
         ul.ri-esl { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; font-size: 13px; line-height: 1.45; color: ${T.ink}; }
@@ -3251,8 +3259,9 @@ export default function PmIdeaRiceLesson({ lang: langProp, onFinished, liveToken
         .ri-vsc-fayl b { color: #E8C547; font-size: 10.5px; }
         .ri-vsc-lock { font-size: 11px; color: #9DA3AE; font-family: 'Manrope', sans-serif; }
         .ri-vsc-body { padding: 8px 0; }
+        @media (min-width: 761px) { .ri-vsc-body { max-height: max(220px, calc(100vh - 520px)); overflow-y: auto; scrollbar-width: thin; scrollbar-color: #4A4A4A transparent; } } /* 1280×800: kutilgan natija ko'rinsin, kod oyna ichida suriladi (F-1007-289) */
         .ri-vsc-q { display: flex; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; line-height: 1.3; color: #D4D4D4; white-space: pre; transition: background 0.3s; }
-        .ri-vsc-q.ajrat { background: rgba(255,211,128,0.18); box-shadow: inset 3px 0 0 #FFD380; }
+        .ri-vsc-q.ajrat { background: rgba(255,211,128,0.18); }
         .ri-vsc-n { width: 30px; flex-shrink: 0; text-align: right; padding-right: 10px; color: #6E7681; }
         .ri-vsc-k { min-width: 0; }
         .ri-kd-iz { color: #6A9955; font-style: italic; } .ri-kd-str { color: #CE9178; } .ri-kd-kw { color: #569CD6; }

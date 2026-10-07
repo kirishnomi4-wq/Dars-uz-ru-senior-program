@@ -22,7 +22,7 @@
 | 2 · GATE M | ✅ 06.10 07:20 `11M-GATE-1`: 16/16 ✓, savollar hammasi A (`GATE_M_JAVOB.md`) · M-q2 A 07:22 da qo'llandi (16, 15 MD, tayanch, NOMLAR, App.jsx `m9-16`) · sahifa: https://claude.ai/artifact/4z9cZkXNYEwVqqLBEshMnM |
 | 2a · Tashqi audit (ChatGPT) Filtr | ✅ 06.10 10:54 — 16/16 dars (`01…16-FILTR.md`, F-1006-251…266); tayanch 9.48–9.99 · DD-q0 yopildi 12:20 (`m9-17` osti «final g'oya») |
 | 3–8 · «Qur» (buyruq bilan; 2 pilot → 2-to'lqin) | ✅ pilot 01 + 10 qurildi, foydalanuvchi ko'rigi (F-1006-270/271), qarorlar F-1006-272 (6 g'oya), 01 qayta ishlandi 15:55 · ⏳ 2-to'lqin 14 dars: fayllar skeletdan + App.jsx ✅ 18:09 (F-1006-273), A (02–06) ✅ 5/5 tekshirildi · B (07, 08, 09, 11, 12) ✅ 5/5 tekshirildi · C (13–16) ✅ — 16/16 qurildi (21:20) · 2-bosqich (o'z sinovim) boshlandi |
-| 9 · Yopish · QA sayti · commit | — |
+| 9 · Yopish · QA sayti · commit | ✅ 07.10: `modul:yopish` 16/16 (darslar) + modul qismi alohida · RU + yakuniy MD 16/16 (F-1007-291) · QA https://coddycamp-11modul.vercel.app (smoke 32/32) · commit + push (yozuv F-1007-291 yakun) |
 
 **Keyingi qadam (06.10 15:55) — YANGI SEANS UCHUN:** foydalanuvchi «hozir saqla, soat 5 da yangi sesiyadan yozaman — qolgan 14 darsni qurib yuboramiz». Pilot 01 + 10 tayyor (gates 12/12, foydalanuvchi ko'rdi, fidbek qo'llandi). Boshlash: `QURUVCHI_TOPSHIRIQ_2.md` (to'lqinlar A 02–06 · B 07, 08, 09, 11, 12 · C 13–16) — avval fayllarni skeletdan tayyorlash (+ `.zoom-on`, App.jsx), keyin agent ruxsati (bir xabar: nechta, nima, fayl, vaqt). Qoidalar: `QURUVCHI_SABOQ.md` A–D. Lokal ko'rish: `npx vite --port 5173 --host 127.0.0.1`. Foydalanuvchiga aytilgan, boshqa seanslarniki: ⛶ skelet bug (MEXANIZM-TAKLIF 10) — 9/10-Modul va skelet; 9-Modul ro'yxatini 6 ga kamaytirish — 9-Modul seansi. Commit — buyruq bilan (hali yo'q).
 
@@ -270,8 +270,65 @@
   07.10 tekshiruvi: 4-dars gates 12/12, esbuild 16/16 ✓. Eslatma: eski seans scratchpad (`tolqin2/`, `s3/` zaxiralari) qayta yuklashda o'chdi; `src/9-Modull/` gitda yo'q (untracked).
 - **2026-10-07 07:24 · F-1007-288 · Xavflar yopildi: 11-Modul gitga (commit + push, foydalanuvchi buyrug'i «xavflarni ehtiyotkorlikda tuzat va gitga chiqar»).**
   Commitdan oldin: gates 12/12 × 16, lint:jsx toza, maxfiy kalit qidiruvi 0. App.jsx — faqat 9-Modul qatorlari (HEAD + 41 qator: 18 import + `id: '9'` bloki; olib tashlangan 0) alohida yig'ilib staging'ga qo'yildi; 8-Modull (10-Modul seansi) va 10-Modull (12-Modul seansi) qatorlari ishchi nusxada tegilmasdan qoldi.
-  Zaxira qoidasi (scratchpad o'chgani uchun): tahrir-oldi nusxa endi `arxiv/<F-ID>-oldin-…/` ga, scratchpad'ga emas; asosiy zaxira — git.
-
+  Natija: commit `ad448e3`, push ✓ (`1fffa7c..ad448e3`, 12-Modulning `a10a1a7` i ham birga); ajratilgan nusxada `vite build` ✓ (9-Modull 16/16 chunk). Zaxira qoidasi (scratchpad o'chgani uchun): tahrir-oldi nusxa endi `arxiv/<F-ID>-oldin-…/` ga, scratchpad'ga emas; asosiy zaxira — git.
+- **2026-10-07 08:34 · F-1007-289 · 2-bosqich davomi: S1 (1280×800 sig'ish), ⛶, kalitlar zanjiri.** Zaxira `arxiv/F-1007-289-oldin-2026-10-07/` (16 fayl, tahrirdan oldin).
+  `lint:layout` 16/16 qayta (07:38) → har topilma lint qadamida suratda (`scratchpad/lintshot.mjs` — lint bosish tartibi; `NORESET=1` — avto-skroll bilan). To'liq ro'yxat va hukmlar — `SINOV_ROYXAT.md` S1.
+  Tuzatildi: voqea sahnasi 2, 5, 16 · 13-dars yakuniy test jadvali · KOD 2, 3, 4 (kod tanasi `calc(100vh − 520px)` + ichki skroll; 2, 4 da eslatma «Bajardim» ostiga — `Korinsin`) · 6-dars RICE kartasi bir qator ·
+  «Yordam» `Korinsin` (1, 5, 7) · 3-dars 10-ekran yakka izohi karta ostiga. Qaytarildi: «Ortda»ni natija ustuniga ko'chirish (10-darsda boshlang'ich holat yomonlashdi) → MEXANIZM-TAKLIF 13.
+  ⛶: `scratchpad/zoomtest.mjs` (detektor 10-Modul m8-03 da isbotlandi — 6/7 buzuq) · boshlang'ich holat 16/16: 112 ta ⛶, nuqson 0 · **4-darsda `.q-fokus:has(.zoom-on)` yo'q edi** (06.10 21:34 supurishidan tushib qolgan) — yakuniy holatda oyna tepaga siljirdi (surat), qo'shildi, qayta o'lchov ✓.
+  Kalitlar: 2 → 3 `ikkita` (indeks → `goyalar[i]`) ✓ · 3 → 4 `belgi` — 4-dars eslatmasida xom «ha / yo'q» (ru da ham) → `tr(BELGI_HA / BELGI_YOQ)`. MD 02 TAYANCHGA SAVOL 13 — 6 g'oya raqamlari.
+  gates 12/12: 1, 2, 3, 4, 5, 6, 7, 13, 16 · lint:jsx toza.
+- **2026-10-07 09:26 · F-1007-289 (davomi) · 393, darsga xos bandlar, ⛶ yakuniy holat.**
+  ⛶ yakuniy holat (14 bosish, 4 oqim): `q-fokus` 1, 2, 3, 4, 7, 8, 16 da — markazda ✓; 5/2, 6/4, 9/4 «ochilmadi» — o'tish paytida bosish (6 s kutilganda ✓; `zoom-joy` sinab ko'rildi, keraksiz — qaytarildi) → MEXANIZM-TAKLIF 14.
+  393 (`lint:layout --vp 393x852` 16/16): 12-dars ⛶ «Bugun: shanba»ni yopardi → PM darslardagi 640 px qoidasi · 7-dars plitkalar «Sh 18:00» bir qatorda + ⛶ qoidasi · 8-dars hook «o'ngdagi javoblardan» → «javoblardan» (uz/ru, MD 08) — supurish: yo'nalish so'zlari 16 dars (10, 2 — o'rinli).
+  7-dars qo'lyozma shrift — Comic Neue Google Fonts orqali (Linux/Android'da serif edi) · **12-dars «↓ torting» sichqoncha bilan ishlamasdi** (24 px tugmadan chiqib ketardi) → `setPointerCapture` (8-dars naqshi); sichqoncha surish ✓, bosish ✓.
+  **7-dars kompilyator tekshiruvi:** `transition: all 0.3s` va `scale(1.3, 1.3)` rad etilardi (CSSOM «all» ni tushiradi) → predikat tuzatildi; sinov fayldagi kod bilan 11 holat (to'g'ri 6 ✓, noto'g'ri 5 ✗) — `scratchpad/csscheck.mjs`.
+  9-dars «Kompyuter 900 px» kichik matn — oqlandi (maket ataylab kichraytirilgan, joylashuvni solishtirish). 3-dars Telegram (yakuniy holatda chat ko'rinishi), 11-ekran bo'sh joy (qolip QKod) — oqlandi.
+  gates 12/12: 7, 8, 12 · lint:jsx toza.
+- **2026-10-07 10:04 · F-1007-290 · 3-bosqich: 9 va 10-Modul ⛶ tuzatildi (23 fayl).** Tahrirdan oldin mtime (oxirgi tahrir 06.10 09:44 / 10:32 — seanslar bo'sh) va git holati (7-Modull 5 fayl M, 8-Modull untracked) ko'rildi; zaxira `arxiv/F-1007-290-zoom-oldin-2026-10-07/`.
+  23 faylga 2 qator (`.zoom-on`, `.q-fokus:has(.zoom-on)`) + 5 voqea faylga 1 qator (`*-voqea:has(.zoom-on)` — yangi topilma: dars voqea konteyneri ham fill-both transform qoldiradi). Sinov 177 ta ⛶ (boshlang'ich + yakuniy) nuqson 0; gates 12/12 × 23.
+  Ikkala modul jurnaliga «TASHQI O'ZGARISH» yozuvi qo'yildi. 12-Modul (`src/10-Modull`) pilotlarida `.zoom-on` bor (o'sha seans 07.10 ertalab) — tegilmadi. Skelet `NamunaDars.jsx` — asosiy seans (MEXANIZM-TAKLIF 10).
+  S2: Mentor rejimi 16/16 — pageerror 0; juftlik ekranlari (1/9, 3/10, 4/10, 6/9) ko'z bilan; savol: 6-dars 10-ekran Mentor ko'rinishida bo'sh «Siz» ustuni — foydalanuvchiga.
+- **2026-10-07 11:41 · F-1007-291 · Modulni yopish: halol holat → RU sayqal + yakuniy MD (3-to'lqin), QA sayti fayllari.**
+  Foydalanuvchi: «sening moduling bitdimi, halol holatni ayt, chala ish bo'lsa darhol qilamiz». Holat: konveyer 7 (RU) va 8 (yakuniy MD) qilinmagan, `modul:yopish` yurmagan, QA sayti yo'q, 07.10 ishlari commit qilinmagan.
+  `modul:yopish` (5 dars, keyin to'xtatildi — agentlar fayllarni o'zgartiradi): gates 12/12 · dizayn toza · **RU XATO** 5/5 (namuna 9-dars: «gap» — kod oynasidagi CSS xossasi) · **sarlavha 2+ qator** 4/5 (ru sarlavhalar, 1280×800).
+  Qaror: «8 + 8, ikki to'lqin» (agentlar), oxirida deploy/commit — so'raladi. Topshiriq `QURUVCHI_TOPSHIRIQ_3.md` (10-Modul naqshi; modul ruscha lug'ati 32 qator — quruvchilar ko'pchiligi yozgani o'lchandi;
+  yangi qoida «ekrandagi nom = matndagi nom»: 8, 11, 12-darslarda ru gaplar «Kelaman», «Yuborish» desa, maket «Приду», «Отправить» ko'rsatadi; talab/kod — o'zbekcha qiymat qoladi). Zaxira `arxiv/F-1007-291-ru-oldin-2026-10-07/` (16 fayl).
+  To'lqin 1 (1–8) 11:40 yuborildi. QA sayti fayllari (chegara ichida): `modul9.html`, `vite.m9.config.js`, `src/m9-demo/M9DemoApp.jsx` + `M9DemoMain.jsx` — `src/m8-demo` naqshidan generator bilan
+  (`scratchpad/m9demo/gen.py`: App.jsx 9-blok + har darsning `lessonTitle.ru`; RU to'lqinidan keyin qayta yurgiziladi), esbuild ✓. Deploy — foydalanuvchi buyrug'i bilan.
+- **2026-10-07 12:08 · F-1007-291 (davomi) · To'lqin 1 (1–8) ✅ — RU sayqal + yakuniy MD, o'zim tekshirdim va sinf-supurish.**
+  Agentlar 8/8 (15–20 daq har biri): ru-gate TENG · gates 12/12 · lint:jsx 0 · ru-walk TOZA · sarlavha-qator 0 · `YAKUNIY/01…08` ekran soni = SCREEN_META · lint:til 0. O'zgartirilgan ru: 28–103 / dars.
+  Mustaqil tekshiruv (`scratchpad/m9demo/tekshir.sh`: arxiv nusxaga ru-gate, gates, ru dan tashqari diff, YAKUNIY soni) — 8/8 toza.
+  **Bir xillashtirish (o'lchov 16 dars + 9/10-Modul; topshiriqqa «To'lqin 1 saboqlari» jadvali):** «Yordam» → «Подсказка» (7, 8 — «Помощь» edi) · muammo gapi → «формулировка проблемы» (5: 10 joy) ·
+  qiynaladi → «мучиться» (5: 4 joy) · sinab ko'rish kuni → «день пробы» (3: 4, 4: 10 joy) · «Делить плату за поле» (6) · PRD bo'limi «Dalil» → «Довод» (6).
+  **Kod tuzatishlari (agentlar topdi, men tuzatdim):** (a) javob tekshiruvlari faqat o'zbekcha so'zni tanirdi — ru rejimida 4-dars har doim «Пусть будет слово «трудно»» derdi:
+  1, 3, 4, 5-darslarda regex ikki tilli (16-dars `RE_XOHISH` naqshi; `node` da namunalar bilan sinaldi; 13-dars — 2-to'lqindan keyin) · (b) 5-dars Telegram xabari «Kim keladi?» va Markdown darvozasi variantlari `tr()` siz edi → `{ uz, ru }` (istisno izohi olindi, ru-walk TOZA) ·
+  (c) 1-dars Mentor eslatmasi «o'n g'oya» → «olti» (uz+ru; F-1006-272 qarori) · (d) 6-dars o'quvchi gapi «Avval 8-ekranda» → «9-ekranda» (hisoblagich 1 dan; YAKUNIY/06 ham) ·
+  (e) sig'ish (o'lchab): 7-dars hook maketi «Присоединяюсь» kartadan chiqardi → tugma 10 px, joy nomi ellipsis bilan; maydon yorlig'i ellipsis · 8-dars 13-ekran «мобильное», «поровну» qutidan chiqardi → ustunlar 46 px / 4 px.
+  ru-gate 3, 4, 5, 7, 8 da «FARQ» — faqat shu kod/CSS tuzatishlari (uz matn o'zgarmagan). Gates 12/12 × 8 · lint:jsx toza.
+  **Ochiq (foydalanuvchiga / asosiy seansga):** README tili ru o'quvchi uchun (8-dars: sarlavhalar uz, mazmun ru) · talablardagi ilova tugma nomlari «Kelaman» («Приду») — 7, 8 da shunday ·
+  Mentor eslatmalari va MD ekranni 0 dan sanaydi, hisoblagich 1 dan (MEXANIZM 15) · skelet «Дождитесь наставника», «Badges — N/4» (MEXANIZM 16) · mayda: 1-dars s10 «birinchi urinish» nishon yozuvi, 2-dars k=0 sarlavhasi, 3-dars s10 Mentor g'oyalari zaxirasi, 4-dars 0-ekran «Kim uchun» yorlig'i.
+- **2026-10-07 12:31 · F-1007-291 (davomi) · To'lqin 2 (9–16) ✅ — 16/16 RU sayqal + yakuniy MD; o'zim tekshirdim va supurdim.**
+  Agentlar 8/8 (11–20 daq): ru-gate TENG · gates 12/12 · ru-walk TOZA · sarlavha-qator 0 · `YAKUNIY/09…16` = SCREEN_META · lint:til 0. Mustaqil tekshiruv 8/8 toza. `YAKUNIY/` 16/16, lint:til (16 fayl) toza.
+  **Supurish (16 dars):** «Подать объявление» → «Объявить игру» (8, 9; 7, 11, 14 shunday) · «Подтвердили приход: 7 / 9» → «Подтвердили: 7 / 9» (6, 15; 12-dars maketi sig'ishi uchun shunday) ·
+  **lug'atim xatosi tuzatildi:** «deploy (lotincha, 9/10-Modul kabi)» noto'g'ri edi — 9/10-Modulda «деплой» 21 joy, lotincha 0 → 10, 12, 9-darslarda «деплой» (10-dars nomi ham); topshiriq lug'ati tuzatildi; Database — lotincha to'g'ri (9/10-Modulda 110 joy) ·
+  15-dars «dalil» telefondagi isbot ma'nosida → «подтверждение» (4 joy; «довод» = argument) · «Keyingi dars» ru nomlari 16/16 keyingi darsning `lessonTitle.ru` siga teng (6-dars «нажимаемого» → «кликабельного», 9-dars «deploy» → «деплой»).
+  **Kod tuzatishlari:** 13-dars — `MENTOR_SINOV` modul darajasida `tr()` (til import paytida qotardi) → `mentorSinov()` · `XULOSA_RE` ikki tilli · «1 остановки» → ruscha ko'plik (остановка/остановки/остановок) ·
+  15-dars — `OTGAN_SOZ`, `UMUMIY_SOZ` ikki tilli · «Напишите ещё рисков: 2» → «Напишите ещё 2 риска» · 14-dars — agent chati `{ t }` bir tilli edi → `{ uz, ru }` (Backend xabari «409 · O'yin to'ldi» — kod qiymati, istisno) ·
+  12-dars — fon so'zlari «Kelaman» → `{ uz, ru: 'Приду' }` · 16-dars — «N-son:» `tr()` siz edi → «Число N:». Gates 12/12 (13, 14, 15, 16). Eslatma: 9-dars agenti ishlayotganda uning fayliga bitta ru almashtirish yozdim (bir fayl — bir muharrir buzildi) — agentdan keyin tekshirildi, saqlangan.
+  **Ochiq (foydalanuvchiga):** 15-dars arena 8-savol uz — to'g'ri variant shakli bilan ajralib turadi (uz o'zgarishi kerak) · talablardagi ilova nomlari qavsda («Kelaman» («Приду»)) — 7-dars talabida qavs yo'q ·
+  «Hisobdan chiqish» ru matnda: qavsli/qavssiz aralash · README tili (8-dars) · «Воскресенье, 17:00 · 9 / 10» telefon kartasida ~7 px chiqadi (9-dars, ru) · RECAPS/konvert kod-chiplari («403 · Tasdiq faqat o'yin kuni») ru da uz — Backend qiymati sifatida qoldi.
+  QA sayti katalogi `gen.py` bilan qayta yaratildi (ru sarlavhalar yakuniy), esbuild ✓. `modul:yopish -- src/9-Modull --yakuniy …/YAKUNIY` yurmoqda.
+- **2026-10-07 14:40 · F-1007-291 (yakun) · 11-MODUL YOPILDI — QA sayti https://coddycamp-11modul.vercel.app, commit + push (foydalanuvchi: «gitga push qilib … QA ga berishga url tayyorla»).**
+  `modul:yopish -- src/9-Modull --yakuniy …/YAKUNIY` — darslar qismi 16/16: gates 12/12 · ru toza · sarlavha bitta qator; dizayn 5 darsda topildi → tuzatildi (pastda); modul qismi 55 daq chegarasiga yetdi — alohida yurgizildi:
+  lint:jsx toza · YAKUNIY 16/16 = SCREEN_META (`tekshir.sh`) · qurish kartasi ✓ (110 qoida) · layout (1280×773 + 1366×768, 15 dars; 16-dars yurmoqda): A 18 · B 0 · C 0 · D 0 · E 216 · F 0 · G 62.
+  Qabul (10-Modul naqshi, sababi bilan): E — skroll bilan ko'rinadigan pastki qism (10-Modul E 243 qabul) · A 18 — telefon maketidagi ro'yxat ramkada davom etadi (11-dars s3, 5-dars s2 Telegram, 6-dars s2; suratda ko'rildi, ma'no yo'qolmaydi) ·
+  G 62 — 54 tasi 9-dars «Kompyuter 900 px» kichraytirilgan maketi (oldin oqlangan), qolgani 11, 13-darslar maket cheti.
+  Dizayn (lint:dizayn 9 → 0): D2 shtrix — 7 tasi ma'noli (parda · bo'sh joy · poydevor · taklif qismi) → `kesik-ok` izohi (10-Modul naqshi); D1 — 2-dars VS Code qatoridagi chap 3 px chiziq olindi; 3-dars `.io-sh-k.faol` 1 px ramka → `border-color` (ko'rinish bir xil, lint yolg'on topilmasi).
+  QA sayti: `vite.m9.config.js` → `dist-m9` (index.html nusxa, `.env.local`/`.gitignore` o'chirildi) · Vercel loyiha `coddycamp-11modul` (kirishnomi6-9875, `prj_4WIL1ni2mHVzie1fOIf05ch4DmwS`) · asosiy manzil 200 (hisobsiz) · `sayt-smoke` 32/32 (16 × uz/ru).
+  Commit tarkibi: `src/9-Modull/*` · `feedback/F-1005-11modul/*` (YAKUNIY, QURUVCHI_TOPSHIRIQ_3 bilan) · QA sayti fayllari · 9-Modul 12 faylda FAQAT ⛶ qatorlari (`git apply --cached`, 9-Modul seansining 5 ta LiveGate tuzatishi tashqarida) ·
+  9-Modul jurnalidan faqat F-1007-290 yozuvi. Tashqarida: App.jsx (o'zgarishlar 10 va 12-Modul seanslariniki; 9-blok o'zgarmagan) · `src/8-Modull` + `feedback/F-1005-10modul` (10-Modul — butunlay untracked, o'z seansi) · `feedback/F-1007-13modul` (13-Modul seansi) · arxiv/ · dist-m9.
+  **Keyingi:** QA fidbeki → yangi seans, retsept B, F-ID 292 dan (`JURNAL` + memory `seans-11modul`). Ochiq savollar: 15-dars arena 8-savol (uz shakli) · README tili ru o'quvchi uchun · 6-dars 10-ekran Mentor «Siz» ustuni · 9/10-Modul QA saytlari ⛶ siz eski build.
 
 ## MEXANIZM-TAKLIF (asosiy seans uchun — bu seans tegmaydi)
 
@@ -296,3 +353,11 @@
 12. 🔴 **Qolip `.q-fokus` animatsiyasi ⛶ ni buzadi** (06.10, 11-Modul 13-dars agenti): `animation: q-fokus 0.62s … both` — oxirgi kadr `transform: scale(1)` qoladi va `position: fixed` avlod (`.zoom-on`) uchun yangi «containing block» yaratadi →
     QTushuncha `tugadi` holatida ⛶ oynasi blok ichida, noto'g'ri joyda ochiladi. Taklif: `fill-mode: backwards` (yoki oxirgi kadrda `transform: none`). 11-Modul darslarida — har faylda `.q-fokus:has(.zoom-on) { animation: none; transform: none }`.
     Shuningdek `Zoomable`: bevosita `<svg>` bola bo'lsa `hasContent` false → ⛶ chiqmaydi.
+13. **Qolip `QBlok` — prompt qadamida «Bajardim» pastki panel ostida** (07.10, 11-Modul 2-bosqich; 10-Modul `LiveDashboardLesson` A1 da ham bir xil — platforma xatti-harakati):
+    joriy qadam `scrollIntoView({ block: 'nearest' })` — qadam viewport'dan baland (prompt 10+ qator) bo'lsa tepaga tekislanadi, «Bajardim» 1280×800 da navigatsiya paneli ostida qoladi (o'quvchi o'zi suradi).
+    Taklif: qadam baland bo'lsa «Bajardim» ko'rinadigan qilib surish (yoki `.q-prompt` ga `max-height` + ichki skroll). 11-Modul darslarida tegilmadi — qolip qarori.
+14. **Qolip `QTushuncha` — yakuniy holatga o'tish (`q-split q-vizual-avval` → `q-col q-fokus`) vizualni qayta o'rnatadi** (07.10, 11-Modul ⛶ sinovi): o'tish paytida (taymer 1–2 s) ochilgan ⛶ oynasi o'zi yopiladi (5-dars 2, 6-dars 4, 9-dars 4-ekran — 6 s kutilganda ochiq qoladi).
+    Kamdan-kam holat; taklif: vizual tugunini ikki tarmoqda bir xil kalit bilan saqlash (React qayta o'rnatmasin). 11-Modul darslarida tegilmadi.
+15. **Ekran raqami ikki xil (07.10, F-1007-291):** MD v3 / YAKUNIY va Mentor eslatmalari ekranni 0 dan sanaydi («## 0 · Kirish», «8-ekranda»), dars hisoblagichi esa 1 dan («09 / 16»). Mentor eslatmada «8-ekran» o'qib, hisoblagichda 08 ni qidiradi.
+   11-Modulda o'quvchi gapidagi yagona holat tuzatildi (6-dars); Mentor eslatmalari (≈60) — platforma qarori: MD raqamlash 1 dan yoki hisoblagich 0 dan.
+16. **Skelet ru satrlari lug'atga zid (07.10):** «Mentorni kuting» → «Дождитесь наставника», «Заметка ментору» (kichik harf), nishon oynasi «Badges — N/4» ikki tilda ham inglizcha — 9, 10, 11-Modul hamma darsida. Skelet `NamunaDars.jsx` da bir marta tuzatilsa, keyingi modullarga o'tadi.

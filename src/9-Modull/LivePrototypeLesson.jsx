@@ -10,6 +10,10 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // Bitta vizual — JamoaTelefon (qog'oz · prototip · jonli), bitta manba NAMUNA_OYINLAR + JAMOA_EKRANLAR + PROTOTIP_YOLI.
 // JONLI: useLiveSession + INLINE_KEYS + CodeStrike arena + Podium. PRODUCTION: <style> ichidagi @import OLIB TASHLANADI.
 // ============================================================
+// RU-qoldiq istisnolari — faqat kod/fayl ichidagi nomlar (Mentor repo'sidagi real qiymat, tarjima qilinmaydi):
+// ru-qoldiq-istisno s6: kerak yana o'yin
+// ru-qoldiq-istisno s12: qo'shilaman
+// ru-qoldiq-istisno s13: tugma
 
 // D3: palitra umumiy qolipdan — neytral 5 · modul rangi 2 · holat 2 (shadowBase — soya, rang tokeni emas)
 const T = { ...qolipRang('tex'), shadowBase: '58, 53, 48' };
@@ -284,7 +288,7 @@ const RECAPS = {
     title: { uz: 'Talabning uch qatori', ru: 'Три строки требования' },
     cards: [
       { ic: rcKod('prototip/'), h: { uz: 'Qayerda — papka', ru: 'Где — папка' }, body: null },
-      { ic: rcKod('wireframe.jpg'), h: { uz: "Nima qilsin — wireframe suratidagidek uch ekran, namuna ma'lumot bilan, bosiladi", ru: 'Что сделать — три экрана как на снимке wireframe, с данными-образцами, нажимаются' }, body: null },
+      { ic: rcKod('wireframe.jpg'), h: { uz: "Nima qilsin — wireframe suratidagidek uch ekran, namuna ma'lumot bilan, bosiladi", ru: "Что сделать — три экрана как на снимке wireframe, с данными-образцами, кликабельные" }, body: null },
       { ic: rcKod("backend/ yo'q"), h: { uz: "Nima buzilmasin — haqiqiy ma'lumot va Backend yo'q", ru: 'Что не сломать — нет настоящих данных и Backend' }, body: null, ask: { uz: '«Nima buzilmasin» qatori bo\'lmasa, agent nima qilishi mumkin?', ru: 'Что может сделать агент, если нет строки «что не сломать»?' } }
     ]
   },
@@ -798,6 +802,12 @@ const Bashorat = ({ savol, variantlar, tanlov, onTanla }) => (!tanlov
   ? <div className="jp-bashorat-k"><QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={savol} variantlar={variantlar.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={tanlov} onTanla={onTanla} /></div>
   : <p className="jp-taxmin-ix fade-step"><span>{tr({ uz: 'Taxminingiz', ru: 'Ваше предположение' })}</span>{savol} · <b>{tr((variantlar.find(v => v.k === tanlov) || {}).t)}</b></p>);
 
+// Ochilgan yordam/izoh 1280×800 da panel ostida qolmasin — bir marta ko'rinadigan joyga suriladi (F-1007-289)
+const Korinsin = ({ className, children }) => {
+  const ref = useRef(null);
+  useEffect(() => { const t = setTimeout(() => { const el = ref.current; if (el && el.scrollIntoView) el.scrollIntoView({ behavior: window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' }); }, 120); return () => clearTimeout(t); }, []);
+  return <div ref={ref} className={className}>{children}</div>;
+};
 // ===== SCREEN 0 — KIRISH (QKirish): agent qurgan bitta uzun ekran — Shanba 18:00 kartasi bosiladi, hech narsa ochilmaydi. Ballsiz (J-026: correct false hammaga) =====
 const HOOK_OPTS = [
   { id: 'a', t: { uz: 'Agent kodni hali oxirigacha yozmagan', ru: 'Агент ещё не дописал код' } },
@@ -817,12 +827,12 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Dars · kirish', ru: 'Урок · введение' })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} label={DAVOM} onClick={onNext} />}>
       <QKirish zoom={Zoomable}
-        sarlavha={tr({ uz: <>O'yin kartasini bosdingiz — <span className="italic" style={{ color: T.accent }}>nega hech narsa ochilmadi?</span></>, ru: <>Вы нажали на карточку игры — <span className="italic" style={{ color: T.accent }}>почему ничего не открылось?</span></> })}
+        sarlavha={tr({ uz: <>O'yin kartasini bosdingiz — <span className="italic" style={{ color: T.accent }}>nega hech narsa ochilmadi?</span></>, ru: <>Вы нажали карточку — <span className="italic" style={{ color: T.accent }}>почему ничего не открылось?</span></> })}
         mentor={<Mentor>{tr({ uz: "PRD dagi birinchi funksiyani agentga bitta gapda berdik — agent qurgan ekranda Shanba 18:00 dagi o'yin kartasini bosing.", ru: 'Мы дали агенту первую функцию из PRD одной фразой — на экране, который он собрал, нажмите на карточку игры в субботу в 18:00.' })}</Mentor>}
         maket={<div className="jp-kirish">
           <JamoaTelefon holat="prototip" ekran="agent" bosDoim halqa={bosildi ? undefined : 'karta'} onKarta={() => { setBosildi(true); setSc(n => n + 1); }} />
           <div className="jp-chat">
-            <p className="jp-pf siz fade-up">{tr({ uz: "PRD dagi o'yin e'loni va qo'shilish funksiyasini ilova qilib ber.", ru: 'Сделай приложение из функции объявления игры и присоединения из PRD.' })}</p>
+            <p className="jp-pf siz fade-up">{tr({ uz: "PRD dagi o'yin e'loni va qo'shilish funksiyasini ilova qilib ber.", ru: "Сделай приложение по функции из PRD: объявление игры и присоединение." })}</p>
             <p className="jp-pf ag fade-up" style={{ animationDelay: '0.2s' }}><span className="jp-pf-kim">Antigravity</span>{tr({ uz: 'Tayyor! Ilova ochiladi.', ru: 'Готово! Приложение открывается.' })}</p>
             {bosildi && <p className="jp-kul fade-step">{tr({ uz: "O'yin ekrani yo'q — kim qo'shilgani ko'rinmaydi", ru: 'Экрана «Игра» нет — не видно, кто присоединился' })}</p>}
             {picked !== null && <p className="jp-kul fade-step">{tr({ uz: 'PRD: nima qilinadi ✓ · ekranlar: chizilmagan', ru: 'PRD: что делается ✓ · экраны: не нарисованы' })}</p>}
@@ -850,8 +860,8 @@ const RejaTelefon = () => {
 const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Boshlaymiz', ru: 'Начинаем' }} onClick={onNext} /></>}>
     <QReja zoom={Zoomable}
-      sarlavha={tr({ uz: <>Bugun qog'ozdan <span className="italic" style={{ color: T.accent }}>bosiladigan ekrangacha</span> borasiz.</>, ru: <>Сегодня вы пройдёте путь от бумаги <span className="italic" style={{ color: T.accent }}>до кликабельного экрана</span>.</> })}
-      mentor={<Mentor>{tr({ uz: "Avval Maydon Jamoa misolida ko'rasiz, keyin o'z mahsulotingiz uchun o'z repo'ngizda qilasiz.", ru: 'Сначала посмотрите на примере Maydon Jamoa, потом сделаете для своего продукта в своём репо.' })}</Mentor>}
+      sarlavha={tr({ uz: <>Bugun qog'ozdan <span className="italic" style={{ color: T.accent }}>bosiladigan ekrangacha</span> borasiz.</>, ru: <>Сегодня — от бумаги <span className="italic" style={{ color: T.accent }}>до кликабельного экрана</span>.</> })}
+      mentor={<Mentor>{tr({ uz: "Avval Maydon Jamoa misolida ko'rasiz, keyin o'z mahsulotingiz uchun o'z repo'ngizda qilasiz.", ru: "Сначала посмотрите на примере «Maydon Jamoa», потом сделаете для своего продукта в своём репо." })}</Mentor>}
       chapYorliq={tr({ uz: 'Dars oxirida', ru: 'В конце урока' })}
       chap={<RejaTelefon />}
       qadamlar={PROTOTIP_YOLI.map(p => ({ t: tr(p.t), teg: tr(p.teg) }))}>
@@ -957,7 +967,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const strelka = qilingan.some(b => b.k === 'strelka');
   const tashqari = qilingan.filter(b => !b.qogoz);
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · wireframe', ru: 'Понятие · wireframe' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? DAVOM : { uz: `Bo'laklarni saralang (${n}/6)`, ru: `Рассортируйте части (${n}/6)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · wireframe', ru: 'Понятие · wireframe' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? DAVOM : { uz: `Bo'laklarni saralang (${n}/6)`, ru: `Распределите части (${n}/6)` }} onClick={onNext} /></>}>
       {/* Bo'sh ustun bo'lmasin (SABOQ 20): bitta bo'lak-karta tepada qator bo'lib, qog'oz butun enga */}
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng harakatAvval
         sarlavha={tr({ uz: <>O'yinlar ekrani <span className="italic" style={{ color: T.accent }}>qog'ozda</span> qanday chiziladi?</>, ru: <>Как экран «Игры» <span className="italic" style={{ color: T.accent }}>рисуется на бумаге</span>?</> })}
@@ -972,7 +982,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {xato && <QXato>{xato === 'yoq' ? tr({ uz: 'Busiz ekranda qayerda nima turishi noma\'lum qoladi.', ru: 'Без этого неясно, что где стоит на экране.' }) : tr({ uz: 'Qog\'ozdagi chizma rangsiz — bu keyin tanlanadi.', ru: 'Рисунок на бумаге без цвета — это выбирают позже.' })}</QXato>}
         </div>}
         vizual={<Qogoz className="jp-s3">
-          <span className="jp-hisob">{tr({ uz: 'Saralandi', ru: 'Рассортировано' })}: <b>{n} / 6</b></span>
+          <span className="jp-hisob">{tr({ uz: 'Saralandi', ru: "Разобрано" })}: <b>{n} / 6</b></span>
           <div className="jp-s3-q">
             <JamoaTelefon holat="qogoz" ekran="oyinlar" f={f} />
             <span className="jp-strelka-t">{strelka && <span className="jp-chiz">→ {tr(JAMOA_EKRANLAR.oyin)}</span>}</span>
@@ -1025,7 +1035,7 @@ const useTaymer = (sekund) => {
 };
 const WF_MAYDON = [
   { k: 'nom', l: { uz: 'Ekran nomi', ru: 'Название экрана' }, n: { uz: "masalan: O'yinlar", ru: 'например: Игры' } },
-  { k: 'nima', l: { uz: 'Unda nima turadi', ru: 'Что на нём' }, n: { uz: "masalan: o'yinlar ro'yxati, har kartada soat", ru: 'например: список игр, в каждой карточке время' } },
+  { k: 'nima', l: { uz: 'Unda nima turadi', ru: 'Что на нём' }, n: { uz: "masalan: o'yinlar ro'yxati, har kartada soat", ru: 'например: список игр со временем' } },
   { k: 'tugma', l: { uz: 'Asosiy tugma va u qaysi ekranni ochadi', ru: 'Главная кнопка и какой экран она открывает' }, n: { uz: "masalan: karta → O'yin", ru: 'например: карточка → Игра' } }
 ];
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1059,7 +1069,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: "Mustaqil ish · qog'ozda", ru: 'Самостоятельная работа · на бумаге' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!saqlandi} label={saqlandi ? DAVOM : { uz: 'Saqlang', ru: 'Сохраните' }} onClick={onNext} /></>}>
       <QMustaqil
         sarlavha={tr({ uz: <>Mahsulotingiz ekranlarini <span className="italic" style={{ color: T.accent }}>qog'ozga chizing</span></>, ru: <>Нарисуйте экраны своего продукта <span className="italic" style={{ color: T.accent }}>на бумаге</span></> })}
-        mentor={<Mentor>{tr({ uz: "Ekranni Figma kabi dasturda ham chizish mumkin, bugun esa qog'oz va qalam yetadi — shu chizmadan prototip quramiz. Har ekranni chizgach, uni shu yerga yozing.", ru: 'Экран можно нарисовать и в программе вроде Figma, а сегодня хватит бумаги и карандаша — по этому рисунку соберём прототип. Нарисовав экран, запишите его сюда.' })}</Mentor>}
+        mentor={<Mentor>{tr({ uz: "Ekranni Figma kabi dasturda ham chizish mumkin, bugun esa qog'oz va qalam yetadi — shu chizmadan prototip quramiz. Har ekranni chizgach, uni shu yerga yozing.", ru: "Экран можно нарисовать и в программе вроде Figma, а сегодня хватит бумаги и карандаша — по этому рисунку соберём прототип. Нарисовав каждый экран, запишите его сюда." })}</Mentor>}
         qadamlar={!saqlandi && <div className="jp-wf-ust">
           <div className="jp-wf-funk">
             <span className="q-yorliq">{tr({ uz: 'Qaysi funksiya ekranlarini chizasiz?', ru: 'Экраны какой функции вы рисуете?' })}</span>
@@ -1093,10 +1103,10 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               ))}
               {xabar && <QXato>{tr({ uz: 'Kamida ikki ekranning nomi va tugmasini yozing.', ru: 'Запишите название и кнопку хотя бы двух экранов.' })}</QXato>}
               <div className="jp-wf-amal">
-                <QTugma ikkinchi aria-expanded={yordam} onClick={() => setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>
+                <QTugma ikkinchi aria-expanded={yordam} onClick={() => setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: 'Подсказка' })}</QTugma>
                 <QTugma className={yaroqli.length >= 2 ? 'jp-halqa' : undefined} onClick={saqla}>{tr({ uz: 'Saqlash', ru: 'Сохранить' })}</QTugma>
               </div>
-              {yordam && <QIzoh>{tr({ uz: 'Qaysi ekranlar kerakligini bilmasangiz, funksiyangiz gaplarini oling: kim nima qiladi va bu qaysi ekranda bo\'ladi?', ru: 'Если не знаете, какие экраны нужны, возьмите фразы своей функции: кто что делает и на каком экране это будет?' })}</QIzoh>}
+              {yordam && <Korinsin><QIzoh>{tr({ uz: 'Qaysi ekranlar kerakligini bilmasangiz, funksiyangiz gaplarini oling: kim nima qiladi va bu qaysi ekranda bo\'ladi?', ru: 'Если не знаете, какие экраны нужны, возьмите фразы своей функции: кто что делает и на каком экране это будет?' })}</QIzoh></Korinsin>}
             </div>
             <Qogoz className="jp-wf-q">
               {ekranlar.map((x, i) => (
@@ -1110,7 +1120,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </Qogoz>
           </div>}
       />
-      <MentorNote>{tr({ uz: "Chizishga 15 daqiqa; qog'oz va qalam darsdan oldin tayyor tursin. Surat tiniq bo'lsin — yozuvlar o'qilsin.", ru: 'На рисование 15 минут; бумага и карандаш должны быть готовы до урока. Снимок чёткий — надписи читаются.' })}</MentorNote>
+      <MentorNote>{tr({ uz: "Chizishga 15 daqiqa; qog'oz va qalam darsdan oldin tayyor tursin. Surat tiniq bo'lsin — yozuvlar o'qilsin.", ru: "На рисование 15 минут; бумага и карандаш должны быть готовы до урока. Снимок должен быть чётким, чтобы надписи читались." })}</MentorNote>
     </Stage>
   );
 };
@@ -1141,7 +1151,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Tushuncha · prototip', ru: 'Понятие · прототип' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? DAVOM : !taxmin ? { uz: 'Avval taxminingizni belgilang', ru: 'Сначала отметьте предположение' } : { uz: `Qo'shiling va yangilang (${qadam}/2)`, ru: `Присоединитесь и обновите (${qadam}/2)` }} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
         sarlavha={tr({ uz: <>Bosiladigan ekranlar uchun <span className="italic" style={{ color: T.accent }}>Backend kerakmi?</span></>, ru: <>Нужен ли <span className="italic" style={{ color: T.accent }}>Backend</span> для кликабельных экранов?</> })}
-        mentor={<Mentor>{tr({ uz: "Bu misolda Maydon Jamoa ekranlari namuna ma'lumot bilan qurilgan — «Qo'shilaman» ni bosing, keyin sahifani yangilang.", ru: 'В этом примере экраны Maydon Jamoa собраны на данных-образцах — нажмите «Присоединяюсь», потом обновите страницу.' })}</Mentor>}
+        mentor={<Mentor>{tr({ uz: "Bu misolda Maydon Jamoa ekranlari namuna ma'lumot bilan qurilgan — «Qo'shilaman» ni bosing, keyin sahifani yangilang.", ru: "В этом примере экраны «Maydon Jamoa» собраны на данных-образцах — нажмите «Присоединяюсь», потом обновите страницу." })}</Mentor>}
         bashorat={!done && <Bashorat savol={SAVOL} variantlar={S6_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
         vizual={<div className="jp-sahna">
           <JamoaTelefon holat="prototip" ekran="oyin" qoshildi={qoshildi} oqar={oqar} halqa={taxmin && !qoshildi && !done ? 'qoshil' : undefined} onQoshil={qoshil}
@@ -1160,7 +1170,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {done && <div className="jp-natija-b fade-step">
               <p className="jp-nom">{tr({ uz: <>Bosiladigan, lekin hali haqiqiy ma'lumotsiz ekranlar <b>prototip</b> deyiladi.</>, ru: <>Кликабельные, но пока без настоящих данных экраны называются <b>прототипом</b>.</> })}</p>
               {taxmin && <QTaxmin togri={taxmin === '8'}>{taxmin === '8' ? tr({ uz: "Taxminingiz to'g'ri chiqdi", ru: 'Ваше предположение верно' }) : <>{tr({ uz: 'Taxminingiz', ru: 'Ваше предположение' })}: «9 / 10» · {tr({ uz: 'haqiqatda', ru: 'на деле' })}: <b>8 / 10</b></>}</QTaxmin>}
-              <QXulosa>{tx({ uz: "Bu prototip bosiladi, lekin ma'lumotni saqlamaydi: ma'lumot `namuna.js` da, Backend yo'q.", ru: 'Этот прототип нажимается, но данные не сохраняет: данные в `namuna.js`, Backend нет.' })}</QXulosa>
+              <QXulosa>{tx({ uz: "Bu prototip bosiladi, lekin ma'lumotni saqlamaydi: ma'lumot `namuna.js` da, Backend yo'q.", ru: "Этот прототип кликабельный, но данные не сохраняет: данные в `namuna.js`, Backend нет." })}</QXulosa>
             </div>}
           </div>
         </div>}
@@ -1197,12 +1207,12 @@ const S8_QISM = [
     { t: { uz: '`prototip/` papkasida', ru: 'В папке `prototip/`' }, aniq: true }] },
   { k: 'nima', h: { uz: 'Nima qilsin', ru: 'Что сделать' }, v: [
     { t: { uz: 'Chiroyli ilova qilsin', ru: 'Пусть сделает красивое приложение' }, aniq: false, xato: { uz: "Ish aniq aytilmasa, agent bo'sh joyni o'zi to'ldirishi mumkin.", ru: 'Если работа не указана точно, агент может сам заполнить пробелы.' } },
-    { t: { uz: "Uch ekran suratdagidek, namuna ma'lumot bilan, bosiladi", ru: 'Три экрана как на снимке, с данными-образцами, нажимаются' }, aniq: true }] },
+    { t: { uz: "Uch ekran suratdagidek, namuna ma'lumot bilan, bosiladi", ru: "Три экрана как на снимке, с данными-образцами, кликабельные" }, aniq: true }] },
   { k: 'buzilmasin', h: { uz: 'Nima buzilmasin', ru: 'Что не сломать' }, v: [
     { t: { uz: 'Hech narsa yozilmagan', ru: 'Ничего не написано' }, aniq: false, xato: { uz: 'Aytilmasa, agent Backend ham qurib ketishi mumkin.', ru: 'Если не сказать, агент может построить и Backend.' } },
     { t: { uz: "Haqiqiy ma'lumot va Backend yo'q", ru: 'Нет настоящих данных и Backend' }, aniq: true }] }
 ];
-const S8_TALAB = { uz: "Qayerda: `prototip/` papkasi. Nima qilsin: wireframe suratidagidek uch ekran — O'yinlar, O'yin, E'lon berish; namuna ma'lumot bilan; ekranlar bosiladi. Nima buzilmasin: haqiqiy ma'lumot va Backend yo'q.", ru: 'Где: папка `prototip/`. Что сделать: три экрана как на снимке wireframe — Игры, Игра, Объявить игру; с данными-образцами; экраны нажимаются. Что не сломать: нет настоящих данных и Backend.' };
+const S8_TALAB = { uz: "Qayerda: `prototip/` papkasi. Nima qilsin: wireframe suratidagidek uch ekran — O'yinlar, O'yin, E'lon berish; namuna ma'lumot bilan; ekranlar bosiladi. Nima buzilmasin: haqiqiy ma'lumot va Backend yo'q.", ru: "Где: папка `prototip/`. Что сделать: три экрана как на снимке wireframe — Игры, Игра, Объявить игру; с данными-образцами; экраны кликабельные. Что не сломать: нет настоящих данных и Backend." };
 // Repo daraxti: tanlovga qarab — fayllar ildizga sochiladi / `prototip/` bitta tugun / `backend/` paydo bo'ladi
 const RepoDaraxt = ({ qayerda, buzilmasin, ixcham }) => (
   <div className={cxx('jp-daraxt', ixcham && 'ixcham')}>
@@ -1290,18 +1300,18 @@ const Screen9 = (props) => (
     explainWrong={{
       1: { uz: "Bu — «nima qilsin» qatori: ekranlar qanday bo'lishi.", ru: 'Это строка «что сделать»: какими будут экраны.' },
       2: { uz: 'Bu — «qayerda» qatori: fayllar qaysi papkada.', ru: 'Это строка «где»: в какой папке файлы.' },
-      3: { uz: 'Bu ham «nima qilsin» qatorida: ekranlar bosilishi.', ru: 'Это тоже строка «что сделать»: экраны нажимаются.' },
+      3: { uz: 'Bu ham «nima qilsin» qatorida: ekranlar bosilishi.', ru: "Это тоже строка «что сделать»: экраны кликабельные." },
       default: { uz: 'Bu qator agentga nimaga tegmaslikni aytadi.', ru: 'Эта строка говорит агенту, чего не трогать.' }
     }} />
 );
 
 // ===== SCREEN 10 — TEKSHIRISH (farqni topish, P-057): tepada wireframe (qog'oz), pastda agent qurgan prototip; uch farq yashirilgan =====
 const S10_FARQ = [
-  { id: 'o-son', ekran: 'oyinlar', t: { uz: "O'yinlar kartalariga «8 / 10»", ru: 'В карточки «Игр» — «8 / 10»' } },
+  { id: 'o-son', ekran: 'oyinlar', t: { uz: "O'yinlar kartalariga «8 / 10»", ru: "В карточки экрана «Игры» — «8 / 10»" } },
   { id: 'y-doira', ekran: 'oyin', t: { uz: "O'yin ekraniga qo'shilganlar", ru: 'На экран «Игра» — присоединившихся' } },
   { id: 'e-nechta', ekran: 'elon', t: { uz: "E'lon berish formasiga «Nechta odam»", ru: 'В форму «Объявить игру» — «Сколько человек»' } }
 ];
-const S10_TALAB = { uz: "`prototip/`: wireframe'dagidek qilinsin — O'yinlar kartalariga «8 / 10», O'yin ekraniga qo'shilganlar, E'lon berish formasiga «Nechta odam» qo'shilsin. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: '`prototip/`: сделай как в wireframe — добавь в карточки «Игр» «8 / 10», на экран «Игра» присоединившихся, в форму «Объявить игру» «Сколько человек». Больше ничего не трогай, назови изменённые файлы.' };
+const S10_TALAB = { uz: "`prototip/`: wireframe'dagidek qilinsin — O'yinlar kartalariga «8 / 10», O'yin ekraniga qo'shilganlar, E'lon berish formasiga «Nechta odam» qo'shilsin. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: "`prototip/`: сделай как в wireframe — добавь в карточки экрана «Игры» «8 / 10», на экран «Игра» — присоединившихся, в форму «Объявить игру» — «Сколько человек». Больше ничего не трогай, назови изменённые файлы." };
 const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const avval = !!storedAnswer;
   const keyin = useKeyin();
@@ -1323,7 +1333,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Tekshirish', ru: 'Проверка' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!tuzatildi} label={tuzatildi ? DAVOM : { uz: `Farqlarni toping (${topildi.size}/3)`, ru: `Найдите отличия (${topildi.size}/3)` }} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
         sarlavha={tr({ uz: <>Agent qurgan ekranlar <span className="italic" style={{ color: T.accent }}>wireframe'ga mosmi?</span></>, ru: <>Совпадают ли экраны агента <span className="italic" style={{ color: T.accent }}>с wireframe</span>?</> })}
-        mentor={<Mentor>{tr({ uz: "Agent ba'zi joyni taxmin qilishi mumkin — tepada bor, pastda yo'q bo'lakni bosing.", ru: 'Агент мог что-то додумать — нажмите часть, которая есть сверху, но нет снизу.' })}</Mentor>}
+        mentor={<Mentor>{tr({ uz: "Agent ba'zi joyni taxmin qilishi mumkin — tepada bor, pastda yo'q bo'lakni bosing.", ru: "Агент мог что-то додумать — нажмите часть, которая есть сверху, но которой нет снизу." })}</Mentor>}
         vizual={<div className="jp-s10">
           <div className="jp-solish">
             <Qogoz className="jp-solish-q">
@@ -1334,7 +1344,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           </div>
           <div className="jp-s10-ong">
-            <span className="jp-hisob">{tr({ uz: 'Farq', ru: 'Отличий' })}: <b>{topildi.size} / 3</b></span>
+            <span className="jp-hisob">{tr({ uz: 'Farq', ru: "Отличия" })}: <b>{topildi.size} / 3</b></span>
             <div className={cxx('jp-tuzat', done && 'toliq')}>
               <span className="q-yorliq">{tr({ uz: 'Tuzatish talabi', ru: 'Требование на исправление' })}</span>
               {done
@@ -1438,12 +1448,17 @@ const KOD_CSS = { uz: `.son {
 ` };
 const KOD_KALIT = 'pm-m9d7-code';
 const cssQoida = (x, sel) => (x.cssRules || []).filter(r => String(r.selector).split(',').map(s => s.trim()).includes(sel));
-const sonTransition = (x) => cssQoida(x, '.son').some(r => String(r.props.transition || '').split(',').some(p => { const s = p.trim(); return /(^|\s)(transform|all)(\s|$)/.test(s) && /(^|\s)\d*\.?\d+m?s(\s|$)/.test(s); }));
-const yangiScale = (x) => cssQoida(x, '.son.yangi').some(r => { const m = /scale\(\s*([\d.]+)\s*\)/.exec(r.props.transform || ''); const n = m ? parseFloat(m[1]) : NaN; return n >= 1.1 && n <= 1.5; });
+// CSSOM `transition: all 0.3s` ni «0.3s» deb qaytaradi (all — standart qiymat) — xossa nomi yo'q bo'lsa «all» deb olinadi; vergul faqat qavsdan tashqarida bo'linadi (F-1007-289)
+const sonTransition = (x) => cssQoida(x, '.son').some(r => String(r.props.transition || '').split(/,(?![^(]*\))/).some(p => {
+  const s = p.trim(); if (!/(^|\s)\d*\.?\d+m?s(\s|$)/.test(s)) return false;
+  const nom = s.replace(/(cubic-bezier|steps)\([^)]*\)/g, ' ').split(/\s+/).filter(t => t && !/^\d*\.?\d+m?s$/.test(t) && !/^(ease|linear|ease-in|ease-out|ease-in-out|step-start|step-end|normal|allow-discrete)$/.test(t))[0];
+  return !nom || nom === 'transform' || nom === 'all';
+}));
+const yangiScale = (x) => cssQoida(x, '.son.yangi').some(r => { const m = /scale\(\s*([\d.]+)\s*(?:,\s*([\d.]+)\s*)?\)/.exec(r.props.transform || ''); if (!m) return false; const a = parseFloat(m[1]), b = m[2] !== undefined ? parseFloat(m[2]) : a; return a >= 1.1 && a <= 1.5 && b >= 1.1 && b <= 1.5; });
 const KOD_VAZIFA = [
   { uz: '`.son` qoidasiga qo\'shing: `transition: transform 0.3s;`', ru: 'Добавьте в правило `.son`: `transition: transform 0.3s;`' },
   { uz: '`.son.yangi` qoidasini yozing: `transform: scale(1.3);`', ru: 'Напишите правило `.son.yangi`: `transform: scale(1.3);`' },
-  { uz: "Natija oynasida «Qo'shilaman» ni bosing — son kattalashib, silliq qaytsin.", ru: 'В окне результата нажмите «Присоединяюсь» — число увеличится и плавно вернётся.' }
+  { uz: "Natija oynasida «Qo'shilaman» ni bosing — son kattalashib, silliq qaytsin.", ru: "В окне результата нажмите «Qo'shilaman» («Присоединяюсь») — пусть число увеличится и плавно вернётся." }
 ];
 const bt = (o) => Object.fromEntries(Object.entries(o).map(([k, v]) => [k, String(v).replace(/`/g, '')]));
 const shart = (id, label, fn, hint) => ({ id, label: bt(label), check: C.custom(x => fn(x) || tr(bt(hint))) });
@@ -1507,7 +1522,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         mentor={<Mentor>{tr({ uz: "Shu animatsiyani kod oynasida CSS bilan o'zingiz terib yozasiz — nusxalab bo'lmaydi: qo'lda yozganda o'rganiladi.", ru: 'Эту анимацию вы сами наберёте на CSS в окне кода — скопировать нельзя: учатся, когда пишут руками.' })}</Mentor>}
         vazifa={<ol className="jp-vazifa">{KOD_VAZIFA.map((v, i) => { const ok = i < 2 ? m.otdi : m.done; return <li key={i} className={ok ? 'ok' : undefined}><i>{ok ? '✓' : i + 1}</i><span>{tx(v)}</span></li>; })}</ol>}
         yordam={!m.done && <div className="jp-yordam">
-          <QTugma ikkinchi aria-expanded={m.yordam} onClick={() => m.setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>
+          <QTugma ikkinchi aria-expanded={m.yordam} onClick={() => m.setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: 'Подсказка' })}</QTugma>
           {m.yordam && <QIzoh>{tx({ uz: 'Son kattalashmasa, `.son.yangi` da ikki klass orasida bo\'sh joy yo\'qligini va `0.3s` da «s» harfi borligini tekshiring.', ru: 'Если число не увеличивается, проверьте, что в `.son.yangi` между двумя классами нет пробела и что в `0.3s` есть буква «s».' })}</QIzoh>}
         </div>}
         bajardim={!m.done && <div className="jp-bajardim"><QTugma className={m.otdi && !m.done ? 'jp-halqa' : undefined} disabled={!m.otdi || m.done} onClick={m.bajardim}>{tr({ uz: 'Bajardim', ru: 'Готово' })}</QTugma></div>}
@@ -2269,7 +2284,7 @@ const Yordam = ({ satrlar }) => {
   }, [ochiq]);
   return (
     <>
-      <QTugma ikkinchi className="jp-yordam-btn" aria-expanded={ochiq} onClick={() => setOchiq(o => !o)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>
+      <QTugma ikkinchi className="jp-yordam-btn" aria-expanded={ochiq} onClick={() => setOchiq(o => !o)}>{tr({ uz: 'Yordam', ru: 'Подсказка' })}</QTugma>
       {ochiq && <span className="jp-yordam-b fade-step">{satrlar.map((l, i) => <span key={i} className="jp-yordam-s">{tx(l)}</span>)}</span>}
     </>
   );
@@ -2300,7 +2315,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   }, [stepN]);
   // SABOQ 8 / S3 (F-1006-287, 14-dars naqshi): Mentor har holatda keyingi harakatni aytadi — boshida MD gapi, qadamlar orasida keyingi qadam, blok tugagach «Davom etish»
   const mGap = done ? BLOK_TUGADI : stepN === 0 ? mentor
-    : { uz: `Keyingi qadam — «${stepN + 1} · ${tr(steps[stepN].h)}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующий шаг — «${stepN + 1} · ${tr(steps[stepN].h)}»: выполните и нажмите «Bajardim».` };
+    : { uz: `Keyingi qadam — «${stepN + 1} · ${tr(steps[stepN].h)}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующий шаг — «${stepN + 1} · ${tr(steps[stepN].h)}»: выполните и нажмите «Готово».` };
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? DAVOM : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
@@ -2352,8 +2367,8 @@ const A2Natija = () => {
 };
 const A1_YORDAM = [
   { uz: "Qayerda: `prototip/` papkasi — yangi React + Vite loyihasi; `README.md`.", ru: 'Где: папка `prototip/` — новый проект React + Vite; `README.md`.' },
-  { uz: "Nima qilsin: `wireframe.jpg` dagi ekranlar — O'yinlar: o'yin kartalari, har birida kun, soat, maydon, «8 / 10», pastda «E'lon berish»; O'yin: «‹ O'yinlar», kun, soat, maydon, «8 / 10», qo'shilganlar (10 ta joy, ismsiz doiralar), «Qo'shilaman»;", ru: 'Что сделать: экраны из `wireframe.jpg` — O\'yinlar: карточки игр, в каждой день, время, поле, «8 / 10», внизу «E\'lon berish»; O\'yin: «‹ O\'yinlar», день, время, поле, «8 / 10», присоединившиеся (10 мест, кружки без имён), «Qo\'shilaman»;' },
-  { uz: "E'lon berish: kun, soat, maydon, nechta odam, «Yuborish». Ma'lumot `prototip/src/namuna.js` da: 4 ta o'yin, Shanba va Yakshanba.", ru: 'E\'lon berish: день, время, поле, сколько человек, «Yuborish». Данные в `prototip/src/namuna.js`: 4 игры, суббота и воскресенье.' },
+  { uz: "Nima qilsin: `wireframe.jpg` dagi ekranlar — O'yinlar: o'yin kartalari, har birida kun, soat, maydon, «8 / 10», pastda «E'lon berish»; O'yin: «‹ O'yinlar», kun, soat, maydon, «8 / 10», qo'shilganlar (10 ta joy, ismsiz doiralar), «Qo'shilaman»;", ru: "Что сделать: экраны из `wireframe.jpg` — O'yinlar («Игры»): карточки игр, в каждой день, время, поле, «8 / 10», внизу «E'lon berish» («Объявить игру»); O'yin («Игра»): «‹ O'yinlar», день, время, поле, «8 / 10», присоединившиеся (10 мест, кружки без имён), «Qo'shilaman» («Присоединяюсь»);" },
+  { uz: "E'lon berish: kun, soat, maydon, nechta odam, «Yuborish». Ma'lumot `prototip/src/namuna.js` da: 4 ta o'yin, Shanba va Yakshanba.", ru: "E'lon berish: день, время, поле, сколько человек, «Yuborish» («Отправить»). Данные в `prototip/src/namuna.js`: 4 игры, суббота и воскресенье." },
   { uz: "Ekranlar bir-biriga bosib o'tilsin: karta → O'yin, «E'lon berish» → E'lon berish, «Yuborish» → O'yinlar; «Qo'shilaman» sonni bittaga oshirsin. `README.md` ga shu talabni va `wireframe.jpg` suratini qo'sh.", ru: 'Пусть между экранами переходят нажатием: карточка → O\'yin, «E\'lon berish» → E\'lon berish, «Yuborish» → O\'yinlar; «Qo\'shilaman» увеличивает число на один. Добавь в `README.md` это требование и снимок `wireframe.jpg`.' },
   { uz: "Nima buzilmasin: haqiqiy ma'lumot va Backend yo'q — hammasi faqat ochiq sahifada. `prototip/` va `README.md` dan tashqariga tegma, o'zgargan fayllarni ayt.", ru: 'Что не сломать: нет настоящих данных и Backend — всё только на открытой странице. Не трогай ничего вне `prototip/` и `README.md`, назови изменённые файлы.' }
 ];
@@ -2367,7 +2382,7 @@ const a1Boshlang = () => {
 };
 const ScreenA1 = (props) => (
   <ScreenBlok {...props} eyebrow={{ uz: "Amaliyot 1 · o'z repo'ngiz", ru: 'Практика 1 · ваш репо' }}
-    title={{ uz: <>Repo oching va ekranlaringizni <span className="italic" style={{ color: T.accent }}>bosiladigan qiling</span>.</>, ru: <>Откройте репо и сделайте свои экраны <span className="italic" style={{ color: T.accent }}>кликабельными</span>.</> }}
+    title={{ uz: <>Repo oching va ekranlaringizni <span className="italic" style={{ color: T.accent }}>bosiladigan qiling</span>.</>, ru: <>Откройте репо и сделайте экраны <span className="italic" style={{ color: T.accent }}>кликабельными</span>.</> }}
     mentor={{ uz: <>Hamma qadamni o'z mahsulotingiz bilan qilasiz, o'ngda — namuna; <b style={{ color: T.ink }}>«1 · Ochish»</b>dan boshlang.</>, ru: <>Все шаги делаете со своим продуктом, справа — образец; начните с <b style={{ color: T.ink }}>«1 · Открыть»</b>.</> }}
     steps={[
       { h: QADAM.ochish, t: { uz: "GitHub'da o'ng yuqoridagi «+» ni bosing va «New repository» ni tanlang. «Repository name» — mahsulotingiz nomi, lotin harfida, bo'sh joysiz", ru: 'На GitHub нажмите «+» справа вверху и выберите «New repository». «Repository name» — название вашего продукта, латиницей, без пробелов' },
@@ -2387,9 +2402,9 @@ const ScreenA1 = (props) => (
           { uz: "Nima buzilmasin: haqiqiy ma'lumot va Backend yo'q — hammasi faqat ochiq sahifada. `prototip/` va `README.md` dan tashqariga tegma, o'zgargan fayllarni ayt.", ru: 'Что не сломать: нет настоящих данных и Backend — всё только на открытой странице. Не трогай ничего вне `prototip/` и `README.md`, назови изменённые файлы.' }
         ],
         namuna: [
-          { joy: A1_JOY.ekranlar, n: { uz: "masalan: O'yinlar — o'yin kartalari: kun, soat, maydon, «8 / 10»; O'yin — qo'shilganlar, «Qo'shilaman»; E'lon berish — forma", ru: 'например: O\'yinlar — карточки игр: день, время, поле, «8 / 10»; O\'yin — присоединившиеся, «Qo\'shilaman»; E\'lon berish — форма' } },
+          { joy: A1_JOY.ekranlar, n: { uz: "masalan: O'yinlar — o'yin kartalari: kun, soat, maydon, «8 / 10»; O'yin — qo'shilganlar, «Qo'shilaman»; E'lon berish — forma", ru: "например: Игры — карточки игр: день, время, поле, «8 / 10»; Игра — присоединившиеся, «Присоединяюсь»; Объявить игру — форма" } },
           { joy: A1_JOY.namuna, n: { uz: "masalan: 4 ta o'yin, Shanba va Yakshanba", ru: 'например: 4 игры, суббота и воскресенье' } },
-          { joy: A1_JOY.tugma, n: { uz: "masalan: karta → O'yin, «E'lon berish» → forma; «Qo'shilaman» sonni bittaga oshirsin", ru: 'например: карточка → O\'yin, «E\'lon berish» → форма; «Qo\'shilaman» увеличивает число на один' } }
+          { joy: A1_JOY.tugma, n: { uz: "masalan: karta → O'yin, «E'lon berish» → forma; «Qo'shilaman» sonni bittaga oshirsin", ru: "например: карточка → Игра, «Объявить игру» → форма; «Присоединяюсь» увеличивает число на один" } }
         ],
         boshlang: a1Boshlang,
         yordam: A1_YORDAM },
@@ -2404,7 +2419,7 @@ const ScreenA1 = (props) => (
     ]}
     natija={<A1Natija />}
     ortda={{ uz: "Ortda qoldingizmi — Mentor misolini alohida papkada ochib ko'ring: `git clone https://github.com/Azizbekcrypto/maydon-jamoa` · `cd maydon-jamoa` · `git checkout -f m11-dars-07-done`, keyin `prototip/` da `npm install`, `npm run dev`. Qanday ishlashini ko'rasiz va o'z repo'ngizdagi qadamni shunga qarab qaytarasiz.", ru: 'Отстали — откройте пример Ментора в отдельной папке: `git clone https://github.com/Azizbekcrypto/maydon-jamoa` · `cd maydon-jamoa` · `git checkout -f m11-dars-07-done`, затем в `prototip/` — `npm install`, `npm run dev`. Увидите, как это работает, и повторите шаг в своём репо по образцу.' }}
-    doneText={{ uz: 'Repo ochildi, ekranlar bosiladi va wireframe bilan bir xil.', ru: 'Репо открыт, экраны нажимаются и совпадают с wireframe.' }} />
+    doneText={{ uz: 'Repo ochildi, ekranlar bosiladi va wireframe bilan bir xil.', ru: "Репо открыт, экраны кликабельные и совпадают с wireframe." }} />
 );
 const A2_JOY = { bos: { uz: '{bosiladigan karta yoki tugma}', ru: '{нажимаемая карточка или кнопка}' }, son: { uz: "{o'zgaradigan son yoki yozuv}", ru: '{меняющееся число или надпись}' } };
 const ScreenA2 = (props) => (
@@ -2433,7 +2448,7 @@ const ScreenA2 = (props) => (
       { h: QADAM.ishga, t: { uz: "sahifa o'zi yangilandi, terminalda xato yo'q.", ru: 'страница обновилась сама, в терминале нет ошибок.' }, err: XATO_GAP },
       { h: QADAM.tekshirish, t: { uz: "talabning har qatori: bosiladigan joy kichrayib qaytadimi · son yoki yozuv kattalashib qaytadimi · ekranlar silliq almashadimi · ekranlar va bosish yo'llari o'sha-o'shami.", ru: 'каждая строка требования: сжимается ли и возвращается нажимаемое место · увеличивается ли и возвращается число или надпись · плавно ли сменяются экраны · те же ли экраны и пути нажатий.' },
         bandlar: [
-          { uz: "Hammasi mos bo'lsa — GitHub'ga: repo papkasida `git status` — o'zgargan fayllar agent aytgan ro'yxat bilan bir xil bo'lsin; shularni qo'shing:", ru: 'Если всё совпадает — на GitHub: в папке репо `git status` — изменённые файлы совпадают со списком агента; добавьте их:' },
+          { uz: "Hammasi mos bo'lsa — GitHub'ga: repo papkasida `git status` — o'zgargan fayllar agent aytgan ro'yxat bilan bir xil bo'lsin; shularni qo'shing:", ru: "Если всё совпадает — на GitHub: в папке репо `git status` — изменённые файлы должны совпадать со списком агента; добавьте их:" },
           { uz: '`git add README.md PRD.md wireframe.jpg prototip`, `git commit -m "jonli prototip"`, `git push`. GitHub\'da repo sahifasini yangilang — README\'da talab va wireframe surati ko\'rinadi.', ru: '`git add README.md PRD.md wireframe.jpg prototip`, `git commit -m "jonli prototip"`, `git push`. Обновите страницу репо на GitHub — в README видны требование и снимок wireframe.' }
         ],
         err: { uz: '`git push` xato bersa: «Shu xato chiqdi: {xato}. Tuzat.»', ru: 'Если `git push` выдаст ошибку: «Вышла такая ошибка: {ошибка}. Исправь.»' } }
@@ -2478,8 +2493,8 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 
 // ===== YAKUN — QYakun (DE-204): sarlavha va yuqori yorliq holatga qarab (P-046; 07-FILTR 36) · «Bugungi asosiy fikr» (P-013) · uyga vazifa (kim uchun · muddat + 3 band) =====
 const YAKUN = {
-  a2: { chip: { uz: 'Jonli prototip tayyor', ru: 'Живой прототип готов' }, s: { uz: <>Qog'ozdagi ekranlaringiz endi <span className="italic" style={{ color: T.accent }}>bosiladi va jonli</span>.</>, ru: <>Ваши бумажные экраны теперь <span className="italic" style={{ color: T.accent }}>нажимаются и живые</span>.</> } },
-  a1: { chip: { uz: 'Prototip bosiladi', ru: 'Прототип нажимается' }, s: { uz: <>Bosiladigan prototipingiz tayyor — <span className="italic" style={{ color: T.accent }}>animatsiya uyda</span>.</>, ru: <>Ваш кликабельный прототип готов — <span className="italic" style={{ color: T.accent }}>анимация дома</span>.</> } },
+  a2: { chip: { uz: 'Jonli prototip tayyor', ru: 'Живой прототип готов' }, s: { uz: <>Qog'ozdagi ekranlaringiz endi <span className="italic" style={{ color: T.accent }}>bosiladi va jonli</span>.</>, ru: <>Ваши бумажные экраны теперь <span className="italic" style={{ color: T.accent }}>кликабельные и живые</span>.</> } },
+  a1: { chip: { uz: 'Prototip bosiladi', ru: "Прототип кликабельный" }, s: { uz: <>Bosiladigan prototipingiz tayyor — <span className="italic" style={{ color: T.accent }}>animatsiya uyda</span>.</>, ru: <>Ваш кликабельный прототип готов — <span className="italic" style={{ color: T.accent }}>анимация дома</span>.</> } },
   yoq: { chip: null, s: { uz: <>Prototip boshlandi — <span className="italic" style={{ color: T.accent }}>qolgan qadamlar uyda</span>.</>, ru: <>Прототип начат — <span className="italic" style={{ color: T.accent }}>остальные шаги дома</span>.</> } }
 };
 const HW_KARTA = [
@@ -2487,7 +2502,7 @@ const HW_KARTA = [
   { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
 ];
 const HW_BAND = [
-  { b: { uz: 'Tugatish', ru: 'Завершить' }, t: { uz: "darsda ulgurmagan qadamlarni o'z repo'ngizda bajaring: ekranlar bosilsin, uch animatsiya ishlasin.", ru: 'выполните в своём репо шаги, на которые не хватило урока: экраны нажимаются, три анимации работают.' } },
+  { b: { uz: 'Tugatish', ru: 'Завершить' }, t: { uz: "darsda ulgurmagan qadamlarni o'z repo'ngizda bajaring: ekranlar bosilsin, uch animatsiya ishlasin.", ru: "выполните в своём репо шаги, на которые не хватило урока: экраны кликабельные, три анимации работают." } },
   { b: { uz: 'README', ru: 'README' }, t: { uz: "`README.md` da talab va wireframe surati tursin, GitHub'ga yuborilgan bo'lsin.", ru: 'в `README.md` есть требование и снимок wireframe, и всё отправлено на GitHub.' } },
   { b: { uz: 'Tekshirish', ru: 'Проверка' }, t: { uz: "prototipni telefon ko'rinishida bosib chiqing: wireframe'dagi har tugma kerakli ekranni ochadimi?", ru: 'пройдите прототип в виде телефона: открывает ли каждая кнопка из wireframe нужный экран?' } }
 ];
@@ -2521,7 +2536,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const RECAP = [
     { uz: "Wireframe — ekranning qog'ozdagi sodda chizmasi: qayerda nima turadi.", ru: 'Wireframe — простой рисунок экрана на бумаге: что где стоит.' },
     { uz: 'Talab uch qatordan iborat: qayerda, nima qilsin, nima buzilmasin; wireframe surati unga ilova.', ru: 'Требование состоит из трёх строк: где, что сделать, что не сломать; снимок wireframe — приложение к нему.' },
-    { uz: "Bu prototip bosiladi, lekin ma'lumotni saqlamaydi: ma'lumot namuna, Backend yo'q.", ru: 'Этот прототип нажимается, но данные не сохраняет: данные — образец, Backend нет.' },
+    { uz: "Bu prototip bosiladi, lekin ma'lumotni saqlamaydi: ma'lumot namuna, Backend yo'q.", ru: "Этот прототип кликабельный, но данные не сохраняет: данные — образец, Backend нет." },
     { uz: 'Agent qurganini wireframe bilan solishtirib, farqlarni bitta tuzatish talabida yuborasiz.', ru: 'Вы сравниваете собранное агентом с wireframe и отправляете отличия одним требованием на исправление.' },
     { uz: "Uch animatsiya prototipni jonli qiladi: karta, son va ekranlar orasidagi o'tish.", ru: 'Три анимации делают прототип живым: карточка, число и переход между экранами.' }
   ];
@@ -2666,7 +2681,7 @@ export default function LivePrototypeLesson({ lang: langProp, onFinished, liveTo
     <LangContext.Provider value={lang}>
       <style>{`
 /* PRODUCTION: shu @import OLIB TASHLANADI — shriftlarni LMS yuklaydi (platform_contract). */
-        @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,500&family=Manrope:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400&family=JetBrains+Mono:wght@400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,500&family=Manrope:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400&family=JetBrains+Mono:wght@400;500;700&family=Comic+Neue:wght@400;700&display=swap');
         html, body { margin: 0; padding: 0; }
         .lesson-root, .lesson-root * { box-sizing: border-box; }
         .lesson-root { font-family: 'Manrope', system-ui, sans-serif; color: ${T.ink}; background: ${T.bg}; zoom: var(--lz, 1); height: calc(100dvh / var(--lz, 1)); overflow: hidden; -webkit-font-smoothing: antialiased; font-feature-settings: "ss01","cv11"; }
@@ -2717,6 +2732,8 @@ export default function LivePrototypeLesson({ lang: langProp, onFinished, liveTo
         .jt-karta.bos { transform: scale(0.95); }
         .jt-k-t { display: flex; flex-direction: column; min-width: 0; font-size: 12px; line-height: 1.3; }
         .jt-k-t b { font-size: 12px; } .jt-k-t span { font-size: 11px; color: ${T.ink2}; }
+        @media (max-width: 560px) { .jt-k-t, .jt-k-t > * { white-space: nowrap; } .jt-k-t b { font-size: 11px; } } /* 393: «Sh 18:00» bir qatorda (F-1007-289) */
+        @media (max-width: 640px) { .zoomable:not(.z-float):not(.zoom-on) { padding-top: 36px; } .zoomable:not(.z-float):not(.zoom-on) > .zoom-btn { top: 0; right: 0; } } /* 393: ⛶ maket sarlavhasini yopmasin — PM darslardagi qoida (F-1007-289) */
         .jt-k-ikki { display: flex; flex-direction: column; gap: 1px; width: 100%; min-width: 0; }
         .jt-k-ikki > b { font-size: 12px; white-space: nowrap; }
         .jt-k-r { display: flex; align-items: center; justify-content: space-between; gap: 6px; font-size: 11px; color: ${T.ink2}; }
@@ -2743,11 +2760,11 @@ export default function LivePrototypeLesson({ lang: langProp, onFinished, liveTo
         .jt-a-forma { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding-bottom: 4px; border-bottom: 1px dashed ${T.line}; }
         .jt-a-forma .jt-yubor { grid-column: 1 / -1; margin-top: 0; padding: 4px; }
         .jt-agent .jt-karta { padding: 4px 6px; flex: none; }
-        .jt-agent .jt-maydon { font-size: 11px; padding: 3px 6px; white-space: nowrap; overflow: hidden; }
+        .jt-agent .jt-maydon { font-size: 11px; padding: 3px 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .jt-a-k { display: flex; flex-direction: column; gap: 2px; width: 100%; }
-        .jt-a-r { display: flex; align-items: center; justify-content: space-between; gap: 6px; font-size: 11.5px; }
-        .jt-a-joy { font-size: 11px; color: ${T.ink2}; }
-        .jt-a-qosh { flex: none; font-size: 11px; font-weight: 800; color: ${T.paper}; background: ${JAMOA_RANG}; border-radius: 7px; padding: 2px 6px; }
+        .jt-a-r { display: flex; align-items: center; justify-content: space-between; gap: 4px; font-size: 11.5px; }
+        .jt-a-joy { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 10.5px; color: ${T.ink2}; }
+        .jt-a-qosh { flex: none; font-size: 10px; font-weight: 800; color: ${T.paper}; background: ${JAMOA_RANG}; border-radius: 7px; padding: 2px 3px; letter-spacing: -0.03em; }
         .jt-chat { gap: 6px; }
         .jt-pufak { align-self: flex-start; font-size: 11.5px; background: ${T.bg}; border: 1px solid ${T.line}; border-radius: 10px 10px 10px 3px; padding: 5px 8px; }
         .jt-pufak.siz { align-self: flex-end; background: ${T.accentSoft}; border-radius: 10px 10px 3px 10px; }
@@ -2829,7 +2846,7 @@ export default function LivePrototypeLesson({ lang: langProp, onFinished, liveTo
         .jp-ramka { padding: 0; background: none; border: 0; border-radius: 18px; cursor: pointer; }
         .jp-ramka:disabled { cursor: default; }
         .jp-ramka.tanla .jt-tel { border-color: ${T.accent}; }
-        .jp-strelka { font-family: 'Segoe Print', 'Comic Sans MS', cursive; font-size: 18px; color: ${T.ink2}; }
+        .jp-strelka { font-family: 'Segoe Print', 'Comic Sans MS', 'Comic Neue', cursive; font-size: 18px; color: ${T.ink2}; }
         .jp-strelka-o { position: absolute; left: calc(16.67% + 64px); right: calc(50% + 72px); top: 42%; height: 0; border-top: 1.6px solid ${fon(T.ink2, 0.75)}; animation: jp-chiz 0.6s ease-out both; }
         .jp-strelka-o::after { content: ''; position: absolute; right: -2px; top: -6px; border: 5px solid transparent; border-left: 8px solid ${fon(T.ink2, 0.75)}; }
         .jp-strelka-ost { position: absolute; left: 16.6%; right: 16.6%; bottom: 2px; height: 16px; border: 1.6px solid ${fon(T.ink2, 0.75)}; border-top: 0; border-radius: 0 0 16px 16px; animation: jp-chiz 0.8s ease-out 0.2s both; }
@@ -2843,7 +2860,7 @@ export default function LivePrototypeLesson({ lang: langProp, onFinished, liveTo
         .jp-s3 .jp-tashqari { flex-direction: column; align-items: stretch; align-content: flex-start; }
         .jp-bolak-k { flex-direction: row !important; flex-wrap: wrap; align-items: center; gap: 10px 16px !important; }
         .jp-bolak-k .jp-bolak-t { flex: 1 1 260px; }
-        .jp-strelka-t { font-family: 'Segoe Print', 'Comic Sans MS', cursive; font-size: 14px; font-weight: 700; color: ${T.ink2}; }
+        .jp-strelka-t { font-family: 'Segoe Print', 'Comic Sans MS', 'Comic Neue', cursive; font-size: 14px; font-weight: 700; color: ${T.ink2}; }
         .jp-tashqari { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-height: 42px; border: 1.5px dashed ${T.line}; border-radius: 12px; padding: 8px 12px; background: ${T.bg}; }
         .jp-tashqari-l { font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: ${T.ink2}; }
         .jp-tushdi { font-size: 12.5px; color: ${T.ink2}; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 9px; padding: 4px 9px; animation: jp-tush 0.45s cubic-bezier(.3,1.4,.5,1) both; }

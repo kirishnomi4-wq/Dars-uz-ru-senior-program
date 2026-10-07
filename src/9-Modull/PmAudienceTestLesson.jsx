@@ -252,7 +252,7 @@ const INLINE_KEYS = { s3: 1, s8: 3, sinov: -1, practice: -1 };
 // 📖 RECAPS — har ballik test uchun 3 karta (kalit = ekran INDEKSI). PM darsida emoji o'rniga raqam (S-026).
 const RECAPS = {
   3: { title: { uz: 'Birinchi qaysi', ru: 'Что первым' }, cards: [
-    { ic: '1', h: { uz: "To'xtash nechta kishida takrorlandi — sanoq.", ru: 'У скольких людей повторилась остановка — это счёт.' } },
+    { ic: '1', h: { uz: "To'xtash nechta kishida takrorlandi — sanoq.", ru: "У скольких людей повторилась остановка — это подсчёт." } },
     { ic: '2', h: { uz: 'Kishi vazifani bajara oldimi — har yozuvda alohida.', ru: 'Смог ли человек выполнить задание — отдельно в каждой записи.' } },
     { ic: '3', h: { uz: "Ikkala savolga «ha» bo'lgan to'xtash — birinchi, qolgani «Keyin» ro'yxatida.", ru: 'Остановка с «да» на оба вопроса — первая, остальные в списке «Потом».' }, ask: { uz: "Bitta kishini butunlay to'xtatgan to'xtash-chi — u ham muhimmi?", ru: 'А остановка, которая полностью остановила одного человека, — тоже важна?' } }
   ] },
@@ -705,15 +705,15 @@ const SINOV_MAYDON = {
   toxtashlar: [
     { id: 'topish', nom: { uz: "Shanba 18:00 dagi o'yinni topishda to'xtadi", ru: 'Застрял, ища игру в субботу в 18:00' }, sabab: { uz: "e'lonlar qo'shilgan vaqti bo'yicha turibdi, kun bo'yicha emas", ru: 'объявления стоят по времени добавления, а не по дням' } },
     { id: 'son', nom: { uz: "«8 / 10» nimani bildirishini so'radi", ru: 'Спросил, что значит «8 / 10»' } },
-    { id: 'kelaman', nom: { uz: "«Kelaman» tugmasi nega yo'qligini tushunmadi", ru: 'Не понял, почему нет кнопки «Kelaman»' }, sabab: { uz: "u faqat o'yin kuni chiqadi", ru: 'она появляется только в день игры' } }
+    { id: 'kelaman', nom: { uz: "«Kelaman» tugmasi nega yo'qligini tushunmadi", ru: "Не понял, почему нет кнопки «Приду»" }, sabab: { uz: "u faqat o'yin kuni chiqadi", ru: 'она появляется только в день игры' } }
   ],
   yozuvlar: [
     { kim: 1, bajardi: true, qatorlar: [
       { v: '0:00', t: { uz: "Ilovani ochdi: ro'yxat boshida yakshanba o'yinlari", ru: 'Открыл приложение: в начале списка воскресные игры' } },
       { v: '0:03–0:38', t: { uz: "Shanba o'yinini qidirib, tepadagi kartalarni qayta o'qidi", ru: 'Ища субботнюю игру, перечитывал верхние карточки' }, x: 'topish' },
-      { v: '0:38', t: { uz: "Pastga surib, «Shanba, 18:00» ni topdi va ochdi", ru: 'Прокрутил вниз, нашёл и открыл «Shanba, 18:00»' } },
+      { v: '0:38', t: { uz: "Pastga surib, «Shanba, 18:00» ni topdi va ochdi", ru: "Прокрутил вниз, нашёл и открыл «Суббота, 18:00»" } },
       { v: '0:41–0:55', t: { uz: "«8 / 10» ga qarab so'radi: «Bu nima — hisobmi?»", ru: 'Глядя на «8 / 10», спросил: «Это что — счёт?»' }, x: 'son' },
-      { v: '0:58', t: { uz: "«Qo'shilaman» ni bosdi", ru: "Нажал «Qo'shilaman»" } }
+      { v: '0:58', t: { uz: "«Qo'shilaman» ni bosdi", ru: "Нажал «Присоединяюсь»" } }
     ] },
     { kim: 2, bajardi: false, qatorlar: [
       { v: '0:00', t: { uz: 'Ilovani ochdi', ru: 'Открыл приложение' } },
@@ -722,8 +722,8 @@ const SINOV_MAYDON = {
     ] },
     { kim: 3, bajardi: true, qatorlar: [
       { v: '0:00', t: { uz: 'Ilovani ochdi', ru: 'Открыл приложение' } },
-      { v: '0:04–0:50', t: { uz: "Shanba o'yinini qidirdi: «Shanba, 20:00» ni ochib, orqaga qaytdi", ru: 'Искал субботнюю игру: открыл «Shanba, 20:00» и вернулся назад' }, x: 'topish' },
-      { v: '0:50', t: { uz: "«Shanba, 18:00» ni topdi, «Qo'shilaman» ni bosdi", ru: "Нашёл «Shanba, 18:00», нажал «Qo'shilaman»" } },
+      { v: '0:04–0:50', t: { uz: "Shanba o'yinini qidirdi: «Shanba, 20:00» ni ochib, orqaga qaytdi", ru: "Искал субботнюю игру: открыл «Суббота, 20:00» и вернулся назад" }, x: 'topish' },
+      { v: '0:50', t: { uz: "«Shanba, 18:00» ni topdi, «Qo'shilaman» ni bosdi", ru: "Нашёл «Суббота, 18:00», нажал «Присоединяюсь»" } },
       { v: '1:00–1:25', t: { uz: "«Kelishimni qayerda bildiraman?» deb so'radi", ru: 'Спросил: «Где отметить, что я приду?»' }, x: 'kelaman' }
     ] }
   ],
@@ -745,7 +745,7 @@ const sanoqQator = (n) => {
 const VAZIFA_T = { uz: 'Vazifa', ru: 'Задание' };
 const TOXTADI_T = { uz: "to'xtadi", ru: 'застрял' };
 const BAJARDI_T = { ok: { uz: 'bajardi ✓', ru: 'выполнил ✓' }, yoq: { uz: 'bajarmadi ✕', ru: 'не выполнил ✕' } };
-const NAVBAT_T = { birinchi: { uz: '★ Birinchi', ru: '★ Первое' }, keyin: { uz: 'Keyin', ru: 'Потом' }, tuzatildi: { uz: 'tuzatildi', ru: 'исправлено' } };
+const NAVBAT_T = { birinchi: { uz: '★ Birinchi', ru: "★ Первая" }, keyin: { uz: 'Keyin', ru: 'Потом' }, tuzatildi: { uz: 'tuzatildi', ru: 'исправлено' } };
 
 // Odam (SABOQ 36): real ko'rinish — bosh, soch, yuz, rangli kiyim (kichik avatar; chizma ranglari UI tokeni emas)
 const ODAM_RANG = { teri: ['#EDC39C', '#C98E62', '#E3A87C'], soch: ['#2E2019', '#5B3A24', '#1F1A19'], kiyim: ['#E07A5F', '#3E7CB1', '#E9A23B', '#7B61C9', '#2F9E7A'] };
@@ -793,7 +793,7 @@ const Tel = ({ tartib = 'sinovdagi', sarlavhasiz, nuqta = {}, oyin, ajrat, yorli
             <b className="pa-oyin-sar">{tr(o1.kun)}, {o1.soat}</b>
             <span className="pa-ok-joy">{tr(o1.maydon)}</span>
             <b className="pa-oyin-son">{o1.son}{oyin === 'son' && <Nuqta className="son" />}</b>
-            <span className="pa-oyin-btn">{tr({ uz: "Qo'shilaman", ru: "Qo'shilaman" })}</span>
+            <span className="pa-oyin-btn">{tr({ uz: "Qo'shilaman", ru: "Присоединяюсь" })}</span>
             {oyin === 'kelaman' && <Nuqta className="oyin" />}
           </div>
           : <div className={cxx('pa-ekran', ajrat && 'ajrat')} key="ro">
@@ -826,7 +826,7 @@ const YozuvKarta = ({ y }) => (
 // Sanalgan yozuv — ixcham qator «1-o'yinchi · 2 to'xtash · bajardi ✓»
 const YozuvIxcham = ({ y, natija, yangi }) => (
   <div className={cxx('pa-yi', yangi && 'yangi')} data-yi={y.kim}>
-    <Yuz i={y.kim - 1} s={22} /><b>{OYINCHI(y.kim)}</b><span className="pa-yi-n">· {toxSoni(y)} {tr({ uz: "to'xtash", ru: 'остановки' })}</span>
+    <Yuz i={y.kim - 1} s={22} /><b>{OYINCHI(y.kim)}</b><span className="pa-yi-n">· {toxSoni(y)} {tr({ uz: "to'xtash", ru: toxSoni(y) % 10 === 1 && toxSoni(y) % 100 !== 11 ? 'остановка' : [2, 3, 4].includes(toxSoni(y) % 10) && ![12, 13, 14].includes(toxSoni(y) % 100) ? 'остановки' : 'остановок' })}</span>
     {natija && <span className={cxx('pa-yi-b', y.bajardi ? 'ok' : 'yoq')} style={{ '--i': y.kim - 1 }}>{tr(y.bajardi ? BAJARDI_T.ok : BAJARDI_T.yoq)}</span>}
   </div>
 );
@@ -882,7 +882,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
       <div className={cxx('pa-s0', picked === null && !isMentor && 'tanlovsiz')}>
         <QKirish zoom={Zoomable}
           sarlavha={tr({ uz: <>Uch foydalanuvchidan keyin <A>nimani tuzatasiz?</A></>, ru: <>Что вы исправите <A>после трёх пользователей?</A></> })}
-          mentor={<Mentor>{tr({ uz: "Mentor misolida «Maydon Jamoa»ni auditoriyadan uch o'yinchi sinadi va har biri qayerdadir to'xtadi. O'zingizga yaqin javobni belgilang.", ru: 'В примере Ментора «Maydon Jamoa» проверили три игрока из аудитории, и каждый где-то застрял. Отметьте близкий вам ответ.' })}</Mentor>}
+          mentor={<Mentor>{tr({ uz: "Mentor misolida «Maydon Jamoa»ni auditoriyadan uch o'yinchi sinadi va har biri qayerdadir to'xtadi. O'zingizga yaqin javobni belgilang.", ru: "В примере Ментора «Maydon Jamoa» протестировали три игрока из аудитории, и каждый где-то застрял. Отметьте близкий вам ответ." })}</Mentor>}
           maket={<div className="pa-s0-maket">
             <p className="pa-vq">{tr(VAZIFA_T)}: «{tr(SINOV_MAYDON.vazifa)}»</p>
             <div className="pa-s0-ust">
@@ -897,22 +897,22 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
           </div>}
           variantlar={HOOK_OPTS.map(o => ({ id: o.id, t: tr(o.t) }))} tanlov={picked} onTanla={pick} yopiq={isMentor}
           javob={<>
-            {picked !== null && <p className="pa-javob fade-step">{tr({ uz: "Har birining o'z sababi bor. Bugun uch yozuvni sanab, qaysi biri birinchi ekanini o'zingiz topasiz.", ru: 'У каждого свой довод. Сегодня вы посчитаете три записи и сами найдёте, что исправлять первым.' })}</p>}
+            {picked !== null && <p className="pa-javob fade-step">{tr({ uz: "Har birining o'z sababi bor. Bugun uch yozuvni sanab, qaysi biri birinchi ekanini o'zingiz topasiz.", ru: "У каждого ответа своя причина. Сегодня вы посчитаете три записи и сами найдёте, что исправлять первым." })}</p>}
             {isLive && <OvozChizigi live={live} screen={screen} variantlar={HOOK_OPTS.map(o => tr(o.t))} mening={HOOK_OPTS.findIndex(o => o.id === picked)} />}
           </>}
         />
       </div>
-      <MentorNote>{tr({ uz: "Shu ekranda qo'l ko'tartirib so'rang: «Uyda kim sinov o'tkazdi?» Yozuvi yo'qlar Reja ekranida sinfdosh bilan sinov o'tkazadi.", ru: 'На этом экране спросите поднятием руки: «Кто провёл тест дома?» У кого записи нет — на экране «План» проводят тест с одноклассником.' })}</MentorNote>
+      <MentorNote>{tr({ uz: "Shu ekranda qo'l ko'tartirib so'rang: «Uyda kim sinov o'tkazdi?» Yozuvi yo'qlar Reja ekranida sinfdosh bilan sinov o'tkazadi.", ru: "На этом экране попросите поднять руку: «Кто провёл тест дома?» У кого записи нет — на экране «План» проводят тест с одноклассником." })}</MentorNote>
     </Stage>
   );
 };
 
 // ===== SCREEN 1 — REJA (QReja: chapda «Dars oxirida» — telefon o'zi o'ynaydi: uch nuqta bir joyga yig'iladi → kartalar o'z joyiga uchadi → «Qayta sinov: vazifa bajarildi») =====
 const REJA = [
-  { t: { uz: 'Har to\'xtash nechta kishida takrorlanganini sanaysiz', ru: 'Посчитаете, у скольких людей повторилась каждая остановка' }, teg: { uz: 'sanoq', ru: 'счёт' } },
-  { t: { uz: "Kim vazifani bajara olmaganini ko'rib, birinchisini tanlaysiz", ru: 'Увидите, кто не выполнил задание, и выберете первое' }, teg: { uz: 'birinchi', ru: 'первое' } },
+  { t: { uz: 'Har to\'xtash nechta kishida takrorlanganini sanaysiz', ru: 'Посчитаете, у скольких людей повторилась каждая остановка' }, teg: { uz: 'sanoq', ru: "подсчёт" } },
+  { t: { uz: "Kim vazifani bajara olmaganini ko'rib, birinchisini tanlaysiz", ru: "Увидите, кто не выполнил задание, и выберете первую остановку" }, teg: { uz: 'birinchi', ru: "первая" } },
   { t: { uz: "Tanlangan to'xtashni o'z ilovangizda tuzatasiz", ru: 'Исправите выбранную остановку в своём приложении' }, teg: { uz: 'tuzatish', ru: 'исправление' } },
-  { t: { uz: 'Tuzatishni yangi odam bilan qayta sinaysiz', ru: 'Повторно проверите исправление с новым человеком' }, teg: { uz: 'qayta sinov', ru: 'повторный тест' } }
+  { t: { uz: 'Tuzatishni yangi odam bilan qayta sinaysiz', ru: "Проведёте повторный тест исправления с новым человеком" }, teg: { uz: 'qayta sinov', ru: 'повторный тест' } }
 ];
 const RejaChizma = () => {
   const [b, setB] = useState(0);
@@ -931,17 +931,17 @@ const RejaChizma = () => {
 const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz', ru: 'Начинаем' })} onClick={onNext} /></>}>
     <QReja zoom={Zoomable}
-      sarlavha={tr({ uz: <>Bugun sinovdagi <A>eng muhim to'xtash</A> tuzatiladi.</>, ru: <>Сегодня исправляется <A>самая важная остановка</A> из теста.</> })}
-      mentor={<Mentor>{tr({ uz: 'Kodni Antigravity agenti o\'zgartiradi: siz talab yozasiz va natijani yangi odam bilan qayta sinaysiz.', ru: 'Код меняет агент Antigravity: вы пишете требование и повторно проверяете результат с новым человеком.' })}</Mentor>}
+      sarlavha={tr({ uz: <>Bugun sinovdagi <A>eng muhim to'xtash</A> tuzatiladi.</>, ru: <>Сегодня исправим <A>главную остановку</A> теста.</> })}
+      mentor={<Mentor>{tr({ uz: 'Kodni Antigravity agenti o\'zgartiradi: siz talab yozasiz va natijani yangi odam bilan qayta sinaysiz.', ru: "Код меняет агент Antigravity: вы пишете требование и проводите повторный тест с новым человеком." })}</Mentor>}
       chapYorliq={tr({ uz: 'Dars oxirida: auditoriya bilan sinov va shu darsda tuzatish', ru: 'В конце урока: тест с аудиторией и исправление на этом же уроке' })}
       chap={<RejaChizma />}
       qadamlar={REJA.map(r => ({ t: tr(r.t), teg: tr(r.teg) }))}
     >
       <div className="pa-reja-ost">
         <p className="pa-reja-repo">repo <code>maydon-jamoa</code> · {tr({ uz: "boshlang'ich holat", ru: 'начальное состояние' })} <code>m11-dars-13-start</code> · {tr({ uz: 'namuna', ru: 'образец' })} <code>m11-dars-13-done</code> — {tr({ uz: 'amaliyotlarni o\'z mahsulotingizda bajarasiz.', ru: 'практику вы делаете на своём продукте.' })}</p>
-        <p className="pa-reja-izoh">{tr({ uz: "Yozuvingiz yo'qmi? Hozir sinfdoshingiz bilan sinang: «Hisobdan chiqish» — u namuna ism va telefon bilan ro'yxatdan o'tadi.", ru: 'Нет записи? Проведите тест с одноклассником прямо сейчас: «Hisobdan chiqish» — он регистрируется с образцом имени и телефона.' })}</p>
+        <p className="pa-reja-izoh">{tr({ uz: "Yozuvingiz yo'qmi? Hozir sinfdoshingiz bilan sinang: «Hisobdan chiqish» — u namuna ism va telefon bilan ro'yxatdan o'tadi.", ru: "Нет записи? Проведите тест с одноклассником прямо сейчас: «Hisobdan chiqish» — он регистрируется с именем-образцом и телефоном-образцом." })}</p>
       </div>
-      <MentorNote>{tr({ uz: "Yozuvi yo'q o'quvchilarni uchlik guruhga bo'ling — har ilovani qolgan ikkitasi 3 daqiqadan sinaydi (≈ 10 daqiqa; vaqt yetmasa — juftlikda: bitta yozuv ham yetadi, 5-mashqda «1 kishi»), vazifa — ilovaning asosiy harakati (12-dars uyga vazifasidagidek). Har sinovdan oldin ilova egasi «Hisobdan chiqish»ni bosadi, sinfdosh namuna ism va namuna telefon bilan ro'yxatdan o'tadi — o'z raqamini yozmaydi, har sinovchiga boshqa raqam; shunda har sinovchi asosiy harakatni o'zi ko'radi. Yozuvi borlar shu paytda sinfdoshining ilovasini sinashi mumkin. Kuzatuvchi faqat «O'zingiz qanday deb o'ylaysiz?» deydi. Sinfdosh auditoriyadan bo'lmasa — bu mashq (5-mashqda «mashq» deb belgilanadi); real sinov — uyda.", ru: 'Учеников без записи разделите на тройки — каждое приложение двое других проверяют по 3 минуты (≈ 10 минут; если не хватает времени — в парах: хватит и одной записи, в 5-м упражнении «1 человек»), задание — главное действие приложения (как в домашнем задании 12-го урока). Перед каждым тестом владелец приложения нажимает «Hisobdan chiqish», одноклассник регистрируется с образцом имени и образцом телефона — свой номер не пишет, у каждого тестирующего другой номер; так каждый сам видит главное действие. Ученики с записью в это время могут проверить приложение одноклассника. Наблюдатель говорит только: «А вы сами как думаете?» Если одноклассник не из аудитории — это упражнение (в 5-м упражнении отмечается «упражнение»); настоящий тест — дома.' })}</MentorNote>
+      <MentorNote>{tr({ uz: "Yozuvi yo'q o'quvchilarni uchlik guruhga bo'ling — har ilovani qolgan ikkitasi 3 daqiqadan sinaydi (≈ 10 daqiqa; vaqt yetmasa — juftlikda: bitta yozuv ham yetadi, 5-mashqda «1 kishi»), vazifa — ilovaning asosiy harakati (12-dars uyga vazifasidagidek). Har sinovdan oldin ilova egasi «Hisobdan chiqish»ni bosadi, sinfdosh namuna ism va namuna telefon bilan ro'yxatdan o'tadi — o'z raqamini yozmaydi, har sinovchiga boshqa raqam; shunda har sinovchi asosiy harakatni o'zi ko'radi. Yozuvi borlar shu paytda sinfdoshining ilovasini sinashi mumkin. Kuzatuvchi faqat «O'zingiz qanday deb o'ylaysiz?» deydi. Sinfdosh auditoriyadan bo'lmasa — bu mashq (5-mashqda «mashq» deb belgilanadi); real sinov — uyda.", ru: "Учеников без записи разделите на тройки — каждое приложение двое других тестируют по 3 минуты (≈ 10 минут; если не хватает времени — в парах: хватит и одной записи, в 5-м упражнении «1 человек»), задание — главное действие приложения (как в домашнем задании 12-го урока). Перед каждым тестом владелец приложения нажимает «Hisobdan chiqish», одноклассник регистрируется с именем-образцом и телефоном-образцом — свой номер не пишет, у каждого тестировщика другой номер; так каждый тестировщик сам видит главное действие. Ученики с записью в это время могут протестировать приложение одноклассника. Наблюдатель говорит только: «А вы сами как думаете?» Если одноклассник не из аудитории — это упражнение (в 5-м упражнении отмечается «упражнение»); настоящий тест — дома." })}</MentorNote>
     </QReja>
   </Stage>
 );
@@ -1010,11 +1010,11 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const royxatSon = SINOV_MAYDON.yozuvlar.slice(0, qoll).filter(y => y.qatorlar.some(q => q.x === 'topish')).length;
   const faza = !taxmin ? 'bash' : n < 3 ? 'sana' : !natija ? 'vazifa' : !done ? 'tanla' : 'tayyor';
   const MENTOR2 = {
-    bash: { uz: 'Avval taxminingizni belgilang, keyin yozuvlarni birma-bir sanang.', ru: 'Сначала отметьте предположение, потом считайте записи по одной.' },
-    sana: { uz: "4-darsda intervyu yozuvlarini sanagansiz — sinov yozuvi ham shunday sanaladi, «Sanash»ni bosing.", ru: 'На 4-м уроке вы считали записи интервью — запись теста считается так же, нажмите «Sanash».' },
-    vazifa: { uz: "Endi har o'yinchi vazifani bajara oldimi — «Vazifa natijasi»ni bosing.", ru: 'Теперь — смог ли каждый игрок выполнить задание: нажмите «Vazifa natijasi».' },
+    bash: { uz: 'Avval taxminingizni belgilang, keyin yozuvlarni birma-bir sanang.', ru: "Сначала отметьте своё предположение, потом посчитайте записи по одной." },
+    sana: { uz: "4-darsda intervyu yozuvlarini sanagansiz — sinov yozuvi ham shunday sanaladi, «Sanash»ni bosing.", ru: "На 4-м уроке вы считали записи интервью — запись теста считается так же: нажмите «Посчитать»." },
+    vazifa: { uz: "Endi har o'yinchi vazifani bajara oldimi — «Vazifa natijasi»ni bosing.", ru: "Теперь — смог ли каждый игрок выполнить задание: нажмите «Итог задания»." },
     tanla: { uz: "Ikkala savolga qarab, birinchi tuzatiladigan to'xtashni tanlang.", ru: 'Глядя на оба вопроса, выберите остановку, которую исправят первой.' },
-    tayyor: { uz: "Birinchisi tanlandi — «Davom etish»ni bosing.", ru: 'Первая выбрана — нажмите «Davom etish».' }
+    tayyor: { uz: "Birinchisi tanlandi — «Davom etish»ni bosing.", ru: "Первая выбрана — нажмите «Продолжить»." }
   };
   const tx = S2_TAXMIN.find(t => t.k === taxmin);
   const txOk = taxmin === 'bitta';
@@ -1023,7 +1023,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       : !natija ? tr({ uz: 'Vazifa natijasi', ru: 'Итог задания' })
         : !done ? tr({ uz: 'Qatorni tanlang', ru: 'Выберите строку' }) : tr({ uz: 'Davom etish', ru: 'Продолжить' });
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · sanoq', ru: 'Понятие · счёт' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={navLabel} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · sanoq', ru: "Понятие · подсчёт" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={navLabel} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
         sarlavha={tr({ uz: <>Uch yozuvda qaysi to'xtash <A>takrorlanadi?</A></>, ru: <>Какая остановка <A>повторяется</A> в трёх записях?</> })}
         mentor={<Mentor key={faza}>{tr(MENTOR2[faza])}</Mentor>}
@@ -1050,13 +1050,13 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {natija && <Bog dan='[data-yi="2"] .pa-yi-b' gacha='[data-jq="topish"]' kalit={`${natija}-${done}-${tugadi}`} />}
           {parvoz.map(p => <Parvoz key={p.k} p={p} />)}
         </div>}
-        natija={n >= 3 && !done && <QIzoh>{tr({ uz: "Har to'xtash nechta kishida takrorlangani — sanoq; har yozuvda alohida — kishi vazifani bajara oldimi.", ru: 'Сколько людей повторили каждую остановку — это счёт; отдельно в каждой записи — смог ли человек выполнить задание.' })}</QIzoh>}
+        natija={n >= 3 && !done && <QIzoh>{tr({ uz: "Har to'xtash nechta kishida takrorlangani — sanoq; har yozuvda alohida — kishi vazifani bajara oldimi.", ru: "У скольких людей повторилась каждая остановка — это подсчёт; отдельно в каждой записи — смог ли человек выполнить задание." })}</QIzoh>}
         xulosa={done && <>{tx && <span className={cxx('pa-tx', txOk && 'ok')}>{taxmin === 'bitta'
           ? tr({ uz: "Taxminingiz to'g'ri chiqdi", ru: 'Ваше предположение оказалось верным' })
           : <>{tr({ uz: 'Taxminingiz', ru: 'Ваше предположение' })}: {tr(tx.t)} · {tr({ uz: 'haqiqatda', ru: 'на деле' })}: <b>{tr({ uz: "bitta bor — o'yinni topish", ru: 'одна — поиск игры' })}</b></>}</span>}
           {tr({ uz: "Bu sinovda o'yinni topish uchala o'yinchida takrorlandi va birini to'xtatdi — u birinchi tuzatiladi.", ru: 'В этом тесте поиск игры повторился у всех трёх игроков и одного остановил — его исправляют первым.' })}</>}
       />
-      <MentorNote>{tr({ uz: "9-Modulda bitta o'yinchining bitta sinovi edi — har to'xtashning «vazifaga ta'siri» yozilgan; bugun uch kishi, shuning uchun sanoq qo'shildi. Mentor misolida har sinovdan oldin «Hisobdan chiqish» bosilgan, o'yinchi namuna ism va telefon bilan ro'yxatdan o'tgan — shuning uchun har biri «Qo'shilaman»ni o'zi ko'rgan. «Topishda to'xtadi» — qidirgan paytdagi to'xtash: 1 va 3-o'yinchi keyin topdi, 2-o'yinchi topmadi. Uch kishi — kichik son: sanoq tanlovga yordam beradi, isbot emas. Sinfga savol: «Bitta kishida bo'lgan, lekin vazifani butunlay to'xtatgan to'xtash-chi?» — javob: u ham muhim bo'lishi mumkin; bu sinovda ikkala savolga «ha» bo'lgani bitta edi.", ru: 'В 9-м модуле был один тест одного игрока — у каждой остановки записывалось «влияние на задание»; сегодня три человека, поэтому добавился счёт. В примере Ментора перед каждым тестом нажимали «Hisobdan chiqish», игрок регистрировался с образцом имени и телефона — поэтому каждый сам видел «Qo\'shilaman». «Застрял при поиске» — остановка во время поиска: игроки 1 и 3 потом нашли, игрок 2 — нет. Три человека — маленькое число: счёт помогает выбору, но не доказывает. Вопрос классу: «А остановка у одного человека, которая полностью остановила задание?» — ответ: она тоже может быть важной; в этом тесте «да» на оба вопроса было у одной.' })}</MentorNote>
+      <MentorNote>{tr({ uz: "9-Modulda bitta o'yinchining bitta sinovi edi — har to'xtashning «vazifaga ta'siri» yozilgan; bugun uch kishi, shuning uchun sanoq qo'shildi. Mentor misolida har sinovdan oldin «Hisobdan chiqish» bosilgan, o'yinchi namuna ism va telefon bilan ro'yxatdan o'tgan — shuning uchun har biri «Qo'shilaman»ni o'zi ko'rgan. «Topishda to'xtadi» — qidirgan paytdagi to'xtash: 1 va 3-o'yinchi keyin topdi, 2-o'yinchi topmadi. Uch kishi — kichik son: sanoq tanlovga yordam beradi, isbot emas. Sinfga savol: «Bitta kishida bo'lgan, lekin vazifani butunlay to'xtatgan to'xtash-chi?» — javob: u ham muhim bo'lishi mumkin; bu sinovda ikkala savolga «ha» bo'lgani bitta edi.", ru: "В 9-м модуле был один тест одного игрока — у каждой остановки записывалось «влияние на задание»; сегодня три человека, поэтому добавился подсчёт. В примере Ментора перед каждым тестом нажимали «Hisobdan chiqish», игрок регистрировался с именем-образцом и телефоном-образцом — поэтому каждый сам видел «Присоединяюсь». «Застрял, ища игру» — остановка во время поиска: игроки 1 и 3 потом нашли, игрок 2 — нет. Три человека — маленькое число: подсчёт помогает выбору, но это не доказательство. Вопрос классу: «А остановка у одного человека, которая полностью остановила задание?» — ответ: она тоже может быть важной; в этом тесте «да» на оба вопроса было у одной." })}</MentorNote>
     </Stage>
   );
 };
@@ -1067,16 +1067,16 @@ const Screen3 = (props) => (
     questionText="Vazifa — o'yin e'lon qilish. Ikki savol bo'yicha qaysi to'xtash birinchi?"
     question={tr({ uz: <><h2 className="title h-ask">Vazifa — o'yin e'lon qilish. Ikki savol bo'yicha <A>qaysi to'xtash birinchi?</A></h2><NishonQatori screen={3} /></>, ru: <><h2 className="title h-ask">Задание — объявить игру. Какая остановка <A>первая по двум вопросам?</A></h2><NishonQatori screen={3} /></> })}
     options={[
-      { uz: '1 kishida: soatni uzoq tanladi, e\'lonni berdi', ru: 'У 1 человека: долго выбирал час, объявление дал' },
-      { uz: '3 kishida: kunni topmadi, 2 tasi e\'lon bermadi', ru: 'У 3 человек: не нашли день, 2 не дали объявление' },
-      { uz: '2 kishida: maydon nomini so\'radi, e\'lonni berdi', ru: 'У 2 человек: спросили название поля, объявление дали' },
-      { uz: '1 kishida: tugmani topmadi, e\'lonni bermadi', ru: 'У 1 человека: не нашёл кнопку, объявление не дал' }
+      { uz: '1 kishida: soatni uzoq tanladi, e\'lonni berdi', ru: "У 1 человека: долго выбирал время, объявление подал" },
+      { uz: '3 kishida: kunni topmadi, 2 tasi e\'lon bermadi', ru: "У 3 человек: не нашли день, 2 не подали объявление" },
+      { uz: '2 kishida: maydon nomini so\'radi, e\'lonni berdi', ru: "У 2 человек: спросили название поля, объявление подали" },
+      { uz: '1 kishida: tugmani topmadi, e\'lonni bermadi', ru: "У 1 человека: не нашёл кнопку, объявление не подал" }
     ]} correctIdx={1}
-    explainCorrect={{ uz: "Eng ko'p kishida takrorlangan va vazifani to'xtatgani shu.", ru: 'Это повторилось у большинства и остановило задание.' }}
+    explainCorrect={{ uz: "Eng ko'p kishida takrorlangan va vazifani to'xtatgani shu.", ru: "Именно она повторилась у большинства и остановила задание." }}
     explainWrong={{
-      0: { uz: "Bitta kishi, e'lon berildi. Vazifani to'xtatgani bormi?", ru: 'Один человек, объявление дано. Есть ли то, что остановило задание?' },
-      2: { uz: "Ikki kishi so'radi, lekin e'lon berildi. Vazifa to'xtadimi?", ru: 'Спросили двое, но объявление дано. Задание остановилось?' },
-      3: { uz: "Vazifa to'xtadi, lekin bir kishida. Ko'proq kishida bormi?", ru: 'Задание остановилось, но у одного. Есть ли у большего числа людей?' },
+      0: { uz: "Bitta kishi, e'lon berildi. Vazifani to'xtatgani bormi?", ru: "Один человек, и объявление подано. Есть ли остановка, которая остановила задание?" },
+      2: { uz: "Ikki kishi so'radi, lekin e'lon berildi. Vazifa to'xtadimi?", ru: "Спросили двое, но объявление подано. Задание остановилось?" },
+      3: { uz: "Vazifa to'xtadi, lekin bir kishida. Ko'proq kishida bormi?", ru: "Задание остановилось, но у одного. А есть такая у большего числа людей?" },
       default: { uz: 'Ikki savolga qarang: nechta kishida va vazifa to\'xtadimi?', ru: 'Посмотрите на два вопроса: у скольких и остановилось ли задание?' }
     }} />
 );
@@ -1252,8 +1252,8 @@ const sinovOqi = () => {
   const v = lsGet(SINOV_KEY);
   return v && typeof v.vazifa === 'string' && Array.isArray(v.bajardi) && v.bajardi.length && Array.isArray(v.toxtashlar) && v.toxtashlar.length && v.eng ? v : null;
 };
-const XULOSA_RE = /(^|[^a-z'])(yomon|noqulay|yoqmadi|chiroyli|kerak)([^a-z']|$)/i;
-const S5_QADAM = [{ uz: 'Vazifa va natija', ru: 'Задание и итог' }, { uz: "To'xtashlar", ru: 'Остановки' }, { uz: 'Birinchisi', ru: 'Первое' }];
+const XULOSA_RE = /(^|[^a-z'])(yomon|noqulay|yoqmadi|chiroyli|kerak)([^a-z']|$)|(^|[^а-яё])(плохо|неудобно|не понравил\S*|красиво|нужно)([^а-яё]|$)/i; // ru rejimi ham (F-1007-291)
+const S5_QADAM = [{ uz: 'Vazifa va natija', ru: 'Задание и итог' }, { uz: "To'xtashlar", ru: 'Остановки' }, { uz: 'Birinchisi', ru: "Первая" }];
 const KEYINGI_Q = { uz: 'Keyingi qadam', ru: 'Следующий шаг' };
 const XATO5 = {
   vazifa: { uz: 'Odam nimaga erishsin — shuni yozing.', ru: 'Чего человек должен добиться — напишите это.' },
@@ -1290,10 +1290,11 @@ const SinovKarta = ({ s, onEd, mentorMisol }) => {
     </div>
   );
 };
-const MENTOR_SINOV = {
+// Funksiya: tr() render paytida chaqirilsin (modul darajasida til import paytida qotib qolardi — F-1007-291)
+const mentorSinov = () => ({
   vazifa: tr(SINOV_MAYDON.vazifa), tur: 'real', bajardi: SINOV_MAYDON.yozuvlar.map(y => y.bajardi),
   toxtashlar: sanoqQator(3).map(r => ({ id: r.id, matn: tr(r.nom), kishilar: r.kishilar })), eng: 'topish', tuzatildi: true, qaytaSinov: { natija: 'toxtamadi', kim: 'yangi' }
-};
+});
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const { live, isMentor } = useJonli();
   const [saqlangan, setSaqlangan] = useState(sinovOqi);
@@ -1373,14 +1374,14 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     ))}
     {maslahat && tox.some(t => t.id === maslahat) && qadam === 1 && <QIzoh>{tr(XATO5.xulosa)}</QIzoh>}
   </div>;
-  const yordamB = <QTugma ikkinchi className="pa-yordam-b" aria-expanded={yordam} onClick={() => setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>;
+  const yordamB = <QTugma ikkinchi className="pa-yordam-b" aria-expanded={yordam} onClick={() => setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>;
   const yordamM = yordam && <QIzoh>{tr({ uz: "Mentor misolida «Shanba 18:00 dagi o'yinni topishda to'xtadi» — 1, 2 va 3-o'yinchida: bitta qator, uch kishi belgilangan, «3 / 3». Bir kishi sinagan bo'lsa — vazifani to'xtatgan to'xtashdan boshlang.", ru: 'В примере Ментора «Застрял, ища игру в субботу в 18:00» — у игроков 1, 2 и 3: одна строка, отмечены три человека, «3 / 3». Если тестировал один человек — начните с остановки, которая остановила задание.' })}</QIzoh>;
   const forma = !isMentor && !saqlandi && <div className="pa-mk" key={kartaK} ref={kartaRef}>
     {qadam === 0 && <>
       <label className="pa-mk-q"><span className="pa-mk-l">{tr({ uz: 'Sinov vazifasi', ru: 'Задание теста' })}</span>
         <input className={inpK(nav1 === 'vazifa')} value={vazifa} placeholder={tr({ uz: 'Odam nimaga erishsin?', ru: 'Чего должен добиться человек?' })} onChange={e => { setVazifa(e.target.value); if (xato) setXato(null); }} /></label>
       {xato && xato.k === 'vazifa' && <QXato key={xato.kk}>{tr(XATO5.vazifa)}</QXato>}
-      <div className="pa-mk-q qator"><span className="pa-mk-l">{tr({ uz: 'Sinaganlar auditoriyangizdanmi?', ru: 'Тестировавшие — из вашей аудитории?' })}</span>
+      <div className="pa-mk-q qator"><span className="pa-mk-l">{tr({ uz: 'Sinaganlar auditoriyangizdanmi?', ru: "Тестировщики — из вашей аудитории?" })}</span>
         <div className={chK(nav1 === 'tur')} data-k="tur">{['real', 'mashq'].map(k => <QChip key={k} holat={tur === k ? 'on' : undefined} onClick={() => setTur(k)}>{tr(turT(k))}</QChip>)}</div></div>
       <div className="pa-mk-q qator"><span className="pa-mk-l">{tr({ uz: 'Nechta kishi sinadi?', ru: 'Сколько человек тестировали?' })}</span>
         <div className={chK(nav1 === 'soni')} data-k="soni">{[1, 2, 3].map(k => <QChip key={k} holat={soni === k ? 'on' : undefined} onClick={() => soniTanla(k)}>{k}</QChip>)}</div></div>
@@ -1423,8 +1424,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     </>}
   </div>;
   const mentor5 = saqlandi && !isMentor
-    ? { uz: "Sanog'ingiz saqlandi — «Davom etish»ni bosing.", ru: 'Ваш счёт сохранён — нажмите «Davom etish».' }
-    : { uz: 'Yozuvlaringizni kishi bo\'yicha kiriting — sanoq o\'zi chiqadi, birinchisini o\'zingiz tanlaysiz.', ru: 'Вводите записи по людям — счёт появится сам, первое выберете сами.' };
+    ? { uz: "Sanog'ingiz saqlandi — «Davom etish»ni bosing.", ru: "Ваш подсчёт сохранён — нажмите «Продолжить»." }
+    : { uz: 'Yozuvlaringizni kishi bo\'yicha kiriting — sanoq o\'zi chiqadi, birinchisini o\'zingiz tanlaysiz.', ru: "Вводите записи по каждому человеку — подсчёт появится сам, первую остановку выберете сами." };
   return (
     <Stage eyebrow={tr({ uz: 'Mustaqil ish', ru: 'Самостоятельная работа' })} screen={screen} scrollSignal={qadam * 10 + tox.length} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!saqlandi && !isMentor} label={saqlandi || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Yozuvlarni kiriting', ru: 'Введите записи' })} onClick={onNext} /></>}>
       <div className="pa-s5"><QMustaqil
@@ -1435,7 +1436,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {!isMentor && !saqlandi && <QQadamlar qadamlar={S5_QADAM.map(tr)} joriy={qadam} />}
           {ustChiziq}
         </>}
-        forma={isMentor ? <SinovKarta s={MENTOR_SINOV} mentorMisol /> : saqlandi ? <SinovKarta s={saqlangan} onEd={ochSaqlangan} /> : forma}
+        forma={isMentor ? <SinovKarta s={mentorSinov()} mentorMisol /> : saqlandi ? <SinovKarta s={saqlangan} onEd={ochSaqlangan} /> : forma}
       >
         {saqlandi && !isMentor && <QXulosa>{tr({ uz: 'Sinov yozuvingiz sanaldi: birinchisi tanlandi, qolgani «Keyin» ro\'yxatida.', ru: 'Ваша запись теста посчитана: первая выбрана, остальные — в списке «Потом».' })}</QXulosa>}
       </QMustaqil></div>
@@ -1448,7 +1449,7 @@ const ACHIEVEMENTS = {
   repeatSpotter: { icon: '🔁', name: 'Repeat Spotter!', desc: { uz: "Uchala yozuvda takrorlangan to'xtashni birinchi urinishda tanladingiz", ru: 'С первой попытки выбрали остановку, повторившуюся во всех трёх записях' } },
   twoQuestions: { icon: '⚖️', name: 'Two Questions!', desc: { uz: "Ikki savol bilan birinchi tuzatiladigan to'xtashni topdingiz", ru: 'По двум вопросам нашли остановку, которую исправляют первой' } },
   fixShipped: { icon: '🛠️', name: 'Fix Shipped!', desc: { uz: "Sinovdagi birinchi to'xtashni o'z ilovangizda tuzatdingiz", ru: 'Исправили первую остановку из теста в своём приложении' } },
-  retestDone: { icon: '🔍', name: 'Retest Done!', desc: { uz: 'Tuzatishni yangi odam bilan qayta sinadingiz', ru: 'Повторно проверили исправление с новым человеком' } }
+  retestDone: { icon: '🔍', name: 'Retest Done!', desc: { uz: 'Tuzatishni yangi odam bilan qayta sinadingiz', ru: "Повторно протестировали исправление с новым человеком" } }
 };
 // Ekran id → nishon (onAnswer correct: true bo'lganda; s2 — birinchi tanlov, s3 — birinchi urinish)
 const ACH_TRIGGERS = { s2: 'repeatSpotter', s3: 'twoQuestions', a1: 'fixShipped', a2: 'retestDone' };
@@ -1518,7 +1519,7 @@ const QUIZ_MS = 15000;
 const QZ_BG_SHAPES = [
   { ch: { uz: 'sinov', ru: 'тест' }, l: 5, t: 10, s: 30, d: 19, dl: 0 },
   { ch: { uz: "to'xtash", ru: 'остановка' }, l: 82, t: 8, s: 28, d: 23, dl: 1.5 },
-  { ch: { uz: 'sanoq', ru: 'счёт' }, l: 8, t: 72, s: 26, d: 27, dl: 0.8 },
+  { ch: { uz: 'sanoq', ru: "подсчёт" }, l: 8, t: 72, s: 26, d: 27, dl: 0.8 },
   { ch: { uz: 'kuzatuv yozuvi', ru: 'запись наблюдения' }, l: 70, t: 68, s: 22, d: 21, dl: 2.2 },
   { ch: { uz: 'qayta sinov', ru: 'повторный тест' }, l: 42, t: 86, s: 24, d: 25, dl: 1.1 },
   { ch: { uz: '«Keyin»', ru: '«Потом»' }, l: 64, t: 26, s: 24, d: 17, dl: 0.4 },
@@ -1531,12 +1532,12 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob o'rni A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12 (MD; har biri 3 marta)
 const QUIZ_BANK = [
   { q: { uz: 'Sinovda siz nima qilasiz?', ru: 'Что вы делаете во время теста?' }, opts: [{ uz: 'Vazifa berib, kishini jim kuzatasiz', ru: 'Даёте задание и молча наблюдаете' }, { uz: "Ilovani o'zingiz ochib ko'rsatasiz", ru: 'Сами открываете и показываете приложение' }, { uz: "Kishidan ilova yoqdimi, deb so'raysiz", ru: 'Спрашиваете, понравилось ли приложение' }, { uz: 'Har tugmani bittalab tushuntirasiz', ru: 'Объясняете каждую кнопку по очереди' }], correct: 0 },
-  { q: { uz: 'Sanoqda «3 / 3» turibdi. Bu nimani bildiradi?', ru: 'В счёте стоит «3 / 3». Что это значит?' }, opts: [{ uz: 'Tugma uch marta qayta bosilganini', ru: 'Что кнопку нажали три раза' }, { uz: "Uchala kishi shu joyda to'xtaganini", ru: 'Что все трое застряли в этом месте' }, { uz: 'Sinovga uch daqiqa vaqt ketganini', ru: 'Что тест занял три минуты' }, { uz: "Uch ekranda bir xil to'xtash borligini", ru: 'Что одна остановка есть на трёх экранах' }], correct: 1 },
+  { q: { uz: 'Sanoqda «3 / 3» turibdi. Bu nimani bildiradi?', ru: "В подсчёте стоит «3 / 3». Что это значит?" }, opts: [{ uz: 'Tugma uch marta qayta bosilganini', ru: 'Что кнопку нажали три раза' }, { uz: "Uchala kishi shu joyda to'xtaganini", ru: 'Что все трое застряли в этом месте' }, { uz: 'Sinovga uch daqiqa vaqt ketganini', ru: 'Что тест занял три минуты' }, { uz: "Uch ekranda bir xil to'xtash borligini", ru: 'Что одна остановка есть на трёх экранах' }], correct: 1 },
   { q: { uz: 'Kuzatuv yozuviga qaysi qator tushadi?', ru: 'Какая строка попадает в запись наблюдения?' }, opts: [{ uz: "0:40 · Ro'yxat juda noqulay ekan", ru: '0:40 · Список очень неудобный' }, { uz: "0:40 · Hamma kishi buni yoqtirmaydi", ru: '0:40 · Это никому не нравится' }, { uz: "0:40 · Pastga surib, o'yinni topdi", ru: '0:40 · Прокрутил вниз, нашёл игру' }, { uz: "0:40 · Tugma kichikroq bo'lsa kerak", ru: '0:40 · Кнопка, наверное, маловата' }], correct: 2 },
   { q: { uz: 'Yozuvda «Vazifani bajardi: 2 / 3». Bu nimani bildiradi?', ru: 'В записи «Выполнили задание: 2 / 3». Что это значит?' }, opts: [{ uz: 'Ikki kishi ilovani ikki marta ochgan', ru: 'Двое открыли приложение дважды' }, { uz: "Ilovaning uchdan ikki qismi tayyor", ru: 'Две трети приложения готовы' }, { uz: "Ikki to'xtash uch kishida takrorlangan", ru: 'Две остановки повторились у троих' }, { uz: 'Uch kishidan biri natijaga yetmagan', ru: 'Один из трёх не дошёл до результата' }], correct: 3 },
   { q: { uz: 'Cyberpunk 2077 o\'yini qanday sotuvga chiqdi?', ru: 'Как игра Cyberpunk 2077 вышла в продажу?' }, opts: [{ uz: "Ko'p xato bilan sotuvga chiqarildi", ru: 'Вышла в продажу с массой ошибок' }, { uz: "Xatosiz, to'liq tayyor holda chiqdi", ru: 'Вышла без ошибок, полностью готовой' }, { uz: 'Faqat kompyuter uchun chiqarildi', ru: 'Вышла только для компьютера' }, { uz: 'Faqat bepul sinov sifatida chiqdi', ru: 'Вышла только как бесплатная проба' }], correct: 0 },
   { q: { uz: 'Sony Cyberpunk 2077 ni nima qildi?', ru: 'Что Sony сделала с Cyberpunk 2077?' }, opts: [{ uz: 'Narxini tushirib, sotuvda qoldirdi', ru: 'Снизила цену и оставила в продаже' }, { uz: "Do'konidan qariyb yarim yilga oldi", ru: 'Убрала из магазина почти на полгода' }, { uz: 'Uni yangi nom bilan qayta chiqardi', ru: 'Выпустила заново под новым именем' }, { uz: "Xaridorlarga yangi o'yin sovg'a qildi", ru: 'Подарила покупателям новую игру' }], correct: 1 },
-  { q: { uz: "Birinchi tuzatiladigan to'xtash qanday bo'ladi?", ru: 'Какой бывает остановка, которую исправляют первой?' }, opts: [{ uz: 'Eng oson, bir qator bilan tuzatiladigan', ru: 'Самая лёгкая, исправляется одной строкой' }, { uz: 'Vazifa oxirida, sinov tugashida yozilgan', ru: 'Записана в конце задания, когда тест закончился' }, { uz: "Ko'p kishida, vazifaga to'siq bo'lgan", ru: 'У многих, и мешала заданию' }, { uz: "Ekranning eng pastida, ko'rinmay turgan", ru: 'В самом низу экрана, её не видно' }], correct: 2 },
+  { q: { uz: "Birinchi tuzatiladigan to'xtash qanday bo'ladi?", ru: 'Какой бывает остановка, которую исправляют первой?' }, opts: [{ uz: 'Eng oson, bir qator bilan tuzatiladigan', ru: 'Самая лёгкая, исправляется одной строкой' }, { uz: 'Vazifa oxirida, sinov tugashida yozilgan', ru: 'Записана в конце задания, когда тест закончился' }, { uz: "Ko'p kishida, vazifaga to'siq bo'lgan", ru: "У многих, и мешала выполнить задание" }, { uz: "Ekranning eng pastida, ko'rinmay turgan", ru: 'В самом низу экрана, её не видно' }], correct: 2 },
   { q: { uz: "Qayta sinovni kim bilan o'tkazgan ma'qul?", ru: 'С кем лучше провести повторный тест?' }, opts: [{ uz: "O'zingiz — ilovani yaxshi bilasiz", ru: 'Сами — вы хорошо знаете приложение' }, { uz: "O'sha kishi bilan — u yo'lni biladi", ru: 'С тем же человеком — он знает путь' }, { uz: 'Agent bilan — u kodni tekshiradi', ru: 'С агентом — он проверит код' }, { uz: "Ilovani ko'rmagan yangi odam bilan", ru: 'С новым человеком, не видевшим приложение' }], correct: 3 },
   { q: { uz: 'Agent «tuzatdim» dedi. Avval nimaga qaraysiz?', ru: 'Агент сказал «исправил». Куда посмотрите сначала?' }, opts: [{ uz: "Fayldagi o'zgarishga va telefonga", ru: 'На изменение в файле и на телефон' }, { uz: 'Agent yozgan hisobotning o\'ziga', ru: 'На сам отчёт агента' }, { uz: 'Talabda yozilgan birinchi qatorga', ru: 'На первую строку требования' }, { uz: 'Terminalda chiqqan oxirgi xabarga', ru: 'На последнее сообщение в терминале' }], correct: 0 },
   { q: { uz: "Uch to'xtashdan nechtasi shu darsda tuzatiladi?", ru: 'Сколько из трёх остановок исправляют на этом уроке?' }, opts: [{ uz: 'Uchalasi — bitta prompt bilan birga', ru: 'Все три — одним промптом' }, { uz: "Bittasi — qolgani «Keyin» ro'yxatida", ru: 'Одну — остальные в списке «Потом»' }, { uz: 'Ikkitasi — eng oson tuzatiladiganlari', ru: 'Две — те, что исправить проще' }, { uz: 'Hech biri — avval yana sinov kerak', ru: 'Ни одной — сначала нужен ещё тест' }], correct: 1 },
@@ -2120,7 +2121,7 @@ const Yordam = ({ satrlar }) => {
   const [ochiq, setOchiq] = useState(false);
   return (
     <>
-      <QTugma ikkinchi className="pa-yordam-b" aria-expanded={ochiq} onClick={() => setOchiq(o => !o)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>
+      <QTugma ikkinchi className="pa-yordam-b" aria-expanded={ochiq} onClick={() => setOchiq(o => !o)}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>
       {ochiq && <span className="pa-yordam fade-step">{satrlar.map((l, i) => <span key={i} className="pa-yordam-s">{tx(l)}</span>)}</span>}
     </>
   );
@@ -2159,7 +2160,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   const qulf = !done && !isMentorLive && kutish && kutish(stepN);
   // SABOQ 8 / S3 (F-1006-287, 14-dars naqshi): Mentor har holatda keyingi harakatni aytadi — boshida MD gapi, qadamlar orasida keyingi qadam, blok tugagach «Davom etish»
   const mGap = done ? BLOK_TUGADI : stepN === 0 ? mentor
-    : { uz: `Keyingi qadam — «${stepN + 1} · ${tr(steps[stepN].h)}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующий шаг — «${stepN + 1} · ${tr(steps[stepN].h)}»: выполните и нажмите «Bajardim».` };
+    : { uz: `Keyingi qadam — «${stepN + 1} · ${tr(steps[stepN].h)}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующий шаг — «${stepN + 1} · ${tr(steps[stepN].h)}»: выполните и нажмите «Готово».` };
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className={cxx('pa-blok', qulf && 'pa-qulf')}>
@@ -2215,19 +2216,19 @@ const ScreenA1 = (props) => {
       steps={[
         { h: QADAM.ochish, t: { uz: "Antigravity'da o'z repo'ngizni oching. Terminalda `git status` — o'zgargan fayl yo'q bo'lsin (12-darsdagi ish push qilingan). Bor bo'lsa — avval commit va push qiling.", ru: 'Откройте свой репо в Antigravity. В терминале `git status` — изменённых файлов быть не должно (работа 12-го урока запушена). Если есть — сначала сделайте commit и push.' } },
         { h: QADAM.prompt,
-          t: s ? { uz: "«Qayerda» qatori mustaqil ishdagi sanog'ingizdan to'ldirilgan (tahrirlash mumkin). «Nima qilsin» qatorini yozing — kulrang namunaga qarang, «Nusxalash»ni bosing, Antigravity'ga yuboring:", ru: 'Строка «Где» заполнена из вашего счёта в самостоятельной работе (можно править). Напишите строку «Что сделать» — посмотрите на серый образец, нажмите «Скопировать», отправьте в Antigravity:' }
-            : { uz: "«Qayerda» qatoridagi joylarni mustaqil ishdagi sanog'ingizdan to'ldiring. «Nima qilsin» qatorini yozing — kulrang namunaga qarang, «Nusxalash»ni bosing, Antigravity'ga yuboring:", ru: 'Заполните места в строке «Где» из вашего счёта в самостоятельной работе. Напишите строку «Что сделать» — посмотрите на серый образец, нажмите «Скопировать», отправьте в Antigravity:' },
+          t: s ? { uz: "«Qayerda» qatori mustaqil ishdagi sanog'ingizdan to'ldirilgan (tahrirlash mumkin). «Nima qilsin» qatorini yozing — kulrang namunaga qarang, «Nusxalash»ni bosing, Antigravity'ga yuboring:", ru: "Строка «Где» заполнена из вашего подсчёта в самостоятельной работе (можно править). Напишите строку «Что сделать» — посмотрите на серый образец, нажмите «Скопировать», отправьте в Antigravity:" }
+            : { uz: "«Qayerda» qatoridagi joylarni mustaqil ishdagi sanog'ingizdan to'ldiring. «Nima qilsin» qatorini yozing — kulrang namunaga qarang, «Nusxalash»ni bosing, Antigravity'ga yuboring:", ru: "Заполните места в строке «Где» из вашего подсчёта в самостоятельной работе. Напишите строку «Что сделать» — посмотрите на серый образец, нажмите «Скопировать», отправьте в Antigravity:" },
           prompt: [
-            [{ uz: "Qayerda: ilovamda sinovda kishilar to'xtagan joy — «", ru: 'Где: место в моём приложении, где люди застряли на тесте — «' }, { v: q.eng, j: tr({ uz: "{birinchi to'xtash}", ru: '{первая остановка}' }) }, '» (', { v: q.M, j: tr({ uz: '{nechta kishi sinadi}', ru: '{сколько тестировали}' }) }, tr({ uz: ' kishidan ', ru: ' человек, у ' }), { v: q.son, j: tr({ uz: '{nechtasida}', ru: '{у скольких}' }) }, tr({ uz: ' tasida).', ru: ').' })],
+            [{ uz: "Qayerda: ilovamda sinovda kishilar to'xtagan joy — «", ru: 'Где: место в моём приложении, где люди застряли на тесте — «' }, { v: q.eng, j: tr({ uz: "{birinchi to'xtash}", ru: '{первая остановка}' }) }, '» (', { v: q.M, j: tr({ uz: '{nechta kishi sinadi}', ru: "{сколько человек}" }) }, tr({ uz: ' kishidan ', ru: " тестировали, из них застряли " }), { v: q.son, j: tr({ uz: '{nechtasida}', ru: "{сколько}" }) }, tr({ uz: ' tasida).', ru: ")." })],
             [{ uz: 'Nima qilsin: {nima qilsin}', ru: 'Что сделать: {что сделать}' }],
             [{ uz: "Nima buzilmasin: qolgan ekranlar avvalgidek ishlasin, Database'dagi yozuvlar o'chmasin. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: 'Что не сломать: остальные экраны работают как раньше, записи в Database не удаляются. Больше ничего не трогай, назови изменённые файлы.' }]
           ],
-          namuna: { [tr({ uz: '{nima qilsin}', ru: '{что сделать}' })]: { uz: "masalan: o'yinlar kun va soat bo'yicha tartiblansin, har kun o'z sarlavhasi bilan.", ru: 'например: игры сортируются по дню и часу, у каждого дня свой заголовок.' } },
+          namuna: { [tr({ uz: '{nima qilsin}', ru: '{что сделать}' })]: { uz: "masalan: o'yinlar kun va soat bo'yicha tartiblansin, har kun o'z sarlavhasi bilan.", ru: "например: игры сортируются по дню и времени, у каждого дня свой заголовок." } },
           osti: { uz: "Bitta o'zgarish yozing — butun ekranni qayta qurish emas.", ru: 'Пишите одно изменение — а не перестройку всего экрана.' },
           yordam: [
-            { uz: "Qayerda: `mobil/` — «O'yinlar» ekrani (`src/app/index.tsx`). Sinovda 3 kishidan 3 tasi shu yerda to'xtadi: «Shanba 18:00 dagi o'yinni topishda to'xtadi» — e'lonlar qo'shilgan vaqti bo'yicha turibdi, kun bo'yicha emas.", ru: 'Где: `mobil/` — экран «O\'yinlar» (`src/app/index.tsx`). На тесте здесь застряли 3 из 3: «Застрял, ища игру в субботу в 18:00» — объявления стоят по времени добавления, а не по дням.' },
-            { uz: "Nima qilsin: «O'yinlar» ekranida o'yinlar kun va soat bo'yicha tartiblansin, har kun o'z sarlavhasi bilan.", ru: 'Что сделать: на экране «O\'yinlar» игры сортируются по дню и часу, у каждого дня свой заголовок.' },
-            { uz: "Nima buzilmasin: o'yin kartasi (soat, maydon, «8 / 10») va uni bosganda ochiladigan «O'yin» ekrani, «Qo'shilaman», «Kelaman», «E'lon berish». Backend'ga tegma, o'zgargan fayllarni ayt.", ru: 'Что не сломать: карточка игры (час, поле, «8 / 10») и экран «O\'yin», который открывается по нажатию, «Qo\'shilaman», «Kelaman», «E\'lon berish». Backend не трогай, назови изменённые файлы.' }
+            { uz: "Qayerda: `mobil/` — «O'yinlar» ekrani (`src/app/index.tsx`). Sinovda 3 kishidan 3 tasi shu yerda to'xtadi: «Shanba 18:00 dagi o'yinni topishda to'xtadi» — e'lonlar qo'shilgan vaqti bo'yicha turibdi, kun bo'yicha emas.", ru: "Где: `mobil/` — экран «O'yinlar» («Игры», `src/app/index.tsx`). На тесте здесь застряли 3 из 3: «Застрял, ища игру в субботу в 18:00» — объявления стоят по времени добавления, а не по дням." },
+            { uz: "Nima qilsin: «O'yinlar» ekranida o'yinlar kun va soat bo'yicha tartiblansin, har kun o'z sarlavhasi bilan.", ru: "Что сделать: на экране «O'yinlar» игры сортируются по дню и времени, у каждого дня свой заголовок." },
+            { uz: "Nima buzilmasin: o'yin kartasi (soat, maydon, «8 / 10») va uni bosganda ochiladigan «O'yin» ekrani, «Qo'shilaman», «Kelaman», «E'lon berish». Backend'ga tegma, o'zgargan fayllarni ayt.", ru: "Что не сломать: карточка игры (время, поле, «8 / 10») и экран «O'yin», который открывается по нажатию, «Qo'shilaman» («Присоединяюсь»), «Kelaman» («Приду»), «E'lon berish». Backend не трогай, назови изменённые файлы." }
           ] },
         { h: QADAM.ishga, t: mob ? { uz: "mobil trekda: `npx expo start`, QR'ni telefonda Expo Go bilan oching. QR ochilmasa — telefon va laptop bitta Wi-Fi'dami? Bo'lmasa: `npx expo start --tunnel`. O'zgarish telefonda ko'rinmasa — terminalda `r`.", ru: 'в мобильном треке: `npx expo start`, откройте QR на телефоне через Expo Go. Если QR не открывается — телефон и ноутбук в одной Wi-Fi? Если нет: `npx expo start --tunnel`. Если изменение не видно на телефоне — `r` в терминале.' } : { uz: 'Web-trekda: `npm run dev`.', ru: 'В веб-треке: `npm run dev`.' },
           bandlar: [
@@ -2237,7 +2238,7 @@ const ScreenA1 = (props) => {
           err: XATO_GAP },
         { h: QADAM.telefon, t: { uz: "sinov vazifasini o'zingiz bajaring, talabning har qatorini tekshiring:", ru: 'выполните задание теста сами, проверьте каждую строку требования:' },
           bandlar: [
-            { uz: "(1) to'xtash bo'lgan joy endi qanday — «Nima qilsin» qatori bajarildimi;", ru: '(1) каково теперь место остановки — выполнена ли строка «Что сделать»;' },
+            { uz: "(1) to'xtash bo'lgan joy endi qanday — «Nima qilsin» qatori bajarildimi;", ru: "(1) как теперь выглядит место остановки — выполнена ли строка «Что сделать»;" },
             { uz: '(2) qolgan ekranlar va asosiy harakat avvalgidek ishlaydi.', ru: '(2) остальные экраны и главное действие работают как раньше.' },
             { uz: 'Mos kelmagan qatorni agentga yozing. Oxirida `git status` → har faylni `git add <fayl>` bilan → `git commit -m "13-dars: sinovdagi birinchi to\'xtash tuzatildi"` → `git push`.', ru: 'Несовпавшую строку напишите агенту. В конце `git status` → каждый файл через `git add <файл>` → `git commit -m "13-dars: sinovdagi birinchi to\'xtash tuzatildi"` → `git push`.' }
           ] }
@@ -2284,7 +2285,7 @@ const ScreenA2 = (props) => {
   const [natija, setNatija] = useState(eski ? eski.natija : (s && s.qaytaSinov ? s.qaytaSinov.natija : null));
   const [kim, setKim] = useState(eski ? eski.kim : (s && s.qaytaSinov ? s.qaytaSinov.kim : null));
   const q = sinovQiymat(s);
-  const M = { v: q.M, j: tr({ uz: '{nechta kishi sinadi}', ru: '{сколько тестировали}' }) };
+  const M = { v: q.M, j: tr({ uz: '{nechta kishi sinadi}', ru: "{сколько человек}" }) };
   const onAns = (i, d) => props.onAnswer(i, { ...d, qaytaSinov: natija && kim ? { natija, kim } : null });
   const tanlov = <span className="pa-tanlov">
     <span className="pa-tanlov-q"><span className="pa-tanlov-l">{tr({ uz: 'Natijani tanlang:', ru: 'Выберите итог:' })}</span><span className={cxx('pa-ch', !natija && 'pa-guruh')}>{QS_NATIJA.map(o => <QChip key={o.k} holat={natija === o.k ? 'on' : undefined} onClick={() => setNatija(o.k)}>{tr(o.t)}</QChip>)}</span></span>
@@ -2298,22 +2299,22 @@ const ScreenA2 = (props) => {
       steps={[
         { h: QADAM.ochish, t: { uz: "Antigravity'da o'z repo'ngiz ochiq (Amaliyot 1 dagi holat), ilova telefoningizda ishlab turibdi. Iloji bo'lsa, ilovangizni hali ko'rmagan sinfdoshni tanlang.", ru: 'В Antigravity открыт ваш репо (состояние после Практики 1), приложение работает на телефоне. По возможности выберите одноклассника, который ещё не видел ваше приложение.' } },
         { h: QADAM.prompt,
-          t: s ? { uz: "talabning ikki qatori mustaqil ishdagi sanog'ingizdan to'ldirilgan. «Nima buzilmasin» qatorini o'zingiz yozing, «Nusxalash»ni bosing, Antigravity'ga yuboring:", ru: 'две строки требования заполнены из вашего счёта в самостоятельной работе. Строку «Что не сломать» напишите сами, нажмите «Скопировать», отправьте в Antigravity:' }
-            : { uz: "talabning ikki qatoridagi joylarni mustaqil ishdagi sanog'ingizdan to'ldiring. «Nima buzilmasin» qatorini o'zingiz yozing, «Nusxalash»ni bosing, Antigravity'ga yuboring:", ru: 'заполните места в двух строках требования из вашего счёта в самостоятельной работе. Строку «Что не сломать» напишите сами, нажмите «Скопировать», отправьте в Antigravity:' },
+          t: s ? { uz: "talabning ikki qatori mustaqil ishdagi sanog'ingizdan to'ldirilgan. «Nima buzilmasin» qatorini o'zingiz yozing, «Nusxalash»ni bosing, Antigravity'ga yuboring:", ru: "две строки требования заполнены из вашего подсчёта в самостоятельной работе. Строку «Что не сломать» напишите сами, нажмите «Скопировать», отправьте в Antigravity:" }
+            : { uz: "talabning ikki qatoridagi joylarni mustaqil ishdagi sanog'ingizdan to'ldiring. «Nima buzilmasin» qatorini o'zingiz yozing, «Nusxalash»ni bosing, Antigravity'ga yuboring:", ru: "заполните места в двух строках требования из вашего подсчёта в самостоятельной работе. Строку «Что не сломать» напишите сами, нажмите «Скопировать», отправьте в Antigravity:" },
           prompt: [
             [{ uz: "Qayerda: repo ildizida `SINOV.md` — yo'q bo'lsa, yarat.", ru: 'Где: в корне репо `SINOV.md` — если нет, создай.' }],
-            [{ uz: 'Nima qilsin: sinov yozuvini yoz. Vazifa: «', ru: 'Что сделать: запиши запись теста. Задание: «' }, { v: q.vazifa, j: tr({ uz: '{sinov vazifasi}', ru: '{задание теста}' }) }, tr({ uz: '». Kishilar: ', ru: '». Людей: ' }), M, tr({ uz: ', vazifani bajardi: ', ru: ', выполнили задание: ' }), { v: q.bj, j: tr({ uz: '{bajarganlar}', ru: '{выполнившие}' }) }, ' / ', M, tr({ uz: ". Jadval — to'xtash, nechta kishida, navbat: ", ru: '. Таблица — остановка, у скольких, очередь: ' }), { v: q.royxat, j: tr({ uz: "{to'xtashlar va sanog'i}", ru: '{остановки и счёт}' }) }, '.'],
+            [{ uz: 'Nima qilsin: sinov yozuvini yoz. Vazifa: «', ru: "Что сделать: внеси запись теста. Задание: «" }, { v: q.vazifa, j: tr({ uz: '{sinov vazifasi}', ru: '{задание теста}' }) }, tr({ uz: '». Kishilar: ', ru: '». Людей: ' }), M, tr({ uz: ', vazifani bajardi: ', ru: ', выполнили задание: ' }), { v: q.bj, j: tr({ uz: '{bajarganlar}', ru: '{выполнившие}' }) }, ' / ', M, tr({ uz: ". Jadval — to'xtash, nechta kishida, navbat: ", ru: '. Таблица — остановка, у скольких, очередь: ' }), { v: q.royxat, j: tr({ uz: "{to'xtashlar va sanog'i}", ru: "{остановки и подсчёт}" }) }, '.'],
             ['«', { v: q.eng, j: tr({ uz: "{birinchi to'xtash}", ru: '{первая остановка}' }) }, tr({ uz: "» — «tuzatildi», qolganlari — «keyin». Oxirida bo'sh «Qayta sinov» bo'limi qoldir.", ru: '» — «исправлено», остальные — «потом». В конце оставь пустой раздел «Повторный тест».' })],
             [{ uz: 'Nima buzilmasin: {nima buzilmasin}', ru: 'Что не сломать: {что не сломать}' }]
           ],
           yordam: [{ uz: 'Nima buzilmasin: ilova kodiga tegma — faqat `SINOV.md`. O\'zgargan fayllarni ayt.', ru: 'Что не сломать: код приложения не трогай — только `SINOV.md`. Назови изменённые файлы.' }] },
-        { h: QADAM.ishga, t: { uz: "`SINOV.md` ni oching: sonlar mustaqil ishdagi sanog'ingiz bilan bir xilmi (agentning hisobotiga emas, faylning o'ziga qarang); `git diff` — faqat `SINOV.md` o'zgargan.", ru: 'Откройте `SINOV.md`: совпадают ли числа с вашим счётом в самостоятельной работе (смотрите не на отчёт агента, а на сам файл); `git diff` — изменён только `SINOV.md`.' },
+        { h: QADAM.ishga, t: { uz: "`SINOV.md` ni oching: sonlar mustaqil ishdagi sanog'ingiz bilan bir xilmi (agentning hisobotiga emas, faylning o'ziga qarang); `git diff` — faqat `SINOV.md` o'zgargan.", ru: "Откройте `SINOV.md`: совпадают ли числа с вашим подсчётом в самостоятельной работе (смотрите не на отчёт агента, а на сам файл); `git diff` — изменён только `SINOV.md`." },
           err: { uz: 'Mos kelmasa — agentga bitta gap: «Shu qator yozuvimga mos emas: {qator}. Tuzat.»', ru: 'Если не совпадает — одна фраза агенту: «Эта строка не совпадает с моей записью: {строка}. Исправь.»' } },
-        { h: QADAM.qayta, t: { uz: "avval ilovangizda «Hisobdan chiqish»ni bosing: sinfdoshingiz namuna ism va boshqa namuna telefon bilan ro'yxatdan o'tadi (o'z raqamini yozmaydi). Telefoningizni bering va o'sha vazifani o'qing. Tushuntirmang, kuzating. Ilovangizni oldin ko'rgan sinfdosh bo'lsa, u yo'lni eslab qolgan bo'lishi mumkin — natijani shuni hisobga olib yozing.", ru: 'сначала нажмите в приложении «Hisobdan chiqish»: одноклассник регистрируется с образцом имени и другим образцом телефона (свой номер не пишет). Дайте телефон и прочитайте то же задание. Не объясняйте, наблюдайте. Если одноклассник уже видел приложение, он мог запомнить путь — учтите это в записи.' },
+        { h: QADAM.qayta, t: { uz: "avval ilovangizda «Hisobdan chiqish»ni bosing: sinfdoshingiz namuna ism va boshqa namuna telefon bilan ro'yxatdan o'tadi (o'z raqamini yozmaydi). Telefoningizni bering va o'sha vazifani o'qing. Tushuntirmang, kuzating. Ilovangizni oldin ko'rgan sinfdosh bo'lsa, u yo'lni eslab qolgan bo'lishi mumkin — natijani shuni hisobga olib yozing.", ru: "сначала нажмите в приложении «Hisobdan chiqish»: одноклассник регистрируется с именем-образцом и другим телефоном-образцом (свой номер не пишет). Дайте телефон и прочитайте то же задание. Не объясняйте, наблюдайте. Если одноклассник уже видел приложение, он мог запомнить путь — учтите это в записи." },
           bandlar: [
             tanlov,
             { uz: "`SINOV.md` dagi «Qayta sinov» bo'limiga bir qator yozing: «Kim: yangi odam / oldin ko'rgan odam · Vazifa: bajardi / bajarmadi · Kuzatuv: …».", ru: 'Запишите одну строку в раздел «Повторный тест» в `SINOV.md`: «Кто: новый человек / уже видевший · Задание: выполнил / не выполнил · Наблюдение: …».' },
-            { uz: "Yana to'xtasa — bu ham natija: ko'rganingizni agentga bitta gap bilan yozing — «Qayta sinovda yana to'xtadi: {nima bo'ldi}. Tuzat.» — va uyda yana sinang.", ru: 'Если снова застрял — это тоже результат: напишите агенту одной фразой — «На повторном тесте снова застрял: {что случилось}. Исправь.» — и проверьте ещё раз дома.' },
+            { uz: "Yana to'xtasa — bu ham natija: ko'rganingizni agentga bitta gap bilan yozing — «Qayta sinovda yana to'xtadi: {nima bo'ldi}. Tuzat.» — va uyda yana sinang.", ru: "Если снова застрял — это тоже результат: напишите агенту одной фразой — «На повторном тесте снова застрял: {что случилось}. Исправь.» — и протестируйте ещё раз дома." },
             { uz: 'Oxirida `git add SINOV.md` → `git commit -m "13-dars: sinov yozuvi va qayta sinov"` → `git push`.', ru: 'В конце `git add SINOV.md` → `git commit -m "13-dars: sinov yozuvi va qayta sinov"` → `git push`.' }
           ] }
       ]}
@@ -2321,7 +2322,7 @@ const ScreenA2 = (props) => {
       eslatma={{ uz: "Juftliklarni almashtiring — har o'quvchi o'z ilovasini o'zi ko'rmagan sinfdoshga beradi (3 daqiqa). Kuzatuvchi faqat «O'zingiz qanday deb o'ylaysiz?» deydi. Sinfdosh auditoriyadan bo'lmasa — bu mashq; auditoriyadagi odam bilan qayta sinov — uyga vazifa.", ru: 'Поменяйте пары — каждый ученик даёт своё приложение однокласснику, который его не видел (3 минуты). Наблюдатель говорит только: «А вы сами как думаете?» Если одноклассник не из аудитории — это упражнение; повторный тест с человеком из аудитории — домашнее задание.' }}
       onDone={() => { if (natija && kim) sinovYoz({ qaytaSinov: { natija, kim } }); }}
       doneText={() => (natija === 'toxtadi'
-        ? { uz: "Qayta sinov yozildi: to'xtash qoldi — talabni aniqlashtirib, uyda yana sinaysiz.", ru: 'Повторный тест записан: остановка осталась — уточните требование и проверьте ещё раз дома.' }
+        ? { uz: "Qayta sinov yozildi: to'xtash qoldi — talabni aniqlashtirib, uyda yana sinaysiz.", ru: "Повторный тест записан: остановка осталась — уточните требование и протестируйте ещё раз дома." }
         : { uz: "Bu qayta sinovda tuzatilgan joyda to'xtash bo'lmadi. Yozuv repo'da.", ru: 'В этом повторном тесте на исправленном месте остановки не было. Запись в репо.' })} />
   );
 };
@@ -2360,7 +2361,7 @@ const KARTOCHKALAR = [
   { front: { uz: '«Vazifani bajardi: 2 / 3» nimani bildiradi?', ru: 'Что значит «Выполнили задание: 2 / 3»?' }, back: { uz: 'Uch kishidan ikkitasi natijaga yetdi', ru: 'Двое из трёх дошли до результата' }, note: { uz: "Bittasi to'xtab qoldi — qayerda, yozuv ko'rsatadi", ru: 'Один застрял — где именно, покажет запись' } },
   { front: { uz: "Mentor misolida qaysi to'xtash birinchi tuzatildi?", ru: 'Какую остановку исправили первой в примере Ментора?' }, back: { uz: "Shanba 18:00 dagi o'yinni topishda to'xtagani", ru: 'Остановку при поиске игры в субботу в 18:00' }, note: { uz: "Uchala o'yinchida takrorlandi va birini to'xtatdi", ru: 'Повторилась у всех трёх игроков и одного остановила' } },
   { front: { uz: "Qolgan to'xtashlar qayerga yoziladi?", ru: 'Куда записывают остальные остановки?' }, back: { uz: "«Keyin» ro'yxatiga", ru: 'В список «Потом»' }, note: { uz: "Keyingi tuzatish shu ro'yxatdan olinadi", ru: 'Следующее исправление берут из этого списка' } },
-  { front: { uz: "Uch kishi — ko'p sonmi?", ru: 'Три человека — это много?' }, back: { uz: "Yo'q, kichik son: sanoq tanlovga yordam beradi, isbot emas", ru: 'Нет, маленькое число: счёт помогает выбору, но не доказывает' }, note: { uz: "Keyingi sinov tanlovni o'zgartirishi mumkin", ru: 'Следующий тест может изменить выбор' } },
+  { front: { uz: "Uch kishi — ko'p sonmi?", ru: 'Три человека — это много?' }, back: { uz: "Yo'q, kichik son: sanoq tanlovga yordam beradi, isbot emas", ru: "Нет, маленькое число: подсчёт помогает выбору, но это не доказательство" }, note: { uz: "Keyingi sinov tanlovni o'zgartirishi mumkin", ru: 'Следующий тест может изменить выбор' } },
   { front: { uz: 'Talabning «Nima qilsin» qatoriga nima yoziladi?', ru: 'Что пишут в строку требования «Что сделать»?' }, back: { uz: "Ilova qiladigan bitta aniq o'zgarish", ru: 'Одно точное изменение, которое сделает приложение' }, note: { uz: 'Butun ekranni qayta qurish emas', ru: 'А не перестройка всего экрана' } },
   { front: { uz: 'Agent «tuzatdim» desa, nimaga qaraysiz?', ru: 'Агент сказал «исправил» — куда смотрите?' }, back: { uz: "Fayllarda nima o'zgarganiga va telefondagi natijaga", ru: 'На то, что изменилось в файлах, и на результат в телефоне' }, note: { uz: "git diff — nima o'zgargani ko'rinadi", ru: 'git diff — видно, что изменилось' } },
   { front: { uz: "Qayta sinovni kim bilan o'tkazgan ma'qul?", ru: 'С кем лучше провести повторный тест?' }, back: { uz: "Ilovani hali ko'rmagan yangi odam bilan", ru: 'С новым человеком, ещё не видевшим приложение' }, note: { uz: "Oldin ko'rgan odam yo'lni eslab qolgan bo'lishi mumkin", ru: 'Видевший раньше мог запомнить путь' } },
@@ -2391,7 +2392,7 @@ const HW_KARTA = [
   { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
 ];
 const HW_QADAM = [
-  { uz: "Har kishidan oldin «Hisobdan chiqish»ni bosing — u namuna ism va boshqa namuna telefon bilan ro'yxatdan o'tsin. O'sha vazifani bering, tushuntirmang: tuzatilgan joyda to'xtaydimi — kuzating.", ru: 'Перед каждым человеком нажимайте «Hisobdan chiqish» — пусть он зарегистрируется с образцом имени и другим образцом телефона. Дайте то же задание, не объясняйте: застрянет ли он на исправленном месте — наблюдайте.' },
+  { uz: "Har kishidan oldin «Hisobdan chiqish»ni bosing — u namuna ism va boshqa namuna telefon bilan ro'yxatdan o'tsin. O'sha vazifani bering, tushuntirmang: tuzatilgan joyda to'xtaydimi — kuzating.", ru: "Перед каждым человеком нажимайте «Hisobdan chiqish» — пусть он зарегистрируется с именем-образцом и другим телефоном-образцом. Дайте то же задание, не объясняйте: застрянет ли он на исправленном месте — наблюдайте." },
   { uz: "Natijani `SINOV.md` dagi «Qayta sinov» bo'limiga yozing va push qiling.", ru: 'Запишите итог в раздел «Повторный тест» в `SINOV.md` и сделайте push.' },
   { uz: "Yana to'xtasa — ko'rganingizni agentga bitta gap bilan yozing va o'zingiz tekshiring.", ru: 'Если снова застрянет — напишите агенту увиденное одной фразой и проверьте сами.' }
 ];
@@ -2425,7 +2426,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const RECAP = [
     { uz: "Uch kishi yozuvida har to'xtash nechta kishida takrorlanganini sanaysiz.", ru: 'В записях трёх человек вы считаете, у скольких повторилась каждая остановка.' },
     { uz: 'Kishi vazifani bajara oldimi — har yozuvda alohida ko\'rinadi.', ru: 'Смог ли человек выполнить задание — видно отдельно в каждой записи.' },
-    { uz: 'Uch kishi — kichik son: sanoq tanlovga yordam beradi, isbot emas.', ru: 'Три человека — маленькое число: счёт помогает выбору, но не доказывает.' },
+    { uz: 'Uch kishi — kichik son: sanoq tanlovga yordam beradi, isbot emas.', ru: "Три человека — маленькое число: подсчёт помогает выбору, но это не доказательство." },
     { uz: 'Bitta qayta sinov faqat tuzatilgan joy haqida aytadi.', ru: 'Один повторный тест говорит только об исправленном месте.' },
     { uz: "Cyberpunk 2077 ko'p xato bilan chiqdi — Sony uni do'konidan qariyb yarim yilga oldi.", ru: 'Cyberpunk 2077 вышла с массой ошибок — Sony убрала её из своего магазина почти на полгода.' }
   ];
@@ -2449,7 +2450,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
         togri={correct} jami={total}
         sarlavha={tr(SARLAVHA[holat])}
         cta={<>
-          <div className="pa-fikr fade-up d1"><span className="pa-fikr-l">{tr({ uz: 'Bugungi asosiy fikr', ru: 'Главная мысль урока' })}</span><p className="pa-fikr-t small">{tr({ uz: "Bu darsda ko'p kishida takrorlangan va vazifaga to'sqinlik qilgan to'xtash birinchi tuzatiladi, keyin yangi odam bilan qayta sinaladi.", ru: 'На этом уроке первой исправляют остановку, которая повторилась у многих и помешала заданию, затем повторно проверяют с новым человеком.' })}</p></div>
+          <div className="pa-fikr fade-up d1"><span className="pa-fikr-l">{tr({ uz: 'Bugungi asosiy fikr', ru: 'Главная мысль урока' })}</span><p className="pa-fikr-t small">{tr({ uz: "Bu darsda ko'p kishida takrorlangan va vazifaga to'sqinlik qilgan to'xtash birinchi tuzatiladi, keyin yangi odam bilan qayta sinaladi.", ru: "На этом уроке первой исправляют остановку, которая повторилась у многих и мешала выполнить задание, а затем проводят повторный тест с новым человеком." })}</p></div>
           <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
             <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: 'Mentorni kuting', ru: 'Дождитесь наставника' }) : undefined} />
           </div>
@@ -2868,7 +2869,12 @@ export default function PmAudienceTestLesson({ lang: langProp, onFinished, liveT
         .pa-md-td.tuzatildi { color: ${T.ok}; font-weight: 800; } .pa-md-td.keyin { color: ${T.ink2}; }
         /* 8-ekran: savol ustidagi kichik sanoq */
         .pa-s8 { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
-        p.pa-s8-q { margin: 0; padding: 7px 12px; border-radius: 10px; background: ${T.okFon}; color: ${T.ink}; font-size: 13px; }
+        p.pa-s8-q { margin: 0; padding: 4px 12px; border-radius: 10px; background: ${T.okFon}; color: ${T.ink}; font-size: 13px; }
+        @media (min-width: 761px) { /* 1280×800: xato javob kartasi (qayta urinish) panel ustida qolsin — jadval ixcham (F-1007-289) */
+          .pa-s8 { gap: 4px; margin-bottom: 8px; } .pa-s8 .pa-jd.kichik { padding: 6px 10px; gap: 3px; }
+          .pa-s8 .pa-jd-h, .pa-s8 .pa-jq { grid-template-columns: minmax(0,1fr) 112px 86px; } .pa-s8 .pa-jd-h { white-space: nowrap; padding-bottom: 3px; }
+          .pa-s8 .pa-jd.kichik .pa-jq { padding: 3px 8px; }
+        }
         p.pa-s8-q b { color: ${T.ok}; }
         /* Kartochkalar (SABOQ 16) */
         .pa-flash.yangi .fc-card:not(.flip) .fc-front { box-shadow: 0 0 0 3px ${T.accent}; animation: pa-halqa-k 2.6s ease-in-out 0.4s 3; }

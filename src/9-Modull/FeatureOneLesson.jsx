@@ -8,6 +8,11 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // Bitta vizual — «Funksiya sahnasi» (JAMOA_F1 → FunksiyaSahna): telefon chapda (172×272, SABOQ 22), Backend va Database o'ngda; konvert — so'rov.
 // Infra (Stage · Mentor · Zoomable · jonli ball · test · takrorlash oynasi · nishonlar · arena · podium) — skeletdan o'zgarishsiz.
 // ============================================================
+// RU: agentga yuboriladigan PRD gapi (s0) — Mentor repo'sidagi real qiymat; Database ustunlari va SQL (s2, a1, a3) — kod nomlari.
+// ru-qoldiq-istisno s0: qo'shilaman
+// ru-qoldiq-istisno s2: ism kerak
+// ru-qoldiq-istisno s3: kerak
+// ru-qoldiq-istisno s8: kerak
 
 // D3: palitra umumiy qolipdan — neytral 5 · modul rangi 2 · holat 2 (shadowBase — soya, rang tokeni emas)
 const T = { ...qolipRang('tex'), shadowBase: '58, 53, 48' };
@@ -61,10 +66,10 @@ function useIsMobile(breakpoint = 640) {
   return isMobile;
 }
 
-const LESSON_META = { lessonId: 'm9-11-v1', lessonTitle: { uz: "Loyiha kuni: 1-asosiy funksiya", ru: 'День проекта: 1-я основная функция' } };
+const LESSON_META = { lessonId: 'm9-11-v1', lessonTitle: { uz: "Loyiha kuni: 1-asosiy funksiya", ru: "День проекта: 1-я основная функция" } };
 // 12 ekran · oqim: kirish → reja → tushuncha → amaliyot 1 → 1-savol → tushuncha → amaliyot 2 → 2-savol → amaliyot 3 → podium → kartochkalar → yakun
 const HW_TOKENS = [
-  { t: { uz: 'talab', ru: 'требование' }, l: 8, tp: 22, s: 13, d: 6 },
+  { t: { uz: 'talab', ru: "требование" }, l: 8, tp: 22, s: 13, d: 6 },
   { t: 'token', l: 68, tp: 16, s: 12, d: 7.5 },
   { t: '8 / 10', l: 24, tp: 70, s: 12, d: 8.5 },
   { t: 'Backend', l: 78, tp: 68, s: 13, d: 6.8 }
@@ -251,19 +256,19 @@ const INLINE_KEYS = { s3: 2, s5: 3, practice: -1 };
 // 📖 RECAPS — har ballik test uchun 3 karta (kalit = ekran INDEKSI: 4 — 1-savol, 7 — 2-savol). Emoji o'rniga koddan bitta qator (S-026).
 const RECAPS = {
   4: {
-    title: { uz: "E'lon egasi — tokendan", ru: 'Владелец объявления — из токена' },
+    title: { uz: "E'lon egasi — tokendan", ru: "Владелец объявления — из токена" },
     cards: [
-      { ic: <code className="fo-rc-kod">POST /oyinlar</code>, h: { uz: "E'lon", ru: 'Объявление' }, body: { uz: "Kun, soat, maydon va odam soni Backend'ga ketadi.", ru: 'День, время, поле и число людей уходят в Backend.' } },
-      { ic: <code className="fo-rc-kod">{'Authorization: Bearer <token>'}</code>, h: { uz: 'Token', ru: 'Токен' }, body: { uz: "So'rov bilan birga kim yuborgani ham keladi.", ru: 'Вместе с запросом приходит и то, кто отправил.' } },
-      { ic: <code className="fo-rc-kod">tashkilotchi_id</code>, h: { uz: 'Egasi', ru: 'Владелец' }, body: { uz: 'Backend uni tokendan yozadi, formadan emas.', ru: 'Backend записывает его из токена, не из формы.' }, ask: { uz: "Formaga «Tashkilotchi» maydoni nega kerak emas?", ru: 'Почему в форме не нужно поле «Tashkilotchi»?' } }
+      { ic: <code className="fo-rc-kod">POST /oyinlar</code>, h: { uz: "E'lon", ru: "Объявление" }, body: { uz: "Kun, soat, maydon va odam soni Backend'ga ketadi.", ru: "День, время, поле и число людей уходят в Backend." } },
+      { ic: <code className="fo-rc-kod">{'Authorization: Bearer <token>'}</code>, h: { uz: 'Token', ru: "Токен" }, body: { uz: "So'rov bilan birga kim yuborgani ham keladi.", ru: "Вместе с запросом приходит и то, кто его отправил." } },
+      { ic: <code className="fo-rc-kod">tashkilotchi_id</code>, h: { uz: 'Egasi', ru: "Владелец" }, body: { uz: 'Backend uni tokendan yozadi, formadan emas.', ru: "Backend записывает его по токену, а не из формы." }, ask: { uz: "Formaga «Tashkilotchi» maydoni nega kerak emas?", ru: "Почему в форме не нужно поле «Организатор»?" } }
     ]
   },
   7: {
-    title: { uz: "To'lgan o'yinni Backend tekshiradi", ru: 'Заполненную игру проверяет Backend' },
+    title: { uz: "To'lgan o'yinni Backend tekshiradi", ru: "Заполненную игру проверяет Backend" },
     cards: [
-      { ic: <code className="fo-rc-kod">9 / 10</code>, h: { uz: 'Ekran', ru: 'Экран' }, body: { uz: "Telefon oxirgi so'ralgan sonni ko'rsatadi.", ru: 'Телефон показывает число из последнего запроса.' } },
-      { ic: <code className="fo-rc-kod">POST /oyinlar/:id/qoshilish</code>, h: { uz: 'Backend', ru: 'Backend' }, body: { uz: "Database'dagi sonni ko'rib, o'yin to'lganini biladi.", ru: 'Смотрит число в Database и знает, что игра заполнена.' } },
-      { ic: <code className="fo-rc-kod">409 · O'yin to'ldi</code>, h: { uz: 'Javob', ru: 'Ответ' }, body: { uz: "Backend qo'shmaydi, ilova xabarni ko'rsatadi.", ru: 'Backend не добавляет, приложение показывает сообщение.' }, ask: { uz: "Ekranda joy bor edi — nega qo'shila olmadingiz?", ru: 'На экране было место — почему не получилось присоединиться?' } }
+      { ic: <code className="fo-rc-kod">9 / 10</code>, h: { uz: 'Ekran', ru: "Экран" }, body: { uz: "Telefon oxirgi so'ralgan sonni ko'rsatadi.", ru: "Телефон показывает число из последнего запроса." } },
+      { ic: <code className="fo-rc-kod">POST /oyinlar/:id/qoshilish</code>, h: { uz: 'Backend', ru: "Backend" }, body: { uz: "Database'dagi sonni ko'rib, o'yin to'lganini biladi.", ru: "Смотрит число в Database и узнаёт, что игра заполнена." } },
+      { ic: <code className="fo-rc-kod">409 · O'yin to'ldi</code>, h: { uz: 'Javob', ru: "Ответ" }, body: { uz: "Backend qo'shmaydi, ilova xabarni ko'rsatadi.", ru: "Backend не добавляет, приложение показывает сообщение." }, ask: { uz: "Ekranda joy bor edi — nega qo'shila olmadingiz?", ru: "На экране было место — почему не получилось присоединиться?" } }
     ]
   }
 };
@@ -547,8 +552,8 @@ const useKeyin = () => {
   useEffect(() => () => { ids.current.forEach(clearTimeout); ids.current = []; }, []);
   return useCallback((fn, ms) => { ids.current.push(setTimeout(fn, ms)); }, []);
 };
-const NUSXA = { uz: 'Nusxalash', ru: 'Скопировать' };
-const NUSXALANDI = { uz: '✓ Nusxalandi', ru: '✓ Скопировано' };
+const NUSXA = { uz: 'Nusxalash', ru: "Скопировать" };
+const NUSXALANDI = { uz: '✓ Nusxalandi', ru: "✓ Скопировано" };
 // SQL qatori (Neon SQL Editor) — mono, nusxalanadigan (MD KOD 7)
 const SqlChip = ({ s }) => {
   const [ok, setOk] = useState(false);
@@ -570,25 +575,25 @@ const tx = (o) => {
   return out;
 };
 
-const SHANBA = { uz: 'Shanba', ru: 'Суббота' };
-const YAKSH = { uz: 'Yakshanba', ru: 'Воскресенье' };
-const MAHALLA = { uz: 'Mahalla maydoni', ru: 'Поле махалли' };
-const MAKTAB = { uz: 'Maktab maydoni', ru: 'Школьное поле' };
-const PARK = { uz: 'Park maydoni', ru: 'Поле в парке' };
+const SHANBA = { uz: 'Shanba', ru: "Суббота" };
+const YAKSH = { uz: 'Yakshanba', ru: "Воскресенье" };
+const MAHALLA = { uz: 'Mahalla maydoni', ru: "Поле махалли" };
+const MAKTAB = { uz: 'Maktab maydoni', ru: "Школьное поле" };
+const PARK = { uz: 'Park maydoni', ru: "Поле в парке" };
 const JAMOA_F1 = {
   ilova: { nom: 'Maydon Jamoa', tex: 'Expo Go' },
-  ekran: { oyinlar: { uz: "O'yinlar", ru: 'Игры' }, elon: { uz: "E'lon berish", ru: 'Объявить игру' } },
+  ekran: { oyinlar: { uz: "O'yinlar", ru: "Игры" }, elon: { uz: "E'lon berish", ru: "Объявить игру" } },
   tugma: {
-    qosh: { uz: "Qo'shilaman", ru: 'Присоединяюсь' },
-    qoshildi: { uz: "Qo'shildingiz", ru: 'Вы присоединились' },
-    toldi: { uz: "O'yin to'ldi", ru: 'Игра заполнена' },
-    yubor: { uz: 'Yuborish', ru: 'Отправить' }
+    qosh: { uz: "Qo'shilaman", ru: "Присоединяюсь" },
+    qoshildi: { uz: "Qo'shildingiz", ru: "Вы присоединились" },
+    toldi: { uz: "O'yin to'ldi", ru: "Игра заполнена" },
+    yubor: { uz: 'Yuborish', ru: "Отправить" }
   },
   forma: [
-    { k: 'kun', l: { uz: 'Kun', ru: 'День' }, v: YAKSH },
-    { k: 'soat', l: { uz: 'Soat', ru: 'Время' }, v: '19:00' },
-    { k: 'maydon', l: { uz: 'Maydon', ru: 'Поле' }, v: MAKTAB },
-    { k: 'kerak', l: { uz: 'Nechta odam', ru: 'Сколько человек' }, v: '10' }
+    { k: 'kun', l: { uz: 'Kun', ru: "День" }, v: YAKSH },
+    { k: 'soat', l: { uz: 'Soat', ru: "Время" }, v: '19:00' },
+    { k: 'maydon', l: { uz: 'Maydon', ru: "Поле" }, v: MAKTAB },
+    { k: 'kerak', l: { uz: 'Nechta odam', ru: "Сколько человек" }, v: '10' }
   ],
   backend: {
     joy: 'maydon-jamoa-….onrender.com · Render',
@@ -607,7 +612,7 @@ const OYINLAR = [
 const YANGI_OYIN = { id: 5, kun: YAKSH, sana: '2026-10-11', soat: '19:00', maydon: MAKTAB, kerak: 10, son: 0 };
 // Ilova ro'yxati — eng yangisi tepada (9.29); o — o'zgartirishlar { id: { son, kerak } }
 const royxat = (o = {}, yangisi = true) => [...(yangisi ? [YANGI_OYIN] : []), ...[...OYINLAR].reverse()].map(x => ({ ...x, ...(o[x.id] || {}) }));
-const TOLDI_K = { uz: "to'ldi", ru: 'заполнена' };
+const TOLDI_K = { uz: "to'ldi", ru: "заполнена" };
 const SIZ = { uz: 'Siz', ru: 'Вы' };
 
 // Uchish (SABOQ 19): konvert manbadan nishonga uchadi; joylar DOM dan o'lchanadi (⛶ va telefonda ustma-ust turganda ham to'g'ri)
@@ -703,7 +708,7 @@ const OyinE = ({ o, son, tugma = 'qosh', siz = 0, qizil, xatoQator, bosildi = 0,
       <b className="fo-oyin-sar">{tr(o.kun)}, {o.soat}</b>
       <span className="fo-oyin-joy">{tr(o.maydon)}</span>
       <b key={son} className={cxx('fo-son', pop && 'yangi', ortiq > 0 && 'qizil')}>{son} / {kerak}</b>
-      {eski && <small className="fo-eski">{tr({ uz: "oxirgi so'rovdagi son", ru: 'число из последнего запроса' })}</small>}
+      {eski && <small className="fo-eski">{tr({ uz: "oxirgi so'rovdagi son", ru: "число из последнего запроса" })}</small>}
       <span className={cxx('fo-doiralar', siz > 0 && 'sizli')} aria-hidden="true">
         <span className="fo-doira-quti">{Array.from({ length: kerak }, (_, i) => {
           const s = i >= sizdan && i < son;
@@ -731,13 +736,13 @@ const ElonE = ({ bosildi = 0, xato, onYubor, halqa, disabled }) => {
   );
 };
 // Agent chati (0-ekran, Antigravity — chizilgan): o'quvchi pufagi — PRD dagi funksiya gapi, agent javobi «Tayyor!»; javobdan keyin gap ostida bo'sh joy «ikki marta bosilsa — ?»
-const PRD_GAP = { uz: "O'yin e'loni va qo'shilishni qur: tashkilotchi e'lon beradi, o'yinchi «Qo'shilaman»ni bosadi, «8 / 10» o'zgaradi.", ru: 'Сделай объявление игры и присоединение: организатор объявляет, игрок нажимает «Qo\'shilaman», «8 / 10» меняется.' };
+const PRD_GAP = { uz: "O'yin e'loni va qo'shilishni qur: tashkilotchi e'lon beradi, o'yinchi «Qo'shilaman»ni bosadi, «8 / 10» o'zgaradi.", ru: "Сделай объявление игры и присоединение: организатор объявляет, игрок нажимает «Qo'shilaman» («Присоединяюсь»), «8 / 10» меняется." };
 const AgentChat = ({ bosh }) => (
   <div className="fo-chat">
     <span className="fo-chat-h"><i aria-hidden="true" />Antigravity</span>
     <span className="fo-pufak siz">{tr(PRD_GAP)}</span>
-    {bosh && <span className="fo-bosh-q">{tr({ uz: 'ikki marta bosilsa — ?', ru: 'если нажать дважды — ?' })}</span>}
-    <span className="fo-pufak agent">{tr({ uz: 'Tayyor!', ru: 'Готово!' })}</span>
+    {bosh && <span className="fo-bosh-q">{tr({ uz: 'ikki marta bosilsa — ?', ru: "если нажать дважды — ?" })}</span>}
+    <span className="fo-pufak agent">{tr({ uz: 'Tayyor!', ru: "Готово!" })}</span>
   </div>
 );
 // Backend qutisi: joy yorlig'i (Render) va yo'llar; holat on (so'rov ichida) · xato (401) · children — token, «10 / 10 — to'lgan» belgisi
@@ -768,10 +773,10 @@ const YANGI_QATOR = { k: 'o5', c: ['5', '2026-10-11', '19:00', MAKTAB, '10', '2'
 const DbElon = ({ aliYon, yangi, yoq, fokus }) => (
   <div className="fo-db">
     <span className="fo-db-h">{JAMOA_F1.db.nom}</span>
-    {!fokus && <Jadval nom="oyinchilar" ustun={['id', 'ism']} qatorlar={[{ k: 'p1', c: ['1', { uz: 'Namuna tashkilotchi', ru: 'Организатор-образец' }] }, { k: 'p2', c: ['2', 'Ali'], yon: aliYon }]} />}
+    {!fokus && <Jadval nom="oyinchilar" ustun={['id', 'ism']} qatorlar={[{ k: 'p1', c: ['1', { uz: 'Namuna tashkilotchi', ru: "Организатор-образец" }] }, { k: 'p2', c: ['2', 'Ali'], yon: aliYon }]} />}
     <Jadval nom="oyinlar" ustun={OYIN_USTUN} qatorlar={yangi ? [...OYINLAR_QATOR, YANGI_QATOR] : OYINLAR_QATOR} yangiK={yangi === 'kir' ? 'o5' : null}>
-      {yangi && <span className="fo-egasi-y">{tr({ uz: "tokendan — formada yo'q", ru: 'из токена — в форме нет' })}</span>}
-      {yoq && <span className="fo-yoq-q">{tr({ uz: "yangi qator yo'q", ru: 'новой строки нет' })}</span>}
+      {yangi && <span className="fo-egasi-y">{tr({ uz: "tokendan — formada yo'q", ru: "из токена — в форме нет" })}</span>}
+      {yoq && <span className="fo-yoq-q">{tr({ uz: "yangi qator yo'q", ru: "новой строки нет" })}</span>}
     </Jadval>
   </div>
 );
@@ -779,7 +784,7 @@ const DbElon = ({ aliYon, yangi, yoq, fokus }) => (
 const DbSanoq = ({ son, kerak = 10, holat }) => (
   <div className={cxx('fo-db', 'sanoq', holat)} data-db="son">
     <span className="fo-db-h">{JAMOA_F1.db.nom}</span>
-    <span className="fo-sanoq-l">{tr({ uz: "Yakshanba 17:00 · qo'shilganlar", ru: 'Воскресенье 17:00 · присоединились' })}</span>
+    <span className="fo-sanoq-l">{tr({ uz: "Yakshanba 17:00 · qo'shilganlar", ru: "Воскресенье 17:00 · присоединились" })}</span>
     <b key={son} className={cxx('fo-sanoq', son > kerak && 'qizil', holat === 'ok' && 'yangi')}>{son} / {kerak}</b>
     <code className="fo-sanoq-j">ishtirokchilar</code>
   </div>
@@ -816,7 +821,7 @@ const Bashorat = ({ savol, variantlar, tanlov, onTanla, done }) => (!tanlov
 // Natija bloki (SABOQ 25): bitta yashil blok — birinchi qator taxmin, so'ng joriy qator va xulosa
 const NatijaBlok = ({ togri, haqiqat, izoh, xulosa }) => (
   <div className="q-xulosa fo-nb">
-    <span className={cxx('fo-nb-t', togri && 'ok')}>{togri ? <>✓ {tr({ uz: "Taxminingiz to'g'ri chiqdi", ru: 'Ваше предположение подтвердилось' })}</> : haqiqat}</span>
+    <span className={cxx('fo-nb-t', togri && 'ok')}>{togri ? <>✓ {tr({ uz: "Taxminingiz to'g'ri chiqdi", ru: "Ваше предположение подтвердилось" })}</> : haqiqat}</span>
     {izoh && <span className="fo-nb-i">{izoh}</span>}
     <span className="fo-nb-x">{xulosa}</span>
   </div>
@@ -825,14 +830,14 @@ const Haqiqat = ({ taxmin, haqiqat }) => <>{tr({ uz: 'Taxminingiz', ru: 'Ваш�
 
 // ===== SCREEN 0 — KIRISH (QKirish): agent «Tayyor» dedi — «Qo'shilaman» ikki marta bosilsa? Ballsiz (J-026) =====
 const HOOK_OPTS = [
-  { id: 'a', t: { uz: "«9 / 10» — bitta o'yinchi faqat bitta joy oladi", ru: '«9 / 10» — один игрок занимает только одно место' } },
-  { id: 'b', t: { uz: "«10 / 10» — har bosish yana bitta joy qo'shadi", ru: '«10 / 10» — каждое нажатие добавляет ещё одно место' } },
-  { id: 'c', t: { uz: "«8 / 10» — ikkinchi bosish birinchisini bekor qiladi", ru: '«8 / 10» — второе нажатие отменяет первое' } }
+  { id: 'a', t: { uz: "«9 / 10» — bitta o'yinchi faqat bitta joy oladi", ru: "«9 / 10» — один игрок занимает только одно место" } },
+  { id: 'b', t: { uz: "«10 / 10» — har bosish yana bitta joy qo'shadi", ru: "«10 / 10» — каждое нажатие добавляет ещё одно место" } },
+  { id: 'c', t: { uz: "«8 / 10» — ikkinchi bosish birinchisini bekor qiladi", ru: "«8 / 10» — второе нажатие отменяет первое" } }
 ];
 const HOOK_JAVOB = {
-  a: { uz: <><b>Qiziq fikr!</b> Shunday bo'lishi kerak edi, lekin PRD gapida bu holat yo'q. Agent har bosishni yangi joy deb sanadi.</>, ru: <><b>Интересная мысль!</b> Так и должно быть, но в формулировке PRD этого случая нет. Агент посчитал каждое нажатие новым местом.</> },
-  b: { uz: <><b>Aynan!</b> Bu misolda PRD gapida ikki marta bosish aytilmagan edi. Agent har bosishni yangi joy deb sanadi.</>, ru: <><b>Именно!</b> В этом примере в формулировке PRD двойное нажатие не было указано. Агент посчитал каждое нажатие новым местом.</> },
-  c: { uz: <><b>Qiziq fikr!</b> Bu misolda ikkinchi bosish ham joy qo'shdi: PRD gapida bu holat aytilmagan edi.</>, ru: <><b>Интересная мысль!</b> В этом примере второе нажатие тоже добавило место: в формулировке PRD этот случай не был указан.</> }
+  a: { uz: <><b>Qiziq fikr!</b> Shunday bo'lishi kerak edi, lekin PRD gapida bu holat yo'q. Agent har bosishni yangi joy deb sanadi.</>, ru: <><b>Интересная мысль!</b> Так и должно быть, но во фразе из PRD этого случая нет. Агент посчитал каждое нажатие новым местом.</> },
+  b: { uz: <><b>Aynan!</b> Bu misolda PRD gapida ikki marta bosish aytilmagan edi. Agent har bosishni yangi joy deb sanadi.</>, ru: <><b>Именно!</b> В этом примере во фразе из PRD о двойном нажатии не было сказано. Агент посчитал каждое нажатие новым местом.</> },
+  c: { uz: <><b>Qiziq fikr!</b> Bu misolda ikkinchi bosish ham joy qo'shdi: PRD gapida bu holat aytilmagan edi.</>, ru: <><b>Интересная мысль!</b> В этом примере второе нажатие тоже добавило место: во фразе из PRD об этом случае не было сказано.</> }
 };
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const avval = !!storedAnswer;
@@ -857,17 +862,17 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     keyin(() => { setBosh(true); setSc(n => n + 1); }, ms(2800));
   };
   return (
-    <Stage eyebrow={tr({ uz: 'Loyiha kuni · kirish', ru: 'День проекта · введение' })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
+    <Stage eyebrow={tr({ uz: 'Loyiha kuni · kirish', ru: "День проекта · введение" })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <QKirish zoom={Zoomable}
         sarlavha={tr({ uz: <>Tugmani ikki marta bossangiz, <span className="italic" style={{ color: T.accent }}>«8 / 10» nima bo'ladi</span>?</>, ru: <>Если нажать кнопку дважды, <span className="italic" style={{ color: T.accent }}>что станет с «8 / 10»</span>?</> })}
         mentor={<Mentor>{picked === null
-          ? tr({ uz: "Mentor misolida agentga PRD dagi funksiya gapi o'zi yuborildi — agent «Tayyor» dedi. O'yinchi «Qo'shilaman»ni ikki marta bosmoqchi: avval javobni tanlang.", ru: 'В примере Ментора агенту отправили саму фразу о функции из PRD — агент ответил «Готово». Игрок хочет нажать «Qo\'shilaman» дважды: сначала выберите ответ.' })
-          : tr({ uz: "«Davom etish»ni bosing — bugungi rejani ko'rasiz.", ru: 'Нажмите «Продолжить» — увидите план на сегодня.' })}</Mentor>}
+          ? tr({ uz: "Mentor misolida agentga PRD dagi funksiya gapi o'zi yuborildi — agent «Tayyor» dedi. O'yinchi «Qo'shilaman»ni ikki marta bosmoqchi: avval javobni tanlang.", ru: "В примере Ментора агенту отправили саму фразу о функции из PRD — агент ответил «Готово». Игрок хочет нажать «Присоединяюсь» дважды: сначала выберите ответ." })
+          : tr({ uz: "«Davom etish»ni bosing — bugungi rejani ko'rasiz.", ru: "Нажмите «Продолжить» — увидите план на сегодня." })}</Mentor>}
         maket={<div className={cxx('fo-hook', picked === null && 'kutish')}>
-          <Tel><OyinE o={OYINLAR[0]} son={son} siz={son - 8} qizil={qizil} bosildi={bos} xatoQator={qizil && { uz: "bitta o'yinchi — ikki joy", ru: 'один игрок — два места' }} /></Tel>
+          <Tel><OyinE o={OYINLAR[0]} son={son} siz={son - 8} qizil={qizil} bosildi={bos} xatoQator={qizil && { uz: "bitta o'yinchi — ikki joy", ru: "один игрок — два места" }} /></Tel>
           <AgentChat bosh={bosh} />
         </div>}
-        savol={tr({ uz: 'Sizningcha, qaysi biri?', ru: 'Как вы думаете, какой вариант?' })}
+        savol={tr({ uz: 'Sizningcha, qaysi biri?', ru: "Как вы думаете, какой вариант?" })}
         variantlar={HOOK_OPTS.map(o => ({ id: o.id, t: tr(o.t) }))} tanlov={picked} onTanla={pick}
         javob={picked !== null && <p className="hook-ack fade-step">{tr(HOOK_JAVOB[picked])}</p>}
       />
@@ -877,9 +882,9 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja): chapda «Dars oxirida» — Funksiya sahnasi tayyor holatda bir marta o'zi yuradi (DE-200); o'ngda 3 qadam (tegsiz, 172) =====
 const REJA = [
-  { uz: "E'lon berish: yangi o'yin ro'yxatda chiqadi", ru: 'Объявление: новая игра появляется в списке' },
-  { uz: "Qo'shilish: «8 / 10» Backend'dan keladi", ru: 'Присоединение: «8 / 10» приходит из Backend' },
-  { uz: "Yangilash: to'lgan o'yinda «O'yin to'ldi»", ru: 'Обновление: у заполненной игры — «O\'yin to\'ldi»' }
+  { uz: "E'lon berish: yangi o'yin ro'yxatda chiqadi", ru: "Объявление: новая игра появляется в списке" },
+  { uz: "Qo'shilish: «8 / 10» Backend'dan keladi", ru: "Присоединение: «8 / 10» приходит из Backend" },
+  { uz: "Yangilash: to'lgan o'yinda «O'yin to'ldi»", ru: "Обновление: у заполненной игры — «Игра заполнена»" }
 ];
 const RejaSahna = () => {
   const { box, uchar, uchir, kam, keyin } = useUchish();
@@ -917,24 +922,24 @@ const RejaSahna = () => {
   );
 };
 const Screen1 = ({ screen, onNext, onPrev }) => (
-  <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz', ru: 'Начинаем' })} onClick={onNext} /></>}>
+  <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz', ru: "Начинаем" })} onClick={onNext} /></>}>
     <QReja zoom={Zoomable}
       sarlavha={tr({ uz: <>Dars oxirida <span className="italic" style={{ color: T.accent }}>birinchi funksiya</span> telefonda ishlaydi.</>, ru: <>К концу урока <span className="italic" style={{ color: T.accent }}>первая функция</span> работает на телефоне.</> })}
-      mentor={<Mentor>{tr({ uz: "Roadmap'dagi birinchi funksiya — talabni siz yozasiz, kodni agent yozadi. Mentor misoli — o'yin e'loni va qo'shilish, siz esa o'z funksiyangizni qurasiz.", ru: 'Первая функция из roadmap — требование пишете вы, код пишет агент. Пример Ментора — объявление игры и присоединение, а вы строите свою функцию.' })}</Mentor>}
-      chapYorliq={tr({ uz: 'Dars oxirida', ru: 'К концу урока' })}
+      mentor={<Mentor>{tr({ uz: "Roadmap'dagi birinchi funksiya — talabni siz yozasiz, kodni agent yozadi. Mentor misoli — o'yin e'loni va qo'shilish, siz esa o'z funksiyangizni qurasiz.", ru: "Первая функция из roadmap — требование пишете вы, код пишет агент. Пример Ментора — объявление игры и присоединение, а вы строите свою функцию." })}</Mentor>}
+      chapYorliq={tr({ uz: 'Dars oxirida', ru: "К концу урока" })}
       chap={<RejaSahna />}
       ongYorliq={tr({ uz: 'Bugungi 3 qadam', ru: '3 шага на сегодня' })}
       qadamlar={REJA.map(t => ({ t: tr(t) }))}>
       <div className="fo-reja-past fade-up">
-        <p className="fo-reja-repo">repo <code>maydon-jamoa</code> · {tr({ uz: "boshlang'ich holat", ru: 'начальное состояние' })} <code>m11-dars-11-start</code> · {tr({ uz: 'namuna', ru: 'образец' })} <code>m11-dars-11-done</code></p>
-        <p className="fo-reja-izoh">{tr({ uz: "«Maydon Jamoa» — namuna; amaliyotlarni o'z mahsulotingizda, roadmap'ingizdagi birinchi funksiya bilan bajarasiz.", ru: '«Maydon Jamoa» — образец; практику выполняете на своём продукте, с первой функцией из своего roadmap.' })}</p>
+        <p className="fo-reja-repo">repo <code>maydon-jamoa</code> · {tr({ uz: "boshlang'ich holat", ru: "начальное состояние" })} <code>m11-dars-11-start</code> · {tr({ uz: 'namuna', ru: "образец" })} <code>m11-dars-11-done</code></p>
+        <p className="fo-reja-izoh">{tr({ uz: "«Maydon Jamoa» — namuna; amaliyotlarni o'z mahsulotingizda, roadmap'ingizdagi birinchi funksiya bilan bajarasiz.", ru: "«Maydon Jamoa» — образец; практику выполняете на своём продукте, с первой функцией из своего roadmap." })}</p>
       </div>
     </QReja>
   </Stage>
 );
 
 // ===== SCREEN 2 — TUSHUNCHA (QTushuncha keng): formada «kim» yo'q — e'lon egasi tokendan. Bashorat → «Yuborish» (telefonda) → «Tokensiz yuborish» → natija =====
-const S2_TAXMIN = [{ k: 'telefon', t: { uz: 'Telefon raqamidan', ru: 'По номеру телефона' } }, { k: 'token', t: { uz: "So'rovdagi tokendan", ru: 'По токену в запросе' } }];
+const S2_TAXMIN = [{ k: 'telefon', t: { uz: 'Telefon raqamidan', ru: "По номеру телефона" } }, { k: 'token', t: { uz: "So'rovdagi tokendan", ru: "По токену в запросе" } }];
 const S2_BOSH = { tel: 'elon', bos: 0, yol: {}, be: '', token: false, aliYon: false, yangi: null, x401: false, telXato: false, yoq: false };
 const S2_OXIRI = { ...S2_BOSH, tel: 'oyinlar', yol: { elon: 'ok' }, token: true, yangi: 'bor' };
 const S2_SOROV = 'POST /oyinlar { kun, soat, maydon, kerak }';
@@ -978,26 +983,26 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     ? <OyinlarE oyinlar={royxat()} rejim="kerak" yangiId={5} />
     : <ElonE bosildi={v.bos} xato={v.telXato} onYubor={yubor} halqa={!!taxmin && n === 0 && !yur} disabled={!taxmin || n !== 0 || yur} />;
   return (
-    <Stage eyebrow={tr({ uz: "Tushuncha · e'lon", ru: 'Понятие · объявление' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={!taxmin ? tr({ uz: 'Avval taxminingizni belgilang', ru: 'Сначала отметьте предположение' }) : !done ? tr({ uz: `Ikkala yuborishni bosing (${n}/2)`, ru: `Нажмите обе отправки (${n}/2)` }) : tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Tushuncha · e'lon", ru: "Понятие · объявление" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={!taxmin ? tr({ uz: 'Avval taxminingizni belgilang', ru: 'Сначала отметьте предположение' }) : !done ? tr({ uz: `Ikkala yuborishni bosing (${n}/2)`, ru: `Выполните обе отправки (${n}/2)` }) : tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
         sarlavha={tr({ uz: <>Formada «kim» qatori yo'q. <span className="italic" style={{ color: T.accent }}>E'lon kimniki bo'ladi</span>?</>, ru: <>В форме нет строки «кто». <span className="italic" style={{ color: T.accent }}>Чьим будет объявление</span>?</> })}
         mentor={<Mentor>{n === 0
-          ? tr({ uz: "Avval taxminingizni belgilang, keyin telefonda «Yuborish»ni bosing.", ru: 'Сначала отметьте предположение, потом нажмите «Yuborish» на телефоне.' })
-          : !done ? tr({ uz: "Endi xuddi shu e'lonni tokensiz yuborib ko'ring — Backend nima qilishini kuzating.", ru: 'Теперь отправьте то же объявление без токена — следите, что сделает Backend.' })
-            : tr({ uz: 'Ikkala yuborish tugadi — natijani taxminingiz bilan solishtiring.', ru: 'Обе отправки сделаны — сравните результат со своим предположением.' })}</Mentor>}
-        bashorat={<Bashorat savol={tr({ uz: "Backend e'lon egasini qayerdan biladi?", ru: 'Откуда Backend знает владельца объявления?' })} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
+          ? tr({ uz: "Avval taxminingizni belgilang, keyin telefonda «Yuborish»ni bosing.", ru: "Сначала отметьте предположение, потом нажмите «Отправить» на телефоне." })
+          : !done ? tr({ uz: "Endi xuddi shu e'lonni tokensiz yuborib ko'ring — Backend nima qilishini kuzating.", ru: "Теперь отправьте то же объявление без токена — следите, что сделает Backend." })
+            : tr({ uz: 'Ikkala yuborish tugadi — natijani taxminingiz bilan solishtiring.', ru: "Обе отправки сделаны — сравните результат со своим предположением." })}</Mentor>}
+        bashorat={<Bashorat savol={tr({ uz: "Backend e'lon egasini qayerdan biladi?", ru: "Откуда Backend знает владельца объявления?" })} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
         vizual={<FunksiyaSahna boxRef={box} uchar={uchar}
-          tel={<Tel yorliq={<span className="fo-tel-yorliq">{tr({ uz: 'kirgan: Ali', ru: 'вошёл: Ali' })}</span>}
-            past={n === 1 && !done && <QTugma ikkinchi className={yur ? undefined : 'fo-halqa'} disabled={yur} onClick={tokensiz}>{tr({ uz: 'Tokensiz yuborish', ru: 'Отправить без токена' })}</QTugma>}>{telEkran}</Tel>}
+          tel={<Tel yorliq={<span className="fo-tel-yorliq">{tr({ uz: 'kirgan: Ali', ru: "вошёл: Ali" })}</span>}
+            past={n === 1 && !done && <QTugma ikkinchi className={yur ? undefined : 'fo-halqa'} disabled={yur} onClick={tokensiz}>{tr({ uz: 'Tokensiz yuborish', ru: "Отправить без токена" })}</QTugma>}>{telEkran}</Tel>}
           be={<BackendQ yol={v.yol} holat={v.be}>
             {v.token && <span className="fo-be-token"><i className="fo-qulf" aria-hidden="true" /><code>token</code> → <code>oyinchilar · 2</code></span>}
             {v.x401 && !tugadi && <b className="fo-be-401">401</b>}
           </BackendQ>}
           db={<DbElon aliYon={v.aliYon} yangi={v.yangi} yoq={v.yoq && !tugadi} fokus={tugadi} />} />}
         natija={done && tx2 && <NatijaBlok togri={taxmin === 'token'}
-          haqiqat={<Haqiqat taxmin={tr(tx2.t)} haqiqat={tr({ uz: "so'rovdagi tokendan", ru: 'по токену в запросе' })} />}
-          izoh={tr({ uz: "Backend tokendan kirgan o'yinchini taniydi va e'lon egasini shundan yozadi.", ru: 'Backend по токену узнаёт вошедшего игрока и записывает по нему владельца объявления.' })}
-          xulosa={tr({ uz: "E'lon Database'ga yoziladi, egasini Backend tokendan oladi. Formada «kim» so'ralmaydi.", ru: 'Объявление записывается в Database, владельца Backend берёт из токена. В форме «кто» не спрашивают.' })} />}
+          haqiqat={<Haqiqat taxmin={tr(tx2.t)} haqiqat={tr({ uz: "so'rovdagi tokendan", ru: "по токену в запросе" })} />}
+          izoh={tr({ uz: "Backend tokendan kirgan o'yinchini taniydi va e'lon egasini shundan yozadi.", ru: "Backend по токену узнаёт вошедшего игрока и записывает по нему владельца объявления." })}
+          xulosa={tr({ uz: "E'lon Database'ga yoziladi, egasini Backend tokendan oladi. Formada «kim» so'ralmaydi.", ru: "Объявление записывается в Database, владельца Backend берёт из токена. В форме «кто» не спрашивают." })} />}
       />
     </Stage>
   );
@@ -1007,26 +1012,26 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen3 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Упражнение · вопрос 1' })}
     questionText="Agent e'lon formasiga «Tashkilotchi» maydonini qo'shdi. Agentga nima yozasiz?"
-    question={tr({ uz: <h2 className="title h-ask">Agent e'lon formasiga «Tashkilotchi» maydonini qo'shdi. <span className="italic" style={{ color: T.accent }}>Agentga nima yozasiz</span>?</h2>, ru: <h2 className="title h-ask">Агент добавил в форму объявления поле «Tashkilotchi». <span className="italic" style={{ color: T.accent }}>Что вы напишете агенту</span>?</h2> })}
+    question={tr({ uz: <h2 className="title h-ask">Agent e'lon formasiga «Tashkilotchi» maydonini qo'shdi. <span className="italic" style={{ color: T.accent }}>Agentga nima yozasiz</span>?</h2>, ru: <h2 className="title h-ask">Агент добавил в форму объявления поле «Организатор». <span className="italic" style={{ color: T.accent }}>Что вы напишете агенту</span>?</h2> })}
     options={[
-      { uz: "Maydonni qoldir, ismni o'yinchi o'zi yozsin", ru: 'Оставь поле, пусть игрок сам пишет имя' },
-      { uz: "Maydonni majburiy qil, bo'sh yuborilmasin", ru: 'Сделай поле обязательным, чтобы не отправлялось пустым' },
-      { uz: "Maydonni olib tashla, egasini tokendan ol", ru: 'Убери поле, владельца бери из токена' },
-      { uz: "Tokenni olib tashla, egasini formadan ol", ru: 'Убери токен, владельца бери из формы' }
+      { uz: "Maydonni qoldir, ismni o'yinchi o'zi yozsin", ru: "Оставь поле, пусть игрок сам пишет имя" },
+      { uz: "Maydonni majburiy qil, bo'sh yuborilmasin", ru: "Сделай поле обязательным, чтобы не отправлялось пустым" },
+      { uz: "Maydonni olib tashla, egasini tokendan ol", ru: "Убери поле, владельца бери из токена" },
+      { uz: "Tokenni olib tashla, egasini formadan ol", ru: "Убери токен, владельца бери из формы" }
     ]} correctIdx={2}
-    explainCorrect={{ uz: "Backend egasini tokendan oladi — formada «kim» so'ralmaydi.", ru: 'Backend берёт владельца из токена — в форме «кто» не спрашивают.' }}
+    explainCorrect={{ uz: "Backend egasini tokendan oladi — formada «kim» so'ralmaydi.", ru: "Backend берёт владельца из токена — в форме «кто» не спрашивают." }}
     explainWrong={{
-      0: { uz: 'Ismni har kim istaganicha yozadi. Egasi qayerdan keladi?', ru: 'Имя каждый пишет какое хочет. Откуда берётся владелец?' },
-      1: { uz: "Bo'sh forma — boshqa holat. Bu maydonning o'zi kerakmi?", ru: 'Пустая форма — другой случай. Нужно ли само это поле?' },
-      3: { uz: 'Tokensiz Backend kim yuborganini bilmaydi.', ru: 'Без токена Backend не знает, кто отправил.' }
+      0: { uz: 'Ismni har kim istaganicha yozadi. Egasi qayerdan keladi?', ru: "Имя каждый пишет какое хочет. Откуда берётся владелец?" },
+      1: { uz: "Bo'sh forma — boshqa holat. Bu maydonning o'zi kerakmi?", ru: "Пустая форма — другой случай. Нужно ли само это поле?" },
+      3: { uz: 'Tokensiz Backend kim yuborganini bilmaydi.', ru: "Без токена Backend не знает, кто отправил." }
     }} />
 );
 
 // ===== SCREEN 4 — TUSHUNCHA (QTushuncha keng): ekrandagi son eskirgan bo'lsa. Bashorat → 2-telefonda «Qo'shilaman» → talab qatorlari bittadan (SABOQ 9, 13) =====
-const S4_TAXMIN = [{ k: 'olmaydi', t: { uz: "Qo'shila olmaydi", ru: 'Не сможет присоединиться' } }, { k: 'oladi', t: { uz: "Qo'shila oladi", ru: 'Сможет присоединиться' } }];
+const S4_TAXMIN = [{ k: 'olmaydi', t: { uz: "Qo'shila olmaydi", ru: "Не сможет присоединиться" } }, { k: 'oladi', t: { uz: "Qo'shila oladi", ru: "Сможет присоединиться" } }];
 const S4_QATOR = [
-  { t: { uz: "Nima qilsin: o'yin to'lsa, ilova «Qo'shilaman»ni yashirsin.", ru: 'Что сделать: если игра заполнена, приложение прячет «Qo\'shilaman».' }, y: { uz: 'Ekrandagi son eskirgan edi — ilova bilmadi.', ru: 'Число на экране устарело — приложение не знало.' } },
-  { t: { uz: "Nima qilsin: o'yin to'lsa, Backend qo'shmasin, ilova «O'yin to'ldi» desin.", ru: 'Что сделать: если игра заполнена, Backend не добавляет, приложение пишет «O\'yin to\'ldi».' }, y: { uz: "Backend Database'ga qaradi.", ru: 'Backend посмотрел в Database.' } }
+  { t: { uz: "Nima qilsin: o'yin to'lsa, ilova «Qo'shilaman»ni yashirsin.", ru: "Что сделать: если игра заполнена, приложение прячет «Qo'shilaman» («Присоединяюсь»)." }, y: { uz: 'Ekrandagi son eskirgan edi — ilova bilmadi.', ru: "Число на экране устарело — приложение не знало." } },
+  { t: { uz: "Nima qilsin: o'yin to'lsa, Backend qo'shmasin, ilova «O'yin to'ldi» desin.", ru: "Что сделать: если игра заполнена, Backend не добавляет, приложение пишет «O'yin to'ldi» («Игра заполнена»)." }, y: { uz: "Backend Database'ga qaradi.", ru: "Backend посмотрел в Database." } }
 ];
 const S4_SOROV = 'POST /oyinlar/:id/qoshilish';
 const Y17 = OYINLAR[3];
@@ -1085,21 +1090,21 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const q = S4_QATOR[Math.min(Math.max(i - 1, 0), 1)];
   const telYorliq = (k) => <span className={cxx('fo-tel-yorliq', 'b' + k)}>{tr({ uz: `${k}-telefon · o'yinchi`, ru: `Телефон ${k} · игрок` })}</span>;
   return (
-    <Stage eyebrow={tr({ uz: "Tushuncha · to'lgan o'yin", ru: 'Понятие · заполненная игра' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={!taxmin ? tr({ uz: 'Avval taxminingizni belgilang', ru: 'Сначала отметьте предположение' }) : i === 0 ? tr({ uz: "2-telefonda qo'shiling", ru: 'Присоединитесь на телефоне 2' }) : !done ? tr({ uz: `Qatorlarni tekshiring (${i - 1}/2)`, ru: `Проверьте строки (${i - 1}/2)` }) : tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Tushuncha · to'lgan o'yin", ru: "Понятие · заполненная игра" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={!taxmin ? tr({ uz: 'Avval taxminingizni belgilang', ru: 'Сначала отметьте предположение' }) : i === 0 ? tr({ uz: "2-telefonda qo'shiling", ru: "Присоединитесь на телефоне 2" }) : !done ? tr({ uz: `Qatorlarni tekshiring (${i - 1}/2)`, ru: `Проверьте строки (${i - 1}/2)` }) : tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
         sarlavha={tr({ uz: <>Ekranda «9 / 10», <span className="italic" style={{ color: T.accent }}>o'yin esa to'lgan</span> bo'lsa-chi?</>, ru: <>На экране «9 / 10», <span className="italic" style={{ color: T.accent }}>а игра уже заполнена</span>?</> })}
         mentor={<Mentor>{i === 0
-          ? tr({ uz: "Ikki o'yinchi bitta o'yinni ochib turibdi — avval taxminingizni belgilang, keyin 2-telefonda «Qo'shilaman»ni bosing.", ru: 'Двое игроков открыли одну игру — сначала отметьте предположение, потом нажмите «Qo\'shilaman» на телефоне 2.' })
-          : !done ? tr({ uz: "Endi talab qatorlarini bittadan tekshiring — «Tekshirish»ni bosing va 1-telefonni kuzating.", ru: 'Теперь проверьте строки требования по одной — нажмите «Проверить» и следите за телефоном 1.' })
-            : tr({ uz: 'Ikkala qator tekshirildi — natijani taxminingiz bilan solishtiring.', ru: 'Обе строки проверены — сравните результат со своим предположением.' })}</Mentor>}
-        bashorat={<Bashorat savol={tr({ uz: "Ilova to'lgan o'yinda tugmani yashirsa, 1-telefon qo'shila oladimi?", ru: 'Если приложение прячет кнопку у заполненной игры, сможет ли телефон 1 присоединиться?' })} variantlar={S4_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
+          ? tr({ uz: "Ikki o'yinchi bitta o'yinni ochib turibdi — avval taxminingizni belgilang, keyin 2-telefonda «Qo'shilaman»ni bosing.", ru: "Двое игроков открыли одну игру — сначала отметьте предположение, потом нажмите «Присоединяюсь» на телефоне 2." })
+          : !done ? tr({ uz: "Endi talab qatorlarini bittadan tekshiring — «Tekshirish»ni bosing va 1-telefonni kuzating.", ru: "Теперь проверьте строки требования по одной — нажмите «Проверить» и следите за телефоном 1." })
+            : tr({ uz: 'Ikkala qator tekshirildi — natijani taxminingiz bilan solishtiring.', ru: "Обе строки проверены — сравните результат со своим предположением." })}</Mentor>}
+        bashorat={<Bashorat savol={tr({ uz: "Ilova to'lgan o'yinda tugmani yashirsa, 1-telefon qo'shila oladimi?", ru: "Если приложение прячет кнопку у заполненной игры, сможет ли телефон 1 присоединиться?" })} variantlar={S4_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
         vizual={<FunksiyaSahna ixcham boxRef={box} uchar={uchar}
           tel={<div className="fo-ikki">
             <Tel data="1" yorliq={telYorliq(1)}><OyinE o={Y17} son={t1.son} tugma={t1.tugma} bosildi={t1.bos} eski={t1.eski && !tugadi} qizil={t1.qizil} /></Tel>
             <Tel data="2" yorliq={telYorliq(2)}><OyinE o={Y17} son={t2.son} tugma={t2.tugma} bosildi={t2.bos} onBos={qosh2} halqa={!!taxmin && i === 0 && !yur} disabled={!taxmin || i !== 0 || yur} /></Tel>
           </div>}
           be={<BackendQ yol={be.yol} holat={be.holat} nomlar={['qosh']}>
-            {be.belgi && <span className="fo-be-qarash"><i aria-hidden="true" />{tr({ uz: "10 / 10 — to'lgan", ru: '10 / 10 — заполнена' })}</span>}
+            {be.belgi && <span className="fo-be-qarash"><i aria-hidden="true" />{tr({ uz: "10 / 10 — to'lgan", ru: "10 / 10 — заполнена" })}</span>}
           </BackendQ>}
           db={<DbSanoq son={db.son} holat={db.holat} />} />}
         harakat={taxmin && i >= 1 && !done && (
@@ -1114,9 +1119,9 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>
         )}
         natija={done && tx4 && <NatijaBlok togri={taxmin === 'oladi'}
-          haqiqat={<Haqiqat taxmin={tr(tx4.t)} haqiqat={tr({ uz: "qo'shila oladi — ekranida hali «9 / 10» edi", ru: 'сможет — на его экране ещё было «9 / 10»' })} />}
-          izoh={tr({ uz: "Telefon sonni oxirgi so'raganda olgan — boshqa o'yinchi undan keyin qo'shilgan bo'lishi mumkin.", ru: 'Телефон получил число при последнем запросе — другой игрок мог присоединиться позже.' })}
-          xulosa={tr({ uz: "Telefondagi son eskirgan bo'lishi mumkin. To'lgan o'yinni Backend tekshiradi, ilova «O'yin to'ldi» deydi.", ru: 'Число на телефоне может устареть. Заполненную игру проверяет Backend, приложение пишет «O\'yin to\'ldi».' })} />}
+          haqiqat={<Haqiqat taxmin={tr(tx4.t)} haqiqat={tr({ uz: "qo'shila oladi — ekranida hali «9 / 10» edi", ru: "сможет — на его экране ещё было «9 / 10»" })} />}
+          izoh={tr({ uz: "Telefon sonni oxirgi so'raganda olgan — boshqa o'yinchi undan keyin qo'shilgan bo'lishi mumkin.", ru: "Телефон получил число при последнем запросе — другой игрок мог присоединиться позже." })}
+          xulosa={tr({ uz: "Telefondagi son eskirgan bo'lishi mumkin. To'lgan o'yinni Backend tekshiradi, ilova «O'yin to'ldi» deydi.", ru: "Число на телефоне может устареть. Заполненную игру проверяет Backend, приложение пишет «Игра заполнена»." })} />}
       />
     </Stage>
   );
@@ -1124,28 +1129,28 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 5 — TEST 2 (QuestionScreen → QTest; INLINE_KEYS.s5 = 3, D) =====
 const Screen5 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Упражнение · вопрос 2' })}
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: "Упражнение · вопрос 2" })}
     questionText="Ekranda «7 / 8». Oxirgi joyni boshqa o'yinchi oldi. Bossangiz nima bo'lishi kerak?"
     question={tr({ uz: <h2 className="title h-ask">Ekranda «7 / 8». Oxirgi joyni boshqa o'yinchi oldi. <span className="italic" style={{ color: T.accent }}>Bossangiz nima bo'lishi kerak</span>?</h2>, ru: <h2 className="title h-ask">На экране «7 / 8». Последнее место занял другой игрок. <span className="italic" style={{ color: T.accent }}>Что должно быть, если нажать</span>?</h2> })}
     options={[
-      { uz: "Backend qo'shadi, ilova «8 / 8» ni ko'rsatadi", ru: 'Backend добавит, приложение покажет «8 / 8»' },
-      { uz: "Backend qo'shadi, ilova «9 / 8» ni ko'rsatadi", ru: 'Backend добавит, приложение покажет «9 / 8»' },
-      { uz: "Ilova qo'shmaydi, tugmani o'zi yashirib qo'yadi", ru: 'Приложение не добавит, само спрячет кнопку' },
-      { uz: "Backend qo'shmaydi, ilova «O'yin to'ldi» deydi", ru: 'Backend не добавит, приложение напишет «O\'yin to\'ldi»' }
+      { uz: "Backend qo'shadi, ilova «8 / 8» ni ko'rsatadi", ru: "Backend добавит, приложение покажет «8 / 8»" },
+      { uz: "Backend qo'shadi, ilova «9 / 8» ni ko'rsatadi", ru: "Backend добавит, приложение покажет «9 / 8»" },
+      { uz: "Ilova qo'shmaydi, tugmani o'zi yashirib qo'yadi", ru: "Приложение не добавит, само спрячет кнопку" },
+      { uz: "Backend qo'shmaydi, ilova «O'yin to'ldi» deydi", ru: "Backend не добавит, приложение напишет «Игра заполнена»" }
     ]} correctIdx={3}
-    explainCorrect={{ uz: "Backend Database'ga qaraydi — ekrandagi son eskirgan edi.", ru: 'Backend смотрит в Database — число на экране устарело.' }}
+    explainCorrect={{ uz: "Backend Database'ga qaraydi — ekrandagi son eskirgan edi.", ru: "Backend смотрит в Database — число на экране устарело." }}
     explainWrong={{
-      0: { uz: "Database'da o'yin to'lgan edi. Backend yana qo'shsinmi?", ru: 'В Database игра уже была заполнена. Пусть Backend добавит ещё?' },
-      1: { uz: 'Bu — talabda aytilmagan holat. Kim tekshirishi kerak edi?', ru: 'Это случай, не указанный в требовании. Кто должен был проверить?' },
-      2: { uz: "Ekranda «7 / 8» turibdi — ilova joy bor deb biladi.", ru: 'На экране «7 / 8» — приложение думает, что место есть.' }
+      0: { uz: "Database'da o'yin to'lgan edi. Backend yana qo'shsinmi?", ru: "В Database игра уже была заполнена. Должен ли Backend добавить ещё?" },
+      1: { uz: 'Bu — talabda aytilmagan holat. Kim tekshirishi kerak edi?', ru: "Это случай, не указанный в требовании. Кто должен был проверить?" },
+      2: { uz: "Ekranda «7 / 8» turibdi — ilova joy bor deb biladi.", ru: "На экране «7 / 8» — приложение думает, что место есть." }
     }} />
 );
 
 // ===== 🏅 BADGES (nishonlar, 3) — ikki savol (birinchi urinish) + bonus: 3-amaliyot oxirgi «Bajardim» (birinchi urinish sharti yo'q) =====
 const ACHIEVEMENTS = {
-  rightOwner: { icon: '🪪', name: 'Right Owner', desc: { uz: "E'lon egasi tokendan olinishini topdingiz", ru: 'Вы нашли, что владелец объявления берётся из токена' } },
-  fullGame: { icon: '⚽', name: 'Full Game', desc: { uz: "To'lgan o'yinni Backend tekshirishini topdingiz", ru: 'Вы нашли, что заполненную игру проверяет Backend' } },
-  firstFeature: { icon: '🚀', name: 'First Feature', desc: { uz: 'Uch amaliyot blokini oxirigacha bajardingiz', ru: 'Вы выполнили все три блока практики до конца' } }
+  rightOwner: { icon: '🪪', name: 'Right Owner', desc: { uz: "E'lon egasi tokendan olinishini topdingiz", ru: "Вы нашли, что владелец объявления берётся из токена" } },
+  fullGame: { icon: '⚽', name: 'Full Game', desc: { uz: "To'lgan o'yinni Backend tekshirishini topdingiz", ru: "Вы нашли, что заполненную игру проверяет Backend" } },
+  firstFeature: { icon: '🚀', name: 'First Feature', desc: { uz: 'Uch amaliyot blokini oxirigacha bajardingiz', ru: "Вы выполнили все три блока практики до конца" } }
 };
 // Ekran id → nishon. Savollar — birinchi urinishda to'g'ri; a3 — oxirgi «Bajardim» (bonus).
 const ACH_TRIGGERS = { s3: 'rightOwner', s5: 'fullGame', a3: 'firstFeature' };
@@ -1206,16 +1211,16 @@ const Confetti = () => {
 
 // Podium savol yorliqlari (SCORED_IDX: 4, 7)
 const Q_LABELS = {
-  4: { uz: "1 — E'lon egasi", ru: '1 — Владелец объявления' },
-  7: { uz: "2 — To'lgan o'yin", ru: '2 — Заполненная игра' }
+  4: { uz: "1 — E'lon egasi", ru: "1 — Владелец объявления" },
+  7: { uz: "2 — To'lgan o'yin", ru: "2 — Заполненная игра" }
 };
 const QUIZ_MS = 15000;
 // Kapsula ichida suzuvchi fon so'zlari — darsning o'z atamalari (MD, R-008: o'quvchi so'zi {uz, ru}; kod-belgi va nom o'zgarmaydi)
 const QZ_BG_SHAPES = [
-  { ch: { uz: 'talab', ru: 'требование' }, l: 5, t: 10, s: 28, d: 19, dl: 0 },
-  { ch: { uz: "e'lon", ru: 'объявление' }, l: 80, t: 8, s: 26, d: 23, dl: 1.5 },
-  { ch: "Qo'shilaman", l: 8, t: 72, s: 22, d: 27, dl: 0.8 },
-  { ch: "O'yin to'ldi", l: 70, t: 66, s: 22, d: 21, dl: 2.2 },
+  { ch: { uz: 'talab', ru: "требование" }, l: 5, t: 10, s: 28, d: 19, dl: 0 },
+  { ch: { uz: "e'lon", ru: "объявление" }, l: 80, t: 8, s: 26, d: 23, dl: 1.5 },
+  { ch: { uz: "Qo'shilaman", ru: "Присоединяюсь" }, l: 8, t: 72, s: 22, d: 27, dl: 0.8 },
+  { ch: { uz: "O'yin to'ldi", ru: "Игра заполнена" }, l: 70, t: 66, s: 22, d: 21, dl: 2.2 },
   { ch: '8 / 10', l: 44, t: 86, s: 26, d: 25, dl: 1.1 },
   { ch: 'token', l: 58, t: 24, s: 24, d: 17, dl: 0.4 },
   { ch: 'Backend', l: 22, t: 40, s: 24, d: 20, dl: 1.9 },
@@ -1227,18 +1232,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol (MD), to'g'ri javob o'rni A·B·C·D ×3 (3/3/3/3).
 const QUIZ_BANK = [
-  { q: { uz: "Roadmap'dagi funksiyani agentga qanday berasiz?", ru: 'Как вы передаёте агенту функцию из roadmap?' }, opts: [{ uz: "Uch qatorli talab qilib, o'zingiz yozib", ru: 'Трёхстрочным требованием, написав его сами' }, { uz: "Roadmap qatorini o'zgartirmay, o'zini", ru: 'Саму строку roadmap, не меняя' }, { uz: 'PRD ning hamma bo\'limini birdaniga yuborib', ru: 'Отправив сразу все разделы PRD' }, { uz: 'Faqat funksiya nomini, qisqa qilib yozib', ru: 'Только название функции, коротко' }], correct: 0 },
-  { q: { uz: 'Talabda ikki marta bosish aytilmagan. Agent nima qilishi mumkin?', ru: 'В требовании не сказано о двойном нажатии. Что может сделать агент?' }, opts: [{ uz: 'Tugmani ekrandan butunlay olib tashlaydi', ru: 'Полностью уберёт кнопку с экрана' }, { uz: "Bu holatni o'zicha taxmin qilib quradi", ru: 'Сделает этот случай по своей догадке' }, { uz: 'Funksiyani umuman qurmasdan qoldiradi', ru: 'Вообще не станет делать функцию' }, { uz: "Ilovani boshidan to'liq qayta yozadi", ru: 'Полностью перепишет приложение с нуля' }], correct: 1 },
-  { q: { uz: "Formada «kim» yo'q. E'lon egasi qayerdan olinadi?", ru: 'В форме нет «кто». Откуда берётся владелец объявления?' }, opts: [{ uz: "Telefon raqamidan, so'rovdagi", ru: 'Из номера телефона в запросе' }, { uz: 'Ilova ustidagi ism yozuvidan', ru: 'Из надписи с именем над приложением' }, { uz: "So'rov bilan kelgan tokendan", ru: 'Из токена, пришедшего с запросом' }, { uz: "Database'dagi oxirgi qatordan", ru: 'Из последней строки в Database' }], correct: 2 },
-  { q: { uz: "Ilova qayta yuklandi. Yangi e'lon nega yo'qolmadi?", ru: 'Приложение перезагрузилось. Почему новое объявление не пропало?' }, opts: [{ uz: 'Telefon xotirasiga yozilgani uchun', ru: 'Потому что записано в память телефона' }, { uz: "Agent uni namunaga qo'shgani uchun", ru: 'Потому что агент добавил его в образцы' }, { uz: "Expo Go uni o'zida saqlagani uchun", ru: 'Потому что Expo Go хранит его у себя' }, { uz: "U Database'ga yozilgani uchun", ru: 'Потому что оно записано в Database' }], correct: 3 },
-  { q: { uz: '«8 / 10» dagi 8 qayerdan keladi?', ru: 'Откуда берётся 8 в «8 / 10»?' }, opts: [{ uz: "Database'dagi qo'shilganlar sonidan", ru: 'Из числа присоединившихся в Database' }, { uz: "Telefonda bosilgan tugmalar sanog'idan", ru: 'Из счёта нажатий на телефоне' }, { uz: 'Prototipdagi namuna fayl raqamidan', ru: 'Из числа в файле-образце прототипа' }, { uz: 'Tashkilotchi formaga yozgan sondan', ru: 'Из числа, которое организатор вписал в форму' }], correct: 0 },
-  { q: { uz: "Bir o'yinchi «Qo'shilaman»ni ikki marta bosdi. Nima bo'lishi kerak?", ru: 'Игрок дважды нажал «Qo\'shilaman». Что должно быть?' }, opts: [{ uz: 'Son ikkiga oshadi, ikkala joy ham olinadi', ru: 'Число вырастет на два, заняты оба места' }, { uz: 'Son bittaga oshadi, ikkinchisi yozilmaydi', ru: 'Число вырастет на один, второе не запишется' }, { uz: "Son o'zgarmaydi, ikkala bosish ham bekor", ru: 'Число не изменится, оба нажатия отменены' }, { uz: "O'yin o'chadi, qayta e'lon kerak bo'ladi", ru: 'Игра удалится, нужно объявлять заново' }], correct: 1 },
-  { q: { uz: "Ekranda «9 / 10», o'yin esa to'lgan. Nega shunday?", ru: 'На экране «9 / 10», а игра уже заполнена. Почему так?' }, opts: [{ uz: "Backend sonni noto'g'ri sanab qo'ygan", ru: 'Backend неправильно посчитал число' }, { uz: "Database'ga qo'shilganlar yozilmagan", ru: 'В Database не записаны присоединившиеся' }, { uz: "Ekranda oxirgi so'ralgan son turibdi", ru: 'На экране число из последнего запроса' }, { uz: "Agent ekranni noto'g'ri qurib qo'ygan", ru: 'Агент неправильно сделал экран' }], correct: 2 },
-  { q: { uz: "To'lgan o'yinga qo'shmaslikni qayerda tekshirish kerak?", ru: 'Где нужно проверять, чтобы не добавлять в заполненную игру?' }, opts: [{ uz: 'Ilovada, tugmani ekrandan yashirib', ru: 'В приложении, спрятав кнопку' }, { uz: "Talabda, agent o'zi bilsin deb", ru: 'В требовании — пусть агент сам знает' }, { uz: "Neon'da, har kuni qo'lda sanab", ru: 'В Neon, каждый день считая вручную' }, { uz: "Backend'da, Database'ga qarab", ru: 'В Backend, глядя в Database' }], correct: 3 },
-  { q: { uz: "Backend to'lgan o'yinga qo'shmadi. Ilova nima ko'rsatadi?", ru: 'Backend не добавил в заполненную игру. Что покажет приложение?' }, opts: [{ uz: "«O'yin to'ldi» degan xabarni", ru: 'Сообщение «O\'yin to\'ldi»' }, { uz: '«11 / 10» degan yangi sonni', ru: 'Новое число «11 / 10»' }, { uz: 'Yozuvsiz, bo\'sh qolgan ekranni', ru: 'Пустой экран без надписей' }, { uz: '«Kirish» ekranini qayta ochib', ru: 'Снова откроет экран «Kirish»' }], correct: 0 },
-  { q: { uz: "Boshqa telefondagi «8 / 10» qachon yangilanadi?", ru: 'Когда обновится «8 / 10» на другом телефоне?' }, opts: [{ uz: "Har soniyada o'zi, hech narsa so'ramasdan", ru: 'Каждую секунду само, ничего не запрашивая' }, { uz: 'Ekran ochilganda yoki pastga tortilganda', ru: 'Когда экран открыли или потянули вниз' }, { uz: "Faqat ilova qayta o'rnatilgandan keyin", ru: 'Только после переустановки приложения' }, { uz: "Tashkilotchi o'yinga ruxsat berganda", ru: 'Когда организатор разрешит игру' }], correct: 1 },
-  { q: { uz: "Backend o'zgardi. Telefonda u qachon ishlaydi?", ru: 'Backend изменился. Когда это заработает на телефоне?' }, opts: [{ uz: 'Agent «Tayyor» deb javob berishi bilan', ru: 'Как только агент ответит «Готово»' }, { uz: "`git commit` qilinishi bilan, push'siz", ru: 'Сразу после `git commit`, без push' }, { uz: "Push'dan keyin Render yangilangach", ru: 'После push, когда Render обновится' }, { uz: "Telefon o'chib, qayta yoqilgandan keyin", ru: 'После выключения и включения телефона' }], correct: 2 },
-  { q: { uz: 'Agent «Tayyor» dedi. Keyin nima qilasiz?', ru: 'Агент сказал «Готово». Что вы делаете дальше?' }, opts: [{ uz: "Shu zahoti keyingi blokka o'tasiz", ru: 'Сразу переходите к следующему блоку' }, { uz: "Agentdan yana bir bor so'rab ko'rasiz", ru: 'Ещё раз спрашиваете агента' }, { uz: "README'ga «tayyor» deb yozib qo'yasiz", ru: 'Пишете в README «готово»' }, { uz: 'Talabning har gapini tekshirasiz', ru: 'Проверяете каждую фразу требования' }], correct: 3 }
+  { q: { uz: "Roadmap'dagi funksiyani agentga qanday berasiz?", ru: "Как вы передаёте агенту функцию из roadmap?" }, opts: [{ uz: "Uch qatorli talab qilib, o'zingiz yozib", ru: "Трёхстрочным требованием, написав его сами" }, { uz: "Roadmap qatorini o'zgartirmay, o'zini", ru: "Саму строку roadmap, не меняя" }, { uz: 'PRD ning hamma bo\'limini birdaniga yuborib', ru: "Отправив сразу все разделы PRD" }, { uz: 'Faqat funksiya nomini, qisqa qilib yozib', ru: "Только название функции, коротко" }], correct: 0 },
+  { q: { uz: 'Talabda ikki marta bosish aytilmagan. Agent nima qilishi mumkin?', ru: "В требовании не сказано о двойном нажатии. Что может сделать агент?" }, opts: [{ uz: 'Tugmani ekrandan butunlay olib tashlaydi', ru: "Полностью уберёт кнопку с экрана" }, { uz: "Bu holatni o'zicha taxmin qilib quradi", ru: "Сделает этот случай по своей догадке" }, { uz: 'Funksiyani umuman qurmasdan qoldiradi', ru: "Вообще не станет делать функцию" }, { uz: "Ilovani boshidan to'liq qayta yozadi", ru: "Полностью перепишет приложение с нуля" }], correct: 1 },
+  { q: { uz: "Formada «kim» yo'q. E'lon egasi qayerdan olinadi?", ru: "В форме нет «кто». Откуда берётся владелец объявления?" }, opts: [{ uz: "Telefon raqamidan, so'rovdagi", ru: "Из номера телефона в запросе" }, { uz: 'Ilova ustidagi ism yozuvidan', ru: "Из надписи с именем над приложением" }, { uz: "So'rov bilan kelgan tokendan", ru: "Из токена, пришедшего с запросом" }, { uz: "Database'dagi oxirgi qatordan", ru: "Из последней строки в Database" }], correct: 2 },
+  { q: { uz: "Ilova qayta yuklandi. Yangi e'lon nega yo'qolmadi?", ru: "Приложение перезагрузилось. Почему новое объявление не пропало?" }, opts: [{ uz: 'Telefon xotirasiga yozilgani uchun', ru: "Потому что записано в память телефона" }, { uz: "Agent uni namunaga qo'shgani uchun", ru: "Потому что агент добавил его в образцы" }, { uz: "Expo Go uni o'zida saqlagani uchun", ru: "Потому что Expo Go хранит его у себя" }, { uz: "U Database'ga yozilgani uchun", ru: "Потому что оно записано в Database" }], correct: 3 },
+  { q: { uz: '«8 / 10» dagi 8 qayerdan keladi?', ru: "Откуда берётся 8 в «8 / 10»?" }, opts: [{ uz: "Database'dagi qo'shilganlar sonidan", ru: "Из числа присоединившихся в Database" }, { uz: "Telefonda bosilgan tugmalar sanog'idan", ru: "Из счёта нажатий на телефоне" }, { uz: 'Prototipdagi namuna fayl raqamidan', ru: "Из числа в файле-образце прототипа" }, { uz: 'Tashkilotchi formaga yozgan sondan', ru: "Из числа, которое организатор вписал в форму" }], correct: 0 },
+  { q: { uz: "Bir o'yinchi «Qo'shilaman»ni ikki marta bosdi. Nima bo'lishi kerak?", ru: "Игрок дважды нажал «Присоединяюсь». Что должно быть?" }, opts: [{ uz: 'Son ikkiga oshadi, ikkala joy ham olinadi', ru: "Число вырастет на два, заняты оба места" }, { uz: 'Son bittaga oshadi, ikkinchisi yozilmaydi', ru: "Число вырастет на один, второе не запишется" }, { uz: "Son o'zgarmaydi, ikkala bosish ham bekor", ru: "Число не изменится, оба нажатия отменены" }, { uz: "O'yin o'chadi, qayta e'lon kerak bo'ladi", ru: "Игра удалится, нужно объявлять заново" }], correct: 1 },
+  { q: { uz: "Ekranda «9 / 10», o'yin esa to'lgan. Nega shunday?", ru: "На экране «9 / 10», а игра уже заполнена. Почему так?" }, opts: [{ uz: "Backend sonni noto'g'ri sanab qo'ygan", ru: "Backend неправильно посчитал число" }, { uz: "Database'ga qo'shilganlar yozilmagan", ru: "В Database не записаны присоединившиеся" }, { uz: "Ekranda oxirgi so'ralgan son turibdi", ru: "На экране число из последнего запроса" }, { uz: "Agent ekranni noto'g'ri qurib qo'ygan", ru: "Агент неправильно сделал экран" }], correct: 2 },
+  { q: { uz: "To'lgan o'yinga qo'shmaslikni qayerda tekshirish kerak?", ru: "Где нужно проверять, чтобы не добавлять в заполненную игру?" }, opts: [{ uz: 'Ilovada, tugmani ekrandan yashirib', ru: "В приложении, спрятав кнопку" }, { uz: "Talabda, agent o'zi bilsin deb", ru: "В требовании — пусть агент сам знает" }, { uz: "Neon'da, har kuni qo'lda sanab", ru: "В Neon, каждый день считая вручную" }, { uz: "Backend'da, Database'ga qarab", ru: "В Backend, глядя в Database" }], correct: 3 },
+  { q: { uz: "Backend to'lgan o'yinga qo'shmadi. Ilova nima ko'rsatadi?", ru: "Backend не добавил в заполненную игру. Что покажет приложение?" }, opts: [{ uz: "«O'yin to'ldi» degan xabarni", ru: "Сообщение «Игра заполнена»" }, { uz: '«11 / 10» degan yangi sonni', ru: "Новое число «11 / 10»" }, { uz: 'Yozuvsiz, bo\'sh qolgan ekranni', ru: "Пустой экран без надписей" }, { uz: '«Kirish» ekranini qayta ochib', ru: "Снова откроет экран «Вход»" }], correct: 0 },
+  { q: { uz: "Boshqa telefondagi «8 / 10» qachon yangilanadi?", ru: "Когда обновится «8 / 10» на другом телефоне?" }, opts: [{ uz: "Har soniyada o'zi, hech narsa so'ramasdan", ru: "Каждую секунду само, ничего не запрашивая" }, { uz: 'Ekran ochilganda yoki pastga tortilganda', ru: "Когда экран открыли или потянули вниз" }, { uz: "Faqat ilova qayta o'rnatilgandan keyin", ru: "Только после переустановки приложения" }, { uz: "Tashkilotchi o'yinga ruxsat berganda", ru: "Когда организатор разрешит игру" }], correct: 1 },
+  { q: { uz: "Backend o'zgardi. Telefonda u qachon ishlaydi?", ru: "Backend изменился. Когда это заработает на телефоне?" }, opts: [{ uz: 'Agent «Tayyor» deb javob berishi bilan', ru: "Как только агент ответит «Готово»" }, { uz: "`git commit` qilinishi bilan, push'siz", ru: "Сразу после `git commit`, без push" }, { uz: "Push'dan keyin Render yangilangach", ru: "После push, когда Render обновится" }, { uz: "Telefon o'chib, qayta yoqilgandan keyin", ru: "После выключения и включения телефона" }], correct: 2 },
+  { q: { uz: 'Agent «Tayyor» dedi. Keyin nima qilasiz?', ru: "Агент сказал «Готово». Что вы делаете дальше?" }, opts: [{ uz: "Shu zahoti keyingi blokka o'tasiz", ru: "Сразу переходите к следующему блоку" }, { uz: "Agentdan yana bir bor so'rab ko'rasiz", ru: "Ещё раз спрашиваете агента" }, { uz: "README'ga «tayyor» deb yozib qo'yasiz", ru: "Пишете в README «готово»" }, { uz: 'Talabning har gapini tekshirasiz', ru: "Проверяете каждую фразу требования" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1805,11 +1810,11 @@ const QORALAMA_KEY = 'pm-m9d11-talab';
 const qoralamaOl = () => { try { return JSON.parse(localStorage.getItem(QORALAMA_KEY) || '{}') || {}; } catch { return {}; } };
 const qoralamaYoz = (k, v) => { try { const o = qoralamaOl(); o[k] = v; localStorage.setItem(QORALAMA_KEY, JSON.stringify(o)); } catch { /* xotira yopiq — qoralama faqat shu ekranda */ } };
 const TALAB_JOY = [
-  { k: 'qayerda', l: { uz: 'Qayerda:', ru: 'Где:' }, joy: { uz: '{qayerda}', ru: '{где}' }, s: { uz: "Qaysi ekran, qaysi tugma va Backend'da qaysi yo'l?", ru: 'Какой экран, какая кнопка и какой путь в Backend?' } },
-  { k: 'nima', l: { uz: 'Nima qilsin:', ru: 'Что сделать:' }, joy: { uz: '{nima qilsin}', ru: '{что сделать}' }, s: { uz: "Bosilganda nima bo'lsin — Backend'da va ekranda? Qachon bo'lmasin?", ru: 'Что должно быть при нажатии — в Backend и на экране? Когда не должно?' } },
-  { k: 'buzilmasin', l: { uz: 'Nima buzilmasin:', ru: 'Что не сломать:' }, joy: { uz: '{nima buzilmasin}', ru: '{что не сломать}' }, s: { uz: 'Oldin ishlagan qaysi narsa joyida qolsin?', ru: 'Что из работавшего раньше должно остаться на месте?' } }
+  { k: 'qayerda', l: { uz: 'Qayerda:', ru: "Где:" }, joy: { uz: '{qayerda}', ru: "{где}" }, s: { uz: "Qaysi ekran, qaysi tugma va Backend'da qaysi yo'l?", ru: "Какой экран, какая кнопка и какой путь в Backend?" } },
+  { k: 'nima', l: { uz: 'Nima qilsin:', ru: "Что сделать:" }, joy: { uz: '{nima qilsin}', ru: "{что сделать}" }, s: { uz: "Bosilganda nima bo'lsin — Backend'da va ekranda? Qachon bo'lmasin?", ru: "Что должно быть при нажатии — в Backend и на экране? Когда не должно?" } },
+  { k: 'buzilmasin', l: { uz: 'Nima buzilmasin:', ru: "Что не сломать:" }, joy: { uz: '{nima buzilmasin}', ru: "{что не сломать}" }, s: { uz: 'Oldin ishlagan qaysi narsa joyida qolsin?', ru: "Что из работавшего раньше должно остаться на месте?" } }
 ];
-const TAYYOR_QATOR = { uz: "Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: 'Больше ничего не трогай, назови изменённые файлы.' };
+const TAYYOR_QATOR = { uz: "Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: "Больше ничего не трогай, назови изменённые файлы." };
 const TalabPrompt = ({ blok }) => {
   const [q, setQ] = useState(() => { const o = qoralamaOl()[blok]; return Array.isArray(o) ? o : ['', '', '']; });
   const [ok, setOk] = useState(false);
@@ -1842,9 +1847,9 @@ const F1Qator = () => {
   const [o, setO] = useState(() => qoralamaOl().f1 || '');
   return (
     <span className="fo-band">
-      {tr({ uz: "Roadmap'ingizdagi birinchi funksiya:", ru: 'Первая функция из вашего roadmap:' })} {nom
+      {tr({ uz: "Roadmap'ingizdagi birinchi funksiya:", ru: "Первая функция из вашего roadmap:" })} {nom
         ? <>«<b className="fo-f1">{nom}</b>»</>
-        : <input className={cxx('fo-f1-i', !o.trim() && 'fo-halqa-i')} value={o} placeholder="{1-funksiya}" onChange={(e) => { setO(e.target.value); qoralamaYoz('f1', e.target.value); }} />} {tr({ uz: "(6-darsdagi roadmap'dan; bo'lmasa — shu qatorga o'zingiz yozing).", ru: '(из roadmap 6-го урока; если нет — впишите в эту строку сами).' })}
+        : <input className={cxx('fo-f1-i', !o.trim() && 'fo-halqa-i')} value={o} placeholder="{1-funksiya}" onChange={(e) => { setO(e.target.value); qoralamaYoz('f1', e.target.value); }} />} {tr({ uz: "(6-darsdagi roadmap'dan; bo'lmasa — shu qatorga o'zingiz yozing).", ru: "(из roadmap 6-го урока; если нет — впишите в эту строку сами)." })}
     </span>
   );
 };
@@ -1857,7 +1862,7 @@ const Yordam = ({ guruhlar }) => {
   }, [ochiq]);
   return (
     <>
-      <QTugma ikkinchi className="fo-yordam-btn" aria-expanded={ochiq} onClick={() => setOchiq(o => !o)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>
+      <QTugma ikkinchi className="fo-yordam-btn" aria-expanded={ochiq} onClick={() => setOchiq(o => !o)}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>
       {ochiq && <span className="fo-yordam fade-step">{guruhlar.map((g, gi) => (
         <React.Fragment key={gi}>
           {g.yorliq && <span className="fo-yordam-l">{tr(g.yorliq)}</span>}
@@ -1871,9 +1876,9 @@ const Yordam = ({ guruhlar }) => {
 // «Ortda qoldingizmi» — darsda bir marta, birinchi blokda (F-1006-271; tayanch 3)
 const ORTDA = ['git clone https://github.com/Azizbekcrypto/maydon-jamoa', 'git checkout -f m11-dars-11-done'];
 const Ortda = ({ oxiri }) => (
-  <p className="fo-ortda">{tr({ uz: 'Ortda qoldingizmi — Mentor misolini oching:', ru: 'Отстали — откройте пример Ментора:' })} <code className="fo-buyruq">{ORTDA[0]}</code> · <code className="fo-buyruq">{ORTDA[1]}</code>{oxiri && <> {tx(oxiri)}</>}</p>
+  <p className="fo-ortda">{tr({ uz: 'Ortda qoldingizmi — Mentor misolini oching:', ru: "Отстали — откройте пример Ментора:" })} <code className="fo-buyruq">{ORTDA[0]}</code> · <code className="fo-buyruq">{ORTDA[1]}</code>{oxiri && <> {tx(oxiri)}</>}</p>
 );
-const BLOK_TUGADI = { uz: "Blok tugadi — «Davom etish»ni bosing.", ru: 'Блок завершён — нажмите «Продолжить».' }; // S3 (F-1006-287): 14-dars naqshi
+const BLOK_TUGADI = { uz: "Blok tugadi — «Davom etish»ni bosing.", ru: "Блок завершён — нажмите «Продолжить»." }; // S3 (F-1006-287): 14-dars naqshi
 function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyebrow, title, mentor, steps, natija, ortda, doneText }) {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = live || _gate.live;
@@ -1899,7 +1904,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   }, [stepN]);
   // SABOQ 8 / S3 (F-1006-287, 14-dars naqshi): Mentor har holatda keyingi harakatni aytadi — boshida MD gapi, qadamlar orasida keyingi qadam, blok tugagach «Davom etish»
   const mGap = done ? BLOK_TUGADI : stepN === 0 ? mentor
-    : { uz: `Keyingi qadam — «${stepN + 1} · ${tr(steps[stepN].h)}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующий шаг — «${stepN + 1} · ${tr(steps[stepN].h)}»: выполните и нажмите «Bajardim».` };
+    : { uz: `Keyingi qadam — «${stepN + 1} · ${tr(steps[stepN].h)}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующий шаг — «${stepN + 1} · ${tr(steps[stepN].h)}»: выполните и нажмите «Готово».` };
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
@@ -1916,16 +1921,16 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
     </Stage>
   );
 }
-const NATIJA_YORLIQ = { uz: 'kutilgan natija · namuna: Maydon Jamoa', ru: 'ожидаемый результат · образец: Maydon Jamoa' };
+const NATIJA_YORLIQ = { uz: 'kutilgan natija · namuna: Maydon Jamoa', ru: "ожидаемый результат · образец: Maydon Jamoa" };
 const QADAM = {
-  ochish: { uz: 'Ochish', ru: 'Открыть' }, prompt: { uz: 'Prompt', ru: 'Промпт' }, ishga: { uz: 'Ishga tushirish', ru: 'Запуск' },
-  telefon: { uz: 'Telefonda tekshirish', ru: 'Проверка на телефоне' }
+  ochish: { uz: 'Ochish', ru: 'Открыть' }, prompt: { uz: 'Prompt', ru: 'Промпт' }, ishga: { uz: 'Ishga tushirish', ru: "Запуск" },
+  telefon: { uz: 'Telefonda tekshirish', ru: "Проверка на телефоне" }
 };
-const XATO_GAP = { uz: "Xato bo'lsa — xato qatorini agentga yuboring (`.env` qiymatlari va tokenni emas): «Shu xato chiqdi: {xato}. Tuzat.»", ru: 'Если ошибка — отправьте агенту строку ошибки (не значения `.env` и не токен): «Вышла такая ошибка: {ошибка}. Исправь.»' };
-const MOS_KELMAGAN = { uz: 'Mos kelmagan gapni uch qism bilan agentga yozing.', ru: 'Несовпавшую фразу напишите агенту тремя частями.' };
+const XATO_GAP = { uz: "Xato bo'lsa — xato qatorini agentga yuboring (`.env` qiymatlari va tokenni emas): «Shu xato chiqdi: {xato}. Tuzat.»", ru: "Если ошибка — отправьте агенту строку ошибки (не значения `.env` и не токен): «Вышла такая ошибка: {ошибка}. Исправь.»" };
+const MOS_KELMAGAN = { uz: 'Mos kelmagan gapni uch qism bilan agentga yozing.', ru: "Несовпавшую фразу напишите агенту тремя частями." };
 // Yordam guruhlari (9.7): Mentor misolidagi to'liq talab — mobil trek; web-trekda — bir gap. Kalit yo'q bo'lsa — ikkalasi
 const yordamGuruh = (trek, mobil, web) => [
-  { yorliq: trek === null && { uz: 'mobil trek', ru: 'мобильный трек' }, satrlar: mobil },
+  { yorliq: trek === null && { uz: 'mobil trek', ru: "мобильный трек" }, satrlar: mobil },
   trek !== 'mobil' && { gap: { uz: `Web-trekda: ${web.uz}`, ru: `В веб-треке: ${web.ru}` } }
 ].filter(Boolean);
 const trekBand = (trek, mob, web) => [trek !== 'web' && mob, trek !== 'mobil' && web].filter(Boolean);
@@ -1954,7 +1959,7 @@ const A2Natija = () => {
   const s20 = { ...OYINLAR[1], kerak: 6 };
   return (
     <div className="fo-nat">
-      <Tel className="fo-kir" yorliq={k === 3 ? <span className="fo-tel-yorliq test">{tr({ uz: 'test holati', ru: 'тестовое состояние' })}</span> : undefined}>
+      <Tel className="fo-kir" yorliq={k === 3 ? <span className="fo-tel-yorliq test">{tr({ uz: 'test holati', ru: "тестовое состояние" })}</span> : undefined}>
         {k < 3
           ? <OyinE o={OYINLAR[0]} son={k === 2 ? 9 : 8} siz={k === 2 ? 1 : 0} tugma={k === 2 ? 'qoshildi' : 'qosh'} bosildi={k >= 1 ? 1 : 0} />
           : <OyinE key="s20" o={s20} son={6} tugma="toldi" />}
@@ -1971,7 +1976,7 @@ const A3Natija = () => {
       <Tel className="fo-kir" tortish={k === 0}>
         {k < 2 ? <OyinlarE oyinlar={k === 0 ? royxat({ 1: { son: 9 }, 3: { son: 5 } }) : r} ajrat={k === 1 ? 4 : undefined} /> : <OyinE o={{ ...OYINLAR[3], kerak: 9 }} son={9} tugma="toldi" />}
       </Tel>
-      <SqlKarta d="0.15s" yon={k === 0} yorliq={{ uz: ' · test holati', ru: ' · тестовое состояние' }} sorov="UPDATE oyinlar SET kerak = 9 WHERE id = 4;" />
+      <SqlKarta d="0.15s" yon={k === 0} yorliq={{ uz: ' · test holati', ru: " · тестовое состояние" }} sorov="UPDATE oyinlar SET kerak = 9 WHERE id = 4;" />
     </div>
   );
 };
@@ -1979,135 +1984,135 @@ const A3Natija = () => {
 const ScreenA1 = (props) => {
   const [trek] = useState(trekOqi);
   return (
-    <ScreenBlok {...props} eyebrow={{ uz: "Amaliyot 1 · e'lon berish", ru: 'Практика 1 · объявление' }}
-      title={{ uz: <>Funksiyangizning <span className="italic" style={{ color: T.accent }}>birinchi qismi</span> telefonda ishlasin.</>, ru: <>Пусть <span className="italic" style={{ color: T.accent }}>первая часть</span> вашей функции работает на телефоне.</> }}
-      mentor={{ uz: <>Uch qatorni o'zingiz yozasiz — har qator ostida kulrang savol, Mentor misoli «Yordam»da; <b style={{ color: T.ink }}>«1 · Ochish»</b>dan boshlang.</>, ru: <>Три строки пишете сами — под каждой серый вопрос, пример Ментора — в «Помощи»; начните с <b style={{ color: T.ink }}>«1 · Открыть»</b>.</> }}
+    <ScreenBlok {...props} eyebrow={{ uz: "Amaliyot 1 · e'lon berish", ru: "Практика 1 · объявление" }}
+      title={{ uz: <>Funksiyangizning <span className="italic" style={{ color: T.accent }}>birinchi qismi</span> telefonda ishlasin.</>, ru: <>Запустите <span className="italic" style={{ color: T.accent }}>первую часть</span> функции на телефоне.</> }}
+      mentor={{ uz: <>Uch qatorni o'zingiz yozasiz — har qator ostida kulrang savol, Mentor misoli «Yordam»da; <b style={{ color: T.ink }}>«1 · Ochish»</b>dan boshlang.</>, ru: <>Три строки пишете сами — под каждой серый вопрос, пример Ментора — в «Подсказке»; начните с <b style={{ color: T.ink }}>«1 · Открыть»</b>.</> }}
       steps={[
-        { h: QADAM.ochish, t: { uz: "Antigravity'da o'z repo'ngizni oching (10-darsdagi holat: kirish ishlaydi, asosiy ro'yxat Backend'dan keladi).", ru: 'Откройте свой репо в Antigravity (состояние после 10-го урока: вход работает, главный список приходит из Backend).' },
+        { h: QADAM.ochish, t: { uz: "Antigravity'da o'z repo'ngizni oching (10-darsdagi holat: kirish ishlaydi, asosiy ro'yxat Backend'dan keladi).", ru: "Откройте свой репо в Antigravity (состояние после 10-го урока: вход работает, главный список приходит из Backend)." },
           ichi: <F1Qator />,
           bandlar: [
-            { uz: "Uni uch blokda qurasiz; Mentor misolida: 1 — e'lon berish (ro'yxatga yangisi qo'shiladi) · 2 — qo'shilish (asosiy harakat) · 3 — ekran yangilanishi.", ru: 'Строите её в трёх блоках; в примере Ментора: 1 — объявление (в список добавляется новое) · 2 — присоединение (главное действие) · 3 — обновление экрана.' },
-            { uz: "Funksiyangizda yangisini qo'shish bo'lmasa — bu blokda uning birinchi ko'rinadigan qismini quring.", ru: 'Если в вашей функции нет добавления нового — в этом блоке постройте её первую видимую часть.' }
+            { uz: "Uni uch blokda qurasiz; Mentor misolida: 1 — e'lon berish (ro'yxatga yangisi qo'shiladi) · 2 — qo'shilish (asosiy harakat) · 3 — ekran yangilanishi.", ru: "Строите её в трёх блоках; в примере Ментора: 1 — объявление (в список добавляется новое) · 2 — присоединение (главное действие) · 3 — обновление экрана." },
+            { uz: "Funksiyangizda yangisini qo'shish bo'lmasa — bu blokda uning birinchi ko'rinadigan qismini quring.", ru: "Если в вашей функции нет добавления нового — в этом блоке постройте её первую видимую часть." }
           ] },
-        { h: QADAM.prompt, t: { uz: "vazifa: funksiyangizning birinchi qismi ishlasin va natijasi ro'yxatda chiqsin (Mentor misolida — tashkilotchi o'yin e'lon qiladi, e'lon ro'yxatda chiqadi). Uch qatorni o'zingiz yozing, «Nusxalash»ni bosing, Antigravity'ga yuboring:", ru: 'задача: пусть первая часть вашей функции работает и её результат появляется в списке (в примере Ментора — организатор объявляет игру, объявление появляется в списке). Напишите три строки сами, нажмите «Скопировать», отправьте в Antigravity:' },
+        { h: QADAM.prompt, t: { uz: "vazifa: funksiyangizning birinchi qismi ishlasin va natijasi ro'yxatda chiqsin (Mentor misolida — tashkilotchi o'yin e'lon qiladi, e'lon ro'yxatda chiqadi). Uch qatorni o'zingiz yozing, «Nusxalash»ni bosing, Antigravity'ga yuboring:", ru: "задача: пусть первая часть вашей функции работает и её результат появляется в списке (в примере Ментора — организатор объявляет игру, объявление появляется в списке). Напишите три строки сами, нажмите «Скопировать», отправьте в Antigravity:" },
           prompt: <TalabPrompt blok="a1" />,
           yordam: yordamGuruh(trek, [
-            { uz: "Qayerda: `mobil/` — «E'lon berish» ekrani (`src/app/elon.tsx`) va «O'yinlar» (`src/app/index.tsx`); `backend/` — yangi yo'l `POST /oyinlar`.", ru: 'Где: `mobil/` — экран «E\'lon berish» (`src/app/elon.tsx`) и «O\'yinlar» (`src/app/index.tsx`); `backend/` — новый путь `POST /oyinlar`.' },
-            { uz: "Nima qilsin: «Yuborish» bosilganda kun, soat, maydon va nechta odam kerakligi token bilan `POST /oyinlar` ga ketsin. Backend e'lonni `oyinlar` ga yozsin; tashkilotchi — token egasi, formada «kim» so'ralmasin.", ru: 'Что сделать: при нажатии «Yuborish» день, время, поле и сколько нужно людей уходят с токеном в `POST /oyinlar`. Backend пишет объявление в `oyinlar`; организатор — владелец токена, в форме «кто» не спрашивать.' },
-            { uz: "Maydonlardan biri bo'sh bo'lsa — Backend yozmasin (`400`), ilova nima yetmaganini aytsin. Yuborilgach «O'yinlar» ochilsin, yangi o'yin ro'yxatda tursin.", ru: 'Если одно из полей пустое — Backend не пишет (`400`), приложение говорит, чего не хватает. После отправки открывается «O\'yinlar», новая игра стоит в списке.' },
-            { uz: "Nima buzilmasin: kirish, «O'yinlar» ro'yxati, «O'yin» ekrani va animatsiyalar.", ru: 'Что не сломать: вход, список «O\'yinlar», экран «O\'yin» и анимации.' },
+            { uz: "Qayerda: `mobil/` — «E'lon berish» ekrani (`src/app/elon.tsx`) va «O'yinlar» (`src/app/index.tsx`); `backend/` — yangi yo'l `POST /oyinlar`.", ru: "Где: `mobil/` — экран «E'lon berish» («Объявить игру», `src/app/elon.tsx`) и «O'yinlar» («Игры», `src/app/index.tsx`); `backend/` — новый путь `POST /oyinlar`." },
+            { uz: "Nima qilsin: «Yuborish» bosilganda kun, soat, maydon va nechta odam kerakligi token bilan `POST /oyinlar` ga ketsin. Backend e'lonni `oyinlar` ga yozsin; tashkilotchi — token egasi, formada «kim» so'ralmasin.", ru: "Что сделать: при нажатии «Yuborish» («Отправить») день, время, поле и сколько нужно людей уходят с токеном в `POST /oyinlar`. Backend пишет объявление в `oyinlar`; организатор — владелец токена, в форме «кто» не спрашивать." },
+            { uz: "Maydonlardan biri bo'sh bo'lsa — Backend yozmasin (`400`), ilova nima yetmaganini aytsin. Yuborilgach «O'yinlar» ochilsin, yangi o'yin ro'yxatda tursin.", ru: "Если одно из полей пустое — Backend не пишет (`400`), приложение говорит, чего не хватает. После отправки открывается «O'yinlar», новая игра стоит в списке." },
+            { uz: "Nima buzilmasin: kirish, «O'yinlar» ro'yxati, «O'yin» ekrani va animatsiyalar.", ru: "Что не сломать: вход, список «O'yinlar», экран «O'yin» («Игра») и анимации." },
             TAYYOR_QATOR
-          ], { uz: "forma `prototip/` dagi e'lon sahifasida, so'rov `VITE_API_URL` dagi Backend'ga, token `localStorage` dan; foydalanuvchi matni sahifaga HTML bo'lib chiqmasin (10-darsdagidek).", ru: 'форма — на странице объявления в `prototip/`, запрос — в Backend из `VITE_API_URL`, токен — из `localStorage`; текст пользователя не выводится на страницу как HTML (как на 10-м уроке).' }) },
-        { h: QADAM.ishga, t: { uz: "agent tugatgach: `git status` — o'zgargan fayllar agent aytgani bilan bir xil, `.env` ro'yxatda yo'q; har faylni `git add <fayl>` bilan qo'shing, `git commit -m \"e'lon berish\"`, `git push`.", ru: 'когда агент закончит: `git status` — изменённые файлы совпадают с тем, что сказал агент, `.env` в списке нет; добавляйте каждый файл через `git add <fayl>`, `git commit -m "e\'lon berish"`, `git push`.' },
+          ], { uz: "forma `prototip/` dagi e'lon sahifasida, so'rov `VITE_API_URL` dagi Backend'ga, token `localStorage` dan; foydalanuvchi matni sahifaga HTML bo'lib chiqmasin (10-darsdagidek).", ru: "форма — на странице объявления в `prototip/`, запрос — в Backend из `VITE_API_URL`, токен — из `localStorage`; текст пользователя не выводится на страницу как HTML (как на 10-м уроке)." }) },
+        { h: QADAM.ishga, t: { uz: "agent tugatgach: `git status` — o'zgargan fayllar agent aytgani bilan bir xil, `.env` ro'yxatda yo'q; har faylni `git add <fayl>` bilan qo'shing, `git commit -m \"e'lon berish\"`, `git push`.", ru: "когда агент закончит: `git status` — изменённые файлы совпадают с тем, что сказал агент, `.env` в списке нет; добавляйте каждый файл через `git add <fayl>`, `git commit -m \"e'lon berish\"`, `git push`." },
           bandlar: [
-            { uz: 'Render yangi deploy qiladi — xizmatingizning Deploys sahifasida tugashini kuting.', ru: 'Render сделает новый деплой — дождитесь окончания на странице Deploys вашего сервиса.' },
+            { uz: 'Render yangi deploy qiladi — xizmatingizning Deploys sahifasida tugashini kuting.', ru: "Render сделает новый деплой — дождитесь окончания на странице Deploys вашего сервиса." },
             ...trekBand(trek,
-              { uz: "Mobil trekda `npx expo start` ishlab tursin: fayl o'zgarsa, Expo Go ilovani odatda o'zi qayta yuklaydi (bo'lmasa — terminalda `r`).", ru: 'В мобильном треке пусть работает `npx expo start`: если файл изменился, Expo Go обычно сам перезагружает приложение (если нет — `r` в терминале).' },
-              { uz: "Web-trekda push'dan keyin Netlify o'zi yangilanadi.", ru: 'В веб-треке после push Netlify обновится сам.' })
+              { uz: "Mobil trekda `npx expo start` ishlab tursin: fayl o'zgarsa, Expo Go ilovani odatda o'zi qayta yuklaydi (bo'lmasa — terminalda `r`).", ru: "В мобильном треке пусть работает `npx expo start`: если файл изменился, Expo Go обычно сам перезагружает приложение (если нет — `r` в терминале)." },
+              { uz: "Web-trekda push'dan keyin Netlify o'zi yangilanadi.", ru: "В веб-треке после push Netlify обновится сам." })
           ],
           err: XATO_GAP },
-        { h: QADAM.telefon, t: { uz: "talabingizning har gapini telefonda bajarib ko'ring. Mentor misolida:", ru: 'выполните на телефоне каждую фразу своего требования. В примере Ментора:' },
+        { h: QADAM.telefon, t: { uz: "talabingizning har gapini telefonda bajarib ko'ring. Mentor misolida:", ru: "выполните на телефоне каждую фразу своего требования. В примере Ментора:" },
           bandlar: [
-            { uz: "(1) «E'lon berish»da formani to'ldirib yuboring — «O'yinlar» tepasida yangi o'yin chiqsin.", ru: '(1) Заполните форму в «E\'lon berish» и отправьте — наверху «O\'yinlar» появится новая игра.' },
-            { uz: "(2) Bitta maydonni bo'sh qoldirib yuboring — ilova nima yetmaganini aytsin, ro'yxatga bo'sh e'lon qo'shilmasin.", ru: '(2) Отправьте, оставив одно поле пустым, — приложение скажет, чего не хватает, пустое объявление в список не добавится.' },
-            { uz: "(3) Neon'dagi SQL Editor'da `SELECT * FROM oyinlar ORDER BY yaratilgan DESC;` — birinchi qator sizning e'loningiz, `tashkilotchi_id` to'ldirilgan.", ru: '(3) В SQL Editor на Neon `SELECT * FROM oyinlar ORDER BY yaratilgan DESC;` — первая строка ваше объявление, `tashkilotchi_id` заполнен.' },
+            { uz: "(1) «E'lon berish»da formani to'ldirib yuboring — «O'yinlar» tepasida yangi o'yin chiqsin.", ru: "(1) Заполните форму на экране «Объявить игру» и отправьте — вверху экрана «Игры» появится новая игра." },
+            { uz: "(2) Bitta maydonni bo'sh qoldirib yuboring — ilova nima yetmaganini aytsin, ro'yxatga bo'sh e'lon qo'shilmasin.", ru: "(2) Отправьте, оставив одно поле пустым, — приложение скажет, чего не хватает, пустое объявление в список не добавится." },
+            { uz: "(3) Neon'dagi SQL Editor'da `SELECT * FROM oyinlar ORDER BY yaratilgan DESC;` — birinchi qator sizning e'loningiz, `tashkilotchi_id` to'ldirilgan.", ru: "(3) В SQL Editor на Neon `SELECT * FROM oyinlar ORDER BY yaratilgan DESC;` — первая строка — ваше объявление, `tashkilotchi_id` заполнен." },
             MOS_KELMAGAN
           ] }
       ]}
       natija={<A1Natija />}
-      ortda={{ uz: "— qanday ishlashini ko'rasiz, o'z repo'ngizdagi qadamni shunga qarab qaytarasiz (`backend/.env` va `mobil/.env` ga o'z qiymatlaringizni yozasiz).", ru: '— увидите, как это работает, и повторите шаг в своём репо по образцу (в `backend/.env` и `mobil/.env` пишете свои значения).' }}
-      doneText={{ uz: "Birinchi qism ishlaydi: natija Database'ga yoziladi va ro'yxatda chiqadi.", ru: 'Первая часть работает: результат записывается в Database и появляется в списке.' }} />
+      ortda={{ uz: "— qanday ishlashini ko'rasiz, o'z repo'ngizdagi qadamni shunga qarab qaytarasiz (`backend/.env` va `mobil/.env` ga o'z qiymatlaringizni yozasiz).", ru: "— увидите, как это работает, и повторите шаг в своём репо по образцу (в `backend/.env` и `mobil/.env` пишете свои значения)." }}
+      doneText={{ uz: "Birinchi qism ishlaydi: natija Database'ga yoziladi va ro'yxatda chiqadi.", ru: "Первая часть работает: результат записывается в Database и появляется в списке." }} />
   );
 };
 
 const ScreenA2 = (props) => {
   const [trek] = useState(trekOqi);
   return (
-    <ScreenBlok {...props} eyebrow={{ uz: "Amaliyot 2 · qo'shilish", ru: 'Практика 2 · присоединение' }}
-      title={{ uz: <>Asosiy harakat ishlasin, <span className="italic" style={{ color: T.accent }}>natija Database'da qolsin</span>.</>, ru: <>Пусть главное действие работает, <span className="italic" style={{ color: T.accent }}>а результат остаётся в Database</span>.</> }}
-      mentor={{ uz: <>Endi talabga bo'lmasligi kerak bo'lgan holatni ham yozasiz, namuna «Yordam»da; <b style={{ color: T.ink }}>«1 · Ochish»</b>dan boshlang.</>, ru: <>Теперь в требование пишете и случай, которого не должно быть, образец — в «Помощи»; начните с <b style={{ color: T.ink }}>«1 · Открыть»</b>.</> }}
+    <ScreenBlok {...props} eyebrow={{ uz: "Amaliyot 2 · qo'shilish", ru: "Практика 2 · присоединение" }}
+      title={{ uz: <>Asosiy harakat ishlasin, <span className="italic" style={{ color: T.accent }}>natija Database'da qolsin</span>.</>, ru: <>Главное действие работает, <span className="italic" style={{ color: T.accent }}>итог — в Database</span>.</> }}
+      mentor={{ uz: <>Endi talabga bo'lmasligi kerak bo'lgan holatni ham yozasiz, namuna «Yordam»da; <b style={{ color: T.ink }}>«1 · Ochish»</b>dan boshlang.</>, ru: <>Теперь в требование пишете и случай, которого не должно быть, образец — в «Подсказке»; начните с <b style={{ color: T.ink }}>«1 · Открыть»</b>.</> }}
       steps={[
-        { h: QADAM.ochish, t: { uz: "e'lon berish ishlayapti. Funksiyangizning asosiy harakatini toping: foydalanuvchi ro'yxatdagi biriga nima qiladi? (Mentor misolida — o'yinchi o'yinga qo'shiladi.)", ru: 'объявление работает. Найдите главное действие своей функции: что пользователь делает с одним из элементов списка? (В примере Ментора — игрок присоединяется к игре.)' },
-          bandlar: [{ uz: "Qachon bu harakat bo'lmasligi kerak? (Mentor misolida — o'yin to'lgan yoki o'yinchi oldin qo'shilgan.)", ru: 'Когда этого действия не должно быть? (В примере Ментора — игра заполнена или игрок уже присоединился.)' }] },
-        { h: QADAM.prompt, t: { uz: "vazifa: asosiy harakat ishlasin, natija Database'da qolsin; bo'lmasligi kerak bo'lgan holatda Backend yozmasin, ilova nima bo'lganini aytsin. Uch qatorni o'zingiz yozing, «Nusxalash»ni bosing, Antigravity'ga yuboring:", ru: 'задача: главное действие работает, результат остаётся в Database; в случае, которого не должно быть, Backend не пишет, приложение говорит, что случилось. Напишите три строки сами, нажмите «Скопировать», отправьте в Antigravity:' },
+        { h: QADAM.ochish, t: { uz: "e'lon berish ishlayapti. Funksiyangizning asosiy harakatini toping: foydalanuvchi ro'yxatdagi biriga nima qiladi? (Mentor misolida — o'yinchi o'yinga qo'shiladi.)", ru: "объявление работает. Найдите главное действие своей функции: что пользователь делает с одним из элементов списка? (В примере Ментора — игрок присоединяется к игре.)" },
+          bandlar: [{ uz: "Qachon bu harakat bo'lmasligi kerak? (Mentor misolida — o'yin to'lgan yoki o'yinchi oldin qo'shilgan.)", ru: "Когда этого действия не должно быть? (В примере Ментора — игра заполнена или игрок уже присоединился.)" }] },
+        { h: QADAM.prompt, t: { uz: "vazifa: asosiy harakat ishlasin, natija Database'da qolsin; bo'lmasligi kerak bo'lgan holatda Backend yozmasin, ilova nima bo'lganini aytsin. Uch qatorni o'zingiz yozing, «Nusxalash»ni bosing, Antigravity'ga yuboring:", ru: "задача: главное действие работает, результат остаётся в Database; в случае, которого не должно быть, Backend не пишет, приложение говорит, что случилось. Напишите три строки сами, нажмите «Скопировать», отправьте в Antigravity:" },
           prompt: <TalabPrompt blok="a2" />,
           yordam: yordamGuruh(trek, [
-            { uz: "Qayerda: `backend/` — yangi yo'l `POST /oyinlar/:id/qoshilish` va `GET /oyinlar`; `mobil/` — «O'yin» ekrani (`src/app/oyin/[id].tsx`) va «O'yinlar» kartalari.", ru: 'Где: `backend/` — новый путь `POST /oyinlar/:id/qoshilish` и `GET /oyinlar`; `mobil/` — экран «O\'yin» (`src/app/oyin/[id].tsx`) и карточки «O\'yinlar».' },
-            { uz: "Nima qilsin: «Qo'shilaman» bosilganda token bilan `POST /oyinlar/:id/qoshilish` ketsin; Backend `ishtirokchilar` ga `qoshildi` qatorini yozsin.", ru: 'Что сделать: при нажатии «Qo\'shilaman» с токеном уходит `POST /oyinlar/:id/qoshilish`; Backend пишет в `ishtirokchilar` строку `qoshildi`.' },
-            { uz: "O'yin to'lgan bo'lsa yoki bu o'yinchi oldin qo'shilgan bo'lsa — yozmasin, `409` va xabar qaytarsin: «O'yin to'ldi» yoki «Siz bu o'yinga qo'shilgansiz»; ilova shu xabarni ko'rsatsin.", ru: 'Если игра заполнена или этот игрок уже присоединился — не пишет, возвращает `409` и сообщение: «O\'yin to\'ldi» или «Siz bu o\'yinga qo\'shilgansiz»; приложение показывает это сообщение.' },
-            { uz: 'Bitta o\'yinchi bitta o\'yinda bir marta yozilsin — Database qoidasi bilan ham.', ru: 'Один игрок в одной игре записывается один раз — и правилом Database тоже.' },
-            { uz: "`GET /oyinlar` har o'yinga qo'shilganlar sonini va o'yinchining o'zi qo'shilganini bersin: kartada va «O'yin» ekranida «8 / 10» shu sondan chiqsin, qo'shilgan o'yinda tugma «Qo'shildingiz» (o'chiq).", ru: '`GET /oyinlar` отдаёт для каждой игры число присоединившихся и присоединился ли сам игрок: на карточке и на экране «O\'yin» «8 / 10» берётся из этого числа, у игры, куда он присоединился, кнопка «Qo\'shildingiz» (неактивна).' },
-            { uz: "Tekshirish uchun 9 ta namuna o'yinchi qo'sh (kirgan o'yinchi ular qatorida bo'lmasin) va ulardan qo'shilishlar: Shanba 18:00 ga 8, Shanba 20:00 ga 6, Yakshanba 10:00 ga 4, Yakshanba 17:00 ga 9 — bitta namuna o'yinchi bir necha o'yinda bo'lishi mumkin; bor bo'lsa, qayta qo'shma.", ru: 'Для проверки добавь 9 игроков-образцов (вошедший игрок не среди них) и их присоединения: в субботу 18:00 — 8, в субботу 20:00 — 6, в воскресенье 10:00 — 4, в воскресенье 17:00 — 9; один игрок-образец может быть в нескольких играх; если есть — не добавляй повторно.' },
-            { uz: "Nima buzilmasin: kirish, e'lon berish va «8 / 10» animatsiyasi.", ru: 'Что не сломать: вход, объявление и анимацию «8 / 10».' },
+            { uz: "Qayerda: `backend/` — yangi yo'l `POST /oyinlar/:id/qoshilish` va `GET /oyinlar`; `mobil/` — «O'yin» ekrani (`src/app/oyin/[id].tsx`) va «O'yinlar» kartalari.", ru: "Где: `backend/` — новый путь `POST /oyinlar/:id/qoshilish` и `GET /oyinlar`; `mobil/` — экран «O'yin» («Игра», `src/app/oyin/[id].tsx`) и карточки «O'yinlar» («Игры»)." },
+            { uz: "Nima qilsin: «Qo'shilaman» bosilganda token bilan `POST /oyinlar/:id/qoshilish` ketsin; Backend `ishtirokchilar` ga `qoshildi` qatorini yozsin.", ru: "Что сделать: при нажатии «Qo'shilaman» («Присоединяюсь») с токеном уходит `POST /oyinlar/:id/qoshilish`; Backend пишет в `ishtirokchilar` строку `qoshildi`." },
+            { uz: "O'yin to'lgan bo'lsa yoki bu o'yinchi oldin qo'shilgan bo'lsa — yozmasin, `409` va xabar qaytarsin: «O'yin to'ldi» yoki «Siz bu o'yinga qo'shilgansiz»; ilova shu xabarni ko'rsatsin.", ru: "Если игра заполнена или этот игрок уже присоединился — не пишет, возвращает `409` и сообщение: «O'yin to'ldi» («Игра заполнена») или «Siz bu o'yinga qo'shilgansiz» («Вы уже присоединились к этой игре»); приложение показывает это сообщение." },
+            { uz: 'Bitta o\'yinchi bitta o\'yinda bir marta yozilsin — Database qoidasi bilan ham.', ru: "Один игрок в одной игре записывается один раз — и правилом Database тоже." },
+            { uz: "`GET /oyinlar` har o'yinga qo'shilganlar sonini va o'yinchining o'zi qo'shilganini bersin: kartada va «O'yin» ekranida «8 / 10» shu sondan chiqsin, qo'shilgan o'yinda tugma «Qo'shildingiz» (o'chiq).", ru: "`GET /oyinlar` отдаёт для каждой игры число присоединившихся и присоединился ли сам игрок: на карточке и на экране «O'yin» «8 / 10» берётся из этого числа, у игры, куда он присоединился, кнопка «Qo'shildingiz» («Вы присоединились», неактивна)." },
+            { uz: "Tekshirish uchun 9 ta namuna o'yinchi qo'sh (kirgan o'yinchi ular qatorida bo'lmasin) va ulardan qo'shilishlar: Shanba 18:00 ga 8, Shanba 20:00 ga 6, Yakshanba 10:00 ga 4, Yakshanba 17:00 ga 9 — bitta namuna o'yinchi bir necha o'yinda bo'lishi mumkin; bor bo'lsa, qayta qo'shma.", ru: "Для проверки добавь 9 игроков-образцов (вошедший игрок не среди них) и их присоединения: в субботу 18:00 — 8, в субботу 20:00 — 6, в воскресенье 10:00 — 4, в воскресенье 17:00 — 9; один игрок-образец может быть в нескольких играх; если есть — не добавляй повторно." },
+            { uz: "Nima buzilmasin: kirish, e'lon berish va «8 / 10» animatsiyasi.", ru: "Что не сломать: вход, объявление и анимацию «8 / 10»." },
             TAYYOR_QATOR
-          ], { uz: "tugma va son `prototip/` dagi o'yin sahifasida, so'rov `VITE_API_URL` dagi Backend'ga, token `localStorage` dan — Backend qismi ikkala trekda bir xil.", ru: 'кнопка и число — на странице игры в `prototip/`, запрос — в Backend из `VITE_API_URL`, токен — из `localStorage`; часть Backend в обоих треках одинаковая.' }) },
-        { h: QADAM.ishga, t: { uz: "`git status` → har faylni `git add <fayl>` → `git commit -m \"qo'shilish\"` → `git push`; Render'da yangi deploy tugashini kuting (Deploys sahifasi).", ru: '`git status` → каждый файл `git add <fayl>` → `git commit -m "qo\'shilish"` → `git push`; дождитесь окончания нового деплоя на Render (страница Deploys).' },
-          bandlar: [{ uz: "Expo Go ilovani odatda o'zi qayta yuklaydi, bo'lmasa — `r` (web-trekda — Netlify).", ru: 'Expo Go обычно сам перезагружает приложение, если нет — `r` (в веб-треке — Netlify).' }],
+          ], { uz: "tugma va son `prototip/` dagi o'yin sahifasida, so'rov `VITE_API_URL` dagi Backend'ga, token `localStorage` dan — Backend qismi ikkala trekda bir xil.", ru: "кнопка и число — на странице игры в `prototip/`, запрос — в Backend из `VITE_API_URL`, токен — из `localStorage`; часть Backend в обоих треках одинаковая." }) },
+        { h: QADAM.ishga, t: { uz: "`git status` → har faylni `git add <fayl>` → `git commit -m \"qo'shilish\"` → `git push`; Render'da yangi deploy tugashini kuting (Deploys sahifasi).", ru: "`git status` → каждый файл `git add <fayl>` → `git commit -m \"qo'shilish\"` → `git push`; дождитесь окончания нового деплоя на Render (страница Deploys)." },
+          bandlar: [{ uz: "Expo Go ilovani odatda o'zi qayta yuklaydi, bo'lmasa — `r` (web-trekda — Netlify).", ru: "Expo Go обычно сам перезагружает приложение, если нет — `r` (в веб-треке — Netlify)." }],
           err: XATO_GAP },
-        { h: QADAM.telefon, t: { uz: "talabingizning har gapini telefonda bajarib ko'ring. Mentor misolida:", ru: 'выполните на телефоне каждую фразу своего требования. В примере Ментора:' },
+        { h: QADAM.telefon, t: { uz: "talabingizning har gapini telefonda bajarib ko'ring. Mentor misolida:", ru: "выполните на телефоне каждую фразу своего требования. В примере Ментора:" },
           bandlar: [
-            { uz: "(1) Shanba 18:00 dagi o'yinga qo'shiling — «8 / 10» → «9 / 10», tugma «Qo'shildingiz».", ru: '(1) Присоединитесь к игре в субботу 18:00 — «8 / 10» → «9 / 10», кнопка «Qo\'shildingiz».' },
-            { uz: "(2) Terminalda `r` ni bosing (web-trekda sahifani yangilang) — «9 / 10» va «Qo'shildingiz» joyida.", ru: '(2) Нажмите `r` в терминале (в веб-треке обновите страницу) — «9 / 10» и «Qo\'shildingiz» на месте.' },
-            { uz: "(3) Yakshanba 10:00 dagi «Qo'shilaman»ni tez ikki marta bosing — «4 / 8» → «5 / 8»: son faqat bittaga oshsin.", ru: '(3) Быстро дважды нажмите «Qo\'shilaman» у игры в воскресенье 10:00 — «4 / 8» → «5 / 8»: число вырастет только на один.' },
-            { uz: "(4) To'lgan o'yin — test holati: Neon'dagi SQL Editor'da kerakli odam sonini vaqtincha kamaytirasiz. `SELECT id, soat, maydon, kerak FROM oyinlar;` — Shanba 20:00 ning `id` sini toping, `UPDATE oyinlar SET kerak = 6 WHERE id = …;` → telefonda Shanba 20:00 dagi «Qo'shilaman»ni bosing — ilova «O'yin to'ldi» desin, son oshmasin. So'ng qaytaring: `UPDATE oyinlar SET kerak = 10 WHERE id = …;`", ru: '(4) Заполненная игра — тестовое состояние: в SQL Editor на Neon временно уменьшаете нужное число людей. `SELECT id, soat, maydon, kerak FROM oyinlar;` — найдите `id` игры в субботу 20:00, `UPDATE oyinlar SET kerak = 6 WHERE id = …;` → на телефоне нажмите «Qo\'shilaman» у игры в субботу 20:00 — приложение скажет «O\'yin to\'ldi», число не вырастет. Потом верните: `UPDATE oyinlar SET kerak = 10 WHERE id = …;`' },
-            { uz: "O'z mahsulotingizda bo'lmasligi kerak bo'lgan holatni ham shunday yarating va tekshiring. Mos kelmagan gapni uch qism bilan agentga yozing.", ru: 'В своём продукте так же создайте и проверьте случай, которого не должно быть. Несовпавшую фразу напишите агенту тремя частями.' }
+            { uz: "(1) Shanba 18:00 dagi o'yinga qo'shiling — «8 / 10» → «9 / 10», tugma «Qo'shildingiz».", ru: "(1) Присоединитесь к игре в субботу 18:00 — «8 / 10» → «9 / 10», кнопка «Вы присоединились»." },
+            { uz: "(2) Terminalda `r` ni bosing (web-trekda sahifani yangilang) — «9 / 10» va «Qo'shildingiz» joyida.", ru: "(2) Нажмите `r` в терминале (в веб-треке обновите страницу) — «9 / 10» и «Вы присоединились» на месте." },
+            { uz: "(3) Yakshanba 10:00 dagi «Qo'shilaman»ni tez ikki marta bosing — «4 / 8» → «5 / 8»: son faqat bittaga oshsin.", ru: "(3) Быстро дважды нажмите «Присоединяюсь» у игры в воскресенье 10:00 — «4 / 8» → «5 / 8»: число должно вырасти только на один." },
+            { uz: "(4) To'lgan o'yin — test holati: Neon'dagi SQL Editor'da kerakli odam sonini vaqtincha kamaytirasiz. `SELECT id, soat, maydon, kerak FROM oyinlar;` — Shanba 20:00 ning `id` sini toping, `UPDATE oyinlar SET kerak = 6 WHERE id = …;` → telefonda Shanba 20:00 dagi «Qo'shilaman»ni bosing — ilova «O'yin to'ldi» desin, son oshmasin. So'ng qaytaring: `UPDATE oyinlar SET kerak = 10 WHERE id = …;`", ru: "(4) Заполненная игра — тестовое состояние: в SQL Editor на Neon временно уменьшаете нужное число людей. `SELECT id, soat, maydon, kerak FROM oyinlar;` — найдите `id` игры в субботу 20:00, `UPDATE oyinlar SET kerak = 6 WHERE id = …;` → на телефоне нажмите «Присоединяюсь» у игры в субботу 20:00 — приложение должно написать «Игра заполнена», число не должно вырасти. Потом верните: `UPDATE oyinlar SET kerak = 10 WHERE id = …;`" },
+            { uz: "O'z mahsulotingizda bo'lmasligi kerak bo'lgan holatni ham shunday yarating va tekshiring. Mos kelmagan gapni uch qism bilan agentga yozing.", ru: "В своём продукте так же создайте и проверьте случай, которого не должно быть. Несовпавшую фразу напишите агенту тремя частями." }
           ] }
       ]}
       natija={<A2Natija />}
-      doneText={{ uz: "Asosiy harakat ishlaydi: natija Database'da qoladi, bo'lmasligi kerak bo'lgan holatda Backend yozmaydi.", ru: 'Главное действие работает: результат остаётся в Database, в случае, которого не должно быть, Backend не пишет.' }} />
+      doneText={{ uz: "Asosiy harakat ishlaydi: natija Database'da qoladi, bo'lmasligi kerak bo'lgan holatda Backend yozmaydi.", ru: "Главное действие работает: результат остаётся в Database, в случае, которого не должно быть, Backend не пишет." }} />
   );
 };
 
 const ScreenA3 = (props) => {
   const [trek] = useState(trekOqi);
   const ishga = trek === 'mobil'
-    ? { uz: "bu blokda Backend o'zgarmaydi: Expo Go ilovani odatda o'zi qayta yuklaydi, bo'lmasa — `r`.", ru: 'в этом блоке Backend не меняется: Expo Go обычно сам перезагружает приложение, если нет — `r`.' }
+    ? { uz: "bu blokda Backend o'zgarmaydi: Expo Go ilovani odatda o'zi qayta yuklaydi, bo'lmasa — `r`.", ru: "в этом блоке Backend не меняется: Expo Go обычно сам перезагружает приложение, если нет — `r`." }
     : trek === 'web'
-      ? { uz: "bu blokda Backend o'zgarmaydi: web-trekda — `git push`, Netlify saytni o'zi yangilaydi.", ru: 'в этом блоке Backend не меняется: в веб-треке — `git push`, Netlify сам обновит сайт.' }
-      : { uz: "bu blokda Backend o'zgarmaydi: Expo Go ilovani odatda o'zi qayta yuklaydi, bo'lmasa — `r`; web-trekda — `git push`, Netlify saytni o'zi yangilaydi.", ru: 'в этом блоке Backend не меняется: Expo Go обычно сам перезагружает приложение, если нет — `r`; в веб-треке — `git push`, Netlify сам обновит сайт.' };
+      ? { uz: "bu blokda Backend o'zgarmaydi: web-trekda — `git push`, Netlify saytni o'zi yangilaydi.", ru: "в этом блоке Backend не меняется: в веб-треке — `git push`, Netlify сам обновит сайт." }
+      : { uz: "bu blokda Backend o'zgarmaydi: Expo Go ilovani odatda o'zi qayta yuklaydi, bo'lmasa — `r`; web-trekda — `git push`, Netlify saytni o'zi yangilaydi.", ru: "в этом блоке Backend не меняется: Expo Go обычно сам перезагружает приложение, если нет — `r`; в веб-треке — `git push`, Netlify сам обновит сайт." };
   return (
-    <ScreenBlok {...props} eyebrow={{ uz: 'Amaliyot 3 · yangilash', ru: 'Практика 3 · обновление' }}
-      title={{ uz: <>Ro'yxat yangilansin: <span className="italic" style={{ color: T.accent }}>Database'dagi o'zgarish ko'rinsin</span>.</>, ru: <>Пусть список обновляется: <span className="italic" style={{ color: T.accent }}>изменение в Database видно</span>.</> }}
+    <ScreenBlok {...props} eyebrow={{ uz: 'Amaliyot 3 · yangilash', ru: "Практика 3 · обновление" }}
+      title={{ uz: <>Ro'yxat yangilansin: <span className="italic" style={{ color: T.accent }}>Database'dagi o'zgarish ko'rinsin</span>.</>, ru: <>Список обновляется: <span className="italic" style={{ color: T.accent }}>видно изменение в Database</span>.</> }}
       mentor={{ uz: <>Oxirgi blok — ekran Database bilan bir xil bo'lsin, keyin butun funksiyani tekshirasiz; <b style={{ color: T.ink }}>«1 · Ochish»</b>dan boshlang.</>, ru: <>Последний блок — экран совпадает с Database, потом проверяете всю функцию; начните с <b style={{ color: T.ink }}>«1 · Открыть»</b>.</> }}
       steps={[
-        { h: QADAM.ochish, t: { uz: "qo'shilish ishlayapti. 8-darsda `README.md` ga yozgan real vaqt nuqtangizni toping: ekranda boshqa foydalanuvchi tufayli o'zgaradigan joy (Mentor misolida — «8 / 10»).", ru: 'присоединение работает. Найдите точку реального времени, которую записали в `README.md` на 8-м уроке: место на экране, которое меняется из-за другого пользователя (в примере Ментора — «8 / 10»).' } },
-        { h: QADAM.prompt, t: { uz: "vazifa: shu joy ekran ochilganda va pastga tortilganda (web-trekda — «Yangilash» bosilganda) Backend'dan qayta kelsin; bo'lmasligi kerak bo'lgan holat ekranda oldindan ko'rinsin. Uch qatorni o'zingiz yozing, «Nusxalash»ni bosing, Antigravity'ga yuboring:", ru: 'задача: это место заново приходит из Backend, когда экран открыли и потянули вниз (в веб-треке — нажали «Yangilash»); случай, которого не должно быть, виден на экране заранее. Напишите три строки сами, нажмите «Скопировать», отправьте в Antigravity:' },
+        { h: QADAM.ochish, t: { uz: "qo'shilish ishlayapti. 8-darsda `README.md` ga yozgan real vaqt nuqtangizni toping: ekranda boshqa foydalanuvchi tufayli o'zgaradigan joy (Mentor misolida — «8 / 10»).", ru: "присоединение работает. Найдите точку реального времени, которую записали в `README.md` на 8-м уроке: место на экране, которое меняется из-за другого пользователя (в примере Ментора — «8 / 10»)." } },
+        { h: QADAM.prompt, t: { uz: "vazifa: shu joy ekran ochilganda va pastga tortilganda (web-trekda — «Yangilash» bosilganda) Backend'dan qayta kelsin; bo'lmasligi kerak bo'lgan holat ekranda oldindan ko'rinsin. Uch qatorni o'zingiz yozing, «Nusxalash»ni bosing, Antigravity'ga yuboring:", ru: "задача: пусть это место заново приходит из Backend, когда экран открыли и когда потянули вниз (в веб-треке — когда нажали «Обновить»); случай, которого не должно быть, виден на экране заранее. Напишите три строки сами, нажмите «Скопировать», отправьте в Antigravity:" },
           prompt: <TalabPrompt blok="a3" />,
           yordam: yordamGuruh(trek, [
-            { uz: "Qayerda: `mobil/` — «O'yinlar» (`src/app/index.tsx`) va «O'yin» (`src/app/oyin/[id].tsx`) ekranlari.", ru: 'Где: `mobil/` — экраны «O\'yinlar» (`src/app/index.tsx`) и «O\'yin» (`src/app/oyin/[id].tsx`).' },
-            { uz: 'Nima qilsin: ikkala ekran ochilganda va pastga tortilganda ma\'lumotni `GET /oyinlar` dan qayta olsin.', ru: 'Что сделать: оба экрана при открытии и при потягивании вниз заново берут данные из `GET /oyinlar`.' },
-            { uz: "O'yin to'lgan bo'lsa — kartada son yonida «to'ldi», «O'yin» ekranida «Qo'shilaman» o'rnida «O'yin to'ldi» tursin.", ru: 'Если игра заполнена — на карточке рядом с числом «to\'ldi», на экране «O\'yin» вместо «Qo\'shilaman» — «O\'yin to\'ldi».' },
-            { uz: "Nima buzilmasin: e'lon berish, qo'shilish, «Qo'shildingiz» va animatsiyalar.", ru: 'Что не сломать: объявление, присоединение, «Qo\'shildingiz» и анимации.' },
+            { uz: "Qayerda: `mobil/` — «O'yinlar» (`src/app/index.tsx`) va «O'yin» (`src/app/oyin/[id].tsx`) ekranlari.", ru: "Где: `mobil/` — экраны «O'yinlar» («Игры», `src/app/index.tsx`) и «O'yin» («Игра», `src/app/oyin/[id].tsx`)." },
+            { uz: 'Nima qilsin: ikkala ekran ochilganda va pastga tortilganda ma\'lumotni `GET /oyinlar` dan qayta olsin.', ru: "Что сделать: оба экрана при открытии и при потягивании вниз заново берут данные из `GET /oyinlar`." },
+            { uz: "O'yin to'lgan bo'lsa — kartada son yonida «to'ldi», «O'yin» ekranida «Qo'shilaman» o'rnida «O'yin to'ldi» tursin.", ru: "Если игра заполнена — на карточке рядом с числом «to'ldi» («заполнена»), на экране «O'yin» вместо «Qo'shilaman» («Присоединяюсь») — «O'yin to'ldi» («Игра заполнена»)." },
+            { uz: "Nima buzilmasin: e'lon berish, qo'shilish, «Qo'shildingiz» va animatsiyalar.", ru: "Что не сломать: объявление, присоединение, «Qo'shildingiz» («Вы присоединились») и анимации." },
             TAYYOR_QATOR
-          ], { uz: "pastga tortish o'rniga «Yangilash» tugmasi — ro'yxat va o'yin sahifasi ochilganda va shu tugma bosilganda `GET /oyinlar` dan qayta olinsin.", ru: 'вместо потягивания вниз — кнопка «Yangilash»: список и страница игры заново берутся из `GET /oyinlar` при открытии и при нажатии этой кнопки.' }) },
+          ], { uz: "pastga tortish o'rniga «Yangilash» tugmasi — ro'yxat va o'yin sahifasi ochilganda va shu tugma bosilganda `GET /oyinlar` dan qayta olinsin.", ru: "вместо потягивания вниз — кнопка «Yangilash» («Обновить»): список и страница игры заново берутся из `GET /oyinlar` при открытии и при нажатии этой кнопки." }) },
         { h: QADAM.ishga, t: ishga, err: XATO_GAP },
-        { h: QADAM.telefon, t: { uz: 'butun funksiyani tekshiring. Mentor misolida:', ru: 'проверьте всю функцию. В примере Ментора:' },
+        { h: QADAM.telefon, t: { uz: 'butun funksiyani tekshiring. Mentor misolida:', ru: "проверьте всю функцию. В примере Ментора:" },
           bandlar: [
-            { uz: "(1) Test holati: Neon'dagi SQL Editor'da siz qo'shilmagan Yakshanba 17:00 da kerakli sonni 9 ga tushiring: `UPDATE oyinlar SET kerak = 9 WHERE id = …;` → telefonda «O'yinlar»ni pastga torting (web-trekda — «Yangilash») — kartada «9 / 9 · to'ldi», «O'yin» ekranida «Qo'shilaman» o'rnida «O'yin to'ldi».", ru: '(1) Тестовое состояние: в SQL Editor на Neon у игры в воскресенье 17:00, куда вы не присоединялись, уменьшите нужное число до 9: `UPDATE oyinlar SET kerak = 9 WHERE id = …;` → на телефоне потяните «O\'yinlar» вниз (в веб-треке — «Yangilash») — на карточке «9 / 9 · to\'ldi», на экране «O\'yin» вместо «Qo\'shilaman» — «O\'yin to\'ldi».' },
-            { uz: "(2) Qaytaring: `UPDATE oyinlar SET kerak = 10 WHERE id = …;` → yana pastga torting — «9 / 10» va «Qo'shilaman» qaytdi.", ru: '(2) Верните: `UPDATE oyinlar SET kerak = 10 WHERE id = …;` → снова потяните вниз — вернулись «9 / 10» и «Qo\'shilaman».' },
-            { uz: "(3) Uch blok talablarining har gapini yana bir marta bajaring: e'lon berish, qo'shilish, ikki marta bosish.", ru: '(3) Ещё раз выполните каждую фразу требований трёх блоков: объявление, присоединение, двойное нажатие.' },
-            { uz: 'Oxirida `git status` → `git add <fayl>` → `git commit -m "yangilash"` → `git push`.', ru: 'В конце `git status` → `git add <fayl>` → `git commit -m "yangilash"` → `git push`.' }
+            { uz: "(1) Test holati: Neon'dagi SQL Editor'da siz qo'shilmagan Yakshanba 17:00 da kerakli sonni 9 ga tushiring: `UPDATE oyinlar SET kerak = 9 WHERE id = …;` → telefonda «O'yinlar»ni pastga torting (web-trekda — «Yangilash») — kartada «9 / 9 · to'ldi», «O'yin» ekranida «Qo'shilaman» o'rnida «O'yin to'ldi».", ru: "(1) Тестовое состояние: в SQL Editor на Neon у игры в воскресенье 17:00, куда вы не присоединялись, уменьшите нужное число до 9: `UPDATE oyinlar SET kerak = 9 WHERE id = …;` → на телефоне потяните «Игры» вниз (в веб-треке — «Обновить») — на карточке «9 / 9 · заполнена», на экране «Игра» вместо «Присоединяюсь» — «Игра заполнена»." },
+            { uz: "(2) Qaytaring: `UPDATE oyinlar SET kerak = 10 WHERE id = …;` → yana pastga torting — «9 / 10» va «Qo'shilaman» qaytdi.", ru: "(2) Верните: `UPDATE oyinlar SET kerak = 10 WHERE id = …;` → снова потяните вниз — вернулись «9 / 10» и «Присоединяюсь»." },
+            { uz: "(3) Uch blok talablarining har gapini yana bir marta bajaring: e'lon berish, qo'shilish, ikki marta bosish.", ru: "(3) Ещё раз выполните каждую фразу требований трёх блоков: объявление, присоединение, двойное нажатие." },
+            { uz: 'Oxirida `git status` → `git add <fayl>` → `git commit -m "yangilash"` → `git push`.', ru: "В конце `git status` → `git add <fayl>` → `git commit -m \"yangilash\"` → `git push`." }
           ] }
       ]}
       natija={<A3Natija />}
-      doneText={{ uz: "Birinchi funksiya ishlaydi: ekran yangilanadi, to'lgan holat oldindan ko'rinadi.", ru: 'Первая функция работает: экран обновляется, заполненная игра видна заранее.' }} />
+      doneText={{ uz: "Birinchi funksiya ishlaydi: ekran yangilanadi, to'lgan holat oldindan ko'rinadi.", ru: "Первая функция работает: экран обновляется, заполненная игра видна заранее." }} />
   );
 };
 
 // 🃏 KARTOCHKALAR (12) — alohida ekran sflash (SABOQ 12, 16), qolipdagi QKartochka (DE-204). Orqa tomon — oddiy matn (kod-belgisiz); old va izoh — tx.
 const KARTALAR = [
-  { front: { uz: "Roadmap'dagi funksiyani agentga qanday berasiz?", ru: 'Как передать агенту функцию из roadmap?' }, back: { uz: 'Uch qatorli talab qilib: qayerda, nima qilsin, nima buzilmasin', ru: 'Трёхстрочным требованием: где, что сделать, что не сломать' }, note: { uz: "Bu darsda uchala qatorni o'zingiz yozdingiz", ru: 'На этом уроке все три строки вы написали сами' } },
-  { front: { uz: "PRD gapining o'zi agentga yuborilsa, nima bo'lishi mumkin?", ru: 'Что может быть, если отправить агенту саму фразу из PRD?' }, back: { uz: "Aytilmagan holatni agent o'zi taxmin qiladi", ru: 'Неуказанный случай агент додумает сам' }, note: { uz: 'Mentor misolida: ikki marta bosilganda «10 / 10»', ru: 'В примере Ментора: при двойном нажатии «10 / 10»' } },
-  { front: { uz: "E'lon egasini Backend qayerdan oladi?", ru: 'Откуда Backend берёт владельца объявления?' }, back: { uz: "So'rovdagi tokendan", ru: 'Из токена в запросе' }, note: { uz: "Formada «kim» so'ralmaydi", ru: 'В форме «кто» не спрашивают' } },
-  { front: { uz: "Ilova qayta yuklansa, yangi e'lon nega yo'qolmaydi?", ru: 'Почему новое объявление не пропадает после перезагрузки приложения?' }, back: { uz: "U Database'ga yozilgan", ru: 'Оно записано в Database' }, note: { uz: "7-darsdagi prototipda e'lon faqat ochiq sahifada edi", ru: 'В прототипе 7-го урока объявление было только на открытой странице' } },
-  { front: { uz: '«8 / 10» dagi 8 qayerdan keladi?', ru: 'Откуда берётся 8 в «8 / 10»?' }, back: { uz: "Database'dagi qo'shilganlar sonidan", ru: 'Из числа присоединившихся в Database' }, note: { uz: "Backend sanaydi — telefon o'zi qo'shib qo'ymaydi", ru: 'Считает Backend — телефон сам не прибавляет' } },
-  { front: { uz: "Bir o'yinchi «Qo'shilaman»ni ikki marta bossa, nima bo'lishi kerak?", ru: 'Что должно быть, если игрок дважды нажал «Qo\'shilaman»?' }, back: { uz: 'Son bittaga oshadi', ru: 'Число вырастет на один' }, note: { uz: 'Backend ikkinchisiga `409` qaytaradi', ru: 'На второе Backend вернёт `409`' } },
-  { front: { uz: "Nega to'lgan o'yinni faqat ilova tekshirsa yetmaydi?", ru: 'Почему недостаточно, чтобы заполненную игру проверяло только приложение?' }, back: { uz: "Ekrandagi son eskirgan bo'lishi mumkin", ru: 'Число на экране может устареть' }, note: { uz: "Siz bosguncha boshqa o'yinchi qo'shilgan bo'lishi mumkin", ru: 'Пока вы нажимали, мог присоединиться другой игрок' } },
-  { front: { uz: "To'lgan o'yinda «Qo'shilaman» o'rnida nima turadi?", ru: 'Что стоит вместо «Qo\'shilaman» у заполненной игры?' }, back: { uz: "«O'yin to'ldi»", ru: '«O\'yin to\'ldi»' }, note: { uz: "Backend ham bu o'yinga qo'shmaydi", ru: 'Backend тоже не добавит в эту игру' } },
-  { front: { uz: 'Boshqa telefondagi «8 / 10» qachon yangilanadi?', ru: 'Когда обновится «8 / 10» на другом телефоне?' }, back: { uz: 'Ekran ochilganda yoki pastga tortilganda', ru: 'Когда экран открыли или потянули вниз' }, note: { uz: '«8 / 10» — real vaqt nuqtasi', ru: '«8 / 10» — точка реального времени' } },
-  { front: { uz: "Backend o'zgarishi telefonga qachon yetadi?", ru: 'Когда изменение Backend дойдёт до телефона?' }, back: { uz: "Push'dan keyin Render yangi deploy'ni tugatgach", ru: 'После push, когда Render закончит новый деплой' }, note: { uz: "Xizmatning Deploys sahifasida ko'rinadi", ru: 'Видно на странице Deploys сервиса' } },
-  { front: { uz: "To'lgan o'yinni bitta telefon bilan qanday tekshirasiz?", ru: 'Как проверить заполненную игру одним телефоном?' }, back: { uz: "Neon'dagi SQL Editor'da test holati bilan", ru: 'Тестовым состоянием в SQL Editor на Neon' }, note: { uz: 'Kerakli sonni vaqtincha kamaytirasiz, keyin qaytarasiz', ru: 'Временно уменьшаете нужное число, потом возвращаете' } },
-  { front: { uz: 'Agent «Tayyor» desa, ishni qanday tekshirasiz?', ru: 'Как проверить работу, если агент сказал «Готово»?' }, back: { uz: 'Talabning har gapini telefonda bajarib ko\'rib', ru: 'Выполнив на телефоне каждую фразу требования' }, note: { uz: 'Agent talabga tayanib quradi, taxmin qilishi mumkin', ru: 'Агент строит по требованию и может додумывать' } }
+  { front: { uz: "Roadmap'dagi funksiyani agentga qanday berasiz?", ru: "Как передать агенту функцию из roadmap?" }, back: { uz: 'Uch qatorli talab qilib: qayerda, nima qilsin, nima buzilmasin', ru: "Трёхстрочным требованием: где, что сделать, что не сломать" }, note: { uz: "Bu darsda uchala qatorni o'zingiz yozdingiz", ru: "На этом уроке все три строки вы написали сами" } },
+  { front: { uz: "PRD gapining o'zi agentga yuborilsa, nima bo'lishi mumkin?", ru: "Что может быть, если отправить агенту саму фразу из PRD?" }, back: { uz: "Aytilmagan holatni agent o'zi taxmin qiladi", ru: "Неуказанный случай агент додумает сам" }, note: { uz: 'Mentor misolida: ikki marta bosilganda «10 / 10»', ru: "В примере Ментора: при двойном нажатии «10 / 10»" } },
+  { front: { uz: "E'lon egasini Backend qayerdan oladi?", ru: "Откуда Backend берёт владельца объявления?" }, back: { uz: "So'rovdagi tokendan", ru: "Из токена в запросе" }, note: { uz: "Formada «kim» so'ralmaydi", ru: "В форме «кто» не спрашивают" } },
+  { front: { uz: "Ilova qayta yuklansa, yangi e'lon nega yo'qolmaydi?", ru: "Почему новое объявление не пропадает после перезагрузки приложения?" }, back: { uz: "U Database'ga yozilgan", ru: "Оно записано в Database" }, note: { uz: "7-darsdagi prototipda e'lon faqat ochiq sahifada edi", ru: "В прототипе 7-го урока объявление было только на открытой странице" } },
+  { front: { uz: '«8 / 10» dagi 8 qayerdan keladi?', ru: "Откуда берётся 8 в «8 / 10»?" }, back: { uz: "Database'dagi qo'shilganlar sonidan", ru: "Из числа присоединившихся в Database" }, note: { uz: "Backend sanaydi — telefon o'zi qo'shib qo'ymaydi", ru: "Считает Backend — телефон сам не прибавляет" } },
+  { front: { uz: "Bir o'yinchi «Qo'shilaman»ni ikki marta bossa, nima bo'lishi kerak?", ru: "Что должно быть, если игрок дважды нажал «Присоединяюсь»?" }, back: { uz: 'Son bittaga oshadi', ru: "Число вырастет на один" }, note: { uz: 'Backend ikkinchisiga `409` qaytaradi', ru: "На второе Backend вернёт `409`" } },
+  { front: { uz: "Nega to'lgan o'yinni faqat ilova tekshirsa yetmaydi?", ru: "Почему недостаточно, чтобы заполненную игру проверяло только приложение?" }, back: { uz: "Ekrandagi son eskirgan bo'lishi mumkin", ru: "Число на экране может устареть" }, note: { uz: "Siz bosguncha boshqa o'yinchi qo'shilgan bo'lishi mumkin", ru: "Пока вы нажимали, мог присоединиться другой игрок" } },
+  { front: { uz: "To'lgan o'yinda «Qo'shilaman» o'rnida nima turadi?", ru: "Что стоит вместо «Присоединяюсь» у заполненной игры?" }, back: { uz: "«O'yin to'ldi»", ru: "«Игра заполнена»" }, note: { uz: "Backend ham bu o'yinga qo'shmaydi", ru: "Backend тоже не добавит в эту игру" } },
+  { front: { uz: 'Boshqa telefondagi «8 / 10» qachon yangilanadi?', ru: "Когда обновится «8 / 10» на другом телефоне?" }, back: { uz: 'Ekran ochilganda yoki pastga tortilganda', ru: "Когда экран открыли или потянули вниз" }, note: { uz: '«8 / 10» — real vaqt nuqtasi', ru: "«8 / 10» — точка реального времени" } },
+  { front: { uz: "Backend o'zgarishi telefonga qachon yetadi?", ru: "Когда изменение Backend дойдёт до телефона?" }, back: { uz: "Push'dan keyin Render yangi deploy'ni tugatgach", ru: "После push, когда Render закончит новый деплой" }, note: { uz: "Xizmatning Deploys sahifasida ko'rinadi", ru: "Видно на странице Deploys сервиса" } },
+  { front: { uz: "To'lgan o'yinni bitta telefon bilan qanday tekshirasiz?", ru: "Как проверить заполненную игру одним телефоном?" }, back: { uz: "Neon'dagi SQL Editor'da test holati bilan", ru: "Тестовым состоянием в SQL Editor на Neon" }, note: { uz: 'Kerakli sonni vaqtincha kamaytirasiz, keyin qaytarasiz', ru: "Временно уменьшаете нужное число, потом возвращаете" } },
+  { front: { uz: 'Agent «Tayyor» desa, ishni qanday tekshirasiz?', ru: "Как проверить работу, если агент сказал «Готово»?" }, back: { uz: 'Talabning har gapini telefonda bajarib ko\'rib', ru: "Выполнив на телефоне каждую фразу требования" }, note: { uz: 'Agent talabga tayanib quradi, taxmin qilishi mumkin', ru: "Агент строит по требованию и может додумывать" } }
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2120,7 +2125,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
         {/* SABOQ 16: Mentor yo'q (KORPUS §61); birinchi bosishgacha karta yuzi halqada, ostida ko'rsatma */}
         <div className={cxx('fo-flash', !bosildi && 'yangi')} onClickCapture={bos} onKeyDownCapture={e => { if (e.key === 'Enter' || e.key === ' ') bos(e); }}>
           <QKartochka til={__lang} cards={KARTALAR.map(c => ({ front: tx(c.front), back: tr(c.back), note: c.note && tx(c.note) }))} />
-          {!bosildi && <p className="fo-fc-ipucha"><i aria-hidden="true" />{tr({ uz: 'Kartani bosing — javob ochiladi', ru: 'Нажмите на карточку — откроется ответ' })}</p>}
+          {!bosildi && <p className="fo-fc-ipucha"><i aria-hidden="true" />{tr({ uz: 'Kartani bosing — javob ochiladi', ru: "Нажмите на карточку — откроется ответ" })}</p>}
         </div>
       </div>
     </Stage>
@@ -2129,10 +2134,10 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 
 // ===== YAKUN — QYakun (DE-204) + «Keyingi dars» qatori; kartochkalar — oldingi alohida ekranda; uyga vazifa yo'q (P-058). Sarlavha bloklar holatiga qarab (P-046; 11-FILTR 36) =====
 const YAKUN_SARLAVHA = {
-  a3: { uz: 'Birinchi funksiya ishlayapti: talabni siz yozdingiz.', ru: 'Первая функция работает: требование написали вы.' },
-  a2: { uz: 'Asosiy harakat ishlaydi — yangilanish qoldi.', ru: 'Главное действие работает — осталось обновление.' },
-  a1: { uz: 'Birinchi qism ishlaydi — asosiy harakat qoldi.', ru: 'Первая часть работает — осталось главное действие.' },
-  yoq: { uz: 'Birinchi funksiya boshlandi — qolgan qadamni tugating.', ru: 'Первая функция начата — завершите оставшийся шаг.' }
+  a3: { uz: 'Birinchi funksiya ishlayapti: talabni siz yozdingiz.', ru: "Первая функция работает: требование написали вы." },
+  a2: { uz: 'Asosiy harakat ishlaydi — yangilanish qoldi.', ru: "Главное действие работает — осталось обновление." },
+  a1: { uz: 'Birinchi qism ishlaydi — asosiy harakat qoldi.', ru: "Первая часть работает — осталось главное действие." },
+  yoq: { uz: 'Birinchi funksiya boshlandi — qolgan qadamni tugating.', ru: "Первая функция начата — завершите оставшийся шаг." }
 };
 const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
   const _gate = useContext(LiveGateCtx) || {};
@@ -2154,19 +2159,19 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const holat = bajarildi('a3') ? 'a3' : bajarildi('a2') ? 'a2' : bajarildi('a1') ? 'a1' : 'yoq';
   const belgisiz = holat !== 'a3';
   const RECAP = [
-    { uz: "Roadmap'dagi funksiyani uch qatorli talabga aylantirib, o'zingiz yozasiz.", ru: 'Функцию из roadmap вы превращаете в трёхстрочное требование и пишете сами.' },
-    { uz: "Talabda aytilmagan holatni agent o'zi taxmin qilishi mumkin — uni talabda yozasiz.", ru: 'Неуказанный в требовании случай агент может додумать сам — вы пишете его в требовании.' },
-    { uz: "E'lon egasini Backend tokendan oladi, «8 / 10» esa Database'dan sanaladi.", ru: 'Владельца объявления Backend берёт из токена, а «8 / 10» считается по Database.' },
-    { uz: "Ekrandagi son eskirgan bo'lishi mumkin: to'lgan o'yinni Backend tekshiradi.", ru: 'Число на экране может устареть: заполненную игру проверяет Backend.' }
+    { uz: "Roadmap'dagi funksiyani uch qatorli talabga aylantirib, o'zingiz yozasiz.", ru: "Функцию из roadmap вы превращаете в трёхстрочное требование и пишете сами." },
+    { uz: "Talabda aytilmagan holatni agent o'zi taxmin qilishi mumkin — uni talabda yozasiz.", ru: "Неуказанный в требовании случай агент может додумать сам — вы пишете его в требовании." },
+    { uz: "E'lon egasini Backend tokendan oladi, «8 / 10» esa Database'dan sanaladi.", ru: "Владельца объявления Backend берёт из токена, а «8 / 10» считается по Database." },
+    { uz: "Ekrandagi son eskirgan bo'lishi mumkin: to'lgan o'yinni Backend tekshiradi.", ru: "Число на экране может устареть: заполненную игру проверяет Backend." }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   return (
-    <Stage eyebrow={tr({ uz: 'Yakun', ru: 'Итог' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash', ru: 'Завершить' })}</button></>}>
+    <Stage eyebrow={tr({ uz: 'Yakun', ru: "Итог" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash', ru: "Завершить" })}</button></>}>
       {/* Belgi «✓ Birinchi funksiya ishlaydi» — faqat 3-amaliyot bajarilganda; aks holda belgisiz (MD 7) */}
       <div className={cxx('fo-yakun', belgisiz && 'belgisiz')}>
         <QYakun til={__lang}
-          chip={tr({ uz: 'Birinchi funksiya ishlaydi', ru: 'Первая функция работает' })}
+          chip={tr({ uz: 'Birinchi funksiya ishlaydi', ru: "Первая функция работает" })}
           togri={correct} jami={total}
           sarlavha={tr(YAKUN_SARLAVHA[holat])}
           cta={<>

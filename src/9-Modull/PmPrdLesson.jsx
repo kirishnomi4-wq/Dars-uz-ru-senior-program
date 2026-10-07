@@ -70,9 +70,9 @@ const LESSON_META = { lessonId: 'pm-m9d5-v1', lessonTitle: { uz: "G'oyangiz bir 
 // 16 ekran (MD v3) · oqim: kirish → reja → tushuncha → test → tushuncha → test → voqea → test → tushuncha → mustaqil (PRD) → juftlik → PRD.md → yakuniy test → podium → kartochkalar → yakun
 const HW_TOKENS = [
   { t: { uz: 'PRD', ru: 'PRD' }, l: 8, tp: 22, s: 13, d: 6 },
-  { t: { uz: 'dalil', ru: 'доказательство' }, l: 68, tp: 16, s: 12, d: 7.5 },
-  { t: { uz: 'qabul', ru: 'принято' }, l: 24, tp: 70, s: 12, d: 8.5 },
-  { t: { uz: 'tuzatish', ru: 'исправление' }, l: 78, tp: 68, s: 13, d: 6.8 }
+  { t: { uz: 'dalil', ru: "довод" }, l: 68, tp: 16, s: 12, d: 7.5 },
+  { t: { uz: 'qabul', ru: "принять" }, l: 24, tp: 70, s: 12, d: 8.5 },
+  { t: { uz: 'tuzatish', ru: "исправить" }, l: 78, tp: 68, s: 13, d: 6.8 }
 ];
 const SCREEN_META = [
   { id: 's0',  type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },
@@ -260,25 +260,25 @@ const RcFlow = ({ items, sep = '→' }) => (
 const INLINE_KEYS = { s3: 1, s5: 2, s7: 0, s12: 3, prd: -1, tekshiruv: -1, prdmd: -1 };
 // 📖 RECAPS — har ballik test uchun 3 karta (kalit = ekran INDEKSI; S-026: PM darsida raqam 1/2/3)
 const RECAPS = {
-  3: { title: { uz: 'Dalil — intervyudan sanoq', ru: 'Доказательство — счёт из интервью' }, cards: [
-    { ic: '1', h: { uz: "Bu PRD da dalil bo'limiga intervyudan sanoq yoziladi.", ru: 'В этом PRD в раздел «Доказательство» пишут счёт из интервью.' } },
+  3: { title: { uz: 'Dalil — intervyudan sanoq', ru: "Довод — подсчёт из интервью" }, cards: [
+    { ic: '1', h: { uz: "Bu PRD da dalil bo'limiga intervyudan sanoq yoziladi.", ru: "В этом PRD в раздел «Довод» пишут подсчёт из интервью." } },
     { ic: '2', h: { uz: 'Har son yonida sharti: nechta odamdan nechtasi.', ru: 'Рядом с каждым числом — условие: у скольких из скольких.' } },
-    { ic: '3', h: { uz: "Fikr va taxmin dalil emas — ular bo'lib o'tgan ish emas.", ru: 'Мнение и догадка — не доказательство: это не то, что случилось.' }, ask: { uz: 'Sizning PRD ingizdagi dalil qaysi yozuvlardan keladi?', ru: 'Из каких записей приходит доказательство в вашем PRD?' } }
+    { ic: '3', h: { uz: "Fikr va taxmin dalil emas — ular bo'lib o'tgan ish emas.", ru: "Мнение и догадка — не довод: это не то, что уже случилось." }, ask: { uz: 'Sizning PRD ingizdagi dalil qaysi yozuvlardan keladi?', ru: "Из каких записей приходит довод в вашем PRD?" } }
   ] },
   5: { title: { uz: '«Qilmaymiz» va «Keyin»', ru: '«Не делаем» и «Потом»' }, cards: [
-    { ic: '1', h: { uz: "«Keyin»ga yozuvlarda sababi bor ish tushadi: u o'chirilmaydi, navbati suriladi.", ru: 'В «Потом» попадает работа с причиной в записях: её не удаляют, очередь сдвигают.' } },
+    { ic: '1', h: { uz: "«Keyin»ga yozuvlarda sababi bor ish tushadi: u o'chirilmaydi, navbati suriladi.", ru: "В «Потом» попадает работа с причиной в записях: её не удаляют, её очередь отодвигают." } },
     { ic: '2', h: { uz: '«Qilmaymiz»ga yozuvlarda sababi topilmagan ish tushadi.', ru: 'В «Не делаем» попадает работа, для которой в записях не нашлось причины.' } },
-    { ic: '3', h: { uz: "Yozilmagan ishni quradigan odam o'z taxmini bilan qo'shishi mumkin.", ru: 'Незаписанную работу строящий может добавить по своей догадке.' }, ask: { uz: 'Mahsulotingizda nimani qurmaysiz?', ru: 'Что вы не будете строить в своём продукте?' } }
+    { ic: '3', h: { uz: "Yozilmagan ishni quradigan odam o'z taxmini bilan qo'shishi mumkin.", ru: "Если работу не записать, тот, кто строит, может добавить её по своей догадке." }, ask: { uz: 'Mahsulotingizda nimani qurmaysiz?', ru: 'Что вы не будете строить в своём продукте?' } }
   ] },
   7: { title: { uz: 'Amazon — hujjat koddan oldin', ru: 'Amazon — документ до кода' }, cards: [
     { ic: '1', h: { uz: "Amazon'da ish press-relizdan boshlanadi — go'yo mahsulot allaqachon chiqqandek.", ru: 'В Amazon работа начинается с пресс-релиза — как будто продукт уже вышел.' } },
     { ic: '2', h: { uz: 'Press-reliz hech kimni qiziqtirmasa, mahsulot qilinmaydi.', ru: 'Если пресс-релиз никого не заинтересует, продукт не делают.' } },
     { ic: '3', h: { uz: "Amazon o'zi ham tor boshlagan: 1995-yilda faqat kitob.", ru: 'Amazon и сам начинал узко: в 1995 году — только книги.' }, ask: { uz: 'PRD ingizda nimani qurmasligingiz qaysi bo\'limda yozilgan?', ru: 'В каком разделе вашего PRD записано, что вы не строите?' } }
   ] },
-  12: { title: { uz: 'Qabul yoki tuzatish', ru: 'Принято или исправление' }, cards: [
-    { ic: '1', h: { uz: "Uch savol: dalil bormi, bajariladimi, bosh raqam sanaladimi.", ru: 'Три вопроса: есть ли доказательство, выполнимо ли, считается ли главное число.' } },
-    { ic: '2', h: { uz: 'Uchalasiga «ha» — qabul.', ru: 'На все три «да» — принято.' } },
-    { ic: '3', h: { uz: "Bittasiga «yo'q» — tuzatish, bo'lim nomi bilan.", ru: 'На один «нет» — исправление с названием раздела.' }, ask: { uz: 'Mentor misolida qaysi savolda tuzatish chiqdi?', ru: 'На каком вопросе в примере Ментора вышло исправление?' } }
+  12: { title: { uz: 'Qabul yoki tuzatish', ru: "Принять или исправить" }, cards: [
+    { ic: '1', h: { uz: "Uch savol: dalil bormi, bajariladimi, bosh raqam sanaladimi.", ru: "Три вопроса: есть ли довод, выполнимо ли, считается ли главное число." } },
+    { ic: '2', h: { uz: 'Uchalasiga «ha» — qabul.', ru: "На все три «да» — принять." } },
+    { ic: '3', h: { uz: "Bittasiga «yo'q» — tuzatish, bo'lim nomi bilan.", ru: "На одно «нет» — исправить, с названием раздела." }, ask: { uz: 'Mentor misolida qaysi savolda tuzatish chiqdi?', ru: 'На каком вопросе в примере Ментора вышло исправление?' } }
   ] }
 };
 
@@ -417,6 +417,12 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
 }
 
 // Testdan keyingi karta (MD: javob topilgach savol ostida; jonli darsda — natija ochilgandan keyin) — ko'rinadigan joyga suriladi
+// Ochilgan yordam/izoh 1280×800 da panel ostida qolmasin — bir marta ko'rinadigan joyga suriladi (F-1007-289)
+const Korinsin = ({ className, children }) => {
+  const ref = useRef(null);
+  useEffect(() => { const t = setTimeout(() => { const el = ref.current; if (el && el.scrollIntoView) el.scrollIntoView({ behavior: window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' }); }, 120); return () => clearTimeout(t); }, []);
+  return <div ref={ref} className={className}>{children}</div>;
+};
 const TestViz = ({ children }) => {
   const ref = useRef(null);
   useEffect(() => { const t = setTimeout(() => { if (ref.current && ref.current.scrollIntoView) ref.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 650); return () => clearTimeout(t); }, []);
@@ -680,15 +686,15 @@ const MentorSanoq = ({ screen, yorliqlar, hisob }) => {
 // ----- Brend va nomlar: nom o'z rangida, logotipsiz (SABOQ 2) -----
 const MaydonJamoa = () => <span className="pr-mj">Maydon Jamoa</span>;
 const Amazon = () => <span className="pr-amazon">Amazon</span>;
-const KUL_DALIL = { uz: "10 intervyu — kichik son; bu tanlov uchun dalil, isbot emas.", ru: '10 интервью — маленькое число; это доказательство для выбора, а не доказательство истины.' };
+const KUL_DALIL = { uz: "10 intervyu — kichik son; bu tanlov uchun dalil, isbot emas.", ru: "10 интервью — небольшое число; это довод для выбора, а не доказательство." };
 const NIMAGA = { uz: 'Nimaga qarang:', ru: 'На что смотреть:' };
 
 // ----- Ma'lumot: yetti bo'lim (BOLIMLAR), Mentor misoli (MENTOR_PRD — tayanch 1.4 aynan), uch savol (TEKSHIRUV_SAVOLLAR — bitta manba, P-063) -----
 // savol — bo'lim ustidagi kulrang savol: eski to'rt katak — 8-Modul varag'i savollari, yangi uchtasi — 2-ekrandagi quradigan odamning savollari
 const BOLIMLAR = [
-  { id: 'muammo', nom: { uz: 'Muammo', ru: 'Проблема' }, savol: { uz: 'Nima qiynayapti?', ru: 'Что мешает?' }, ph: { uz: 'Kim nimadan qiynaladi?', ru: 'Кто от чего страдает?' }, max: 160 },
-  { id: 'dalil', nom: { uz: 'Dalil', ru: 'Доказательство' }, savol: { uz: "Bu muammo kimda bo'lgan?", ru: 'У кого была эта проблема?' }, ph: { uz: 'Nechta odamdan nechtasida?', ru: 'У скольких из скольких?' }, max: 200 },
-  { id: 'kim', nom: { uz: 'Kim uchun', ru: 'Для кого' }, savol: { uz: 'Aynan kim qiynalyapti?', ru: 'Кто именно страдает?' }, ph: { uz: 'Aynan qanday odamlar?', ru: 'Какие именно люди?' }, max: 140 },
+  { id: 'muammo', nom: { uz: 'Muammo', ru: 'Проблема' }, savol: { uz: 'Nima qiynayapti?', ru: 'Что мешает?' }, ph: { uz: 'Kim nimadan qiynaladi?', ru: 'Кто от чего мучается?' }, max: 160 },
+  { id: 'dalil', nom: { uz: 'Dalil', ru: "Довод" }, savol: { uz: "Bu muammo kimda bo'lgan?", ru: 'У кого была эта проблема?' }, ph: { uz: 'Nechta odamdan nechtasida?', ru: 'У скольких из скольких?' }, max: 200 },
+  { id: 'kim', nom: { uz: 'Kim uchun', ru: 'Для кого' }, savol: { uz: 'Aynan kim qiynalyapti?', ru: 'Кто именно мучается?' }, ph: { uz: 'Aynan qanday odamlar?', ru: 'Какие именно люди?' }, max: 140 },
   { id: 'yechim', nom: { uz: 'Yechim', ru: 'Решение' }, savol: { uz: 'Nima quriladi?', ru: 'Что строим?' }, ph: { uz: 'Mahsulot nima qiladi? Bir gap.', ru: 'Что делает продукт? Одной фразой.' }, max: 160 },
   { id: 'funksiyalar', nom: { uz: 'Uchta asosiy funksiya', ru: 'Три основные функции' }, savol: { uz: 'Birinchi nimani quramiz?', ru: 'Что строим первым?' }, max: 40 },
   { id: 'qilmaymiz', nom: { uz: 'Qilmaymiz / Keyin', ru: 'Не делаем / Потом' }, savol: { uz: 'Nimani qurmaymiz?', ru: 'Что не строим?' }, ph: { uz: 'Nimani qurmaysiz?', ru: 'Что не будете строить?' }, max: 120 },
@@ -722,8 +728,8 @@ const TORT_KATAK = [
   { id: 'boshRaqam', nom: { uz: "O'lchov", ru: 'Измерение' }, savol: BOL.boshRaqam.savol, matn: { uz: "haftada to'lgan o'yinlar", ru: 'заполненные игры за неделю' } }
 ];
 const TEKSHIRUV_SAVOLLAR = [
-  { id: 'dalil', bolim: 'dalil', savol: { uz: 'Dalil bormi?', ru: 'Есть ли доказательство?' }, qarang: { uz: 'Dalil yozuvlardanmi va unda sanoq bormi — nechta odamdan nechtasi?', ru: 'Доказательство из записей и есть ли в нём счёт — у скольких из скольких?' } },
-  { id: 'bajar', bolim: 'funksiyalar', savol: { uz: 'Bajariladimi?', ru: 'Выполнимо ли?' }, qarang: { uz: 'har funksiya muammo gapiga xizmat qiladimi va uchalasi shu modulda quriladimi?', ru: 'служит ли каждая функция фразе-проблеме и построятся ли все три в этом модуле?' } },
+  { id: 'dalil', bolim: 'dalil', savol: { uz: 'Dalil bormi?', ru: "Есть ли довод?" }, qarang: { uz: 'Dalil yozuvlardanmi va unda sanoq bormi — nechta odamdan nechtasi?', ru: "Довод из записей и есть ли в нём подсчёт — у скольких из скольких?" } },
+  { id: 'bajar', bolim: 'funksiyalar', savol: { uz: 'Bajariladimi?', ru: 'Выполнимо ли?' }, qarang: { uz: 'har funksiya muammo gapiga xizmat qiladimi va uchalasi shu modulda quriladimi?', ru: "служит ли каждая функция формулировке проблемы и построятся ли все три в этом модуле?" } },
   { id: 'raqam', bolim: 'boshRaqam', savol: { uz: 'Bosh raqam sanaladimi?', ru: 'Считается ли главное число?' }, qarang: { uz: "bu raqamni har hafta sanab bo'ladimi?", ru: 'можно ли считать это число каждую неделю?' }, qarangO: { uz: 'bu raqamni muntazam — har hafta yoki har oy — sanab bera olasizmi?', ru: 'сможете ли вы считать это число регулярно — каждую неделю или каждый месяц?' } }
 ];
 // «dalil bormi, bajariladimi, bosh raqam sanaladimi» — uch savol bitta manbadan (s8 xulosa, kartochka, recap, yakun)
@@ -773,9 +779,9 @@ const VAQTINCHA = { uz: 'vaqtincha tanlov', ru: 'временный выбор' 
 // ----- Bo'lim tekshiruvi (9, 10-ekran; bo'sh — bloklaydi, qolgani yumshoq: ikkinchi «Saqlash» bilan o'tadi) -----
 const TUTUQ_P = new RegExp('[' + String.fromCharCode(0x2BB, 0x2BC, 0x2018, 0x2019, 0x60) + ']', 'g');
 const norm = (s) => String(s || '').toLowerCase().replace(TUTUQ_P, "'").replace(/[«»"“”.!?,;:]+/g, ' ').replace(/\s+/g, ' ').trim();
-const XOHISH = /(xohlaydi|xohlardi|yoqadi|yaxshi ko'radi|bo'lsa yaxshi)/;
-const HAMMA = ['hamma', 'odamlar', 'hamma odamlar', 'barcha odamlar', 'har kim', 'hamma uchun'];
-const SANAB_BOLMAS = /(yoqadi|mamnun|qulay|chiroyli|yaxshi)/;
+const XOHISH = /(xohlaydi|xohlardi|yoqadi|yaxshi ko'radi|bo'lsa yaxshi|хочет|хотят|хотел|нравится|любит|было бы хорошо)/; // ru rejimi ham (16-dars RE_XOHISH naqshi, F-1007-291)
+const HAMMA = ['hamma', 'odamlar', 'hamma odamlar', 'barcha odamlar', 'har kim', 'hamma uchun', 'все', 'люди', 'все люди', 'каждый', 'для всех'];
+const SANAB_BOLMAS = /(yoqadi|mamnun|qulay|chiroyli|yaxshi|нравится|доволен|довольн|удобн|красив|хорош)/;
 const tekshirBolim = (id, v) => {
   if (id === 'funksiyalar') {
     if (v.funksiyalar.some(x => !x.trim())) return { tur: 'fbosh', q: true };
@@ -789,14 +795,14 @@ const tekshirBolim = (id, v) => {
   if (id === 'muammo' && XOHISH.test(s)) return { tur: 'xohish' };
   if (id === 'dalil' && !/\d/.test(s)) return { tur: 'raqamsiz' };
   if (id === 'kim' && HAMMA.includes(s)) return { tur: 'hamma' };
-  if (id === 'yechim') { const w = s.split(' ').filter(Boolean); if (w.length <= 2 && w.some(x => /^(ilova|sayt|bot|ai)/.test(x))) return { tur: 'nom' }; }
+  if (id === 'yechim') { const w = s.split(' ').filter(Boolean); if (w.length <= 2 && w.some(x => /^(ilova|sayt|bot|ai|приложени|сайт|бот|ии)/.test(x))) return { tur: 'nom' }; }
   if (id === 'boshRaqam' && SANAB_BOLMAS.test(s)) return { tur: 'sanab' };
   return null;
 };
 const XABAR = {
   bosh: { uz: "Bo'lim bo'sh — quradigan odam uni taxmin qiladi.", ru: 'Раздел пуст — тот, кто строит, будет угадывать.' },
-  xohish: { uz: "Bu xohish — odam nimadan qiynalgani ko'rinmaydi.", ru: 'Это желание — не видно, от чего страдает человек.' },
-  raqamsiz: { uz: "Dalilda son bo'lsin: nechta odamdan nechtasi.", ru: 'Пусть в доказательстве будет число: у скольких из скольких.' },
+  xohish: { uz: "Bu xohish — odam nimadan qiynalgani ko'rinmaydi.", ru: 'Это желание — не видно, от чего мучается человек.' },
+  raqamsiz: { uz: "Dalilda son bo'lsin: nechta odamdan nechtasi.", ru: "Пусть в доводе будет число: у скольких из скольких." },
   hamma: { uz: "Kim uchun aniqroq bo'lsin: qanday odamlar?", ru: 'Для кого — точнее: какие люди?' },
   nom: { uz: 'Mahsulot aynan nima qiladi? Bir gap bilan yozing.', ru: 'Что именно делает продукт? Напишите одной фразой.' },
   fbosh: { uz: 'Uchta funksiyani ham yozing.', ru: 'Напишите все три функции.' },
@@ -815,7 +821,7 @@ const yordamMatn = (id) => {
 };
 
 // ----- Telefon «Maydon Jamoa» (≈170×272, chapda, o'lchami barqaror — SABOQ 21, 22): holat muammo (Telegram guruhi) | elon («8 / 10», «Qo'shilaman») -----
-const TG_XABAR = [{ k: 'a', t: 'Kim keladi?' }, { k: 'b', t: '+' }, { k: 'c', rasm: true }, { k: 'd', t: '+' }, { k: 'e', rasm: true }, { k: 'b', t: '+' }];
+const TG_XABAR = [{ k: 'a', t: { uz: 'Kim keladi?', ru: 'Кто придёт?' } }, { k: 'b', t: '+' }, { k: 'c', rasm: true }, { k: 'd', t: '+' }, { k: 'e', rasm: true }, { k: 'b', t: '+' }];
 const JamoaTelefon = ({ holat = 'elon', son = 8, bosildi = 0, ostida, className }) => {
   const toldi = son >= 10;
   return (
@@ -826,7 +832,7 @@ const JamoaTelefon = ({ holat = 'elon', son = 8, bosildi = 0, ostida, className 
           <div className="pr-tel-e tg" key="tg">
             <span className="pr-tg-h">{tr({ uz: 'Telegram guruhi', ru: 'Группа в Telegram' })}</span>
             <div className="pr-tg-ro">{TG_XABAR.map((x, i) => (
-              <span key={i} className={cxp('pr-tg-x', `k${x.k}`, x.t === '+' && 'plus', x.rasm && 'rasm')} style={{ '--i': i }}>{x.rasm ? <i aria-hidden="true" /> : x.t}</span>
+              <span key={i} className={cxp('pr-tg-x', `k${x.k}`, x.t === '+' && 'plus', x.rasm && 'rasm')} style={{ '--i': i }}>{x.rasm ? <i aria-hidden="true" /> : tr(x.t)}</span>
             ))}</div>
           </div>
         ) : (
@@ -835,7 +841,7 @@ const JamoaTelefon = ({ holat = 'elon', son = 8, bosildi = 0, ostida, className 
             <div className={cxp('pr-elon', toldi && 'toldi')}>
               <b className="pr-elon-k">{tr({ uz: 'Shanba, 18:00', ru: 'Суббота, 18:00' })}</b>
               <span className="pr-elon-m">{tr({ uz: 'Mahalla maydoni', ru: 'Поле махалли' })}</span>
-              <span className="pr-elon-son" key={son}>{son} / 10{toldi && <em>{tr({ uz: "To'ldi", ru: 'Набрано' })}</em>}</span>
+              <span className="pr-elon-son" key={son}>{son} / 10{toldi && <em>{tr({ uz: "To'ldi", ru: "Заполнено" })}</em>}</span>
               <span className="pr-elon-y"><i style={{ width: `${son * 10}%` }} /></span>
               <span className={cxp('pr-elon-b', toldi && 'off')} key={`b${bosildi}`} data-bos={bosildi > 0 ? '1' : undefined}>{tr({ uz: "Qo'shilaman", ru: 'Присоединяюсь' })}</span>
             </div>
@@ -976,7 +982,7 @@ const HOOK_OPTS = [
 const S0_KARTA = [
   { yorliq: { uz: "g'oya", ru: 'идея' }, matn: { uz: "Jamoa yig'ish: o'yinga odam yetmaydi, kim kelishi noma'lum", ru: 'Сбор команды: на игру не хватает людей, неизвестно, кто придёт' } },
   { yorliq: { uz: '10 yozuv', ru: '10 записей' }, matn: { uz: "5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan", ru: 'У 4 из 5 игроков на последней игре не хватило людей или кто-то не пришёл' } },
-  { yorliq: { uz: 'muammo gapi', ru: 'фраза-проблема' }, matn: MENTOR_PRD.muammo }
+  { yorliq: { uz: 'muammo gapi', ru: "формулировка проблемы" }, matn: MENTOR_PRD.muammo }
 ];
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const { live, isMentor } = useJonli();
@@ -1019,7 +1025,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
           </div>}
           variantlar={HOOK_OPTS.map(o => ({ id: o.id, t: tr(o.t) }))} tanlov={picked} onTanla={pick} yopiq={isMentor}
           javob={<>
-            {picked !== null && <p className="pr-javob fade-step">{tr({ uz: "Uchalasi ham bor: yechim bir gapda aytiladi, katta jamoada hujjat bir necha sahifa. Bugun — bir sahifa.", ru: 'Бывает всё три: решение говорится одной фразой, в большой команде документ — на несколько страниц. Сегодня — одна страница.' })}</p>}
+            {picked !== null && <p className="pr-javob fade-step">{tr({ uz: "Uchalasi ham bor: yechim bir gapda aytiladi, katta jamoada hujjat bir necha sahifa. Bugun — bir sahifa.", ru: "Все три бывают: решение говорят одной фразой, в большой команде документ — на несколько страниц. Сегодня — одна страница." })}</p>}
             {isLive && <OvozChizigi live={live} screen={screen} variantlar={HOOK_OPTS.map(o => tr(o.t))} mening={HOOK_OPTS.findIndex(o => o.id === picked)} />}
           </>}
         />
@@ -1031,22 +1037,22 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja: chapda «Dars oxirida» — sahifaga Mentor misolining qatorlari navbat bilan yoziladi, oxirida «Qabul» muhri tushadi) =====
 const REJA = [
-  { t: { uz: "To'rt katakli varaqdan to'liq PRD ga o'tasiz", ru: 'Перейдёте от листа из четырёх клеток к полному PRD' }, teg: { uz: 'PRD', ru: 'PRD' } },
+  { t: { uz: "To'rt katakli varaqdan to'liq PRD ga o'tasiz", ru: "Перейдёте от листа из четырёх ячеек к полному PRD" }, teg: { uz: 'PRD', ru: 'PRD' } },
   { t: { uz: 'Nimani qurmaslikni ham yozishni bilib olasiz', ru: 'Научитесь записывать и то, что не будете строить' }, teg: { uz: 'qilmaymiz', ru: 'не делаем' } },
   { t: { uz: <><Amazon /> hujjatni qachon yozishini ko'rasiz</>, ru: <>Увидите, когда <Amazon /> пишет документ</> }, teg: { uz: 'voqea', ru: 'история' } },
   { t: { uz: 'PRD yozib, uni uch savol bilan tekshirasiz', ru: 'Напишете PRD и проверите его тремя вопросами' }, teg: { uz: 'tekshiruv', ru: 'проверка' } }
 ];
 const REJA_QATOR = [MENTOR_PRD.muammo, MENTOR_PRD.kim, MENTOR_PRD.yechim, MENTOR_PRD.boshRaqam];
 const RejaChizma = () => (
-  <PrdSahifa className="pr-rj" nom={<MaydonJamoa />} muhr={{ tur: 'ok kech', t: tr({ uz: 'Qabul', ru: 'Принято' }) }}>
+  <PrdSahifa className="pr-rj" nom={<MaydonJamoa />} muhr={{ tur: 'ok kech', t: tr({ uz: 'Qabul', ru: "Принять" }) }}>
     <div className="pr-rj-ro">{REJA_QATOR.map((q, i) => <p key={i} className="pr-rj-q" style={{ '--i': i }}>{tr(q)}</p>)}</div>
   </PrdSahifa>
 );
 const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz', ru: 'Начинаем' })} onClick={onNext} /></>}>
     <QReja zoom={Zoomable}
-      sarlavha={tr({ uz: <>Bugun final g'oyangizni <A>bir sahifaga</A> yozasiz.</>, ru: <>Сегодня вы запишете финальную идею <A>на одну страницу</A>.</> })}
-      mentor={<Mentor>{tr({ uz: "8-Modulda to'rt katakli varaqni PRD deb atagansiz — mahsulot talablari hujjati (Product Requirements Document). Bugun shu hujjat final g'oyangiz uchun to'liq yoziladi.", ru: 'В 8-м модуле вы назвали лист из четырёх клеток PRD — документ требований к продукту (Product Requirements Document). Сегодня этот документ пишется полностью для вашей финальной идеи.' })}</Mentor>}
+      sarlavha={tr({ uz: <>Bugun final g'oyangizni <A>bir sahifaga</A> yozasiz.</>, ru: <>Вы запишете финальную идею <A>на одну страницу</A>.</> })}
+      mentor={<Mentor>{tr({ uz: "8-Modulda to'rt katakli varaqni PRD deb atagansiz — mahsulot talablari hujjati (Product Requirements Document). Bugun shu hujjat final g'oyangiz uchun to'liq yoziladi.", ru: "В 8-м модуле вы назвали лист из четырёх ячеек PRD — документ требований к продукту (Product Requirements Document). Сегодня этот документ пишется полностью для вашей финальной идеи." })}</Mentor>}
       chapYorliq={tr({ uz: 'Dars oxirida: Mentor tekshiruvi va to\'liq PRD', ru: 'В конце урока: проверка Ментора и полный PRD' })}
       chap={<RejaChizma />}
       qadamlar={REJA.map(r => ({ t: tr(r.t), teg: tr(r.teg) }))}
@@ -1061,7 +1067,7 @@ const S2_SAVOL = [
   { k: 'qilmaymiz', t: { uz: 'Nimani qurmaymiz?', ru: 'Что не строим?' } }
 ];
 const S2_TAXMIN = [{ k: '1', t: '1' }, { k: '2', t: '2' }, { k: '3', t: '3' }];
-const S2_BASH = { uz: "To'rt katakka yana nechta bo'lim kerak?", ru: 'Сколько ещё разделов нужно к четырём клеткам?' };
+const S2_BASH = { uz: "To'rt katakka yana nechta bo'lim kerak?", ru: "Сколько ещё разделов нужно к четырём ячейкам?" };
 const TAXMININGIZ = { uz: 'Taxminingiz', ru: 'Ваше предположение' };
 const HAQIQATDA = { uz: 'haqiqatda', ru: 'на деле' };
 const TOGRI_CHIQDI = { uz: "Taxminingiz to'g'ri chiqdi", ru: 'Ваше предположение оказалось верным' };
@@ -1099,8 +1105,8 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: "Tushuncha · to'liq PRD", ru: 'Понятие · полный PRD' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Savollarni bosing', ru: 'Нажмите на вопросы' })} (${q}/3)`} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
-        sarlavha={tr({ uz: <>To'rt katakka yana <A>qaysi bo'limlar</A> qo'shiladi?</>, ru: <>Какие <A>разделы</A> добавятся к четырём клеткам?</> })}
-        mentor={<Mentor>{tr({ uz: "Varaqni o'qib, qurishni boshlagan odam beradigan savollarni birma-bir bosing.", ru: 'Нажимайте по одному вопросы, которые задаёт человек, прочитавший лист и начавший строить.' })}</Mentor>}
+        sarlavha={tr({ uz: <>To'rt katakka yana <A>qaysi bo'limlar</A> qo'shiladi?</>, ru: <>Какие <A>разделы</A> добавятся к четырём ячейкам?</> })}
+        mentor={<Mentor>{tr({ uz: "Varaqni o'qib, qurishni boshlagan odam beradigan savollarni birma-bir bosing.", ru: "Нажимайте по очереди вопросы, которые задаёт тот, кто прочитал лист и начал строить." })}</Mentor>}
         bashorat={!taxmin
           ? <div className="pr-bash pr-guruh-w"><QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr(S2_BASH)} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} /></div>
           : !done && <BashQator savol={tr(S2_BASH)} javob={tx.t} />}
@@ -1117,13 +1123,13 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               const faol = !!taxmin && i === q;
               return <button key={s.k} type="button" className={cxp('pr-qsavol', i < q && 'ok', halqa(faol))} disabled={!faol} onClick={() => setQ(i + 1)}>{i < q && <b>✓</b>}{tr(s.t)}</button>;
             })}</div>}
-            {nomlar && <QIzoh>{tr({ uz: "To'rt katakka uch bo'lim qo'shildi — yetti bo'limli bu sahifa to'liq PRD deyiladi.", ru: 'К четырём клеткам добавились три раздела — эту страницу из семи разделов называют полным PRD.' })}</QIzoh>}
+            {nomlar && <QIzoh>{tr({ uz: "To'rt katakka uch bo'lim qo'shildi — yetti bo'limli bu sahifa to'liq PRD deyiladi.", ru: "К четырём ячейкам добавились три раздела — эту страницу из семи разделов называют полным PRD." })}</QIzoh>}
             {s2Xulosa && <div className="pr-xul-ost">{s2Xulosa}</div>}
           </div>
         </div>}
         natija={!done && ipucha && <QIzoh>{tr({ uz: "Sahifa ostidagi yoqilgan savolni bosing — sahifada nima qo'shilishini ko'ring.", ru: 'Нажмите активный вопрос под страницей — посмотрите, что добавится на странице.' })}</QIzoh>}
       />
-      <MentorNote>{tr({ uz: "8-Modulda (basseyn ilovasi) PRD to'rt katak edi — eslating. «O'lchov» katagi endi bosh raqam: mahsulot o'z ishini bajarganini ko'rsatadigan bitta raqam. Uchinchi funksiya hozircha qoralama — 8-ekranda tekshiruv uni o'zgartiradi; buni oldindan aytmang.", ru: 'В 8-м модуле (приложение бассейна) PRD был из четырёх клеток — напомните. Клетка «Измерение» теперь — главное число: одно число, которое показывает, что продукт делает свою работу. Третья функция пока черновик — на 8-м экране проверка её изменит; не говорите об этом заранее.' })}</MentorNote>
+      <MentorNote>{tr({ uz: "8-Modulda (basseyn ilovasi) PRD to'rt katak edi — eslating. «O'lchov» katagi endi bosh raqam: mahsulot o'z ishini bajarganini ko'rsatadigan bitta raqam. Uchinchi funksiya hozircha qoralama — 8-ekranda tekshiruv uni o'zgartiradi; buni oldindan aytmang.", ru: "В 8-м модуле (приложение бассейна) PRD был из четырёх ячеек — напомните. Ячейка «Измерение» теперь — главное число: одно число, которое показывает, что продукт делает свою работу. Третья функция пока черновик — на 8-м экране проверка её изменит; не говорите об этом заранее." })}</MentorNote>
     </Stage>
   );
 };
@@ -1132,20 +1138,20 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const S3_OPTS = [
   { uz: 'Mahallada yaqinda 2 ta yangi to\'garak ochildi', ru: 'В махалле недавно открылись 2 новых кружка' },
   { uz: "5 kishidan 3 tasi to'garak topishda qiynalgan", ru: 'У 3 из 5 человек были трудности с поиском кружка' },
-  { uz: "O'smirlar xaritani ishlatsa kerak, deb o'ylayman", ru: 'Думаю, подростки, наверное, будут пользоваться картой' },
+  { uz: "O'smirlar xaritani ishlatsa kerak, deb o'ylayman", ru: "Думаю, подростки будут пользоваться картой" },
   { uz: "To'garaklar xaritasi va jadvalini ko'rsatadi", ru: 'Показывает карту и расписание кружков' }
 ];
 const Screen3 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Tekshiruv · dalil', ru: 'Проверка · доказательство' })}
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Tekshiruv · dalil', ru: "Проверка · довод" })}
     questionText="To'garaklar PRD sida Dalil bo'limiga qaysi qator yoziladi?"
-    question={tr({ uz: <h2 className="title h-ask">To'garaklar PRD sida <A>Dalil bo'limiga</A> qaysi qator yoziladi?</h2>, ru: <h2 className="title h-ask">Какая строка пишется в <A>раздел «Доказательство»</A> PRD кружков?</h2> })}
+    question={tr({ uz: <h2 className="title h-ask">To'garaklar PRD sida <A>Dalil bo'limiga</A> qaysi qator yoziladi?</h2>, ru: <h2 className="title h-ask">Какая строка пишется в <A>раздел «Довод»</A> PRD кружков?</h2> })}
     options={S3_OPTS} correctIdx={1}
-    explainCorrect={{ uz: "Bu PRD da dalil — intervyudan sanoq: nechta odamdan nechtasida muammo bo'lgan.", ru: 'В этом PRD доказательство — счёт из интервью: у скольких из скольких была проблема.' }}
+    explainCorrect={{ uz: "Bu PRD da dalil — intervyudan sanoq: nechta odamdan nechtasida muammo bo'lgan.", ru: "В этом PRD довод — подсчёт из интервью: у скольких из скольких была проблема." }}
     explainWrong={{
-      0: { uz: "To'garaklar haqida rost gap, lekin kim qiynalgani yo'q.", ru: 'Правда о кружках, но нет того, кто страдал.' },
+      0: { uz: "To'garaklar haqida rost gap, lekin kim qiynalgani yo'q.", ru: "Правда о кружках, но не сказано, кто мучился." },
       2: { uz: "Bu taxmin — intervyuda bo'lib o'tgan ish emas.", ru: 'Это догадка — не то, что случилось в интервью.' },
       3: { uz: "Bu — yechim bo'limining qatori.", ru: 'Это строка раздела «Решение».' },
-      default: { uz: 'Dalil intervyudan keladi: unda nima sanalgan?', ru: 'Доказательство приходит из интервью: что в нём посчитано?' }
+      default: { uz: 'Dalil intervyudan keladi: unda nima sanalgan?', ru: "Довод приходит из интервью: что в нём посчитано?" }
     }}
     vizual={<PrdSahifa className="kichik" nom={tr({ uz: "Mahalla to'garaklari", ru: 'Кружки махалли' })} bolimlar={[
       { id: 'muammo', nom: BOL.muammo.nom, matn: tr({ uz: "qaysi to'garak qayerda va qachon — bilinmaydi", ru: 'какой кружок где и когда — неизвестно' }) },
@@ -1156,13 +1162,13 @@ const Screen3 = (props) => (
 // ===== SCREEN 4 — QILMAYMIZ VA KEYIN (QTushuncha ketma-ket, 4 ish; SABOQ 9/13): chapda sahifa (5, 6-bo'limlar ochiq) · o'ngda bitta katta ish kartasi =====
 const S4_ISHLAR = [
   { qadam: { uz: 'Chat', ru: 'Чат' }, nom: { uz: 'Chat', ru: 'Чат' }, togri: 'qilmaymiz', sabab: { uz: "Telegram allaqachon bor: qiyinchilik chat yo'qligida emas, kim kelishi bilinmasligida.", ru: 'Telegram уже есть: трудность не в отсутствии чата, а в том, что неизвестно, кто придёт.' } },
-  { qadam: { uz: 'Eslatma', ru: 'Напоминание' }, nom: ISH_ESLATMA, togri: 'keyin', sabab: { uz: "2-yozuv: «ikki kishi oxirgi daqiqada kelmadi».", ru: 'Запись 2: «два человека не пришли в последнюю минуту».' } },
+  { qadam: { uz: 'Eslatma', ru: 'Напоминание' }, nom: ISH_ESLATMA, togri: 'keyin', sabab: { uz: "2-yozuv: «ikki kishi oxirgi daqiqada kelmadi».", ru: "Запись 2: «двое не пришли в последнюю минуту»." } },
   { qadam: { uz: 'Reyting', ru: 'Рейтинг' }, nom: { uz: 'Reyting va baho', ru: 'Рейтинг и оценки' }, togri: 'qilmaymiz', sabab: { uz: "O'n yozuvda baho haqida gap yo'q.", ru: 'В десяти записях нет речи об оценках.' } },
-  { qadam: { uz: "Ro'yxat", ru: 'Список' }, nom: ISH_ROYXAT, togri: 'keyin', sabab: { uz: "5-yozuv: «kim kelishini bilmadi» — ro'yxat ochiq turganda ham yangi qo'shilganlar ko'rinsin.", ru: 'Запись 5: «не знал, кто придёт» — пусть новые присоединившиеся видны, даже когда список открыт.' } }
+  { qadam: { uz: "Ro'yxat", ru: 'Список' }, nom: ISH_ROYXAT, togri: 'keyin', sabab: { uz: "5-yozuv: «kim kelishini bilmadi» — ro'yxat ochiq turganda ham yangi qo'shilganlar ko'rinsin.", ru: "Запись 5: «не знал, кто придёт» — пусть новые присоединившиеся будут видны, даже когда список открыт." } }
 ];
 const S4_XATO = {
   keyin: { uz: "O'n yozuvda bunga sabab topilmadi.", ru: 'В десяти записях для этого не нашлось причины.' },
-  qilmaymiz: { uz: "Yozuvlarda bunga sabab bor — o'chirmang, navbatini suring.", ru: 'В записях есть причина — не удаляйте, сдвиньте очередь.' }
+  qilmaymiz: { uz: "Yozuvlarda bunga sabab bor — o'chirmang, navbatini suring.", ru: "В записях есть причина — не удаляйте, отодвиньте её очередь." }
 };
 const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext(AchMissCtx);
@@ -1219,7 +1225,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             {xato && <QXato>{tr(S4_XATO[xato.k])}</QXato>}
             {sabab !== null && <p className="pr-sabab" key={`s${sabab}`}>{tr(S4_ISHLAR[sabab].sabab)}</p>}
-            {yordam && <QIzoh>{tr({ uz: "«Keyin» — o'chirilmaydi, navbati suriladi: yozuvlarda sababi bor. «Qilmaymiz» — yozuvlarda sababi topilmagan ish.", ru: '«Потом» — не удаляется, очередь сдвигается: в записях есть причина. «Не делаем» — работа, для которой в записях не нашлось причины.' })}</QIzoh>}
+            {yordam && <QIzoh>{tr({ uz: "«Keyin» — o'chirilmaydi, navbati suriladi: yozuvlarda sababi bor. «Qilmaymiz» — yozuvlarda sababi topilmagan ish.", ru: "«Потом» — работу не удаляют, её очередь отодвигают: в записях есть причина. «Не делаем» — работа, для которой в записях не нашлось причины." })}</QIzoh>}
             <NishonQatori screen={screen} />
           </div>}
           vizual={<PrdSahifa nom={<MaydonJamoa />} bolimlar={bolimlar} ochiq={['funksiyalar', 'qilmaymiz']} className="pr-s4-s" />}
@@ -1227,7 +1233,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           xulosa={done && izoh && tr({ uz: "Bu misolda qo'shimcha ishlardan «Keyin»ga yozuvlarda sababi borlari, «Qilmaymiz»ga sababsizlari tushdi.", ru: 'В этом примере из дополнительных работ в «Потом» попали те, у которых есть причина в записях, в «Не делаем» — без причины.' })}
         />
       </div>
-      <MentorNote>{tr({ uz: "9-Modulda o'quvchilar aynan shu uch qutini to'ldirgan (Qilamiz · Keyin · Qilmaymiz) — PRD da ular 5 va 6-bo'lim. Sinfdan so'rang: «Qilmaymiz» yozilmasa, quradigan odam chat qo'shadimi? (8-Modul qoidasi: bo'sh qolgan joyni quradigan odam o'z taxmini bilan to'ldiradi.) Bu qoida qo'shimcha ishlar uchun: kirish, xavfsizlik kabi zarur ishlar intervyuda aytilmasa ham quriladi.", ru: 'В 9-м модуле ученики заполняли именно эти три коробки (Делаем · Потом · Не делаем) — в PRD это 5-й и 6-й разделы. Спросите класс: если не написать «Не делаем», добавит ли строящий чат? (Правило 8-го модуля: пустое место строящий заполняет своей догадкой.) Это правило — для дополнительных работ: нужные работы вроде входа и безопасности строятся, даже если о них не сказали в интервью.' })}</MentorNote>
+      <MentorNote>{tr({ uz: "9-Modulda o'quvchilar aynan shu uch qutini to'ldirgan (Qilamiz · Keyin · Qilmaymiz) — PRD da ular 5 va 6-bo'lim. Sinfdan so'rang: «Qilmaymiz» yozilmasa, quradigan odam chat qo'shadimi? (8-Modul qoidasi: bo'sh qolgan joyni quradigan odam o'z taxmini bilan to'ldiradi.) Bu qoida qo'shimcha ishlar uchun: kirish, xavfsizlik kabi zarur ishlar intervyuda aytilmasa ham quriladi.", ru: "В 9-м модуле ученики заполняли именно эти три коробки (Делаем · Потом · Не делаем) — в PRD это 5-й и 6-й разделы. Спросите класс: если не написать «Не делаем», добавит ли чат тот, кто строит? (Правило 8-го модуля: пустое место тот, кто строит, заполняет своей догадкой.) Это правило — для дополнительных работ: нужные работы вроде входа и безопасности строятся, даже если о них не сказали в интервью." })}</MentorNote>
     </Stage>
   );
 };
@@ -1364,7 +1370,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {tr({ uz: "Bu voqeada hujjat koddan oldin yozildi, mahsulot esa tor boshlandi — faqat kitobdan.", ru: 'В этой истории документ написали до кода, а продукт начали узко — только с книг.' })}</QXulosa>}
         </div>}
       >
-        <MentorNote>{tr({ uz: "Amazon 5-Modulning «Ilova nimani yozib qoladi?» darsida ham bo'lgan — eslating; bugungi savol boshqa: PRD qachon yoziladi va nima uchun unda «Qilmaymiz» bor. Sinfdan so'rang: Amazon faqat kitobdan boshlagan — sizning PRD ingizda «Qilmaymiz»ga nima tushadi? Bankdan tashqari raqam, yil va voqea qo'shmang. Press-reliz — PRD emas: ikkalasi ham koddan oldin yoziladigan hujjat, umumiy joyi shu.", ru: 'Amazon уже был в уроке 5-го модуля «Что запоминает приложение?» — напомните; сегодня вопрос другой: когда пишется PRD и зачем в нём «Не делаем». Спросите класс: Amazon начинал только с книг — что в вашем PRD попадёт в «Не делаем»? Не добавляйте чисел, лет и событий вне банка. Пресс-релиз — не PRD: оба — документы, которые пишут до кода, общее у них только это.' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Amazon 5-Modulning «Ilova nimani yozib qoladi?» darsida ham bo'lgan — eslating; bugungi savol boshqa: PRD qachon yoziladi va nima uchun unda «Qilmaymiz» bor. Sinfdan so'rang: Amazon faqat kitobdan boshlagan — sizning PRD ingizda «Qilmaymiz»ga nima tushadi? Bankdan tashqari raqam, yil va voqea qo'shmang. Press-reliz — PRD emas: ikkalasi ham koddan oldin yoziladigan hujjat, umumiy joyi shu.", ru: "Amazon уже был в уроке 5-го модуля «Что приложение записывает?» — напомните; сегодня вопрос другой: когда пишется PRD и зачем в нём «Не делаем». Спросите класс: Amazon начинал только с книг — что в вашем PRD попадёт в «Не делаем»? Не добавляйте чисел, лет и событий вне банка. Пресс-релиз — не PRD: оба — документы, которые пишут до кода, общее у них только это." })}</MentorNote>
       </QVoqea>
     </Stage>
   );
@@ -1398,23 +1404,23 @@ const S8_TAXMIN = [
 ];
 const S8_BASH = { uz: "Mentor PRD si uch savoldan qanday o'tadi?", ru: 'Как PRD Ментора пройдёт три вопроса?' };
 const S8_FN = [
-  { f: F_ELON, dan: { uz: 'muammo gapidan: yetarli odam', ru: 'из фразы-проблемы: достаточно людей' } },
-  { f: F_TASDIQ, dan: { uz: 'muammo gapidan: kim aniq keladi', ru: 'из фразы-проблемы: кто точно придёт' } },
+  { f: F_ELON, dan: { uz: 'muammo gapidan: yetarli odam', ru: "из формулировки проблемы: достаточно людей" } },
+  { f: F_TASDIQ, dan: { uz: 'muammo gapidan: kim aniq keladi', ru: "из формулировки проблемы: кто точно придёт" } },
   { f: F_PUL, dan: { uz: "oltita g'oyadan biri: maydon pulini bo'lishish", ru: 'одна из шести идей: делить плату за поле' }, sigmaydi: true }
 ];
-const S8_NAVBAT_DAN = { uz: "muammo gapidan: yetarli odam — chiqqan o'rniga navbatdagi kiradi", ru: 'из фразы-проблемы: достаточно людей — вместо вышедшего входит следующий' };
+const S8_NAVBAT_DAN = { uz: "muammo gapidan: yetarli odam — chiqqan o'rniga navbatdagi kiradi", ru: "из формулировки проблемы: достаточно людей — вместо вышедшего входит следующий из очереди" };
 const S8_PUL_DALIL = { uz: "9-Modul intervyusi: 5 kishidan 1 tasi «pulni bo'lishish qiyin»", ru: 'Интервью 9-го модуля: 1 из 5 человек — «трудно делить деньги»' };
 const S8_XATO = [
-  { uz: "Dalil bo'limini qayta o'qing: unda nechta odamdan nechtasi?", ru: 'Перечитайте раздел «Доказательство»: у скольких из скольких?' },
-  { uz: 'Bu funksiya muammo gapidan keladi — boshqasini qarang.', ru: 'Эта функция идёт из фразы-проблемы — посмотрите другую.' },
+  { uz: "Dalil bo'limini qayta o'qing: unda nechta odamdan nechtasi?", ru: "Перечитайте раздел «Довод»: у скольких из скольких?" },
+  { uz: 'Bu funksiya muammo gapidan keladi — boshqasini qarang.', ru: "Эта функция идёт из формулировки проблемы — посмотрите другую." },
   { uz: "Telefonga qarang: «10 / 10» — bitta to'lgan o'yin.", ru: 'Посмотрите на телефон: «10 / 10» — одна заполненная игра.' }
 ];
 const HA = { uz: 'Ha', ru: 'Да' };
-const QABUL = { uz: 'Qabul', ru: 'Принято' };
-const QABUL_KUL = { uz: 'Qabul — bugungi tekshiruv natijasi: PRD keyin ham yangilanadi.', ru: 'Принято — это итог сегодняшней проверки: PRD и дальше будет обновляться.' };
+const QABUL = { uz: 'Qabul', ru: "Принять" };
+const QABUL_KUL = { uz: 'Qabul — bugungi tekshiruv natijasi: PRD keyin ham yangilanadi.', ru: "Ответ «принять» — итог сегодняшней проверки: PRD и дальше будет обновляться." };
 // Har qadamda ochiq bo'limlar: savolga tegishlisi (1 → Dalil · 2 → muammo gapi, funksiyalar, «Keyin» · 3 → funksiyalar, Bosh raqam)
 const S8_OCHIQ = [['dalil'], ['muammo', 'funksiyalar', 'qilmaymiz'], ['funksiyalar', 'boshRaqam'], ['muammo', 'dalil', 'funksiyalar', 'qilmaymiz', 'boshRaqam']];
-const tuzatishMatn = (id) => `${tr({ uz: 'Tuzatish', ru: 'Исправление' })}: ${tr(BOL[id].nom)}`;
+const tuzatishMatn = (id) => `${tr({ uz: 'Tuzatish', ru: "Исправить" })}: ${tr(BOL[id].nom)}`;
 const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [taxmin, setTaxmin] = useState(storedAnswer?.taxmin ?? null);
   const [qadam, setQadam] = useState(storedAnswer ? 3 : 0);
@@ -1494,19 +1500,19 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           vizual={<div className={cxp('pr-s8', tugadi && 'tinch')}>
             <div className="pr-chap">
               <JamoaTelefon holat="elon" son={son} bosildi={bos}
-                ostida={qadam >= 2 && <div className="pr-hafta fade-step"><span>{tr({ uz: "Bu hafta to'lgan o'yinlar", ru: 'Заполненных игр на этой неделе' })}: <b key={hafta}>{hafta}</b></span>{!tugadi && <em className="pr-kul">{tr({ uz: "Bu raqam muammo gapiga qaraydi: o'yin kerakli odam soniga yetdimi?", ru: 'Это число смотрит на фразу-проблему: набрала ли игра нужное число людей?' })}</em>}</div>} />
+                ostida={qadam >= 2 && <div className="pr-hafta fade-step"><span>{tr({ uz: "Bu hafta to'lgan o'yinlar", ru: 'Заполненных игр на этой неделе' })}: <b key={hafta}>{hafta}</b></span>{!tugadi && <em className="pr-kul">{tr({ uz: "Bu raqam muammo gapiga qaraydi: o'yin kerakli odam soniga yetdimi?", ru: "Это число смотрит на формулировку проблемы: набрала ли игра нужное число людей?" })}</em>}</div>} />
               {s8Xulosa && <div className="pr-xul-chap">{s8Xulosa}</div>}
             </div>
             <div className="pr-s8-o">
               <PrdSahifa nom={<MaydonJamoa />} bolimlar={bolimlar} ochiq={S8_OCHIQ[done ? 3 : qadam]}
                 muhr={done && { tur: 'ok', t: tr(QABUL) }} ostiYorliq={done && tr({ uz: 'Mentor tekshiruvi', ru: 'Проверка Ментора' })} ostiMatn={done && tr(QABUL_KUL)} />
-              {done && <QIzoh>{tr({ uz: "PRD ni uch savol bilan ko'rish — Mentor tekshiruvi deyiladi. Javob — qabul yoki tuzatish.", ru: 'Просмотр PRD тремя вопросами называют проверкой Ментора. Ответ — «принято» или «исправление».' })}</QIzoh>}
+              {done && <QIzoh>{tr({ uz: "PRD ni uch savol bilan ko'rish — Mentor tekshiruvi deyiladi. Javob — qabul yoki tuzatish.", ru: "Когда PRD смотрят через три вопроса, это называют проверкой Ментора. Ответ — «принять» или «исправить»." })}</QIzoh>}
               {s8Xulosa && <div className="pr-xul-ost">{s8Xulosa}</div>}
             </div>
           </div>}
         />
       </div>
-      <MentorNote>{tr({ uz: "Dastur bu darsni «Mentor g'oyani tasdiqlaydi» deb ataydi — tekshiruv shu uch savol, javobi «qabul» yoki «tuzatish» (o'quvchi matnida «tasdiq» faqat «O'yin kuni tasdiq» funksiyasida). Tuzatish — yomon belgi emas: Mentor PRD si ham bitta tuzatishdan so'ng qabul qilindi. «Bajariladimi?» — saralashdagi savol bilan bir ildiz: u yerda g'oya, bu yerda uchta funksiya. Maydon pulini bo'lishish ikki mezondan ham o'tmaydi: muammo gapidan kelmaydi (boshqa g'oya) va to'lov ishi modulga sig'maydi.", ru: 'Программа называет этот урок «Ментор утверждает идею» — проверка — это три вопроса, ответ «принято» или «исправление» (в тексте ученика «подтверждение» — только в функции «Подтверждение в день игры»). Исправление — не плохой знак: PRD Ментора тоже приняли после одного исправления. «Выполнимо ли?» — того же корня, что вопрос при отборе: там идея, здесь три функции. Деление платы за поле не проходит оба критерия: не идёт из фразы-проблемы (другая идея) и работа с оплатой не помещается в модуль.' })}</MentorNote>
+      <MentorNote>{tr({ uz: "Dastur bu darsni «Mentor g'oyani tasdiqlaydi» deb ataydi — tekshiruv shu uch savol, javobi «qabul» yoki «tuzatish» (o'quvchi matnida «tasdiq» faqat «O'yin kuni tasdiq» funksiyasida). Tuzatish — yomon belgi emas: Mentor PRD si ham bitta tuzatishdan so'ng qabul qilindi. «Bajariladimi?» — saralashdagi savol bilan bir ildiz: u yerda g'oya, bu yerda uchta funksiya. Maydon pulini bo'lishish ikki mezondan ham o'tmaydi: muammo gapidan kelmaydi (boshqa g'oya) va to'lov ishi modulga sig'maydi.", ru: "Программа называет этот урок «Ментор утверждает идею» — проверка — это три вопроса, ответ «принять» или «исправить» (в тексте ученика «подтверждение» — только в функции «Подтверждение в день игры»). Исправление — не плохой знак: PRD Ментора тоже приняли после одного исправления. «Выполнимо ли?» — того же корня, что вопрос при отборе: там идея, здесь три функции. Деление платы за поле не проходит оба критерия: не идёт из формулировки проблемы (другая идея) и работа с оплатой не помещается в модуль." })}</MentorNote>
     </Stage>
   );
 };
@@ -1616,10 +1622,10 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <QMustaqil
         sarlavha={tr({ uz: <>Final g'oyangiz uchun <A>yetti bo'limni</A> yozing.</>, ru: <>Напишите <A>семь разделов</A> для своей финальной идеи.</> })}
         mentor={<Mentor>{finBor
-          ? tr({ uz: "Muammo va dalil o'tgan darsdan keldi — ularni o'qib chiqing va qolgan beshta bo'limni bittalab yozing.", ru: 'Проблема и доказательство пришли с прошлого урока — прочитайте их и напишите остальные пять разделов по одному.' })
-          : tr({ uz: "Yetti bo'limni bittalab yozing: avval muammo, so'ng dalil.", ru: 'Напишите семь разделов по одному: сначала проблему, потом доказательство.' })}</Mentor>}
+          ? tr({ uz: "Muammo va dalil o'tgan darsdan keldi — ularni o'qib chiqing va qolgan beshta bo'limni bittalab yozing.", ru: "Проблема и довод пришли с прошлого урока — прочитайте их и напишите остальные пять разделов по одному." })
+          : tr({ uz: "Yetti bo'limni bittalab yozing: avval muammo, so'ng dalil.", ru: "Напишите семь разделов по одному: сначала проблему, потом довод." })}</Mentor>}
         qadamlar={isMentor
-          ? <><MentorSanoq screen={screen} yorliqlar={[{ uz: "Yetti bo'limni yozganlar", ru: 'Написали семь разделов' }, { uz: 'Dalilida son borlar', ru: 'С числом в доказательстве' }]} hisob={(rows, jami) => [`${rows.length} / ${jami}`, String(rows.filter(r => r.picked > 0).length)]} />
+          ? <><MentorSanoq screen={screen} yorliqlar={[{ uz: "Yetti bo'limni yozganlar", ru: 'Написали семь разделов' }, { uz: 'Dalilida son borlar', ru: "С числом в доводе" }]} hisob={(rows, jami) => [`${rows.length} / ${jami}`, String(rows.filter(r => r.picked > 0).length)]} />
             <PrdSahifa nom={<MaydonJamoa />} bolimlar={mentorBolimlar()} muhr={{ tur: 'ok', t: tr(QABUL) }} /></>
           : (done ? toliqSahifa : ixcham)}
         forma={!isMentor && !done && joriy && <div className="pr-s9-k" key={`${joriy}-${kartaK}`}>
@@ -1627,7 +1633,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>}
       >
         {done && !isMentor && <QXulosa>{tr({ uz: "PRD ingiz yozildi: yetti bo'lim — bir sahifada.", ru: 'Ваш PRD написан: семь разделов — на одной странице.' })}</QXulosa>}
-        <MentorNote>{tr({ uz: "Taymer yo'q — 20 daqiqadan so'ng 10-ekranga o'ting; ulgurmagan bo'lim uyda yoziladi. Eng ko'p xato — dalilni fikr bilan yozish («hammaga kerak»): «Intervyuda nechta odamdan nechtasi aytdi?» deb so'rang. Ikkinchi xato — funksiya o'rniga butun mahsulot nomi: «Bu ish o'yinchiga aynan nima beradi?»", ru: 'Таймера нет — через 20 минут переходите на 10-й экран; несделанный раздел допишут дома. Самая частая ошибка — доказательство-мнение («всем нужно»): спросите «Сколько человек из скольких сказали это в интервью?». Вторая ошибка — вместо функции название всего продукта: «Что именно эта работа даёт игроку?»' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Taymer yo'q — 20 daqiqadan so'ng 10-ekranga o'ting; ulgurmagan bo'lim uyda yoziladi. Eng ko'p xato — dalilni fikr bilan yozish («hammaga kerak»): «Intervyuda nechta odamdan nechtasi aytdi?» deb so'rang. Ikkinchi xato — funksiya o'rniga butun mahsulot nomi: «Bu ish o'yinchiga aynan nima beradi?»", ru: "Таймера нет — через 20 минут переходите на 10-й экран; несделанный раздел допишут дома. Самая частая ошибка — довод-мнение («всем нужно»): спросите «Сколько человек из скольких сказали это в интервью?». Вторая ошибка — вместо функции название всего продукта: «Что именно эта работа даёт игроку?»" })}</MentorNote>
       </QMustaqil>
     </Stage>
   );
@@ -1673,10 +1679,10 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (vaqtincha && ochiq === 'dalil') { setUyda(u => u || 'dalil'); setQadam(q => q + 1); }
     setOchiq(null);
   };
-  const muhr = done && (uyda ? { tur: 'acc', t: tuzatishMatn(uyda) } : { tur: 'ok', t: juft ? tr(QABUL) : tr({ uz: 'Tuzatish topilmadi', ru: 'Исправлений не найдено' }) });
+  const muhr = done && (uyda ? { tur: 'acc', t: tuzatishMatn(uyda) } : { tur: 'ok', t: juft ? tr(QABUL) : tr({ uz: 'Tuzatish topilmadi', ru: "Исправлять нечего" }) });
   const xulosa = !done ? null : uyda
-    ? tr({ uz: `Tuzatish: ${tr(BOL[uyda].nom)} bo'limi. Uni uyga vazifada tuzatasiz.`, ru: `Исправление: раздел «${tr(BOL[uyda].nom)}». Исправите его в домашнем задании.` })
-    : !juft ? tr({ uz: "Uch savolga ham «ha» — o'z tekshiruvingizda tuzatish topilmadi.", ru: 'На все три вопроса «да» — в своей проверке вы не нашли исправлений.' })
+    ? tr({ uz: `Tuzatish: ${tr(BOL[uyda].nom)} bo'limi. Uni uyga vazifada tuzatasiz.`, ru: `Исправить: раздел «${tr(BOL[uyda].nom)}». Вы исправите его в домашнем задании.` })
+    : !juft ? tr({ uz: "Uch savolga ham «ha» — o'z tekshiruvingizda tuzatish topilmadi.", ru: "На все три вопроса «да» — в своей проверке вы не нашли, что исправить." })
       : tuzatildi ? tr({ uz: "Mentor misolidagidek: tuzatishdan so'ng PRD ingiz qabul qilindi.", ru: 'Как в примере Ментора: после исправления ваш PRD принят.' })
         : tr({ uz: "Uch savolga ham «ha» — PRD ingiz qabul qilindi.", ru: 'На все три вопроса «да» — ваш PRD принят.' });
   const bolimlar = BOLIMLAR.map(b => ({
@@ -1694,7 +1700,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           : tr({ uz: "Uch savolni o'zingizga bering va javobini PRD dan toping.", ru: 'Задайте себе три вопроса и найдите ответ в PRD.' })}</Mentor>}
         qadamlar={<div className="pr-qq"><QQadamlar qadamlar={TEKSHIRUV_SAVOLLAR.map(x => tr(x.savol))} joriy={done ? undefined : qadam} /></div>}
         forma={isMentor
-          ? <><MentorSanoq screen={screen} yorliqlar={[{ uz: 'Qabul', ru: 'Принято' }, { uz: 'Tuzatish', ru: 'Исправление' }]} hisob={(rows) => [String(rows.filter(r => r.picked === 0).length), String(rows.filter(r => r.picked > 0).length)]} />
+          ? <><MentorSanoq screen={screen} yorliqlar={[{ uz: 'Qabul', ru: "Принять" }, { uz: 'Tuzatish', ru: "Исправить" }]} hisob={(rows) => [String(rows.filter(r => r.picked === 0).length), String(rows.filter(r => r.picked > 0).length)]} />
             <PrdSahifa nom={<MaydonJamoa />} bolimlar={mentorBolimlar()} muhr={{ tur: 'ok', t: tr(QABUL) }} /></>
           : <div className={cxp('pr-s10', done && 'tugadi')}>
             <PrdSahifa nom={(fin && fin.goya) || tr(MENING_NOM)} nomYorliq={fin && fin.vaqtincha && tr(VAQTINCHA)} bolimlar={bolimlar} ochiq={done ? undefined : ['muammo', 'dalil', 'funksiyalar', 'boshRaqam']} muhr={muhr} />
@@ -1714,7 +1720,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>}
       >
         {xulosa && !isMentor && <QXulosa>{xulosa}</QXulosa>}
-        <MentorNote>{tr({ uz: "Juftlikda sherik o'z ekranida emas, o'quvchining ekranida savol beradi — 4 daqiqadan so'ng «O'rin almashing» deng. «Tuzatish» — yaxshi natija: muammo qurishdan oldin topildi. O'qituvchi 2–3 o'quvchining PRD sini sinf bilan uch savol orqali tekshiradi (ekranga chiqarib), qolganlar juftlikda.", ru: 'В паре партнёр задаёт вопросы не на своём экране, а на экране ученика — через 4 минуты скажите «Поменяйтесь местами». «Исправление» — хороший результат: проблему нашли до того, как строить. Учитель проверяет PRD 2–3 учеников вместе с классом тремя вопросами (выведя на экран), остальные — в парах.' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Juftlikda sherik o'z ekranida emas, o'quvchining ekranida savol beradi — 4 daqiqadan so'ng «O'rin almashing» deng. «Tuzatish» — yaxshi natija: muammo qurishdan oldin topildi. O'qituvchi 2–3 o'quvchining PRD sini sinf bilan uch savol orqali tekshiradi (ekranga chiqarib), qolganlar juftlikda.", ru: "В паре партнёр задаёт вопросы не на своём экране, а на экране ученика — через 4 минуты скажите «Поменяйтесь местами». Ответ «исправить» — хороший результат: проблему нашли до того, как строить. Учитель проверяет PRD 2–3 учеников вместе с классом тремя вопросами (выведя на экран), остальные — в парах." })}</MentorNote>
       </QMustaqil>
     </Stage>
   );
@@ -1722,9 +1728,9 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 11 — PRD.md (QKod, VS Code rejimi: kod oynasi yo'q — hujjat; PM-082 c, d, e) =====
 const MD_DARVOZA = [
-  { id: 'sar', t: '`## Muammo`', ok: true },
-  { id: 'izoh', t: '`// Muammo`', x: { uz: "`//` — JavaScript izohi; Markdown'da u oddiy matn.", ru: "`//` — комментарий JavaScript; в Markdown это обычный текст." } },
-  { id: 'qator', t: '`Muammo:`', x: { uz: "Bu oddiy qator bo'lib chiqadi, sarlavha emas.", ru: 'Это получится обычной строкой, а не заголовком.' } }
+  { id: 'sar', t: { uz: '`## Muammo`', ru: '`## Проблема`' }, ok: true },
+  { id: 'izoh', t: { uz: '`// Muammo`', ru: '`// Проблема`' }, x: { uz: "`//` — JavaScript izohi; Markdown'da u oddiy matn.", ru: "`//` — комментарий JavaScript; в Markdown это обычный текст." } },
+  { id: 'qator', t: { uz: '`Muammo:`', ru: '`Проблема:`' }, x: { uz: "Bu oddiy qator bo'lib chiqadi, sarlavha emas.", ru: 'Это получится обычной строкой, а не заголовком.' } }
 ];
 const MD_VAZIFA = [
   { uz: 'Kompyuteringizda mahsulotingiz nomi bilan papka oching va VS Code\'da unda `PRD.md` faylini yarating.', ru: 'Откройте на компьютере папку с названием вашего продукта и создайте в ней в VS Code файл `PRD.md`.' },
@@ -1739,12 +1745,12 @@ const nusxala = (matn) => {
 // PRD.md namunasi — o'quvchining PRD sidan (yo'q bo'lsa — Mentor misoli); #, ##, «- » belgilari nusxalanmaydi (qo'lda teriladi)
 const mdQismlar = (p) => {
   const ol = (id, x) => (x && String(x).trim()) || '…';
-  if (!p) return { nom: 'Maydon Jamoa', tek: tr({ uz: 'qabul', ru: 'принято' }), bo: BOLIMLAR.map(b => {
+  if (!p) return { nom: 'Maydon Jamoa', tek: tr({ uz: 'qabul', ru: "принять" }), bo: BOLIMLAR.map(b => {
     if (b.id === 'funksiyalar') return { id: b.id, ro: MENTOR_PRD.funksiyalar.map(tr) };
     if (b.id === 'qilmaymiz') return { id: b.id, q: [`${tr(QUTI_NOM.qilmaymiz)}: ${MENTOR_PRD.qilmaymiz.map(tr).join(', ')}.`, `${tr(QUTI_NOM.keyin)}: ${MENTOR_PRD.keyin.map(tr).join(', ')}.`] };
     return { id: b.id, q: [tr(MENTOR_PRD[b.id])] };
   }) };
-  return { nom: null, tek: p.tekshiruv === 'qabul' ? tr({ uz: 'qabul', ru: 'принято' }) : p.tekshiruv === 'tuzatish' ? tr({ uz: 'tuzatish', ru: 'исправление' }) : null, bo: BOLIMLAR.map(b => {
+  return { nom: null, tek: p.tekshiruv === 'qabul' ? tr({ uz: 'qabul', ru: "принять" }) : p.tekshiruv === 'tuzatish' ? tr({ uz: 'tuzatish', ru: "исправить" }) : null, bo: BOLIMLAR.map(b => {
     if (b.id === 'funksiyalar') return { id: b.id, ro: p.funksiyalar.map(x => ol(b.id, x)) };
     if (b.id === 'qilmaymiz') return { id: b.id, q: [`${tr(QUTI_NOM.qilmaymiz)}: ${ol(b.id, p.qilmaymiz)}`, `${tr(QUTI_NOM.keyin)}: ${ol(b.id, p.keyin.filter(x => x.trim()).join(', '))}`] };
     return { id: b.id, q: [ol(b.id, p[b.id])] };
@@ -1804,7 +1810,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className={cxp('pr-darvoza-ro', !gpick && !done && 'pr-guruh')}>
               {MD_DARVOZA.map((g, i) => {
                 const silk = miss && miss.id === g.id;
-                return <QChip key={silk ? `${g.id}-${miss.k}` : g.id} silk={silk} holat={gpick === g.id || (done && g.ok) ? 'ok' : silk ? 'err' : undefined} disabled={!!gpick && gpick !== g.id} style={{ '--i': i }} onClick={() => pickGate(g)}>{fmtCode(g.t)}</QChip>;
+                return <QChip key={silk ? `${g.id}-${miss.k}` : g.id} silk={silk} holat={gpick === g.id || (done && g.ok) ? 'ok' : silk ? 'err' : undefined} disabled={!!gpick && gpick !== g.id} style={{ '--i': i }} onClick={() => pickGate(g)}>{fmtCode(tr(g.t))}</QChip>;
               })}
             </div>
             {miss && <QXato>{fmtCode(tr(MD_DARVOZA.find(g => g.id === miss.id).x))}</QXato>}
@@ -1813,7 +1819,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <ol className={cxp('pr-vazifa', !ochildi && 'xira')}>{MD_VAZIFA.map((x, i) => <li key={i} className={cxp(done && 'ok')}><i>{done ? '✓' : i + 1}</i><span>{fmtCode(tr(x))}</span></li>)}</ol>
           {done && <QXulosa>{tr({ uz: "PRD ingiz fayl bo'ldi: yetti bo'lim — kod yozilishidan oldin.", ru: 'Ваш PRD стал файлом: семь разделов — до того, как написан код.' })}</QXulosa>}
         </>}
-        yordam={ochildi && yordam && <div className="pr-kyordam"><QIzoh>{fmtCode(tr({ uz: "Bitta bo'limdan boshlang: `## Muammo`, ostiga muammo gapingiz. Sarlavhadan oldin bo'sh qator qoldiring. Ko'rinish yonma-yon kerak bo'lsa — Ctrl+K, so'ng V.", ru: 'Начните с одного раздела: `## Muammo`, под ним — ваша фраза-проблема. Перед заголовком оставьте пустую строку. Если просмотр нужен рядом — Ctrl+K, потом V.' }))}</QIzoh></div>}
+        yordam={ochildi && yordam && <Korinsin className="pr-kyordam"><QIzoh>{fmtCode(tr({ uz: "Bitta bo'limdan boshlang: `## Muammo`, ostiga muammo gapingiz. Sarlavhadan oldin bo'sh qator qoldiring. Ko'rinish yonma-yon kerak bo'lsa — Ctrl+K, so'ng V.", ru: "Начните с одного раздела: `## Проблема`, под ним — ваша формулировка проблемы. Перед заголовком оставьте пустую строку. Если просмотр нужен рядом — Ctrl+K, потом V." }))}</QIzoh></Korinsin>}
         bajardim={<div className="pr-bajardim">
           {ochildi && !done && <QTugma ikkinchi onClick={() => setYordam(o => !o)}>{tr(YORDAM_T)}</QTugma>}
           {!done && <QTugma className={halqa(ochildi && !isMentor)} disabled={!ochildi || isMentor} onClick={bajardim}>{ochildi ? tr({ uz: "✓ PRD.md yozildi — yetti sarlavha ko'rindi", ru: '✓ PRD.md написан — видно семь заголовков' }) : tr({ uz: 'Avval savolni yeching', ru: 'Сначала решите вопрос' })}</QTugma>}
@@ -1831,18 +1837,18 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen12 = (props) => (
   <QuestionScreen {...props} scope="final" eyebrow={tr({ uz: 'Yakuniy tekshiruv', ru: 'Итоговая проверка' })}
     questionText="Sherigingiz PRD sida Dalil bo'limi bo'sh. Tekshiruv javobi qanday?"
-    question={tr({ uz: <h2 className="title h-ask">Sherigingiz PRD sida Dalil bo'limi bo'sh. <A>Tekshiruv javobi qanday?</A></h2>, ru: <h2 className="title h-ask">В PRD партнёра раздел «Доказательство» пуст. <A>Какой ответ проверки?</A></h2> })}
+    question={tr({ uz: <h2 className="title h-ask">Sherigingiz PRD sida Dalil bo'limi bo'sh. <A>Tekshiruv javobi qanday?</A></h2>, ru: <h2 className="title h-ask">В PRD партнёра раздел «Довод» пуст. <A>Какой ответ проверки?</A></h2> })}
     options={[
-      { uz: 'Qabul — qolgan olti bo\'lim yozilgan', ru: 'Принято — остальные шесть разделов написаны' },
-      { uz: 'Tuzatish — PRD ni boshidan qayta yozish', ru: 'Исправление — переписать PRD с начала' },
-      { uz: "Qabul — dalilni kod yozilgach qo'shadi", ru: 'Принято — доказательство добавит после кода' },
-      { uz: "Tuzatish — Dalil bo'limini to'ldirish", ru: 'Исправление — заполнить раздел «Доказательство»' }
+      { uz: 'Qabul — qolgan olti bo\'lim yozilgan', ru: "Принять — остальные шесть разделов написаны" },
+      { uz: 'Tuzatish — PRD ni boshidan qayta yozish', ru: "Исправить — переписать PRD с начала" },
+      { uz: "Qabul — dalilni kod yozilgach qo'shadi", ru: "Принять — довод добавят после кода" },
+      { uz: "Tuzatish — Dalil bo'limini to'ldirish", ru: "Исправить — заполнить раздел «Довод»" }
     ]} correctIdx={3}
-    explainCorrect={{ uz: "«Dalil bormi?» savoliga javob — yo'q: tuzatish, bo'lim nomi bilan.", ru: 'Ответ на вопрос «Есть ли доказательство?» — нет: исправление с названием раздела.' }}
+    explainCorrect={{ uz: "«Dalil bormi?» savoliga javob — yo'q: tuzatish, bo'lim nomi bilan.", ru: "Ответ на вопрос «Есть ли довод?» — нет: исправить, с названием раздела." }}
     explainWrong={{
-      0: { uz: 'Qabul uchun uch savolga ham «ha» kerak.', ru: 'Для «принято» нужно «да» на все три вопроса.' },
-      1: { uz: "Tuzatish butun PRD ni emas, bitta bo'limni aytadi.", ru: 'Исправление называет не весь PRD, а один раздел.' },
-      2: { uz: "Amazon'dagidek: hujjat koddan oldin to'liq bo'ladi.", ru: 'Как в Amazon: документ полон до кода.' },
+      0: { uz: 'Qabul uchun uch savolga ham «ha» kerak.', ru: "Чтобы принять, нужно «да» на все три вопроса." },
+      1: { uz: "Tuzatish butun PRD ni emas, bitta bo'limni aytadi.", ru: "Ответ «исправить» называет не весь PRD, а один раздел." },
+      2: { uz: "Amazon'dagidek: hujjat koddan oldin to'liq bo'ladi.", ru: "Как в Amazon: документ полностью готов до кода." },
       default: { uz: "Qaysi savolga «yo'q» chiqdi — shuni eslang.", ru: 'На какой вопрос вышло «нет» — вспомните это.' }
     }}
     vizual={<PrdSahifa rejim="ixcham" className="kichik" sanoq={6} muhr={{ tur: 'acc', t: tuzatishMatn('dalil') }}
@@ -1915,7 +1921,7 @@ const Confetti = () => {
 
 // Podium savol yorliqlari (SCORED_IDX indekslariga mos: 3, 5, 7, 12 — q22)
 const Q_LABELS = {
-  3: { uz: "1 — Dalil bo'limi", ru: '1 — Раздел «Доказательство»' },
+  3: { uz: "1 — Dalil bo'limi", ru: "1 — Раздел «Довод»" },
   5: { uz: '2 — Qilmaymiz yoki Keyin', ru: '2 — Не делаем или Потом' },
   7: { uz: '3 — Amazon', ru: '3 — Amazon' },
   12: { uz: '4 — Tekshiruv javobi', ru: '4 — Ответ проверки' }
@@ -1925,30 +1931,30 @@ const QUIZ_MS = 15000;
 const QZ_BG_SHAPES = [
   { ch: 'PRD', l: 5, t: 10, s: 30, d: 19, dl: 0 },
   { ch: { uz: 'muammo', ru: 'проблема' }, l: 85, t: 8, s: 28, d: 23, dl: 1.5 },
-  { ch: { uz: 'dalil', ru: 'доказательство' }, l: 8, t: 72, s: 26, d: 27, dl: 0.8 },
+  { ch: { uz: 'dalil', ru: "довод" }, l: 8, t: 72, s: 26, d: 27, dl: 0.8 },
   { ch: { uz: 'kim uchun', ru: 'для кого' }, l: 76, t: 68, s: 24, d: 21, dl: 2.2 },
   { ch: { uz: 'yechim', ru: 'решение' }, l: 45, t: 86, s: 24, d: 25, dl: 1.1 },
   { ch: { uz: 'funksiya', ru: 'функция' }, l: 66, t: 26, s: 24, d: 17, dl: 0.4 },
   { ch: { uz: 'Qilmaymiz', ru: 'Не делаем' }, l: 26, t: 34, s: 22, d: 20, dl: 1.9 },
   { ch: { uz: 'Keyin', ru: 'Потом' }, l: 20, t: 16, s: 22, d: 18, dl: 2.9 },
   { ch: { uz: 'bosh raqam', ru: 'главное число' }, l: 56, t: 54, s: 20, d: 22, dl: 0.6 },
-  { ch: { uz: 'qabul', ru: 'принято' }, l: 36, t: 62, s: 22, d: 24, dl: 1.3 },
-  { ch: { uz: 'tuzatish', ru: 'исправление' }, l: 88, t: 44, s: 20, d: 26, dl: 2.5 },
+  { ch: { uz: 'qabul', ru: "принять" }, l: 36, t: 62, s: 22, d: 24, dl: 1.3 },
+  { ch: { uz: 'tuzatish', ru: "исправить" }, l: 88, t: 44, s: 20, d: 26, dl: 2.5 },
   { ch: 'Markdown', l: 4, t: 46, s: 20, d: 21, dl: 3.1 }
 ];
 // ⚡ Jonli viktorina — 12 savol (MD aynan); to'g'ri javob o'rni: A 3·6·9 · B 1·5·12 · C 4·8·11 · D 2·7·10 (3/3/3/3)
 const QUIZ_BANK = [
-  { q: { uz: "8-Moduldagi to'rt katakka PRD da yana nima qo'shildi?", ru: 'Что ещё добавилось в PRD к четырём клеткам из 8-го модуля?' }, opts: [{ uz: 'Ekranlar rasmi, ranglar va shriftlar', ru: 'Картинки экранов, цвета и шрифты' }, { uz: 'Dalil, funksiyalar va qurilmaydiganlar', ru: 'Доказательство, функции и то, что не строим' }, { uz: 'Ishning narxi, muddati va ish jadvali', ru: 'Цена работы, срок и график' }, { uz: "Dasturchilar ro'yxati va ularning ishi", ru: 'Список программистов и их работа' }], correct: 1 },
-  { q: { uz: 'Sinfdoshingiz dalilga «hammaga yoqadi» deb yozdi. Nima yetishmaydi?', ru: 'Одноклассник написал в доказательстве «всем нравится». Чего не хватает?' }, opts: [{ uz: 'Ilovaning chiroyli nomi va rangi', ru: 'Красивое название и цвет приложения' }, { uz: 'Yechimning uzun va batafsil matni', ru: 'Длинный подробный текст решения' }, { uz: "O'xshash ilovalarning ro'yxati", ru: 'Список похожих приложений' }, { uz: 'Intervyuda buni aytganlar soni', ru: 'Число сказавших это в интервью' }], correct: 3 },
+  { q: { uz: "8-Moduldagi to'rt katakka PRD da yana nima qo'shildi?", ru: "Что ещё добавилось в PRD к четырём ячейкам из 8-го модуля?" }, opts: [{ uz: 'Ekranlar rasmi, ranglar va shriftlar', ru: 'Картинки экранов, цвета и шрифты' }, { uz: 'Dalil, funksiyalar va qurilmaydiganlar', ru: "Довод, функции и то, что не строим" }, { uz: 'Ishning narxi, muddati va ish jadvali', ru: 'Цена работы, срок и график' }, { uz: "Dasturchilar ro'yxati va ularning ishi", ru: 'Список программистов и их работа' }], correct: 1 },
+  { q: { uz: 'Sinfdoshingiz dalilga «hammaga yoqadi» deb yozdi. Nima yetishmaydi?', ru: "Одноклассник написал в доводе «всем нравится». Чего не хватает?" }, opts: [{ uz: 'Ilovaning chiroyli nomi va rangi', ru: 'Красивое название и цвет приложения' }, { uz: 'Yechimning uzun va batafsil matni', ru: 'Длинный подробный текст решения' }, { uz: "O'xshash ilovalarning ro'yxati", ru: 'Список похожих приложений' }, { uz: 'Intervyuda buni aytganlar soni', ru: 'Число сказавших это в интервью' }], correct: 3 },
   { q: { uz: 'Qaysi ish uchta asosiy funksiya qatoriga kiradi?', ru: 'Какая работа входит в три основные функции?' }, opts: [{ uz: "Busiz muammo hal bo'lmaydigan ish", ru: 'Работа, без которой проблема не решится' }, { uz: "Eng chiroyli ko'rinadigan ish", ru: 'Самая красивая на вид работа' }, { uz: "Boshqa ilovalarda bor bo'lgan ish", ru: 'Работа, которая есть в других приложениях' }, { uz: "Qurish uchun eng oson bo'lgan ish", ru: 'Самая лёгкая для постройки работа' }], correct: 0 },
   { q: { uz: 'Yozuvlarda sababi bor, lekin hozir shart emas. Qayerga yozasiz?', ru: 'Причина в записях есть, но сейчас не обязательно. Куда запишете?' }, opts: [{ uz: 'Uchta asosiy funksiya qatoriga', ru: 'В три основные функции' }, { uz: "Qilmaymiz qutisiga, o'chirib", ru: 'В коробку «Не делаем», удалив' }, { uz: "Keyin qutisiga, saqlab qo'yib", ru: 'В коробку «Потом», сохранив' }, { uz: "Yechim gapiga qo'shib yozib", ru: 'Дописав во фразу решения' }], correct: 2 },
-  { q: { uz: "«O'yinchilar ilovadan mamnun» — bosh raqam bo'la oladimi?", ru: '«Игроки довольны приложением» — может ли это быть главным числом?' }, opts: [{ uz: "Ha — o'yinchilarning fikri muhim", ru: 'Да — мнение игроков важно' }, { uz: "Yo'q — mamnunlikni sanab bo'lmaydi", ru: 'Нет — довольство нельзя посчитать' }, { uz: 'Ha — intervyuda shunday deyishgan', ru: 'Да — так сказали в интервью' }, { uz: "Yo'q — bosh raqam faqat pul bo'ladi", ru: 'Нет — главное число бывает только деньгами' }], correct: 1 },
-  { q: { uz: '«Bajariladimi?» savoli nimani tekshiradi?', ru: 'Что проверяет вопрос «Выполнимо ли?»' }, opts: [{ uz: "Funksiyalar modulga sig'ishini", ru: 'Помещаются ли функции в модуль' }, { uz: 'Muammo gapi qanchalik qisqaligini', ru: 'Насколько коротка фраза-проблема' }, { uz: 'Dalilda nechta odam yozilganini', ru: 'Сколько людей записано в доказательстве' }, { uz: 'Bosh raqam qanday nomlanganini', ru: 'Как названо главное число' }], correct: 0 },
-  { q: { uz: 'Mentor tekshiruvida uch savolga ham «ha». Javob qanday?', ru: 'В проверке Ментора на все три вопроса «да». Какой ответ?' }, opts: [{ uz: 'Tuzatish — har ehtimolga qarshi', ru: 'Исправление — на всякий случай' }, { uz: 'Tuzatish — yana intervyular kerak', ru: 'Исправление — нужны ещё интервью' }, { uz: "Javob yo'q — PRD dan oldin kod kutiladi", ru: 'Ответа нет — до PRD ждут код' }, { uz: "Qabul — PRD bilan qursa bo'ladi", ru: 'Принято — можно строить по PRD' }], correct: 3 },
+  { q: { uz: "«O'yinchilar ilovadan mamnun» — bosh raqam bo'la oladimi?", ru: '«Игроки довольны приложением» — может ли это быть главным числом?' }, opts: [{ uz: "Ha — o'yinchilarning fikri muhim", ru: 'Да — мнение игроков важно' }, { uz: "Yo'q — mamnunlikni sanab bo'lmaydi", ru: 'Нет — довольство нельзя посчитать' }, { uz: 'Ha — intervyuda shunday deyishgan', ru: 'Да — так сказали в интервью' }, { uz: "Yo'q — bosh raqam faqat pul bo'ladi", ru: "Нет — главным числом бывают только деньги" }], correct: 1 },
+  { q: { uz: '«Bajariladimi?» savoli nimani tekshiradi?', ru: 'Что проверяет вопрос «Выполнимо ли?»' }, opts: [{ uz: "Funksiyalar modulga sig'ishini", ru: 'Помещаются ли функции в модуль' }, { uz: 'Muammo gapi qanchalik qisqaligini', ru: "Насколько коротка формулировка проблемы" }, { uz: 'Dalilda nechta odam yozilganini', ru: "Сколько людей записано в доводе" }, { uz: 'Bosh raqam qanday nomlanganini', ru: 'Как названо главное число' }], correct: 0 },
+  { q: { uz: 'Mentor tekshiruvida uch savolga ham «ha». Javob qanday?', ru: 'В проверке Ментора на все три вопроса «да». Какой ответ?' }, opts: [{ uz: 'Tuzatish — har ehtimolga qarshi', ru: "Исправить — на всякий случай" }, { uz: 'Tuzatish — yana intervyular kerak', ru: "Исправить — нужны ещё интервью" }, { uz: "Javob yo'q — PRD dan oldin kod kutiladi", ru: 'Ответа нет — до PRD ждут код' }, { uz: "Qabul — PRD bilan qursa bo'ladi", ru: "Принять — можно строить по PRD" }], correct: 3 },
   { q: { uz: "Amazon'da press-reliz qanday yoziladi?", ru: 'Как в Amazon пишут пресс-релиз?' }, opts: [{ uz: 'Mahsulot sotuvga chiqqan kunida', ru: 'В день выхода продукта в продажу' }, { uz: 'Kod tugagach, xatolar bilan birga', ru: 'Когда код готов, вместе с ошибками' }, { uz: "Mahsulot go'yo chiqib bo'lgandek", ru: 'Как будто продукт уже вышел' }, { uz: 'Dasturchilar uchun ichki xat qilib', ru: 'Как внутреннее письмо программистам' }], correct: 2 },
   { q: { uz: "Amazon'da press-reliz hech kimni qiziqtirmasa, nima bo'ladi?", ru: 'Что будет в Amazon, если пресс-релиз никого не заинтересует?' }, opts: [{ uz: 'Mahsulot umuman qilinmaydi', ru: 'Продукт вообще не делают' }, { uz: 'Kichikroq hajmda quriladi', ru: 'Строят в меньшем объёме' }, { uz: 'Baribir oxirigacha quriladi', ru: 'Всё равно строят до конца' }, { uz: 'Boshqa nom bilan chiqadi', ru: 'Выходит под другим названием' }], correct: 0 },
   { q: { uz: "Mentor misolida maydon pulini bo'lishish nega funksiyalardan chiqdi?", ru: 'Почему в примере Ментора деление платы за поле вышло из функций?' }, opts: [{ uz: "Yozuvlarda unga hech qanday sabab yo'q", ru: 'В записях для неё нет никакой причины' }, { uz: 'Bosh raqamni u hech sanab bera olmadi', ru: 'Она никак не могла посчитать главное число' }, { uz: 'Telegram guruhida bu ish allaqachon bor', ru: 'В группе Telegram эта работа уже есть' }, { uz: "U alohida g'oya, shu modulga sig'madi", ru: 'Это отдельная идея, не поместилась в модуль' }], correct: 3 },
-  { q: { uz: 'PRD.md faylida «## Dalil» qatori nima?', ru: 'Что такое строка «## Dalil» в файле PRD.md?' }, opts: [{ uz: "JavaScript'dagi izoh qatori", ru: 'Строка комментария в JavaScript' }, { uz: "Fayl nomining bitta bo'lagi", ru: 'Одна часть имени файла' }, { uz: "Dalil bo'limining sarlavhasi", ru: 'Заголовок раздела «Доказательство»' }, { uz: "Ro'yxatdagi bitta band qatori", ru: 'Строка одного пункта списка' }], correct: 2 },
+  { q: { uz: 'PRD.md faylida «## Dalil» qatori nima?', ru: 'Что такое строка «## Довод» в файле PRD.md?' }, opts: [{ uz: "JavaScript'dagi izoh qatori", ru: 'Строка комментария в JavaScript' }, { uz: "Fayl nomining bitta bo'lagi", ru: 'Одна часть имени файла' }, { uz: "Dalil bo'limining sarlavhasi", ru: "Заголовок раздела «Довод»" }, { uz: "Ro'yxatdagi bitta band qatori", ru: 'Строка одного пункта списка' }], correct: 2 },
   { q: { uz: 'PRD dagi yechim bo\'limiga nima yoziladi?', ru: 'Что пишется в разделе «Решение» в PRD?' }, opts: [{ uz: "Uchta funksiyaning to'liq tavsifi", ru: 'Полное описание трёх функций' }, { uz: 'Mahsulot nima qilishi, bir gapda', ru: 'Что делает продукт, одной фразой' }, { uz: 'Intervyudagi har bir odamning gapi', ru: 'Слова каждого человека из интервью' }, { uz: 'Ilova qaysi kod tilida yozilishi', ru: 'На каком языке кода пишется приложение' }], correct: 1 },
 ];
 
@@ -2499,18 +2505,18 @@ const MentorPracticeStats = ({ live, screen }) => {
 
 // 🃏 KARTOCHKALAR — alohida ekran, Mentorsiz (SABOQ 12, 16; KORPUS §61): mexanika qolipda — QKartochka (DE-204)
 const KARTOCHKALAR = [
-  { front: { uz: "8-Moduldagi to'rt katakka qaysi uch bo'lim qo'shildi?", ru: 'Какие три раздела добавились к четырём клеткам из 8-го модуля?' }, back: { uz: "Dalil, uchta asosiy funksiya va «Qilmaymiz / Keyin»", ru: 'Доказательство, три основные функции и «Не делаем / Потом»' } },
-  { front: { uz: "Bu PRD ning dalil bo'limiga nima yoziladi?", ru: 'Что пишется в раздел «Доказательство» этого PRD?' }, back: { uz: "Intervyudan sanoq: nechta odamdan nechtasida muammo bo'lgan", ru: 'Счёт из интервью: у скольких из скольких была проблема' } },
+  { front: { uz: "8-Moduldagi to'rt katakka qaysi uch bo'lim qo'shildi?", ru: "Какие три раздела добавились к четырём ячейкам из 8-го модуля?" }, back: { uz: "Dalil, uchta asosiy funksiya va «Qilmaymiz / Keyin»", ru: "Довод, три основные функции и «Не делаем / Потом»" } },
+  { front: { uz: "Bu PRD ning dalil bo'limiga nima yoziladi?", ru: "Что пишется в раздел «Довод» этого PRD?" }, back: { uz: "Intervyudan sanoq: nechta odamdan nechtasida muammo bo'lgan", ru: "Подсчёт из интервью: у скольких из скольких была проблема" } },
   { front: { uz: "9-Moduldagi «Qilamiz» qutisi PRD ning qaysi bo'limi bo'ldi?", ru: 'Каким разделом PRD стала коробка «Делаем» из 9-го модуля?' }, back: { uz: "Uchta asosiy funksiya bo'limi", ru: 'Раздел «Три основные функции»' } },
   { front: { uz: '«Keyin» bilan «Qilmaymiz» farqi nima?', ru: 'Чем «Потом» отличается от «Не делаем»?' }, back: { uz: "«Keyin»ga yozuvlarda sabab bor, «Qilmaymiz»ga yo'q", ru: 'У «Потом» в записях есть причина, у «Не делаем» — нет' } },
-  { front: { uz: 'Nega PRD ga qurilmaydigan ish ham yoziladi?', ru: 'Зачем в PRD пишут и то, что не будут строить?' }, back: { uz: "Yozilmasa, quradigan odam uni o'z taxmini bilan qo'shishi mumkin", ru: 'Если не написать, строящий может добавить это по своей догадке' } },
+  { front: { uz: 'Nega PRD ga qurilmaydigan ish ham yoziladi?', ru: 'Зачем в PRD пишут и то, что не будут строить?' }, back: { uz: "Yozilmasa, quradigan odam uni o'z taxmini bilan qo'shishi mumkin", ru: "Если не написать, тот, кто строит, может добавить это по своей догадке" } },
   { front: { uz: "Bosh raqam nimani ko'rsatadi?", ru: 'Что показывает главное число?' }, back: { uz: "Mahsulot o'z ishini bajarganini ko'rsatadigan bitta raqam", ru: 'Одно число, которое показывает, что продукт делает свою работу' } },
   { front: { uz: 'Mentor tekshiruvida qaysi uch savol beriladi?', ru: 'Какие три вопроса задают в проверке Ментора?' }, back: null },
-  { front: { uz: 'Mentor tekshiruvining javobi qanday bo\'ladi?', ru: 'Каким бывает ответ проверки Ментора?' }, back: { uz: 'Qabul yoki tuzatish; tuzatishda bo\'lim nomi aytiladi', ru: 'Принято или исправление; при исправлении называют раздел' } },
+  { front: { uz: 'Mentor tekshiruvining javobi qanday bo\'ladi?', ru: 'Каким бывает ответ проверки Ментора?' }, back: { uz: 'Qabul yoki tuzatish; tuzatishda bo\'lim nomi aytiladi', ru: "Принять или исправить; если исправить — называют раздел" } },
   { front: { uz: "Mentor misolida tekshiruvdan so'ng uchinchi funksiya qaysi bo'ldi?", ru: 'Какой стала третья функция в примере Ментора после проверки?' }, back: F_NAVBAT },
   { front: { uz: "Amazon'da press-reliz qanday yoziladi?", ru: 'Как в Amazon пишут пресс-релиз?' }, back: { uz: "Go'yo mahsulot allaqachon chiqqandek — kod hali yo'q", ru: 'Как будто продукт уже вышел — кода ещё нет' } },
   { front: { uz: 'Amazon o\'zi qanday boshlagan?', ru: 'Как начинал сам Amazon?' }, back: { uz: 'Tor: 1995-yilda faqat kitob sotgan', ru: 'Узко: в 1995 году продавал только книги' } },
-  { front: { uz: '`PRD.md` da bo\'lim sarlavhasi qanday yoziladi?', ru: 'Как в `PRD.md` пишется заголовок раздела?' }, back: { uz: '`##` belgisi bilan, masalan `## Dalil`', ru: 'Символом `##`, например `## Dalil`' } }
+  { front: { uz: '`PRD.md` da bo\'lim sarlavhasi qanday yoziladi?', ru: 'Как в `PRD.md` пишется заголовок раздела?' }, back: { uz: '`##` belgisi bilan, masalan `## Dalil`', ru: 'Символом `##`, например `## Довод`' } }
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2571,7 +2577,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   // «Endi siz bilasiz» — bugungi asosiy fikrni takrorlamaydi (T-048); s15 RECAP 5 band
   const RECAP = [
     { uz: "Bizda to'liq PRD — g'oyaning yetti bo'limli bir sahifasi.", ru: 'У нас полный PRD — одна страница идеи из семи разделов.' },
-    { uz: 'Bu PRD da dalil — intervyudan sanoq: nechta odamdan nechtasi.', ru: 'В этом PRD доказательство — счёт из интервью: у скольких из скольких.' },
+    { uz: 'Bu PRD da dalil — intervyudan sanoq: nechta odamdan nechtasi.', ru: "В этом PRD довод — подсчёт из интервью: у скольких из скольких." },
     { uz: "«Keyin»ga yozuvlarda sababi bor ish, «Qilmaymiz»ga sababsiz ish yoziladi.", ru: 'В «Потом» пишут работу с причиной в записях, в «Не делаем» — без причины.' },
     { uz: `Mentor tekshiruvi uch savol beradi: ${tsQator()}.`, ru: `Проверка Ментора задаёт три вопроса: ${tsQator()}.` },
     { uz: "Amazon'da hujjat koddan oldin yoziladi.", ru: 'В Amazon документ пишут до кода.' }
@@ -2587,10 +2593,10 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
         chip={tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}
         togri={correct} jami={total}
         sarlavha={tuzatishBor && !isMentorL
-          ? tr({ uz: <>PRD ingiz yozildi — <A>bitta bo'lim tuzatiladi</A>.</>, ru: <>Ваш PRD написан — <A>один раздел исправят</A>.</> })
+          ? tr({ uz: <>PRD ingiz yozildi — <A>bitta bo'lim tuzatiladi</A>.</>, ru: <>Ваш PRD написан — <A>один раздел нужно исправить</A>.</> })
           : tr({ uz: <>PRD ingiz yozildi va <A>tekshirildi</A>.</>, ru: <>Ваш PRD написан и <A>проверен</A>.</> })}
         cta={<>
-          <div className="pr-fikr fade-up d1"><span className="pr-fikr-l">{tr({ uz: 'Bugungi asosiy fikr', ru: 'Главная мысль урока' })}</span><p className="pr-fikr-t small">{tr({ uz: "G'oya bir sahifaga yetti bo'lim bo'lib yoziladi va qurishdan oldin uch savol bilan tekshiriladi.", ru: 'Идея записывается на одну страницу семью разделами и до постройки проверяется тремя вопросами.' })}</p></div>
+          <div className="pr-fikr fade-up d1"><span className="pr-fikr-l">{tr({ uz: 'Bugungi asosiy fikr', ru: 'Главная мысль урока' })}</span><p className="pr-fikr-t small">{tr({ uz: "G'oya bir sahifaga yetti bo'lim bo'lib yoziladi va qurishdan oldin uch savol bilan tekshiriladi.", ru: "Идею записывают на одну страницу из семи разделов и до постройки проверяют тремя вопросами." })}</p></div>
           {!isMentorL && <PStrip />}
           <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
             <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: 'Mentorni kuting', ru: 'Дождитесь наставника' }) : undefined} />
@@ -2937,7 +2943,7 @@ export default function PmPrdLesson({ lang: langProp, onFinished, liveToken }) {
         .pr-nuq i { width: 8px; height: 8px; border-radius: 50%; background: ${T.line}; }
         .pr-nuq i.ok { background: ${T.ok}; } .pr-nuq i.cur { background: ${T.accent}; }
         .pr-voqea { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; }
-        .pr-voqea > .zoomable { width: 100%; max-width: 520px; }
+        .pr-voqea > .zoomable { width: 100%; max-width: 400px; } /* 1280×800 da bashorat kartasi panel ustida (F-1007-289) */
         p.pr-brend-t { font-size: 13.5px; color: ${T.ink2}; }
         .pr-voqea-h { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(16px,1.9vw,19px); color: ${T.ink}; animation: pr-kir 0.4s ease-out both; }
         .pr-voqea .pr-bash, .pr-voqea .pr-bashq, .pr-voqea p.q-xulosa { width: 100%; max-width: 640px; text-align: left; }

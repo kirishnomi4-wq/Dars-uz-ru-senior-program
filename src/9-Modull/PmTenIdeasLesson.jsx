@@ -8,6 +8,7 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // Saqlanadi: pm-m9d1-goyalar (8-ekran; 2-dars o'qiydi) · pm-m9d1-code (kod oynasi). O'qiydi: pm-m7d1-muammolar, pm-m7d3-mvp (yo'q bo'lsa ham ishlaydi).
 // JONLI: useLiveSession + INLINE_KEYS + CodeStrike arena + Podium. PRODUCTION: <style> ichidagi @import OLIB TASHLANADI.
 // ============================================================
+// ru-qoldiq-istisno s10: muammo yechim hali yo'q o'yinga odam o'yinchilar o'yin va qo'shilaman uchun
 
 // D3: palitra umumiy qolipdan — neytral 5 · modul rangi 2 · holat 2 (shadowBase — soya, rang tokeni emas)
 const T = { ...qolipRang('pm'), shadowBase: '27, 22, 48' };
@@ -257,7 +258,7 @@ const INLINE_KEYS = { s3: 2, s5: 0, s7: 3, s11: 1, goyalar: -1, juftlik: -1, kod
 // 📖 RECAPS — har ballik test uchun 3 karta (kalit = ekran INDEKSI); PM darsida belgi o'rnida raqam (S-026)
 const RECAPS = {
   3: { title: { uz: "G'oyaning uch qismi", ru: 'Три части идеи' }, cards: [
-    { ic: '1', h: { uz: 'Muammo — odamlar nimadan qiynalishi.', ru: 'Проблема — от чего страдают люди.' } },
+    { ic: '1', h: { uz: 'Muammo — odamlar nimadan qiynalishi.', ru: "Проблема — с чем мучаются люди." } },
     { ic: '2', h: { uz: 'Kim uchun — aynan qanday odamlar.', ru: 'Для кого — какие именно люди.' } },
     { ic: '3', h: { uz: 'Yechim — mahsulot nima qilishi.', ru: 'Решение — что делает продукт.' }, ask: { uz: "«Futbol ilovasi» — g'oyami? Unga nima yetishmaydi?", ru: '«Футбольное приложение» — это идея? Чего ей не хватает?' } }
   ] },
@@ -413,6 +414,12 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
 }
 
 // Testdan keyingi karta (MD: javob topilgach savol ostida) — paydo bo'lgach ko'rinadigan joyga silliq suriladi
+// Ochilgan yordam/izoh 1280×800 da panel ostida qolmasin — bir marta ko'rinadigan joyga suriladi (F-1007-289)
+const Korinsin = ({ className, children }) => {
+  const ref = useRef(null);
+  useEffect(() => { const t = setTimeout(() => { const el = ref.current; if (el && el.scrollIntoView) el.scrollIntoView({ behavior: window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' }); }, 120); return () => clearTimeout(t); }, []);
+  return <div ref={ref} className={className}>{children}</div>;
+};
 const TestViz = ({ children }) => {
   const ref = useRef(null);
   useEffect(() => { const t = setTimeout(() => { if (ref.current && ref.current.scrollIntoView) ref.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 650); return () => clearTimeout(t); }, []);
@@ -614,7 +621,7 @@ const MentorNote = ({ children }) => {
   const [ochiq, setOchiq] = useState(false);
   if (!isMentor) return null;
   return ochiq
-    ? <div className="ti-mnote fade-up" role="note" onClick={() => setOchiq(false)}><span className="ti-mnote-l">{tr({ uz: 'Mentorga eslatma', ru: 'Заметка ментору' })}</span><span>{children}</span></div>
+    ? <div className="ti-mnote fade-up" role="note" onClick={() => setOchiq(false)}><span className="ti-mnote-l">{tr({ uz: 'Mentorga eslatma', ru: "Заметка для Ментора" })}</span><span>{children}</span></div>
     : <QTugma ikkinchi className="ti-mnote-c" onClick={() => setOchiq(true)}>{tr({ uz: 'Eslatma', ru: 'Заметка' })}</QTugma>;
 };
 // 151-qonun: nishon sharti qatori (birinchi urinish); nishon olingach yoki mashq-o'tishida ko'rinmaydi
@@ -688,7 +695,7 @@ const MENTOR_GOYALAR = [
   { nom: { uz: "Jamoa yig'ish", ru: 'Сбор команды' }, muammo: { uz: "o'yinga odam yetmaydi, kim kelishi noma'lum", ru: 'на игру не хватает людей, неизвестно, кто придёт' }, kim: { uz: "mahalladagi o'yinchilar", ru: 'игроки из махалли' }, yechim: { uz: "o'yin e'loni va «Qo'shilaman»", ru: 'объявление об игре и «Присоединяюсь»' }, manba: 'keyin' },
   { nom: { uz: "Maydon pulini bo'lishish", ru: 'Делить плату за поле' }, muammo: { uz: "kim qancha to'lagani unutiladi", ru: 'забывается, кто сколько заплатил' }, kim: { uz: "maydonni birga band qiladigan o'yinchilar", ru: 'игроки, которые вместе бронируют поле' }, yechim: { uz: "kim to'lagani ro'yxati", ru: 'список, кто заплатил' }, manba: 'keyin' },
   { nom: { uz: "Mahalla to'garaklari", ru: 'Кружки махалли' }, muammo: { uz: "qaysi to'garak qayerda va qachon — bilinmaydi", ru: 'какой кружок где и когда — неизвестно' }, kim: { uz: "to'garak izlayotgan o'smirlar", ru: 'подростки, которые ищут кружок' }, yechim: { uz: "to'garaklar xaritasi va jadvali", ru: 'карта и расписание кружков' }, manba: 'kuzatuv' },
-  { nom: { uz: 'Sinf uy vazifalari', ru: 'Домашние задания класса' }, muammo: { uz: "uy vazifasi chatlarda yo'qoladi", ru: 'домашнее задание теряется в чатах' }, kim: { uz: 'sinfdoshlar', ru: 'одноклассники' }, yechim: { uz: "har fan bo'yicha vazifalar bir joyda", ru: 'задания по каждому предмету в одном месте' }, manba: 'kuzatuv' },
+  { nom: { uz: 'Sinf uy vazifalari', ru: 'Домашние задания' }, muammo: { uz: "uy vazifasi chatlarda yo'qoladi", ru: 'домашнее задание теряется в чатах' }, kim: { uz: 'sinfdoshlar', ru: 'одноклассники' }, yechim: { uz: "har fan bo'yicha vazifalar bir joyda", ru: 'задания по каждому предмету в одном месте' }, manba: 'kuzatuv' },
   { nom: { uz: 'Eski darsliklar', ru: 'Старые учебники' }, muammo: { uz: 'eski darsligini kimga berishni bilmaydi, u uyda yillab turadi', ru: 'не знает, кому отдать старый учебник, и он годами лежит дома' }, kim: { uz: "o'quvchilar", ru: 'ученики' }, yechim: { uz: "ishlatilgan darsliklar e'loni", ru: 'объявления о б/у учебниках' }, manba: 'royxat' },
   { nom: { uz: "Yo'qolgan buyumlar", ru: 'Потерянные вещи' }, muammo: { uz: "maktabda yo'qolgan narsa topilmaydi", ru: 'потерянную в школе вещь не найти' }, kim: { uz: "maktab o'quvchilari", ru: 'ученики школы' }, yechim: { uz: "topilgan buyumlar e'loni", ru: 'объявления о найденных вещах' }, manba: 'kuzatuv' }
 ];
@@ -1005,10 +1012,10 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <GoyaKarta nom={nomKeldi && MENTOR_GOYALAR[0].nom} nomUch="s2nom" nomYorliq={nomKeldi && tr({ uz: 'Mentor misoli', ru: 'Пример Ментора' })} goya={done} qator={qator} tinch={tugadi}
             ostida={done && <QIzoh>{tr({ uz: "Uch savolga javob yozilgan yozuv — g'oya. «Jamoa yig'ish» esa uning nomi.", ru: 'Запись, в которой есть ответы на три вопроса, — идея. А «Сбор команды» — её название.' })}</QIzoh>} />
         </div>}
-        natija={!done && ipucha && <QIzoh>{tr({ uz: "Kartadagi yoqilgan savolni bosing — qator nima bo'lishini ko'ring.", ru: 'Нажмите активный вопрос на карточке — посмотрите, что станет со строкой.' })}</QIzoh>}
+        natija={!done && ipucha && <QIzoh>{tr({ uz: "Kartadagi yoqilgan savolni bosing — qator nima bo'lishini ko'ring.", ru: "Нажмите подсвеченный вопрос на карточке — посмотрите, что станет со строкой." })}</QIzoh>}
         xulosa={done && <>{tx && <span className={cxx('ti-tx', taxmin === '3' && 'ok')}>{taxmin === '3' ? tr({ uz: "Taxminingiz to'g'ri chiqdi", ru: 'Ваше предположение оказалось верным' }) : <>{tr({ uz: 'Taxminingiz', ru: 'Ваше предположение' })}: {tx.t} · {tr({ uz: 'haqiqatda', ru: 'на деле' })}: <b>3</b></>}</span>}{tr({ uz: "G'oya uch qismdan iborat: muammo, kim uchun va yechim.", ru: 'Идея состоит из трёх частей: проблема, для кого и решение.' })}</>}
       />
-      <MentorNote>{tr({ uz: "«Jamoa yig'ish» — 10-Modul yillik yo'l darsidagi keyingi qadam; bugun u Mentorning o'n g'oyasidan biri, xolos — hech qaysi g'oya tanlanmaydi. 9-Modulda auditoriya-kartada YECHIM qatori bo'sh qolgan edi («hali yo'q») — g'oyada uchala qism yoziladi; sinfga shu ko'prikni og'zaki ayting. Mahsulot nomini aytmang: bu hali g'oya, mahsulot emas.", ru: '«Сбор команды» — следующий шаг из урока о годовом пути 10-го модуля; сегодня это лишь одна из десяти идей Ментора — ни одна идея не выбирается. В 9-м модуле в карточке аудитории строка РЕШЕНИЕ оставалась пустой («пока нет») — в идее пишутся все три части; скажите классу этот мостик устно. Не называйте продукт: это пока идея, а не продукт.' })}</MentorNote>
+      <MentorNote>{tr({ uz: "«Jamoa yig'ish» — 10-Modul yillik yo'l darsidagi keyingi qadam; bugun u Mentorning olti g'oyasidan biri, xolos — hech qaysi g'oya tanlanmaydi. 9-Modulda auditoriya-kartada YECHIM qatori bo'sh qolgan edi («hali yo'q») — g'oyada uchala qism yoziladi; sinfga shu ko'prikni og'zaki ayting. Mahsulot nomini aytmang: bu hali g'oya, mahsulot emas.", ru: '«Сбор команды» — следующий шаг из урока о годовом пути 10-го модуля; сегодня это лишь одна из шести идей Ментора — ни одна идея не выбирается. В 9-м модуле в карточке аудитории строка РЕШЕНИЕ оставалась пустой («пока нет») — в идее пишутся все три части; скажите классу этот мостик устно. Не называйте продукт: это пока идея, а не продукт.' })}</MentorNote>
     </Stage>
   );
 };
@@ -1058,15 +1065,15 @@ const Screen3 = (props) => (
     options={[
       { uz: 'Kim uchun — botni qaysi odamlar ochadi', ru: 'Для кого — какие люди открывают бота' },
       { uz: 'Yechim — bot odamlarga nima qilib beradi', ru: 'Решение — что бот делает для людей' },
-      { uz: "Muammo — o'quvchilar nimadan qiynaladi", ru: 'Проблема — от чего страдают ученики' },
+      { uz: "Muammo — o'quvchilar nimadan qiynaladi", ru: "Проблема — с чем мучаются ученики" },
       { uz: 'Nom — botning qisqa va esda qolar nomi', ru: 'Название — короткое запоминающееся имя бота' }
     ]} correctIdx={2}
-    explainCorrect={{ uz: "Kim va yechim yozilgan, lekin o'quvchilar nimadan qiynalishi yo'q.", ru: 'Для кого и решение написаны, но нет того, от чего страдают ученики.' }}
+    explainCorrect={{ uz: "Kim va yechim yozilgan, lekin o'quvchilar nimadan qiynalishi yo'q.", ru: "Для кого и решение написаны, но нет того, с чем мучаются ученики." }}
     explainWrong={{
       0: { uz: "Kim yozilgan: o'quvchilar. Boshqa qismni qidiring.", ru: 'Для кого написано: ученики. Ищите другую часть.' },
       1: { uz: "Yechim yozilgan: bot menyuni ko'rsatadi.", ru: 'Решение написано: бот показывает меню.' },
       3: { uz: "Nom g'oyaning qismi emas — uch qismga qarang.", ru: 'Название — не часть идеи: смотрите на три части.' },
-      default: { uz: 'Uch qismni birma-bir qidiring: qaysi biri yo\'q?', ru: 'Ищите три части по одной: какой нет?' }
+      default: { uz: 'Uch qismni birma-bir qidiring: qaysi biri yo\'q?', ru: "Ищите три части по очереди: какой нет?" }
     }}
     vizual={<GoyaKarta className="kichik" nom={{ uz: 'Oshxona boti', ru: 'Бот столовой' }}
       qator={{
@@ -1130,8 +1137,8 @@ const Odam = ({ x = 0, y = 0, s = 1, teri = 0, soch = 0, kiyim = 0, sochTur = 'q
 const S4_QADAM = [
   { manba: 'keyin', goya: 1, bosh: 'muammo', mq: 'yechim',
     tanlov: [{ t: { uz: "ilovada to'lov bo'lishini xohlaydi", ru: 'хочет, чтобы в приложении была оплата' } }, { t: MENTOR_GOYALAR[1].muammo, ok: true }, { t: { uz: "ilovada to'lov tugmasi hali yo'q", ru: 'в приложении пока нет кнопки оплаты' } }],
-    xato: { uz: "Bu gapda odam nimadan qiynalgani ko'rinmaydi.", ru: 'В этой фразе не видно, от чего страдает человек.' },
-    yordam: { uz: "Muammo — odam nimadan qiynalishi; xohish muammo emas.", ru: 'Проблема — от чего страдает человек; желание — не проблема.' },
+    xato: { uz: "Bu gapda odam nimadan qiynalgani ko'rinmaydi.", ru: "В этой фразе не видно, с чем мучился человек." },
+    yordam: { uz: "Muammo — odam nimadan qiynalishi; xohish muammo emas.", ru: "Проблема — с чем мучается человек; желание — не проблема." },
     dalil: { uz: "9-Modul intervyusi: 5 kishidan 1 tasi «pulni bo'lishish qiyin»", ru: 'Интервью 9-го модуля: 1 из 5 человек — «трудно делить деньги»' } },
   { manba: 'royxat', goya: 4, bosh: 'yechim', mq: 'muammo',
     tanlov: [{ t: { uz: "darslikni qiziq qiladigan o'yin", ru: 'игра, которая делает учебник интересным' } }, { t: { uz: 'yangi darsliklar sotiladigan sayt', ru: 'сайт, где продают новые учебники' } }, { t: MENTOR_GOYALAR[4].yechim, ok: true }],
@@ -1318,11 +1325,11 @@ const Screen5 = (props) => (
     question={tr({ uz: <h2 className="title h-ask">Bekatda avtobus qachon kelishi bilinmaydi. <A>Qaysi yechim mos?</A></h2>, ru: <h2 className="title h-ask">На остановке неизвестно, когда придёт автобус. <A>Какое решение подходит?</A></h2> })}
     options={[
       { uz: "Avtobus necha daqiqada kelishini ko'rsatadi", ru: 'Показывает, через сколько минут придёт автобус' },
-      { uz: "Bekatda kutganlarga qiziqarli video ko'rsatadi", ru: 'Показывает ждущим на остановке интересное видео' },
+      { uz: "Bekatda kutganlarga qiziqarli video ko'rsatadi", ru: "Показывает интересное видео тем, кто ждёт на остановке" },
       { uz: "Avtobusdagi bo'sh o'rindiqlar sonini ko'rsatadi", ru: 'Показывает число свободных мест в автобусе' },
       { uz: "Yo'l haqini telefondan to'lashga yordam beradi", ru: 'Помогает оплатить проезд с телефона' }
     ]} correctIdx={0}
-    explainCorrect={{ uz: 'Bu yechim aynan shu muammoga javob beradi: kutgan odam vaqtni biladi.', ru: 'Это решение отвечает именно на эту проблему: ждущий знает время.' }}
+    explainCorrect={{ uz: 'Bu yechim aynan shu muammoga javob beradi: kutgan odam vaqtni biladi.', ru: "Это решение отвечает именно на эту проблему: кто ждёт, знает время." }}
     explainWrong={{
       1: { uz: 'Video kutishni qiziq qiladi, vaqt esa baribir noma\'lum.', ru: 'Видео делает ожидание интересным, а время всё равно неизвестно.' },
       2: { uz: "Bo'sh o'rin — boshqa muammo, vaqt baribir noma'lum.", ru: 'Свободные места — другая проблема, время всё равно неизвестно.' },
@@ -1447,7 +1454,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Biznes olamidan', ru: 'Из мира бизнеса' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={kutish || (done && !xulosaVaqt)} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Keyingi bosqich', ru: 'Следующий этап' })} (${b + 1}/3)`} onClick={keyingi} /></>}>
       <QVoqea
-        sarlavha={tr({ uz: <><Starbucks /> qanday joy bo'lib <A>qurilgan?</A></>, ru: <>Каким местом <A>построен</A> <Starbucks />?</> })}
+        sarlavha={tr({ uz: <><Starbucks /> qanday joy bo'lib <A>qurilgan?</A></>, ru: <>Каким местом <A>построили</A> <Starbucks />?</> })}
         nuqtalar={<>
           <Mentor key={`m${b}`}>{tr(bq.m)}</Mentor>
           <div className="ti-nuq"><span className="ti-nuq-l">{yorliq}</span>{STARBUCKS_BOSQICH.map((_, i) => <i key={i} className={i < b ? 'ok' : i === b ? 'cur' : ''} />)}</div>
@@ -1496,8 +1503,8 @@ const Screen7 = (props) => (
 const TUTUQ_RE = new RegExp('[' + String.fromCharCode(0x2BB, 0x2BC, 0x2018, 0x2019, 0x60) + ']', 'g');
 const QOSHTIRNOQ_RE = new RegExp('[' + String.fromCharCode(0xAB, 0xBB, 0x22, 0x201C, 0x201D) + '.!?,;:]+', 'g');
 const normYoz = (s) => String(s || '').toLowerCase().replace(TUTUQ_RE, "'").replace(QOSHTIRNOQ_RE, ' ').replace(/\s+/g, ' ').trim();
-const XOHISH_RE = /(xohlaydi|xohlardi|yoqadi|yaxshi ko'radi|bo'lsa yaxshi)/;
-const HAMMA_KIM = ['hamma', 'odamlar', 'hamma odamlar', 'barcha odamlar', 'har kim', 'hamma uchun'];
+const XOHISH_RE = /(xohlaydi|xohlardi|yoqadi|yaxshi ko'radi|bo'lsa yaxshi|хочет|хотят|хотел|нравится|любит|было бы хорошо)/; // ru rejimi ham (16-dars RE_XOHISH naqshi, F-1007-291)
+const HAMMA_KIM = ['hamma', 'odamlar', 'hamma odamlar', 'barcha odamlar', 'har kim', 'hamma uchun', 'все', 'люди', 'все люди', 'каждый', 'для всех'];
 const tekshirGoya = (g, royxat, tahrir) => {
   const m = normYoz(g.muammo), k = normYoz(g.kim), y = normYoz(g.yechim);
   if (!m) return { k: 'muammo', tur: 'bosh', q: true };
@@ -1506,20 +1513,20 @@ const tekshirGoya = (g, royxat, tahrir) => {
   if (XOHISH_RE.test(m)) return { k: 'muammo', tur: 'xohish' };
   if (HAMMA_KIM.includes(k)) return { k: 'kim', tur: 'hamma' };
   const sozlar = y.split(' ').filter(Boolean);
-  if (sozlar.length <= 2 && sozlar.some(w => /^(ilova|sayt|bot|ai)/.test(w))) return { k: 'yechim', tur: 'nom' };
+  if (sozlar.length <= 2 && sozlar.some(w => /^(ilova|sayt|bot|ai|приложени|сайт|бот|ии)/.test(w))) return { k: 'yechim', tur: 'nom' };
   if (royxat.some((o, i) => i !== tahrir && normYoz(o.muammo) === m && normYoz(o.yechim) === y)) return { k: 'muammo', tur: 'takror' };
   return null;
 };
 const XABAR8 = {
   bosh: { uz: 'Uch qatorni ham yozing.', ru: 'Заполните все три строки.' },
-  xohish: { uz: "Bu xohish — odam nimadan qiynalgani ko'rinmaydi.", ru: 'Это желание — не видно, от чего страдает человек.' },
+  xohish: { uz: "Bu xohish — odam nimadan qiynalgani ko'rinmaydi.", ru: "Это желание — не видно, с чем мучился человек." },
   hamma: { uz: "Kim uchun aniqroq bo'lsin: qanday odamlar?", ru: 'Для кого — точнее: какие люди?' },
   nom: { uz: 'Mahsulot aynan nima qiladi? Bir gap bilan yozing.', ru: 'Что именно делает продукт? Напишите одной фразой.' },
   takror: { uz: "Bu g'oya ro'yxatda bor — boshqasini yozing.", ru: 'Эта идея уже есть в списке — напишите другую.' }
 };
-const QOLDIR8 = { uz: "Shunday qoldirsangiz — yana «Saqlash»ni bosing.", ru: 'Если оставить так — снова нажмите «Сохранить».' };
+const QOLDIR8 = { uz: "Shunday qoldirsangiz — yana «Saqlash»ni bosing.", ru: "Если оставляете так — снова нажмите «Сохранить»." };
 const PH8 = {
-  muammo: { uz: 'Odamlar nimadan qiynaladi?', ru: 'От чего страдают люди?' },
+  muammo: { uz: 'Odamlar nimadan qiynaladi?', ru: "С чем мучаются люди?" },
   kim: { uz: 'Aynan qanday odamlar?', ru: 'Какие именно люди?' },
   yechim: { uz: 'Mahsulot nima qiladi?', ru: 'Что делает продукт?' }
 };
@@ -1605,7 +1612,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     {ochiqManba === 'keyin' && (src.keyin.length
       ? <div className="ti-src-chips fade-step">{src.keyin.map((t, i) => <button key={i} type="button" className={cxx('ti-src-b', 'chip', ishlatilgan('yechim', t) && 'ishl')} onClick={() => yozMatn('yechim', t)}><span>{t}</span>{ishlatilgan('yechim', t) && <i>✓</i>}</button>)}</div>
       : <p className="ti-kul-q fade-step">{tr({ uz: 'Qutingiz topilmadi — funksiyani o\'zingiz yozing.', ru: 'Коробка не найдена — напишите функцию сами.' })}</p>)}
-    {g.manba === 'kuzatuv' && <p className="ti-kul-q fade-step">{tr({ uz: 'Kim, qayerda, nimadan qiynaldi?', ru: 'Кто, где, от чего страдал?' })}</p>}
+    {g.manba === 'kuzatuv' && <p className="ti-kul-q fade-step">{tr({ uz: 'Kim, qayerda, nimadan qiynaldi?', ru: "Кто, где и с чем мучился?" })}</p>}
   </div>;
   const roy = (
     <GoyaRoyxat sarlavha={ROYXAT_YORLIQ.mening} son={n} keng={done} className="ti-s8-ro">
@@ -1629,7 +1636,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <QTugma ikkinchi onClick={() => setYordam(o => !o)}>{tr(YORDAM_T)}</QTugma>
               <QTugma className={halqa(toliq)} disabled={!g || !g.manba} onClick={saqla}>{tr(SAQLASH)}</QTugma>
             </div>} />
-          {yordam && <div className="ti-yordam fade-step"><QIzoh>{tr({ uz: "Manbalarni birma-bir oching: 9-Modul ro'yxatidagi muammoga yechim yozing, «Keyin» qutisidagi funksiyaga muammo toping, keyin bugun yo'lda ko'rganingizni eslang.", ru: 'Открывайте источники по одному: к проблеме из списка 9-го модуля напишите решение, к функции из коробки «Потом» найдите проблему, потом вспомните, что видели сегодня по дороге.' })}</QIzoh><QIzoh>{tr({ uz: "O'z MVP'ingizni davom ettirish ham g'oya — u boshqalar qatorida turadi.", ru: 'Продолжение вашего MVP — тоже идея: она стоит в ряду с другими.' })}</QIzoh></div>}
+          {yordam && <Korinsin className="ti-yordam fade-step"><QIzoh>{tr({ uz: "Manbalarni birma-bir oching: 9-Modul ro'yxatidagi muammoga yechim yozing, «Keyin» qutisidagi funksiyaga muammo toping, keyin bugun yo'lda ko'rganingizni eslang.", ru: 'Открывайте источники по одному: к проблеме из списка 9-го модуля напишите решение, к функции из коробки «Потом» найдите проблему, потом вспомните, что видели сегодня по дороге.' })}</QIzoh><QIzoh>{tr({ uz: "O'z MVP'ingizni davom ettirish ham g'oya — u boshqalar qatorida turadi.", ru: 'Продолжение вашего MVP — тоже идея: она стоит в ряду с другими.' })}</QIzoh></Korinsin>}
         </div>}
       >
         {done && !isMentor && <QXulosa>{s8Xulosa(royxat)}</QXulosa>}
@@ -1711,7 +1718,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     : tr({ uz: "Bitta g'oyangizni tanlang va sherigingizga faqat yechim qatorini o'qing.", ru: 'Выберите одну свою идею и прочитайте партнёру только строку «Решение».' });
   const xulosa = natija === 'bir'
     ? (yakka ? tr({ uz: "Muammoni topdingiz. Baribir g'oyada u alohida yoziladi — boshqalar topmasligi mumkin.", ru: 'Вы нашли проблему. Всё равно в идее её пишут отдельно — другие могут не найти.' })
-      : tr({ uz: "Sherigingiz muammoni topdi. Baribir uni g'oyada alohida yozasiz — boshqalar topmasligi mumkin.", ru: 'Партнёр нашёл проблему. Всё равно в идее её пишут отдельно — другие могут не найти.' }))
+      : tr({ uz: "Sherigingiz muammoni topdi. Baribir uni g'oyada alohida yozasiz — boshqalar topmasligi mumkin.", ru: "Партнёр нашёл проблему. Всё равно в идее вы пишете её отдельно — другие могут не найти." }))
     : tr({ uz: "Bitta yechim bir nechta muammoga mos kelishi mumkin — shuning uchun g'oyada muammo alohida yoziladi.", ru: 'Одно решение может подходить к нескольким проблемам — поэтому в идее проблему пишут отдельно.' });
   const chap = (() => {
     if (!gg) return null;
@@ -1720,7 +1727,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         {juft && <PairTimer onBosh={() => setTaymerBosh(true)} />}
         <label className="ti-s9-l">
           <span className="ti-qator-l">{juft ? tr({ uz: 'Sherigingiz aytgan muammo', ru: 'Проблема, которую назвал партнёр' }) : tr(QISM[0].t)}</span>
-          <input className={cxx('ti-inp', (yakka || taymerBosh) && !sherik.trim() && 'ti-halqa-i')} value={sherik} placeholder={juft ? tr({ uz: 'U nima dedi?', ru: 'Что он сказал?' }) : tr(PH8.muammo)} onChange={(e) => setSherik(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') saqla(); }} />
+          <input className={cxx('ti-inp', (yakka || taymerBosh) && !sherik.trim() && 'ti-halqa-i')} value={sherik} placeholder={juft ? tr({ uz: 'U nima dedi?', ru: "Что сказал партнёр?" }) : tr(PH8.muammo)} onChange={(e) => setSherik(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') saqla(); }} />
         </label>
         <QTugma className={halqa(!!sherik.trim())} disabled={!sherik.trim()} onClick={saqla}>{tr(SAQLASH)}</QTugma>
       </div>
@@ -1833,7 +1840,7 @@ const KOD_TASK = {
 const KOD_DARVOZA = [
   { id: 'nom', t: '`nom`, `muammo`, `yechim`', ok: false, x: { uz: "`nom` — yorliq, g'oyaning qismi emas.", ru: '`nom` — ярлык, а не часть идеи.' } },
   { id: 'kim', t: '`muammo`, `kim`, `yechim`', ok: true },
-  { id: 'manba', t: '`manba`, `kim`, `yechim`', ok: false, x: { uz: '`manba` muammo qayerdan kelganini aytadi, u qism emas.', ru: '`manba` говорит, откуда пришла проблема, это не часть.' } }
+  { id: 'manba', t: '`manba`, `kim`, `yechim`', ok: false, x: { uz: '`manba` muammo qayerdan kelganini aytadi, u qism emas.', ru: "`manba` говорит, откуда пришла проблема, — это не часть идеи." } }
 ];
 // Kod namunasi (o'qish uchun; nusxalanmaydi — PM-082 d): darvozadan keyin muammo · kim · yechim kalitlari bir lahza ajraladi
 const kodParcha = (kod) => {
@@ -1934,7 +1941,7 @@ const Screen11 = (props) => (
       { uz: 'Ro\'yxatdan tashqarida — u allaqachon tanlangan', ru: 'Вне списка — она уже выбрана' },
       { uz: 'Boshqalar qatorida — uch qismi bilan yozilib', ru: 'В ряду с другими — записана тремя частями' },
       { uz: "Ro'yxat boshida — u eng yaxshi g'oya bo'ladi", ru: 'В начале списка — она будет лучшей идеей' },
-      { uz: 'Faqat nomi bilan — uni hamma allaqachon biladi', ru: 'Только названием — её все уже знают' }
+      { uz: 'Faqat nomi bilan — uni hamma allaqachon biladi', ru: "Только названием — её и так все знают" }
     ]} correctIdx={1}
     explainCorrect={{ uz: "MVP davomi ham g'oya: u uch qism bilan yoziladi va boshqalar qatorida turadi.", ru: 'Продолжение MVP — тоже идея: её пишут тремя частями, и она стоит в ряду с другими.' }}
     explainWrong={{
@@ -1949,7 +1956,7 @@ const Screen11 = (props) => (
 // ===== 🏅 BADGES (nishonlar) — ish qilingan ekranlarda, tekin bonus yo'q (S-034); medal belgisi — o'yin qatlami =====
 const ACHIEVEMENTS = {
   sourceFinder: { icon: '🧭', name: 'Source Finder!', desc: { uz: "Uch manbadan kelgan yozuvlarni birinchi urinishda g'oyaga aylantirdingiz", ru: 'С первой попытки превратили записи из трёх источников в идеи' } },
-  sixIdeas: { icon: '💡', name: 'Six Ideas!', desc: { uz: "Oltita g'oyani uch qismi bilan yozdingiz", ru: 'Написали шесть идей с тремя частями' } },
+  sixIdeas: { icon: '💡', name: 'Six Ideas!', desc: { uz: "Oltita g'oyani uch qismi bilan yozdingiz", ru: "Написали шесть идей из трёх частей" } },
   pairCheck: { icon: '🤝', name: 'Pair Check!', desc: { uz: "Bitta g'oyani faqat yechimidan solishtirdingiz", ru: 'Сравнили одну идею только по её решению' } },
   cardCoder: { icon: '🧩', name: 'Card Coder!', desc: { uz: 'Yozuvlarni sahifada kartaga aylantiradigan kod yozdingiz', ru: 'Написали код, который превращает записи в карточки на странице' } }
 };
@@ -2034,15 +2041,15 @@ const QUIZ_BANK = [
   { q: { uz: "Sinfdoshingiz «maktab ilovasi qilaman» dedi. G'oyaga yana nima kerak?", ru: 'Одноклассник сказал: «сделаю школьное приложение». Что ещё нужно идее?' }, opts: [{ uz: 'Muammo, kim uchun va yechim', ru: 'Проблема, для кого и решение' }, { uz: 'Ilovaning chiroyli nomi, rangi', ru: 'Красивое название и цвет приложения' }, { uz: 'Ilovaning narxi va reklamasi', ru: 'Цена и реклама приложения' }, { uz: 'Tugmalar soni va ekran rangi', ru: 'Число кнопок и цвет экрана' }], correct: 0 },
   { q: { uz: "Qaysi gap g'oyaning yechim qatoriga yoziladi?", ru: 'Какая фраза пишется в строку «Решение»?' }, opts: [{ uz: 'Sinfdoshlar vazifani chatda yo\'qotadi', ru: 'Одноклассники теряют задание в чате' }, { uz: "Maktabdagi barcha sinf o'quvchilari uchun", ru: 'Для учеников всех классов школы' }, { uz: "Har fan vazifasini bir joyda ko'rsatadi", ru: 'Показывает задания по каждому предмету в одном месте' }, { uz: 'Vazifalar chiroyli turishini xohlaydi', ru: 'Хочет, чтобы задания красиво выглядели' }], correct: 2 },
   { q: { uz: "Qaysi gap g'oyaning muammo qatoriga yoziladi?", ru: 'Какая фраза пишется в строку «Проблема»?' }, opts: [{ uz: "Ilovada chat bo'lishini xohlaydi", ru: 'Хочет, чтобы в приложении был чат' }, { uz: "Uy vazifasi chatlarda yo'qoladi", ru: 'Домашнее задание теряется в чатах' }, { uz: "Ilova chiroyli bo'lsa yaxshi edi", ru: 'Хорошо бы приложение было красивым' }, { uz: 'Bot tez ishlashini juda xohlaydi', ru: 'Очень хочет, чтобы бот работал быстро' }], correct: 1 },
-  { q: { uz: '«Kim uchun» qatoriga qaysi biri aniq yozilgan?', ru: 'Что точно написано в строке «Для кого»?' }, opts: [{ uz: 'Shahardagi har xil yoshdagi odamlar', ru: 'Люди разного возраста в городе' }, { uz: 'Telefoni va interneti bor har bir odam', ru: 'Каждый, у кого есть телефон и интернет' }, { uz: 'Yoshlar ham, kattalar ham — hamma odam', ru: 'И молодые, и взрослые — все люди' }, { uz: "To'garak izlayotgan maktab o'smirlari", ru: 'Школьники-подростки, которые ищут кружок' }], correct: 3 },
+  { q: { uz: '«Kim uchun» qatoriga qaysi biri aniq yozilgan?', ru: "Что в строке «Для кого» записано точно?" }, opts: [{ uz: 'Shahardagi har xil yoshdagi odamlar', ru: 'Люди разного возраста в городе' }, { uz: 'Telefoni va interneti bor har bir odam', ru: 'Каждый, у кого есть телефон и интернет' }, { uz: 'Yoshlar ham, kattalar ham — hamma odam', ru: 'И молодые, и взрослые — все люди' }, { uz: "To'garak izlayotgan maktab o'smirlari", ru: 'Школьники-подростки, которые ищут кружок' }], correct: 3 },
   { q: { uz: "Mentorning jamoa yig'ish g'oyasida muammoga qanday dalil bor?", ru: 'Какое доказательство проблемы есть в идее Ментора о сборе команды?' }, opts: [{ uz: '9-Modulda 5 kishidan 2 tasi shuni aytgan', ru: 'В 9-м модуле так сказали 2 из 5 человек' }, { uz: "Futbolni hamma yaxshi ko'radi, demak kerak", ru: 'Футбол любят все — значит, нужно' }, { uz: "Mentorning o'zi futbolni yaxshi ko'radi", ru: 'Ментор сам любит футбол' }, { uz: 'Ilova nomi chiroyli va eslab qolinadi', ru: 'Название приложения красивое и запоминается' }], correct: 0 },
   { q: { uz: "Keyinga qoldirilgan funksiyadan g'oya qilish uchun nima topiladi?", ru: 'Что нужно найти, чтобы из отложенной функции сделать идею?' }, opts: [{ uz: 'Funksiyaga qisqa va qiziq nom', ru: 'Короткое интересное название функции' }, { uz: "Shunga o'xshash ilovaning nomi", ru: 'Название похожего приложения' }, { uz: 'Funksiyani qurish uchun kod', ru: 'Код, чтобы построить функцию' }, { uz: 'Funksiya hal qiladigan muammo', ru: 'Проблема, которую решает функция' }], correct: 3 },
   { q: { uz: "Shuls Starbucks'ni qanday joy qilib qurgan?", ru: 'Каким местом Шульц построил Starbucks?' }, opts: [{ uz: 'Qahva tez olinadigan kichik nuqta', ru: 'Маленькая точка, где быстро берут кофе' }, { uz: "Uy va ish o'rtasidagi uchinchi joy", ru: 'Третье место между домом и работой' }, { uz: 'Faqat ishlash uchun jimjit katta ofis', ru: 'Тихий большой офис только для работы' }, { uz: 'Ichimlik arzonroq sotiladigan do\'kon', ru: 'Магазин, где напитки дешевле' }], correct: 1 },
   { q: { uz: "Starbucks'da odamlar nima qiladi?", ru: 'Что люди делают в Starbucks?' }, opts: [{ uz: 'Qahva olib, tezda chiqib ketadi', ru: 'Берут кофе и быстро уходят' }, { uz: 'Faqat telefonini quvvatlab oladi', ru: 'Только заряжают телефон' }, { uz: "O'tiradi, ishlaydi va uchrashadi", ru: 'Сидят, работают и встречаются' }, { uz: 'Navbatda turib, ichimlik kutadi', ru: 'Стоят в очереди и ждут напиток' }], correct: 2 },
   { q: { uz: "Oltita g'oyani yozayotganda har biri bilan nima qilasiz?", ru: 'Что вы делаете с каждой идеей, когда пишете шесть?' }, opts: [{ uz: "Yozgan zahoti kuchsizini o'chirasiz", ru: 'Сразу удаляете слабую' }, { uz: 'Faqat eng qiziq uchtasini yozib olasiz', ru: 'Записываете только три самые интересные' }, { uz: "Har biriga chiroyli nom o'ylab topasiz", ru: 'Придумываете каждой красивое название' }, { uz: "Uch qismini yozib, keyingisiga o'tasiz", ru: 'Пишете три части и переходите к следующей' }], correct: 3 },
   { q: { uz: 'Sherigingiz faqat yechimni eshitib, boshqa muammoni aytdi. Bu nimani bildiradi?', ru: 'Партнёр услышал только решение и назвал другую проблему. Что это значит?' }, opts: [{ uz: 'Faqat yechimdan muammo bilinmasligi mumkin', ru: 'По одному решению проблема может быть непонятна' }, { uz: "Sherigingiz g'oyani yaxshi tinglamay qolgan", ru: 'Партнёр плохо слушал идею' }, { uz: "G'oyani o'chirib, yangisini yozish kerak", ru: 'Нужно удалить идею и написать новую' }, { uz: 'Yechim qatorini butunlay olib tashlash kerak', ru: 'Нужно совсем убрать строку «Решение»' }], correct: 0 },
-  { q: { uz: 'Atrofni kuzatganda nimaga qaraysiz?', ru: 'На что вы смотрите, наблюдая вокруг?' }, opts: [{ uz: "Qaysi ilova eng ko'p yuklanganiga", ru: 'Какое приложение скачивают больше всего' }, { uz: "Do'stlar qaysi o'yinni o'ynashiga", ru: 'В какую игру играют друзья' }, { uz: 'Kim, qayerda, nimadan qiynalganiga', ru: 'Кто, где и от чего страдает' }, { uz: 'Qaysi texnologiya eng yangi ekaniga', ru: 'Какая технология самая новая' }], correct: 2 },
-  { q: { uz: "9-Moduldagi muammolar ro'yxatidan g'oya qilish uchun nima qo'shasiz?", ru: 'Что вы добавите, чтобы сделать идею из списка проблем 9-го модуля?' }, opts: [{ uz: 'Muammoga qisqa va esda qoladigan nom', ru: 'Короткое запоминающееся название проблемы' }, { uz: 'Mahsulot nima qilishini aytadigan yechim', ru: 'Решение, которое говорит, что делает продукт' }, { uz: "Shu muammoga o'xshash yana bir xohish", ru: 'Ещё одно похожее желание' }, { uz: "Ro'yxatdagi yana ikki-uchta boshqa muammo", ru: 'Ещё две-три другие проблемы из списка' }], correct: 1 },
+  { q: { uz: 'Atrofni kuzatganda nimaga qaraysiz?', ru: 'На что вы смотрите, наблюдая вокруг?' }, opts: [{ uz: "Qaysi ilova eng ko'p yuklanganiga", ru: 'Какое приложение скачивают больше всего' }, { uz: "Do'stlar qaysi o'yinni o'ynashiga", ru: 'В какую игру играют друзья' }, { uz: 'Kim, qayerda, nimadan qiynalganiga', ru: "Кто, где и с чем мучился" }, { uz: 'Qaysi texnologiya eng yangi ekaniga', ru: 'Какая технология самая новая' }], correct: 2 },
+  { q: { uz: "9-Moduldagi muammolar ro'yxatidan g'oya qilish uchun nima qo'shasiz?", ru: 'Что вы добавите, чтобы сделать идею из списка проблем 9-го модуля?' }, opts: [{ uz: 'Muammoga qisqa va esda qoladigan nom', ru: 'Короткое запоминающееся название проблемы' }, { uz: 'Mahsulot nima qilishini aytadigan yechim', ru: 'Решение, которое говорит, что делает продукт' }, { uz: "Shu muammoga o'xshash yana bir xohish", ru: "Ещё одно желание, похожее на эту проблему" }, { uz: "Ro'yxatdagi yana ikki-uchta boshqa muammo", ru: 'Ещё две-три другие проблемы из списка' }], correct: 1 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2593,11 +2600,11 @@ const MentorPracticeStats = ({ live, screen }) => {
 // 🃏 KARTOCHKALAR — alohida ekran, Mentorsiz (KORPUS §61, SABOQ 16); mexanika va ko'rinish — qolipda (QKartochka, DE-204)
 const KARTOCHKALAR = [
   { front: { uz: "G'oya qaysi uch qismdan iborat?", ru: 'Из каких трёх частей состоит идея?' }, back: { uz: 'Muammo, kim uchun va yechim', ru: 'Проблема, для кого и решение' } },
-  { front: { uz: 'Muammo qatoriga nima yoziladi?', ru: 'Что пишется в строку «Проблема»?' }, back: { uz: 'Odamlar nimadan qiynalishi; xohish muammo emas', ru: 'От чего страдают люди; желание — не проблема' } },
+  { front: { uz: 'Muammo qatoriga nima yoziladi?', ru: 'Что пишется в строку «Проблема»?' }, back: { uz: 'Odamlar nimadan qiynalishi; xohish muammo emas', ru: "С чем мучаются люди; желание — не проблема" } },
   { front: { uz: '«Kim uchun» qatori qanday yoziladi?', ru: 'Как пишется строка «Для кого»?' }, back: { uz: 'Aynan qanday odamlar ekani; «hamma» aniq emas', ru: 'Какие именно это люди; «все» — не точно' } },
   { front: { uz: 'Yechim qatori nimaga javob beradi?', ru: 'На что отвечает строка «Решение»?' }, back: { uz: "Shu g'oyaning muammosiga: mahsulot nima qilishini aytadi", ru: 'На проблему этой идеи: говорит, что делает продукт' } },
   { front: { uz: "G'oya uchun muammoni qayerdan topasiz?", ru: 'Где найти проблему для идеи?' }, back: { uz: "9-Modul ro'yxatidan, MVP'ning «Keyin» qutisidan va yangi kuzatuvdan", ru: 'В списке 9-го модуля, в коробке «Потом» вашего MVP и в новом наблюдении' } },
-  { front: { uz: 'Manbadan kelgan yozuvga bitta qism yetishmasa, nima qilasiz?', ru: 'Что делать, если записи из источника не хватает одной части?' }, back: { uz: "Yetishmagan qismni o'zingiz yozasiz — g'oyada uchala qism bo'ladi", ru: 'Дописываете недостающую часть — в идее будут все три' } },
+  { front: { uz: 'Manbadan kelgan yozuvga bitta qism yetishmasa, nima qilasiz?', ru: 'Что делать, если записи из источника не хватает одной части?' }, back: { uz: "Yetishmagan qismni o'zingiz yozasiz — g'oyada uchala qism bo'ladi", ru: "Сами дописываете недостающую часть — в идее будут все три" } },
   { front: { uz: "Bugun g'oyalar baholanadimi?", ru: 'Оцениваются ли идеи сегодня?' }, back: { uz: "Yo'q: bugun oltitasi yoziladi, tanlov keyinroq", ru: 'Нет: сегодня пишут шесть, выбор — позже' } },
   { front: { uz: 'Nega Starbucks «uchinchi joy» deyiladi?', ru: 'Почему Starbucks называют «третьим местом»?' }, back: { uz: "Birinchi joy — uy, ikkinchisi — ish yoki maktab; Starbucks ularning o'rtasida", ru: 'Первое место — дом, второе — работа или школа; Starbucks — между ними' } },
   { front: { uz: "Starbucks'da odamlar nima uchun to'laydi?", ru: 'За что люди платят в Starbucks?' }, back: { uz: 'Ichimlik uchun emas, joy va muhit uchun', ru: 'Не за напиток, а за место и атмосферу' } },
@@ -2630,7 +2637,7 @@ const HW_KARTA = [
 ];
 const HW_QADAM = [
   { uz: "«G'oyalarim» ro'yxatida oltitadan kam bo'lsa — oltitaga yetkazing.", ru: 'Если в списке «Мои идеи» меньше шести — доведите до шести.' },
-  { uz: "Bitta g'oyangizni uydagilardan biriga faqat yechim bilan o'qing va u aytgan muammoni qog'ozga yozing. Keyin uch qismni birga o'qing — ikki muammoni solishtiring.", ru: 'Прочитайте одну идею кому-то из домашних только решением и запишите на бумаге проблему, которую он назовёт. Потом прочитайте вместе три части — сравните две проблемы.' },
+  { uz: "Bitta g'oyangizni uydagilardan biriga faqat yechim bilan o'qing va u aytgan muammoni qog'ozga yozing. Keyin uch qismni birga o'qing — ikki muammoni solishtiring.", ru: "Прочитайте кому-то из домашних только решение одной своей идеи и запишите на бумаге проблему, которую он назовёт. Потом прочитайте вместе три части — сравните две проблемы." },
   { uz: "Har g'oyaning «Kim uchun» qatorini o'qing: shunday odamlardan kimni taniysiz? Har g'oya uchun bittasini qog'ozga yozing: ismi emas, kimligi (masalan: «qo'shni bola, maydonda o'ynaydi»).", ru: 'Прочитайте строку «Для кого» каждой идеи: кого из таких людей вы знаете? Для каждой идеи запишите на бумаге одного: не имя, а кто он (например: «соседский мальчик, играет на поле»).' }
 ];
 const HwCard = ({ keyingi }) => (
@@ -2667,7 +2674,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     { uz: "O'z MVP'ingizni davom ettirish ham g'oya — u boshqalar qatorida turadi.", ru: 'Продолжение вашего MVP — тоже идея: она стоит в ряду с другими.' },
     { uz: "Starbucks'da odamlar ichimlik uchun emas, joy va muhit uchun to'laydi.", ru: 'В Starbucks люди платят не за напиток, а за место и атмосферу.' }
   ];
-  const keyingi = tr({ uz: <>Keyingi dars — <b>«Oltita g'oyadan qaysi uchtasi qoladi?»</b></>, ru: <>Следующий урок — <b>«Какие три идеи из шести останутся?»</b></> });
+  const keyingi = tr({ uz: <>Keyingi dars — <b>«Oltita g'oyadan qaysi uchtasi qoladi?»</b></>, ru: <>Следующий урок — <b>«Какие три из шести идей останутся?»</b></> });
   const n = goyalarLs().length;
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -2875,8 +2882,8 @@ export default function PmTenIdeasLesson({ lang: langProp, onFinished, liveToken
         .ti-qator.kul { background: ${T.bg}; border: 1.5px dashed ${fon(T.ink2, 0.35)}; }
         .ti-qator.kul .ti-qator-t { color: ${T.ink2}; }
         .ti-qator-t.yashirin { visibility: hidden; }
-        .ti-parda { position: absolute; inset: -4px -6px; border-radius: 8px; background: repeating-linear-gradient(135deg, ${fon(T.ink2, 0.16)} 0 8px, ${fon(T.ink2, 0.09)} 8px 16px); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: ${T.ink2}; }
-        .ti-qator.ochildi .ti-qator-m::after { content: ''; position: absolute; inset: -4px -6px; border-radius: 8px; background: repeating-linear-gradient(135deg, ${fon(T.ink2, 0.16)} 0 8px, ${fon(T.ink2, 0.09)} 8px 16px); pointer-events: none; animation: ti-parda-kot 0.65s ease-in forwards; }
+        .ti-parda { /* kesik-ok: shtrix = hali ochilmagan qator (parda), bezak emas */ position: absolute; inset: -4px -6px; border-radius: 8px; background: repeating-linear-gradient(135deg, ${fon(T.ink2, 0.16)} 0 8px, ${fon(T.ink2, 0.09)} 8px 16px); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: ${T.ink2}; }
+        .ti-qator.ochildi .ti-qator-m::after { /* kesik-ok: parda ochilayotgan payt, o'sha shtrix */ content: ''; position: absolute; inset: -4px -6px; border-radius: 8px; background: repeating-linear-gradient(135deg, ${fon(T.ink2, 0.16)} 0 8px, ${fon(T.ink2, 0.09)} 8px 16px); pointer-events: none; animation: ti-parda-kot 0.65s ease-in forwards; }
         .ti-qator.ochildi .ti-qator-t { animation: ti-sirg 0.5s 0.25s ease-out both; }
         @keyframes ti-parda-kot { from { opacity: 1; transform: none; } to { opacity: 0; transform: translateY(-110%); } }
         .ti-karta.tinch *, .ti-s2.tinch * { animation: none !important; }
@@ -2987,7 +2994,7 @@ export default function PmTenIdeasLesson({ lang: langProp, onFinished, liveToken
         .ti-mg-h { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
         .ti-mg-k { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 8px; min-height: 40px; align-content: start; }
         @media (max-width: 640px) { .ti-mg-k { grid-template-columns: repeat(3, minmax(0,1fr)); } }
-        .ti-yk { display: block; height: 34px; border-radius: 7px; border: 1.5px solid ${fon(T.accent, 0.35)}; background: repeating-linear-gradient(135deg, ${T.accentSoft} 0 6px, ${T.paper} 6px 12px); }
+        .ti-yk { /* kesik-ok: shtrix = matnsiz g'oya kartasi (MD P-015: hook matnsiz) */ display: block; height: 34px; border-radius: 7px; border: 1.5px solid ${fon(T.accent, 0.35)}; background: repeating-linear-gradient(135deg, ${T.accentSoft} 0 6px, ${T.paper} 6px 12px); }
         p.ti-javob { margin: 2px 0 0; padding: 10px 14px; border-radius: 12px; background: ${T.paper}; font-size: clamp(13.5px,1.5vw,15px); font-weight: 600; line-height: 1.5; color: ${T.ink}; }
         .ti-ovoz { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border-radius: 12px; background: ${T.paper}; border: 1px solid ${T.line}; }
         .ti-ovoz-q { display: grid; grid-template-columns: minmax(0,1.4fr) minmax(0,1fr) 28px; align-items: center; gap: 8px; font-size: 12.5px; color: ${T.ink2}; }

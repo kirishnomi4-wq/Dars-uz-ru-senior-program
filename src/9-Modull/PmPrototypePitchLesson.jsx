@@ -265,13 +265,13 @@ const INLINE_KEYS = { s3: 3, s5: 1, s7: 2, s12: 0, bolaklar: -1, dalil: -1, demo
 // 📖 RECAPS — har ballik test uchun 3 karta (kalit = ekran INDEKSI; S-026: PM darsida raqam 1/2/3)
 const RECAPS = {
   3: { title: { uz: "Qaysi bo'lak", ru: 'Какая часть' }, cards: [
-    { ic: '1', h: { uz: "Muammo bo'lagida muammo gapi va dalil turadi.", ru: 'В части «Проблема» стоят фраза о проблеме и довод.' } },
+    { ic: '1', h: { uz: "Muammo bo'lagida muammo gapi va dalil turadi.", ru: "В части «Проблема» стоят формулировка проблемы и довод." } },
     { ic: '2', h: { uz: "Dalil — necha kishidan nechtasida muammo bo'lgani.", ru: 'Довод — у скольких из скольких была проблема.' } },
     { ic: '3', h: { uz: 'Jonli demo va keyingi qadam boshqa savolga javob beradi.', ru: 'Живое демо и следующий шаг отвечают на другие вопросы.' }, ask: { uz: "«Sinfdoshlarning 5 tadan 4 tasi …» — bu qaysi bo'lak?", ru: '«У 4 из 5 одноклассников …» — это какая часть?' } }
   ] },
   5: { title: { uz: 'Ish bilan dalil', ru: 'Довод делом' }, cards: [
     { ic: '1', h: { uz: "«Kerak», «yuklab olaman» — fikr yoki va'da.", ru: '«Нужно», «скачаю» — мнение или обещание.' } },
-    { ic: '2', h: { uz: "Sinab ko'rishga kun belgilash — ish: bu harakat belgisi.", ru: 'Назначить день, чтобы попробовать, — дело: это знак действия.' } },
+    { ic: '2', h: { uz: "Sinab ko'rishga kun belgilash — ish: bu harakat belgisi.", ru: "Назначить день пробы — дело: это знак действия." } },
     { ic: '3', h: { uz: '10 intervyu — kichik son; bu tanlov uchun dalil, isbot emas.', ru: '10 интервью — маленькое число; это довод для выбора, а не доказательство.' }, ask: { uz: "Sizning intervyuingizda kim ish bilan qiziqish ko'rsatdi?", ru: 'Кто в ваших интервью показал интерес делом?' } }
   ] },
   7: { title: { uz: 'Bir gapda yechim', ru: 'Решение одной фразой' }, cards: [
@@ -711,7 +711,7 @@ const JAMOA_PITCH = {
   muammo: {
     gap: { uz: "O'yinchilar o'yindan oldin jamoaga yetarli odam yig'ishda va kim aniq kelishini bilishda qiynaladi.", ru: 'Игрокам перед игрой трудно собрать достаточно людей в команду и узнать, кто точно придёт.' },
     sanoq: { uz: "5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.", ru: 'У 4 из 5 игроков в последней игре не хватило людей или кто-то не пришёл.' },
-    belgi: { uz: "5 o'yinchidan 4 tasi birinchi versiyani sinab ko'rishga kun belgiladi.", ru: '4 из 5 игроков назначили день, чтобы попробовать первую версию.' },
+    belgi: { uz: "5 o'yinchidan 4 tasi birinchi versiyani sinab ko'rishga kun belgiladi.", ru: "4 из 5 игроков назначили день пробы первой версии." },
     halol: { uz: "10 intervyu — kichik son; bu tanlov uchun dalil, isbot emas.", ru: '10 интервью — маленькое число; это довод для выбора, а не доказательство.' }
   },
   yechim: { uz: "Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.", ru: 'Организатор объявляет игру, игроки присоединяются в одно нажатие и в день игры подтверждают, что придут.' },
@@ -1007,7 +1007,7 @@ const RejaSahna = () => {
 const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz', ru: 'Начинаем' })} onClick={onNext} /></>}>
     <QReja zoom={Zoomable}
-      sarlavha={tr({ uz: <>Bugun <A>3 daqiqalik pitch</A> yozib, sherigingizga aytasiz.</>, ru: <>Сегодня напишете <A>питч на 3 минуты</A> и расскажете его партнёру.</> })}
+      sarlavha={tr({ uz: <>Bugun <A>3 daqiqalik pitch</A> yozib, sherigingizga aytasiz.</>, ru: <>Напишете <A>питч на 3 минуты</A> и расскажете партнёру.</> })}
       mentor={<Mentor>{tr({ uz: "PRD, sinov yozuvlari va tuzatilgan rejangiz bugun kerak bo'ladi — ilovangiz telefonda ochilib tursin.", ru: 'Сегодня понадобятся PRD, записи теста и исправленный план — пусть приложение будет открыто на телефоне.' })}</Mentor>}
       chapYorliq={tr({ uz: 'Dars oxirida', ru: 'В конце урока' })}
       chap={<RejaSahna />}
@@ -1106,9 +1106,9 @@ const Screen3 = (props) => (
 );
 
 // ===== SCREEN 4 — MUAMMO VA DALIL (QTushuncha ketma-ket, 3 qadam; SABOQ 24, 35): chapda Muammo bo'lagi va zal · o'ngda sanoq jadvali — qator jadvaldan bo'lakka uchadi =====
-const S4_SAVOL = { uz: 'Bu misolda muammo gapi yonida nechta dalil turadi?', ru: 'Сколько доводов в этом примере стоит рядом с фразой о проблеме?' };
+const S4_SAVOL = { uz: 'Bu misolda muammo gapi yonida nechta dalil turadi?', ru: "Сколько доводов в этом примере стоит рядом с формулировкой проблемы?" };
 const S4_TAXMIN = [{ k: '1', t: '1' }, { k: '2', t: '2' }, { k: '3', t: '3' }];
-const S4_QADAM = [{ uz: "Muammo gapini qo'ying", ru: 'Поставьте фразу о проблеме' }, { uz: "Sanoqni qo'shing", ru: 'Добавьте подсчёт' }, { uz: "Harakat belgisini qo'shing", ru: 'Добавьте знак действия' }];
+const S4_QADAM = [{ uz: "Muammo gapini qo'ying", ru: "Поставьте формулировку проблемы" }, { uz: "Sanoqni qo'shing", ru: 'Добавьте подсчёт' }, { uz: "Harakat belgisini qo'shing", ru: 'Добавьте знак действия' }];
 // Sanoq jadvali (tayanch 1.3 aynan; «eng qiyini» — 3 / 5 · 3 / 5)
 const SANOQ_JADVAL = [
   { k: 'oxirgi', l: { uz: "oxirgi marta muammo bo'lgan", ru: 'в последний раз была проблема' }, a: '4 / 5', b: '3 / 5' },
@@ -1164,7 +1164,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Muammo borligini zalga <A>qanday ko'rsatasiz?</A></>, ru: <>Как показать залу, <A>что проблема есть?</A></> })}
         mentor={<Mentor>{tr(done
           ? { uz: "Dalillar bo'lakda turibdi: «Davom etish»ni bosing.", ru: 'Доводы уже в части: нажмите «Продолжить».' }
-          : { uz: "Muammo gapi intervyulardan keyin yozilgan edi: yoniga jadvaldan dalil qo'shib, zal savoliga qarang.", ru: 'Фраза о проблеме была написана после интервью: добавьте рядом довод из таблицы и посмотрите на вопрос зала.' })}</Mentor>}
+          : { uz: "Muammo gapi intervyulardan keyin yozilgan edi: yoniga jadvaldan dalil qo'shib, zal savoliga qarang.", ru: "Формулировка проблемы написана после интервью: добавьте рядом довод из таблицы и посмотрите на вопрос зала." })}</Mentor>}
         bashorat={<Bashorat savol={tr(S4_SAVOL)} variantlar={S4_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} yopiq={done} />}
         harakat={<div className="pt-s4-ch">{taxmin && !done && <QadamQatori qadamlar={S4_QADAM.map(tr)} joriy={q} onBos={bos} />}{bolak}</div>}
         vizual={tugadi ? bolak : <div className="pt-s4-jw"><SanoqJadval yonik={[q >= 2 && 'oxirgi', q >= 3 && 'belgi'].filter(Boolean)} /></div>}
@@ -1175,9 +1175,9 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         xulosa={tugadi && <>{tx && <NatijaTx togri={taxmin === '2'}>{taxmin === '2'
           ? tr({ uz: "Taxminingiz to'g'ri chiqdi", ru: 'Ваше предположение оказалось верным' })
           : <>{tr(TAXMIN_L)}: {tx.t} · {tr({ uz: 'bu misolda', ru: 'в этом примере' })}: <b>2</b></>}</NatijaTx>}
-          {tr({ uz: "Bu misolda muammoni ikki dalil ko'rsatdi: necha kishida bo'lgani va kim sinovga kun belgilagani.", ru: 'В этом примере проблему показали два довода: у скольких людей она была и кто назначил день теста.' })}</>}
+          {tr({ uz: "Bu misolda muammoni ikki dalil ko'rsatdi: necha kishida bo'lgani va kim sinovga kun belgilagani.", ru: "В этом примере проблему показали два довода: у скольких людей она была и кто назначил день пробы." })}</>}
       />
-      <MentorNote>{tr({ uz: "Harakat belgisi 3-darsda o'tilgan: «Birinchi versiya tayyor bo'lganda, uni sinab ko'rishga 10 daqiqa vaqt berasizmi? Qaysi kunni belgilaysiz?». Zal «Nega to'garaklar emas?» deb so'rasa — o'sha ustunda kun belgilagan 5 tadan 1 tasi. 9-Modulda o'tilgan hikoya (bitta odam bilan bo'lib o'tgan ish) ham 3 daqiqaga sig'adi — bitta jumla bilan, masalan 3-darsdagi 1-yozuv: «o'tgan shanba: 10 kishi kerak edi, 7 kishi keldi». Halol qatorni o'tkazib yubormang: 10 intervyu — isbot emas.", ru: 'Знак действия проходили на 3-м уроке: «Когда первая версия будет готова, дадите 10 минут, чтобы её попробовать? Какой день назначите?». Если зал спросит «Почему не кружки?» — в том столбце день назначил 1 из 5. История из 9-го модуля (случай с одним человеком) тоже помещается в 3 минуты — одной фразой, например запись 1 с 3-го урока: «в прошлую субботу нужно было 10 человек, пришли 7». Не пропускайте честную строку: 10 интервью — не доказательство.' })}</MentorNote>
+      <MentorNote>{tr({ uz: "Harakat belgisi 3-darsda o'tilgan: «Birinchi versiya tayyor bo'lganda, uni sinab ko'rishga 10 daqiqa vaqt berasizmi? Qaysi kunni belgilaysiz?». Zal «Nega to'garaklar emas?» deb so'rasa — o'sha ustunda kun belgilagan 5 tadan 1 tasi. 9-Modulda o'tilgan hikoya (bitta odam bilan bo'lib o'tgan ish) ham 3 daqiqaga sig'adi — bitta jumla bilan, masalan 3-darsdagi 1-yozuv: «o'tgan shanba: 10 kishi kerak edi, 7 kishi keldi». Halol qatorni o'tkazib yubormang: 10 intervyu — isbot emas.", ru: "Знак действия проходили на 3-м уроке: «Когда первая версия будет готова, дадите 10 минут, чтобы её попробовать? Какой день назначите?». Если зал спросит «Почему не кружки?» — в том столбце день пробы назначил 1 из 5. История из 9-го модуля (случай с одним человеком) тоже помещается в 3 минуты — одной фразой, например запись 1 с 3-го урока: «в прошлую субботу нужно было 10 человек, пришли 7». Не пропускайте честную строку: 10 интервью — не доказательство." })}</MentorNote>
     </Stage>
   );
 };
@@ -1196,11 +1196,11 @@ const Screen5 = (props) => (
     question={tr({ uz: <h2 className="title h-ask">Uy vazifalari ilovasiga qiziqishni qaysi dalil <A>ishonarliroq ko'rsatadi?</A></h2>, ru: <h2 className="title h-ask">Какой довод <A>убедительнее показывает</A> интерес к приложению для домашних заданий?</h2> })}
     options={[
       { uz: '5 kishidan 4 tasi «Albatta yuklab olaman» dedi', ru: '4 из 5 человек сказали «Обязательно скачаю»' },
-      { uz: "5 kishidan 3 tasi sinab ko'rishga kun belgiladi", ru: '3 из 5 человек назначили день, чтобы попробовать' },
+      { uz: "5 kishidan 3 tasi sinab ko'rishga kun belgiladi", ru: "3 из 5 человек назначили день пробы" },
       { uz: "5 kishidan 5 tasi «G'oya juda yaxshi ekan» dedi", ru: '5 из 5 человек сказали «Идея очень хорошая»' },
       { uz: '5 kishidan 4 tasi muammo haqida uzoq gapirdi', ru: '4 из 5 человек долго говорили о проблеме' }
     ]} correctIdx={1}
-    explainCorrect={{ uz: "Sinab ko'rishga kun belgilash — so'z emas, ish: bu harakat belgisi.", ru: 'Назначить день, чтобы попробовать, — не слово, а дело: это знак действия.' }}
+    explainCorrect={{ uz: "Sinab ko'rishga kun belgilash — so'z emas, ish: bu harakat belgisi.", ru: "Назначить день пробы — не слово, а дело: это знак действия." }}
     explainWrong={{
       0: { uz: 'Bu va\'da: odam hali hech narsa qilmadi.', ru: 'Это обещание: человек ещё ничего не сделал.' },
       2: { uz: "Bu fikr: maqtov qiziqishni ish bilan ko'rsatmaydi.", ru: 'Это мнение: похвала не показывает интерес делом.' },
@@ -1217,7 +1217,7 @@ const IPHONE_BOSQICH = [
   { h: { uz: 'Bitta ekran', ru: 'Один экран' }, m: { uz: "Apple esa klaviatura, stilus va deyarli hamma tugmani olib tashlagan. Telefonda bitta ekran va Home tugmasi qolgan.", ru: 'А Apple убрала клавиатуру, стилус и почти все кнопки. В телефоне остались один экран и кнопка Home.' } },
   { h: { uz: 'Uch qurilma bittada', ru: 'Три устройства в одном' }, m: { uz: "Stiv Jobs iPhone'ni «uch qurilma bittada» deb taqdim etgan: iPod, telefon va internet. iPod — Apple'ning musiqa pleeri.", ru: 'Стив Джобс представил iPhone как «три устройства в одном»: iPod, телефон и интернет. iPod — музыкальный плеер Apple.' } }
 ];
-const IP_SAVOL = { uz: "Stiv Jobs iPhone'ni nechta qurilma deb taqdim etgan?", ru: 'Сколькими устройствами Стив Джобс представил iPhone?' };
+const IP_SAVOL = { uz: "Stiv Jobs iPhone'ni nechta qurilma deb taqdim etgan?", ru: "Сколько устройств в одном назвал Стив Джобс, представляя iPhone?" };
 const IP_TAXMIN = [{ k: '1', t: '1' }, { k: '2', t: '2' }, { k: '3', t: '3' }];
 const Brend = ({ r, children }) => <b className={cxx('pt-brend', r)}>{children}</b>;
 const KLAV = Array.from({ length: 20 }, (_, i) => [8 + (i % 5) * 11, 92 + Math.floor(i / 5) * 9]);
@@ -1317,7 +1317,7 @@ const Screen7 = (props) => (
     questionText="Zal «Maydon Jamoa nima qiladi?» deb so'radi. Qaysi javob mos?"
     question={tr({ uz: <h2 className="title h-ask">Zal «<Jamoa /> nima qiladi?» deb so'radi. <A>Qaysi javob mos?</A></h2>, ru: <h2 className="title h-ask">Зал спросил: «Что делает <Jamoa />?» <A>Какой ответ подходит?</A></h2> })}
     options={[
-      { uz: "«Unda o'yinlar, o'yin va e'lon berish ekranlari bor»", ru: '«В нём есть экраны игр, игры и подачи объявления»' },
+      { uz: "«Unda o'yinlar, o'yin va e'lon berish ekranlari bor»", ru: "«В нём есть экраны: список игр, игра и подача объявления»" },
       { uz: '«U Expo, NestJS va Neon Database yordamida qurilgan»', ru: '«Он построен на Expo, NestJS и Neon Database»' },
       { uz: "«O'yinchi e'londagi o'yinga bir bosishda qo'shiladi»", ru: '«Игрок присоединяется к объявленной игре в одно нажатие»' },
       { uz: "«U mahalladagi mini-futbol o'yinchilari uchun qilingan»", ru: '«Он сделан для игроков в мини-футбол из махалли»' }
@@ -1338,7 +1338,7 @@ const S8_TAXMIN = [{ k: 'soniya', t: { uz: 'bir necha soniya', ru: 'нескол
 const S8_QADAM = [{ uz: 'Ilovani oldindan oching', ru: 'Откройте приложение заранее' }, { uz: "Asosiy harakatni ko'rsating", ru: 'Покажите главное действие' }, { uz: 'Sinovdagi tuzatishni ayting', ru: 'Расскажите об исправлении после теста' }];
 const S8_IZOH = [
   { uz: "Bu kutish pitchdan oldin o'tdi — taymer hali boshlanmagan.", ru: 'Это ожидание прошло до питча — таймер ещё не запущен.' },
-  { uz: "Asosiy harakat — sinov vazifasidagi ish: «Shanba soat 18:00 dagi o'yinga qo'shiling.»", ru: 'Главное действие — дело из задания теста: «Присоединитесь к игре в субботу в 18:00».' }
+  { uz: "Asosiy harakat — sinov vazifasidagi ish: «Shanba soat 18:00 dagi o'yinga qo'shiling.»", ru: "Главное действие — дело из задания теста: «Присоединитесь к игре в субботу в 18:00.»" }
 ];
 const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const avval = !!storedAnswer;
@@ -1401,7 +1401,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           : <>{tr(TAXMIN_L)}: {tr(tx.t)} · {tr({ uz: 'haqiqatda', ru: 'на деле' })}: <b>{tr({ uz: 'bir daqiqagacha', ru: 'до минуты' })}</b></>}</NatijaTx>}
           {tr({ uz: "Bu misolda jonli demo — oldindan ochilgan ilovada bitta asosiy harakat va sinovdagi tuzatish.", ru: 'В этом примере живое демо — одно главное действие в заранее открытом приложении и исправление после теста.' })}</>}
       />
-      <MentorNote>{tr({ uz: "Render bepul xizmati 15 daqiqa so'rovsiz qolsa uxlaydi, uyg'onishi ≈ 1 daqiqa — 15-darsdagi 1-risk shu edi. Pitchdan 2–3 daqiqa oldin ilovani bir marta oching. Mobil trekda Expo Go laptopdagi npx expo start ga ulanadi: laptop yoniq, telefon va laptop bitta Wi-Fi'da (ishlamasa — npx expo start --tunnel). Web-trekda mahsulot telefon brauzerida yoki bosh ekrandagi PWA'da ochiladi. Zaxira: ilovani ishlatayotgan ekran videosi (telefonning ekran yozuvi bilan oldindan) — jonli ko'rsatish ishlamasa, shuni ko'rsatadi; bu Demo Day 7 da ham asqotadi (o'quvchiga va'da qilib aytilmaydi).", ru: 'Бесплатный сервис Render засыпает после 15 минут без запросов, просыпается ≈ 1 минуту — это и был 1-й риск на 15-м уроке. Откройте приложение один раз за 2–3 минуты до питча. В мобильном треке Expo Go подключается к npx expo start на ноутбуке: ноутбук включён, телефон и ноутбук в одной Wi-Fi (если не работает — npx expo start --tunnel). В веб-треке продукт открывается в браузере телефона или в PWA на главном экране. Запасной вариант: видео экрана с работой приложения (заранее, записью экрана телефона) — если живой показ не работает, показывают его; это пригодится и на Demo Day 7 (ученику не обещается).' })}</MentorNote>
+      <MentorNote>{tr({ uz: "Render bepul xizmati 15 daqiqa so'rovsiz qolsa uxlaydi, uyg'onishi ≈ 1 daqiqa — 15-darsdagi 1-risk shu edi. Pitchdan 2–3 daqiqa oldin ilovani bir marta oching. Mobil trekda Expo Go laptopdagi npx expo start ga ulanadi: laptop yoniq, telefon va laptop bitta Wi-Fi'da (ishlamasa — npx expo start --tunnel). Web-trekda mahsulot telefon brauzerida yoki bosh ekrandagi PWA'da ochiladi. Zaxira: ilovani ishlatayotgan ekran videosi (telefonning ekran yozuvi bilan oldindan) — jonli ko'rsatish ishlamasa, shuni ko'rsatadi; bu Demo Day 7 da ham asqotadi (o'quvchiga va'da qilib aytilmaydi).", ru: "Бесплатный сервис Render засыпает после 15 минут без запросов, просыпается ≈ 1 минуту — это и был 1-й риск на 15-м уроке. Откройте приложение один раз за 2–3 минуты до питча. В мобильном треке Expo Go подключается к npx expo start на ноутбуке: ноутбук включён, телефон и ноутбук в одной сети Wi-Fi (если не работает — npx expo start --tunnel). В веб-треке продукт открывается в браузере телефона или в PWA на главном экране. Запасной вариант: видео экрана с работой приложения (заранее, записью экрана телефона) — если живой показ не работает, показывают его; это пригодится и на Demo Day 7 (ученику это не обещают)." })}</MentorNote>
     </Stage>
   );
 };
@@ -1489,7 +1489,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         : { uz: "Jonli demo bo'lagiga Database'dagi son qo'shiladi: SQL'ni o'zingiz yozib, Neon ko'rsatgan sonni oling.", ru: 'В часть «Живое демо» добавляется число из Database: напишите SQL сами и возьмите число, которое показал Neon.' };
   const SonQator = ({ n, v, setV, nm, setNm, ph }) => (
     <label className="pt-son-q">
-      <span className="pt-son-l">{n}-son:</span>
+      <span className="pt-son-l">{tr({ uz: `${n}-son:`, ru: `Число ${n}:` })}</span>
       <input className={cxx('pt-inp son', v.trim() !== '' && !SON_RE.test(v.trim()) && 'xato', !done && !isMentor && v.trim() === '' && n === (sA === '' ? 1 : 2) && 'pt-halqa-i')} inputMode="numeric" value={v} disabled={done || dvOk || isMentor} placeholder={tr({ uz: 'son', ru: 'число' })} onChange={(e) => setV(e.target.value)} />
       <span className="pt-son-l">{tr({ uz: 'ta', ru: '' })}</span>
       <input className="pt-inp" value={nm} disabled={done || dvOk || isMentor} placeholder={tr(ph)} onChange={(e) => setNm(e.target.value)} />
@@ -1498,7 +1498,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Kod yozish · Neon', ru: 'Пишем код · Neon' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval sonni oling', ru: 'Сначала получите число' })} onClick={onNext} /></>}>
       <QKod
-        sarlavha={tr({ uz: <>Pitch uchun sonni Database'dan <A>oladigan SQL yozamiz.</A></>, ru: <>Пишем SQL, <A>который берёт число для питча</A> из Database.</> })}
+        sarlavha={tr({ uz: <>Pitch uchun sonni Database'dan <A>oladigan SQL yozamiz.</A></>, ru: <>Пишем SQL: <A>число для питча</A> из Database.</> })}
         mentor={<Mentor>{tr(mentorT)}</Mentor>}
         vazifa={<div className="pt-s9-v">
           {!sonlarOk && holat === null && !yordam && <ol className="pt-vz">{S9_VAZIFA.map((v, i) => <li key={i}><i>{i + 1}</i><span>{tr(v)}</span></li>)}</ol>}
@@ -1520,11 +1520,11 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {yordam && !dvOk && !done && <div className="pt-yordam-t fade-step">
             <p>{tr({ uz: <>Jadvallaringiz nomi <code className="qcode">README.md</code> dagi «Arxitektura» bo'limida; SQL Editor'da <code className="qcode">\dt</code> yozsangiz, jadvallar ro'yxati chiqadi. Holat ustuni bo'lmasa — <code className="qcode">WHERE</code> qatorini olib tashlang.</>, ru: <>Названия ваших таблиц — в разделе «Архитектура» файла <code className="qcode">README.md</code>; если в SQL Editor написать <code className="qcode">\dt</code>, появится список таблиц. Если столбца holat нет — уберите строку <code className="qcode">WHERE</code>.</> })}</p>
             <p>{tr({ uz: <>Eslatma: bo'sh joyga kim qaysi o'yinga qo'shilganini saqlaydigan jadval — <code className="qcode">ishtirokchilar</code> yoziladi. SQL darslaridan: <code className="qcode">COUNT(*)</code> — qatorlarni sanaydi · <code className="qcode">WHERE</code> — qaysi qatorlar olinishi · <code className="qcode">IN (…)</code> — qiymat qavsdagilardan biri bo'lsa.</>, ru: <>Напоминание: в пропуск пишется таблица, где хранится, кто к какой игре присоединился, — <code className="qcode">ishtirokchilar</code>. Из уроков SQL: <code className="qcode">COUNT(*)</code> — считает строки · <code className="qcode">WHERE</code> — какие строки взять · <code className="qcode">IN (…)</code> — значение одно из тех, что в скобках.</> })}</p>
-            <p>{tr({ uz: "Database'ga kira olmasangiz — sonni o'ylab topmang: jonli demo bo'lagi sonsiz ham to'liq (pastdagi «Database'ga kira olmadim»).", ru: 'Если не получается зайти в Database — не придумывайте число: часть «Живое демо» полна и без него (кнопка ниже «Не смог зайти в Database»).' })}</p>
+            <p>{tr({ uz: "Database'ga kira olmasangiz — sonni o'ylab topmang: jonli demo bo'lagi sonsiz ham to'liq (pastdagi «Database'ga kira olmadim»).", ru: "Если не получается зайти в Database — не придумывайте число: часть «Живое демо» полная и без него (кнопка ниже «Не получилось зайти в Database»)." })}</p>
           </div>}
           {!done && <div className="pt-bajar-t">
             {!dvOk && <QTugma ikkinchi onClick={() => setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: 'Подсказка' })}</QTugma>}
-            <QTugma ikkinchi disabled={isMentor} onClick={kirolmadi}>{tr({ uz: "Database'ga kira olmadim", ru: 'Не смог зайти в Database' })}</QTugma>
+            <QTugma ikkinchi disabled={isMentor} onClick={kirolmadi}>{tr({ uz: "Database'ga kira olmadim", ru: "Не получилось зайти в Database" })}</QTugma>
           </div>}
           {!done && <div className="pt-bajar-t">
             <QTugma className={halqa(dvOk && !isMentor)} disabled={isMentor} onClick={bajardim}>{tr({ uz: 'Bajardim — SQL ishladi, son yozildi', ru: 'Готово — SQL сработал, число записано' })}</QTugma>
@@ -1583,8 +1583,8 @@ const QOLDIR = { uz: "Shunday qoldirsangiz — yana «Saqlash»ni bosing.", ru: 
 const SAQLASH = { uz: 'Saqlash', ru: 'Сохранить' };
 // Har bo'lak maydonlari (MD 10-ekran): yo'l · yorliq · placeholder · ko'p qatorli
 const MAYDON = [
-  [{ p: ['muammo', 'gap'], j: 'gap', maj: true, l: { uz: 'Muammo gapi', ru: 'Фраза о проблеме' }, ph: { uz: 'Kim nimadan qiynaladi?', ru: 'Кому и от чего трудно?' }, kop: true },
-    { p: ['muammo', 'dalil'], j: 'dalil', maj: true, l: { uz: 'Dalil', ru: 'Довод' }, ph: { uz: 'Necha kishidan nechtasida? Kim sinovga kun belgiladi?', ru: 'У скольких из скольких? Кто назначил день теста?' }, kop: true }],
+  [{ p: ['muammo', 'gap'], j: 'gap', maj: true, l: { uz: 'Muammo gapi', ru: "Формулировка проблемы" }, ph: { uz: 'Kim nimadan qiynaladi?', ru: 'Кому и от чего трудно?' }, kop: true },
+    { p: ['muammo', 'dalil'], j: 'dalil', maj: true, l: { uz: 'Dalil', ru: 'Довод' }, ph: { uz: 'Necha kishidan nechtasida? Kim sinovga kun belgiladi?', ru: "У скольких из скольких? Кто назначил день пробы?" }, kop: true }],
   [{ p: ['yechim'], j: 'yechim', maj: true, l: { uz: 'Bir gap', ru: 'Одна фраза' }, ph: { uz: 'Mahsulot odamga nima qiladi?', ru: 'Что продукт делает для человека?' }, kop: true }],
   [{ p: ['demo', 'harakat'], j: 'harakat', maj: true, l: { uz: 'Asosiy harakat', ru: 'Главное действие' }, ph: { uz: "Telefonda qaysi harakatni ko'rsatasiz?", ru: 'Какое действие покажете на телефоне?' } },
     { p: ['demo', 'tuzatish'], j: 'tuzatish', l: { uz: 'Sinovdagi tuzatish', ru: 'Исправление после теста' }, ph: { uz: 'Sinovda nima topildi, nimani tuzatdingiz?', ru: 'Что нашли на тесте, что исправили?' }, kop: true },
@@ -1603,8 +1603,8 @@ const sinovQator = (s) => {
   const n = Array.isArray(s.bajardi) ? s.bajardi.length : 0;
   const k = Array.isArray(e.kishilar) ? e.kishilar.length : 0;
   const bosh = s.tur === 'mashq' ? tr({ uz: 'Mashq sinovida', ru: 'На тренировочном тесте' }) : tr({ uz: 'Sinovda', ru: 'На тесте' });
-  let q = n && k ? tr({ uz: `${bosh} ${n} kishidan ${k} tasi «${e.matn}» joyida to'xtadi — o'zgartirdim.`, ru: `${bosh} ${k} из ${n} человек застряли на месте «${e.matn}» — я изменил это.` })
-    : tr({ uz: `${bosh} «${e.matn}» joyida to'xtashdi — o'zgartirdim.`, ru: `${bosh} застряли на месте «${e.matn}» — я изменил это.` });
+  let q = n && k ? tr({ uz: `${bosh} ${n} kishidan ${k} tasi «${e.matn}» joyida to'xtadi — o'zgartirdim.`, ru: `${bosh} ${k} из ${n} человек застряли на месте «${e.matn}» — мы это изменили.` })
+    : tr({ uz: `${bosh} «${e.matn}» joyida to'xtashdi — o'zgartirdim.`, ru: `${bosh} застряли на месте «${e.matn}» — мы это изменили.` });
   const qs = s.qaytaSinov && s.qaytaSinov.natija;
   if (qs === 'toxtamadi') q += ' ' + tr({ uz: 'Qayta sinovda bu safar takrorlanmadi.', ru: 'На повторном тесте на этот раз не повторилось.' });
   if (qs === 'toxtadi') q += ' ' + tr({ uz: "Qayta sinovda yana to'xtadi.", ru: 'На повторном тесте снова застряли.' });
@@ -1739,7 +1739,7 @@ const Screen10 = ({ screen, storedAnswer, answers, onAnswer, onNext, onPrev }) =
         </div>}
       >
         <MentorSanoq zonalar={[PRACTICE_BASE + screen]} yorliqlar={[{ uz: "To'rt bo'lakni yozganlar", ru: 'Написали четыре части' }, { uz: 'Dalilida sanoq borlar', ru: 'С подсчётом в доводе' }]} hisob={([r]) => [r.length, r.filter(x => x.picked === 1).length]} />
-        <MentorNote>{tr({ uz: "Eng ko'p xato — yechim o'rniga texnologiya yoki ekranlar ro'yxati: «Mahsulot odamga nima qiladi?» deb so'rang. 12 daqiqadan keyin juftlikka o'ting; ulgurmagan bo'lak uyda yoziladi.", ru: 'Самая частая ошибка — вместо решения технология или список экранов: спросите «Что продукт делает для человека?». Через 12 минут переходите к работе в парах; что не успели — допишут дома.' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Eng ko'p xato — yechim o'rniga texnologiya yoki ekranlar ro'yxati: «Mahsulot odamga nima qiladi?» deb so'rang. 12 daqiqadan keyin juftlikka o'ting; ulgurmagan bo'lak uyda yoziladi.", ru: "Самая частая ошибка — вместо решения технология или список экранов: спросите «Что продукт делает для человека?». Через 12 минут переходите к работе в парах; часть, которую не успели, допишут дома." })}</MentorNote>
       </QMustaqil>
     </Stage>
   );
@@ -1885,13 +1885,13 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 {xato && !xato.blok && <span className="pt-qoldir">{tr(QOLDIR)}</span>}
                 <QTugma className={halqa(varaq.every(r => r.belgi))} onClick={saqlaVaraq}>{tr(SAQLASH)}</QTugma>
               </div>}
-              {qadam >= 1 && vaqt > JAMI_VAQT && !done && <QIzoh>{tr({ uz: "Vaqt 3 daqiqadan oshdi — ortiqcha gapni oling, telefonda bitta harakat qoldiring.", ru: 'Время больше 3 минут — уберите лишнее, на телефоне оставьте одно действие.' })}</QIzoh>}
+              {qadam >= 1 && vaqt > JAMI_VAQT && !done && <QIzoh>{tr({ uz: "Vaqt 3 daqiqadan oshdi — ortiqcha gapni oling, telefonda bitta harakat qoldiring.", ru: "Время вышло за 3 минуты — уберите лишнее, на телефоне оставьте одно действие." })}</QIzoh>}
               {done && <QXulosa>{tr({ uz: "Varaq to'ldi va bitta bo'lak tuzatildi. Qolgan ✗ bo'laklar — uyga vazifada.", ru: 'Лист заполнен, и одна часть исправлена. Остальные части с ✗ — в домашнем задании.' })}</QXulosa>}
             </div>
           </div>}
       >
         <MentorSanoq zonalar={[PRACTICE_BASE + screen, PRACTICE_BASE + 40 + screen]} yorliqlar={[{ uz: 'Pitchni aytganlar', ru: 'Рассказали питч' }, { uz: "3 daqiqaga sig'ganlar", ru: 'Уложились в 3 минуты' }, { uz: "Bo'lak tuzatganlar", ru: 'Исправили часть' }]} hisob={([a, b]) => [a.length, a.filter(x => x.picked === 1).length, b.length]} />
-        <MentorNote>{tr({ uz: "Taymerni sinf bo'ylab bir vaqtda boshlating: avval hamma A, keyin hamma B (2 × 3 daqiqa + varaq ≈ 10 daqiqa). Vaqt qolsa — 1–2 ko'ngilli guruh oldida, Mentor rejimida (har biri ≈ 4 daqiqa; 90 daqiqa hisobida yo'q): proyektorda katta taymer, guruh har bo'lakka qo'l ko'tarib ✓ yoki ✗ beradi, Mentor varaqni ekranda to'ldiradi. Tinglovchi bo'lak haqida yozadi, odam haqida emas (qattiq, lekin hurmatli fidbek — 10-Modulda o'tilgan). Pitch shu ko'rinishda Demo Day 7 ga boradi — o'quvchiga va'da qilib aytilmaydi.", ru: 'Запускайте таймер по всему классу одновременно: сначала все A, потом все B (2 × 3 минуты + лист ≈ 10 минут). Если останется время — 1–2 добровольца перед группой в режиме ментора (каждый ≈ 4 минуты; в 90 минут не входит): на проекторе большой таймер, группа поднятием руки ставит каждой части ✓ или ✗, ментор заполняет лист на экране. Слушатель пишет о части, а не о человеке (жёсткий, но уважительный фидбек — проходили в 10-м модуле). В таком виде питч пойдёт на Demo Day 7 — ученику это не обещается.' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Taymerni sinf bo'ylab bir vaqtda boshlating: avval hamma A, keyin hamma B (2 × 3 daqiqa + varaq ≈ 10 daqiqa). Vaqt qolsa — 1–2 ko'ngilli guruh oldida, Mentor rejimida (har biri ≈ 4 daqiqa; 90 daqiqa hisobida yo'q): proyektorda katta taymer, guruh har bo'lakka qo'l ko'tarib ✓ yoki ✗ beradi, Mentor varaqni ekranda to'ldiradi. Tinglovchi bo'lak haqida yozadi, odam haqida emas (qattiq, lekin hurmatli fidbek — 10-Modulda o'tilgan). Pitch shu ko'rinishda Demo Day 7 ga boradi — o'quvchiga va'da qilib aytilmaydi.", ru: "Запускайте таймер по всему классу одновременно: сначала все A, потом все B (2 × 3 минуты + лист ≈ 10 минут). Если останется время — 1–2 добровольца перед группой в режиме Ментора (каждый ≈ 4 минуты; в 90 минут не входит): на проекторе большой таймер, группа поднятием руки ставит каждой части ✓ или ✗, Ментор заполняет лист на экране. Слушатель пишет о части, а не о человеке (жёсткий, но уважительный фидбек — проходили в 10-м модуле). В таком виде питч пойдёт на Demo Day 7 — ученику это не обещают." })}</MentorNote>
       </QMustaqil>
     </Stage>
   );
@@ -2009,15 +2009,15 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang — 12 savol (MD aynan), to'g'ri javob o'rni: A 1·6·11 · B 2·7·10 · C 3·5·12 · D 4·8·9 (har biri 3 marta)
 const QUIZ_BANK = [
   { q: { uz: "Zal «Ishlayotganini ko'rsata olasizmi?» deb so'radi. Nima qilasiz?", ru: 'Зал спросил: «Можете показать, что это работает?» Что сделаете?' }, opts: [{ uz: "Telefonda asosiy harakatni ko'rsatasiz", ru: 'Покажете главное действие на телефоне' }, { uz: 'Mahsulot nima qilishini bir gapda aytasiz', ru: 'Одной фразой скажете, что делает продукт' }, { uz: 'Intervyudagi sanoqni tartib bilan aytasiz', ru: 'По порядку назовёте подсчёт из интервью' }, { uz: 'Rejangizdagi birinchi ishni aytib berasiz', ru: 'Расскажете первое дело из плана' }], correct: 0 },
-  { q: { uz: "Muammo gapidan keyin zal «Qayerdan bilasiz?» dedi. Nima aytasiz?", ru: 'После фразы о проблеме зал спросил: «Откуда знаете?» Что скажете?' }, opts: [{ uz: 'Ilova qaysi texnologiyalarda qurilganini', ru: 'На каких технологиях построено приложение' }, { uz: "Necha kishidan nechtasida muammo bo'lganini", ru: 'У скольких из скольких была проблема' }, { uz: 'Ilovada nechta ekran va nechta tugma borligini', ru: 'Сколько в приложении экранов и кнопок' }, { uz: 'Keyingi oyda qaysi ishni qilmoqchi ekaningizni', ru: 'Что собираетесь делать в следующем месяце' }], correct: 1 },
+  { q: { uz: "Muammo gapidan keyin zal «Qayerdan bilasiz?» dedi. Nima aytasiz?", ru: "После формулировки проблемы зал спросил: «Откуда знаете?» Что скажете?" }, opts: [{ uz: 'Ilova qaysi texnologiyalarda qurilganini', ru: 'На каких технологиях построено приложение' }, { uz: "Necha kishidan nechtasida muammo bo'lganini", ru: 'У скольких из скольких была проблема' }, { uz: 'Ilovada nechta ekran va nechta tugma borligini', ru: 'Сколько в приложении экранов и кнопок' }, { uz: 'Keyingi oyda qaysi ishni qilmoqchi ekaningizni', ru: 'Что собираетесь делать в следующем месяце' }], correct: 1 },
   { q: { uz: "Harakat belgisi nimani ko'rsatadi?", ru: 'Что показывает знак действия?' }, opts: [{ uz: 'Odam intervyuda uzoq va qiziqib gapirganini', ru: 'Что человек долго и увлечённо говорил на интервью' }, { uz: "Odam g'oyani juda maqtab, yaxshi baho berganini", ru: 'Что человек очень хвалил идею и хорошо её оценил' }, { uz: "Odam qiziqishni ish bilan ko'rsatganini", ru: 'Что человек показал интерес делом' }, { uz: 'Odam ilovani do\'stlariga aytib berishini', ru: 'Что человек расскажет о приложении друзьям' }], correct: 2 },
-  { q: { uz: "«10 intervyu — kichik son» degan gap nimani aytadi?", ru: 'О чём говорит фраза «10 интервью — маленькое число»?' }, opts: [{ uz: 'Intervyular foydasiz, ularni tashlash kerak', ru: 'Интервью бесполезны, их надо бросить' }, { uz: "Yuzta intervyusiz g'oyani tanlab bo'lmaydi", ru: 'Без ста интервью идею не выбрать' }, { uz: "To'garaklar g'oyasi yaxshiroq ekanini", ru: 'Что идея с кружками лучше' }, { uz: 'Bu tanlov uchun dalil, isbot emasligini', ru: 'Что это довод для выбора, а не доказательство' }], correct: 3 },
-  { q: { uz: "Stiv Jobs iPhone'ni qaysi uch qurilma bittada deb taqdim etgan?", ru: 'Какими тремя устройствами в одном Стив Джобс представил iPhone?' }, opts: [{ uz: 'Kamera, telefon va soat', ru: 'Камера, телефон и часы' }, { uz: 'Klaviatura, stilus va telefon', ru: 'Клавиатура, стилус и телефон' }, { uz: 'iPod, telefon va internet', ru: 'iPod, телефон и интернет' }, { uz: 'iPod, radio va kompyuter', ru: 'iPod, радио и компьютер' }], correct: 2 },
+  { q: { uz: "«10 intervyu — kichik son» degan gap nimani aytadi?", ru: 'О чём говорит фраза «10 интервью — маленькое число»?' }, opts: [{ uz: 'Intervyular foydasiz, ularni tashlash kerak', ru: "Интервью бесполезны, от них надо отказаться" }, { uz: "Yuzta intervyusiz g'oyani tanlab bo'lmaydi", ru: 'Без ста интервью идею не выбрать' }, { uz: "To'garaklar g'oyasi yaxshiroq ekanini", ru: 'Что идея с кружками лучше' }, { uz: 'Bu tanlov uchun dalil, isbot emasligini', ru: 'Что это довод для выбора, а не доказательство' }], correct: 3 },
+  { q: { uz: "Stiv Jobs iPhone'ni qaysi uch qurilma bittada deb taqdim etgan?", ru: "Какие три устройства в одном назвал Стив Джобс, представляя iPhone?" }, opts: [{ uz: 'Kamera, telefon va soat', ru: 'Камера, телефон и часы' }, { uz: 'Klaviatura, stilus va telefon', ru: 'Клавиатура, стилус и телефон' }, { uz: 'iPod, telefon va internet', ru: 'iPod, телефон и интернет' }, { uz: 'iPod, radio va kompyuter', ru: 'iPod, радио и компьютер' }], correct: 2 },
   { q: { uz: "Apple iPhone'da nimani qoldirgan?", ru: 'Что Apple оставила в iPhone?' }, opts: [{ uz: 'Bitta ekran va Home tugmasini', ru: 'Один экран и кнопку Home' }, { uz: 'Klaviatura va stilus qalamini', ru: 'Клавиатуру и стилус' }, { uz: "Ko'p tugma va to'liq klaviaturani", ru: 'Много кнопок и полную клавиатуру' }, { uz: 'Stilus va ikkita katta ekranni', ru: 'Стилус и два больших экрана' }], correct: 0 },
-  { q: { uz: 'Yechim bo\'lagida zalga nima aytiladi?', ru: 'Что говорят залу в части «Решение»?' }, opts: [{ uz: "Ilova qurilgan texnologiyalarning ro'yxati", ru: 'Список технологий, на которых построено приложение' }, { uz: 'Mahsulot odamga nima qilishi, bir gapda', ru: 'Что продукт делает для человека, одной фразой' }, { uz: 'Ilovadagi hamma ekranlarning to\'liq nomlari', ru: 'Полные названия всех экранов приложения' }, { uz: 'Mahsulotni qurishga ketgan haftalar soni', ru: 'Сколько недель ушло на продукт' }], correct: 1 },
+  { q: { uz: 'Yechim bo\'lagida zalga nima aytiladi?', ru: 'Что говорят залу в части «Решение»?' }, opts: [{ uz: "Ilova qurilgan texnologiyalarning ro'yxati", ru: 'Список технологий, на которых построено приложение' }, { uz: 'Mahsulot odamga nima qilishi, bir gapda', ru: 'Что продукт делает для человека, одной фразой' }, { uz: 'Ilovadagi hamma ekranlarning to\'liq nomlari', ru: 'Полные названия всех экранов приложения' }, { uz: 'Mahsulotni qurishga ketgan haftalar soni', ru: "Сколько недель ушло на создание продукта" }], correct: 1 },
   { q: { uz: 'Nega ilovani pitchdan 2–3 daqiqa oldin ochasiz?', ru: 'Зачем открывать приложение за 2–3 минуты до питча?' }, opts: [{ uz: "Telefon ekrani yorqinroq bo'lishi uchun", ru: 'Чтобы экран телефона был ярче' }, { uz: "Zal ilovani oldindan ko'rib turishi uchun", ru: 'Чтобы зал заранее видел приложение' }, { uz: 'Ilova yangi versiyani yuklab olishi uchun', ru: 'Чтобы приложение скачало новую версию' }, { uz: "Uxlab qolgan Backend uyg'onishi uchun", ru: 'Чтобы уснувший Backend проснулся' }], correct: 3 },
   { q: { uz: "Jonli demoda qaysi harakatni ko'rsatasiz?", ru: 'Какое действие покажете в живом демо?' }, opts: [{ uz: 'Ilovadagi hamma tugmalarni birma-bir', ru: 'Все кнопки приложения по очереди' }, { uz: 'Kod yozilgan fayllarni birma-bir', ru: 'Файлы с кодом по очереди' }, { uz: 'Ilovaning sozlamalar sahifasini', ru: 'Страницу настроек приложения' }, { uz: 'Sinov vazifasidagi asosiy harakatni', ru: 'Главное действие из задания теста' }], correct: 3 },
-  { q: { uz: "Keyingi qadam bo'lagiga nima yoziladi?", ru: 'Что пишут в часть «Следующий шаг»?' }, opts: [{ uz: "Keyinroq qilinadigan hamma ishlar ro'yxati", ru: 'Список всех дел на потом' }, { uz: 'Tuzatilgan rejangizdagi birinchi ish', ru: 'Первое дело из исправленного плана' }, { uz: "Sinovda topilgan hamma to'xtashlar", ru: 'Все остановки, найденные на тесте' }, { uz: 'Ilova qanday qurilgani haqida hikoya', ru: 'Рассказ о том, как построено приложение' }], correct: 1 },
+  { q: { uz: "Keyingi qadam bo'lagiga nima yoziladi?", ru: 'Что пишут в часть «Следующий шаг»?' }, opts: [{ uz: "Keyinroq qilinadigan hamma ishlar ro'yxati", ru: 'Список всех дел на потом' }, { uz: 'Tuzatilgan rejangizdagi birinchi ish', ru: 'Первое дело из исправленного плана' }, { uz: "Sinovda topilgan hamma to'xtashlar", ru: "Все места, где застревали на тесте" }, { uz: 'Ilova qanday qurilgani haqida hikoya', ru: 'Рассказ о том, как построено приложение' }], correct: 1 },
   { q: { uz: "Varaqda «Jonli demo» qatoriga ✗ va «uzoq kutdik» yozildi. Nima qilasiz?", ru: 'В листе в строке «Живое демо» стоит ✗ и «долго ждали». Что сделаете?' }, opts: [{ uz: 'Keyingi safar ilovani oldindan ochasiz', ru: 'В следующий раз откроете приложение заранее' }, { uz: "Jonli demo bo'lagini pitchdan olasiz", ru: 'Уберёте живое демо из питча' }, { uz: 'Kutish paytida zalga hazil aytib berasiz', ru: 'Пока ждёте, расскажете залу шутку' }, { uz: "Sherigingizdan ✓ qo'yishini so'raysiz", ru: 'Попросите партнёра поставить ✓' }], correct: 0 },
   { q: { uz: 'Pitch 3:40 davom etdi. Nima qilasiz?', ru: 'Питч длился 3:40. Что сделаете?' }, opts: [{ uz: 'Taymerni o\'chirib, vaqtni umuman sanamaysiz', ru: 'Выключите таймер и вообще не будете считать время' }, { uz: "Muammo bo'lagini pitchdan butunlay olib tashlaysiz", ru: 'Полностью уберёте из питча часть «Проблема»' }, { uz: 'Ortiqcha gapni olib, bitta harakat qoldirasiz', ru: 'Уберёте лишнее и оставите одно действие' }, { uz: "Oxirgi bo'lakni ancha tezroq gapirib berasiz", ru: 'Последнюю часть проговорите гораздо быстрее' }], correct: 2 },
 ];
@@ -2570,8 +2570,8 @@ const MentorPracticeStats = ({ live, screen }) => {
 // 🃏 KARTOCHKALAR — MD 14-ekran jadvali aynan (12 ta); mexanika va ko'rinish — qolipda QKartochka (DE-204)
 const KARTOCHKALAR = [
   { front: { uz: 'Uch daqiqalik pitch qaysi to\'rt bo\'lakdan iborat?', ru: 'Из каких четырёх частей состоит трёхминутный питч?' }, back: { uz: 'Muammo, yechim, jonli demo va keyingi qadam', ru: 'Проблема, решение, живое демо и следующий шаг' } },
-  { front: { uz: "Muammo bo'lagida muammo gapi yonida nima turadi?", ru: 'Что стоит рядом с фразой о проблеме в части «Проблема»?' }, back: { uz: "Dalil: necha kishida bo'lgani va harakat belgisi", ru: 'Довод: у скольких людей она была и знак действия' } },
-  { front: { uz: "Harakat belgisi nimani ko'rsatadi?", ru: 'Что показывает знак действия?' }, back: { uz: "Odam qiziqishni so'z bilan emas, ish bilan ko'rsatganini — masalan, sinovga kun belgilagani", ru: 'Что человек показал интерес не словом, а делом — например, назначил день теста' } },
+  { front: { uz: "Muammo bo'lagida muammo gapi yonida nima turadi?", ru: "Что стоит рядом с формулировкой проблемы в части «Проблема»?" }, back: { uz: "Dalil: necha kishida bo'lgani va harakat belgisi", ru: 'Довод: у скольких людей она была и знак действия' } },
+  { front: { uz: "Harakat belgisi nimani ko'rsatadi?", ru: 'Что показывает знак действия?' }, back: { uz: "Odam qiziqishni so'z bilan emas, ish bilan ko'rsatganini — masalan, sinovga kun belgilagani", ru: "Что человек показал интерес не словом, а делом — например, назначил день пробы" } },
   { front: { uz: "10 intervyu natijasi isbot bo'ladimi?", ru: 'Результат 10 интервью — это доказательство?' }, back: { uz: "Yo'q: 10 intervyu — kichik son; bu tanlov uchun dalil, isbot emas", ru: 'Нет: 10 интервью — маленькое число; это довод для выбора, а не доказательство' } },
   { front: { uz: "Yechim bo'lagida nima aytiladi?", ru: 'Что говорят в части «Решение»?' }, back: { uz: 'Mahsulot odamga nima qilishi — bir gapda', ru: 'Что продукт делает для человека — одной фразой' } },
   { front: { uz: "Stiv Jobs iPhone'ni qanday taqdim etgan?", ru: 'Как Стив Джобс представил iPhone?' }, back: { uz: '«Uch qurilma bittada»: iPod, telefon va internet', ru: '«Три устройства в одном»: iPod, телефон и интернет' } },
@@ -2641,7 +2641,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   // «Endi siz bilasiz» — bugungi asosiy fikrni takrorlamaydi (T-048)
   const RECAP = [
     { uz: "Muammo bo'lagida sanoq va harakat belgisi turadi; 10 intervyu — dalil, isbot emas.", ru: 'В части «Проблема» стоят подсчёт и знак действия; 10 интервью — довод, а не доказательство.' },
-    { uz: 'Yechimni bir gapda aytasiz: mahsulot odamga nima qiladi.', ru: 'Решение вы говорите одной фразой: что продукт делает для человека.' },
+    { uz: 'Yechimni bir gapda aytasiz: mahsulot odamga nima qiladi.', ru: "Решение вы называете одной фразой: что продукт делает для человека." },
     { uz: "Ilovani pitchdan oldin ochib qo'yasiz va telefonda bitta asosiy harakatni ko'rsatasiz.", ru: 'Вы заранее открываете приложение и показываете на телефоне одно главное действие.' },
     { uz: "Database'dagi sonni aytganda, unga nimalar kirganini ham aytasiz.", ru: 'Называя число из Database, вы говорите и о том, что в него входит.' }
   ];
@@ -2986,12 +2986,12 @@ export default function PmPrototypePitchLesson({ lang: langProp, onFinished, liv
         .pt-nuq { display: flex; align-items: center; justify-content: center; gap: 7px; }
         .pt-nuq-l { margin-right: 4px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: ${T.ink2}; }
         .pt-nuq i { width: 9px; height: 9px; border-radius: 50%; background: ${T.line}; } .pt-nuq i.ok { background: ${T.ok}; } .pt-nuq i.cur { background: ${T.accent}; box-shadow: 0 0 0 3px ${T.accentSoft}; }
-        .pt-voqea { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 7px; }
+        .pt-voqea { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 5px; }
         .pt-voqea > .zoomable { width: 100%; }
         p.pt-tanish { margin: 0; font-size: 13.5px; color: ${T.ink2}; text-align: center; }
         .pt-voqea-h { font-weight: 800; font-size: clamp(16px,1.8vw,19px); color: ${T.ink}; animation: pt-kir 0.35s ease-out both; }
         .pt-voqea .pt-bash, .pt-voqea .pt-bashq, .pt-voqea p.q-xulosa, .pt-voqea p.pt-kul-q { width: 100%; max-width: 660px; text-align: left; }
-        .pt-ip { position: relative; width: 100%; max-width: 400px; margin: 0 auto; background: ${T.bg}; border-radius: 14px; overflow: hidden; }
+        .pt-ip { position: relative; width: 100%; max-width: 340px; margin: 0 auto; background: ${T.bg}; border-radius: 14px; overflow: hidden; }
         .pt-ip-svg { display: block; width: 100%; height: auto; }
         .pt-ip-pol { fill: ${T.line}; }
         .pt-ip-tana { fill: #2A2730; } .pt-ip-tana.iphone { fill: #1F1D24; }
@@ -3023,7 +3023,7 @@ export default function PmPrototypePitchLesson({ lang: langProp, onFinished, liv
         @keyframes pt-ip-q2 { 0% { transform: translate(52px, 150px); opacity: 1; } 100% { transform: translate(223px, 42px) scale(0.5); opacity: 0; } }
         @keyframes pt-ip-q3 { 0% { transform: translate(330px, 84px); opacity: 1; } 100% { transform: translate(191px, 76px) scale(0.35); opacity: 0; } }
         .pt-ip-nomlar, .pt-ip-nom, .pt-ip-home-l, .pt-ip-ql, .pt-ip-ibora { position: absolute; font-size: 13px; font-weight: 700; color: ${T.ink2}; white-space: nowrap; }
-        .pt-ip-nomlar { left: 50%; bottom: 10px; transform: translateX(-50%); font-size: 14px; }
+        .pt-ip-nomlar { left: 50%; bottom: 3px; transform: translateX(-50%); font-size: 13px; } /* 340 px sahnada telefonlar ostida (F-1007-289) */
         .pt-ip-nom { left: calc(50% + 56px); top: 38%; font-size: 15px; }
         .pt-ip-home-l { left: calc(50% + 56px); top: 76%; font-size: 12px; }
         .pt-ip-ql.l1 { left: 5%; top: 24%; } .pt-ip-ql.l2 { left: 5%; top: 66%; } .pt-ip-ql.l3 { right: 4%; top: 32%; }

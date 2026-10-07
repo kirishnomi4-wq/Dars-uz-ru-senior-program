@@ -706,7 +706,7 @@ const MENTOR_REJA = [
   { id: 'navbat', nom: { uz: 'Chiqish va navbat', ru: 'Выход и очередь' }, ufq: 'hozir', dars: 14, holat: 'kechikdi' },
   { id: 'eslatma', nom: { uz: "O'yindan oldin eslatma", ru: 'Напоминание перед игрой' }, ufq: 'keyinroq', holat: 'boshlanmadi' },
   { id: 'jonli', nom: { uz: "Ro'yxat o'zi yangilanadi", ru: 'Список обновляется сам' }, ufq: 'keyinroq', holat: 'boshlanmadi' },
-  { id: 'pul', nom: { uz: "Maydon pulini bo'lishish", ru: 'Разделить оплату поля' }, ufq: 'uzoqroq', holat: 'boshlanmadi' }
+  { id: 'pul', nom: { uz: "Maydon pulini bo'lishish", ru: "Делить плату за поле" }, ufq: 'uzoqroq', holat: 'boshlanmadi' }
 ];
 const mentorIshlar = (holatli) => MENTOR_REJA.map(x => ({ key: x.id, nom: tr(x.nom), ufq: x.ufq, yorliq: x.dars ? darsT(x.dars) : null, holat: holatli ? x.holat : null }));
 
@@ -783,7 +783,7 @@ const Tel = ({ children, xira, k, bar = true, className }) => (
   </div>
 );
 const SHANBA = { uz: 'Shanba, 18:00', ru: 'Суббота, 18:00' };
-const MAYDON = { uz: 'Mahalla maydoni', ru: 'Площадка махалли' };
+const MAYDON = { uz: 'Mahalla maydoni', ru: "Поле махалли" };
 const OyinK = ({ son, tugma, ok, soatsiz }) => (
   <div className="oo-ok">
     <span className="oo-ok-t">{!soatsiz && <b>{tr(SHANBA)}</b>}<span>{tr(MAYDON)}</span></span>
@@ -829,7 +829,7 @@ const S2Dalil = ({ k }) => {
     ekran = <>{sar(OYINLAR)}<OyinK son={bosildi ? '9 / 10' : '8 / 10'} tugma={bosildi ? tr({ uz: "Qo'shildingiz", ru: 'Вы присоединились' }) : tr({ uz: "Qo'shilaman", ru: 'Присоединяюсь' })} ok={bosildi} />{!bosildi && <i className="oo-barmoq" aria-hidden="true" />}</>;
     ost = { uz: '11-darsda shunday ishladi', ru: 'Так работало на 11-м уроке' };
   } else if (k === 1) {
-    ekran = <>{sar({ uz: 'Shanba, 18:00 · Mahalla maydoni', ru: 'Суббота, 18:00 · Площадка махалли' })}<span className="oo-te-doira">{[0, 1, 2, 3, 4].map(i => <i key={i} className={i < 3 ? 'ok' : ''} />)}</span><span className={cxx('oo-ok-tg', 'ok')}>{tr({ uz: 'Kelaman', ru: 'Приду' })}</span>{bosildi && <span className="oo-te-q fade-step">{tr({ uz: 'Kelishini tasdiqladi: 7 / 9', ru: 'Подтвердили приход: 7 / 9' })}</span>}</>;
+    ekran = <>{sar({ uz: 'Shanba, 18:00 · Mahalla maydoni', ru: "Суббота, 18:00 · Поле махалли" })}<span className="oo-te-doira">{[0, 1, 2, 3, 4].map(i => <i key={i} className={i < 3 ? 'ok' : ''} />)}</span><span className={cxx('oo-ok-tg', 'ok')}>{tr({ uz: 'Kelaman', ru: 'Приду' })}</span>{bosildi && <span className="oo-te-q fade-step">{tr({ uz: 'Kelishini tasdiqladi: 7 / 9', ru: 'Подтвердили: 7 / 9' })}</span>}</>;
     ost = { uz: '12-darsda shunday ishladi', ru: 'Так работало на 12-м уроке' };
   } else if (k === 2) {
     ekran = <>{sar(OYINLAR)}<span className="oo-te-kun">{tr({ uz: 'Shanba', ru: 'Суббота' })}</span><OyinK son="8 / 10" /><span className="oo-te-kun" style={{ '--i': 1 }}>{tr({ uz: 'Yakshanba', ru: 'Воскресенье' })}</span><OyinK soatsiz /></>;
@@ -837,7 +837,7 @@ const S2Dalil = ({ k }) => {
   } else if (k === 3) {
     ust = (
       <div className="oo-vaqt fade-step">
-        <span className="oo-vq"><span className="oo-vq-b"><i className="x">✕</i><i className="x" style={{ '--i': 1 }}>✕</i></span><b>{darsT(14)}</b><em>{tr({ uz: 'navbatdagi kirmadi', ru: 'очередной не вошёл' })}</em></span>
+        <span className="oo-vq"><span className="oo-vq-b"><i className="x">✕</i><i className="x" style={{ '--i': 1 }}>✕</i></span><b>{darsT(14)}</b><em>{tr({ uz: 'navbatdagi kirmadi', ru: "из очереди не попал" })}</em></span>
         <span className="oo-vq-c" aria-hidden="true" />
         <span className="oo-vq"><span className="oo-vq-b"><i className="ok" style={{ '--i': 2 }}>✓</i></span><b>{tr({ uz: 'darsdan keyin', ru: 'после урока' })}</b></span>
       </div>
@@ -956,12 +956,12 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
           maket={<RejaDoska kor="kichik" ishlar={ishlar} sarlavha={manba.ishlar ? tr(ROADMAPIM) : <MentorMisoli />} tolqin={picked !== null} sakra={picked !== null} />}
           variantlar={HOOK_OPTS.map(o => ({ id: o.id, t: tr(o.t) }))} tanlov={picked} onTanla={pick} yopiq={isMentor}
           javob={<>
-            {picked !== null && <p className="oo-javob fade-step">{tr({ uz: "Uchalasi ham uchraydi. Buni taxmin emas, roadmap'dagi har ish ko'rsatadi: o'z vaqtida tugadimi?", ru: 'Встречаются все три. Это показывает не догадка, а каждая работа в roadmap: закончилась ли она вовремя?' })}</p>}
+            {picked !== null && <p className="oo-javob fade-step">{tr({ uz: "Uchalasi ham uchraydi. Buni taxmin emas, roadmap'dagi har ish ko'rsatadi: o'z vaqtida tugadimi?", ru: "Встречаются все три. Покажет это не догадка, а каждая работа в roadmap: закончилась ли она вовремя?" })}</p>}
             {jonliDars(live) && <OvozChizigi live={live} screen={screen} variantlar={HOOK_OPTS.map(o => tr(o.t))} mening={HOOK_OPTS.findIndex(o => o.id === picked)} />}
           </>}
         />
       </div>
-      <MentorNote>{tr({ uz: "Javoblarni muhokama qilmang — bugun har o'quvchi o'z roadmap'ini dalil bilan ko'radi. «Oldindaman» degan o'quvchidan keyinroq so'rang: keyinroq ufqidagi ishni boshladingizmi?", ru: 'Не обсуждайте ответы — сегодня каждый ученик посмотрит свой roadmap с доказательствами. Ученика, который сказал «опережаю», спросите позже: вы начали работу горизонта «позже»?' })}</MentorNote>
+      <MentorNote>{tr({ uz: "Javoblarni muhokama qilmang — bugun har o'quvchi o'z roadmap'ini dalil bilan ko'radi. «Oldindaman» degan o'quvchidan keyinroq so'rang: keyinroq ufqidagi ishni boshladingizmi?", ru: "Не обсуждайте ответы — сегодня каждый ученик проверит свой roadmap по подтверждениям. Ученика, который сказал «опережаю», спросите позже: вы начали работу горизонта «позже»?" })}</MentorNote>
     </Stage>
   );
 };
@@ -978,8 +978,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz', ru: 'Начинаем' })} onClick={onNext} /></>}>
     <QReja zoom={Zoomable}
       sarlavha={tr({ uz: <>Bugun roadmap'ingizni <A>Mentor bilan</A> tuzatasiz.</>, ru: <>Сегодня вы исправите roadmap <A>вместе с Ментором</A>.</> })}
-      mentor={<Mentor>{tr({ uz: "Bugun har biringiz bilan yakkama-yakka gaplashaman. Undan oldin roadmap'ingizni birma-bir ko'rib chiqasiz.", ru: 'Сегодня я поговорю с каждым из вас один на один. До этого вы по очереди просмотрите свой roadmap.' })}</Mentor>}
-      chapYorliq={tr({ uz: 'Dars oxirida — Mentor bilan yakkama-yakka: risklar va tuzatilgan reja', ru: 'В конце урока — один на один с Ментором: риски и исправленный план' })}
+      mentor={<Mentor>{tr({ uz: "Bugun har biringiz bilan yakkama-yakka gaplashaman. Undan oldin roadmap'ingizni birma-bir ko'rib chiqasiz.", ru: "Сегодня у меня встреча один на один с каждым из вас. До этого вы пункт за пунктом просмотрите свой roadmap." })}</Mentor>}
+      chapYorliq={tr({ uz: 'Dars oxirida — Mentor bilan yakkama-yakka: risklar va tuzatilgan reja', ru: "В конце урока — встреча один на один с Ментором: риски и исправленный план" })}
       chap={<RejaDoska kor="kichik" ishlar={mentorIshlar(false)} qadamlar={S1_QADAM} sarlavha={<MentorMisoli />} sakra />}
       qadamlar={REJA.map(r => ({ t: tr(r.t), teg: tr(r.teg) }))}
     />
@@ -989,14 +989,14 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
 // ===== SCREEN 2 — HOLATLAR (QTushuncha markaziy: bashorat → ketma-ket 5 karta, telefon dalili chapda, doska o'ngda, uch tugma doska ostida) · nishon statusCheck =====
 const S2_TAXMIN = [{ k: '2', t: '2' }, { k: '3', t: '3' }, { k: '4', t: '4' }];
 const S2_SAVOL = { uz: "Hozir ufqidagi to'rt ishdan nechtasi o'z darsida tugagan?", ru: 'Сколько из четырёх работ горизонта «сейчас» закончились на своём уроке?' };
-const X_ISHLADI = { uz: "Dalilga qarang: ish o'z darsida ishladi.", ru: 'Посмотрите на доказательство: работа заработала на своём уроке.' };
-const X_BOSHLANGAN = { uz: 'Telefonda ish ishlab turibdi — demak boshlangan.', ru: 'Работа работает на телефоне — значит, начата.' };
+const X_ISHLADI = { uz: "Dalilga qarang: ish o'z darsida ishladi.", ru: "Посмотрите на подтверждение: работа заработала на своём уроке." };
+const X_BOSHLANGAN = { uz: 'Telefonda ish ishlab turibdi — demak boshlangan.', ru: "На телефоне это уже работает — значит, начато." };
 const X_VAQT = { uz: 'Bu ishlarning vaqti hali kelmagan.', ru: 'Время этих работ ещё не пришло.' };
 const S2_KARTA = [
   { keys: ['elon'], togri: 'bajarildi', xato: { kechikdi: X_ISHLADI, boshlanmadi: X_BOSHLANGAN } },
   { keys: ['tasdiq'], togri: 'bajarildi', xato: { kechikdi: X_ISHLADI, boshlanmadi: X_BOSHLANGAN } },
   { keys: ['royxat'], togri: 'bajarildi', xato: { kechikdi: X_ISHLADI, boshlanmadi: X_BOSHLANGAN } },
-  { keys: ['navbat'], togri: 'kechikdi', xato: { bajarildi: { uz: 'Hozir ishlaydi — lekin 14-darsda tugadimi?', ru: 'Сейчас работает — но закончилась ли на 14-м уроке?' }, boshlanmadi: { uz: "Ish 14-darsda boshlangan edi — dalilni o'qing.", ru: 'Работа началась на 14-м уроке — прочитайте доказательство.' } },
+  { keys: ['navbat'], togri: 'kechikdi', xato: { bajarildi: { uz: 'Hozir ishlaydi — lekin 14-darsda tugadimi?', ru: 'Сейчас работает — но закончилась ли на 14-м уроке?' }, boshlanmadi: { uz: "Ish 14-darsda boshlangan edi — dalilni o'qing.", ru: "Работа началась на 14-м уроке — прочитайте подтверждение." } },
     izoh: { uz: 'Kechikdi — rejadagi vaqtida tugamagan ish, keyin tugagan bo\'lsa ham.', ru: 'С опозданием — работа не закончилась в плановое время, даже если закончилась позже.' } },
   { keys: ['eslatma', 'jonli', 'pul'], togri: 'boshlanmadi', xato: { bajarildi: X_VAQT, kechikdi: X_VAQT },
     izoh: { uz: 'Boshlanmadi — vaqti hali kelmagan ish.', ru: 'Не начато — работа, время которой ещё не пришло.' } }
@@ -1041,7 +1041,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Mentor roadmap'idagi ishlar <A>o'z vaqtida</A> tugadimi?</>, ru: <>Работы в roadmap Ментора закончились <A>вовремя?</A></> })}
         mentor={<Mentor>{done
           ? tr({ uz: "Doskadagi holatlarni ko'ring va «Davom etish»ni bosing.", ru: 'Посмотрите на статусы на доске и нажмите «Продолжить».' })
-          : tr({ uz: "Telefondagi dalilni ko'ring va kartaga mos tugmani bosing.", ru: 'Посмотрите доказательство на телефоне и нажмите подходящую кнопку для карточки.' })}</Mentor>}
+          : tr({ uz: "Telefondagi dalilni ko'ring va kartaga mos tugmani bosing.", ru: "Посмотрите подтверждение на телефоне и нажмите кнопку, подходящую карточке." })}</Mentor>}
         bashorat={!taxmin
           ? <div className="oo-bash"><QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr(S2_SAVOL)} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} /></div>
           : !done && <div className="oo-bashq fade-step"><span>{tr(S2_SAVOL)}</span><span className="oo-bashq-t">{tr({ uz: 'Taxminingiz', ru: 'Ваше предположение' })}: <b>{tx.t}</b></span></div>}
@@ -1057,7 +1057,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {!done && <NishonQatori screen={screen} />}
           </div>
         </div>}
-        natija={!done && ipucha && <QIzoh>{tr({ uz: "Telefondagi kulrang yorliqni o'qing — ish qachon ishladi?", ru: 'Прочитайте серую подпись на телефоне — когда заработала работа?' })}</QIzoh>}
+        natija={!done && ipucha && <QIzoh>{tr({ uz: "Telefondagi kulrang yorliqni o'qing — ish qachon ishladi?", ru: "Прочитайте серую подпись на телефоне — когда это заработало?" })}</QIzoh>}
         xulosa={done && <>{tx && <span className={cxx('oo-tx', taxmin === '3' && 'ok')}>{taxmin === '3' ? tr({ uz: "Taxminingiz to'g'ri chiqdi", ru: 'Ваше предположение оказалось верным' }) : <>{tr({ uz: 'Taxminingiz', ru: 'Ваше предположение' })}: {tx.t} · {tr({ uz: 'haqiqatda', ru: 'на деле' })}: <b>3</b></>}</span>}{tr({ uz: "Holat ishning rejadagi vaqtiga nisbatan qayerda ekanini ko'rsatadi: bajarildi, kechikdi yoki boshlanmadi.", ru: 'Статус показывает, где работа относительно планового времени: выполнено, с опозданием или не начато.' })}</>}
       />
       <MentorNote>{tr({ uz: "Eng ko'p bahs — 4-karta: «hozir ishlayapti-ku, nega kechikdi?». Javob: holat ish o'z vaqtiga nisbatan qayerdaligini aytadi; navbat 14-darsda tugamagan, keyin ishlagan. Sinfdan so'rang: «Sizda o'z darsida tugamagan ish bormi?» — javoblar 5-ekranga olib boradi.", ru: 'Больше всего споров — 4-я карточка: «сейчас же работает, почему с опозданием?». Ответ: статус говорит, где работа относительно своего времени; очередь не закончили на 14-м уроке, она заработала позже. Спросите класс: «Есть ли у вас работа, не законченная на своём уроке?» — ответы ведут к 5-му экрану.' })}</MentorNote>
@@ -1071,11 +1071,11 @@ const KUTISH_YOZUVI = { uz: "O'yinlar yuklanmoqda — bu bir daqiqagacha cho'zil
 const MENTOR_RISKLAR = [
   { risk: { uz: 'Render bepul xizmati uxlaydi — birinchi ochilish bir daqiqagacha.', ru: 'Бесплатный сервис Render засыпает — первое открытие до минуты.' }, ufq: 'hozir',
     tanlov: [
-      { t: { uz: "Ilovaga kutish yozuvi qo'shish", ru: 'Добавить в приложение надпись ожидания' }, ok: true },
+      { t: { uz: "Ilovaga kutish yozuvi qo'shish", ru: "Добавить в приложение запись ожидания" }, ok: true },
       { t: { uz: "Ilovani har kuni o'zingiz ochib turish", ru: 'Каждый день самому открывать приложение' }, xato: { uz: "15 daqiqa so'rovsiz qolsa, Backend yana uxlaydi.", ru: 'Если 15 минут нет запросов, Backend снова засыпает.' } },
       { t: { uz: 'Telegram guruhida ogohlantirish yozish', ru: 'Написать предупреждение в Telegram-группе' }, xato: { uz: "Ilovani ochgan o'yinchi guruhni ko'rmasligi mumkin.", ru: 'Игрок, открывший приложение, может не увидеть группу.' } }
     ],
-    osti: { uz: "Kutish qisqarmaydi — o'yinchi ilovani yopmaydi.", ru: 'Ожидание не сокращается — игрок не закрывает приложение.' },
+    osti: { uz: "Kutish qisqarmaydi — o'yinchi ilovani yopmaydi.", ru: "Ожидание не сокращается, но игрок не закрывает приложение." },
     yordam: { uz: "Qaysi tanlovdan keyin o'yinchi ilovani yopmaydi?", ru: 'После какого выбора игрок не закроет приложение?' } },
   { risk: { uz: '12-Modulda 50 foydalanuvchi kerak, hozir 3 sinovchi.', ru: 'В 12-м модуле нужно 50 пользователей, сейчас 3 тестировщика.' }, ufq: 'hozir',
     tanlov: [
@@ -1128,7 +1128,7 @@ const S3Sahna = ({ b, yechildi }) => {
         <div className="oo-bar">
           <span className="oo-bar-t">{tr({ uz: 'Foydalanuvchilar: 3 / 50', ru: 'Пользователи: 3 / 50' })}</span>
           <span className="oo-bar-y"><i className="ok" style={{ width: '6%' }} />{yechildi && <i className="taklif" style={{ width: '20%' }} />}</span>
-          <span className={cxx('oo-kul', yechildi && 'oo-acc')}>{yechildi ? tr({ uz: '3 + 10 · taklif qilinadi', ru: '3 + 10 · приглашены' }) : tr({ uz: '12-Modul: 50 foydalanuvchi', ru: '12-й модуль: 50 пользователей' })}</span>
+          <span className={cxx('oo-kul', yechildi && 'oo-acc')}>{yechildi ? tr({ uz: '3 + 10 · taklif qilinadi', ru: "3 + 10 · приглашаем" }) : tr({ uz: '12-Modul: 50 foydalanuvchi', ru: '12-й модуль: 50 пользователей' })}</span>
         </div>
         <Tel k="b1"><span className="oo-te-h">{tr({ uz: "O'yinlar", ru: 'Игры' })}</span><OyinK son="8 / 10" /></Tel>
       </div>
@@ -1220,7 +1220,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <div className="oo-s3-ong">
             {!done && <div ref={kartaRef} key={'k' + b} className="oo-s3-k">
               <RiskK uch={'rk-' + b} risk={tr(r.risk)} qadam={faza === 'yozildi' ? tr(mentorQadam(b)) : null} ufq={faza === 'yozildi' && ufqQ(r.ufq)} xato={!!xato} osti={faza === 'yozildi' && tr(r.osti)} />
-              {qIzoh && <QIzoh>{tr({ uz: 'Riskni kamaytiradigan bitta aniq ish — qadam.', ru: 'Один конкретный шаг, который уменьшает риск, — это шаг.' })}</QIzoh>}
+              {qIzoh && <QIzoh>{tr({ uz: 'Riskni kamaytiradigan bitta aniq ish — qadam.', ru: "Одно конкретное дело, которое уменьшает риск, — это шаг." })}</QIzoh>}
               {faza === 'yozildi' && b < 2 && <QTugma className="oo-halqa oo-keyingi" onClick={keyingi}>{tr({ uz: 'Keyingi risk ›', ru: 'Следующий риск ›' })}</QTugma>}
               {faza === 'tanlov' && <div className="oo-s3-pastki">
                 <div className="oo-tanlovlar oo-guruh" key={'t' + b + (xato ? xato.kk : '')}>
@@ -1235,7 +1235,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>}
         xulosa={tugadi && tr({ uz: 'Risk — rejaga xalaqit berishi mumkin bo\'lgan narsa. Har riskka bitta qadam yoziladi.', ru: 'Риск — то, что может помешать плану. На каждый риск пишут один шаг.' })}
       />
-      <MentorNote>{tr({ uz: "Kutish yozuvi — 10-Moduldagi «kutish holati»ning ilovadagi ko'rinishi (o'sha modulda saytga qo'yilgan edi); o'quvchilarga shunday eslating, «holat» so'zini bu darsda ishlatmang. Kutish yozuvi Backend'ni uyg'otmaydi — o'yinchi kutishini aytadi va ilovani yopmasligiga yordam beradi. APK faqat Android uchun; iPhone yo'li 12-Modulda (dastur: «Expo Go / APK»). Hisoblagich tezlashtirilgan — real kutish bir daqiqagacha. Sinfdan so'rang: «Holat bilan riskning farqi nima?» (holat — bo'lib o'tgani, risk — oldinda bo'lishi mumkini).", ru: 'Надпись ожидания — это «состояние ожидания» из 10-го модуля, только в приложении (там его ставили на сайт); напомните ученикам об этом, но слово «статус» здесь для ожидания не используйте. Надпись ожидания не будит Backend — она говорит игроку, что надо подождать, и помогает не закрыть приложение. APK — только для Android; путь для iPhone — в 12-м модуле (программа: «Expo Go / APK»). Счётчик ускорен — реальное ожидание до минуты. Спросите класс: «Чем статус отличается от риска?» (статус — то, что было; риск — то, что может случиться впереди).' })}</MentorNote>
+      <MentorNote>{tr({ uz: "Kutish yozuvi — 10-Moduldagi «kutish holati»ning ilovadagi ko'rinishi (o'sha modulda saytga qo'yilgan edi); o'quvchilarga shunday eslating, «holat» so'zini bu darsda ishlatmang. Kutish yozuvi Backend'ni uyg'otmaydi — o'yinchi kutishini aytadi va ilovani yopmasligiga yordam beradi. APK faqat Android uchun; iPhone yo'li 12-Modulda (dastur: «Expo Go / APK»). Hisoblagich tezlashtirilgan — real kutish bir daqiqagacha. Sinfdan so'rang: «Holat bilan riskning farqi nima?» (holat — bo'lib o'tgani, risk — oldinda bo'lishi mumkini).", ru: "Запись ожидания — это «состояние ожидания» из 10-го модуля, только в приложении (в том модуле его ставили на сайт); так и напомните ученикам, но в уроке называйте её только «запись ожидания»: «статус» здесь — статус работы. Запись ожидания не будит Backend — она говорит игроку, что надо подождать, и помогает ему не закрыть приложение. APK — только для Android; путь для iPhone — в 12-м модуле (программа: «Expo Go / APK»). Счётчик ускорен — реальное ожидание до минуты. Спросите класс: «Чем статус отличается от риска?» (статус — то, что уже было; риск — то, что может случиться впереди)." })}</MentorNote>
     </Stage>
   );
 };
@@ -1266,8 +1266,8 @@ const Screen4 = (props) => (
 // shunda 5-ekran tepasidagi qator «Mentor o'z ekranida ko'radi» bo'ladi (15-FILTR 21, tayanch 9.96).
 const VARAQ_JONLI = false;
 const VARAQ_QATOR = {
-  bor: { uz: "Yakkama-yakka suhbatda Mentor buni o'z ekranida ko'radi.", ru: 'В разговоре один на один Ментор увидит это на своём экране.' },
-  yoq: { uz: "Yakkama-yakkada roadmap'ingizni Mentorga o'z ekraningizda ko'rsatasiz.", ru: 'В разговоре один на один вы покажете свой roadmap Ментору на своём экране.' }
+  bor: { uz: "Yakkama-yakka suhbatda Mentor buni o'z ekranida ko'radi.", ru: "На встрече один на один Ментор увидит это на своём экране." },
+  yoq: { uz: "Yakkama-yakkada roadmap'ingizni Mentorga o'z ekraningizda ko'rsatasiz.", ru: "На встрече один на один вы покажете Ментору свой roadmap на своём экране." }
 };
 const s5Xulosa = (ishlar) => {
   const son = (h) => ishlar.filter(x => x.holat === h).length;
@@ -1362,7 +1362,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           : N > 0 && <RejaDoska ishlar={ishlar} sarlavha={tr(ROADMAPIM)} son={<b className="rd-son">{sanoq} / {N}</b>} joriy={joriy ? [joriy.key] : []} yangi={yangi ? [yangi] : []} onIsh={done ? (x) => setTahrir(x.key) : undefined} />}
         {izoh && !isMentor && <QIzoh key={izoh.kk}>{tr({ uz: 'Darsi o\'tgan, lekin boshlanmagan ish — Mentorga shuni ayting.', ru: 'Урок прошёл, а работа не начата — скажите об этом Ментору.' })}</QIzoh>}
         {done && !isMentor && <QXulosa>{s5Xulosa(ishlar)}</QXulosa>}
-        <MentorNote>{tr({ uz: "«Bajarildi» sharti — ish o'quvchining telefonida (yoki brauzerida) hozir ishlaydi va rejadagi vaqtida (hozir ufqida — o'z darsida) tugagan. Kechikkan ish uyalish emas: yakkama-yakkada «nima to'xtatdi?» deb so'rang. O'quvchi roadmap'idagi ish nomlari 6-darsdagidek; bu ekranda nom o'zgartirilmaydi (holat qo'yiladi).", ru: 'Условие «выполнено» — работа сейчас работает на телефоне (или в браузере) ученика и закончилась в плановое время (для горизонта «сейчас» — на своём уроке). Опоздание — не стыд: в разговоре один на один спросите «что остановило?». Названия работ — как на 6-м уроке; на этом экране их не меняют (ставят статус).' })}</MentorNote>
+        <MentorNote>{tr({ uz: "«Bajarildi» sharti — ish o'quvchining telefonida (yoki brauzerida) hozir ishlaydi va rejadagi vaqtida (hozir ufqida — o'z darsida) tugagan. Kechikkan ish uyalish emas: yakkama-yakkada «nima to'xtatdi?» deb so'rang. O'quvchi roadmap'idagi ish nomlari 6-darsdagidek; bu ekranda nom o'zgartirilmaydi (holat qo'yiladi).", ru: "Условие «выполнено» — работа сейчас работает на телефоне (или в браузере) ученика и закончилась в плановое время (для горизонта «сейчас» — на своём уроке). Опоздание — не стыд: на встрече один на один спросите «что остановило?». Названия работ — как на 6-м уроке; на этом экране их не меняют (ставят статус)." })}</MentorNote>
       </QMustaqil>
     </Stage>
   );
@@ -1372,8 +1372,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // Tekshiruv (PM-108): bo'sh — bloklaydi; bo'lib o'tgan ish so'zlari · umumiy qadam so'zlari · takror — yumshoq (ikkinchi «Saqlash» bilan o'tadi)
 const TUTUQ_RE = new RegExp('[' + String.fromCharCode(0x2BB, 0x2BC, 0x2018, 0x2019, 0x60) + ']', 'g');
 const normYoz = (s) => String(s || '').toLowerCase().replace(TUTUQ_RE, "'").replace(/[.,!?;:«»"]+/g, ' ').replace(/\s+/g, ' ').trim();
-const OTGAN_SOZ = ['kechikdi', 'ishlamadi', "bo'lmadi", 'ulgurmadim', 'qilmadim'];
-const UMUMIY_SOZ = ['harakat qilaman', "ehtiyot bo'laman", "e'tibor beraman", 'yaxshilayman', "o'ylab ko'raman", 'tezroq ishlayman', "ko'proq ishlayman"];
+const OTGAN_SOZ = ['kechikdi', 'ishlamadi', "bo'lmadi", 'ulgurmadim', 'qilmadim', 'опоздал', 'не работал', 'не получилось', 'не успел', 'не сделал']; // ru rejimi ham (F-1007-291)
+const UMUMIY_SOZ = ['harakat qilaman', "ehtiyot bo'laman", "e'tibor beraman", 'yaxshilayman', "o'ylab ko'raman", 'tezroq ishlayman', "ko'proq ishlayman", 'буду стараться', 'постараюсь', 'буду внимательн', 'буду осторожн', 'улучшу', 'подумаю', 'буду работать быстрее', 'буду больше работать'];
 const tekshirRisk = (risk, qadam, royxat, tahrir) => {
   if (!String(risk || '').trim() || !String(qadam || '').trim()) return { tur: 'bosh', q: true, k: !String(risk || '').trim() ? 'risk' : 'qadam' };
   const nr = normYoz(risk), nq = normYoz(qadam);
@@ -1384,7 +1384,7 @@ const tekshirRisk = (risk, qadam, royxat, tahrir) => {
 };
 const XABAR6 = {
   bosh: { uz: 'Risk va qadamni ham yozing.', ru: 'Напишите и риск, и шаг.' },
-  otgan: { uz: "Bu bo'lib o'tgan ish. Oldinda nima xalaqit berishi mumkin?", ru: 'Это уже прошло. Что может помешать впереди?' },
+  otgan: { uz: "Bu bo'lib o'tgan ish. Oldinda nima xalaqit berishi mumkin?", ru: "Это прошедшая работа. Что может помешать впереди?" },
   umumiy: { uz: 'Bu hali qadam emas: aynan nima qilasiz?', ru: 'Это ещё не шаг: что именно вы сделаете?' },
   takror: { uz: 'Bu risk yozilgan — boshqasini toping.', ru: 'Этот риск уже записан — найдите другой.' }
 };
@@ -1444,8 +1444,8 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     sinovN > 0 && (sv.tur === 'mashq' ? { uz: `Mashq sinovida ${sinovN} kishi qatnashdi.`, ru: `В учебном тесте участвовали: ${sinovN}.` } : { uz: `Sinovda ${sinovN} kishi qatnashdi.`, ru: `В тесте участвовали: ${sinovN}.` })
   ].filter(Boolean);
   const yordamT = trekWeb()
-    ? { uz: "Uch joyga qarang: texnika (Backend, saytni ochish), odamlar (foydalanuvchilar soni) va vaqt (imtihon, ulgurish) — keyin kechikkan ishingizni eslang.", ru: 'Посмотрите в три места: техника (Backend, открытие сайта), люди (число пользователей) и время (экзамены, успеть) — потом вспомните свою работу с опозданием.' }
-    : { uz: "Uch joyga qarang: texnika (Backend, ilovani ochish), odamlar (foydalanuvchilar soni) va vaqt (imtihon, ulgurish) — keyin kechikkan ishingizni eslang.", ru: 'Посмотрите в три места: техника (Backend, открытие приложения), люди (число пользователей) и время (экзамены, успеть) — потом вспомните свою работу с опозданием.' };
+    ? { uz: "Uch joyga qarang: texnika (Backend, saytni ochish), odamlar (foydalanuvchilar soni) va vaqt (imtihon, ulgurish) — keyin kechikkan ishingizni eslang.", ru: "Посмотрите с трёх сторон: техника (Backend, открытие сайта), люди (число пользователей) и время (экзамены, успеть) — потом вспомните свою работу с опозданием." }
+    : { uz: "Uch joyga qarang: texnika (Backend, ilovani ochish), odamlar (foydalanuvchilar soni) va vaqt (imtihon, ulgurish) — keyin kechikkan ishingizni eslang.", ru: "Посмотрите с трёх сторон: техника (Backend, открытие приложения), люди (число пользователей) и время (экзамены, успеть) — потом вспомните свою работу с опозданием." };
   const toliq = !!(g && g.risk.trim() && g.qadam.trim());
   const qatorI = (k) => {
     const xq = xato && xato.k === k;
@@ -1475,7 +1475,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     </div>
   );
   return (
-    <Stage eyebrow={tr({ uz: 'Mustaqil ish · risk', ru: 'Самостоятельная работа · риск' })} screen={screen} scrollSignal={n} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? tr(DAVOM) : (__lang === 'ru' ? `Напишите ещё рисков: ${3 - n}` : `Yana ${3 - n} ta risk yozing`)} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Mustaqil ish · risk', ru: 'Самостоятельная работа · риск' })} screen={screen} scrollSignal={n} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? tr(DAVOM) : (__lang === 'ru' ? `Напишите ещё ${3 - n} ${3 - n === 1 ? 'риск' : 'риска'}` : `Yana ${3 - n} ta risk yozing`)} onClick={onNext} /></>}>
       <QMustaqil
         sarlavha={tr({ uz: <>Roadmap'ingiz uchun <A>uchta risk</A> yozing.</>, ru: <>Напишите <A>три риска</A> для своего roadmap.</> })}
         mentor={<Mentor>{tr(done
@@ -1497,7 +1497,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>}
       >
         {done && !isMentor && <QXulosa>{tr({ uz: 'Uch riskka uchta qadam yozildi: har biri — bitta aniq ish.', ru: 'На три риска написаны три шага: каждый — одно конкретное дело.' })}</QXulosa>}
-        <MentorNote>{tr({ uz: "Yakkama-yakka shu ekrandan keyin boshlanadi. Uch riskni yozgan o'quvchini chaqiring (≈ 3–4 daqiqa; qolganlar 6–7-ekranlarda ishlaydi). Uch savol: 1) Qaysi ish kechikdi va nega? 2) Uch riskdan qaysi biri eng katta? 3) Birinchi qadam qachon va qanday bajariladi? — 2 va 3-javobni o'quvchi ★ va «Avval» bilan belgilaydi. Vaqt: 12 kishigacha ≈ 4 daqiqa; 13–15 kishi bo'lsa — 3 daqiqa taymer bilan yoki ikki aylanishda (avval 2 va 3-savol, keyin 1-savol). Qadam umumiy bo'lsa («harakat qilaman»), «aynan nima qilasiz?» deb aniqlashtiring. Mentor misolidagi uch risk — Backend, foydalanuvchilar, ilovani ochish; uni o'quvchiga «to'g'ri javob» qilib bermang — uning mahsuloti boshqa.", ru: 'Разговор один на один начинается после этого экрана. Зовите ученика, который написал три риска (≈ 3–4 минуты; остальные работают на 6–7-м экранах). Три вопроса: 1) Какая работа опоздала и почему? 2) Какой из трёх рисков самый большой? 3) Когда и как будет сделан первый шаг? — ответы 2 и 3 ученик отмечает ★ и «Сначала». Время: до 12 человек ≈ 4 минуты; если 13–15 — 3 минуты с таймером или в два круга (сначала вопросы 2 и 3, потом 1). Если шаг общий («буду стараться»), уточните: «что именно сделаете?». Три риска из примера Ментора — Backend, пользователи, открытие приложения; не давайте их ученику как «правильный ответ» — у него другой продукт.' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Yakkama-yakka shu ekrandan keyin boshlanadi. Uch riskni yozgan o'quvchini chaqiring (≈ 3–4 daqiqa; qolganlar 6–7-ekranlarda ishlaydi). Uch savol: 1) Qaysi ish kechikdi va nega? 2) Uch riskdan qaysi biri eng katta? 3) Birinchi qadam qachon va qanday bajariladi? — 2 va 3-javobni o'quvchi ★ va «Avval» bilan belgilaydi. Vaqt: 12 kishigacha ≈ 4 daqiqa; 13–15 kishi bo'lsa — 3 daqiqa taymer bilan yoki ikki aylanishda (avval 2 va 3-savol, keyin 1-savol). Qadam umumiy bo'lsa («harakat qilaman»), «aynan nima qilasiz?» deb aniqlashtiring. Mentor misolidagi uch risk — Backend, foydalanuvchilar, ilovani ochish; uni o'quvchiga «to'g'ri javob» qilib bermang — uning mahsuloti boshqa.", ru: "Встречи один на один начинаются после этого экрана. Зовите ученика, который написал три риска (≈ 3–4 минуты; остальные работают на 6–7-м экранах). Три вопроса: 1) Какая работа опоздала и почему? 2) Какой из трёх рисков самый большой? 3) Когда и как будет сделан первый шаг? — ответы 2 и 3 ученик отмечает ★ и «Сначала». Время: до 12 человек ≈ 4 минуты; если 13–15 — 3 минуты с таймером или в два круга (сначала вопросы 2 и 3, потом 1). Если шаг общий («буду стараться»), уточните: «что именно сделаете?». Три риска из примера Ментора — Backend, пользователи, открытие приложения; не давайте их ученику как «правильный ответ» — у него другой продукт." })}</MentorNote>
       </QMustaqil>
     </Stage>
   );
@@ -1591,9 +1591,9 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <QTugma className={halqa(!saqlandi || ozgardi)} disabled={saqlandi && !ozgardi} onClick={saqla}>{tr(saqlandi ? { uz: 'Yangilash', ru: 'Обновить' } : SAQLASH)}</QTugma></span>}
             yangi={yangi !== null ? ['q-' + yangi] : []} avval={hammasi ? birinchi : null} onQadam={hammasi ? avvalBos : undefined} onQadamEd={ochTahrir} />}
         {!isMentor && izoh && !saqlandi && <QIzoh>{tr({ uz: "Holatlar va risklarga qarshi qadamlar qo'shilgan roadmap — tuzatilgan reja.", ru: 'Roadmap со статусами и шагами против рисков — это исправленный план.' })}</QIzoh>}
-        {!isMentor && isStudent && jonliDars(live) && <p className="oo-kul-q">{tr({ uz: "Mentor chaqirganda roadmap'ingizni ko'rsating; o'zgarsa — ✎ bilan o'zgartiring.", ru: 'Когда Ментор позовёт, покажите свой roadmap; если что-то изменится — исправьте через ✎.' })}</p>}
+        {!isMentor && isStudent && jonliDars(live) && <p className="oo-kul-q">{tr({ uz: "Mentor chaqirganda roadmap'ingizni ko'rsating; o'zgarsa — ✎ bilan o'zgartiring.", ru: "Когда Ментор позовёт, покажите свой roadmap; если что-то поменялось — измените через ✎." })}</p>}
         {!isMentor && done && <div className="oo-s7-x"><QXulosa>{s7Xulosa(risklar, ufqlar, birinchi)}</QXulosa></div>}
-        <MentorNote>{tr({ uz: "Ufq qoidasi 6-Moduldan: ishni ufqqa u qachon boshlana olishi qo'yadi. Mentor misolida: kutish yozuvi va 10 kishini chaqirish — hozir, APK — keyinroq (12-Modul). Hamma qadami «uzoqroq»da bo'lgan o'quvchidan so'rang: «Bu risk bitiruvgacha xalaqit bermaydimi?».", ru: 'Правило горизонта из 6-го модуля: работу в горизонт ставит то, когда она сможет начаться. В примере Ментора: надпись ожидания и приглашение 10 человек — «сейчас», APK — «позже» (12-й модуль). Ученика, у которого все шаги «дальше», спросите: «Этот риск не помешает до выпуска?».' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Ufq qoidasi 6-Moduldan: ishni ufqqa u qachon boshlana olishi qo'yadi. Mentor misolida: kutish yozuvi va 10 kishini chaqirish — hozir, APK — keyinroq (12-Modul). Hamma qadami «uzoqroq»da bo'lgan o'quvchidan so'rang: «Bu risk bitiruvgacha xalaqit bermaydimi?».", ru: "Правило горизонта из 6-го модуля: работу в горизонт ставит то, когда она сможет начаться. В примере Ментора: запись ожидания и приглашение 10 человек — «сейчас», APK — «позже» (12-й модуль). Ученика, у которого все шаги «дальше», спросите: «Этот риск не помешает до выпуска?»." })}</MentorNote>
       </QMustaqil>
     </Stage>
   );
@@ -1707,18 +1707,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob o'rni A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12 (MD; har biri 3 marta)
 const QUIZ_BANK = [
-  { q: { uz: 'Holat nimani ko\'rsatadi?', ru: 'Что показывает статус?' }, opts: [{ uz: 'Ish rejadagi vaqtiga nisbatan qayerda', ru: 'Где работа относительно планового времени' }, { uz: 'Ishga necha kun ketishini oldindan aniq', ru: 'Точно и заранее — сколько дней займёт работа' }, { uz: 'Ishni aynan qaysi odam bajarishini', ru: 'Какой именно человек сделает работу' }, { uz: 'Ish nechta foydalanuvchiga kerakligini', ru: 'Скольким пользователям нужна работа' }], correct: 0 },
+  { q: { uz: 'Holat nimani ko\'rsatadi?', ru: 'Что показывает статус?' }, opts: [{ uz: 'Ish rejadagi vaqtiga nisbatan qayerda', ru: 'Где работа относительно планового времени' }, { uz: 'Ishga necha kun ketishini oldindan aniq', ru: "Сколько дней займёт работа — заранее и точно" }, { uz: 'Ishni aynan qaysi odam bajarishini', ru: 'Какой именно человек сделает работу' }, { uz: 'Ish nechta foydalanuvchiga kerakligini', ru: 'Скольким пользователям нужна работа' }], correct: 0 },
   { q: { uz: 'Ish o\'z darsida ishladi, telefonda tekshirildi. Holati qanday?', ru: 'Работа заработала на своём уроке, проверена на телефоне. Какой статус?' }, opts: [{ uz: 'Kechikdi', ru: 'С опозданием' }, { uz: 'Bajarildi', ru: 'Выполнено' }, { uz: 'Boshlanmadi', ru: 'Не начато' }, { uz: 'Bekor qilindi', ru: 'Отменено' }], correct: 1 },
   { q: { uz: 'Keyinroq ufqidagi ish hali boshlanmagan. Bu nimani bildiradi?', ru: 'Работа горизонта «позже» ещё не начата. Что это значит?' }, opts: [{ uz: 'Ish kechikdi, uni tezroq qilish kerak', ru: 'Работа опоздала, её надо сделать быстрее' }, { uz: 'Roadmap noto\'g\'ri, qayta yozish kerak', ru: 'Roadmap неверный, его надо переписать' }, { uz: 'Vaqti hali kelmagan, bu odatiy hol', ru: 'Её время ещё не пришло, это обычное дело' }, { uz: 'Ishni roadmap\'dan olib tashlash kerak', ru: 'Работу надо убрать из roadmap' }], correct: 2 },
   { q: { uz: 'Risk nima?', ru: 'Что такое риск?' }, opts: [{ uz: 'Darsda allaqachon bo\'lib o\'tgan kechikish', ru: 'Опоздание, которое уже случилось на уроке' }, { uz: 'Kelajakda qo\'shilishi mumkin bo\'lgan funksiya', ru: 'Функция, которую могут добавить в будущем' }, { uz: 'Roadmap\'dagi bajarilgan ishlar ro\'yxati', ru: 'Список выполненных работ в roadmap' }, { uz: 'Rejaga xalaqit berishi mumkin bo\'lgan narsa', ru: 'То, что может помешать плану' }], correct: 3 },
-  { q: { uz: 'Render bepul xizmatida Backend qachon uxlaydi?', ru: 'Когда засыпает Backend на бесплатном сервисе Render?' }, opts: [{ uz: '15 daqiqa davomida so\'rov kelmasa', ru: 'Если 15 минут нет запросов' }, { uz: 'Har kuni yarim tunda, o\'z-o\'zidan', ru: 'Каждый день в полночь, сам по себе' }, { uz: 'Kuniga 100 ta so\'rovdan keyin', ru: 'После 100 запросов в день' }, { uz: 'Ilova telefonda yopilgan zahoti', ru: 'Сразу как закрыли приложение на телефоне' }], correct: 0 },
+  { q: { uz: 'Render bepul xizmatida Backend qachon uxlaydi?', ru: 'Когда засыпает Backend на бесплатном сервисе Render?' }, opts: [{ uz: '15 daqiqa davomida so\'rov kelmasa', ru: 'Если 15 минут нет запросов' }, { uz: 'Har kuni yarim tunda, o\'z-o\'zidan', ru: 'Каждый день в полночь, сам по себе' }, { uz: 'Kuniga 100 ta so\'rovdan keyin', ru: 'После 100 запросов в день' }, { uz: 'Ilova telefonda yopilgan zahoti', ru: "Сразу, как закрыли приложение на телефоне" }], correct: 0 },
   { q: { uz: 'Backend uxlab qolsa, birinchi ochilish qancha kutadi?', ru: 'Если Backend уснул, сколько ждать первого открытия?' }, opts: [{ uz: 'Bir necha soniya', ru: 'Несколько секунд' }, { uz: 'Bir daqiqagacha', ru: 'До минуты' }, { uz: 'Besh daqiqagacha', ru: 'До пяти минут' }, { uz: 'Bir soatdan ko\'p', ru: 'Больше часа' }], correct: 1 },
   { q: { uz: 'Mentor misolida «3 sinovchi» riskiga qaysi qadam yozildi?', ru: 'Какой шаг в примере Ментора записан к риску «3 тестировщика»?' }, opts: [{ uz: 'Ilovaga yana bitta yangi funksiya qo\'shish', ru: 'Добавить в приложение ещё одну функцию' }, { uz: '12-Modul boshlanganda odamlarni qidirish', ru: 'Искать людей, когда начнётся 12-й модуль' }, { uz: 'Mahalla futbol guruhidan 10 kishini chaqirish', ru: 'Позвать 10 человек из футбольной группы махалли' }, { uz: 'Uch sinovchidan ilovani qayta sinashni so\'rash', ru: 'Попросить трёх тестировщиков проверить ещё раз' }], correct: 2 },
-  { q: { uz: 'Nega Expo Go Mentor roadmap\'iga risk bo\'ldi?', ru: 'Почему Expo Go стал риском для roadmap Ментора?' }, opts: [{ uz: 'U ilovani juda sekin ochgani uchun', ru: 'Потому что он слишком медленно открывает приложение' }, { uz: 'Unda Backend\'ga ulanmagani uchun', ru: 'Потому что в нём нет связи с Backend' }, { uz: 'U faqat iPhone\'da ishlagani uchun', ru: 'Потому что он работает только на iPhone' }, { uz: 'U sinash vositasi, hammada yo\'q', ru: 'Это инструмент для проверки, он есть не у всех' }], correct: 3 },
+  { q: { uz: 'Nega Expo Go Mentor roadmap\'iga risk bo\'ldi?', ru: 'Почему Expo Go стал риском для roadmap Ментора?' }, opts: [{ uz: 'U ilovani juda sekin ochgani uchun', ru: 'Потому что он слишком медленно открывает приложение' }, { uz: 'Unda Backend\'ga ulanmagani uchun', ru: 'Потому что в нём нет связи с Backend' }, { uz: 'U faqat iPhone\'da ishlagani uchun', ru: 'Потому что он работает только на iPhone' }, { uz: 'U sinash vositasi, hammada yo\'q', ru: "Потому что это инструмент для проверки — он есть не у всех" }], correct: 3 },
   { q: { uz: 'APK nima?', ru: 'Что такое APK?' }, opts: [{ uz: 'Android\'ga o\'rnatiladigan ilova fayli', ru: 'Файл приложения для установки на Android' }, { uz: 'iPhone\'dagi ilovalar do\'konining nomi', ru: 'Название магазина приложений на iPhone' }, { uz: 'Expo Go ichidagi maxsus sinov rejimi', ru: 'Особый тестовый режим внутри Expo Go' }, { uz: 'Render\'dagi Backend sozlamalari fayli', ru: 'Файл настроек Backend на Render' }], correct: 0 },
   { q: { uz: 'Qadam 12-Modulda bajariladi. Qaysi ufqqa qo\'yasiz?', ru: 'Шаг выполнят в 12-м модуле. В какой горизонт его поставить?' }, opts: [{ uz: 'Hozir — shu 11-Modulda', ru: 'Сейчас — в этом 11-м модуле' }, { uz: 'Keyinroq — 12–13-Modul', ru: 'Позже — 12–13-й модуль' }, { uz: 'Uzoqroq — bitiruvdan keyin', ru: 'Дальше — после выпуска' }, { uz: 'Ufqsiz — alohida ro\'yxatda', ru: 'Без горизонта — в отдельном списке' }], correct: 1 },
   { q: { uz: 'Qaysi biri riskka qarshi aniq qadam?', ru: 'Что из этого — конкретный шаг против риска?' }, opts: [{ uz: 'Roadmap\'ga ko\'proq e\'tibor berib ishlash', ru: 'Работать, уделяя roadmap больше внимания' }, { uz: 'Imkon qadar tezroq va ko\'proq harakat qilish', ru: 'Стараться как можно быстрее и больше' }, { uz: 'Shanba kuni 10 kishini sinovga chaqirish', ru: 'В субботу позвать на тест 10 человек' }, { uz: 'Risk haqida keyinroq yana o\'ylab ko\'rish', ru: 'Подумать о риске ещё раз позже' }], correct: 2 },
-  { q: { uz: 'Yakkama-yakkada Mentor bilan nimani ko\'rasiz?', ru: 'Что вы смотрите с Ментором один на один?' }, opts: [{ uz: 'Arena natijangiz va ballingizni', ru: 'Свой результат и баллы в арене' }, { uz: 'Kodingizning har bir qatorini', ru: 'Каждую строку своего кода' }, { uz: 'O\'nta yangi g\'oyangizni birma-bir', ru: 'Десять новых идей по одной' }, { uz: 'Holatlar, risklar va qadamlarni', ru: 'Статусы, риски и шаги' }], correct: 3 },
+  { q: { uz: 'Yakkama-yakkada Mentor bilan nimani ko\'rasiz?', ru: "Что вы смотрите с Ментором на встрече один на один?" }, opts: [{ uz: 'Arena natijangiz va ballingizni', ru: 'Свой результат и баллы в арене' }, { uz: 'Kodingizning har bir qatorini', ru: 'Каждую строку своего кода' }, { uz: 'O\'nta yangi g\'oyangizni birma-bir', ru: 'Десять новых идей по одной' }, { uz: 'Holatlar, risklar va qadamlarni', ru: 'Статусы, риски и шаги' }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2273,8 +2273,8 @@ const KARTOCHKALAR = [
   { front: { uz: 'Keyinroq ufqidagi ish hali boshlanmagan. Bu kechikishmi?', ru: 'Работа горизонта «позже» ещё не начата. Это опоздание?' }, back: { uz: 'Yo\'q — holati: boshlanmadi', ru: 'Нет — статус: не начато' }, note: { uz: 'Uning vaqti hali kelmagan', ru: 'Её время ещё не пришло' } },
   { front: { uz: 'Risk nima?', ru: 'Что такое риск?' }, back: { uz: 'Rejaga xalaqit berishi mumkin bo\'lgan narsa', ru: 'То, что может помешать плану' }, note: { uz: 'Bo\'lib o\'tgan ish risk emas — uning holati bor', ru: 'Прошедшая работа — не риск: у неё есть статус' } },
   { front: { uz: 'Har riskka nechta qadam yoziladi?', ru: 'Сколько шагов пишут на каждый риск?' }, back: { uz: 'Bitta — riskni kamaytiradigan aniq ish', ru: 'Один — конкретное дело, которое уменьшает риск' }, note: { uz: '«Ehtiyot bo\'laman» — hali qadam emas', ru: '«Буду осторожен» — ещё не шаг' } },
-  { front: { uz: 'Mentor misolida Render bilan bog\'liq risk qaysi?', ru: 'Какой риск в примере Ментора связан с Render?' }, back: { uz: 'Bepul xizmat uxlaydi: birinchi ochilish bir daqiqagacha', ru: 'Бесплатный сервис засыпает: первое открытие до минуты' }, note: { uz: 'Qadam: ilovaga kutish yozuvi', ru: 'Шаг: надпись ожидания в приложении' } },
-  { front: { uz: 'Ilovani har kuni o\'zingiz ochib tursangiz, Backend uxlamaydimi?', ru: 'Если каждый день самому открывать приложение, Backend не уснёт?' }, back: { uz: 'Uxlaydi: 15 daqiqa so\'rovsiz qolsa', ru: 'Уснёт: если 15 минут нет запросов' }, note: { uz: 'Shuning uchun qadam — kutish yozuvi', ru: 'Поэтому шаг — надпись ожидания' } },
+  { front: { uz: 'Mentor misolida Render bilan bog\'liq risk qaysi?', ru: 'Какой риск в примере Ментора связан с Render?' }, back: { uz: 'Bepul xizmat uxlaydi: birinchi ochilish bir daqiqagacha', ru: 'Бесплатный сервис засыпает: первое открытие до минуты' }, note: { uz: 'Qadam: ilovaga kutish yozuvi', ru: "Шаг: запись ожидания в приложении" } },
+  { front: { uz: 'Ilovani har kuni o\'zingiz ochib tursangiz, Backend uxlamaydimi?', ru: 'Если каждый день самому открывать приложение, Backend не уснёт?' }, back: { uz: 'Uxlaydi: 15 daqiqa so\'rovsiz qolsa', ru: 'Уснёт: если 15 минут нет запросов' }, note: { uz: 'Shuning uchun qadam — kutish yozuvi', ru: "Поэтому шаг — запись ожидания" } },
   { front: { uz: 'Mentor misolida foydalanuvchilar bilan bog\'liq risk qaysi?', ru: 'Какой риск в примере Ментора связан с пользователями?' }, back: { uz: '12-Modulda 50 foydalanuvchi kerak, hozir 3 sinovchi', ru: 'В 12-м модуле нужно 50 пользователей, сейчас 3 тестировщика' }, note: { uz: 'Qadam: mahalla futbol guruhidan 10 kishini sinovga chaqirish', ru: 'Шаг: позвать на тест 10 человек из футбольной группы махалли' } },
   { front: { uz: 'Nega Expo Go Mentor roadmap\'iga risk bo\'ldi?', ru: 'Почему Expo Go стал риском для roadmap Ментора?' }, back: { uz: 'U sinash vositasi, hamma o\'yinchida yo\'q', ru: 'Это инструмент для проверки, он есть не у всех игроков' }, note: { uz: 'Qadam: 12-Modulda APK', ru: 'Шаг: APK в 12-м модуле' } },
   { front: { uz: 'APK nima?', ru: 'Что такое APK?' }, back: { uz: 'Android telefonga o\'rnatiladigan ilova fayli', ru: 'Файл приложения для установки на телефон Android' }, note: { uz: 'Mentor misolida — keyinroq ufqida, 12-Modulda', ru: 'В примере Ментора — в горизонте «позже», в 12-м модуле' } },
@@ -2301,7 +2301,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 
 // ===== UYGA VAZIFA — PM HwCard (P-025: «Kim bilan · Nechta · Muddat» + raqamli qadamlar; ① — pm-m9d15-reja.birinchi; alohida .homework.jsx yo'q) =====
 const HW_KARTA = [
-  { k: { uz: 'Kim bilan', ru: 'С кем' }, v: { uz: 'qadamga qarab — agent yoki odamlar', ru: 'по шагу — агент или люди' } },
+  { k: { uz: 'Kim bilan', ru: 'С кем' }, v: { uz: 'qadamga qarab — agent yoki odamlar', ru: "зависит от шага — агент или люди" } },
   { k: { uz: 'Nechta', ru: 'Сколько' }, v: { uz: '1 qadam', ru: '1 шаг' } },
   { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
 ];
@@ -2314,7 +2314,7 @@ const hwBirinchi = () => {
 };
 const HW_QADAM = [
   { uz: 'Uni bajaring: ilovada bo\'lsa — talabni yozib agentga bering; odamlar bilan bo\'lsa — ularga yozing yoki ayting.', ru: 'Выполните его: если это в приложении — напишите требование и дайте агенту; если с людьми — напишите им или скажите.' },
-  { uz: 'Qadam bajarilganini o\'zingiz tekshiring (Mentor misolida — ilova ochilganda kutish yozuvi chiqadimi). Risk o\'zgarishi uchun vaqt kerak bo\'lishi mumkin.', ru: 'Сами проверьте, что шаг выполнен (в примере Ментора — появляется ли надпись ожидания при открытии приложения). Чтобы риск изменился, может понадобиться время.' }
+  { uz: 'Qadam bajarilganini o\'zingiz tekshiring (Mentor misolida — ilova ochilganda kutish yozuvi chiqadimi). Risk o\'zgarishi uchun vaqt kerak bo\'lishi mumkin.', ru: "Сами проверьте, что шаг выполнен (в примере Ментора — появляется ли запись ожидания при открытии приложения). Чтобы риск изменился, может понадобиться время." }
 ];
 const HwCard = ({ keyingi }) => (
   <div className="card oo-hw fade-up">
@@ -2687,7 +2687,7 @@ export default function PmOneOnOneLesson({ lang: langProp, onFinished, liveToken
         .oo-bar-y { display: flex; width: 100%; height: 12px; border-radius: 6px; background: ${T.line}; overflow: hidden; }
         .oo-bar-y i { display: block; height: 100%; transform-origin: left; animation: oo-osish 0.8s ease-out both; }
         .oo-bar-y i.ok { background: ${T.ok}; }
-        .oo-bar-y i.taklif { background: repeating-linear-gradient(45deg, ${T.accent} 0 4px, ${T.accentSoft} 4px 8px); animation-delay: 0.2s; }
+        .oo-bar-y i.taklif { /* kesik-ok: shtrix = grafikdagi taklif qilingan (hali yo'q) qism */ background: repeating-linear-gradient(45deg, ${T.accent} 0 4px, ${T.accentSoft} 4px 8px); animation-delay: 0.2s; }
         .oo-ikki-tel { display: flex; gap: 12px; }
         .oo-expo { align-self: flex-start; font-size: 10px; font-weight: 800; color: ${T.ink2}; background: ${T.bg}; border-radius: 6px; padding: 2px 6px; }
         .oo-ilovalar { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; padding: 10px 4px 4px; }
