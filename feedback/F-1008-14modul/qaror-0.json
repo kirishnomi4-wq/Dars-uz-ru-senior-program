@@ -1,0 +1,425 @@
+{
+ "title": "14-Modul boshlash qarorlari",
+ "kod": "14M-QAROR-0",
+ "eyebrow": "LMS 14-Modul «Bitiruvchi + performance» · kod src/12-Modull · tungi avtopilot (08.10)",
+ "kirish": "Kechasi avtopilot har savolda BIRINCHI variant (tavsiya) bilan davom etdi va hammasini «TAXMIN» deb belgiladi (jurnal «TAXMINLAR»: T1…). Boshqa variantni tanlasangiz — MD lardagi <!-- TAXMIN Tn --> joylari aynan shunga moslanadi. Tashqi faktlar 08.10.2026 da rasmiy sahifadan; tekshirilmaganlari ochiq yozilgan. Javob qatorini pastdan nusxalab chatga yuboring.",
+ "darslar": [
+  {
+   "id": "IP",
+   "qisqa": "Misol-ip",
+   "eyebrow": "1-qaror · modul bo'yi bitta Mentor misoli",
+   "nom": "«Maydon Jamoa» final pitchi — investor va hakamlar oldida",
+   "fayl": null,
+   "xulosa": "13-Modul oxirida «Maydon Jamoa»: jami 51 foydalanuvchi (44 + taklif havolasidan 7; 11 tasi sinfdosh), 6 tashkilotchi, Pro — 15 000 so'm / 30 kun (test rejim), 3 yozma tasdiq; 12-Modul pitchi — besh bo'lak (Muammo · Yechim · Jonli demo · Raqamlar · Keyingi qadam), 5 daqiqa. 14-Modul shu pitchni investor va hakamlar uchun qayta quradi: dasturdagi tuzilma — Muammo → Bozor → Yechim → Metrikalar → Jamoa → Keyin. Taklif (A): olti bo'lak, 5 daqiqa + savol-javob; yangi son to'qilmaydi.",
+   "savollar": [
+    {
+     "savol": "Final pitch tuzilmasi qanday?",
+     "variantlar": [
+      [
+       "A",
+       "Olti bo'lak: Muammo · Bozor · Yechim va jonli demo · Metrikalar · Jamoa · Keyin; 5 daqiqa + hakamlar savol-javobi (Demo Day 8 formati). 12-Modul besh bo'lagidan farqi — Bozor va Jamoa qo'shiladi, savol-javob tayyorlanadi"
+      ],
+      [
+       "B",
+       "12-Modul besh bo'lagi o'zgarmaydi, faqat savol-javob qo'shiladi (dastur tuzilmasidan chetlashish)"
+      ],
+      [
+       "C",
+       "Pitch slaydlari (10 ta, K12 Airbnb kabi) — har slayd bitta bo'lak"
+      ]
+     ]
+    },
+    {
+     "savol": "«Bozor» bo'lagida qaysi sonlar aytiladi (Mentor misoli)?",
+     "variantlar": [
+      [
+       "A",
+       "Faqat bizda bor sonlar: mahalla futbol guruhi — 60 kishi, 6 tashkilotchi, 51 foydalanuvchi; boshqa mahallalar — «hali tekshirilmagan» deb halol aytiladi. Yangi son to'qilmaydi"
+      ],
+      [
+       "B",
+       "Toshkentdagi maydonlar va futbol o'ynaydiganlar soni — rasmiy manbadan topiladi (bu tunda tekshirilmagan; topilmasa — A)"
+      ]
+     ]
+    },
+    {
+     "savol": "Pitch oxirida («Keyin» bo'lagi) nima so'raladi?",
+     "variantlar": [
+      [
+       "A",
+       "Pul emas — aniq yordam: «3 tashkilotchi bilan «Doimiy o'yin»ni sinash uchun maydon egalari bilan tanishtiring» kabi bitta so'rov (o'smirda yuridik shaxs yo'q — investitsiya summasi so'ralmaydi)"
+      ],
+      [
+       "B",
+       "Investitsiya summasi va nima uchun (o'quv mashqi sifatida, «haqiqiy taklif emas» belgisi bilan)"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "REPO",
+   "qisqa": "Repo",
+   "eyebrow": "2-qaror · Mentor repo'si va o'quvchi repo'si",
+   "nom": "`maydon-jamoa` davomi va teglar",
+   "fayl": null,
+   "xulosa": "13-Modul oxirgi tegi `m13-dars-12-done` (barqarorlashtirish, yangi versiya). Kodli darslar: 3 (tezlik), 4 (sayqal), 6 (demo tayyorgarligi), 7 (demo tekshiruvi tuzatishlari). PM darslari repo'ga yozmaydi.",
+   "savollar": [
+    {
+     "savol": "Teglar qanday?",
+     "variantlar": [
+      [
+       "A",
+       "`m14-dars-NN-start` / `-done` (`yechim` tarmog'ida), `m14-dars-01-start` = `m13-dars-12-done`; PM darslarida `-done` = `-start`; o'quvchi — o'z final repo'sida, o'z trekida; «Ortda qoldingizmi» — birinchi blokda, yangi papkada"
+      ],
+      [
+       "B",
+       "14-Modulda teg yo'q (repo 13-Modul holatida qoladi; faqat o'quvchi o'z repo'sida ishlaydi)"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "TEZ",
+   "qisqa": "3-dars · tezlik",
+   "eyebrow": "3-qaror · texnik cho'qqi",
+   "nom": "Mahsulot tezligi: nima o'lchanadi va nima tuzatiladi",
+   "fayl": null,
+   "xulosa": "Rasmiy (08.10): Lighthouse 10 Performance bahosi — FCP 10% · Speed Index 10% · LCP 25% · TBT 30% · CLS 25%; 0–49 qizil, 50–89 to'q sariq, 90–100 yashil; Expo SDK 51+ — Expo Atlas (bundle tarkibi); loading=«lazy» — faqat ekrandan tashqaridagi rasmga, LCP rasmiga emas. Mentor misolining Lighthouse sonlari — «qur» pilotida o'lchanadi (to'qilmaydi).",
+   "savollar": [
+    {
+     "savol": "3-darsda nima o'lchanadi?",
+     "variantlar": [
+      [
+       "A",
+       "Ikkala trek: web (lending + sayt yoki iPhone brauzer ko'rinishi) — Lighthouse Performance, mobil rejim, oldin/keyin; mobil trek — Expo Atlas bundle hajmi oldin/keyin + brauzer ko'rinishi Lighthouse. Ikki tuzatish: rasm (o'lcham, pastdagi rasmga loading=«lazy») va keraksiz kutubxona yoki fayl"
+      ],
+      [
+       "B",
+       "Faqat web (Lighthouse); mobil trek — keyingi darsda"
+      ],
+      [
+       "C",
+       "Faqat bundle hajmi (ikkala trek), Lighthouse — uyda"
+      ]
+     ]
+    },
+    {
+     "savol": "Mentor misolining sonlari?",
+     "variantlar": [
+      [
+       "A",
+       "MD da son yo'q — «⛔ pilotda o'lchanadi» belgisi; «qur» da haqiqiy o'lchov yoziladi"
+      ],
+      [
+       "B",
+       "Taxminiy son — o'quv namunasi deb belgilanadi"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "SAYQAL",
+   "qisqa": "4-dars · sayqal",
+   "eyebrow": "4-qaror · loyiha kuni",
+   "nom": "Demo uchun sayqal — 9-Modul animatsiyasidan farqi",
+   "fayl": null,
+   "xulosa": "9-Modulda animatsiya va mikro-o'zaro ta'sir o'tilgan. 14-Modul 4-darsi — demo yo'lidagi joylar: hakam ko'radigan uch daqiqa.",
+   "savollar": [
+    {
+     "savol": "Qaysi joylar sayqallanadi?",
+     "variantlar": [
+      [
+       "A",
+       "Demo yo'lidagi uch joy: tugma bosilgandagi javob · yuklanish holati («Yuklanmoqda…» o'rniga joy egallovchi) · muvaffaqiyat (qo'shilganda kichik animatsiya); prefers-reduced-motion hurmat qilinadi; yangi funksiya yo'q"
+      ],
+      [
+       "B",
+       "Butun ilovada animatsiya sozlash (vaqt ko'p, demo yo'li aniq emas)"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "DEMO",
+   "qisqa": "6, 7, 13 · demo",
+   "eyebrow": "5-qaror · jonli demo",
+   "nom": "Demo qanday ko'rsatiladi va buzilsa nima bo'ladi",
+   "fayl": null,
+   "xulosa": "Render bepul xizmati 15 daqiqa so'rovsiz qolsa uxlaydi, uyg'onishi ≈1 daqiqa (render.com/docs/free, 06.10). 11-Modulda B reja — ekran videosi. Dastur 7-dars: o'quvchi buzadi (tarmoq uzilishi, bo'sh data, ikki klik), agent tuzatadi; demo 3 marta xatosiz o'tadi.",
+   "savollar": [
+    {
+     "savol": "Demo qayerda ko'rsatiladi?",
+     "variantlar": [
+      [
+       "A",
+       "Laptopdagi brauzerda (web-trek — sayt; mobil trek — 12-Modulda qurilgan brauzer ko'rinishi) proyektorga; telefon — ikkinchi qurilma (ikkinchi o'yinchi) sifatida; B reja — 60 soniyalik ekran videosi; demo oldidan Backend'ni uyg'otish (bitta so'rov)"
+      ],
+      [
+       "B",
+       "Telefon ekrani proyektorga (ulash vositasi — tekshirilmagan; xona sharoitiga bog'liq)"
+      ]
+     ]
+    },
+    {
+     "savol": "6-dars (TEX) shakli?",
+     "variantlar": [
+      [
+       "A",
+       "Loyiha kuni shakli — 8 ekran + 3 blok + kartochkalar = 12: A1 demo stsenariysi va risklar · A2 B reja (video) va Backend'ni uyg'otish · A3 «yangi funksiya to'xtatildi» tegi va bitta to'liq demo o'tishi"
+      ],
+      [
+       "B",
+       "To'liq TEX dars (18–20 ekran, kod ekranlari bilan)"
+      ]
+     ]
+    },
+    {
+     "savol": "Atama: dasturdagi «progon»",
+     "variantlar": [
+      [
+       "A",
+       "«demo o'tishi» — demoni boshidan oxirigacha bir marta ko'rsatish; «sinov» so'zi ishlatilmaydi (kurs atamasi: sinov — faqat real odam bilan)"
+      ],
+      [
+       "B",
+       "«repetitsiya» (8, 13-darsdagi pitch repetitsiyasi bilan aralashadi)"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "PITCH",
+   "qisqa": "5, 8, 13 · pitch",
+   "eyebrow": "6-qaror · pitch mashqi",
+   "nom": "Uch pitch darsining farqi",
+   "fayl": null,
+   "xulosa": "12-Modulda pitch mashqi bor: 5 daqiqalik taymer, baholash varag'i (bo'lak · zal savoli · ✓/✗ · izoh). 14-Modulda uchta pitch darsi: 5 (guruh fidbeki), 8 (final), 13 (general repetitsiya).",
+   "savollar": [
+    {
+     "savol": "Darslar qanday ajratiladi?",
+     "variantlar": [
+      [
+       "A",
+       "5 — guruh oldida olti bo'lakli pitch, varaq har bo'lakka ✓/✗ + bitta hakam savoli → tuzatishlar ro'yxati (3 band) · 8 — tuzatilgan pitch, taymer 5:00 + savol-javob mashqi (3 savol, 1 daqiqa) · 13 — Demo Day formatida to'liq o'tish: pitch + jonli demo + savol-javob, Mentor va mehmon hakam varag'i bilan"
+      ],
+      [
+       "B",
+       "5 va 8 bitta naqsh (ikki marta mashq), 13 — faqat vaqt nazorati"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "VIDEO",
+   "qisqa": "9-dars · video",
+   "eyebrow": "7-qaror · o'smirning shaxsiy ma'lumoti",
+   "nom": "Video-portfolio: kim ko'radi va qayerda turadi",
+   "fayl": null,
+   "xulosa": "Dastur: 3 daqiqalik video — o'zi va mahsuloti haqida (frilans/stajirovka uchun). O'smirning yuzi, ismi, ovozi — shaxsiy ma'lumot.",
+   "savollar": [
+    {
+     "savol": "Video qoidasi?",
+     "variantlar": [
+      [
+       "A",
+       "Yuz va ism — ixtiyoriy (ekran yozuvi + ovoz yetarli); ommaviy joylanmaydi — fayl yoki «faqat havola bilan» ko'rinadigan joy; ota-ona roziligi bilan; mijoz, sinfdosh ma'lumoti va maxfiy kalit ekranda ko'rinmaydi. Dars shakli — loyiha kuni (12): A1 ssenariy (3 bo'lak), A2 yozish, A3 tekshirish va havola"
+      ],
+      [
+       "B",
+       "Ommaviy kanalga joylash — portfolio uchun (o'smir uchun xavfli; tavsiya etilmaydi)"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ISH",
+   "qisqa": "10-dars · frilans",
+   "eyebrow": "8-qaror · yosh chegarasi",
+   "nom": "Birinchi buyurtma va stajirovka — halol yo'l",
+   "fayl": null,
+   "xulosa": "Upwork rasmiy sahifasi bu tunda ochilmadi (403); bir nechta mustaqil manba: hisob ochish — 18 yosh (yoki mamlakatdagi balog'at yoshi). Rasmiy matnda tekshirilmagani darsda da'vo qilinmaydi.",
+   "savollar": [
+    {
+     "savol": "Darsdagi yo'l?",
+     "variantlar": [
+      [
+       "A",
+       "Xalqaro saytlar (Upwork kabi) — «odatda 18 yoshdan; shartini ota-ona bilan saytning o'zidan o'qing»; bugun — lokal birinchi buyurtma rejasi (tanish do'kon, maktab yoki to'garak uchun lending yoki bot; pul va kelishuv — ota-ona orqali) + 2 kompaniyaga stajirovka xati (shablon; yuborish — uyda, ixtiyoriy)"
+      ],
+      [
+       "B",
+       "Upwork profilini darsda ochish (18 yoshdan kichikka mumkin emas — rad etiladi)"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "DASTUR",
+   "qisqa": "11-dars · dasturlar",
+   "eyebrow": "9-qaror · xalqaro dasturlar",
+   "nom": "Qaysi dastur va qanday ariza",
+   "fayl": null,
+   "xulosa": "Rasmiy (08.10): Diamond Challenge — 14–18 yoshli 2–4 o'quvchidan iborat jamoa, 21+ yoshli maslahatchi, butun dunyo, topshirish muddati 14.01.2027; YC — rasmiy FAQ da yosh yo'q, asoschilar to'liq vaqt ishlashi kutiladi, Early Decision — o'qishni tugatmoqchi talabalar uchun. Lokal grantlar — tekshirilmadi.",
+   "savollar": [
+    {
+     "savol": "Darsdagi asosiy dastur?",
+     "variantlar": [
+      [
+       "A",
+       "Diamond Challenge (rasmiy shartlari o'smirga mos) — ro'yxatdan o'tish va konsept qoralamasi (boshlangan ariza); YC — «bugungi yo'l emas: asoschilar to'liq vaqt ishlaydi, Early Decision — talabalar uchun» deb halol tushuntiriladi; lokal grantlar — nom aytilmaydi, tashkilotchi bilan aniqlanadi"
+      ],
+      [
+       "B",
+       "O'quvchi o'zi tanlaydi (YC, Diamond Challenge, lokal) — shartlarini darsda tekshiradi"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "REJA",
+   "qisqa": "12-dars · 1-on-1",
+   "eyebrow": "10-qaror · keyingi olti oy",
+   "nom": "Mentor bilan yakkama-yakka: olti oylik reja",
+   "fayl": null,
+   "xulosa": "11-Modul 15-darsi — Demo Day oldidan reja va risklar; 12-Modul 11-darsi — pitch da'volari; 13-Modul 11-darsi — refleksiya (pm-m11d11-refleksiya). 14-Modul 12-darsi — kelajak.",
+   "savollar": [
+    {
+     "savol": "Reja shakli?",
+     "variantlar": [
+      [
+       "A",
+       "Uch yo'nalish: mahsulot (davom ettiraman / to'xtataman + sabab) · ko'nikma (nima o'rganaman) · ish (buyurtma, stajirovka yoki dastur — 10, 11-darsdan); har yo'nalishga oylik bitta nishon va birinchi qadam sanasi; 13-Modul refleksiyasi o'qiladi; Mentor bilan 10 daqiqa"
+      ],
+      [
+       "B",
+       "Erkin yozma reja (shablonsiz)"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "QATOR",
+   "qisqa": "14–17 · qatorlar",
+   "eyebrow": "11-qaror · dars bo'lmaydigan qatorlar",
+   "nom": "Zaxira, bitiruvchilar uchrashuvi, Demo Day 8, marosim",
+   "fayl": null,
+   "xulosa": "11-Modul «Demo Day 7» va 13-Modul «Zaxira dars» — App.jsx da comp siz qator. Bu kursning birinchi oqimida o'tgan bitiruvchi yo'q.",
+   "savollar": [
+    {
+     "savol": "15-qator «Встреча выпускников»?",
+     "variantlar": [
+      [
+       "A",
+       "comp siz tadbir qatori, nomi «Bitiruvchilar bilan uchrashuv»; mazmuni tashkilotchi bilan (birinchi oqimda — IT mutaxassis yoki oldingi oqimlar bitiruvchisi); dars qurilmaydi"
+      ],
+      [
+       "B",
+       "Dars sifatida quriladi (networking mashqi) — bitiruvchi yo'qligi sababli o'ylab topilgan qahramon kerak bo'ladi (taqiq)"
+      ]
+     ]
+    },
+    {
+     "savol": "16 Demo Day 8 va 17 marosim?",
+     "variantlar": [
+      [
+       "A",
+       "Ikkalasi comp siz qator (type: 'Demo'); Demo Day 8 tartibi 13-dars MD sida (general repetitsiya — o'sha formatda)"
+      ],
+      [
+       "B",
+       "Demo Day 8 uchun hakam varag'i sahifasi quriladi (keyinroq, alohida qaror)"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "KEYS",
+   "qisqa": "Keyslar",
+   "eyebrow": "12-qaror · keys banki",
+   "nom": "K1–K19 dan qaysilari",
+   "fayl": null,
+   "xulosa": "Dastur 1-dars: «YC Demo Day tahlili» — bankda yo'q. Bankda «структура питча · питч инвестору · storytelling» — K12 Airbnb pitch deck (10-Modulda bosh-keys; boshqa modul — ruxsat). «презентация продукта» — K19 Apple iPhone (2007).",
+   "savollar": [
+    {
+     "savol": "Keyslar?",
+     "variantlar": [
+      [
+       "A",
+       "1 — K12 Airbnb pitch deck (YC Demo Day o'rniga); 2 — K19 iPhone taqdimoti; qolgan darslar keyssiz"
+      ],
+      [
+       "B",
+       "1 — YC Demo Day videosi (bankdan tashqari; foydalanuvchi ruxsati bilan)"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ATAMA",
+   "qisqa": "Atamalar",
+   "eyebrow": "13-qaror · bir ma'no — bir so'z",
+   "nom": "Yangi atamalar",
+   "fayl": null,
+   "xulosa": "Kursda «sinov» — faqat real odam bilan; «amaliyot» — dars ichidagi amaliyot bloki; «repetitsiya», «zal savoli», «baholash varag'i» — 12-Modul so'zlari.",
+   "savollar": [
+    {
+     "savol": "Yangi so'zlar?",
+     "variantlar": [
+      [
+       "A",
+       "performance → «tezlik» (Lighthouse bahosi — «Performance» nomi bilan) · polish → «sayqal» · Q&A → «savol-javob» · hakam · pitch slaydlari · storytelling → «hikoya» · frilans · stajirovka (amaliyot emas) · video-portfolio"
+      ],
+      [
+       "B",
+       "Inglizcha atamalar qavsda har darsda (performance, polish, Q&A)"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "NOM",
+   "qisqa": "Dars nomlari",
+   "eyebrow": "14-qaror · menyu nomi = dars nomi",
+   "nom": "13 dars + 4 qator nomi",
+   "fayl": null,
+   "xulosa": "PM — savol-sarlavha, TEX — mavzu nomi, loyiha kuni — «Loyiha kuni: …», ≤55 belgi (00-NOMLAR.md).",
+   "savollar": [
+    {
+     "savol": "Nomlar?",
+     "variantlar": [
+      [
+       "A",
+       "1 Investorga pitchni qanday tuzasiz? · 2 Mahsulotingiz hikoyasini qanday aytasiz? · 3 Mahsulot tezligi: o'lchaymiz va tezlashtiramiz · 4 Loyiha kuni: demo uchun sayqal · 5 Guruh pitchingizda nimani tuzatishni aytadi? · 6 Demoga tayyorgarlik: risklar va B reja · 7 Investor ko'zi bilan: demo buzilmaydimi? · 8 Final pitchingiz 5 daqiqaga tayyormi? · 9 Video-portfolio: 3 daqiqada o'zingiz va mahsulot · 10 Birinchi buyurtmani qayerdan topasiz? (osti: frilans va stajirovka — T-011) · 11 Qaysi xalqaro dasturga ariza berasiz? · 12 Keyingi olti oyda nima qilasiz? · 13 Demo Day'ga tayyormisiz? · 14 Zaxira dars: zalni tayyorlash · 15 Bitiruvchilar bilan uchrashuv · 16 Demo Day 8 — bitiruv himoyasi · 17 Bitiruv marosimi"
+      ],
+      [
+       "B",
+       "Dastur nomlari tarjimasi (mavzu nomlari, savolsiz)"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "MANBA",
+   "qisqa": "Manba",
+   "eyebrow": "Ma'lumot uchun · savol yo'q",
+   "nom": "Manba: dastur, 13-Moduldan holat, atamalar, tekshirilgan faktlar",
+   "fayl": "00-MANBA.md",
+   "xulosa": "Dastur v9 dagi 17 qator, App.jsx holati, 13-Moduldan keladigan holat va sonlar, o'tilgan atamalar (grep), 08.10.2026 da rasmiy sahifadan olingan faktlar (Lighthouse, Expo, web.dev, Diamond Challenge, YC) va tekshirilmaganlar (Upwork rasmiy matni, lokal grantlar).",
+   "savollar": []
+  }
+ ]
+}
