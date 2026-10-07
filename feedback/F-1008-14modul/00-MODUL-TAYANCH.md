@@ -18,12 +18,12 @@
   12-Modul besh bo'lagidan farqi: **Bozor** va **Jamoa** qo'shiladi; «Jonli demo» «Yechim» ichiga kiradi; pitchdan keyin — **savol-javob**. Vaqt — 5 daqiqa (Demo Day 8: «5 daqiqa pitch + Q&A», dastur).
 - **K12 Airbnb pitch deck** (bank so'zi aynan, raqamsiz): «Investorlar uchun birinchi taqdimot — o'nga yaqin oddiy slayd: muammo → yechim → bozor → mahsulot → jamoa. Eng ko'p tahlil qilinadigan pitchlardan biri, ochiq turadi.» (T18; dasturdagi «YC Demo Day tahlili» o'rniga).
 - **Mentor pitchining qoralamasi (1-darsda yoziladi; keyin 5, 8, 13-darslarda tuzatiladi):**
-  · Muammo: muammo gapi + dalil «Men so'ragan 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.» (12-Modul pitchi) ·
+  · Muammo: «O'yinchilar jamoaga odam yig'ishda qiynaladi.» + dalil «Men so'ragan 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.» (12-Modul pitchi aynan — kalit ≤160; 9.2) ·
   · Bozor (T2): «Mahalla futbol guruhida — 60 kishi; ilovada — 6 tashkilotchi. Boshqa mahallalarni hali tekshirmaganmiz.» — **yangi son yo'q** ·
   · Yechim: «Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.» + jonli demo (1 daqiqa) ·
   · Raqamlar: «51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif havolasidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.» (halol gap — 12-Modul naqshi) ·
   · Jamoa: «Men — g'oya, mahsulot va kod (agent bilan). Sinab ko'rganlar — 6 tashkilotchi va o'yinchilar.» — yolg'on rol yo'q ·
-  · Keyingi qadam (T3): «Uch tashkilotchi bilan "Doimiy o'yin"ni test rejimda sinayman. Sizdan bitta yordam: mahalladagi maydon egalari bilan tanishtiring.» — **pul (investitsiya summasi) so'ralmaydi**.
+  · Keyingi qadam (T3): «Uch tashkilotchi bilan "Doimiy o'yin"ni test rejimda sinayman. Sizdan bitta so'rov: mahalladagi maydon egalari bilan tanishtiring.» — **pul (investitsiya summasi) so'ralmaydi**.
 - **O'quvchi:** o'z pitchining olti bo'lagini yozadi — `pm-m10d12-pitch` (12-Modul besh bo'lagi) bor bo'lsa, Muammo, Yechim, Raqamlar, Keyingi qadam oldindan to'ldiriladi; Bozor va Jamoa — yangi. **Bittadan karta** (SABOQ E 53). Saqlanadi `pm-m12d1-pitch`.
 - Sonlar faqat o'z mahsulotidan (12-Modul `pm-m10d10-hisobot`, 13-Modul `pm-m11d9-tasdiq`); bozor uchun tashqi son — manbasi va sanasi bilan, yo'q bo'lsa — «hali tekshirilmagan».
 
@@ -31,7 +31,7 @@
 - **Hikoya — bitta odam, bitta lahza, o'zgarish:** «Shanba, 18:00. Maydonda 8 kishi, yana 2 kishi kelmadi — o'yin bo'lmadi.» → ilova → «Endi tashkilotchi juma kuni ko'radi: 9 / 10, bitta joy bo'sh.» Funksiyalar ro'yxati («ilovada 12 ta funksiya bor») — hikoya emas.
 - **Hikoya pitchning qayerida:** Muammo bo'lagi lahza bilan boshlanadi; Yechim — o'sha lahza qanday o'zgargani; Raqamlar — shunday lahzalar nechta.
 - **K19 Apple iPhone** (bank so'zi, raqamsiz; taqdimot sanasi 9.01.2007): «Jobs iPhone'ni "uchta qurilma bittada" deb taqdim etdi» — xususiyatlar ro'yxati o'rniga bitta hikoya chizig'i (T18).
-- **O'zini videoga yozish** (dastur natijasi): o'quvchi telefonida pitchning birinchi daqiqasini (hikoya qismi) yozadi va **o'zi bir marta ko'radi**, uch savol bilan: hikoya lahza bilan boshlandimi · funksiyalar ro'yxati yo'qmi · 1 daqiqaga sig'dimi. Video telefonda qoladi — hech qayerga yuklanmaydi (T13 qoidasi). Saqlanadi `pm-m12d2-hikoya` (matn va tekshiruv javoblari; video fayl emas).
+- **O'zini videoga yozish** (dastur natijasi): o'quvchi telefonida pitchning birinchi daqiqasini (hikoya qismi) yozadi va **o'zi bir marta ko'radi**, uch savol bilan: hikoya lahza bilan boshlandimi · funksiyalar ro'yxati yo'qmi · 1 daqiqaga sig'dimi. Video telefonda qoladi — hech qayerga yuklanmaydi (T12 qoidasi). Saqlanadi `pm-m12d2-hikoya` (matn va tekshiruv javoblari; video fayl emas).
 
 ### 1.3 Mahsulot tezligi (3-dars, TEX — modul cho'qqisi) — T5, T6
 - **Nima o'lchanadi (T5):** web (lending + sayt yoki iPhone brauzer ko'rinishi) — **Lighthouse**, Performance bahosi, mobil rejim, **oldin/keyin**; mobil trek — **Expo Atlas** bilan yuklanadigan kod hajmi (bundle) oldin/keyin + brauzer ko'rinishiga Lighthouse.
@@ -70,26 +70,26 @@
 - Hakam savollari banki (Mentor misoli): «Bu son qayerdan va nimani sanaydi?» (12-Modul zal savoli) · «Odamlar hozir bu ishni nima bilan qiladi?» · «Keyingi olti oyda nima qilasiz?».
 - Saqlanadi `pm-m12d8-final` (vaqt, uch savol va javob qisqasi, tuzatilgan bo'laklar).
 
-### 1.9 Video-portfolio (9-dars, TEX; loyiha kuni shakli — T9) — T13
+### 1.9 Video-portfolio (9-dars, TEX; loyiha kuni shakli — T9) — T12
 - **3 daqiqa, uch bo'lak:** kimman (bir gap; ism ixtiyoriy) · nima qurdim (ekran yozuvi: jonli demo) · qanday ishlayman (bitta qaror va uning sababi).
-- **Qoida (T13):** yuz va ism — ixtiyoriy; ommaviy joylanmaydi — fayl yoki «faqat havola bilan» ko'rinadigan joy; ota-ona roziligi; ekranda maxfiy kalit, `.env`, login, boshqa odamlarning ma'lumoti ko'rinmaydi.
+- **Qoida (T12):** yuz va ism — ixtiyoriy; ommaviy joylanmaydi — fayl yoki «faqat havola bilan» ko'rinadigan joy; ota-ona roziligi; ekranda maxfiy kalit, `.env`, login, boshqa odamlarning ma'lumoti ko'rinmaydi.
 - Ekran yozish vositasi — umumiy so'z («kompyuteringizdagi ekran yozish vositasi»); aniq dastur va menyu nomi — ⛔ pilotda tekshiriladi.
 - **Uch blok:** A1 ssenariy (uch bo'lak) · A2 yozish · A3 tekshirish (maxfiy narsa ko'rinmaydi, 3 daqiqaga sig'adi) va havola. Saqlanadi `pm-m12d9-video` (havola **saqlanmaydi** — faqat `bor: bool`).
 
-### 1.10 Birinchi buyurtma va stajirovka (10-dars, PM) — T14
+### 1.10 Birinchi buyurtma va stajirovka (10-dars, PM) — T13
 - **Xalqaro saytlar** (Upwork kabi): «odatda 18 yoshdan; shartini ota-ona bilan saytning o'zidan o'qing» — rasmiy matn bu tunda tekshirilmadi (MANBA 5), aniq yosh da'vo qilinmaydi.
 - **Bugun — lokal birinchi buyurtma rejasi:** kim (tanish do'kon, maktab, to'garak) · nima (lending yoki bot — kursda qurilgan narsa) · qachon gaplashaman; pul va kelishuv — ota-ona orqali.
 - **Ikki kompaniyaga stajirovka xati** (shablon): kimman · nima qurdim (video-portfolio — havola bo'lsa) · nima so'rayman (stajirovka yoki maslahat); yuborish — uyda, ixtiyoriy. Spam yo'q (bitta kompaniyaga bitta xat).
 - Saqlanadi `pm-m12d10-ish`.
 
-### 1.11 Xalqaro dasturlar (11-dars, PM) — T15
+### 1.11 Xalqaro dasturlar (11-dars, PM) — T14
 - **Diamond Challenge** (rasmiy, 08.10): 14–18 yoshli 2–4 o'quvchidan iborat jamoa · 21 yoshdan katta maslahatchi · butun dunyo · ikki yo'nalish (Business Innovation, Social Innovation) · topshirish muddati **14.01.2027** · finalistlar 09.03.2027 · Summit 29–30.04.2027.
   «Boshlangan ariza» = konsept qoralamasi (pitchdan: muammo · kim uchun · yechim) + jamoa va maslahatchi kim bo'lishi; ro'yxatdan o'tish — uyda, maslahatchi bilan.
 - **YC — halol:** rasmiy FAQ da yosh yozilmagan; asoschilar batch davomida va keyin to'liq vaqt ishlashi kutiladi; Early Decision — o'qishni tugatmoqchi talabalar uchun → «maktab o'quvchisi uchun bugungi yo'l emas; universitet yillarida».
 - **Lokal grantlar** — nom aytilmaydi (tekshirilmadi); «tashkilotchi bilan aniqlanadi».
 - Kafolat yo'q («qabul qilinasiz» deyilmaydi). Saqlanadi `pm-m12d11-dastur`.
 
-### 1.12 Keyingi olti oy — Mentor bilan yakkama-yakka (12-dars, PM) — T16
+### 1.12 Keyingi olti oy — Mentor bilan yakkama-yakka (12-dars, PM) — T15
 - **Uch yo'nalish:** mahsulot (davom ettiraman / to'xtataman + sabab) · ko'nikma (nima o'rganaman) · ish (buyurtma, stajirovka yoki dastur — 10, 11-darsdan). Har yo'nalishga oylik bitta nishon va **birinchi qadam sanasi**.
 - 13-Modul refleksiyasi (`pm-m11d11-refleksiya`) o'qiladi — «Keyingi 4 haftada nima qilaman?» javobi shu yerga ko'chadi.
 - Farqi: 11-Modul 15-dars — Demo Day oldidan reja va risklar · 12-Modul 11-dars — pitch da'volari · 13-Modul 11-dars — ortga qarash · **bu dars — oldinga qarash**. Mentor bilan 10 daqiqa. Saqlanadi `pm-m12d12-reja`.
@@ -116,6 +116,8 @@ Oldingi modullardan o'zgarmaydi: pitch · zal · zal savoli · baholash varag'i 
 |---|---|---|
 | pitch bo'laklari | **Muammo · Bozor · Yechim · Raqamlar · Jamoa · Keyingi qadam** — atoqli nomlar (1-dars) | Metrikalar (bo'lak nomi sifatida), «Keyin», «Jonli demo» (alohida bo'lak) |
 | bozor | mahsulotga muhtoj odamlar va biz bilgan ularning soni (1-dars) | TAM/SAM/SOM, «bozor hajmi» (manbasiz) |
+| Jamoa (bo'lak) | mahsulotni kim qilayotgani (1-dars, 9.4) — bo'lak nomi doim bosh harf bilan yoki «Jamoa bo'lagi»; «jamoa» prozada futbol ma'nosida ishlatilmaydi («Maydon Jamoa» — nom) | team (prozada), «komanda» |
+| so'rov (aniq so'rov) | Keyingi qadam bo'lagidagi bitta aniq iltimos: tanishtirish · maslahat · sinash joyi (1-dars); Mentor gapi «Sizdan bitta so'rov: …» — «Yordam» (tugma) bilan aralashmaydi | «yordam» (bu ma'noda), investitsiya so'rovi |
 | savol-javob | pitchdan keyin hakamlarning savollari va javoblar; kartochkada bir marta «inglizchasi: Q&A» | Q&A (prozada), «intervyu» |
 | hakam · hakam varag'i | Demo Day'da baho beradigan odam (investor, tadbirkor) · uning varag'i (13-dars) | jyuri, komissiya |
 | hikoya | bitta odam, bitta lahza va o'zgarish orqali aytish (2-dars); kartochkada bir marta «inglizchasi: storytelling» | storytelling (prozada), «sarguzasht» |
@@ -203,12 +205,12 @@ Qoida: dars oldingi dars natijasini o'qiydi; yo'q bo'lsa — o'quvchi o'zi yozad
 ⚠️ 2–13-darslar sxemalari — pilotlardan keyin (9-bo'lim) aniqlashtiriladi; pilot kalitlari (1, 3, 7) — shu holicha majburiy.
 | Kalit | Yozadi | O'qiydi | Tarkib |
 |---|---|---|---|
-| `pm-m12d1-pitch` | 1 | 2, 5, 8, 11, 13 | `{ bolaklar: { muammo, bozor, yechim, raqamlar, jamoa, keyingi } (har biri: gap ≤160), manba: '12-modul' \| 'yangi', savedAt }` |
+| `pm-m12d1-pitch` | 1 | 2, 5, 8, 11, 13 | `{ bolaklar: { muammo, bozor, yechim, raqamlar, jamoa, keyingi } (har biri: gap ≤160 yoki `null` — yozilmagan), manba: '12-modul' \| 'yangi', savedAt }` (`manba: '12-modul'` — oldindan qo'yilgan bo'lsa, o'quvchi o'zgartirgan bo'lsa ham) |
 | `pm-m12d2-hikoya` | 2 | 5, 9 | `{ kim, lahza, ozgarish, video: { yozildi: bool \| null, lahzaBilan: bool \| null, royxatYoq: bool \| null, vaqtgaSigdi: bool \| null }, savedAt }` |
-| `pm-m12d3-tezlik` | 3 | 6 | `{ trek: 'web' \| 'mobil', oldin: { baho: n \| null, lcp, cls, tbt, bundleKb: n \| null }, keyin: { … }, tuzatishlar: [string] (≤2), savedAt }` — son yolg'iz emas (birlik bilan) |
+| `pm-m12d3-tezlik` | 3 | 6 | `{ trek: 'web' \| 'mobil', oldin: { baho: n \| null, lcp (soniya), cls (birliksiz), tbt (ms), bundleKb (kB): n \| null }, keyin: { … }, tuzatishlar: [string] (≤2, A1 4-qadamda tanlanadi), savedAt }` — `baho`, `lcp`, `cls`, `tbt` — **lending** (ikkala trekda), `bundleKb` — **ilova** (mobil — Expo Atlas, web — `npm run build`) (9.5) |
 | `pm-m12d5-varaq` | 5 | 8 | `{ tur: 'guruh' \| 'yakka', varaq: [{ bolak, belgi: '✓' \| '✗' \| null, izoh }], hakamSavoli, tuzatishlar: [{ bolak, nima }] (3), savedAt }` |
 | `pm-m12d6-demo` | 6 | 7, 13 | `{ stsenariy: [string] (5), risklar: [{ risk, bYol }], video: bool \| null, uygotish: bool \| null, teg: bool \| null, otishVaqt: n \| null, savedAt }` |
-| `pm-m12d7-tekshiruv` | 7 | 13 | `{ urinishlar: [{ usul: 'tarmoq' \| 'bosh' \| 'ikki', qildim, kutdim, boldi, buzildi: bool \| null, tuzatishQilindi: bool }], otishlar: [bool \| null] (3), bReja: bool \| null, savedAt }` |
+| `pm-m12d7-tekshiruv` | 7 | 13 | `{ urinishlar: [{ usul: 'tarmoq' \| 'bosh' \| 'ikki', qildim, kutdim, boldi, buzildi: bool \| null, tuzatishQilindi: bool, qayta: 'takrorlanmadi' \| 'takrorlandi' \| null }], otishlar: [bool \| null] (3), bReja: bool \| null, savedAt }` (`qayta` — 9.8) |
 | `pm-m12d8-final` | 8 | 13 | `{ vaqt: n (soniya), savollar: [{ savol, javob }] (3), tuzatildi: [bolak], savedAt }` |
 | `pm-m12d9-video` | 9 | 10 | `{ bolaklar: { kim, nima, qanday }, bor: bool \| null, tekshiruv: { maxfiyYoq: bool \| null, sigdi: bool \| null }, savedAt }` — havola saqlanmaydi |
 | `pm-m12d10-ish` | 10 | 12 | `{ buyurtma: { kim (rol), nima, qachon }, xatlar: [{ kompaniyaTuri, soroq }] (2), yuborildi: n \| null, savedAt }` |
@@ -216,8 +218,25 @@ Qoida: dars oldingi dars natijasini o'qiydi; yo'q bo'lsa — o'quvchi o'zi yozad
 | `pm-m12d12-reja` | 12 | — | `{ yonalishlar: [{ tur: 'mahsulot' \| 'konikma' \| 'ish', nishonlar: [string] (≤6), birinchiQadam, sana }], savedAt }` |
 | `pm-m12d13-repetitsiya` | 13 | — | `{ vaqt: n, demo: 'ishladi' \| 'b-reja' \| 'ishlamadi' \| null, savollar: n, varaq: [{ band, belgi }], savedAt }` |
 
-## 9. To'lqin kelishuvlari (pilot MD lardan — 2-to'lqin uchun MAJBURIY)
-(Pilotlar — 01, 03, 07 — tugagach shu yerga yoziladi. Ziddiyat bo'lsa — shu bo'lim to'g'ri.)
+## 9. To'lqin kelishuvlari (pilot MD lardan — 2-to'lqin uchun MAJBURIY; 08.10, F-1008-556)
+Pilotlar: `01-PmInvestorPitch-v3.md` · `03-ProductSpeed-v3.md` · `07-PmDemoTest-v3.md` (o'z auditi — `NN-OZ-AUDIT.md`). Ziddiyat bo'lsa — shu bo'lim to'g'ri.
+1. **Pitch vaqt taqsimoti (5:00, bu mashqda):** Muammo 40 · Bozor 30 · Yechim (jonli demo bilan) 90 · Raqamlar 60 · Jamoa 30 · Keyingi qadam 50 soniya — taymer chizig'i (12-Modul `TaymerChiziq`) 5, 8, 13-darslarda shu bo'laklar bilan.
+2. **Mentor pitchining olti gapi** — tayanch 1.1 aynan (Muammo — 12-Modul pitchidagi qisqa gap + dalil). 5, 8, 13-darslarda tuzatilgan bo'lak — tuzatish bilan aytiladi (yangi son yo'q).
+3. **Hakam savollari (`HAKAM_SAVOL`, bitta manba; kurs savollari, real hakam gapi emas):** Muammo — «Bu muammo borligini qayerdan bilasiz?» · Bozor — «Bu mahsulot yana qancha odamga kerak?» · Yechim — «Mahsulot nima qiladi?» ·
+   Raqamlar — «Bu son qayerdan va nimani sanaydi?» · Jamoa — «Buni kim qilyapti?» · Keyingi qadam — «Endi nima qilasiz?». 8-dars savol-javob mashqi va 13-dars shulardan oladi (+ tayanch 1.8 dagi «Odamlar hozir bu ishni nima bilan qiladi?»).
+4. **Jamoa va so'rov atamalari** — 2-bo'lim jadvali (yangi qatorlar). Mentor gapi: «Sizdan bitta so'rov: mahalladagi maydon egalari bilan tanishtiring.»
+5. **3-dars o'lchovi:** Lighthouse — **lending** (ikkala trekda bir xil; rasmlar shu yerda); yuklanadigan kod hajmi — **ilova** (mobil — Expo Atlas, web — `npm run build`, Vite chiqishidagi `.js` fayllar). Ilova sahifasining Lighthouse o'lchovi — uyga vazifa. Lighthouse sozlamasi yozuvi — «Mobile rejimi» (UI so'zi; «mobil trek» bilan aralashmasin).
+   6-dars `pm-m12d3-tezlik` ni shu ma'noda o'qiydi (demo stsenariysida «lending tez ochiladi» — o'lchangan bo'lsa).
+6. **Demo ikkinchi qurilmasi:** telefon brauzerida (mobil trekda — brauzer ko'rinishi), APK yoki Expo Go emas — tuzatishdan keyin bitta qayta eksport ikkala ekranni yangilaydi (07 TS 4). 6-dars stsenariysi va 13-dars shunga mos.
+7. **Demo tekshiruvi usullari (7-dars):** tarmoq uzilishi — **telefonda** (uchish rejimi; laptop internetini uzish dars sahifasini ham uzadi) · bo'sh ma'lumot — tekshiruv akkaunti e'lon qilgan yangi o'yin «Juma, 18:00 · Mahalla maydoni · 0 / 10» (13-Modul tekshiruv o'yini; haqiqiy ro'yxatga tegilmaydi) · ikki marta bosish — «Qo'shilaman».
+8. **`pm-m12d7-tekshiruv.urinishlar[].qayta`** — qayta tekshiruv natijasi kalitda (13-dars o'qiydi); 07 MD shunga tuzatildi.
+9. **B reja:** ikkinchi demo o'tishida (oxirgi o'tish jonli); B reja gapi (Mentor misolida): «Internet uzildi — shu demoning 60 soniyalik videosini ko'rsataman.» — 6-dars B reja blokida va 13-darsda aynan.
+10. **«Xatosiz» o'tish** — demo stsenariysining beshala qadami rejadagidek o'tdi; vaqt belgi emas. Har urinish va o'tishdan keyin demo holati boshiga qaytariladi (Mentor misolida — o'yindan chiqish, yana «8 / 10») — 6-dars stsenariysida «boshiga qaytarish» tayyorlov qatori.
+11. **`XATOLAR.md` ga «## Demo tekshiruvi» bo'limi** (7-dars) — 13-Modul 12-darsi shakli (usul · natija · holat).
+12. **«hakam» 1-darsda tug'iladi** (ta'rif: «Pitchni baholaydigan odam — investor yoki tadbirkor — hakam deyiladi.»); keyingi darslarda glosssiz.
+13. **«Demo Day» o'quvchi matnida** — faqat 13-darsda (Demo Day formatidagi repetitsiya) va yakundagi «Keyingi dars» qatorida emas; 1–12-darslarda — «hakamlar oldida chiqish» (T-038: kelajak va'dasi yo'q).
+14. **12-Modul o'sish grafigi** pitch qoralamasiga kirmaydi (matn bo'laklari); 5, 8, 13-darslarda ham grafik qaytmaydi — Raqamlar bo'lagi gap bilan.
+15. **Kod oynasi va namuna o'lchamlari** (3-dars): rasm o'lchami 180 × 320 va lendingdagi pastki ikki rasm — sahna namunasi, Mentor lendingining haqiqiy o'lchami emas (⛔ «qur» da moslanadi).
 
 ## 10. Ruscha lug'at (6-RU bosqichi uchun; 13-Modul tayanchi 10 + 12-Modul `QURUVCHI_TOPSHIRIQ_3.md` — kuchda)
 | uz | ru | izoh |

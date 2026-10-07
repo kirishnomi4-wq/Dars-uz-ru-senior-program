@@ -9,7 +9,7 @@ Manbalar: `QOIDALAR.md` · `konveyer/QURISH_KARTASI.md` · `MATN_ETALONI.md` · 
 - Brend va mahsulot nomi — o'z rangida, tanish maketda (telefon, brauzer, slayd), jonli sahnada; matnli karta rad; logotip chizilmaydi. «Maydon Jamoa» — telefon/brauzer maketida; Airbnb, iPhone (keys) — maket yoki slayd, logotipsiz.
 - O'ylab topilgan qahramon yo'q — vazifani Mentor beradi; odamlar roli bilan: tashkilotchi, o'yinchi, sinfdosh, guruhdosh, hakam, mehmon, ota-ona, buyurtmachi. **Hakamlar, investorlar, bitiruvchilar — ismsiz, ularning gapi o'ylab topilmaydi** (Mentor misolidagi hakam savoli — tayanch 1.5, 1.8 dan aynan).
 
-## 1. Bu modulning eng qat'iy chegaralari (T3, T13, T14, T15)
+## 1. Bu modulning eng qat'iy chegaralari (T3, T12, T13, T14)
 - **Investitsiya so'ralmaydi:** pitchning «Keyingi qadam» bo'lagida — aniq yordam so'rovi (tanishtirish, maslahat, sinash joyi); pul summasi, ulush, «investitsiya kerak» — yo'q (o'smirda yuridik shaxs yo'q).
 - **Video (9-dars, 2-dars):** yuz va ism — ixtiyoriy; ommaviy joyga yuklanmaydi; ota-ona roziligi; ekranda maxfiy kalit, `.env`, login, boshqa odamlarning ma'lumoti va yozishmasi ko'rinmaydi. Video havolasi hech qaysi kalitga yozilmaydi. 2-darsdagi video telefonda qoladi.
 - **Yosh va rasmiy shartlar:** Upwork kabi saytlar — «odatda 18 yoshdan; shartini ota-ona bilan saytning o'zidan o'qing» (rasmiy matn tekshirilmagan — aniq yosh da'vo qilinmaydi); profil ota-ona yoki boshqa odam nomidan ochilmaydi.
@@ -58,7 +58,7 @@ Manbalar: `QOIDALAR.md` · `konveyer/QURISH_KARTASI.md` · `MATN_ETALONI.md` · 
 - Kartochka 10–12; arena 12 savol, ✔ A/B/C/D har biri 3 marta. Nishon 4 ta, inglizcha nom, o'zbekcha tavsif — qilingan ishni aytadi («Pitch tayyor» emas — «olti bo'lakni yozdingiz»).
 
 ## 8. Ma'lum ziddiyatlar va ochiq joylar (foydalanuvchiga ko'rsatiladi, agent o'zi hal qilmaydi)
-- **Dastur «YC Demo Day tahlili» (1-dars)** — bankda yo'q → K12 (T18). **Dastur «Upwork»** — 18 yosh (tekshirilmagan rasmiy) → lokal buyurtma (T14).
-- **6 va 9-darslar dasturda TEX** — kod kam; loyiha kuni shaklida (T9). **15-qator «Встреча выпускников»** — birinchi oqimda bitiruvchi yo'q → `comp` siz (T17).
+- **Dastur «YC Demo Day tahlili» (1-dars)** — bankda yo'q → K12 (T18). **Dastur «Upwork»** — 18 yosh (tekshirilmagan rasmiy) → lokal buyurtma (T13).
+- **6 va 9-darslar dasturda TEX** — kod kam; loyiha kuni shaklida (T9). **15-qator «Встреча выпускников»** — birinchi oqimda bitiruvchi yo'q → `comp` siz (T16).
 - **«progon»** — «demo o'tishi» (T10); «sinov» so'zi demo tekshiruvida ishlatilmaydi.
 - **Lighthouse va mobil trek** — Lighthouse web uchun; mobil trekda — Expo Atlas + brauzer ko'rinishi (T5). Telefonni proyektorga ulash — tekshirilmagan (T8: laptop brauzeri).

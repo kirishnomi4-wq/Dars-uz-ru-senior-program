@@ -11,13 +11,25 @@ for p in sys.argv[1:]:
     scr = [l for l in L if re.match(r'^## \d+ · ', l)]
     i = s.lower().find('## jonli viktorina'); j = s.find('\n## ', i + 5)
     ar = collections.Counter(re.findall(r'✔\s*\**\s*([ABCD])\b', s[i:j])) if i >= 0 else None
+    if i >= 0 and not ar:  # ikkinchi shakl: «N. savol» + «   - ✔ variant» (✔ o'rni = harf)
+        ar = collections.Counter()
+        for blok in re.split(r'\n(?=\d+\. )', s[i:j])[1:]:
+            v = [l for l in blok.split('\n') if re.match(r'^\s+- ', l)]
+            for k, l in enumerate(v[:4]):
+                if '✔' in l: ar['ABCD'[k]] += 1
+        if not ar:  # uchinchi shakl: «N. savol? ✔ a · b · c · d» (bir qatorda)
+            for l in s[i:j].split('\n'):
+                if re.match(r'^\d+\. ', l) and '✔' in l:
+                    opts = re.split(r' · ', l.split('?', 1)[-1])
+                    for k, o in enumerate(opts[:4]):
+                        if '✔' in o: ar['ABCD'[k]] += 1
     uzun = []
     for n, l in enumerate(L):
         m = re.search(r'Sarlavha:\s*\*\*(.+?)\*\*', l)
         if m and len(m.group(1)) > 55: uzun.append(('sarlavha', n + 1, len(m.group(1))))
         m = re.match(r'^- Xulosa[^:]*:\s*(.+?)\s*$', l)
         if m:
-            t = re.sub(r'\s*\(\d+\)\s*$', '', m.group(1))
+            t = re.sub(r'\s*\(\d+\)\s*$', '', re.sub(r'\s*<!--.*?-->', '', m.group(1)))
             if len(t) > 110: uzun.append(('xulosa', n + 1, len(t)))
     k = int(nn); kel = NOM.get(k + 1) if k < 13 else 'Zaxira dars: zalni tayyorlash'
     keyingi_ok = bool(kel) and (kel in s)

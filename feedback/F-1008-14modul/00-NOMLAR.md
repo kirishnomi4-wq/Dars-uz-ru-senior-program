@@ -6,7 +6,7 @@ Menyu nomi umumiy (o'quvchining o'z mahsulotiga ham to'g'ri keladi); Mentor miso
 
 | № | Kalit | Tip (App.jsx) | Dars nomi (menyu = dars) | Belgi | Menyu osti yozuvi | Fayl (`src/12-Modull/`) |
 |---|---|---|---|---|---|---|
-| 1 | m12-01 | PM | **Investorga pitchni qanday tuzasiz?** | 34 | olti bo'lak: muammo, bozor, yechim, metrikalar, jamoa, keyin | `PmInvestorPitchLesson.jsx` |
+| 1 | m12-01 | PM | **Investorga pitchni qanday tuzasiz?** | 34 | olti bo'lak: muammo, bozor, yechim, raqamlar, jamoa, keyingi qadam | `PmInvestorPitchLesson.jsx` |
 | 2 | m12-02 | PM | **Mahsulotingiz hikoyasini qanday aytasiz?** | 40 | 5 daqiqalik pitch — hikoya, funksiyalar ro'yxati emas | `PmStoryPitchLesson.jsx` |
 | 3 | m12-03 | Kod | **Mahsulot tezligi: o'lchaymiz va tezlashtiramiz** | 46 | Lighthouse, rasmlar va yuklanadigan kod hajmi — oldin va keyin | `ProductSpeedLesson.jsx` |
 | 4 | m12-04 | Proyekt | **Loyiha kuni: demo uchun sayqal** | 30 | demo yo'lidagi uch joy: bosish, yuklanish, muvaffaqiyat | `PolishDayLesson.jsx` |

@@ -5,7 +5,16 @@ Pilot MD lar (o'qing — tuzilish va saboqlar uchun; matn ko'chirilmaydi): `01-P
 Tayanch 9-bo'lim («To'lqin kelishuvlari») — pilotlardan keyin to'ldirilgan, MAJBURIY; ziddiyatda tayanch 9 to'g'ri.
 Scratchpad: `/tmp/claude-1000/-home-kali-Desktop-internetLesson/55e53e99-c879-4594-8956-6aafe5996e69/scratchpad/m14/md<NN>/`.
 
-## Pilotlardan saboq (pilotlar tekshirilgach shu yerga yoziladi)
+## Pilotlardan saboq (MAJBURIY; 08.10, F-1008-556 — uchala pilot o'zim tekshirdim, `NN-OZ-AUDIT.md`)
+1. **Tayanch 9-bo'limi (15 band) — MAJBURIY:** pitch vaqti 40·30·90·60·30·50 · Mentor pitchining olti gapi · `HAKAM_SAVOL` (6 ta, aynan) · «Jamoa» va «so'rov» atamalari · 3-dars o'lchovi (Lighthouse — lending, kod hajmi — ilova) · demo ikkinchi qurilmasi — telefon brauzeri ·
+   7-dars usullari · `pm-m12d7-tekshiruv.qayta` · B reja gapi va ikkinchi o'tish · «xatosiz» ta'rifi va boshiga qaytarish · `XATOLAR.md` «## Demo tekshiruvi» · «hakam» 1-darsda tug'iladi · «Demo Day» faqat 13-darsda · grafik qaytmaydi · namuna o'lchamlar.
+2. **TAXMIN raqamlari — faqat shu ro'yxat** (qaror sahifasi tartibi): T1 pitch tuzilmasi · T2 Bozor sonlari · T3 so'rov (pul emas) · T4 teglar · T5 3-dars o'lchovi · T6 Mentor sonlari ⛔ · T7 sayqal joylari · T8 demo qayerda · T9 6/9-dars shakli · T10 «demo o'tishi» ·
+   T11 pitch darslari farqi · T12 video qoidasi · T13 frilans yo'li · T14 xalqaro dastur · T15 olti oylik reja · T16 15-qator · T17 16/17-qatorlar · T18 keyslar · T19 atamalar · T20 nomlar. MD da `<!-- TAXMIN Tn -->` — shu raqam bilan.
+3. **Arena formati** (tekshiruv skripti uchun bir xil): har savol — `N. savol? (ekran)` qatori va ostida 4 qator `   - variant`; to'g'risi `   - ✔ variant`. Sarlavhada ✔ taqsimoti.
+4. **Mentor gapi «Sizdan bitta so'rov: …»** («yordam» emas — «Yordam» tugma nomi). «Sinov» so'zi o'quvchi matnida yo'q (5, 8, 13 — «tinglovchi», «hakam», «guruh»; demo — «demo tekshiruvi», «demo o'tishi»).
+5. **Pilotlarda yaxshi ishlagan usullar:** «Bu misolda» / «Mentor misolida» chegarasi har da'voda · Mentor natijasi yo'q joyda — kutilgan natija «… bo'lishi mumkin», sabab to'qilmaydi (⛔) · yakun 4–5 holat, «hech narsa qilinmagan» holati bilan ·
+   kod oynasi bo'lsa — kodni o'zingiz brauzerda sinang (03 pilot: Chrome headless) · o'lchov skripti scratchpad'da, natijasi MD «O'lchov»ida · TAYANCHGA SAVOL — raqamlangan, har biri aniq taklif bilan.
+6. **Kalit o'qish:** dars faqat jadvaldagi kalitlarni o'qiydi; qo'shimcha o'qish (masalan `pm-m9d8-platforma.trek`) — mumkin, TAYANCHGA SAVOL ga yozing; boshqa darsning kalitiga yozilmaydi.
 
 ## 2-to'lqin qatorlari
 | № | Fayl | Tip · ekran | Oldingi → keyingi dars | Tayanch | Keys | Kalit (o'qiydi → yozadi) | Kod / amaliyot | Namuna (MD + FILTR) |

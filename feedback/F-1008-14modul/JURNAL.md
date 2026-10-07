@@ -15,11 +15,11 @@
 | 1 · Qaror sahifasi (TAXMIN bilan davom) | ✅ 02:39 — 20 savol, hammasi A (TAXMIN T1–T20); javob kutilmoqda |
 | 2 · `00-NOMLAR.md` + App.jsx `id: '12'` | ✅ 02:41 (17 qator, `comp` siz; App.jsx commitsiz) |
 | 3 · Tayanch + taqiqlar + MD topshirig'i | ✅ 02:47 (F-1008-554) |
-| 4 · 1-to'lqin: 3 pilot MD | ⏳ 02:48 yuborildi (01, 03, 07) |
+| 4 · 1-to'lqin: 3 pilot MD | ✅ 03:27 — 3/3 yozildi va o'zim tekshirdim (OZ-AUDIT) |
 | 5 · O'z auditi + 2-to'lqin 10 MD | — |
 | 6 · O'zaro tekshiruv · GATE M sahifasi · ERTALAB_HISOBOT | — |
 
-**Keyingi qadam:** 4-bosqich — 1-to'lqin: 3 pilot MD agenti (01, 03, 07), fon; keyin o'zim tekshiraman.
+**Keyingi qadam:** 5-bosqich — 2-to'lqin: 10 MD agenti (02, 04, 05, 06, 08, 09, 10, 11, 12, 13), keyin har birini o'zim tekshiraman.
 
 ## TAXMINLAR (foydalanuvchi ertalab tasdiqlaydi)
 Sahifa: https://claude.ai/artifact/MxCJubQJFcREWw42QYvH5x (`14M-QAROR-0`, `qaror-0.json`). Har biri — tavsiya (A); MD da `<!-- TAXMIN Tn -->` bilan belgilanadi.
@@ -53,8 +53,16 @@ Sahifa: https://claude.ai/artifact/MxCJubQJFcREWw42QYvH5x (`14M-QAROR-0`, `qaror
 - **2026-10-08 02:41** — **F-1008-553** · 2-bosqich: `00-NOMLAR.md` (17 nom ≤55, lint:til toza; 10-dars nomidan «stajirovka» olindi — T-011, qaror sahifasi ham yangilandi, versiya 2) · App.jsx: `// ---- 12-Modul` izoh (13-Modul importlaridan keyin) + `id: '12'` bloki (17 qator, `comp` siz) — ikki aniq Edit, esbuild ✓, lint:jsx toza, 5174 da App.jsx 200. App.jsx commitga kirmaydi (ertalab buyruq bilan).
 - **2026-10-08 02:47** — **F-1008-554** · 3-bosqich: `00-MODUL-TAYANCH.md` (misol-ip 1.0–1.14, atamalar, repo/teglar, darslar jadvali — ekranlar 16·15·19·12×10, keyslar K12/K19, faktlar, **18 sinf** (13-Modul 16 + 14-Modulga xos 2), saqlash kalitlari 12 ta, ruscha lug'at) · `00-TAQIQLAR.md` (13-Modul asosida; 1-bo'lim — investitsiya, video, yosh, buyurtma, kafolat) · `MD_AGENT_TOPSHIRIQ.md` (umumiy + 3 pilot qatori: 01 PM 16, 03 TEX 19, 07 PM+PRAKT 12; TAXMIN belgilash qoidasi).
 - **2026-10-08 02:49** — **F-1008-555** · 4-bosqich: 3 pilot agent 02:48 da yuborildi (01 `PmInvestorPitch` PM 16 · 03 `ProductSpeed` TEX 19 · 07 `PmDemoTest` PM+PRAKT 12; general-purpose, fon, har biri bitta MD). Kutish paytida: `vositalar/mdtekshir.py` (13-Modul mdtekshir + qisqa asosida: ekranlar/reja, uzunliklar, arena, keyingi dars, TAXMIN, taqiq naqshlari, lint:til) va `MD_TOPSHIRIQ_2.md` (10 qator + eslatmalar; «pilotlardan saboq» — keyin).
+- **2026-10-08 03:20** — 07 pilot tugadi (agent ≈31 daq): `07-PmDemoTest-v3.md` 700 qator · o'zim (`mdtekshir.py`): ekran 12/12 · arena 3/3/3/3 · uzun yo'q · keyingi dars ✓ · TAXMIN 27 · lint:til 0 error; taqiq naqshlari 14 qatorda — hammasi meta bo'limlarda (A, sinflar ro'yxati, KOD), o'quvchi matnida 0 (qatorma-qator ko'rildi). TAYANCHGA SAVOL 17 — o'z auditida (01, 03 bilan birga).
+- **2026-10-08 03:27** — **F-1008-556** · 1-to'lqin yopildi: 01 (16/16, TAXMIN 58), 03 (19/19, 29), 07 (12/12, 27) — hammasi `lint:til` 0 error, arena 3/3/3/3, keyingi dars ✓ (o'zim, `mdtekshir.py`; arena uch xil shaklda — vosita kengaytirildi).
+  O'z auditi (ChatGPT o'rniga): `01/03/07-OZ-AUDIT.md` — 52 TAYANCHGA SAVOL: Qabul 49, Oqlandi 1, qaror 2; tuzatishlar: App.jsx `m12-01` osti va `00-NOMLAR.md` («raqamlar, jamoa, keyingi qadam») · «Sizdan bitta yordam» → «so'rov» (01 MD 7 joy + tayanch) ·
+  07 MD `pm-m12d7-tekshiruv.urinishlar[].qayta` (7 joy) · **o'z xatoim:** tayanch va TAQIQLAR dagi TAXMIN raqamlari T12–T16 qaror sahifasi tartibidan surilgan edi (01 agenti topdi) → tuzatildi; pilot belgilariga ta'siri yo'q (T1–T10, T18–T20 ishlatilgan).
+  Tayanch: 1.1 Muammo gapi, 2 (Jamoa, so'rov), 8 (uch sxema), **9 — 15 kelishuv**. `MD_TOPSHIRIQ_2.md` «Pilotlardan saboq» (6 band, TAXMIN raqamlari ro'yxati, arena formati). lint:prompt ✓.
 
 ## Nazorat (cron, har 15 daqiqa)
 - 2026-10-08 02:49 · 4 · agentlar 3 ishlayapti (01, 03, 07) · chegara: faqat F-1008-14modul + App.jsx 12-blok; push yo'q (origin..HEAD — faqat o'z commitlarim) · uyqu bloki ✓
+- 2026-10-08 02:50 · 4 · agentlar 01/03/07 2 daqiqa oldin yuborilgan — hali MD yo'q (o'qish bosqichi, normal) · chegara ✓ (src/App.jsx dan boshqa o'zgarish meniki emas) · push yo'q (4 lokal commit) · uyqu bloki ✓
+- 2026-10-08 02:56 · 4 · 01/03/07: MD va md<NN> papkalari hali yo'q (8 daqiqa; o'qish bosqichi — bitta signal, osilgan deyilmaydi) · push yo'q · uyqu bloki ✓
+- 2026-10-08 03:11 · 4 · agentlar tirik: transkriptlar 1.7–2.0 MB, oxirgi yozuv 03:06–03:09; md03 da yordamchi fayllar (03:04–03:05, lazy load namunalari); MD lar hali yo'q · push yo'q · uyqu bloki ✓
 
 ## MEXANIZM-TAKLIF
