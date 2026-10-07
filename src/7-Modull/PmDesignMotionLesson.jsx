@@ -2865,7 +2865,7 @@ export default function PmDesignMotionLesson({ lang: langProp, onFinished, liveT
       <LiveGateCtx.Provider value={{ locked, live }}>
         <div className="lesson-root">
           {live.mode === 'choosing' ? (
-            <LiveGate live={live} title={tr({ uz: 'Tizim arxitekturasi darsi', ru: 'Урок об архитектуре системы' })} />
+            <LiveGate live={live} title={tr(LESSON_META.lessonTitle)} />
           ) : (
             <>
               <Current screen={screen} storedAnswer={answers[screen]} answers={answers} achievements={earned} onAnswer={recordAnswer} onNext={next} onPrev={prev} onReset={reset} onFinish={finishLesson} live={live} />

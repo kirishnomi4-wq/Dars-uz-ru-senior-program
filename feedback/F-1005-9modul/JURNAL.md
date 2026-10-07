@@ -205,6 +205,11 @@ Seans chegarasi: `konveyer/0-YANGI-MODUL.md` 2-bo'lim. F-ID: F-1005-50 dan.
   Vercel yangi loyiha `coddycamp-9modul` (akkaunt kirishnomi6-9875, prj_ICFUGCPdEJTqOmfwluewSvjprw6X) → **https://coddycamp-9modul.vercel.app** (dpl_2AswqnPtdNTWPT7tfid3FCrgqNDc, READY) · `sayt-smoke` 24/24 (uz+ru).
   `dist-m7` .gitignore da yo'q (umumiy fayl — tegilmadi), commit ga kirmaydi.
 
+- **06.10.2026 10:35 · F-1006-50 · QA oldidan: «Darsga qo'shilish» oynasida noto'g'ri dars nomi (foydalanuvchi: «QA dan oldin tuzat va qayta chiqar»).**
+  Topilma 10-Modul jurnalidan (MEXANIZM-TAKLIF 7): skelet `NamunaDars.jsx:2063` dagi qattiq «Tizim arxitekturasi darsi» 5 darsga ko'chgan — Animation, PmInterviewMvp, MvpIteration, MvpArchitecture, PmDesignMotion.
+  QA saytida birinchi oyna shu (LiveGate). Tuzatildi: `title={tr(LESSON_META.lessonTitle)}` — qolgan 7 dars bilan bir xil. Sinf-supurish: 12 dars — 12/12 `LESSON_META` dan; «Tizim arxitektura» / «Namuna dars» qoldig'i o'quvchi matnida 0
+  (MvpArchitecture 5-qatorda eski skelet izohi qoldi — kodda, o'quvchi ko'rmaydi). 5 fayl gates 12/12 · lint:jsx toza · build → Vercel `dpl_GdfiG6aBRc1uTNtf9oE4DsjbMd4C` (READY) · sayt-smoke 24/24 ·
+  surat m7-03, m7-05 — oyna tepasida dars nomi. Deploy ikki marta yurdi (birinchisining chiqishi kesilgan edi), ikkalasi bir xil fayllardan. UNCOMMITTED — commit buyruq bilan.
 - **2026-10-07 10:04 · F-1007-290 · TASHQI O'ZGARISH (11-Modul seansi, foydalanuvchi rejasi 06.10 ~19:10 «9–10-Modullarda zoomable muammosini ehtiyotkorlikda tuzat») — ⛶ 12/12 dars.**
   Sabab: skeletda `.zoom-on { position: fixed … }` qoidasi yo'q (MEXANIZM-TAKLIF 10) — ⛶ bosilganda oyna joyida kattalashardi (10-Modul m8-03 da 7 tadan 6 tasi buzuq — o'lchov); qolip `.q-fokus` va dars voqea konteyneri kirish animatsiyasi (fill both) `transform` qoldiradi — oyna siljirdi.
   Har faylga `@keyframes zoom-pop` dan oldin 2 qator (`.zoom-on`, `.q-fokus:has(.zoom-on)`); voqea ekranli 5 faylga yana 1 qator (`.pp-/.im-/.ut-/.ps-/.yp-voqea:has(.zoom-on)`). Boshqa hech narsa o'zgarmadi (diff — 2–3 qator).
