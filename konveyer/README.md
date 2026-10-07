@@ -5,6 +5,8 @@
 > Qoidalar bu yerda qayta yozilmaydi. Ular `QOIDALAR.md` (reestr), `DARS_ETALON.md`, `PM_DARS_ETALON.md`, `MATN_KORPUS.md` va
 > `src/qolip/QOLIP.md` da turadi. Konveyer faqat **qaysi tartibda, kim, qaysi shablon, qaysi darvoza** ekanini aytadi.
 
+> **Yangi modul noldan** (dastur → MD → audit → «qur» → darslar): avval `0-YANGI-MODUL.md` — raqamlash (LMS ↔ kod), parallel seans chegarasi, QA sayti.
+
 ## Zanjir
 
 > **Agentlar faqat foydalanuvchi ruxsati bilan (05.10).** Har bosqichdan oldin bitta qisqa xabar: nechta agent · nima qiladi · qaysi fayllarga tegadi —

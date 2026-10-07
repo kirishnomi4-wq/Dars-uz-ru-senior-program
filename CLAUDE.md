@@ -71,7 +71,7 @@ Yordamchi joylar: `arxiv/` (eski tarix — L1_TARIX, AVTOPILOT_CHECKPOINT, eski 
    (`MATN_KORPUS.md` matn uchun · `DARS_ETALON.md` UX/dizayn uchun · rol-fayli takror bug uchun).
 5. 8+ faylga tegadigan ish chiqsa — `KATTA_TOZALASH.md` ga yoziladi, o'sha yerda tuzatilmaydi.
 
-### F — YANGI DARS: MD-BIRINCHI (2026-09-29, D7 — asosiy yo'l; 04.10 dan bosqichlar va shablonlar: **`konveyer/README.md`**, MD formati `konveyer/1-MD.md`, kod `src/skelet/NamunaDars.jsx` dan)
+### F — YANGI DARS: MD-BIRINCHI (2026-09-29, D7 — asosiy yo'l; 04.10 dan bosqichlar va shablonlar: **`konveyer/README.md`**, MD formati `konveyer/1-MD.md`, kod `src/skelet/NamunaDars.jsx` dan; **yangi modul noldan — `konveyer/0-YANGI-MODUL.md`**)
 1. **Manba yig'ish:** dasturdagi o'rni, oldingi/keyingi dars (App.jsx `comp:` dan), bitta misol-ip, o'tilgan atamalar (grep), test rejasi.
 2. **MD v3** — o'quvchi ko'radigan HAR so'z, har ekran qolip turi bilan (namuna: `feedback/F-0929-QA-6modul/01-SystemArchitecture-v3.md`): A-bo'lim qoidalari,
    ip, reja jadvali, har ekran, testlar (✔, variantlar teng), final («1-qadam…»), amaliyot, kartochka, recaps, arena, nishon, keyingi dars.
