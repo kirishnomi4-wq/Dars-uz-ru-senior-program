@@ -15,7 +15,7 @@
 | 1 · Qaror sahifasi (TAXMIN bilan davom) | ✅ 02:39 — 20 savol, hammasi A (TAXMIN T1–T20); javob kutilmoqda |
 | 2 · `00-NOMLAR.md` + App.jsx `id: '12'` | ✅ 02:41 (17 qator, `comp` siz; App.jsx commitsiz) |
 | 3 · Tayanch + taqiqlar + MD topshirig'i | ✅ 02:47 (F-1008-554) |
-| 4 · 1-to'lqin: 3 pilot MD | — |
+| 4 · 1-to'lqin: 3 pilot MD | ⏳ 02:48 yuborildi (01, 03, 07) |
 | 5 · O'z auditi + 2-to'lqin 10 MD | — |
 | 6 · O'zaro tekshiruv · GATE M sahifasi · ERTALAB_HISOBOT | — |
 
@@ -52,7 +52,9 @@ Sahifa: https://claude.ai/artifact/MxCJubQJFcREWw42QYvH5x (`14M-QAROR-0`, `qaror
 - **2026-10-08 02:39** — **F-1008-552** · 1-bosqich: `qaror-0.json` (14 bo'lim, 20 savol) → `sahifa.py` → Artifact https://claude.ai/artifact/MxCJubQJFcREWw42QYvH5x. Kechasi hammasi A (TAXMIN T1–T20). Asosiy halollik qarorlari: pitchda yangi son yo'q (Bozor — bor sonlar), investitsiya summasi so'ralmaydi, Upwork — «odatda 18 yoshdan» (rasmiy matn tekshirilmadi), Diamond Challenge — rasmiy shartlar, YC — halol «bugungi yo'l emas», video ommaviy emas, 15-qator — o'ylab topilgan bitiruvchi yo'q.
 - **2026-10-08 02:41** — **F-1008-553** · 2-bosqich: `00-NOMLAR.md` (17 nom ≤55, lint:til toza; 10-dars nomidan «stajirovka» olindi — T-011, qaror sahifasi ham yangilandi, versiya 2) · App.jsx: `// ---- 12-Modul` izoh (13-Modul importlaridan keyin) + `id: '12'` bloki (17 qator, `comp` siz) — ikki aniq Edit, esbuild ✓, lint:jsx toza, 5174 da App.jsx 200. App.jsx commitga kirmaydi (ertalab buyruq bilan).
 - **2026-10-08 02:47** — **F-1008-554** · 3-bosqich: `00-MODUL-TAYANCH.md` (misol-ip 1.0–1.14, atamalar, repo/teglar, darslar jadvali — ekranlar 16·15·19·12×10, keyslar K12/K19, faktlar, **18 sinf** (13-Modul 16 + 14-Modulga xos 2), saqlash kalitlari 12 ta, ruscha lug'at) · `00-TAQIQLAR.md` (13-Modul asosida; 1-bo'lim — investitsiya, video, yosh, buyurtma, kafolat) · `MD_AGENT_TOPSHIRIQ.md` (umumiy + 3 pilot qatori: 01 PM 16, 03 TEX 19, 07 PM+PRAKT 12; TAXMIN belgilash qoidasi).
+- **2026-10-08 02:49** — **F-1008-555** · 4-bosqich: 3 pilot agent 02:48 da yuborildi (01 `PmInvestorPitch` PM 16 · 03 `ProductSpeed` TEX 19 · 07 `PmDemoTest` PM+PRAKT 12; general-purpose, fon, har biri bitta MD). Kutish paytida: `vositalar/mdtekshir.py` (13-Modul mdtekshir + qisqa asosida: ekranlar/reja, uzunliklar, arena, keyingi dars, TAXMIN, taqiq naqshlari, lint:til) va `MD_TOPSHIRIQ_2.md` (10 qator + eslatmalar; «pilotlardan saboq» — keyin).
 
 ## Nazorat (cron, har 15 daqiqa)
+- 2026-10-08 02:49 · 4 · agentlar 3 ishlayapti (01, 03, 07) · chegara: faqat F-1008-14modul + App.jsx 12-blok; push yo'q (origin..HEAD — faqat o'z commitlarim) · uyqu bloki ✓
 
 ## MEXANIZM-TAKLIF
