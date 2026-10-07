@@ -180,6 +180,7 @@ const PmUsersCheckLesson = L(() => import('./10-Modull/PmUsersCheckLesson.jsx'))
 const PmPitchReviewLesson = L(() => import('./10-Modull/PmPitchReviewLesson.jsx')) // 12-Modul 11-dars, 2-to'lqin
 const PmGrowthPitchLesson = L(() => import('./10-Modull/PmGrowthPitchLesson.jsx')) // 12-Modul 12-dars, 2-to'lqin
 // ---- 10-Modul (LMS 12-Modul, src/10-Modull) — konveyer, 06.10: darslar «qur» bosqichida shu yerga ulanadi
+// ---- 11-Modul (LMS 13-Modul, src/11-Modull) — konveyer, 07.10: darslar «qur» bosqichida shu yerga ulanadi
 // Modul ro'yxatidagi sarlavhalar — vaqtincha reja (comp yo'q, «tez orada» bo'lib ko'rinadi).
 const PmJtbdLesson = L(() => import('./pm/PmJtbdLesson.jsx')) // PM pipeline P1 (eski PmLesson27 o'rnida)
 const PmMetricsLesson = L(() => import('./pm/PmMetricsLesson.jsx')) // PM pipeline P1 (M8-D1)
@@ -435,6 +436,25 @@ const MODULES = [
       { key: 'm10-11', n: 11, type: 'PM', emoji: '🤝', title: 'Raqamlaringiz pitchni qanday o\'zgartiradi?', sub: 'Mentor bilan yakkama-yakka: tuzatilgan pitch', comp: PmPitchReviewLesson },
       { key: 'm10-12', n: 12, type: 'PM', emoji: '🎤', title: 'Raqamlaringiz zalni ishontiradimi?', sub: 'metrikali pitch: o\'sish grafigi — dalil', comp: PmGrowthPitchLesson },
       { key: 'm10-13', n: 13, type: 'Rezerv', emoji: '📅', title: 'Zaxira dars', sub: 'taymer bilan to\'liq repetitsiya' },
+    ],
+  },
+  {
+    id: '11', slug: 'm11', title: 'O\'sish va monetizatsiya', period: 'oy 14.5–15.5', stage: 2,
+    idea: 'Mahsulot pul topa boshlaydi: narx, test rejimdagi to\'lov, taklif havolasi — va birinchi odamlar to\'lashga tayyorligini tasdiqlaydi.',
+    lessons: [
+      { key: 'm11-01', n: 1, type: 'PM', emoji: '🧮', title: 'Bitta foydalanuvchi sizga qanchaga tushadi?', sub: 'jalb qilish narxi va foydalanuvchi keltiradigan pul' },
+      { key: 'm11-02', n: 2, type: 'PM', emoji: '🧭', title: 'Mahsulotingiz qanday pul topadi?', sub: 'besh model: bepul asos, pullik obuna, reklama, B2B, tranzaksiya' },
+      { key: 'm11-03', n: 3, type: 'Kod', emoji: '🔐', title: 'Webhook: to\'lov Backend\'ga qanday yetib keladi', sub: 'imzo, takror xabar va rad etilgan to\'lov — test rejimda' },
+      { key: 'm11-04', n: 4, type: 'PM', emoji: '🏷️', title: 'Narxni qanday belgilaysiz?', sub: 'xarajat, raqobat, qiymat → narx va to\'lov taklifi ekrani' },
+      { key: 'm11-05', n: 5, type: 'Proyekt', emoji: '🧪', title: 'Loyiha kuni: to\'lovni ulaymiz va buzib ko\'ramiz', sub: 'test rejimda to\'lov oqimi; buzamiz va tuzatamiz' },
+      { key: 'm11-06', n: 6, type: 'PM', emoji: '🗣️', title: 'Pul haqida qanday gaplashasiz?', sub: 'narx bo\'yicha uchta real suhbat' },
+      { key: 'm11-07', n: 7, type: 'PM', emoji: '📄', title: 'Foydalanuvchiga shartlarni qanday ochiq aytasiz?', sub: 'oferta va maxfiylik siyosati saytda' },
+      { key: 'm11-08', n: 8, type: 'Proyekt', emoji: '📬', title: 'Loyiha kuni: ketayotgan foydalanuvchini qaytarish', sub: 'nega ketishadi va bitta qaytarish mexanikasi' },
+      { key: 'm11-09', n: 9, type: 'PM', emoji: '✅', title: 'Kim haqiqatan to\'lashga tayyor?', sub: 'Mentor tekshiruvi: uchta yozma tasdiq' },
+      { key: 'm11-10', n: 10, type: 'Proyekt', emoji: '🔗', title: 'Loyiha kuni: taklif havolasi va mukofot', sub: 'unikal havola, sanoq va mukofot' },
+      { key: 'm11-11', n: 11, type: 'PM', emoji: '🪞', title: 'Mahsulotingiz hozir qayerda?', sub: 'roadmap bilan solishtirish va shaxsiy hisobot' },
+      { key: 'm11-12', n: 12, type: 'Proyekt', emoji: '🛠️', title: 'Loyiha kuni: barqarorlashtirish', sub: 'asosiy yo\'llarni tekshiramiz va tuzatamiz' },
+      { key: 'm11-13', n: 13, type: 'Rezerv', emoji: '📅', title: 'Zaxira dars', sub: 'yetib olish / sayqallash' },
     ],
   },
 ]

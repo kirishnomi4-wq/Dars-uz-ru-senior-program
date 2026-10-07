@@ -1,0 +1,239 @@
+{
+ "title": "13-Modul GATE M",
+ "kod": "13M-GATE-1",
+ "eyebrow": "LMS 13-Modul «O'sish va monetizatsiya» · 12 dars MD v3 · tayanch · modul savollari",
+ "kirish": "12 darsning MD v3 matni (07.10.2026): pilotlar 1, 3, 6 va 2-to'lqin 2, 4, 5, 7–12. Har MD: lint:til 0 xato, sarlavha ≤55, xulosa ≤110, testlarda bitta himoyalanadigan javob, arena A·B·C·D ×3, pul chegarasi (real pul yo'q, karta yo'q, kalit faqat .env). Avval «Modul bo'yi» savollari — birinchi variant tavsiya. Keyin tayanch va har dars: qisqa xulosa va to'liq MD. Izohni dars va ekran raqami bilan yozing. Tasdiqdan keyin har MD ni ChatGPT auditiga berasiz — men Filtr qilaman; «qur» faqat alohida buyruq bilan.",
+ "darslar": [
+  {
+   "id": "M",
+   "qisqa": "Modul bo'yi",
+   "eyebrow": "13-Modul · bir nechta darsga tegadigan savollar",
+   "nom": "Modul bo'yi qarorlar",
+   "fayl": null,
+   "xulosa": "Bu savollar bir nechta darsga birdan tegadi — javob hammasiga bir xil qo'llanadi. Birinchi variant — tavsiya. Pastda tayanch (00-MODUL-TAYANCH.md) va 12 dars MD si to'liq ochiladi. Agentlarning savollaridan chiqqan 47 kelishuv tayanchning 9-bo'limida; ish davomida topilgan ziddiyatlar (oferta 4-bandi va 12-dars, 8-dars xabaridagi son, eski bot, siyosat bandi, «tekshiruv akkaunti») o'sha yerda hal qilingan — M-q0 ularni bir yo'la tasdiqlaydi.",
+   "savollar": [
+    {
+     "savol": "Tayanch 9-bo'limidagi 47 kelishuv (pilot va 2-to'lqin savollaridan; 07.10)",
+     "variantlar": [
+      [
+       "A",
+       "Tasdiq — MD lar shunga yozilgan"
+      ],
+      [
+       "B",
+       "Izoh bor — izohga band raqami bilan yozaman"
+      ]
+     ]
+    },
+    {
+     "savol": "13-Modul uchun yangi Mentor sonlari (tayanch 1.13): tashkilotchilar 6 · narx 10 000 → 15 000 so'm / 30 kun (Mentorning taxmini) · 3 oy · «agar» hisobi 60 000 → 12 → 1 · Render ≈83 000 so'm/oy · suhbatlar ha/yo'q/qimmat · qaytmaganlardan 5 javob · 6 dan 3 yozma tasdiq · taklif 18 tashrif → 7 → 4 → 3 mukofot, jami 51 · 12-darsda 2 topilma",
+     "variantlar": [
+      [
+       "A",
+       "Tasdiq"
+      ],
+      [
+       "B",
+       "O'zgarish bor — izohga yozaman"
+      ]
+     ]
+    },
+    {
+     "savol": "6 va 9-darslardagi «skript» so'zi (9-Modulda «Umami skripti» — kod ma'nosida; ruschada «скрипт» sotuvga yaqin)",
+     "variantlar": [
+      [
+       "A",
+       "«suhbat savollari» ga almashtiriladi (6 va 9-darsda ≈100 joy, kalit nomi `skript` ichki qoladi)"
+      ],
+      [
+       "B",
+       "«skript» qoladi (Qaror-0 so'zi, 6-darsda ta'rifi bilan)"
+      ]
+     ]
+    },
+    {
+     "savol": "«Mashq to'lov» bilan real foydalanuvchilar ham Pro'ni yoqa oladimi? (4-dars; pul yechilmaydi)",
+     "variantlar": [
+      [
+       "A",
+       "Ha — test rejimda hamma hisob; to'lov taklifi ekranida «Test rejim: pul yechilmaydi» belgisi bor (8-dars Telegram xabari real tashkilotchilarga ham ishlaydi)"
+      ],
+      [
+       "B",
+       "Yo'q — faqat namuna va tekshiruv akkauntlari; real foydalanuvchilarga Pro ko'rinmaydi"
+      ]
+     ]
+    },
+    {
+     "savol": "12-darsning 5-topilmasi o'zgardi: eski «Pro tugagach o'yin yana e'lon qilindi» 7-darsdagi oferta 4-bandi va 5-darsdagi Pro tugashi bilan zid edi",
+     "variantlar": [
+      [
+       "A",
+       "Yangi topilma: ikki telefon bir vaqtda ochganda keyingi «Doimiy o'yin» ikki marta yaratildi va Telegram xabari ikki marta ketdi — Database cheklovi bilan tuzatiladi (3-darsdagi «takror xabar» davomi)"
+      ],
+      [
+       "B",
+       "Eski topilma qaytsin — unda 5-dars A1 va 7-dars oferta 4-bandi qayta yoziladi"
+      ]
+     ]
+    },
+    {
+     "savol": "Yangi o'rnatish fayli (APK) qachon tayyorlanadi? (EAS bepul rejasi oyiga 15 build, navbat sekin)",
+     "variantlar": [
+      [
+       "A",
+       "Faqat 10-darsda (taklif kodi formasi odamlarga kerak) va 12-darsda (ilova o'zgargan bo'lsa); 4, 5, 7, 8-darslarda Expo Go yoki brauzer ko'rinishida tekshiriladi"
+      ],
+      [
+       "B",
+       "Ilova o'zgargan har darsda (4, 5, 7, 8, 10, 12)"
+      ]
+     ]
+    },
+    {
+     "savol": "3-darsdagi «Webhook Tested» nishoni",
+     "variantlar": [
+      [
+       "A",
+       "Uch tekshiruv o'tkazilgani uchun — natijadan qat'i nazar (ish qilingan ekranda)"
+      ],
+      [
+       "B",
+       "Faqat uchala tekshiruv «Kutilganidek» chiqqanda"
+      ]
+     ]
+    },
+    {
+     "savol": "9-darsda yozma tasdiq so'rash xabari darsda yuboriladimi?",
+     "variantlar": [
+      [
+       "A",
+       "Faqat 6-darsdagi real suhbatdoshga yoki to'lovchi sinfdoshga, tanish doirada; qolgani uyda (ko'p o'quvchida darsda tasdiq 0 — yakun buni rost aytadi)"
+      ],
+      [
+       "B",
+       "Darsda yuborilmaydi — darsda faqat xabar yoziladi va tekshiriladi, hammasi uyda"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "T",
+   "qisqa": "Tayanch",
+   "eyebrow": "Modul tayanchi · ma'lumot uchun",
+   "nom": "Tayanch: misol-ip, atamalar, repo, faktlar, sinflar, kalitlar, kelishuvlar",
+   "fayl": "00-MODUL-TAYANCH.md",
+   "xulosa": "12 MD yozilgan manba: «Maydon Jamoa» pul topa boshlaydi (freemium — tashkilotchi uchun «Pro», «Doimiy o'yin»), har darsning Mentor misoli, atamalar (o'zbekcha ibora asosiy, inglizchasi kartochkada), repo teglari, rasmiy faktlar (Stripe, Payme, Click, Telegram, Render, kurs, Fuqarolik kodeksi 27/369), 16 oldindan tuzatiladigan sinf, saqlash kalitlari, 47 kelishuv, ruscha lug'at.",
+   "savollar": []
+  },
+  {
+   "id": "01",
+   "qisqa": "01-dars",
+   "eyebrow": "1-dars · PM (keyssiz) · 14 ekran",
+   "nom": "Bitta foydalanuvchi sizga qanchaga tushadi?",
+   "fayl": "01-PmUnitEconomics-v3.md",
+   "xulosa": "Jalb qilish narxi va foydalanuvchi keltiradigan pul. Mentor: 44 kishi bepul kanallardan — 0 so'm (fakt); Pro taxmini 10 000 × 3 oy = 30 000; «agar» pullik kanal: 60 000 → 12 kishi → 1 to'lovchi — zarar. Kod oynasi: ikki funksiya. Testlar ✔ B · D · A; arena 3/3/3/3. ⛔ 90 daqiqa — pilotda.",
+   "savollar": []
+  },
+  {
+   "id": "02",
+   "qisqa": "02-dars",
+   "eyebrow": "2-dars · PM · K2 Telegram Premium · 15 ekran",
+   "nom": "Mahsulotingiz qanday pul topadi?",
+   "fayl": "02-PmMonetization-v3.md",
+   "xulosa": "Besh model «Maydon Jamoa»ga qo'yib ko'riladi; Mentor tanlovi — tashkilotchi uchun Pro (bepul qism qisqartirilmaydi — K2 ko'prigi). Neon SQL — to'lovchi bo'lishi mumkin bo'lganlar (Mentor: 6). Testlar ✔ C · A · D · B; arena 3/3/3/3.",
+   "savollar": []
+  },
+  {
+   "id": "03",
+   "qisqa": "03-dars",
+   "eyebrow": "3-dars · TEX (cho'qqi) · 20 ekran",
+   "nom": "Webhook: to'lov Backend'ga qanday yetib keladi",
+   "fayl": "03-PaymentWebhook-v3.md",
+   "xulosa": "To'lov xabari: imzo → takror → rad; «mashq to'lov» o'quvchining o'z Backend'ida (karta yo'q, Payme/Click taqlid qilinmaydi). Kod oynasi — takror xabar tekshiruvi; 2 repo bloki. Payme/Click/Stripe — rasmiy iqtibos bilan ko'prik. Testlar ✔ C · A · D · B; final tartib; arena 3/3/3/3. ⛔ Render o'ziga so'rov, `rawBody`.",
+   "savollar": []
+  },
+  {
+   "id": "04",
+   "qisqa": "04-dars",
+   "eyebrow": "4-dars · PM+PRAKT · 12 ekran",
+   "nom": "Narxni qanday belgilaysiz?",
+   "fayl": "04-PmPricing-v3.md",
+   "xulosa": "Xarajat (Render 7 dollar ≈ 83 000 so'm, kurs 07.10) · raqobat (Telegram guruhi bepul) · qiymat → narx 15 000 / 30 kun (Mentorning taxmini). A1 — Pro holati va «Doimiy o'yin»; A2 — to'lov yo'li (`POST /tolov/boshlash` → mashq to'lov → webhook → Pro). Testlar ✔ B · D; arena 3/3/3/3.",
+   "savollar": []
+  },
+  {
+   "id": "05",
+   "qisqa": "05-dars",
+   "eyebrow": "5-dars · loyiha kuni · 12 ekran",
+   "nom": "Loyiha kuni: to'lovni ulaymiz va buzib ko'ramiz",
+   "fayl": "05-PaymentDay-v3.md",
+   "xulosa": "A1 — qolgan holatlar (rad, «Javob kutilmoqda», Pro tugashi) · A2 — to'rt usul bilan buzish (ikki marta · kechiktirib · rad · noto'g'ri imzo) · A3 — tuzatish va qayta tekshirish. Mentor: ikki muammo (Pro ikki marta uzaydi · kechikkan javob). Testlar ✔ C · A; arena 3/3/3/3. ⛔ muammolar Mentor repo'sida takrorlanishi.",
+   "savollar": []
+  },
+  {
+   "id": "06",
+   "qisqa": "06-dars",
+   "eyebrow": "6-dars · PM (keyssiz) · 12 ekran",
+   "nom": "Pul haqida qanday gaplashasiz?",
+   "fayl": "06-PmMoneyTalk-v3.md",
+   "xulosa": "Suhbat — sotish emas, savol: to'rt savolli skript, javob so'zma-so'z, belgilar ha · qimmat · yo'q · javob yo'q. Mentorning uch suhbati. Juftlikda rol o'yini (mashq), real suhbatlar tanish doirada — darsda imkon bo'lsa bitta, qolgani uyda. Testlar ✔ C · B · D; arena 3/3/3/3.",
+   "savollar": []
+  },
+  {
+   "id": "07",
+   "qisqa": "07-dars",
+   "eyebrow": "7-dars · PM+PRAKT · 12 ekran",
+   "nom": "Foydalanuvchiga shartlarni qanday ochiq aytasiz?",
+   "fayl": "07-PmTerms-v3.md",
+   "xulosa": "Oferta — hamma uchun ochiq taklif (FK 369-modda). Mentor ofertasi «Pro shartlari» — olti band, «Mashq hujjati», «yuridik maslahat emas». A1 — oferta sahifasi (bandlar kod bilan solishtiriladi, «[savol]»); A2 — siyosatga to'lov bandi va havolalar. Testlar ✔ B · C; arena 3/3/3/3.",
+   "savollar": []
+  },
+  {
+   "id": "08",
+   "qisqa": "08-dars",
+   "eyebrow": "8-dars · loyiha kuni · 12 ekran",
+   "nom": "Loyiha kuni: ketayotgan foydalanuvchini qaytarish",
+   "fayl": "08-WinBackDay-v3.md",
+   "xulosa": "Nega ketishadi (Mentorga 5 javob) → Telegram bot xabari: bot birinchi yozolmaydi → bir martalik kod → «Start» → «Doimiy o'yin» yana e'lon qilinganda xabar (0 / 10), haftasiga ≤2, o'chirish bir bosishda. Yangi bot. Testlar ✔ C · B; arena 3/3/3/3. ⛔ `setWebhook` va uxlagan Render.",
+   "savollar": []
+  },
+  {
+   "id": "09",
+   "qisqa": "09-dars",
+   "eyebrow": "9-dars · PM (keyssiz) · 12 ekran",
+   "nom": "Kim haqiqatan to'lashga tayyor?",
+   "fayl": "09-PmPayCheck-v3.md",
+   "xulosa": "Yozma tasdiq — real to'lov emas. Mentor: 6 dan 3 tasdiq (2 × 15 000, 1 × 10 000) → Mentor tekshiruvi — qabul. O'z tasdiqlari (uy suhbatlari kiritiladi), juftlikda tekshiruv; 3 ga yetmasa — halol natija. Testlar ✔ B · D · A; arena 3/3/3/3.",
+   "savollar": []
+  },
+  {
+   "id": "10",
+   "qisqa": "10-dars",
+   "eyebrow": "10-dars · loyiha kuni · 12 ekran",
+   "nom": "Loyiha kuni: taklif havolasi va mukofot",
+   "fayl": "10-ReferralDay-v3.md",
+   "xulosa": "Shaxsiy taklif kodi va havola (APK'ga kod o'tmaydi — formada «Taklif kodi (bo'lsa)»), sanoq, mukofot — Pro'ning bepul haftasi; uch shart (yangi hisob + asosiy harakat · bir qurilma · namuna) va haftalik cheklov. Mentor: 18 → 7 → 4 → 3, jami 51 (baho emas). Testlar ✔ C · A; arena 3/3/3/3.",
+   "savollar": []
+  },
+  {
+   "id": "11",
+   "qisqa": "11-dars",
+   "eyebrow": "11-dars · PM · K17 Tesla · 12 ekran",
+   "nom": "Mahsulotingiz hozir qayerda?",
+   "fayl": "11-PmReflection-v3.md",
+   "xulosa": "Roadmap (11-Modul) bilan bugungi mahsulot: besh holat (bajarildi · kechikdi · olib tashlandi · uzoqroqda qoldi · yangi qo'shildi) + sabab; shaxsiy hisobot — uch savol. K17 — bank so'zi, raqamsiz. Testlar ✔ B · D · A; arena 3/3/3/3.",
+   "savollar": []
+  },
+  {
+   "id": "12",
+   "qisqa": "12-dars",
+   "eyebrow": "12-dars · loyiha kuni · 12 ekran",
+   "nom": "Loyiha kuni: barqarorlashtirish",
+   "fayl": "12-StabilizeDay-v3.md",
+   "xulosa": "Besh tekshiruv buzish yozuvi bilan; Mentor: 3 buzilmadi, 2 buzildi (taklif kodi kichik harf · doimiy o'yin ikki marta yaratildi) → «Tuzatish qilindi», qayta tekshiruvda takrorlanmadi; `XATOLAR.md`; yangi funksiya yo'q. Testlar ✔ C · A; arena 3/3/3/3.",
+   "savollar": []
+  }
+ ]
+}

@@ -1,0 +1,491 @@
+{
+ "title": "13-Modul boshlash qarorlari",
+ "kod": "13M-QAROR-0",
+ "eyebrow": "LMS 13-Modul «O'sish va monetizatsiya» · kod src/11-Modull · tayanch va MD yozishdan oldin",
+ "kirish": "Tayanch va pilot MD lardan oldin 24 savol: pul modeli va misol-ip, repo, to'lov test muhiti va halollik chegarasi, webhook, narx va mobil to'lov yo'li, real suhbatlar va tasdiq, oferta, 8-dars mexanikasi, referal, 1, 11, 12, 13-darslar, keyslar, atamalar, nomlar. Har savolda birinchi variant — tavsiya (belgilangan). Tashqi xizmatlar va qonun haqidagi har gap 07.10.2026 da rasmiy manbadan olingan — iqtiboslar oxirgi «Manba» bo'limida. Javob qatorini pastdan nusxalab chatga yuboring; izoh bo'lsa — izoh maydoniga.",
+ "darslar": [
+  {
+   "id": "IP",
+   "qisqa": "Misol-ip",
+   "eyebrow": "1-qaror · modul bo'yi bitta Mentor misoli",
+   "nom": "«Maydon Jamoa» qanday pul topadi va har darsga bitta qator",
+   "fayl": null,
+   "xulosa": "12-Modul oxirida «Maydon Jamoa»da 44 kishi ro'yxatdan o'tgan (11 tasi sinfdosh), 24 kishi asosiy harakatni qilgan, kanallarga pul sarflanmagan; Mentor misolida narx, to'lov va tashkilotchilar soni hali yo'q. 11-Modul roadmap'ida «Maydon pulini bo'lishish» — «uzoqroq» ufqda, sababi: «muammo gapidan kelmaydi». Dasturdagi yagona monetizatsiya keysi — K2 Telegram Premium: bepul Telegram qisqartirilmagan, pullik obuna ustiga qulaylik qo'shadi. Taklif (A): o'yinchilar uchun hamma narsa bepul qoladi; tashkilotchi uchun oylik pullik obuna «Pro» — bitta qulaylik: «Doimiy o'yin» (har hafta shu kun va soatda o'yin o'zi e'lon qilinadi). Reja (A bilan): 1 · Mentor misolida bitta foydalanuvchi qanchaga tushadi va qancha pul olib keladi — o'quvchi o'z mahsuloti uchun hisoblaydi · 2 · beshta model «Maydon Jamoa»ga qo'yib ko'riladi, Mentor «Pro»ni tanlaydi (K2) · 3 · to'lov xabari Backend'ga qanday keladi: imzo, takror xabar, rad etilgan to'lov — test rejimda · 4 · xarajat, raqobat (Telegram guruhi bepul), qiymat → narx; «Doimiy o'yin» bosilganda to'lov taklifi ekrani → brauzerda test to'lov → Pro yoqiladi · 5 · loyiha kuni: to'lov oqimi to'liq va «to'lovni buzamiz» (ikki marta kelgan xabar, uxlagan Backend, rad etilgan to'lov, soxta imzo) · 6 · skript va Mentor bilan rol o'yini → narx bo'yicha 3 real suhbat · 7 · Pro shartlari (oferta shabloni) va maxfiylik siyosatiga to'lov bandi lendingda · 8 · nega ketishadi (12-Modul: 61 qurilmadan 26 tasi qaytgan) → bitta yangi qaytarish mexanikasi (RET-q0) · 9 · kamida 3 tashkilotchidan yozma tasdiq — real to'lov emas; Mentor tekshiruvi · 10 · har foydalanuvchiga taklif havolasi (12-Modul «Havolani ulashish» davomi), sanoq, mukofot, suiiste'molga qarshi qoida · 11 · roadmap bilan solishtirish va shaxsiy hisobot · 12 · barqarorlashtirish: asosiy yo'llar tekshiriladi, topilgani tuzatiladi, yangi funksiya qo'shilmaydi · 13 · zaxira.",
+   "savollar": [
+    {
+     "savol": "«Maydon Jamoa» nima uchun pul oladi (modul ipi)?",
+     "variantlar": [
+      [
+       "A",
+       "Freemium: o'yinchilarga hammasi bepul; tashkilotchi uchun oylik «Pro» — «Doimiy o'yin». «Maydon pulini bo'lishish» 2-darsda solishtirish uchun qoladi, roadmap'da «uzoqroq»"
+      ],
+      [
+       "B",
+       "Tranzaksiya: o'yinchilar maydon ulushini ilovada oldindan to'laydi, ilova kichik ulush oladi (11-Modul «uzoqroq» ishi oldinga chiqadi; boshqalar nomidan pul yig'ish — eng murakkab yuridik holat)"
+      ],
+      [
+       "C",
+       "B2B: maydon egasi o'z maydoni o'yinlarini e'lon qilish uchun to'laydi (yangi auditoriya, talab tekshirilmagan)"
+      ],
+      [
+       "D",
+       "Reklama: sport do'konlari e'loni (44 foydalanuvchida daromad deyarli yo'q; reklama o'smir ma'lumotiga tegadi)"
+      ]
+     ]
+    },
+    {
+     "savol": "Har darsga bitta qatorli reja (yuqorida, A modeli bilan)",
+     "variantlar": [
+      [
+       "A",
+       "Reja yuqoridagidek; tayanchda har qator aniq so'z va son bilan to'ldiriladi"
+      ],
+      [
+       "B",
+       "Rejada o'zgarish bor — izohga dars raqami bilan yozaman"
+      ]
+     ]
+    },
+    {
+     "savol": "13-Modul uchun yangi Mentor sonlari (tashkilotchilar soni, narx taxmini, 3 suhbat va 3 tasdiq natijasi, referal natijasi) qayerdan olinadi?",
+     "variantlar": [
+      [
+       "A",
+       "Tayanchda bitta jadvalda yoziladi: 12-Modul 1.13 sonlariga zid emas (44 kishi ichidan), «Mentor misoli» / «Mentorning taxmini» yorlig'i bilan; GATE M da tasdiqlaysiz"
+      ],
+      [
+       "B",
+       "Har sonni hozir o'zim beraman — izohga yozaman"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "REPO",
+   "qisqa": "Repo",
+   "eyebrow": "2-qaror · Mentor repo'si va teglar",
+   "nom": "Repo: «maydon-jamoa» davomi",
+   "fayl": null,
+   "xulosa": "12-Modulning oxirgi `-done` tegi — `m12-dars-10-done` («Havolani ulashish»; 11, 12-darslar repo'ga yozmaydi). Taklif: `m13-dars-01-start` = `m12-dars-10-done`; teglar `m13-dars-NN-start` / `m13-dars-NN-done` (`yechim` tarmog'ida); to'lov qismi `backend/` ichida yangi bo'lim (`tolov`), Pro holati — `oyinchilar` jadvalida muddat ustuni. O'quvchi o'z final repo'sida, o'z mahsuloti va trekida; «Ortda qoldingizmi» — o'z repo'sidan tashqarida, yangi papkada (12-Modul qoidasi). Repo'ga bu seans faqat «qur» bosqichida, buyruq bilan yozadi.",
+   "savollar": [
+    {
+     "savol": "Repo va teglar",
+     "variantlar": [
+      [
+       "A",
+       "«maydon-jamoa» davomi, boshlanishi `m12-dars-10-done`, teglar `m13-dars-NN-start` / `-done`; o'quvchi o'z final repo'sida"
+      ],
+      [
+       "B",
+       "To'lov va o'sish uchun alohida yangi repo (Mentor misoli ikkiga bo'linadi)"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "TOLOV",
+   "qisqa": "To'lov va o'smir",
+   "eyebrow": "3-qaror · 🔴 real pul yo'q — test muhiti kimniki",
+   "nom": "To'lov test muhiti: kimniki va qanday",
+   "fayl": null,
+   "xulosa": "Dastur: «Click / Payme / Stripe test mode to'liq»; tashkiliy chek-listda «merchant masalasi (maktab yuridik shaxsi / ota-ona modeli)» va «sandbox-akkauntlar» — 13-modulgacha hal qilinishi kerak. Rasmiy hujjatlar (07.10.2026): Stripe — hisob ochiladigan davlatlar ro'yxatida O'zbekiston yo'q (stripe.com/global). Payme — «С кассами могут работать только юридические лица: ИП, ЧП, ООО…»; sandbox kaliti (TEST_KEY) merchant kabinetida veb-kassa yaratilgach beriladi; har kassada bitta Endpoint URL. Click — ma'lumotlar (service_id, secret_key) Click Merchant'ga Shop API sxemasi bilan ulangandan keyin (rasmiy GitHub). Fuqarolik kodeksi 27-modda: 14–18 yoshli bitimni ota-onaning yozma roziligi bilan tuzadi. Demak o'quvchi o'zi Payme yoki Click test kalitini ololmaydi. Taklif (A): har o'quvchi o'z repo'sida agent bilan «mashq to'lov» bo'lagini quradi — test to'lov sahifasi va o'z Backend manziliga imzoli to'lov xabari; buzish tugmalari: ikki marta yuborish, rad, kechiktirish, noto'g'ri imzo. Halol gap darsda: «haqiqiy xizmatda bu sahifa va xabar boshqa kompaniya serveridan keladi». Payme va Click — maketda, nomi o'z rangida; ularning ko'rinishi taqlid qilinmaydi.",
+   "savollar": [
+    {
+     "savol": "To'lov test muhiti",
+     "variantlar": [
+      [
+       "A",
+       "Har o'quvchi o'z repo'sida «mashq to'lov» bo'lagini quradi (yuridik shaxs, umumiy server, umumiy kalit kerak emas); Payme/Click — maket va rasmiy protokol bilan ko'prik"
+      ],
+      [
+       "B",
+       "A + maktabda Payme yoki Click test kassasi bo'lsa — Mentor 5-darsda bir marta haqiqiy sandbox'ni ko'rsatadi (kassa ochilganini izohda yozing)"
+      ],
+      [
+       "C",
+       "CoddyCamp bitta umumiy mashq to'lov serverini yuritadi (realroq: ikki server; har o'quvchiga kalit va manzil ro'yxati kerak — tashkiliy)"
+      ],
+      [
+       "D",
+       "Maktab har o'quvchiga Payme/Click test kassasi ochadi (har kassada bitta Endpoint URL)"
+      ]
+     ]
+    },
+    {
+     "savol": "Pul darslarining halollik chegarasi",
+     "variantlar": [
+      [
+       "A",
+       "Real to'lov yo'q, faqat test rejim; karta ma'lumoti hech qayerda yozilmaydi va ko'rsatilmaydi; maxfiy kalit faqat `.env` da; darsda bir gap: «real ishga tushirish — ota-onaning yozma roziligi va yuridik shaxs yoki YaTT bilan; bu kursda emas» (FK 27-modda)"
+      ],
+      [
+       "B",
+       "Xuddi A, lekin real ishga tushirish haqida darsda umuman gapirilmaydi"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "WH",
+   "qisqa": "Webhook",
+   "eyebrow": "4-qaror · 3-dars (TEX, cho'qqi) va 5-dars",
+   "nom": "Webhook: qaysi shakl va uxlagan Backend",
+   "fayl": null,
+   "xulosa": "7-Modulda o'tilgan: «Webhook — yangi xabar kelganda Telegram uni o'zi botning internetdagi manziliga yuboradi» · «Bepul server uxlaydi; webhook xabari uni uyg'otadi». Rasmiy faktlar (07.10.2026): Payme javob yo'qolsa «повторяет запрос с теми же параметрами», sandbox ba'zi so'rovlarni ataylab ikki marta yuboradi va javob birinchisi bilan bir xil bo'lishi kerak; to'lanmagan tranzaksiya 12 soatda bekor bo'ladi. Stripe — xabarni live rejimda uch kungacha qayta yuboradi, sandbox'da bir necha soatda uch marta; bir xabar ikki marta kelishi mumkin («logging the event IDs you've processed»), tartib kafolatlanmaydi, imzo `Stripe-Signature` (HMAC SHA-256). Render bepul xizmati 15 daqiqa so'rovsiz qolsa uxlaydi, uyg'onishi ≈1 daqiqa (12-Modul, 06.10). Taklif (A): 3-darsda bitta xabar shakli — `POST /tolov/webhook` (to'lov raqami · holat: to'landi / rad etildi · summa · imzo sarlavhasi); uch g'oya: imzo tekshiruvi · bitta to'lov raqami bir marta hisoblanadi (takror xabar) · rad etilgan to'lov; kod oynasida takror xabar tekshiruvi, ikki repo bloki (NestJS endpoint va `tolovlar` jadvali). Payme va Stripe — rasmiy iqtibos bilan ko'prik.",
+   "savollar": [
+    {
+     "savol": "3-darsdagi webhook shakli",
+     "variantlar": [
+      [
+       "A",
+       "«Mashq to'lov» xabari: bitta `POST`, imzo, takror, rad — uch g'oya; Payme/Stripe xatti-harakati rasmiy iqtibos bilan ko'prik"
+      ],
+      [
+       "B",
+       "Payme Merchant API'ning o'zi (JSON-RPC, 6 metod, tranzaksiya holatlari) — 90 daqiqaga sig'maydi; test kaliti yuridik shaxsda"
+      ],
+      [
+       "C",
+       "Click Shop API (Prepare / Complete) — hujjatning bir qismi (imzo formulasi, xato kodlari) hali o'qilmagan"
+      ]
+     ]
+    },
+    {
+     "savol": "Uxlagan Backend (Render bepul xizmati) bilan nima qilinadi?",
+     "variantlar": [
+      [
+       "A",
+       "Bepul xizmat qoladi; «uxlagan Backend» — 5-darsning buzish usullaridan biri: birinchi xabar javobsiz, qayta yuborilgani ikki marta yozilmasligi tekshiriladi"
+      ],
+      [
+       "B",
+       "To'lov uchun Backend'ni uyg'oq tutish (har 10 daqiqada so'rov) — Render sarf soatlari va qoidalariga tegadi, tavsiya emas"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "PW",
+   "qisqa": "Narx va paywall",
+   "eyebrow": "5-qaror · 4-dars (PM+PRAKT) va 7-dars",
+   "nom": "Narx va mobil trekda to'lov yo'li",
+   "fayl": null,
+   "xulosa": "Dastur: «mobil trekda paywall — web sahifa orqali (Click/Payme), App Store/Play chetlab». 12-Modul qarori: Android — APK havolasi, iPhone — brauzer ko'rinishi; ikkalasi ham do'kondan tarqatilmaydi (do'kon to'lov qoidalari haqidagi gap tayanchda rasmiy havola bilan yoziladi). Taklif (A): ilovada «Doimiy o'yin» bosilganda to'lov taklifi ekrani (nima ochiladi, narx, «To'lovga o'tish») → telefon brauzerida test to'lov sahifasi → to'lov xabari (webhook) → Backend Pro muddatini yozadi → ilova `GET /men` dan Pro holatini o'qiydi. Karta ma'lumoti ilovaga ham, Backend'ga ham kirmaydi. Web-trekda — xuddi shu yo'l sayt ichida. Narx (Mentor misoli): manba yo'q — shuning uchun 4-darsdagi uch usul bilan Mentor o'zi chiqaradi: xarajat (bugun bepul xizmatlar; pullik tarif narxi rasmiy sahifadan, sana bilan) · raqobat (Telegram guruhi — bepul) · qiymat (tashkilotchining vaqti); natija «Mentorning taxmini» yorlig'i bilan, 6-dars suhbatlarida tekshiriladi.",
+   "savollar": [
+    {
+     "savol": "Mobil trekda to'lov yo'li",
+     "variantlar": [
+      [
+       "A",
+       "Ilovada to'lov taklifi ekrani → brauzerdagi test to'lov sahifasi → webhook → Backend → ilova Pro holatini o'qiydi; karta ma'lumoti ilovaga kirmaydi"
+      ],
+      [
+       "B",
+       "Ilova ichida karta formasi — rad tavsiya qilinadi (karta ma'lumoti ilova va Backend orqali o'tadi)"
+      ]
+     ]
+    },
+    {
+     "savol": "Mentor misolidagi narx qanday paydo bo'ladi?",
+     "variantlar": [
+      [
+       "A",
+       "Tayanchda uch usul bilan Mentorning taxmini (so'mda) yoziladi; GATE M da tasdiqlaysiz; 6-darsda suhbatlar bilan tekshiriladi"
+      ],
+      [
+       "B",
+       "Narxni hozir o'zim aytaman — izohga «oyiga … so'm» deb yozaman"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "SU",
+   "qisqa": "Real suhbat",
+   "eyebrow": "6-qaror · 6-dars (3 suhbat) va 9-dars (3 tasdiq)",
+   "nom": "Pul haqida real suhbatlar va tasdiq: kim bilan, qanday",
+   "fayl": null,
+   "xulosa": "Dastur: 6-dars — «narx bo'yicha 3 real suhbat», 9-dars — «kamida 3 kishi to'lashga tayyorligini tasdiqlaydi». 12-Modul xavfsizlik ro'yxati (6 band) kuchda: faqat tanish doira, notanishga shaxsiy xabar yo'q, uchrashuv taklifi — faqat kattalar bilan, ota-ona xabardor. Taklif (A): suhbat — sotish emas, savol: «hozir bu ish uchun nimaga vaqt yoki pul sarflaysiz?», keyin narx aytiladi va javob so'zma-so'z yoziladi; «yo'q» ham natija. Avval Mentor bilan rol o'yini. 9-darsda tasdiq — odamning yozma javobi («narx X bo'lsa, … uchun to'layman»), real pul, oldindan to'lov va karta yo'q; o'quvchi yozuvi: rol (ism emas), narx, sana, so'zma-so'z gap. 3 ga yetmasa — halol natija va keyingi qadam, baho emas; bosim bilan olingan tasdiq — Mentor tekshiruvida «tuzatish».",
+   "savollar": [
+    {
+     "savol": "6-darsdagi suhbatlar kim bilan?",
+     "variantlar": [
+      [
+       "A",
+       "O'z auditoriyasidagi tanish odamlar: 11-Modulda intervyu bergan odamlar, sinfdosh, ota-ona, mahalla guruhidagi tanish (guruh egasining ruxsati bilan); avval Mentor bilan rol o'yini; Mentor misolida — tashkilotchilar"
+      ],
+      [
+       "B",
+       "Faqat sinfdoshlar va ota-ona (xavfsizroq, lekin ular mahsulot auditoriyasi bo'lmasligi mumkin)"
+      ]
+     ]
+    },
+    {
+     "savol": "9-darsdagi «to'lashga tayyorlik tasdig'i» shakli",
+     "variantlar": [
+      [
+       "A",
+       "Yozma javob (chat xabari yoki qog'oz) + o'quvchi yozuvi: rol, narx, sana, so'zma-so'z gap; real pul yo'q; 3 ga yetmasa — halol natija"
+      ],
+      [
+       "B",
+       "Test rejimda «mashq to'lov» qildirish — real niyatni ko'rsatmaydi va odamni chalg'itadi; tavsiya emas"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "HJ",
+   "qisqa": "Oferta",
+   "eyebrow": "7-qaror · 7-dars (PM+PRAKT)",
+   "nom": "Oferta va maxfiylik siyosati: o'smir yozadigan hujjat",
+   "fayl": null,
+   "xulosa": "Fuqarolik kodeksi 369-modda (lex.uz, 07.10.2026): «Shartnomaning barcha asosiy shartlarini oʻz ichiga olgan, … javob qaytargan har qanday shaxs bilan … shartnoma tuzishga boʻlgan xohish-irodasi bilinib turgan taklif oferta (ommaviy oferta) hisoblanadi.» 10-Modul 6-darsi va 12-Modul 7-darsida maxfiylik siyosati (to'rt savol, `lending/maxfiylik.html`) bor — bugun unga to'lov bandi qo'shiladi. Taklif (A): `lending/oferta.html` — Pro shartlari: nima beriladi, narx, muddat, qanday bekor qilinadi, pul qaytarilishi, aloqa; tepada «Mashq hujjati — real to'lov qabul qilinmaydi»; «sotuvchi» qatori bo'sh: «[real ishga tushirishda — yuridik shaxs yoki YaTT]»; «Bu hujjat yuridik maslahat emas» halol eslatmasi. Siyosatga: karta ma'lumotini mahsulot saqlamaydi; saqlanadi — to'lov raqami, summa, sana, Pro muddati. Ikkalasiga havola — lendingda va to'lov taklifi ekranida.",
+   "savollar": [
+    {
+     "savol": "7-dars hujjatlari",
+     "variantlar": [
+      [
+       "A",
+       "Oferta shabloni (Pro shartlari, «mashq hujjati» belgisi, sotuvchi qatori bo'sh, «yuridik maslahat emas») + siyosatga to'lov bandi; lendingda e'lon"
+      ],
+      [
+       "B",
+       "Oferta o'rniga faqat «Foydalanish shartlari» (yengilroq; dastur natijasi «Oferta va siyosat saytda» to'liq bajarilmaydi)"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "RET",
+   "qisqa": "Qaytarish",
+   "eyebrow": "8-qaror · 8-dars (loyiha kuni)",
+   "nom": "8-dars: 12-Modul 9-darsidan keyin qaysi yangi mexanika?",
+   "fayl": null,
+   "xulosa": "12-Modul 9-darsida bitta mexanika qurilgan: ilova ochiq bo'lsa «2 joy qoldi» jonli xabari, yopiq bo'lsa uch kunlik rejalashtirilgan eslatma, «Eslatmalar» o'chirgichi, haftasiga ko'pi bilan ikkita. U yerda halol aytilgan chegara: yopiq ilovada boshqa odamning o'zgarishi ko'rinmaydi; Backend yuboradigan eslatma Expo Go'da ishlamaydi (Firebase, development build, iPhone'da pullik Apple akkaunti). Dastur: «email/push: nega ketishadi, qanday ushlab qolish». Taklif (A): Telegram bot orqali xabar — 7-Modulda o'quvchilar bot qurgan; foydalanuvchi o'zi ulaydi (ilovada «Telegram'da xabar olish» → botda /start bir martalik kod bilan), Backend ilova yopiq bo'lsa ham uning o'yini haqida yozadi («Shanba, 18:00 — joy bo'shadi»); o'chirish bir bosish; haftasiga ko'pi bilan ikkita qoidasi davom etadi; Telegram chat raqami — maxfiylik siyosatiga qator; Telegram yosh chegarasi aytilmaydi. «Bot avval /start bosgan odamga yozadi» — tayanchda Bot API hujjatidan tekshiriladi. Web-trek — xuddi shu yo'l.",
+   "savollar": [
+    {
+     "savol": "8-darsdagi yangi qaytarish mexanikasi",
+     "variantlar": [
+      [
+       "A",
+       "Telegram bot orqali xabar (o'zi ulagan foydalanuvchiga, o'z o'yini haqida, ilova yopiq bo'lsa ham); mobil va web-trek teng"
+      ],
+      [
+       "B",
+       "Email: email manzili so'raladi (12-Modulda faqat login qoldirilgan — yangi shaxsiy ma'lumot), yuborish xizmati va domen sozlamasi kerak"
+      ],
+      [
+       "C",
+       "Yangi kanal yo'q: ilova ichidagi mexanika (masalan, Pro tugashidan oldin eslatma) — 12-Modul eslatmasi asboblari bilan"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "REF",
+   "qisqa": "Referal",
+   "eyebrow": "9-qaror · 10-dars (cho'qqi davomi)",
+   "nom": "Taklif havolasi: mukofot va suiiste'molga qarshi qoida",
+   "fayl": null,
+   "xulosa": "12-Modulda: 6-dars — havoladagi `?kanal=` belgisi Umami'da sanaladi; 10-dars Mentor ishi — «Havolani ulashish» (lending manzili `?kanal=ilova`). Hodisalar tizimi (`hodisalar`, `hodisaYoz`, sanoq sahifasi) 12-Modul 7-darsida «Maydon Jamoa»ga ko'chirilgan. Taklif (A): har foydalanuvchiga unikal taklif havolasi; sanoq — o'sha hodisalar tizimida (taklif havolasi ochildi · taklif bilan ro'yxatdan o'tdi · asosiy harakat); mukofot pul ham, chegirma ham emas — «Pro»ning bepul haftasi; mukofot faqat taklif qilingan odam yangi hisob ochib, asosiy harakatni qilgandan keyin; o'zini taklif qilish (bir qurilma) va namuna akkauntlar sanalmaydi; haftasiga mukofotlar soni cheklangan. Havola faqat tanish doiraga yuboriladi (12-Modul xavfsizlik ro'yxati), «do'stingni taklif qil — sovg'a» bosimi yo'q.",
+   "savollar": [
+    {
+     "savol": "Mukofot",
+     "variantlar": [
+      [
+       "A",
+       "«Pro»ning bepul haftasi (pul emas; test rejimdagi obuna muddati), taklif qilingan odam asosiy harakatni qilgach"
+      ],
+      [
+       "B",
+       "Faqat belgi: profilda «Taklif qildi: N» (pul qiymati yo'q)"
+      ],
+      [
+       "C",
+       "Mukofotsiz — faqat sanoq va natija"
+      ]
+     ]
+    },
+    {
+     "savol": "Suiiste'molga qarshi oddiy qoida",
+     "variantlar": [
+      [
+       "A",
+       "Mukofot: yangi hisob + asosiy harakat; o'zini taklif qilish va namuna akkauntlar sanalmaydi; haftasiga cheklov"
+      ],
+      [
+       "B",
+       "Faqat ro'yxatdan o'tish sanaladi (soddaroq, lekin soxta hisobga yo'l ochadi)"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "DARS",
+   "qisqa": "Darslar",
+   "eyebrow": "10-qaror · 1, 11, 12, 13-darslar",
+   "nom": "1-darsdagi hisob, 11-dars refleksiya, 12-dars barqarorlashtirish, 13-dars zaxira",
+   "fayl": null,
+   "xulosa": "1-dars narxdan (4-dars) oldin keladi. Mentor misolida kanallarga pul sarflanmagan — yangi foydalanuvchini jalb qilish narxi pulda 0 so'm; bu halol aytiladi va nega doim shunday qolmasligi (bepul kanallar tugaydi — 12-Modul 10-dars zaxira rejasi). Foydalanuvchi keltiradigan pul = narx × necha oy qoladi; ikkalasi ham «Mentorning taxmini» yorlig'i bilan; ilovani ochish foizi (43%) obunani davom ettirish bilan bir xil o'lchov emas — halol gap. 11-dars: 12-Modul 11-darsi — pitch da'volari va dalillari; 11-Modul 15-darsi — Demo Day oldidan reja va risklar. 13-Modul 11-darsi — ortga qarash: roadmap (`pm-m9d6-roadmap`) dagi har ish holati va sababi + shaxsiy hisobot (uch savol). 12-dars: dastur «Mahsulot final stabilizatsiyasi»; 14-Modulda alohida «demo-test» (investor ko'zi bilan) va «performance» darslari bor — 12-dars ularni takrorlamaydi.",
+   "savollar": [
+    {
+     "savol": "1-darsdagi hisob (narx hali yo'q)",
+     "variantlar": [
+      [
+       "A",
+       "Mentor: jalb qilish narxi pulda 0 so'm (halol) + «agar pullik kanal bo'lsa» mashq hisobi; foydalanuvchi keltiradigan pul — narx taxmini × oylar taxmini, «Mentorning taxmini» yorlig'i bilan; o'quvchi o'z sonlari bilan"
+      ],
+      [
+       "B",
+       "1-dars faqat formula va mashq sonlari; Mentor misoli 4-darsdan keyin"
+      ]
+     ]
+    },
+    {
+     "savol": "11-dars refleksiya shakli",
+     "variantlar": [
+      [
+       "A",
+       "12 ekran (12-Modul 11-dars shakli): roadmap'dagi har ish — bajarildi · kechikdi · olib tashlandi · yangi qo'shildi + sabab; shaxsiy hisobot — uch savol (o'z qarorim bilan nima qildim · qaysi qarorim noto'g'ri chiqdi va qaysi dalil ko'rsatdi · keyingi 4 haftada nima qilaman)"
+      ],
+      [
+       "B",
+       "15–16 ekranli to'liq PM dars (keys bilan)"
+      ]
+     ]
+    },
+    {
+     "savol": "12-dars «Loyiha kuni: barqarorlashtirish» — nima tekshiriladi?",
+     "variantlar": [
+      [
+       "A",
+       "Asosiy yo'llar bo'yicha 5 tekshiruv: kirish va ro'yxat · asosiy harakat · to'lov oqimi (muvaffaqiyatli, rad, takror) · taklif havolasi · eslatma yoki xabar; har biri 12-Modul buzish yozuvi bilan (nima qildim · kutdim · bo'ldi); topilganlar — `XATOLAR.md`, eng muhim 1–2 tasi tuzatiladi va qayta tekshiriladi; yangi funksiya qo'shilmaydi"
+      ],
+      [
+       "B",
+       "Agent bilan umumiy «xatolarni top va tuzat» (ro'yxatsiz)"
+      ]
+     ]
+    },
+    {
+     "savol": "13-dars (zaxira)",
+     "variantlar": [
+      [
+       "A",
+       "`comp` siz qator «Zaxira dars», osti «yetib olish / sayqallash» (10-Modul `m8-13` naqshi)"
+      ],
+      [
+       "B",
+       "Osti «taymer bilan to'liq repetitsiya» (12-Modul naqshi; bu modulda pitch yo'q)"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "KEYS",
+   "qisqa": "Keyslar",
+   "eyebrow": "11-qaror · faqat K1–K19 banki (PM-016)",
+   "nom": "Keyslar",
+   "fayl": null,
+   "xulosa": "Bankda monetizatsiyaga mos yagona keys — K2 Telegram Premium («Темы: модели монетизации · freemium · ценообразование»); kursda hali bosh-keys bo'lmagan, mintaqaviy. K17 Tesla — «Темы: roadmap · горизонты планирования»: 2006-yilda ochiq «master-reja», o'n yildan ortiq bajarilgan (raqamsiz). CAC/LTV, narx, pul suhbati, tasdiq uchun bankda mos keys yo'q: K5 Duolingo va K18 Starbucks oldingi modullarda bosh-keys bo'lgan; K7 Microsoft voqeasida BASIC hali yo'q bo'lgan holda «bor» deyilgan — halol tasdiq qoidasiga zid o'qilishi mumkin. 12-Modulda ishlatilganlar: K3, K8, K6, K5, K1.",
+   "savollar": [
+    {
+     "savol": "Keyslar taqsimoti",
+     "variantlar": [
+      [
+       "A",
+       "2 — K2 Telegram Premium · 11 — K17 Tesla · 1, 4, 6, 9 — keyssiz · TEX va loyiha kunlari — keyssiz"
+      ],
+      [
+       "B",
+       "Faqat 2 — K2; 11-dars ham keyssiz (12-Modul 11-dars kabi)"
+      ],
+      [
+       "C",
+       "2 — K2 · 1 — K5 Duolingo (qaytish pulga ta'sir qiladi) · 4 — K18 Starbucks (odamlar qiymatga to'laydi) · 11 — K17"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ATAMA",
+   "qisqa": "Atamalar",
+   "eyebrow": "12-qaror · bir ma'no — bir so'z",
+   "nom": "Atamalar: inglizcha nom yoki o'zbekcha ibora",
+   "fayl": null,
+   "xulosa": "MATN_KORPUS §20: qisqartma-atama darsning markaziy tushunchasi bo'lsa, qavsdagi izoh yetmaydi — o'zbekcha ibora atamaning o'rnini oladi. 12-Modul shu yo'l bilan yurgan: retention → «qaytganlar foizi», funnel → «qadamlar», push → «eslatma», inglizchasi kartochkada bir marta. Webhook — 7-Modulda o'tilgan, o'z nomi bilan qoladi; oferta — qonun atamasi (FK 369-modda). «Obuna» kursda «kanalga obuna bo'lish» ma'nosida ishlatilgan (1, 2, 7, 12-Modullar) — pullik ma'nosi yangi (T-015). Taklif (A) nomlari (tayanchda aniqlanadi, GATE M da tasdiqlanadi): CAC → «jalb qilish narxi» · LTV → «foydalanuvchi keltiradigan pul» · paywall → «to'lov taklifi ekrani» · freemium → «bepul asos va pullik qo'shimcha» · referal → «taklif havolasi» · sandbox → «test rejim» · idempotentlik → «takror xabar» (12-Modul «takror hodisa» naqshi).",
+   "savollar": [
+    {
+     "savol": "Markaziy atamalar",
+     "variantlar": [
+      [
+       "A",
+       "O'zbekcha ibora asosiy (MK §20, 12-Modul naqshi), inglizcha nomi kartochkada bir marta; webhook va oferta — o'z nomi bilan"
+      ],
+      [
+       "B",
+       "Dastur atamalari asosiy (CAC, LTV, paywall, freemium, referal, sandbox) + birinchi marta izoh"
+      ]
+     ]
+    },
+    {
+     "savol": "«Obuna» so'zi",
+     "variantlar": [
+      [
+       "A",
+       "Pul ma'nosida doim «pullik obuna» (kanal obunasidan ajraladi)"
+      ],
+      [
+       "B",
+       "«obuna» yolg'iz"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "NOM",
+   "qisqa": "Nomlar",
+   "eyebrow": "13-qaror · dars nomlari va App.jsx 11-blok",
+   "nom": "Dars nomlari (menyu = dars) va App.jsx 11-blok",
+   "fayl": null,
+   "xulosa": "PM — savol-sarlavha, TEX — mavzu nomi atama bilan, loyiha kuni — «Loyiha kuni: …»; hammasi ≤55 belgi, bitta qator; sarlavhada o'tilmagan atama yo'q (T-011). Komponent nomlari `src/` da band emas (grep 07.10). 1 PM «Bitta foydalanuvchi sizga qanchaga tushadi?» (43) — osti «jalb qilish narxi va foydalanuvchi keltiradigan pul» · 2 PM «Mahsulotingiz qanday pul topadi?» (32) — «besh model: bepul asos, pullik obuna, reklama, B2B, tranzaksiya» · 3 Kod «Webhook: to'lov Backend'ga qanday yetib keladi» (46) — «imzo, takror xabar va rad etilgan to'lov — test rejimda» · 4 PM «Narxni qanday belgilaysiz?» (26) — «xarajat, raqobat, qiymat → narx va to'lov taklifi ekrani» · 5 Proyekt «Loyiha kuni: to'lovni ulaymiz va buzib ko'ramiz» (47) — «test rejimda to'lov oqimi; buzamiz va tuzatamiz» · 6 PM «Pul haqida qanday gaplashasiz?» (30) — «narx bo'yicha uchta real suhbat» · 7 PM «Foydalanuvchiga shartlarni qanday ochiq aytasiz?» (48) — «oferta va maxfiylik siyosati saytda» · 8 Proyekt «Loyiha kuni: ketayotgan foydalanuvchini qaytarish» (49) — «nega ketishadi va bitta qaytarish mexanikasi» · 9 PM «Kim haqiqatan to'lashga tayyor?» (31) — «Mentor tekshiruvi: uchta yozma tasdiq» · 10 Proyekt «Loyiha kuni: taklif havolasi va mukofot» (39) — «unikal havola, sanoq va mukofot» · 11 PM «Mahsulotingiz hozir qayerda?» (28) — «roadmap bilan solishtirish va shaxsiy hisobot» · 12 Proyekt «Loyiha kuni: barqarorlashtirish» (31) — «asosiy yo'llarni tekshiramiz va tuzatamiz» · 13 Rezerv «Zaxira dars» — `comp` siz. App.jsx: `// ---- 11-Modul` izoh-qatori (10-Modul importlaridan keyin) va `id: '11', slug: 'm11', title: 'O\\'sish va monetizatsiya', period: 'oy 14.5–15.5', stage: 2`, idea: «Mahsulot pul topa boshlaydi: narx, test rejimdagi to'lov, taklif havolasi — va birinchi odamlar to'lashga tayyorligini tasdiqlaydi.» — 13 qator, `comp` siz; aniq Edit bilan, boshqa bloklarga tegilmaydi.",
+   "savollar": [
+    {
+     "savol": "Nomlar va App.jsx 11-blok",
+     "variantlar": [
+      [
+       "A",
+       "Yuqoridagidek; tasdiqdan keyin `00-NOMLAR.md` va App.jsx 11-blok (13 qator, `comp` siz)"
+      ],
+      [
+       "B",
+       "O'zgarish bor — izohga dars raqami bilan yozaman"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "MANBA",
+   "qisqa": "Manba",
+   "eyebrow": "Ma'lumot uchun · savol yo'q",
+   "nom": "Manba: dastur jadvali, o'tilgan atamalar, tekshirilgan faktlar",
+   "fayl": "00-MANBA.md",
+   "xulosa": "Dastur v9 dagi 13 dars jadvali va tashkiliy chek-list, App.jsx holati, 12-Moduldan keladigan holat va sonlar, o'tilgan atamalar (grep), 07.10.2026 da rasmiy hujjatdan olingan faktlar (Stripe, Payme, Click, Fuqarolik kodeksi, Telegram Bot API) iqtiboslari bilan va hali tekshirilmaganlar ro'yxati. Pastda to'liq ochiladi.",
+   "savollar": []
+  }
+ ]
+}

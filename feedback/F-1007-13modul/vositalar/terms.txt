@@ -1,0 +1,40 @@
+eslatma|напоминан|уведомлен|оповещен
+jonli xabar|живое сообщение|живое уведомление|всплывающ
+Yordam|Подсказка|Помощь
+deploy|деплой|deploy
+Mentor tekshiruvi|проверка Ментора|проверка ментора|проверка наставника
+tashkilotchi|организатор
+o'yinchi|игрок
+narx|цен|стоимост
+to'lov|оплат|платёж|платеж
+obuna|подписк
+havola|ссылк
+taklif|приглаш|предложени
+lending|лендинг|landing
+qaytganlar foizi|процент вернувш|вернувш
+maxfiylik siyosati|политик\w* конфиденциальн
+hisobot|отчёт|отчет
+dalil|довод|доказательств|подтвержден
+sinov|тест|испытан
+tekshir|провер
+talab|требован
+Bajardim|Готово|Сделал
+Davom etish|Продолжить|Дальше
+Ortda qoldingizmi|Отстали|Отстал
+Mentor misoli|пример Ментора|примере Ментора|пример наставника
+sanoq|подсчёт|подсчет|счётчик|счетчик
+qadam|шаг
+foiz|процент|доля
+gipoteza|гипотез
+zaxira reja|запасн|резервн
+tranzaksiya|транзакци
+xavfsizlik|безопасн
+imzo|подпис
+test holati|тестов\w* режим|режим тест
+kanal|канал
+post|пост
+asosiy harakat|основн\w* действи
+ro'yxatdan o'tgan|зарегистрир
+foyda|польз|выгод
+Pro|Pro
+xarajat|расход|затрат
