@@ -1,0 +1,230 @@
+{
+ "title": "11-Modul · boshlash qarorlari",
+ "kod": "11M-QAROR-0",
+ "eyebrow": "LMS 11-Modul «Final loyiha: g'oya va rivojlantirish + React Native» · kod src/9-Modull · MD yozishdan oldin",
+ "kirish": "MD v3 yozishdan oldin 18 savol: misol-ip, repo, platforma (web va mobil), Demo Day va yakkama-yakka darslari, real odamlar bilan ish, keyslar, nomlar. Har savolda birinchi variant — tavsiya (belgilab qo'yilgan). Oxirgi bo'lim «Manba» — dastur jadvali, o'tilgan atamalar, Expo faktlari (savolsiz). Boshqa modullar, maydon repo'si va qonun fayllari faqat o'qildi. Oxirida javob qatorini nusxalab chatga qo'ying.",
+ "darslar": [
+  {
+   "id": "IP",
+   "qisqa": "Misol-ip",
+   "eyebrow": "1-qaror · modul bo'yi bitta Mentor misoli",
+   "nom": "Mentor misoli: 17 dars qaysi mahsulot ustida o'tadi?",
+   "fayl": null,
+   "xulosa": "Modul — yangi final mahsulotni tanlash va qurishni boshlash: 10 g'oya → RICE bilan 3 tasi → eng yaxshi 2 tasi bo'yicha 10 intervyu → final g'oya → PRD → roadmap → prototip → platforma → telefonda → poydevor → 3 funksiya → sinov → yakkama-yakka → pitch → Demo Day 7. Mentor misoli shu yo'lni to'liq bosib o'tishi kerak; keyingi modullar ham unga tayanadi (12-modul: real vaqt — «kim onlayn», mobil trekda push; 13-modul: paywall). 10-Modul yillik yo'l darsida (m8-10) yozilgan: «Bu misolda Mentor jamoa yig'ishni tanladi; suhbatdagi «2 / 5» — dalillardan biri» (9-Modul MVP «Keyin» ro'yxati: to'lov · jamoa yig'ish · eslatma).",
+   "savollar": [
+    {
+     "savol": "Mentor misoli qaysi mahsulot?",
+     "variantlar": [
+      ["A", "Yangi mahsulot, «Maydon» olamidan o'sadi: jamoa yig'ish — o'yinchi «bugun 18:00 da odam kerak» deb e'lon qiladi, boshqalar qo'shiladi; mobil ilova. Olam tanish (o'yinchi, maydon), mahsulot va repo yangi. 1-darsda bu Mentorning 10 g'oyasidan biri; 2-darsda RICE, 3–4-darslarda 10 intervyu uni ikkinchi g'oya bilan solishtiradi (ikkinchi g'oya va intervyu raqamlari — tayanchda, «Mentor misoli» deb). 12-modulga yarashadi: «kim keladi» — real vaqt, o'yindan oldin eslatma — push"],
+      ["B", "«Maydon» davom etadi: o'sha sayt final mahsulot bo'ladi, jamoa yig'ish unga funksiya bo'lib qo'shiladi + mobil ilova. Kamchiligi: 1–4-darslarda g'oya tanlash soxta — javob oldindan ma'lum"],
+      ["C", "Butunlay yangi Mentor g'oyasi, «Maydon»ga bog'liq emas (o'smir olamidan). Kamchiligi: olam va faktlar noldan, 9–10-Modul ipi uziladi"],
+      ["D", "Boshqa — izohga yozing"]
+     ]
+    },
+    {
+     "savol": "O'quvchining 10 g'oyasi qayerdan olinadi (1-dars)?",
+     "variantlar": [
+      ["A", "Uch manbadan: 9-Modul 1-darsidagi «atrofdan 10 muammo» ro'yxati (saqlangan bo'lsa ochiladi) · o'z MVP sining «Keyin» ro'yxati · yangi kuzatuv. Har g'oya — muammo + kim uchun + yechim. O'z MVP sini davom ettirish ham g'oyalardan biri bo'lishi mumkin — 2-darsda RICE hal qiladi"],
+      ["B", "Faqat noldan — darsda yangi kuzatuv; oldingi ro'yxatlar ishlatilmaydi"],
+      ["C", "Boshqa — izohga yozing"]
+     ]
+    },
+    {
+     "savol": "Mentor mahsulotining nomi (dars ichida, kodda, repo nomida)",
+     "variantlar": [
+      ["A", "«Maydon Jamoa» — o'sha olam, yangi ilova; «jamoa» so'zi faqat bitta ma'noda (futbol jamoasi)"],
+      ["B", "«Yig'ilamiz»"],
+      ["C", "Boshqa nom — izohga yozing"]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "REPO",
+   "qisqa": "Repo",
+   "eyebrow": "2-qaror · kod tegadigan darslar: 7, 9, 10, 11, 12, 13, 14",
+   "nom": "Repo, teglar va o'quvchining o'z repo'si",
+   "fayl": null,
+   "xulosa": "9–10-Modulda o'quvchi Mentor repo'sini (`maydon`) fork qilib ishlagan, o'z MVP si — blokning 5-qadami «O'z g'oyangiz» va uyda. 11-Modul — bitiruvgacha olib boriladigan o'z final mahsuloti. Repo'ga faqat «qur» bosqichida yoziladi; GitHub'da yangi repo ochish va push — buyrug'ingiz bilan.",
+   "savollar": [
+    {
+     "savol": "Mentor misoli repo'si",
+     "variantlar": [
+      ["A", "Yangi ochiq repo (masalan `maydon-jamoa`, Azizbekcrypto), modul bo'yi bitta: 7-darsda `prototip/` (React + Vite, Motion) · 9-darsdan `app/` (Expo) · 10-darsdan `backend/` (NestJS). `maydon` repo'siga tegilmaydi"],
+      ["B", "`maydon` repo'si davomi (yangi papkalar) — tarix bitta, lekin 9–10-Modul teglari va yangi mahsulot aralashadi"],
+      ["C", "Boshqa — izohga yozing"]
+     ]
+    },
+    {
+     "savol": "Teg nomlari",
+     "variantlar": [
+      ["A", "`m11-dars-NN-start` / `m11-dars-NN-done` — LMS raqami bilan (10-Modul `m10-dars-NN` naqshi)"],
+      ["B", "`dars-NN-start` / `dars-NN-done` — yangi repo'da to'qnashuv yo'q, qisqa"],
+      ["C", "Boshqa — izohga yozing"]
+     ]
+    },
+    {
+     "savol": "O'quvchi loyiha kunlarida (10, 11, 12, 14) qaysi repo'da ishlaydi?",
+     "variantlar": [
+      ["A", "O'z final repo'sida (7-darsda o'zi ochadi). Blokning har qadami Mentor misolida ko'rsatiladi: prompt namunasi `{…}` joylari bilan + kutilgan natija (telefon maketi); o'quvchi promptni o'z mahsulotiga to'ldirib, o'z repo'sida yuboradi. «Ortda qoldingizmi» — Mentor repo'sining tegi (Mentor misolini ochib ko'rish uchun)"],
+      ["B", "9–10-Modul kabi: Mentor repo'si fork'ida 4 qadam + 5-qadam «O'z g'oyangiz»; o'z final mahsuloti — uyda. Kamchiligi: final mahsulot darsda qurilmaydi"],
+      ["C", "Boshqa — izohga yozing"]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "PLAT",
+   "qisqa": "Platforma",
+   "eyebrow": "3-qaror · 7, 8, 9-darslar va loyiha kunlari",
+   "nom": "Web va mobil trek darsda qanday ko'rsatiladi?",
+   "fayl": null,
+   "xulosa": "Dastur: platforma tanlovi — PM-qaror (8-dars); 9-dars — Expo sozlash, navigatsiya, prototip telefonda; web-trek uchun — adaptiv sayt va PWA. 6-Modulda o'tilgan: View, Text, StyleSheet, Expo, Expo Go + QR (`npx expo start`, bitta Wi-Fi), Stack Navigator, fetch, AsyncStorage. Rasmiy hujjat (05.10 tekshirildi): `npx create-expo-app@latest` default shabloni — Expo Router va TypeScript bilan; Expo Go — «o'rganish va tez sinash uchun». Platformaning kod oynasi HTML/CSS/JS ni ishga tushiradi — React Native kodini emas.",
+   "savollar": [
+    {
+     "savol": "8-dars: platforma tanlovi darsda qanday bo'ladi?",
+     "variantlar": [
+      ["A", "PM-qaror: o'quvchi to'rt savolga javob beradi (foydalanuvchi mahsulotni qayerda ochadi · telefon imkoniyati kerakmi — kamera, eslatma · havola bilan tez ulashish muhimmi · qaysi stekni bilasiz) → web yoki mobil + bir gapli asos. Mentor misoli — mobil (o'yinchi maydonda, qo'lida telefon; o'yindan oldin eslatma). 9–14-darslarda blokda Mentor misoli mobil, o'quvchi o'z trekida"],
+      ["B", "Hamma mobil (texnik cho'qqi), web — faqat istisno"],
+      ["C", "Hamma web; mobil 9-darsda faqat tanishuv"]
+     ]
+    },
+    {
+     "savol": "7-dars: jonli prototip qayerda quriladi (platforma hali tanlanmagan)?",
+     "variantlar": [
+      ["A", "Platformaga bog'liq emas: repo'da React (Vite) + Motion — 9-Modul animatsiyalari to'g'ridan ishlaydi; ma'lumot namuna, 2–3 ekran bosiladi. Qog'ozdagi wireframe surati talabga ilova qilinadi. 9-darsda mobil trek prototipni agent bilan Expo'ga ko'chiradi, web-trek uni adaptiv qilib PWA ga aylantiradi"],
+      ["B", "Darhol Expo'da — kamchiligi: platforma 8-darsda tanlanadi, tartib buziladi"],
+      ["C", "Platformaning kod oynasida HTML/CSS/JS — repo'siz; kamchiligi: 9-Modul Motion animatsiyalari ishlamaydi"]
+     ]
+    },
+    {
+     "savol": "9-dars: navigatsiya qaysi yo'l bilan?",
+     "variantlar": [
+      ["A", "Rasmiy default: `npx create-expo-app@latest` — Expo Router (har fayl — bitta ekran) va TypeScript. 6-Moduldagi Stack Navigator bilan bir gapli ko'prik: Expo Router ichida ham Stack bor"],
+      ["B", "6-Modul aynan: `--template blank` (JavaScript) + React Navigation Stack. Kamchiligi: rasmiy default emas — agent talabda aniq aytilmasa default'ni yaratadi"],
+      ["C", "Boshqa — izohga yozing"]
+     ]
+    },
+    {
+     "savol": "React Native kodi platformaning kod oynasida ishlamaydi — TEX darslarda qanday ko'rsatamiz?",
+     "variantlar": [
+      ["A", "RN kodi — o'qiladigan qisqa bo'lak + chizilgan telefon maketi: o'quvchi harakat qiladi → telefon ekrani o'zgaradi (6-Modul `m6-09` naqshi). Haqiqiy ishga tushirish — amaliyot blokida o'z telefonida Expo Go bilan. Kod oynasi (QKod) faqat web qismida (adaptiv CSS, PWA manifest)"],
+      ["B", "Expo Snack (snack.expo.dev) darsga ulanadi — RN brauzerda ishlaydi. Kamchiligi: tashqi xizmat, internet, joylashtirish shartlari tekshirilmagan; mexanizm o'zgarishi (asosiy seans)"],
+      ["C", "Darsda RN kodi yo'q — faqat agent orqali, natija telefonda"]
+     ]
+    },
+    {
+     "savol": "Expo Go o'quvchi telefonida",
+     "variantlar": [
+      ["A", "Har o'quvchi o'z telefonida (dastur eslatmasi: Expo Go — «11-modulgacha» o'rnatiladi). QR — bitta Wi-Fi. Boshqa tarmoq yoki telefon yo'q bo'lsa — zaxira yo'llar tayanchda rasmiy hujjatdan tekshiriladi (tunnel, kompyuterda web ko'rinish); har tashqi qadamda xato yo'li bitta gap (P-026)"],
+      ["B", "Sinfda faqat Mentor telefoni (proyektorda), o'quvchi — uyda"],
+      ["C", "Boshqa — izohga yozing"]
+     ]
+    },
+    {
+     "savol": "Stek (10-dars poydevori: Database, kirish, deploy)",
+     "variantlar": [
+      ["A", "9–10-Modul steki: Backend NestJS (TypeORM) + Database Neon + deploy Render; mobil — Expo (React Native), web — React (Vite) + Netlify; agent — Antigravity; kirish — token bilan (9-Modul `POST /kirish` naqshi, endi o'yinchilar uchun)"],
+      ["B", "Tayyor xizmat (masalan Supabase: Database + kirish) — kam kod; kamchiligi: yangi texnologiya, 9–10-Modul ko'nikmasidan uziladi"],
+      ["C", "Boshqa — izohga yozing"]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "DARS",
+   "qisqa": "15 va 17-darslar",
+   "eyebrow": "4-qaror · konveyerda DEMO turi yo'q",
+   "nom": "Yakkama-yakka (15) va Demo Day 7 (17) quriladimi?",
+   "fayl": null,
+   "xulosa": "App.jsx da oldingi oltita Demo Day (`m1-13`, `m2-15`, `m3-16`, `m4-17`, `m5-13`, `m6-16`) — `type: 'Demo'`, `comp` siz kulrang qator. 15-dars dasturda PM: «Progress vs roadmap; risklar, tuzatishlar» → «Tuzatilgan reja».",
+   "savollar": [
+    {
+     "savol": "17 · Demo Day 7",
+     "variantlar": [
+      ["A", "Oldingi Demo Day'lar kabi `type: 'Demo'`, `comp` siz qator — dars qurilmaydi; tayyorgarlik — 16-dars"],
+      ["B", "Dars quriladi — Demo Day uchun yangi tur (mexanizm o'zgarishi, asosiy seans)"]
+     ]
+    },
+    {
+     "savol": "15 · Mentor bilan yakkama-yakka",
+     "variantlar": [
+      ["A", "Qisqa PM dars quriladi (12 ekran): o'quvchi 6-darsdagi roadmap'ini ochadi, har bandga holat qo'yadi (bajarildi · kechikdi · boshlanmadi), uchta risk va har biriga bitta qadam yozadi → tuzatilgan reja (16-dars o'qiydi). Suhbatning o'zi — o'qituvchi bilan, Mentor ekranida har o'quvchi varag'i"],
+      ["B", "`comp` siz qator (zaxira kabi) — o'qituvchi o'zi o'tkazadi. Kamchiligi: tuzatilgan reja saqlanmaydi, 16-dars o'qiy olmaydi"],
+      ["C", "To'liq PM dars (16 ekran)"]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ISH",
+   "qisqa": "Real odamlar",
+   "eyebrow": "5-qaror · 3, 4, 13-darslar",
+   "nom": "Intervyu va sinov: darsda kim bilan, uyda kim bilan?",
+   "fayl": null,
+   "xulosa": "9-Modulda o'tilgan: 2-dars — intervyu shabloni, «bo'lib o'tgan ishni so'rash», sinfdosh bilan mashq, 5 real intervyu uyda; 3-dars — 5 yozuvdan sanoq, bitta muammo; 10-dars — sinov: «tushuntirmang, kuzating». 11-Modulda: 3–4 — 10 intervyu ikki g'oya bo'yicha; 13 — auditoriyadan 3 kishi bilan sinov va eng muhimi shu darsda tuzatiladi.",
+   "savollar": [
+    {
+     "savol": "3–4-darslar 9-Modul 2–3-darslarini qanday takrorlamaydi?",
+     "variantlar": [
+      ["A", "9-Modul texnikasi bir ekranda eslatiladi. Yangisi — ikki g'oyani solishtirish: ikkala g'oya auditoriyasiga bir xil savollar, «hozir buni qanday hal qilyapsiz?» va so'z emas, harakat belgisi (masalan telefon raqamini qoldirdimi). 3-darsda sinfdosh bilan 1–2 intervyu (g'oya auditoriyasi tengdosh bo'lsa — haqiqiy yozuv), qolgani uyda; 4-dars — 10 yozuv jadvali: har g'oya bo'yicha takrorlangan javoblar sanog'i → final g'oya"],
+      ["B", "3-darsda 5 intervyu darsning o'zida sinfdoshlar bilan — auditoriya mos kelmasa yozuv soxta"],
+      ["C", "Boshqa — izohga yozing"]
+     ]
+    },
+    {
+     "savol": "13-dars: «3 kishi bilan sinov» qayerda bo'ladi (tuzatish shu darsda)?",
+     "variantlar": [
+      ["A", "Sinov uyda — 12-dars uyga vazifasi: auditoriyadan 3 kishi, 9-Modul kuzatuv shabloni; 13-dars yozuvlardan eng muhim muammoni tanlaydi va darsda tuzatadi. Yozuv yo'q bo'lsa — dars boshida sinfdosh bilan sinov"],
+      ["B", "Sinov darsda — 3 sinfdosh bilan, keyin tuzatish (auditoriya mos kelmasa — mashq)"],
+      ["C", "Boshqa — izohga yozing"]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "KEYS",
+   "qisqa": "Keyslar",
+   "eyebrow": "6-qaror · faqat K1–K19 banki (PM-016)",
+   "nom": "PM darslarining keyslari",
+   "fayl": null,
+   "xulosa": "Qoida: bosh-keys modul ichida takrorlanmaydi; mintaqaviy keys kamida har 8-darsda (bankda ikkita: K1 Uzum — 9 va 10-Modulda ham bor, K2 Telegram Premium — monetizatsiya, bu modulga mos emas). Qo'shni modullarda: K3 Instagram (m7-03), K19 iPhone (m7-08), K9 Booking (m8-04), K12 Airbnb pitch (m8-11, m6-14), K17 Tesla (m6-12, uch ufqli reja). TEX va loyiha kunlari — keyssiz.",
+   "savollar": [
+    {
+     "savol": "Keys xaritasi",
+     "variantlar": [
+      ["A", "1 K18 Starbucks (kim uchun va nima uchun — g'oyaning qiymati) · 2 K14 Instagram Stories (katta auditoriyaga yetib borish — RICE ning «qamrov» bo'lagi) · 3 K4 Airbnb (asoschilar uyma-uy yurib o'zlari tekshirgan) · 4 K15 YouTube (foydalanuvchini kuzatib g'oya o'zgargan) · 5 K16 Amazon (hujjat koddan oldin) · 6 K1 Uzum, mintaqaviy (avval saytni emas, yetkazib berishni qurgan — nimani birinchi qurish) · 13 K10 Cyberpunk 2077 · 15 keyssiz · 16 K19 iPhone (mahsulotni jonli ko'rsatish, 2007)"],
+      ["B", "Kamroq keys: faqat 3 (K4), 5 (K16), 6 (K1), 16 (K19); qolgan PM darslar — keyssiz, o'smir hayotidan"],
+      ["C", "Boshqa — izohga yozing (dars · keys)"]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "NOM",
+   "qisqa": "Nomlar",
+   "eyebrow": "7-qaror · 00-NOMLAR.md · App.jsx 9-blok",
+   "nom": "Dars nomlari va App.jsx bloki",
+   "fayl": null,
+   "xulosa": "1 O'nta g'oyani qayerdan topasiz? · 2 O'nta g'oyadan qaysi uchtasi qoladi? · 3 Ikki g'oyadan qaysi biri odamlarga kerak? · 4 O'n intervyudan keyin qaysi g'oya qoladi? · 5 G'oyangiz bir sahifaga sig'adimi? · 6 Bitiruvgacha nimani qachon qurasiz? · 7 Jonli prototip: qog'ozdan bosiladigan ekrangacha · 8 Arxitektura va platforma: web yoki mobil ilova · 9 React Native va Expo: prototip telefonda · 10 Loyiha kuni: poydevor — Database, kirish, deploy · 11/12/14 Loyiha kuni: 1/2/3-asosiy funksiya · 13 Uch foydalanuvchidan keyin nimani tuzatasiz? · 15 Roadmap bo'yicha qayerdasiz? · 16 G'oyangiz va prototipingiz guruhni ishontiradimi? · 17 Demo Day 7. Hammasi ≤55 belgi; osti yozuvlari va fayl nomlari — 00-NOMLAR.md. Modul: «Final loyiha: g'oya va rivojlantirish», `period` «oy 12–13.5» (eski hisob ketma-ketligi), g'oya: «Bitiruvgacha olib boriladigan final mahsulot: g'oya, intervyu, PRD, prototip va birinchi funksiyalar — web yoki mobil.»",
+   "savollar": [
+    {
+     "savol": "Nomlar va App.jsx",
+     "variantlar": [
+      ["A", "Nomlar tasdiq; shu qarordan keyin App.jsx ga `// ---- 9-Modul` izoh-bloki va `id: '9'` bloki — 17 qator (`comp` «qur» da ulanadi), faqat aniq Edit"],
+      ["B", "Izoh bilan — qaysi dars nomi o'zgarsin, izohga yozing"]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "MANBA",
+   "qisqa": "Manba",
+   "eyebrow": "Savolsiz · to'liq — feedback/F-1005-11modul/00-MANBA.md",
+   "nom": "Dastur, o'tilgan atamalar, bog'lanishlar",
+   "fayl": null,
+   "xulosa": "Dastur: 17 dars — PM 1–6, 15, 16 · TEX 7, 8, 9 · AI-PRAKT 10, 11, 12, 14 · PM+PRAKT 13 · DEMO 17; zaxira yo'q; 12–13.5-oy. Yangi atamalar: RICE, wireframe, prototip, PWA, adaptiv, risk, roadmap (so'z sifatida — tushunchasi 6-Modul m6-12 «uch ufqli reja»). O'tilganlar: PRD (6-Modul m6-02 «mahsulot talablari hujjati»; ⚠️ 9-Modulda «talab» — agentga yoziladigan matn, ikki so'z yaqin — tayanchda ajratiladi) · intervyu va yozuv (9-Modul) · React Native, Expo, Expo Go, Stack Navigator (6-Modul m6-09…11) · Motion (9-Modul m7-05) · autentifikatsiya (4-Modul, 9-Modul `POST /kirish`) · vibecoding (2-Modul) · jamoa yig'ish — Mentorning keyingi qadami (10-Modul m8-10). Bog'lanish: 10-Modul oxiri m8-11 → m8-12, m8-13 «Zaxira dars» → m9-01; 10-Modul MD lariga o'zgarish kerak emas. Ekranlar: PM — 9-Modul kabi; TEX — texnik dars; 13 (PM+PRAKT) va 10, 11, 12, 14 (loyiha kuni) — 12 ekran, kartochkalar alohida; uyga vazifa yakun kartasida.",
+   "savollar": []
+  }
+ ]
+}

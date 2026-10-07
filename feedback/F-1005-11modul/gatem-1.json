@@ -1,0 +1,302 @@
+{
+ "title": "11-Modul · GATE M",
+ "kod": "11M-GATE-1",
+ "eyebrow": "LMS 11-Modul «Final loyiha: g'oya va rivojlantirish + React Native» · kod src/9-Modull · 16 dars MD v3 (Demo Day 7 — qurilmaydi)",
+ "kirish": "Tunda yozilgan 16 darsning MD v3 si — o'quvchi ko'radigan har so'z. Qaror-0 (hammasi A) bo'yicha; Mentor misoli «Maydon Jamoa» (jamoa yig'ish mobil ilovasi), repo `maydon-jamoa`. Ikki to'lqin: 3 pilot (1, 7, 10) → kelishuvlar tayanch 9-bo'limga (47 band) → 13 dars. Har MD: `lint:til` 0 error · arena ✔ 3/3/3/3 · «Keyingi dars» App.jsx nomi bilan · o'quvchi matnida modul raqami LMS bo'yicha (sinf-supurish o'tdi). Fidbek: MD qatori yoniga `>> …` yoki pastdagi izoh maydoniga (dars · ekran · nima). Avval «Modul bo'yi» savollari — bir nechta darsga tegadi; birinchi variant — tavsiya.",
+ "darslar": [
+  {
+   "id": "M",
+   "qisqa": "Modul bo'yi",
+   "eyebrow": "bir nechta darsga tegadigan savollar",
+   "nom": "Modul bo'yi: tunda chiqqan qarorlar",
+   "fayl": null,
+   "xulosa": "Tunda tayanchga yozilgan asosiy kelishuvlar (to'liq — `00-MODUL-TAYANCH.md` 9-bo'lim): blok modeli — o'quvchi hamma qadamni o'z repo'sida, Mentor misoli faqat namuna (Qaror-0 6) · namuna o'yinlar — 4 ta, Shanba/Yakshanba · «Hisobdan chiqish» poydevorda (uyda uch sinovchi uchun) · `GET /oyinlar` qo'shilgan tartibida (13-dars sinovi shu tartibni topadi) · «tasdiq» — faqat «O'yin kuni tasdiq», Mentor tekshiruvi — «qabul / tuzatish» · «Maydon Jamoa» nomi 4-darsda tug'iladi · Starbucks — «Govard Shuls» (kurs bilan bir) · 10 intervyu yozuvi tayanchda aynan (3 va 4-darslar bir manbadan) · ro'yxat eng yangisi tepada (prototipda kun bo'yicha — 13-dars sinovi shu farqni topadi) · tugmalar «O'yindan chiqish» / «Hisobdan chiqish» · kartada «Shanba, 18:00» · yozuv «11-Modul» (bosh harf). Tuzatilgan mening xatolarim: tayanchda modul raqami kod bo'yicha edi (o'quvchiga «6-Modul» chiqardi — LMS «8-Modul»), blok modeli dastlab 9-Modul naqshida yozilgan edi.",
+   "savollar": [
+    {
+     "savol": "Mentor repo'sidagi Expo papkasi nomi (Qaror-0 4 da `app/` edi)",
+     "variantlar": [
+      [
+       "A",
+       "`mobil/` — Expo default shablonining ichida `src/app/` bor; `app/src/app/` o'qishda adashtiradi"
+      ],
+      [
+       "B",
+       "`app/` — Qaror-0 dagidek"
+      ]
+     ]
+    },
+    {
+     "savol": "Web-trekda token qayerda saqlanadi (`expo-secure-store` web'da yo'q)?",
+     "variantlar": [
+      [
+       "A",
+       "`localStorage` — sodda; himoya: foydalanuvchi matni sahifada HTML bo'lib chiqmaydi (10-Modul XSS darsi)"
+      ],
+      [
+       "B",
+       "faqat sahifa xotirasida — sahifa yangilansa qayta kirish (10-Modul dashboard naqshi)"
+      ]
+     ]
+    },
+    {
+     "savol": "16-dars: Backend'li ilova hali ham «prototip»mi? (7-darsdagi ta'rif: «bosiladigan, lekin hali haqiqiy ma'lumotsiz ekranlar»)",
+     "variantlar": [
+      [
+       "A",
+       "16-darsda «prototip» o'rniga «ilova», pitch bo'lagi «jonli demo»; App.jsx nomi «G'oyangiz va ilovangiz guruhni ishontiradimi?» (48), osti «muammo → yechim → jonli demo»"
+      ],
+      [
+       "B",
+       "dastur so'zi qoladi («g'oya va prototip pitchi»); 16-darsda bir gap: «bu yerda prototip — Demo Day'gacha ilovaning nomi»"
+      ]
+     ]
+    },
+    {
+     "savol": "Pitch uzunligi (16-dars, Demo Day 7 ga tayyorgarlik)",
+     "variantlar": [
+      [
+       "A",
+       "3 daqiqa: muammo (dalil) → yechim (bir gap) → jonli demo telefonda → keyingi qadam"
+      ],
+      [
+       "B",
+       "5 daqiqa — 10-Modul pitchi kabi"
+      ],
+      [
+       "C",
+       "Boshqa — izohga yozing"
+      ]
+     ]
+    },
+    {
+     "savol": "«qahva» / «kofe» (kursdagi `PmJtbdLesson` da «kofe», 1-dars Starbucks keysida «qahva»)",
+     "variantlar": [
+      [
+       "A",
+       "11-Modulda «qahva» (adabiy); kursdagi farq asosiy seansga (MEXANIZM-TAKLIF)"
+      ],
+      [
+       "B",
+       "«kofe» — kurs bilan bir"
+      ]
+     ]
+    },
+    {
+     "savol": "K1 Uzum — 9 va 10-Modulda ham bosh-keys edi; 6-darsda (roadmap: «avval saytni emas, yetkazib berishni qurgan») uchinchi marta",
+     "variantlar": [
+      [
+       "A",
+       "Qoladi — mintaqaviy keys qoidasi (bankda boshqa mos mintaqaviy keys yo'q), burchagi yangi"
+      ],
+      [
+       "B",
+       "6-dars — K17 Tesla (8-Modulda uch ufqli reja bilan bor edi)"
+      ],
+      [
+       "C",
+       "6-dars — keyssiz"
+      ]
+     ]
+    },
+    {
+     "savol": "PM darslaridagi kod ekrani (PM_DARS_ETALON 26: ketma-ket PM darslari bir mexanikani takrorlamaydi)",
+     "variantlar": [
+      [
+       "A",
+       "Hozirgidek: 1 kod oynasi · 2 VS Code `rice.js` · 3 kod oynasi · 4 VS Code `sanoq.js` · 5 `PRD.md` · 6 kod oynasi · 15 kod yo'q · 16 Neon SQL"
+      ],
+      [
+       "B",
+       "Kamroq: 3 va 5-darslarda kod ekrani yo'q (vaqt — intervyu va PRD ga)"
+      ]
+     ]
+    },
+    {
+     "savol": "Namuna forma qiymati «Ali · +998 90 000 00 01» (10, 11-darslar; 10-Modulda ham shunday)",
+     "variantlar": [
+      [
+       "A",
+       "Qoladi — jadval qatori, qahramon emas, gapda ishtirok etmaydi"
+      ],
+      [
+       "B",
+       "Ismsiz namuna: «O'yinchi 1»"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "01",
+   "qisqa": "1-dars",
+   "eyebrow": "1-dars · PM · 15 ekran · `m9-01`",
+   "nom": "O'nta g'oyani qayerdan topasiz?",
+   "fayl": "01-PmTenIdeas-v3.md",
+   "xulosa": "G'oya = muammo · kim uchun · yechim (ta'rif so'zma-so'z); uch manba — 9-Modul ro'yxati, «Keyin» qutisi, yangi kuzatuv; Mentorning 10 g'oyasi; K18 Starbucks (Govard Shuls); juftlikda «faqat yechim» mashqi; kod oynasi — g'oyalar kartaga. Testlar ✔ C · A · D · B.",
+   "savollar": []
+  },
+  {
+   "id": "02",
+   "qisqa": "2-dars",
+   "eyebrow": "2-dars · PM · 16 ekran · `m9-02`",
+   "nom": "O'nta g'oyadan qaysi uchtasi qoladi?",
+   "fayl": "02-PmIdeaRice-v3.md",
+   "xulosa": "Uch savol (bajariladimi · real auditoriya · qiziqmi) → RICE (Intercom, 2018; kursda mehnat — hafta); Mentor jadvali 24 · 20 · 10; K14 Instagram Stories (qamrov); VS Code `rice.js`. Testlar ✔ B · D · A · C.",
+   "savollar": []
+  },
+  {
+   "id": "03",
+   "qisqa": "3-dars",
+   "eyebrow": "3-dars · PM · 16 ekran · `m9-03`",
+   "nom": "Ikki g'oyadan qaysi biri odamlarga kerak?",
+   "fayl": "03-PmInterviewsOne-v3.md",
+   "xulosa": "9-Modul texnikasi bir ekranda; yangisi — ikki g'oyaga bir xil savollar, «hozir nima bilan», harakat belgisi (raqamning o'zi yozilmaydi); Mentor yozuvlari 1, 2, 3, 6, 7; K4 Airbnb; sinfdosh bilan 1–2 intervyu, uyda 10 gacha. Testlar ✔ C · A · D · B.",
+   "savollar": []
+  },
+  {
+   "id": "04",
+   "qisqa": "4-dars",
+   "eyebrow": "4-dars · PM · 16 ekran · `m9-04`",
+   "nom": "O'n intervyudan keyin qaysi g'oya qoladi?",
+   "fayl": "04-PmFinalIdea-v3.md",
+   "xulosa": "10 yozuv jadvali (jamoa 4/5 · 4/5 belgi; to'garak 3/5 · 1/5) → final g'oya, muammo gapi, «Maydon Jamoa» nomi; halol gap «10 intervyu — kichik son»; K15 YouTube; VS Code `sanoq.js`. Testlar ✔ D · B · C · A.",
+   "savollar": []
+  },
+  {
+   "id": "05",
+   "qisqa": "5-dars",
+   "eyebrow": "5-dars · PM · 16 ekran · `m9-05`",
+   "nom": "G'oyangiz bir sahifaga sig'adimi?",
+   "fayl": "05-PmPrd-v3.md",
+   "xulosa": "8-Moduldagi to'rt katak → yetti bo'limli PRD; Mentor tekshiruvi (uch savol: qabul / tuzatish); K16 Amazon; VS Code `PRD.md`. Testlar ✔ B · C · A · D.",
+   "savollar": []
+  },
+  {
+   "id": "06",
+   "qisqa": "6-dars",
+   "eyebrow": "6-dars · PM · 16 ekran · `m9-06`",
+   "nom": "Bitiruvgacha nimani qachon qurasiz?",
+   "fayl": "06-PmRoadmap-v3.md",
+   "xulosa": "8-Moduldagi uch ufqli reja → bitiruvgacha roadmap: Mentorning oltita ishiga RICE (72 · 60 · 48 · 15 · 10 · 5), poydevor RICE ga kirmaydi, «Hozir»ga uchta funksiya, 12-Modulni kutadigan ishlar «Keyinroq»da; K1 Uzum; kod oynasi — `ufq()` funksiyasi. Testlar ✔ B · C · D · A.",
+   "savollar": []
+  },
+  {
+   "id": "07",
+   "qisqa": "7-dars",
+   "eyebrow": "7-dars · TEX, texnik cho'qqi · 20 ekran · `m9-07`",
+   "nom": "Jonli prototip: qog'ozdan bosiladigan ekrangacha",
+   "fayl": "07-LivePrototype-v3.md",
+   "xulosa": "Qog'ozda wireframe (15 daq) → talab + surat → agent quradi → solishtirish → uch animatsiya (9-Moduldan); o'z repo'si shu darsda ochiladi (`PRD.md` ham); QKod — sonning silliq kattalashishi. Testlar ✔ B · C · A · D + final tartib.",
+   "savollar": [
+    {
+     "savol": "O'quvchi repo'si ko'rinishi",
+     "variantlar": [
+      [
+       "A",
+       "Public — o'qituvchi va sinfdoshlar ko'ra oladi"
+      ],
+      [
+       "B",
+       "Private — o'qituvchini qo'shish kerak bo'ladi"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "08",
+   "qisqa": "8-dars",
+   "eyebrow": "8-dars · TEX · 20 ekran · `m9-08`",
+   "nom": "Arxitektura va platforma: web yoki mobil ilova",
+   "fayl": "08-PlatformChoice-v3.md",
+   "xulosa": "Uch qism, uch jadval, real vaqt nuqtalari (11-modulda ochilganda va pastga tortganda; WebSocket — 12-modulda), to'rt savol → trek; README «Arxitektura» (stek bilan). Testlar ✔ C · A · D · B + final.",
+   "savollar": []
+  },
+  {
+   "id": "09",
+   "qisqa": "9-dars",
+   "eyebrow": "9-dars · TEX · 19 ekran · `m9-09`",
+   "nom": "React Native va Expo: prototip telefonda",
+   "fayl": "09-ExpoPrototype-v3.md",
+   "xulosa": "8-Modul takrori (View, Text, Stack) → Expo Router (har fayl — ekran), QR / Wi-Fi / tunnel / iPhone akkaunti; web-trek — adaptiv sayt va PWA (manifest); bloklar ikki trekda. Testlar ✔ B · D · A · C + final.",
+   "savollar": []
+  },
+  {
+   "id": "10",
+   "qisqa": "10-dars",
+   "eyebrow": "10-dars · loyiha kuni · 12 ekran · `m9-10`",
+   "nom": "Loyiha kuni: poydevor — Database, kirish, deploy",
+   "fayl": "10-FoundationDay-v3.md",
+   "xulosa": "Uch jadval, `POST /royxat`, `POST /kirish`, `GET /oyinlar`, Render, `EXPO_PUBLIC_API_URL`, token `expo-secure-store` da, «Hisobdan chiqish»; o'quvchi o'z repo'sida (Mentor — namuna). Testlar ✔ C · B.",
+   "savollar": []
+  },
+  {
+   "id": "11",
+   "qisqa": "11-dars",
+   "eyebrow": "11-dars · loyiha kuni · 12 ekran · `m9-11`",
+   "nom": "Loyiha kuni: 1-asosiy funksiya",
+   "fayl": "11-FeatureOne-v3.md",
+   "xulosa": "O'yin e'loni va qo'shilish: «8 / 10» Backend'dan, «O'yin to'ldi», `409`; talabni o'quvchi yozadi. Testlar ✔ C · D.",
+   "savollar": [
+    {
+     "savol": "«O'yin to'ldi»ni bitta telefonda tekshirish — Neon SQL Editor'da `UPDATE oyinlar SET kerak = …` (WHERE bilan, keyin qaytariladi). UPDATE o'quvchiga birinchi marta",
+     "variantlar": [
+      [
+       "A",
+       "Qoladi — 10-Modul odati (WHERE bilan, test ma'lumoti, qaytariladi)"
+      ],
+      [
+       "B",
+       "Faqat «Hisobdan chiqish» bilan ikkinchi akkaunt yoki sinfdosh telefoni"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "12",
+   "qisqa": "12-dars",
+   "eyebrow": "12-dars · loyiha kuni · 12 ekran · `m9-12`",
+   "nom": "Loyiha kuni: 2-asosiy funksiya",
+   "fayl": "12-FeatureTwo-v3.md",
+   "xulosa": "O'yin kuni tasdiq: «Kelaman» faqat o'yin kuni va qo'shilganlarga (`403`), tashkilotchida «Kelishini tasdiqladi: 7 / 9»; uyga — 3 kishi bilan sinov («Hisobdan chiqish» bilan har sinovchi). Testlar ✔ C · A.",
+   "savollar": []
+  },
+  {
+   "id": "13",
+   "qisqa": "13-dars",
+   "eyebrow": "13-dars · PM + amaliyot · 12 ekran · `m9-13`",
+   "nom": "Uch foydalanuvchidan keyin nimani tuzatasiz?",
+   "fayl": "13-PmAudienceTest-v3.md",
+   "xulosa": "Uch yozuvdan eng muhim to'xtash (ro'yxat kun bo'yicha emas) → shu darsda tuzatiladi → `SINOV.md` va qayta sinov; K10 Cyberpunk 2077. Testlar ✔ B · D.",
+   "savollar": []
+  },
+  {
+   "id": "14",
+   "qisqa": "14-dars",
+   "eyebrow": "14-dars · loyiha kuni · 12 ekran · `m9-14`",
+   "nom": "Loyiha kuni: 3-asosiy funksiya",
+   "fayl": "14-FeatureThree-v3.md",
+   "xulosa": "Chiqish va navbat: «O'yindan chiqish», «Navbatga yozilish», ikki kishi bir vaqtda bosganda ham bitta joyga bitta odam. Testlar ✔ C · A.",
+   "savollar": []
+  },
+  {
+   "id": "15",
+   "qisqa": "15-dars",
+   "eyebrow": "15-dars · PM · 12 ekran · `m9-15`",
+   "nom": "Roadmap bo'yicha qayerdasiz?",
+   "fayl": "15-PmOneOnOne-v3.md",
+   "xulosa": "Roadmap holatlari (bajarildi · kechikdi · boshlanmadi), uch risk va qadam, tuzatilgan reja; yakkama-yakka — o'qituvchi bilan; keyssiz, kodsiz. Testlar ✔ C · B.",
+   "savollar": []
+  },
+  {
+   "id": "16",
+   "qisqa": "16-dars",
+   "eyebrow": "16-dars · PM · 16 ekran · `m9-16`",
+   "nom": "G'oyangiz va prototipingiz guruhni ishontiradimi?",
+   "fayl": "16-PmPrototypePitch-v3.md",
+   "xulosa": "3 daqiqalik pitch: muammo (dalil) → yechim → telefonda jonli demo → keyingi qadam; juftlikda baholash varag'i; K19 iPhone; Neon SQL — o'z raqami. Testlar ✔ D · B · C · A. Nom — «Modul bo'yi» 3-savolga bog'liq.",
+   "savollar": []
+  }
+ ]
+}

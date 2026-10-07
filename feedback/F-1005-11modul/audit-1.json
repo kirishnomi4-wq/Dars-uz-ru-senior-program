@@ -1,0 +1,58 @@
+{
+ "title": "11-Modul · audit savollari",
+ "kod": "11M-AUDIT-1",
+ "eyebrow": "ChatGPT auditidan chiqqan, sizning oldingi qaroringizga tegadigan savollar",
+ "kirish": "Har audit bandini Filtr bilan ko'ryapman: qonunga mosini qo'llayman, xatosini rad etaman. Bu sahifada faqat siz oldin qaror qilgan narsaga tegadigan bandlar — ularni o'zim o'zgartirmayman. Birinchi variant — tavsiyam. Javob qatorini nusxalab chatga qo'ying; keyingi auditlardan savol chiqsa, shu sahifa yangilanadi.",
+ "darslar": [
+  {
+   "id": "HB",
+   "qisqa": "Harakat belgisi",
+   "eyebrow": "3-dars audit · 3, 4, 5, 16-darslar va tayanch",
+   "nom": "Intervyu oxiridagi harakat belgisi: telefon raqami qoladimi?",
+   "fayl": null,
+   "xulosa": "Hozir (Qaror-0 15, siz «A» degansiz): intervyu oxirida «Ilova chiqsa, xabar beraylikmi? Telefon raqamingizni qoldirasizmi?» — qoldirsa «ha». Raqamning o'zi platformaga yozilmaydi. ChatGPT: 12–17 yoshli o'quvchi notanish o'smir va kattalardan (to'garak g'oyasida — ota-onalardan) telefon raqami so'raydi — xavfsizlik nuqtai nazaridan noto'g'ri; «Ilova chiqsa» — platforma hali tanlanmagan (8-dars). Men birinchi bandiga ham qo'shilaman: «The Mom Test» kitobida kuchli belgi — vaqt, obro' yoki pul berish; kontakt qoldirish — kuchsiz belgi. Mentor sanog'i (jamoa 4 / 5, to'garak 1 / 5) uchala variantda o'zgarmaydi.",
+   "savollar": [
+    {
+     "savol": "Harakat belgisi qaysi ish bo'lsin?",
+     "variantlar": [
+      [
+       "A",
+       "Sinovga vaqt berish: «Birinchi versiya tayyor bo'lganda, uni sinab ko'rishga 10 daqiqa vaqt berasizmi? Qaysi kuni bo'ladi?» — kun aytsa «ha». Shaxsiy ma'lumot so'ralmaydi; 12–13-darsdagi uch sinovchi shu «ha» deganlardan. ≈70 joy o'zgaradi (3, 4, 5, 16-darslar, tayanch) — men qilaman."
+      ],
+      [
+       "B",
+       "Telefon qoladi, so'z platformasiz: «Birinchi versiya tayyor bo'lsa, xabar beraylikmi? Telefon raqamingizni qoldirasizmi?» + O'qituvchi eslatmasi «notanish kattalardan raqam so'ramang». ≈15 joy."
+      ],
+      [
+       "C",
+       "Hozirgidek («Ilova chiqsa…» va telefon raqami)."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "DD",
+   "qisqa": "Demo Day 7 osti",
+   "eyebrow": "GATE M M-q2 dan keyin · App.jsx `m9-17`",
+   "nom": "Demo Day 7 qatori ostida «jonli prototip» qoladimi?",
+   "fayl": null,
+   "xulosa": "16-darsda siz «ilova» va «jonli demo» ni tanladingiz (M-q2 A). Menyuda keyingi qator — Demo Day 7 osti: «final g'oya va jonli prototip — ommaviy himoya» (dastur so'zi). Demo Day da ham Backend'li ilova ko'rsatiladi.",
+   "savollar": [
+    {
+     "savol": "`m9-17` osti",
+     "variantlar": [
+      [
+       "A",
+       "«final g'oya va jonli demo — ommaviy himoya» — 16-dars bilan bir so'z"
+      ],
+      [
+       "B",
+       "«final g'oya va jonli prototip — ommaviy himoya» — dastur so'zi qoladi"
+      ]
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -137,6 +137,24 @@ const MvpCompleteLesson = L(() => import('./7-Modull/MvpCompleteLesson.jsx')) //
 const PmUsabilityTestLesson = L(() => import('./7-Modull/PmUsabilityTestLesson.jsx')) // 9-Modul 10-dars
 const MvpIterationLesson = L(() => import('./7-Modull/MvpIterationLesson.jsx')) // 9-Modul 11-dars
 const PmUserStoryPitchLesson = L(() => import('./7-Modull/PmUserStoryPitchLesson.jsx')) // 9-Modul 12-dars
+// ---- 9-Modul (LMS 11-Modul, src/9-Modull) — konveyer, 06.10: darslar «qur» bosqichida shu yerga ulanadi
+const PmTenIdeasLesson = L(() => import('./9-Modull/PmTenIdeasLesson.jsx')) // 11-Modul 1-dars, pilot
+const FoundationDayLesson = L(() => import('./9-Modull/FoundationDayLesson.jsx')) // 11-Modul 10-dars, pilot
+// 11-Modul 2-to'lqin (06.10): skeletdan, har biri o'z quruvchi agenti bilan
+const PmIdeaRiceLesson = L(() => import('./9-Modull/PmIdeaRiceLesson.jsx')) // 11-Modul 2-dars
+const PmInterviewsOneLesson = L(() => import('./9-Modull/PmInterviewsOneLesson.jsx')) // 11-Modul 3-dars
+const PmFinalIdeaLesson = L(() => import('./9-Modull/PmFinalIdeaLesson.jsx')) // 11-Modul 4-dars
+const PmPrdLesson = L(() => import('./9-Modull/PmPrdLesson.jsx')) // 11-Modul 5-dars
+const PmRoadmapLesson = L(() => import('./9-Modull/PmRoadmapLesson.jsx')) // 11-Modul 6-dars
+const LivePrototypeLesson = L(() => import('./9-Modull/LivePrototypeLesson.jsx')) // 11-Modul 7-dars
+const PlatformChoiceLesson = L(() => import('./9-Modull/PlatformChoiceLesson.jsx')) // 11-Modul 8-dars
+const ExpoPrototypeLesson = L(() => import('./9-Modull/ExpoPrototypeLesson.jsx')) // 11-Modul 9-dars
+const FeatureOneLesson = L(() => import('./9-Modull/FeatureOneLesson.jsx')) // 11-Modul 11-dars
+const FeatureTwoLesson = L(() => import('./9-Modull/FeatureTwoLesson.jsx')) // 11-Modul 12-dars
+const PmAudienceTestLesson = L(() => import('./9-Modull/PmAudienceTestLesson.jsx')) // 11-Modul 13-dars
+const FeatureThreeLesson = L(() => import('./9-Modull/FeatureThreeLesson.jsx')) // 11-Modul 14-dars
+const PmOneOnOneLesson = L(() => import('./9-Modull/PmOneOnOneLesson.jsx')) // 11-Modul 15-dars
+const PmPrototypePitchLesson = L(() => import('./9-Modull/PmPrototypePitchLesson.jsx')) // 11-Modul 16-dars
 // ---- 10-Modul (LMS 12-Modul, src/10-Modull) — konveyer, 06.10: darslar «qur» bosqichida shu yerga ulanadi
 // Modul ro'yxatidagi sarlavhalar — vaqtincha reja (comp yo'q, «tez orada» bo'lib ko'rinadi).
 const PmJtbdLesson = L(() => import('./pm/PmJtbdLesson.jsx')) // PM pipeline P1 (eski PmLesson27 o'rnida)
@@ -352,6 +370,29 @@ const MODULES = [
       { key: 'm8-13', n: 12, type: 'Rezerv',  emoji: '📅', title: 'Zaxira dars',               sub: 'yetib olish / sayqallash' },
       { key: 'm8-14', n: 13, type: 'Rezerv',  emoji: '📅', title: 'Zaxira dars',               sub: 'yetib olish / sayqallash' },
       { key: 'm8-15', n: 14, type: 'Demo',    emoji: '🎤', title: 'Demo Day 4 — yillik himoya', sub: 'ota-onalar + media + IT-jamiyat' },
+    ],
+  },
+  {
+    id: '9', slug: 'm9', title: 'Final loyiha: g\'oya va rivojlantirish', period: 'oy 12–13.5', stage: 2,
+    idea: 'Bitiruvgacha olib boriladigan final mahsulot: g\'oya, intervyu, PRD, prototip va birinchi funksiyalar — web yoki mobil.',
+    lessons: [
+      { key: 'm9-01', n: 1, type: 'PM', emoji: '💡', title: 'Oltita g\'oyani qayerdan topasiz?', sub: 'muammo, kim uchun va yechim — 6 yozma g\'oya', comp: PmTenIdeasLesson },
+      { key: 'm9-02', n: 2, type: 'PM', emoji: '⚖️', title: 'Oltita g\'oyadan qaysi uchtasi qoladi?', sub: 'saralash va RICE bahosi', comp: PmIdeaRiceLesson },
+      { key: 'm9-03', n: 3, type: 'PM', emoji: '🎙️', title: 'Ikki g\'oyadan qaysi biri odamlarga kerak?', sub: '10 intervyu, 1-qism: ikki g\'oya, bir xil savollar', comp: PmInterviewsOneLesson },
+      { key: 'm9-04', n: 4, type: 'PM', emoji: '🧩', title: 'O\'n intervyudan keyin qaysi g\'oya qoladi?', sub: 'takrorlangan javoblar va final g\'oya', comp: PmFinalIdeaLesson },
+      { key: 'm9-05', n: 5, type: 'PM', emoji: '📄', title: 'G\'oyangiz bir sahifaga sig\'adimi?', sub: 'Mentor tekshiruvi va to\'liq PRD', comp: PmPrdLesson },
+      { key: 'm9-06', n: 6, type: 'PM', emoji: '🗺️', title: 'Bitiruvgacha nimani qachon qurasiz?', sub: 'RICE bo\'yicha roadmap', comp: PmRoadmapLesson },
+      { key: 'm9-07', n: 7, type: 'Kod', emoji: '✏️', title: 'Jonli prototip: qog\'ozdan bosiladigan ekrangacha', sub: 'wireframe → talab → bosiladigan prototip', comp: LivePrototypeLesson },
+      { key: 'm9-08', n: 8, type: 'Kod', emoji: '🏛️', title: 'Arxitektura va platforma: web yoki mobil ilova', sub: 'qismlar, real vaqt nuqtalari, stek — asoslangan tanlov', comp: PlatformChoiceLesson },
+      { key: 'm9-09', n: 9, type: 'Kod', emoji: '📱', title: 'React Native va Expo: prototip telefonda', sub: 'Expo, navigatsiya; web-trek — adaptiv sayt va PWA', comp: ExpoPrototypeLesson },
+      { key: 'm9-10', n: 10, type: 'Proyekt', emoji: '🧱', title: 'Loyiha kuni: poydevor — Database, kirish, deploy', sub: 'tanlangan stekda: ilova Backend\'ga ulanadi', comp: FoundationDayLesson },
+      { key: 'm9-11', n: 11, type: 'Proyekt', emoji: '🔧', title: 'Loyiha kuni: 1-asosiy funksiya', sub: 'roadmap\'dagi birinchi funksiya — talabni siz yozasiz', comp: FeatureOneLesson },
+      { key: 'm9-12', n: 12, type: 'Proyekt', emoji: '🔧', title: 'Loyiha kuni: 2-asosiy funksiya', sub: 'roadmap\'dagi ikkinchi funksiya', comp: FeatureTwoLesson },
+      { key: 'm9-13', n: 13, type: 'PM', emoji: '👀', title: 'Uch foydalanuvchidan keyin nimani tuzatasiz?', sub: 'auditoriya bilan sinov va shu darsda tuzatish', comp: PmAudienceTestLesson },
+      { key: 'm9-14', n: 14, type: 'Proyekt', emoji: '🔧', title: 'Loyiha kuni: 3-asosiy funksiya', sub: 'roadmap\'dagi uchinchi funksiya', comp: FeatureThreeLesson },
+      { key: 'm9-15', n: 15, type: 'PM', emoji: '🤝', title: 'Roadmap bo\'yicha qayerdasiz?', sub: 'Mentor bilan yakkama-yakka: risklar va tuzatilgan reja', comp: PmOneOnOneLesson },
+      { key: 'm9-16', n: 16, type: 'PM', emoji: '🎤', title: 'G\'oyangiz va ilovangiz guruhni ishontiradimi?', sub: 'muammo → yechim → jonli demo', comp: PmPrototypePitchLesson },
+      { key: 'm9-17', n: 17, type: 'Demo', emoji: '🎤', title: 'Demo Day 7', sub: 'final g\'oya' },
     ],
   },
   {
