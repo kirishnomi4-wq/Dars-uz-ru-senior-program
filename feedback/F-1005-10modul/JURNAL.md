@@ -327,3 +327,5 @@ Seans chegarasi: faqat `src/8-Modull`, App.jsx dagi 8-Modul bloki, `feedback/F-1
     Taklif: `konveyer/6-RU.md` darvozalariga `node scripts/sarlavha-qator.mjs <FAYL>` (hozir faqat `modul:yopish` da) va «sarlavha ru ≤ 44 belgi» qoidasi; `lint-olchov` ru chegarasi (≤60) amalda katta.
 13. **`lint-dizayn` D1 holat-qoidadagi o'qni chiziq deb ushlaydi** (F-1005-192): uchburchak o'qning rangini holatda almashtirish (`.on::after { border-left-color }`) — D1 «stripe». Bu yerda u telefonda haqiqiy bug'ni ham yashirgan
     (o'q yo'nalishi media'da o'zgaradi). Taklif: QOLIP.md ga naqsh «o'q rangi — CSS o'zgaruvchisida (`border-left: 7px solid var(--uq, …)`; holat faqat `--uq` ni o'zgartiradi)».
+- **2026-10-07 15:10 · F-1007-291 · TASHQI O'ZGARISH davomi (11-Modul seansi, foydalanuvchi buyrug'i):** 10-Modul QA sayti ⛶ tuzatishi bilan qayta yig'ildi va deploy qilindi (smoke 22/22; jonli saytda ⛶ oynasi markazda).
+  Commit: `1b4ba20` — 10-Modul to'liq (src/8-Modull, shu papka, m8 QA fayllari, App.jsx 8-blok).

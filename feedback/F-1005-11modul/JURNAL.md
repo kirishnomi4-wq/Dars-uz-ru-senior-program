@@ -329,6 +329,10 @@
   Commit tarkibi: `src/9-Modull/*` · `feedback/F-1005-11modul/*` (YAKUNIY, QURUVCHI_TOPSHIRIQ_3 bilan) · QA sayti fayllari · 9-Modul 12 faylda FAQAT ⛶ qatorlari (`git apply --cached`, 9-Modul seansining 5 ta LiveGate tuzatishi tashqarida) ·
   9-Modul jurnalidan faqat F-1007-290 yozuvi. Tashqarida: App.jsx (o'zgarishlar 10 va 12-Modul seanslariniki; 9-blok o'zgarmagan) · `src/8-Modull` + `feedback/F-1005-10modul` (10-Modul — butunlay untracked, o'z seansi) · `feedback/F-1007-13modul` (13-Modul seansi) · arxiv/ · dist-m9.
   **Keyingi:** QA fidbeki → yangi seans, retsept B, F-ID 292 dan (`JURNAL` + memory `seans-11modul`). Ochiq savollar: 15-dars arena 8-savol (uz shakli) · README tili ru o'quvchi uchun · 6-dars 10-ekran Mentor «Siz» ustuni · 9/10-Modul QA saytlari ⛶ siz eski build.
+- **2026-10-07 15:10 · F-1007-291 (yakun 2) · Qolgan commitlar va 9/10 QA saytlari (foydalanuvchi: «10-Modulni ham commit qil, push qil … 12, 13 ga tegma, qolganini qilishing mumkin»).**
+  Commitlar (push ✓): `ea32c9e` 11-Modul · `1b4ba20` 10-Modul (src/8-Modull, feedback/F-1005-10modul, m8 QA fayllari, App.jsx faqat 8-blok — `git apply --cached`, 12/13 bloklari tashqarida) ·
+  `a5ed8cd` 9-Modul LiveGate (F-1006-50, 5 fayl + jurnal; gates 12/12 × 5). Commitsiz qoldi (boshqa seanslar): App.jsx 10/11-bloklari (12, 13-Modul), feedback/F-1006-12modul, feedback/F-1007-13modul, src/10-Modull, asosiy seans fayllari (CLAUDE.md, konveyer/README.md, 6-Modul).
+  QA saytlari ⛶ bilan qayta yig'ildi va deploy: coddycamp-9modul (smoke 24/24) · coddycamp-10modul (smoke 22/22); jonli saytda ⛶ oynasi markazda — 9, 10, 11-Modul (1-dars, 1280×800).
 
 ## MEXANIZM-TAKLIF (asosiy seans uchun — bu seans tegmaydi)
 
