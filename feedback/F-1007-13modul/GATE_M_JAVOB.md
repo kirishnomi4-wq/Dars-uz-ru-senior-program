@@ -52,3 +52,17 @@ Manba faktlari — `00-MANBA.md` 5-bo'lim (rasmiy hujjat, 07.10.2026). Bu qarorl
     CAC → «jalb qilish narxi» · LTV → «foydalanuvchi keltiradigan pul» · paywall → «to'lov taklifi ekrani» · freemium → «bepul asos va pullik qo'shimcha» · referal → «taklif havolasi» · sandbox → «test rejim» · idempotentlik → «takror xabar».
 23. **«Obuna» (ATAMA-q1 A):** pul ma'nosida doim **«pullik obuna»** (kanal obunasidan ajraladi, T-015).
 24. **Nomlar va App.jsx (NOM-q0 A):** `00-NOMLAR.md` tasdiq; App.jsx ga `// ---- 11-Modul` izohi va `id: '11'` bloki — 13 qator, `comp` siz.
+
+## GATE M · 13M-GATE-1 · 07.10.2026 (sahifa `gatem-1.json`; F-1007-458; javob: 12 dars ✓, 8 savolning hammasi A — tavsiya bo'yicha)
+
+Javob qatori (so'zma-so'z): «GATE M 13M-GATE-1 · Darslar: T ✓ · 01 ✓ · 02 ✓ · 03 ✓ · 04 ✓ · 05 ✓ · 06 ✓ · 07 ✓ · 08 ✓ · 09 ✓ · 10 ✓ · 11 ✓ · 12 ✓ · Savollar: M-q0 A · M-q1 A · M-q2 A · M-q3 A · M-q4 A · M-q5 A · M-q6 A · M-q7 A»
+Bu — matnni tasdiqlash; agent yuborishga va «qur» ga ruxsat emas. Keyingi qadam — har MD ChatGPT auditidan o'tadi (`NN-FILTR.md`).
+
+25. **47 kelishuv (M-q0 A):** tayanch 9.1–9.47 tasdiqlandi — MD lar shunga yozilgan.
+26. **Mentor sonlari (M-q1 A):** tayanch 1.13 jadvali tasdiqlandi (tashkilotchilar 6 · 10 000 → 15 000 so'm / 30 kun · 3 oy · «agar» 60 000 → 12 → 1 · Render ≈83 000 · ha / yo'q / qimmat · 5 javob · 6 dan 3 tasdiq · 18 → 7 → 4 → 3, jami 51 · 12-darsda 2 topilma). Boshqa son yo'q.
+27. **«skript» → «suhbat savollari» (M-q2 A):** o'quvchi matnida «suhbat savollari»; kalit maydoni `skript` va `MENTOR_SKRIPT` — ichki. Qo'llandi (F-1007-458): 6-dars MD, 9-dars «Ishlatilmaydi», tayanch 1.6, 2, 4, 9.9, 9.15, 10 · TAQIQLAR 5.
+28. **Mashq to'lov va real foydalanuvchilar (M-q3 A):** test rejimda Pro'ni mashq to'lov bilan istalgan hisob yoqa oladi; to'lov taklifi ekranida «Test rejim: pul yechilmaydi» (tayanch 9.27).
+29. **12-dars 5-topilmasi (M-q4 A):** «ikki telefon bir vaqtda ochganda keyingi «Doimiy o'yin» ikki marta yaratildi» — Database cheklovi bilan tuzatiladi (tayanch 1.12, 9.26).
+30. **APK (M-q5 A):** yangi o'rnatish fayli faqat 10 va 12-darsda (12-darsda — ilova o'zgargan bo'lsa); 4, 5, 7, 8-darslarda Expo Go yoki brauzer ko'rinishida tekshiriladi (tayanch 9.33, 9.45).
+31. **«Webhook Tested» nishoni (M-q6 A):** uch tekshiruv o'tkazilgani uchun — natijadan qat'i nazar, ish qilingan ekranda.
+32. **9-darsda tasdiq xabari (M-q7 A):** darsda faqat 6-darsdagi real suhbatdoshga yoki to'lovchi sinfdoshga, tanish doirada; qolgani uyda; darsda tasdiq 0 bo'lsa — yakun buni rost aytadi (tayanch 9.46).

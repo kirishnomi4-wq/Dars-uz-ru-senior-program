@@ -260,7 +260,7 @@ const RECAPS = {
     title: { uz: "Raqamlar qaysi bo'lakda", ru: 'В какой части цифры' },
     cards: [
       { ic: '1', h: { uz: "Raqamlar bo'lagida ilova ishga tushgach sanalgan sonlar turadi.", ru: 'В части «Цифры» стоят числа, посчитанные после запуска приложения.' } },
-      { ic: '2', h: { uz: "Intervyu sanog'i — muammo dalili; hali bo'lmagan ish — keyingi qadam.", ru: 'Подсчёт из интервью — доказательство проблемы; то, чего ещё не было, — следующий шаг.' } },
+      { ic: '2', h: { uz: "Intervyu sanog'i — muammo dalili; hali bo'lmagan ish — keyingi qadam.", ru: "Подсчёт из интервью — довод, что проблема есть; то, чего ещё не было, — следующий шаг." } },
       { ic: '3', h: { uz: "Ilova nima qilishi — yechim bo'lagida.", ru: 'То, что делает приложение, — в части «Решение».' }, ask: { uz: 'Pitchingizdagi qaysi son ilova ishga tushgandan keyin sanalgan?', ru: 'Какое число в вашем питче посчитано после запуска приложения?' } }
     ]
   },
@@ -269,14 +269,14 @@ const RECAPS = {
     cards: [
       { ic: '1', h: { uz: 'Ustunli grafikda ustunlar noldan boshlanadi.', ru: 'В столбчатом графике столбики начинаются с нуля.' } },
       { ic: '2', h: { uz: "Pastki qismi kesilsa, kichik farq katta ko'rinadi.", ru: 'Если обрезать низ, маленькая разница выглядит большой.' } },
-      { ic: '3', h: { uz: 'Mentor misolida 44 ustuni 20 dan ikki barobardan sal baland.', ru: 'В примере Ментора столбик 44 чуть выше, чем вдвое больше 20.' }, ask: { uz: "18 dan boshlangan grafikda o'sish qanday ko'ringan edi?", ru: 'Каким выглядел рост на графике, начатом с 18?' } }
+      { ic: '3', h: { uz: 'Mentor misolida 44 ustuni 20 dan ikki barobardan sal baland.', ru: "В примере Ментора столбик 44 чуть больше чем вдвое выше столбика 20." }, ask: { uz: "18 dan boshlangan grafikda o'sish qanday ko'ringan edi?", ru: 'Каким выглядел рост на графике, начатом с 18?' } }
     ]
   },
   7: {
     title: { uz: 'Son yonida nima', ru: 'Что рядом с числом' },
     cards: [
-      { ic: '1', h: { uz: "Uzum 2022-yil oktabrida ishga tushgan, 2024-yil martida — birinchi «unicorn».", ru: 'Uzum запустился в октябре 2022 года, в марте 2024 — первый «unicorn».' } },
-      { ic: '2', h: { uz: '«17 million» — 2025-yilda bir oyda foydalanganlar.', ru: '«17 миллионов» — пользовавшиеся за месяц в 2025 году.' } },
+      { ic: '1', h: { uz: "Uzum 2022-yil oktabrida ishga tushgan, 2024-yil martida — birinchi «unicorn».", ru: "Uzum запустился в октябре 2022 года, в марте 2024-го стал первым «единорогом»." } },
+      { ic: '2', h: { uz: '«17 million» — 2025-yilda bir oyda foydalanganlar.', ru: "«17 миллионов» — те, кто пользовался за один месяц 2025 года." } },
       { ic: '3', h: { uz: 'Grafigingizda ham har son sanasi va nima sanalgani bilan turadi.', ru: 'На вашем графике тоже каждое число стоит с датой и тем, что посчитано.' }, ask: { uz: '«44» yonida nima tursa, zal uni tushunadi?', ru: 'Что должно стоять рядом с «44», чтобы зал его понял?' } }
     ]
   },
@@ -285,7 +285,7 @@ const RECAPS = {
     cards: [
       { ic: '1', h: { uz: "Halol gap son qanday sanalganini va qancha xulosa qilsa bo'lishini aytadi.", ru: 'Честная фраза говорит, как посчитано число и какой вывод из него можно сделать.' } },
       { ic: '2', h: { uz: 'Sekinlashuv yashirilmaydi: ustun olinmaydi, grafik noldan qoladi.', ru: 'Замедление не скрывают: столбик не убирают, график остаётся от нуля.' } },
-      { ic: '3', h: { uz: "Keyin nima qilishingizni Keyingi qadam bo'lagida aytasiz.", ru: 'Что будете делать дальше, говорите в части «Следующий шаг».' }, ask: { uz: 'Mentor ikkinchi haftadagi sekinlashuvdan keyin nima qilmoqchi?', ru: 'Что собирается делать Ментор после замедления во вторую неделю?' } }
+      { ic: '3', h: { uz: "Keyin nima qilishingizni Keyingi qadam bo'lagida aytasiz.", ru: "О том, что будете делать дальше, вы скажете в части «Следующий шаг»." }, ask: { uz: 'Mentor ikkinchi haftadagi sekinlashuvdan keyin nima qilmoqchi?', ru: 'Что собирается делать Ментор после замедления во вторую неделю?' } }
     ]
   }
 };
@@ -674,7 +674,7 @@ const useYangi = (ms = 1100) => {
 const TaxminQ = ({ togri, haqiqat }) => (
   <span className={cxx('gp-tx', togri && 'ok')}>{togri
     ? <>{tr({ uz: "Taxminingiz to'g'ri chiqdi", ru: 'Ваше предположение оказалось верным' })} <b>✓</b></>
-    : <>{tr({ uz: 'Taxminingiz', ru: 'Ваше предположение' })} <b className="yoq">✕</b> — {tr({ uz: 'aslida', ru: 'на деле' })}: <b>{haqiqat}</b></>}</span>
+    : <>{tr({ uz: 'Taxminingiz', ru: 'Ваше предположение' })} <b className="yoq">✕</b> — {tr({ uz: 'aslida', ru: "на самом деле" })}: <b>{haqiqat}</b></>}</span>
 );
 const XulosaQ = ({ natija, matn, izoh }) => <>{natija}<span className="gp-x-m">{matn}</span>{izoh && <span className="gp-x-iz">{izoh}</span>}</>;
 const BashoratQ = ({ savol, javob }) => <div className="gp-bashq fade-step"><span>{savol}</span><span className="gp-bashq-t">{tr({ uz: 'Taxminingiz', ru: 'Ваше предположение' })}: <b>{javob}</b></span></div>;
@@ -858,6 +858,28 @@ const HOOK_JAVOB = {
   kattami: { uz: <><b>Qiziq fikr!</b> Solishtirish keyin bo'ladi — avval zal «44» nimani sanashini bilmoqchi.</>, ru: <><b>Интересная мысль!</b> Сравнение будет потом — сначала зал хочет знать, что считает «44».</> },
   oshirgan: { uz: <><b>Qiziq fikr!</b> Buni ham so'rashadi, lekin «44» ning o'zi hali nimani sanashi noma'lum.</>, ru: <><b>Интересная мысль!</b> Об этом тоже спросят, но что считает само «44», пока неизвестно.</> }
 };
+// Jonli dars: hook ovozlari chizig'i (sof so'rovnoma, J-026; MD 0-ekran «sinf ovozlari chizig'i», F-1006-389; 11-Modul naqshi)
+const OvozChizigi = ({ live, screen, variantlar, mening }) => {
+  const [son, setSon] = useState(null);
+  const pin = live && live.pin;
+  useEffect(() => {
+    if (!pin) return undefined;
+    let on = true, t = null;
+    const ayl = async () => {
+      try { const rows = await liveAnswers(pin, screen); if (on) setSon(variantlar.map((_, i) => rows.filter(r => r.picked === i).length)); } catch { /* keyingi aylanishda */ }
+      if (on) t = setTimeout(ayl, 3000);
+    };
+    ayl();
+    return () => { on = false; clearTimeout(t); };
+  }, [pin, screen]); // eslint-disable-line
+  if (!son) return null;
+  const jami = son.reduce((a, b) => a + b, 0);
+  return (
+    <div className="ovoz fade-step">
+      {variantlar.map((v, i) => <div key={i} className={`ovoz-q${mening === i ? ' men' : ''}`}><span>{v}</span><span className="ovoz-y"><i style={{ width: `${jami ? Math.round((son[i] / jami) * 100) : 0}%` }} /></span><b>{son[i]}</b></div>)}
+    </div>
+  );
+};
 const HookMaket = ({ tanlov }) => (
   <div className="gp-hook">
     <Zal savol={null} />
@@ -870,8 +892,14 @@ const HookMaket = ({ tanlov }) => (
   </div>
 );
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
+  const { live } = useJonli();
+  const isLive = !!(live && live.pin && (live.mode === 'student' || live.mode === 'mentor'));
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
-  const pick = (v) => { if (picked !== null) return; setPicked(v); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: false }); };
+  const pick = (v) => {
+    if (picked !== null) return;
+    setPicked(v); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: false });
+    if (live && live.mode === 'student') live.submitAnswer(screen, 's0', HOOK_OPTS.findIndex(o => o.id === v), false, 0);
+  };
   return (
     <Stage eyebrow={tr({ uz: 'Kirish · «Maydon Jamoa» pitchi', ru: 'Введение · питч «Maydon Jamoa»' })} screen={screen} scrollSignal={picked ? 1 : 0} navContent={<NavNext optionalLive disabled={picked === null} label={picked === null ? tr({ uz: 'Bittasini tanlang', ru: 'Выберите один вариант' }) : tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className={cxx('gp-s0', picked === null && 'kutish')}>
@@ -880,7 +908,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
           mentor={<Mentor>{tr({ uz: "Mentor misolida zal ekranda faqat «44» ni ko'rdi: sizningcha, u birinchi nimani so'raydi?", ru: 'В примере Ментора зал увидел на экране только «44»: как вы думаете, о чём он спросит первым?' })}</Mentor>}
           maket={<HookMaket tanlov={picked} />}
           variantlar={HOOK_OPTS.map(o => ({ id: o.id, t: tr(o.label) }))} tanlov={picked} onTanla={pick}
-          javob={picked !== null && <p className="hook-ack fade-step">{tr(HOOK_JAVOB[picked])}</p>}
+          javob={<>
+            {picked !== null && <p className="hook-ack fade-step">{tr(HOOK_JAVOB[picked])}</p>}
+            {isLive && (picked !== null || live.mode === 'mentor') && <OvozChizigi live={live} screen={screen} variantlar={HOOK_OPTS.map(o => tr(o.label))} mening={HOOK_OPTS.findIndex(o => o.id === picked)} />}
+          </>}
         />
       </div>
     </Stage>
@@ -913,9 +944,9 @@ const RejaSahna = () => {
 const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz', ru: 'Начинаем' })} onClick={onNext} /></>}>
     <QReja zoom={Zoomable}
-      sarlavha={tr({ uz: <>Bugun 5 daqiqalik pitchni <A>sonlaringiz bilan aytasiz.</A></>, ru: <>Сегодня вы расскажете 5-минутный питч <A>со своими числами.</A></> })}
+      sarlavha={tr({ uz: <>Bugun 5 daqiqalik pitchni <A>sonlaringiz bilan aytasiz.</A></>, ru: <>Сегодня — 5-минутный питч <A>с вашими числами.</A></> })}
       mentor={<Mentor>{tr({ uz: "Metrika hisobotingiz va tuzatilgan pitchingiz bugun kerak bo'ladi — ilovangiz telefonda ochilib tursin.", ru: 'Сегодня понадобятся ваш отчёт по метрикам и исправленный питч — держите приложение открытым на телефоне.' })}</Mentor>}
-      chapYorliq={<>{tr({ uz: 'Dars oxirida', ru: 'В конце урока' })} <code className="gp-teg">{tr({ uz: "metrikali pitch: o'sish grafigi — dalil", ru: 'питч с метриками: график роста — доказательство' })}</code></>}
+      chapYorliq={<>{tr({ uz: 'Dars oxirida', ru: 'В конце урока' })} <code className="gp-teg">{tr({ uz: "metrikali pitch: o'sish grafigi — dalil", ru: "питч с метриками: график роста — довод" })}</code></>}
       chap={<RejaSahna />}
       qadamlar={REJA.map(r => ({ t: tr(r.t), teg: tr(r.teg) }))}
     />
@@ -980,7 +1011,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: "Tushuncha · besh bo'lak", ru: 'Понятие · пять частей' })} screen={screen} scrollSignal={q + (taxmin ? 1 : 0)} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Tugmalarni bosing', ru: 'Нажмите кнопки' })} (${Math.min(q, 3)}/3)`} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng harakatAvval
         sarlavha={tr({ uz: <>Besh daqiqalik pitchda <A>sonlar qayerda turadi?</A></>, ru: <>Где в пятиминутном питче <A>стоят числа?</A></> })}
-        mentor={<Mentor>{tr({ uz: "O'tgan modulda pitch 3 daqiqa va to'rt bo'lak edi: tugmalarni birma-bir bosib, taymerga qarang.", ru: 'В прошлом модуле питч был 3 минуты и четыре части: нажимайте кнопки по очереди и смотрите на таймер.' })}</Mentor>}
+        mentor={<Mentor>{tr({ uz: "O'tgan modulda pitch 3 daqiqa va to'rt bo'lak edi: tugmalarni birma-bir bosib, taymerga qarang.", ru: "В прошлом модуле питч длился 3 минуты и состоял из четырёх частей: нажимайте кнопки по очереди и смотрите на таймер." })}</Mentor>}
         bashorat={!taxmin
           ? <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr(S2_SAVOL)} variantlar={S2_TAXMIN.map(x => ({ k: x.k, t: tr(x.t) }))} tanlov={taxmin} onTanla={setTaxmin} />
           : !done && <BashoratQ savol={tr(S2_SAVOL)} javob={tr(tx.t)} />}
@@ -1106,7 +1137,7 @@ const Screen5 = (props) => (
     explainCorrect={{ uz: "Pastki qismi kesilgan ustunlarda farq kattalashib ko'rinadi.", ru: 'У столбиков с обрезанным низом разница выглядит больше.' }}
     explainWrong={{
       1: { uz: "Pastki qismi kesilsa, ustunlar nisbati o'zgaradi.", ru: 'Если обрезать низ, соотношение столбиков меняется.' },
-      2: { uz: "Kesilganda kichik ustun ko'proq qisqaradimi?", ru: 'Какой столбик при обрезке укорачивается сильнее?' },
+      2: { uz: "Kesilganda kichik ustun ko'proq qisqaradimi?", ru: "При обрезке маленький столбик укорачивается сильнее?" },
       3: { uz: "Ustunlar hali ham sonlarga qarab har xil.", ru: 'Столбики всё ещё разные — по числам.' },
       default: { uz: "Grafik noldan boshlanmasa, ustunlar nisbati nima bo'ladi?", ru: 'Что будет с соотношением столбиков, если график не от нуля?' }
     }}
@@ -1117,7 +1148,7 @@ const Screen5 = (props) => (
 // Sahna: chapda «Uzum» ilovasi ekrani (narsa kartalari chizmasi), o'ngda vaqt chizig'i uch nuqta bilan. Boshqa son, asoschi, narx chizilmaydi (bankda yo'q).
 const UZUM_KADR = [
   { h: { uz: '2022-yil oktabr · ishga tushdi', ru: 'Октябрь 2022 · запуск' }, m: { uz: "Uzum — internet-magazin, u 2022-yil oktabrida ishga tushgan. Saytdan emas, yetkazib berishdan boshlagan: o'z avtoparki, topshirish punktlari, ertasi kuni yetkazish.", ru: 'Uzum — интернет-магазин, он запустился в октябре 2022 года. Начал не с сайта, а с доставки: свой автопарк, пункты выдачи, доставка на следующий день.' } },
-  { h: { uz: '2024-yil mart · birinchi «unicorn»', ru: 'Март 2024 · первый «единорог»' }, m: { uz: "Bahosi 1 milliard dollardan oshgan kompaniya «unicorn» deyiladi. 2024-yil martida Uzum mamlakatning birinchi «unicorn»i bo'lgan.", ru: 'Компанию, которая оценена дороже 1 миллиарда долларов, называют «unicorn». В марте 2024 года Uzum стал первым «unicorn» страны.' } },
+  { h: { uz: '2024-yil mart · birinchi «unicorn»', ru: 'Март 2024 · первый «единорог»' }, m: { uz: "Bahosi 1 milliard dollardan oshgan kompaniya «unicorn» deyiladi. 2024-yil martida Uzum mamlakatning birinchi «unicorn»i bo'lgan.", ru: "Компанию, которую оценили дороже 1 миллиарда долларов, называют «единорогом». В марте 2024 года Uzum стал первым «единорогом» страны." } },
   { h: { uz: '2025 · oyiga ≈17 million', ru: '2025 · ≈17 миллионов в месяц' }, m: { uz: "2025-yilda Uzum'ning oyiga taxminan 17 million foydalanuvchisi bo'lgan. Bu son bir oyni sanaydi va yili bilan aytilgan.", ru: 'В 2025 году у Uzum было около 17 миллионов пользователей в месяц. Это число считает один месяц и названо с годом.' } }
 ];
 const UZ_TAXMIN = [
@@ -1157,7 +1188,7 @@ const UzumSahna = ({ b }) => (
         <i>{b === 1 ? '?' : ''}</i>{b >= 2 && <b>2025</b>}
         {b >= 2 && <span className="gp-uz-yorl" key="o">{tr({ uz: 'oyiga ≈17 million foydalanuvchi', ru: '≈17 миллионов пользователей в месяц' })}</span>}
       </div>}
-      {b >= 2 && <span className="gp-kulrang fade-step">{tr({ uz: "Shu voqeaning soni — sizga me'yor emas.", ru: 'Число этой истории — для вас не норма.' })}</span>}
+      {b >= 2 && <span className="gp-kulrang fade-step">{tr({ uz: "Shu voqeaning soni — sizga me'yor emas.", ru: "Число из этой истории — не норма для вас." })}</span>}
     </div>
   </div>
 );
@@ -1199,7 +1230,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen7 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: "Tekshiruv · Uzum'dagidek", ru: 'Проверка · как у Uzum' })}
     questionText="Uzum voqeasidagidek, Mentor «44» sonini pitchda qanday aytadi?"
-    question={tr({ uz: <h2 className="title h-ask"><Uz /> voqeasidagidek, Mentor «44» sonini <A>pitchda qanday aytadi?</A></h2>, ru: <h2 className="title h-ask">Как в истории <Uz />, <A>как Ментор назовёт</A> число «44» в питче?</h2> })}
+    question={tr({ uz: <h2 className="title h-ask"><Uz /> voqeasidagidek, Mentor «44» sonini <A>pitchda qanday aytadi?</A></h2>, ru: <h2 className="title h-ask">По примеру истории <Uz />: <A>как Ментор назовёт число «44» в питче?</A></h2> })}
     options={[
       { uz: "Uzum'ning soni bilan solishtirib", ru: 'Сравнив с числом Uzum' },
       { uz: "Ro'yxatdagi ismlarni o'qib berib", ru: 'Зачитав имена из списка' },
@@ -1267,7 +1298,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       {tugadi && <div className="gp-zaxira past">{[{ uz: 'sherik telefoni', ru: 'телефон партнёра' }, { uz: "brauzer ko'rinishi", ru: 'браузерная версия' }, { uz: 'ekran videosi', ru: 'видео с экрана' }].map((z, i) => <span key={i} className="gp-zaxira-k">{tr(z)}</span>)}</div>}
       <div className="gp-izohlar">
         {q >= 1 && <QIzoh>{tr({ uz: "Bitta telefonda zal siz bosgan tugmani ko'radi — ekran o'zi yangilanganini emas.", ru: 'На одном телефоне зал видит кнопку, которую вы нажали, — а не то, что экран обновился сам.' })}</QIzoh>}
-        {q >= 2 && <QIzoh>{tr({ uz: "2-telefonda son pastga tortmasdan, odatda bir necha soniyada o'zgaradi — zal real vaqtni shunda ko'radi.", ru: 'На 2-м телефоне число меняется без обновления свайпом, обычно за несколько секунд, — так зал видит реальное время.' })}</QIzoh>}
+        {q >= 2 && <QIzoh>{tr({ uz: "2-telefonda son pastga tortmasdan, odatda bir necha soniyada o'zgaradi — zal real vaqtni shunda ko'radi.", ru: "На 2-м телефоне число меняется без потягивания вниз — обычно за несколько секунд. Так зал и видит реальное время." })}</QIzoh>}
         {q >= 3 && <span className="gp-kulrang fade-step">{tr({ uz: "Ilova ochilmasa — ekran videosini ko'rsating yoki jonli demoni og'zaki aytib bering.", ru: 'Если приложение не откроется — покажите видео с экрана или расскажите живое демо устно.' })}</span>}
       </div>
       {ipucha && <p className="gp-ipucha fade-step">{tr({ uz: "Yoqilgan tugmani bosing — qaysi qurilmada nima o'zgarishini ko'ring.", ru: 'Нажмите активную кнопку — посмотрите, что меняется на каком устройстве.' })}</p>}
@@ -1514,7 +1545,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {yetmaydi && !done && <span className="gp-kulrang fade-step">{tr({ uz: "Bitta son ham yetadi: uni Raqamlar bo'lagida sanasi va manbasi bilan aytasiz.", ru: 'Хватит и одного числа: назовёте его в части «Цифры» с датой и источником.' })}</span>}
         </>}
         yordam={stage2 && !done && <div className="gp-kyordam">
-          <QTugma ikkinchi aria-expanded={yordam} onClick={() => setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>
+          <QTugma ikkinchi aria-expanded={yordam} onClick={() => setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>
           {yordam && <div className="gp-yordam fade-step">
             <span>{fmtCode(tr({ uz: "Ustun balandligi — son eng katta songa bo'linib, `BALANDLIK` ga ko'paytiriladi: eng katta son eng baland ustun bo'ladi. Son va sana `h` ichida: `h.soni`, `h.sana`.", ru: 'Высота столбика — число делят на самое большое и умножают на `BALANDLIK`: самое большое число — самый высокий столбик. Число и дата внутри `h`: `h.soni`, `h.sana`.' }))}</span>
             <span>{fmtCode(tr({ uz: "Eslatma (oldingi kod oynalaridan): `forEach` — ro'yxatdagi har element uchun bir marta ishlaydi · `textContent` — elementga matn yozadi · `style.height` — element balandligi.", ru: 'Напоминание (из прошлых окон кода): `forEach` — срабатывает один раз для каждого элемента списка · `textContent` — пишет текст в элемент · `style.height` — высота элемента.' }))}</span>
@@ -1554,10 +1585,10 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 10 — PITCH YOZISH (QMustaqil, USTAXONA — bittadan karta, besh bo'lak; SABOQ 9, 13, 17, 29; E 43, E 53) · yozadi pm-m10d12-pitch.bolaklar · nishon fiveParts =====
 // Kirish (P-046): pm-m10d11-pitch (bolaklar, davolar) · pm-m10d10-hisobot (bosh, royxat, zaxira.ish, tuzatishQator) · pm-m10d1-lending (foydalar) · 9-ekran grafigi. Yo'q bo'lsa — bo'sh maydon.
 const MAYDON = {
-  muammo: [{ k: 'gap', n: { uz: 'Muammo gapi', ru: 'Фраза о проблеме' }, ph: { uz: 'Kim nimadan qiynaladi?', ru: 'Кто и от чего страдает?' } }, { k: 'dalil', n: { uz: 'Dalil', ru: 'Доказательство' }, ph: { uz: 'Son yoki kuzatuv — qayerdan?', ru: 'Число или наблюдение — откуда?' } }],
+  muammo: [{ k: 'gap', n: { uz: 'Muammo gapi', ru: 'Фраза о проблеме' }, ph: { uz: 'Kim nimadan qiynaladi?', ru: 'Кто и от чего страдает?' } }, { k: 'dalil', n: { uz: 'Dalil', ru: "Довод" }, ph: { uz: 'Son yoki kuzatuv — qayerdan?', ru: 'Число или наблюдение — откуда?' } }],
   yechim: [{ k: 'yechim', n: { uz: 'Yechim', ru: 'Решение' }, ph: { uz: 'Mahsulot nima qiladi va odamga nima beradi?', ru: 'Что делает продукт и что даёт человеку?' }, katta: true }],
   demo: [{ k: 'bosiladi', n: { uz: '1-qurilmada', ru: 'На 1-м устройстве' }, ph: { uz: 'Qaysi tugmani bosasiz?', ru: 'Какую кнопку нажмёте?' } }, { k: 'ozgaradi', n: { uz: '2-qurilmada', ru: 'На 2-м устройстве' }, ph: { uz: "Nima o'zi o'zgaradi?", ru: 'Что изменится само?' } }],
-  raqamlar: [{ k: 'bosh', n: { uz: 'Bosh raqam', ru: 'Главная цифра' }, ph: { uz: 'Nima sanaladi va qancha?', ru: 'Что считается и сколько?' } }, { k: 'halolGap', n: { uz: 'Halol gap', ru: 'Честная фраза' }, ph: { uz: 'Qanday sanaldi, xulosaga yetadimi?', ru: 'Как посчитано, хватает ли для вывода?' }, katta: true }],
+  raqamlar: [{ k: 'bosh', n: { uz: 'Bosh raqam', ru: "Главное число" }, ph: { uz: 'Nima sanaladi va qancha?', ru: 'Что считается и сколько?' } }, { k: 'halolGap', n: { uz: 'Halol gap', ru: 'Честная фраза' }, ph: { uz: 'Qanday sanaldi, xulosaga yetadimi?', ru: 'Как посчитано, хватает ли для вывода?' }, katta: true }],
   keyingi: [{ k: 'keyingi', n: { uz: 'Keyingi qadam', ru: 'Следующий шаг' }, ph: { uz: 'Keyingi haftada nima qilasiz?', ru: 'Что сделаете на следующей неделе?' } }]
 };
 const BOR_MAYDON = { k: 'manba', n: { uz: 'Bor soningiz', ru: 'Ваше число' }, ph: { uz: 'Nima sanaldi va qancha?', ru: 'Что посчитано и сколько?' } };
@@ -1570,13 +1601,13 @@ const VADA_RE = /(^|[^a-z'])(tez orada|albatta|yetamiz|aniq bo'ladi)(?![a-z'])/;
 const BAHO_RE = /(^|[^a-z'])(yomon|zerikarli|yoqmadi)(?![a-z'])/;
 const PX = {
   dalil: { blok: false, t: { uz: "Muammo borligini nima ko'rsatadi? Son yoki kuzatuv yozing.", ru: 'Что показывает, что проблема есть? Напишите число или наблюдение.' } },
-  texno: { blok: false, t: { uz: 'Bu texnologiya — mahsulot odamga nima beradi?', ru: 'Это технология — что продукт даёт человеку?' } },
+  texno: { blok: false, t: { uz: 'Bu texnologiya — mahsulot odamga nima beradi?', ru: "Это про технологию — а что продукт даёт человеку?" } },
   qurilma2: { blok: true, t: { uz: "Ikkinchi qurilmada nima o'zgarishini yozing.", ru: 'Напишите, что изменится на втором устройстве.' } },
   halol: { blok: true, t: { uz: 'Halol gap: son qanday sanaldi, xulosaga yetadimi?', ru: 'Честная фраза: как посчитано число, хватает ли для вывода?' } },
   sinfdosh: { blok: false, t: { uz: 'Sinfdoshlar ham sanalgan — buni halol gapda ayting.', ru: 'Одноклассников тоже посчитали — скажите это в честной фразе.' } },
   vada: { blok: false, t: { uz: "Bu va'da — keyingi haftada aynan nima qilasiz?", ru: 'Это обещание — что именно сделаете на следующей неделе?' } },
   keyingi: { blok: true, t: { uz: 'Keyingi haftadagi bitta ishni yozing.', ru: 'Напишите одно дело на следующую неделю.' } },
-  ozgarmadi: { blok: true, t: { uz: "Matn o'zgarmadi — varaqdagi izohni qayta o'qing.", ru: 'Текст не изменился — перечитайте комментарий в листе.' } }
+  ozgarmadi: { blok: true, t: { uz: "Matn o'zgarmadi — varaqdagi izohni qayta o'qing.", ru: "Текст не изменился — перечитайте комментарий на листе." } }
 };
 // Tekshiruv (PM-108): birinchi topilgan xato; blok — o'tkazmaydi, yo'naltiruvchisi ikkinchi «Saqlash» bilan o'tadi
 function bolakTekshir(id, f, sinfdoshBor) {
@@ -1627,10 +1658,10 @@ const kirishOl = () => {
   };
 };
 const YORDAM10 = {
-  muammo: { uz: "Mentor misolida: «O'yinchilar jamoaga odam yig'ishda qiynaladi.» Dalil: «Men so'ragan 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.» (intervyu yozuvlari).", ru: 'В примере Ментора: «Игрокам трудно собрать людей в команду». Доказательство: «У 4 из 5 игроков, которых я спросил, в последней игре не хватило людей или кто-то не пришёл» (записи интервью).' },
-  yechim: { uz: "Mentor misolida: «Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.» va lendingdagi foydalar: «Bir bosishda jamoadasiz», «Nechta odam yig'ilganini so'rab o'tirmaysiz», «Kim aniq kelishini o'yindan oldin bilasiz».", ru: 'В примере Ментора: «Организатор объявляет игру, игроки присоединяются одним нажатием и в день игры подтверждают, что придут» и пользы с лендинга: «Одно нажатие — и вы в команде», «Не нужно спрашивать, сколько людей собралось», «До игры знаете, кто точно придёт».' },
+  muammo: { uz: "Mentor misolida: «O'yinchilar jamoaga odam yig'ishda qiynaladi.» Dalil: «Men so'ragan 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.» (intervyu yozuvlari).", ru: "В примере Ментора: «Игрокам трудно собрать людей в команду». Довод: «У 4 из 5 игроков, которых я спросил, в последней игре не хватило людей или кто-то не пришёл» (записи интервью)." },
+  yechim: { uz: "Mentor misolida: «Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.» va lendingdagi foydalar: «Bir bosishda jamoadasiz», «Nechta odam yig'ilganini so'rab o'tirmaysiz», «Kim aniq kelishini o'yindan oldin bilasiz».", ru: "В примере Ментора: «Организатор объявляет игру, игроки присоединяются одним нажатием и в день игры подтверждают, что придут», а польза на лендинге: «Одно нажатие — и вы в команде», «Не нужно спрашивать, сколько людей собралось», «До игры знаете, кто точно придёт»." },
   demo: { uz: "Mentor misolida: 1-telefonda «Shanba, 18:00» o'yinida «Qo'shilaman» bosiladi, 2-telefonda «8 / 10» o'rniga «9 / 10» o'zi chiqadi.", ru: 'В примере Ментора: на 1-м телефоне в игре «Суббота, 18:00» нажимают «Присоединяюсь», на 2-м вместо «8 / 10» само появляется «9 / 10».' },
-  raqamlar: { uz: "Mentor misolida: grafik «Ro'yxatdan o'tganlar, jami» — 20, 38, 44; bosh raqam — haftada to'lgan o'yinlar: birinchi haftada 1, ikkinchi haftada 3; halol gap — «44 kishidan 11 tasi — sinfdoshlarim; ikkinchi haftada o'sish sekinlashdi (18 dan keyin 6).» Sonlarni o'zini ayting: «uch barobar oshdi» emas — «1 ta edi, 3 ta bo'ldi».", ru: 'В примере Ментора: график «Зарегистрировались, всего» — 20, 38, 44; главная цифра — заполненные игры в неделю: в первую неделю 1, во вторую 3; честная фраза — «Из 44 человек 11 — мои одноклассники; во вторую неделю рост замедлился (после 18 — 6)». Называйте сами числа: не «выросло втрое», а «было 1, стало 3».' },
+  raqamlar: { uz: "Mentor misolida: grafik «Ro'yxatdan o'tganlar, jami» — 20, 38, 44; bosh raqam — haftada to'lgan o'yinlar: birinchi haftada 1, ikkinchi haftada 3; halol gap — «44 kishidan 11 tasi — sinfdoshlarim; ikkinchi haftada o'sish sekinlashdi (18 dan keyin 6).» Sonlarni o'zini ayting: «uch barobar oshdi» emas — «1 ta edi, 3 ta bo'ldi».", ru: "В примере Ментора: график «Зарегистрировались, всего» — 20, 38, 44; главное число — заполненные игры в неделю: в первую неделю 1, во вторую 3; честная фраза — «Из 44 человек 11 — мои одноклассники; во вторую неделю рост замедлился (после 18 — 6)». Называйте сами числа: не «выросло втрое», а «было 1, стало 3»." },
   keyingi: { uz: "Mentor misolida: «E'lon berilgach «Havolani ulashish» tugmasi bilan tashkilotchi havolani o'z jamoasiga yuboradi — maqsad 50.»", ru: 'В примере Ментора: «После объявления организатор кнопкой «Поделиться ссылкой» отправляет ссылку своей команде — цель 50».' }
 };
 const YORDAM_UMUMIY = { uz: "Sonlaringiz kichik bo'lsa ham — o'zingizniki: o'ylab topilmaydi. 50 — baho emas. Web-trekda ham shunday: ikkinchi qurilma — boshqa brauzer oynasi.", ru: 'Даже если числа маленькие — они ваши: их не придумывают. 50 — не оценка. В веб-треке так же: второе устройство — другое окно браузера.' };
@@ -1678,11 +1709,11 @@ const BolakForma = ({ id, f, setF, xato, kirish, yordam, setYordam, onSaqla, inp
       ))}
       {id === 'raqamlar' && kirish.zaxiraJ.length > 0 && <div className="gp-zaxira-j">{kirish.zaxiraJ.map((z, i) => <span key={i} className="gp-kulrang">{tr({ uz: "Zal so'rasa — javobingiz tayyor:", ru: 'Если зал спросит — ответ готов:' })} {z.gap}{z.dalil ? ' · ' + z.dalil : ''}</span>)}</div>}
       {xato && <QXato>{tr(PX[xato.x].t)}</QXato>}
-      {xato && !PX[xato.x].blok && <span className="gp-kulrang">{tr({ uz: 'Shunday qoldirsangiz — yana «Saqlash»ni bosing.', ru: 'Если оставить так — снова нажмите «Сохранить».' })}</span>}
+      {xato && !PX[xato.x].blok && <span className="gp-kulrang">{tr({ uz: 'Shunday qoldirsangiz — yana «Saqlash»ni bosing.', ru: "Если оставляете так — снова нажмите «Сохранить»." })}</span>}
       {yordam && <div className="gp-yordam fade-step"><span>{tr(YORDAM10[id])}</span><span>{tr(YORDAM_UMUMIY)}</span></div>}
       <div className="gp-karta-tug">
         <QTugma className={cxx(bolakTayyormi(id, f) && !joriyK && 'gp-halqa')} disabled={!bolakTayyormi(id, f)} onClick={onSaqla}>{tr({ uz: 'Saqlash', ru: 'Сохранить' })}</QTugma>
-        <QTugma ikkinchi className="gp-yordam-t" aria-expanded={yordam} onClick={() => setYordam(y => !y)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>
+        <QTugma ikkinchi className="gp-yordam-t" aria-expanded={yordam} onClick={() => setYordam(y => !y)}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>
       </div>
     </div>
   );
@@ -1745,6 +1776,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (birinchi) nishonRef.current = true;
     onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: "Besh bo'lak", saqlangan: yangiSaq, toliq, solved: true, picked: true, correct: toliq });
     if (birinchi && live && live.mode === 'student') live.submitAnswer(PRACTICE_BASE + screen, 'practice', 0, true, 0);
+    if (tt((tayyorBolaklar.raqamlar || {}).halolGap)) jonliBelgi(live, ZONA_2, screen); // Mentor statistikasi: «Halol gapi borlar»
   };
   const strip = !isMentor && (
     <div className="gp-strip">
@@ -1769,7 +1801,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {done && !tahrir && !isMentor && <QXulosa>{grafikBor
             ? tr({ uz: "Besh bo'lak tayyor: Raqamlar bo'lagida grafik va halol gap bor.", ru: 'Пять частей готовы: в части «Цифры» есть график и честная фраза.' })
             : tr({ uz: "Besh bo'lak tayyor — Raqamlar bo'lagida bor soningiz va halol gap.", ru: 'Пять частей готовы — в части «Цифры» ваше число и честная фраза.' })}</QXulosa>}
-          {isMentor && <MentorPracticeStats live={live} screen={screen} />}
+          {isMentor && <MentorPracticeStats live={live} screen={screen} sanoq={[{ y: { uz: "Besh bo'lakni yozganlar", ru: 'Написали пять частей' }, zona: PRACTICE_BASE }, { y: { uz: 'Halol gapi borlar', ru: "С честной фразой" }, zona: ZONA_2 }]} />}
         </>}
       />
       {qatlam}
@@ -1780,8 +1812,8 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 11 — JUFTLIKDA PITCH (QMustaqil, juftlik + yakka rejim; 3 tugma: Ayting · Baholang · Tuzating) · yozadi pm-m10d12-pitch (vaqt, varaq, tuzatildi, varaqTur) · nishonlar livePitch, partFixed =====
 const PITCHDAN_OLDIN = [
-  { uz: "Ikki qurilmada ilova ochiq, ikkinchisida — boshqa akkaunt; «O'yinlar» ekranida belgi «Ulangan».", ru: 'Приложение открыто на двух устройствах, на втором — другой аккаунт; на экране «Игры» отметка «Подключено».' },
-  { uz: "Demo uchun real odamlar qo'shilmagan o'yinni tanlang; demodan keyin «O'yindan chiqish».", ru: 'Для демо выберите игру, где нет реальных людей; после демо — «Выйти из игры».' },
+  { uz: "Ikki qurilmada ilova ochiq, ikkinchisida — boshqa akkaunt; «O'yinlar» ekranida belgi «Ulangan».", ru: "Приложение открыто на двух устройствах, на втором — другой аккаунт; на экране «Игры» значок «Подключено»." },
+  { uz: "Demo uchun real odamlar qo'shilmagan o'yinni tanlang; demodan keyin «O'yindan chiqish».", ru: "Для демо выберите игру, к которой не присоединились реальные люди; после демо — «Выйти из игры»." },
   { uz: 'Web-trekda: ikkinchi oyna — boshqa brauzer yoki telefon brauzeri.', ru: 'В веб-треке: второе окно — другой браузер или браузер телефона.' },
   { uz: "Laptopda Neon, sanoq sahifasi va .env yopiq — ekran zalga ko'rinadi.", ru: 'На ноутбуке Neon, страница подсчёта и .env закрыты — экран виден залу.' }
 ];
@@ -1847,7 +1879,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const hammaOk = varaq.every(r => r.belgi === '✓');
   const saqlaKalit = (patch) => { if (isMentor || !ozPitch) return; pitchYoz(patch); };
   const boshla = () => { setVaqt(0); setYur(true); setToxtadi(false); };
-  const toxtat = () => { setYur(false); setToxtadi(true); if (qadam === 0) setQadam(1); };
+  const toxtat = () => { setYur(false); setToxtadi(true); if (qadam === 0) setQadam(1); jonliBelgi(live, ZONA_2, screen, vaqt <= JAMI_VAQT ? 1 : 0); };
   const qayta = () => { setYur(false); setVaqt(0); setToxtadi(false); };
   const setQ = (i, d) => { setVaraq(v => v.map((r, k) => (k === i ? { ...r, ...d } : r))); setXato(null); };
   const saqlaVaraq = () => {
@@ -1875,6 +1907,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     const p = pitchOl(); const b = p.bolaklar || {};
     saqlaKalit({ bolaklar: { ...b, [id]: id === 'yechim' || id === 'keyingi' ? tt(tahrir[id]) : tahrir[id] }, varaq: nv.map(r => ({ bolak: r.bolak, belgi: r.belgi, izoh: tt(r.izoh) })), tuzatildi: tz });
     earn('partFixed');
+    jonliBelgi(live, ZONA_3, screen);
     onAnswer(screen, { stage: 'juftlik', screenIdx: screen, qadam: 2, vaqt, varaq: nv, solved: true, picked: true, correct: true });
   };
   // Sahna: o'quvchining besh bo'lagi va taymer chizig'i; taymer yurganda joriy bo'lak ochiq (Raqamlar — grafik kattalashadi)
@@ -1907,6 +1940,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
   const taymerTug = (
     <div className="gp-taymer-tug">
+      {isMentor && <span className={cxx('gp-katta-soat', vaqt > JAMI_VAQT && 'oshdi')} aria-live="off">{mss(vaqt)}<small> / {mss(JAMI_VAQT)}</small></span>}
       {!yur && !toxtadi && <QTugma className="gp-halqa" onClick={boshla}>{tr({ uz: '5 daqiqani boshlash', ru: 'Запустить 5 минут' })}</QTugma>}
       {yur && <><span className="gp-gapir"><i />{tr({ uz: 'Hozir siz gapirasiz', ru: 'Сейчас говорите вы' })} · <b>{mss(vaqt)}</b></span><QTugma className="gp-halqa" onClick={toxtat}>{tr({ uz: "To'xtatish", ru: 'Остановить' })}</QTugma></>}
       {!yur && toxtadi && <><span className="gp-gapir tox">{tr({ uz: 'Vaqt', ru: 'Время' })}: <b>{mss(vaqt)}</b></span><QTugma ikkinchi onClick={qayta}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</QTugma></>}
@@ -1925,7 +1959,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <BaholashVaragi varaq={varaq} vaqt={vaqt} faol={qadam === 1 && korQ === 1} setQ={setQ} onBos={korQ === 2 ? (i) => (ochiladi(i) ? och : null) : null} tanlov={ochiq} />
       {qadam === 1 && korQ === 1 && <div className="gp-karta-tug"><QTugma className={cxx(varaqTayyormi(varaq) && 'gp-halqa')} onClick={saqlaVaraq}>{tr({ uz: 'Saqlash', ru: 'Сохранить' })}</QTugma></div>}
       {xato && xato.k && <QXato>{tr(VX[xato.k].t)}</QXato>}
-      {xato && xato.k && !VX[xato.k].blok && <span className="gp-kulrang">{tr({ uz: 'Shunday qoldirsangiz — yana «Saqlash»ni bosing.', ru: 'Если оставить так — снова нажмите «Сохранить».' })}</span>}
+      {xato && xato.k && !VX[xato.k].blok && <span className="gp-kulrang">{tr({ uz: 'Shunday qoldirsangiz — yana «Saqlash»ni bosing.', ru: "Если оставляете так — снова нажмите «Сохранить»." })}</span>}
       {qadam >= 2 && vaqt > JAMI_VAQT && <QIzoh>{tr({ uz: "Vaqt 5 daqiqadan oshdi — har bo'lakdan bitta ortiqcha gapni oling.", ru: 'Время больше 5 минут — уберите из каждой части по одной лишней фразе.' })}</QIzoh>}
     </div>
   );
@@ -1934,7 +1968,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
   const mGap = isMentor ? { uz: "Ikki qurilmada ilovani ochib qo'ying, keyin «5 daqiqani boshlash»ni bosib, pitchni ovoz chiqarib ayting.", ru: 'Откройте приложение на двух устройствах, затем нажмите «Запустить 5 минут» и расскажите питч вслух.' }
     : korQ === 1 ? { uz: "Gap tugagach, dars ochiq turgan qurilmangizni sherigingizga bering — u har bo'lakka ✓ yoki ✗ qo'yadi.", ru: 'Когда закончите, дайте партнёру устройство с открытым уроком — он поставит каждой части ✓ или ✗.' }
-      : korQ === 2 ? (hammaOk ? { uz: "Sherigingiz tanlagan bo'lakni yanada aniqroq qilib yozing.", ru: 'Напишите часть, которую выбрал партнёр, ещё точнее.' } : { uz: "✗ olgan bo'lakni varaqdagi izohga qarab qayta yozing.", ru: 'Перепишите часть с ✗ по комментарию в листе.' })
+      : korQ === 2 ? (hammaOk ? { uz: "Sherigingiz tanlagan bo'lakni yanada aniqroq qilib yozing.", ru: 'Напишите часть, которую выбрал партнёр, ещё точнее.' } : { uz: "✗ olgan bo'lakni varaqdagi izohga qarab qayta yozing.", ru: "Перепишите часть с ✗ по комментарию на листе." })
         : juft ? { uz: "Ikki qurilmada ilovani ochib qo'ying, keyin «5 daqiqani boshlash»ni bosib, sherigingizga ayting.", ru: 'Откройте приложение на двух устройствах, затем нажмите «Запустить 5 минут» и расскажите партнёру.' }
           : { uz: "Ikki qurilmada ilovani ochib qo'ying, keyin «5 daqiqani boshlash»ni bosib, pitchni ovoz chiqarib ayting.", ru: 'Откройте приложение на двух устройствах, затем нажмите «Запустить 5 минут» и расскажите питч вслух.' };
   return (
@@ -1948,7 +1982,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="gp-s11-chap">{ayting}{tuzKarta || <Zoomable>{sahna}</Zoomable>}</div>
             {varaqBlok}
           </div>
-          {isMentor && <MentorPracticeStats live={live} screen={screen} />}
+          {isMentor && <MentorPracticeStats live={live} screen={screen} sanoq={[{ y: { uz: 'Pitchni aytganlar', ru: 'Рассказали питч' }, zona: ZONA_2 }, { y: { uz: "5 daqiqaga sig'ganlar", ru: 'Уложились в 5 минут' }, zona: ZONA_2, shart: r => r.picked === 1 }, { y: { uz: "Bo'lak tuzatganlar", ru: 'Исправили часть' }, zona: ZONA_3 }]} />}
           {done && !isMentor && <QXulosa>{tr({ uz: "Varaq to'ldi va bitta bo'lak o'zgartirildi. Qolgan ✗ bo'laklar — uyga vazifada.", ru: 'Лист заполнен, и одна часть изменена. Остальные части с ✗ — в домашнем задании.' })}</QXulosa>}
         </>}
       />
@@ -1974,7 +2008,7 @@ const Screen12 = (props) => (
       { uz: 'Ustunlarni birinchi haftadagi sondan boshlaysiz', ru: 'Начнёте столбики с числа первой недели' },
       { uz: "Sekinlashuvni aytmay, eng baland ustunni ko'rsatasiz", ru: 'Не скажете о замедлении и покажете самый высокий столбик' }
     ]} correctIdx={1}
-    explainCorrect={{ uz: 'Sekinlashuv yashirilmaydi — keyingi ishingizni aytasiz.', ru: 'Замедление не скрывают — называете своё следующее дело.' }}
+    explainCorrect={{ uz: 'Sekinlashuv yashirilmaydi — keyingi ishingizni aytasiz.', ru: "Замедление не скрывают — вы говорите, что будете делать дальше." }}
     explainWrong={{
       0: { uz: "Ustun olinsa, oraliqlar teng bo'lmay qoladi.", ru: 'Если убрать столбик, шаг станет неравным.' },
       2: { uz: "Noldan boshlanmasa, o'sish katta ko'rinadi.", ru: 'Если не от нуля, рост выглядит большим.' },
@@ -1990,7 +2024,7 @@ const ACHIEVEMENTS = {
   growthChart: { icon: '📈', name: 'Growth Chart!', desc: { uz: "O'z sonlaringizdan noldan boshlangan o'sish grafigini chizdingiz", ru: 'Вы начертили по своим числам график роста от нуля' } },
   fiveParts: { icon: '🖐️', name: 'Five Parts!', desc: { uz: "Pitchingizni besh bo'lakka, Raqamlar bo'lagi bilan yozdingiz", ru: 'Вы написали питч из пяти частей, с частью «Цифры»' } },
   livePitch: { icon: '🎤', name: 'Live Pitch!', desc: { uz: 'Pitchingizni 5 daqiqada aytib, baholatdingiz', ru: 'Вы рассказали питч за 5 минут и получили оценку' } },
-  partFixed: { icon: '🔧', name: 'Part Fixed!', desc: { uz: "Varaqdagi izohdan keyin bo'lakni qayta yozdingiz", ru: 'Вы переписали часть по комментарию из листа' } }
+  partFixed: { icon: '🔧', name: 'Part Fixed!', desc: { uz: "Varaqdagi izohdan keyin bo'lakni qayta yozdingiz", ru: "Вы переписали часть по комментарию на листе" } }
 };
 // Ekran id → nishon: s9 — darvoza birinchi urinishda + «Bajardim» + o'z sonlari (correct shu) · s10 — 5/5 saqlanganda. s11 ning ikki nishoni — ekrandan (EarnCtx)
 const ACH_TRIGGERS = { s9: 'growthChart', s10: 'fiveParts' };
@@ -2073,14 +2107,14 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang — 12 savol, ✔ o'rni MD dagidek: A 1·6·11 · B 2·7·10 · C 3·8·12 · D 4·5·9 (3/3/3/3)
 const QUIZ_BANK = [
   { q: { uz: "Mentor misolida Muammo bo'lagiga qancha vaqt ajratilgan?", ru: 'Сколько времени в примере Ментора отведено на часть «Проблема»?' }, opts: [{ uz: 'Taxminan 40 soniya', ru: 'Около 40 секунд' }, { uz: 'Taxminan 2 daqiqa', ru: 'Около 2 минут' }, { uz: 'Taxminan 3 daqiqa', ru: 'Около 3 минут' }, { uz: 'Taxminan 10 soniya', ru: 'Около 10 секунд' }], correct: 0 },
-  { q: { uz: "Raqamlar bo'lagida grafik va bosh raqam yonida yana nima turadi?", ru: 'Что ещё стоит в части «Цифры» рядом с графиком и главной цифрой?' }, opts: [{ uz: 'Uzum sonlari bilan solishtiruv', ru: 'Сравнение с числами Uzum' }, { uz: 'Sonlar haqida bitta halol gap', ru: 'Одна честная фраза о числах' }, { uz: "Hamma kunlarning to'liq jadvali", ru: 'Полная таблица за все дни' }, { uz: "Sinfdoshlarning ismlari ro'yxati", ru: 'Список имён одноклассников' }], correct: 1 },
+  { q: { uz: "Raqamlar bo'lagida grafik va bosh raqam yonida yana nima turadi?", ru: "Что ещё стоит в части «Цифры» рядом с графиком и главным числом?" }, opts: [{ uz: 'Uzum sonlari bilan solishtiruv', ru: 'Сравнение с числами Uzum' }, { uz: 'Sonlar haqida bitta halol gap', ru: 'Одна честная фраза о числах' }, { uz: "Hamma kunlarning to'liq jadvali", ru: 'Полная таблица за все дни' }, { uz: "Sinfdoshlarning ismlari ro'yxati", ru: 'Список имён одноклассников' }], correct: 1 },
   { q: { uz: 'Grafikda «ishga tushirish kuni» yozuvi qayerda turadi?', ru: 'Где на графике стоит надпись «день запуска»?' }, opts: [{ uz: 'Birinchi ustunning ustida', ru: 'Над первым столбиком' }, { uz: "Grafik sarlavhasi o'rnida", ru: 'На месте заголовка графика' }, { uz: 'Birinchi ustunning ostida', ru: 'Под первым столбиком' }, { uz: 'Eng baland ustun ichida', ru: 'Внутри самого высокого столбика' }], correct: 2 },
   { q: { uz: "O'sish grafigining sarlavhasiga nima yoziladi?", ru: 'Что пишут в заголовке графика роста?' }, opts: [{ uz: 'Mahsulot nomi va logotipi', ru: 'Название и логотип продукта' }, { uz: 'Pitch aytiladigan sana', ru: 'Дату, когда расскажут питч' }, { uz: 'Grafikdagi eng katta son', ru: 'Самое большое число на графике' }, { uz: 'Grafikda nima sanalgani', ru: 'Что посчитано на графике' }], correct: 3 },
   { q: { uz: 'Grafikdan bir hafta tushib qolsa, nima buziladi?', ru: 'Что сломается, если из графика выпадет неделя?' }, opts: [{ uz: 'Ustunlar noldan boshlanmay qoladi', ru: 'Столбики перестанут начинаться с нуля' }, { uz: "Sarlavha o'chib, ko'rinmay qoladi", ru: 'Заголовок исчезнет и не будет виден' }, { uz: "Sonlar o'zi kattaroq bo'lib qoladi", ru: 'Числа сами станут больше' }, { uz: "Oraliqlar endi teng bo'lmay qoladi", ru: 'Шаг станет неравным' }], correct: 3 },
   { q: { uz: 'Uzum qachon ishga tushgan?', ru: 'Когда запустился Uzum?' }, opts: [{ uz: '2022-yil oktabrida', ru: 'В октябре 2022 года' }, { uz: '2024-yil martida', ru: 'В марте 2024 года' }, { uz: '2020-yil oktabrida', ru: 'В октябре 2020 года' }, { uz: '2025-yil martida', ru: 'В марте 2025 года' }], correct: 0 },
-  { q: { uz: '«Unicorn» deb qanday kompaniyaga aytiladi?', ru: 'Какую компанию называют «unicorn»?' }, opts: [{ uz: "Oyiga million foydalanuvchisi bo'lgan", ru: 'С миллионом пользователей в месяц' }, { uz: 'Bahosi 1 milliard dollardan oshgan', ru: 'Оценённую дороже 1 миллиарда долларов' }, { uz: "Bir yilda o'nta shaharda ochilgan", ru: 'Открывшуюся за год в десяти городах' }, { uz: "O'z avtoparki va punktlari bo'lgan", ru: 'Со своим автопарком и пунктами' }], correct: 1 },
-  { q: { uz: "Jonli demoda ikkinchi telefonda zal nimani ko'radi?", ru: 'Что видит зал на втором телефоне в живом демо?' }, opts: [{ uz: "Siz bosgan tugma o'chib qolganini", ru: 'Что нажатая вами кнопка погасла' }, { uz: 'Ilova qaytadan ochilib yuklanganini', ru: 'Что приложение заново открылось и загрузилось' }, { uz: "Son pastga tortmasdan o'zgarganini", ru: 'Что число изменилось без обновления свайпом' }, { uz: "Ulanish belgisi o'chib qolganini", ru: 'Что отметка подключения погасла' }], correct: 2 },
-  { q: { uz: 'Pitchdan oldin ikkala qurilmada nimani tekshirasiz?', ru: 'Что проверите на обоих устройствах перед питчем?' }, opts: [{ uz: 'Ikkalasida bitta akkaunt borligini', ru: 'Что на обоих один аккаунт' }, { uz: 'Ilova hali ochilmay yopiq turganini', ru: 'Что приложение ещё закрыто' }, { uz: "Ro'yxat pastga tortib yangilanganini", ru: 'Что список обновлён свайпом вниз' }, { uz: "Belgi «Ulangan» bo'lib turganini", ru: 'Что отметка — «Подключено»' }], correct: 3 },
+  { q: { uz: '«Unicorn» deb qanday kompaniyaga aytiladi?', ru: "Какую компанию называют «единорогом»?" }, opts: [{ uz: "Oyiga million foydalanuvchisi bo'lgan", ru: 'С миллионом пользователей в месяц' }, { uz: 'Bahosi 1 milliard dollardan oshgan', ru: 'Оценённую дороже 1 миллиарда долларов' }, { uz: "Bir yilda o'nta shaharda ochilgan", ru: 'Открывшуюся за год в десяти городах' }, { uz: "O'z avtoparki va punktlari bo'lgan", ru: 'Со своим автопарком и пунктами' }], correct: 1 },
+  { q: { uz: "Jonli demoda ikkinchi telefonda zal nimani ko'radi?", ru: 'Что видит зал на втором телефоне в живом демо?' }, opts: [{ uz: "Siz bosgan tugma o'chib qolganini", ru: 'Что нажатая вами кнопка погасла' }, { uz: 'Ilova qaytadan ochilib yuklanganini', ru: 'Что приложение заново открылось и загрузилось' }, { uz: "Son pastga tortmasdan o'zgarganini", ru: "Что число изменилось без потягивания вниз" }, { uz: "Ulanish belgisi o'chib qolganini", ru: "Что значок соединения погас" }], correct: 2 },
+  { q: { uz: 'Pitchdan oldin ikkala qurilmada nimani tekshirasiz?', ru: 'Что проверите на обоих устройствах перед питчем?' }, opts: [{ uz: 'Ikkalasida bitta akkaunt borligini', ru: 'Что на обоих один аккаунт' }, { uz: 'Ilova hali ochilmay yopiq turganini', ru: 'Что приложение ещё закрыто' }, { uz: "Ro'yxat pastga tortib yangilanganini", ru: "Что список обновили потягиванием вниз" }, { uz: "Belgi «Ulangan» bo'lib turganini", ru: "Что значок — «Подключено»" }], correct: 3 },
   { q: { uz: 'Hisobotingizda sinfdoshlar ham bor. Halol gapda nima deysiz?', ru: 'В вашем отчёте есть и одноклассники. Что скажете в честной фразе?' }, opts: [{ uz: 'Sinfdoshlarni sanoqdan butunlay chiqaraman', ru: 'Полностью уберу одноклассников из подсчёта' }, { uz: 'Ulardan nechtasi sinfdosh ekanini aytaman', ru: 'Скажу, сколько из них одноклассники' }, { uz: 'Hammasini «foydalanuvchi» deb aytaman', ru: 'Назову всех «пользователями»' }, { uz: 'Sinfdoshlar haqida umuman gapirmayman', ru: 'Вообще не буду говорить об одноклассниках' }], correct: 1 },
   { q: { uz: 'Grafikdagi sonlarni qayerdan olasiz?', ru: 'Откуда берёте числа для графика?' }, opts: [{ uz: "O'z Database'ingizdan, SQL bilan", ru: 'Из своей Database, с помощью SQL' }, { uz: 'Sinfdoshlar aytgan taxminiy sondan', ru: 'Из примерного числа от одноклассников' }, { uz: 'Mentor misolidagi tayyor sonlardan', ru: 'Из готовых чисел примера Ментора' }, { uz: "Umami'dagi URL tashriflaridan", ru: 'Из посещений URL в Umami' }], correct: 0 },
   { q: { uz: 'Sherik Raqamlar qatoriga ✗ va «nima sanalgan?» deb yozdi. Nima qilasiz?', ru: 'Партнёр поставил строке «Цифры» ✗ и написал «что посчитано?». Что сделаете?' }, opts: [{ uz: "Raqamlar bo'lagini pitchdan olasiz", ru: 'Уберёте часть «Цифры» из питча' }, { uz: "Sonlarni kattaroq qilib ko'rsatasiz", ru: 'Покажете числа крупнее' }, { uz: 'Sarlavhaga nima sanalganini yozasiz', ru: 'Напишете в заголовке, что посчитано' }, { uz: "Sherigingizdan ✓ qo'yishini so'raysiz", ru: 'Попросите партнёра поставить ✓' }], correct: 2 }
@@ -2593,29 +2627,50 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
 // ===== 🛠️ JONLI PRAKTIKA (reusable) — o'quvchi VS Code'da bajaradi, ustoz kuzatadi =====
 // signal zonasi: <100 test · 100+ arena · 500+ praktika (to'qnashmaydi).
 const PRACTICE_BASE = 500;
+// Qo'shimcha Mentor statistikasi (MD «Mentor statistikasi», F-1006-389; 11-Modul MentorSanoq naqshi).
+// Server har zonada o'quvchining BIRINCHI signalini saqlaydi — shuning uchun har holat o'z zonasida: 500 — bajardi (yuqorida), 600 va 700 — ekranga xos holatlar.
+const ZONA_2 = 600;
+const ZONA_3 = 700;
+const _belgilar = new Set();
+const jonliBelgi = (live, zona, screen, picked = 0) => {
+  if (!live || live.mode !== 'student') return;
+  const k = zona + screen;
+  if (_belgilar.has(k)) return;
+  _belgilar.add(k);
+  live.submitAnswer(k, 'mstat', picked, true, 0);
+};
 // Mentor ko'rinishi sloti — "kim bajardi" jonli chiplar paneli. JONLI roli to'ldiradi.
-const MentorPracticeStats = ({ live, screen }) => {
-  const [data, setData] = useState({ players: null, doneIds: new Set() });
+// sanoq — [{ y: { uz, ru }, zona, shart?, qiymat? }] yorliqli sonlar · chip — { zona, t: (qator) => matn, toliq?: (qator) => bool } o'quvchi yonidagi qisqa son
+const MentorPracticeStats = ({ live, screen, sanoq, chip }) => {
+  const zonalar = [...new Set([...(sanoq || []).map(s => s.zona), ...(chip ? [chip.zona] : [])].filter(z => z !== PRACTICE_BASE))];
+  const [data, setData] = useState({ players: null, rows: [], z: {} });
   useEffect(() => {
     if (!live || live.mode !== 'mentor' || !live.pin) return;
     let on = true, t = null;
     const tick = async () => {
       try {
         // Praktika signali 500+ zonasida (test <100, arena 100+ bilan to'qnashmaydi)
-        const [players, rows] = await Promise.all([livePlayers(live.pin), liveAnswers(live.pin, PRACTICE_BASE + screen)]);
-        if (on) setData({ players, doneIds: new Set(rows.map(r => r.player_id)) });
+        const [players, rows, ...qolgan] = await Promise.all([livePlayers(live.pin), liveAnswers(live.pin, PRACTICE_BASE + screen), ...zonalar.map(z => liveAnswers(live.pin, z + screen))]);
+        if (on) setData({ players, rows, z: Object.fromEntries(zonalar.map((z, i) => [z, qolgan[i]])) });
       } catch {}
       if (on) t = setTimeout(tick, 3000);
     };
     tick();
     return () => { on = false; clearTimeout(t); };
-  }, [live && live.pin, screen]);
+  }, [live && live.pin, screen]); // eslint-disable-line
   if (!live || live.mode !== 'mentor') return null;
   const players = data.players || [];
-  const doers = players.filter(p => data.doneIds.has(p.id));
-  const waiting = players.filter(p => !data.doneIds.has(p.id));
+  const qatorlar = (z) => (z === PRACTICE_BASE ? data.rows : data.z[z] || []);
+  const doneIds = new Set(data.rows.map(r => r.player_id));
+  const sonOl = (s) => new Set(qatorlar(s.zona).filter(r => !s.shart || s.shart(r)).map(r => r.player_id)).size;
+  const chipM = chip ? new Map(qatorlar(chip.zona).map(r => [r.player_id, r])) : null;
+  const chipT = (p) => { const r = chipM && chipM.get(p.id); return r ? ` · ${chip.t(r)}` : ''; };
+  const toliq = (p) => { const r = chipM && chipM.get(p.id); return !!(r && chip.toliq && chip.toliq(r)); };
+  const doers = players.filter(p => doneIds.has(p.id));
+  const waiting = players.filter(p => !doneIds.has(p.id));
   return (
     <div className="lp-mstats fade-up">
+      {sanoq && sanoq.length > 0 && <div className="lp-msanoq">{sanoq.map((s, i) => <div key={i} className="lp-msanoq-q"><b>{data.players === null ? '—' : s.qiymat ? s.qiymat(qatorlar(s.zona)) : `${sonOl(s)} / ${players.length}`}</b><span>{tr(s.y)}</span></div>)}</div>}
       <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Kim bajardi', ru: 'Кто выполнил' })} — {doers.length}/{players.length}</div>
       {data.players === null ? (
         <p className="small" style={{ color: T.ink2, margin: 0, fontStyle: 'italic' }}>{tr({ uz: 'Yuklanmoqda…', ru: 'Загружается…' })}</p>
@@ -2623,8 +2678,8 @@ const MentorPracticeStats = ({ live, screen }) => {
         <p className="small" style={{ color: T.ink2, margin: 0, fontStyle: 'italic' }}>{tr({ uz: "Hali hech kim qo'shilmagan.", ru: 'Пока никто не присоединился.' })}</p>
       ) : (
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-          {doers.map(p => <span key={p.id} className="mstats-wait-chip" style={{ background: T.okFon, color: T.ok }}>✓ {p.nickname}</span>)}
-          {waiting.map(p => <span key={p.id} className="mstats-wait-chip" style={{ opacity: 0.6 }}>{p.nickname}</span>)}
+          {doers.map(p => <span key={p.id} className={`mstats-wait-chip${toliq(p) ? ' toliq' : ''}`} style={{ background: T.okFon, color: T.ok }}>✓ {p.nickname}{chipT(p)}</span>)}
+          {waiting.map(p => <span key={p.id} className="mstats-wait-chip" style={{ opacity: 0.6 }}>{p.nickname}{chipT(p)}</span>)}
         </div>
       )}
     </div>
@@ -2637,12 +2692,12 @@ const KARTOCHKALAR = [
   { front: { uz: "Raqamlar bo'lagi pitchning qayerida turadi?", ru: 'Где в питче стоит часть «Цифры»?' }, back: { uz: 'Jonli demodan keyin, keyingi qadamdan oldin', ru: 'После живого демо, перед следующим шагом' } },
   { front: { uz: "Raqamlar bo'lagida zal qaysi savolni beradi?", ru: 'Какой вопрос задаёт зал в части «Цифры»?' }, back: { uz: '«Bu son qayerdan va nimani sanaydi?»', ru: '«Откуда это число и что оно считает?»' } },
   { front: { uz: "O'sish grafigi nima?", ru: 'Что такое график роста?' }, back: { uz: 'Bir xil oraliqdagi sonlar ustunlari; nima sanalgani sarlavhada yoziladi', ru: 'Столбики чисел с одинаковым шагом; что посчитано, пишут в заголовке' } },
-  { front: { uz: 'Nega ustunli grafik noldan boshlanadi?', ru: 'Почему столбчатый график начинается с нуля?' }, back: { uz: "Shunda o'sish haqiqatdagidek ko'rinadi: Mentor misolida 44 ustuni 20 dan ikki barobardan sal baland", ru: 'Тогда рост выглядит как на деле: в примере Ментора столбик 44 чуть выше, чем вдвое больше 20' } },
+  { front: { uz: 'Nega ustunli grafik noldan boshlanadi?', ru: 'Почему столбчатый график начинается с нуля?' }, back: { uz: "Shunda o'sish haqiqatdagidek ko'rinadi: Mentor misolida 44 ustuni 20 dan ikki barobardan sal baland", ru: "Тогда рост выглядит как на самом деле: в примере Ментора столбик 44 чуть больше чем вдвое выше столбика 20" } },
   { front: { uz: "Mentor grafigidan «3 kun o'tib» ustuni nega olindi?", ru: 'Почему из графика Ментора убрали столбик «через 3 дня»?' }, back: { uz: "Oraliqlar teng bo'lishi uchun: har ustun — bir hafta", ru: 'Чтобы шаг был равным: каждый столбик — одна неделя' } },
   { front: { uz: 'Grafik ustunining ustida va ostida nima turadi?', ru: 'Что стоит над и под столбиком графика?' }, back: { uz: 'Ustida — son, ostida — sana', ru: 'Над ним — число, под ним — дата' } },
   { front: { uz: 'Mentor misolida halol gap nima deydi?', ru: 'Что говорит честная фраза в примере Ментора?' }, back: { uz: "«44 kishidan 11 tasi — sinfdoshlarim; ikkinchi haftada o'sish sekinlashdi»", ru: '«Из 44 человек 11 — мои одноклассники; во вторую неделю рост замедлился»' } },
   { front: { uz: "Uzum'ning «17 million» soni nimani sanaydi?", ru: 'Что считает число Uzum «17 миллионов»?' }, back: { uz: "2025-yilda bir oyda foydalanganlarni; bu son sizga me'yor emas", ru: 'Пользовавшихся за месяц в 2025 году; это число для вас не норма' } },
-  { front: { uz: "Uzum qachon mamlakatning birinchi «unicorn»i bo'lgan?", ru: 'Когда Uzum стал первым «unicorn» страны?' }, back: { uz: '2024-yil martida', ru: 'В марте 2024 года' } },
+  { front: { uz: "Uzum qachon mamlakatning birinchi «unicorn»i bo'lgan?", ru: "Когда Uzum стал первым «единорогом» страны?" }, back: { uz: '2024-yil martida', ru: 'В марте 2024 года' } },
   { front: { uz: 'Jonli demoda nega ikkita qurilma kerak?', ru: 'Зачем в живом демо два устройства?' }, back: { uz: "Birida bosiladi, ikkinchisida son o'zi o'zgaradi — zal real vaqtni shunda ko'radi", ru: 'На одном нажимают, на другом число меняется само — так зал видит реальное время' } },
   { front: { uz: "Ilova ochilmasa, jonli demoni qanday ko'rsatasiz?", ru: 'Если приложение не откроется, как покажете живое демо?' }, back: { uz: "Ekran videosini ko'rsatasiz yoki og'zaki aytib berasiz", ru: 'Покажете видео с экрана или расскажете устно' } }
 ];
@@ -3152,6 +3207,7 @@ export default function PmGrowthPitchLesson({ lang: langProp, onFinished, liveTo
         /* --- Juftlikda pitch: varaq, taymer --- */
         .gp-s11 { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; align-items: start; }
         .gp-s11.ikki { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); }
+        .gp-s11.ikki .zoomable:not(.zoom-on):not(.z-float) { padding-top: 36px; } .gp-s11.ikki .zoomable:not(.zoom-on) > .zoom-btn { top: 0; right: 0; } /* ikki ustunda ⛶ o'ng ustundagi yorliq ustiga tushmasin (layout D) */
         .gp-s11-chap, .gp-s11-v, .gp-s11-a { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
         .gp-oldin { display: flex; flex-direction: column; gap: 4px; background: ${fon(T.ink, 0.045)}; border-radius: 12px; padding: 10px 14px; }
         .gp-oldin-q { font-size: 12.5px; line-height: 1.45; color: ${T.ink2}; }
@@ -3326,6 +3382,19 @@ export default function PmGrowthPitchLesson({ lang: langProp, onFinished, liveTo
         @keyframes lp-done-pop { 0% { transform: scale(1); } 32% { transform: scale(1.05) translateY(-2px); } 60% { transform: scale(0.98); } 100% { transform: scale(1); } }
         @media (prefers-reduced-motion: reduce) { .lp-step.on .lp-check, .lp-done-btn.is-done { animation: none !important; } }
         .lp-mstats { background: ${T.accentSoft}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 6px; }
+        .ovoz { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border-radius: 12px; background: ${T.paper}; border: 1px solid ${T.line}; }
+        .ovoz-q { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) 28px; align-items: center; gap: 8px; font-size: 12.5px; color: ${T.ink2}; }
+        .ovoz-q.men { color: ${T.accent}; font-weight: 700; }
+        .ovoz-q b { text-align: right; color: ${T.ink}; font-variant-numeric: tabular-nums; }
+        .ovoz-y { height: 8px; border-radius: 4px; background: ${T.line}; overflow: hidden; }
+        .ovoz-y i { display: block; height: 100%; background: ${T.accent}; transition: width 0.6s ease-out; }
+        .gp-katta-soat { flex-basis: 100%; font-family: 'JetBrains Mono', monospace; font-size: clamp(44px, 6vw, 76px); font-weight: 800; line-height: 1; color: ${T.ink}; font-variant-numeric: tabular-nums; }
+        .gp-katta-soat small { font-size: 0.32em; font-weight: 700; color: ${T.ink2}; }
+        .gp-katta-soat.oshdi { color: ${T.err}; }
+        .lp-msanoq { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+        .lp-msanoq-q { display: flex; align-items: baseline; gap: 6px; padding: 6px 10px; border-radius: 10px; background: ${T.paper}; border: 1px solid ${T.line}; font-size: 12.5px; color: ${T.ink2}; }
+        .lp-msanoq-q b { font-size: 15px; font-weight: 800; color: ${T.ink}; font-variant-numeric: tabular-nums; }
+        .mstats-wait-chip.toliq { box-shadow: inset 0 0 0 1.5px ${T.ok}; font-weight: 800; }
 
         /* === 🃏 FLASHCARDS — qolipda: QKartochka (DE-204) === */
 

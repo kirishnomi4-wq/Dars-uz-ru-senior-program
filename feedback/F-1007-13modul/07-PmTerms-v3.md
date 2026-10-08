@@ -23,7 +23,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
 
 1. **Darsning bitta natijasi** (dastur: «oferta, siyosat → hujjatlar saytda e'lon qilinadi» · natija «Oferta va siyosat saytda»; tayanch 4: «oferta va siyosatdagi to'lov bandi saytda»; Qaror-0 2, 13):
    o'quvchi o'z mahsuloti uchun **ofertaning olti bandini** yozadi — uchtasini o'zi (nima beriladi · narx va muddat · muddat tugasa), uchtasi shablondagi «[real ishga tushirishda …]» bo'lib qoladi (5-ekran);
-   agent `lending/oferta.html` ni yasaydi va bandlarni kod bilan solishtiradi, koddan bilinmaganini «[savol]» qoldiradi — o'quvchi tekshiradi va to'ldiradi (Amaliyot 1);
+   agent `lending/oferta.html` ni yasaydi va bandlarni kod bilan solishtiradi, koddan bilinmaganini «[savol]» qoldiradi — o'quvchi har gapni kodda va mahsulotda tekshiradi, to'ldiradi (Amaliyot 1; mahsulotda ko'rilmagan gap «[savol]» bo'lib qoladi — F-1007-465);
    `lending/maxfiylik.html` ga **to'lov bandi** qo'shiladi (o'quvchi bitta qatorni o'zi yozadi), lending pastida va to'lov taklifi ekranida ikki havola — «{nom} shartlari» va «Maxfiylik siyosati»; push, Netlify, telefonda ochib tekshirish (Amaliyot 2).
    Saqlanadi `pm-m11d7-hujjat` (A-12; 11-dars o'qiydi). Teg `m13-dars-07-done` (tayanch 3). Natija besh holatda bo'lishi mumkin (11-ekran sarlavhasi shunga qarab; ✓ va nishon — faqat birinchisida).
    Bugun hech kimdan pul olinmaydi va hech narsa sotilmaydi; real ishga tushirish — bu kursda emas. Keyingi darslar ekranda va'da qilinmaydi (T-038).
@@ -41,7 +41,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
      Qonun (FK 369-modda — ommaviy oferta; tayanch 6) — o'quvchi matnida faqat kartochka 1 izohida («O'zbekiston qonunchiligida — ommaviy oferta (369-modda)») va O'qituvchi eslatmasida (2-ekran).
    - **band** — ofertaning bitta bo'limi: sarlavha va matn (Mentor ofertasida olti band — tayanch 1.7). Siyosatda — **to'lov bandi** (to'lov haqidagi gaplar). 4-ekranda tug'iladi (Mentor gapi va karta sarlavhasi «Band n / 6»).
    - **real ishga tushirish** — mahsulot haqiqiy pul qabul qila boshlashi; **bu kursda emas**. Halollik gapi (tayanch 1.7, TAQIQLAR 1 — so'zma-so'z, faqat T-036 bo'yicha qisqartma ochilgan — TAYANCHGA SAVOL 6):
-     «Real ishga tushirish — ota-onaning yozma roziligi va yuridik shaxs yoki YaTT (yakka tartibdagi tadbirkor) bilan; bu kursda emas.» — 4-ekranda kulrang doimiy qator (darsda bir marta) va kartochka 6.
+     «Real ishga tushirish — ota-onaning yozma roziligi va yuridik shaxs (ro'yxatdan o'tgan tashkilot) yoki YaTT (yakka tartibdagi tadbirkor) bilan; bu kursda emas.» — 4-ekranda kulrang doimiy qator (darsda bir marta) va kartochka 6. F-1007-465: «yuridik shaxs» ham ochildi (T-036); gapning so'zlari — Qaror-0 6, o'zgarmadi.
    - **«[savol]»** — agent koddan bilolmagan joy; o'quvchi o'zi yozadi (12-Modul 7-darsidan; bugun ofertada ham) — 5-ekran («Hali bilmayman»), Amaliyot 1 va 2.
    - **«Mashq hujjati — real to'lov qabul qilinmaydi»** va **«Bu hujjat yuridik maslahat emas.»** — oferta sahifasining tepa va oxirgi qatori (tayanch 1.7); 4-ekran `QIzoh` ularning vazifasini aytadi.
 5. **So'zlar (bir ma'no — bir so'z, T-014/T-015; tayanch 2 «Ishlatilmaydi» ustuni):**
@@ -51,7 +51,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
    - **«sotuvchi»** — ofertadagi «Kim taklif qiladi» bandi (real ishga tushirishda — yuridik shaxs yoki YaTT); boshqa ma'noda yo'q.
    - **«havola»** — sahifaga olib boradigan yozuv («Pro shartlari», «Maxfiylik siyosati»); «link» yo'q.
    - **«pullik obuna»** — doim ikki so'z (A-bo'lim va kartochka izohida); o'quvchi matnida Mentor misoli — «Pro».
-   - **«tekshir-»**, **«tekshiruv»** — o'z ishini ko'rish (bloklarning 4-qadami, tekshiruv akkaunti); **«test»** — faqat «test rejim»; **«sinov»** — faqat uyga vazifa ② (real odam).
+   - **«tekshir-»**, **«tekshiruv»** — o'z ishini ko'rish (bloklarning 4-qadami); **«test»** — faqat «test rejim»; **«sinov»** — faqat uyga vazifa ② (real odam).
    - **«to'lovchi»** — pul to'laydigan foydalanuvchi; Mentor misolida — Pro oladigan tashkilotchi (tayanch 2).
    - **Ishlatilmaydi:** shartnoma (o'quvchi matnida), dogovor, yurist, «qonunga mos», kafolat, sotuv, link, paywall, sandbox, freemium, CAC, LTV, xabar (to'lov xabari bu darsda kerak emas), obuna (yolg'iz), server, sir, «Modul 13», A1/A2, `m11-07`, keys, pilot, daftar.
 6. **Mentor misoli (tayanch 1.0, 1.4, 1.7 — AYNAN; o'quvchi matnida «Mentor misolida»):**
@@ -71,8 +71,10 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
 | 6 · Aloqa | [real ishga tushirishda] | real ishga tushirishda |
 | oxirida | Bu hujjat yuridik maslahat emas. | — |
 
-   - **Siyosatga to'lov bandi (1.7 so'zma-so'z, 07.10 aniqlashtirilgan — tayanch 9.29; `MENTOR_TOLOV_BANDI`):** «Qaysi ma'lumot?» ga: Karta ma'lumotini Maydon Jamoa ko'rmaydi va saqlamaydi: haqiqiy to'lovda uni to'lov xizmati qabul qiladi, bu mashqda karta umuman so'ralmaydi. Biz saqlaymiz: to'lov raqami, kim to'lagani (hisob), holati (to'landi yoki rad etildi), summa, sana va Pro muddati. «Nima uchun?» ga: To'lov raqami, hisob, holat va summa — to'lovni bir marta hisoblash va «to'lovim qayerda?» savoliga javob berish uchun. Pro muddati — Pro'ni yoqish va to'xtatish uchun.
-     Joyi — «Qaysi ma'lumot?» va «Nima uchun?» savollari (tayanch): «Qaysi ma'lumot?» ga — birinchi gap va «Biz saqlaymiz: to'lov raqami, summa, sana va Pro muddati.»; «Nima uchun?» ga — «To'lov raqami, summa, sana va Pro muddati — Pro'ni yoqish uchun.» (so'zlar tayanchdan; bo'linishi — TAYANCHGA SAVOL 1).
+   ⛔ 4-bandning «yangi o'yin o'zi e'lon qilinmaydi» qismi 5-darsda tekshirilmagan (u yerda «bugun tekshirmaysiz»): «qur» da Mentor ilovada tekshiradi — agent o'yin vaqtini o'tgan haftaga, Pro muddatini kechaga qo'yadi; tasdiqlanmasa bu qism «[savol]» bo'ladi va 4-ekran, kutilgan natija moslanadi (F-1007-465).
+
+   - **Siyosatga to'lov bandi (1.7 so'zma-so'z, 07.10 aniqlashtirilgan — tayanch 9.29; `MENTOR_TOLOV_BANDI`):** «Qaysi ma'lumot?» ga: Karta ma'lumoti so'ralmaydi — to'lov test rejimda; Maydon Jamoa kartani ko'rmaydi va saqlamaydi. Biz saqlaymiz: to'lov raqami, kim to'lagani (hisob), holati (to'landi yoki rad etildi), summa, sana va Pro muddati. «Nima uchun?» ga: To'lov raqami, hisob, holat va summa — to'lovni bir marta hisoblash va «to'lovim qayerda?» savoliga javob berish uchun. Pro muddati — Pro'ni yoqish va to'xtatish uchun.
+     Joyi — «Qaysi ma'lumot?» ga karta gapi va «Biz saqlaymiz: …», «Nima uchun?» ga ikki gap (tayanch 1.7, 9.29; F-1007-465: eski «to'lov raqami, summa, sana va Pro muddati» qoldiqlari tuzatildi).
    - **Mentor siyosatining qolgan matni — o'zgarmaydi** (12-Modul 7-dars A2 va 9-dars qo'shimchasi — 9.41 a): «Kim ko'radi?», «Qancha saqlanadi?» va «Qaysi ma'lumot?», «Nima uchun?» dagi eski gaplar (7-ekran kutilgan natijasida to'liq).
 7. **Raqamlar (faqat tayanch 1.4; «Mentorning taxmini»):** 30 kun — 15 000 so'm. Boshqa son yo'q: tashkilotchilar soni, suhbat va tasdiq sonlari bu darsda aytilmaydi (sinf 12). Testlardagi ikkinchi misolda son yo'q.
 8. **Ikkinchi misol faqat testda (P-002), o'smir olamidan:** uy vazifalari ilovasi (3-ekran), kitob almashish ilovasi (arena 9). Metafora yo'q. Keys yo'q. Brend (Click, Payme) bu darsda tilga olinmaydi — siyosatda umumiy so'z «to'lov xizmati».
@@ -82,24 +84,26 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
    - karta ma'lumoti — siyosatda «mahsulot saqlamaydi» deb aytiladi; karta raqami, amal qilish muddati, kod — hech qayerda namuna sifatida ham yo'q; oferta sahifasida forma va to'lov tugmasi yo'q;
    - «yurist tekshirgan», «qonunga to'liq mos» — yo'q; qonun — faqat ta'rif va manba (kartochka 1, O'qituvchi eslatmasi); o'smirga yuridik maslahat berilmaydi;
    - lending, oferta va to'lov taklifi ekranida faqat hozir ishlaydigan narsa — «tez orada», «yaqinda» yo'q (sinf 16; 5-ekran tekshiruvi);
-   - tekshiruv akkaunti (7-ekran, Pro'siz hisob kerak bo'lsa) — ism «tekshiruv», familiyasiz; tekshiruvdan keyin o'chiriladi (12-Modul 9.35 a, 9.37 g).
+   - Pro'siz hisob kerak bo'lsa (7-ekran) — yangi akkaunt ochilmaydi: o'z hisobida Pro Neon'da bo'sh qilinadi (5-darsdagi so'rov, `WHERE id` bilan); hisob ochish, o'chirish va SQL bilan o'chirish yo'q (F-1007-465).
 10. **Kim nima yozadi (talab zinapoyasi):** 5-ekran — o'quvchi uch bandni o'zi yozadi (yoki «Hali bilmayman» — «[savol]») · **Amaliyot 1** — tayyor talab + ikki joy oldindan to'ldirilgan (`{nom}`, `{oferta bandlari}` — 5-ekrandan); agent sahifani yasaydi, 2–4-bandlarni kod bilan solishtiradi, bilinmaganini «[savol]» qoldiradi; o'quvchi tekshiradi va «[savol]» ni yozadi ·
     **Amaliyot 2** — tayyor talab + bitta qatorni o'quvchi yozadi (`{to'lov bandi}`) + lending manzili; agent havolalarni qo'yadi va bandni kod bilan solishtiradi. Mahsulot qarori (nima beriladi, muddat tugasa nima bo'ladi, to'lovda nima saqlanadi) — o'quvchida (sinf 13).
 11. **Vaqt (≈ 90 daqiqa; ⛔ reja — «qur» pilotida taymer bilan, o'lchanmaguncha da'vo emas):** kirish va reja (0–1) ≈ 5 · savollar va 1-savol (2–3) ≈ 12 · Mentor ofertasi (4) ≈ 9 · o'z bandlari (5) ≈ 8 · Amaliyot 1 ≈ 22 · Amaliyot 2 ≈ 22 (push va Netlify kutishi bilan) · yakuniy savol, podium, kartochkalar, arena (8–11) ≈ 10 · zaxira ≈ 2.
     **Ulgurmagan o'quvchi yo'li:** Amaliyot 1 — «Davom etish» 3-qadamdan keyin ochiladi (SABOQ E 55), 4-qadam — uyga vazifa ① · Amaliyot 2 — «Davom etish» 2-qadamdan keyin; push va telefonda tekshirish — uyga vazifa ① · blok bajarilgani — faqat 4-qadam «Bajardim»idan (12-Modul 9.36 h) ·
     yakun sarlavhasi holatga qarab (11-ekran). Tashqi kutish — Netlify yangilanishi (bir necha daqiqa cho'zilishi mumkin) — dars oqimini to'xtatmaydi: tekshiruv keyinroq yoki uyda.
 12. **Saqlash kalitlari (tayanch 8; 2–12-darslar sxemasi aniqlashtirilmoqda — TAYANCHGA SAVOL 4, 5):**
-    - **o'qiydi:** `pm-m11d4-narx` (`narx`, `davrKun`, `ekran.sarlavha`, `ekran.matn`, `ekran.tugma`) — 5-ekran va Amaliyot 2 `{to'lov tugmasi}` · `pm-m11d2-model` (`nima`) — 5-ekran kulrang qatori · `pm-m9d8-platforma` (`trek`) — Amaliyot 2 «Ochish» gapi ·
+    - **o'qiydi:** `pm-m11d4-narx` (`narx`, `davrKun`, `ekran.sarlavha`, `ekran.matn`, `ekran.tugma`) — 5-ekran va Amaliyot 2 `{to'lov tugmasi}` · `pm-m11d2-model` (`nima` — 5-ekran kulrang qatori; `model` — reklama, B2B, tranzaksiya bo'lsa mashq ekrani yo'li, F-1007-465) · `pm-m9d8-platforma` (`trek`) — Amaliyot 2 «Ochish» gapi ·
       `pm-m10d1-lending` (`manzil`) — Amaliyot 2 `{lending manzili}` (TAYANCHGA SAVOL 5). Yo'q bo'lsa: narx va manzilni o'quvchi o'zi yozadi; `nima` qatori va trek gapi — ikkala trek qatori ko'rinadi.
     - **yozadi:** `pm-m11d7-hujjat` = `{ bandlar: [{ id, matn, savol }] (6), siyosatBand, havolalar: { lending, ekran }, chiqdi, savedAt }` (tayanch 8). Maydonlar shartnomasi:
       `bandlar` — olti band, tartib o'zgarmaydi; `id` barqaror: `'kim'` · `'nima'` · `'narx'` · `'tugasa'` · `'qaytarish'` · `'aloqa'` · `matn` — band matni (`kim`, `qaytarish`, `aloqa` — shablondagi kvadrat qavsli matn, o'quvchi o'zgartirmaydi; qolgan uchtasi — o'quvchi yozgani) ·
-      `savol: bool` — matnda «[savol]» qolganmi (5-ekranda «Hali bilmayman» — `true`; Amaliyot 1 4-qadamda o'quvchi ✎ bilan yozgach — `false`) — 5-ekran yozadi, Amaliyot 1 yangilaydi ·
+      `savol: bool` — matnda «[savol]» qolganmi: har saqlashda matndan o'zi aniqlanadi (`matn.includes('[savol]')`), qo'lda alohida o'rnatilmaydi — matn va belgi ajralib qolmaydi (F-1007-465; `null` yo'q — band matni doim bor) ·
       `siyosatBand: string | null` — o'quvchi yozgan to'lov bandi (Amaliyot 2 2-qadam «Nusxalash» bosilganda; yozilmagan — `null`) ·
       `havolalar.lending`, `havolalar.ekran`: `bool | null` — Amaliyot 2 4-qadam: «Ochildi» → `true`, «Ochilmadi» → `false`, bosilmagan → `null` (tayanchda `bool` — uch holat TAYANCHGA SAVOL 4) ·
       `chiqdi: bool | null` — oferta internetdagi lending manzilida ochildi (Amaliyot 2 4-qadam (1)); qiymatlari o'sha uch holat · `savedAt` — har saqlashda.
       Kalitga ism, telefon, Telegram nomi, karta ma'lumoti yozilmaydi. Sahifa nomi `{nom}` — dars progressida (`ccProgress`), kalitda emas (TAYANCHGA SAVOL 4). Kod qoralamasi kaliti yo'q (kod oynasi yo'q). Dars boshqa darsning kalitiga yozmaydi.
 13. **Toza yuza (D4):** tugma, variant, karta, yorliqda emoji yo'q; ✓ ✕ › ✎ — belgilar. O'yin qatlami (arena, nishon medali, podium) — mustasno. Kafolat so'zlari yo'q; belgi-formula (→, ×, =) o'quvchi izohida yo'q. «Maydon Jamoa» — telefon maketida va brauzer manzilida, o'z yashil rangida (11-Modul 9.62), logotipsiz.
 14. **Trek (tayanch 4):** PM qismi (0–5) — ikkala trekka bir xil. Amaliyot 1 — ikkala trekda bir xil (o'zgarish faqat `lending/` da). Amaliyot 2 — farq «Ochish» qadamidagi bitta gapda va `{to'lov taklifi ekrani}` qavsida: mobil — ilovadagi ekran (`mobil/`), tekshiruv Expo Go'da; web — saytdagi ekran. O'quvchi matnida «mahsulotingiz» (sinf 11).
+15. **Modeli boshqa o'quvchi (tayanch 9.28; F-1007-465):** `pm-m11d2-model.model` — reklama, B2B yoki tranzaksiya bo'lsa, oferta 4-darsdagi alohida mashq ekrani uchun yoziladi (mashq hujjati); Amaliyot 2 da lending pastiga «{nom} shartlari» havolasi qo'yilmaydi (promptning 2-bandi o'chadi) — havolalar faqat o'sha mashq ekranidagi to'lov taklifida; siyosatga to'lov bandi qo'shiladi (mashq to'lovlari ham saqlanadi).
+    Har model uchun alohida oferta shabloni yo'q: kursda faqat 4, 5-darslarda qurilgan muddatli qulaylik bor — oferta o'sha qurilgan narsani yozadi, mahsulotning real modeli sifatida e'lon qilinmaydi.
 
 ## Darsning ipi va bitta vizual
 
@@ -215,7 +219,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
 - Bashorat (ballsiz; S-015 — o'sish tartibida): **Olti banddan nechtasini Mentor bugun yoza oladi?** · 2 · 3 · 4 — tanlangach ixcham qator natijagacha turadi; tugmalar shundan keyin yoqiladi.
 - Vizual (≤ 3 blok: band kartasi va tugmalar · brauzer · kulrang qator): **chapda** — joriy band kartasi («Band n / 6»: band nomi + ostida kulrang to'lovchi savoli) va ikki tugma «Bugun yoziladi» · «Real ishga tushirishda» ·
   **o'ngda** — brauzer `maydon-jamoa-….netlify.app/oferta.html`: sarlavha «Pro shartlari», olti band sarlavhasi, matn joylari uzuq chiziqli bo'sh (to'ldiriladigan joy — U-041) ·
-  **tugmalar ostida — doimiy kulrang qator** (darsda bir marta — A-4): Real ishga tushirish — ota-onaning yozma roziligi va yuridik shaxs yoki YaTT (yakka tartibdagi tadbirkor) bilan; bu kursda emas. (128)
+  **tugmalar ostida — doimiy kulrang qator** (darsda bir marta — A-4): Real ishga tushirish — ota-onaning yozma roziligi va yuridik shaxs (ro'yxatdan o'tgan tashkilot) yoki YaTT (yakka tartibdagi tadbirkor) bilan; bu kursda emas. (158)
 - Bandlar (navbat bilan; matn — tayanch 1.7 so'zma-so'z, A-6 jadvali):
   1. **Kim taklif qiladi** · «Kim bilan kelishyapman?» ✔ Real ishga tushirishda → kulrang «[real ishga tushirishda — yuridik shaxs yoki YaTT]»
   2. **Nima beriladi** · «Pulimga nima olaman?» ✔ Bugun yoziladi → matni (A-6): «Doimiy o'yin»: har hafta shu kun va soatda o'yin o'zi e'lon qilinadi
@@ -253,20 +257,21 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
 - Qismlar (ketma-ket; «Saqlash» o'ngda — 187; har qismda ikkinchi tugma «Hali bilmayman» — band matni «[savol]», `savol: true`):
   1. **Nima beriladi** — nom (≤ 20; placeholder «Pullik qismingiz nomi») · matn (≤ 120; placeholder «Odam to'lasa, nima oladi?»).
      Kulrang qator (`pm-m11d2-model.nima` bo'lsa): 2-darsda yozganingiz: «{nima}». Kalit yo'q — qator ko'rinmaydi.
-  2. **Narx va muddat** — narx (son, so'm; `pm-m11d4-narx.narx` dan oldindan, tahrirlanadi; yorliq «4-darsdagi narxingiz»; kalit yo'q — bo'sh, placeholder «Narx, so'm») · davr (kun; `davrKun` dan).
-     Band matni o'zi yig'iladi: «{davr} kun, {narx} so'm; muddat tugagach {nom} o'zi to'xtaydi, pul avtomatik yechilmaydi» — oxirgi qism kulrang (shablondan, Mentor ofertasidagidek).
+  2. **Narx va muddat** — narx (son, so'm; `pm-m11d4-narx.narx` dan oldindan, tahrirlanadi; yorliq «4-darsdagi narxingiz · taxmin»; kalit yo'q — bo'sh, placeholder «Narx, so'm — taxmin») · davr (kun; `davrKun` dan).
+     Band matni o'zi yig'iladi: «{davr} kun, {narx} so'm; muddat tugagach {nom} o'zi to'xtaydi, pul avtomatik yechilmaydi» — oxirgi qism kulrang (shablondan, Mentor ofertasidagidek; 4, 5-darslarda qurilgan muddatli qulaylikka mos). `davrKun` bo'sh bo'lsa — faqat «{narx} so'm», muddat haqidagi qism qo'shilmaydi (F-1007-465).
      Ostida kulrang qator: Mahsulotingizda shunday bo'lmasa — Amaliyot 1 da agent «[savol]» qoldiradi. (75)
   3. **{nom} tugasa** — matn (≤ 120; placeholder «Muddat tugasa, nima qoladi va nima to'xtaydi?»).
 - Tekshiruv (`QXato`, ≤60; maydon ostida; yumshoqlari ikkinchi «Saqlash» bilan o'tadi):
   - maydon bo'sh (bloklaydi): Bu joy bo'sh — yozing yoki «Hali bilmayman»ni bosing. (53)
-  - «+998», «@», «t.me/» yoki 7+ raqam ketma-ket (bloklaydi): Ofertaga telefon va akkaunt nomi yozilmaydi. (44)
+  - «+998», «@», «t.me/» yoki telefon shakli — 9 raqam («90 123 45 67» yoki bo'shliqsiz) (bloklaydi): Ofertaga telefon va akkaunt nomi yozilmaydi. (44)
+  - boshqa 7+ raqam ketma-ket (yumshoq — son bo'lishi mumkin; F-1007-464): Bu telefon raqamimi? Telefon yozilmaydi. (40)
   - «karta raqami», «CVV», 12+ raqam ketma-ket (bloklaydi): Karta ma'lumoti hech qayerga yozilmaydi. (40)
   - narx bo'sh yoki 0 (bloklaydi): Narxni yozing — 4-darsdagi taxminingiz. (39)
   - «tez orada», «yaqinda», «keyinroq», «qo'shamiz», «qo'shiladi» (yumshoq): Va'da emas — bugun ishlaydigan narsani yozing. (46)
   - «kafolat», «100%», «har doim», «hech qachon» (yumshoq): Kafolat so'zi o'rniga nima bo'lishini aniq yozing. (50)
   - Yorliq (yumshoq xatodan keyin): Shunday qoldirsangiz — yana «Saqlash»ni bosing. (47)
 - Yordam (bosilsa ochiladi; Mentor misolidan, A-6): Mentor misolida: Pro · «Doimiy o'yin»: har hafta shu kun va soatda o'yin o'zi e'lon qilinadi · 30 kun, 15 000 so'm · e'lon qilingan o'yinlar qoladi, yangi o'yin o'zi e'lon qilinmaydi.
-  Bandda faqat mahsulotingiz bugun qiladigan narsani yozing. 4-darsda narx yozmagan bo'lsangiz — bugungi taxminingizni yozing, u ham taxmin. Mahsulotingizda to'lovchi foydalanuvchi bo'lmasa — bandlarni 4-darsdagi to'lov taklifi ekraningiz uchun yozing.
+  Bandda faqat mahsulotingiz bugun qiladigan narsani yozing. 4-darsda narx yozmagan bo'lsangiz — bugungi taxminingizni yozing, u ham taxmin. Modelingiz reklama, B2B yoki tranzaksiya bo'lsa — bandlarni 4-darsdagi alohida mashq ekrani uchun yozing: bu ham mashq hujjati, lending pastiga havola qo'yilmaydi.
 - **Harakat → Vizual o'zgarish:** «Saqlash» → qiymat kartadan varaqdagi o'z bandiga uchadi (~1 s yashil), nom varaq sarlavhasiga «{nom} shartlari» bo'lib tushadi; narx qismida telefondagi narx qatori varaqdagi 3-bandga chiziq bilan ulanadi (SABOQ 35). Keyingi qism kiradi.
   «Hali bilmayman» → bandda accent uzuq ramkali «[savol]». 3/3 da karta yopiladi, varaq butun enga — olti band, o'quvchi bandlarida ✎ (bosilsa o'sha qism katta karta bo'lib ochiladi — SABOQ 29). Tekshiruvdan o'tmagan maydon `err` fon, ostida bitta `QXato`.
 - Xulosa (holatdan, P-046):
@@ -318,8 +323,9 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
      Xato chiqsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»
   4. **Tekshirish** — agent nima desa ham, o'zingiz ko'ring:
      (1) Sahifada: tepada «Mashq hujjati — real to'lov qabul qilinmaydi», oxirida «Bu hujjat yuridik maslahat emas.»; 1, 5, 6-bandlarda kvadrat qavsli matn; forma va to'lov tugmasi yo'q.
-     (2) 2, 3, 4-bandlar: agent aytgan fayl va qatorni oching — gap kodda bormi. Mentor misolida: narx — to'lov taklifi ekranida, 30 kun — to'lovdan keyin Pro muddati yoziladigan joyda.
-     (3) «[savol]» qolgan bo'lsa — kod nima qilsa, shuni o'zingiz yozing; kodda yo'q narsani yozmang, bu gapni olib tashlang. Agentga: «{band}dagi «[savol]» o'rniga shuni yoz: {matn}. Faqat shu joyni o'zgartir.»
+     (2) 2, 3, 4-bandlar: agent aytgan fayl va qatorni oching — gap kodda bormi. Kod yetmaydi: har gapni mahsulotda ham ko'rgan bo'lishingiz kerak — 4, 5-darslarda tekshirgansiz yoki hozir ilovada tekshiring; tekshira olmagan gapingiz «[savol]» bo'lib qolsin.
+         Mentor misolida: narx — to'lov taklifi ekranida, 30 kun — to'lovdan keyin Pro muddati yoziladigan joyda; Pro tugashi va e'lon qilingan o'yinlar — 5-darsda tekshirilgan.
+     (3) «[savol]» qolgan bo'lsa — mahsulot nima qilishini kodda va ilovada ko'ring, shuni o'zingiz yozing; ko'ra olmasangiz — «[savol]» qolsin; mahsulotda yo'q narsani yozmang, bu gapni olib tashlang. Agentga: «{band}dagi «[savol]» o'rniga shuni yoz: {matn}. Faqat shu joyni o'zgartir.»
      Yozganingizni o'ngdagi varaqda ham ✎ bilan sahifadagidek qiling — «[savol]» belgisi o'chadi.
      Mos kelmagan gapni agentga yozing: «{band} kodga mos emas: {qanday bo'lsin}. Boshqa joyga tegma, o'zgargan fayllarni ayt.»
 - O'ng tomon — «kutilgan natija · namuna: Maydon Jamoa» (≤ 3 blok): brauzer `lending/oferta.html` (lokal) — Mentor ofertasi to'liq (A-6 jadvali: tepa qatori, «Pro shartlari», olti band, oxirgi qator) ·
@@ -327,18 +333,18 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
   kichik izoh: Fayl nomlari sizda boshqacha bo'ladi — gap va u qaysi faylda ekani muhim.
   ⛔ Agent javobi kartasi — namuna: Mentor repo'sida agent haqiqatan nima deyishi «qur» pilotida ko'riladi va karta shu natijaga moslanadi (TAYANCHGA SAVOL 9).
 - Hammasi bajarilgach (yashil, holatga qarab — sinf 6):
-  - «[savol]» qolmagan: Oferta sahifasi tayyor: bandlar kod bilan solishtirildi. (56)
+  - «[savol]» qolmagan: Oferta sahifasi tayyor: bandlar kod va ilova bilan solishtirildi. (65)
   - «[savol]» qolgan: Oferta sahifasi yozildi — «[savol]» joylari qoldi. (50)
-- Qator (`QIzoh`, natija ostida, bitta): Bandni kodda o'zingiz ko'rdingiz — agentning «mos» degani yetmaydi. (67)
+- Qator (`QIzoh`, natija ostida, bitta): Bandni kodda va ilovada o'zingiz ko'rdingiz — agentning «mos» degani yetmaydi. (78)
 - Saqlanadi: `pm-m11d7-hujjat.bandlar[].matn`, `.savol` — 4-qadam (3) da ✎ bilan (A-12).
 - Pastki qator (kichik; darsda bir marta — SABOQ 39): Ortda qoldingizmi — Mentor misolini o'z repo'ngizdan tashqarida, yangi papkada oching: `git clone https://github.com/Azizbekcrypto/maydon-jamoa` · `cd maydon-jamoa` · `git checkout -f m13-dars-07-done` —
   oxirgi buyruqni faqat shu yangi papkada ishlating: u papkadagi o'zgarishlarni o'chiradi (`lending/oferta.html` — namuna).
 - Ulgurmasangiz: 3-qadamdan keyin «Davom etish» ochiladi — 2-amaliyotga o'ting; 4-qadam — uyga vazifa ①. Blok 4-qadam «Bajardim»idan keyin bajarilgan sanaladi (12-Modul 9.36 h).
 - Tugmalar: Orqaga · Avval bajaring → Davom etish
 - ✎ MD izohi: push bu blokda yo'q — Amaliyot 2 da bitta push (oferta, siyosat va havolalar birga chiqadi). Agentning «mos» degani — da'vo (sinf 5); o'quvchi gapni kodda o'zi ko'radi.
-  Kodni o'qish — tekshiruvning bir qismi: sahifadagi gap ishlatib ko'rilmagan bo'lishi mumkin (Shubhali 2).
+  Kod yetmaydi: ofertadagi gap mahsulotda ko'rilgan bo'lishi kerak (4, 5-darslar yoki 4-qadam (2)); ko'rilmagan — «[savol]» (F-1007-465).
 - O'qituvchi eslatmasi: Agent shablonni va bandlarni yozadi, koddan bilinmaganini «[savol]» qoldiradi — gapni o'quvchi yozadi (12-Moduldagi siyosat naqshi). Kodda yo'q narsa ofertaga yozilmaydi: va'da yo'q.
-  Mentor misolidagi 4-band kodni o'qib solishtirilgan (Pro tugashi 5-dars 1-amaliyotida qurilgan — tayanch 9.26), ishlatib ko'rilmagan.
+  Mentor misolidagi 4-band: «e'lon qilingan o'yinlar qoladi» — 5-darsda tekshirilgan; «yangi o'yin o'zi e'lon qilinmaydi» — ⛔ «qur» da Mentor ilovada tekshiradi (A-6). O'quvchi ham faqat mahsulotda ko'rgan gapini qoldiradi.
 
 ## 7 · Amaliyot 2 — siyosat va havolalar  ← amaliyot bloki (QBlok + `ScreenBlok`, ≈22 daq)
 - Eyebrow: Amaliyot 2 · o'z repo'ngiz
@@ -349,25 +355,26 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
   1. **Ochish** — `lending/maxfiylik.html` ni oching: 12-Modulda yozgan to'rt javobingiz. Ular o'zgarmaydi — faqat to'lov bandi qo'shiladi. To'lov uchun nima saqlanishini 3-darsdagi jadvalingizdan eslang (Mentor misolida — `tolovlar`).
      Trekka qarab bir gap: mobil trek — to'lov taklifi ekrani ilovada (`mobil/`), uni Expo Go'da ochasiz · web-trek — to'lov taklifi ekrani saytingizda.
      To'lov taklifi ekrani hali yo'q bo'lsa — promptdagi 3-bandni o'chiring: havolalar faqat lendingda turadi.
+     Modelingiz reklama, B2B yoki tranzaksiya bo'lsa (4-darsdagi alohida mashq ekrani) — promptdagi 2-band o'zi tushib qoladi: shartlar havolasi faqat mashq ekranida bo'ladi.
   2. **Prompt** — «To'lov bandi»ni o'zingiz yozing, lending manzilini tekshiring, «Nusxalash»ni bosing va Antigravity'ga yuboring:
      > Qayerda: `lending/maxfiylik.html` — «Qaysi ma'lumot?» va «Nima uchun?» javoblari; `lending/index.html` — sahifaning pastki qismi; {to'lov taklifi ekrani}.
      > Nima qilsin: 1) Maxfiylik siyosatiga to'lov bandini qo'sh, gaplarini «Qaysi ma'lumot?» va «Nima uchun?» javoblariga mos joyiga qo'y: {to'lov bandi}
-     > To'lov uchun qaysi ma'lumot saqlanishini koddan tekshir va qaysi faylga qarab aytganingni ayt; kod boshqacha bo'lsa yoki koddan bilinmasa — o'sha joyni «[savol]» deb qoldir, uni men yozaman. Siyosatning boshqa gaplariga tegma.
+     > To'lov uchun qaysi ma'lumot saqlanishini koddan tekshir va qaysi faylga qarab aytganingni ayt; kod boshqacha bo'lsa, koddan bilinmasa yoki kodda saqlanadigan, lekin bandda yo'q ma'lumot bo'lsa — o'sha joyni «[savol]» deb qoldir va nimaligini ayt, uni men yozaman. Siyosatning boshqa gaplariga tegma; to'lov qo'shilgani boshqa javobga ham tegsa (masalan, «Qancha saqlanadi?») — buni ayt, o'zing o'zgartirma.
      > 2) Lending sahifasining pastida, «Maxfiylik siyosati» yonida — «{nom} shartlari» havolasi, `oferta.html` ga.
      > 3) To'lov taklifi ekranida «{to'lov tugmasi}» ostida ikki kichik havola: «{nom} shartlari» va «Maxfiylik siyosati». Ular brauzerda {lending manzili}/oferta.html va {lending manzili}/maxfiylik.html ni ochsin.
      > Nima buzilmasin: «{to'lov tugmasi}» va mashq to'lov avvalgidek ishlasin; «Test rejim: pul yechilmaydi» qatori joyida qolsin; lending sarlavhasi, foydalar, asosiy tugma va Umami o'zgarmasin. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Qavslar:
-     - {to'lov bandi} — **o'quvchi yozadi** (≤ 200; kulrang «masalan: Karta ma'lumotini … ko'rmaydi va saqlamaydi — uni to'lov xizmati qabul qiladi. Biz saqlaymiz: …»)
+     - {to'lov bandi} — **o'quvchi yozadi** (≤ 200; kulrang «masalan: Karta ma'lumoti so'ralmaydi — to'lov test rejimda; … kartani ko'rmaydi va saqlamaydi. Biz saqlaymiz: …»)
      - {lending manzili} — `pm-m10d1-lending.manzil` dan oldindan; yo'q bo'lsa — o'quvchi Netlify'dagi manzilni nusxalaydi (kulrang «masalan: maydon-jamoa-….netlify.app»)
      - {nom} — 5-ekrandan · {to'lov tugmasi} — `pm-m11d4-narx.ekran.tugma` dan (yo'q bo'lsa «To'lovga o'tish») · {to'lov taklifi ekrani} — trekdan: mobil — «ilovadagi to'lov taklifi ekrani (`mobil/`)», web — «saytdagi to'lov taklifi ekrani»
      Tekshiruv («Nusxalash» bosilganda; `QXato`, ≤60):
      - {to'lov bandi} bo'sh (bloklaydi): To'lov bandini yozing — to'lovda nima saqlanadi? (48)
      - 12+ raqam ketma-ket, «CVV» (bloklaydi): Karta ma'lumoti hech qayerga yozilmaydi. (40)
-     - «karta» so'zi yo'q (yumshoq): Karta ma'lumoti kimda qolishini ham yozing. (43)
+     - «karta» so'zi yo'q (yumshoq): Karta haqida ham yozing: so'raladimi, saqlanadimi? (50)
      Yordam (ochiladigan) — Mentor misolidagi to'liq talab:
      > Qayerda: `lending/maxfiylik.html` — «Qaysi ma'lumot?» va «Nima uchun?» javoblari; `lending/index.html` — sahifaning pastki qismi; ilovadagi to'lov taklifi ekrani (`mobil/`).
-     > Nima qilsin: 1) Maxfiylik siyosatiga to'lov bandini qo'sh, gaplarini «Qaysi ma'lumot?» va «Nima uchun?» javoblariga mos joyiga qo'y — «Qaysi ma'lumot?» ga: Karta ma'lumotini Maydon Jamoa ko'rmaydi va saqlamaydi: haqiqiy to'lovda uni to'lov xizmati qabul qiladi, bu mashqda karta umuman so'ralmaydi. Biz saqlaymiz: to'lov raqami, kim to'lagani (hisob), holati (to'landi yoki rad etildi), summa, sana va Pro muddati. «Nima uchun?» ga: To'lov raqami, hisob, holat va summa — to'lovni bir marta hisoblash va «to'lovim qayerda?» savoliga javob berish uchun. Pro muddati — Pro'ni yoqish va to'xtatish uchun.
-     > To'lov uchun qaysi ma'lumot saqlanishini koddan tekshir va qaysi faylga qarab aytganingni ayt; kod boshqacha bo'lsa yoki koddan bilinmasa — o'sha joyni «[savol]» deb qoldir, uni men yozaman. Siyosatning boshqa gaplariga tegma.
+     > Nima qilsin: 1) Maxfiylik siyosatiga to'lov bandini qo'sh, gaplarini «Qaysi ma'lumot?» va «Nima uchun?» javoblariga mos joyiga qo'y — «Qaysi ma'lumot?» ga: Karta ma'lumoti so'ralmaydi — to'lov test rejimda; Maydon Jamoa kartani ko'rmaydi va saqlamaydi. Biz saqlaymiz: to'lov raqami, kim to'lagani (hisob), holati (to'landi yoki rad etildi), summa, sana va Pro muddati. «Nima uchun?» ga: To'lov raqami, hisob, holat va summa — to'lovni bir marta hisoblash va «to'lovim qayerda?» savoliga javob berish uchun. Pro muddati — Pro'ni yoqish va to'xtatish uchun.
+     > To'lov uchun qaysi ma'lumot saqlanishini koddan tekshir va qaysi faylga qarab aytganingni ayt; kod boshqacha bo'lsa, koddan bilinmasa yoki kodda saqlanadigan, lekin bandda yo'q ma'lumot bo'lsa — o'sha joyni «[savol]» deb qoldir va nimaligini ayt, uni men yozaman. Siyosatning boshqa gaplariga tegma; to'lov qo'shilgani boshqa javobga ham tegsa (masalan, «Qancha saqlanadi?») — buni ayt, o'zing o'zgartirma.
      > 2) Lending sahifasining pastida, «Maxfiylik siyosati» yonida — «Pro shartlari» havolasi, `oferta.html` ga.
      > 3) To'lov taklifi ekranida «To'lovga o'tish» ostida ikki kichik havola: «Pro shartlari» va «Maxfiylik siyosati». Ular brauzerda maydon-jamoa-….netlify.app/oferta.html va maydon-jamoa-….netlify.app/maxfiylik.html ni ochsin.
      > Nima buzilmasin: «To'lovga o'tish» va mashq to'lov avvalgidek ishlasin; «Test rejim: pul yechilmaydi» qatori joyida qolsin; lending sarlavhasi, foydalar, asosiy tugma va Umami o'zgarmasin. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
@@ -377,7 +384,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
   4. **Tekshirish** — telefoningizda; har biridan keyin «Ochildi» yoki «Ochilmadi»ni tanlang:
      (1) Telefon brauzerida lending manzilingizga `/oferta.html` qo'shib oching — tepada «Mashq hujjati — real to'lov qabul qilinmaydi». → `chiqdi`
      (2) Lendingning o'zini oching: pastdagi «Maxfiylik siyosati» va «{nom} shartlari» — ikkalasi ochiladi; siyosatda «Qaysi ma'lumot?» va «Nima uchun?» ostida to'lov bandi bor. Bandning har gapini agent aytgan fayl bilan solishtiring. → `havolalar.lending`
-     (3) To'lov taklifi ekranini oching — Pro'siz hisob kerak (mobil — Expo Go'da, web — saytingizda). Hisobingizda Pro yoqilgan bo'lsa — ro'yxatdan o'tish formasida tekshiruv akkaunti oching (ism «tekshiruv»), ish tugagach uni «Hisobni o'chirish» bilan o'chiring.
+     (3) To'lov taklifi ekranini oching — Pro'siz hisob kerak (mobil — Expo Go'da, web — saytingizda). Hisobingizda Pro yoqilgan bo'lsa — Neon SQL Editor'da 5-darsdagi so'rov bilan uni bo'sh qiling: `UPDATE oyinchilar SET pro_gacha = NULL WHERE id = {hisob raqami};` — **`WHERE` siz yubormang.** Keyin ilovani yopib oching.
          «{to'lov tugmasi}» ostidagi ikki havolani bosing — brauzerda oferta va siyosat ochiladi; «{to'lov tugmasi}» avvalgidek mashq to'lov sahifasini ochadi. → `havolalar.ekran`
      «Ochilmadi» bo'lsa — agentga: «{nima}: kutganim {nima kutdim}, bo'ldi {nima bo'ldi}. Tuzat, o'zgargan fayllarni ayt.» → push → qayta oching. Lending yangilanmagan bo'lsa — bir necha daqiqadan keyin qayta oching.
      Kulrang qator (mobil trek): O'rnatish fayli va brauzer ko'rinishi o'zi yangilanmaydi: odamlardagi ilovada havolalar faqat yangi versiyada ko'rinadi. (120)
@@ -385,8 +392,8 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
   - brauzer `maydon-jamoa-….netlify.app/maxfiylik.html` (Mentor siyosati — 12-Modul matni + bugungi to'lov bandi; yangi gaplar accent och fonda):
     - **Maydon Jamoa · maxfiylik siyosati**
     - **Qaysi ma'lumot?** Ro'yxatdan o'tishda — ism, login va parol; parolning o'zi saqlanmaydi, o'rnida undan yasalgan satr (hash) turadi. Telefon raqami so'ralmaydi. Ilovada qadamlar sanaladi — ism va loginsiz, qurilma ID bilan. Ilova eslatmadan ochilgani ham qurilma ID bilan sanaladi.
-      Lendingda Umami tashrif va tugma bosilishini sanaydi — unga ism va login yuborilmaydi. **Karta ma'lumotini Maydon Jamoa ko'rmaydi va saqlamaydi: haqiqiy to'lovda uni to'lov xizmati qabul qiladi, bu mashqda karta umuman so'ralmaydi. Biz saqlaymiz: to'lov raqami, kim to'lagani (hisob), holati (to'landi yoki rad etildi), summa, sana va Pro muddati.**
-    - **Nima uchun?** Ism — o'yindagi o'yinchilar bir-birini tanishi uchun. Login va parol — hisobga kirish uchun. Qadamlar sanog'i — ilovaning qaysi joyi tushunarsizligini bilish uchun. **To'lov raqami, summa, sana va Pro muddati — Pro'ni yoqish uchun.**
+      Lendingda Umami tashrif va tugma bosilishini sanaydi — unga ism va login yuborilmaydi. **Karta ma'lumoti so'ralmaydi — to'lov test rejimda; Maydon Jamoa kartani ko'rmaydi va saqlamaydi. Biz saqlaymiz: to'lov raqami, kim to'lagani (hisob), holati (to'landi yoki rad etildi), summa, sana va Pro muddati.**
+    - **Nima uchun?** Ism — o'yindagi o'yinchilar bir-birini tanishi uchun. Login va parol — hisobga kirish uchun. Qadamlar sanog'i — ilovaning qaysi joyi tushunarsizligini bilish uchun. **To'lov raqami, hisob, holat va summa — to'lovni bir marta hisoblash va «to'lovim qayerda?» savoliga javob berish uchun. Pro muddati — Pro'ni yoqish va to'xtatish uchun.**
     - **Kim ko'radi?** Ism — shu o'yindagi o'yinchilar. Loginni boshqa o'yinchilar ko'rmaydi. Database'ni faqat ilova egasi ko'radi.
     - **Qancha saqlanadi?** Hisob — o'zingiz o'chirguningizcha: ilovada «Hisobni o'chirish» bor. Qadamlar yozuvi — 60 kun.
     - sahifa pastida: «Pro shartlari»
@@ -397,19 +404,19 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
   - birortasi «Ochilmadi» yoki tanlanmagan: Sahifalar yozildi — saytda ochilishini tugatish qoldi. (54)
 - Saqlanadi: `pm-m11d7-hujjat.siyosatBand` (2-qadam «Nusxalash») · `.chiqdi` ((1)) · `.havolalar.lending` ((2)) · `.havolalar.ekran` ((3)) — A-12.
 - Ulgurmasangiz: 2-qadamdan keyin «Davom etish» ochiladi (SABOQ E 55); push va telefonda tekshirish — uyga vazifa ①. Blok 4-qadam «Bajardim»idan keyin bajarilgan sanaladi.
-- Nishon (bonus): Terms Live! — 4-qadam «Bajardim»ida, Amaliyot 1 ham bajarilgan va uchala tekshiruv belgilangan bo'lsa (natijadan qat'i nazar — tavsif qilingan ishni aytadi; 152).
+- Nishon (bonus): Terms Checked! — 4-qadam «Bajardim»ida, Amaliyot 1 ham bajarilgan va uchala tekshiruv belgilangan bo'lsa (natijadan qat'i nazar — tavsif qilingan ishni aytadi; 152).
 - Tugmalar: Orqaga · Avval bajaring → Davom etish
 - ✎ MD izohi: talab zinapoyasi — bitta qatorni o'quvchi yozadi (to'lovda nima saqlanishi — mahsulot qarori, sinf 13); qolganini agent koddan tekshiradi, bilinmaganini «[savol]» qoldiradi (12-Modul 9.39 f). Siyosatning to'rt savoli o'zgarmaydi (tayanch 1.7).
-  Ikkala havola to'lov taklifi ekranida — Qaror-0 13 («ikkalasiga havola — lendingda va to'lov taklifi ekranida»; TAYANCHGA SAVOL 2). Tekshiruv akkaunti — 12-Modul 9.35 a, 9.37 g naqshi (TAYANCHGA SAVOL 12).
-- O'qituvchi eslatmasi: Siyosatning to'rt savoli 10 va 12-Moduldagidek qoladi — faqat to'lov bandi qo'shiladi. Karta ma'lumoti mahsulotga kirmaydi: mashq to'lov karta so'ramaydi, haqiqiy xizmatda kartani to'lov xizmati qabul qiladi.
-  Tekshiruv akkaunti — ism «tekshiruv», familiyasiz; ish tugagach o'chiriladi (12-Modul qoidasi). Havola to'lovdan oldin ko'rinishi kerak — shuning uchun to'lov taklifi ekranining o'zida. O'rnatish fayli bu darsda qayta tayyorlanmaydi (TAYANCHGA SAVOL 11).
+  Ikkala havola to'lov taklifi ekranida — Qaror-0 13 («ikkalasiga havola — lendingda va to'lov taklifi ekranida»; TAYANCHGA SAVOL 2). Pro'siz hisob — o'z hisobida Pro bo'sh qilinadi (5-dars A2 so'rovi; TAYANCHGA SAVOL 12, F-1007-465).
+- O'qituvchi eslatmasi: Siyosatning to'rt savoli 10 va 12-Moduldagidek qoladi — faqat to'lov bandi qo'shiladi. Karta ma'lumoti mahsulotga kirmaydi: mashq to'lov karta so'ramaydi (haqiqiy xizmatda kartani to'lov xizmati qabul qiladi — bu siyosatga yozilmaydi: siyosat bugungi holatni aytadi; F-1007-465).
+  Pro'siz hisob uchun yangi akkaunt ochilmaydi: o'quvchi o'z hisobida Pro'ni Neon'da bo'sh qiladi (5-darsdagidek); `UPDATE` bitta qatorga tegishi kerak (Neon «1 row affected»). Havola to'lovdan oldin ko'rinishi kerak — shuning uchun to'lov taklifi ekranining o'zida. O'rnatish fayli bu darsda qayta tayyorlanmaydi (TAYANCHGA SAVOL 11).
 
 ## 8 · Yakuniy savol  ← QTest (✔ C, `correctIdx 2`; ikki blok birga — oferta va siyosatdagi «[savol]»; ikkala trekka to'g'ri)
 - Eyebrow: Yakuniy tekshiruv (savol ustida yorliq yo'q)
-- Savol: **Ofertangiz yoki siyosatingizda «[savol]» qoldi. Nima qilasiz?** (61)
+- Savol: **Mahsulotingiz ishi haqidagi bandda «[savol]» qoldi. Nima qilasiz?** (65)
   - A — Agentdan joyni o'zi to'ldirishini so'rayman (43)
   - B — «[savol]»ni shundayligicha qoldirib chiqaraman (46)
-  - ✔ C — Kod nima qilsa, shuni o'zim yozib qo'yaman (42)
+  - ✔ C — Mahsulot nima qilishini ko'rib, o'zim yozaman (45)
   - D — Boshqa ilovaning shartlaridan gap ko'chiraman (45)
 - Kalit: **C** (index 2). To'rttalasi bir shaklda (birinchi shaxs fe'li bilan tugaydi); tire va qavs hech birida yo'q; «[savol]» — savolda va B da (kalit so'z faqat to'g'rida emas); uzunlik — «O'lchov».
   Distraktorlar uch xil turkum: A — agentga qaror berish (u koddan bilmaganini to'qiydi) · B — chala sahifa (to'lovchi shartni bilmaydi) · D — begona mahsulot shartlari (sizning mahsulotingiz haqida emas).
@@ -422,7 +429,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
 - Javob topilgach (kichik): oferta bandi — «[savol]» o'rniga kod qatoridan qisqa gap uchib kiradi, ramka uzuqdan to'liqqa o'tadi.
 - Jonli darsda: bitta urinish. Xatodan keyin: «Qisqa takrorlash».
 - Izoh (MD): savol ekrandan ko'chirilmaydi (§106): Amaliyot 1 va 2 da «[savol]» yozish yo'li bor, savol esa uchta yanglish yo'lni rad ettiradi. Arena 8 («[savol]» nimani bildiradi — ma'no) bilan kalit ibora takrorlanmaydi (S-008).
-  «o'zim yozib qo'yaman» — mahsulot qarori o'quvchida (sinf 13); «kod nima qilsa» — oferta bandlari mahsulot ishi haqida (2–4) va siyosatdagi to'lov bandi (saqlanadigan ma'lumot) — ikkalasi koddan tekshiriladi.
+  «o'zim yozaman» — mahsulot qarori o'quvchida (sinf 13); «mahsulot nima qilishini ko'rib» — kodda va ilovada (F-1007-465). Savol mahsulot ishi haqidagi band bilan chegaralangan: sotuvchi, pulni qaytarish va aloqa koddan kelmaydi — ular kvadrat qavsda.
 
 ## 9 · Natijalar (podium)  ← QNatija
 - Jonli reyting — qolip standarti (yakka rejimda — o'z natijasi): 2 savol (3, 8); 2, 4-ekranlar — ballsiz, nishon bilan; 5, 6, 7-ekranlar «Saqlash» / «Bajardim» — Mentorga signal (`PRACTICE_BASE`, ball yo'q).
@@ -450,11 +457,11 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
   - Oferta — hamma uchun ochiq taklif: nima beriladi, qancha turadi, qanday shart bilan. Odam to'lasa — shu shartlarga rozi bo'ladi.
   - Ofertaga bugun ishlaydigan narsa yoziladi — va'da emas.
   - Bu mashqda sotuvchi, pulni qaytarish va aloqa — real ishga tushirishda; real ishga tushirish bu kursda emas.
-  - Agent koddan bilmagan joyni «[savol]» qoldiradi — uni kodga qarab o'zingiz yozasiz.
-  - Siyosatdagi to'lov bandi karta ma'lumoti qayerda qolishini va mahsulot nimani saqlashini aytadi.
+  - Agent koddan bilmagan joyni «[savol]» qoldiradi — uni kod va ilovaga qarab o'zingiz yozasiz.
+  - Siyosatdagi to'lov bandi karta so'ralmasligini va mahsulot nimani saqlashini aytadi.
 - Uyga vazifa (`HwCard`, P-025 karta shaklida; yakunda aynan shu bandlar; alohida `.homework.jsx` yo'q): sarlavha **Uyda nima qilasiz?**
   - Kim uchun: o'z mahsulotingiz · Nechta: ikki ish · Muddat: keyingi darsgacha
-  - ① Darsda qolgan ishni tugating: {holatga qarab — «[savol]» joylarini kodga qarab yozing · siyosatga to'lov bandi va havolalarni qo'shing · push qilib, telefonda oching}. Hammasi tugagan bo'lsa ① ko'rinmaydi.
+  - ① Darsda qolgan ishni tugating: {holatga qarab — «[savol]» joylarini kod va ilovaga qarab yozing · siyosatga to'lov bandi va havolalarni qo'shing · push qilib, telefonda oching}. Hammasi tugagan bo'lsa ① ko'rinmaydi.
   - ② Bitta tanish odam — ota-onangiz yoki sinfdoshingiz — ofertangizni telefonida ochsin. Undan so'rang: «Qaysi joyi tushunarsiz?» Tushunarsiz gapni soddaroq yozing va push qiling.
   - Karta ostida (bitta kulrang qator): Ofertaga telefoningiz, Telegram nomingiz va karta ma'lumoti yozilmaydi.
   - Tugma: Amaliy topshiriqni bajarish →
@@ -471,15 +478,15 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
 - **Ask Before Pay!** (2-ekran, olti savol birinchi urinishda) — Ekran qaysi savolga javob berishini topdingiz (45)
 - **Open Offer!** (3-ekran, 1-savol birinchi urinishda) — Ofertaga nima yozilishini topdingiz (35)
 - **Clause Sorter!** (4-ekran, olti band birinchi urinishda) — Bugun yoziladigan bandlarni ajratdingiz (39)
-- **Terms Live!** (7-ekran, 4-qadam «Bajardim»; Amaliyot 1 ham bajarilgan — bonus) — Ikki amaliyotni tekshiruvigacha bajardingiz (43)
+- **Terms Checked!** (7-ekran, 4-qadam «Bajardim»; Amaliyot 1 ham bajarilgan — bonus) — Ikki amaliyotni tekshiruvigacha bajardingiz (43)
 - Yozuvlar: Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki. · Nishon birinchi urinish uchun edi. · Nishonlar — n/4
-- Tekin bonus — bitta (Terms Live!, ish qilingan ekranda — P-048); u Amaliyot 1 bajarilgan va Amaliyot 2 da «uchala tekshiruv belgilangan» bo'lsa beriladi — natija «Ochilmadi» bo'lsa ham (tavsif tekshiruvni aytadi, «saytda» demaydi). Yakuniy savol nishonsiz. Nomlar boshqa darslarda yo'q (grep `src/`, `feedback/`, 07.10 — 0).
+- Tekin bonus — bitta (Terms Checked!, ish qilingan ekranda — P-048); u Amaliyot 1 bajarilgan va Amaliyot 2 da «uchala tekshiruv belgilangan» bo'lsa beriladi — natija «Ochilmadi» bo'lsa ham (tavsif tekshiruvni aytadi, «saytda» demaydi). Yakuniy savol nishonsiz. Nomlar boshqa darslarda yo'q (grep `src/`, `feedback/`, 07.10 — 0).
 
 ## Qisqa takrorlash oynalari (har ballik test — 3 karta; S-026: PM darsida emoji o'rniga raqam 1/2/3)
 Oyna yorlig'i: Qayta tushuntirish · tugmalar: ← Oldingi · Keyingisi → · ✓ Tushunarli — davom etamiz. Jonli darsda mentor «Qayta tushuntirishni ochish» bosganda chiqadi.
 - **3 · Ofertaga nima yoziladi** — 1 Oferta — hamma uchun ochiq taklif: nima beriladi, qancha turadi, qanday shart bilan. · 2 Odam to'lasa — shu shartlarga rozi bo'ladi. · 3 Shuning uchun to'lovchi to'lashdan oldin so'raydigan narsa ofertada yoziladi.
   — Sinfga savol: To'lov taklifi ekraningiz qaysi savolga javob bermaydi?
-- **8 · «[savol]» qolsa** — 1 Agent koddan bilmagan joyni «[savol]» qoldiradi. · 2 Kod nima qilsa — shuni o'zingiz yozasiz. · 3 Kodda yo'q narsa sahifaga yozilmaydi — va'da emas.
+- **8 · «[savol]» qolsa** — 1 Agent koddan bilmagan joyni «[savol]» qoldiradi. · 2 Mahsulot nima qilishini kodda va ilovada ko'rib — o'zingiz yozasiz. · 3 Kodda yo'q narsa sahifaga yozilmaydi — va'da emas.
   — Sinfga savol: «[savol]» ni shundayligicha qoldirsangiz, to'lovchi nimani bilmay qoladi?
 
 ## Kartochkalar (12) — 10-ekran
@@ -490,12 +497,12 @@ Oyna yorlig'i: Qayta tushuntirish · tugmalar: ← Oldingi · Keyingisi → · �
 | Mentor misolida to'lov taklifi ekrani qaysi shartlarni aytadi? | Nima beriladi, narx va muddat | Qolgan to'rt savolning javobi ekranda yo'q |
 | Mentor ofertasi qaysi bandlardan iborat? | Kim taklif qiladi, nima beriladi, narx va muddat, Pro tugasa, bekor qilish va pulni qaytarish, aloqa | Kurs shabloni — sizda band nomlari boshqacha bo'lishi mumkin |
 | Bu mashqda qaysi bandlar real ishga tushirishda yoziladi? | Kim taklif qiladi, bekor qilish va pulni qaytarish, aloqa | Ofertada ular kvadrat qavsda turadi |
-| Real ishga tushirish uchun nima kerak? | Ota-onaning yozma roziligi va yuridik shaxs yoki YaTT | YaTT — yakka tartibdagi tadbirkor; bu kursda emas |
+| Real ishga tushirish uchun nima kerak? | Ota-onaning yozma roziligi va yuridik shaxs yoki YaTT | Yuridik shaxs — ro'yxatdan o'tgan tashkilot, YaTT — yakka tartibdagi tadbirkor; bu kursda emas |
 | Mentor misolida Pro tugasa, pul o'zi yechiladimi? | Yo'q — Pro o'zi to'xtaydi | Mentor ofertasining «Narx va muddat» bandi |
 | Ofertaga va'da yoziladimi? | Yo'q — bugun ishlaydigan narsa yoziladi | «Tez orada», «yaqinda» — ofertada yo'q |
-| Agent koddan bilmagan joyni qanday belgilaydi? | «[savol]» deb qoldiradi | Gapni kodga qarab o'zingiz yozasiz |
+| Agent koddan bilmagan joyni qanday belgilaydi? | «[savol]» deb qoldiradi | Gapni kod va ilovaga qarab o'zingiz yozasiz |
 | Mashq ofertasining tepasida va oxirida nima yoziladi? | «Mashq hujjati — real to'lov qabul qilinmaydi» va «Bu hujjat yuridik maslahat emas.» | Sahifa mashq ekanini ochiq aytadi |
-| Siyosatdagi to'lov bandi nimani aytadi? | Karta ma'lumoti qayerda qolishini va mahsulot nimani saqlashini | Mentor misolida: to'lov raqami, summa, sana va Pro muddati |
+| Siyosatdagi to'lov bandi nimani aytadi? | Karta so'ralmasligini va mahsulot nimani saqlashini | Mentor misolida: to'lov raqami, hisob, holat, summa, sana va Pro muddati |
 | To'lovchi shartlarni qayerdan ochadi? | To'lov taklifi ekranidagi va lendingdagi havoladan | To'lashdan oldin |
 - §145: har javobdagi so'z darsda bor (oferta, rozi bo'ladi — 2 · bandlar, real ishga tushirish, «Mashq hujjati» — 4 · «[savol]» — 5, 6, 8 · to'lov bandi, havola — 7 · ota-ona, YaTT — 4-ekran kulrang qatori).
 - S-027: har old tomon — to'liq savol, «?» bilan; «ta'rif → atamani toping» shakli yo'q. Bugungi asosiy fikr kartochkada so'zma-so'z yo'q (P-013). Qonun manbasi (369-modda) — 1-karta izohida (tayanch 1.7: «Manba qatori — kartochkada va O'qituvchi eslatmasida»).
@@ -544,7 +551,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
    - C — Agent uni keyin o'zi to'ldirishini (34)
    - ✔ D — Agent buni koddan bilolmaganini (31)
 9. Kitob almashish ilovangiz ofertasidagi narxni qanday tekshirasiz? (6)
-   - ✔ A — Ilova kodida o'zim ko'rib chiqaman (34)
+   - ✔ A — Ilovada va kodida o'zim ko'raman (32)
    - B — Agentdan «to'g'rimi?» deb so'rayman (35)
    - C — Sinfdoshimdan narxni so'rab olaman (34)
    - D — Tekshirmayman — narx o'zgarmaydi (32)
@@ -556,7 +563,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 11. Mentor misolida to'lov uchun nima saqlanadi? (7)
     - A — Karta raqami va egasining telefoni (34)
     - B — Tashkilotchining ismi va maktab raqami (38)
-    - ✔ C — To'lov raqami, summa, sana va muddat (36)
+    - ✔ C — To'lov raqami, hisob, holat va summa (36)
     - D — Hech narsa — to'lovdan keyin o'chadi (36)
 12. Tashkilotchi Pro shartlarini qachon o'qiy olishi kerak? (7)
     - A — To'lov o'tgandan keyin, chatda (30)
@@ -582,15 +589,15 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
    Mentor rejimi, s0, s2, s4, s5 (Yordam), s6/s7 (Yordam va kutilgan natija) shulardan o'qiydi.
 5. **s2** — `QBashorat` (1 · 2 · 4) → 6 karta, ikki tugma («Ekranda bor» / «Ekranda yo'q»), kalit `[bor, bor, yoq, yoq, yoq, yoq]`; «bor» → telefondagi mos qator (`MENTOR_EKRAN` qatori indeksi) yonadi; «yo'q» → «Shartlar» varag'iga; `QXato` 3 turi; natijada taxmin qatori + xulosa + `QIzoh` (atama); 40 s ipucha; nishon `askBeforePay`.
 6. **s4** — `QBashorat` (2 · 3 · 4) → 6 band kartasi, ikki tugma, kalit `MENTOR_OFERTA.bandlar[].kalit`; to'g'ri → matn brauzerdagi joyiga uchadi; `QXato` 6 ta; doimiy kulrang `HALOL_GAP`; 6/6 → tepa va oxirgi qator kiradi; `QIzoh`; nishon `clauseSorter`.
-7. **s5** — o'qiydi `pm-m11d4-narx` (`narx`, `davrKun`, `ekran.*`) va `pm-m11d2-model` (`nima`); uch qism ketma-ket; har qismda «Hali bilmayman» (`[savol]`); 3-band matni qolipdan yig'iladi (`davrKun` bo'sh bo'lsa — «{narx} so'm; muddat tugagach …»); tekshiruvlar (bo'sh · telefon/akkaunt · karta · narx 0 — bloklaydi; va'da · kafolat so'zlari — yumshoq) —
+7. **s5** — o'qiydi `pm-m11d4-narx` (`narx`, `davrKun`, `ekran.*`) va `pm-m11d2-model` (`nima`, `model`); uch qism ketma-ket; har qismda «Hali bilmayman» (`[savol]`); 3-band matni qolipdan yig'iladi (`davrKun` bo'sh bo'lsa — faqat «{narx} so'm», muddat qismisiz — F-1007-465); tekshiruvlar (bo'sh · telefon/akkaunt · karta · narx 0 — bloklaydi; va'da · kafolat so'zlari — yumshoq) —
    **PM-108 tartibida kamida 10 namuna bilan `node` da sinaladi** (masalan: «har hafta o'yin o'zi e'lon qilinadi» o'tadi · «tez orada yangi qulaylik qo'shamiz» yumshoq · «+998 90 …» bloklanadi · «aloqa: @…» bloklanadi · «100% ishlaydi» yumshoq · narx «0» bloklanadi); narx soni bo'shliq bilan («15 000»).
    Saqlash → `pm-m11d7-hujjat.bandlar` (olti band, `id` tartibi `kim · nima · narx · tugasa · qaytarish · aloqa`), `savedAt`; `{nom}` — `ccProgress`. ✎ — qismni qayta ochish (o'sha tekshiruvlar bilan).
 8. **s6** (`QBlok`, 4 qadam) — prompt qavslari `{nom}`, `{oferta bandlari}` — s5 dan oldindan (qavs — `QPrompt` atrofida o'z o'rovchisi; `src/qolip` ga tegilmaydi — «qolip taklifi»); 4-qadamda o'ng varaqdagi ✎ → `bandlar[].matn`, `savol` yangilanadi; «Ortda qoldingizmi» (darsda bir marta) shu blokda; «Davom etish» 3-qadamdan keyin; yashil xulosa — `savol` bayroqlaridan (ikki holat).
-9. **s7** (`QBlok`, 4 qadam) — o'qiydi `pm-m9d8-platforma.trek` (`{to'lov taklifi ekrani}` va «Ochish» gapi; yo'q — ikkala gap), `pm-m10d1-lending.manzil` (`{lending manzili}`; yo'q — bo'sh, kulrang namuna), `pm-m11d4-narx.ekran.tugma` (`{to'lov tugmasi}`; yo'q — «To'lovga o'tish»);
-   `{to'lov bandi}` — o'quvchi yozadi (≤ 200; tekshiruvlar 3 ta, «Nusxalash» bosilganda) → `siyosatBand`; 4-qadamda uch tekshiruv kartasi («Ochildi» / «Ochilmadi») → `chiqdi`, `havolalar.lending`, `havolalar.ekran`; «Davom etish» 2-qadamdan keyin; nishon `termsLive` (Amaliyot 1 bayrog'i bor va uchala tekshiruv belgilanganda); yashil xulosa — ikki holat.
+9. **s7** (`QBlok`, 4 qadam) — o'qiydi `pm-m9d8-platforma.trek` (`{to'lov taklifi ekrani}` va «Ochish» gapi; yo'q — ikkala gap), `pm-m10d1-lending.manzil` (`{lending manzili}`; yo'q — bo'sh, kulrang namuna), `pm-m11d4-narx.ekran.tugma` (`{to'lov tugmasi}`; yo'q — «To'lovga o'tish»), `pm-m11d2-model.model` (reklama, B2B, tranzaksiya — promptning 2-bandi va 4-qadam (2) dagi «{nom} shartlari» qatori yo'q);
+   `{to'lov bandi}` — o'quvchi yozadi (≤ 200; tekshiruvlar 3 ta, «Nusxalash» bosilganda) → `siyosatBand`; 4-qadamda uch tekshiruv kartasi («Ochildi» / «Ochilmadi») → `chiqdi`, `havolalar.lending`, `havolalar.ekran`; «Davom etish» 2-qadamdan keyin; nishon `termsChecked` (Amaliyot 1 bayrog'i bor va uchala tekshiruv belgilanganda); yashil xulosa — ikki holat.
 10. **Mentor rejimi:** o'quvchilar ro'yxatida faqat signallar («Bandlar saqlandi» · Amaliyot 1, 2 «Bajardim»; `PRACTICE_BASE`); o'quvchi band matni va siyosat bandi Mentorga ham, proyektorga ham chiqmaydi (o'z mahsuloti qarorlari; telefon yoki akkaunt tasodifan yozilsa ham ko'rinmasin). 0-ekrandagi sinf ovozlari — faqat variantlar soni.
 11. Testlar s3/s8 — `correctIdx` 1/2 = `INLINE_KEYS`; `RECAPS` {3, 8} (`ic` → 1/2/3 + `ask`); `Q_LABELS` {3, 8}. Savol ustida yorliq yo'q (SABOQ 6); javobdan keyingi kichik vizual — `QuestionScreen` `vizual` (SABOQ 4).
-12. `ACHIEVEMENTS` 4 (`askBeforePay`, `openOffer`, `clauseSorter`, `termsLive`) + `ACH_TRIGGERS`. `QUIZ_BANK` 12 (✔ 0·1·2·3 ×3 — arena jadvali) + `set_quiz_keys`; `QZ_BG_SHAPES` → fon so'zlari `{uz, ru}`, emoji yo'q (R-008). `FLASHCARDS` 12 ({front, back, note}) — `sflash` alohida ekranda. `SCREEN_INTENTS`.
+12. `ACHIEVEMENTS` 4 (`askBeforePay`, `openOffer`, `clauseSorter`, `termsChecked`) + `ACH_TRIGGERS`. `QUIZ_BANK` 12 (✔ 0·1·2·3 ×3 — arena jadvali) + `set_quiz_keys`; `QZ_BG_SHAPES` → fon so'zlari `{uz, ru}`, emoji yo'q (R-008). `FLASHCARDS` 12 ({front, back, note}) — `sflash` alohida ekranda. `SCREEN_INTENTS`.
 13. s11 `QYakun`: sarlavha **besh holat** — `pm-m11d7-hujjat` dan va blok bayroqlaridan (P-046, E 54); `recap` 5 qator = «Endi siz bilasiz» so'zma-so'z; «Bugungi asosiy fikr» ko'rsatilmaydi (E 50); `uyga` — `HwCard` (Kim uchun · Nechta · Muddat + ①②; ① holatdan yig'iladi); `keyingi` — «Loyiha kuni: ketayotgan foydalanuvchini qaytarish». Yordam darajalari (P-033): qulf-yorliq · ipucha 40 s · rescue 110 s.
 14. App.jsx `m11-07` qatoriga `comp: PmTermsLesson` + import — asosiy seans, «qur» bosqichida (nom va osti o'zgarmaydi — DE-205 ✓, App.jsx 451-qator). Bu agent App.jsx ga tegmaydi.
 - Darvozalar: `npm run gates -- src/11-Modull/PmTermsLesson.jsx` 12/12 · `lint:olchov` 0 · `lint:emoji` (qolip) 0 · `lint:til` 0 · `lint:jsx` 0 · `stilsiz.py` (10-Modul SABOQ 31) · surat 1280 + 393 (har ekran 4 savoli — SABOQ 30) · maket kesilmasligi (E 41) · haqiqiy click bilan har tugma (E 47).
@@ -598,55 +605,56 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 
 ## REPO — `maydon-jamoa` («qur» bosqichida yoziladi, push — buyruq bilan; `m13-dars-07-start` = `m13-dars-06-done` = `m13-dars-05-done` → `m13-dars-07-done`, tayanch 3)
 1. **`lending/oferta.html`** — Mentor ofertasi so'zma-so'z (A-6 jadvali): tepa qatori, «Pro shartlari», olti band (sarlavha + matn), «Bu hujjat yuridik maslahat emas.»; lending uslubida (`style.css`), telefonda bir ustun; forma, to'lov tugmasi, skript va Umami yo'q (TAYANCHGA SAVOL 15).
-2. **`lending/maxfiylik.html`** — to'lov bandi: «Qaysi ma'lumot?» ga ikki gap, «Nima uchun?» ga bitta gap (A-6; TAYANCHGA SAVOL 1); qolgan matn o'zgarmaydi (12-Modul 7, 9-darslar).
+2. **`lending/maxfiylik.html`** — to'lov bandi: «Qaysi ma'lumot?» ga ikki gap, «Nima uchun?» ga ikki gap (A-6; TAYANCHGA SAVOL 1); qolgan matn o'zgarmaydi (12-Modul 7, 9-darslar).
 3. **`lending/index.html`** — sahifa pastida «Maxfiylik siyosati» yonida «Pro shartlari» (`oferta.html`). Sarlavha, foydalar, «Qo'shilmoqchiman», «Qanday qo'shilaman», Umami — o'zgarmaydi.
 4. **`mobil/`** — to'lov taklifi ekrani: «To'lovga o'tish» ostida ikki kichik havola «Pro shartlari» · «Maxfiylik siyosati» — telefon brauzerida lending sahifalarini ochadi (usul — agentning tanloviga qoladi; ⛔ «qur» da Expo Go'da Android va iPhone'da sinaladi); «Test rejim: pul yechilmaydi» joyida; to'lov yo'li o'zgarmaydi.
 5. **`README.md`** — «Darslar va teglar» jadvaliga 7-dars qatori. O'rnatish fayli va brauzer ko'rinishi bu tegda qayta tayyorlanmaydi (TAYANCHGA SAVOL 11).
 6. ⛔ **Muhrdan oldin:** Amaliyot 1 talabi Mentor repo'sida agentga berilib, agent javobi yoziladi (6-ekran kutilgan natijasi shunga moslanadi) — ayniqsa 4-band (Pro tugasa) haqida — 07.10 hal qilindi (tayanch 9.26): Pro tugashi 5-dars 1-amaliyotida quriladi, 4-band kodda bor; 12-darsning 5-topilmasi endi boshqa (doimiy o'yinning takror yaratilishi).
-   Amaliyot 2 talabi — agent `tolovlar` ustunlarini (`holat`, `oyinchi_id`) siyosat bandi bilan solishtirganda nima deydi (TAYANCHGA SAVOL 10).
+   Amaliyot 2 talabi — agent `tolovlar` ustunlarini (`holat`, `oyinchi_id`) siyosat bandi bilan solishtirganda nima deydi (TAYANCHGA SAVOL 10) va «Qancha saqlanadi?» ga to'lov yozuvlari haqida nima deydi (hisob o'chirilganda `tolovlar` qatori nima bo'ladi — Mentor kodiga qarab; F-1007-465).
+   4-bandning «yangi o'yin o'zi e'lon qilinmaydi» qismi Mentor ilovasida ishlatib tekshiriladi (A-6 ⛔).
 7. Shart: teglar kurs boshlanishidan oldin upstream'da (`yechim` tarmog'ida).
 
 ## Manbalar (07.10.2026; o'quvchiga ko'rinmaydi)
 - **FK 27-modda** — lex.uz/docs/-111189 (O'zbekiston Respublikasining kodeksi; to'liq nomi lint qoidasiga soxta tushadi — TAQIQLAR 5). **O'zim ochib o'qidim (07.10.2026):** «O'n to'rt yoshdan o'n sakkiz yoshgacha bo'lgan voyaga yetmaganlar, … bitimlarni o'z ota-onalari, farzandlikka oluvchilari yoki homiylarining yozma roziligi bilan tuzadilar.» (apostrof oddiy shaklga keltirildi)
 - **FK 369-modda** — o'sha sahifa: mundarijada sarlavhasi «Ofertaga taklif etish. Ommaviy oferta» (o'zim ko'rdim, 07.10.2026); matni sahifaning men o'qiy olgan qismiga tushmadi — iqtibos tayanch 1.7 va `00-MANBA.md` 5 dan (07.10.2026): «… taklif oferta (ommaviy oferta) …».
 - Mentor ofertasi, siyosat bandi, halollik gapi, bloklar — `00-MODUL-TAYANCH.md` 1.7 (aynan); to'lov taklifi ekrani va narx — 1.4; Pro, avtomatik yechish yo'q — 1.0; teg — 3; kalitlar — 8; qarorlar — `GATE_M_JAVOB.md` Qaror-0 6, 13.
-- Lending va Netlify (push'dan keyin odatda o'zi yangilanadi), APK o'zi yangilanmaydi, brauzer ko'rinishi — qayta eksport: 12-Modul tayanchi 1.1, 1.7, 9.28. Tekshiruv akkaunti: 12-Modul 9.35 a, 9.37 g. «[savol]» naqshi: 12-Modul 9.39 f. Siyosat matni: 12-Modul 7-dars A2, 9.41 a.
+- Lending va Netlify (push'dan keyin odatda o'zi yangilanadi), APK o'zi yangilanmaydi, brauzer ko'rinishi — qayta eksport: 12-Modul tayanchi 1.1, 1.7, 9.28. Pro'ni bo'sh qilish so'rovi: 5-dars A2 1-qadami. «[savol]» naqshi: 12-Modul 9.39 f. Siyosat matni: 12-Modul 7-dars A2, 9.41 a.
 - Tashqi xizmat qadami (tugma, menyu, narx, limit) bu darsda yo'q — Netlify va Expo Go faqat 12-Moduldagi so'z bilan; Click, Payme, Stripe tilga olinmaydi.
 
 ---
 
 ## TAYANCHGA SAVOL (o'zim qaror qildim — tasdiq kerak)
 1. **Siyosat to'lov bandi ikki savolga bo'lindi** — tayanch: «… «Qaysi ma'lumot?» va «Nima uchun?» savollariga: «Karta ma'lumotini … Pro'ni yoqish uchun.»». Bo'lishim: «Qaysi ma'lumot?» — birinchi gap + «Biz saqlaymiz: to'lov raqami, summa, sana va Pro muddati.»; «Nima uchun?» — «To'lov raqami, summa, sana va Pro muddati — Pro'ni yoqish uchun.» (12-Modul «Nima uchun?» shakli: «X — … uchun»).
-   So'zlar tayanchdan; «To'lov raqami, …» ikkinchi joyda takrorlanadi. Muqobil: bandni so'zma-so'z bitta joyda — «Qaysi ma'lumot?» ostida.
+   So'zlar tayanchdan; «To'lov raqami, …» ikkinchi joyda takrorlanadi. Muqobil: bandni so'zma-so'z bitta joyda — «Qaysi ma'lumot?» ostida. F-1007-465: matn — tayanch 1.7 (9.29): hisob va holat bor, «Nima uchun?» — ikki gap; karta gapi bugungi holatni aytadi.
 2. **«Maxfiylik siyosati» havolasi to'lov taklifi ekranida ham** — Qaror-0 13: «Ikkalasiga havola — lendingda va to'lov taklifi ekranida»; tayanch 1.7 va 3 da faqat «Pro shartlari». Qaror-0 ni oldim (lendingda siyosat havolasi 12-Moduldan bor).
 3. **Havolalar joyi** — «To'lovga o'tish» ostida, «Test rejim» qatoridan yuqorida, ikkalasi bir qatorda. Tayanchda joy yo'q.
 4. **`pm-m11d7-hujjat` aniqlashtirish:** `bandlar[].id` — `kim · nima · narx · tugasa · qaytarish · aloqa`; `savol` — matnda «[savol]» qolganmi; `havolalar.*` va `chiqdi` — `bool | null` (tayanchda `bool`; `null` — tekshirilmagan, sinf 3); `siyosatBand` — o'quvchi qatori yoki `null`.
    Sahifa nomi `{nom}` kalitda yo'q (dars progressida). 11-dars ofertani nomi bilan ko'rsatishi kerak bo'lsa — `nom: string | null` maydoni qo'shiladi.
 5. **`pm-m10d1-lending.manzil` o'qiladi** (Amaliyot 2 `{lending manzili}`) — tayanch 8 da 7-dars o'qiydigan kalitlar ro'yxatida yo'q; yo'q bo'lsa o'quvchi Netlify'dan nusxalaydi. `pm-m9d8-platforma.trek` — tayanch 4 umumiy qoidasi bo'yicha.
-6. **Halollik gapiga qisqartma ochilishi qo'shildi** — «… yuridik shaxs yoki YaTT (yakka tartibdagi tadbirkor) bilan; bu kursda emas.» (T-036: qisqartma birinchi ko'rinishida). Tayanch va TAQIQLAR 1 dagi gap qavssiz. «Yuridik shaxs» o'quvchi matnida izohsiz qoldi (Shubhali 7).
-7. **O'quvchi ofertasining band sarlavhalari** — Mentor nomlari bilan, 4-band — «{nom} tugasa» (Mentor: «Pro tugasa»); 1, 5, 6-bandlar matni hamma o'quvchida Mentor matni bilan bir (kvadrat qavsli). 3-band qolipi: «{davr} kun, {narx} so'm; muddat tugagach {nom} o'zi to'xtaydi, pul avtomatik yechilmaydi».
+6. **Halollik gapiga qisqartma ochilishi qo'shildi** — «… yuridik shaxs yoki YaTT (yakka tartibdagi tadbirkor) bilan; bu kursda emas.» (T-036: qisqartma birinchi ko'rinishida). Tayanch va TAQIQLAR 1 dagi gap qavssiz. F-1007-465: «yuridik shaxs (ro'yxatdan o'tgan tashkilot)» ham ochildi.
+7. **O'quvchi ofertasining band sarlavhalari** — Mentor nomlari bilan, 4-band — «{nom} tugasa» (Mentor: «Pro tugasa»); 1, 5, 6-bandlar matni hamma o'quvchida Mentor matni bilan bir (kvadrat qavsli). 3-band qolipi: «{davr} kun, {narx} so'm; muddat tugagach {nom} o'zi to'xtaydi, pul avtomatik yechilmaydi». F-1007-465: dumi faqat `davrKun` bo'lsa; model bo'yicha alohida shablon yo'q (A-15).
 8. **2-ekrandagi tashkilotchining olti savoli** — tayanchda yo'q; Mentor ofertasi bandlaridan yig'ildi (Aloqa — savolsiz, 4-ekranda). Javob kaliti Mentor to'lov taklifi ekrani matnidan (2 bor, 4 yo'q).
 9. ✅ (07.10 hal qilindi — tayanch 9.26: Pro tugashi 5-dars 1-amaliyotida quriladi, 4-band kodda bor; 12-darsning 5-topilmasi — doimiy o'yinning takror yaratilishi) **Mentor ofertasining 4-bandi va 12-dars** — 1.7: «Pro tugasa — … yangi o'yin o'zi e'lon qilinmaydi»; 1.12: «Pro muddati tugagan tashkilotchining «Doimiy o'yini» yana e'lon qilindi» — 12-darsgacha tuzatilmaydi. Demak `m13-dars-07-done` da 4-band bir holatda kodga mos emas.
    Amaliyot 1 da agent 4-bandni kod bilan solishtiradi: (a) topmasa — kutilgan natija «mos» deydi, 12-dars topadi (hozirgi MD; O'qituvchi eslatmasida «ishlatib ko'rilmagan»); (b) topsa — Mentor 4-bandda «[savol]» qo'yishi va 12-dars topilmasi o'zgarishi kerak. Qaror kerak; «qur» da Mentor repo'sida agent javobi bilan tekshiriladi.
 10. ✅ (07.10 hal qilindi — tayanch 1.7, 9.29: bandga kim to'lagani va holat qo'shildi) **Siyosat bandi va `tolovlar` ustunlari** — band «to'lov raqami, summa, sana va Pro muddati»ni sanaydi; `tolovlar` da yana `holat` (to'landi / rad) va `oyinchi_id` (qaysi hisob) bor. Agent kod bilan solishtirganda buni aytishi mumkin. Taklif: «Biz saqlaymiz: to'lov raqami, holati, summa, sana, qaysi hisobga tegishli va Pro muddati.»
-    Shuningdek «uni to'lov xizmati qabul qiladi» — bugun mashqda karta umuman so'ralmaydi; taklif: siyosatga «Hozir to'lov — test rejimda: karta so'ralmaydi.» qatori (sinf 16: faqat hozir ishlaydigan narsa).
+    F-1007-465: «haqiqiy to'lovda uni to'lov xizmati qabul qiladi» olib tashlandi (kelajak arxitekturasi) — band: «Karta ma'lumoti so'ralmaydi — to'lov test rejimda; …». Avvalgi taklif: siyosatga «Hozir to'lov — test rejimda: karta so'ralmaydi.» qatori (sinf 16: faqat hozir ishlaydigan narsa).
 11. **Ilova o'zgarishi va yangi versiya** — to'lov taklifi ekranidagi havolalar `mobil/` da; o'rnatish fayli (APK) va brauzer ko'rinishi o'zi yangilanmaydi. Bu darsda yangi versiya tayyorlanmaydi (tayanchda yo'q; 12-dars — 1.12 A3). O'quvchiga halol qator (7-ekran). 4, 5-darslar bilan bitta qaror kerak (ular ham ilovani o'zgartiradi).
-12. **Tekshiruv akkaunti (Pro'siz)** — to'lov taklifi ekrani faqat Pro'siz hisobda ochiladi (tayanch 1.4); 4–5-darslarda o'quvchi hisobida Pro yoqilgan bo'lishi mumkin. Yo'l: ro'yxatdan o'tish formasida «tekshiruv» hisobi → tekshiruv → «Hisobni o'chirish» (12-Modul 9.35 a, 9.37 g). Mahsulotda «Hisobni o'chirish» bo'lmasa — agent `id` bo'yicha `WHERE` bilan o'chiradi (tayanch 7 sinf 10).
+12. **Pro'siz hisob** — to'lov taklifi ekrani faqat Pro'siz hisobda ochiladi (tayanch 1.4); 4–5-darslarda o'quvchi hisobida Pro yoqilgan bo'lishi mumkin. F-1007-465: tekshiruv akkaunti, uni o'chirish va agentning SQL bilan o'chirishi olib tashlandi — o'z hisobida Pro Neon'da bo'sh qilinadi (5-dars A2 1-qadamidagi so'rov, `pro_gacha = NULL WHERE id = …`). Pro — mashq, qaytarish shart emas.
 13. **Uyga vazifa ②** — bitta tanish odam (ota-ona yoki sinfdosh) ofertani o'qiydi va «qaysi joyi tushunarsiz?» savoliga javob beradi. Tayanchda 7-dars uyga vazifasi yozilmagan; PM+PRAKT darsida uyga vazifa bor (tayanch 4).
-14. **Modeli reklama yoki B2B bo'lgan o'quvchi** — to'lovchi foydalanuvchi emas; 5-ekran Yordamida: «bandlarni 4-darsdagi to'lov taklifi ekraningiz uchun yozing». 4-dars MD si bu holatni qanday hal qilganiga qarab moslanadi.
+14. **Modeli reklama yoki B2B bo'lgan o'quvchi** — F-1007-465 (tayanch 9.28 bilan): oferta 4-darsdagi alohida mashq ekrani uchun — mashq hujjati, lending pastiga havola yo'q; mahsulotning real modeli sifatida e'lon qilinmaydi (A-15).
 15. **`oferta.html` da Umami yo'q** — «sahifa hech qanday ma'lumot yig'masin va tashrifni sanamasin» (shartlar sahifasi ochilishini sanash tayanchda yo'q). Kerak bo'lsa — siyosatga ham qator kerak bo'ladi.
 16. **5-ekrandagi tekshiruvlar** — telefon/akkaunt/karta — bloklaydi; va'da va kafolat so'zlari — yumshoq. Ro'yxat tayanchda yo'q; 6-dars pilot tekshiruvlari naqshida.
 17. **Reja ekrani pastki qatori** — «repo — o'z repo'ngiz · Mentor misoli `maydon-jamoa` · namuna `m13-dars-07-done`» (10-Modul naqshi); pilot 06 da bu qator yo'q edi (repo'siz dars).
 18. **Arena 9 — kitob almashish ilovasi** (ikkinchi misol, P-002) va 3-ekran — uy vazifalari ilovasi: 12-Modul testlari olami.
 
 ## Shubhali joylar (ishonchim komil emas)
-1. ⛔ **90 daqiqa** — Amaliyot 2 ≈ 22 daqiqa ichida: siyosat bandi, ikki havola (lending va ilova), push, Netlify kutishi, telefonda uch tekshiruv va kerak bo'lsa tekshiruv akkaunti. Bu — reja: «qur» pilotida 12–15 o'quvchi bilan taymer bilan o'lchanadi; sig'masa — (3)-tekshiruv uyga ko'chadi (foydalanuvchi qarori).
+1. ⛔ **90 daqiqa** — Amaliyot 2 ≈ 22 daqiqa ichida: siyosat bandi, ikki havola (lending va ilova), push, Netlify kutishi, telefonda uch tekshiruv va kerak bo'lsa Neon'da Pro'ni bo'sh qilish. Bu — reja: «qur» pilotida 12–15 o'quvchi bilan taymer bilan o'lchanadi; sig'masa — (3)-tekshiruv uyga ko'chadi (foydalanuvchi qarori). ChatGPT bahosi — 115–140 daqiqa (o'lchanmagan; F-1007-465).
 2. ✅ (tayanch 9.26) **4-band va 12-dars** (TAYANCHGA SAVOL 9) — Mentor misolining ichki izchilligi (sinf 12) shu javobga bog'liq; agent haqiqatan nima deyishi «qur» da ko'riladi.
-3. ⛔ **Siyosat bandi `tolovlar` bilan to'liq mos emas** (TAYANCHGA SAVOL 10) — agent «[savol]» qoldirsa, 7-ekran kutilgan natijasi bilan farq qiladi.
+3. ✅ **Siyosat bandi va `tolovlar`** — 9.29 dan bandda hisob va holat bor; F-1007-465 da MD dagi eski qoldiqlar (7-ekran «Nima uchun?», arena 11, kartochka 11) tuzatildi. ⛔ «Qancha saqlanadi?» da to'lov yozuvlari — agent javobi pilotda (REPO 6).
 4. ⛔ **Ilovadagi havola telefon brauzerida ochilishi** — Expo Go'da (Android va iPhone) va saytda yangi oynada — «qur» da sinaladi; usul agentning tanloviga qoladi.
 5. **Netlify yangilanishi** — «push'dan keyin odatda o'zi yangilanadi» (12-Modul 9.28); kutish vaqti o'lchanmagan — «bir necha daqiqa cho'zilishi mumkin». Web-trek saytining yangilanishi — o'quvchi 11-Modulda qanday chiqargan bo'lsa (umumiy so'z, aniq qadam yozilmadi).
 6. **369-modda matni** — iqtibos tayanchdan; sahifaning o'zida sarlavhasini ko'rdim, matnini o'qiy olmadim (Manbalar). O'quvchi matnida faqat «ommaviy oferta (369-modda)» va sodda ta'rif.
-7. **«Yuridik shaxs»** — 13 yoshli tushunmasligi mumkin; o'quvchi matnida izohsiz (faqat O'qituvchi eslatmasida «ro'yxatdan o'tgan tashkilot»). Kartochka 6 izohida faqat YaTT ochilgan.
+7. ✅ **«Yuridik shaxs»** — F-1007-465: 4-ekran qatorida va kartochka 6 izohida «ro'yxatdan o'tgan tashkilot» deb ochildi.
 8. **«Odam to'lasa — shu shartlarga rozi bo'ladi»** — tayanchning sodda ta'rifi; mashqda to'lov yo'q, shuning uchun gap real ishga tushirish holatini tasvirlaydi. Auditor «mashqda hech kim rozi bo'lmaydi-ku» deyishi mumkin — sahifa tepasidagi «Mashq hujjati» qatori shuni ochiq aytadi.
 9. **Agent «o'zingdan gap qo'shma» ga amal qiladimi** — prompt ko'rsatmasi; o'quvchi baribir har gapni kodda ko'radi (4-qadam (2)). Kodni o'qish — ishlatib ko'rish emas (6-ekran izohi).
 10. **Yumshoq tekshiruvlar** (va'da, kafolat so'zlari) erkin matnda noto'g'ri ishlashi mumkin; bloklamaydi. `node` sinovida namunalar bilan (KOD 7).
@@ -659,11 +667,11 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 3. [x] **Saqlash kaliti — shartnoma** — A-12: har maydon, tipi, `id` barqaror, `savol` ma'nosi, `bool | null` uch holat, kim yozadi (5-ekran, Amaliyot 1, 2), kalitga ism, telefon, karta yo'q; boshqa darsning kaliti faqat o'qiladi; `pm-m10d1-lending` o'qilishi — TAYANCHGA SAVOL 5.
 4. [x] **Mentor misoli va kurs qolipi — umumiy qoida emas** — «Mentor misolida», «Bu mashqda», «Bu misolda» (2, 4-ekran xulosalari); olti band — «kurs shabloni» (4-ekran O'qituvchi eslatmasi, kartochka 4); o'quvchi band matni va nomi o'zida (5-ekran).
 5. [x] **Kafolat va sabab da'vosi yo'q** — agentning «mos» degani da'vo (6-ekran `QIzoh`); «saytda» — faqat «Ochildi» tanlanganda (7-ekran, yakun); «qonunga mos», «yurist tekshirgan» yo'q; Pro haqida «o'zi to'xtaydi» — Mentor misolida (tayanch 1.0, 1.7), o'quvchida agent kod bilan solishtiradi.
-6. [x] **Yakun, «Bajardim», yashil xabar, nishon — faqat rost holatda** — yakun besh holat (11-ekran; E 54); Amaliyot 1, 2 yashil xulosasi — ikki holat; «Terms Live!» tavsifi tekshiruvni aytadi, «saytda» demaydi; blok bajarilgani — 4-qadam «Bajardim»idan.
+6. [x] **Yakun, «Bajardim», yashil xabar, nishon — faqat rost holatda** — yakun besh holat (11-ekran; E 54); Amaliyot 1, 2 yashil xulosasi — ikki holat; «Terms Checked!» tavsifi tekshiruvni aytadi, «saytda» demaydi; blok bajarilgani — 4-qadam «Bajardim»idan.
 7. [x] **Ta'rif sanaladigan va amaliyotga mos** — oferta ta'rifi dars bo'yi so'zma-so'z; «bugun yoziladi» — ilovada bugun bor narsa (4-ekran xato izohlari shuni so'raydi); `chiqdi` — internetdagi manzilda ochilgani (o'quvchi ko'rgani).
 8. [x] **Test: bitta himoyalanadigan javob** — 3, 8-ekran va arena: distraktorlar uch xil turkumdan (Izoh qatorlari), hayotda rost bo'lib qoladigan variant yo'q (arena 4 «Pro bepul» varianti olib tashlandi — yolg'on fakt edi), inkor-savol yo'q, to'g'ri javob yolg'iz eng uzun emas (O'lchov).
-9. [x] **Real odamlar xavfsizligi** — real suhbat va tasdiq yo'q; uyga vazifa ② — faqat tanish odam (ota-ona yoki sinfdosh); ofertaga telefon, Telegram nomi yozilmaydi (5-ekran bloki, yakun kulrang qatori); tekshiruv akkaunti — «tekshiruv», familiyasiz, o'chiriladi; sinfda sanash yo'q (Mentor statistikasida matn yo'q).
-10. [x] **Tekshiruv — o'quvchining o'z yo'li, agent — zaxira** — bandlarni kodda o'quvchi o'zi ko'radi (6-ekran 4-qadam); havolalarni telefonda o'zi ochadi (7-ekran 4-qadam); tekshiruv akkauntini o'zi ochadi va o'chiradi; agent — faqat yozadi va dalil ko'rsatadi.
+9. [x] **Real odamlar xavfsizligi** — real suhbat va tasdiq yo'q; uyga vazifa ② — faqat tanish odam (ota-ona yoki sinfdosh); ofertaga telefon, Telegram nomi yozilmaydi (5-ekran bloki, yakun kulrang qatori); Pro'siz hisob — o'z hisobida Neon'da, yangi akkaunt yo'q; sinfda sanash yo'q (Mentor statistikasida matn yo'q).
+10. [x] **Tekshiruv — o'quvchining o'z yo'li, agent — zaxira** — bandlarni kodda o'quvchi o'zi ko'radi (6-ekran 4-qadam); havolalarni telefonda o'zi ochadi (7-ekran 4-qadam); Pro'ni Neon'da o'zi bo'sh qiladi; agent — faqat yozadi va dalil ko'rsatadi.
 11. [x] **Web-trek teng yo'l** — Amaliyot 1 ikkala trekda bir; Amaliyot 2 — `{to'lov taklifi ekrani}` va «Ochish» gapi trekdan; o'quvchi matnida «mahsulotingiz»; web-trek sayti yangilanishi to'qilmadi (Shubhali 5).
 12. [x] **Mentor misoli ichki izchil** — oferta, siyosat bandi, to'lov taklifi ekrani — tayanch 1.4, 1.7 aynan; keyingi darslar sonlari ochilmadi; 4-band va 12-dars ziddiyati 07.10 hal qilindi (tayanch 9.26); yashirilmadi (TAYANCHGA SAVOL 9), siyosat bandi va `tolovlar` farqi (TAYANCHGA SAVOL 10).
 13. [x] **O'quvchi talabida Mentorning qarori yo'q** — o'quvchi talabida nima beriladi, muddat tugasa nima bo'ladi, to'lovda nima saqlanadi — `{…}` va 5-ekranda o'quvchidan; koddan bilinmagani — «[savol]»; Mentor qarorlari faqat «Yordam»da.
@@ -680,19 +688,19 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 Belgilar soni — bo'shliq bilan, ** siz (Python len). Qavsdagi uzunliklar: 127 ta — hammasi skript qo'ygan, qo'lda son yozilmagan (arena savollari ortidagi qavs — ekran raqami).
 Sarlavhalar (13 ta, yakunning 5 holati bilan): 25–51 · ≤55, hammasi bitta qator.
 Xulosalar: 2-ekran 103 · 4-ekran 87 · 5-ekran 72 / 65 · ≤110.
-Bloklar yashil xulosasi: Amaliyot 1 — 56 / 50 · Amaliyot 2 — 67 / 54.
-QIzoh qatorlari: 94 (2-ekran, atama) · 87 (4-ekran) · 67 (Amaliyot 1). Ipucha: 56 · 41.
+Bloklar yashil xulosasi: Amaliyot 1 — 65 / 50 · Amaliyot 2 — 67 / 54.
+QIzoh qatorlari: 94 (2-ekran, atama) · 87 (4-ekran) · 78 (Amaliyot 1). Ipucha: 56 · 41.
 Bugungi asosiy fikr (A-2, yakunda ko'rsatilmaydi): 106 · ≤110.
 Hook javobi: 99 · ≤120 (sof so'rovnoma — uchala variantga bitta javob); hook variantlari 30 · 34 · 32.
 To'g'ri izohlar: 3-ekran 42 · 8-ekran 58 · ≤60.
 Xato izohlari, QXato va forma tekshiruvlari (26 ta): 35–60 · ≤60 (eng uzuni — 2-ekran 3-savol, 60).
-Kulrang qatorlar: 1-ekran 53 · 4-ekran halollik qatori 128 (tayanch gapi, qisqartirilmaydi) · 5-ekran 75 · Amaliyot 1 42 · Amaliyot 2 (mobil) 120.
+Kulrang qatorlar: 1-ekran 53 · 4-ekran halollik qatori 158 (tayanch gapi, qisqartirilmaydi; F-1007-465 — «yuridik shaxs» ochildi) · 5-ekran 75 · Amaliyot 1 42 · Amaliyot 2 (mobil) 120.
 Nishon tavsiflari: 45 · 35 · 39 · 43 · ≤48 (KORPUS §63).
 Mentor gaplari (`mentor.py`): kirish 2 gap (130) · reja 2 gap (135) · interaktiv 2, 4, 5-ekran va bloklar — 1 gap (71–123);
   sarlavha so'zlari Mentorda (4+ harfli so'zlar): 0/5 · 1/6 · 0/5 · 1/7 · 0/3 · 0/5 · 0/5 — hech qayerda ≥50% emas; «Bu…», «Hammasini…» bilan boshlanmaydi.
-Test savollari: 3-ekran 9 so'z · 8-ekran 7 so'z · arena 3–7 so'z · ≤12.
+Test savollari: 3-ekran 9 so'z · 8-ekran 8 so'z · arena 3–7 so'z · ≤12.
 3-ekran: A 41 · ✔B 37 · C 42 · D 41 | min/max 37/42 (+14%) | o'rtachadan eng katta og'ish 8%
-8-ekran: A 43 · B 46 · ✔C 42 · D 45 | min/max 42/46 (+10%) | 5%
+8-ekran: A 43 · B 46 · ✔C 45 · D 45 | min/max 43/46 (+7%) | 4%
 arena 1: ✔A 37 · B 36 · C 38 · D 35 | +9%
 arena 2: A 34 · ✔B 30 · C 31 · D 32 | +13%
 arena 3: A 32 · B 31 · ✔C 31 · D 30 | +7%
@@ -701,9 +709,9 @@ arena 5: ✔A 39 · B 40 · C 38 · D 38 | +5%
 arena 6: A 34 · ✔B 35 · C 37 · D 38 | +12%
 arena 7: A 33 · B 32 · ✔C 34 · D 35 | +9%
 arena 8: A 32 · B 32 · C 34 · ✔D 31 | +10%
-arena 9: ✔A 34 · B 35 · C 34 · D 32 | +9%
+arena 9: ✔A 32 · B 35 · C 34 · D 32 | +9%
 arena 10: A 36 · ✔B 37 · C 36 · D 41 | +14%
-arena 11: A 34 · B 38 · ✔C 36 · D 36 | +12%
+arena 11: A 34 · B 38 · ✔C 36 · D 36 | +12% (✔ matni F-1007-465 da almashdi)
 arena 12: A 30 · B 34 · C 31 · ✔D 32 | +13%
 To'g'ri variant hech bir testda yolg'iz eng uzun emas.
 ARENA ✔ taqsimoti: {'A': 3, 'B': 3, 'C': 3, 'D': 3}

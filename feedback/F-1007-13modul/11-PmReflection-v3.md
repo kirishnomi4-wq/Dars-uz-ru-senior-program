@@ -33,7 +33,7 @@ namunalar: 12-Modul `11-PmPitchReview-v3.md` + `11-FILTR.md` (12 ekranli qisqa P
    - 12-Modul: **lending** · **eslatma** · ro'yxat o'zi yangilanadi · **dalil** — «da'voni ko'rsatadigan son yoki yozuv» (11-dars; tayanch 9.43 a — son yoki yozuv · manba · qachon).
    - 13-Modul 1–10-darslar: **Pro** · **«Doimiy o'yin»** · **narx** · **xarajat** (4-dars) · **to'lov taklifi ekrani** · **test rejim** («Test rejim: pul yechilmaydi») · **suhbat** (6-dars) · **yozma tasdiq** (9-dars) · **Telegram xabari** · **taklif havolasi** · «Mentorning taxmini».
 4. **Bugun yangi — har biri misoldan KEYIN, bir marta (T-011, PM-030); ta'rif dars bo'yi so'zma-so'z (T-042):**
-   - **holat** (bu darsda) — «Bu darsda holat roadmap'dagi ish bugun qayerda ekanini aytadi; yonida — bir qator sabab.» (2-ekran xulosasi — Mentor kartalari belgilangandan keyin; yakun 1-qatori; kartochka 1).
+   - **holat** (bu darsda) — «Bu darsda holat roadmap'dagi ish o'z ufqiga qarab qayerda ekanini aytadi; yonida — bir qator sabab.» (2-ekran xulosasi — Mentor kartalari belgilangandan keyin; yakun 1-qatori; kartochka 1).
      11-Modul 15-darsidagi «holat» bilan ko'prik (T-052): o'sha so'z; o'shanda vaqt — ishning darsi edi, bugun — ufqi; «boshlanmadi» o'rnida bugun — besh nom (2-ekran O'qituvchi eslatmasi, kartochka 3 izohi).
    - **bajarildi** — «roadmap'dagi ish o'z ufqi ichida tugagan va hozir ishlaydi» (2-ekran, 1-kartadan keyin `QIzoh`).
    - **kechikdi** — «ish o'z ufqi ichida tugamagan: keyin tugagan yoki hali yo'q» (6-ekran, o'quvchi birinchi marta bosgandan keyin `QIzoh`). Mentor misolida kechikkan ish yo'q — 2-ekran oxirgi `QIzoh` buni ochiq aytadi.
@@ -61,11 +61,11 @@ namunalar: 12-Modul `11-PmPitchReview-v3.md` + `11-FILTR.md` (12 ekranli qisqa P
      maydon pulini bo'lishish — uzoqroqda qoldi (sabab: muammo gapidan kelmaydi; 2-darsda solishtirildi) · yangi qo'shildi: lending, Pro va test to'lov, Telegram xabari, taklif havolasi (sabab: 50 foydalanuvchi va pul — 12–13-Modul ishi).
      Kartadagi sabab qatorlari: «11-Modulda qurildi» · «12-Modulda qurildi» · «muammo gapidan kelmaydi; 2-darsda solishtirildi» · «50 foydalanuvchi va pul — 12–13-Modul ishi» (birinchi ikkitasi — tayanchdagi qavsning gapga aylangani; TAYANCHGA SAVOL 6).
      «Chiqish va navbat» — 11-Modul tayanchi 1.9: 14-darsda navbat ikki marta ishlamadi, darsdan keyin ishladi — 11-Modul ichida. Bugun holat ufq bo'yicha — bajarildi; 1-karta ostida shu fakt kulrang qator bo'lib turadi (TAYANCHGA SAVOL 2).
-   - **Mentorning uch javobi (1.11 so'zma-so'z; `MENTOR_JAVOBLAR`):** 1) «Pro'ni o'yinchiga emas, tashkilotchiga qo'ydim.» · 2) «1-darsda narxni 10 000 deb o'yladim — xarajatni hisoblamagan edim; 4-darsdagi xarajat hisobi buni ko'rsatdi.» ·
+   - **Mentorning uch javobi (1.11 so'zma-so'z; `MENTOR_JAVOBLAR`):** 1) «Pro'ni o'yinchiga emas, tashkilotchiga qo'ydim.» · 2) «1-darsda narxni 10 000 deb taxmin qildim; 4-darsda xarajatni qo'shib, narxni qayta ko'rdim.» ·
      3) «To'lashga tayyorligini yozgan uch tashkilotchi bilan "Doimiy o'yin"ni test rejimda sinab ko'raman.» Javoblar — olam ichidagi matn (T-008). 2-javobdagi «10 000» yonida kulrang yorliq «Mentorning taxmini» (TAQIQLAR 1); 3-javob ostida kulrang: tasdiq — 9-darsdagi yozma tasdiq.
    - **Telefon dalillari (2-ekran; faqat tayanchlardagi ekran matnlari):** namuna o'yin «Shanba, 18:00 · Mahalla maydoni · 8 / 10» → «9 / 10», «Qo'shilaman», «Kelaman», «Navbatga yozilish» (11-Modul 1.4, 1.7) ·
      eslatma — sarlavha «Maydon Jamoa», matn «Bugun, 18:00 · Mahalla maydoni» (12-Modul 1.4) · ulanish belgisi «Ulangan» (12-Modul 9.1) · lending sarlavhasi «Mahalla futboliga jamoani bir joyda yig'ing» (12-Modul 1.1) ·
-     to'lov taklifi ekrani «Doimiy o'yin — Pro'da» · «30 kun — 15 000 so'm» · «To'lovga o'tish» · «Test rejim: pul yechilmaydi» (13-Modul 1.4) · Telegram xabari «Shanba, 18:00 o'yini yana e'lon qilindi · Mahalla maydoni — 3 / 10» (1.8) · lendingda «Taklif kodi: AB12CD» (1.10).
+     to'lov taklifi ekrani «Doimiy o'yin — Pro'da» · «30 kun — 15 000 so'm» · «To'lovga o'tish» · «Test rejim: pul yechilmaydi» (13-Modul 1.4) · Telegram xabari «Shanba, 18:00 o'yini yana e'lon qilindi · Mahalla maydoni» (1.8) · lendingda «Taklif kodi: AB12CD» (1.10).
    - **Raqamlar:** 10 000 (2-javob; Mentorning taxmini) · uch tashkilotchi (3-javob; 9-dars natijasi — tayanch 1.9, 1.13) · 50 (sababda — 12-Modul maqsadi) · ekran matnlaridagi «8 / 10», «9 / 10», «3 / 10», «15 000» (narx qatori yonida «Mentorning taxmini»).
      2-ekran bashoratidagi «oltita» — Mentor roadmap'idagi ishlar soni (11-Modul 1.5). Boshqa son yo'q; keyingi darsning sonlari aytilmaydi.
 7. **K17 Tesla (tayanch 5 aynan; `PM_Prompt_v8.md` K17):** bank matni — «2006-yilda Musk Tesla'ning «maxfiy master-rejasi»ni e'lon qilgan: avval qimmat sport mashinasi kichik seriyada → shu pulga arzonroq mashina → shu pulga ommaviy mashina. Reja ochiq bo'lgan va o'n yildan ortiq bajarilgan.» Raqamsiz (2006 — voqea yili, bankda bor).
@@ -83,12 +83,13 @@ namunalar: 12-Modul `11-PmPitchReview-v3.md` + `11-FILTR.md` (12 ekranli qisqa P
     jonli darsda 6, 7 — `optionalLive`. Tashqi kutish yo'q (repo, build, xizmat yo'q).
 11. **Saqlash kalitlari (tayanch 8):**
     - **o'qiydi:** `pm-m9d6-roadmap` (`ishlar[].nom`, `ishlar[].ufq` — 0, 1, 6-ekranlar) · `pm-m9d15-reja` (`holatlar[{ ish, holat }]` — 6-ekrandagi tarix qatori; ish nomi bo'yicha moslanadi) · `pm-m11d2-model` (`model`, `kim`, `nima` — 6-ekrandagi taklif tugmasi va 7-ekran 1-savol qatori) ·
-      `pm-m11d6-suhbat` (`suhbatlar[]` — faqat `tur: 'real'`, `javob` bo'yicha sanoq — 7-ekran dalil tugmasi) · `pm-m11d9-tasdiq` (`soralgan`, `tasdiqlar.length` — dalil tugmasi) · `pm-m11d1-birlik.narxTaxmin` (faqat `tur: 'real'`) va `pm-m11d4-narx.narx` (ikkalasi bo'lsa — dalil tugmasi; TAYANCHGA SAVOL 11).
+      `pm-m11d6-suhbat` (`suhbatlar[]` — faqat `tur: 'real'`, `javob` bo'yicha sanoq — 7-ekran dalil tugmasi) · `pm-m11d9-tasdiq` (`soralgan`, `hisobga: true` yozma tasdiqlar soni — dalil tugmasi; F-1007-467) · `pm-m11d1-birlik.narxTaxmin` (faqat `tur: 'real'`) va `pm-m11d4-narx.narx` (ikkalasi bo'lsa — dalil tugmasi; TAYANCHGA SAVOL 11).
       Yo'q bo'lsa: roadmap — o'quvchi ishlarni o'zi yozadi (6-ekran); qolganlari — tegishli qator yoki tugma ko'rinmaydi. `tur: 'mashq'` sonlari dalil tugmasiga kirmaydi (tayanch 9.19). `pm-m11d7-hujjat` bu darsda o'qilmaydi (TAYANCHGA SAVOL 11).
-    - **yozadi:** `pm-m11d11-refleksiya` = `{ ishlar: [{ nom, ufq, holat, sabab }], javoblar: [3], savedAt }` — maydonlar shartnomasi:
+    - **yozadi:** `pm-m11d11-refleksiya` = `{ roadmapManba, ishlar: [{ nom, ufq, holat, sabab }], javoblar: { qarorim, notogri, keyingi }, savedAt, completedAt }` — maydonlar shartnomasi (F-1007-469):
+      `roadmapManba` — `'saqlangan'` (`pm-m9d6-roadmap` dan) | `'qayta-yozilgan'` (topilmagan, o'quvchi eslab yozgan) ·
       `nom` — roadmap'dagi nom (o'zgarmaydi) yoki o'quvchi yozgan yangi ish nomi (≤ 60) · `ufq` — `'hozir' | 'keyinroq' | 'uzoqroq' | null` (roadmap'dan; yangi ishda `null`; maydon — TAYANCHGA SAVOL 10) ·
       `holat` — `'bajarildi' | 'kechikdi' | 'olib-tashlandi' | 'uzoqroqda' | 'yangi'` (`'uzoqroqda'` faqat `ufq: 'uzoqroq'` da, `'yangi'` faqat `ufq: null` da) · `sabab` — bitta qator, ≤ 80, bo'sh emas ·
-      `ishlar` tartibi — roadmap tartibi, keyin yangi ishlar; 6-ekran «Saqlash»i yozadi (hamma ishga holat va sabab qo'yilgach) · `javoblar` — `[string | null, string | null, string | null]`, 7-ekranning har «Saqlash»i o'z o'rniga yozadi (≤ 200) · `savedAt` — har saqlashda yangilanadi.
+      `ishlar` tartibi — roadmap tartibi, keyin yangi ishlar; 6-ekran «Saqlash»i yozadi (hamma ishga holat va sabab qo'yilgach) · `javoblar` — `{ qarorim, notogri, keyingi }`, har biri `string | null` (savol tartibi o'zgarsa ham ma'no qoladi), 7-ekranning har «Saqlash»i o'z maydoniga yozadi (≤ 200) · `savedAt` — oxirgi saqlash vaqti, har saqlashda yangilanadi · `completedAt` — `ishlar` va uchala javob birinchi marta to'liq saqlangan vaqt, aks holda `null` (tugatilgan kun — shu).
       Kalitga ism, login, telefon, Telegram nomi yozilmaydi. Mentor misoli kalitga yozilmaydi. Dars boshqa darsning kalitiga yozmaydi. Kod qoralamasi kaliti yo'q (kod ekrani yo'q).
 12. **Toza yuza (D4):** tugma, variant, karta, yorliqda emoji yo'q; ✓ ✕ › ✎ — belgilar. O'yin qatlami (arena, nishon medali, podium) — mustasno. Kafolat so'zlari yo'q («har doim», «hech qachon», «darrov», «albatta», «100%»); belgi-formula (→, ×, =) o'quvchi izohida yo'q.
 13. **Kod ekrani yo'q** (tayanch 4: PM darslarida mexanika ketma-ket takrorlanmaydi — 9 — yo'q · 10 — bloklar · 11 — yo'q). **Trek:** PM darsi, blok yo'q — ikkala trekka bir xil; sarlavha va savollarda «mahsulotingiz».
@@ -120,7 +121,7 @@ namunalar: 12-Modul `11-PmPitchReview-v3.md` + `11-FILTR.md` (12 ekranli qisqa P
   Roadmap saqlanmagan bo'lsa — Mentor misoli (yorliq «Mentor misoli · Maydon Jamoa», oltita ish — A-6), chapda kichik telefon: «O'yinlar» ekrani, «Shanba, 18:00 · Mahalla maydoni · 8 / 10».
 - Variantlar (radio, o'ng; bir uzunlikda — P-016):
   - Roadmap'dagi ishlar bajarildi (29)
-  - Ba'zi ishlar hali qilinmay qoldi (32)
+  - Ba'zi ishlarning vaqti hali kelmagan (36)
   - Roadmap'da yo'q ishlar qo'shildi (32)
 - Javob (uchalasida bir xil, maqtovsiz — J-026, KORPUS §119): Uchalasi ham uchraydi: Mentor misolida bitta roadmap'da uchalasi bor. Har ish qayerda ekanini bugun belgilaysiz. (112)
 - **Harakat → Vizual o'zgarish:** variantni tanlash → tanlangan variant accent chegara bilan qotadi; doskadagi «?» belgilari navbat bilan (100 ms) bir lahza ko'tarilib qaytadi, «Yangi qo'shildi» qatorining uzuq chizig'i bir marta yonadi —
@@ -158,15 +159,15 @@ namunalar: 12-Modul `11-PmPitchReview-v3.md` + `11-FILTR.md` (12 ekranli qisqa P
 - Kartalar (navbat bilan; tayanch 1.11 tartibi; telefon matnlari — A-6):
   1. **Uch asosiy funksiya** · Hozir · 11-Modul — «O'yin e'loni va qo'shilish» · «O'yin kuni tasdiq» · «Chiqish va navbat» (doskada uchta karta birga halqada).
      Telefon: «Shanba, 18:00 · Mahalla maydoni · 8 / 10» → «Qo'shilaman» bir marta bosiladi → «9 / 10»; keyin o'yin sahifasida «Kelaman»; to'lgan o'yinda «Navbatga yozilish».
-     Karta ostida kulrang qator (dalil): Chiqish va navbat 14-darsdan keyin ishladi — 11-Modul ichida. (61) ✔ Bajarildi → uch kartaga yashil «bajarildi» yorlig'i uchadi, ostida sabab qatori «11-Modulda qurildi».
+     Karta ostida kulrang qator (dalil): 11-Modul 15-darsida «kechikdi» edi — o'z darsidan keyin, 11-Modul ichida ishladi. (81) ✔ Bajarildi → uch kartaga yashil «bajarildi» yorlig'i uchadi, ostida sabab qatori «11-Modulda qurildi».
      `QIzoh` (~3 s): Bajarildi — roadmap'dagi ish o'z ufqi ichida tugagan va hozir ishlaydi. (71)
   2. **O'yindan oldin eslatma** · Keyinroq · 12–13-Modul — telefon qulf ekrani: eslatma «Maydon Jamoa» · «Bugun, 18:00 · Mahalla maydoni». ✔ Bajarildi → sabab qatori «12-Modulda qurildi».
   3. **Ro'yxat o'zi yangilanadi** · Keyinroq · 12–13-Modul — telefon: tepada ulanish belgisi «Ulangan»; «8 / 10» hech narsa bosilmasdan «9 / 10» ga o'zgaradi (kulrang kichik yorliq «hech narsa bosilmadi»). ✔ Bajarildi → sabab qatori «12-Modulda qurildi».
   4. **Maydon pulini bo'lishish** · Uzoqroq · bitiruvdan keyin — telefonda bunday ekran yo'q: kulrang qator «ilovada yo'q»; doskada karta o'z ustunida, ustidan chiziq yo'q. ✔ Uzoqroqda qoldi → kulrang «uzoqroqda qoldi» yorlig'i, sabab qatori «muammo gapidan kelmaydi; 2-darsda solishtirildi».
      `QIzoh` (~3 s): Uzoqroqda qoldi — vaqti hali kelmagan ish o'z ustunida turibdi. (63)
   5. **Roadmap'da yo'q ishlar** — telefonda navbat bilan (har biri ~1 s): brauzerda lending «Mahalla futboliga jamoani bir joyda yig'ing» · to'lov taklifi ekrani «Doimiy o'yin — Pro'da», «30 kun — 15 000 so'm» (yonida kulrang «Mentorning taxmini»), «To'lovga o'tish», pastda kulrang «Test rejim: pul yechilmaydi» ·
-     Telegram chati (sarlavha «Telegram» o'z rangida): «Shanba, 18:00 o'yini yana e'lon qilindi · Mahalla maydoni — 3 / 10» · lendingdagi qator «Taklif kodi: AB12CD». Doska ustunlari bo'ylab kulrang tekshiruv chizig'i o'tadi — bunday karta yo'q.
-     ✔ Yangi qo'shildi → to'rt karta telefondan «Yangi qo'shildi» qatoriga uchadi: «Lending» · «Pro va test to'lov» · «Telegram xabari» · «Taklif havolasi»; sabab qatori «50 foydalanuvchi va pul — 12–13-Modul ishi».
+     Telegram chati (sarlavha «Telegram» o'z rangida): «Shanba, 18:00 o'yini yana e'lon qilindi · Mahalla maydoni» · lendingdagi qator «Taklif kodi: AB12CD». Doska ustunlari bo'ylab kulrang tekshiruv chizig'i o'tadi — bunday karta yo'q.
+     ✔ Yangi qo'shildi → to'rt karta telefondan «Yangi qo'shildi» qatoriga uchadi: «Lending» · «Pro va test to'lov» · «Telegram xabari» · «Taklif havolasi»; sabab qatori «50 foydalanuvchi va pul — 12–13-Modul ishi»; qator ustida kulrang yorliq «faqat katta ishlar» (F-1007-469).
      `QIzoh` (~3 s): Yangi qo'shildi — roadmap'da yo'q edi, lekin mahsulotga qo'shildi. (66)
 - **Harakat → Vizual o'zgarish:** tugmani bosish → to'g'ri bo'lsa holat yorlig'i tugmadan kartaga uchadi (~1 s rangli), ostida sabab qatori yoziladi (5-kartada kartalar «Yangi qo'shildi» qatoriga uchadi); halqa keyingi kartaga o'tadi, telefon sahnasi almashadi.
   Xato → tugma silkinadi, karta bir lahza `err` fon, bitta `QXato` (≤60; javobni aytmaydi):
@@ -180,7 +181,7 @@ namunalar: 12-Modul `11-PmPitchReview-v3.md` + `11-FILTR.md` (12 ekranli qisqa P
   - 5-karta, boshqa tugma: Bu ishlar roadmap'ning qaysi ustunida edi? (42)
 - Natija (bitta blok — E 42; `tugadi`: tugmalar yopiladi, telefon yig'iladi, doska butun enga, ⛶ ichida — q17/q18): yashil xulosa qutisi — birinchi kichik qator taxmin: «Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz ✕ — aslida: 5»;
   doskada: beshta «bajarildi», bitta «uzoqroqda qoldi», «Yangi qo'shildi» qatorida to'rtta ish — har birida sabab qatori.
-- Xulosa: Bu darsda holat roadmap'dagi ish bugun qayerda ekanini aytadi; yonida — bir qator sabab. (88) — atama «holat» bu darsdagi ma'nosida shu yerda (T-011)
+- Xulosa: Bu darsda holat roadmap'dagi ish o'z ufqiga qarab qayerda ekanini aytadi; yonida — bir qator sabab. (99) — atama «holat» bu darsdagi ma'nosida shu yerda (T-011)
 - `QIzoh` (qutining oxirgi kichik qatori — E 42): Mentor misolida kechikkan va olib tashlangan ish yo'q — sizda bo'lishi mumkin. (78)
 - Tugma (pastki): Avval belgilang → Holat qo'ying (N/5) → Davom etish
 - Ipucha (40 s harakatsizlikda; javobni aytmaydi): Telefonda bu ish bormi va doskaning qaysi ustunida turibdi? (59)
@@ -226,7 +227,7 @@ namunalar: 12-Modul `11-PmPitchReview-v3.md` + `11-FILTR.md` (12 ekranli qisqa P
     · sahna: brauzerdagi uch qator navbat bilan ochiladi va yonida chizilgan mashina paydo bo'ladi: 1 — qizil past sport mashinasi (oz sonli kichik siluetlar), 2 — oddiyroq mashina, 3 — mashinalar qatori;
       bosqichlar orasida tanga belgisi oldingi bosqichdan keyingisiga sirg'aladi («uning pulidan»). Raqam, narx, logotip yo'q.
   - 3/3 **Ochiq reja** — Mentor: Nomi «maxfiy» bo'lsa ham, reja hammaga ochiq bo'lgan va o'n yildan ortiq bajarilgan.
-    · sahna: brauzer oynasi ustida kulrang yorliq «hammaga ochiq»; uch qator ostida vaqt chizig'i «2006 · o'n yildan ortiq» — bosqichlar chiziq bo'ylab navbat bilan yonadi (✓ belgisi yo'q: bank bosqichlar qachon tugaganini aytmaydi).
+    · sahna: brauzer oynasi ustida kulrang yorliq «hammaga ochiq»; uch qator ostida vaqt chizig'i «2006 · o'n yildan ortiq» — uch bosqich reja sifatida chiziq ustida navbat bilan ko'rsatiladi: yonish ham, ✓ belgisi ham yo'q (bank bosqichlar qachon tugaganini aytmaydi; F-1007-469).
 - Bashorat natijasi (yashil qutining birinchi kichik qatori — E 42): «Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz ✕ — aslida: o'n yildan ortiq»; bashorat kartasi tanlangan variant bilan joyida qoladi.
 - **Harakat → Vizual o'zgarish:** bashorat varianti, keyin «Voqea davomi» (pastki tugma, halqada) → Mentor gapi, kadr nomi va sahna almashadi (yangi element bir lahza ajralib kiradi; 2/3 da mashinalar va tanga navbat bilan).
 - Xulosa (3/3 dan so'ng, pastda, yashil): Bu voqeada reja ochiq yozilgan va bosqichma-bosqich bajarilgan. (63)
@@ -267,31 +268,32 @@ namunalar: 12-Modul `11-PmPitchReview-v3.md` + `11-FILTR.md` (12 ekranli qisqa P
 - **Chapda — `HolatDoska`** (o'quvchi roadmap'i, to'liq; joriy ish kartasi halqada) · **o'ngda — bitta katta karta «Ish {n} / {N}»:** ish nomi · ufq yorlig'i (kulrang) ·
   kulrang tarix qatori «11-Modul 15-darsida: {holat}» (`pm-m9d15-reja.holatlar` da shu nomli ish bo'lsa; qiymati — bajarildi · kechikdi · boshlanmadi) · holat tugmalari · sabab maydoni · «Saqlash».
 - **Holat tugmalari:** Bajarildi · Kechikdi · Olib tashlandi; ish «Uzoqroq · bitiruvdan keyin» ustunida bo'lsa — to'rtinchisi **Uzoqroqda qoldi** (shu ustunda oldindan tanlangan; o'quvchi o'zgartirishi mumkin). Ufqi yo'q ishda — uchta tugma.
-- **Sabab maydoni** (holat tanlangach ochiladi; ≤ 80; yorliq input ichida — E 43); placeholder holatga qarab: bajarildi — «Qachon tugadi?» · kechikdi — «Nega kechikdi?» · olib tashlandi — «Nega endi kerak emas?» · uzoqroqda qoldi — «Nega hozir emas?».
+- **Sabab maydoni** (holat tanlangach ochiladi; ≤ 80; yorliq input ichida — E 43); placeholder holatga qarab: bajarildi — «Qachon tugadi?» · kechikdi — «Keyin tugadimi yoki hali yo'qmi? Nega?» · olib tashlandi — «Nega endi kerak emas?» · uzoqroqda qoldi — «Nega hozir emas?».
 - `QIzoh` (o'quvchi shu holatni birinchi marta saqlaganda, bir marta; yashil qatorda): kechikdi — Kechikdi — ish o'z ufqi ichida tugamagan: keyin tugagan yoki hali yo'q. (71) · olib tashlandi — Olib tashlandi — ish endi qilinmaydi. (37)
   Ikki atama shu yerda, o'quvchining o'z ishidan keyin tug'iladi (T-011); bajarildi, uzoqroqda qoldi, yangi qo'shildi — 2-ekranda tug'ilgan.
 - **Roadmap'da yo'q ishlar** (roadmap'dagi hamma ishdan keyin, o'sha karta o'rnida): savol qatori «Roadmap'da yo'q, lekin mahsulotingizga qo'shilgan ish bormi?» · maydon «Ish nomi» (≤ 60; placeholder «Qaysi ish qo'shildi?») ·
-  sabab (placeholder «Nega qo'shildi?») · «Qo'shish» · ikkinchi tugma «Yangi ish yo'q». Ko'pi bilan to'rtta; har biri holat «Yangi qo'shildi» bilan.
+  sabab (placeholder «Nega qo'shildi?») · «Qo'shish» · ikkinchi tugma «Yangi ish yo'q». Ko'pi bilan to'rtta — savol ostida kulrang qator: Eng muhim to'rttagacha ishni qo'shing. (38) Har biri holat «Yangi qo'shildi» bilan.
   `pm-m11d2-model.nima` bo'lsa — maydon ustida kulrang taklif tugmasi «2-darsdagi pullik qismingiz: {nima}» (bosilsa nom maydoniga yoziladi; o'quvchi o'zgartiradi yoki o'chiradi; TAYANCHGA SAVOL 11).
-- **Roadmap topilmasa** (M-q5): kulrang qator «Roadmap'ingiz topilmadi — 11-Moduldagi rejangizdan ishlarni yozing: nomi va ufqi.» + maydon «Ish nomi» + uch ufq tugmasi (Hozir · Keyinroq · Uzoqroq) + «Qo'shish»; 3–8 ish, keyin yuqoridagi karta oqimi.
+- **Roadmap topilmasa** (M-q5): kulrang qator «Roadmap'ingiz topilmadi — eslagan ishlaringizni yozing: nomi va ufqi. Bu asl roadmap emas, qayta yozilgani.» (107) + maydon «Ish nomi» + uch ufq tugmasi (Hozir · Keyinroq · Uzoqroq) + «Qo'shish»; 1–8 ish (eslaganicha — sonni to'ldirish uchun to'qilmaydi; F-1007-469), keyin yuqoridagi karta oqimi; kalitga `roadmapManba: 'qayta-yozilgan'`.
 - Tekshiruv (`QXato`, ≤60; maydon ostida; yumshoqlari ikkinchi «Saqlash» bilan o'tadi):
   - holat tanlanmagan (bloklaydi): Avval holatni tanlang. (22)
   - sabab bo'sh (bloklaydi): Sababini bir qatorda yozing. (28)
   - sabab 80 belgidan uzun (bloklaydi): Bir qatorga sig'diring — 80 belgigacha. (39)
-  - «@», «t.me/», «+998» yoki ketma-ket 7+ raqam (bloklaydi): Telefon va akkaunt nomi yozilmaydi. (35)
+  - «@», «t.me/», «+998» yoki telefon shakli — 9 raqam («90 123 45 67» yoki bo'shliqsiz) (bloklaydi): Telefon va akkaunt nomi yozilmaydi. (35)
+  - boshqa ketma-ket 7+ raqam (yumshoq — son bo'lishi mumkin; F-1007-464): Bu telefon raqamimi? Telefon yozilmaydi. (40)
   - «Bajarildi» va sababda «hali», «qilmadim», «qilinmadi» (yumshoq): Sababda «hali qilinmadi» bor — holatni qayta qarang. (52)
   - «Kechikdi» va sababda «kerak emas», «voz kechdim» (yumshoq): Sababga qarang: ish endi qilinmaydimi? (38)
   - yangi ish nomi roadmap'dagi ish nomi bilan bir xil (yumshoq): Bu ish roadmap'da bor — holatini o'z kartasida qo'ying. (55)
   - Yorliq (yumshoq xatodan keyin): Shunday qoldirsangiz — yana «Saqlash»ni bosing. (47)
 - Yordam (bosilsa ochiladi; «qayerga qarash», tayyor javob emas): Ishni mahsulotingizda oching — web-trekda saytingizda: u ishlayaptimi? O'z ufqi ichida tugagan va ishlayotgan ish — bajarildi; keyin tugagan yoki hali yo'q — kechikdi; endi qilmaysiz — olib tashlandi.
-  Bu darsda keyinroq ufqidagi hali qilinmagan ish ham — kechikdi. Roadmap'da yo'q ishni oxirida qo'shing: funksiya yoki katta qism, har tugma emas.
+  Bu darsda keyinroq ufqidagi hali qilinmagan ish ham — kechikdi: 12-dars yangi ish qo'shmaydi. Roadmap'da yo'q ishni oxirida qo'shing: funksiya yoki katta qism, har tugma emas.
   Mentor misolida: «Maydon pulini bo'lishish» — uzoqroqda qoldi: muammo gapidan kelmaydi; 2-darsda solishtirildi. Olib tashlash — mag'lubiyat emas: ish endi kerak emasligini bilib oldingiz.
 - **Harakat → Vizual o'zgarish:** holat tugmasi → tugma holat rangiga kiradi, sabab maydoni ochiladi (accent chegara); «Saqlash» → karta kichrayib doskadagi o'z ustuniga uchadi — holat yorlig'i va sabab qatori bilan (~1 s yashil), hisoblagich n o'sadi, keyingi ish kiradi;
   «Olib tashlandi» — doskada nom ustidan chiziq tortiladi; «Qo'shish» → yangi ish «Yangi qo'shildi» qatoriga uchadi. Hammasi tugagach karta yopiladi, doska butun enga, har kartada ✎ (bosilsa o'sha ish katta karta bo'lib ochiladi — SABOQ 29); pastki o'ngda «Saqlash» → kalit.
   Tekshiruvdan o'tmagan maydon `err` fon, ostida bitta `QXato`.
 - Xulosa (o'quvchi ma'lumotidan, P-046): Har ishga holat va sabab qo'yildi: 6 ta ish, shundan 2 tasi yangi. (66) — namuna 6/2 · yangi ish yo'q bo'lsa: Har ishga holat va sabab qo'yildi: 5 ta ish. (44)
   Holatlar sanog'i xulosada takrorlanmaydi — u doskada ko'rinib turibdi (P-062).
-- Saqlash: `pm-m11d11-refleksiya.ishlar` (A-11 shartnomasi), `savedAt`.
+- Saqlash: `pm-m11d11-refleksiya.ishlar` va `roadmapManba` (A-11 shartnomasi), `savedAt`; hammasi to'liq bo'lsa — `completedAt`.
 - Tugma (pastki): Ishlarga holat qo'ying (n/N) → Saqlash → Davom etish (`optionalLive`).
 - Keyingi bosiladigan joy: holat tugmalari (navbatma-navbat to'lqin) → sabab maydoni → «Saqlash» → keyingi karta; oxirida — «Qo'shish» yoki «Yangi ish yo'q» → pastki «Saqlash».
 - Artefakt-strip (U-042): shu ekrandan — «Roadmap'im · {N} ish» (ixcham); 7-ekranda ko'rinadi; test, arena, podium va yakunda yo'q (E 50).
@@ -304,48 +306,49 @@ namunalar: 12-Modul `11-PmPitchReview-v3.md` + `11-FILTR.md` (12 ekranli qisqa P
 ## 7 · Shaxsiy hisobot  ← QMustaqil (USTAXONA 2/2 — ketma-ket 3 karta; SABOQ 9, 13, 29, E 43, E 53)
 - Eyebrow: Mustaqil ish · shaxsiy hisobot
 - Sarlavha: **O'z qarorlaringiz haqida uch savolga javob yozing.** (50)
-- Mentor: Avval Mentor misolini o'qing, keyin o'zingiznikini yozing.
+- Mentor: O'zingiz yozing; kerak bo'lsa — chapdagi Mentor misolini oching.
 - Tepada (kulrang, bitta qator): Hisobotingiz Mentor ekraniga chiqmaydi — faqat saqlangani ko'rinadi. (68)
 - Qism yorliqlari (ot-shakl, T-073): 1 Qarorim · 2 Noto'g'ri chiqqan qaror · 3 Keyingi 4 hafta
-- **Chapda — Mentor javobi kartasi** (kulrang yorliq «Mentor misolida», «Maydon Jamoa» o'z rangida; joriy savolga Mentorning javobi so'zma-so'z) · **o'ngda — bitta katta karta** (joriy savol, maydon, dalil tugmalari, «Saqlash») · tepada — ixcham chiziq «Roadmap'im · {N} ish» (6-ekrandan).
+- **Chapda — Mentor javobi kartasi** (kulrang yorliq «Mentor misolida», «Maydon Jamoa» o'z rangida; joriy savolga Mentorning javobi so'zma-so'z — **yopiq turadi**: kulrang tugma «Mentor misolini ko'rish», bosilsa ochiladi; keyingi savolda yana yopiq — o'quvchi avval o'zi yozadi, F-1007-469) · **o'ngda — bitta katta karta** (joriy savol, maydon, dalil tugmalari, «Saqlash») · tepada — ixcham chiziq «Roadmap'im · {N} ish» (6-ekrandan).
 - Savollar (Qaror-0 18 aynan; ketma-ket):
   1. **O'z qarorim bilan nima qildim?** — Mentor misolida: «Pro'ni o'yinchiga emas, tashkilotchiga qo'ydim.»
      Maydon (≤ 200; placeholder «O'zingiz qaysi qarorni qildingiz?»). Kulrang qator (`pm-m11d2-model` bo'lsa): «2-darsdagi tanlovingiz: {model nomi}; to'laydi — {kim}.»
      (model nomlari — tayanch 2: bepul asos va pullik qo'shimcha · pullik obuna · reklama · B2B — boshqa biznes to'laydi · tranzaksiya — har to'lovdan ulush)
-  2. **Qaysi qarorim noto'g'ri chiqdi va buni qaysi dalil ko'rsatdi?** — Mentor misolida: «1-darsda narxni 10 000 deb o'yladim — xarajatni hisoblamagan edim; 4-darsdagi xarajat hisobi buni ko'rsatdi.» («10 000» yonida kulrang «Mentorning taxmini»)
-     Maydon (≤ 200; placeholder «Qaysi qaror va qaysi son yoki yozuv?»). Ostida kulrang qator: Dalil — son yoki yozuv; qayerdan olinganini ham yozing. (55)
+  2. **Qaysi qarorim noto'g'ri chiqdi va buni qaysi dalil ko'rsatdi?** — Mentor misolida: «1-darsda narxni 10 000 deb taxmin qildim; 4-darsda xarajatni qo'shib, narxni qayta ko'rdim.» («10 000» yonida kulrang «Mentorning taxmini»)
+     Maydon (≤ 200; placeholder «Qaysi qaror va qaysi son yoki yozuv?»). Maydon ustida kulrang tugma **«Hozircha bunday qaror topmadim»** — bosilsa maydonga gap boshi yoziladi: «Hozircha noto'g'ri chiqqan qaror topmadim. Qayta ko'rishga sabab bo'lgan dalil: …» (o'quvchi dalilni o'zi yozadi; noto'g'ri qaror o'ylab topishga undalmaydi — F-1007-469; savol matni Qaror-0 18 aynan). Ostida kulrang qator: Dalil — son yoki yozuv; qayerdan olinganini ham yozing. (55)
      **Dalil tugmalari** (bosilsa matn maydon oxiriga qo'shiladi; faqat ma'lumot bo'lsa ko'rinadi):
-     - «6-darsdagi suhbatlar: {n} ta — ha {a}, qimmat {b}, yo'q {c}» (`pm-m11d6-suhbat`, faqat `tur: 'real'`; 0 bo'lgan belgi tushib qoladi; «javob yo'q» bo'lsa — «javobsiz {d}»)
-     - «9-darsdagi yozma tasdiqlar: {soralgan} kishidan {t} tasi» (`pm-m11d9-tasdiq`)
-     - «Narxingiz: 1-darsda {a} so'm, 4-darsda {b} so'm» (`pm-m11d1-birlik.narxTaxmin` — faqat `tur: 'real'` — va `pm-m11d4-narx.narx`; ikkalasi bo'lsa)
-     - «Roadmap'da {k} ta ish kechikdi» (6-ekrandan; `k` > 0 bo'lsa)
+     - «6-dars · suhbatlar: {n} ta — ha {a}, qimmat {b}, yo'q {c}» (`pm-m11d6-suhbat`, faqat `tur: 'real'`; 0 bo'lgan belgi tushib qoladi; «javob yo'q» bo'lsa — «javobsiz {d}»)
+     - «9-dars · yozma javob so'ralgan {soralgan} kishidan {t} ta yozma tasdiq» (`pm-m11d9-tasdiq`; `hisobga: true`)
+     - «Narx taxminlarim: 1-darsda {a} so'm, 4-darsda {b} so'm» (`pm-m11d1-birlik.narxTaxmin` — faqat `tur: 'real'` — va `pm-m11d4-narx.narx`; ikkalasi bo'lsa)
+     - «Bugun · roadmap: {k} ta ish o'z ufqida tugamadi» (6-ekrandan; `k` > 0 bo'lsa; qaysi qarorga bog'liqligini o'quvchi yozadi)
   3. **Keyingi 4 haftada nima qilaman?** — Mentor misolida: «To'lashga tayyorligini yozgan uch tashkilotchi bilan "Doimiy o'yin"ni test rejimda sinab ko'raman.» (ostida kulrang: tasdiq — 9-darsdagi yozma tasdiq)
-     Maydon (≤ 200; placeholder «Bitta aniq ish: nima va kim bilan?»). Kulrang qator (6-ekrandan; bo'lsa): «Kechikkan ishlaringiz: {nomlar}» (ko'pi bilan uchta, «…» bilan).
+     Maydon (≤ 200; placeholder «Bitta aniq ish: nima qilasiz, qachon yoki kim bilan?»). Kulrang qator (6-ekrandan; bo'lsa): «Kechikkan ishlaringiz: {nomlar}» (ko'pi bilan uchta, «…» bilan).
 - Tekshiruv (`QXato`, ≤60; yumshoqlari ikkinchi «Saqlash» bilan o'tadi):
   - maydon bo'sh (bloklaydi): Javobingizni bir-ikki gapda yozing. (35)
-  - «@», «t.me/», «+998» yoki ketma-ket 7+ raqam (bloklaydi): Telefon va akkaunt nomi yozilmaydi. (35)
+  - «@», «t.me/», «+998» yoki telefon shakli — 9 raqam («90 123 45 67» yoki bo'shliqsiz) (bloklaydi): Telefon va akkaunt nomi yozilmaydi. (35)
+  - boshqa ketma-ket 7+ raqam (yumshoq — son bo'lishi mumkin; F-1007-464): Bu telefon raqamimi? Telefon yozilmaydi. (40)
   - Mentor javobi bilan bir xil (yumshoq): Bu Mentorning javobi — o'z mahsulotingiz haqida yozing. (55)
   - 2-savolda raqam yo'q, dalil tugmasi bosilmagan va «suhbat», «tasdiq», «hisob», «son», «yozuv», «sinov», «intervyu» so'zlari yo'q (yumshoq): Qaysi dalil ko'rsatdi — son yoki yozuvni qo'shing. (50)
   - 3-savolda «pul olaman», «to'lov olaman», «karta» (yumshoq): Bu kursda real pul olinmaydi — to'lov faqat test rejimda. (57)
-  - 3-savol 20 belgidan qisqa (yumshoq): Bitta aniq ish yozing: nima va kim bilan. (41)
+  - 3-savol 20 belgidan qisqa (yumshoq): Bitta aniq ish yozing: nima va qachon. (38)
   - Yorliq (yumshoq xatodan keyin): Shunday qoldirsangiz — yana «Saqlash»ni bosing. (47)
 - Yordam: Birinchi savol — o'zingiz tanlagan narsa: kim to'laydi, nima bepul qoladi, narx, qaysi ish birinchi. Agent yoki Mentor tanlagani emas.
-  Ikkinchi savol — fikringizni o'zgartirgan son yoki yozuv: suhbat, yozma tasdiq, hisob. Noto'g'ri chiqqan qaror — mag'lubiyat emas: uni dalil ko'rsatdi. Uchinchi savol — bitta aniq ish: nima va kim bilan.
+  Ikkinchi savol — fikringizni o'zgartirgan son yoki yozuv: suhbat, yozma tasdiq, hisob. Noto'g'ri chiqqan qaror — mag'lubiyat emas: uni dalil ko'rsatdi. Topmagan bo'lsangiz — shuni yozing va qaysi dalil qarorni qayta ko'rishga sabab bo'lganini qo'shing. Uchinchi savol — bitta aniq ish: nima qilasiz, qachon yoki kim bilan.
 - **Harakat → Vizual o'zgarish:** dalil tugmasi → matn maydonga qo'shiladi, tugma ✓ bilan xiralashadi; «Saqlash» → javob kartadan hisobot varag'idagi o'z qatoriga uchadi (~1 s yashil), Mentor kartasi va savol keyingisiga almashadi.
   3/3 → karta va Mentor kartasi yopiladi, varaq «Shaxsiy hisobotim» butun enga — uch savol va javob, har birida ✎. Tekshiruvdan o'tmagan maydon `err` fon, ostida bitta `QXato`.
 - `QIzoh` (3/3 saqlangach, yashil qutining oxirgi kichik qatori): O'z qarorlaringiz haqidagi bu uch javob — shaxsiy hisobot. (58) — atama shu yerda (T-011)
 - Xulosa (holatdan, P-046): uch javob saqlangan — Shaxsiy hisobotingiz tayyor: qaror, dalil va keyingi 4 hafta. (61) · bir-ikki javob — Hisobot hali tugamagan: qolgan savolga uyda javob yozing. (57)
-- Saqlash: `pm-m11d11-refleksiya.javoblar[i]` (har savol o'z o'rniga), `savedAt`.
+- Saqlash: `pm-m11d11-refleksiya.javoblar.{qarorim | notogri | keyingi}` (har savol o'z maydoniga), `savedAt`; hammasi to'liq bo'lsa — `completedAt`.
 - Tugma (pastki): Savollarga javob yozing (n/3) → Davom etish (`optionalLive`).
 - Keyingi bosiladigan joy: joriy maydon (accent chegara, to'lqin) → dalil tugmasi (2-savolda, bo'lsa) → «Saqlash» → keyingi savol.
 - Nishon: **Look Back!** (uchala javob saqlanganda — bonus, ish bajarilgan ekranda — P-048).
 - Mentor rejimi: forma o'rniga Mentorning uch javobi (A-6). Mentor statistikasi: «Hisobot yozdi» (son). Javob matni Mentor ekraniga ham, proyektorga ham uzatilmaydi (A-9).
-- O'qituvchi eslatmasi: 18 daqiqa. «Noto'g'ri chiqqan qaror yo'q» degan o'quvchidan so'rang: «Qaysi son yoki suhbat sizni hayron qoldirdi?» — javob shundan topiladi. Javoblarni ovoz chiqarib o'qitmang va sinfda solishtirmang — hisobot shaxsiy.
+- O'qituvchi eslatmasi: 18 daqiqa. Noto'g'ri chiqqan qaror topmagan o'quvchi «Hozircha bunday qaror topmadim»ni bosadi va qayta ko'rishga sabab bo'lgan dalilni yozadi — bu to'g'ri javob; xato qaror o'ylab topishga undamang (F-1007-469). Javoblarni ovoz chiqarib o'qitmang va sinfda solishtirmang — hisobot shaxsiy.
   Mentorning uchinchi javobi — niyat, va'da emas; bu kursda real pul yo'q: to'lov faqat test rejimda. «Keyingi 4 hafta» — o'quvchining o'z rejasi: keyingi modul va bitiruv haqida gapirmang.
 
 ## 8 · Yakuniy savol  ← QTest (✔ A, `correctIdx 0`; ikkinchi misol — kitob almashish ilovasi, P-002)
 - Eyebrow: Yakuniy tekshiruv (savol ustida yorliq yo'q)
-- Savol: **Kitob ilovangizda to'lovni sinfdoshlardan kutdingiz. Noto'g'ri chiqqanini nima ko'rsatadi?** (9 so'z)
+- Savol: **Kitob ilovangizda to'lovni sinfdoshlardan kutdingiz. Bu qarorni qayta ko'rishga nima dalil bo'ladi?** (12 so'z)
   - ✔ A — Uch suhbatda uchalasi to'lamasligini aytdi (42)
   - B — Endi bu qaror menga negadir yoqmay qoldi (40)
   - C — Keyingi oyda narxni boshqacha qilib ko'raman (44)
@@ -365,7 +368,7 @@ namunalar: 12-Modul `11-PmPitchReview-v3.md` + `11-FILTR.md` (12 ekranli qisqa P
 
 ## 9 · Natijalar (podium)  ← QNatija
 - Jonli reyting — qolip standarti (yakka rejimda — o'z natijasi): 3 savol (3, 5, 8); 6, 7-ekranlar «Saqlash» — Mentorga signal (`PRACTICE_BASE`, ball yo'q).
-- Mentor statistikasi yorliqlari (`Q_LABELS`): 3 — «1 — Roadmap'da yo'q ish» · 5 — «2 — Roadmap nimaga kerak» · 8 — «Yakuniy — Noto'g'ri qarorning dalili»
+- Mentor statistikasi yorliqlari (`Q_LABELS`): 3 — «1 — Roadmap'da yo'q ish» · 5 — «2 — Roadmap nimaga kerak» · 8 — «Yakuniy — Qayta ko'rishga dalil»
 
 ## 10 · Takrorlash  ← QKartochka (alohida ekran — SABOQ 12, 16)
 - Eyebrow: Takrorlash
@@ -383,17 +386,18 @@ namunalar: 12-Modul `11-PmPitchReview-v3.md` + `11-FILTR.md` (12 ekranli qisqa P
   - uch javob saqlangan, ishlar saqlanmagan: **Hisobot tayyor — solishtirish hali tugamagan.** (45)
   - ish boshlangan, lekin ishlar ham, uch javob ham saqlanmagan: **Solishtirish hali tugamagan — uyda tugating.** (44)
   - hech narsa boshlanmagan: **Roadmap hali solishtirilmagan — uyda boshlang.** (46)
+  - `roadmapManba: 'qayta-yozilgan'` bo'lsa — sarlavha ostida kulrang qator: Roadmap qayta yozilgan — asl nusxa topilmadi. (45) (F-1007-469)
 - Arena tugmasi (o'yin qatlami, darsdan): CODE STRIKE · 12 SAVOL · 15 SONIYA · PODIUM · (jonli darsda) Mentorni kuting
 - «Bugungi asosiy fikr» qutisi — yo'q (E 50; fikr A-2 da — darsning ichki o'qi).
 - Endi siz bilasiz (T-048 — asosiy fikr so'zma-so'z takrorlanmaydi):
-  - Bu darsda holat roadmap'dagi ish bugun qayerda ekanini aytadi; yonida — bir qator sabab.
+  - Bu darsda holat roadmap'dagi ish o'z ufqiga qarab qayerda ekanini aytadi; yonida — bir qator sabab.
   - Roadmap'dagi ish bajarildi, kechikdi, olib tashlandi yoki uzoqroqda qoldi; roadmap'da yo'q ish — yangi qo'shildi.
   - Roadmap keyin nima bajarilganini solishtirish uchun yoziladi.
   - Shaxsiy hisobot — o'z qarorlaringiz haqida uch savolga yozma javob.
   - Noto'g'ri chiqqan qaror yonida — uni ko'rsatgan dalil: son yoki yozuv.
 - Uyga vazifa (`HwCard`, P-025 karta shaklida; yakunda aynan shu bandlar; alohida `.homework.jsx` yo'q): sarlavha **Uyda nima qilasiz?**
   - Kim bilan: o'zingiz · Nechta: bitta ish bo'yicha qaror · Muddat: keyingi darsgacha
-  - ① Kechikkan ishlaringizdan birini tanlang: yangi ufq berasizmi yoki olib tashlaysizmi — qaroringizni sababi bilan qog'ozga yozing. (Kechikkan ish bo'lmasa: uzoqroqda qolgan bitta ishni ko'rib chiqing — hali kerakmi, sababi bilan yozing.)
+  - ① Hali tugamagan kechikkan ishlaringizdan birini tanlang: yangi ufq berasizmi yoki olib tashlaysizmi — qaroringizni sababi bilan qog'ozga yozing. (Bunday ish bo'lmasa: uzoqroqda qolgan bitta ishni ko'rib chiqing — hali kerakmi, sababi bilan yozing.)
   - ② «Keyingi 4 hafta» javobingizdagi ishni qachon boshlashingizni yozing.
   - ③ Darsda qolgan qismni tugating: {holatga qarab — roadmap'dagi ishlarga holat va sabab qo'ying · shaxsiy hisobotning qolgan savoliga javob yozing}. Hammasi tugagan bo'lsa ③ ko'rinmaydi.
   - Tugma: Amaliy topshiriqni bajarish →
@@ -401,7 +405,7 @@ namunalar: 12-Modul `11-PmPitchReview-v3.md` + `11-FILTR.md` (12 ekranli qisqa P
 - Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
 - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18). Artefakt-strip yakunda yo'q (E 50).
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
-- Izoh (MD): uyga vazifada keyingi dars va keyingi modul aytilmaydi (T-038). ① — qog'ozda (repo va kalit yo'q); «Kim bilan» — HwCard yorlig'i (06 pilot bilan bir). ① ning qavsdagi qatori — kechikkan ish bo'lmagan o'quvchi uchun (6-ekran kalitidan).
+- Izoh (MD): uyga vazifada keyingi dars va keyingi modul aytilmaydi (T-038). ① — qog'ozda (repo va kalit yo'q); «Kim bilan» — HwCard yorlig'i (06 pilot bilan bir). ① ning qavsdagi qatori — hali tugamagan kechikkan ishi bo'lmagan o'quvchi uchun (6-ekran kalitidan; kech tugagan ishga yangi ufq kerak emas — F-1007-469).
   Sarlavhalar har holatda rost (E 54): «solishtirildi» — 6-ekran «Saqlash»idan keyingina; «tayyor» — uchala javob saqlangach.
 
 ---
@@ -416,7 +420,7 @@ namunalar: 12-Modul `11-PmPitchReview-v3.md` + `11-FILTR.md` (12 ekranli qisqa P
 
 ## Qisqa takrorlash oynalari (har ballik test — 3 karta; S-026: PM darsida emoji o'rniga raqam 1/2/3)
 Oyna yorlig'i: Qayta tushuntirish · tugmalar: ← Oldingi · Keyingisi → · ✓ Tushunarli — davom etamiz. Jonli darsda mentor «Qayta tushuntirishni ochish» bosganda chiqadi.
-- **3 · Roadmap'da yo'q ish** — 1 Bu darsda holat roadmap'dagi ish bugun qayerda ekanini aytadi. · 2 «Bajarildi» — roadmap'dagi ish uchun: o'z ufqi ichida tugagan va hozir ishlaydi. · 3 Roadmap'da yo'q, lekin qilingan ish — yangi qo'shildi.
+- **3 · Roadmap'da yo'q ish** — 1 Bu darsda holat roadmap'dagi ish o'z ufqiga qarab qayerda ekanini aytadi. · 2 «Bajarildi» — roadmap'dagi ish uchun: o'z ufqi ichida tugagan va hozir ishlaydi. · 3 Roadmap'da yo'q, lekin qilingan ish — yangi qo'shildi.
   — Sinfga savol: Mahsulotingizda roadmap'da yo'q qaysi ish bor?
 - **5 · Roadmap nimaga kerak** — 1 Tesla rejasi hammaga ochiq yozilgan edi. · 2 Bu voqeada reja bosqichma-bosqich bajarilgan. · 3 Roadmap ham keyin nima bajarilganini solishtirish uchun yoziladi.
   — Sinfga savol: Roadmap'ingizni oxirgi marta qachon ochgansiz?
@@ -426,7 +430,7 @@ Oyna yorlig'i: Qayta tushuntirish · tugmalar: ← Oldingi · Keyingisi → · �
 ## Kartochkalar (12) — 10-ekran
 | Old tomon (savol) | Orqa (javob) | Izoh |
 |---|---|---|
-| Bu darsda holat nimani aytadi? | Roadmap'dagi ish bugun qayerda ekanini | Yonida — bir qator sabab |
+| Bu darsda holat nimani aytadi? | Roadmap'dagi ish o'z ufqiga qarab qayerda ekanini | Yonida — bir qator sabab |
 | «Bajarildi» qachon qo'yiladi? | Roadmap'dagi ish o'z ufqi ichida tugagan va hozir ishlaydi | Mentor misolida: uch asosiy funksiya — 11-Modulda |
 | «Kechikdi» qachon qo'yiladi? | Ish o'z ufqi ichida tugamagan: keyin tugagan yoki hali yo'q | 11-Modulda ishning vaqti — o'z darsi edi, bugun — ufqi |
 | «Olib tashlandi» nimani bildiradi? | Ish endi qilinmaydi | Doskada qoladi — nomi ustidan chiziq va sababi bilan |
@@ -445,10 +449,10 @@ Oyna yorlig'i: Qayta tushuntirish · tugmalar: ← Oldingi · Keyingisi → · �
 ## Jonli viktorina — 12 savol (✔ o'rni: A 1·5·9 · B 3·6·10 · C 2·7·11 · D 4·8·12 — har biri 3 marta)
 Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa so'z. Har savolni aytgan ekran — qavsda. Uzunliklar — `md11/olchov.py` (pastda «O'lchov»).
 1. Bu darsda holat nimani aytadi? (2)
-   - ✔ A — Roadmap'dagi ish bugun qayerda ekanini (38)
-   - B — Ishga qancha vaqt va kuch sarflanganini (39)
+   - ✔ A — Roadmap'dagi ish ufqiga qarab qayerda ekanini (45)
+   - B — Ishga qancha vaqt va qancha kuch sarflanganini (46)
    - C — Ishni kim yoki qaysi agent yozib berganini (42)
-   - D — Ishning RICE bahosi necha ball ekanini (38)
+   - D — Ishning RICE bahosi hozir necha ball ekanini (44)
 2. Ish o'z ufqidan keyin tugadi. Holati qanday? (2, 6)
    - A — Bajarildi: hozir ishlab turibdi (31)
    - B — Olib tashlandi: vaqti o'tib ketdi (33)
@@ -489,7 +493,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
    - B — Agent men uchun nima qilib bergani (34)
    - C — Mentor ishimni qanday baholagani (32)
    - D — Roadmap'dagi qaysi ish kechikkani (33)
-10. Mentor qaysi qarori noto'g'ri chiqqanini aytdi? (7)
+10. Mentor qaysi qarorini qayta ko'rganini aytdi? (7)
     - A — Pro'ni tashkilotchiga qo'yganini (32)
     - ✔ B — 1-darsda narxni qanday o'ylaganini (34)
     - C — Telegram xabarini ham qo'shganini (33)
@@ -528,16 +532,16 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
    `QIzoh` 1, 4, 5-kartada (~3 s); `QXato` jadvali (2-ekran); natijada xulosa + oxirgi `QIzoh`; 40 s ipucha; nishon `statusCheck`.
 6. **s4** — `TeslaSahna` (P-053; chizilgan brauzer oynasi, uch mashina siluet, tanga belgisi, vaqt chizig'i «2006 · o'n yildan ortiq»; logotipsiz; bosqichga ✓ qo'yilmaydi) · `QBashorat` (Bir yil ichida · Bir necha yil · O'n yildan ortiq) · «Voqea davomi» 1/3 → 3/3 · xulosa + `QIzoh` (tayanch 1.11 ko'prigi).
 7. **s6** — o'qiydi `pm-m9d6-roadmap` (`ishlar[].nom`, `ishlar[].ufq`; tartib o'zgarmaydi), `pm-m9d15-reja.holatlar` (nom bo'yicha tarix qatori), `pm-m11d2-model.nima` (taklif tugmasi); ketma-ket karta; holat tugmalari (uzoqroq ustunida — to'rtta, «Uzoqroqda qoldi» oldindan tanlangan);
-   sabab maydoni (≤ 80); «Roadmap'da yo'q ishlar» (≤ 4; «Yangi ish yo'q»); roadmap yo'q — o'quvchi o'zi yozadigan oqim (3–8 ish, ufq tugmalari); tekshiruvlar (holat · bo'sh sabab · 80+ · telefon/akkaunt — bloklaydi; «Bajarildi» + «hali/qilmadim/qilinmadi» · «Kechikdi» + «kerak emas/voz kechdim» · roadmap'dagi nom bilan bir xil yangi ish — yumshoq) —
+   sabab maydoni (≤ 80); «Roadmap'da yo'q ishlar» (≤ 4; «Yangi ish yo'q»); roadmap yo'q — o'quvchi o'zi yozadigan oqim (1–8 ish, ufq tugmalari; `roadmapManba`); tekshiruvlar (holat · bo'sh sabab · 80+ · telefon/akkaunt — bloklaydi; «Bajarildi» + «hali/qilmadim/qilinmadi» · «Kechikdi» + «kerak emas/voz kechdim» · roadmap'dagi nom bilan bir xil yangi ish — yumshoq) —
    **PM-108 tartibida kamida 10 namuna bilan `node` da sinaladi** (masalan: «12-Modulda qurildi» o'tadi · «hali qilinmadi» + bajarildi — yumshoq · «+998 90 …» bloklanadi · 81 belgili sabab bloklanadi · «Lending» yangi ish, roadmap'da «lending» — yumshoq; katta-kichik harf farqsiz).
    Saqlash → `pm-m11d11-refleksiya.ishlar` (A-11 shartnomasi: `ufq` va `holat` mosligi saqlashdan oldin tekshiriladi), `savedAt`. ✎ — ishni qayta ochish (o'sha tekshiruvlar bilan). Ichki holat dars progressida (yarim to'ldirilgan karta qayta ochilganda o'z joyida — E 51).
-8. **s7** — o'qiydi `pm-m11d2-model` (`model`, `kim`), `pm-m11d6-suhbat` (`tur: 'real'` yozuvlar, `javob` sanog'i), `pm-m11d9-tasdiq` (`soralgan`, `tasdiqlar.length`), `pm-m11d1-birlik.narxTaxmin` + `pm-m11d4-narx.narx` (ikkalasi bo'lsa), s6 natijasi (kechikkan ishlar);
+8. **s7** — o'qiydi `pm-m11d2-model` (`model`, `kim`), `pm-m11d6-suhbat` (`tur: 'real'` yozuvlar, `javob` sanog'i), `pm-m11d9-tasdiq` (`soralgan`, `tasdiqlar.filter(t => t.hisobga).length`; F-1007-467), `pm-m11d1-birlik.narxTaxmin` + `pm-m11d4-narx.narx` (ikkalasi bo'lsa), s6 natijasi (kechikkan ishlar);
    uch karta ketma-ket (chapda `MENTOR_JAVOBLAR[i]`); dalil tugmalari matnni maydon oxiriga qo'shadi (takror bosish — qo'shmaydi); tekshiruvlar (bo'sh · telefon/akkaunt — bloklaydi; Mentor javobi bilan bir xil · 2-savolda dalilsiz · 3-savolda real pul so'zlari · 3-savol 20 belgidan qisqa — yumshoq) — `node` da namunalar bilan;
-   har «Saqlash» → `pm-m11d11-refleksiya.javoblar[i]` (`savedAt`); 3/3 → varaq «Shaxsiy hisobotim», `QIzoh`; nishon `lookBack`. Ichki holat dars progressida (E 51).
+   har «Saqlash» → `pm-m11d11-refleksiya.javoblar.{qarorim | notogri | keyingi}` (`savedAt`; birinchi to'liq saqlashda `completedAt`); 3/3 → varaq «Shaxsiy hisobotim», `QIzoh`; nishon `lookBack`. Ichki holat dars progressida (E 51).
 9. **Mentor rejimi:** o'quvchilar ro'yxatida faqat saqlash signallari («Holat qo'ydi» · «Hisobot yozdi»; `PRACTICE_BASE`); ish nomlari, holatlar, sabablar va javob matnlari Mentorga ham uzatilmaydi va proyektorga chiqmaydi (A-9). 0-ekrandagi sinf ovozlari — faqat variantlar soni.
 10. Testlar s3/s5/s8 — `correctIdx` 1/3/0 = `INLINE_KEYS`; `RECAPS` {3, 5, 8} (`ic` → 1/2/3 + `ask`); `Q_LABELS` {3, 5, 8}. Savol ustida yorliq yo'q (SABOQ 6); javobdan keyingi kichik vizual — `QuestionScreen` `vizual` (SABOQ 4).
 11. `ACHIEVEMENTS` 4 (`statusCheck`, `notInPlan`, `openPlan`, `lookBack`) + `ACH_TRIGGERS`. `QUIZ_BANK` 12 (✔ 0·2·1·3·0·1·2·3·0·1·2·3 — arena jadvali) + `set_quiz_keys`; `QZ_BG_SHAPES` → fon so'zlari `{uz, ru}`, emoji yo'q (R-008). `FLASHCARDS` 12 ({front, back, note}) — `sflash` alohida ekranda. `SCREEN_INTENTS`.
-12. s11 `QYakun`: sarlavha **besh holat** — `pm-m11d11-refleksiya` va dars progressidan (`ishlar` saqlangan / `javoblar` 3 tasi to'la / qoralama bor / hech narsa) (P-046, E 54); `recap` 5 qator = «Endi siz bilasiz» so'zma-so'z; «Bugungi asosiy fikr» ko'rsatilmaydi (E 50);
+12. s11 `QYakun`: sarlavha **besh holat** — `pm-m11d11-refleksiya` va dars progressidan (`ishlar` saqlangan / `javoblar` uchala maydoni to'la / qoralama bor / hech narsa; `roadmapManba: 'qayta-yozilgan'` — sarlavha ostida kulrang qator) (P-046, E 54); `recap` 5 qator = «Endi siz bilasiz» so'zma-so'z; «Bugungi asosiy fikr» ko'rsatilmaydi (E 50);
     `uyga` — `HwCard` (Kim bilan · Nechta · Muddat + ①②③; ① ning varianti — `ishlar` da `kechikdi` bor-yo'qligidan; ③ holatdan yig'iladi); `keyingi` — «Loyiha kuni: barqarorlashtirish». Yordam darajalari (P-033): qulf-yorliq · ipucha 40 s · rescue 110 s.
 13. App.jsx `m11-11` qatoriga `comp: PmReflectionLesson` + import — asosiy seans, «qur» bosqichida (nom va osti o'zgarmaydi — DE-205 ✓, App.jsx 455-qator). Bu agent App.jsx ga tegmaydi.
 14. **REPO — yo'q** (PM darsi; tayanch 3: `m13-dars-11-done` = `10-done`).
@@ -557,7 +561,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 1. **Beshinchi holat «uzoqroqda qoldi»** — Qaror-0 18 da to'rtta nom (bajarildi · kechikdi · olib tashlandi · yangi qo'shildi), tayanch 1.11 Mentor misolida esa «maydon pulini bo'lishish — uzoqroqda qoldi». Men beshinchi nom qildim:
    faqat «Uzoqroq · bitiruvdan keyin» ustunidagi ishga, kalitda `'uzoqroqda'` (tayanch 8 dagi `holat` ro'yxatiga qo'shiladi). Muqobil: uzoqroq ishlarga holat qo'yilmaydi (kulrang «vaqti kelmagan») — u holda Mentorning 4-kartasi bosilmaydi. Qaror kerak.
 2. **Holat ufq bo'yicha** — «bajarildi» va «kechikdi» ta'rifida «o'z ufqi ichida» (11-Modul 15-darsida — «rejadagi vaqtida», hozir ufqi uchun — o'z darsi). Sabab: tayanch 1.11 «Chiqish va navbat»ni bajarildi deydi, 11-Modul tayanchi 1.9 da u kechikdi edi (14-darsdan keyin ishladi).
-   Ikkalasi rost bo'lishi uchun bugun vaqt — ufq; 1-karta ostida «Chiqish va navbat 14-darsdan keyin ishladi — 11-Modul ichida» qatori va O'qituvchi eslatmasi farqni ochiq aytadi. Muqobil: Mentor misolida navbat — «kechikdi» (tayanch 1.11 o'zgaradi).
+   Ikkalasi rost bo'lishi uchun bugun vaqt — ufq; 1-karta ostida «11-Modul 15-darsida «kechikdi» edi — o'z darsidan keyin, 11-Modul ichida ishladi.» qatori (F-1007-469) va O'qituvchi eslatmasi farqni ochiq aytadi. Muqobil: Mentor misolida navbat — «kechikdi» (tayanch 1.11 o'zgaradi).
 3. **Besh holatning ta'riflari** (A-4) — mening matnim; dars bo'yi so'zma-so'z (2, 6-ekran `QIzoh`, recap, kartochka, yakun).
 4. **«Shaxsiy hisobot» ta'rifi** — «o'z qarorlaringiz haqida uch savolga yozma javob» — tayanch 2 jadvalida yo'q; qo'shishni taklif qilaman.
 5. **2-ekrandagi Mentor kartalari — beshta**, tayanch 1.11 qatorlari bo'yicha: uch funksiya bitta kartada (uchta ish birga halqada), to'rt yangi ish bitta kartada. Har ish alohida karta bo'lsa — o'nta karta (vaqt ko'payadi).
@@ -565,7 +569,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 7. **2-ekran telefon dalillari** — 11, 12, 13-Modul tayanchlaridagi ekran matnlaridan tanladim (A-6); yangi matn to'qilmadi. Telegram chati sarlavhasida bot nomi yo'q (tayanchda yo'q) — faqat «Telegram».
 8. **Mentorning yangi ishlari ro'yxati to'liq emas** (12-Moduldagi «Hozir ko'ryapti», jonli xabar, login, maxfiylik sahifasi, APK ham roadmap'da yo'q edi). O'qituvchi eslatmasida: «Mentor roadmap darajasidagi katta ishlarni yozgan» — bu mening izohim; tayanch 1.11 ga bir gap qo'shishni taklif qilaman.
 9. **`pm-m9d15-reja`** — faqat tarix qatori («11-Modul 15-darsida: …»). 15-darsdagi uch qadam (tuzatilgan reja) bugungi doskaga ish bo'lib kirmaydi: Mentor misolida ularning bugungi holati tayanchda yo'q (masalan, «10 kishini sinovga chaqirish»). Kirsin desangiz — tayanch 1.11 ga Mentor qadamlari holatlari kerak.
-10. **Kalit `pm-m11d11-refleksiya`** — tayanch 8 ga nisbatan: `ishlar[].ufq` qo'shildi (`'hozir' | 'keyinroq' | 'uzoqroq' | null` — keyin o'qiydigan dars ish qaysi ufqda bo'lganini bilsin), `holat` ga `'uzoqroqda'`, `javoblar` — `string | null` (qisman saqlash uchun).
+10. **Kalit `pm-m11d11-refleksiya`** — tayanch 8 ga nisbatan: `ishlar[].ufq` qo'shildi (`'hozir' | 'keyinroq' | 'uzoqroq' | null` — keyin o'qiydigan dars ish qaysi ufqda bo'lganini bilsin), `holat` ga `'uzoqroqda'`, `javoblar` — `string | null` (qisman saqlash uchun). F-1007-469: `javoblar` — nomli maydonlar `{ qarorim, notogri, keyingi }`; `roadmapManba`, `completedAt` qo'shildi.
 11. **O'qiladigan kalitlar:** tayanch 8 jadvali 11-darsga `pm-m11d2-model`, `pm-m11d6-suhbat`, `pm-m11d7-hujjat`, `pm-m11d9-tasdiq` ni beradi, 2-to'lqin jadvali — `pm-m9d6-roadmap`, `pm-m9d15-reja`, `pm-m11d2-model`. Men: roadmap, reja, model, suhbat, tasdiq o'qiladi;
     `pm-m11d7-hujjat` o'qilmaydi (darsda unga joy yo'q — jadvaldan olib tashlashni taklif qilaman); qo'shimcha — `pm-m11d1-birlik.narxTaxmin` va `pm-m11d4-narx.narx` (Mentorning 2-javobi naqshidagi dalil tugmasi; tayanch 8 da 11-dars ularni o'qimaydi). Tasdiq kerak.
 12. **Tesla bosqichlari tarjimasi** — tayanchdagi «shu pulga» o'rniga «uning pulidan» (o'zbekchada «shu pulga» «shu narxga» deb o'qilishi mumkin; bankning ruscha aslida — «o'sha pul hisobiga»), «kichik seriyada, ya'ni oz sonda» — izoh. Bank ma'nosi o'zgarmagan.
@@ -587,17 +591,17 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 6. **Mentor yangi ishlari to'liq emas** (TAYANCHGA SAVOL 8) — o'quvchi «"Hozir ko'ryapti" ham roadmap'da yo'q edi» desa, O'qituvchi eslatmasidagi izoh.
 7. **7-ekran yumshoq tekshiruvlari** (dalil so'zlari, real pul so'zlari, Mentor javobi bilan bir xil) — erkin matnda noto'g'ri ishlashi mumkin; bloklamaydi. `node` sinovida namunalar bilan.
 8. **Mentor javobi ko'rinib turishi** — nusxa olish xavfi (yumshoq tekshiruv faqat aynan bir xil matnni ushlaydi). Muqobil — Mentor javobi «Yordam» ichida (E 43); men chapdagi kartani tanladim, chunki shaxsiy hisobotning boshqa namunasi darsda yo'q.
-9. **Tesla — «o'n yildan ortiq bajarilgan»** — bank bosqichlar tugaganini aytmaydi; sahnada ✓ yo'q, faqat chiziq bo'ylab navbat bilan yonish. Tayanch ko'prigidagi «bosqichma-bosqich bajarilgan» shu chegarada.
+9. **Tesla — «o'n yildan ortiq bajarilgan»** — bank bosqichlar tugaganini aytmaydi; sahnada ✓ ham, yonish ham yo'q — bosqichlar reja sifatida navbat bilan ko'rsatiladi (F-1007-469). Tayanch ko'prigidagi «bosqichma-bosqich bajarilgan» shu chegarada.
 10. **3-ekran A varianti** («Bajarildi: ilovada hozir ishlab turibdi») — hayotda «qilindi» ma'nosida rost; dars qoidasi bo'yicha «bajarildi» — faqat roadmap'dagi ish. Auditor bahslashishi mumkin — savolda «roadmap'da yo'q edi» aniq aytilgan.
 11. **5-ekran C varianti** («Sinfdoshlar roadmap'i bilan solishtirishga») — hayotda foydali bo'lishi mumkin; savol «bugun u sizga nimaga kerak» — o'z roadmap'i va o'z mahsuloti. Bahsli bo'lsa — boshqa distraktor.
 12. **8-ekran A** — uch suhbat — kichik son; dars uni «dalil» deydi, «isbot» demaydi (6-dars qoidasi). Auditor «uch kishi kam» desa — savol «nima ko'rsatadi», «isbotlaydi» emas.
-13. **Dalil tugmasi «Narxingiz: 1-darsda …, 4-darsda …»** — o'quvchida ikkala son ham taxmin bo'lishi mumkin; tugma faqat sonlarni qo'yadi, «noto'g'ri edi» demaydi — qarorni o'quvchi yozadi.
+13. ✅ (F-1007-469: «Narx taxminlarim») **Dalil tugmasi «Narxingiz: 1-darsda …, 4-darsda …»** — o'quvchida ikkala son ham taxmin bo'lishi mumkin; tugma faqat sonlarni qo'yadi, «noto'g'ri edi» demaydi — qarorni o'quvchi yozadi.
 14. **Ism tekshiruvi** — erkin matnda ismni dastur aniqlay olmaydi; faqat telefon va akkaunt shakli bloklanadi.
 
 ## Oldindan tuzatiladigan sinflar — o'z tekshiruvim (tayanch 7: 16 band + 12-Modul tayanchi 7 + 13-Modul pul sinflari)
 1. [x] **90 daqiqa — reja, o'lchov emas** — A-10 taqsimot va «Ulgurmagan o'quvchi yo'li»; ⛔ pilotda taymer (Shubhali 1); «sig'adi» deyilmaydi; tashqi kutish yo'q.
 2. [x] **Tekshirilmagan tashqi qadam — «qur» darvozasi** — tashqi xizmat qadami yo'q (Manbalar); faqat vaqt — ⛔ pilotda.
-3. [x] **Saqlash kaliti — shartnoma** — A-11: har maydon, tipi, `holat` va `ufq` mosligi, `javoblar` uch holatli (`string | null`), tartib, `savedAt`; kalitga ism yo'q; o'qiladigan kalitlar yo'q bo'lsa — nima bo'lishi yozilgan; `tur: 'mashq'` sonlari dalil tugmasiga kirmaydi; dars boshqa darsning kalitiga yozmaydi.
+3. [x] **Saqlash kaliti — shartnoma** — A-11: har maydon, tipi, `holat` va `ufq` mosligi, `javoblar` nomli uch maydon (`string | null`), tartib, `roadmapManba`, `savedAt` (oxirgi saqlash) va `completedAt` (tugatilgan); kalitga ism yo'q; o'qiladigan kalitlar yo'q bo'lsa — nima bo'lishi yozilgan; `tur: 'mashq'` sonlari dalil tugmasiga kirmaydi; dars boshqa darsning kalitiga yozmaydi.
 4. [x] **Mentor misoli va kurs qolipi — umumiy qoida emas** — xulosalar «Bu darsda …» (2-ekran, recap 3, yakun); Mentor misoli — «Mentor misolida» (2, 6, 7-ekran); uch savol — kurs topshirig'i, o'quvchining javobi o'z mahsulotidan; «Keyinroq ufqidagi ish — kechikdi» — «Bu darsda» bilan.
 5. [x] **Kafolat va sabab da'vosi yo'q** — Tesla: «bosqichma-bosqich bajarilgan» — bank chegarasida, ✓ chizilmaydi (Shubhali 9); 8-ekran — «dalil», «isbot» emas; «Roadmap solishtirildi» — ish fakti; holat — sabab da'vosi emas, o'quvchining yozgan sababi.
 6. [x] **Yakun, «Bajardim», yashil xabar, nishon — faqat rost holatda** — yakun besh holat (11-ekran; E 54); 6, 7-ekran xulosalari holatdan; «Look Back!» faqat uchala javob saqlanganda; nishon tavsiflari qilingan ishni aytadi.
@@ -621,20 +625,20 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 Qavsdagi uzunliklar: sanaladigan har satr belgi bilan yozildi va soni avtomatik qo'yildi (qo'lda sanalgan son yo'q); olchov.py qayta tekshirdi — mos 132,
   qolgan 25 signal — ekran, savol, bo'lim raqamlari va «(umumiy)» bilan boshlangan satrlar (ularning soni ham fill.py dan).
 Sarlavhalar (7 ekran + yakunning 5 holati): 25–51 · ≤55, hammasi bitta qator.
-Xulosalar: 2-ekran 88 · 4-ekran 63 · 6-ekran 66 / 44 · 7-ekran 61 / 57 · ≤110.
+Xulosalar: 2-ekran 99 · 4-ekran 63 · 6-ekran 66 / 44 · 7-ekran 61 / 57 · ≤110.
 QIzoh va kulrang qatorlar: 37–80 (bitta qator). Ipucha: 59 · 52.
 Bugungi asosiy fikr (A-2, yakunda ko'rsatilmaydi): 108 · ≤110.
-Hook javobi: 112 · ≤120 (sof so'rovnoma — uchala variantga bitta javob); hook variantlari 29 · 32 · 32.
+Hook javobi: 112 · ≤120 (sof so'rovnoma — uchala variantga bitta javob); hook variantlari 29 · 36 · 32 (F-1007-469).
 To'g'ri izohlar: 54 · 56 · 55 · ≤60.
 Xato izohlari, QXato va tekshiruv xabarlari (34 ta): 22–58 · ≤60.
 Nishon tavsiflari: 37 · 42 · 36 · 40 · ≤48 (KORPUS §63).
-Mentor gaplari: kirish 2 gap (102) · reja 2 gap (148) · interaktiv 2, 6, 7-ekran — 1 gap (71, 98, 58) · Tesla kadrlari 1 · 2 · 1 gap;
+Mentor gaplari: kirish 2 gap (102) · reja 2 gap (148) · interaktiv 2, 6, 7-ekran — 1 gap (71, 98, 64) · Tesla kadrlari 1 · 2 · 1 gap;
   sarlavha so'zlari Mentorda (overlap.py): 1/3 · 1/5 · 2/5 · 2/5 · 1/6 — hech qayerda ≥50% emas; «Bu…», «Hammasini…» bilan boshlanmaydi.
 Test savollari: 3-ekran 10 so'z · 5-ekran 8 · 8-ekran 9 · arena 5–8 · ≤12.
 3-ekran: A 39 · ✔B 41 · C 43 · D 39 | min/max 39/43 (+10%)
 5-ekran: A 40 · B 39 · C 42 · ✔D 37 | min/max 37/42 (+14%)
 8-ekran: ✔A 42 · B 40 · C 44 · D 42 | min/max 40/44 (+10%)
-arena 1: ✔A 38 · B 39 · C 42 · D 38 | +11%
+arena 1: ✔A 45 · B 46 · C 42 · D 44 | +10% (F-1007-469)
 arena 2: A 31 · B 33 · ✔C 31 · D 33 | +6%
 arena 3: A 31 · ✔B 31 · C 31 · D 35 | +13%
 arena 4: A 31 · B 32 · C 31 · ✔D 30 | +7%

@@ -167,6 +167,7 @@ const PmAudienceTestLesson = L(() => import('./9-Modull/PmAudienceTestLesson.jsx
 const FeatureThreeLesson = L(() => import('./9-Modull/FeatureThreeLesson.jsx')) // 11-Modul 14-dars
 const PmOneOnOneLesson = L(() => import('./9-Modull/PmOneOnOneLesson.jsx')) // 11-Modul 15-dars
 const PmPrototypePitchLesson = L(() => import('./9-Modull/PmPrototypePitchLesson.jsx')) // 11-Modul 16-dars
+// ---- 10-Modul (LMS 12-Modul, src/10-Modull) — konveyer, 06.10: darslar «qur» bosqichida shu yerga ulanadi
 const PmLandingLesson = L(() => import('./10-Modull/PmLandingLesson.jsx')) // 12-Modul 1-dars, pilot
 const WebSocketBasicsLesson = L(() => import('./10-Modull/WebSocketBasicsLesson.jsx')) // 12-Modul 2-dars, pilot
 const PmRealtimeSpecLesson = L(() => import('./10-Modull/PmRealtimeSpecLesson.jsx')) // 12-Modul 3-dars, 2-to'lqin
@@ -179,9 +180,34 @@ const RetentionDayLesson = L(() => import('./10-Modull/RetentionDayLesson.jsx'))
 const PmUsersCheckLesson = L(() => import('./10-Modull/PmUsersCheckLesson.jsx')) // 12-Modul 10-dars, 2-to'lqin
 const PmPitchReviewLesson = L(() => import('./10-Modull/PmPitchReviewLesson.jsx')) // 12-Modul 11-dars, 2-to'lqin
 const PmGrowthPitchLesson = L(() => import('./10-Modull/PmGrowthPitchLesson.jsx')) // 12-Modul 12-dars, 2-to'lqin
-// ---- 10-Modul (LMS 12-Modul, src/10-Modull) — konveyer, 06.10: darslar «qur» bosqichida shu yerga ulanadi
 // ---- 11-Modul (LMS 13-Modul, src/11-Modull) — konveyer, 07.10: darslar «qur» bosqichida shu yerga ulanadi
 // Modul ro'yxatidagi sarlavhalar — vaqtincha reja (comp yo'q, «tez orada» bo'lib ko'rinadi).
+const PaymentWebhookLesson = L(() => import('./11-Modull/PaymentWebhookLesson.jsx')) // 13-Modul 3-dars, 1-to'lqin pilot (08.10)
+const PmMoneyTalkLesson = L(() => import('./11-Modull/PmMoneyTalkLesson.jsx')) // 13-Modul 6-dars, 1-to'lqin pilot (08.10)
+const PmUnitEconomicsLesson = L(() => import('./11-Modull/PmUnitEconomicsLesson.jsx')) // 13-Modul 1-dars, 2-to'lqin (08.10)
+const PmMonetizationLesson = L(() => import('./11-Modull/PmMonetizationLesson.jsx')) // 13-Modul 2-dars, 2-to'lqin (08.10)
+const PmPricingLesson = L(() => import('./11-Modull/PmPricingLesson.jsx')) // 13-Modul 4-dars, 2-to'lqin (08.10)
+const PaymentDayLesson = L(() => import('./11-Modull/PaymentDayLesson.jsx')) // 13-Modul 5-dars, 2-to'lqin (08.10)
+const PmTermsLesson = L(() => import('./11-Modull/PmTermsLesson.jsx')) // 13-Modul 7-dars, 2-to'lqin (08.10)
+const WinBackDayLesson = L(() => import('./11-Modull/WinBackDayLesson.jsx')) // 13-Modul 8-dars, 2-to'lqin (08.10)
+const PmPayCheckLesson = L(() => import('./11-Modull/PmPayCheckLesson.jsx')) // 13-Modul 9-dars, 2-to'lqin (08.10)
+const ReferralDayLesson = L(() => import('./11-Modull/ReferralDayLesson.jsx')) // 13-Modul 10-dars, 2-to'lqin (08.10)
+const PmReflectionLesson = L(() => import('./11-Modull/PmReflectionLesson.jsx')) // 13-Modul 11-dars, 2-to'lqin (08.10)
+const StabilizeDayLesson = L(() => import('./11-Modull/StabilizeDayLesson.jsx')) // 13-Modul 12-dars, 2-to'lqin (08.10)
+// ---- 12-Modul (LMS 14-Modul, src/12-Modull) — konveyer, 08.10 (tungi avtopilot, F-1008-553): darslar «qur» bosqichida shu yerga ulanadi
+const PmInvestorPitchLesson = L(() => import('./12-Modull/PmInvestorPitchLesson.jsx')) // 14-Modul 1-dars, 1-to'lqin pilot (08.10, F-1008-572)
+const ProductSpeedLesson = L(() => import('./12-Modull/ProductSpeedLesson.jsx')) // 14-Modul 3-dars, 1-to'lqin pilot (08.10, F-1008-572)
+const PmStoryPitchLesson = L(() => import('./12-Modull/PmStoryPitchLesson.jsx')) // 14-Modul 2-dars, 2-to'lqin (08.10)
+const PolishDayLesson = L(() => import('./12-Modull/PolishDayLesson.jsx')) // 14-Modul 4-dars, 2-to'lqin (08.10)
+const PmPitchTrainingLesson = L(() => import('./12-Modull/PmPitchTrainingLesson.jsx')) // 14-Modul 5-dars, 2-to'lqin (08.10)
+const DemoPrepLesson = L(() => import('./12-Modull/DemoPrepLesson.jsx')) // 14-Modul 6-dars, 2-to'lqin (08.10)
+const PmDemoTestLesson = L(() => import('./12-Modull/PmDemoTestLesson.jsx')) // 14-Modul 7-dars, 2-to'lqin (08.10)
+const PmFinalPitchLesson = L(() => import('./12-Modull/PmFinalPitchLesson.jsx')) // 14-Modul 8-dars, 2-to'lqin (08.10)
+const VideoPortfolioLesson = L(() => import('./12-Modull/VideoPortfolioLesson.jsx')) // 14-Modul 9-dars, 2-to'lqin (08.10)
+const PmFreelanceLesson = L(() => import('./12-Modull/PmFreelanceLesson.jsx')) // 14-Modul 10-dars, 2-to'lqin (08.10)
+const PmProgramsLesson = L(() => import('./12-Modull/PmProgramsLesson.jsx')) // 14-Modul 11-dars, 2-to'lqin (08.10)
+const PmNextStepsLesson = L(() => import('./12-Modull/PmNextStepsLesson.jsx')) // 14-Modul 12-dars, 2-to'lqin (08.10)
+const PmDressRehearsalLesson = L(() => import('./12-Modull/PmDressRehearsalLesson.jsx')) // 14-Modul 13-dars, 2-to'lqin (08.10)
 const PmJtbdLesson = L(() => import('./pm/PmJtbdLesson.jsx')) // PM pipeline P1 (eski PmLesson27 o'rnida)
 const PmMetricsLesson = L(() => import('./pm/PmMetricsLesson.jsx')) // PM pipeline P1 (M8-D1)
 // PmLesson27 — o'lik import olib tashlandi (2026-08-13): m7-02 ni PmJtbdLesson egallagan,
@@ -194,7 +220,7 @@ const PmMetricsLesson = L(() => import('./pm/PmMetricsLesson.jsx')) // PM pipeli
 // ============================================================================
 const MODULES = [
   {
-    id: '1', slug: 'm1', title: 'Men internetdaman', period: 'oy 1–1.5', stage: 1,
+    id: '2', slug: 'm1', title: 'Men internetdaman', period: 'oy 1–1.5', stage: 1,
     idea: 'Portfolio — birinchi mahsulot. Har qadamda: "Bu kim uchun? Nega bor?"',
     lessons: [
       { key: 'm1-01', n: 1,  type: 'Kod',     emoji: '🌐', title: 'Internet qanday ishlaydi',        sub: 'brauzer, server, domen, DNS — so\'rov yo\'li', comp: InternetLesson },
@@ -215,7 +241,7 @@ const MODULES = [
     ],
   },
   {
-    id: '2', slug: 'm2', title: 'Sistemalar qanday o\'ylaydi', period: 'oy 1.5–3', stage: 1,
+    id: '3', slug: 'm2', title: 'Sistemalar qanday o\'ylaydi', period: 'oy 1.5–3', stage: 1,
     idea: 'Koddagi dekompozitsiya = PM\'dagi dekompozitsiya. Bitta mahorat — ikki til.',
     lessons: [
       { key: 'm2-01', n: 1,  type: 'Kod',     emoji: '🧠', title: 'Sistema va Algoritm',          sub: 'komponent, bog\'lanish, ketma-ketlik', comp: JsIntroLesson },
@@ -237,7 +263,7 @@ const MODULES = [
     ],
   },
   {
-    id: '3', slug: 'm3', title: 'Frontend — React', period: 'oy 3–4.5', stage: 1,
+    id: '4', slug: 'm3', title: 'Frontend — React', period: 'oy 3–4.5', stage: 1,
     idea: 'Komponent = feature. User Story koddan OLDIN yoziladi.',
     lessons: [
       { key: 'm3-01', n: 1,  type: 'Kod',     emoji: '⚛️', title: 'React nima va nima uchun?',      sub: 'komponent, Virtual DOM, React Native', comp: ReactIntroLesson },
@@ -260,7 +286,7 @@ const MODULES = [
     ],
   },
   {
-    id: '4', slug: 'm4', title: 'Ma\'lumot va bog\'lanishlar', period: 'oy 4.5–6', stage: 1,
+    id: '5', slug: 'm4', title: 'Ma\'lumot va bog\'lanishlar', period: 'oy 4.5–6', stage: 1,
     sub: 'Node.js + PostgreSQL',
     idea: 'Ma\'lumot sxemasi — mahsulot qarori. Ma\'lumot tasodifan emas, vazifa uchun yig\'iladi.',
     lessons: [
@@ -284,40 +310,28 @@ const MODULES = [
     ],
   },
   {
-    id: '4a', slug: 'm4a', title: 'NestJS + Arxitektura', period: 'oy 6–7.5', stage: 1,
-    idea: 'To\'g\'ri arxitektura = yangi feature\'ni tez yetkazish. Texnik qarz — mahsulot riski.',
+    id: '6', slug: 'm4a', title: 'NestJS + Test + CI/CD', period: 'oy 6–9.5', stage: 1,
+    idea: 'To\'g\'ri arxitektura = yangi feature\'ni tez yetkazish. Har bir tutilmagan bug — yo\'qotilgan foydalanuvchi. Delivery tezligi = gipotezani tekshirish tezligi.',
     lessons: [
       { key: 'm4a-01', n: 1, type: 'Kod',     emoji: '🪺', title: 'Nest arxitektura — tirik ko\'rish',        sub: 'MVC, module, controller, service', comp: NestArchAliveLesson },
       { key: 'm4a-02', n: 2, type: 'PM',      emoji: '📈', title: 'Hamma birdan kirsa, sayt chidaydimi?', sub: 'yuk — birdan kelgan og\'irlik', comp: PmLesson15 },
       { key: 'm4a-03', n: 3, type: 'Kod',     emoji: '📋', title: 'Birinchi resursni qo\'lda qo\'shish — mashinalar', sub: 'Entity, DTO, Repository — CRUD', comp: NestArchResourceLesson },
       { key: 'm4a-04', n: 4, type: 'Proyekt', emoji: '📚', title: 'Praktika — KitobShop backend',        sub: 'KitobShop — o\'z controller + service', comp: NestArchPracticeLesson },
+      { key: 'm4b-01', n: 5, type: 'Kod', emoji: '🧪', title: 'Unit-test: Jest',            sub: 'describe / it / expect — birinchi test', comp: JestUnitTestLesson },
+      { key: 'm4b-02', n: 6, type: 'PM',  emoji: '🛡️', title: 'Bitta xato — nechta odam ketadi?', sub: 'nosozlik qayerda tutilsa — shuncha arzon', comp: PmLesson16 },
+      { key: 'm4b-03', n: 7, type: 'Kod', emoji: '🌶️', title: 'Edge cases va error path',    sub: 'happy path vs xato, toThrow', comp: EdgeCasesTestLesson },
+      { key: 'm4c-01', n: 8, type: 'Kod',     emoji: '🛫', title: 'CI/CD nima va nega kerak',   sub: 'Continuous Integration / Deployment', comp: CiCdIntroLesson },
+      { key: 'm4c-02', n: 9, type: 'PM',      emoji: '⚡', title: 'Hammasini birdan chiqaraymi — yoki har hafta bo\'lak?', sub: 'kim tez-tez chiqarsa, o\'sha oldin biladi', comp: PmLesson17 },
+      { key: 'm4c-03', n: 10, type: 'Kod',     emoji: '🗺️', title: 'GitHub Actions — yo\'l xaritasini yozish',   sub: 'avtomatik ish oqimi: qadamlar va sozlash fayli', comp: GithubActionsLesson },
+      { key: 'm4c-04', n: 11, type: 'Proyekt', emoji: '🧳', title: 'Loyiha kuni — to\'liq lentani qurish', sub: 'backend + frontend — real loyiha', comp: FullPipelineProjectLesson },
+      { key: 'm4c-05', n: 12, type: 'Proyekt', emoji: '🧑‍🔧', title: 'AI bilan lentani boshqarish', sub: 'AI bilan lentani boshqarish', comp: AiPipelineProjectLesson },
+      { key: 'm4c-06', n: 13, type: 'PM',      emoji: '📟', title: 'Saytingiz hozir ochilyaptimi?', sub: 'chiqqandan keyin saytni kim o\'lchaydi', comp: PmLesson18 },
+      { key: 'm4c-07', n: 14, type: 'Proyekt', emoji: '⚙️', title: 'Loyiha kuni: ishonchli lenta', sub: 'test + lint + deploy + monitoring', comp: FullProPipelineLesson },
+      { key: 'm4c-08', n: 15, type: 'Rezerv',  emoji: '📅', title: 'Zaxira dars',                sub: 'yetib olish / sayqallash' },
     ],
   },
   {
-    id: '4b', slug: 'm4b', title: 'Loyihani testlash', period: 'oy 7.5–8.5', stage: 1,
-    idea: 'Har bir tutilmagan bug — yo\'qotilgan foydalanuvchi. Sifat — mahsulot qiymati.',
-    lessons: [
-      { key: 'm4b-01', n: 1, type: 'Kod', emoji: '🧪', title: 'Unit-test: Jest',            sub: 'describe / it / expect — birinchi test', comp: JestUnitTestLesson },
-      { key: 'm4b-02', n: 2, type: 'PM',  emoji: '🛡️', title: 'Bitta xato — nechta odam ketadi?', sub: 'nosozlik qayerda tutilsa — shuncha arzon', comp: PmLesson16 },
-      { key: 'm4b-03', n: 3, type: 'Kod', emoji: '🌶️', title: 'Edge cases va error path',    sub: 'happy path vs xato, toThrow', comp: EdgeCasesTestLesson },
-    ],
-  },
-  {
-    id: '4c', slug: 'm4c', title: 'CI/CD + Deploy', period: 'oy 8.5–9.5', stage: 1,
-    idea: 'Delivery tezligi = gipotezani tekshirish tezligi = raqobat ustunligi.',
-    lessons: [
-      { key: 'm4c-01', n: 1, type: 'Kod',     emoji: '🛫', title: 'CI/CD nima va nega kerak',   sub: 'Continuous Integration / Deployment', comp: CiCdIntroLesson },
-      { key: 'm4c-02', n: 2, type: 'PM',      emoji: '⚡', title: 'Hammasini birdan chiqaraymi — yoki har hafta bo\'lak?', sub: 'kim tez-tez chiqarsa, o\'sha oldin biladi', comp: PmLesson17 },
-      { key: 'm4c-03', n: 3, type: 'Kod',     emoji: '🗺️', title: 'GitHub Actions — yo\'l xaritasini yozish',   sub: 'avtomatik ish oqimi: qadamlar va sozlash fayli', comp: GithubActionsLesson },
-      { key: 'm4c-04', n: 4, type: 'Proyekt', emoji: '🧳', title: 'Loyiha kuni — to\'liq lentani qurish', sub: 'backend + frontend — real loyiha', comp: FullPipelineProjectLesson },
-      { key: 'm4c-05', n: 5, type: 'Proyekt', emoji: '🧑‍🔧', title: 'AI bilan lentani boshqarish', sub: 'AI bilan lentani boshqarish', comp: AiPipelineProjectLesson },
-      { key: 'm4c-06', n: 6, type: 'PM',      emoji: '📟', title: 'Saytingiz hozir ochilyaptimi?', sub: 'chiqqandan keyin saytni kim o\'lchaydi', comp: PmLesson18 },
-      { key: 'm4c-07', n: 7, type: 'Proyekt', emoji: '⚙️', title: 'Loyiha kuni: ishonchli lenta', sub: 'test + lint + deploy + monitoring', comp: FullProPipelineLesson },
-      { key: 'm4c-08', n: 8, type: 'Rezerv',  emoji: '📅', title: 'Zaxira dars',                sub: 'yetib olish / sayqallash' },
-    ],
-  },
-  {
-    id: '5', slug: 'm5', title: 'Botlar va avtomatlashtirish', period: 'oy 9.5–11', stage: 1,
+    id: '7', slug: 'm5', title: 'Botlar va avtomatlashtirish', period: 'oy 9.5–11', stage: 1,
     idea: 'Real odamlar bilan birinchi jonli mahsulot tajribasi. 20+ real foydalanuvchi.',
     lessons: [
       { key: 'm5-01', n: 1,  type: 'Kod',     emoji: '🤖', title: 'Bot nima',                    sub: 'hodisaga javob beradigan mantiq: signal keladi, bot amal qiladi', comp: BotIntroLesson },
@@ -337,7 +351,7 @@ const MODULES = [
     ],
   },
   {
-    id: '6', slug: 'm6', title: 'Tizimni to\'liq yig\'aman', period: 'oy 11–12.5', stage: 1,
+    id: '8', slug: 'm6', title: 'Tizimni to\'liq yig\'aman', period: 'oy 11–12.5', stage: 1,
     idea: '1-bosqich yakuni: o\'quvchi mahsulotni QURA OLADI va TUSHUNTIRA OLADI.',
     lessons: [
       { key: 'm6-01', n: 1,  type: 'Kod',     emoji: '🧭', title: 'Komponentlardan tizim',      sub: 'front + back + baza + AI + bot', comp: SystemArchitectureLesson },
@@ -359,7 +373,7 @@ const MODULES = [
     ],
   },
   {
-    id: '7', slug: 'm7', title: 'Loyiham kim uchun va nima uchun', period: 'oy 9–10.5', stage: 2,
+    id: '9', slug: 'm7', title: 'Loyiham kim uchun va nima uchun', period: 'oy 9–10.5', stage: 2,
     idea: 'Real odamning real muammosi uchun birinchi mini-MVP — jonli va animatsiyali.',
     lessons: [
       { key: 'm7-01', n: 1, type: 'PM', emoji: '🎯', title: 'Loyihangiz kimga kerak?', sub: 'mahsulot va loyiha farqi, atrofdan 10 muammo', comp: PmProductProblemLesson },
@@ -378,7 +392,7 @@ const MODULES = [
     ],
   },
   {
-    id: '8', slug: 'm8', title: 'Gipotezani qanday tekshirish', period: 'oy 10.5–12', stage: 2,
+    id: '10', slug: 'm8', title: 'Gipotezani qanday tekshirish', period: 'oy 10.5–12', stage: 2,
     idea: 'O\'z analitikangiz, A/B test, xavfsizlik va production — MVP haqiqiy foydalanuvchi uchun mustahkamlanadi.',
     lessons: [
       { key: 'm8-01', n: 1, type: 'PM', emoji: '🎯', title: 'Bir oyda qaysi raqamni o\'stirasiz?', sub: 'bosh raqam, OKR va birinchi tajriba', comp: PmOkrLesson },
@@ -397,7 +411,7 @@ const MODULES = [
     ],
   },
   {
-    id: '9', slug: 'm9', title: 'Final loyiha: g\'oya va rivojlantirish', period: 'oy 12–13.5', stage: 2,
+    id: '11', slug: 'm9', title: 'Final loyiha: g\'oya va rivojlantirish', period: 'oy 12–13.5', stage: 2,
     idea: 'Bitiruvgacha olib boriladigan final mahsulot: g\'oya, intervyu, PRD, prototip va birinchi funksiyalar — web yoki mobil.',
     lessons: [
       { key: 'm9-01', n: 1, type: 'PM', emoji: '💡', title: 'Oltita g\'oyani qayerdan topasiz?', sub: 'muammo, kim uchun va yechim — 6 yozma g\'oya', comp: PmTenIdeasLesson },
@@ -420,7 +434,7 @@ const MODULES = [
     ],
   },
   {
-    id: '10', slug: 'm10', title: 'Real vaqt va ishga tushirish', period: 'oy 13.5–14.5', stage: 2,
+    id: '12', slug: 'm10', title: 'Real vaqt va ishga tushirish', period: 'oy 13.5–14.5', stage: 2,
     idea: 'Mahsulot jonlanadi: ekran o\'zi yangilanadi, eslatma keladi — va uni 50 haqiqiy foydalanuvchi ishlatadi.',
     lessons: [
       { key: 'm10-01', n: 1, type: 'PM', emoji: '📰', title: 'Mahsulotingizni bir sahifada qanday tanishtirasiz?', sub: 'lending: sarlavha, foyda va bitta tugma', comp: PmLandingLesson },
@@ -439,22 +453,45 @@ const MODULES = [
     ],
   },
   {
-    id: '11', slug: 'm11', title: 'O\'sish va monetizatsiya', period: 'oy 14.5–15.5', stage: 2,
+    id: '13', slug: 'm11', title: 'O\'sish va monetizatsiya', period: 'oy 14.5–15.5', stage: 2,
     idea: 'Mahsulot pul topa boshlaydi: narx, test rejimdagi to\'lov, taklif havolasi — va birinchi odamlar to\'lashga tayyorligini tasdiqlaydi.',
     lessons: [
-      { key: 'm11-01', n: 1, type: 'PM', emoji: '🧮', title: 'Bitta foydalanuvchi sizga qanchaga tushadi?', sub: 'jalb qilish narxi va foydalanuvchi keltiradigan pul' },
-      { key: 'm11-02', n: 2, type: 'PM', emoji: '🧭', title: 'Mahsulotingiz qanday pul topadi?', sub: 'besh model: bepul asos, pullik obuna, reklama, B2B, tranzaksiya' },
-      { key: 'm11-03', n: 3, type: 'Kod', emoji: '🔐', title: 'Webhook: to\'lov Backend\'ga qanday yetib keladi', sub: 'imzo, takror xabar va rad etilgan to\'lov — test rejimda' },
-      { key: 'm11-04', n: 4, type: 'PM', emoji: '🏷️', title: 'Narxni qanday belgilaysiz?', sub: 'xarajat, raqobat, qiymat → narx va to\'lov taklifi ekrani' },
-      { key: 'm11-05', n: 5, type: 'Proyekt', emoji: '🧪', title: 'Loyiha kuni: to\'lovni ulaymiz va buzib ko\'ramiz', sub: 'test rejimda to\'lov oqimi; buzamiz va tuzatamiz' },
-      { key: 'm11-06', n: 6, type: 'PM', emoji: '🗣️', title: 'Pul haqida qanday gaplashasiz?', sub: 'narx bo\'yicha uchta real suhbat' },
-      { key: 'm11-07', n: 7, type: 'PM', emoji: '📄', title: 'Foydalanuvchiga shartlarni qanday ochiq aytasiz?', sub: 'oferta va maxfiylik siyosati saytda' },
-      { key: 'm11-08', n: 8, type: 'Proyekt', emoji: '📬', title: 'Loyiha kuni: ketayotgan foydalanuvchini qaytarish', sub: 'nega ketishadi va bitta qaytarish mexanikasi' },
-      { key: 'm11-09', n: 9, type: 'PM', emoji: '✅', title: 'Kim haqiqatan to\'lashga tayyor?', sub: 'Mentor tekshiruvi: uchta yozma tasdiq' },
-      { key: 'm11-10', n: 10, type: 'Proyekt', emoji: '🔗', title: 'Loyiha kuni: taklif havolasi va mukofot', sub: 'unikal havola, sanoq va mukofot' },
-      { key: 'm11-11', n: 11, type: 'PM', emoji: '🪞', title: 'Mahsulotingiz hozir qayerda?', sub: 'roadmap bilan solishtirish va shaxsiy hisobot' },
-      { key: 'm11-12', n: 12, type: 'Proyekt', emoji: '🛠️', title: 'Loyiha kuni: barqarorlashtirish', sub: 'asosiy yo\'llarni tekshiramiz va tuzatamiz' },
+      { key: 'm11-01', n: 1, type: 'PM', emoji: '🧮', title: 'Bitta foydalanuvchi sizga qanchaga tushadi?', sub: 'jalb qilish narxi va foydalanuvchi keltiradigan pul', comp: PmUnitEconomicsLesson },
+      { key: 'm11-02', n: 2, type: 'PM', emoji: '🧭', title: 'Mahsulotingiz qanday pul topadi?', sub: 'besh model: bepul asos, pullik obuna, reklama, B2B, tranzaksiya', comp: PmMonetizationLesson },
+      { key: 'm11-03', n: 3, type: 'Kod', emoji: '🔐', title: 'Webhook: to\'lov Backend\'ga qanday yetib keladi', sub: 'imzo, takror xabar va rad etilgan to\'lov — test rejimda', comp: PaymentWebhookLesson },
+      { key: 'm11-04', n: 4, type: 'PM', emoji: '🏷️', title: 'Narxni qanday belgilaysiz?', sub: 'xarajat, raqobat, qiymat → narx va to\'lov taklifi ekrani', comp: PmPricingLesson },
+      { key: 'm11-05', n: 5, type: 'Proyekt', emoji: '🧪', title: 'Loyiha kuni: to\'lovni ulaymiz va buzib ko\'ramiz', sub: 'test rejimda to\'lov oqimi; buzamiz va tuzatamiz', comp: PaymentDayLesson },
+      { key: 'm11-06', n: 6, type: 'PM', emoji: '🗣️', title: 'Pul haqida qanday gaplashasiz?', sub: 'narx bo\'yicha uchta real suhbat', comp: PmMoneyTalkLesson },
+      { key: 'm11-07', n: 7, type: 'PM', emoji: '📄', title: 'Foydalanuvchiga shartlarni qanday ochiq aytasiz?', sub: 'oferta va maxfiylik siyosati saytda', comp: PmTermsLesson },
+      { key: 'm11-08', n: 8, type: 'Proyekt', emoji: '📬', title: 'Loyiha kuni: ketayotgan foydalanuvchini qaytarish', sub: 'nega ketishadi va bitta qaytarish mexanikasi', comp: WinBackDayLesson },
+      { key: 'm11-09', n: 9, type: 'PM', emoji: '✅', title: 'Kim haqiqatan to\'lashga tayyor?', sub: 'Mentor tekshiruvi: uchta yozma tasdiq', comp: PmPayCheckLesson },
+      { key: 'm11-10', n: 10, type: 'Proyekt', emoji: '🔗', title: 'Loyiha kuni: taklif havolasi va mukofot', sub: 'unikal havola, sanoq va mukofot', comp: ReferralDayLesson },
+      { key: 'm11-11', n: 11, type: 'PM', emoji: '🪞', title: 'Mahsulotingiz hozir qayerda?', sub: 'roadmap bilan solishtirish va shaxsiy hisobot', comp: PmReflectionLesson },
+      { key: 'm11-12', n: 12, type: 'Proyekt', emoji: '🛠️', title: 'Loyiha kuni: barqarorlashtirish', sub: 'asosiy yo\'llarni tekshiramiz va tuzatamiz', comp: StabilizeDayLesson },
       { key: 'm11-13', n: 13, type: 'Rezerv', emoji: '📅', title: 'Zaxira dars', sub: 'yetib olish / sayqallash' },
+    ],
+  },
+  {
+    id: '14', slug: 'm12', title: 'Bitiruvchi va mahsulot tezligi', period: 'oy 15.5–16.5', stage: 2,
+    idea: 'Mahsulot tez va silliq ishlaydi, pitch va jonli demo hakamlar oldiga tayyor — va keyingi olti oy rejasi bor.',
+    lessons: [
+      { key: 'm12-01', n: 1, type: 'PM', emoji: '💼', title: 'Investorga pitchni qanday tuzasiz?', sub: 'olti bo\'lak: muammo, bozor, yechim, raqamlar, jamoa, keyingi qadam', comp: PmInvestorPitchLesson },
+      { key: 'm12-02', n: 2, type: 'PM', emoji: '📖', title: 'Mahsulotingiz hikoyasini qanday aytasiz?', sub: '5 daqiqalik pitch — hikoya, funksiyalar ro\'yxati emas', comp: PmStoryPitchLesson },
+      { key: 'm12-03', n: 3, type: 'Kod', emoji: '⚡', title: 'Mahsulot tezligi: o\'lchaymiz va tezlashtiramiz', sub: 'Lighthouse, rasmlar va yuklanadigan kod hajmi — oldin va keyin', comp: ProductSpeedLesson },
+      { key: 'm12-04', n: 4, type: 'Proyekt', emoji: '✨', title: 'Loyiha kuni: demo uchun sayqal', sub: 'demo yo\'lidagi uch joy: bosish, yuklanish, muvaffaqiyat', comp: PolishDayLesson },
+      { key: 'm12-05', n: 5, type: 'PM', emoji: '👥', title: 'Guruh pitchingizda nimani tuzatishni aytadi?', sub: 'pitch mashqi 1: guruh fidbeki va tuzatishlar ro\'yxati', comp: PmPitchTrainingLesson },
+      { key: 'm12-06', n: 6, type: 'Kod', emoji: '🧰', title: 'Demoga tayyorgarlik: risklar va B reja', sub: 'demo ssenariysi, B reja va yangi funksiyani to\'xtatish', comp: DemoPrepLesson },
+      { key: 'm12-07', n: 7, type: 'PM', emoji: '🔍', title: 'Investor ko\'zi bilan: demo buzilmaydimi?', sub: 'demo tekshiruvi: buzamiz, agent tuzatadi, uch marta to\'liq o\'tish', comp: PmDemoTestLesson },
+      { key: 'm12-08', n: 8, type: 'PM', emoji: '⏱️', title: 'Final pitchingiz 5 daqiqaga tayyormi?', sub: 'pitch mashqi 2: taymer va savol-javob', comp: PmFinalPitchLesson },
+      { key: 'm12-09', n: 9, type: 'Kod', emoji: '🎬', title: 'Video-portfolio: 3 daqiqada o\'zingiz va mahsulot', sub: 'ssenariy, ekran yozuvi va havola', comp: VideoPortfolioLesson },
+      { key: 'm12-10', n: 10, type: 'PM', emoji: '🧾', title: 'Birinchi buyurtmani qayerdan topasiz?', sub: 'frilans va stajirovka: reja va ikki xat', comp: PmFreelanceLesson },
+      { key: 'm12-11', n: 11, type: 'PM', emoji: '🌍', title: 'Qaysi xalqaro dasturga ariza berasiz?', sub: 'Diamond Challenge, Y Combinator: shartlar va ariza', comp: PmProgramsLesson },
+      { key: 'm12-12', n: 12, type: 'PM', emoji: '🗓️', title: 'Keyingi olti oyda nima qilasiz?', sub: 'Mentor bilan yakkama-yakka: olti oylik reja', comp: PmNextStepsLesson },
+      { key: 'm12-13', n: 13, type: 'PM', emoji: '🎤', title: 'Demo Day\'ga tayyormisiz?', sub: 'hakamlar oldidan to\'liq repetitsiya', comp: PmDressRehearsalLesson },
+      { key: 'm12-14', n: 14, type: 'Rezerv', emoji: '📅', title: 'Zaxira dars: zalni tayyorlash', sub: 'tashkiliy dars' },
+      { key: 'm12-15', n: 15, type: 'PM', emoji: '🤝', title: 'Bitiruvchilar bilan uchrashuv', sub: 'tadbir — tashkilotchi bilan' },
+      { key: 'm12-16', n: 16, type: 'Demo', emoji: '🏆', title: 'Demo Day 8 — bitiruv himoyasi', sub: 'hakamlar: 5–7 investor va tadbirkor; 5 daqiqa pitch va savol-javob' },
+      { key: 'm12-17', n: 17, type: 'Demo', emoji: '🎓', title: 'Bitiruv marosimi', sub: 'sertifikatlar, video-portfolio, g\'oliblar' },
     ],
   },
 ]
@@ -588,7 +625,7 @@ export default function App() {
         <p style={{ margin: '0 0 6px', fontSize: 11.5, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#FF4F28' }}>CoddyCamp · Senior 2026</p>
         <h1 style={{ margin: '0 0 8px', fontFamily: "'Source Serif 4', Georgia, serif", fontWeight: 600, fontSize: 'clamp(27px,4.4vw,40px)', color: '#0E0E10' }}>Barcha darslar — dastur tartibida</h1>
         <p style={{ margin: '0 0 18px', fontSize: 14, fontWeight: 500, color: '#5A5A60', maxWidth: 620 }}>
-          1-moduldan 7-modulgacha, CoddyCamp Senior 2026 dasturi bo'yicha. Darsni bosing — o'z manzili bor, sahifa yangilansa ham ochiq qoladi.
+          2-moduldan 14-modulgacha, CoddyCamp Senior 2026 dasturi bo'yicha (1-modul Foundation — saytdan tashqari). Darsni bosing — o'z manzili bor, sahifa yangilansa ham ochiq qoladi.
         </p>
 
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 34 }}>

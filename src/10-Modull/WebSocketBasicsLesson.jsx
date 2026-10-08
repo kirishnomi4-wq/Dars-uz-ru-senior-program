@@ -267,7 +267,7 @@ const RECAPS = {
     cards: [
       { ic: '1', h: { uz: "Ilova so'raydi — Backend javob beradi.", ru: 'Приложение спрашивает — Backend отвечает.' } },
       { ic: '2', h: { uz: "So'rov bo'lmasa, Backend'dan ilovaga yo'l ochilmaydi.", ru: 'Без запроса путь от Backend к приложению не открывается.' } },
-      { ic: '3', h: { uz: "Shuning uchun 11-Modulda son ekran ochilganda va pastga tortganda yangilanadi.", ru: 'Поэтому в 11-м модуле число обновляется при открытии экрана и при потягивании вниз.' }, ask: { uz: "Ekran bir soat ochiq tursa-yu, hech kim uni tortmasa, son nima bo'ladi?", ru: 'Если экран открыт час и никто его не тянет, что будет с числом?' } }
+      { ic: '3', h: { uz: "Shuning uchun 11-Modulda son ekran ochilganda va pastga tortganda yangilanadi.", ru: 'Поэтому в 11-м модуле число обновляется при открытии экрана и при потягивании вниз.' }, ask: { uz: "Ekran bir soat ochiq tursa-yu, hech kim uni tortmasa, son nima bo'ladi?", ru: 'Если экран открыт час и никто не потянет его вниз, что будет с числом?' } }
     ]
   },
   6: {
@@ -281,7 +281,7 @@ const RECAPS = {
   8: {
     title: { uz: 'Ulanish token bilan', ru: 'Соединение с токеном' },
     cards: [
-      { ic: null, h: { uz: 'Ilova ulanayotganda tokenni yuboradi', ru: 'Приложение при подключении отправляет токен' }, vis: rcKod('auth: { token }') },
+      { ic: null, h: { uz: 'Ilova ulanayotganda tokenni yuboradi', ru: 'Приложение отправляет токен, когда подключается' }, vis: rcKod('auth: { token }') },
       { ic: null, h: { uz: 'Backend tokenni tekshiradi', ru: 'Backend проверяет токен' }, vis: rcKod('handleConnection(ulanish)') },
       { ic: null, h: { uz: "Token yaroqsiz bo'lsa, ulanish yopiladi", ru: 'Если токен недействителен, соединение закрывается' }, vis: rcKod('ulanish.disconnect()'), ask: { uz: 'Token tekshirilmasa, kimlar ulana olardi?', ru: 'Если токен не проверять, кто смог бы подключиться?' } }
     ]
@@ -590,6 +590,8 @@ function useKetma() {
 const lsOqi = (k) => { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch { return null; } };
 
 const NAMUNA_OYIN = { id: 1, vaqt: { uz: 'Shanba, 18:00', ru: 'Суббота, 18:00' }, joy: { uz: 'Mahalla maydoni', ru: 'Поле махалли' }, kerak: 10 };
+// «Maydon Jamoa» nomi — 11-Modul tayanch 9.62 yashili (PM palitrasining ok yashilidan farqli; F-1006-389)
+const MAYDON_RANG = '#2E9E4F';
 const SAHNA = {
   t1: { uz: '1-telefon · siz', ru: 'Телефон 1 · вы' },
   t2: { uz: "2-telefon · boshqa o'yinchi", ru: 'Телефон 2 · другой игрок' },
@@ -619,10 +621,10 @@ const BELGILAR = {
 };
 // Mentor sxemasi — besh qator (A-bo'lim 4, tayanch 1.2): 12-ekran kartalari, A2 kutilgan natija, kartochka
 const MENTOR_SXEMA = [
-  { id: 'q1', nuqta: { uz: "«8 / 10» va qo'shilganlar ro'yxati", ru: '«8 / 10» и список присоединившихся' }, kimNima: { uz: "o'yinchi «Qo'shilaman» ni bosadi", ru: 'игрок нажимает «Qo\'shilaman»' }, sabab: 'qoshildi', ekranda: { uz: "«8 / 10» → «9 / 10», ro'yxatda yangi o'yinchi", ru: '«8 / 10» → «9 / 10», в списке новый игрок' }, kor: 'son', oldin: 8, keyin: 9 },
+  { id: 'q1', nuqta: { uz: "«8 / 10» va qo'shilganlar ro'yxati", ru: '«8 / 10» и список присоединившихся' }, kimNima: { uz: "o'yinchi «Qo'shilaman» ni bosadi", ru: 'игрок нажимает «Присоединяюсь»' }, sabab: 'qoshildi', ekranda: { uz: "«8 / 10» → «9 / 10», ro'yxatda yangi o'yinchi", ru: '«8 / 10» → «9 / 10», в списке новый игрок' }, kor: 'son', oldin: 8, keyin: 9 },
   { id: 'q2', nuqta: { uz: "«8 / 10» va qo'shilganlar ro'yxati", ru: '«8 / 10» и список присоединившихся' }, kimNima: { uz: "o'yinchi o'yindan chiqadi (navbatdagi kirsa — shu hodisa)", ru: 'игрок выходит из игры (если заходит следующий из очереди — то же событие)' }, sabab: 'chiqdi', ekranda: { uz: "son va ro'yxat yangilanadi", ru: 'число и список обновляются' }, kor: 'son', oldin: 9, keyin: 8 },
-  { id: 'q3', nuqta: { uz: '«Kelaman» belgilari', ru: 'отметки «Kelaman»' }, kimNima: { uz: "o'yinchi «Kelaman» ni bosadi", ru: 'игрок нажимает «Kelaman»' }, sabab: 'tasdiqladi', ekranda: { uz: '«Kelishini tasdiqladi: 7 / 9» → «8 / 9»', ru: '«Kelishini tasdiqladi: 7 / 9» → «8 / 9»' }, kor: 'tash', oldin: 7, keyin: 8 },
-  { id: 'q4', nuqta: { uz: '«Navbatda: N»', ru: '«Navbatda: N»' }, kimNima: { uz: "o'yinchi navbatga yoziladi", ru: 'игрок записывается в очередь' }, sabab: 'navbatga-yozildi', ekranda: { uz: '«Navbatda: 1»', ru: '«Navbatda: 1»' }, kor: 'navbat', oldin: 0, keyin: 1 },
+  { id: 'q3', nuqta: { uz: '«Kelaman» belgilari', ru: 'отметки «Приду»' }, kimNima: { uz: "o'yinchi «Kelaman» ni bosadi", ru: 'игрок нажимает «Приду»' }, sabab: 'tasdiqladi', ekranda: { uz: '«Kelishini tasdiqladi: 7 / 9» → «8 / 9»', ru: '«Подтвердили приход: 7 / 9» → «8 / 9»' }, kor: 'tash', oldin: 7, keyin: 8 },
+  { id: 'q4', nuqta: { uz: '«Navbatda: N»', ru: '«В очереди: N»' }, kimNima: { uz: "o'yinchi navbatga yoziladi", ru: 'игрок записывается в очередь' }, sabab: 'navbatga-yozildi', ekranda: { uz: '«Navbatda: 1»', ru: '«В очереди: 1»' }, kor: 'navbat', oldin: 0, keyin: 1 },
   { id: 'q5', nuqta: { uz: "o'yinlar ro'yxati", ru: 'список игр' }, kimNima: { uz: "tashkilotchi o'yin e'lon qiladi", ru: 'организатор объявляет игру' }, sabab: 'elon-berildi', ekranda: { uz: "ro'yxatda yangi karta", ru: 'в списке новая карточка' }, kor: 'karta', oldin: 0, keyin: 1 }
 ];
 const SABABLAR = ['qoshildi', 'chiqdi', 'tasdiqladi', 'navbatga-yozildi', 'elon-berildi'];
@@ -630,7 +632,7 @@ const KIM_OLADI = { uz: 'hamma ulangan ilova', ru: 'все подключённ�
 // Hodisa yo'li — 6 bo'lak (14-ekran final)
 const HODISA_YOLI = [
   { id: 'ulanadi', label: { uz: "Ilova Backend'ga token bilan ulanadi", ru: 'Приложение подключается к Backend с токеном' } },
-  { id: 'bosadi', label: { uz: "Boshqa o'yinchi «Qo'shilaman» ni bosadi", ru: 'Другой игрок нажимает «Qo\'shilaman»' } },
+  { id: 'bosadi', label: { uz: "Boshqa o'yinchi «Qo'shilaman» ni bosadi", ru: 'Другой игрок нажимает «Присоединяюсь»' } },
   { id: 'yozadi', label: { uz: "Backend qo'shilishni Database'ga yozib tugatadi", ru: 'Backend заканчивает запись присоединения в Database' } },
   { id: 'yuboradi', label: { uz: 'Backend `oyin-ozgardi` hodisasini yuboradi', ru: 'Backend отправляет событие `oyin-ozgardi`' } },
   { id: 'soraydi', label: { uz: "Ilova `GET /oyinlar` dan qayta so'raydi", ru: 'Приложение заново запрашивает `GET /oyinlar`' } },
@@ -816,7 +818,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
           sarlavha={tr({ uz: <>Sizning ekraningizda nega hali <span className="italic" style={{ color: T.accent }}>«8 / 10»</span> turibdi?</>, ru: <>Почему на вашем экране всё ещё <span className="italic" style={{ color: T.accent }}>«8 / 10»</span>?</> })}
           mentor={<Mentor>{eski
             ? tr({ uz: "Endi o'ngdagi javoblardan birini tanlang.", ru: 'Теперь выберите один из ответов справа.' })
-            : tr({ uz: "Maydon Jamoa 11-Modul oxiridagi holatda: ikkinchi telefonda «Qo'shilaman» ni bosing va birinchisiga qarang.", ru: 'Maydon Jamoa в состоянии конца 11-го модуля: нажмите «Qo\'shilaman» на втором телефоне и посмотрите на первый.' })}</Mentor>}
+            : tr({ uz: "Maydon Jamoa 11-Modul oxiridagi holatda: ikkinchi telefonda «Qo'shilaman» ni bosing va birinchisiga qarang.", ru: '«Maydon Jamoa» в состоянии на конец 11-го модуля: нажмите «Присоединяюсь» на втором телефоне и посмотрите на первый.' })}</Mentor>}
           maket={<Sahna ixcham
             t1={{ son: 8, eski: eski && SAHNA.eski, qoshilYoq: false }}
             t2={{ son: bosildi ? 9 : 8, sonYangi: bosildi, qoshildi: bosildi, onQoshil: qoshil, qoshilHalqa: !bosildi }}
@@ -846,7 +848,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz', ru: 'Начинаем' })} onClick={onNext} /></>}>
       <QReja zoom={Zoomable}
         sarlavha={tr({ uz: <>Bugun mahsulotingiz <span className="italic" style={{ color: T.accent }}>Backend'ga ulanib turadi</span>.</>, ru: <>Сегодня ваш продукт <span className="italic" style={{ color: T.accent }}>будет подключён к Backend</span>.</> })}
-        mentor={<Mentor>{tr({ uz: "Har qadamni avval Maydon Jamoa misolida ko'rasiz, keyin o'z mahsulotingizda qilasiz. Backend bugun hali xabar yubormaydi — bugungi ish ulanish va sxema.", ru: 'Каждый шаг вы сначала увидите на примере Maydon Jamoa, потом сделаете в своём продукте. Сегодня Backend ещё не отправляет сообщения — сегодня соединение и схема.' })}</Mentor>}
+        mentor={<Mentor>{tr({ uz: "Har qadamni avval Maydon Jamoa misolida ko'rasiz, keyin o'z mahsulotingizda qilasiz. Backend bugun hali xabar yubormaydi — bugungi ish ulanish va sxema.", ru: 'Каждый шаг вы сначала увидите на примере «Maydon Jamoa», потом сделаете в своём продукте. Сегодня Backend ещё не отправляет сообщения — сегодня соединение и схема.' })}</Mentor>}
         chapYorliq={tr({ uz: 'Dars oxirida', ru: 'В конце урока' })}
         chap={<Sahna t1={{ ekran: 'oyinlar', belgi, son: 8, osti: <span className="ws-readme"><b>README.md</b><span>{tr({ uz: '«Real vaqt» · 5 qator', ru: '«Real vaqt» · 5 строк' })}</span></span> }} be={{}} c1={c1} />}
         qadamlar={REJA.map(r => ({ t: tr(r.t), teg: tr(r.teg) }))}
@@ -891,9 +893,9 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: "Tushuncha · so'rov", ru: 'Понятие · запрос' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={tr(navYorliq(taxmin, q, 2, QADAMLAR_Y, done))} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
-        sarlavha={tr({ uz: <>So'rov bo'lmasa, Backend <span className="italic" style={{ color: T.accent }}>nima qila oladi</span>?</>, ru: <>Что может Backend, <span className="italic" style={{ color: T.accent }}>если нет запроса</span>?</> })}
-        mentor={<Mentor>{tr(!taxmin ? { uz: "Backend tugunidagi «1-telefonga yuborish» ni bosib ko'ring, keyin birinchi telefonni pastga torting.", ru: 'Нажмите «1-telefonga yuborish» в узле Backend, затем потяните первый телефон вниз.' }
-          : q === 0 ? { uz: "Backend tugunidagi «1-telefonga yuborish» ni bosing.", ru: 'Нажмите «1-telefonga yuborish» в узле Backend.' }
+        sarlavha={tr({ uz: <>So'rov bo'lmasa, Backend <span className="italic" style={{ color: T.accent }}>nima qila oladi</span>?</>, ru: <>Если нет запроса, что Backend <span className="italic" style={{ color: T.accent }}>может сделать</span>?</> })}
+        mentor={<Mentor>{tr(!taxmin ? { uz: "Backend tugunidagi «1-telefonga yuborish» ni bosib ko'ring, keyin birinchi telefonni pastga torting.", ru: 'Нажмите «Отправить на телефон 1» в узле Backend, затем потяните первый телефон вниз.' }
+          : q === 0 ? { uz: "Backend tugunidagi «1-telefonga yuborish» ni bosing.", ru: 'Нажмите «Отправить на телефон 1» в узле Backend.' }
             : q === 1 ? { uz: "Yetib bormadi: 1-telefon so'ramagan. Endi 1-telefonni pastga torting yoki undagi «↓ Pastga torting» ni bosing.", ru: 'Не дошло: телефон 1 не запрашивал. Теперь потяните телефон 1 вниз или нажмите на нём «↓ Потяните вниз».' }
               : { uz: "Son faqat ilova so'raganda yangilandi — «Davom etish» ni bosing.", ru: 'Число обновилось только по запросу приложения — нажмите «Продолжить».' })}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={{ uz: 'Backend yangi sonni birinchi telefonga o\'zi yubora oladimi?', ru: 'Может ли Backend сам отправить новое число на первый телефон?' }} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
@@ -912,7 +914,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen3 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Упражнение · вопрос 1' })}
     questionText="11-Modulda ilova yangi sonni Backend'dan qachon olardi?"
-    question={tr({ uz: <h2 className="title h-ask">11-Modulda ilova yangi sonni Backend'dan <span className="italic" style={{ color: T.accent }}>qachon</span> olardi?</h2>, ru: <h2 className="title h-ask">Когда в 11-м модуле приложение <span className="italic" style={{ color: T.accent }}>получало</span> новое число от Backend?</h2> })}
+    question={tr({ uz: <h2 className="title h-ask">11-Modulda ilova yangi sonni Backend'dan <span className="italic" style={{ color: T.accent }}>qachon</span> olardi?</h2>, ru: <h2 className="title h-ask"><span className="italic" style={{ color: T.accent }}>Когда</span> в 11-м модуле приложение получало новое число от Backend?</h2> })}
     options={[
       { uz: "Database'da son o'zgargan paytda", ru: 'Когда число менялось в Database' },
       { uz: "Backend'ga so'rov yuborgan paytda", ru: 'Когда отправляло запрос в Backend' },
@@ -963,8 +965,8 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Tushuncha · ulanish', ru: 'Понятие · соединение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={tr(navYorliq(taxmin, q, 2, QADAMLAR_Y, done))} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
-        sarlavha={tr({ uz: <>Ulanish ochiq tursa, <span className="italic" style={{ color: T.accent }}>nima o'zgaradi</span>?</>, ru: <>Что меняется, <span className="italic" style={{ color: T.accent }}>если соединение открыто</span>?</> })}
-        mentor={<Mentor>{tr({ uz: "10-Modulda dashboard Backend'dan qayta-qayta so'rardi — bugun boshqa yo'l: birinchi telefonda Maydon Jamoa'ni oching.", ru: 'В 10-м модуле dashboard снова и снова спрашивал Backend — сегодня другой путь: откройте Maydon Jamoa на первом телефоне.' })}</Mentor>}
+        sarlavha={tr({ uz: <>Ulanish ochiq tursa, <span className="italic" style={{ color: T.accent }}>nima o'zgaradi</span>?</>, ru: <>Если соединение открыто, <span className="italic" style={{ color: T.accent }}>что меняется</span>?</> })}
+        mentor={<Mentor>{tr({ uz: "10-Modulda dashboard Backend'dan qayta-qayta so'rardi — bugun boshqa yo'l: birinchi telefonda Maydon Jamoa'ni oching.", ru: 'В 10-м модуле дашборд снова и снова спрашивал Backend — сегодня другой путь: откройте «Maydon Jamoa» на первом телефоне.' })}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={{ uz: 'Ulanish ochiq turganda Backend ilovaga qachon xabar yubora oladi?', ru: 'Когда Backend может отправить приложению сообщение, пока соединение открыто?' }} variantlar={S4_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
         vizual={<div className="ws-viz">
           <Sahna
@@ -1016,7 +1018,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Backend yuborgan xabarda <span className="italic" style={{ color: T.accent }}>nima bor</span>?</>, ru: <>Что <span className="italic" style={{ color: T.accent }}>внутри</span> сообщения от Backend?</> })}
         mentor={<Mentor>{q === 0
           ? tr({ uz: 'Birinchi telefon chetidagi konvertni bosib oching.', ru: 'Нажмите на конверт у края первого телефона и откройте его.' })
-          : tr({ uz: "Ichida son yo'q: «Qayta so'rash» ni bosing.", ru: 'Внутри нет числа: нажмите «Qayta so\'rash».' })}</Mentor>}
+          : tr({ uz: "Ichida son yo'q: «Qayta so'rash» ni bosing.", ru: 'Внутри нет числа: нажмите «Запросить заново».' })}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={{ uz: 'Konvert ichida nima bor?', ru: 'Что внутри конверта?' }} variantlar={S5_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
         vizual={<div className="ws-viz">
           <Sahna
@@ -1093,7 +1095,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Tushuncha · token', ru: 'Понятие · токен' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={tr(navYorliq(taxmin, q, 2, { uz: "Ikkalasini sinab ko'ring", ru: 'Попробуйте оба' }, done))} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
         sarlavha={tr({ uz: <>Backend kim ulanayotganini <span className="italic" style={{ color: T.accent }}>qayerdan biladi</span>?</>, ru: <>Откуда Backend <span className="italic" style={{ color: T.accent }}>знает</span>, кто подключается?</> })}
-        mentor={<Mentor>{tr({ uz: "Mentor misolida ulanishni socket.io kutubxonasi ochadi — avval «Tokensiz ulanish» ni, keyin «Token bilan ulanish» ni bosing.", ru: 'В примере Ментора соединение открывает библиотека socket.io — сначала нажмите «Tokensiz ulanish», затем «Token bilan ulanish».' })}</Mentor>}
+        mentor={<Mentor>{tr({ uz: "Mentor misolida ulanishni socket.io kutubxonasi ochadi — avval «Tokensiz ulanish» ni, keyin «Token bilan ulanish» ni bosing.", ru: 'В примере Ментора соединение открывает библиотека socket.io — сначала нажмите «Подключиться без токена», затем «Подключиться с токеном».' })}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={{ uz: "Ulanayotgan ilova Backend'ga o'zi haqida nimani yuboradi?", ru: 'Что подключающееся приложение отправляет Backend о себе?' }} variantlar={S7_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
         vizual={<div className="ws-viz">
           <Sahna t1={{ ekran: 'oyinlar', belgi, son: 8 }} be={{ ok: gwYon === 'ok', xato: gwYon === 'err', qator: gwYon === 'ok' ? { uz: 'token yaroqli ✓', ru: 'токен действителен ✓' } : gwYon === 'err' ? { uz: "token yo'q — yopdi", ru: 'токена нет — закрыл' } : null }} c1={c1} k1={k1} />
@@ -1110,7 +1112,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>
           {done && <p className="ws-nom fade-step">{tx({ uz: "socket.io — doimiy ulanish bilan ishlashni osonlashtiradigan kutubxona; u imkon bo'lsa WebSocket orqali ulanadi. Ilovada `socket.io-client`, Backend'da NestJS gateway.", ru: 'socket.io — библиотека, упрощающая работу с постоянным соединением; по возможности она подключается через WebSocket. В приложении `socket.io-client`, в Backend — NestJS gateway.' })}</p>}
         </div>}
-        xulosa={done && <XulosaQ natija={taxmin && <Natija togri={taxmin === 'token'} tanlov={S7_TAXMIN.find(v => v.k === taxmin).t} haqiqat={{ uz: 'tokenni', ru: 'токен' }} />} matn={tr({ uz: "Bu misolda ilova ulanayotganda tokenni yuboradi; Backend shu paytda tekshiradi va yaroqsiz bo'lsa yopadi.", ru: 'В этом примере приложение при подключении отправляет токен; Backend проверяет его в этот момент и, если он недействителен, закрывает.' })} izoh={tr({ uz: "Token yopiq so'rovlardagidek ishlatiladi, lekin bu yerda u ulanish ochilayotganda tekshiriladi.", ru: 'Токен используется как в закрытых запросах, но здесь он проверяется при открытии соединения.' })} />}
+        xulosa={done && <XulosaQ natija={taxmin && <Natija togri={taxmin === 'token'} tanlov={S7_TAXMIN.find(v => v.k === taxmin).t} haqiqat={{ uz: 'tokenni', ru: 'токен' }} />} matn={tr({ uz: "Bu misolda ilova ulanayotganda tokenni yuboradi; Backend shu paytda tekshiradi va yaroqsiz bo'lsa yopadi.", ru: 'В этом примере приложение, подключаясь, отправляет токен; Backend сразу проверяет его и, если он недействителен, закрывает соединение.' })} izoh={tr({ uz: "Token yopiq so'rovlardagidek ishlatiladi, lekin bu yerda u ulanish ochilayotganda tekshiriladi.", ru: 'Токен используется как в закрытых запросах, но здесь он проверяется при открытии соединения.' })} />}
       />
     </Stage>
   );
@@ -1130,8 +1132,8 @@ const Screen8 = (props) => (
     explainCorrect={{ uz: "Ulanish ochilayotganda token yaroqsiz bo'lsa, Backend uni yopadi.", ru: 'Если при открытии соединения токен недействителен, Backend его закрывает.' }}
     explainWrong={{
       1: { uz: 'Yaroqsiz tokendan keyin Backend kodida qaysi qator ishladi?', ru: 'Какая строка кода Backend сработала после недействительного токена?' },
-      2: { uz: "Parol faqat kirishda yoziladi; ulanishda so'ralmaydi.", ru: 'Пароль вводят только при входе; при подключении его не спрашивают.' },
-      3: { uz: 'Yangi token faqat «Kirish» ekranida olinadi.', ru: 'Новый токен получают только на экране «Kirish».' },
+      2: { uz: "Parol faqat kirishda yoziladi; ulanishda so'ralmaydi.", ru: 'Пароль вводят только при входе; когда приложение подключается, его не спрашивают.' },
+      3: { uz: 'Yangi token faqat «Kirish» ekranida olinadi.', ru: 'Новый токен получают только на экране «Вход».' },
       default: { uz: 'Yaroqsiz tokenda Backend ulanishni yopadi.', ru: 'При недействительном токене Backend закрывает соединение.' }
     }} />
 );
@@ -1141,6 +1143,7 @@ const Screen8 = (props) => (
 // namuna.js — o'qish uchun ko'rinadi, ishlaydigan nusxasi natija hujjatining boshiga previewCss orqali (o'quvchi kodidan OLDIN) qo'yiladi.
 // Bosh qismda hali DOM yo'q — shuning uchun faqat «.boshqa» tugmasiga ulash DOMContentLoaded ichida (o'quvchi kodi tugagach, tekshiruvdan oldin).
 // Tekshiruv sinxron (bosish → tinglovchi → korsat → sora) — 50 ms dan keyingi probe async ni kutmasa ham to'g'ri ishlaydi.
+// ru-qoldiq-istisno s9: o'yinchi qo'shildi hali yo'q shanba mahalla maydoni
 const KOD_INDEX = ['<div class="oyin">', '  <p>Shanba, 18:00 · Mahalla maydoni</p>', '  <p class="hisob"><span class="son">…</span> / 10</p>', '  <button class="yangila">Yangilash</button>', '</div>', "<button class=\"boshqa\">Boshqa o'yinchi qo'shildi</button>", "<p class=\"kelgan\">Kelgan hodisa: hali yo'q</p>", ''].join('\n');
 const NAMUNA_IZ = {
   uz: ["// Backend va ulanish o'rnida NAMUNA (haqiqiy Backend emas):", '// son shu faylda turadi, hodisani', "// «Boshqa o'yinchi qo'shildi» tugmasi yuboradi."],
@@ -1161,11 +1164,11 @@ const KOD_CSS = '.oyin{max-width:320px;background:#fff;border:1px solid #E9E6DF;
 const KOD_VAZIFA = [
   { uz: "`ulanish.on('oyin-ozgardi', …)` bilan tinglovchi yozing.", ru: "Напишите слушателя через `ulanish.on('oyin-ozgardi', …)`." },
   { uz: "Tinglovchi ichida `korsat()` ni chaqiring — son qayta so'ralsin.", ru: 'Внутри слушателя вызовите `korsat()` — пусть число запросится заново.' },
-  { uz: "Natija oynasida «Boshqa o'yinchi qo'shildi» ni bosing: «Yangilash» ni bosmasdan son 8 dan 9 ga o'tsin.", ru: "В окне результата нажмите «Boshqa o'yinchi qo'shildi»: без «Yangilash» число станет 9 вместо 8." }
+  { uz: "Natija oynasida «Boshqa o'yinchi qo'shildi» ni bosing: «Yangilash» ni bosmasdan son 8 dan 9 ga o'tsin.", ru: "В окне результата нажмите «Boshqa o'yinchi qo'shildi»: число должно смениться с 8 на 9 без нажатия «Yangilash»." }
 ];
 const KOD_SHART = [
   { uz: "`ulanish.on` `'oyin-ozgardi'` nomi bilan chaqirilsin.", ru: "Пусть `ulanish.on` вызывается с именем `'oyin-ozgardi'`." },
-  { uz: "Hodisa kelganda `korsat` ishlasin: son 8 dan 9 ga o'tsin.", ru: 'Когда приходит событие, пусть срабатывает `korsat`: число станет 9 вместо 8.' }
+  { uz: "Hodisa kelganda `korsat` ishlasin: son 8 dan 9 ga o'tsin.", ru: 'Когда приходит событие, пусть срабатывает `korsat`: число сменится с 8 на 9.' }
 ];
 // 1 — namuna ulanishiga shu nomli tinglovchi qo'shilganmi (qo'shtirnoq turi farqsiz) · 2 — ikki hodisa: son 8 → 9 → 10 (korsat to'g'ridan-to'g'ri ham, o'ram ichida ham)
 const KOD_SHART_IFODA = [
@@ -1193,7 +1196,7 @@ const NatijaOyna = ({ son, kelgan, onBoshqa }) => (
   <div className={cx('ws-no', son === null && 'xira')}>
     <span className="ws-no-bar"><i /><i /><i /><b>{tr({ uz: 'Natija', ru: 'Результат' })}</b></span>
     <div className="ws-no-tana">
-      <span className="ws-no-p">{tr(NAMUNA_OYIN.vaqt)} · {tr(NAMUNA_OYIN.joy)}</span>
+      <span className="ws-no-p">{NAMUNA_OYIN.vaqt.uz} · {NAMUNA_OYIN.joy.uz}</span>
       <span className="ws-no-h"><b key={String(son)} className={cx(son !== null && son > 8 && 'ws-pop')}>{son === null ? '…' : son}</b> / 10</span>
       <button type="button" className={cx('ws-no-btn', halqa(!!onBoshqa && son < 10))} disabled={!onBoshqa || son >= 10} onClick={onBoshqa}>{"Boshqa o'yinchi qo'shildi"}</button>
       <span className="ws-no-k">{kelgan ? 'Kelgan hodisa: oyin-ozgardi {"oyinId":1,"sabab":"qoshildi"}' : "Kelgan hodisa: hali yo'q"}</span>
@@ -1223,7 +1226,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Kod yozish · tinglovchi', ru: 'Пишем код · слушатель' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
       <QKod
-        sarlavha={tr({ uz: <>Hodisa kelganda sonni qayta so'raydigan <span className="italic" style={{ color: T.accent }}>kod yozamiz</span>.</>, ru: <>Пишем <span className="italic" style={{ color: T.accent }}>код</span>, который заново запрашивает число, когда приходит событие.</> })}
+        sarlavha={tr({ uz: <>Hodisa kelganda sonni qayta so'raydigan <span className="italic" style={{ color: T.accent }}>kod yozamiz</span>.</>, ru: <>Пишем <span className="italic" style={{ color: T.accent }}>код</span>: по событию число запрашивается снова.</> })}
         mentor={<Mentor>{tr({ uz: "Hodisa kelganda ishlaydigan kod tinglovchi deyiladi. Uni o'zingiz terib yozasiz: qo'lda yozganda o'rganiladi.", ru: 'Код, который срабатывает при событии, называется слушателем. Вы наберёте его сами: так запоминается лучше.' })}</Mentor>}
         vazifa={<>
           <ol className={cx('ws-vazifa', done && 'ixcham')}>{KOD_VAZIFA.map((v, i) => <li key={i} className={cx(qadamOk(i) && 'ok')}><i>{qadamOk(i) ? '✓' : i + 1}</i><span>{tx(v)}</span></li>)}</ol>
@@ -1233,8 +1236,8 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>}
         </>}
         yordam={!done && <div className="ws-kyordam">
-          <QTugma ikkinchi aria-expanded={yordam} onClick={() => setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>
-          {yordam && <QIzoh>{tx({ uz: "Shakli 11-Moduldagi `yangila.addEventListener('click', korsat)` kabi: avval hodisa nomi qo'shtirnoqda, keyin ishlaydigan funksiya. Son o'zgarmasa — nom `oyin-ozgardi` deb, chiziqcha bilan yozilganini tekshiring.", ru: "Форма как в 11-м модуле `yangila.addEventListener('click', korsat)`: сначала имя события в кавычках, потом функция. Если число не меняется — проверьте, что имя написано `oyin-ozgardi`, через дефис." })}</QIzoh>}
+          <QTugma ikkinchi aria-expanded={yordam} onClick={() => setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: 'Подсказка' })}</QTugma>
+          {yordam && <QIzoh>{tx({ uz: "Shakli 11-Moduldagi `yangila.addEventListener('click', korsat)` kabi: avval hodisa nomi qo'shtirnoqda, keyin ishlaydigan funksiya. Son o'zgarmasa — nom `oyin-ozgardi` deb, chiziqcha bilan yozilganini tekshiring.", ru: "Вид как у `yangila.addEventListener('click', korsat)` из 11-го модуля: сначала имя события в кавычках, потом функция, которая сработает. Если число не меняется — проверьте, что имя написано как `oyin-ozgardi`, через дефис." })}</QIzoh>}
         </div>}
         bajardim={!done && <div className="ws-bajardim"><QTugma className={halqa(shart)} disabled={!shart} onClick={bajardim}>{tr({ uz: 'Bajardim', ru: 'Готово' })}</QTugma></div>}
         {...{ [QKOD_ONG]: <div className="ws-kodoyna">
@@ -1414,7 +1417,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>}
             </div>
           </div>
-          {done && <p className="ws-nom fade-step">{tr({ uz: <>Kim nima qilganda qaysi hodisa kimga borishi va ekranda nima o'zgarishi yozilgan jadval — <b>real vaqt oqimi sxemasi</b>.</>, ru: <>Таблица, где записано, какое событие кому идёт, когда кто-то что-то делает, и что меняется на экране, — <b>схема потока реального времени</b>.</> })}</p>}
+          {done && <p className="ws-nom fade-step">{tr({ uz: <>Kim nima qilganda qaysi hodisa kimga borishi va ekranda nima o'zgarishi yozilgan jadval — <b>real vaqt oqimi sxemasi</b>.</>, ru: <>Таблица, где записано, кто что делает, какое событие кому идёт и что меняется на экране, — <b>схема потока реального времени</b>.</> })}</p>}
         </div>}
         xulosa={done && <XulosaQ natija={taxmin && <Natija togri={taxmin === 'bir'} tanlov={S12_TAXMIN.find(v => v.k === taxmin).t} haqYorliq={{ uz: 'Mentor misolida', ru: 'в примере Ментора' }} haqiqat={{ uz: 'bitta — `oyin-ozgardi`, besh sabab bilan', ru: 'одно — `oyin-ozgardi`, с пятью причинами' }} />} matn={tr({ uz: 'Mentor misolida bitta hodisa besh sabab bilan keladi; har qatorda kim olishi va nima o\'zgarishi yozilgan.', ru: 'В примере Ментора одно событие приходит с пятью причинами; в каждой строке записано, кто получает и что меняется.' })} izoh={tr({ uz: 'Sxema — reja: hodisalar hali yuborilmaydi; Mentorning sodda variantida ular hamma ulangan ilovaga boradi.', ru: 'Схема — это план: события пока не отправляются; в простом варианте Ментора они идут во все подключённые приложения.' })} />}
       />
@@ -1426,7 +1429,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const SX_KALIT = 'pm-m10d2-sxema';
 const SX_MAYDON = [
   { id: 'nuqta', l: { uz: 'Real vaqt nuqtasi', ru: 'Точка реального времени' }, s: { uz: "Qaysi joy boshqa odam tufayli o'zgaradi?", ru: 'Какое место меняется из-за другого человека?' }, n: { uz: "masalan: «8 / 10» va qo'shilganlar ro'yxati", ru: 'например: «8 / 10» и список присоединившихся' } },
-  { id: 'kimNima', l: { uz: 'Kim nima qiladi', ru: 'Кто что делает' }, s: { uz: 'Kim nima qiladi?', ru: 'Кто что делает?' }, n: { uz: "masalan: o'yinchi «Qo'shilaman» ni bosadi", ru: "например: игрок нажимает «Qo'shilaman»" } },
+  { id: 'kimNima', l: { uz: 'Kim nima qiladi', ru: 'Кто что делает' }, s: { uz: 'Kim nima qiladi?', ru: 'Кто что делает?' }, n: { uz: "masalan: o'yinchi «Qo'shilaman» ni bosadi", ru: 'например: игрок нажимает «Присоединяюсь»' } },
   { id: 'hodisa', l: { uz: "Hodisa — nomi va, kerak bo'lsa, sababi", ru: 'Событие — название и, если нужно, причина' }, s: { uz: 'Qaysi hodisa? Nomi · sababi', ru: 'Какое событие? Название · причина' }, n: { uz: 'masalan: oyin-ozgardi · sabab qoshildi', ru: 'например: oyin-ozgardi · причина qoshildi' } },
   { id: 'kimOladi', l: { uz: 'Kim oladi', ru: 'Кто получает' }, s: { uz: 'Hodisani kim oladi?', ru: 'Кто получает событие?' }, n: { uz: 'masalan: hamma ulangan ilova', ru: 'например: все подключённые приложения' } },
   { id: 'ekranda', l: { uz: "Ekranda nima o'zgaradi", ru: 'Что меняется на экране' }, s: { uz: "Ekranda nima o'zgaradi?", ru: 'Что меняется на экране?' }, n: { uz: "masalan: «8 / 10» o'rniga «9 / 10»", ru: 'например: «9 / 10» вместо «8 / 10»' } }
@@ -1441,7 +1444,7 @@ const sxBoshlang = (storedAnswer) => {
   const k = lsOqi(SX_KALIT);
   return k && Array.isArray(k.qatorlar) ? k.qatorlar.filter(r => r && r.id).slice(0, 5).map(sxToza) : [];
 };
-const YordamTugma = ({ ochiq, onClick }) => <QTugma ikkinchi className="ws-ms-yordam" aria-expanded={ochiq} onClick={onClick}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>;
+const YordamTugma = ({ ochiq, onClick }) => <QTugma ikkinchi className="ws-ms-yordam" aria-expanded={ochiq} onClick={onClick}>{tr({ uz: 'Yordam', ru: 'Подсказка' })}</QTugma>;
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const init = useRef(null);
   if (init.current === null) init.current = sxBoshlang(storedAnswer);
@@ -1474,7 +1477,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Mustaqil ish · sxema', ru: 'Самостоятельная работа · схема' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!saqlandi} label={saqlandi ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Saqlang', ru: 'Сохраните' })} onClick={onNext} /></>}>
       <QMustaqil
-        sarlavha={tr({ uz: <>Mahsulotingiz uchun <span className="italic" style={{ color: T.accent }}>real vaqt oqimi sxemasini</span> yozing.</>, ru: <>Напишите <span className="italic" style={{ color: T.accent }}>схему потока реального времени</span> для вашего продукта.</> })}
+        sarlavha={tr({ uz: <>Mahsulotingiz uchun <span className="italic" style={{ color: T.accent }}>real vaqt oqimi sxemasini</span> yozing.</>, ru: <>Напишите свою <span className="italic" style={{ color: T.accent }}>схему потока реального времени</span>.</> })}
         mentor={<Mentor>{tr({ uz: "11-Modulda README'ga yozgan real vaqt nuqtalaringizdan boshlang: har nuqtaga bitta qator.", ru: 'Начните с точек реального времени, которые вы записали в README в 11-м модуле: на каждую точку — одна строка.' })}</Mentor>}
         qadamlar={saqlandi
           ? <div className="ws-ms-ix fade-step"><b>{tr({ uz: 'Sxema', ru: 'Схема' })}</b><span>· {qatorlar.length} {tr({ uz: 'qator', ru: 'стр.' })}</span><i className="ws-ok">✓</i></div>
@@ -1512,7 +1515,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <QIzoh>{tx({ uz: "Bu kursda hodisa nomi kichik harf va chiziqcha bilan, bo'lib o'tgan ish ma'nosida yoziladi: `oyin-ozgardi`. Bitta nom va bir necha sabab ham, har o'zgarishga alohida nom ham bo'ladi — qaror sizniki.", ru: 'В этом курсе название события пишут строчными буквами через дефис, в значении уже случившегося: `oyin-ozgardi`. Можно одно название и несколько причин, можно отдельное название на каждое изменение — решать вам.' })}</QIzoh>
           <QIzoh>{tr({ uz: "Mahsulotingizda boshqa odam o'zgartiradigan joy bo'lmasa — o'zingiz ikkinchi qurilmada o'zgartiradigan ma'lumotni oling: telefonda qo'shdingiz, kompyuterda ko'rinsin.", ru: 'Если в вашем продукте нет места, которое меняет другой человек, — возьмите данные, которые вы сами меняете на втором устройстве: добавили на телефоне — видно на компьютере.' })}</QIzoh>
         </div>}
-      >{saqlandi && <QXulosa>{tr({ uz: "Sxemangiz saqlandi — amaliyotda u README'ga ko'chiriladi.", ru: 'Ваша схема сохранена — на практике её перенесут в README.' })}</QXulosa>}</QMustaqil>
+      >{saqlandi && <QXulosa>{tr({ uz: "Sxemangiz saqlandi — amaliyotda u README'ga ko'chiriladi.", ru: 'Ваша схема сохранена — в практике вы перенесёте её в README.' })}</QXulosa>}</QMustaqil>
     </Stage>
   );
 };
@@ -1646,7 +1649,7 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob o'rni MD bo'yicha A·B·C·D ×3 (3/3/3/3)
 const QUIZ_BANK = [
-  { q: { uz: "Qayta-qayta so'rashda yangi son qachon ko'rinadi?", ru: 'При повторных запросах когда видно новое число?' }, opts: [{ uz: "Keyingi so'rov yuborilganda", ru: 'Когда отправлен следующий запрос' }, { uz: "Database o'zgargan zahoti", ru: 'Сразу как изменилась Database' }, { uz: 'Backend hodisa yuborganda', ru: 'Когда Backend отправил событие' }, { uz: 'Ulanish qayta tiklanganda', ru: 'Когда соединение восстановлено' }], correct: 0 },
+  { q: { uz: "Qayta-qayta so'rashda yangi son qachon ko'rinadi?", ru: 'Если запрашивать снова и снова, когда появится новое число?' }, opts: [{ uz: "Keyingi so'rov yuborilganda", ru: 'Когда отправлен следующий запрос' }, { uz: "Database o'zgargan zahoti", ru: 'Сразу, как изменилась Database' }, { uz: 'Backend hodisa yuborganda', ru: 'Когда Backend отправил событие' }, { uz: 'Ulanish qayta tiklanganda', ru: 'Когда соединение восстановлено' }], correct: 0 },
   { q: { uz: 'Doimiy ulanishni kim ochadi?', ru: 'Кто открывает постоянное соединение?' }, opts: [{ uz: "Backend — ilovaga o'zi ulanadi", ru: 'Backend — сам подключается к приложению' }, { uz: "Ilova — Backend'ga ulanadi", ru: 'Приложение — подключается к Backend' }, { uz: 'Database — ikkalasiga ulanadi', ru: 'Database — подключается к обоим' }, { uz: 'Ikkinchi telefon — ulab beradi', ru: 'Второй телефон — подключает' }], correct: 1 },
   { q: { uz: 'WebSocket nima beradi?', ru: 'Что даёт WebSocket?' }, opts: [{ uz: 'Parolni tekshiradigan token', ru: 'Токен для проверки пароля' }, { uz: "O'yinlar saqlanadigan jadval", ru: 'Таблицу, где хранятся игры' }, { uz: 'Ochiq turadigan doimiy ulanish', ru: 'Открытое постоянное соединение' }, { uz: "Telefonga o'rnatiladigan fayl", ru: 'Файл для установки на телефон' }], correct: 2 },
   { q: { uz: 'Hodisaning qaysi ikki qismi bor?', ru: 'Какие две части есть у события?' }, opts: [{ uz: 'Sarlavhasi va rasmi', ru: 'Заголовок и картинка' }, { uz: 'Manzili va paroli', ru: 'Адрес и пароль' }, { uz: 'Jadvali va ustuni', ru: 'Таблица и столбец' }, { uz: "Nomi va ma'lumoti", ru: 'Название и данные' }], correct: 3 },
@@ -2237,7 +2240,7 @@ const Yordam = ({ satrlar }) => {
   const [ochiq, setOchiq] = useState(false);
   return (
     <>
-      <QTugma ikkinchi className="ws-yordam-btn" aria-expanded={ochiq} onClick={() => setOchiq(o => !o)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>
+      <QTugma ikkinchi className="ws-yordam-btn" aria-expanded={ochiq} onClick={() => setOchiq(o => !o)}>{tr({ uz: 'Yordam', ru: 'Подсказка' })}</QTugma>
       {ochiq && <span className="ws-yordam fade-step">{satrlar.map((l, i) => <span key={i} className="ws-yordam-s">{tx(l)}</span>)}</span>}
     </>
   );
@@ -2281,7 +2284,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
         joriy={stepN} onBajardim={bajardim} onQaytar={qaytar} mentorRejim={isMentorLive}
         tugadi={done} tugadiMatn={tr(doneText)} natija={natija} natijaYorliq={tr(NATIJA_YORLIQ)}
         pastki={<>{done && izoh && <QIzoh>{tr(izoh)}</QIzoh>}<MentorPracticeStats live={_live} screen={screen} /></>}>
-        {ortda && <p className="ws-ortda">{tr({ uz: 'Ortda qoldingizmi — Mentor misolini yangi papkada oching:', ru: 'Отстали — откройте пример Ментора в новой папке:' })} <code className="ws-buyruq">{ORTDA[0]}</code> · <code className="ws-buyruq">{ORTDA[1]}</code> · <code className="ws-buyruq">{ORTDA[2]}</code> {tx(ortda)}</p>}
+        {ortda && <p className="ws-ortda">{tr({ uz: 'Ortda qoldingizmi — Mentor misolini yangi papkada oching:', ru: 'Отстали? Откройте пример Ментора в новой папке:' })} <code className="ws-buyruq">{ORTDA[0]}</code> · <code className="ws-buyruq">{ORTDA[1]}</code> · <code className="ws-buyruq">{ORTDA[2]}</code> {tx(ortda)}</p>}
         {ulgur && !done && <p className="ws-ulgur">{tx(ulgur)}</p>}
         {ustoz && isMentorLive && <div className="ws-ustoz"><b>{tr({ uz: "O'qituvchi eslatmasi", ru: 'Заметка для учителя' })}</b><span>{tr(ustoz)}</span></div>}
       </QBlok>
@@ -2313,17 +2316,17 @@ const NatijaA1 = ({ trek }) => {
 const A1_PROMPT = {
   mobil: [
     { uz: "Qayerda: `backend/` — yangi gateway (NestJS, socket.io: `@nestjs/websockets` va `@nestjs/platform-socket.io`); `mobil/` — yangi fayl `src/ulanish.ts` (`socket.io-client`) va {belgi turadigan ekran}.", ru: 'Где: `backend/` — новый gateway (NestJS, socket.io: `@nestjs/websockets` и `@nestjs/platform-socket.io`); `mobil/` — новый файл `src/ulanish.ts` (`socket.io-client`) и {экран для значка}.' },
-    { uz: "Nima qilsin: ilova kirgandan keyin Backend'ga bir marta ulansin va ulanayotganda tokenni yuborsin (`auth`); manzil — `EXPO_PUBLIC_API_URL`. Backend tokenni ulanish ochilayotganda tekshirsin: token yo'q yoki yaroqsiz bo'lsa — ulanishni yopsin. Ilova tokenni o'qib bo'lgandan keyingina ulansin. `README.md` «Stek» qatoriga socket.io ni qo'sh.", ru: 'Что сделать: после входа приложение один раз подключается к Backend и при подключении отправляет токен (`auth`); адрес — `EXPO_PUBLIC_API_URL`. Backend проверяет токен при открытии соединения: нет токена или он недействителен — закрывает соединение. Приложение подключается только после чтения токена. Добавь socket.io в строку «Stek» в `README.md`.' },
-    { uz: "{belgi turadigan ekran} tepasida ulanish belgisi tursin: ulangan — «Ulangan»; ulanish yo'q va ilova o'zi ulanishga urinayotgan bo'lsa — «Ulanmoqda…»; urinmayotgan bo'lsa — «Ulanmagan». «Hisobdan chiqish»da ulanish yopilsin; qayta kirilganda yangi token bilan ulansin. Ekran qayta ochilganda ulanish tinglovchilari ko'payib ketmasin.", ru: 'Вверху {экран для значка} — значок соединения: подключено — «Ulangan»; соединения нет и приложение само пытается подключиться — «Ulanmoqda…»; не пытается — «Ulanmagan». При «Hisobdan chiqish» соединение закрывается; при повторном входе подключается с новым токеном. При повторном открытии экрана слушатели соединения не размножаются.' },
+    { uz: "Nima qilsin: ilova kirgandan keyin Backend'ga bir marta ulansin va ulanayotganda tokenni yuborsin (`auth`); manzil — `EXPO_PUBLIC_API_URL`. Backend tokenni ulanish ochilayotganda tekshirsin: token yo'q yoki yaroqsiz bo'lsa — ulanishni yopsin. Ilova tokenni o'qib bo'lgandan keyingina ulansin. `README.md` «Stek» qatoriga socket.io ni qo'sh.", ru: 'Что сделать: после входа приложение один раз подключается к Backend и, подключаясь, отправляет токен (`auth`); адрес — `EXPO_PUBLIC_API_URL`. Backend проверяет токен при открытии соединения: нет токена или он недействителен — закрывает соединение. Приложение подключается только после чтения токена. Добавь socket.io в строку «Stek» в `README.md`.' },
+    { uz: "{belgi turadigan ekran} tepasida ulanish belgisi tursin: ulangan — «Ulangan»; ulanish yo'q va ilova o'zi ulanishga urinayotgan bo'lsa — «Ulanmoqda…»; urinmayotgan bo'lsa — «Ulanmagan». «Hisobdan chiqish»da ulanish yopilsin; qayta kirilganda yangi token bilan ulansin. Ekran qayta ochilganda ulanish tinglovchilari ko'payib ketmasin.", ru: 'Вверху {экран для значка} — значок соединения: подключено — «Ulangan» («Подключено»); соединения нет и приложение само пытается подключиться — «Ulanmoqda…» («Подключается…»); не пытается — «Ulanmagan» («Не подключено»). При «Hisobdan chiqish» («Выйти из аккаунта») соединение закрывается; при повторном входе подключается с новым токеном. При повторном открытии экрана слушатели соединения не размножаются.' },
     { uz: 'Hozircha hech qanday hodisa yuborilmasin va tinglanmasin — faqat ulanish va belgi.', ru: 'Пока никаких событий не отправлять и не слушать — только соединение и значок.' },
     { uz: "Nima buzilmasin: {avvalgidek ishlashi kerak bo'lgan ishlar} avvalgidek ishlasin; pastga tortib yangilash qolsin. `.env` fayllariga tegma. Paket kerak bo'lsa — `mobil/` da faqat `npx expo install` bilan. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: 'Что не сломать: {что должно работать как раньше} работает как раньше; обновление потягиванием вниз остаётся. Не трогай файлы `.env`. Если нужен пакет — в `mobil/` только через `npx expo install`. Больше ничего не трогай, назови изменённые файлы.' }
   ],
   web: [
     { uz: "Qayerda: `backend/` — yangi gateway (NestJS, socket.io: `@nestjs/websockets` va `@nestjs/platform-socket.io`); gateway'da brauzer uchun CORS: faqat `WEB_ORIGIN` dagi manzilga ruxsat; `prototip/` — yangi fayl `src/ulanish.js` (`socket.io-client`) va {belgi turadigan sahifa}.", ru: 'Где: `backend/` — новый gateway (NestJS, socket.io: `@nestjs/websockets` и `@nestjs/platform-socket.io`); в gateway CORS для браузера: разрешить только адрес из `WEB_ORIGIN`; `prototip/` — новый файл `src/ulanish.js` (`socket.io-client`) и {страница для значка}.' },
-    { uz: "Nima qilsin: sayt kirgandan keyin Backend'ga bir marta ulansin va ulanayotganda tokenni yuborsin (`auth`); manzil — `VITE_API_URL`; token `localStorage` dan. Backend tokenni ulanish ochilayotganda tekshirsin: token yo'q yoki yaroqsiz bo'lsa — ulanishni yopsin. Sayt tokenni o'qib bo'lgandan keyingina ulansin. `README.md` «Stek» qatoriga socket.io ni qo'sh.", ru: 'Что сделать: после входа сайт один раз подключается к Backend и при подключении отправляет токен (`auth`); адрес — `VITE_API_URL`; токен из `localStorage`. Backend проверяет токен при открытии соединения: нет токена или он недействителен — закрывает соединение. Сайт подключается только после чтения токена. Добавь socket.io в строку «Stek» в `README.md`.' },
-    { uz: "{belgi turadigan sahifa} tepasida ulanish belgisi tursin: ulangan — «Ulangan»; ulanish yo'q va sayt o'zi ulanishga urinayotgan bo'lsa — «Ulanmoqda…»; urinmayotgan bo'lsa — «Ulanmagan». «Hisobdan chiqish»da ulanish yopilsin; qayta kirilganda yangi token bilan ulansin. Sahifa qayta ochilganda ulanish tinglovchilari ko'payib ketmasin.", ru: 'Вверху {страница для значка} — значок соединения: подключено — «Ulangan»; соединения нет и сайт сам пытается подключиться — «Ulanmoqda…»; не пытается — «Ulanmagan». При «Hisobdan chiqish» соединение закрывается; при повторном входе подключается с новым токеном. При повторном открытии страницы слушатели соединения не размножаются.' },
+    { uz: "Nima qilsin: sayt kirgandan keyin Backend'ga bir marta ulansin va ulanayotganda tokenni yuborsin (`auth`); manzil — `VITE_API_URL`; token `localStorage` dan. Backend tokenni ulanish ochilayotganda tekshirsin: token yo'q yoki yaroqsiz bo'lsa — ulanishni yopsin. Sayt tokenni o'qib bo'lgandan keyingina ulansin. `README.md` «Stek» qatoriga socket.io ni qo'sh.", ru: 'Что сделать: после входа сайт один раз подключается к Backend и, подключаясь, отправляет токен (`auth`); адрес — `VITE_API_URL`; токен из `localStorage`. Backend проверяет токен при открытии соединения: нет токена или он недействителен — закрывает соединение. Сайт подключается только после чтения токена. Добавь socket.io в строку «Stek» в `README.md`.' },
+    { uz: "{belgi turadigan sahifa} tepasida ulanish belgisi tursin: ulangan — «Ulangan»; ulanish yo'q va sayt o'zi ulanishga urinayotgan bo'lsa — «Ulanmoqda…»; urinmayotgan bo'lsa — «Ulanmagan». «Hisobdan chiqish»da ulanish yopilsin; qayta kirilganda yangi token bilan ulansin. Sahifa qayta ochilganda ulanish tinglovchilari ko'payib ketmasin.", ru: 'Вверху {страница для значка} — значок соединения: подключено — «Ulangan» («Подключено»); соединения нет и сайт сам пытается подключиться — «Ulanmoqda…» («Подключается…»); не пытается — «Ulanmagan» («Не подключено»). При «Hisobdan chiqish» («Выйти из аккаунта») соединение закрывается; при повторном входе подключается с новым токеном. При повторном открытии страницы слушатели соединения не размножаются.' },
     { uz: 'Hozircha hech qanday hodisa yuborilmasin va tinglanmasin — faqat ulanish va belgi.', ru: 'Пока никаких событий не отправлять и не слушать — только соединение и значок.' },
-    { uz: "Nima buzilmasin: {avvalgidek ishlashi kerak bo'lgan ishlar} avvalgidek ishlasin; «Yangilash» tugmasi qolsin. `.env` fayllariga tegma. Paket kerak bo'lsa — `npm install` bilan. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: 'Что не сломать: {что должно работать как раньше} работает как раньше; кнопка «Yangilash» остаётся. Не трогай файлы `.env`. Если нужен пакет — через `npm install`. Больше ничего не трогай, назови изменённые файлы.' }
+    { uz: "Nima buzilmasin: {avvalgidek ishlashi kerak bo'lgan ishlar} avvalgidek ishlasin; «Yangilash» tugmasi qolsin. `.env` fayllariga tegma. Paket kerak bo'lsa — `npm install` bilan. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: 'Что не сломать: {что должно работать как раньше} работает как раньше; кнопка «Yangilash» («Обновить») остаётся. Не трогай файлы `.env`. Если нужен пакет — через `npm install`. Больше ничего не трогай, назови изменённые файлы.' }
   ]
 };
 // 3-qadam: agentdan o'z kodidagi ikki qatorni ko'rsatishni so'rash (F-1006-378 — WebSocket o'z NestJS loyihasida ko'rinadi; kod o'zgarmaydi)
@@ -2333,14 +2336,14 @@ const A1_KOD_PROMPT = [
 ];
 const A1_JOY = { uz: "{avvalgidek ishlashi kerak bo'lgan ishlar}", ru: '{что должно работать как раньше}' };
 const A1_NAMUNA = {
-  mobil: [{ joy: { uz: '{belgi turadigan ekran}', ru: '{экран для значка}' }, n: { uz: "masalan: «O'yinlar» ekrani (`src/app/index.tsx`)", ru: 'например: экран «O\'yinlar» (`src/app/index.tsx`)' } }],
-  web: [{ joy: { uz: '{belgi turadigan sahifa}', ru: '{страница для значка}' }, n: { uz: "masalan: «O'yinlar»", ru: "например: «O'yinlar»" } }]
+  mobil: [{ joy: { uz: '{belgi turadigan ekran}', ru: '{экран для значка}' }, n: { uz: "masalan: «O'yinlar» ekrani (`src/app/index.tsx`)", ru: "например: экран «O'yinlar» («Игры», `src/app/index.tsx`)" } }],
+  web: [{ joy: { uz: '{belgi turadigan sahifa}', ru: '{страница для значка}' }, n: { uz: "masalan: «O'yinlar»", ru: "например: «O'yinlar» («Игры»)" } }]
 };
 const A1_JOY_NAMUNA = { joy: A1_JOY, n: { uz: "masalan: kirish, e'lon berish, qo'shilish, tasdiq, chiqish va navbat", ru: 'например: вход, объявление игры, присоединение, подтверждение, выход и очередь' } };
 const A1_YORDAM = [
-  { uz: "Qayerda: `backend/` — yangi gateway (NestJS, socket.io: `@nestjs/websockets` va `@nestjs/platform-socket.io`); `mobil/` — yangi fayl `src/ulanish.ts` (`socket.io-client`) va «O'yinlar» ekrani (`src/app/index.tsx`).", ru: "Где: `backend/` — новый gateway (NestJS, socket.io: `@nestjs/websockets` и `@nestjs/platform-socket.io`); `mobil/` — новый файл `src/ulanish.ts` (`socket.io-client`) и экран «O'yinlar» (`src/app/index.tsx`)." },
+  { uz: "Qayerda: `backend/` — yangi gateway (NestJS, socket.io: `@nestjs/websockets` va `@nestjs/platform-socket.io`); `mobil/` — yangi fayl `src/ulanish.ts` (`socket.io-client`) va «O'yinlar» ekrani (`src/app/index.tsx`).", ru: "Где: `backend/` — новый gateway (NestJS, socket.io: `@nestjs/websockets` и `@nestjs/platform-socket.io`); `mobil/` — новый файл `src/ulanish.ts` (`socket.io-client`) и экран «O'yinlar» («Игры», `src/app/index.tsx`)." },
   A1_PROMPT.mobil[1],
-  { uz: "«O'yinlar» ekrani tepasida ulanish belgisi tursin: ulangan — «Ulangan»; ulanish yo'q va ilova o'zi ulanishga urinayotgan bo'lsa — «Ulanmoqda…»; urinmayotgan bo'lsa — «Ulanmagan». «Hisobdan chiqish»da ulanish yopilsin; qayta kirilganda yangi token bilan ulansin. Ekran qayta ochilganda ulanish tinglovchilari ko'payib ketmasin.", ru: "Вверху экрана «O'yinlar» — значок соединения: подключено — «Ulangan»; соединения нет и приложение само пытается подключиться — «Ulanmoqda…»; не пытается — «Ulanmagan». При «Hisobdan chiqish» соединение закрывается; при повторном входе подключается с новым токеном. При повторном открытии экрана слушатели соединения не размножаются." },
+  { uz: "«O'yinlar» ekrani tepasida ulanish belgisi tursin: ulangan — «Ulangan»; ulanish yo'q va ilova o'zi ulanishga urinayotgan bo'lsa — «Ulanmoqda…»; urinmayotgan bo'lsa — «Ulanmagan». «Hisobdan chiqish»da ulanish yopilsin; qayta kirilganda yangi token bilan ulansin. Ekran qayta ochilganda ulanish tinglovchilari ko'payib ketmasin.", ru: "Вверху экрана «O'yinlar» — значок соединения: подключено — «Ulangan» («Подключено»); соединения нет и приложение само пытается подключиться — «Ulanmoqda…» («Подключается…»); не пытается — «Ulanmagan» («Не подключено»). При «Hisobdan chiqish» («Выйти из аккаунта») соединение закрывается; при повторном входе подключается с новым токеном. При повторном открытии экрана слушатели соединения не размножаются." },
   A1_PROMPT.mobil[3],
   { uz: "Nima buzilmasin: kirish, e'lon berish, qo'shilish, tasdiq, chiqish va navbat avvalgidek ishlasin; pastga tortib yangilash qolsin. `.env` fayllariga tegma. Paket kerak bo'lsa — `mobil/` da faqat `npx expo install` bilan. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: 'Что не сломать: вход, объявление игры, присоединение, подтверждение, выход и очередь работают как раньше; обновление потягиванием вниз остаётся. Не трогай файлы `.env`. Если нужен пакет — в `mobil/` только через `npx expo install`. Больше ничего не трогай, назови изменённые файлы.' }
 ];
@@ -2351,14 +2354,14 @@ const ScreenA1 = (props) => {
   const funk = useMemo(prdFunk, []);
   return (
     <ScreenBlok {...props} eyebrow={{ uz: "Amaliyot 1 · o'z repo'ngiz", ru: 'Практика 1 · ваш репозиторий' }}
-      title={{ uz: <>Mahsulotingiz Backend'ga ulansin va <span className="italic" style={{ color: T.accent }}>belgi ko'rsatsin</span>.</>, ru: <>Пусть ваш продукт подключится к Backend и <span className="italic" style={{ color: T.accent }}>покажет значок</span>.</> }}
-      mentor={{ uz: "Talab tayyor — ikki joyni o'z mahsulotingiz bilan to'ldirasiz; «1 · Ochish»dan boshlang.", ru: 'Требование готово — два места вы заполняете своим продуктом; начните с «1 · Ochish».' }}
+      title={{ uz: <>Mahsulotingiz Backend'ga ulansin va <span className="italic" style={{ color: T.accent }}>belgi ko'rsatsin</span>.</>, ru: <>Подключите продукт к Backend и <span className="italic" style={{ color: T.accent }}>покажите значок</span>.</> }}
+      mentor={{ uz: "Talab tayyor — ikki joyni o'z mahsulotingiz bilan to'ldirasiz; «1 · Ochish»dan boshlang.", ru: 'Требование готово — два места заполните под свой продукт; начните с «1 · Открыть».' }}
       ustida={!trek && <div className="ws-trek"><span>{tr({ uz: 'Trekingiz:', ru: 'Ваш трек:' })}</span><div className="ws-chorla ws-trek-g"><QChip onClick={() => tanla('mobil')}>{tr({ uz: 'Mobil trek', ru: 'Мобильный трек' })}</QChip><QChip onClick={() => tanla('web')}>{tr({ uz: 'Web-trek', ru: 'Веб-трек' })}</QChip></div></div>}
       steps={[
         { h: { uz: 'Ochish', ru: 'Открыть' }, t: { uz: "Antigravity'da o'z repo'ngizni oching (11-Modul oxiridagi holat: kirish ishlaydi, ro'yxat Backend'dan keladi). Terminalda `git status`: `.env` fayllari ro'yxatda ko'rinmasin; ko'rinsa, agentga: «`.env` fayllarini `.gitignore` ga qo'sh.»", ru: 'Откройте свой репозиторий в Antigravity (состояние конца 11-го модуля: вход работает, список приходит из Backend). В терминале `git status`: файлов `.env` в списке быть не должно; если есть, агенту: «Добавь файлы `.env` в `.gitignore`.»' },
           bandlar: [
             { uz: "Mobil trekda `cd mobil`, `npx expo start` ishlab tursin va ilova telefoningizda ochiq bo'lsin; web-trekda saytingiz Netlify'da ochiq tursin.", ru: 'В мобильном треке `cd mobil`, пусть работает `npx expo start` и приложение открыто на телефоне; в веб-треке пусть сайт открыт на Netlify.' },
-            { uz: "Belgi turadigan ekranni tanlang: Mentor misolida — «O'yinlar» (eng ko'p ochiladigan ekran); mahsulotingizda — foydalanuvchi eng ko'p vaqt o'tkazadigan ekran.", ru: "Выберите экран для значка: в примере Ментора — «O'yinlar» (чаще всего открываемый экран); в вашем продукте — экран, где пользователь проводит больше всего времени." }
+            { uz: "Belgi turadigan ekranni tanlang: Mentor misolida — «O'yinlar» (eng ko'p ochiladigan ekran); mahsulotingizda — foydalanuvchi eng ko'p vaqt o'tkazadigan ekran.", ru: 'Выберите экран для значка: в примере Ментора — «Игры» (чаще всего открываемый экран); в вашем продукте — экран, где пользователь проводит больше всего времени.' }
           ] },
         { h: { uz: 'Prompt', ru: 'Промпт' }, t: { uz: "qavslarni to'ldiring (yonida kulrang namuna), «Nusxalash»ni bosing va Antigravity'ga yuboring:", ru: 'заполните скобки (рядом серый образец), нажмите «Скопировать» и отправьте в Antigravity:' },
           prompt: A1_PROMPT[tk], namuna: [...A1_NAMUNA[tk], ...(funk ? [] : [A1_JOY_NAMUNA])].map(x => ({ joy: tr(x.joy), n: x.n })), toldir: funk ? { [tr(A1_JOY)]: funk } : {}, yordam: A1_YORDAM },
@@ -2371,8 +2374,8 @@ const ScreenA1 = (props) => {
           err: { uz: "Xato chiqsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»", ru: 'Если появилась ошибка — отправьте агенту строку ошибки (не значения `.env`, не токен и не ключи): «Вот такая ошибка: {ошибка}. Исправь.»' } },
         { h: { uz: 'Telefonda tekshirish', ru: 'Проверка на телефоне' }, t: { uz: "talabingizning har gapini bajarib ko'ring. Mentor misolida:", ru: 'проверьте каждое предложение требования. В примере Ментора:' },
           bandlar: [
-            { uz: "(1) Ilovani oching (kirgan holda): «O'yinlar» tepasida belgi «Ulangan» bo'lishi kerak. Bo'lmasa — bir daqiqagacha kuting: Render'ning bepul xizmati uxlab qolgan bo'lsa, birinchi ulanish cho'ziladi.", ru: "(1) Откройте приложение (с входом): вверху «O'yinlar» должен быть значок «Ulangan». Если нет — подождите до минуты: если бесплатный сервис Render уснул, первое подключение затягивается." },
-            { uz: "(2) Telefonda uchish rejimini yoqing: belgi «Ulanmoqda…» ga o'tishi kerak — darhol o'zgarmasligi mumkin: uzilishni aniqlash vaqt oladi (bir daqiqagacha). Uchish rejimini o'chiring: belgi «Ulangan» ga qaytishi kerak, odatda bir necha soniyada.", ru: '(2) Включите режим полёта на телефоне: значок должен смениться на «Ulanmoqda…» — может не сразу: обнаружение обрыва занимает время (до минуты). Выключите режим полёта: значок должен вернуться к «Ulangan», обычно за несколько секунд.' },
+            { uz: "(1) Ilovani oching (kirgan holda): «O'yinlar» tepasida belgi «Ulangan» bo'lishi kerak. Bo'lmasa — bir daqiqagacha kuting: Render'ning bepul xizmati uxlab qolgan bo'lsa, birinchi ulanish cho'ziladi.", ru: '(1) Откройте приложение (войдя в аккаунт): вверху «Игры» должен быть значок «Подключено». Если нет — подождите до минуты: если бесплатный сервис Render уснул, первое соединение устанавливается дольше.' },
+            { uz: "(2) Telefonda uchish rejimini yoqing: belgi «Ulanmoqda…» ga o'tishi kerak — darhol o'zgarmasligi mumkin: uzilishni aniqlash vaqt oladi (bir daqiqagacha). Uchish rejimini o'chiring: belgi «Ulangan» ga qaytishi kerak, odatda bir necha soniyada.", ru: '(2) Включите режим полёта на телефоне: значок должен смениться на «Подключается…» — может не сразу: обнаружение обрыва занимает время (до минуты). Выключите режим полёта: значок должен вернуться к «Подключено», обычно за несколько секунд.' },
             { uz: "(3) Avvalgi ishlar: ro'yxatni pastga torting, bitta o'yinga qo'shilib ko'ring — avvalgidek ishlasin.", ru: '(3) Прежние действия: потяните список вниз, присоединитесь к одной игре — должно работать как раньше.' },
             { uz: "(4) Agentga yozing: «Backend'ga tokensiz ulanib ko'r va nima bo'lganini ayt.» Kutilgani — ulanish yopildi. Agent javobi — uning so'zi; belgini esa o'zingiz ko'rdingiz.", ru: '(4) Напишите агенту: «Подключись к Backend без токена и скажи, что произошло.» Ожидается — соединение закрыто. Ответ агента — это его слова; значок вы видели сами.' },
             { uz: "Mos kelmagan gapni agentga yozing: «{nima} talabdagidek emas: {qanday bo'lsin}. Boshqa joyga tegma, o'zgargan fayllarni ayt.»", ru: 'Несовпадение напишите агенту: «{что} не как в требовании: {как должно быть}. Больше ничего не трогай, назови изменённые файлы.»' },
@@ -2381,9 +2384,9 @@ const ScreenA1 = (props) => {
       ]}
       natija={<NatijaA1 trek={trek} />}
       doneText={{ uz: "Mahsulotingiz Backend'ga ulangan: belgi ulanish holatini ko'rsatadi.", ru: 'Ваш продукт подключён к Backend: значок показывает состояние соединения.' }}
-      izoh={{ uz: "Render'da yangi versiya chiqqanda ulanish uziladi — belgi bir lahza «Ulanmoqda…» bo'ladi.", ru: 'Когда на Render выходит новая версия, соединение обрывается — значок на миг становится «Ulanmoqda…».' }}
+      izoh={{ uz: "Render'da yangi versiya chiqqanda ulanish uziladi — belgi bir lahza «Ulanmoqda…» bo'ladi.", ru: 'Когда на Render выходит новая версия, соединение обрывается — значок на миг становится «Подключается…».' }}
       ortda={{ uz: "— `backend/.env` va `mobil/.env` ga o'z qiymatlaringizni yozing.", ru: '— в `backend/.env` и `mobil/.env` впишите свои значения.' }}
-      ulgur={{ uz: "Ulgurmasangiz: Render kutishi cho'zilsa — 4-qadam uyga vazifaning 1-bandi; 3-qadamdan keyin «Davom etish» ochiladi — 2-amaliyotga o'ting.", ru: 'Если не успеваете: если ожидание Render затянулось — шаг 4 станет пунктом 1 домашнего задания; после шага 3 откроется «Продолжить» — переходите ко 2-й практике.' }}
+      ulgur={{ uz: "Ulgurmasangiz: Render kutishi cho'zilsa — 4-qadam uyga vazifaning 1-bandi; 3-qadamdan keyin «Davom etish» ochiladi — 2-amaliyotga o'ting.", ru: 'Если не успеваете: затянулось ожидание Render — шаг 4 станет пунктом 1 домашнего задания; после шага 3 откроется «Продолжить» — переходите ко 2-й практике.' }}
       ulgurQadam={3}
       ustoz={{ uz: "Render bepul xizmati 15 daqiqa so'rovsiz qolsa uxlaydi; rasmiy hujjat: ochiq ulanishdagi WebSocket xabarlari ham so'rov sanaladi — socket.io ping xabarlari shunga kiradimi, «qur» da tekshiriladi (o'quvchiga aytilmaydi). 11-Modul 15-darsidagi «Render uxlaydi» riski bilan bog'lanishi: ulangan foydalanuvchi bo'lsa uyg'oq, hech kim bo'lmasa uxlaydi. 4-qadam (2) da belgi sekin o'zgarsa — hujjatdagi 45 soniya chegarasi; shoshiltirmang.", ru: 'Бесплатный сервис Render засыпает после 15 минут без запросов; официальная документация: сообщения WebSocket в открытом соединении тоже считаются запросами — входят ли сюда ping-сообщения socket.io, проверяется на этапе сборки (ученику не говорим). Связь с риском «Render засыпает» из 15-го урока 11-го модуля: есть подключённый пользователь — не спит, нет никого — засыпает. Если в шаге 4 (2) значок меняется медленно — это предел 45 секунд из документации; не торопите.' }}
     />
@@ -2411,7 +2414,7 @@ const ScreenA2 = (props) => {
   const satrlar = [A2_P1, A2_P2, ...(sx.length ? sx.map(r => [r.nuqta, r.kimNima, r.hodisa, r.kimOladi, r.ekranda].join(' | ')) : [A2_SXEMA_JOY]),
     { uz: `Jadval ostiga bitta qator yoz: ${A2_HOLAT_JOY.uz}`, ru: `Под таблицей напиши одну строку: ${A2_HOLAT_JOY.ru}` }, A2_P5];
   const namuna = [
-    ...(sx.length ? [] : [{ joy: tr(A2_SXEMA_JOY), n: { uz: "masalan: «8 / 10» va qo'shilganlar ro'yxati | o'yinchi «Qo'shilaman» ni bosadi | oyin-ozgardi · sabab qoshildi | hamma ulangan ilova | «8 / 10» → «9 / 10»", ru: "например: «8 / 10» и список присоединившихся | игрок нажимает «Qo'shilaman» | oyin-ozgardi · причина qoshildi | все подключённые приложения | «8 / 10» → «9 / 10»" } }]),
+    ...(sx.length ? [] : [{ joy: tr(A2_SXEMA_JOY), n: { uz: "masalan: «8 / 10» va qo'shilganlar ro'yxati | o'yinchi «Qo'shilaman» ni bosadi | oyin-ozgardi · sabab qoshildi | hamma ulangan ilova | «8 / 10» → «9 / 10»", ru: 'например: «8 / 10» и список присоединившихся | игрок нажимает «Присоединяюсь» | oyin-ozgardi · причина qoshildi | все подключённые приложения | «8 / 10» → «9 / 10»' } }]),
     { joy: tr(A2_HOLAT_JOY), n: { uz: 'masalan: Hozircha faqat ulanish va belgi bor — hodisalar hali yuborilmaydi.', ru: 'например: Пока есть только соединение и значок — события ещё не отправляются.' } }
   ];
   const yordam = [A2_P1, A2_P2, ...MENTOR_SXEMA.map(r => ({ uz: [ou(r.nuqta), ou(r.kimNima), `oyin-ozgardi · sabab ${r.sabab}`, ou(KIM_OLADI), ou(r.ekranda)].join(' | '), ru: [r.nuqta.ru, r.kimNima.ru, `oyin-ozgardi · причина ${r.sabab}`, KIM_OLADI.ru, r.ekranda.ru].join(' | ') })),
@@ -2419,7 +2422,7 @@ const ScreenA2 = (props) => {
   return (
     <ScreenBlok {...props} eyebrow={{ uz: "Amaliyot 2 · o'z repo'ngiz", ru: 'Практика 2 · ваш репозиторий' }}
       title={{ uz: <>Sxemangizni README'ga yozdiring va <span className="italic" style={{ color: T.accent }}>tekshiring</span>.</>, ru: <>Попросите записать схему в README и <span className="italic" style={{ color: T.accent }}>проверьте</span>.</> }}
-      mentor={{ uz: "Sxemani siz yozgansiz — agent faqat ko'chiradi, siz solishtirasiz; «1 · Ochish»dan boshlang.", ru: 'Схему написали вы — агент только переносит, вы сверяете; начните с «1 · Ochish».' }}
+      mentor={{ uz: "Sxemani siz yozgansiz — agent faqat ko'chiradi, siz solishtirasiz; «1 · Ochish»dan boshlang.", ru: 'Схему написали вы — агент только переносит, вы сверяете; начните с «1 · Открыть».' }}
       steps={[
         { h: { uz: 'Ochish', ru: 'Открыть' }, t: { uz: "`README.md` ni oching: «Arxitektura» bo'limida 11-Modulda yozilgan real vaqt nuqtalaringiz turibdi. Mustaqil ishdagi sxemangiz pastdagi talabga o'zi qo'yilgan — o'qib chiqing.", ru: 'Откройте `README.md`: в разделе «Arxitektura» — ваши точки реального времени из 11-го модуля. Схема из самостоятельной работы уже подставлена в требование ниже — прочитайте её.' },
           bandlar: [{ uz: "Sxemada odamlar roli bilan yoziladi (o'yinchi, tashkilotchi) — ism va boshqa shaxsiy ma'lumot README'ga yozilmaydi.", ru: 'В схеме люди указаны ролью (игрок, организатор) — имена и другие личные данные в README не пишутся.' }] },
@@ -2451,7 +2454,7 @@ const KARTALAR = [
   { front: { uz: 'Mentor misolida hodisa nimani aytadi?', ru: 'Что сообщает событие в примере Ментора?' }, back: { uz: "Qaysi o'yin o'zgargani va sababini", ru: 'Какая игра изменилась и почему' }, note: { uz: "Yangi holatni ilova Backend'dan qayta so'raydi", ru: 'Новое состояние приложение заново запрашивает у Backend' } },
   { front: { uz: 'Tinglovchi nima?', ru: 'Что такое слушатель?' }, back: { uz: 'Hodisa kelganda ishlaydigan kod', ru: 'Код, который срабатывает, когда приходит событие' }, note: { uz: "`ulanish.on('oyin-ozgardi', korsat)`", ru: "`ulanish.on('oyin-ozgardi', korsat)`" } },
   { front: { uz: "Ilova Backend'ga nima bilan ulanadi?", ru: 'С чем приложение подключается к Backend?' }, back: { uz: 'Token bilan', ru: 'С токеном' }, note: { uz: "Token yo'q yoki yaroqsiz bo'lsa — Backend ulanishni yopadi", ru: 'Нет токена или он недействителен — Backend закрывает соединение' } },
-  { front: { uz: "Ulanish belgisi qaysi uch holatni ko'rsatadi?", ru: 'Какие три состояния показывает значок соединения?' }, back: { uz: '«Ulangan», «Ulanmoqda…», «Ulanmagan»', ru: '«Подключено», «Подключается…», «Не подключено»' }, note: { uz: "Mentor misolida — «O'yinlar» ekrani tepasida", ru: "В примере Ментора — вверху экрана «O'yinlar»" } },
+  { front: { uz: "Ulanish belgisi qaysi uch holatni ko'rsatadi?", ru: 'Какие три состояния показывает значок соединения?' }, back: { uz: '«Ulangan», «Ulanmoqda…», «Ulanmagan»', ru: '«Подключено», «Подключается…», «Не подключено»' }, note: { uz: "Mentor misolida — «O'yinlar» ekrani tepasida", ru: 'В примере Ментора — вверху экрана «Игры»' } },
   { front: { uz: "«Ulanmoqda…» paytida bo'lgan hodisa nima bo'ladi?", ru: 'Что будет с событием, случившимся во время «Подключается…»?' }, back: { uz: 'Bu misolda kelmaydi', ru: 'В этом примере не придёт' }, note: { uz: 'Pastga tortib yangilash shuning uchun qoladi', ru: 'Поэтому обновление потягиванием вниз остаётся' } },
   { front: { uz: 'Real vaqt oqimi sxemasida qaysi besh ustun bor?', ru: 'Какие пять столбцов в схеме потока реального времени?' }, back: { uz: "Nuqta · kim nima qiladi · hodisa · kim oladi · ekranda nima o'zgaradi", ru: 'Точка · кто что делает · событие · кто получает · что меняется на экране' }, note: { uz: 'Mentor misolida besh qator, bitta hodisa nomi', ru: 'В примере Ментора пять строк, одно название события' } },
   { front: { uz: 'Real vaqt nima?', ru: 'Что такое реальное время?' }, back: { uz: "O'zgarish bo'lgan zahoti ekranda ko'rinishi", ru: 'Изменение видно на экране сразу, как произошло' }, note: { uz: 'Amalda — odatda bir necha soniyada; ulanish uzilsa, kechikadi', ru: 'На деле — обычно за несколько секунд; если соединение оборвётся, задержится' } }
@@ -2475,7 +2478,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 
 // ===== YAKUN — QYakun (DE-204, texnik darslar standarti). Sarlavha va ✓ yorlig'i holatga qarab (A1, A2 bayroqlari, sxema saqlangani). CODE STRIKE va arena — darsda =====
 const HW_QADAM = [
-  { b: { uz: 'Tugatish', ru: 'Завершить' }, t: { uz: "— darsda ulgurmagan qadamlarni bajaring: mahsulotingizda belgi «Ulangan» bo'lsin, README'da «Real vaqt» bo'limi tursin.", ru: '— выполните шаги, на которые не хватило времени: в продукте значок «Ulangan», в README раздел «Real vaqt».' } },
+  { b: { uz: 'Tugatish', ru: 'Завершить' }, t: { uz: "— darsda ulgurmagan qadamlarni bajaring: mahsulotingizda belgi «Ulangan» bo'lsin, README'da «Real vaqt» bo'limi tursin.", ru: '— выполните шаги, на которые не хватило времени: в продукте значок «Подключено», в README раздел «Real vaqt».' } },
   { b: { uz: 'Tekshirish', ru: 'Проверить' }, t: { uz: "— uyda uchish rejimini yana bir marta yoqib o'chiring: belgi uch holatdan qaysilarini ko'rsatdi? Kutilganidan farq bo'lsa — nima qilganingiz va nima ko'rganingizni bir qator yozib qo'ying.", ru: '— дома ещё раз включите и выключите режим полёта: какие из трёх состояний показал значок? Если не как ожидалось — запишите одной строкой, что сделали и что увидели.' } },
   { b: { uz: 'Sxema', ru: 'Схема' }, t: { uz: "— mahsulotingizning har ekranini ochib chiqing: boshqa odam tufayli o'zgaradigan yana joy bormi? Sxemada 5 tadan kam qator bo'lsa — darsdagi sxema kartasiga va README'ga qo'shing.", ru: '— откройте каждый экран продукта: есть ли ещё место, которое меняется из-за другого человека? Если в схеме меньше 5 строк — добавьте в карточку схемы на уроке и в README.' } }
 ];
@@ -2512,8 +2515,8 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const sxema = !!answers[idx('s13')]?.saqlandi || !!lsOqi(SX_KALIT);
   const sarlavha = a1 && a2 ? { uz: "Mahsulotingiz Backend'ga ulangan, sxema README'da.", ru: 'Ваш продукт подключён к Backend, схема в README.' }
     : a1 ? { uz: "Mahsulotingiz ulangan — sxemani README'ga yozish qoldi.", ru: 'Ваш продукт подключён — осталось записать схему в README.' }
-      : sxema ? { uz: 'Sxemangiz tayyor — ulanishni tugatish qoldi.', ru: 'Ваша схема готова — осталось завершить подключение.' }
-        : { uz: 'Ulanish hali tugamagan — qadamlarni uyda tugating.', ru: 'Подключение ещё не завершено — закончите шаги дома.' }; // rost: A1 qisman bajarilgan bo'lishi ham mumkin, «boshlandi» emas (07.10 savol 1)
+      : sxema ? { uz: 'Sxemangiz tayyor — ulanishni tugatish qoldi.', ru: 'Ваша схема готова — осталось доделать соединение.' }
+        : { uz: 'Ulanish hali tugamagan — qadamlarni uyda tugating.', ru: 'Соединение ещё не готово — закончите шаги дома.' }; // rost: A1 qisman bajarilgan bo'lishi ham mumkin, «boshlandi» emas (07.10 savol 1)
   const RECAP = [
     { uz: "So'rov–javobda ilova so'ramasa, Backend unga hech narsa yubora olmaydi.", ru: 'В схеме запрос–ответ, если приложение не спрашивает, Backend ничего не может ему отправить.' },
     { uz: 'Doimiy ulanish ochiq turadi: ilova ham, Backend ham istagan payt xabar yubora oladi.', ru: 'Постоянное соединение открыто: и приложение, и Backend могут отправить сообщение в любой момент.' },
@@ -2711,7 +2714,7 @@ export default function WebSocketBasicsLesson({ lang: langProp, onFinished, live
         .ws-telefon { position: relative; width: 172px; height: 272px; flex: none; display: flex; flex-direction: column; gap: 5px; border: 2px solid ${T.ink}; border-radius: 24px; padding: 8px; background: ${T.paper}; box-shadow: 0 12px 26px -14px rgba(${T.shadowBase},0.4); overflow: hidden; }
         .ws-telefon.tortiladi { touch-action: none; cursor: grab; }
         .ws-tel-bar { position: relative; display: flex; align-items: center; justify-content: center; height: 18px; flex: none; }
-        .ws-tel-nom { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 12.5px; color: ${T.ok}; letter-spacing: 0.01em; }
+        .ws-tel-nom { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 12.5px; color: ${MAYDON_RANG}; letter-spacing: 0.01em; }
         .ws-samolyot { position: absolute; right: 0; top: -1px; width: 22px; height: 20px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid ${T.line}; border-radius: 7px; background: ${T.bg}; color: ${T.ink2}; cursor: pointer; padding: 0; transition: background 0.25s, color 0.25s; }
         .ws-samolyot.on { background: ${T.accent}; color: #fff; border-color: ${T.accent}; }
         .ws-samolyot:disabled { cursor: default; }
@@ -2802,8 +2805,8 @@ export default function WebSocketBasicsLesson({ lang: langProp, onFinished, live
         .ws-chiziq-i { position: absolute; display: block; opacity: 0; transition: opacity 0.3s; }
         .ws-chiziq.yot .ws-chiziq-i { left: 0; right: 0; top: calc(50% - 1.5px); height: 3px; }
         .ws-chiziq.tik .ws-chiziq-i { top: 0; bottom: 0; left: calc(50% - 1.5px); width: 3px; }
-        .ws-chiziq.yot.h-savol .ws-chiziq-i, .ws-chiziq.yot.h-sondi .ws-chiziq-i, .ws-chiziq.yot.h-uzilgan .ws-chiziq-i, .ws-chiziq.yot.h-tiklan .ws-chiziq-i { opacity: 1; background: repeating-linear-gradient(90deg, ${fon(T.ink, 0.28)} 0 7px, transparent 7px 13px); }
-        .ws-chiziq.tik.h-savol .ws-chiziq-i, .ws-chiziq.tik.h-sondi .ws-chiziq-i, .ws-chiziq.tik.h-uzilgan .ws-chiziq-i, .ws-chiziq.tik.h-tiklan .ws-chiziq-i { opacity: 1; background: repeating-linear-gradient(180deg, ${fon(T.ink, 0.28)} 0 7px, transparent 7px 13px); }
+        /* kesik-ok: shtrix = doimiy bo'lmagan yoki uzilgan ulanish (holat belgisi, bezak emas) */ .ws-chiziq.yot.h-savol .ws-chiziq-i, .ws-chiziq.yot.h-sondi .ws-chiziq-i, .ws-chiziq.yot.h-uzilgan .ws-chiziq-i, .ws-chiziq.yot.h-tiklan .ws-chiziq-i { opacity: 1; background: repeating-linear-gradient(90deg, ${fon(T.ink, 0.28)} 0 7px, transparent 7px 13px); }
+        /* kesik-ok: shtrix = doimiy bo'lmagan yoki uzilgan ulanish (holat belgisi, bezak emas) */ .ws-chiziq.tik.h-savol .ws-chiziq-i, .ws-chiziq.tik.h-sondi .ws-chiziq-i, .ws-chiziq.tik.h-uzilgan .ws-chiziq-i, .ws-chiziq.tik.h-tiklan .ws-chiziq-i { opacity: 1; background: repeating-linear-gradient(180deg, ${fon(T.ink, 0.28)} 0 7px, transparent 7px 13px); }
         .ws-chiziq.h-sondi .ws-chiziq-i { opacity: 0.55; }
         .ws-chiziq.h-sorov .ws-chiziq-i { opacity: 1; background: ${T.accent}; box-shadow: 0 0 10px ${fon(T.accent, 0.5)}; }
         .ws-chiziq.h-bir .ws-chiziq-i { background: ${T.accent}; animation: ws-bir 1.4s ease-out both; }
@@ -2853,7 +2856,7 @@ export default function WebSocketBasicsLesson({ lang: langProp, onFinished, live
         .ws-ochkonv { display: flex; flex-direction: column; gap: 5px; width: 236px; max-width: 236px; padding: 8px 10px; border-radius: 12px; background: ${T.paper}; border: 1.5px solid ${T.ok}; }
         .ws-ochkonv-q { display: flex; flex-direction: column; gap: 1px; font-size: 12px; }
         .ws-ochkonv-q em { font-style: normal; font-weight: 700; color: ${T.ink2}; min-width: 62px; }
-        .ws-ochkonv-q code { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: ${T.ink}; white-space: nowrap; }
+        .ws-ochkonv-q code { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: ${T.ink}; white-space: normal; overflow-wrap: anywhere; }
         .ws-qayta, .ws-tokensiz, .ws-token { padding: 8px 14px; border: 1.5px solid ${T.ink}; border-radius: 10px; background: ${T.paper}; color: ${T.ink}; font-family: 'Manrope'; font-size: 13px; font-weight: 800; cursor: pointer; white-space: nowrap; }
         .ws-qayta:disabled, .ws-tokensiz:disabled, .ws-token:disabled { cursor: default; }
         .ws-qayta.xira { opacity: 0.45; }
@@ -2864,7 +2867,7 @@ export default function WebSocketBasicsLesson({ lang: langProp, onFinished, live
         .ws-kod-y code { font-family: 'JetBrains Mono', monospace; color: ${CODE.attr}; }
         .ws-kod-p { display: flex; flex-direction: column; overflow-x: auto; }
         .ws-kod-q { display: block; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; line-height: 1.6; white-space: pre; padding: 0 4px; border-radius: 4px; transition: background 0.3s; }
-        .ws-kod-q.yon { background: ${fon(CODE.attr, 0.16)}; box-shadow: inset 2px 0 0 ${CODE.attr}; } /* qizil fon xato qatordek o'qilardi (F-1006-379) */ .ws-kod-q.xira { background: ${fon(T.paper, 0.1)}; color: ${CODE.comment}; }
+        .ws-kod-q.yon { background: ${fon(CODE.attr, 0.16)}; box-shadow: inset 0 0 0 1px ${fon(CODE.attr, 0.5)}; } /* qizil fon xato qatordek o'qilardi (F-1006-379) */ .ws-kod-q.xira { background: ${fon(T.paper, 0.1)}; color: ${CODE.comment}; }
         .ws-kod-q.err { background: ${fon(T.err, 0.45)}; } .ws-kod-q.ok { background: ${fon(T.ok, 0.4)}; }
         .ws-kod-ok { color: ${CODE.str}; }
         .ws-kod-iz { font-size: 11.5px; line-height: 1.45; color: ${CODE.punct}; }

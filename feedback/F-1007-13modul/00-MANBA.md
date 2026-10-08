@@ -1,6 +1,6 @@
 # LMS 13-Modul «O'sish va monetizatsiya» — manba (konveyer 0-bosqich)
 
-Kod: `src/11-Modull` · kalitlar `m11-NN` · saqlash kalitlari `pm-m11dN-…` · App.jsx `id: '11'` (hali YO'Q — qaror sahifasidan keyin `id: '10'` blokidan keyin qo'shiladi) · 07.10.2026 · F-ID 450 dan
+Kod: `src/11-Modull` · kalitlar `m11-NN` · saqlash kalitlari `pm-m11dN-…` · App.jsx `id: '11'` (✅ 07.10 14:01 qo'shilgan, `comp` siz — qayta yaratilmaydi; «qur» da faqat import va `comp`; F-1007-459) · 07.10.2026 · F-ID 450 dan
 Bu fayl — faktlar yig'indisi (dastur, App.jsx, grep, rasmiy hujjat). Qarorlar — qaror sahifasidan keyin `GATE_M_JAVOB.md` ga, tayanch — `00-MODUL-TAYANCH.md` ga.
 
 ## 1. Dastur v9 — 13-modul (13 dars)

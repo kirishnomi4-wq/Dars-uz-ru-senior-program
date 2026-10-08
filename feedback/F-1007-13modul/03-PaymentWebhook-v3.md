@@ -22,6 +22,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
    «mashq to'lov» sahifasi bilan uch tekshiruv o'quvchining o'zi bosgan tugmalar bilan qilingan (imzosiz xabar — `401`; ikki marta yuborilgan xabar — bitta qator; rad — «rad» qatori); `README.md` da **«To'lov»** bo'limi — to'lov oqimi sxemasi.
    Sxema darsda saqlanadi: `pm-m11d3-oqim` (12-band). Mentor misoli — «Maydon Jamoa», repo `maydon-jamoa`, teg `m13-dars-03-done` (`m13-dars-03-start` = `m13-dars-02-done` = `m12-dars-10-done`, tayanch 3).
    **Pro va ilova bu darsda o'zgarmaydi** (tayanch 1.3) — o'quvchi matnida «Pro va ilova hali o'zgarmaydi» deb aytiladi; keyingi dars va'da qilinmaydi (T-038).
+   Mentor sxemasi — **reja** (to'liq oqim); README'da ikki qism: «Reja: to'lov oqimi» jadvali va «Hozir ishlaydi: …» qatori — hali qurilmagan ish «qiladi» deb yozilmaydi (F-1007-461).
 2. **Bugungi asosiy fikr (P-013; yakunda ko'rsatilmaydi — darsning ichki o'qi, SABOQ E 50):** To'lov o'tganini Backend'ga to'lov xizmati xabar bilan aytadi; Backend xabarni imzosidan taniydi, bitta to'lovni bir marta yozadi, rad etilganini ham yozadi — hammasi test rejimda.
 3. **Oldingi darslardan keladigan narsa (aynan):**
    - 7-Modul (kod `5`): «Webhook — yangi xabar kelganda Telegram uni o'zi botning internetdagi manziliga (URL) yuboradi. Buning uchun botga internetda ochiq manzil kerak.» (1-dars) · «Bepul server uxlaydi; webhook xabari uni uyg'otadi.» (7-dars, Render). Bugungi ko'prik — 2-ekran.
@@ -39,27 +40,29 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
    | 4 | Backend | imzoni tekshiradi, to'lovni bir marta yozadi, Pro muddatini uzaytiradi, `200` qaytaradi | To'lov xizmati |
    | 5 | Ilova | Pro holatini qayta so'raydi: `GET /men` | Backend |
 
-   Jadval ostidagi halol qator (Mentor README'si): «Hozircha: to'lov xabari `POST /tolov/webhook` da qabul qilinadi va `tolovlar` ga yoziladi; Pro va ilova hali o'zgarmaydi. Test rejim: pul yechilmaydi.»
+   README'da jadval «Reja: to'lov oqimi» sarlavhasi ostida; undan keyin halol qator (Mentor README'si): «Hozir ishlaydi: to'lov xabari `POST /tolov/webhook` da qabul qilinadi va `tolovlar` ga yoziladi; Pro va ilova hali o'zgarmaydi. Test rejim: pul yechilmaydi.»
    - **Uch g'oya** (har biri vaziyatdan, T-011): **soxta xabar → imzo** (4-ekran) · **ikki marta kelgan xabar → takror xabar** (6–8-ekranlar) · **o'tmagan to'lov → rad etilgan to'lov** (9–10-ekranlar). Backend tartibi (final, 14-ekran): imzo → takror → yozuv → `200`.
    - **«Mashq to'lov» xabari** (Mentor misoli va o'quvchi bir xil shaklda): `POST /tolov/webhook` · tana `{ tolovRaqami, holat: 'tolandi' | 'rad', summa, oyinchiId }` · sarlavha `X-Imzo` = HMAC SHA-256 (tana, `TOLOV_KALITI`) ·
-     javoblar: imzo mos emas → `401`, hech narsa yozilmaydi · yangi to'lov → `200 { ok: true }` · takror → `200 { takror: true }`, yozuv yo'q · holat «rad» → yoziladi, `200 { ok: true }` (TAYANCHGA SAVOL 5). `summa` so'mda (Payme tiyinda yuboradi — 11-ekran kartasida bir marta).
+     javoblar: imzo mos emas → `401`, hech narsa yozilmaydi · yangi to'lov → `200 { ok: true }` · takror → `200 { takror: true }`, yozuv yo'q · holat «rad» → yoziladi, `200 { ok: true }` (TAYANCHGA SAVOL 5) · maydon noto'g'ri (`tolovRaqami` bo'sh, `summa` musbat butun son emas, hisob yo'q, `holat` boshqa) → `400` · ikki bir xil xabar bir vaqtda kelsa — Database noyobligi ushlaydi, ikkinchisiga ham `200 { takror: true }` (F-1007-461). `summa` so'mda (Payme tiyinda yuboradi — 11-ekran kartasida bir marta).
    - **Namuna xabar** (bitta manba `NAMUNA_XABAR`): `{ tolovRaqami: 'm-101', holat: 'tolandi', summa: 10000, oyinchiId: 7 }` · `X-Imzo: 7c1e…` (qisqartirilgan namuna — hech qanday kalitdan hisoblanmagan) — TAYANCHGA SAVOL 3.
    - **«Mashq to'lov» sahifasi** (Backend ichida `GET /tolov-mashq?oyinchi=…&summa=…`): sarlavha **«Mashq to'lov»**, ostida **«Bu sahifa — mashq. Karta so'ralmaydi, pul yechilmaydi.»**; tugmalar **«To'lash (mashq)»** · **«Rad etish (mashq)»**; tekshiruv tugmalari **«Ikki marta yuborish»** · **«Imzosiz yuborish»** (A2).
      Sahifa xabarni Backend'da imzolaydi — kalit brauzerga chiqmaydi. Mentor sahifasida qo'shimcha qator «Maydon Jamoa — Pro, 30 kun · 10 000 so'm» (TAYANCHGA SAVOL 4).
+     F-1007-461: xabar bitta JSON satr qilib yasaladi — imzo ham, yuborilgan tana ham aynan shu satr · har bosish — yangi to'lov raqami (`m-…`; rad etilgandan keyingi urinish ham yangi raqam bilan) ·
+     sahifa — faqat mashq yordamchisi: hisob va summa manzildan olinadi, haqiqiy to'lovda ularni Backend o'zi biladi (4-darsdan sahifa faqat Backend bergan raqam bilan ishlaydi — tayanch 9.7).
    - **Real xizmatlar — ko'prik** (tayanch 1.3, 6; 11-ekran kartalari, har biri bir-ikki gap): Payme — javob yo'qolsa xuddi shu so'rovni qayta yuboradi, summa tiyinda, kassa — yuridik shaxs yoki YaTT · Click — ikki so'rov (Prepare, Complete), imzo `sign_string`, `-4 Already paid` · Stripe — bir xabar bir necha marta kelishi mumkin, ishlangan xabar raqamlarini yozing; ro'yxatida O'zbekiston yo'q.
      Telegram (7-Modul botingiz) — `secret_token` sarlavhasi va `2XX` bo'lmasa qayta yuborish — faqat O'qituvchi eslatmasida (7-Modul botida `secret_token` qo'yilmagan — Shubhali 10).
-   - **Uxlagan Backend (WH-q1 A) — bir gap, 6-ekran QIzohi (tayanch so'zma-so'z):** «Bepul Backend uxlagan bo'lsa, to'lov xabari kechikishi mumkin; xizmat qayta yuboradi — shuning uchun takror xabar himoyasi kerak.» Buzib ko'rish — 5-darsda (o'quvchiga aytilmaydi; O'qituvchi eslatmasida).
+   - **Uxlagan Backend (WH-q1 A) — bir gap, 6-ekran QIzohi (F-1007-461: Render'ga bog'lanmagan shakl; uxlagan Backend — sahnaning o'zida):** «Javob yetib bormasa, xizmat xabarni qayta yuborishi mumkin — shuning uchun takror xabar himoyasi kerak.» Buzib ko'rish — 5-darsda (o'quvchiga aytilmaydi; O'qituvchi eslatmasida).
    - **Halol gaplar (o'quvchi matnida, so'zma-so'z):** «Bu sahifa — mashq. Karta so'ralmaydi, pul yechilmaydi.» (har mashq sahifa maketida) · «Haqiqiy xizmatda sahifa va xabar boshqa kompaniya serveridan keladi …» (11-ekran xulosasi) · «Real ishga tushirish — ota-onaning yozma roziligi va yuridik shaxs yoki YaTT bilan; bu kursda emas.» (11-ekran QIzohi; FK 27-modda — O'qituvchi eslatmasida).
 5. **Atamalar (bir ma'no — bir so'z, T-014; tayanch 2 — ta'riflar so'zma-so'z):**
    - **to'lov xizmati** — pulni qabul qiladigan kompaniya (Click, Payme) — 0-ekranda tuguni tug'iladi, 2-ekranda nomi bilan. **to'lov sahifasi** — brauzerda ochiladigan, odam to'laydigan sahifa (2-ekran sahna yorlig'i).
    - **to'lov xabari** — to'lov xizmati Backend'ga yuboradigan xabar (to'landi yoki rad etildi); texnik nomi **webhook** (7-Modulda o'tilgan; 2-ekran, harakatdan keyin). «xabar» bu darsda faqat to'lov xabari va 2-ekrandagi Telegram xabari (7-Modul ko'prigi); har biri birinchi uchrashganda to'liq nomi bilan.
-   - **imzo** — xabar haqiqatan to'lov xizmatidan kelganini ko'rsatadigan belgi: xizmat uni maxfiy kalit bilan hisoblaydi, Backend o'sha kalit bilan qayta hisoblab solishtiradi (4-ekran). Ishlatilmaydi: podpis, «sign» (prozada; Click'ning `sign_string` — kod nomi).
+   - **imzo** — xabar maxfiy kalitni biladigan tomondan kelganini ko'rsatadigan belgi: xizmat uni maxfiy kalit bilan hisoblaydi, Backend o'sha kalit bilan qayta hisoblab solishtiradi (4-ekran; F-1007-461 — avval «haqiqatan to'lov xizmatidan»: kalitni bilgan har kim imzolay oladi, bu darsda Backend'ning o'zi ham). Ishlatilmaydi: podpis, «sign» (prozada; Click'ning `sign_string` — kod nomi).
    - **takror xabar** — bitta to'lov haqidagi xabar ikki marta kelishi; to'lov raqami bir marta sanaladi (6-ekran); kartochkada «inglizchasi: idempotency». Ishlatilmaydi: dublikat, idempotentlik.
    - **rad etilgan to'lov** — to'lov o'tmagan holat: yoziladi, hech narsa ochilmaydi; sahifada «To'lov o'tmadi» (9-ekran). Tayanchdagi «Pro yoqilmaydi» — bu darsda Pro yo'q, shuning uchun «hech narsa ochilmaydi» (TAYANCHGA SAVOL 6). Ishlatilmaydi: failed payment, «xato to'lov».
    - **test rejim** — real pul yechilmaydigan to'lov holati; bu kursda — «mashq to'lov» bilan; kartochkada «inglizchasi: sandbox» (11-ekran). «test holati» ishlatilmaydi.
    - **mashq to'lov** — o'quvchi o'z Backend'ida quradigan test to'lov sahifasi va xabari: karta so'ralmaydi, pul yechilmaydi. Ishlatilmaydi: soxta to'lov, fake. («soxta» — faqat 4-ekrandagi «soxta xabar», imzosiz begona xabar ma'nosida.)
-   - **to'lov raqami** (`tolovRaqami`, jadvalda `tolov_raqami`) — bitta to'lovni ajratadigan raqam; jadvalda noyob. **`tolovlar`** — to'lovlar jadvali (Database).
-   - **to'lov oqimi sxemasi** — kim kimga nima yuborishi yozilgan jadval (12-ekran, harakatdan keyin); «sxema» bu darsda faqat shu jadval.
+   - **to'lov raqami** (`tolovRaqami`, jadvalda `tolov_raqami`) — bitta to'lovni ajratadigan raqam; jadvalda noyob. Har to'lov urinishi yangi raqam oladi (rad etilgandan keyingi urinish ham) — bir raqamning holati o'zgarmaydi; mashq raqamlari `m-` bilan boshlanadi (F-1007-461). **`tolovlar`** — to'lovlar jadvali (Database).
+   - **to'lov oqimi sxemasi** — kim kimga nima yuborishi yozilgan jadval (12-ekran, harakatdan keyin); «sxema» bu darsda faqat shu jadval. Sxema — reja (to'liq oqim); bugun uning bir qismi quriladi.
    - **maxfiy kalit** (`TOLOV_KALITI`) · **`.env`** · **`200`** — «qabul qildim» degan javob (2-ekran QIzohida bir marta) · **`401`** — ruxsat yo'q (11–12-Modul so'zi).
    - **Pro** — Mentor misolidagi tashkilotchi uchun 30 kunlik pullik obuna (tayanch 1.0); bu darsda faqat Mentor sxemasining 4–5-qatorida va mashq sahifasi qatorida. «obuna» yolg'iz ishlatilmaydi.
    - **tekshirish · tekshiruv** — o'z ishini ko'rish (A1, A2 «Tekshirish» qadami, uch tekshiruv). «test» o'quvchi matnida — faqat «test rejim» (ballik savollar ekranda «savol» deb ataladi); tayanch so'zi «webhook testi» o'quvchi matnida «tekshiruv» (TAYANCHGA SAVOL 22). «sinov» bu darsda yo'q.
@@ -74,11 +77,12 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
    rang — faqat holat foni (D3): yozildi / mos — `ok`, `401` / mos emas / ikki qator — `err`, rad qatori — `ink2`, joriy — `accent`.
 10. **Trek (tayanch 4):** bu darsda o'zgarish faqat `backend/` da — **ikkala trekda bloklar bir xil**. `pm-m9d8-platforma.trek` faqat A2 «Ochish» gapini almashtiradi (mashq sahifasini telefon brauzerida yoki kompyuterda ochish). Kalit yo'q bo'lsa — ikkala gap ko'rinadi.
 11. **Vaqt (90 daqiqa — reja) va ulgurmagan yo'l:** taqsimot tepada. A1 3-qadamda Render kutishi paytida ish (kodni o'qitadigan prompt); A1 «Davom etish» — 3-qadamdan keyin, A2 — 2-qadamdan keyin ochiladi (SABOQ E 55); blok bajarilgani — faqat 4-qadam «Bajardim»idan.
-    Ulgurmasa: A2 (yoki A1 4-qadami) — uyga vazifa ①; sxema 13-ekranda baribir saqlanadi. Yakun sarlavhasi holatga qarab (19-ekran). O'qituvchi eslatmasi — 1-ekranda.
+    Ulgurmasa: A2 (yoki A1 4-qadami) — uyga vazifa ①; sxema 13-ekranda baribir saqlanadi.
+    Pilotda 90 daqiqadan oshsa — oldindan belgilangan qisqartirish: 11-ekranda uch kartadan bittasi (Mentor tanlaydi) · A2 da darsda kamida imzo tekshiruvi, qolgan ikkitasi uyda (ChatGPT auditi bahosi 120–150 daqiqa — o'lchanmagan; F-1007-461). Yakun sarlavhasi holatga qarab (19-ekran). O'qituvchi eslatmasi — 1-ekranda.
 12. **Saqlash kaliti (tayanch 8 — aynan):** o'qiydi `pm-m9d8-platforma` (`trek`; yo'q bo'lsa — ikkala gap) → yozadi `pm-m11d3-oqim` =
-    `{ qatorlar: [{ id, kim, nima, kimga }] (3–6), test: { imzo: bool | null, takror: bool | null, rad: bool | null }, savedAt }` — `id` barqaror (`q1`, `q2`…, qayta ishlatilmaydi), tartib o'zgarmaydi;
+    `{ qatorlar: [{ id, kim, nima, kimga }] (3–6), test: { imzo: bool | null, takror: bool | null, rad: bool | null }, savedAt }` (`test` — oxirgi tekshiruv natijasi, qayta tekshirilsa yangilanadi) — `id` barqaror (`q1`, `q2`…, qayta ishlatilmaydi), tartib o'zgarmaydi;
     `qatorlar` — 13-ekran «Saqlash»; `test` — A2 4-qadam: «Kutilganidek» → `true`, «Boshqacha» → `false`, bosilmagan → `null` (ish fakti: o'quvchi o'zi ko'rgani). Kalitga ism, login, telefon, `TOLOV_KALITI` qiymati yozilmaydi; `kim` — rol («tashkilotchi», «xaridor»).
-    Kod oynasi qoralamasi — `pm-m11d3-code`. Boshqa darsning kaliti yozilmaydi va o'qilmaydi (`pm-m11d2-model` — TAYANCHGA SAVOL 13).
+    Kod oynasi qoralamasi — `pm-m11d3-code`. Boshqa darsning kaliti yozilmaydi; `pm-m11d2-model` (`model`, `kim`) faqat o'qiladi — 13-ekrandagi kulrang eslatma qatori uchun (F-1007-461, TAYANCHGA SAVOL 13).
 13. **Texnik faktlar** — «Manbalar» bo'limida (rasmiy hujjat, 07.10.2026; tayanch 6 va o'zim tekshirganlarim); o'quvchiga ko'rinmaydi.
 
 ## Darsning ipi va bitta vizual
@@ -88,7 +92,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
 - **Hook:** «To'lash (mashq)» bosildi, sahifada «To'landi (mashq)», Backend'da esa hali hech narsa yo'q → «Backend qayerdan biladi?» → 2-ekranda 7-Moduldagi bot webhook'i va xuddi shu yo'l to'lov bilan → 4-ekranda begona kompyuterdan soxta xabar → imzo →
   6-ekranda uxlagan Backend va qayta yuborilgan xabar → takror xabar → 7-ekranda takror tekshiruvi qo'lda → 9-ekranda rad → 11-ekranda mashq va haqiqiy xizmat farqi → 12–13-ekranlarda sxema → A1 (yo'l va jadval) → A2 (mashq sahifasi va uch tekshiruv).
 - **Bitta vizual — «telefon · to'lov xizmati · Backend» sahnasi** (bitta manba `TOLOV_SAHNA` + `NAMUNA_XABAR`, 163/180; TAQIQLAR 6: «telefon ↔ brauzer (to'lov sahifasi) ↔ Backend; xabar konvert bo'lib uchadi»):
-  - **chapda telefon** (ramka ≈170×272, o'lcham barqaror; yorliq ramka ustida «telefon · brauzer»): brauzer satri `maydon-jamoa-….onrender.com/tolov-mashq`; sahifa — **«Mashq to'lov»** · ostida kulrang «Bu sahifa — mashq. Karta so'ralmaydi, pul yechilmaydi.» ·
+  - **chapda telefon** (ramka ≈170×272, o'lcham barqaror; yorliq ramka ustida «telefon · brauzer»): brauzer satri `maydon-jamoa-….onrender.com/tolov-mashq`; sahifa — tanish to'lov sahifasi ko'rinishida (F-1007-478: Payme maketi — brend sarlavha «Payme · mashq», ostida kichik «Mashq to'lov», savdogar «Maydon Jamoa · Pro, 30 kun», katta summa, tugma Payme rangida; pastda kulrang «Bu sahifa — mashq. Karta so'ralmaydi, pul yechilmaydi.») ·
     «Maydon Jamoa — Pro, 30 kun» (nom o'z rangida) · «10 000 so'm» (yonida kichik kulrang yorliq «Mentorning taxmini») · tugmalar «To'lash (mashq)» · «Rad etish (mashq)». Karta maydoni hech bir holatda chizilmaydi.
   - **o'rtada «To'lov xizmati» tuguni** (ostida kulrang bir qator: «pulni qabul qiladigan kompaniya · bu darsda — mashq»); 4-ekranda ichida qulf belgili qator `TOLOV_KALITI`; 6-ekranda ichida javob kutish soati; 11-ekranda Backend ichiga kiradi va chiqadi.
   - **o'ngda «Backend» tuguni** — ichida mini-jadval `tolovlar` (ustunlar: `tolov_raqami` · `holat`; hisoblagich «N qator») · 4-ekrandan qulf qatori `TOLOV_KALITI · .env` · 6-ekranda holat chirog'i («uxlayapti» — kulrang, «uyg'oq» — yashil) va o'chirgich «Takror tekshiruvi: o'chiq / yoqiq».
@@ -105,7 +109,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
 - Mentor (bosqichga qarab, SABOQ 11):
   - boshida: Mentor misolida tashkilotchi brauzerda to'lov sahifasini ochgan — «To'lash (mashq)» ni bosing.
   - variantlar ochilgach: Endi o'ngdagi javoblardan birini tanlang.
-- Maket (chap): telefon — mashq sahifasi (`TOLOV_SAHNA` tavsifi: «Mashq to'lov» · «Bu sahifa — mashq. Karta so'ralmaydi, pul yechilmaydi.» · «Maydon Jamoa — Pro, 30 kun» · «10 000 so'm» + yorliq «Mentorning taxmini» · «To'lash (mashq)» — halqada; «Rad etish (mashq)» — oddiy, bu ekranda bosilmaydi).
+- Maket (chap; maket ustuni o'z kengligida, variantlar yonida — F-1007-476): telefon — mashq sahifasi Payme ko'rinishida (F-1007-478; `TOLOV_SAHNA` tavsifi: «Mashq to'lov» · «Bu sahifa — mashq. Karta so'ralmaydi, pul yechilmaydi.» · «Maydon Jamoa — Pro, 30 kun» · «10 000 so'm» + yorliq «Mentorning taxmini» · «To'lash (mashq)» — halqada; «Rad etish (mashq)» — oddiy, bu ekranda bosilmaydi).
   Telefonning o'ng tomonida — Backend tuguni, ichida mini-jadval `tolovlar` · «0 qator». Xizmat tuguni hali yo'q.
 - **Harakat → Vizual o'zgarish:** «To'lash (mashq)» → sahifada yashil qator «To'landi (mashq)»; telefon va Backend orasida uzuq kulrang chiziq, ustida «?»; `tolovlar` · «0 qator» o'zgarmaydi. Shundan keyin o'ngdagi variantlar faollashadi (bosilmaguncha xira).
 - Variantlar (radio, ballsiz; har birining o'z yengil chegarasi — E 40):
@@ -191,19 +195,21 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
   if (imzo !== kutilgan) throw new UnauthorizedException(); // 401
   ```
   Karta ostida kulrang bir qator: `TOLOV_KALITI` — `.env` da, kodda faqat nomi; `imzo` — `X-Imzo` sarlavhasidan, `tana` — kelgan xabar matni.
+  Ikkinchi kulrang qator: Bu — qisqa ko'rinish: repo'da imzolar xavfsiz usulda solishtiriladi. (68)
 - **Harakat → Vizual o'zgarish:**
   1. «Haqiqiy xabar» → xizmat ichida mono qator «tana + kalit → `3f9a…`» → konvert (tana `m-102` + `X-Imzo: 3f9a…`) Backend'ga uchadi; qulf qatori xizmatda qoladi — konvertga kirmaydi →
      Backend ichida «tana + kalit → `3f9a…`» → «mos ✓» (yashil); kartada `if` qatori yashil → `tolovlar` ga «m-102 · tolandi» → `200`. «Soxta xabar» halqaga o'tadi.
   2. «Soxta xabar» → «boshqa kompyuter»dan konvert: tana `{ tolovRaqami: 'm-999', holat: 'tolandi', … }`, `X-Imzo` qatori yo'q → Backend ichida «tana + kalit → `b04e…`» → «mos emas ✗» (qizil, bir marta silkinadi);
      kartada `if` qatori qizil → konvert «`401`» bilan qaytadi; `tolovlar` · «2 qator» o'zgarmaydi.
-  Nom qatori (2/2 dan keyin, bitta): Xabar haqiqatan to'lov xizmatidan kelganini ko'rsatadigan belgi — imzo: xizmat uni maxfiy kalit bilan hisoblaydi, Backend qayta hisoblab solishtiradi.
+  Nom qatori (2/2 dan keyin, bitta): Xabar maxfiy kalitni biladigan tomondan kelganini ko'rsatadigan belgi — imzo: xizmat uni kalit bilan hisoblaydi, Backend qayta hisoblab solishtiradi.
 - Natija qatori: «Taxminingiz ✕ — aslida: Backend uni ajratib, yozmaydi» (yoki «Taxminingiz to'g'ri chiqdi ✓»).
 - Xulosa: Bu misolda kalit xabar ichida ketmaydi: faqat imzo ketadi, Backend uni o'zidagi kalit bilan qayta hisoblaydi. (109)
-- Qator (`QIzoh`, xulosadan keyin, bitta): Imzo xabarni kim yuborganini ko'rsatadi; to'lov o'tgan-o'tmaganini esa `holat` aytadi.
+- Qator (`QIzoh`, xulosadan keyin, bitta): Imzo xabar kalitni biladigan tomondan kelganini ko'rsatadi; to'lov o'tgan-o'tmaganini esa `holat` aytadi.
 - Tugadi (199): tugmalar yopiladi, sahna va kod kartasi fokusga (ikki konvert natijasi yonma-yon: «mos ✓ · `200`» va «mos emas ✗ · `401`»); vizual ⛶ ichida. Tugmalar: Orqaga · Avval o'zingiz belgilab ko'ring → Ikkalasini yuboring (N/2) → Davom etish
 - O'qituvchi eslatmasi: imzo — hisob (HMAC SHA-256), qo'l imzosiga o'xshatilmaydi (darsda metafora yo'q). Repo'da imzolar `timingSafeEqual` bilan solishtiriladi — kartadagi `!==` o'qish uchun qisqartirilgan.
+  Imzo «aynan shu kompaniya yubordi» demaydi: kalitni bilgan har kim imzolay oladi (shu darsdagi mashq sahifasi ham) — shuning uchun kalit faqat ikki joyda turadi.
   7-Moduldagi bot haqida so'rashsa: Telegram ham webhook so'roviga `X-Telegram-Bot-Api-Secret-Token` sarlavhasini qo'shadi — `setWebhook` da `secret_token` berilgan bo'lsa (tayanch 6); 7-Modul botida bu qo'yilmagan.
-✎ T-045: imzo — kim yuborganini ko'rsatadi, to'lov to'g'riligini emas (QIzoh); kalit va imzo — ikki narsa (xulosa). «Soxta xabar» — begona kompyuterdan imzosiz xabar (Qaror-0 2 dagi «soxta imzo» — 5-darsning «Noto'g'ri imzo» tugmasi). Uch blok: sahna · tugmalar · kod kartasi (SABOQ 26).
+✎ T-045: imzo — kalitni biladigan tomondan kelganini ko'rsatadi, to'lov to'g'riligini emas (QIzoh; F-1007-461); kalit va imzo — ikki narsa (xulosa). «Soxta xabar» — begona kompyuterdan imzosiz xabar (Qaror-0 2 dagi «soxta imzo» — 5-darsning «Noto'g'ri imzo» tugmasi). Uch blok: sahna · tugmalar · kod kartasi (SABOQ 26).
   Begona odam chizilmaydi — «boshqa kompyuter» tuguni (hujum usuli o'rgatilmaydi: faqat natija — `401`; TAQIQLAR 3).
 
 ## 5 · 2-savol ✔ (jonli ball)  ← QTest
@@ -224,7 +230,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
 
 ## 6 · Javob yo'qolsa — takror xabar  ← QTushuncha (bashorat + 3 qadam)
 - Eyebrow: Tushuncha · takror xabar
-- Sarlavha: **Xizmat javob olmasa, xabarni nima qiladi?** (41)
+- Sarlavha: **Mentor misolida xizmat javob olmasa, nima qiladi?** (49)
 - Mentor (bosqichga qarab):
   - boshida: Mentor misolida Backend uxlab qolgan — «To'lash (mashq)» ni bosing va xizmatga qarang.
   - 1-qadamdan keyin: Xizmat javobni kutib qoldi — «Kuting» ni bosing.
@@ -239,7 +245,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
      Backend ichida qator «m-101 — bor» → yozilmaydi → `200 { takror: true }` xizmatga yetadi → xizmatda yashil «qabul qilindi», qayta yuborish to'xtaydi; jadvalda bitta qator.
 - Natija qatori: «Taxminingiz ✕ — aslida: xabarni qayta yuboradi» (yoki «Taxminingiz to'g'ri chiqdi ✓»).
 - Xulosa: Bu misolda bitta to'lov raqami bir marta yoziladi; takrorga ham `200` qaytadi — xizmat qayta yubormasin. (104)
-- Qator (`QIzoh`, xulosadan keyin, bitta — tayanch 1.3 so'zma-so'z): Bepul Backend uxlagan bo'lsa, to'lov xabari kechikishi mumkin; xizmat qayta yuboradi — shuning uchun takror xabar himoyasi kerak.
+- Qator (`QIzoh`, xulosadan keyin, bitta — tayanch 1.3 so'zma-so'z): Javob yetib bormasa, xizmat xabarni qayta yuborishi mumkin — shuning uchun takror xabar himoyasi kerak.
 - Tugadi (199): qadam belgilari va o'chirgich yopiladi, ikki holat yonma-yon fokusga («tekshiruvsiz — 2 qator» · «tekshiruv bilan — 1 qator»); vizual ⛶ ichida. Tugmalar: Orqaga · Avval o'zingiz belgilab ko'ring → Qadamlarni bajaring (N/3) → Davom etish
 - O'qituvchi eslatmasi: Render bepul xizmati 15 daqiqa so'rovsiz qolsa uxlaydi, uyg'onishi ≈1 daqiqa (tayanch 6). Xizmat javobni qancha kutishi har xizmatda boshqa — darsda soniya aytilmaydi.
   Sahna bitta holatni ko'rsatadi (birinchi xabar yozildi, javob kech qoldi); uxlagan Backend'ni ataylab buzish — 5-darsda (o'quvchiga aytilmaydi).
@@ -340,7 +346,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
 - Xulosa: Bu kodda takror tekshiruvi birinchi turadi: ikki marta kelgan rad xabari ham bir marta yoziladi. (96)
 - Qator (`QIzoh`, xulosadan keyin): Bu oynada Backend va xizmat — namuna: haqiqiy Backend emas, xabarni tugma yuboradi.
 ✎ `includes`, `indexOf`, `some`, `for` sikli — hammasi qabul: tekshiruv xulq-atvor bo'yicha (SABOQ 37; KOD 8). `yozilganlar` — to'lov raqamlari ro'yxati (TAYANCHGA SAVOL 8). Namunada javob faqat `200` — imzo bu oynada yo'q (4-ekran va repo).
-  3-shart — tartibni o'qitadigan nuqta: imzo → takror → rad (final, 14-ekran). Namuna jadvalni `textContent` bilan to'ldiradi (10-Modul 5-darsidagi `innerHTML` xavfi namunada ham yo'q).
+  3-shart — tartibni o'qitadigan nuqta: imzo → takror → rad (final, 14-ekran). Ro'yxat bitta oqimda ishlaydi; haqiqiy Backend'dagi oxirgi himoya — Database'dagi noyob `tolov_raqami` — A1 2-qadam kulrang qatorida (F-1007-461). Namuna jadvalni `textContent` bilan to'ldiradi (10-Modul 5-darsidagi `innerHTML` xavfi namunada ham yo'q).
 
 ## 8 · 3-savol ✔ (jonli ball)  ← QTest
 - Eyebrow: Mashq · 3-savol
@@ -360,7 +366,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
 
 ## 9 · O'tmagan to'lov  ← QTushuncha (bashorat + 2 qadam)
 - Eyebrow: Tushuncha · rad etilgan to'lov
-- Sarlavha: **To'lov o'tmasa ham Backend'ga xabar keladimi?** (45)
+- Sarlavha: **Mashq to'lov rad bo'lsa, Backend nima oladi?** (44)
 - Mentor (bosqichga qarab):
   - boshida: Mashq sahifasida «Rad etish (mashq)» ni bosing va konvert ichiga qarang.
   - 1-qadamdan keyin: Endi «Oxirgi xabar yana keldi» ni bosing — shu xabar ikkinchi marta kelsa-chi?
@@ -376,7 +382,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
 - Qator (`QIzoh`, xulosadan keyin, bitta): Yozuv qoladi: tashkilotchi «to'lovim qayerda?» deb so'rasa, o'tmagan to'lov ham Backend'da ko'rinadi.
 - Tugadi (199): qadam belgilari yopiladi, jadval (ikki qator: «tolandi», «rad») va sahifadagi «To'lov o'tmadi» fokusga; vizual ⛶ ichida. Tugmalar: Orqaga · Avval o'zingiz belgilab ko'ring → Qadamlarni bajaring (N/2) → Davom etish
 ✎ Tayanch 1.3: «rad — yoziladi, Pro o'zgarmaydi, ilova «To'lov o'tmadi» ko'rsatadi». Bu darsda Pro va ilova yo'q — «hech narsa ochilmaydi», «To'lov o'tmadi» — mashq sahifasida (TAYANCHGA SAVOL 6). Rad yozilishining sababi (QIzoh) — TAYANCHGA SAVOL 6.
-  2-qadam 7-ekrandagi 3-shartni sahnada qaytaradi: takror tekshiruvi rad xabarini ham ushlaydi.
+  2-qadam 7-ekrandagi 3-shartni sahnada qaytaradi: takror tekshiruvi rad xabarini ham ushlaydi. Rad etilgandan keyin qayta urinish — yangi to'lov raqami bilan (A-5; F-1007-461): bir raqamning holati o'zgarmaydi.
 
 ## 10 · 4-savol ✔ (jonli ball)  ← QTest
 - Eyebrow: Mashq · 4-savol
@@ -425,15 +431,16 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
 - O'qituvchi eslatmasi: Payme Business — JSON-RPC 2.0, Basic-auth (HMAC emas), so'rovlar faqat Payme IP manzillaridan; sandbox kaliti (TEST_KEY) — merchant kabinetidagi veb-kassada. Click imzosi — `sign_string` (md5). Stripe — `Stripe-Signature` (HMAC SHA-256).
   Uchalasida «imzo» bir ma'noda: xabar xizmatdan kelganini ko'rsatadigan belgi (Payme'da bu ishni Basic-auth va IP ro'yxati qiladi — so'rashsa). Komissiya aytilmaydi (rasmiy narx topilmagan). Qonun: FK 27-modda — 14–18 yoshli bitimni ota-onaning yozma roziligi bilan tuzadi (lex.uz/docs/-111189).
 ✎ Brend — o'z rangida, logotipsiz, tanish sahnada (xizmat tuguni o'sha nomni oladi, fakt konvert bilan jonlanadi — TAQIQLAR 0); karta faqat fakt matni. To'lov formasi va karta maydoni hech qayerda chizilmaydi (TAQIQLAR 1). Payme rangi — 9-Modul 1-darsidagi maket rangi (vizual bosqichda). Brend izohi kartada bir marta (S-018).
+  ⛔ «qur» oldidan Payme, Click, Stripe faktlari rasmiy hujjatdan qayta tekshiriladi, sana bilan — xizmatlar qoidasi o'zgarishi mumkin (F-1007-461).
   «Prepare va Complete» — Click hujjatidagi nomlar (T-033: tarjima qilinmaydi). «Already paid» — Click xato kodi `-4`, raqami o'quvchiga aytilmaydi. Telegram `secret_token` — 4-ekran O'qituvchi eslatmasida.
 
 ## 12 · Mentor sxemasi  ← QTushuncha (bashorat + 5 qator, bittadan)
 - Eyebrow: Tushuncha · sxema
 - Sarlavha: **To'lov boshidan oxirigacha kim kimga yozadi?** (44)
-- Mentor: Har kartada kim nima qilishini o'qing va bu ish kimga yetib borishini tanlang — qator jadvalga tushadi.
+- Mentor (bosqichga qarab — F-1007-479): bashoratgacha: Avval yuqoridagi savolga belgi qo'ying — keyin beshta karta birma-bir keladi. · keyin: Har kartada kim nima qilishini o'qing va bu ish kimga yetib borishini tanlang — qator jadvalga tushadi. Jadvalda kelmagan qatorlar bo'sh (raqam + uzuq chiziq) ko'rinib turadi.
 - Bashorat (ballsiz; tanlangach ixcham qator): **To'lov o'tgach, ilova buni qayerdan biladi?** · To'lov xizmatidan · Backend'dan qayta so'rab · Telefonning o'zidan
 - Chap — `TOLOV_SAHNA` (telefon · To'lov xizmati · Backend; telefon ichida kichik «ilova» va «brauzer» yorliqlari) — joriy qatorga mos tugun halqada.
-- O'ng — sxema jadvali: to'q sarlavha qatori «Mentor sxemasi · n / 5» (E 45 — jadval «ma'lumot» ko'rinishida), ustunlar Kim · Nima qiladi · Kimga; qatorlar hali yo'q.
+- O'ng — sxema jadvali: to'q sarlavha qatori «Mentor sxemasi — reja · n / 5» (E 45 — jadval «ma'lumot» ko'rinishida), ustunlar Kim · Nima qiladi · Kimga; qatorlar hali yo'q.
   Jadval ostida joriy karta — **bittadan** (SABOQ 9, 13; oq, accent chegarali — bosiladigan): «Kim» va «Nima qiladi» matni, to'rt variant (har kartada bir xil tartibda): «Brauzer» · «To'lov xizmati» · «Backend» · «Ilova».
   Kartalar (A-bo'lim 4 jadvali, aynan): 1 Ilova — «To'lovga o'tish» bosilganda to'lov sahifasini ochadi → Brauzer · 2 Tashkilotchi — to'lov sahifasida to'laydi yoki rad etadi; karta ma'lumoti faqat xizmatda → To'lov xizmati ·
   3 To'lov xizmati — to'lov xabarini yuboradi: `POST /tolov/webhook` → Backend · 4 Backend — imzoni tekshiradi, to'lovni bir marta yozadi, Pro muddatini uzaytiradi, `200` qaytaradi → To'lov xizmati · 5 Ilova — Pro holatini qayta so'raydi: `GET /men` → Backend.
@@ -452,7 +459,8 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
 ## 13 · O'z sxemangiz  ← QMustaqil (bitta karta ketma-ket — SABOQ 29)
 - Eyebrow: Mustaqil ish · sxema
 - Sarlavha: **Mahsulotingiz uchun to'lov oqimi sxemasini yozing.** (50)
-- Mentor: 2-darsda tanlagan modelingizdan boshlang: kim to'laydi va to'lovdan keyin nima ochiladi — har ishga bitta qator.
+- Mentor: 2-darsdagi modelingizdan boshlang: kim to'laydi va keyin nima ochiladi — to'liq yo'lni yozasiz, bugun bir qismi quriladi.
+- Kulrang qator (Mentor gapi ostida; `pm-m11d2-model` bo'lsa): 2-darsdagi modelingiz: {model nomi} · to'lovchi: {kim}. Kalit yo'q — qator ko'rinmaydi (faqat o'qiladi, maydonlarga yozilmaydi).
 - Tepada ixcham chiziq (birinchi qator tayyor bo'lgach): ✓ qatorlar, joriysi accent. Bir vaqtda bitta katta karta — uch maydon, **yorliq input ichida** (E 43): doimiy raqam + qisqa savol:
   1 · Kim? · 2 · Nima qiladi? · 3 · Kimga yetib boradi?
   Karta ostida bir qatorda: «Qator tayyor» (asosiy — qatorni yopadi) · «Bekor qilish» (ikkinchi; faqat qator bor bo'lsa) · o'ngda «Yordam». Karta yopilgach: «Saqlash» (asosiy) · «+ Yana qator» (ikkinchi; ko'pi bilan 6) · o'ngda «Yordam».
@@ -464,7 +472,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
 - **Harakat → Vizual o'zgarish:** «Qator tayyor» → karta ixcham qatorga yig'ilib tepadagi ro'yxatga tushadi (kim · kimga — uzun matn qisqartiriladi); keyingi karta bo'sh ochiladi. «Saqlash» → hammasi bitta ixcham qator: «Sxema · N qator ✓» (SABOQ 17).
 - Xulosa (saqlagach): Sxemangiz saqlandi — amaliyotda u README'ga ko'chiriladi. (57)
 - Tugma (pastki): Saqlang → Davom etish
-✎ Kalit oldin bor bo'lsa — qatorlar to'ldirilgan holda ochiladi, o'zgartirsa bo'ladi. 3–6 qator — tayanch 8. «2-darsda tanlagan modelingiz» — o'quvchi o'zi eslaydi; `pm-m11d2-model` o'qilmaydi (TAYANCHGA SAVOL 13). Kalitga ism yozilmaydi — maydonlar rol bilan.
+✎ Kalit oldin bor bo'lsa — qatorlar to'ldirilgan holda ochiladi, o'zgartirsa bo'ladi. 3–6 qator — tayanch 8. «2-darsdagi modelingiz» — `pm-m11d2-model` dan kulrang eslatma qatori (faqat o'qiladi; F-1007-461, TAYANCHGA SAVOL 13). Kalitga ism yozilmaydi — maydonlar rol bilan.
 
 ## 14 · Ishlash tartibi (final)  ← QTartib (ball · sentinel `0`)
 - Eyebrow: Yakuniy · tartib
@@ -492,22 +500,25 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
   Talab zinapoyasi A1: tayyor talab + 2 joy. Trek: bu blok ikkala trekda bir xil — o'zgarish faqat `backend/` da (A-bo'lim 10).
 - Qadamlar (bittadan ochiladi, har birida «Bajardim»; «Avval bajaring» qulfi):
   1. **Ochish** — Antigravity'da o'z repo'ngizni oching. Terminalda `git status`: `.env` fayllari ro'yxatda ko'rinmasin; ko'rinsa, agentga: «`.env` fayllarini `.gitignore` ga qo'sh.»
-     `backend/.env` ga yangi qator yozing: `TOLOV_KALITI=` va o'zingiz o'ylagan uzun kalit — harf va raqamlar; boshqa joyda ishlatadigan parolingiz emas. Shu nom va qiymatni Render'da xizmatingizning Environment bo'limiga qo'shib saqlang.
+     Keyin `git ls-files backend/.env` — natija bo'sh bo'lishi kerak (fayl Git'da kuzatilmayapti); fayl nomi chiqsa — o'qituvchiga ayting: kalitlar almashtiriladi.
+     `backend/.env` ga yangi qator yozing: `TOLOV_KALITI=` va tasodifiy uzun kalit — uni terminalda yarating: `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"` (64 belgili harf-raqam chiqadi); o'zingiz o'ylagan so'z yoki parolingiz emas. Shu nom va qiymatni Render'da xizmatingizning Environment bo'limiga qo'shib saqlang.
      **Kalitni agentga, chatga, README'ga va skrinshotga yozmang** — agent faqat uning nomini biladi. Bu blok ikkala trekda bir xil: o'zgarish faqat `backend/` da.
   2. **Prompt** — qavslarni to'ldiring (yonida kulrang namuna), «Nusxalash»ni bosing va Antigravity'ga yuboring:
      > Qayerda: `backend/` — yangi jadval `tolovlar` va yangi yo'l `POST /tolov/webhook`.
      > Nima qilsin: `tolovlar` ustunlari — `id`, `tolov_raqami` (noyob: bitta raqam jadvalda bir marta), {to'lovchi hisobi}, `summa` (so'mda), `holat` (`tolandi` yoki `rad`), `yaratilgan`. Jadvalni loyihadagi avvalgi jadvallar qanday yaratilgan bo'lsa, shunday yarat.
-     > `POST /tolov/webhook` tanasi — `{ tolovRaqami, holat, summa }` va to'lovchi hisobi; sarlavha `X-Imzo`. Tartib: 1) imzoni tekshir — HMAC SHA-256, so'rovning xom tanasi bo'yicha, kalit `.env` dagi `TOLOV_KALITI`; imzolarni `timingSafeEqual` bilan solishtir; imzo yo'q yoki mos kelmasa — `401` va hech narsa yozma; `TOLOV_KALITI` bo'sh bo'lsa ham hech bir xabarni qabul qilma.
-     > 2) shu `tolovRaqami` jadvalda bor bo'lsa — yozma, `200 { takror: true }` qaytar. 3) aks holda qatorni `holat` bilan yoz va `200 { ok: true }` qaytar; `rad` bo'lsa ham yoziladi, boshqa hech narsa o'zgarmaydi.
+     > `POST /tolov/webhook` tanasi — `{ tolovRaqami, holat, summa }` va to'lovchi hisobi; sarlavha `X-Imzo`. Tartib: 1) imzoni tekshir — HMAC SHA-256, so'rovning xom tanasi bo'yicha, kalit `.env` dagi `TOLOV_KALITI`; imzolarni `timingSafeEqual` bilan solishtir — undan oldin `X-Imzo` 64 belgili hex ekanini tekshir; imzo yo'q, shakli noto'g'ri yoki mos kelmasa — `401` va hech narsa yozma; `TOLOV_KALITI` bo'sh bo'lsa ham hech bir xabarni qabul qilma.
+     > 2) maydonlarni tekshir: `tolovRaqami` bo'sh emas, `summa` musbat butun son, to'lovchi hisobi mavjud, `holat` faqat `tolandi` yoki `rad` — aks holda `400`. 3) shu `tolovRaqami` jadvalda bor bo'lsa — yozma, `200 { takror: true }` qaytar. 4) aks holda qatorni `holat` bilan yoz va `200 { ok: true }` qaytar; `rad` bo'lsa ham yoziladi, boshqa hech narsa o'zgarmaydi. Ikki bir xil xabar bir vaqtda kelib, jadvaldagi noyoblik ikkinchisini to'xtatsa — unga ham `200 { takror: true }` qaytar, `500` emas.
      > Nima buzilmasin: {avvalgidek ishlashi kerak bo'lgan ishlar} avvalgidek ishlasin. `TOLOV_KALITI` qiymatini kodga, logga va README'ga yozma — faqat `.env` dan o'qi; `backend/.env.example` va README'dagi o'zgaruvchilar ro'yxatiga nomini qiymatsiz qo'sh. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
+     Prompt ostida kulrang qator: Haqiqiy Backend'da oxirgi himoya — Database: noyob `tolov_raqami` bir xil xabarni ikkinchi marta yozdirmaydi. (103)
      Qavslar yonida kulrang namuna (Mentor misolidan):
      - {to'lovchi hisobi} — «masalan: `oyinchi_id` — `oyinchilar` jadvalidagi hisob (tanada `oyinchiId`)»
      - {avvalgidek ishlashi kerak bo'lgan ishlar} — «masalan: kirish, e'lon berish, qo'shilish, real vaqt va eslatmalar»
+     Tekshiruv («Nusxalash» bosilganda, bloklaydi): bu joyda kamida ikkita ish vergul bilan bo'lmasa yoki «hammasi», «ilova» kabi bitta so'z bo'lsa — Ikkita aniq ish yozing: masalan, kirish, e'lon berish. (54)
      Yordam (ochiladigan) — Mentor misolidagi to'liq talab:
      > Qayerda: `backend/` — yangi jadval `tolovlar` va yangi yo'l `POST /tolov/webhook`.
      > Nima qilsin: `tolovlar` ustunlari — `id`, `tolov_raqami` (noyob: bitta raqam jadvalda bir marta), `oyinchi_id` — `oyinchilar` jadvalidagi hisob (tanada `oyinchiId`), `summa` (so'mda), `holat` (`tolandi` yoki `rad`), `yaratilgan`. Jadvalni loyihadagi avvalgi jadvallar qanday yaratilgan bo'lsa, shunday yarat.
-     > `POST /tolov/webhook` tanasi — `{ tolovRaqami, holat, summa, oyinchiId }`; sarlavha `X-Imzo`. Tartib: 1) imzoni tekshir — HMAC SHA-256, so'rovning xom tanasi bo'yicha, kalit `.env` dagi `TOLOV_KALITI`; imzolarni `timingSafeEqual` bilan solishtir; imzo yo'q yoki mos kelmasa — `401` va hech narsa yozma; `TOLOV_KALITI` bo'sh bo'lsa ham hech bir xabarni qabul qilma.
-     > 2) shu `tolovRaqami` jadvalda bor bo'lsa — yozma, `200 { takror: true }` qaytar. 3) aks holda qatorni `holat` bilan yoz va `200 { ok: true }` qaytar; `rad` bo'lsa ham yoziladi, boshqa hech narsa o'zgarmaydi.
+     > `POST /tolov/webhook` tanasi — `{ tolovRaqami, holat, summa, oyinchiId }`; sarlavha `X-Imzo`. Tartib: 1) imzoni tekshir — HMAC SHA-256, so'rovning xom tanasi bo'yicha, kalit `.env` dagi `TOLOV_KALITI`; imzolarni `timingSafeEqual` bilan solishtir — undan oldin `X-Imzo` 64 belgili hex ekanini tekshir; imzo yo'q, shakli noto'g'ri yoki mos kelmasa — `401` va hech narsa yozma; `TOLOV_KALITI` bo'sh bo'lsa ham hech bir xabarni qabul qilma.
+     > 2) maydonlarni tekshir: `tolovRaqami` bo'sh emas, `summa` musbat butun son, to'lovchi hisobi mavjud, `holat` faqat `tolandi` yoki `rad` — aks holda `400`. 3) shu `tolovRaqami` jadvalda bor bo'lsa — yozma, `200 { takror: true }` qaytar. 4) aks holda qatorni `holat` bilan yoz va `200 { ok: true }` qaytar; `rad` bo'lsa ham yoziladi, boshqa hech narsa o'zgarmaydi. Ikki bir xil xabar bir vaqtda kelib, jadvaldagi noyoblik ikkinchisini to'xtatsa — unga ham `200 { takror: true }` qaytar, `500` emas.
      > Nima buzilmasin: kirish, e'lon berish, qo'shilish, real vaqt va eslatmalar avvalgidek ishlasin. `TOLOV_KALITI` qiymatini kodga, logga va README'ga yozma — faqat `.env` dan o'qi; `backend/.env.example` va README'dagi o'zgaruvchilar ro'yxatiga nomini qiymatsiz qo'sh. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
   3. **Ishga tushirish** — agent tugatgach: `git status` — o'zgargan fayllar agent aytgani bilan bir xil, `.env` ro'yxatda yo'q; har faylni `git add <fayl>` bilan qo'shing, `git commit -m "tolov webhook"`, `git push`.
      Render Backend'ning yangi versiyasini chiqaradi — Render sahifasida tugashini kuting (bir necha daqiqa cho'zilishi mumkin).
@@ -517,11 +528,11 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
   4. **Tekshirish** — talabning har gapini o'zingiz ko'ring. Mentor misolida:
      (1) Agent ko'rsatgan uch qatorni oching: tartib — avval imzo, keyin to'lov raqami, keyin yozuv.
      (2) Terminalda `git grep -n "TOLOV_KALITI"`: natijada faqat nom bo'lsin (`process.env.TOLOV_KALITI`, `.env.example` va README qatori). Kalitning o'zi chiqsa — agentga «Kalit qiymatini koddan olib tashla, faqat `.env` dan o'qi.» deng, `.env` va Render'da kalitni yangisiga almashtiring.
-     (3) Neon SQL Editor'da `SELECT * FROM tolovlar;` — jadval bor va bo'sh: `id`, `tolov_raqami`, `oyinchi_id`, `summa`, `holat`, `yaratilgan` ustunlari ko'rinadi. Jadval yo'q bo'lsa — Render'da yangi versiya tugaganini ko'ring, keyin agentga: «`tolovlar` jadvali Neon'da yo'q. Avvalgi jadvallar qanday yaratilgan bo'lsa, shunday yarat va nima qilganingni ayt.»
+     (3) Neon SQL Editor'da `SELECT id, tolov_raqami, oyinchi_id, summa, holat, yaratilgan FROM tolovlar;` (to'lovchi hisobi ustuni — talabingizdagi nom) — jadval bor va bo'sh, olti ustun ko'rinadi; ustun yo'q bo'lsa Neon xato beradi. Jadval yo'q bo'lsa — Render'da yangi versiya tugaganini ko'ring, keyin agentga: «`tolovlar` jadvali Neon'da yo'q. Avvalgi jadvallar qanday yaratilgan bo'lsa, shunday yarat va nima qilganingni ayt.»
      Mos kelmagan gapni agentga yozing: «{nima} talabdagidek emas: {qanday bo'lsin}. Boshqa joyga tegma, o'zgargan fayllarni ayt.»
 - O'ng tomon — «kutilgan natija · namuna: Maydon Jamoa»: fayl kartasi — `backend/src/tolov/…` (yangi papka: jadval va yo'l) · `backend/src/main.ts` (o'zgardi — xom tana) · `backend/.env.example` (+ `TOLOV_KALITI=`, qiymatsiz) · `README.md` (o'zgaruvchilar: + `TOLOV_KALITI`);
   ostida terminal kartasi — `git grep -n "TOLOV_KALITI"` natijasi: uch qator, hammasida faqat nom; ostida Neon jadvali `tolovlar` — olti ustun, «0 qator».
-- Hammasi bajarilgach (yashil): `POST /tolov/webhook` va `tolovlar` tayyor — endi ularni mashq to'lov bilan tekshirasiz. (88)
+- Hammasi bajarilgach (yashil): Yo'l va jadval qurildi — ular qanday ishlashini mashq to'lov bilan tekshirasiz. (79)
 - Qator (`QIzoh`, natija ostida, bitta): Kodni agent yozdi — to'g'ri ishlashini 2-amaliyotdagi uch tekshiruv ko'rsatadi.
 - Pastki qator (kichik; darsda bir marta — SABOQ 39): Ortda qoldingizmi — Mentor misolini o'z repo'ngizdan tashqarida, yangi papkada oching: `git clone https://github.com/Azizbekcrypto/maydon-jamoa` · `cd maydon-jamoa` · `git checkout -f m13-dars-03-done` —
   oxirgi buyruqni faqat shu yangi papkada ishlating: u papkadagi o'zgarishlarni o'chiradi. `backend/.env` ga o'z qiymatlaringizni yozasiz (`TOLOV_KALITI` ham).
@@ -531,6 +542,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
   Agentning «tayyor» degani — da'vo (sinf 5); bu blokda o'quvchi kod tartibini, kalit yo'qligini va jadvalni o'zi ko'radi, to'g'ri ishlashini — A2. Push odati — `git status` → `git add <fayl>` (tayanch 3).
 - O'qituvchi eslatmasi: xom tana — NestJS `rawBody: true` (Manbalar 1): agent `main.ts` ni o'zgartiradi; o'quvchi so'rasa — «imzo xabar matnining o'zidan hisoblanadi, shuning uchun matn o'zgarmasdan olinadi». Jadval yaratilishi — 11-Modul loyihasidagi usulga qarab (agent aytadi).
   Kalit qiymati ekranda, chatda yoki loyihada ko'rinib qolsa — yangisi qo'yiladi (`.env` va Render); eskisi ishlatilmaydi.
+  `timingSafeEqual` uzunligi har xil buferlarda xato tashlaydi — shuning uchun talabda avval imzo shakli tekshiriladi (Manbalar 2). `git ls-files` da `.env` chiqsa — u ilgari Git'ga tushgan: kalitlar (Neon, JWT, sanoq, to'lov) yangisiga almashtiriladi.
 
 ## 16 · Amaliyot 2 — mashq to'lov va uch tekshiruv  ← amaliyot bloki (QBlok + `ScreenBlok`, ≈16 daq)
 - Eyebrow: Amaliyot 2 · o'z repo'ngiz
@@ -545,25 +557,25 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
      > Qayerda: `backend/` — yangi sahifa `GET /tolov-mashq` (oddiy HTML, Backend'ning o'zi beradi) va `README.md` — yangi «To'lov» bo'limi.
      > Nima qilsin: sahifa manzildagi `oyinchi` va `summa` ni oladi. Sahifada: sarlavha «Mashq to'lov», ostida «Bu sahifa — mashq. Karta so'ralmaydi, pul yechilmaydi.», keyin «{nima uchun to'lov}» va summa. Karta yoki boshqa to'lov ma'lumoti so'raladigan maydon bo'lmasin; Payme yoki Click nomi va ko'rinishi ishlatilmasin.
      > To'rt tugma: «To'lash (mashq)» — yangi to'lov raqami, holat `tolandi` · «Rad etish (mashq)» — yangi raqam, holat `rad` · «Ikki marta yuborish» — bitta raqam bilan bir xil xabar ikki marta · «Imzosiz yuborish» — `X-Imzo` sarlavhasisiz.
-     > Tugma bosilganda xabarni Backend'da yasasin va `TOLOV_KALITI` bilan imzolasin — kalit brauzerga chiqmasin; keyin xabarni o'zining `POST /tolov/webhook` manziliga haqiqiy so'rov qilib yuborsin. Sahifada har yuborishning javobi ko'rinsin: holat kodi va tanasi.
-     > `README.md` dagi «To'lov» bo'limiga pastdagi qatorlarni uch ustunli jadval qilib yoz: kim · nima qiladi · kimga. So'zlarimni o'zgartirma, qator qo'shma.
+     > Har tugma bosilganda yangi to'lov raqami (`m-` bilan boshlansin). Xabarni Backend'da bitta JSON satr qilib yasasin, aynan shu satrni `TOLOV_KALITI` bilan imzolasin va aynan shu satrni tana qilib o'zining `POST /tolov/webhook` manziliga haqiqiy so'rov qilib yuborsin — kalit brauzerga chiqmasin. Sahifada har yuborishning javobi ko'rinsin: holat kodi va tanasi.
+     > `README.md` dagi «To'lov» bo'limiga «Reja: to'lov oqimi» sarlavhasini va uning ostiga pastdagi qatorlarni uch ustunli jadval qilib yoz: kim · nima qiladi · kimga. So'zlarimni o'zgartirma, qator qo'shma.
      > {sxema qatorlari}
-     > Jadval ostiga bitta qator yoz: {hozirgi holat}
+     > Jadval ostiga «Hozir ishlaydi:» bilan boshlanadigan bitta qator yoz: {hozirgi holat}
      > Nima buzilmasin: `POST /tolov/webhook` dagi tekshiruvlar o'zgarmasin. `TOLOV_KALITI` qiymatini hech qayerga yozma. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Qavslar: {nima uchun to'lov} — bo'sh, kulrang «masalan: Maydon Jamoa — Pro, 30 kun» · {sxema qatorlari} — `pm-m11d3-oqim.qatorlar` dan oldindan yoziladi (har qator bir satr: «kim | nima qiladi | kimga»); saqlanmagan bo'lsa — bo'sh, kulrang
-     «masalan: To'lov xizmati | to'lov xabarini yuboradi: POST /tolov/webhook | Backend» · {hozirgi holat} — o'quvchi yozadi: «masalan: Hozircha to'lov xabari qabul qilinadi va yoziladi; boshqa hech narsa o'zgarmaydi. Test rejim: pul yechilmaydi.»
+     «masalan: To'lov xizmati | to'lov xabarini yuboradi: POST /tolov/webhook | Backend» · {hozirgi holat} — o'quvchi yozadi: «masalan: to'lov xabari qabul qilinadi va yoziladi; boshqa hech narsa o'zgarmaydi. Test rejim: pul yechilmaydi.»
      Yordam (ochiladigan) — Mentor misolidagi to'liq talab:
      > Qayerda: `backend/` — yangi sahifa `GET /tolov-mashq` (oddiy HTML, Backend'ning o'zi beradi) va `README.md` — yangi «To'lov» bo'limi.
      > Nima qilsin: sahifa manzildagi `oyinchi` va `summa` ni oladi. Sahifada: sarlavha «Mashq to'lov», ostida «Bu sahifa — mashq. Karta so'ralmaydi, pul yechilmaydi.», keyin «Maydon Jamoa — Pro, 30 kun» va summa. Karta yoki boshqa to'lov ma'lumoti so'raladigan maydon bo'lmasin; Payme yoki Click nomi va ko'rinishi ishlatilmasin.
      > To'rt tugma: «To'lash (mashq)» — yangi to'lov raqami, holat `tolandi` · «Rad etish (mashq)» — yangi raqam, holat `rad` · «Ikki marta yuborish» — bitta raqam bilan bir xil xabar ikki marta · «Imzosiz yuborish» — `X-Imzo` sarlavhasisiz.
-     > Tugma bosilganda xabarni Backend'da yasasin va `TOLOV_KALITI` bilan imzolasin — kalit brauzerga chiqmasin; keyin xabarni o'zining `POST /tolov/webhook` manziliga haqiqiy so'rov qilib yuborsin. Sahifada har yuborishning javobi ko'rinsin: holat kodi va tanasi.
-     > `README.md` dagi «To'lov» bo'limiga pastdagi qatorlarni uch ustunli jadval qilib yoz: kim · nima qiladi · kimga. So'zlarimni o'zgartirma, qator qo'shma.
+     > Har tugma bosilganda yangi to'lov raqami (`m-` bilan boshlansin). Xabarni Backend'da bitta JSON satr qilib yasasin, aynan shu satrni `TOLOV_KALITI` bilan imzolasin va aynan shu satrni tana qilib o'zining `POST /tolov/webhook` manziliga haqiqiy so'rov qilib yuborsin — kalit brauzerga chiqmasin. Sahifada har yuborishning javobi ko'rinsin: holat kodi va tanasi.
+     > `README.md` dagi «To'lov» bo'limiga «Reja: to'lov oqimi» sarlavhasini va uning ostiga pastdagi qatorlarni uch ustunli jadval qilib yoz: kim · nima qiladi · kimga. So'zlarimni o'zgartirma, qator qo'shma.
      > Ilova | «To'lovga o'tish» bosilganda to'lov sahifasini ochadi | Brauzer
      > Tashkilotchi | to'lov sahifasida to'laydi yoki rad etadi; karta ma'lumoti faqat xizmatda | To'lov xizmati
      > To'lov xizmati | to'lov xabarini yuboradi: POST /tolov/webhook | Backend
      > Backend | imzoni tekshiradi, to'lovni bir marta yozadi, Pro muddatini uzaytiradi, 200 qaytaradi | To'lov xizmati
      > Ilova | Pro holatini qayta so'raydi: GET /men | Backend
-     > Jadval ostiga bitta qator yoz: Hozircha: to'lov xabari `POST /tolov/webhook` da qabul qilinadi va `tolovlar` ga yoziladi; Pro va ilova hali o'zgarmaydi. Test rejim: pul yechilmaydi.
+     > Jadval ostiga «Hozir ishlaydi:» bilan boshlanadigan bitta qator yoz: to'lov xabari `POST /tolov/webhook` da qabul qilinadi va `tolovlar` ga yoziladi; Pro va ilova hali o'zgarmaydi. Test rejim: pul yechilmaydi.
      > Nima buzilmasin: `POST /tolov/webhook` dagi tekshiruvlar o'zgarmasin. `TOLOV_KALITI` qiymatini hech qayerga yozma. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
   3. **Ishga tushirish** — agent tugatgach: `git status` — o'zgargan fayllar agent aytgani bilan bir xil, `.env` ro'yxatda yo'q; `git add <fayl>` → `git commit -m "mashq tolov"` → `git push`. Render'da yangi versiya tugashini kuting.
      Kutayotganda agentga (SABOQ 52; «Nusxalash» bilan):
@@ -571,7 +583,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
      Render tayyor bo'lgach brauzerda oching: `{Backend manzili}/tolov-mashq?oyinchi={hisob raqami}&summa={summa}` — masalan: `maydon-jamoa-….onrender.com/tolov-mashq?oyinchi=7&summa=10000`.
      Sahifa birinchi ochilishda bir daqiqagacha kechikishi mumkin: bepul Backend uxlab qolgan bo'lsa, uyg'onadi. Xato chiqsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»
   4. **Tekshirish** — uch tekshiruv, bittadan; har biridan keyin tekshiruv kartasida «Kutilganidek» yoki «Boshqacha» ni tanlang:
-     (1) **Imzo** — «Imzosiz yuborish»: sahifada javob `401` bo'lishi kerak; Neon'da `SELECT * FROM tolovlar;` — yangi qator yo'q.
+     (1) **Imzo** — «Imzosiz yuborish»: sahifada javob `401` bo'lishi kerak; Neon'da `SELECT tolov_raqami, holat FROM tolovlar ORDER BY yaratilgan DESC;` — yangi qator yo'q.
      (2) **Takror** — «Ikki marta yuborish»: birinchi javob `200 { ok: true }`, ikkinchisi `200 { takror: true }`; `tolovlar` da shu raqam bilan bitta qator.
      (3) **Rad** — «Rad etish (mashq)»: javob `200`; `tolovlar` da yangi qator, holati `rad`.
      «Boshqacha» bo'lsa — agentga: «{tekshiruv}: kutganim {nima kutdim}, bo'ldi {nima bo'ldi}. Tuzat, o'zgargan fayllarni ayt.» → push → Render → o'sha tugma bilan qayta tekshiring.
@@ -579,16 +591,18 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
 - Tekshiruv kartasi (chapda, 4-qadam ichida; har tekshiruvga bittadan): nima bosiladi · nima kutiladi · tugmalar «Kutilganidek» · «Boshqacha». Saqlanadi: `pm-m11d3-oqim.test.imzo` / `.takror` / `.rad` — har tugma bosilganda (A-bo'lim 12).
 - O'ng tomon — «kutilgan natija · namuna: Maydon Jamoa»: brauzer oynasi `maydon-jamoa-….onrender.com/tolov-mashq` — «Mashq to'lov» sahifasi (sarlavha, «Bu sahifa — mashq. Karta so'ralmaydi, pul yechilmaydi.», «Maydon Jamoa — Pro, 30 kun · 10 000 so'm» + yorliq «Mentorning taxmini», to'rt tugma);
   ostida javoblar ro'yxati: «Imzosiz yuborish — `401`» · «Ikki marta yuborish — `200 { ok: true }` · `200 { takror: true }`» · «Rad etish (mashq) — `200 { ok: true }`»; yonida Neon jadvali `tolovlar` — ikki qator: «… · tolandi» · «… · rad».
-  Pastda README ko'rinishi: «To'lov» · besh qatorli jadval va ostidagi halol qator (A-bo'lim 4).
+  Pastda README ko'rinishi: «To'lov» · «Reja: to'lov oqimi» — besh qatorli jadval va ostidagi «Hozir ishlaydi: …» qatori (A-bo'lim 4).
 - Hammasi bajarilgach (yashil, holatga qarab — sinf 6):
   - uchalasi «Kutilganidek» — Uch tekshiruv o'tdi: imzosiz `401`, takror bitta qator, rad yozildi. (68)
   - birortasi «Boshqacha» — Tekshiruv tugamagan: «Boshqacha» chiqqanini tuzatib, qayta tekshiring. (70)
+- Qator (`QIzoh`, natija ostida, bitta): Bu sahifa — mashq yordamchisi: hisob va summa manzildan olinadi; haqiqiy to'lovda ularni Backend o'zi biladi. (109)
 - Ulgurmasangiz: Render kutishi cho'zilsa — 4-qadam uyga vazifaning 1-bandi; «Davom etish» 2-qadamdan keyin ochiladi (SABOQ E 55). Blok 4-qadam «Bajardim»idan keyin bajarilgan sanaladi.
-- Nishon (bonus): Webhook Tested — 4-qadam «Bajardim»ida, uchala tekshiruv belgilangan bo'lsa (natijasidan qat'i nazar — tavsif qilingan ishni aytadi).
+- Nishon (bonus): Webhook Tested — 4-qadam «Bajardim»ida, uchala tekshiruv belgilangan bo'lsa (natijasidan qat'i nazar — tavsif qilingan ishni aytadi; GATE M M-q6 A — foydalanuvchi qarori, F-1007-461 da «faqat 3/3» taklifi rad).
 - Tugmalar: Orqaga · Avval bajaring → Davom etish
 - ✎ MD izohi: tekshiruvni o'quvchi o'zi qiladi — agent faqat sahifani yozadi va xato bo'lsa tuzatadi (sinf 10). «Kutilganidek» — o'quvchi o'z ko'zi bilan ko'rgani (ish fakti); agentning «ishlaydi» degani yozilmaydi.
   `tolovlar` dagi qatorlar — mashq: bu kursda real to'lov yo'q, ularni o'chirish shart emas (sanoqqa tushmaydi). Mashq sahifasining ichki yo'li va o'z manziliga so'rov — TAYANCHGA SAVOL 11. Hisob raqami — o'quvchining o'z hisobi (TAYANCHGA SAVOL 16).
-- O'qituvchi eslatmasi: mashq sahifasi va tugmalari faqat o'quvchining o'z Backend'ini chaqiradi; boshqa odamning Backend'iga yoki haqiqiy to'lov xizmatiga hech narsa yuborilmaydi. Sahifa ochiq manzilda turadi — pul yo'q, shuning uchun bu darsda xavf yo'q (4-dars uchun savol — TAYANCHGA SAVOL 23).
+- O'qituvchi eslatmasi: mashq sahifasi va tugmalari faqat o'quvchining o'z Backend'ini chaqiradi; boshqa odamning Backend'iga yoki haqiqiy to'lov xizmatiga hech narsa yuborilmaydi.
+  Sahifa ochiq manzilda turadi: pul va Pro yo'q, lekin manzilni bilgan odam mashq qatori yarata oladi (`m-` raqamli, sanoqqa kirmaydi). 4-darsdan sahifa faqat Backend bergan to'lov raqami bilan ishlaydi (tayanch 9.7); real to'lovga o'tilsa mashq sahifasi o'chiriladi — bu kursda emas (TAYANCHGA SAVOL 23).
 
 ## 17 · Natijalar (podium) — umumiy shablon
 - Jonli reyting: 4 savol + final + 2 blok «Bajardim» (`PRACTICE_BASE`). QKod (7) va QMustaqil (13) — `practice: -1`.
@@ -607,20 +621,21 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
 - Sarlavha (holatga qarab, P-046; sinf 6 — o'quvchi qilgan ishni aytadi, har holat rost — E 54):
   - A1 va A2 bajarilgan, uchala tekshiruv «Kutilganidek» — **To'lov xabari Backend'ingizda — uch tekshiruv o'tdi.** (52)
   - A1 va A2 bajarilgan, «Boshqacha» bor — **To'lov xabari yo'li bor — tekshiruvni tugatish qoldi.** (53)
-  - A1 bajarilgan, A2 yo'q — **Yo'l va jadval tayyor — uch tekshiruv qoldi.** (44)
+  - A1 bajarilgan, A2 yo'q — **Yo'l va jadval qurildi — uch tekshiruv qoldi.** (45)
   - A1 bajarilmagan, sxema saqlangan — **Sxemangiz tayyor — to'lov xabari yo'lini qurish qoldi.** (54)
   - hech biri — **Webhook hali qurilmagan — qadamlarni uyda bajaring.** (51)
 - CTA: CODE STRIKE (arena) — jonli darsda: Mentorni kuting
 - «Bugungi asosiy fikr» qutisi yakunda yo'q (SABOQ E 50) — fikr A-bo'lim 2-bandida, darsning ichki o'qi.
 - Endi siz bilasiz (5):
   - To'lov o'tganini Backend'ga to'lov xizmati xabar bilan aytadi — bu webhook.
-  - Imzo xabar xizmatdan kelganini ko'rsatadi: Backend uni maxfiy kalit bilan qayta hisoblaydi.
+  - Imzo xabar maxfiy kalitni biladigan tomondan kelganini ko'rsatadi: Backend uni qayta hisoblab solishtiradi.
   - Bitta to'lov xabari ikki marta kelishi mumkin, shuning uchun to'lov raqami bir marta yoziladi.
   - Rad etilgan to'lov ham yoziladi, lekin hech narsa ochilmaydi.
   - Test rejimda pul yechilmaydi; haqiqiy xizmatda sahifa va xabar boshqa kompaniya serveridan keladi.
 - Uyga vazifa (`uyga`, karta: kim uchun — o'z mahsulotingiz · nechta — ikki ish · muddat — keyingi darsgacha):
   1. **Tugatish** — darsda ulgurmagan blokni bajaring: `tolovlar` da mashq to'lov qatorlari tursin, uchala tekshiruv belgilangan bo'lsin, README'da «To'lov» bo'limi bo'lsin.
   2. **Sxema** — sxemangizni mahsulotingizdagi haqiqiy tugma va ekran nomlari bilan solishtiring: nom farq qilsa — darsdagi sxema kartasida va README'da tuzating.
+- **AI bilan davom** (`AiDavomCard`, CODE STRIKE ostida, mentor rejimida yo'q — PM-109, F-1007-475): sarlavha **Erta tugatdingizmi? AI bilan davom eting** · matn: gemini.google.com'ni oching, pastdagi so'rovni yuboring — AI to'lov xizmati bo'lib to'rt xabar beradi. Har biriga Backend'ingiz nima qilishini yozing; adashgan joyingizni «Orqaga» bilan 5–9-ekranlarda qayta ko'ring. · so'rov qutisi (nusxalash): «Sen to'lov xizmatisan. Menga navbat bilan 4 ta webhook xabari ber: imzosi to'g'ri, imzosi noto'g'ri, takror (bir xil to'lov raqami), rad etilgan (holat: rad). Har xabar — qisqa JSON: tolovRaqami, holat, summa, oyinchiId va X-Imzo sarlavhasi. Har biridan keyin men Backend'im nima qilishini yozaman (yozadi yoki yozmaydi, javobi 200 yoki 401); sen to'g'ri-noto'g'riligini bir gapda ayt va nega. Mahsulot: Maydon Jamoa, Pro 30 kun, 10 000 so'm. Birinchi xabarni ber.»
 - Keyingi dars — «Narxni qanday belgilaysiz?»
 - Nishonlaringiz — N/4
 - Tugmalar: Orqaga · Qaytadan · Yakunlash
@@ -672,7 +687,7 @@ Oyna yorlig'i: Qayta tushuntirish · tugmalar: ← Oldingi · Keyingisi → · �
 | To'lov sahifasi nima? | Brauzerda ochiladigan, odam to'laydigan sahifa | Karta ma'lumoti faqat shu sahifada — Backend'ga kirmaydi |
 | To'lov xabari nima? | To'lov xizmati Backend'ga yuboradigan xabar: to'landi yoki rad etildi | Texnik nomi — webhook; 7-Modulda botingiz Telegram xabarini shunday olardi |
 | Mentor misolida to'lov xabari qayerga keladi? | `POST /tolov/webhook` | Tanada: `tolovRaqami`, `holat`, `summa`, `oyinchiId` |
-| Imzo nima? | Xabar haqiqatan to'lov xizmatidan kelganini ko'rsatadigan belgi | Xizmat maxfiy kalit bilan hisoblaydi, Backend qayta hisoblab solishtiradi |
+| Imzo nima? | Xabar maxfiy kalitni biladigan tomondan kelganini ko'rsatadigan belgi | Kalit faqat xizmat va Backend'da; mashqda Backend'ning o'zi imzolaydi |
 | Imzo mos kelmasa, Mentor Backend'i nima qiladi? | `401` qaytaradi, hech narsa yozmaydi | Imzo `X-Imzo` sarlavhasida keladi; kalitning o'zi xabarda yo'q |
 | Takror xabar nima? | Bitta to'lov haqidagi xabarning ikki marta kelishi | Inglizchasi: idempotency. To'lov raqami bir marta sanaladi |
 | Takror xabarga Backend nima javob beradi? | `200`, lekin ikkinchi qator yozilmaydi | `200` bo'lmasa, xizmat yana yuborardi |
@@ -686,7 +701,7 @@ Oyna yorlig'i: Qayta tushuntirish · tugmalar: ← Oldingi · Keyingisi → · �
 2. Mentor sxemasida karta ma'lumoti qayerda qoladi? Backend'ning jadvalida · ✔ Faqat to'lov xizmatida · Ilovaning xotirasida · README faylining ichida
 3. `X-Imzo` sarlavhasida nima keladi? `.env` dagi kalitning o'zi · Tashkilotchining paroli · ✔ Kalit bilan hisoblangan imzo · To'lovning summasi va sanasi
 4. `TOLOV_KALITI` qiymatini qayerga yozasiz? README'ga, hamma ko'rib tursin · Kodga, alohida bitta qatorga · Agentga, promptning ichiga · ✔ `.env` va Render sozlamasiga
-5. Imzo mos keldi. Bu nimani ko'rsatadi? ✔ Xabar to'lov xizmatidan kelgan · To'lov muvaffaqiyatli o'tgan · Summa narxga aynan to'g'ri keladi · Xabar birinchi marta kelgan
+5. Imzo mos keldi. Bu nimani ko'rsatadi? ✔ Kalitni biladigan tomon yuborgan · To'lov muvaffaqiyatli o'tgan · Summa narxga aynan to'g'ri keladi · Xabar birinchi marta kelgan
 6. Javob yo'qolsa, Payme nima qiladi? Shu xabarni boshqa yubormaydi · ✔ Xuddi shu so'rovni qayta yuboradi · Yangi raqam bilan qayta yuboradi · Tashkilotchining ilovasiga yozadi
 7. Stripe takror xabar haqida nimani maslahat beradi? Har xabarni ikki marta yozib qo'yishni · Xabarlarni tartib bilan kutishni · ✔ Ishlangan xabar raqamlarini yozishni · Takror xabarga `401` qaytarishni
 8. Mentor Backend'i takror xabarni nimaga qarab taniydi? Xabardagi summaga qarab · To'lovchining ismiga qarab · Xabar kelgan vaqtga qarab · ✔ To'lov raqamiga qarab
@@ -731,12 +746,12 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari — ru'da ham o'sha; R-008): to'lov x
 ## REPO — `maydon-jamoa` («qur» bosqichida yoziladi, push — buyruq bilan; `m13-dars-03-start` = `m13-dars-02-done` = `m12-dars-10-done` → `m13-dars-03-done`, tayanch 3)
 1. `backend/src/main.ts`: `NestFactory.create(AppModule, { rawBody: true })` (Manbalar 1) — imzo xom tana (`req.rawBody`, Buffer) bo'yicha hisoblanadi.
 2. `backend/src/tolov/` (yangi bo'lim): `tolovlar` jadvali — `id` · `tolov_raqami` (UNIQUE) · `oyinchi_id` · `summa` (so'm, butun son) · `holat` (`tolandi` | `rad`) · `yaratilgan`; jadval 11-Modul loyihasidagi usul bilan yaratiladi (TypeORM sozlamasi — «qur» da ko'riladi).
-   `POST /tolov/webhook`: (1) `X-Imzo` yo'q yoki `createHmac('sha256', process.env.TOLOV_KALITI).update(req.rawBody).digest('hex')` bilan `timingSafeEqual` mos emas (uzunlik teng bo'lmasa — mos emas) → `401`, yozuv yo'q ·
-   (2) `tolov_raqami` bor → `200 { takror: true }` · (3) yozish → `200 { ok: true }` (rad ham); bir vaqtda kelgan ikki bir xil xabarda UNIQUE buzilsa — ikkinchisiga ham `200 { takror: true }` · `holat` boshqa qiymat yoki maydon yetishmasa → `400` (o'quvchi matnida yo'q; TAYANCHGA SAVOL 24). Pro va ilova o'zgarmaydi.
+   `POST /tolov/webhook`: (1) `X-Imzo` yo'q yoki 64 belgili hex emas → `401` (`timingSafeEqual` chaqirilmaydi — uzunlik har xil buferda xato tashlaydi, Manbalar 2); aks holda `createHmac('sha256', process.env.TOLOV_KALITI).update(req.rawBody).digest('hex')` bilan `timingSafeEqual` mos emas → `401`, yozuv yo'q ·
+   (2) `tolov_raqami` bor → `200 { takror: true }` · (3) yozish → `200 { ok: true }` (rad ham); bir vaqtda kelgan ikki bir xil xabarda UNIQUE buzilsa — ikkinchisiga ham `200 { takror: true }` · `holat` boshqa qiymat, maydon yetishmasa, `summa` musbat butun son emas yoki `oyinchiId` jadvalda yo'q → `400` (A1 talabida ham — F-1007-461) (o'quvchi matnida yo'q; TAYANCHGA SAVOL 24). Pro va ilova o'zgarmaydi.
 3. `GET /tolov-mashq?oyinchi=…&summa=…` — oddiy HTML (tayanch 1.3 matnlari aynan + «Maydon Jamoa — Pro, 30 kun»); to'rt tugma `POST /tolov-mashq/yubor { tur: 'tolash' | 'rad' | 'ikki' | 'imzosiz', oyinchi, summa }` ga so'rov beradi;
-   Backend xabarni yasaydi (`tolovRaqami` — `m-` + navbatdagi raqam), `TOLOV_KALITI` bilan imzolaydi va o'zining tashqi manziliga (`RENDER_EXTERNAL_URL` yoki lokal `PORT`) `POST /tolov/webhook` yuboradi; `ikki` — bir xil tana va imzo bilan ketma-ket ikki marta; `imzosiz` — `X-Imzo` siz; javob(lar)ni (holat kodi + tana) sahifaga qaytaradi. Karta maydoni yo'q; Payme/Click nomi yo'q.
-4. `backend/.env.example` — `TOLOV_KALITI=` (qiymatsiz); `README.md` — o'zgaruvchilar ro'yxatiga `TOLOV_KALITI` (qiymatsiz) · yangi «To'lov» bo'limi (A2 Mentor talabi natijasi: besh qatorli jadval + halol qator) · «Darslar va teglar» jadvaliga `m13-dars-03-done`.
-5. Muhrdan oldin (⛔ «qur» darvozasi): Render'da deploy; mashq sahifasida uch tekshiruv (imzosiz `401` · ikki marta — bitta qator · rad — «rad» qatori); `git grep TOLOV_KALITI` — faqat nom; Render bepul xizmati o'z tashqi manziliga so'rov yuborib javob ola olishi (Shubhali 1); `rawBody` 11-Modul loyihasidagi NestJS versiyasida (Shubhali 2); uxlagan Render'da mashq sahifasining birinchi ochilishi.
+   Backend xabarni bitta JSON satr qilib yasaydi (`tolovRaqami` — `m-` + navbatdagi raqam, har bosishda yangi), aynan shu satrni `TOLOV_KALITI` bilan imzolaydi va aynan shu satrni tana qilib o'zining tashqi manziliga (`RENDER_EXTERNAL_URL` yoki lokal `PORT`) `POST /tolov/webhook` yuboradi; `ikki` — bir xil tana va imzo bilan ketma-ket ikki marta; `imzosiz` — `X-Imzo` siz; javob(lar)ni (holat kodi + tana) sahifaga qaytaradi. Karta maydoni yo'q; Payme/Click nomi yo'q.
+4. `backend/.env.example` — `TOLOV_KALITI=` (qiymatsiz); `README.md` — o'zgaruvchilar ro'yxatiga `TOLOV_KALITI` (qiymatsiz) · yangi «To'lov» bo'limi («Reja: to'lov oqimi» — besh qatorli jadval + «Hozir ishlaydi: …» qatori) · «Darslar va teglar» jadvaliga `m13-dars-03-done`.
+5. Muhrdan oldin (⛔ «qur» darvozasi): Render'da deploy; mashq sahifasida uch tekshiruv (imzosiz `401` · ikki marta — bitta qator · rad — «rad» qatori); `git grep TOLOV_KALITI` — faqat nom; Render bepul xizmati o'z tashqi manziliga so'rov yuborib javob ola olishi (Shubhali 1); `rawBody` 11-Modul loyihasidagi NestJS versiyasida (Shubhali 2); uxlagan Render'da mashq sahifasining birinchi ochilishi · Payme/Click/Stripe faktlari rasmiy hujjatdan qayta (sana bilan) · tasodifiy kalit buyrug'i Windows PowerShell'da (F-1007-461).
 
 ## Manbalar (o'zim tekshirdim yoki tayanch 6 orqali, 07.10.2026; o'quvchiga ko'rinmaydi)
 1. NestJS — `docs.nestjs.com/faq/raw-body` (o'zim, 07.10.2026): «const app = await NestFactory.create<NestExpressApplication>(AppModule, { rawBody: true });» · «type the request with the `RawBodyRequest` convenience interface, which exposes a `rawBody` field» ·
@@ -762,33 +777,33 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari — ru'da ham o'sha; R-008): to'lov x
 6. **Rad etilgan to'lov — «hech narsa ochilmaydi»** (tayanch: «Pro o'zgarmaydi, ilova «To'lov o'tmadi»» — bu darsda Pro va ilova yo'q); sabab QIzohi: «Yozuv qoladi: tashkilotchi «to'lovim qayerda?» deb so'rasa, o'tmagan to'lov ham Backend'da ko'rinadi.» — tayanchda sabab yo'q.
 7. **Takror tekshiruvi rad tekshiruvidan oldin** — kod oynasi 3-sharti va 9-ekran 2-qadami (tayanch tartibi «imzo · takror · rad» dan kelib chiqadi; rad xabari ham takror bo'lishi mumkin).
 8. **Kod oynasi:** `yozilganlar` — to'lov raqamlari ro'yxati (satrlar), shuning uchun `includes`; tugmalar «Yangi to'lov xabari» · «Rad etilgan to'lov xabari» · «Oxirgi xabar yana keldi»; javob qatori «Javob: 200 · <natija>».
-9. **4-ekran kod kartasi `imzo !== kutilgan`** — o'qish uchun qisqartirilgan; A1 talabi va REPO — `timingSafeEqual`. Taqqoslash vaqti hujumi darsda aytilmaydi (13 yosh; O'qituvchi eslatmasida bir gap).
+9. **4-ekran kod kartasi `imzo !== kutilgan`** — o'qish uchun qisqartirilgan; A1 talabi va REPO — `timingSafeEqual` (F-1007-461: undan oldin shakl tekshiruvi; karta ostida «qisqa ko'rinish» qatori). Taqqoslash vaqti hujumi darsda aytilmaydi (13 yosh; O'qituvchi eslatmasida bir gap).
 10. **«Xom tana» (raw body)** — A1 promptida agent uchun; NestJS `rawBody: true` (Manbalar 1). O'quvchi matnida tushuntirilmaydi.
-11. **Mashq sahifasining ichki yo'li** `POST /tolov-mashq/yubor` va Backend'ning o'z tashqi manziliga haqiqiy so'rov — tayanchda faqat «sahifa xabarni Backend'da imzolaydi» (07.10: «serverda» → «Backend'da», tayanch 9.5) (REPO 3).
+11. **Mashq sahifasining ichki yo'li** (F-1007-461: imzo va tana — aynan bitta JSON satr; zaxira yo'l — webhook funksiyasini ichkaridan chaqirish — HTTP va xom tana chegarasini tekshirmaydi, shunday bo'lsa MD da halol aytiladi) `POST /tolov-mashq/yubor` va Backend'ning o'z tashqi manziliga haqiqiy so'rov — tayanchda faqat «sahifa xabarni Backend'da imzolaydi» (07.10: «serverda» → «Backend'da», tayanch 9.5) (REPO 3).
 12. **Mentor sxemasi uch ustunda** (kim · nima qiladi · kimga — `pm-m11d3-oqim` shakli); tayanch 1.3 «X → Y → Z» qatorlaridan ajratildi; 2-qator «kim» — **Tashkilotchi** (tayanchda «to'lov xizmati → odam to'laydi»); 1-qator «kimga» — Brauzer.
-13. **3-dars `pm-m11d2-model` ni o'qimaydi** (tayanch 8 da 3-dars faqat `pm-m9d8-platforma` ni o'qiydi) — 13-ekran Mentori o'quvchini 2-darsdagi modeliga yuboradi, kalitdan to'ldirilmaydi. O'qisa, sxemaning «kim to'laydi» qatori oldindan to'lardi — qaror sizda.
-14. **`pm-m11d3-oqim.test`** — A2 tekshiruv kartasidagi «Kutilganidek» → `true`, «Boshqacha» → `false`, bosilmagan → `null`.
+13. ✅ **Yopildi — F-1007-461:** `pm-m11d2-model` (`model`, `kim`) faqat o'qiladi — 13-ekranda kulrang eslatma qatori; maydonlarga yozilmaydi (tayanch 8). Avvalgi qaror: **3-dars `pm-m11d2-model` ni o'qimaydi** (tayanch 8 da 3-dars faqat `pm-m9d8-platforma` ni o'qiydi) — 13-ekran Mentori o'quvchini 2-darsdagi modeliga yuboradi, kalitdan to'ldirilmaydi. O'qisa, sxemaning «kim to'laydi» qatori oldindan to'lardi — qaror sizda.
+14. **`pm-m11d3-oqim.test`** — A2 tekshiruv kartasidagi «Kutilganidek» → `true`, «Boshqacha» → `false`, bosilmagan → `null`; qiymat — oxirgi tekshiruv natijasi (F-1007-461).
 15. **A1 tekshiruvi:** kod tartibi (agent ko'rsatgan uch qator), `git grep -n "TOLOV_KALITI"` (faqat nom), Neon SQL Editor `SELECT * FROM tolovlar;` (bo'sh jadval). Webhook'ning o'zi A2 da tekshiriladi.
 16. **A2 hisob raqami** — o'quvchining o'z hisobi: Neon'da login bo'yicha `SELECT id …`, zaxira — agent. Login agentga aytiladi (maxfiy emas); tekshiruv akkaunti ochilmaydi — to'lov qatorlari mashq, Pro bu darsda yo'q.
-17. **A1 `{avvalgidek ishlashi kerak bo'lgan ishlar}`** — bo'sh, «masalan» bilan; `pm-m9d5-prd.funksiyalar` dan to'ldirilmaydi (3-darsning o'qish ro'yxatida yo'q).
+17. **A1 `{avvalgidek ishlashi kerak bo'lgan ishlar}`** (F-1007-461: kamida ikkita aniq ish — bloklaydi) — bo'sh, «masalan» bilan; `pm-m9d5-prd.funksiyalar` dan to'ldirilmaydi (3-darsning o'qish ro'yxatida yo'q).
 18. **11-ekran kartalari matni** (Payme, Click, Stripe — tayanch 6 dan, har biri ikki qator) va brend izohlari «O'zbekistondagi to'lov xizmati» / «xorijdagi to'lov xizmati»; Telegram `secret_token` — faqat O'qituvchi eslatmasida.
 19. **1-savol distraktori «Tashkilotchining SMS xabaridan»** — odamning qo'lda xabari turkumi; polling varianti ataylab yo'q.
 20. **Nishonlar:** Signature Guard · Counted Once · Declined Logged · Webhook Tested (grep 0).
 21. **Uyga vazifa ikki bandi** (tugatish · sxemani haqiqiy nomlar bilan solishtirish) — yengil (sinf 14); uchinchi band qo'shilmadi.
 22. **«webhook testi» (tayanch, dastur so'zi) o'quvchi matnida — «tekshiruv»** (T-015: «test» — ballik savol yoki test rejim); kalit maydoni `test` o'zgarmaydi (ichki).
-23. **Mashq sahifasi ochiq manzilda** — bu darsda xavf yo'q (pul yo'q, Pro yo'q). 4-darsda webhook Pro'ni uzaytiradi — ochiq sahifa orqali kim istasa mashq Pro olishi mumkin: himoya (masalan, faqat kirgan hisob uchun) kerakmi — 4-dars uchun savol.
-24. **`holat` faqat `tolandi` / `rad`, boshqa qiymat — `400`** (REPO 2; o'quvchi matnida yo'q).
+23. ✅ **Qayta ko'rildi — F-1007-461:** «xavf yo'q» noto'g'ri edi — manzilni bilgan odam mashq qatori yarata oladi (pul va Pro yo'q); 4-darsdan sahifa Backend bergan raqam bilan ishlaydi (9.7), mashq qatorlari `m-` bilan ajraladi, real to'lovga o'tilsa sahifa o'chiriladi. Avval: **Mashq sahifasi ochiq manzilda** — bu darsda xavf yo'q (pul yo'q, Pro yo'q). 4-darsda webhook Pro'ni uzaytiradi — ochiq sahifa orqali kim istasa mashq Pro olishi mumkin: himoya (masalan, faqat kirgan hisob uchun) kerakmi — 4-dars uchun savol.
+24. **`holat` faqat `tolandi` / `rad`, boshqa qiymat — `400`** (REPO 2; o'quvchi matnida yo'q; F-1007-461: A1 talabida ham, boshqa maydonlar bilan).
 25. **Kutish vaqtlari:** xizmatning javob kutish vaqti soniyada aytilmaydi; Render uyg'onishi — «bir daqiqagacha» (12-Modul 9.19); Render deploy — «bir necha daqiqa cho'zilishi mumkin».
 26. **Reja** sarlavhasi «Bugun Backend'ingiz mashq to'lovni qabul qiladi.» va to'rt qadam (teglar `sub` so'zlaridan).
 27. **«Ortda qoldingizmi»** — faqat A1 da, teg `m13-dars-03-done` (SABOQ 39).
 
 ## Shubhali joylar (ishonchim komil emas)
-1. ⛔ **Render bepul xizmati o'z tashqi manziliga so'rov yuborishi** (`RENDER_EXTERNAL_URL` orqali o'ziga `POST /tolov/webhook`) va javobni sahifaga qaytarishi — sinalmagan. Ishlamasa — mashq sahifasi webhook funksiyasini ichkaridan chaqiradi (imzo tekshiruvi baribir o'tadi), MD va REPO yangilanadi. «Qur» pilotida Mentor repo'sida tekshiriladi.
+1. ⛔ (F-1007-461: zaxira yo'l HTTP va xom tana chegarasini tekshirmaydi — shunday bo'lsa MD da aytiladi) **Render bepul xizmati o'z tashqi manziliga so'rov yuborishi** (`RENDER_EXTERNAL_URL` orqali o'ziga `POST /tolov/webhook`) va javobni sahifaga qaytarishi — sinalmagan. Ishlamasa — mashq sahifasi webhook funksiyasini ichkaridan chaqiradi (imzo tekshiruvi baribir o'tadi), MD va REPO yangilanadi. «Qur» pilotida Mentor repo'sida tekshiriladi.
 2. ⛔ **NestJS `rawBody: true`** 11-Modul loyihasidagi NestJS versiyasida va JSON parser bilan birga ishlashi — hujjatda bor, loyihada sinalmagan.
-3. ⛔ **90 daqiqa** — 15 dars ekrani + ikki blokda ikki Render kutishi; A2 uyga o'tishi mumkin (A-bo'lim 11). Taymer bilan pilotda.
+3. ⛔ **90 daqiqa** (ChatGPT auditi: 120–150 daqiqa; qisqartirish tartibi — A-11) — 15 dars ekrani + ikki blokda ikki Render kutishi; A2 uyga o'tishi mumkin (A-bo'lim 11). Taymer bilan pilotda.
 4. **Render'ning Environment bo'limi nomi** — 11/12-Modul MD laridan olindi; interfeysni o'zim ko'rmadim. **Neon SQL Editor** — 12-Modul matnidan.
 5. **`oyinchi_id` tashqi kalit bo'lsa** — mavjud bo'lmagan raqam bilan mashq so'rovi Backend xatosi berishi mumkin; shuning uchun A2 da o'z hisob raqami olinadi. Agent jadvalni qanday bog'lashi — o'zi tanlaydi (talabda yo'q).
-6. **6-ekran sahnasi** bitta holatni ko'rsatadi: birinchi xabar yozildi, javob kech qoldi. Haqiqiy uxlagan Backend'da birinchi so'rov yetib bormasligi ham mumkin — xulosa ikkala holatda rost («bir marta yoziladi»), sahna «Mentor misolida».
+6. ✅ (F-1007-461) QIzoh Render'dan ajratildi: «Javob yetib bormasa, xizmat xabarni qayta yuborishi mumkin…»; sarlavha «Mentor misolida». Avval: **6-ekran sahnasi** bitta holatni ko'rsatadi: birinchi xabar yozildi, javob kech qoldi. Haqiqiy uxlagan Backend'da birinchi so'rov yetib bormasligi ham mumkin — xulosa ikkala holatda rost («bir marta yoziladi»), sahna «Mentor misolida».
 7. **Payme/Click/Stripe brend ranglari** — vizual bosqichda; kartalarda faqat nom va fakt, logotip va to'lov formasi yo'q.
 8. **Click `-4 Already paid`** — tayanch 6 (rasmiy kod fayli); Click hujjat sahifalarini o'zim ochmadim. Kartada raqam `-4` aytilmaydi, faqat «Already paid».
 9. **Payme'da «imzo»** — Basic-auth va IP ro'yxati (HMAC emas); shuning uchun 11-ekran xulosasi uchala xizmatdan faqat takror xabarni umumlashtiradi (uchalasining hujjatida bor), imzo — Click va Stripe kartalarida alohida.
@@ -797,7 +812,7 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari — ru'da ham o'sha; R-008): to'lov x
 12. **`namuna.js` qator uzunligi ≤70** — O'lchov bo'limida o'lchandi (eng uzuni 67); uzun `addEventListener` qatorlari `bosilsa` yordamchisi bilan qisqartirildi.
 13. **A1 tekshiruvidagi `git grep`** — Windows terminalida ham ishlaydi (Git bilan keladi), lekin o'quvchi PowerShell'da qo'shtirnoq bilan qiynalishi mumkin — pilotda ko'riladi.
 14. **Sahna tugmalari** («Haqiqiy xabar», «Soxta xabar», «Kuting», «Takror tekshiruvi», «Oxirgi xabar yana keldi», «Botga yozish») — haqiqiy ilovada yo'q; ✎ larda ochiq, o'quvchi matnida «sahna» so'zi yo'q — vizual bosqichda oddiy ilova tugmasidan ajralib tursin.
-15. **«Webhook Tested» nishoni** natijadan qat'i nazar beriladi (tavsif — «tekshiruvni o'tkazdingiz»); «faqat uchala «Kutilganidek» bo'lsa» varianti ham mumkin — qaror sizda.
+15. ✅ GATE M M-q6 A — natijadan qat'i nazar. **«Webhook Tested» nishoni** natijadan qat'i nazar beriladi (tavsif — «tekshiruvni o'tkazdingiz»); «faqat uchala «Kutilganidek» bo'lsa» varianti ham mumkin — qaror sizda.
 
 ## Oldindan tuzatiladigan sinflar — o'z tekshiruvim (tayanch 7: 16 band + 12-Modul tayanchi 7 + pul sinflari)
 1. [x] **90 daqiqa — reja, o'lchov emas** — tepada taqsimot «reja, o'lchov emas» va ⛔ pilot taymeri; A-bo'lim 11; har blokda «Ulgurmasangiz»; Render kutishi paytida ish (A1 3-qadam, A2 3-qadam — kodni ko'rsatadigan prompt); «sig'adi» deyilmagan (Shubhali 3).
@@ -832,9 +847,9 @@ Kod oynasi qatorlari (`namuna.js`, `app.js`) — hammasi ≤70. QIzoh qatorlarig
    48  Bugun Backend'ingiz mashq to'lovni qabul qiladi.
    46  Xizmat xabarni Backend'ning qayeriga yuboradi?
    50  Soxta «to'landi» xabarini Backend qanday ajratadi?
-   41  Xizmat javob olmasa, xabarni nima qiladi?
+   49  Mentor misolida xizmat javob olmasa, nima qiladi?
    47  Bitta to'lovni bir marta yozadigan kod yozamiz.
-   45  To'lov o'tmasa ham Backend'ga xabar keladimi?
+   44  Mashq to'lov rad bo'lsa, Backend nima oladi?
    40  Haqiqiy to'lov xizmatida nima boshqacha?
    44  To'lov boshidan oxirigacha kim kimga yozadi?
    50  Mahsulotingiz uchun to'lov oqimi sxemasini yozing.
@@ -844,7 +859,7 @@ Kod oynasi qatorlari (`namuna.js`, `app.js`) — hammasi ≤70. QIzoh qatorlarig
    25  O'zingizni sinab ko'ring.
    52  To'lov xabari Backend'ingizda — uch tekshiruv o'tdi.
    53  To'lov xabari yo'li bor — tekshiruvni tugatish qoldi.
-   44  Yo'l va jadval tayyor — uch tekshiruv qoldi.
+   45  Yo'l va jadval qurildi — uch tekshiruv qoldi.
    54  Sxemangiz tayyor — to'lov xabari yo'lini qurish qoldi.
    51  Webhook hali qurilmagan — qadamlarni uyda bajaring.
 ## Xulosalar (≤110)
@@ -880,8 +895,9 @@ Kod oynasi qatorlari (`namuna.js`, `app.js`) — hammasi ≤70. QIzoh qatorlarig
    48  Kartani qayta o'qing: bu ish kimga yetib boradi?
    56  Kamida uch qator kerak; har qatorda uchta katak to'lsin.
    43  Tartib mos emas — bo'lakni bosib qaytaring.
+   54  Ikkita aniq ish yozing: masalan, kirish, e'lon berish.
 ## Bloklar «Hammasi bajarilgach»
-   88  `POST /tolov/webhook` va `tolovlar` tayyor — endi ularni mashq to'lov bilan tekshirasiz.
+   79  Yo'l va jadval qurildi — ular qanday ishlashini mashq to'lov bilan tekshirasiz.
    68  Uch tekshiruv o'tdi: imzosiz `401`, takror bitta qator, rad yozildi.
    70  Tekshiruv tugamagan: «Boshqacha» chiqqanini tuzatib, qayta tekshiring.
 ## Mentor gaplari (gap soni · belgi)
@@ -900,7 +916,7 @@ Kod oynasi qatorlari (`namuna.js`, `app.js`) — hammasi ≤70. QIzoh qatorlarig
   1 gap ·  67  Tepadagi «Mashq to'lov» va «Haqiqiy xizmat» ni almashtirib ko'ring.
   1 gap ·  42  Endi pastdagi uch kartani bittadan oching.
   1 gap · 103  Har kartada kim nima qilishini o'qing va bu ish kimga yetib borishini tanlang — qator jadvalga tushadi.
-  1 gap · 112  2-darsda tanlagan modelingizdan boshlang: kim to'laydi va to'lovdan keyin nima ochiladi — har ishga bitta qato
+  1 gap · 121  2-darsdagi modelingizdan boshlang: kim to'laydi va keyin nima ochiladi — to'liq yo'lni yozasiz, bugun bir qismi qu
   1 gap ·  43  Bo'laklarni bajariladigan tartibda joylang.
   1 gap ·  88  Talab tayyor — ikki joyni o'z mahsulotingiz bilan to'ldirasiz; «1 · Ochish»dan boshlang.
   1 gap ·  90  Sahifa xabarni Backend'da imzolaydi — kalit brauzerga chiqmaydi; «1 · Ochish»dan boshlang.
@@ -930,7 +946,7 @@ Kod oynasi qatorlari (`namuna.js`, `app.js`) — hammasi ≤70. QIzoh qatorlarig
   ✔B · 6 so'z · [22, 22, 20, 23] · o'rtacha 21.8 · OK  2. Mentor sxemasida karta ma'lumoti qayerda qoladi?
   ✔C · 4 so'z · [26, 23, 28, 28] · o'rtacha 26.2 · OK  3. `X-Imzo` sarlavhasida nima keladi?
   ✔D · 4 so'z · [30, 28, 26, 28] · o'rtacha 28.0 · OK  4. `TOLOV_KALITI` qiymatini qayerga yozasiz?
-  ✔A · 6 so'z · [30, 28, 33, 27] · o'rtacha 29.5 · OK  5. Imzo mos keldi. Bu nimani ko'rsatadi?
+  ✔A · 6 so'z · [32, 28, 33, 27] · o'rtacha 30.0 · OK  5. Imzo mos keldi. Bu nimani ko'rsatadi?
   ✔B · 5 so'z · [29, 33, 32, 33] · o'rtacha 31.8 · OK  6. Javob yo'qolsa, Payme nima qiladi?
   ✔C · 7 so'z · [38, 32, 36, 32] · o'rtacha 34.5 · OK  7. Stripe takror xabar haqida nimani maslahat beradi?
   ✔D · 7 so'z · [23, 26, 25, 21] · o'rtacha 23.8 · OK  8. Mentor Backend'i takror xabarni nimaga qarab taniydi?
@@ -950,6 +966,7 @@ Kod oynasi qatorlari (`namuna.js`, `app.js`) — hammasi ≤70. QIzoh qatorlarig
 - [x] Sarlavha ≤55 bitta qator · Mentor ≤2 gap (interaktivda 1), sarlavhani takrorlamaydi · xulosa ≤110 · hook javobi ≤120 · xato izohi ≤60 — O'lchov bo'limi (0 ta oshish).
 - [x] Atamalar tayanch 2 bilan bir xil (to'lov xizmati, to'lov sahifasi, to'lov xabari, webhook, imzo, takror xabar, rad etilgan to'lov, test rejim, mashq to'lov, maxfiy kalit, to'lov oqimi sxemasi); siz-forma; tugma ot-shaklda («Nusxalash», «Bajardim», «Saqlash»); agent promptlari — T-002 istisnosi (lint warn 2 — prompt ichida); olam matni — T-008.
 - [x] Testlar: variantlar bir shaklda, uzunligi ±15% (skript), ✔ yolg'iz eng uzun emas; kalit so'z/kod/qavs faqat to'g'rida emas (`200`, `401`, «rad» — distraktorlarda ham) · ✔: s3 C · s5 A · s8 D · s10 B · arena A·B·C·D ×3 · inkor-savol yo'q · ballik testlar ketma-ket emas (3, 5, 8, 10, 14).
+- [x] ChatGPT auditi — `03-FILTR.md` (F-1007-461); o'zgargan qatorlar O'lchov bo'limida qayta sanaldi.
 - [x] Final: uyalarda faqat raqam va «bu yerga qo'ying», Mentor tartibni aytmaydi.
 - [x] Emoji yo'q (nishon medali, arena, podium — o'yin qatlami) · kafolat gaplari yo'q (grep: o'quvchi matnida 0).
 - [x] Ichki kodlar o'quvchi matnida yo'q (A1/A2 — faqat MD izohlarida; o'quvchiga «1-amaliyot», «2-amaliyot»; `m11-03`, kod raqami, «pilot», «sandbox», «idempotency» — faqat kartochkada «inglizchasi» bilan); modul raqami LMS bo'yicha («7-Modulda», «11-Modul»); tarixiy voqea yo'q · «KOD» (16) va «REPO» (5) ro'yxati to'liq.
@@ -957,3 +974,5 @@ Kod oynasi qatorlari (`namuna.js`, `app.js`) — hammasi ≤70. QIzoh qatorlarig
       T-014/015 («kalit» — faqat maxfiy kalit; sahna o'chirgichi «Takror tekshiruvi»; «test» — faqat «test rejim»; «xabar» — to'lov xabari) · T-016/017 (metafora yo'q) · T-024 · T-029 · T-034 · T-039 («Backend'ingiz» — 11-Moduldan bor) · T-042 · T-043 · T-044 · T-045 (imzo to'lov to'g'riligini ko'rsatmaydi; xabar bir marta kelmasligi mumkin; test rejim — real to'lovning nusxasi emas, 11-ekran) ·
       T-047 · T-048 · T-049 · T-052 (to'lov xabari 7-Moduldagi webhook bilan bir gapda tenglashtirildi) · T-064 · T-066 · T-070 · P-001/002/004 · P-007 · P-008 · P-010 · P-013 · P-014/015 · P-016 · P-020 (2-ekran ko'prigi) · P-025 · P-026 · P-028 · P-036 · P-046 · P-052 · P-055 · P-059 · P-062 · P-063 (`MENTOR_SXEMA`, `ISHLASH_TARTIBI`) · P-064 · P-065 (4-ekran) · P-067 ·
       S-001 · S-002 · S-004 · S-006 · S-008 · S-010 · S-015 · S-018 (11-ekran brend izohlari) · S-019 · S-020 (`200`, `401` izohi 2-ekranda) · S-026 · S-040 · SABOQ 9, 11, 12, 13, 16, 17, 19–31, E 40–55.
+
+✎ 08.10 pilot ko'rigi (F-1007-476…480): 0-ekran maket ustuni `max-content` (Backend varianlarga yopishmaydi) · 4-ekran yakun ustuni 512 px (`max-content` + `zoom` buzilishi) · telefon Payme ko'rinishi · 12-ekran Mentor bosqichli + bo'sh qatorlar · 14-ekran tartib chiplari qolip rangida (override yo'q) · yakunda AI bilan davom (PM-109).

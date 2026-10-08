@@ -374,7 +374,7 @@ namunalar: 11-Modul `15-PmOneOnOne-v3.md` + `15-FILTR.md` (12 ekranli yakkama-ya
   - Sarlavha · tuzatilgan pitch saqlangan (7-ekrandagi ko'rik belgisi bilan — 11-FILTR 9, 28): **Tuzatilgan pitchingiz tayyor: har da'voda dalil bor.** (52)
   - Sarlavha · dalillar qo'yilgan, 7-ekran saqlanmagan: **Dalillar qo'yildi — dalilsiz da'volar qoldi.** (44)
   - Sarlavha · da'volar belgilangan, dalillar qo'yilmagan: **Da'volar topildi — dalil qo'yish qoldi.** (39)
-  - Sarlavha · da'volar belgilanmagan: **Pitch ochildi — da'volarni uyda belgilang.** (42)
+  - Sarlavha · da'volar belgilanmagan: **Da'volar hali belgilanmagan — uyda belgilang.** (46; E 54, F-1006-389)
 - Arena tugmasi (o'yin qatlami, darsdan): CODE STRIKE · 12 SAVOL · 15 SONIYA · PODIUM · (jonli darsda) Mentorni kuting
 - **[07.10: yakunda KO'RSATILMAYDI — SABOQ E 50 (foydalanuvchi tasdig'i); fikr darsning ichki o'qi bo'lib qoladi]** Bugungi asosiy fikr (P-013; ScoreRing ostida, `small`): Sonlar pitchni o'zgartiradi: dalili bor gap qoladi, dalilsiz gap qayta yoziladi yoki olib tashlanadi. (101)
 - Endi siz bilasiz (asosiy fikr bu yerda takrorlanmaydi, T-048):

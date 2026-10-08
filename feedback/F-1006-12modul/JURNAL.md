@@ -29,7 +29,8 @@
 | 3–8 · «Qur» (buyruq bilan; 2 pilot → 2-to'lqin) | ⏳ buyruq 06.10 19:23 («qurishni boshla, 2 ta pilot»); 19:27 — pilotlar: 1-dars `PmLandingLesson.jsx` (PM) va 2-dars `WebSocketBasicsLesson.jsx` (TEX) skeletdan nusxalandi (gates 12/12), App.jsx ga ulandi; `QURUVCHI_SABOQ.md`, `QURUVCHI_TOPSHIRIQ_PILOT.md` yozildi; **agent ruxsati so'raldi — javob kutilmoqda** |
 | 9 · Yopish · QA sayti · commit (buyruq bilan) | — |
 
-**Keyingi qadam (07.10 17:10) — «QUR» TUGADI: 12/12 dars qurildi va tekshirildi (pilotlar `95912f6`, 03–12 `0d80850` — push ✓). Foydalanuvchi ko'rigi kutilmoqda (fidbek F-1006-389 dan, retsept B). Davom prompti: `feedback/F-1006-12modul/DAVOM_PROMPT.md`.**
+**Keyingi qadam (01:13 08.10) — 12-MODUL YOPILDI: RU + yakuniy MD 12/12, jonli qismlar, `modul:yopish` ✓, QA https://coddycamp-12modul.vercel.app (smoke 24/24). Commit — buyruq kutilmoqda. QA fidbeki — retsept B, F-1006-390 dan.**
+(eski) **Keyingi qadam (07.10 17:10) — «QUR» TUGADI: 12/12 dars qurildi va tekshirildi (pilotlar `95912f6`, 03–12 `0d80850` — push ✓). Foydalanuvchi ko'rigi kutilmoqda (fidbek F-1006-389 dan, retsept B). Davom prompti: `feedback/F-1006-12modul/DAVOM_PROMPT.md`.**
 0. Dars serveri **5174** (`npx vite --port 5174 --strictPort --host 127.0.0.1`, fon; seans yopilsa to'xtaydi — yangi seansda qayta ishga tushiriladi) — 5173 da AILM (tegilmaydi). Ko'rik: `localhost:5174/#/lesson/m10-01` … `m10-12`. Keyin: ko'rik fidbeki → umumiy tuzatish (ro'yxat — 07.10 15:47 yozuvi) → 6-RU → yakuniy MD → `npm run modul:yopish -- src/10-Modull` → commit (buyruq bilan).
 1. **Commit ✅ `a10a1a7`** (06.10 19:23, push yo'q): `feedback/F-1006-12modul/` (35 fayl) + App.jsx dan faqat `id: '10'` bloki va izoh qatori (indeksga HEAD + o'z blokim qo'yildi; ishchi fayldagi boshqa seanslar o'zgarishi commitga kirmagan).
    Commitdan keyin o'zgarganlar (hali commit qilinmagan): `src/10-Modull/` (2 fayl), App.jsx (2 import + 2 `comp`), `QURUVCHI_SABOQ.md`, `QURUVCHI_TOPSHIRIQ_PILOT.md`, shu jurnal.
@@ -312,6 +313,59 @@
   **Umumiy tuzatish ro'yxati (foydalanuvchi ko'rigidan keyin):** (1) «Maydon Jamoa» rangi `T.ok` → `#2E9E4F` — pilotlar + A (7 fayl) · (2) 6-dars 4-ekran telefondagi mayda matn · (3) yakun «hech biri» chegaradagi sarlavhalar: 8 «Sonlar o'qildi — …», 11 «Pitch ochildi — …» · (4) 11-dars 6, 7-ekran bo'sh holati · (5) `SANA_SOZ` aylanmasi (10, 12) — til-lint qoidasi tuzatilsa · (6) qilinmagan jonli rejim qismlari (12: rescue, proyektor taymeri; 6/10/12: sinf ovozlari chizig'i; Mentor statistikasi yorliqlari) · (7) agentlarning «MD ga taklif»lari — yakuniy MD bosqichida.
 
 - **2026-10-07 17:17** — **COMMIT `0d80850` va PUSH ✓** (foydalanuvchi: «hozirgi holatni gitga push qil, yo'qolib qolmasin»): 03–12 darslar, App.jsx dan faqat 12-Modulning 10 importi va `m10-03…12` comp (indeks: HEAD `33e4020` + o'z 20 qatorim; boshqa seansning 13-Modul bloki kirmadi), `feedback/F-1006-12modul/` (MD, jurnal, SABOQ, topshiriq, vositalar, DAVOM_PROMPT). `origin/main` = `0d80850`. Undan keyin — faqat shu yozuv va DAVOM holat qatori (hujjat commiti).
+- **2026-10-07 21:37** — yangi seans (55e53e99): DAVOM_PROMPT + jurnal o'qildi, server 5174 (12/12 dars fayli 200), git doiram toza (App.jsx da faqat «// ---- 10-Modul» izoh qatori importlar ustiga ko'chgan — boshqa seans, kosmetik).
+  **F-1006-389** · foydalanuvchi: «nimalar ochiq qoldi yopamizda modulni QA ga chiqarib beramiz» → reja 4 bosqich: (1) umumiy tuzatish o'zim — rang `#2E9E4F` (01–07), 6-dars 4-ekran post matni, 8/11 «hech biri» sarlavhasi E 54 bo'yicha, 11-dars 6/7 bo'sh holat, MD dagi jonli qismlar (ovoz chizig'i 6/10/12, Mentor statistikasi, 12-dars proyektor taymeri — 11-Modul `OvozChizigi`/`MentorSanoq` naqshi) · (2) RU + yakuniy MD — **agent ruxsati «A: 12 agent, 6+6»** (1-bosqichdan keyin) · (3) `modul:yopish` · (4) QA sayti coddycamp-12modul + smoke; commit — oxirida so'raladi. 3–12 foydalanuvchi ko'rigisiz QA ga ketadi (QA fidbeki retsept B).
+- **2026-10-07 21:57** — **F-1006-389 · 1-bosqich (umumiy tuzatish) BAJARILDI** (zaxira — `arxiv/F-1006-389-ru-oldin-2026-10-07/`, 12 fayl):
+  - «Maydon Jamoa» nomi `MAYDON_RANG = '#2E9E4F'` — 01–07 (14 CSS qoida: telefon/brauzer/lending nomi, 4-dars eslatma nomi va ilova belgisi).
+  - 6-dars 4-ekran: telefon `ct-wrap.katta` 260×380, post matni 9.5 → 12.5px (faqat shu ekran); 1280×773 va 390 da ko'z bilan ✓.
+  - 8-dars «hech biri»: «Sanoq sahifasi hali tugamagan — uyda tugating.» · 11-dars: «Da'volar hali belgilanmagan — uyda belgilang.» (E 54; MD v3 ham).
+  - 11-dars 6, 7-ekran: da'volar saqlanmagan bo'lsa — izoh + «Da'volarni belgilash» tugmasi (`DavoYoq`, 5-ekranga qaytaradi).
+  - **Jonli rejim (MD dagi, qurilmagan edi):** `MentorPracticeStats` kengaydi (`sanoq` — yorliqli sonlar, `chip` — o'quvchi yonidagi son; zonalar 500 · 600 · 700, `jonliBelgi` — har zonada birinchi signal) — 1, 6, 10, 11, 12-darslar:
+    1: s9 «Matnni to'liq yozganlar · Sarlavhasi birinchi urinishda o'tganlar», s10 savol bo'yicha «mos keldi / kelmadi» · 6: s0 ovoz chizig'i, s9 «Kanal tanlaganlar · Ruxsat uyda» + o'quvchiga «Sinfda: N bajardi · N hali bajarmoqda», s10 «Post yozdi · Mentorga ko'rsatdi · Sinf chatiga yubordi» ·
+    10: s0 ovoz, s10 «To'rt qatorni yozganlar · Sanalmagan qatori borlar», s11 «Qabul · Tuzatish (qator bo'yicha) · Zaxira reja yozganlar · bo'g'inlar bo'yicha» · 11: s5 «Da'volarni belgilaganlar» + «Da'volar n», s6 «Dalil qo'yganlar» + «Dalil n/N» (N/N — chegara), s7 «Tuzatilgan pitchni saqlaganlar» ·
+    12: s0 ovoz, s10 «Besh bo'lakni yozganlar · Halol gapi borlar», s11 «Pitchni aytganlar · 5 daqiqaga sig'ganlar · Bo'lak tuzatganlar» + Mentorga katta soat (mm:ss / 5:00, oshsa qizil).
+  - **Tekshiruv:** gates 12/12 × 9 (rang/sarlavha) va × 5 (jonli; 6-darsda `undef` darvozasi `SinfHolat` qo'yilmaganini tutdi → tuzatildi) · `lint:jsx` 0 · brauzer: soxta dars-api (Playwright route) bilan Mentor rejimi 14 ekran — sonlar kutilgan qiymatda, pageerror 0, suratlar ko'z bilan.
+  - **Qilinmagan (ochiq aytaman):** 10-dars «ism · n / 4» chipi (server birinchi signalni saqlaydi — n o'smaydi) · P-033 «rescue 110 s» (modulning hech bir darsida yo'q — umumiy qoida, MEXANIZM) · o'quvchi tomonidagi «Sinfda: …» qatori soxta serverda sinalmagan (Mentor paneli sinaldi).
+  - **2-bosqich:** `QURUVCHI_TOPSHIRIQ_3.md` (RU lug'ati koddagi ru sanog'idan: «Помощь» 27 → «Подсказка», «соединение», «главное число»…). 1-to'lqin 21:44 yuborildi: 02, 03, 04, 05, 07, 08 (jonli ishi yo'q darslar); 2-to'lqin — 01, 06, 09, 10, 11, 12 (tekshiruvimdan keyin).
+  - QA sayti tayyorlovi: `modul10.html`, `vite.m10.config.js`, `src/m10-demo/` (generator scratchpad `m10demo/gen.py` — ru sarlavha darsning `lessonTitle.ru` sidan; RU dan keyin qayta yurgiziladi).
+- **2026-10-07 22:10** — **2-bosqich, 1-to'lqin (02, 03, 04, 05, 07, 08) TUGADI va o'zim tekshirdim** (`scratchpad/tekshir_ru.sh`: ru-gate arxiv bazasiga nisbatan · `ru:` siz o'zgargan qatorlar · gates · yakuniy MD ekran soni · lint:til):
+  | Dars | ru o'zgardi | ru-gate | gates | yakuniy MD | eslatma |
+  |---|---|---|---|---|---|
+  | 02 | 58 | TENG | 12/12 | 20/20, lint 0 | «ekrandagi nom» 23; agent MD ustiga JSON yozib qo'ygan, qayta yozgan — MD 599 qator, buzilmagan |
+  | 03 | 58 | TENG | 12/12 | 12/12, lint 0 | 5 istisno (talabdagi real qiymatlar, nishon nomi) |
+  | 04 | 50 | TENG | 12/12 | 12/12, lint 0 | 7 sarlavha qisqardi |
+  | 05 | 49 | TENG | 12/12 | 19/19, lint 0 | rod xatosi «способ» 3 joy |
+  | 07 | 94 | TENG | 12/12 | 12/12, lint 0 | asosiy seans so'rovi: «Keyingi dars» ru = 8-dars nomi ✓, «Что не сломать» ✓ |
+  | 08 | 68 | TENG | 12/12 | 12/12, lint 0 | «шаг, где останавливаются» 14 joy |
+  **Agentlar topgan kod nuqsonlari — o'zim tuzatdim (sinf-supurish):** 5-dars 9-ekran «eski» yorlig'i bo'sh chiqardi (`eski: true` → `tr(true)`; endi `SAHNA.eski`) · 2, 5-dars kod natija oynasida sana/joy ruscha, qolgani o'zbekcha edi → kod (`index.html`) bilan bir xil o'zbekcha + istisno · 7-dars 1-ekran reja teglari `tr` siz edi → `{ uz, ru }` ·
+  8-dars 0-ekran ru ustun nomlari ustma-ust (1280) → `overflow-wrap: anywhere` (surat bilan ✓) · 5, 8-dars ru matnda o'zbekcha agent buyruqlari («Shu xato chiqdi…») → 11-Modul naqshi «Вышла такая ошибка: {ошибка}. Исправь.» (6 joy) ·
+  4-dars 8-ekran «Ulgurmasangiz» ekranda yo'q «Ortda qoldingizmi» ga ishora qilardi → «Amaliyot 1 dagi … qatori» (uz+ru, yakuniy MD ham) · 5-dars izoh «20 ekran» → 19. Har biridan keyin gates 12/12; ru-gate FARQ — faqat shu tuzatishlar (diff bilan ko'rildi).
+  Rad/qoldirildi: 2-dars 10-ekran «Mentor faqat 1-qadamni aytadi» — har qadam yorlig'i qurilma yonida chiqadi (keyingi harakat ko'rinadi) · 4-dars web maket «Xabarlar» — talabdagi real qiymat bilan bir · 7-dars `XAVF_RE` faqat o'zbekcha so'zni taniydi, «Hisobdan chiqish» kontekstga qarab ikki xil — QA ko'rigiga (ochiq).
+  Topshiriqqa «1-to'lqin saboqlari» qo'shildi; **2-to'lqin yuborildi: 01, 06, 09, 10, 11, 12.**
+- **2026-10-07 22:31** — **2-bosqich, 2-to'lqin (01, 06, 09, 10, 11, 12) TUGADI va o'zim tekshirdim** (ru-gate agentning `base.jsx` iga nisbatan — bu fayllarga bugun jonli qismlar qo'shilgan):
+  | Dars | ru o'zgardi | ru-gate | gates | yakuniy MD | eslatma |
+  |---|---|---|---|---|---|
+  | 01 | 54 | TENG | 12/12 | 16/16, lint 0 | sinov → «тест» 13 joy |
+  | 06 | 55 | TENG | 12/12 | 16/16, lint 0 | Mentor 1-posti ru o'zgarmadi (7-dars bilan mos) |
+  | 09 | 90 | FARQ 1 blok — faqat ru (`{ web: true, uz, ru }` obyektini gate tanimaydi; farq qatori ko'rildi) | 12/12 | 12/12, lint 0 | 8 ru sarlavha qisqardi |
+  | 10 | 102 | TENG | 12/12 | 16/16, lint 0 (3 warn) | muhrlar «Принять / Исправить» |
+  | 11 | 33 | TENG | 12/12 | 12/12, lint 0 | «главное число», «встреча один на один» |
+  | 12 | 39 | TENG | 12/12 | 16/16, lint 0 | «Keyingi dars» — «Резервный урок» (13-qator) |
+  **Agentlar topgan kod nuqsonlari — o'zim tuzatdim:** 1-dars 11-ekran 3–4-qadamdagi 9 ta ko'rsatma `tr` siz (ru o'quvchi o'zbekcha ko'rardi) → ru qo'shildi; agentga talab (`promptSatrlar`, `mentorPrompt`) faqat o'zbekcha edi → ru shakli (o'quvchi/Mentor sahifa matni qo'shtirnoqda yozganicha), o'quvchi yozadigan joylar `JOY_NOM` (prompt va namuna bir nomda); «lending» atama yorlig'i ·
+  6-dars «post» yorlig'i (3 joy) `tr` siz · 10-ekran qadamlar qatorida raqam ikki marta («1» doira + «1 Yozish») · 9-dars maket belgisi «Ulangan / Ulanmoqda…» `tr` siz · 10-dars gipoteza maydoni placeholder `tr` siz · 11-dars «Bosh raqam» zaxira nomi va «11-Modulda» bir tilli, «saqlash» holatida uyga vazifa ③ bo'sh edi (yakuniy MD ham).
+  Brauzerda: 1-dars 11-ekran uz (avvalgidek aynan) va ru (prompt ruscha, joylar ajratilgan) — pageerror 0; 6-dars 10-ekran surat. Har tuzatishdan keyin gates 12/12, ru-walk TOZA.
+  **Darslararo:** «Keyingi dars» uz+ru — 12/12 keyingi darsning `lessonTitle` bilan aynan (skript). QA katalogi (`src/m10-demo`) yakuniy ru nomlar bilan qayta yig'ildi. `lint:prompt` ✓.
+  **Ochiq (QA ga):** ru matnni taniydigan tekshiruvlar faqat o'zbekcha so'zni biladi (7 `XAVF_RE`, 10 `agar/chunki`, `SOVGA_RE`, 11 `UMAMI_SOZ`, 12 `VADA_RE`/`BAHO_RE`) — bloklamaydi, faqat yumshoq ogohlantirish chiqmaydi · maketdagi real ilova yorliqlari ru da bir xil emas («Xabarlar» o'zbekcha, «Eslatmalar» → «Напоминания») · 9-dars `QsPrompt` til almashsa yozilgan qator ko'rinmaydi.
+  Keyin: `modul:yopish` (fon, LESSON_URL 5174) → QA sayti build + deploy coddycamp-12modul + smoke → commit — so'raladi.
+- **2026-10-08 00:10** — **3-bosqich `modul:yopish` (1-yurish 23:36 da tugadi) va 4-bosqich QA sayti.**
+  1-yurish: darslar 12/12 gates · ru toza · sarlavha bitta qator; 4 dars DIZAYN (2, 3, 5, 9) · layout A 24 · C 24 · D 14 · E 472 · G 110 · YAKUNIY MD 12/12 mos · qurish kartasi ✓ · lint:jsx ✓.
+  **Tuzatildi:** D1 chap rang-chiziq (2, 3, 5 — kod qatori `inset 2px 0 0` → atrofi ingichka chegara; 9 — `p.qs-joriy` `border-left`) · D2 shtrixli ulanish chizig'i (2, 3, 5) — holat belgisi (doimiy bo'lmagan / uzilgan ulanish), `kesik-ok` izohi (11-Modul naqshi) ·
+  C: 2-dars s5 kod `{ oyinId: 1, sabab: 'qoshildi' }` nowrap (7px) → o'raladi · 5-dars s14 «Expo Go» yorlig'i (3px) → padding · 7-dars s6 prompt qatori (77px) → `overflow-wrap: anywhere` · D: 6-dars s2 «kanal» belgisi nom ustida (9%) → nomga joy · 12-dars s11 ⛶ o'ng ustundagi «Baholash varag'i» ustida (12%) → ikki ustunda tugma zoomable ichida.
+  Qayta o'lchov 02, 05, 06, 07, 12: A/B/C/D/F — 0 · dizayn-lint 0 × 4 · gates 12/12 × 7.
+  **Qabul (sababi bilan):** A 24 — hammasi 1-dars `ls-kor`: brauzer oynasi maketi, sahifa `translateY` bilan suriladi, pastda «Qanday qo'shilaman» bo'limi buklamadan pastda (o'lchandi: telefon to'liq ko'rinadi; tugma shu bo'limga olib boradi) · E 472 — amaliyot bloklarining pastki qatorlari («Ulgurmasangiz», «Ortda qoldingizmi») uzun ekranda pastda · G 110 — taymer bo'laklari va prompt ichidagi `q-joy` joylari ataylab tegib turadi. 2-yurish `--qabul A,E,G` bilan fonda.
+  **QA sayti:** https://coddycamp-12modul.vercel.app — `modul10.html`, `src/m10-demo`, `vite.m10.config.js` → `dist-m10`; Vercel loyiha `coddycamp-12modul` (`prj_loFpOJFqJ8AIS190zkm5AaJTRdAc`, kirishnomi6-9875); asosiy manzil 200 (hisobsiz), deploy-URL 302 (himoya) · `sayt-smoke` **24/24** · katalog va 6-dars 4-ekran jonli saytda ko'z bilan ✓, pageerror 0. Xotira: `m12-qa-deploy-tartibi`.
+- **2026-10-08 01:13** — **✓ MODUL YOPISHGA TAYYOR** (`modul:yopish -- src/10-Modull --yakuniy feedback/F-1006-12modul/YAKUNIY --qabul A,E,G`, LESSON_URL 5174): 12/12 dars — gates 12/12 · dizayn toza · ru toza · sarlavha bitta qator · lint:jsx ✓ · layout A 24 · B 0 · C 0 · D 0 · E 478 · F 0 · G 98 (A — faqat `m10-01 div.ls-kor` 24, skript bilan tasdiqlandi) · YAKUNIY MD 12/12 · qurish kartasi ✓.
+  **12-MODUL YOPILDI (commitsiz).** Keyin: commit — foydalanuvchi buyrug'i bilan (App.jsx — faqat o'z qatorlari bo'lsa; `dist-m10` kirmaydi) · QA fidbeki → retsept B, **F-1006-390** dan.
 
 ## MEXANIZM-TAKLIF (asosiy seans uchun; o'zim tegmayman)
 

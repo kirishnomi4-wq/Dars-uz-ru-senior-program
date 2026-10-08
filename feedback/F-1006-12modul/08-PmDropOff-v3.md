@@ -373,7 +373,7 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 — 12-Modul o'zgarishlari, mehmon ko'rinishi 
   - Sarlavha · tuzatildi ✓, fayl navbatda yoki havola qoldi: **Tuzatish tayyor — yangi versiya qoldi.** (38)
   - Sarlavha · gipoteza saqlangan, tuzatish tugamagan: **Gipoteza tayyor — tuzatish qoldi.** (33)
   - Sarlavha · Amaliyot 1 ✓, gipoteza saqlanmagan: **Sanoq sahifasi tayyor — gipoteza qoldi.** (39)
-  - Sarlavha · hech biri saqlanmagan: **Sonlar o'qildi — sanoq sahifasini tugating.** (43)
+  - Sarlavha · hech biri saqlanmagan: **Sanoq sahifasi hali tugamagan — uyda tugating.** (46; E 54, F-1006-389)
   - Mashq sonlari bilan saqlangan bo'lsa — sarlavha o'sha; ostida kulrang qator: Gipoteza mashq sonlarida — o'z sonlaringiz bilan qayta tekshiring. (66)
 - Arena tugmasi (o'yin qatlami, darsdan): CODE STRIKE · 12 SAVOL · 15 SONIYA · PODIUM · (jonli darsda) Mentorni kuting
 - **[07.10: yakunda KO'RSATILMAYDI — SABOQ E 50 (foydalanuvchi tasdig'i); fikr darsning ichki o'qi bo'lib qoladi]** Bugungi asosiy fikr (P-013; ScoreRing ostida, `small`): Bu darsda qadamlar sanog'i qaysi oraliqda kamroq qurilma keyingi qadamga o'tganini ko'rsatadi, gipoteza esa nega shunday bo'lganini taxmin qiladi va bitta tuzatish bilan tekshiriladi.

@@ -9,7 +9,7 @@ bashorat tanlangach yopilmaydi — ixcham qator natijagacha turadi · taxmin nat
 Fidbek: qator yoniga `>> …` yozing. Tasdiqlangach (GATE M) dars shu holatda quriladi — `.jsx` ga hozir tegilmaydi. ⚠️ Testlarda to'g'ri javob O'RNI (shu MD dagi ✔) qurilgandan keyin o'zgarmaydi.
 Testlar: 4-ekran **C** · 7-ekran **A** · final tartib-mashqi yo'q (loyiha kuni, 172) · arena A·B·C·D ×3.
 Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2 ≈ 8 · Amaliyot 1 ≈ 25 · 4 ≈ 2 · 5 ≈ 6 · Amaliyot 2 ≈ 17 · 7 ≈ 2 · Amaliyot 3 ≈ 18 · podium, kartochkalar, yakun, arena ≈ 7 — jami ≈ 90.
-⛔ 90 daqiqaga sig'ishi — «qur» pilotida taymer bilan o'lchanadi (besh tekshiruv, ikki tuzatish, Render kutishi, o'rnatish fayli navbati); o'lchanmaguncha da'vo emas (tayanch 7.1). Ulgurmagan o'quvchi yo'li — A-bo'lim 11.
+⛔ 90 daqiqaga sig'ishi — «qur» pilotida taymer bilan o'lchanadi (besh tekshiruv, tuzatish, Render kutishi, o'rnatish fayli navbati); o'lchanmaguncha da'vo emas (tayanch 7.1). Ulgurmagan o'quvchi yo'li — A-bo'lim 11.
 ⚠️ **Darsning chegaralari (TAQIQLAR 1, 3; tayanch 1.12):** yangi funksiya qo'shilmaydi — faqat yozuvdagi topilma tuzatiladi · buzib tekshirish — faqat o'quvchining **o'z mahsulotida** va tekshiruv uchun ochilgan hisoblarda · `XATOLAR.md` da qolgan topilma yashirilmaydi («qoldi» va sababi) ·
 performance va «investor ko'zi bilan» demo-test bu darsda yo'q (14-Modul ishi — o'quvchi matnida va'da qilinmaydi, faqat O'qituvchi eslatmasida) · uyga vazifa yo'q (loyiha kuni).
 ⚠️ **Pul chegarasi (TAQIQLAR 1, Qaror-0 5, 6):** 3-tekshiruv — faqat «mashq to'lov» (test rejim), real pul yo'q · karta ma'lumoti hech qayerda (maketda, namunada, promptda yozilmaydi va chizilmaydi; mashq sahifasida karta maydoni yo'q) · maxfiy kalitlar faqat `.env` da, agentga yuborilmaydi ·
@@ -23,7 +23,7 @@ to'lov taklifi ekrani maketida «Test rejim: pul yechilmaydi», mashq sahifasi m
    «buzildi» chiqqanlardan **eng muhim 1–2 tasi** agentga yozuv bilan berilgan, **«Tuzatish qilindi»** (ish fakti) va **o'sha usul bilan qayta tekshirilgan**; repo ildizida **`XATOLAR.md`** — har topilma usuli, natijasi va holati bilan, qolgani «qoldi» va sababi bilan;
    o'zgargan qismning **yangi versiyasi** odamlarga chiqarilgan. Yangi funksiya qo'shilmaydi. «Buzilmadi» ham natija — yakun sarlavhasi holatga qarab (11-ekran).
    Saqlash: **yangi kalit yo'q** (tayanch 8: «12-dars natijasi — repo'dagi `XATOLAR.md`»); besh tekshiruv kartasi dars holatida (`ccProgress`, KOD 3). O'qiladi: `pm-m11d5-buzish` (3-tekshiruv kartasi tepasidagi bitta qator) · `pm-m9d8-platforma.trek` (tayanch 4: trek qatorlari).
-   Mentor misoli — «Maydon Jamoa», repo `maydon-jamoa`: `m13-dars-12-start` (= `m13-dars-11-done` = `m13-dars-10-done`, tayanch 3) → `m13-dars-12-done` (ikki tuzatish · `XATOLAR.md` · yangi versiya).
+   Mentor misoli — «Maydon Jamoa», repo `maydon-jamoa`: `m13-dars-12-start` (= `m13-dars-11-done` = `m13-dars-10-done`, tayanch 3) → `m13-dars-12-done` (tuzatish · `XATOLAR.md` · yangi versiya).
 2. **Bugungi asosiy fikr (P-013; yakunda ko'rsatilmaydi — darsning ichki o'qi, SABOQ E 50):** Yangi ish qo'shilgach eski yo'llar ham buzish yozuvi bilan qayta tekshiriladi: eng muhim topilma tuzatilib, o'sha usul bilan qayta ko'riladi, qolgani `XATOLAR.md` da yashirilmaydi.
 3. **Oldingi darslardan keladigan narsa (aynan):**
    - 12-Modul 5-darsi: **buzish yozuvi** — nima qildim · nima kutdim · nima bo'ldi → belgi **buzildi** / **buzilmadi**; «Tuzatish qilindi» (ish fakti) va «qayta tekshiruvda takrorlanmadi» / «qayta tekshiruvda yana buzildi» (natija) — alohida; kutish buzishdan **oldin** yoziladi.
@@ -31,13 +31,13 @@ to'lov taklifi ekrani maketida «Test rejim: pul yechilmaydi», mashq sahifasi m
    - 12-Modul 4, 9-darslar: **eslatma** (telefon ekraniga ilova chiqaradigan xabar; o'yin eslatmasi, uch kunlik eslatma). 9.28: brauzer ko'rinishi — `npx expo export -p web` → `netlify deploy --prod --dir dist` (push'dan keyin o'zi yangilanmaydi); 9.29: Render faqat `backend/` o'zgarsa qayta chiqaradi; «APK o'zi yangilanmaydi» — yangi o'rnatish fayli va lendingdagi havola.
    - 13-Modul 3–5-darslar: **takror xabar** (3-dars) — bitta to'lov raqami bir marta sanaladi · «mashq to'lov» sahifasi («To'lash (mashq)», «Rad etish (mashq)», «Ikki marta yuborish», «Imzosiz yuborish»; 5-darsdan «Kechiktirib yuborish», «Noto'g'ri imzo») · to'lov taklifi ekrani (so'zma-so'z, tayanch 1.4): «Doimiy o'yin — Pro'da» · «Har hafta shu kun va soatda o'yin o'zi e'lon qilinadi.» · «30 kun — 15 000 so'm» · «To'lovga o'tish» · «Test rejim: pul yechilmaydi» (+ «Pro shartlari» — 7-darsdan) ·
      «E'lon berish» ekranida «Har hafta takrorlansin»; keyingi hafta o'yini `GET /oyinlar` so'ralganda yaratiladi (agent 4-darsda «bir marta yaratiladi» degan — tekshirilmagan da'vo; asosiy seans, 07.10) · 5-dars tuzatishlari: Pro bir marta uzayadi, «Javob kutilmoqda» va «Qayta tekshirish», «To'lov o'tmadi — qayta urinib ko'ring», Pro muddati tugashi; `BUZISH.md` «To'lov»; kalit `pm-m11d5-buzish`.
-   - 13-Modul 8-darsi: **Telegram xabari** — Backend Telegram bot orqali yuboradigan xabar; ilovada «Telegram'da xabar olish» va «Telegram xabarlarini o'chirish»; xabar shakli (tayanch 1.8): «Shanba, 18:00 o'yini yana e'lon qilindi · Mahalla maydoni — 3 / 10»; haftasiga ko'pi bilan ikkita.
-   - 13-Modul 10-darsi: **taklif kodi** (6 belgi, katta harf va raqam), lending «Taklif kodi: AB12CD», ro'yxatdan o'tish formasida «Taklif kodi (bo'lsa)» — APK'da kod qo'lda yoziladi; `taklif_qilgan_id`; mukofot — Pro'ga 7 kun (yangi hisob + asosiy harakat; bir qurilma va namuna sanalmaydi); `10-done` da kod katta harf bilan solishtiriladi — kichik harf muammosini 12-dars topadi (tayanch 1.10).
+   - 13-Modul 8-darsi: **Telegram xabari** — Backend Telegram bot orqali yuboradigan xabar; ilovada «Telegram'da xabar olish» va «Telegram xabarlarini o'chirish»; xabar shakli (tayanch 1.8; 9.38 — son yo'q): «Shanba, 18:00 o'yini yana e'lon qilindi · Mahalla maydoni»; haftasiga ko'pi bilan ikkita.
+   - 13-Modul 10-darsi: **taklif kodi** (6 belgi, katta harf va raqam), lending «Taklif kodi: AB12CD», ro'yxatdan o'tish formasida «Taklif kodi (bo'lsa)» — APK'da kod qo'lda yoziladi; `taklif_qilgan_id`; mukofot — Pro'ga 7 kun (yangi hisob + asosiy harakat; bir qurilma va namuna sanalmaydi); kod bo'shliqsiz va katta harfga o'tkazilib solishtiriladi (tayanch 1.10; F-1007-468 — kichik harf 12-darsga ataylab qoldirilmaydi).
 4. **Mazmun (tayanch 1.12 — aynan):**
    - **Besh tekshiruv** — asosiy yo'llar, har biri buzish yozuvi bilan: 1) kirish va ro'yxat · 2) asosiy harakat (o'yin e'loni, qo'shilish) · 3) to'lov oqimi (muvaffaqiyatli, rad, takror) · 4) taklif havolasi · 5) eslatma yoki Telegram xabari. Yangi funksiya qo'shilmaydi.
-   - **Mentor misoli natijasi:** 1, 2, 3 — **buzilmadi** · 4 — **buzildi**: taklif kodi kichik harf bilan yozilsa qabul qilinmadi → tuzatish: kod katta harfga o'tkazilib solishtiriladi ·
+   - **Mentor misoli natijasi (F-1007-470; ⛔ pilotda tasdiqlanadi):** 1, 2, 3, 4 — **buzilmadi** (4: «ab12cd» ham qabul qilindi — 10-darsda kod katta harfga o'tkaziladi) ·
      5 — **buzildi**: ikki telefon bir vaqtda «O'yinlar» ni ochganda keyingi «Doimiy o'yin» ikki marta yaratildi va Telegram xabari ikki marta ketdi. Sabab: keyingi o'yin `GET /oyinlar` so'ralganda yaratiladi; ikki so'rov bir vaqtda kelsa, ikkalasi ham «hali yo'q» deb ko'radi →
-     tuzatish: Database'da cheklov — bitta doimiy o'yin seriyasida bitta sana uchun bitta o'yin; ikkinchi yaratish urinishi jimgina o'tkazib yuboriladi. Ikkalasi «Tuzatish qilindi», qayta tekshiruvda takrorlanmadi.
+     tuzatish: Database'da cheklov — bitta doimiy o'yin seriyasida bitta sana uchun bitta o'yin; ikkinchi yaratish urinishi jimgina o'tkazib yuboriladi. «Tuzatish qilindi», qayta tekshiruvda takrorlanmadi.
      ⚠️ 5-topilma — asosiy seans qarori (07.10, muvofiqlashtiruvchi xabari): avvalgi «Pro tugagan «Doimiy o'yin» yana e'lon qilindi» 7-dars ofertasining 4-bandi va 5-dars A1 (Pro tugashi) bilan zid edi — ishlatilmaydi; tayanch 1.12 va 3 (`m13-dars-12-done`) shunga moslanadi.
    - **Mentorning besh tekshiruv yozuvi** (bitta manba `MENTOR_TEKSHIRUV`; 2-ekran, 1-amaliyot kutilgan natija va «Yordam», 2-amaliyot Yordami, 3-amaliyot kutilgan natija; matn — Mentorning o'zi, T-008; TAYANCHGA SAVOL 1–4):
 
@@ -46,42 +46,37 @@ to'lov taklifi ekrani maketida «Test rejim: pul yechilmaydi», mashq sahifasi m
    | 1 | Kirish va ro'yxat | 12-Modul 7-dars (login) · 10-dars («Taklif kodi (bo'lsa)») | Yangi tekshiruv akkaunti bilan ro'yxatdan o'tdim, hisobdan chiqib qayta kirdim; keyin shu loginni boshqa ro'yxatda yozib ko'rdim. | Kirgach «O'yinlar» ochiladi; band loginda «Bu login band» chiqadi. | Kirgach «O'yinlar» ochildi; band loginda «Bu login band» chiqdi. | buzilmadi | — |
    | 2 | Asosiy harakat | 11-Modul · 4-dars («Har hafta takrorlansin») | Tekshiruv akkauntidan yangi o'yin e'lon qildim; ikkinchi telefonda boshqa tekshiruv akkaunti bilan «Shanba, 18:00» ga qo'shildim, keyin o'yindan chiqdim. | Yangi o'yin «O'yinlar» da chiqadi; qo'shilganda «9 / 10», chiqqanda yana «8 / 10» — ikkala telefonda. | Yangi o'yin chiqdi; «9 / 10», keyin «8 / 10» — ikkala telefonda. | buzilmadi | — |
    | 3 | To'lov oqimi | 3, 4, 5-darslar · 10-dars (mukofot — Pro'ga 7 kun) | Tekshiruv akkauntida «Har hafta takrorlansin» ni bosib, to'lov taklifi ekranidan mashq to'lovga o'tdim: avval «Rad etish (mashq)», keyin yana «To'lovga o'tish» va «Ikki marta yuborish». | Rad etishda «To'lov o'tmadi — qayta urinib ko'ring», Pro yo'q; ikki marta yuborishda Pro 30 kunga bir marta yoqiladi. | Rad etishda «To'lov o'tmadi — qayta urinib ko'ring», Pro yo'q; ikki marta yuborishda Pro 30 kunga yoqildi, `tolovlar` da bitta «tolandi» qatori. | buzilmadi | — |
-   | 4 | Taklif havolasi | 10-dars (taklif kodi; ilovada kod qo'lda yoziladi) | Taklif havolamni ikkinchi telefonda ochdim — lendingda «Taklif kodi: AB12CD». Ikki yangi tekshiruv akkaunti bilan ro'yxatdan o'tdim: birida kodni «AB12CD», ikkinchisida «ab12cd» deb yozdim. | Ikkala hisobda ham taklif qilgan odam yoziladi (Neon'da `taklif_qilgan_id`). | «AB12CD» da yozildi; «ab12cd» da kod qabul qilinmadi — taklif sanalmadi. | buzildi | Tuzatish qilindi · qayta tekshiruvda takrorlanmadi |
+   | 4 | Taklif havolasi | 10-dars (taklif kodi; ilovada kod qo'lda yoziladi) | Taklif havolamni ikkinchi telefonda ochdim — lendingda «Taklif kodi: AB12CD». Ikki yangi tekshiruv akkaunti bilan ro'yxatdan o'tdim: birida kodni «AB12CD», ikkinchisida «ab12cd» deb yozdim. | Ikkala hisobda ham taklif qilgan odam yoziladi (Neon'da `taklif_qilgan_id`). | Ikkala hisobda ham taklif qilgan odam yozildi. | buzilmadi | — |
    | 5 | Eslatma yoki Telegram xabari | 12-Modul 4, 9-darslar (eslatma) · 4-dars («Doimiy o'yin» — keyingi o'yin «O'yinlar» so'ralganda) · 8-dars (Telegram xabari) | Tekshiruv akkauntida «Doimiy o'yin» e'lon qildim; Telegram'i ulangan boshqa tekshiruv akkaunti unga qo'shildi. Agent o'yin vaqtini o'tgan haftaga qo'ydi; men ikki telefonda «O'yinlar» ni bir vaqtda ochdim. | Keyingi hafta o'yini bitta yaratiladi, Telegram xabari bitta keladi. | Keyingi hafta o'yini ikki marta yaratildi; Telegram'ga «… yana e'lon qilindi» xabari ikki marta keldi. | buzildi | Tuzatish qilindi · qayta tekshiruvda takrorlanmadi |
 
    ⛔ Yozuv «qur» pilotida Mentor repo'sida `m13-dars-12-start` bilan haqiqiy telefonda olinadi; natija boshqacha chiqsa — yozuv, sahna, testlar va `XATOLAR.md` haqiqiy natijaga moslanadi, o'quv muvozanati uchun natija tanlanmaydi (12-Modul 9.37 a, b; Shubhali 1).
-   - **Tuzatishlar** (tayanch 1.12 va asosiy seans qarori 07.10; Mentor misolida ikkalasi `backend/` da — TAYANCHGA SAVOL 5): 4 — kod katta harfga o'tkazilib solishtiriladi · 5 — Database'da cheklov: bitta doimiy o'yin seriyasida bitta sana uchun bitta o'yin; ikkinchi yaratish urinishi jimgina o'tkazib yuboriladi.
-     Agentning sabab gapi (2-amaliyot kutilgan natijasi, olam matni): 4 — «kod katta harfdagi kod bilan harfma-harf solishtirilgan» (tuzatishdan kelib chiqadi) · 5 — «ikki so'rov bir vaqtda kelganda ikkalasi ham keyingi o'yinni «hali yo'q» deb ko'rgan» (asosiy seans sababi). Boshqa sabab to'qilmadi.
+   - **Tuzatishlar** (tayanch 1.12 va asosiy seans qarori 07.10; Mentor misolida `backend/` da — TAYANCHGA SAVOL 5): 5 — Database'da cheklov: bitta doimiy o'yin seriyasida bitta sana uchun bitta o'yin; ikkinchi yaratish urinishi jimgina o'tkazib yuboriladi.
+     Agentning sabab gapi (2-amaliyot kutilgan natijasi, olam matni): «ikki so'rov bir vaqtda kelganda ikkalasi ham keyingi o'yinni «hali yo'q» deb ko'rgan» (asosiy seans sababi). Boshqa sabab to'qilmadi.
      Ko'prik (o'quvchi matnida bir marta — kartochka 8 izohi): 3-darsdagi takror xabar g'oyasi — bitta ish bir marta.
-   - **Agentning to'rt taklifi** (5-ekran; bitta manba `AGENT_TAKLIF`; olam matni; TAYANCHGA SAVOL 8): 1) «Taklif kodini solishtirishdan oldin katta harfga o'tkazaman.» — tuzatish (4-topilma) · 2) «Ro'yxatdan o'tish ekraniga yangi dizayn beraman.» — yangi funksiya ·
+   - **Agentning to'rt taklifi** (5-ekran; bitta manba `AGENT_TAKLIF`; olam matni; TAYANCHGA SAVOL 8): 1) «O'yinlar ro'yxatiga qidiruv qatori qo'shaman.» — yangi funksiya (F-1007-470: avvalgi «taklif kodi» tuzatishi o'rnida) · 2) «Ro'yxatdan o'tish ekraniga yangi dizayn beraman.» — yangi funksiya ·
      3) «Bir sanaga keyingi o'yin ikki marta yaratilmasligi uchun Database'da cheklov qo'yaman.» — tuzatish (5-topilma) · 4) «Pro tugashidan oldin tashkilotchiga Telegram xabari yuboraman.» — yangi funksiya. Qoida: **tuzatish — yozuvdagi topilmaga bog'lanadi; bog'lanmasa — yangi funksiya, bugun qo'shilmaydi.**
-   - **Qaysi topilma birinchi (bu kursda; TAYANCHGA SAVOL 7):** avval — odamning asosiy ishini to'xtatadigan topilma; keyin — odamga noto'g'ri narsa ko'rsatadigan yoki yuboradigan (noto'g'ri Pro, keraksiz xabar, sanalmagan taklif). Qolgani bugun tuzatilmaydi — `XATOLAR.md` da «qoldi» va sababi.
+   - **Qaysi topilma birinchi (bu kursda; TAYANCHGA SAVOL 7; F-1007-470):** avval — maxfiy ma'lumot, pul yoki yozuvlarga zarar yetkazadigan topilma; keyin — odamning asosiy ishini to'xtatadigan; keyin — odamga noto'g'ri narsa ko'rsatadigan yoki yuboradigan (noto'g'ri Pro, keraksiz xabar, sanalmagan taklif). Qolgani bugun tuzatilmaydi — `XATOLAR.md` da «qoldi» va sababi.
    - **`XATOLAR.md`** (repo ildizida; tayanch 1.12: har topilma — usul · natija · holat) — Mentor misoli (bitta manba `MENTOR_XATOLAR`; 3-amaliyot kutilgan natija; TAYANCHGA SAVOL 6):
      ```
      # XATOLAR
 
      Barqarorlik tekshiruvi: besh yo'l, buzish yozuvi bilan.
 
-     ## Taklif havolasi — kichik harfdagi kod
-     - Usul: ikki yangi tekshiruv akkaunti bilan ro'yxatdan o'tdim; kodni birida «AB12CD», ikkinchisida «ab12cd» deb yozdim.
-     - Natija: kutdim — ikkalasida taklif qilgan odam yoziladi; bo'ldi — «ab12cd» qabul qilinmadi, taklif sanalmadi.
-     - Holat: Tuzatish qilindi · qayta tekshiruvda takrorlanmadi.
-
      ## Telegram xabari — keyingi «Doimiy o'yin» ikki marta
      - Usul: tekshiruv akkauntidagi «Doimiy o'yin» vaqti o'tgan haftaga qo'yildi; ikki telefonda «O'yinlar» bir vaqtda ochildi.
      - Natija: kutdim — keyingi o'yin bitta, Telegram xabari bitta; bo'ldi — o'yin ikki marta yaratildi, xabar ikki marta keldi.
      - Holat: Tuzatish qilindi · qayta tekshiruvda takrorlanmadi.
 
-     Buzilmagan yo'llar: kirish va ro'yxat · asosiy harakat · to'lov oqimi.
+     Buzilmagan yo'llar: kirish va ro'yxat · asosiy harakat · to'lov oqimi · taklif havolasi.
      Tekshirilmagan yo'llar: yo'q.
      ```
-     Holat so'zlari (sinf 5; tayanchdagi «tuzatildi» o'rniga): «Tuzatish qilindi · qayta tekshiruvda takrorlanmadi» · «Tuzatish qilindi · qayta tekshiruvda yana buzildi» · «qoldi — {sabab}». Topilma yo'q bo'lsa ham fayl yoziladi (besh yo'l «buzilmagan»).
+     Holat so'zlari (sinf 5; tayanchdagi «tuzatildi» o'rniga): «Tuzatish qilindi · qayta tekshiruvda takrorlanmadi» · «Tuzatish qilindi · qayta tekshiruvda yana buzildi» · «qoldi — {sabab}». Topilma yo'q bo'lsa ham fayl yoziladi (tekshirilgan yo'llar — «buzilmagan», qolganlari — «tekshirilmagan»; F-1007-470).
    - **Yangi versiya — o'zgargan qismga qarab** (12-Modul 9.28, 9.29, 1.8; TAYANCHGA SAVOL 5): `backend/` — `git push` bilan Render'da (odatda o'zi yangilanadi) · `mobil/` — APK o'zi yangilanmaydi: yangi o'rnatish fayli (`eas build -p android --profile preview`) va lendingdagi havola; brauzer ko'rinishi — `npx expo export -p web` → `netlify deploy --prod --dir dist` ·
-     web-trek sayti — push'dan keyin Netlify odatda o'zi yangilaydi (ko'rinmasa — qayta `netlify deploy --prod`, 12-Modul 9.40 i). **Mentor misolida ikkala tuzatish `backend/` da** — yangi versiya Render'da; APK va brauzer ko'rinishi o'sha Backend'ga ulanadi, ular uchun yangi fayl kerak emas.
+     web-trek sayti — push'dan keyin Netlify odatda o'zi yangilaydi (ko'rinmasa — qayta `netlify deploy --prod`, 12-Modul 9.40 i). **Mentor misolida tuzatish `backend/` da** — yangi versiya Render'da; APK va brauzer ko'rinishi o'sha Backend'ga ulanadi, ular uchun yangi fayl kerak emas.
 5. **Atamalar (bir ma'no — bir so'z, T-014; tayanch 2 — ta'riflar so'zma-so'z):**
    - **barqarorlik tekshiruvi** — asosiy yo'llarni buzish yozuvi bilan tekshirish (tayanch 2 so'zma-so'z; 2-ekran nom qatorida, besh tekshiruvdan keyin — T-011). Ishlatilmaydi: stabilizatsiya (prozada), QA, regression, «test qilish». Dars nomidagi «barqarorlashtirish» — App.jsx nomi, o'zgarmaydi.
    - **yo'l** — odam mahsulotda boshidan oxirigacha bajaradigan muhim ish (bu darsda beshta, tayanch 1.12). ⚠️ «asosiy yo'l» (tayanch) va **«asosiy harakat»** (2-yo'l nomi; 12-Modul ta'rifi: «hozir kamida bitta o'yinda qatnashayotgan yoki o'yin e'lon qilgan») — bir ildiz: o'quvchi matnida «asosiy yo'llar» faqat ta'rif qatorida (2-ekran nom qatori, kartochka 1, «Endi siz bilasiz» 1), qolgan joyda «besh yo'l» (TAYANCHGA SAVOL 17).
-   - **tekshiruv** — bitta yo'lni bir marta tekshirib yozish (12-Modulda «urinish» edi — bugun har yo'lga bitta); «tekshirish» — o'z ishini ko'rish. «sinov» bu darsda yo'q (real odam yo'q); «test» — faqat maketdagi «Test rejim: pul yechilmaydi» (ballik savol ekranda «savol»).
+   - **tekshiruv** — bitta yo'l uchun bitta yozuv (ichida bir necha qadam bo'lishi mumkin — masalan, to'lov oqimida rad va ikki marta yuborish; F-1007-470; 12-Modulda «urinish» edi — bugun har yo'lga bitta); «tekshirish» — o'z ishini ko'rish. «sinov» bu darsda yo'q (real odam yo'q); «test» — faqat maketdagi «Test rejim: pul yechilmaydi» (ballik savol ekranda «savol»).
    - **buzish yozuvi** — 12-Modul 5-darsidan (uch qator + belgi). Bugun belgi uchta: **«Buzildi»** · **«Buzilmadi»** · **«Mahsulotimda hali yo'q»** (yo'q yo'l «buzilmadi» deb yozilmaydi — TAYANCHGA SAVOL 9). «buzish», «buzildi / buzilmadi» — dars atamasi (TAQIQLAR 5); «buzuq», «buzilgan» (sifat) — yo'q.
    - **topilma** — tekshiruvda «buzildi» chiqqan joy. **«Tuzatish qilindi»** — kodda o'zgartirish qilindi (ish fakti) · **«qayta tekshiruvda takrorlanmadi»** / **«qayta tekshiruvda yana buzildi»** — o'sha usul bilan ko'rilgan natija · **«qoldi»** — bugun tuzatilmagan topilma (sababi bilan). «tuzatildi», «endi ishlaydi», «isbotlandi» — yo'q.
    - **`XATOLAR.md`** — topilmalar ro'yxati fayli (tayanch 2). Ishlatilmaydi: bug-list, «bag».
@@ -91,9 +86,9 @@ to'lov taklifi ekrani maketida «Test rejim: pul yechilmaydi», mashq sahifasi m
    - **to'lov taklifi ekrani · mashq to'lov · test rejim · Pro · «Doimiy o'yin» · taklif havolasi · taklif kodi · mukofot** — tayanch 2 aynan; bu darsda yangidan ta'riflanmaydi.
    - **agent** (Antigravity) · **prompt** · **talab** (qayerda · nima qilsin · nima buzilmasin) · **sanoq yozuvi** (faqat tozalash qatorida) · **APK** · **o'rnatish fayli** · **brauzer ko'rinishi**.
    - **Ishlatilmaydi:** server (prozada), stabilizatsiya, QA, bug, regression, «sinov», «test qilish», «tuzatildi» (belgi sifatida), «hodisa» (sanoq yozuvi o'rnida), performance, demo-test, A1/A2/A3, `m11-12`, «Modul 13».
-6. **Mentor misolidagi sonlar (tayanch 1.13 — aynan):** besh tekshiruv — buzilmadi **3**, buzildi **2** → «Tuzatish qilindi» **2**, qayta tekshiruvda takrorlanmadi **2**. Boshqa sonlar — oldingi darslardan, belgi sifatida: «Shanba, 18:00 · Mahalla maydoni · 8 / 10» → «9 / 10» (12-Modul namuna o'yini) ·
-   «Taklif kodi: AB12CD» (tayanch 1.10) · «30 kun — 15 000 so'm» (yorliq «Mentorning taxmini», tayanch 1.4) · Pro'ga 7 kun (mukofot, tayanch 1.10). Sahna uchun yangi: tekshiruv «Doimiy o'yini» «Juma, 18:00 · Mahalla maydoni» va xabardagi «0 / 10» (TAYANCHGA SAVOL 3).
-   Statistika yoki tadqiqot deyilmaydi (T-043); «besh tekshiruvdan ikkitasi» — Mentor misolining fakti, umumiy qoida emas.
+6. **Mentor misolidagi sonlar (tayanch 1.13 — aynan):** besh tekshiruv — buzilmadi **4**, buzildi **1** → «Tuzatish qilindi» **1**, qayta tekshiruvda takrorlanmadi **1** (F-1007-470; ⛔ pilot). Boshqa sonlar — oldingi darslardan, belgi sifatida: «Shanba, 18:00 · Mahalla maydoni · 8 / 10» → «9 / 10» (12-Modul namuna o'yini) ·
+   «Taklif kodi: AB12CD» (tayanch 1.10) · «30 kun — 15 000 so'm» (yorliq «Mentorning taxmini», tayanch 1.4) · Pro'ga 7 kun (mukofot, tayanch 1.10). Sahna uchun yangi: tekshiruv «Doimiy o'yini» «Juma, 18:00 · Mahalla maydoni» (TAYANCHGA SAVOL 3; xabarda son yo'q — 9.38).
+   Statistika yoki tadqiqot deyilmaydi (T-043); «besh tekshiruvdan bittasi» — Mentor misolining fakti, umumiy qoida emas.
 7. **Metafora yo'q. Keyssiz** (loyiha kuni, Qaror-0 21). Real kompaniya, brend keysi yo'q (Telegram — asbob). Qahramon yo'q — vazifani Mentor beradi; odamlar roli bilan: tashkilotchi, o'yinchi, sherik («1-telefon · siz» / «2-telefon · tekshiruv akkaunti» — sahna yorliqlari).
 8. **Amaliyot bloki (tayanch 4, 12-Modul 9.36):** to'rt bandning hammasi o'quvchining **o'z repo'sida, o'z mahsuloti va trekida**; Mentor misoli — namuna (o'ngda «kutilgan natija · namuna: Maydon Jamoa», `{…}` yonida kulrang «masalan: …», «Yordam»da Mentor misolidagi to'liq prompt). 5-band yo'q.
    Band nomlari: 1-amaliyot — Ochish · Prompt · Besh tekshiruv · Tekshirish (12-Modul 5-dars A1 naqshi: kod yozilmaydi) · 2-amaliyot — Ochish · Prompt · Ishga tushirish · Tekshirish · 3-amaliyot — Ochish · Qayta tekshirish · `XATOLAR.md` · Yangi versiya (12-Modul 5-dars A2 naqshi: qayta tekshirish o'z bandida; TAYANCHGA SAVOL 11).
@@ -113,15 +108,15 @@ to'lov taklifi ekrani maketida «Test rejim: pul yechilmaydi», mashq sahifasi m
 ## Darsning ipi va bitta vizual
 
 - **Ip (P-001/004):** «Maydon Jamoa» — mahalladagi mini-futbol uchun jamoa yig'adigan ilova (tayanch 1.0). Bu modulda unga to'lov taklifi ekrani va mashq to'lov (3–5), Telegram xabari (8), taklif kodi (10) qo'shildi — agent har safar «Tayyor!» degan.
-  Bugun Mentor yangi narsa qo'shmaydi: besh yo'lni buzish yozuvi bilan qayta tekshiradi, ikki topilmani agentga beradi, agentning yangi funksiya takliflarini rad etadi, tuzatishni o'sha usul bilan qayta ko'radi, `XATOLAR.md` yozadi va yangi versiyani chiqaradi. O'quvchi xuddi shuni o'z mahsulotida qiladi (uch blok).
-- **Hook:** uch «Tayyor!» va ochilgan ilova → «to'liq ishlashini qanday bilasiz?» → 2-ekranda besh tekshiruv: ikkitasida buzildi — atama «barqarorlik tekshiruvi» → 1-amaliyot (o'z besh yo'li) → 5-ekranda agentning to'rt taklifi: ikkitasi tuzatish, ikkitasi yangi funksiya → 2-amaliyot (tuzatish) → 3-amaliyot (qayta tekshirish, `XATOLAR.md`, yangi versiya).
+  Bugun Mentor yangi narsa qo'shmaydi: besh yo'lni buzish yozuvi bilan qayta tekshiradi, topilmani agentga beradi, agentning yangi funksiya takliflarini rad etadi, tuzatishni o'sha usul bilan qayta ko'radi, `XATOLAR.md` yozadi va yangi versiyani chiqaradi. O'quvchi xuddi shuni o'z mahsulotida qiladi (uch blok).
+- **Hook:** uch «Tayyor!» va ochilgan ilova → «to'liq ishlashini qanday bilasiz?» → 2-ekranda besh tekshiruv: bittasida buzildi — atama «barqarorlik tekshiruvi» → 1-amaliyot (o'z besh yo'li) → 5-ekranda agentning to'rt taklifi: bittasi tuzatish, uchtasi yangi funksiya → 2-amaliyot (tuzatish) → 3-amaliyot (qayta tekshirish, `XATOLAR.md`, yangi versiya).
 - **Bitta vizual — «yo'l sahnasi»** (bitta manba `YOL_SAHNA` + `YOLLAR` + `MENTOR_TEKSHIRUV`, 163/180):
   - **chapda telefon «1-telefon · siz»** (ramka ≈170×272, o'lcham barqaror — SABOQ 22; yorliq ramka ustida — SABOQ 23): «Maydon Jamoa» nomi o'z rangida; ekran yo'lga qarab almashadi — «Ro'yxatdan o'tish» (Ism · Login · Parol · «Taklif kodi (bo'lsa)») · «O'yinlar» · to'lov taklifi ekrani → «Mashq to'lov» sahifasi · lending «Taklif kodi: AB12CD» · Telegram chati.
     Telefon ostida ixcham chiziq «1 · 2 · 3 · 4 · 5» — besh yo'l (joriy — accent, tayyori — belgi rangida). Kerak bo'lganda yonida kichik ikkinchi telefon «2-telefon · tekshiruv akkaunti» va bir qatorli Neon kartasi (`taklif_qilgan_id`, `pro_gacha`, `tolovlar`, `oyinlar`).
   - **o'ngda bitta karta** (≤3 blok): **buzish yozuvi kartasi** (2-ekran, 1-amaliyot) — sarlavha «N · {yo'l}», ostida kulrang qator «Bu yo'lga tekkan darslar: …», uch qator «Nima qildim» · «Nima kutdim» · «Nima bo'ldi», belgi joyi ·
     yoki **agent chati** (5-ekran, 2-amaliyot) · yoki **fayl kartasi `XATOLAR.md`** (1-ekran tayyor holati, 3-amaliyot).
   - Holatlar: kulrang (kutmoqda) → accent (joriy) → belgi rangi (A-bo'lim 12). Karta ixcham qatorga yig'ilib chiziqqa tushadi (SABOQ 17). `prefers-reduced-motion` da harakat to'xtaydi — holatlar animatsiyasiz almashadi (DE-200).
-  - Ishlatilishi: 0 (telefon + agent chati) · 1 (tayyor holat: besh yo'l chizig'i + `XATOLAR.md` kartasi) · 2 (telefon + yozuv kartasi) · 5 (ikki topilma + agent chati) · bloklarning o'ng tomoni (kutilgan natija).
+  - Ishlatilishi: 0 (telefon + agent chati) · 1 (tayyor holat: besh yo'l chizig'i + `XATOLAR.md` kartasi) · 2 (telefon + yozuv kartasi) · 5 (topilma + agent chati) · bloklarning o'ng tomoni (kutilgan natija).
 - **Yakun:** besh yo'l tekshirilgan, eng muhim topilma tuzatilib qayta tekshirilgan, `XATOLAR.md` da hamma topilma holati bilan, yangi versiya chiqqan · uyga vazifa yo'q · keyingi dars — «Zaxira dars».
 
 ---
@@ -137,7 +132,7 @@ to'lov taklifi ekrani maketida «Test rejim: pul yechilmaydi», mashq sahifasi m
 - **Harakat → Vizual o'zgarish:** «Ilovani ochish» → telefonda «O'yinlar» ochiladi: «Shanba, 18:00 · Mahalla maydoni · 8 / 10» (karta bir lahza ajralib kiradi) → o'ngdagi variantlar faollashadi (bosilmaguncha xira).
 - Variantlar (radio, ballsiz):
   - Ilova ochildi — demak, hammasi ishlaydi (39)
-  - ✔ Ro'yxatdan to'lovgacha o'zim bosib ko'raman (43)
+  - ✔ Muhim yo'llarni o'zim birma-bir tekshiraman (43)
   - Agent uch marta «Tayyor!» dedi — shu yetadi (43)
 - Javob — 2-variant: **Aynan! Ilova ochilishi — faqat bitta ish. Ro'yxat, to'lov va taklif kodi har biri alohida tekshiriladi.** (103)
 - Javob — 1-variant: **Qiziq fikr! Ochilish ishladi — bu rost. Ro'yxat, to'lov va taklif kodi esa boshqa joyda ishlaydi.** (97)
@@ -177,17 +172,17 @@ to'lov taklifi ekrani maketida «Test rejim: pul yechilmaydi», mashq sahifasi m
 - O'ng — buzish yozuvi kartasi (bittadan, SABOQ 9, E 53): sarlavha «N · {yo'l}» · kulrang qator «Bu yo'lga tekkan darslar: …» · «Nima qildim» · «Nima kutdim» · «Nima bo'ldi» (avval yopiq) · tugma **«Tekshiruvni ko'rish»** (halqada) → keyin ikki tugma **«Buzildi»** · **«Buzilmadi»** (har birining o'z chegarasi, E 40).
   Matn — A-bo'lim 4-band jadvali (`MENTOR_TEKSHIRUV`, aynan).
 - **Harakat → Vizual o'zgarish:** «Tekshiruvni ko'rish» → telefon o'sha yo'lni o'ynaydi (≈3 s) → kartada «Nima qildim» va «Nima kutdim» yoziladi → «Nima bo'ldi» yoziladi → «Buzildi» / «Buzilmadi» faollashadi →
-  - to'g'ri belgi → karta ixcham qatorga yig'ilib pastdagi chiziqqa tushadi («4 · Taklif havolasi · buzildi»; ~1 s belgi rangida) → keyingi karta kiradi;
+  - to'g'ri belgi → karta ixcham qatorga yig'ilib pastdagi chiziqqa tushadi («5 · Eslatma yoki Telegram xabari · buzildi»; ~1 s belgi rangida) → keyingi karta kiradi;
   - boshqa belgi → karta silkinadi, bir qator (`QXato`, ≤60): Kutilgani va bo'lgani bir xilmi — yana o'qing. (46)
   Telefonda (har yo'l — bir necha qisqa kadr ketma-ket, KOD 4):
   1 — «Ro'yxatdan o'tish» → «O'yinlar» → «Hisobdan chiqish» → «Kirish» → «O'yinlar»; ikkinchi ro'yxatda login maydoni ostida qizil qator «Bu login band» ·
   2 — «E'lon berish» → «O'yinlar» da yangi karta; kichik ikkinchi telefonda «Shanba, 18:00»: «8 / 10» → «9 / 10» → «8 / 10» ·
   3 — to'lov taklifi ekrani (so'zma-so'z, narx yonida «Mentorning taxmini», pastda «Test rejim: pul yechilmaydi») → «Mashq to'lov» («Bu sahifa — mashq. Karta so'ralmaydi, pul yechilmaydi.» · «Maydon Jamoa — Pro, 30 kun · 15 000 so'm») → «Rad etish (mashq)» → «To'lov o'tmadi — qayta urinib ko'ring» → yana «To'lovga o'tish» → «Ikki marta yuborish» → ilovada Pro; Neon kartasi `tolovlar`: bitta «tolandi» qatori ·
-  4 — lending «Taklif kodi: AB12CD» → forma «Taklif kodi (bo'lsa)»: «AB12CD» — Neon kartasida `taklif_qilgan_id` yozildi (yashil) → ikkinchi formada «ab12cd» — `taklif_qilgan_id` bo'sh (qizil) ·
-  5 — Neon kartasi: o'yin vaqti — o'tgan hafta (yorliq «agent qo'ydi») → ikki telefonda bir vaqtda «O'yinlar» → ikkala ro'yxatda ikkita bir xil yangi karta «Juma, 18:00 · Mahalla maydoni · 0 / 10» (ikkinchisi qizil chegarada) → Telegram chatida ikki bir xil bot xabari: «Juma, 18:00 o'yini yana e'lon qilindi · Mahalla maydoni — 0 / 10».
+  4 — lending «Taklif kodi: AB12CD» → forma «Taklif kodi (bo'lsa)»: «AB12CD» — Neon kartasida `taklif_qilgan_id` yozildi (yashil) → ikkinchi formada «ab12cd» — `taklif_qilgan_id` yozildi (yashil) ·
+  5 — Neon kartasi: o'yin vaqti — o'tgan hafta (yorliq «agent qo'ydi») → ikki telefonda bir vaqtda «O'yinlar» → ikkala ro'yxatda ikkita bir xil yangi karta «Juma, 18:00 · Mahalla maydoni · 0 / 10» (ikkinchisi qizil chegarada) → Telegram chatida ikki bir xil bot xabari: «Juma, 18:00 o'yini yana e'lon qilindi · Mahalla maydoni».
 - Nom qatori (5/5 dan keyin, bitta): Asosiy yo'llarni buzish yozuvi bilan tekshirish — barqarorlik tekshiruvi. (73)
-- Xulosa qutisi (E 42): 1-qator — «Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz ✕ — aslida: ikkitasida» · xulosa · oxirgi kichik qator — QIzoh.
-- Xulosa: Mentor misolida beshtadan ikkitasida ilova buzildi: ikkalasida bir necha darsning ishi uchrashgan. (98)
+- Xulosa qutisi (E 42): 1-qator — «Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz ✕ — aslida: bittasida» · xulosa · oxirgi kichik qator — QIzoh.
+- Xulosa: Mentor misolida beshtadan bittasida ilova buzildi: unda bir necha darsning ishi uchrashgan. (91)
 - QIzoh (xulosa qutisining oxirgi qatori — xavfsizlik chegarasi): Tekshirish — faqat o'z mahsulotingizda va tekshiruv uchun ochilgan hisoblarda. (78)
 - Tugadi (199): karta yopiladi, besh ixcham qator (yo'l · belgi) va telefon fokusga; vizual ⛶ ichida (q17). Tugmalar: Orqaga · Avval o'zingiz belgilab ko'ring → Tekshiruvlarni ko'ring (N/5) → Davom etish
 - ✎ Mentor misolining besh tekshiruvi — tayanch 1.12 (natija aynan); yozuv matni va «tekkan darslar» qatori — TAYANCHGA SAVOL 1, 2. T-011: besh tekshiruv sahnada → keyin atama. «Bu yo'lga tekkan darslar» — tayanch faktlari (1.4, 1.5, 1.8, 1.10; 12-Modul 7-dars):
@@ -216,7 +211,7 @@ to'lov taklifi ekrani maketida «Test rejim: pul yechilmaydi», mashq sahifasi m
      > Tekshiruv akkaunti och: namuna ism va login bilan, haqiqiy emas. Login va parolni menga ayt.
      > Shu tekshiruv akkauntidagi «Doimiy o'yin» vaqtini o'tgan haftaga qo'y. Qaysi `id` ni o'zgartirganingni ayt.
   3. **Besh tekshiruv** — chapda kartalar bittadan (SABOQ 9, E 53): har kartada **«Nima qilaman»** (oldindan yozilgan, tahrirlanadi) va **«Nima kutaman»** — **tekshirishdan oldin** yozing; keyin bajaring va **«Nima bo'ldi»** qatoriga ko'rganingizni yozing;
-     oxirida belgi: **«Buzildi»** · **«Buzilmadi»** · **«Mahsulotimda hali yo'q»**. Karta ixcham qatorga yig'iladi (bosib tahrirlanadi), keyingisi kiradi.
+     oxirida belgi: **«Buzildi»** · **«Buzilmadi»** · **«Mahsulotimda hali yo'q»**. Belgilar ostida kulrang qator: «Buzilmadi» — shu urinishda kutilgani bo'ldi; boshqa paytda chiqmaydi degani emas. (82) Karta ixcham qatorga yig'iladi (bosib tahrirlanadi), keyingisi kiradi.
      O'zgarishni boshqa hisob qilishi kerak bo'lsa: sherik — o'z hisobidan, o'z telefonida · web-trekda — kompyuterdagi yashirin oynada ikkinchi tekshiruv akkaunti bilan · bo'lmasa — agent («Qil»).
      Formadan o'zingiz ochgan tekshiruv akkauntlarining loginini yozib boring — 3-amaliyot oxirida ular o'chiriladi.
      Oldindan yozilgan «Nima qilaman» (bitta manba `YOLLAR`):
@@ -226,18 +221,18 @@ to'lov taklifi ekrani maketida «Test rejim: pul yechilmaydi», mashq sahifasi m
          Karta tepasida (faqat `pm-m11d5-buzish` bo'lsa, bitta kulrang qator): «5-darsda: {usul — belgi · qayta tekshiruv}» — masalan: «ikki marta yuborish — buzildi · takrorlanmadi». `qayta` bo'sh yoki «yana buzildi» bo'lgan usulni bugun shu kartada ham qaytaring.
      (4) Taklif havolasi — «Taklif havolamni ochaman; ikki yangi tekshiruv akkaunti bilan ro'yxatdan o'tib, kodni qo'lda yozaman: birida katta, birida kichik harf bilan.»
      (5) Eslatma yoki Telegram xabari — «Xabar chiqadigan holatni tekshiruv akkauntida yuzaga keltiraman va xabar necha marta kelganini sanayman; keyin shuni ikki qurilmada bir vaqtda qaytaraman. Vaqtni kerak bo'lsa agent suradi.»
-     Ipuchalar (input ichida, E 43): «Nima kutaman» — «Ekranda yoki Neon'da aniq nima ko'rinadi?» · «Nima bo'ldi» — «Ko'rganingiz — taxmin emas».
+     Ipuchalar (input ichida, E 43): «Nima kutaman» — «Talab bo'yicha: ekranda yoki Neon'da nima ko'rinadi?» · «Nima bo'ldi» — «Ko'rganingiz — taxmin emas».
      Har karta ostida «Yordam» — Mentor yozuvining o'sha kartasi (A-bo'lim 4-band jadvali, belgisi bilan).
      Shart xabarlari (≤60): «Nima kutaman» bo'sh bo'lsa — Avval nima kutishingizni yozing: ekranda nima ko'rinadi? (56) · belgi bosilganda «Nima bo'ldi» bo'sh bo'lsa — Belgidan oldin nima ko'rganingizni yozing. (42)
      Xato chiqsa — bu ham natija: uni «Nima bo'ldi» qatoriga yozing. Agentga faqat xato qatorini yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Nima bo'lganini ayt, hech narsani o'zgartirma.»
-  4. **Tekshirish** — besh yozuvni o'qing: «Nima bo'ldi» — ko'rganingiz; har «Buzildi» va «Buzilmadi» «Nima kutdim» bilan solishtirilgan; «Mahsulotimda hali yo'q» — faqat haqiqatan yo'q yo'lda.
+  4. **Tekshirish** — besh yozuvni o'qing: «Nima bo'ldi» — ko'rganingiz; har «Buzildi» va «Buzilmadi» o'sha yo'l talabi bilan solishtirilgan («Nima kutdim» — talabdagi natija, taxmin emas; F-1007-463); «Mahsulotimda hali yo'q» — faqat haqiqatan yo'q yo'lda.
      Keyin agentga: «Bugun tekshiruv uchun ochilgan hisoblar — sen ochganlaring va men formadan ochganlarim: {tekshiruv loginlari} — va ular yaratgan yozuvlar ro'yxatini `id` lari bilan ko'rsat. Hozircha hech narsani o'chirma.» — ro'yxat 3-amaliyot oxirida kerak bo'ladi.
      Qavs yonida kulrang namuna: {tekshiruv loginlari} — «masalan: tekshiruv1, tekshiruv2».
-- O'ng tomon — «kutilgan natija · namuna: Maydon Jamoa»: Mentor yozuvining besh ixcham kartasi (A-bo'lim jadvali, «Tuzatishdan keyin» ustunisiz), har birida uch qator va belgi: 1 · buzilmadi · 2 · buzilmadi · 3 · buzilmadi · 4 · buzildi · 5 · buzildi; kartalar ustida kichik telefon «Maydon Jamoa».
+- O'ng tomon — «kutilgan natija · namuna: Maydon Jamoa»: Mentor yozuvining besh ixcham kartasi (A-bo'lim jadvali, «Tuzatishdan keyin» ustunisiz), har birida uch qator va belgi: 1 · buzilmadi · 2 · buzilmadi · 3 · buzilmadi · 4 · buzilmadi · 5 · buzildi; kartalar ustida kichik telefon «Maydon Jamoa».
   Web-trekda: o'sha kartalar, telefon o'rnida brauzer oynasi `….netlify.app`.
 - Hammasi bajarilgach (yashil, holatga qarab — sinf 6):
-  - kamida bitta «Buzildi» — Besh yo'l tekshirildi: topilganlar keyingi blokda tuzatiladi. (61)
-  - «Buzildi» yo'q — Besh yo'l tekshirildi: mahsulotingiz buzilmadi — bu ham natija. (63)
+  - kamida bitta «Buzildi» — Tekshiruv yozildi: topilganlar keyingi blokda tuzatiladi. (57)
+  - «Buzildi» yo'q — Tekshirilgan yo'llarda bu safar topilma chiqmadi — bu ham natija. (65)
   - ostida kulrang qator (faqat «Mahsulotimda hali yo'q» bo'lsa): Mahsulotingizda hali yo'q yo'llar tekshirilmadi: {N} ta. (56)
 - Pastki qator (kichik; darsda bir marta — SABOQ 39): Ortda qoldingizmi — Mentor misolini o'z repo'ngizdan tashqarida, yangi papkada oching: `git clone https://github.com/Azizbekcrypto/maydon-jamoa` · `cd maydon-jamoa` · `git checkout -f m13-dars-12-start` —
   oxirgi buyruqni faqat shu yangi papkada ishlating: u papkadagi o'zgarishlarni o'chiradi. Bu — tekshiruvdan oldingi kod; tuzatilgan holati — `m13-dars-12-done`. `backend/.env` va `mobil/.env` ga o'z qiymatlaringizni yozasiz.
@@ -270,24 +265,24 @@ to'lov taklifi ekrani maketida «Test rejim: pul yechilmaydi», mashq sahifasi m
 - Eyebrow: Tushuncha · faqat tuzatish
 - Sarlavha: **Agentning qaysi taklifi bugun qilinadi?** (39)
 - Mentor (bosqichga qarab, SABOQ 11; har biri bitta gap):
-  - bashoratgacha: Mentor ikki topilmani agentga berdi, agent to'rt taklif yozdi — avval taxminingizni belgilang.
-  - harakat paytida: Taklifni chapdagi ikki topilma bilan solishtiring va ro'yxatini tanlang.
+  - bashoratgacha: Mentor topilmani agentga berdi, agent to'rt taklif yozdi — avval taxminingizni belgilang.
+  - harakat paytida: Taklifni chapdagi topilma bilan solishtiring va ro'yxatini tanlang.
   - tugagach: To'rt taklif joylandi — natijani taxminingiz bilan solishtiring.
 - Bashorat (ballsiz; tanlangach ixcham qator): **To'rt taklifdan nechtasi bugun qilinadi?** · Bittasi · Ikkitasi · Uchtasi
-- Chap — Mentorning ikki topilma kartasi (ixcham, qizil belgi; `MENTOR_TEKSHIRUV` 4 va 5): «4 · Taklif havolasi · buzildi — «ab12cd» qabul qilinmadi» · «5 · Telegram xabari · buzildi — keyingi o'yin ikki marta yaratildi».
+- Chap — Mentorning topilma kartasi (ixcham, qizil belgi; `MENTOR_TEKSHIRUV` 5): «5 · Telegram xabari · buzildi — keyingi o'yin ikki marta yaratildi».
   Ostida ikki ro'yxat joyi (uzuq chiziqli): «Bugun — tuzatish» · «Bugun emas — yangi funksiya».
 - O'ng — agent chati (Antigravity, T-008): taklif pufaklari bittadan, ustida «Taklif N / 4»; pufak ostida ikki tugma **«Bugun — tuzatish»** · **«Bugun emas — yangi funksiya»** (har birining o'z chegarasi, E 40).
-  Takliflar (`AGENT_TAKLIF`, aynan; shu tartibda): 1 «Taklif kodini solishtirishdan oldin katta harfga o'tkazaman.» · 2 «Ro'yxatdan o'tish ekraniga yangi dizayn beraman.» · 3 «Bir sanaga keyingi o'yin ikki marta yaratilmasligi uchun Database'da cheklov qo'yaman.» · 4 «Pro tugashidan oldin tashkilotchiga Telegram xabari yuboraman.»
+  Takliflar (`AGENT_TAKLIF`, aynan; shu tartibda): 1 «O'yinlar ro'yxatiga qidiruv qatori qo'shaman.» · 2 «Ro'yxatdan o'tish ekraniga yangi dizayn beraman.» · 3 «Bir sanaga keyingi o'yin ikki marta yaratilmasligi uchun Database'da cheklov qo'yaman.» · 4 «Pro tugashidan oldin tashkilotchiga Telegram xabari yuboraman.»
 - **Harakat → Vizual o'zgarish:** tugma bosiladi →
-  - to'g'ri «Bugun — tuzatish» (1, 3) → pufakdan chapdagi topilma kartasiga chiziq tortiladi, karta yonida yorliq «tuzatadi», taklif «Bugun — tuzatish» ro'yxatiga tushadi;
-  - to'g'ri «Bugun emas — yangi funksiya» (2, 4) → pufak kulrang tortib «Bugun emas» ro'yxatiga tushadi, yonida kulrang yorliq «hech bir topilmaga bog'lanmaydi»;
-  - boshqa tanlov → pufak silkinadi, bir qator (`QXato`, ≤60): Taklifni chapdagi ikki topilma bilan yana solishtiring. (55)
-  → keyingi taklif kiradi. To'rttasidan keyin har ro'yxatda ikkitadan taklif turadi.
-- Xulosa qutisi (E 42): 1-qator — «Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz ✕ — aslida: ikkitasi» · xulosa · QIzoh.
-- Xulosa: Bu darsda faqat topilmaga bog'langan o'zgarish qilinadi: yangi funksiya tekshirilmagan yangi yo'l ochadi. (105)
+  - to'g'ri «Bugun — tuzatish» (3) → pufakdan chapdagi topilma kartasiga chiziq tortiladi, karta yonida yorliq «tuzatadi», taklif «Bugun — tuzatish» ro'yxatiga tushadi;
+  - to'g'ri «Bugun emas — yangi funksiya» (1, 2, 4) → pufak kulrang tortib «Bugun emas» ro'yxatiga tushadi, yonida kulrang yorliq «hech bir topilmaga bog'lanmaydi»;
+  - boshqa tanlov → pufak silkinadi, bir qator (`QXato`, ≤60): Taklifni chapdagi topilma bilan yana solishtiring. (50)
+  → keyingi taklif kiradi. To'rttasidan keyin «Bugun — tuzatish» da bitta, «Bugun emas» da uchta taklif turadi.
+- Xulosa qutisi (E 42): 1-qator — «Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz ✕ — aslida: bittasi» · xulosa · QIzoh.
+- Xulosa: Bu darsda faqat topilmaga bog'langan o'zgarish qilinadi: yangi funksiya yana tekshirilmagan joy qo'shadi. (105)
 - QIzoh: Bugun ulgurmagan topilma ham `XATOLAR.md` ga «qoldi» deb, sababi bilan yoziladi. (78)
-- Tugadi (199): chat yopiladi, ikki topilma kartasi va ikki ro'yxat fokusga; vizual ⛶ ichida. Tugmalar: Orqaga · Avval o'zingiz belgilab ko'ring → Takliflarni joylang (N/4) → Davom etish
-- ✎ Yangi funksiya qo'shilmasligi — tayanch 1.12, Qaror-0 19; qoida sanaladigan: taklif yozuvdagi topilmaga bog'lanadimi (sinf 7). Ikki tuzatish — tayanch 1.12 so'zlari agent tilida; ikki yangi funksiya — mening qarorim (TAYANCHGA SAVOL 8):
+- Tugadi (199): chat yopiladi, topilma kartasi va ikki ro'yxat fokusga; vizual ⛶ ichida. Tugmalar: Orqaga · Avval o'zingiz belgilab ko'ring → Takliflarni joylang (N/4) → Davom etish
+- ✎ Yangi funksiya qo'shilmasligi — tayanch 1.12, Qaror-0 19; qoida sanaladigan: taklif yozuvdagi topilmaga bog'lanadimi (sinf 7). Tuzatish — asosiy seans tuzatishi agent tilida; uch yangi funksiya — mening qarorim (TAYANCHGA SAVOL 8; F-1007-470: qidiruv qatori — kichik harf topilmasi o'rnida):
   ikkalasi ham haqiqiy hayotda foydali bo'lishi mumkin — «yomon g'oya» deyilmaydi, faqat «bugun emas» (sinf 8: distraktor yolg'on emas, qoida bo'yicha noto'g'ri). 4-taklif kelajak va'dasi emas — rad etilgan g'oya, hech qayerda «keyin qilamiz» deyilmaydi (sinf 16).
   QIzoh — «qolgan topilma yashirilmaydi» qoidasining birinchi uchrashuvi; to'liq ishi 2 va 3-amaliyotda.
 
@@ -297,7 +292,7 @@ to'lov taklifi ekrani maketida «Test rejim: pul yechilmaydi», mashq sahifasi m
 - Mentor: Yozuvni agentga so'zma-so'z berasiz: tuzatishni u qiladi, yangi narsa qo'shilmaganini siz ko'rasiz; «1 · Ochish»dan boshlang.
 - Talab zinapoyasi A2: tayyor talab + 2 joy (`{tanlangan topilmalar}` — 1-amaliyot kartalaridan oldindan; `{avvalgidek ishlashi kerak bo'lgan yo'llar}` — oldindan, tahrirlanadi).
 - Bandlar (o'z repo'ngizda):
-  1. **Ochish** — 1-amaliyotdagi «Buzildi» belgili kartalaringiz pastda. Bir yoki ikkitasini tanlang (tanlov kartalari, ko'pi bilan ikkita): bu kursda avval — odamning asosiy ishini to'xtatadigan topilma; keyin — odamga noto'g'ri narsa ko'rsatadigan yoki yuboradigan (noto'g'ri Pro, keraksiz xabar, sanalmagan taklif).
+  1. **Ochish** — 1-amaliyotdagi «Buzildi» belgili kartalaringiz pastda. Bir yoki ikkitasini tanlang (tanlov kartalari, ko'pi bilan ikkita): bu kursda avval — maxfiy ma'lumot, pul yoki yozuvlarga zarar yetkazadigan topilma; keyin — odamning asosiy ishini to'xtatadigan; keyin — odamga noto'g'ri narsa ko'rsatadigan yoki yuboradigan (noto'g'ri Pro, keraksiz xabar, sanalmagan taklif).
      Qolgani bugun tuzatilmaydi — 3-amaliyotda `XATOLAR.md` ga «qoldi» deb, sababi bilan yoziladi.
      Hech biri «Buzildi» bo'lmasa — 2 va 3-bandni o'tkazib yuboring: 4-bandda faqat `git status` toza ekanini ko'rasiz.
   2. **Prompt** — qavslarni tekshiring (tahrirlasangiz bo'ladi), «Nusxalash»ni bosing va Antigravity'ga yuboring:
@@ -308,31 +303,30 @@ to'lov taklifi ekrani maketida «Test rejim: pul yechilmaydi», mashq sahifasi m
      Qavslar: {tanlangan topilmalar} — 1-amaliyot kartalaridan oldindan yoziladi (har biri: «N · {yo'l}. Nima qildim: … Nima kutdim: … Nima bo'ldi: …») ·
      {avvalgidek ishlashi kerak bo'lgan yo'llar} — oldindan: 1-amaliyotdagi «Buzilmadi» belgili yo'llar nomi (tahrirlanadi); bo'lmasa — bo'sh, kulrang «masalan: kirish va ro'yxat, o'yin e'loni va qo'shilish, to'lov oqimi».
      Yordam (ochiladigan) — Mentor misolidagi to'liq prompt:
-     > Qayerda: `backend/` — ro'yxatdan o'tishdagi taklif kodi tekshiruvi va «O'yinlar» so'ralganda keyingi «Doimiy o'yin» yaratiladigan joy (va uning jadvali). Avval sababini top, keyin faqat kerakli joyni o'zgartir.
+     > Qayerda: `backend/` — «O'yinlar» so'ralganda keyingi «Doimiy o'yin» yaratiladigan joy (va uning jadvali). Avval sababini top, keyin faqat kerakli joyni o'zgartir.
      > Nima qilsin: pastdagi har topilmani tuzat: ilova «Nima kutdim» qatoridagidek ishlasin. Har topilmaning sababini bir gap bilan ayt va qaysi faylni o'zgartirganingni ayt.
-     > 4 · Taklif havolasi. Nima qildim: Taklif havolamni ikkinchi telefonda ochdim — lendingda «Taklif kodi: AB12CD». Ikki yangi tekshiruv akkaunti bilan ro'yxatdan o'tdim: birida kodni «AB12CD», ikkinchisida «ab12cd» deb yozdim. Nima kutdim: Ikkala hisobda ham taklif qilgan odam yoziladi (Neon'da `taklif_qilgan_id`). Nima bo'ldi: «AB12CD» da yozildi; «ab12cd» da kod qabul qilinmadi — taklif sanalmadi.
      > 5 · Telegram xabari. Nima qildim: Tekshiruv akkauntida «Doimiy o'yin» e'lon qildim; Telegram'i ulangan boshqa tekshiruv akkaunti unga qo'shildi. Agent o'yin vaqtini o'tgan haftaga qo'ydi; men ikki telefonda «O'yinlar» ni bir vaqtda ochdim. Nima kutdim: Keyingi hafta o'yini bitta yaratiladi, Telegram xabari bitta keladi. Nima bo'ldi: Keyingi hafta o'yini ikki marta yaratildi; Telegram'ga «… yana e'lon qilindi» xabari ikki marta keldi.
-     > Nima buzilmasin: yangi funksiya, yangi tugma yoki yangi ekran qo'shma — faqat topilmani tuzat. Kirish va ro'yxat, o'yin e'loni va qo'shilish, to'lov oqimi avvalgidek ishlasin; Pro muddati ichidagi «Doimiy o'yin» har hafta e'lon qilinaversin, Telegram xabari har yangi o'yinga bitta ketsin. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
+     > Nima buzilmasin: yangi funksiya, yangi tugma yoki yangi ekran qo'shma — faqat topilmani tuzat. Kirish va ro'yxat, o'yin e'loni va qo'shilish, to'lov oqimi, taklif havolasi avvalgidek ishlasin; Pro muddati ichidagi «Doimiy o'yin» har hafta e'lon qilinaversin, Telegram xabari har yangi o'yinga bitta ketsin. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Web-trekda (Yordam ostida, bir gap): «Qayerda» qatorida — topilma qayerda bo'lsa: sayt papkangiz (`prototip/`) yoki `backend/`; qolgani o'sha.
   3. **Ishga tushirish** — agent tugatgach: `git status` — o'zgargan fayllar agent aytgani bilan bir xil, `.env` ro'yxatda yo'q. Agent aytgan sabablarni o'qing — ular uning so'zi.
      Agent har topilma uchun qaysi faylni o'zgartirganini aytgan va u `git status` da ko'ringan bo'lsa — o'sha kartada **«Tuzatish qilindi»** ni belgilang: bu ish fakti — kodda o'zgartirish qilindi; to'g'riligini 3-amaliyot ko'rsatadi.
      Kutayotganda agentga (SABOQ 52; «Nusxalash» bilan):
      > Har tuzatishda o'zgargan qatorlarni fayl nomi va qator raqami bilan ko'rsat; har biri qaysi topilmaga tegishli — bitta gap bilan ayt. Kodni o'zgartirma.
      Xato chiqsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»
-  4. **Tekshirish** — terminalda `git diff --stat`: o'zgargan fayllar faqat tanlangan topilmalarga tegishli. Agent ko'rsatgan qatorlarni oching: yangi tugma, yangi ekran yoki yangi jadval yo'q.
+  4. **Tekshirish** — terminalda `git diff --stat`: o'zgargan fayllar faqat tanlangan topilmalarga tegishli. Keyin `git diff`: o'zgargan qatorlarni o'qing (agent ko'rsatgan qatorlar bilan solishtiring) — yangi tugma, yangi ekran yoki yangi jadval yo'q.
      Yangi narsa bo'lsa — agentga: «{nima} — yangi funksiya. Uni olib tashla, faqat tuzatish qolsin. O'zgargan fayllarni ayt.»
      Keyin `git add <fayl>` (`git add .` emas) → `git commit -m "barqarorlik: tuzatish"` → `git push`. `backend/` o'zgargan bo'lsa — Render'da yangi versiya tugashini kuting (bir necha daqiqa cho'zilishi mumkin);
      mobil trekda Expo Go ilovani odatda o'zi qayta yuklaydi (bo'lmasa — terminalda `r`); web-trekda push'dan keyin Netlify saytni odatda o'zi yangilaydi.
-- O'ng tomon — «kutilgan natija · namuna: Maydon Jamoa»: agent chati — ikki pufak (T-008): siz → «4 va 5-tekshiruv kutganimdek emas — yozuvim pastda. Tuzat, sababini bir gap bilan ayt.» ·
-  Antigravity → «Sabab: 4 — kod katta harfdagi kod bilan harfma-harf solishtirilgan; endi katta harfga o'tkazilib solishtiriladi. 5 — ikki so'rov bir vaqtda kelganda ikkalasi ham keyingi o'yinni «hali yo'q» deb ko'rgan; endi Database bir sanaga bitta o'yinni qabul qiladi, ikkinchisi o'tkazib yuboriladi.»;
-  ostida fayl kartasi: `backend/` — o'zgargan fayllar (taklif kodi tekshiruvi · o'yinlar jadvalidagi cheklov); yangi tugma va ekran yo'q; ikki kartada belgi «Tuzatish qilindi» (accent).
+- O'ng tomon — «kutilgan natija · namuna: Maydon Jamoa»: agent chati — ikki pufak (T-008): siz → «5-tekshiruv kutganimdek emas — yozuvim pastda. Tuzat, sababini bir gap bilan ayt.» ·
+  Antigravity → «Sabab: ikki so'rov bir vaqtda kelganda ikkalasi ham keyingi o'yinni «hali yo'q» deb ko'rgan; endi Database bir sanaga bitta o'yinni qabul qiladi, ikkinchisi o'tkazib yuboriladi.»;
+  ostida fayl kartasi: `backend/` — o'zgargan fayl (o'yinlar jadvalidagi cheklov); yangi tugma va ekran yo'q; kartada belgi «Tuzatish qilindi» (accent).
 - Hammasi bajarilgach (yashil, holatga qarab):
   - «Tuzatish qilindi» bor — Tuzatish qilindi, yangi narsa qo'shilmadi — natijani keyingi blok ko'rsatadi. (77)
   - «Buzildi» yo'q edi — Tuzatadigan topilma yo'q — kod o'zgarmadi. (42)
 - Ulgurmasangiz: bitta topilmani tuzating — ikkinchisi 3-amaliyotda «qoldi» bo'ladi (sabab: vaqt yetmadi). «Davom etish» 4-band «Bajardim»idan keyin ochiladi (push bo'lmasa, 3-amaliyotdagi qayta tekshirish eski kodni ko'radi).
 - Tugmalar: Orqaga · Avval bajaring → Davom etish
 - ✎ MD izohi: tuzatishni agent qiladi, sababini u aytadi — o'quvchi uni o'z yozuvi bilan solishtiradi (sinf 13). O'quvchi promptida «Qayerda» — topilmaga tegishli fayllar, papka nomi yo'q (12-Modul 9.37 e); Mentor Yordamida — `backend/` (ikki tuzatish Backend'da — TAYANCHGA SAVOL 5).
-  Tanlov qoidasi — bu kurs qoidasi, «Bu kursda» bilan (sinf 4; TAYANCHGA SAVOL 7). «Tuzatish qilindi» — ish fakti, natija emas (sinf 5). `git diff --stat` — yangi funksiya kirmaganini ko'rishning o'quvchi yo'li (Manbalar 6); agentning «faqat tuzatdim» degani — da'vo.
+  Tanlov qoidasi — bu kurs qoidasi, «Bu kursda» bilan (sinf 4; TAYANCHGA SAVOL 7). «Tuzatish qilindi» — ish fakti, natija emas (sinf 5). `git diff --stat` — qaysi fayllar, `git diff` — qaysi qatorlar o'zgargani (F-1007-470: `--stat` yolg'iz yangi funksiyani ko'rsatmaydi; Manbalar 6); agentning «faqat tuzatdim» degani — da'vo.
 
 ## 7 · 2-savol ✔ (jonli ball)  ← QTest
 - Eyebrow: Mashq · 2-savol
@@ -366,22 +360,23 @@ to'lov taklifi ekrani maketida «Test rejim: pul yechilmaydi», mashq sahifasi m
      > {to'liq yozuv}
      Qavs: {to'liq yozuv} — besh kartadan oldindan yoziladi (har topilma: yo'l · nima qildim · nima kutdim · nima bo'ldi · holat — «Tuzatish qilindi · qayta tekshiruvda takrorlanmadi» / «Tuzatish qilindi · qayta tekshiruvda yana buzildi» / «qoldi — {sabab}»; oxirida buzilmagan va tekshirilmagan yo'llar ro'yxati).
      `XATOLAR.md` ni yozuvingiz bilan solishtiring: har topilma bormi, «qoldi» topilma ham yozilganmi. Mos bo'lsa — `git add XATOLAR.md` → `git commit -m "barqarorlik: XATOLAR.md"` → `git push`.
-     Topilma yo'q bo'lsa ham fayl yoziladi — unda besh yo'l «buzilmagan» qatorida.
+     Topilma yo'q bo'lsa ham fayl yoziladi — tekshirilgan yo'llar «buzilmagan» qatorida, «Mahsulotimda hali yo'q» va ulgurilmagan yo'llar «tekshirilmagan» qatorida (F-1007-470).
   4. **Yangi versiya** — odamlar ishlatadigan versiya o'zgargan qismga qarab chiqadi:
      - `backend/` — 2-amaliyotdagi `git push` bilan Render'da chiqdi; ilova va brauzer ko'rinishi o'sha Backend'ga ulanadi — ular uchun yangi fayl kerak emas.
-     - mobil trekda `mobil/` o'zgargan bo'lsa — APK o'zi yangilanmaydi: `cd mobil` → `eas build -p android --profile preview` (bepul rejada oyiga 15 ta Android build — keraksiz qayta tayyorlamang). Navbatni kutmang: «Bajardim»ni bosing va davom eting.
+     - mobil trekda `mobil/` o'zgargan bo'lsa — APK o'zi yangilanmaydi: `cd mobil` → `eas build -p android --profile preview` (bepul rejada Android build soni cheklangan — keraksiz qayta tayyorlamang). Navbatni kutmang: «Bajardim»ni bosing va davom eting.
        Fayl tayyor bo'lgach agentga: «`lending/index.html` dagi «Android: ilovani o'rnatish» havolasini shu manzilga almashtir: {yangi havola}. Boshqa joyga tegma.» → `git push`. Dars oxirigacha tayyor bo'lmasa — keyingi dars boshida.
        Brauzer ko'rinishi (iPhone yo'li) push'dan keyin o'zi yangilanmaydi: `npx expo export -p web`, keyin `netlify deploy --prod --dir dist`.
      - web-trekda — push'dan keyin saytni telefonda oching: tuzatish ko'rinmasa, sayt buyruq bilan chiqarilgan — qayta `netlify deploy --prod`.
      Odamlar ochadigan manzilda (brauzer ko'rinishi yoki saytingiz) tuzatilgan yo'lni bir marta qaytaring. `backend/` dan boshqa joy o'zgarmagan bo'lsa — shu yerdagi qaytarish yetadi.
+  Ikkinchi tuzatish ham yiqilsa (qayta tekshiruvda yana buzilsa) — agentga: «Oxirgi tuzatish commit'ini `git revert` bilan qaytar va push qil» — sinalmagan kod odamlarda qolmaydi; `XATOLAR.md` ga «qoldi — qaytarildi» (12-FILTR 1-band, B varianti — 08.10, foydalanuvchi «tavsiyang maqul»; +3–5 daqiqa).
      Oxirida tozalash — agentga: «1-amaliyotda ko'rsatgan tekshiruv akkauntlari va yozuvlari ro'yxatini yana ko'rsat. «O'chir» desam — faqat shu `id` lardagi yozuvlarni o'chir; haqiqiy foydalanuvchilarning yozuvlariga tegma.» Ro'yxatni o'qing, keyin «O'chir» deng.
 - Blok ostida (faqat mobil trekda, `eas build` ishga tushirilgan bo'lsa; oxirgi «Bajardim»dan keyin, bittasi tanlanadi): «Havola almashtirildi» · «Fayl navbatda» — yakundagi yorliq shundan (12-Modul 8, 9-darslar naqshi).
-- O'ng tomon — «kutilgan natija · namuna: Maydon Jamoa»: Mentorning ikki kartasi — «4 · Taklif havolasi» va «5 · Telegram xabari», har birida «Tuzatish qilindi» (accent) va «qayta tekshiruvda takrorlanmadi» (yashil) belgilari ·
+- O'ng tomon — «kutilgan natija · namuna: Maydon Jamoa»: Mentorning kartasi — «5 · Telegram xabari»: «Tuzatish qilindi» (accent) va «qayta tekshiruvda takrorlanmadi» (yashil) belgilari ·
   ostida fayl kartasi `XATOLAR.md` (A-bo'lim 4, `MENTOR_XATOLAR`; GitHub sahifasining kichik ko'rinishi `maydon-jamoa` · `XATOLAR.md`) · eng pastda kichik qator: «yangi versiya: Render — `backend/` · APK va brauzer ko'rinishi o'zgarmadi».
 - Hammasi bajarilgach (yashil, holatga qarab — sinf 6):
   - hamma tuzatilgan topilma «takrorlanmadi», «qoldi» yo'q — Qayta tekshirildi: topilmalar `XATOLAR.md` da, yangi versiya chiqdi. (66)
   - «qoldi» yoki «yana buzildi» bor — `XATOLAR.md` tayyor: qolgan topilma sababi bilan yozildi. (55)
-  - topilma yo'q — `XATOLAR.md` tayyor: besh yo'l buzilmadi. (39)
+  - topilma yo'q — `XATOLAR.md` tayyor: bu safar topilma chiqmadi. (47)
 - Qator (`QIzoh`, natija ostida; faqat mobil trekda va `mobil/` o'zgargan bo'lsa): APK o'zi yangilanmaydi: eski faylni o'rnatganlar tuzatishni yangisini o'rnatgach ko'radi. (89)
 - Ulgurmasangiz: `XATOLAR.md` birinchi, yangi versiya keyin; o'rnatish fayli havolasi — keyingi dars boshida. Tozalashni o'tkazib yubormang. «Davom etish» 3-band «Bajardim»idan keyin ochiladi (`XATOLAR.md` push qilingach); blok bayrog'i — 4-band «Bajardim»idan (SABOQ E 55 — MD qarori).
 - Nishon (bonus): Bug Log — 3-band «Bajardim»ida (`XATOLAR.md` push qilingach).
@@ -407,11 +402,11 @@ to'lov taklifi ekrani maketida «Test rejim: pul yechilmaydi», mashq sahifasi m
 - Yuqori yorliqlar: ✓ `XATOLAR.md` tayyor (faqat 3-amaliyot 3-bandi bajarilganda; aks holda yorliq yo'q) · {N}/2 to'g'ri · mobil trekda, 3-amaliyotda «Fayl navbatda» tanlangan bo'lsa — kulrang yorliq «O'rnatish fayli navbatda»
 - Sarlavha (bloklar holatiga qarab, P-046; sinf 6 — o'quvchi qilgan ishni aytadi, har holat rost — E 54):
   - uch blok; «Buzildi» bor, hamma tuzatilgan topilma «takrorlanmadi», «qoldi» yo'q — **Tuzatish qilindi va qayta tekshiruvda takrorlanmadi.** (52)
-  - uch blok; «Buzildi» yo'q edi — **Besh yo'l tekshirildi — mahsulotingiz buzilmadi.** (48)
+  - uch blok; «Buzildi» yo'q edi — **Tekshirilgan yo'llarda bu safar topilma chiqmadi.** (49) — «Mahsulotimda hali yo'q» bo'lsa ham shu sarlavha (u «tekshirilgan» emas; F-1007-470)
   - uch blok; «qoldi» yoki «yana buzildi» bor — **`XATOLAR.md` tayyor — qolgan topilma ochiq yozilgan.** (50)
   - 1 va 2-blok («Tuzatish qilindi» bor), 3-blok yo'q — **Tuzatish qilindi — qayta tekshirish hali qilinmagan.** (52)
-  - 1-blok, «Buzildi» bor, 2-blok yo'q — **Besh yo'l yozildi — tuzatish hali qilinmagan.** (45)
-  - 1-blok, «Buzildi» yo'q, 3-blok yo'q — **Besh yo'l tekshirildi — `XATOLAR.md` hali yozilmagan.** (51)
+  - 1-blok, «Buzildi» bor, 2-blok yo'q — **Tekshiruv yozildi — tuzatish hali qilinmagan.** (45)
+  - 1-blok, «Buzildi» yo'q, 3-blok yo'q — **Tekshiruv yozildi — `XATOLAR.md` hali yozilmagan.** (49)
   - 1-blok to'liq emas, kamida bitta karta bor — **Tekshiruv hali tugamagan — qolgan yo'llar kutyapti.** (51)
   - hech biri — **Besh tekshiruv hali yozilmagan.** (31)
 - CTA: CODE STRIKE (arena) — jonli darsda: Mentorni kuting
@@ -421,7 +416,7 @@ to'lov taklifi ekrani maketida «Test rejim: pul yechilmaydi», mashq sahifasi m
   - Keyin qo'shilgan ish eski yo'lga tegishi mumkin, shuning uchun besh yo'l ham qayta ko'riladi.
   - Mahsulotda yo'q yo'l «buzilmadi» deb emas, «hali yo'q» deb yoziladi.
   - Barqarorlik kunida faqat yozuvdagi topilma tuzatiladi; qolgani `XATOLAR.md` da «qoldi» deb, sababi bilan turadi.
-  - Yangi versiya o'zgargan qismga qarab chiqadi: Backend — Render'da, ilova — yangi o'rnatish fayli bilan.
+  - Yangi versiya o'zgargan qismga qarab chiqadi: Backend — Render, ilova — yangi o'rnatish fayli, sayt — Netlify.
 - Uyga vazifa — yo'q (loyiha kuni; tayanch 4). `uyga: null`. «O'rnatish fayli navbatda» yorlig'i ostida bitta qator: «Fayl tayyor bo'lgach, lendingdagi havolani keyingi dars boshida almashtirasiz.»
 - Keyingi dars — «Zaxira dars»
 - Nishonlaringiz — N/4
@@ -462,10 +457,10 @@ Oyna yorlig'i: Qayta tushuntirish · tugmalar: ← Oldingi · Keyingisi → · �
 | Buzish yozuvida qaysi uch qator bor? | Nima qildim, nima kutdim, nima bo'ldi | Oxirida belgi: buzildi yoki buzilmadi |
 | «Nima kutaman» qachon yoziladi? | Tekshirishdan oldin | Shunda natija bilan solishtirsa bo'ladi |
 | Mahsulotingizda yo'q yo'lga qaysi belgi qo'yiladi? | «Mahsulotimda hali yo'q» | U «buzilmadi» emas: bu yo'l tekshirilmagan |
-| Mentor misolida besh tekshiruvdan nechtasida ilova buzildi? | Ikkitasida: taklif havolasi va Telegram xabari | Kirish, asosiy harakat va to'lov oqimi — buzilmadi |
-| Mentor misolida kichik harfdagi taklif kodi bilan nima bo'ldi? | Kod qabul qilinmadi — taklif sanalmadi | Tuzatish: kod katta harfga o'tkazilib solishtiriladi |
+| Mentor misolida besh tekshiruvdan nechtasida ilova buzildi? | Bittasida: Telegram xabari | Kirish, asosiy harakat, to'lov oqimi va taklif havolasi — buzilmadi |
+| «Buzilmadi» — bu yo'l hech qachon buzilmaydi degani-mi? | Yo'q — shu urinishda kutilgani bo'ldi | Shuning uchun har yangi ishdan keyin yo'l qayta tekshiriladi |
 | Mentor misolida ikki telefon bir vaqtda «O'yinlar»ni ochganda nima bo'ldi? | Keyingi «Doimiy o'yin» ikki marta yaratildi, Telegram xabari ikki marta ketdi | Tuzatish: Database bir sanaga bitta o'yinni qabul qiladi — 3-darsdagi takror xabar kabi: bitta ish bir marta |
-| Barqarorlik kunida yangi funksiya qo'shiladimi? | Yo'q — faqat yozuvdagi topilma tuzatiladi | Yangi funksiya tekshirilmagan yangi yo'l ochadi |
+| Barqarorlik kunida yangi funksiya qo'shiladimi? | Yo'q — faqat yozuvdagi topilma tuzatiladi | Yangi funksiya yana tekshirilmagan joy qo'shadi |
 | Tuzatishga ulgurmagan topilma nima qilinadi? | `XATOLAR.md` ga «qoldi» deb, sababi bilan yoziladi | Qolgan topilma yashirilmaydi |
 | «Tuzatish qilindi» va «qayta tekshiruvda takrorlanmadi» farqi nimada? | Birinchisi — kod o'zgargani, ikkinchisi — o'sha usul bilan ko'rilgan natija | Ikkalasi alohida belgilanadi |
 | Ilova kodi o'zgarsa, APK o'rnatganlarga yangi versiya qanday yetadi? | Yangi o'rnatish fayli va lendingdagi yangi havola orqali | APK o'zi yangilanmaydi; faqat `backend/` o'zgarsa — Render'ning o'zi yetadi |
@@ -527,19 +522,19 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari ru'da ham o'sha; R-008): barqarorlik 
 13. ru — uz tasdiqlangach, bir yo'la (6-RU). Tayanch 10 da yo'q yangi so'zlar (RU bosqichida o'lchanadi): barqarorlik tekshiruvi · topilma · «Mahsulotimda hali yo'q» · «qoldi» · tekshiruv akkaunti · yangi funksiya.
 
 ## REPO — `maydon-jamoa` («qur» bosqichida yoziladi, push — buyruq bilan; `m13-dars-12-start` = `m13-dars-11-done` = `m13-dars-10-done` → `m13-dars-12-done`, tayanch 3)
-1. `m13-dars-12-start`: `README.md` ga eslatma «Bu holatda barqarorlik tekshiruvi qilinmagan: ikki topilma bor — 12-darsda topiladi.» (tayanch 3 dagi `05-start` naqshi; TAYANCHGA SAVOL 14).
-   ⛔ Muhrdan oldin ikki topilma haqiqatan takrorlanishi tekshiriladi — Mentor telefonida (Android, Expo Go) va brauzer ko'rinishida: 4 — «ab12cd» bilan `taklif_qilgan_id` bo'sh qoladimi; 5 — ikki telefon bir vaqtda «O'yinlar» ni ochganda keyingi «Doimiy o'yin» ikki marta yaratilib, Telegram xabari ikki marta ketadimi
+1. `m13-dars-12-start` = `m13-dars-11-done` — README'da topilmalar soni va joyi aytilmaydi (F-1007-470: oldindan aytilsa, tekshiruv topish emas — ro'yxat bo'yicha qidirish bo'ladi). Holat ataylab yaratilmaydi — agent yozgan kod (9.51).
+   ⛔ Muhrdan oldin topilma haqiqatan takrorlanishi tekshiriladi (F-1007-470): 5 — avval agent skripti bilan ikki `GET /oyinlar` so'rovi bir vaqtda (bir xil lahzada, 10 marta) — natija jurnalga; keyin Mentor telefonida (Android, Expo Go) va brauzer ko'rinishida: ikki telefon bir vaqtda «O'yinlar» ni ochganda keyingi «Doimiy o'yin» ikki marta yaratilib, Telegram xabari ikki marta ketadimi
    (vaqtga bog'liq — bir necha urinish, natija jurnalga; Shubhali 1, 12). Mos kelmasa — MD (yozuv, sahna, testlar, `MENTOR_XATOLAR`) va tayanch 1.12 haqiqiy natijaga moslanadi.
-2. `m13-dars-12-done` (`backend/`; asosiy seans qarori 07.10 — tayanch 3 qatori: «ikki tuzatish (taklif kodi katta-kichik harf · keyingi doimiy o'yin bir marta — Database cheklovi)»): ro'yxatdan o'tishda kelgan taklif kodi katta harfga o'tkazilib solishtiriladi ·
-   `oyinlar` da cheklov — bitta doimiy o'yin seriyasida bitta sana uchun bitta o'yin (masalan, seriya va sana bo'yicha noyoblik; seriya qanday saqlanishi — 4-dars kodiga qarab); `GET /oyinlar` dagi ikkinchi yaratish urinishi xatosiz o'tkazib yuboriladi va Telegram xabari faqat haqiqatan yaratilgan o'yin uchun ketadi (8-dars qoidasi o'zgarmaydi).
+2. `m13-dars-12-done` (`backend/`; tayanch 3 qatori — F-1007-470: «tuzatish (keyingi doimiy o'yin bir marta — Database cheklovi)»; taklif kodi 10-darsda tuzatilgan):
+   `oyinlar` da cheklov — `doimiy = true` qatorlarda tashkilotchi, maydon va o'yin vaqti birga noyob (qisman noyob indeks; 4-dars yangi o'yinni shu uchtasini nusxalab yaratadi — 9.26; ustun nomlari 11-Modul jadvalidagidek, ⛔ pilotda); INSERT to'qnashsa — o'tkaziladi, «yaratildi» faqat yutgan so'rovda; `GET /oyinlar` dagi ikkinchi yaratish urinishi xatosiz o'tkazib yuboriladi va Telegram xabari faqat haqiqatan yaratilgan o'yin uchun ketadi (8-dars qoidasi o'zgarmaydi).
    `mobil/`, `lending/` o'zgarmaydi → APK va brauzer ko'rinishi qayta chiqarilmaydi; yangi versiya — `git push` bilan Render (TAYANCHGA SAVOL 5).
 3. `XATOLAR.md` (repo ildizi) — `MENTOR_XATOLAR` aynan · `README.md` «Darslar va teglar» jadvaliga `m13-dars-12-done` qatori.
-4. Muhrdan oldin: besh tekshiruv `MENTOR_TEKSHIRUV` bo'yicha `12-start` da (natija jadvalga mosmi — jurnalga), tuzatishdan keyin 4 va 5 o'sha usul bilan qayta («takrorlanmadi»; 5 — bir necha bir vaqtdagi ochish bilan); Mentor tekshiruv akkauntlari, tekshiruv o'yinlari va sanoq yozuvlari agent ko'rsatgan `id` lar bo'yicha o'chiriladi; haqiqiy `oyinchilar` va `oyinlar` yozuvlari o'zgarmaydi.
+4. Muhrdan oldin: besh tekshiruv `MENTOR_TEKSHIRUV` bo'yicha `12-start` da (natija jadvalga mosmi — jurnalga), tuzatishdan keyin 5 o'sha usul bilan qayta («takrorlanmadi»; agent skripti 10 marta + ikki telefon); 4 — «ab12cd» bilan ham `taklif_qilgan_id` yoziladi (buzilmadi; 10-done); Mentor tekshiruv akkauntlari, tekshiruv o'yinlari va sanoq yozuvlari agent ko'rsatgan `id` lar bo'yicha o'chiriladi; haqiqiy `oyinchilar` va `oyinlar` yozuvlari o'zgarmaydi.
 
 ## Manbalar (o'zim tekshirdim yoki tayanch orqali, 07.10.2026; o'quvchiga ko'rinmaydi)
-1. Tayanch (`00-MODUL-TAYANCH.md`) 1.12 va 1.13 — besh tekshiruv, Mentor natijasi, 4-topilma va uning tuzatishi (aynan); 5-topilma, sababi va tuzatishi — asosiy seans qarori (muvofiqlashtiruvchi xabari, 07.10; tayanch 1.12 va 3 shunga yangilanadi); `XATOLAR.md` (usul · natija · holat), uch blok; Qaror-0 19 (DARS-q2 A) — «yangi funksiya qo'shilmaydi; 14-Modulning demo-testi va performance darslari takrorlanmaydi».
+1. Tayanch (`00-MODUL-TAYANCH.md`) 1.12 va 1.13 — besh tekshiruv, Mentor natijasi, 4-topilma (F-1007-470: olib tashlandi — 10-darsda tuzatilgan); 5-topilma, sababi va tuzatishi — asosiy seans qarori (muvofiqlashtiruvchi xabari, 07.10; tayanch 1.12 va 3 shunga yangilanadi); `XATOLAR.md` (usul · natija · holat), uch blok; Qaror-0 19 (DARS-q2 A) — «yangi funksiya qo'shilmaydi; 14-Modulning demo-testi va performance darslari takrorlanmaydi».
 2. Tayanch 1.4 (to'lov taklifi ekrani so'zma-so'z; «Har hafta takrorlansin»; keyingi o'yin `GET /oyinlar` da) · 1.5 (5-dars tuzatishlari, «To'lov o'tmadi — qayta urinib ko'ring», Pro tugashi, `pm-m11d5-buzish`) · 1.8 (Telegram xabari shakli, «Telegram'da xabar olish» / «Telegram xabarlarini o'chirish») ·
-   1.10 («Taklif kodi: AB12CD», «Taklif kodi (bo'lsa)», `taklif_qilgan_id`, mukofot va shartlar, `10-done` dagi katta harf) · 8 (12-dars yangi kalit yozmaydi) · 9.1 (summa 15 000, mashq sahifa qatori) · 9.7 (`POST /tolov/boshlash` — har to'lovga yangi raqam).
+   1.10 («Taklif kodi: AB12CD», «Taklif kodi (bo'lsa)», `taklif_qilgan_id`, mukofot va shartlar, `10-done` da kod katta harfga o'tkaziladi — F-1007-468) · 8 (12-dars yangi kalit yozmaydi) · 9.1 (summa 15 000, mashq sahifa qatori) · 9.7 (`POST /tolov/boshlash` — har to'lovga yangi raqam).
 3. 12-Modul tayanchi (`feedback/F-1006-12modul/00-MODUL-TAYANCH.md`): 1.7 («Bu login band», «Hisobni o'chirish», `namuna`) · 6 (EAS: `eas build -p android --profile preview`, bepul rejada oyiga 15 Android build; `npx expo export -p web`) · 9.28 (brauzer ko'rinishi — `netlify deploy --prod --dir dist`, push'dan keyin o'zi yangilanmaydi) ·
    9.29 (Render faqat `backend/` o'zgarsa qayta chiqaradi) · 9.35 a, 9.37 g, h, 9.39 b, 9.41 i (tekshiruv akkaunti, `id` bo'yicha o'chirish, sherik — agentdan oldin, qaytarib bo'lmaydigan o'zgarishdan oldin ro'yxat, sun'iy yozuvni o'chirish) · 9.36 h (blok bayrog'i) · 9.40 i (web-trek — qayta `netlify deploy --prod`) · 9.41 h (loyiha kunida «uyda» yo'q).
 4. Netlify CLI — 12-Modul `08-PmDropOff-v3.md` Manbalari (docs.netlify.com/cli/get-started, 06.10.2026): «By default, the `deploy` command deploys to a unique _draft_ URL for previewing and testing» · «To do a _production_ deploy to your main site URL, use the `--prod` flag» → 3-amaliyot 4-band, arena 10.
@@ -554,19 +549,19 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari ru'da ham o'sha; R-008): barqarorlik 
 1. **Mentorning besh tekshiruv yozuvi** (A-bo'lim 4 jadvali) — tayanchda faqat natija va tuzatish bor; «Nima qildim / kutdim / bo'ldi» matni va «Bu yo'lga tekkan darslar» qatori — mening qarorim (har biri tayanch faktidan). ⛔ «qur» da haqiqiy natija ustun.
 2. **5-tekshiruv usuli:** agent tekshiruv o'yinining vaqtini o'tgan haftaga suradi (bir hafta kutilmaydi), Mentor ikki telefonda «O'yinlar» ni bir vaqtda ochadi (sinfda — ikkala telefonda bir vaqtda pastga tortib yangilash). O'quvchiga 1-amaliyot 5-kartasida «xabar necha marta keldi» va «ikki qurilmada bir vaqtda» beriladi.
    Ko'prik 3-darsdagi takror xabarga (bitta ish — bir marta) — faqat kartochka 8 izohida, bir gap.
-3. **Sahna uchun yangi tafsilot:** tekshiruv «Doimiy o'yini» — «Juma, 18:00 · Mahalla maydoni» (namuna «Shanba, 18:00» bilan to'qnashmasin) · Telegram xabarida «— 0 / 10» (yangi yaratilgan o'yin). Tayanch 1.8 namunasida «3 / 10» — yangi hafta o'yinida kim qo'shilgan bo'lishi 8-dars mexanikasiga bog'liq: 8 MD bilan moslash kerak.
-4. **4-topilmaning «Nima bo'ldi»** — «kod qabul qilinmadi — taklif sanalmadi» (`taklif_qilgan_id` bo'sh). Forma kichik harfdagi kodga nima deydi (xato qatori yoki jim qabul) — tayanchda yo'q; 10 MD bilan moslash.
+3. **Sahna uchun yangi tafsilot:** tekshiruv «Doimiy o'yini» — «Juma, 18:00 · Mahalla maydoni» (namuna «Shanba, 18:00» bilan to'qnashmasin) · ✅ (F-1007-470) Telegram xabarida son yo'q — 8-dars F-1007-466, tayanch 9.38 bilan bir.
+4. ✅ (F-1007-470: 4-topilma yo'q — 10-darsda kod katta harfga o'tkaziladi; Mentor 4-yo'li «buzilmadi») **4-topilmaning «Nima bo'ldi»** — «kod qabul qilinmadi — taklif sanalmadi» (`taklif_qilgan_id` bo'sh). Forma kichik harfdagi kodga nima deydi (xato qatori yoki jim qabul) — tayanchda yo'q; 10 MD bilan moslash.
 5. **Mentor tuzatishlari ikkalasi `backend/` da** → yangi versiya — Render; APK va brauzer ko'rinishi qayta chiqarilmaydi (ular o'sha Backend'ga ulanadi). Tayanch 1.12 «APK — yangi o'rnatish fayli, havola almashtiriladi» — o'quvchi uchun shartli (`mobil/` o'zgarsa).
    5-tuzatish — Database cheklovi: migratsiya `backend/` ichida, Render yangi versiyasi bilan qo'llanadi. Muqobil: kod ilovada ham katta harfga o'tkazilsa — Mentor ham APK va brauzer ko'rinishini chiqaradi (3-amaliyot to'liq ko'rinadi, lekin EAS navbati vaqt oladi). Qaror sizda.
 6. **`XATOLAR.md` shakli:** sarlavha, har topilma — yo'l nomi + usul · natija · holat; holat so'zlari sinf 5 bo'yicha («tuzatildi» o'rniga «Tuzatish qilindi · qayta tekshiruvda takrorlanmadi» / «… yana buzildi» / «qoldi — {sabab}»); oxirida «Buzilmagan yo'llar» va «Tekshirilmagan yo'llar»; topilma yo'q bo'lsa ham fayl yoziladi.
 7. **Topilma tanlash qoidasi** (bu kursda): avval odamning asosiy ishini to'xtatadigan, keyin odamga noto'g'ri narsa ko'rsatadigan yoki yuboradigan. Tayanchda faqat «eng muhim 1–2 tasi».
-8. **5-ekran — agentning to'rt taklifi:** ikki tuzatish (4 — tayanch 1.12 so'zi; 5 — asosiy seans tuzatishi agent tilida: «Bir sanaga keyingi o'yin ikki marta yaratilmasligi uchun Database'da cheklov qo'yaman.») + ikki yangi funksiya («Ro'yxatdan o'tish ekraniga yangi dizayn beraman.», «Pro tugashidan oldin tashkilotchiga Telegram xabari yuboraman.») — mening qarorim; «yangi funksiya qo'shilmaydi» qoidasini sahnada ko'rsatish uchun.
+8. **5-ekran — agentning to'rt taklifi** (F-1007-470: 1-taklif — «O'yinlar ro'yxatiga qidiruv qatori qo'shaman.», yangi funksiya; tuzatish — bitta): ikki tuzatish (4 — tayanch 1.12 so'zi; 5 — asosiy seans tuzatishi agent tilida: «Bir sanaga keyingi o'yin ikki marta yaratilmasligi uchun Database'da cheklov qo'yaman.») + ikki yangi funksiya («Ro'yxatdan o'tish ekraniga yangi dizayn beraman.», «Pro tugashidan oldin tashkilotchiga Telegram xabari yuboraman.») — mening qarorim; «yangi funksiya qo'shilmaydi» qoidasini sahnada ko'rsatish uchun.
 9. **Uchinchi belgi «Mahsulotimda hali yo'q»** (1-amaliyot, 1-savol, yakun, `XATOLAR.md` «Tekshirilmagan yo'llar») — o'quvchi mahsulotida 4 yoki 5-yo'l bo'lmasligi mumkin (ortda qolgan); «buzilmadi» deb yozish yolg'on bo'lardi.
 10. **Atama «tekshiruv akkaunti»** (12-Modulda «tekshiruv akkaunti») — UI «Hisobni o'chirish» va tayanch 1.10 «yangi hisob» bilan bir so'z. Modul bo'yi bir xillash kerakmi (5, 10-darslar)?
 11. **Bloklar band nomlari:** 1-amaliyot — Ochish · Prompt · Besh tekshiruv · Tekshirish; 3-amaliyot — Ochish · Qayta tekshirish · `XATOLAR.md` · Yangi versiya. Tayanch 4 dagi «Ochish → Prompt → Ishga tushirish → Tekshirish» dan chetlashish (12-Modul 5-dars A1 va A2 naqshi: kod yozilmaydigan va qayta tekshiruvli blok).
-12. **Hook:** agent pufaklari («Tayyor! To'lov taklifi ekrani ishlaydi.» · «Tayyor! Telegram xabari yuboriladi.» · «Tayyor! Taklif kodi formaga qo'shildi.»), ✔ «Ro'yxatdan to'lovgacha o'zim bosib ko'raman» — mening qarorim.
+12. **Hook:** agent pufaklari («Tayyor! To'lov taklifi ekrani ishlaydi.» · «Tayyor! Telegram xabari yuboriladi.» · «Tayyor! Taklif kodi formaga qo'shildi.»), ✔ «Muhim yo'llarni o'zim birma-bir tekshiraman» (F-1007-470; avval «Ro'yxatdan to'lovgacha o'zim bosib ko'raman») — mening qarorim.
 13. **Taklif tekshiruvidagi hisoblar asosiy ish qilmaydi** — aks holda o'quvchining o'ziga mukofot yoziladi (tayanch 1.10 sharti: yangi hisob + asosiy harakat; tekshiruv akkaunti formadan ochilsa `namuna = false`).
-14. **`m13-dars-12-start` README eslatmasi** («ikki topilma bor — 12-darsda topiladi») — tayanch 3 da faqat `05-start` uchun bor; «Ortda qoldingizmi» — 1-amaliyotda `12-start`, tuzatilgani `12-done` (bir qatorda).
+14. ✅ (F-1007-470: eslatma yo'q — topilma oldindan aytilmaydi) **`m13-dars-12-start` README eslatmasi** («ikki topilma bor — 12-darsda topiladi») — tayanch 3 da faqat `05-start` uchun bor; «Ortda qoldingizmi» — 1-amaliyotda `12-start`, tuzatilgani `12-done` (bir qatorda).
 15. **Saqlash:** yangi kalit yo'q; besh karta dars holatida (`ccProgress`); o'qiladi `pm-m11d5-buzish` (3-karta tepasidagi qator) va `pm-m9d8-platforma.trek` (tayanch 4 umumiy qoidasi; tayanch 4 jadvalining 12-qatorida faqat `pm-m11d5-buzish`).
 16. **Testlar mavzusi:** 1-savol — «hali yo'q» belgisi (1-amaliyot qoidasi), 2-savol — yangi funksiya (5-ekran g'oyasi, yangi vaziyatda). 2-ekran g'oyasi (keyin qo'shilgan ish eski yo'lga tegadi) — arena 2 va kartochka 2 da.
     Sabab: 2-ekran g'oyasi bo'yicha bitta himoyalanadigan javobli ekran savoli chiqmadi (besh yo'l hammasi qayta tekshiriladi — «qaysi yo'lni ham?» savolida bir nechta to'g'ri javob bo'lardi).
@@ -579,8 +574,8 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari ru'da ham o'sha; R-008): barqarorlik 
     Muqobil: 2-tekshiruvda e'lon qilinmaydi, faqat namuna o'yinga qo'shilish va chiqish (tayanch 1.12 dagi «o'yin e'loni» to'liq tekshirilmaydi).
 
 ## Shubhali joylar (ishonchim komil emas)
-1. ⛔ **Ikki topilma Mentor repo'sida `m13-dars-12-start` da takrorlanadimi** — ayniqsa 5-topilma (ikki bir vaqtdagi so'rov): 4-dars kodi keyingi o'yinni qanday yaratishiga bog'liq (tekshiruv va yaratish bitta so'rovda bo'lsa ham, ikki so'rov orasidagi oraliq qisqa). «Qur» pilotida tekshiriladi; mos kelmasa MD va tayanch 1.12 moslanadi.
-2. ⛔ **90 daqiqa** — besh tekshiruv (≈25), ikki tuzatish, Render kutishi, EAS navbati; «qur» pilotida taymer bilan.
+1. ⛔ **Topilma Mentor repo'sida `m13-dars-12-start` da takrorlanadimi** (F-1007-470: 4-topilma olib tashlandi; 5 — agent skripti bilan bir vaqtdagi ikki so'rov, keyin ikki telefon) — 5-topilma (ikki bir vaqtdagi so'rov): 4-dars kodi keyingi o'yinni qanday yaratishiga bog'liq (tekshiruv va yaratish bitta so'rovda bo'lsa ham, ikki so'rov orasidagi oraliq qisqa). «Qur» pilotida tekshiriladi; mos kelmasa MD va tayanch 1.12 moslanadi.
+2. ⛔ **90 daqiqa** — besh tekshiruv (≈25), tuzatish, Render kutishi, EAS navbati; «qur» pilotida taymer bilan.
 3. ⛔ **Agent tekshiruv o'yinining vaqtini Database'da o'zgartira olishi** (Neon bilan qanday ulanishi) — pilotda; bo'lmasa: agent `UPDATE … WHERE id = …` so'rovini yozadi, o'quvchi Neon SQL Editor'da o'zi «Run» qiladi (12-Modul 10-dars Neon yo'li).
 4. **Tekshiruv akkauntini o'quvchining o'z Telegram'iga ulash** (5-tekshiruv) — chat raqami tekshiruv akkaunti bilan Database'ga yoziladi va tozalashda o'chadi; o'smir uchun maqbulmi — Mentor ko'rib chiqadi (muqobil: 5-yo'lni eslatma bilan tekshirish).
 5. **Sinfdagi tekshiruv yozuvlari** — tekshiruv o'yini haqiqiy foydalanuvchilarga bir necha daqiqa ko'rinadi; formadan ochilgan tekshiruv akkauntlari (`namuna = false`) dars oxirigacha haqiqiy sanoqqa (ro'yxatdan o'tganlar, taklif bilan kelganlar) kiradi — o'quvchi 3-amaliyot tozalashiga yetmasa qolib ketadi.
@@ -594,7 +589,7 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari ru'da ham o'sha; R-008): barqarorlik 
 
 ## Oldindan tuzatiladigan sinflar — o'z tekshiruvim (tayanch 7: 16 band + 12-Modul tayanchi 7 + pul sinflari)
 1. [x] **90 daqiqa — reja, o'lchov emas** — tepada taqsimot «reja, o'lchov emas» va ⛔ pilot taymeri; A-bo'lim 11; har blokda «Ulgurmasangiz»; 1-amaliyotda «Davom etish» uchta kartadan keyin; Render va EAS kutishi dars oqimini to'xtatmaydi (3-amaliyot 4-band); «sig'adi» deyilmagan (Shubhali 2).
-2. [x] **Tekshirilmagan tashqi qadam — «qur» darvozasi** — Shubhali 1 (ikki topilma), 2 (90 daqiqa), 3 (agent Database'da vaqtni suradi) — ⛔; buyruqlar (`eas build`, `npx expo export -p web`, `netlify deploy --prod --dir dist`, `git diff --stat`) — 12-Modul tayanchi va rasmiy manbadan (Manbalar 3–6); tashqi xizmat tugma nomlari yo'q.
+2. [x] **Tekshirilmagan tashqi qadam — «qur» darvozasi** — Shubhali 1 (topilma), 2 (90 daqiqa), 3 (agent Database'da vaqtni suradi) — ⛔; buyruqlar (`eas build`, `npx expo export -p web`, `netlify deploy --prod --dir dist`, `git diff --stat`) — 12-Modul tayanchi va rasmiy manbadan (Manbalar 3–6); tashqi xizmat tugma nomlari yo'q.
 3. [x] **Saqlash kaliti — shartnoma** — yangi kalit yo'q (tayanch 8); dars holati shakli — KOD 3 (`belgi` uch holat + `null`, `qayta` uch holat, ish fakti `tuzatishQilindi` va natija `qayta` alohida); `pm-m11d5-buzish` faqat o'qiladi; boshqa darsning kaliti yozilmaydi; ism, login, chat raqami yozilmaydi.
 4. [x] **Mentor misoli va kurs qolipi — umumiy qoida emas** — «Mentor misolida» (2-ekran xulosasi, kartochka 6–8, arena 7, 9–11), «Bu darsda» (5-ekran xulosasi), «bu kursda» (topilma tanlash qoidasi, 2-amaliyot 1-band); «Nima qilaman» — tahrirlanadigan namuna (1-amaliyot ✎); besh yo'l o'quvchi mahsulotida «hali yo'q» bo'lishi mumkin.
 5. [x] **Kafolat va sabab da'vosi yo'q** — «Tuzatish qilindi» (ish fakti) va «qayta tekshiruvda takrorlanmadi» (natija) alohida (2, 3-amaliyot, yakun, kartochka 11, arena 8); agentning «Tayyor!», «qildim», sabab gapi — da'vo (0-ekran, 1, 2-amaliyot ✎);
@@ -606,7 +601,7 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari ru'da ham o'sha; R-008): barqarorlik 
 9. [x] **Real odamlar xavfsizligi** — tekshirish faqat o'z mahsulotida (2-ekran QIzohi, 1-amaliyot 1-band qalin, arena 3); haqiqiy foydalanuvchi hisobi ishlatilmaydi; sherik o'z hisobidan; tekshiruv yozuvlari `id` bo'yicha o'chiriladi (3-amaliyot 4-band); Telegram'ni ulash — o'z Telegram'i (Shubhali 4); qo'l ko'tartirib sanash yo'q.
 10. [x] **Tekshiruv — o'quvchining o'z yo'li, agent — zaxira** — besh tekshiruvni o'quvchi o'zi bajaradi va yozadi; o'zgarishni avval sherik, web-trekda yashirin oyna, keyin agent qiladi (1-amaliyot 3-band); qayta tekshirish — o'zi (3-amaliyot 2-band); agent hisob ochadi va `id` bo'yicha o'chiradi.
 11. [x] **Web-trek teng yo'l** — sarlavhalarda «mahsulotingiz»; har blokda web qatori (sayt brauzerda, yashirin oyna, `prototip/`, Netlify, qayta `netlify deploy --prod`); 5-yo'l — Telegram xabari trekka bog'liq emas (Shubhali 9); test va arena ikkala trekka to'g'ri.
-12. [x] **Mentor misoli ichki izchil** — sonlar tayanch 1.13 dan (3 buzilmadi, 2 buzildi, 2 tuzatish); 5-topilma — asosiy seans qarori bilan almashtirildi (avvalgisi 7-dars oferta 4-bandi va 5-dars A1 bilan zid edi); oldingi darslar matni aynan (to'lov taklifi ekrani, mashq sahifa, «Taklif kodi: AB12CD», Telegram xabari shakli); yangi tafsilotlar TAYANCHGA SAVOL 1–5, 8, 12, 22 da; bitta dalil ikki da'voda yo'q.
+12. [x] **Mentor misoli ichki izchil** — sonlar tayanch 1.13 dan (F-1007-470: 4 buzilmadi, 1 buzildi, 1 tuzatish; ⛔ pilot); 5-topilma — asosiy seans qarori bilan almashtirildi (avvalgisi 7-dars oferta 4-bandi va 5-dars A1 bilan zid edi); oldingi darslar matni aynan (to'lov taklifi ekrani, mashq sahifa, «Taklif kodi: AB12CD», Telegram xabari shakli); yangi tafsilotlar TAYANCHGA SAVOL 1–5, 8, 12, 22 da; bitta dalil ikki da'voda yo'q.
 13. [x] **O'quvchi talabida Mentorning qarori yo'q** — 1-amaliyot `{asosiy harakat}` va tahrirlanadigan «Nima qilaman»; 2-amaliyot: qaysi topilma — o'quvchi tanlaydi, «Qayerda» — topilmaga tegishli fayllar, `{avvalgidek ishlashi kerak bo'lgan yo'llar}` — o'zi; tozalash — agent ro'yxat, o'quvchi «O'chir» (12-Modul 9.39 b).
 14. [x] **Uyga vazifa yengil va aniq** — loyiha kuni: uyga vazifa yo'q, «uyda» deyilmaydi; o'rnatish fayli — keyingi dars boshida (A-bo'lim 10).
 15. [x] **Ayb da'vosi yo'q** — xato yo'llari: «Shu xato chiqdi: {xato}. …»; «xatongiz emas», «sizda emas» — 0; 1-amaliyotda xato — «bu ham natija».
@@ -633,15 +628,15 @@ Hook javoblari «Aynan!» / «Qiziq fikr!» bilan sanaldi. QIzoh qatorlariga che
    54  Qayta tekshiring va topilmalarni XATOLAR.md ga yozing.
    25  O'zingizni sinab ko'ring.
    52  Tuzatish qilindi va qayta tekshiruvda takrorlanmadi.   [yakun]
-   48  Besh yo'l tekshirildi — mahsulotingiz buzilmadi.   [yakun]
+   49  Tekshirilgan yo'llarda bu safar topilma chiqmadi.   [yakun]
    50  XATOLAR.md tayyor — qolgan topilma ochiq yozilgan.   [yakun]
    52  Tuzatish qilindi — qayta tekshirish hali qilinmagan.   [yakun]
-   45  Besh yo'l yozildi — tuzatish hali qilinmagan.   [yakun]
-   51  Besh yo'l tekshirildi — XATOLAR.md hali yozilmagan.   [yakun]
+   45  Tekshiruv yozildi — tuzatish hali qilinmagan.   [yakun]
+   47  Tekshiruv yozildi — XATOLAR.md hali yozilmagan.   [yakun]
    51  Tekshiruv hali tugamagan — qolgan yo'llar kutyapti.   [yakun]
    31  Besh tekshiruv hali yozilmagan.   [yakun]
 ## Xulosalar (≤110)
-   98  Mentor misolida beshtadan ikkitasida ilova buzildi: ikkalasida bir necha darsning ishi uchrashgan.
+   91  Mentor misolida beshtadan bittasida ilova buzildi: unda bir necha darsning ishi uchrashgan.
   105  Bu darsda faqat topilmaga bog'langan o'zgarish qilinadi: yangi funksiya tekshirilmagan yangi yo'l ochadi.
 ## Hook javoblari (≤120)
   103  Aynan! Ilova ochilishi — faqat bitta ish. Ro'yxat, to'lov va taklif kodi har biri alohida tekshiriladi.
@@ -649,7 +644,7 @@ Hook javoblari «Aynan!» / «Qiziq fikr!» bilan sanaldi. QIzoh qatorlariga che
    96  Qiziq fikr! Agentning «Tayyor!» degani — da'vo. Uni har ishni o'zingiz bosib ko'rib tekshirasiz.
 ## Hook variantlari
    39  Ilova ochildi — demak, hammasi ishlaydi
-   43  Ro'yxatdan to'lovgacha o'zim bosib ko'raman
+   43  Muhim yo'llarni o'zim birma-bir tekshiraman
    43  Agent uch marta «Tayyor!» dedi — shu yetadi
 ## Xato izohlari / QXato / shart / to'g'ri izoh (≤60)
    46  Kutilgani va bo'lgani bir xilmi — yana o'qing.
@@ -659,7 +654,7 @@ Hook javoblari «Aynan!» / «Qiziq fikr!» bilan sanaldi. QIzoh qatorlariga che
    47  «Buzilmadi» — bor yo'l kutilganidek ishlaganda.
    47  «Buzildi» — bor yo'l kutilganidek ishlamaganda.
    47  Bo'sh karta bu yo'l haqida hech narsa aytmaydi.
-   55  Taklifni chapdagi ikki topilma bilan yana solishtiring.
+   50  Taklifni chapdagi topilma bilan yana solishtiring.
    50  Bugun faqat topilmaga bog'langan o'zgarish qoladi.
    58  Qulay bo'lishi mumkin — lekin u tekshirilmagan yangi yo'l.
    53  Tuzatish topilmaga bog'langan — u nega ketishi kerak?
@@ -669,14 +664,14 @@ Hook javoblari «Aynan!» / «Qiziq fikr!» bilan sanaldi. QIzoh qatorlariga che
    78  Tekshirish — faqat o'z mahsulotingizda va tekshiruv uchun ochilgan hisoblarda.   [QIzoh (xulos]
    78  Bugun ulgurmagan topilma ham XATOLAR.md ga «qoldi» deb, sababi bilan yoziladi.   [QIzoh]
    89  APK o'zi yangilanmaydi: eski faylni o'rnatganlar tuzatishni yangisini o'rnatgach ko'radi.   [Qator (`QIzo]
-   61  Besh yo'l tekshirildi: topilganlar keyingi blokda tuzatiladi.   [blok]
-   63  Besh yo'l tekshirildi: mahsulotingiz buzilmadi — bu ham natija.   [blok]
+   57  Tekshiruv yozildi: topilganlar keyingi blokda tuzatiladi.   [blok]
+   65  Tekshirilgan yo'llarda bu safar topilma chiqmadi — bu ham natija.   [blok]
    56  Mahsulotingizda hali yo'q yo'llar tekshirilmadi: {N} ta.   [blok, kulrang]
    77  Tuzatish qilindi, yangi narsa qo'shilmadi — natijani keyingi blok ko'rsatadi.   [blok]
    42  Tuzatadigan topilma yo'q — kod o'zgarmadi.   [blok]
    66  Qayta tekshirildi: topilmalar XATOLAR.md da, yangi versiya chiqdi.   [blok]
    55  XATOLAR.md tayyor: qolgan topilma sababi bilan yozildi.   [blok]
-   39  XATOLAR.md tayyor: besh yo'l buzilmadi.   [blok]
+   45  XATOLAR.md tayyor: bu safar topilma chiqmadi.   [blok]
 ## Mentor gaplari (gap soni · belgi)
   1 gap · 123  Mentor misolida bu modulda ilovaga to'lov, Telegram xabari va taklif kodi qo'shildi — telefonda «Ilovani ochish» ni bosing.
   1 gap ·  42  Ilova ochildi — endi javobingizni tanlang.
@@ -685,8 +680,8 @@ Hook javoblari «Aynan!» / «Qiziq fikr!» bilan sanaldi. QIzoh qatorlariga che
   1 gap ·  76  Tekshiruvni ko'ring va kutilgani bilan bo'lganini solishtirib belgi qo'ying.
   1 gap ·  62  Besh belgi qo'yildi — natijani taxminingiz bilan solishtiring.
   1 gap · 116  Bu blokda kod yozilmaydi: agent faqat tekshiruvga yordam beradi, ko'rish va yozuv — sizda; «1 · Ochish»dan boshlang.
-  1 gap ·  94  Mentor ikki topilmani agentga berdi, agent to'rt taklif yozdi — avval taxminingizni belgilang.
-  1 gap ·  72  Taklifni chapdagi ikki topilma bilan solishtiring va ro'yxatini tanlang.
+  1 gap ·  89  Mentor topilmani agentga berdi, agent to'rt taklif yozdi — avval taxminingizni belgilang.
+  1 gap ·  67  Taklifni chapdagi topilma bilan solishtiring va ro'yxatini tanlang.
   1 gap ·  64  To'rt taklif joylandi — natijani taxminingiz bilan solishtiring.
   1 gap · 125  Yozuvni agentga so'zma-so'z berasiz: tuzatishni u qiladi, yangi narsa qo'shilmaganini siz ko'rasiz; «1 · Ochish»dan boshlang.
   1 gap · 106  Tuzatishni o'sha usul bilan qayta ko'rasiz, keyin hamma topilma faylga yoziladi; «1 · Ochish»dan boshlang.

@@ -257,11 +257,11 @@ const INLINE_KEYS = { s3: 2, s8: 0 };
 // 📖 RECAPS — har ballik test uchun 3 karta (kalit = ekran INDEKSI; S-026: PM darsida raqam 1/2/3)
 const RECAPS = {
   3: {
-    title: { uz: "To'xtab qolish qadami", ru: 'Шаг остановки' },
+    title: { uz: "To'xtab qolish qadami", ru: "Шаг, где останавливаются" },
     cards: [
       { ic: '1', h: { uz: 'Har oraliqda keyingi qadamdagi son oldingisining necha foizi ekanini toping.', ru: 'В каждом промежутке найдите, сколько процентов число на следующем шаге составляет от предыдущего.' } },
-      { ic: '2', h: { uz: "Foizi past oraliq — to'xtab qolish qadami; bu darsda eng past ikkitasi olinadi.", ru: 'Промежуток с низким процентом — шаг остановки; на этом уроке берут два самых низких.' } },
-      { ic: '3', h: { uz: "Eng kichik son shart emas: Mentor misolida 12 dan 9 tasi o'tgan — 75 foiz.", ru: 'Самое маленькое число — не обязательно: в примере Ментора перешли 9 из 12 — 75 процентов.' }, ask: { uz: "Oxirgi qadamda son eng kichik bo'lsa, u to'xtab qolish qadamimi?", ru: 'Если на последнем шаге число самое маленькое, это шаг остановки?' } }
+      { ic: '2', h: { uz: "Foizi past oraliq — to'xtab qolish qadami; bu darsda eng past ikkitasi olinadi.", ru: "Промежуток с низким процентом — шаг, где останавливаются; на этом уроке берут два самых низких." } },
+      { ic: '3', h: { uz: "Eng kichik son shart emas: Mentor misolida 12 dan 9 tasi o'tgan — 75 foiz.", ru: "Не обязательно там, где число самое маленькое: в примере Ментора перешли 9 из 12 — 75 процентов." }, ask: { uz: "Oxirgi qadamda son eng kichik bo'lsa, u to'xtab qolish qadamimi?", ru: "Если на последнем шаге число самое маленькое, это шаг, где останавливаются?" } }
     ]
   },
   8: {
@@ -764,7 +764,7 @@ const QsUstunlar = ({ qadamlar, oraliq = [], halqa = -1, onOraliq, toxtash = [],
         {qadamlar.map((q, i) => (
           <span key={q.id || i} className="qs-ust-nom">
             <span>{q.nom}</span>
-            {toxtash.includes(i) && <em className="qs-toxtash fade-step">{tr({ uz: "to'xtab qolish qadami", ru: 'шаг остановки' })}</em>}
+            {toxtash.includes(i) && <em className="qs-toxtash fade-step">{tr({ uz: "to'xtab qolish qadami", ru: "шаг, где останавливаются" })}</em>}
             {i === n - 1 && izohOxir && <em className="qs-izoh-oxir fade-step">{izohOxir}</em>}
           </span>
         ))}
@@ -799,7 +799,7 @@ const HOOK_OPTS = [
 ];
 const HOOK_JAVOB = {
   b: { uz: <><b>Aynan!</b> Sanoq qaysi oraliqda kamroq qurilma o'tganini bir qarashda ko'rsatadi. Nega — hali taxmin.</>, ru: <><b>Именно!</b> Подсчёт сразу показывает, в каком промежутке перешло меньше устройств. Почему — пока предположение.</> },
-  a: { uz: <><b>Qiziq fikr!</b> So'rash qayerda va nega to'xtaganini aytadi. Hamma qadamni bir xil solishtirish uchun esa sanoq kerak.</>, ru: <><b>Интересная мысль!</b> Вопрос скажет, где и почему остановились. А чтобы одинаково сравнить все шаги, нужен подсчёт.</> }
+  a: { uz: <><b>Qiziq fikr!</b> So'rash qayerda va nega to'xtaganini aytadi. Hamma qadamni bir xil solishtirish uchun esa sanoq kerak.</>, ru: <><b>Интересная мысль!</b> Если спросить, люди скажут, где и почему остановились. А чтобы одинаково сравнить все шаги, нужен подсчёт.</> }
 };
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
@@ -847,7 +847,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz', ru: 'Начинаем' })} onClick={onNext} /></>}>
       <QReja zoom={Zoomable}
-        sarlavha={tr({ uz: <>Bugun sanoq ko'rsatgan <A>bitta joyni tuzatasiz.</A></>, ru: <>Сегодня исправите <A>одно место, которое покажет подсчёт.</A></> })}
+        sarlavha={tr({ uz: <>Bugun sanoq ko'rsatgan <A>bitta joyni tuzatasiz.</A></>, ru: <>Сегодня исправите <A>одно место по подсчёту.</A></> })}
         mentor={<Mentor>{tr({ uz: "11-Modulda uch sinovchi qayerda to'xtaganini kuzatgansiz — bugun buni har qadam sanog'i ko'rsatadi. Kodni agent yozadi, qaysi qadamni tuzatishni siz tanlaysiz.", ru: 'В 11-м модуле вы наблюдали, где остановились три тестировщика, — сегодня это покажет подсчёт каждого шага. Код пишет агент, какой шаг исправлять — выбираете вы.' })}</Mentor>}
         chapYorliq={tr({ uz: "qadamlar bo'yicha sanoq, gipoteza va shu darsda tuzatish", ru: 'подсчёт по шагам, гипотеза и исправление на этом уроке' })}
         chap={<RejaChizma />}
@@ -866,7 +866,7 @@ const S2_TAXMIN = [
   { k: 'q3', ok: true, t: { uz: "Qo'shildi", ru: 'Присоединился' } },
   { k: 'q4', t: { uz: 'Kelishini tasdiqladi', ru: 'Подтвердил приход' } }
 ];
-const S2_SAVOL = { uz: "Qaysi qadamga o'tganlar foizi eng kichik?", ru: 'На какой шаг перешёл самый маленький процент?' };
+const S2_SAVOL = { uz: "Qaysi qadamga o'tganlar foizi eng kichik?", ru: "На каком шаге процент перешедших самый маленький?" };
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const avval = storedAnswer !== undefined;
   const [taxmin, setTaxmin] = useState(storedAnswer?.taxmin ?? null);
@@ -881,7 +881,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     toxtash={done ? [1, 2] : []} izohOxir={done && tr({ uz: "eng kichik son — 75% o'tgan", ru: 'самое маленькое число — перешли 75%' })} yorliq={tr(MENTOR_YORLIQ)} />;
   const tel = <QsTelefon ekran={n === 0 ? 'oyinlar' : QS.ekran[n - 1]} qoshil={n === 2 ? 'bor' : undefined} />;
   const tx = S2_TAXMIN.find(x => x.k === taxmin);
-  const joriy = done && !tugadi && <p className="do-joriy fade-step">{tr({ uz: "Keyingi qadamga o'tganlar foizi past bo'lgan joy to'xtab qolish qadami deyiladi; bu darsda — eng past ikkitasi.", ru: 'Место, где процент перешедших на следующий шаг низкий, называется шагом остановки; на этом уроке — два самых низких.' })}</p>;
+  const joriy = done && !tugadi && <p className="do-joriy fade-step">{tr({ uz: "Keyingi qadamga o'tganlar foizi past bo'lgan joy to'xtab qolish qadami deyiladi; bu darsda — eng past ikkitasi.", ru: "Место, где процент перешедших на следующий шаг низкий, — это шаг, где останавливаются; на этом уроке — два самых низких." })}</p>;
   const mGap = !taxmin ? { uz: "Mentor misolining 3 kunlik sanog'i tayyor — avval javobingizni belgilang.", ru: 'Подсчёт примера Ментора за 3 дня готов — сначала отметьте свой ответ.' }
     : !done ? { uz: 'Keyingi oraliqni bosing — telefonda shu qadam ekrani ochiladi.', ru: 'Нажмите следующий промежуток — на телефоне откроется экран этого шага.' }
     : { uz: "Foizlarni solishtirib, «Davom etish»ni bosing.", ru: 'Сравните проценты и нажмите «Продолжить».' };
@@ -897,7 +897,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         vizual={tugadi
           ? <div className="do-fokus">{ustunlar}</div>
           : <QadamSanoq maket={tel}>{ustunlar}{joriy}</QadamSanoq>}
-        xulosa={done && <>{tx && <TaxminQ togri={!!tx.ok} haqiqat={tr({ uz: "qo'shildi — 44%, ro'yxatdan o'tdi — 59%", ru: 'присоединился — 44%, зарегистрировался — 59%' })} />}{tr({ uz: "Bu misolda to'xtab qolish qadamlari — ro'yxatdan o'tish va qo'shilish. Eng kichik son — 9 — ulardan emas.", ru: 'В этом примере шаги остановки — регистрация и присоединение. Самое маленькое число — 9 — не из них.' })}</>}
+        xulosa={done && <>{tx && <TaxminQ togri={!!tx.ok} haqiqat={tr({ uz: "qo'shildi — 44%, ro'yxatdan o'tdi — 59%", ru: 'присоединился — 44%, зарегистрировался — 59%' })} />}{tr({ uz: "Bu misolda to'xtab qolish qadamlari — ro'yxatdan o'tish va qo'shilish. Eng kichik son — 9 — ulardan emas.", ru: "В этом примере шаги, где останавливаются, — регистрация и присоединение. Самое маленькое число — 9 — не из них." })}</>}
       />
     </Stage>
   );
@@ -911,15 +911,15 @@ const MashqKarta = () => (
   </div>
 );
 const Screen3 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: "Tekshiruv · to'xtab qolish qadami", ru: 'Проверка · шаг остановки' })}
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: "Tekshiruv · to'xtab qolish qadami", ru: "Проверка · шаг, где останавливаются" })}
     ustida={<MashqKarta />}
     questionText="Shu sanoqda qaysi oraliqda o'tganlar foizi eng past?"
     question={tr({ uz: <h2 className="title h-ask">Shu sanoqda qaysi oraliqda <A>o'tganlar foizi eng past?</A></h2>, ru: <h2 className="title h-ask">В каком промежутке этого подсчёта <A>процент перешедших самый низкий?</A></h2> })}
     options={[
-      { uz: 'Tasdiqlashda: qurilmalar soni eng kichik', ru: 'На подтверждении: число устройств самое маленькое' },
-      { uz: "Ro'yxatdan o'tishda: 40 dan 30 tasi o'tgan", ru: 'На регистрации: перешли 30 из 40' },
-      { uz: "Qo'shilishda: 30 dan 10 tasi o'tgan", ru: 'На присоединении: перешли 10 из 30' },
-      { uz: 'Ochishda: qurilmalar soni eng katta', ru: 'На открытии: число устройств самое большое' }
+      { uz: 'Tasdiqlashda: qurilmalar soni eng kichik', ru: "На подтверждении: устройств меньше всего" },
+      { uz: "Ro'yxatdan o'tishda: 40 dan 30 tasi o'tgan", ru: "На регистрации: из 40 перешли 30" },
+      { uz: "Qo'shilishda: 30 dan 10 tasi o'tgan", ru: "На присоединении: из 30 перешли 10" },
+      { uz: 'Ochishda: qurilmalar soni eng katta', ru: "На открытии: устройств больше всего" }
     ]} correctIdx={2}
     explainCorrect={{ uz: '30 dan 10 tasi — 33 foiz: oraliqlar ichida eng pasti.', ru: '10 из 30 — 33 процента: самый низкий из промежутков.' }}
     explainWrong={{
@@ -1040,9 +1040,9 @@ const S6_XATO = {
   katta: { uz: "Keyingi qadamga ko'proq o'tganmi? Sonni tekshiring.", ru: 'На следующий шаг перешло больше? Проверьте число.' },
   oraliq: { uz: 'Bu oraliqda foiz kattaroq. Sababingiz bormi?', ru: 'В этом промежутке процент выше. Есть причина?' },
   ozgaradi: { uz: "Qaysi qadamga ko'proq o'tishi kerak — shuni yozing.", ru: 'На какой шаг должно переходить больше — напишите это.' },
-  ikki: { uz: "Bitta o'zgarish yozing — bugun bittasi quriladi.", ru: 'Напишите одно изменение — сегодня строится одно.' }
+  ikki: { uz: "Bitta o'zgarish yozing — bugun bittasi quriladi.", ru: "Напишите одно изменение — сегодня строим только одно." }
 };
-const S6_YORDAM = { uz: "Mentor misolida: ochdi 46 · ro'yxatdan o'tdi 27 · qo'shildi 12 · kelishini tasdiqladi 9 — foizlar 59 · 44 · 75. To'xtab qolish qadamlari — ro'yxatdan o'tish va qo'shilish. Mentor ro'yxatdan o'tishni tanladi: u yo'lda birinchi — undan o'tmagan odam keyingi qadamlarga yetmaydi. Gipoteza: «Agar o'yinlar ro'yxati ro'yxatdan o'tmasdan ham ko'rinsa, ochganlardan ko'prog'i ro'yxatdan o'tadi, chunki hozir ilova birinchi ekranda parol so'raydi — ichida nima borligi ko'rinmaydi.»", ru: 'В примере Ментора: открыл 46 · зарегистрировался 27 · присоединился 12 · подтвердил приход 9 — проценты 59 · 44 · 75. Шаги остановки — регистрация и присоединение. Ментор выбрал регистрацию: она на пути первая — кто её не прошёл, до следующих шагов не дойдёт. Гипотеза: «Если список игр будет виден и без регистрации, больше открывших зарегистрируются, потому что сейчас приложение на первом экране просит пароль — не видно, что внутри.»' };
+const S6_YORDAM = { uz: "Mentor misolida: ochdi 46 · ro'yxatdan o'tdi 27 · qo'shildi 12 · kelishini tasdiqladi 9 — foizlar 59 · 44 · 75. To'xtab qolish qadamlari — ro'yxatdan o'tish va qo'shilish. Mentor ro'yxatdan o'tishni tanladi: u yo'lda birinchi — undan o'tmagan odam keyingi qadamlarga yetmaydi. Gipoteza: «Agar o'yinlar ro'yxati ro'yxatdan o'tmasdan ham ko'rinsa, ochganlardan ko'prog'i ro'yxatdan o'tadi, chunki hozir ilova birinchi ekranda parol so'raydi — ichida nima borligi ko'rinmaydi.»", ru: "В примере Ментора: открыл 46 · зарегистрировался 27 · присоединился 12 · подтвердил приход 9 — проценты 59 · 44 · 75. Шаги, где останавливаются, — регистрация и присоединение. Ментор выбрал регистрацию: она на пути первая — кто её не прошёл, до следующих шагов не дойдёт. Гипотеза: «Если список игр будет виден и без регистрации, больше открывших зарегистрируются, потому что сейчас приложение на первом экране просит пароль — не видно, что внутри.»" };
 const TUTUQ_RE = new RegExp('[' + String.fromCharCode(0x2BB, 0x2BC, 0x2018, 0x2019, 0x60) + ']', 'g');
 const normS = (s) => String(s || '').toLowerCase().replace(TUTUQ_RE, "'").replace(/\s+/g, ' ').trim();
 // «o'zgaradi» da qadam nomi bormi — har qadam nomining birinchi so'zi o'zagi bo'yicha (maslahat, bloklamaydi)
@@ -1140,7 +1140,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     const y = ors[yulduz], k = ors[keyin];
     return <button type="button" className="do-ok" onClick={() => { setQism(1); setXato(null); }}><i>✓</i><span>2 · {tr({ uz: "To'xtash", ru: 'Остановка' })}: ★ {y ? `${y.ga.nom} ${y.foiz}%` : ''}{k ? ` · ${tr({ uz: 'Keyin', ru: 'Потом' })}: ${k.ga.nom} ${k.foiz}%` : ''}</span></button>;
   };
-  const yordamTugma = <QTugma ikkinchi className="do-yordam-btn" aria-expanded={yordam} onClick={() => setYordam(y => !y)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>;
+  const yordamTugma = <QTugma ikkinchi className="do-yordam-btn" aria-expanded={yordam} onClick={() => setYordam(y => !y)}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>;
   const yordamMatn = yordam && <p className="do-yordam fade-step">{tr(S6_YORDAM)}</p>;
   let forma;
   if (isMentor) {
@@ -1160,7 +1160,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <div className="do-natija-q"><span className="do-yulduz">★ {y ? `${y.ga.nom} · ${y.foiz}%` : ''}</span><button type="button" className="do-tahrir" onClick={() => setQism(1)} aria-label={tr({ uz: 'Tanlovni tahrirlash', ru: 'Редактировать выбор' })}>✎</button></div>
           <div className="do-natija-q"><p className="do-gap">{gapYig(gip)}</p><button type="button" className="do-tahrir" onClick={() => setQism(2)} aria-label={tr({ uz: 'Gipotezani tahrirlash', ru: 'Редактировать гипотезу' })}>✎</button></div>
         </div>
-        <QXulosa>{tr({ uz: "Sonlaringiz saqlandi: ikki to'xtab qolish qadami topildi, biri uchun gipoteza yozildi.", ru: 'Ваши числа сохранены: найдены два шага остановки, для одного написана гипотеза.' })}</QXulosa>
+        <QXulosa>{tr({ uz: "Sonlaringiz saqlandi: ikki to'xtab qolish qadami topildi, biri uchun gipoteza yozildi.", ru: "Ваши числа сохранены: найдены два шага, где останавливаются; для одного написана гипотеза." })}</QXulosa>
       </div>
     );
   } else if (qism === 0) {
@@ -1226,7 +1226,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <b className="do-uya-t">{yl ? '★ ' : ''}{o.ga.nom} · {o.foiz == null ? '—' : o.foiz + '%'}</b>
                   {ikki && yulduz < 0 && <button type="button" className="do-uya-b" onClick={() => setYulduz(i)}>★ {tr({ uz: 'Avval shuni tuzataman', ru: 'Сначала исправлю это' })}</button>}
                   {yulduz >= 0 && !yl && <span className="do-keyin">{tr({ uz: 'Keyin', ru: 'Потом' })}</span>}
-                </> : <span className="do-uya-y">{tr({ uz: "to'xtab qolish qadami", ru: 'шаг остановки' })}</span>}
+                </> : <span className="do-uya-y">{tr({ uz: "to'xtab qolish qadami", ru: "шаг, где останавливаются" })}</span>}
               </div>
             );
           })}
@@ -1309,7 +1309,7 @@ const Screen8 = (props) => (
   <QuestionScreen {...props} scope="final" eyebrow={tr({ uz: 'Yakuniy tekshiruv', ru: 'Итоговая проверка' })}
     ustida={<HolatKarta />}
     questionText="Tuzatish tekshirildi va odamlarga chiqdi. Gipoteza to'g'ri ekani bilindimi?"
-    question={tr({ uz: <h2 className="title h-ask">Tuzatish tekshirildi va odamlarga chiqdi. <A>Gipoteza to'g'ri ekani bilindimi?</A></h2>, ru: <h2 className="title h-ask">Исправление проверено и вышло к людям. <A>Стало ли известно, что гипотеза верна?</A></h2> })}
+    question={tr({ uz: <h2 className="title h-ask">Tuzatish tekshirildi va odamlarga chiqdi. <A>Gipoteza to'g'ri ekani bilindimi?</A></h2>, ru: <h2 className="title h-ask">Исправление проверено и вышло к людям. <A>Уже известно, верна ли гипотеза?</A></h2> })}
     options={[
       { uz: "Yo'q — buni keyingi kunlarning sonlari aytadi", ru: 'Нет — это скажут числа следующих дней' },
       { uz: "Ha — tuzatish chiqdi, demak gipoteza to'g'ri", ru: 'Да — исправление вышло, значит гипотеза верна' },
@@ -1319,7 +1319,7 @@ const Screen8 = (props) => (
     explainCorrect={{ uz: 'Tuzatish — ish fakti. Gipotezani keyingi sonlar aytadi.', ru: 'Исправление — факт работы. О гипотезе скажут следующие числа.' }}
     explainWrong={{
       1: { uz: 'Chiqqan tuzatish — ish. Keyingi sonlar hali bormi?', ru: 'Вышедшее исправление — это работа. Следующие числа уже есть?' },
-      2: { uz: "Agentning so'zi — da'vo. Sonlar nima deydi?", ru: 'Слова агента — заявление. Что скажут числа?' },
+      2: { uz: "Agentning so'zi — da'vo. Sonlar nima deydi?", ru: "Слова агента — утверждение. Что скажут числа?" },
       3: { uz: "Keyingi kunlarda sanoq sahifasi nimani ko'rsatadi?", ru: 'Что покажет страница подсчёта в следующие дни?' },
       default: { uz: 'Tuzatish — ish fakti. Gipotezani keyingi sonlar aytadi.', ru: 'Исправление — факт работы. О гипотезе скажут следующие числа.' }
     }} />
@@ -1329,7 +1329,7 @@ const Screen8 = (props) => (
 const ACHIEVEMENTS = {
   dropoffFinder: { icon: '🔎', name: 'Drop-off Finder!', desc: { uz: 'Foizi eng past oraliqni birinchi urinishda topdingiz', ru: 'С первой попытки нашли промежуток с самым низким процентом' } },
   liveCounter: { icon: '📊', name: 'Live Counter!', desc: { uz: "Sanoq sahifangiz kalit bilan ochiladi va o'zi yangilanadi", ru: 'Ваша страница подсчёта открывается по ключу и обновляется сама' } },
-  hypothesisReady: { icon: '💡', name: 'Hypothesis Ready!', desc: { uz: "O'z sonlaringizdan to'xtab qolish qadamini topib, gipoteza yozdingiz", ru: 'По своим числам нашли шаг остановки и написали гипотезу' } },
+  hypothesisReady: { icon: '💡', name: 'Hypothesis Ready!', desc: { uz: "O'z sonlaringizdan to'xtab qolish qadamini topib, gipoteza yozdingiz", ru: "По своим числам нашли шаг, где останавливаются, и написали гипотезу" } },
   newVersion: { icon: '🚀', name: 'New Version!', desc: { uz: "Tuzatishni o'zingiz tekshirib, yangi versiyani chiqardingiz", ru: 'Сами проверили исправление и выпустили новую версию' } },
 };
 // Ekran id → nishon: s3 — birinchi urinishda to'g'ri · a1 — oxirgi «Bajardim» · s6 — «Saqlash» · a2 — «Yangi versiya chiqdi» (08-FILTR 21; tekin emas)
@@ -1399,7 +1399,7 @@ const QUIZ_MS = 15000;
 const QZ_BG_SHAPES = [
   { ch: { uz: 'qadamlar', ru: 'шаги' }, l: 5, t: 10, s: 28, d: 19, dl: 0 },
   { ch: { uz: 'foiz', ru: 'процент' }, l: 70, t: 8, s: 24, d: 23, dl: 1.5 },
-  { ch: { uz: "to'xtab qolish qadami", ru: 'шаг остановки' }, l: 6, t: 72, s: 22, d: 27, dl: 0.8 },
+  { ch: { uz: "to'xtab qolish qadami", ru: "шаг, где останавливаются" }, l: 6, t: 72, s: 22, d: 27, dl: 0.8 },
   { ch: { uz: 'sanoq sahifasi', ru: 'страница подсчёта' }, l: 66, t: 70, s: 22, d: 21, dl: 2.2 },
   { ch: { uz: 'maxfiy kalit', ru: 'секретный ключ' }, l: 44, t: 86, s: 24, d: 25, dl: 1.1 },
   { ch: { uz: 'gipoteza', ru: 'гипотеза' }, l: 58, t: 28, s: 22, d: 17, dl: 0.4 },
@@ -1414,16 +1414,16 @@ const QZ_BG_SHAPES = [
 const QUIZ_BANK = [
   { q: { uz: 'Sinfdoshingiz sanoq sahifasi manzilini bilib oldi. U sonlarni ko\'radimi?', ru: 'Одноклассник узнал адрес страницы подсчёта. Увидит ли он числа?' }, opts: [{ uz: 'Yo\'q: kalitsiz sonlar chiqmaydi', ru: 'Нет: без ключа чисел не будет' }, { uz: "Ha: manzilni bilgan har kim ko'radi", ru: 'Да: видит любой, кто знает адрес' }, { uz: 'Ha: lending hammaga ochiq turibdi', ru: 'Да: лендинг открыт для всех' }, { uz: "Ha, ilovani o'rnatgan bo'lsa ko'radi", ru: 'Да, если он установил приложение' }], correct: 0 },
   { q: { uz: "Render'dagi Backend `SANOQ_KALITI` ni qayerdan oladi?", ru: 'Откуда Backend на Render берёт `SANOQ_KALITI`?' }, opts: [{ uz: 'Backend kodiga yozilgan qatordan', ru: 'Из строки, записанной в коде Backend' }, { uz: "Xizmatning Environment bo'limidan", ru: 'Из раздела Environment сервиса' }, { uz: "Repo'dagi README faylining ichidan", ru: 'Из файла README в репозитории' }, { uz: 'Lending sahifasining kodi ichidan', ru: 'Из кода страницы лендинга' }], correct: 1 },
-  { q: { uz: "Sanoq sahifasi o'zi qanday yangilanadi?", ru: 'Как страница подсчёта обновляется сама?' }, opts: [{ uz: "Har 5 soniyada Backend'dan qayta-qayta so'raydi", ru: 'Каждые 5 секунд снова и снова спрашивает Backend' }, { uz: "Ega sahifani o'zi qo'lda yangilab o'tiradi", ru: 'Владелец сам обновляет страницу вручную' }, { uz: "Ulanish orqali Backend aytadi, sahifa so'raydi", ru: 'Backend сообщает через соединение, страница запрашивает' }, { uz: "Ilova sonlarni sahifaga o'zi yozib boradi", ru: 'Приложение само пишет числа на страницу' }], correct: 2 },
+  { q: { uz: "Sanoq sahifasi o'zi qanday yangilanadi?", ru: 'Как страница подсчёта обновляется сама?' }, opts: [{ uz: "Har 5 soniyada Backend'dan qayta-qayta so'raydi", ru: "Каждые 5 секунд снова и снова спрашивает Backend" }, { uz: "Ega sahifani o'zi qo'lda yangilab o'tiradi", ru: "Владелец сам всё время обновляет страницу вручную" }, { uz: "Ulanish orqali Backend aytadi, sahifa so'raydi", ru: "Backend сообщает по соединению, страница спрашивает" }, { uz: "Ilova sonlarni sahifaga o'zi yozib boradi", ru: "Приложение само дописывает числа на страницу" }], correct: 2 },
   { q: { uz: "20 qurilmadan 15 tasi keyingi qadamga o'tdi. Foiz qancha?", ru: 'Из 20 устройств 15 перешли на следующий шаг. Сколько процентов?' }, opts: [{ uz: '15 foiz', ru: '15 процентов' }, { uz: '20 foiz', ru: '20 процентов' }, { uz: '5 foiz', ru: '5 процентов' }, { uz: '75 foiz', ru: '75 процентов' }], correct: 3 },
   { q: { uz: 'Yangi telefonda ilovani uch marta ochdingiz. `ochdi` qancha oshadi?', ru: 'Вы открыли приложение на новом телефоне три раза. На сколько вырастет `ochdi`?' }, opts: [{ uz: 'Bittaga: turli qurilmalar sanaladi', ru: 'На один: считаются разные устройства' }, { uz: 'Uchtaga: har ochish alohida sanaladi', ru: 'На три: каждое открытие считается отдельно' }, { uz: 'Oshmaydi: egasi sanoqqa kirmaydi', ru: 'Не вырастет: владелец не считается' }, { uz: 'Ikkitaga: birinchi ochish sanalmaydi', ru: 'На два: первое открытие не считается' }], correct: 0 },
-  { q: { uz: "Sanoqda «ro'yxatdan o'tdi» — 30, Database'da — 28. Nima deysiz?", ru: 'В подсчёте «зарегистрировался» — 30, в Database — 28. Что скажете?' }, opts: [{ uz: "Ikkalasi bir narsa, farqini o'chiramiz", ru: 'Это одно и то же, разницу уберём' }, { uz: "O'lchovi boshqa: qurilma va akkaunt", ru: 'Мера разная: устройство и аккаунт' }, { uz: 'Biri xato, qaysi biri ekanini qidiramiz', ru: 'Одно ошибочно, ищем, какое' }, { uz: "Teng bo'lishi shart, bo'lmasa sanoq xato", ru: 'Должны совпадать, иначе подсчёт неверен' }], correct: 1 },
+  { q: { uz: "Sanoqda «ro'yxatdan o'tdi» — 30, Database'da — 28. Nima deysiz?", ru: 'В подсчёте «зарегистрировался» — 30, в Database — 28. Что скажете?' }, opts: [{ uz: "Ikkalasi bir narsa, farqini o'chiramiz", ru: 'Это одно и то же, разницу уберём' }, { uz: "O'lchovi boshqa: qurilma va akkaunt", ru: "Считают разное: устройство и аккаунт" }, { uz: 'Biri xato, qaysi biri ekanini qidiramiz', ru: 'Одно ошибочно, ищем, какое' }, { uz: "Teng bo'lishi shart, bo'lmasa sanoq xato", ru: 'Должны совпадать, иначе подсчёт неверен' }], correct: 1 },
   { q: { uz: "2016-yilda Netflix aytishicha, ko'rishlarning qariyb 80 foizi qayerdan keladi?", ru: 'По словам Netflix в 2016 году, откуда приходят почти 80 процентов просмотров?' }, opts: [{ uz: 'Qidiruv qatoridan', ru: 'Из строки поиска' }, { uz: 'Reklama oynalaridan', ru: 'Из рекламных окон' }, { uz: 'Tavsiyalar qatoridan', ru: 'Из ряда рекомендаций' }, { uz: "Do'stlar havolasidan", ru: 'По ссылкам друзей' }], correct: 2 },
-  { q: { uz: "Bu darsda nechta to'xtab qolish qadami tuzatiladi?", ru: 'Сколько шагов остановки исправляют на этом уроке?' }, opts: [{ uz: 'Ikkalasi ham, birdaniga', ru: 'Оба, сразу' }, { uz: 'Hech biri, avval kutiladi', ru: 'Ни одного, сначала ждут' }, { uz: 'Uchalasi ham, navbat bilan', ru: 'Все три, по очереди' }, { uz: 'Bittasi, ikkinchisi keyin', ru: 'Один, второй потом' }], correct: 3 },
-  { q: { uz: "Mentor misolida kirmagan odam «Qo'shilaman»ni bossa, nima ochiladi?", ru: 'Что откроется в примере Ментора, если невошедший нажмёт «Присоединяюсь»?' }, opts: [{ uz: "«Ro'yxatdan o'tish» ekrani", ru: 'Экран «Регистрация»' }, { uz: "«O'yin to'ldi» degan yozuv", ru: 'Надпись «Игра заполнена»' }, { uz: "O'yinchilar ismlari ro'yxati", ru: 'Список имён игроков' }, { uz: "Ilovaning o'rnatish fayli", ru: 'Файл установки приложения' }], correct: 0 },
+  { q: { uz: "Bu darsda nechta to'xtab qolish qadami tuzatiladi?", ru: "Сколько шагов, где останавливаются, исправляют на этом уроке?" }, opts: [{ uz: 'Ikkalasi ham, birdaniga', ru: "Оба, одновременно" }, { uz: 'Hech biri, avval kutiladi', ru: 'Ни одного, сначала ждут' }, { uz: 'Uchalasi ham, navbat bilan', ru: 'Все три, по очереди' }, { uz: 'Bittasi, ikkinchisi keyin', ru: "Один, второй — потом" }], correct: 3 },
+  { q: { uz: "Mentor misolida kirmagan odam «Qo'shilaman»ni bossa, nima ochiladi?", ru: "Что откроется в примере Ментора, если тот, кто не вошёл, нажмёт «Присоединяюсь»?" }, opts: [{ uz: "«Ro'yxatdan o'tish» ekrani", ru: 'Экран «Регистрация»' }, { uz: "«O'yin to'ldi» degan yozuv", ru: 'Надпись «Игра заполнена»' }, { uz: "O'yinchilar ismlari ro'yxati", ru: 'Список имён игроков' }, { uz: "Ilovaning o'rnatish fayli", ru: 'Файл установки приложения' }], correct: 0 },
   { q: { uz: "Mehmon ko'rinishi APK o'rnatgan telefonda qachon chiqadi?", ru: 'Когда гостевой вид появится на телефоне с установленным APK?' }, opts: [{ uz: '`git push` qilinishi bilanoq', ru: 'Сразу после `git push`' }, { uz: "Yangi faylni o'rnatgandan keyin", ru: 'После установки нового файла' }, { uz: 'Render qayta ishga tushganda', ru: 'Когда Render перезапустится' }, { uz: 'Ilovani yopib, qaytadan ochganda', ru: 'Когда закроют и снова откроют приложение' }], correct: 1 },
-  { q: { uz: "Gipotezaning «chunki» qismi nimani aytadi?", ru: 'Что говорит часть гипотезы «потому что»?' }, opts: [{ uz: "Qaysi ekranda nima o'zgarishini", ru: 'Что изменится на каком экране' }, { uz: 'Tuzatishga qancha vaqt ketishini', ru: 'Сколько времени займёт исправление' }, { uz: 'Nega shunday kutayotganimizni', ru: 'Почему мы этого ждём' }, { uz: 'Tuzatishni kim yozib berishini', ru: 'Кто напишет исправление' }], correct: 2 },
-  { q: { uz: "Agent «tuzatdim» dedi. Birinchi nima qilasiz?", ru: 'Агент сказал «исправил». Что сделаете первым?' }, opts: [{ uz: "Yangi o'rnatish faylini tayyorlaysiz", ru: 'Подготовите новый файл установки' }, { uz: "Lendingga yangi havolani qo'yib qo'yasiz", ru: 'Поставите новую ссылку на лендинг' }, { uz: 'Gipotezani isbotlandi deb yozib qo\'yasiz', ru: 'Запишете, что гипотеза доказана' }, { uz: "Ilovada tuzatishni o'zingiz tekshirasiz", ru: 'Сами проверите исправление в приложении' }], correct: 3 },
+  { q: { uz: "Gipotezaning «chunki» qismi nimani aytadi?", ru: 'Что говорит часть гипотезы «потому что»?' }, opts: [{ uz: "Qaysi ekranda nima o'zgarishini", ru: 'Что изменится на каком экране' }, { uz: 'Tuzatishga qancha vaqt ketishini', ru: 'Сколько времени займёт исправление' }, { uz: 'Nega shunday kutayotganimizni', ru: "Почему мы ждём такого изменения" }, { uz: 'Tuzatishni kim yozib berishini', ru: "Кто напишет это исправление" }], correct: 2 },
+  { q: { uz: "Agent «tuzatdim» dedi. Birinchi nima qilasiz?", ru: 'Агент сказал «исправил». Что сделаете первым?' }, opts: [{ uz: "Yangi o'rnatish faylini tayyorlaysiz", ru: 'Подготовите новый файл установки' }, { uz: "Lendingga yangi havolani qo'yib qo'yasiz", ru: 'Поставите новую ссылку на лендинг' }, { uz: 'Gipotezani isbotlandi deb yozib qo\'yasiz', ru: 'Запишете, что гипотеза доказана' }, { uz: "Ilovada tuzatishni o'zingiz tekshirasiz", ru: "Проверите исправление в приложении" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2013,8 +2013,8 @@ const Yordam = ({ satrlar }) => {
   const [o, setO] = useState(false);
   return (
     <>
-      <QTugma ikkinchi className="do-yordam-btn" aria-expanded={o} onClick={() => setO(x => !x)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>
-      {o && <span className="do-yordam-p fade-step"><span className="do-yp-y">{tr({ uz: 'Mentor misoli', ru: 'пример Ментора' })}</span>{satrlar.map((l, i) => <span key={i} className="do-yp">{fmtCode(tr(l))}</span>)}</span>}
+      <QTugma ikkinchi className="do-yordam-btn" aria-expanded={o} onClick={() => setO(x => !x)}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>
+      {o && <span className="do-yordam-p fade-step"><span className="do-yp-y">{tr({ uz: 'Mentor misoli', ru: "Пример Ментора" })}</span>{satrlar.map((l, i) => <span key={i} className="do-yp">{fmtCode(tr(l))}</span>)}</span>}
     </>
   );
 };
@@ -2078,12 +2078,12 @@ const WebQator = ({ children }) => <p className="do-web"><b>{tr({ uz: 'Web-trek'
 // ===== AMALIYOT 1 — sanoq sahifasi (screens[4]; tayanch 1.8, 3; talab zinapoyasi: tayyor talab + bitta joy {nimani sanasin}) =====
 const A1_PROMPT = [
   { uz: "Qayerda: Backend — yangi yo'l `GET /hodisalar/sanoq` va real vaqt ulanishi; `lending/` — yangi sahifa `sanoq.html`.", ru: 'Где: Backend — новый путь `GET /hodisalar/sanoq` и соединение в реальном времени; `lending/` — новая страница `sanoq.html`.' },
-  { uz: "Nima qilsin: `GET /hodisalar/sanoq` `hodisalar` jadvalidan {nimani sanasin} bersin (`?dan=` vaqt berilsa — shu vaqtdan keyingi yozuvlar bo'yicha); yonida — ro'yxatdan o'tgan akkauntlar soni, namuna va tekshiruv akkauntlarisiz (7-darsdagi `namuna` belgisi bo'yicha).", ru: 'Что сделать: `GET /hodisalar/sanoq` пусть отдаёт из таблицы `hodisalar` {nimani sanasin} (если передано время `?dan=` — по записям после этого времени); рядом — число зарегистрированных аккаунтов без тестовых и проверочных (по отметке `namuna` с 7-го урока).' },
+  { uz: "Nima qilsin: `GET /hodisalar/sanoq` `hodisalar` jadvalidan {nimani sanasin} bersin (`?dan=` vaqt berilsa — shu vaqtdan keyingi yozuvlar bo'yicha); yonida — ro'yxatdan o'tgan akkauntlar soni, namuna va tekshiruv akkauntlarisiz (7-darsdagi `namuna` belgisi bo'yicha).", ru: "Что сделать: `GET /hodisalar/sanoq` пусть отдаёт из таблицы `hodisalar` {nimani sanasin} (если передано время `?dan=` — по записям после этого времени); рядом — число зарегистрированных аккаунтов, не считая образцов и проверочных (по отметке `namuna` с 7-го урока)." },
   { uz: "Kalit so'rov sarlavhasida kelsin; kalit bo'lmasa yoki `.env` dagi `SANOQ_KALITI` bilan mos kelmasa — `401`.", ru: 'Ключ приходит в заголовке запроса; если ключа нет или он не совпадает с `SANOQ_KALITI` в `.env` — `401`.' },
   { uz: "`lending/sanoq.html` avval kalitni so'rasin, keyin sonlarni qadamlar tartibida ko'rsatsin; kalit faqat ochiq sahifada tursin — sahifa yangilansa, qayta so'ralsin.", ru: '`lending/sanoq.html` сначала спрашивает ключ, потом показывает числа в порядке шагов; ключ живёт только в открытой странице — после обновления спрашивается снова.' },
   { uz: "Sahifa o'zi yangilansin: ulanayotganda kalitni yuborsin; kalit to'g'ri bo'lsa, Backend uni faqat `sanoq` xonasiga qo'shsin — o'yin xonalari va foydalanuvchi harakatlariga emas; `hodisalar` ga yangi yozuv saqlanib tugagach shu xonaga `sanoq-ozgardi` yuborsin, sahifa sonlarni qayta so'rasin.", ru: 'Страница обновляется сама: при подключении отправляет ключ; если ключ верный, Backend добавляет её только в комнату `sanoq` — не в игровые комнаты и не к действиям пользователей; после сохранения новой записи в `hodisalar` отправляет в эту комнату `sanoq-ozgardi`, страница заново запрашивает числа.' },
-  { uz: "Backend {lending manzili} dan kelgan so'rov va ulanishni ham qabul qilsin (oldingi manzillar ham qolsin). README dagi o'zgaruvchilar ro'yxatiga `SANOQ_KALITI` nomini qiymatsiz qo'sh.", ru: 'Backend принимает запросы и подключения и с {lending manzili} (прежние адреса тоже остаются). В список переменных в README добавь имя `SANOQ_KALITI` без значения.' },
-  { uz: "Nima buzilmasin: ilova va uning ulanishi, `POST /hodisalar` va boshqa yo'llar avvalgidek ishlasin. `sanoq.html` ga lendingdan havola qo'yma, unda Umami bo'lmasin; sahifada faqat sonlar — ism, login va qurilma ID ko'rsatilmasin.", ru: 'Что не должно сломаться: приложение и его соединение, `POST /hodisalar` и другие пути работают как раньше. На `sanoq.html` не ставь ссылку с лендинга, Umami в ней нет; на странице только числа — имя, логин и ID устройства не показываются.' },
+  { uz: "Backend {lending manzili} dan kelgan so'rov va ulanishni ham qabul qilsin (oldingi manzillar ham qolsin). README dagi o'zgaruvchilar ro'yxatiga `SANOQ_KALITI` nomini qiymatsiz qo'sh.", ru: "Backend принимает запросы и соединения и с {lending manzili} (прежние адреса тоже остаются). В список переменных в README добавь имя `SANOQ_KALITI` без значения." },
+  { uz: "Nima buzilmasin: ilova va uning ulanishi, `POST /hodisalar` va boshqa yo'llar avvalgidek ishlasin. `sanoq.html` ga lendingdan havola qo'yma, unda Umami bo'lmasin; sahifada faqat sonlar — ism, login va qurilma ID ko'rsatilmasin.", ru: "Что не сломать: приложение и его соединение, `POST /hodisalar` и другие пути работают как раньше. На `sanoq.html` не ставь ссылку с лендинга, Umami в ней нет; на странице только числа — имя, логин и ID устройства не показываются." },
   { uz: "Kalitni kodga yozma, `.env` ga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: 'Ключ в код не пиши, `.env` не трогай. Больше ничего не трогай, назови изменённые файлы.' }
 ];
 const A1_NAMUNA = {
@@ -2094,10 +2094,10 @@ const A1_YORDAM = [
   { uz: "Qayerda: `backend/` — yangi yo'l `GET /hodisalar/sanoq`, gateway va `POST /hodisalar`; `lending/` — yangi `sanoq.html`.", ru: 'Где: `backend/` — новый путь `GET /hodisalar/sanoq`, gateway и `POST /hodisalar`; `lending/` — новая `sanoq.html`.' },
   { uz: "Nima qilsin: `GET /hodisalar/sanoq` to'rt qadam uchun turli `qurilma_id` lar sonini bersin — `ochdi`, `royxatdan-otdi`, `qoshildi`, `tasdiqladi`, shu tartibda (`?dan=` vaqt berilsa — shu vaqtdan keyingi yozuvlar bo'yicha); yonida — `oyinchilar` dagi `namuna = false` akkauntlar soni.", ru: 'Что сделать: `GET /hodisalar/sanoq` отдаёт число разных `qurilma_id` для четырёх шагов — `ochdi`, `royxatdan-otdi`, `qoshildi`, `tasdiqladi`, в этом порядке (если передано время `?dan=` — по записям после него); рядом — число аккаунтов `namuna = false` в `oyinchilar`.' },
   { uz: "Kalit so'rov sarlavhasida kelsin; kalit bo'lmasa yoki `SANOQ_KALITI` bilan mos kelmasa — `401`.", ru: 'Ключ приходит в заголовке запроса; если ключа нет или он не совпадает с `SANOQ_KALITI` — `401`.' },
-  { uz: "`lending/sanoq.html` — «Maydon Jamoa · sanoq»: avval kalit maydoni, keyin to'rt qadam va ro'yxatdan o'tgan akkauntlar; kalit faqat sahifa holatida, yangilansa qayta so'raladi.", ru: '`lending/sanoq.html` — «Maydon Jamoa · sanoq»: сначала поле ключа, потом четыре шага и зарегистрированные аккаунты; ключ только в состоянии страницы, после обновления спрашивается снова.' },
-  { uz: "Gateway: ulanishda `auth` da kalit kelsa va to'g'ri bo'lsa — ulanish faqat `sanoq` xonasiga qo'shilsin (o'yin xonalari va o'yin yo'llariga kira olmaydi), noto'g'ri bo'lsa — yopilsin; ilovaning token bilan ulanishi o'zgarmasin. `POST /hodisalar` yangi qatorni yozib tugatgandan keyin `sanoq` xonasiga `sanoq-ozgardi` yuborsin; sahifa sonlarni qayta so'rasin.", ru: 'Gateway: если при подключении в `auth` пришёл верный ключ — подключение добавляется только в комнату `sanoq` (в игровые комнаты и игровые пути не попадает), если неверный — закрывается; подключение приложения с токеном не меняется. `POST /hodisalar` после записи новой строки отправляет в комнату `sanoq` `sanoq-ozgardi`; страница заново запрашивает числа.' },
-  { uz: "Backend `maydon-jamoa-….netlify.app` (lending) dan kelgan so'rov va ulanishni ham qabul qilsin — brauzer ko'rinishi manzili ham qolsin. README dagi o'zgaruvchilar ro'yxatiga `SANOQ_KALITI` nomini qiymatsiz qo'sh.", ru: 'Backend принимает запросы и подключения и с `maydon-jamoa-….netlify.app` (лендинг) — адрес браузерной версии тоже остаётся. В список переменных в README добавь имя `SANOQ_KALITI` без значения.' },
-  { uz: "Nima buzilmasin: ilova, real vaqt ulanishi, eslatma, `POST /hodisalar` va boshqa yo'llar avvalgidek ishlasin. `sanoq.html` ga lendingdan havola qo'yma, unda Umami bo'lmasin; sahifada ism, login va qurilma ID yo'q. Kalitni kodga yozma, `.env` ga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: 'Что не должно сломаться: приложение, соединение в реальном времени, напоминание, `POST /hodisalar` и другие пути работают как раньше. На `sanoq.html` не ставь ссылку с лендинга, Umami в ней нет; на странице нет имени, логина и ID устройства. Ключ в код не пиши, `.env` не трогай. Больше ничего не трогай, назови изменённые файлы.' }
+  { uz: "`lending/sanoq.html` — «Maydon Jamoa · sanoq»: avval kalit maydoni, keyin to'rt qadam va ro'yxatdan o'tgan akkauntlar; kalit faqat sahifa holatida, yangilansa qayta so'raladi.", ru: "`lending/sanoq.html` — «Maydon Jamoa · sanoq» («Maydon Jamoa · подсчёт»): сначала поле ключа, потом четыре шага и зарегистрированные аккаунты; ключ только в состоянии страницы, после обновления спрашивается снова." },
+  { uz: "Gateway: ulanishda `auth` da kalit kelsa va to'g'ri bo'lsa — ulanish faqat `sanoq` xonasiga qo'shilsin (o'yin xonalari va o'yin yo'llariga kira olmaydi), noto'g'ri bo'lsa — yopilsin; ilovaning token bilan ulanishi o'zgarmasin. `POST /hodisalar` yangi qatorni yozib tugatgandan keyin `sanoq` xonasiga `sanoq-ozgardi` yuborsin; sahifa sonlarni qayta so'rasin.", ru: "Gateway: если при подключении в `auth` пришёл верный ключ — соединение добавляется только в комнату `sanoq` (в игровые комнаты и игровые пути не попадает), если неверный — закрывается; соединение приложения с токеном не меняется. `POST /hodisalar` после записи новой строки отправляет в комнату `sanoq` `sanoq-ozgardi`; страница заново запрашивает числа." },
+  { uz: "Backend `maydon-jamoa-….netlify.app` (lending) dan kelgan so'rov va ulanishni ham qabul qilsin — brauzer ko'rinishi manzili ham qolsin. README dagi o'zgaruvchilar ro'yxatiga `SANOQ_KALITI` nomini qiymatsiz qo'sh.", ru: "Backend принимает запросы и соединения и с `maydon-jamoa-….netlify.app` (лендинг) — адрес браузерной версии тоже остаётся. В список переменных в README добавь имя `SANOQ_KALITI` без значения." },
+  { uz: "Nima buzilmasin: ilova, real vaqt ulanishi, eslatma, `POST /hodisalar` va boshqa yo'llar avvalgidek ishlasin. `sanoq.html` ga lendingdan havola qo'yma, unda Umami bo'lmasin; sahifada ism, login va qurilma ID yo'q. Kalitni kodga yozma, `.env` ga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: "Что не сломать: приложение, соединение в реальном времени, напоминание, `POST /hodisalar` и другие пути работают как раньше. На `sanoq.html` не ставь ссылку с лендинга, Umami в ней нет; на странице нет имени, логина и ID устройства. Ключ в код не пиши, `.env` не трогай. Больше ничего не трогай, назови изменённые файлы." }
 ];
 // O'ng tomon: telefon chapda, brauzer o'ngda; bir marta o'zi yuradi — kalit → sonlar → yangi qurilma → «ochdi» 46 → 47 (sahifa yangilanmagan)
 const NatijaA1 = () => {
@@ -2135,8 +2135,8 @@ const ScreenA1 = (props) => {
     </>, prompt: { satrlar: A1_PROMPT, namuna: A1_NAMUNA, toldir: manzil ? { '{lending manzili}': manzil } : {} }, yordam: A1_YORDAM },
     { h: { uz: 'Ishga tushirish', ru: 'Запуск' }, t: <>
       <Bq k="bir">{tr({ uz: '`git diff` — o\'zgarish agent aytgan fayllardami. `git status` → `.env` ro\'yxatda yo\'q → har faylni `git add <fayl>` bilan → `git commit -m "8-dars: sanoq sahifasi"` → `git push`.', ru: '`git diff` — изменения в файлах, которые назвал агент? `git status` → `.env` в списке нет → каждый файл через `git add <fayl>` → `git commit -m "8-dars: sanoq sahifasi"` → `git push`.' })}</Bq>
-      <Bq>{tr({ uz: "Render'da yangi deploy tugashini kuting (odatda bir necha daqiqa); lending Netlify'da push'dan keyin odatda o'zi yangilanadi (1-darsda repo bilan ulangan).", ru: 'Дождитесь окончания нового deploy на Render (обычно несколько минут); лендинг на Netlify после push обычно обновляется сам (на 1-м уроке связан с репозиторием).' })}</Bq>
-      <Bq>{tr({ uz: "Xato bo'lsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»", ru: 'Если ошибка — отправьте агенту строку ошибки (не значения `.env`, токены и ключи): «Shu xato chiqdi: {xato}. Tuzat.»' })}</Bq>
+      <Bq>{tr({ uz: "Render'da yangi deploy tugashini kuting (odatda bir necha daqiqa); lending Netlify'da push'dan keyin odatda o'zi yangilanadi (1-darsda repo bilan ulangan).", ru: "Дождитесь окончания нового деплоя на Render (обычно несколько минут); лендинг на Netlify после push обычно обновляется сам (на 1-м уроке связан с репозиторием)." })}</Bq>
+      <Bq>{tr({ uz: "Xato bo'lsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»", ru: 'Если ошибка — отправьте агенту строку ошибки (не значения `.env`, токены и ключи): «Вышла такая ошибка: {ошибка}. Исправь.»' })}</Bq>
     </> },
     { h: { uz: 'Tekshirish', ru: 'Проверка' }, t: <>
       <Bq k="bir">{tr({ uz: "agent nima desa ham, o'zingiz tekshiring:", ru: 'что бы ни сказал агент, проверьте сами:' })}</Bq>
@@ -2145,13 +2145,13 @@ const ScreenA1 = (props) => {
       <Bq>{tr({ uz: "(3) Ilovangizni hali ochilmagan qurilmada oching — sherigingiz telefonida lendingdagi havoladan yoki laptopda brauzer ko'rinishida. Sanoq sahifasini yangilamang: «ochdi» bittaga oshishi kerak — odatda bir necha soniyada.", ru: '(3) Откройте приложение на устройстве, где его ещё не открывали, — на телефоне напарника по ссылке с лендинга или на ноутбуке в браузерной версии. Не обновляйте страницу подсчёта: «открыл» должно вырасти на один — обычно за несколько секунд.' })}</Bq>
       <Bq k="ich">{tr({ uz: "O'z telefoningiz allaqachon sanalgan — u sonni oshirmaydi: har qadamda turli qurilmalar sanaladi.", ru: 'Ваш телефон уже посчитан — он число не увеличит: на каждом шаге считаются разные устройства.' })}</Bq>
       {royxat != null && <Bq>{tr({ uz: `(4) 7-darsda yozgan soningiz shu yerda: «Ro'yxatdan o'tgan: ${royxat}${reja.sana ? ' · ' + reja.sana : ''}» — sahifadagi son bilan solishtiring. Sonlarni mustaqil ishda kiritasiz.`, ru: `(4) Ваше число с 7-го урока здесь: «Зарегистрировались: ${royxat}${reja.sana ? ' · ' + reja.sana : ''}» — сравните с числом на странице. Числа введёте в самостоятельной работе.` })}</Bq>}
-      <Bq>{tr({ uz: "Mos kelmagan qatorni agentga yozing: «Shu qator talabga mos emas: {nima}. Tuzat.»", ru: 'Несовпадающую строку напишите агенту: «Shu qator talabga mos emas: {nima}. Tuzat.»' })}</Bq>
+      <Bq>{tr({ uz: "Mos kelmagan qatorni agentga yozing: «Shu qator talabga mos emas: {nima}. Tuzat.»", ru: 'Несовпадающую строку напишите агенту: «Эта строка не соответствует требованию: {что}. Исправь.»' })}</Bq>
     </> }
   ];
   return (
     <ScreenBlok {...props} steps={steps}
       eyebrow={{ uz: 'Amaliyot 1 · sanoq sahifasi', ru: 'Практика 1 · страница подсчёта' }}
-      title={{ uz: <>Qadamlar soni bitta <A>yopiq sahifada ko'rinsin.</A></>, ru: <>Пусть число шагов будет видно <A>на одной закрытой странице.</A></> }}
+      title={{ uz: <>Qadamlar soni bitta <A>yopiq sahifada ko'rinsin.</A></>, ru: <>Число шагов — <A>на одной закрытой странице.</A></> }}
       mentor={{ uz: "Talab tayyor — qavs ichiga nimani va qanday sanashni yozasiz; «1 · Ochish»dan boshlang.", ru: 'Требование готово — в скобки впишете, что и как считать; начните с «1 · Открыть».' }}
       ustida={<><TrekTanlov trek={trek} onTanla={tanla} /><QIzoh>{tr({ uz: "Qadamlar sonini maxfiy kalit bilan ko'rsatadigan sahifa sanoq sahifasi deyiladi. 10-Modulda uni dashboard degansiz.", ru: 'Страница, которая показывает число шагов по секретному ключу, называется страницей подсчёта. В 10-м модуле вы называли её dashboard.' })}</QIzoh></>}
       natija={<NatijaA1 />}
@@ -2166,20 +2166,20 @@ const ScreenA1 = (props) => {
 const A2_PROMPT = [
   { uz: "Qayerda: ilovamda — «{to'xtab qolish qadami}» qadami turgan ekran va u so'raydigan Backend yo'li.", ru: "Где: в моём приложении — экран, где стоит шаг «{to'xtab qolish qadami}», и путь Backend, который он запрашивает." },
   { uz: 'Nima qilsin: {nima qilsin}', ru: 'Что сделать: {nima qilsin}' },
-  { uz: "Nima buzilmasin: qolgan ekranlar va yo'llar avvalgidek ishlasin; qadamlar sanog'i (`hodisaYoz`) o'z joyida qolsin. Kirmagan odamga boshqa foydalanuvchilarning ismi va shaxsiy ma'lumoti ko'rinmasin — kirmagan odamga ketadigan maydonlar ro'yxatini avval menga ko'rsat, faqat shular ketsin.", ru: 'Что не должно сломаться: остальные экраны и пути работают как раньше; подсчёт шагов (`hodisaYoz`) остаётся на месте. Невошедший человек не видит имён и личных данных других пользователей — список полей, которые уходят невошедшему, сначала покажи мне, уходят только они.' },
+  { uz: "Nima buzilmasin: qolgan ekranlar va yo'llar avvalgidek ishlasin; qadamlar sanog'i (`hodisaYoz`) o'z joyida qolsin. Kirmagan odamga boshqa foydalanuvchilarning ismi va shaxsiy ma'lumoti ko'rinmasin — kirmagan odamga ketadigan maydonlar ro'yxatini avval menga ko'rsat, faqat shular ketsin.", ru: "Что не сломать: остальные экраны и пути работают как раньше; подсчёт шагов (`hodisaYoz`) остаётся на месте. Тот, кто не вошёл, не видит имён и личных данных других пользователей — список полей, которые уходят ему, сначала покажи мне, пусть уходят только они." },
   { uz: "`.env` ga tegma. Tekshiruv uchun yozuv yaratsang — `id` larini ayt va faqat shularni o'chir. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: '`.env` не трогай. Если создашь записи для проверки — назови их `id` и удали только их. Больше ничего не трогай, назови изменённые файлы.' }
 ];
 const A2_NAMUNA = {
-  '{nima qilsin}': { uz: "masalan: kirmagan odam ham o'yinlar ro'yxatini ko'rsin; «Qo'shilaman» bosilsa — «Ro'yxatdan o'tish» ochilsin. Bitta o'zgarish yozing — butun ilovani qayta qurish emas.", ru: 'например: невошедший человек тоже видит список игр; при нажатии «Qo\'shilaman» открывается «Ro\'yxatdan o\'tish». Напишите одно изменение — не перестройку всего приложения.' }
+  '{nima qilsin}': { uz: "masalan: kirmagan odam ham o'yinlar ro'yxatini ko'rsin; «Qo'shilaman» bosilsa — «Ro'yxatdan o'tish» ochilsin. Bitta o'zgarish yozing — butun ilovani qayta qurish emas.", ru: "например: тот, кто не вошёл, тоже видит список игр; при нажатии «Qo'shilaman» («Присоединяюсь») открывается «Ro'yxatdan o'tish» («Регистрация»). Напишите одно изменение — не перестройку всего приложения." }
 };
 const A2_YORDAM = [
-  { uz: "Qayerda: `backend/` — `GET /oyinlar`; `mobil/` — ilova ochilgandagi birinchi ekran, «O'yinlar», «O'yin» va «Qo'shilaman».", ru: "Где: `backend/` — `GET /oyinlar`; `mobil/` — первый экран при открытии приложения, «O'yinlar», «O'yin» и «Qo'shilaman»." },
-  { uz: "Nima qilsin: kirmagan odam ham «O'yinlar»ni ko'rsin. `GET /oyinlar` token bo'lmasa ham javob bersin — faqat shu maydonlar: `id`, `kun`, `soat`, `maydon`, `kerak`, `qoshilgan`; boshqa hech qanday maydon (`men…`, o'yinchilar ismi va keyin qo'shiladiganlari) bo'lmasin.", ru: "Что сделать: невошедший человек тоже видит «O'yinlar». `GET /oyinlar` отвечает и без токена — только эти поля: `id`, `kun`, `soat`, `maydon`, `kerak`, `qoshilgan`; никаких других полей (`men…`, имён игроков и тех, что добавят позже)." },
-  { uz: "Ilova tokeni yo'q odamga birinchi ekranda «O'yinlar»ni ko'rsatsin, tepada «Kirish» havolasi bilan; «Qo'shilaman» bosilsa — «Ro'yxatdan o'tish» ochilsin. Kirmagan odamga ro'yxat ekran ochilganda va pastga tortganda yangilansin; real vaqt ulanishi — faqat kirganlarga.", ru: "Приложение показывает человеку без токена на первом экране «O'yinlar» со ссылкой «Kirish» сверху; при нажатии «Qo'shilaman» открывается «Ro'yxatdan o'tish». Невошедшему список обновляется при открытии экрана и при оттягивании вниз; соединение в реальном времени — только вошедшим." },
-  { uz: "Nima buzilmasin: kirgan o'yinchi uchun qo'shilish, tasdiq, chiqish, navbat, real vaqt va eslatma avvalgidek ishlasin; to'rt qadam sanog'i (`hodisaYoz`) o'z joyida qolsin. `.env` ga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: 'Что не должно сломаться: для вошедшего игрока присоединение, подтверждение, выход, очередь, реальное время и напоминание работают как раньше; подсчёт четырёх шагов (`hodisaYoz`) на месте. `.env` не трогай. Больше ничего не трогай, назови изменённые файлы.' },
-  { uz: "Saytingizda ham shunday: kirmagan odamga ro'yxat sahifa ochilganda va «Yangilash» bosilganda so'raladi.", ru: 'На сайте так же: невошедшему список запрашивается при открытии страницы и при нажатии «Обновить».' }
+  { uz: "Qayerda: `backend/` — `GET /oyinlar`; `mobil/` — ilova ochilgandagi birinchi ekran, «O'yinlar», «O'yin» va «Qo'shilaman».", ru: "Где: `backend/` — `GET /oyinlar`; `mobil/` — первый экран при открытии приложения, «O'yinlar» («Игры»), «O'yin» и «Qo'shilaman» («Присоединяюсь»)." },
+  { uz: "Nima qilsin: kirmagan odam ham «O'yinlar»ni ko'rsin. `GET /oyinlar` token bo'lmasa ham javob bersin — faqat shu maydonlar: `id`, `kun`, `soat`, `maydon`, `kerak`, `qoshilgan`; boshqa hech qanday maydon (`men…`, o'yinchilar ismi va keyin qo'shiladiganlari) bo'lmasin.", ru: "Что сделать: тот, кто не вошёл, тоже видит «O'yinlar». `GET /oyinlar` отвечает и без токена — только эти поля: `id`, `kun`, `soat`, `maydon`, `kerak`, `qoshilgan`; никаких других полей (`men…`, имён игроков и тех, что добавят позже)." },
+  { uz: "Ilova tokeni yo'q odamga birinchi ekranda «O'yinlar»ni ko'rsatsin, tepada «Kirish» havolasi bilan; «Qo'shilaman» bosilsa — «Ro'yxatdan o'tish» ochilsin. Kirmagan odamga ro'yxat ekran ochilganda va pastga tortganda yangilansin; real vaqt ulanishi — faqat kirganlarga.", ru: "Приложение показывает человеку без токена на первом экране «O'yinlar» со ссылкой «Kirish» («Вход») сверху; при нажатии «Qo'shilaman» открывается «Ro'yxatdan o'tish» («Регистрация»). Тому, кто не вошёл, список обновляется при открытии экрана и при оттягивании вниз; соединение в реальном времени — только вошедшим." },
+  { uz: "Nima buzilmasin: kirgan o'yinchi uchun qo'shilish, tasdiq, chiqish, navbat, real vaqt va eslatma avvalgidek ishlasin; to'rt qadam sanog'i (`hodisaYoz`) o'z joyida qolsin. `.env` ga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: "Что не сломать: для вошедшего игрока присоединение, подтверждение, выход, очередь, реальное время и напоминание работают как раньше; подсчёт четырёх шагов (`hodisaYoz`) на месте. `.env` не трогай. Больше ничего не трогай, назови изменённые файлы." },
+  { uz: "Saytingizda ham shunday: kirmagan odamga ro'yxat sahifa ochilganda va «Yangilash» bosilganda so'raladi.", ru: "На сайте так же: тому, кто не вошёл, список запрашивается при открытии страницы и при нажатии «Yangilash»." }
 ];
-const LENDING_PROMPT = [{ uz: "`lending/index.html` dagi «Android: ilovani o'rnatish» havolasini shu manzilga almashtir: {yangi havola}. Boshqa joyga tegma.", ru: "Замени в `lending/index.html` ссылку «Android: ilovani o'rnatish» на этот адрес: {yangi havola}. Больше ничего не трогай." }];
+const LENDING_PROMPT = [{ uz: "`lending/index.html` dagi «Android: ilovani o'rnatish» havolasini shu manzilga almashtir: {yangi havola}. Boshqa joyga tegma.", ru: "Замени в `lending/index.html` ссылку «Android: ilovani o'rnatish» («Android: установить приложение») на этот адрес: {yangi havola}. Больше ничего не трогай." }];
 // O'ng tomon: telefon (kirmagan holat) → «Qo'shilaman» → «Ro'yxatdan o'tish»; tokensiz javob; lending kartasi (≤3 blok)
 const NatijaA2 = () => {
   const f = useYurish([1800, 2800]);
@@ -2196,6 +2196,8 @@ const NatijaA2 = () => {
     </div>
   );
 };
+// RU: gipoteza qolipidagi qavs nomlari (agar, o'zgaradi, chunki) va natijadagi JSON kaliti (kerak) — kod, tarjima qilinmaydi
+// ru-qoldiq-istisno s7: agar o'zgaradi chunki kerak
 const ScreenA2 = (props) => {
   const { storedAnswer, onAnswer, screen } = props;
   const [trek, setTrek] = useState(trekOl);
@@ -2219,21 +2221,21 @@ const ScreenA2 = (props) => {
   };
   const steps = [
     { h: { uz: 'Ochish', ru: 'Открыть' }, t: <>
-      <Bq k="bir">{tr({ uz: 'Amaliyot 1 push qilingan. Gipotezangiz shu yerda:', ru: 'Практика 1 отправлена (push). Ваша гипотеза здесь:' })}</Bq>
+      <Bq k="bir">{tr({ uz: 'Amaliyot 1 push qilingan. Gipotezangiz shu yerda:', ru: "Push Практики 1 сделан. Ваша гипотеза здесь:" })}</Bq>
       <span className="do-band">{gipQ} {tr({ uz: '«Agar» qismi — bugungi tuzatish.', ru: 'Часть «Если» — сегодняшнее исправление.' })}</span>
-      <Bq>{tr({ uz: "U bitta ekran yoki bitta Backend yo'liga sig'sin; katta bo'lsa — birinchi ko'rinadigan qismini tanlang. Ilovangizda ★ qadam turgan ekranni oching. Mentor misolida bu — ilova ochilgandagi birinchi ekran: hozir u «Kirish».", ru: 'Пусть оно помещается в один экран или один путь Backend; если большое — выберите первую видимую часть. Откройте в приложении экран, где стоит шаг ★. В примере Ментора это первый экран при открытии приложения: сейчас это «Вход».' })}</Bq>
+      <Bq>{tr({ uz: "U bitta ekran yoki bitta Backend yo'liga sig'sin; katta bo'lsa — birinchi ko'rinadigan qismini tanlang. Ilovangizda ★ qadam turgan ekranni oching. Mentor misolida bu — ilova ochilgandagi birinchi ekran: hozir u «Kirish».", ru: "Пусть она помещается в один экран или в один путь Backend; если она большая — выберите часть, которую видно первой. Откройте в приложении экран, где стоит шаг ★. В примере Ментора это первый экран при открытии приложения: сейчас это «Вход»." })}</Bq>
     </> },
     { h: { uz: 'Prompt', ru: 'Промпт' }, t: <>
       <Bq k="bir">{tr({ uz: "«Qayerda» qatori mustaqil ishdagi ★ qadamdan to'ldirilgan (tahrirlash mumkin). «Nima qilsin» qatorini yozing (kulrang namunaga qarang), «Nusxalash»ni bosing, Antigravity'ga yuboring:", ru: 'Строка «Где» заполнена по шагу ★ из самостоятельной работы (можно править). Напишите строку «Что сделать» (смотрите серый пример), нажмите «Скопировать», отправьте в Antigravity:' })}</Bq>
     </>, prompt: { satrlar: A2_PROMPT, namuna: A2_NAMUNA, toldir: yNom ? { "{to'xtab qolish qadami}": yNom } : {} }, yordam: A2_YORDAM },
     { h: { uz: 'Ishga tushirish', ru: 'Запуск' }, t: <>
-      <Bq k="bir">{tr({ uz: '`git diff` → `git status` → `git add <fayl>` → `git commit -m "8-dars: {tuzatishingiz nomi}"` → `git push`; Render\'da yangi deploy tugashini kuting.', ru: '`git diff` → `git status` → `git add <fayl>` → `git commit -m "8-dars: {tuzatishingiz nomi}"` → `git push`; дождитесь окончания нового deploy на Render.' })}</Bq>
-      <Bq>{tr({ uz: "Mobil trekda `npx expo start`, QR'ni Expo Go bilan oching (bitta Wi-Fi; bo'lmasa `--tunnel`); web-trekda `npm run dev`. Xato bo'lsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»", ru: 'В мобильном треке `npx expo start`, откройте QR в Expo Go (одна Wi-Fi; иначе `--tunnel`); в веб-треке `npm run dev`. Если ошибка — отправьте агенту строку ошибки (не значения `.env`, токены и ключи): «Shu xato chiqdi: {xato}. Tuzat.»' })}</Bq>
+      <Bq k="bir">{tr({ uz: '`git diff` → `git status` → `git add <fayl>` → `git commit -m "8-dars: {tuzatishingiz nomi}"` → `git push`; Render\'da yangi deploy tugashini kuting.', ru: "`git diff` → `git status` → `git add <fayl>` → `git commit -m \"8-dars: {tuzatishingiz nomi}\"` → `git push`; дождитесь окончания нового деплоя на Render." })}</Bq>
+      <Bq>{tr({ uz: "Mobil trekda `npx expo start`, QR'ni Expo Go bilan oching (bitta Wi-Fi; bo'lmasa `--tunnel`); web-trekda `npm run dev`. Xato bo'lsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»", ru: "В мобильном треке `npx expo start`, откройте QR в Expo Go (одна сеть Wi-Fi; иначе `--tunnel`); в веб-треке `npm run dev`. Если ошибка — отправьте агенту строку ошибки (не значения `.env`, токены и ключи): «Вышла такая ошибка: {ошибка}. Исправь.»" })}</Bq>
     </> },
     { h: { uz: 'Tekshirish', ru: 'Проверка' }, t: <>
       <Bq k="bir">{tr({ uz: "agent nima desa ham, o'zingiz tekshiring:", ru: 'что бы ни сказал агент, проверьте сами:' })}</Bq>
-      <Bq>{tr({ uz: "(1) «Hisobdan chiqish» → ilovani qayta oching: tuzatilgan joy gipotezangizdagidek ko'rinishi kerak. Mentor misolida — «O'yinlar» ro'yxatdan o'tmasdan ko'rinadi, «Qo'shilaman» → «Ro'yxatdan o'tish».", ru: '(1) «Выйти из аккаунта» → снова откройте приложение: исправленное место должно выглядеть как в вашей гипотезе. В примере Ментора — «Игры» видны без регистрации, «Присоединяюсь» → «Регистрация».' })}</Bq>
-      <span className="do-band do-joriy-b">{tr({ uz: "Kirmagan odam ko'radigan bu ekran mehmon ko'rinishi deyiladi: ro'yxat bor, harakat uchun ro'yxatdan o'tish kerak.", ru: 'Этот экран, который видит невошедший человек, называется гостевым видом: список есть, для действия нужна регистрация.' })}</span>
+      <Bq>{tr({ uz: "(1) «Hisobdan chiqish» → ilovani qayta oching: tuzatilgan joy gipotezangizdagidek ko'rinishi kerak. Mentor misolida — «O'yinlar» ro'yxatdan o'tmasdan ko'rinadi, «Qo'shilaman» → «Ro'yxatdan o'tish».", ru: "(1) «Hisobdan chiqish» → снова откройте приложение: исправленное место должно выглядеть как в вашей гипотезе. В примере Ментора — «Игры» видны без регистрации, «Присоединяюсь» → «Регистрация»." })}</Bq>
+      <span className="do-band do-joriy-b">{tr({ uz: "Kirmagan odam ko'radigan bu ekran mehmon ko'rinishi deyiladi: ro'yxat bor, harakat uchun ro'yxatdan o'tish kerak.", ru: "Экран, который видит тот, кто не вошёл, называется гостевым видом: список есть, для действия нужна регистрация." })}</span>
       <Bq>{tr({ uz: "(2) Brauzerda Render manzilingizga o'zgargan yo'lni qo'shib, tokensiz oching (Mentor misolida `/oyinlar`): javobda ism, login va `men…` maydonlari bo'lmasligi kerak. Tuzatishingiz Backend yo'liga tegmagan bo'lsa — bu bandni o'tkazing.", ru: '(2) Откройте в браузере свой адрес Render с изменённым путём без токена (в примере Ментора `/oyinlar`): в ответе не должно быть имён, логинов и полей `men…`. Если исправление не затронуло путь Backend — пропустите этот пункт.' })}</Bq>
       <Bq>{tr({ uz: "(3) Kiring: asosiy harakat va real vaqt avvalgidek ishlashi kerak. Shu yerda «Bajardim» — tuzatish qilindi va tekshirildi.", ru: '(3) Войдите: основное действие и реальное время должны работать как раньше. Здесь «Готово» — исправление сделано и проверено.' })}</Bq>
     </> }
@@ -2245,7 +2247,7 @@ const ScreenA2 = (props) => {
     <div className="do-keyin-q fade-step">
       <p className="do-keyin-t"><b>(4) {tr({ uz: 'Yangi versiya', ru: 'Новая версия' })}</b> — {tr({ uz: "Backend push'dan keyin yangilandi.", ru: 'Backend после push обновился.' })}{mobil && <> {fmtCode(tr({ uz: "Brauzer ko'rinishi push'dan keyin o'zi yangilanmaydi: `npx expo export -p web`, keyin `netlify deploy --prod --dir dist` bilan qayta chiqaring.", ru: 'Браузерная версия после push сама не обновляется: `npx expo export -p web`, затем выложите заново через `netlify deploy --prod --dir dist`.' }))}</>}</p>
       {mobil && <>
-        <p className="do-keyin-t">{fmtCode(tr({ uz: "APK o'zi yangilanmaydi — yangi o'rnatish fayli kerak: `cd mobil` → `eas build -p android --profile preview` (bepul rejada oyiga 15 ta Android build — keraksiz qayta tayyorlamang). Navbatni kutmang — yakuniy savolga o'ting.", ru: 'APK сам не обновляется — нужен новый файл установки: `cd mobil` → `eas build -p android --profile preview` (в бесплатном плане 15 Android build в месяц — не готовьте лишний раз). Не ждите очередь — переходите к итоговому вопросу.' }))}</p>
+        <p className="do-keyin-t">{fmtCode(tr({ uz: "APK o'zi yangilanmaydi — yangi o'rnatish fayli kerak: `cd mobil` → `eas build -p android --profile preview` (bepul rejada oyiga 15 ta Android build — keraksiz qayta tayyorlamang). Navbatni kutmang — yakuniy savolga o'ting.", ru: "APK сам не обновляется — нужен новый файл установки: `cd mobil` → `eas build -p android --profile preview` (в бесплатном плане — 15 сборок Android в месяц, не готовьте лишний раз). Очередь не ждите — переходите к итоговому вопросу." }))}</p>
         <p className="do-keyin-t">{tr({ uz: "Fayl tayyor bo'lgach agentga:", ru: 'Когда файл будет готов, агенту:' })}</p>
         <DoPrompt satrlar={LENDING_PROMPT} />
         <p className="do-keyin-t">{fmtCode(tr({ uz: "→ `git push`. Eski faylni o'rnatgan odamda tuzatish yo'q — u yangisini o'rnatgandagina chiqadi; yangi keladiganlar lendingdagi yangi havoladan o'rnatadi.", ru: '→ `git push`. У того, кто установил старый файл, исправления нет — оно появится, только когда он установит новый; новые люди установят по новой ссылке на лендинге.' }))}</p>
@@ -2277,16 +2279,16 @@ const ScreenA2 = (props) => {
 const KARTOCHKALAR = [
   { front: { uz: 'Qadamlar nima?', ru: 'Что такое шаги?' }, back: { uz: "Foydalanuvchi mahsulotda bosib o'tadigan yo'l bo'laklari", ru: 'Части пути, который пользователь проходит в продукте' }, note: { uz: "Inglizchasi: funnel. Mentor misolida: ochdi, ro'yxatdan o'tdi, qo'shildi, kelishini tasdiqladi", ru: 'По-английски: funnel. В примере Ментора: открыл, зарегистрировался, присоединился, подтвердил приход' } },
   { front: { uz: "Bu darsda foiz nimani ko'rsatadi?", ru: 'Что на этом уроке показывает процент?' }, back: { uz: "Bir qadamdan keyingisiga o'tganlar foizini", ru: 'Процент перешедших с одного шага на следующий' }, note: { uz: '46 dan 27 tasi — 59 foiz', ru: '27 из 46 — 59 процентов' } },
-  { front: { uz: "To'xtab qolish qadami nima?", ru: 'Что такое шаг остановки?' }, back: { uz: "Keyingi qadamga o'tganlar foizi past bo'lgan joy", ru: 'Место, где процент перешедших на следующий шаг низкий' }, note: { uz: 'Bu darsda foizi eng past ikki oraliq olinadi', ru: 'На этом уроке берут два промежутка с самым низким процентом' } },
-  { front: { uz: "Eng kichik son — to'xtab qolish qadamimi?", ru: 'Самое маленькое число — это шаг остановки?' }, back: { uz: 'Shart emas: foizga qarang', ru: 'Не обязательно: смотрите на процент' }, note: { uz: "Mentor misolida 12 dan 9 tasi o'tgan — 75 foiz", ru: 'В примере Ментора перешли 9 из 12 — 75 процентов' } },
+  { front: { uz: "To'xtab qolish qadami nima?", ru: "Что такое шаг, где останавливаются?" }, back: { uz: "Keyingi qadamga o'tganlar foizi past bo'lgan joy", ru: 'Место, где процент перешедших на следующий шаг низкий' }, note: { uz: 'Bu darsda foizi eng past ikki oraliq olinadi', ru: 'На этом уроке берут два промежутка с самым низким процентом' } },
+  { front: { uz: "Eng kichik son — to'xtab qolish qadamimi?", ru: "Самое маленькое число — значит, здесь останавливаются?" }, back: { uz: 'Shart emas: foizga qarang', ru: 'Не обязательно: смотрите на процент' }, note: { uz: "Mentor misolida 12 dan 9 tasi o'tgan — 75 foiz", ru: 'В примере Ментора перешли 9 из 12 — 75 процентов' } },
   { front: { uz: 'Har qadamda nima sanaladi?', ru: 'Что считается на каждом шаге?' }, back: { uz: 'Turli qurilmalar soni', ru: 'Число разных устройств' }, note: { uz: 'Bitta qurilma necha marta ochsa ham — bitta', ru: 'Сколько бы раз одно устройство ни открывало — одно' } },
   { front: { uz: "Sanoq sahifasini kim ko'radi?", ru: 'Кто видит страницу подсчёта?' }, back: { uz: 'Maxfiy kalitni bilgan odam', ru: 'Тот, кто знает секретный ключ' }, note: { uz: "Kalitsiz so'rovga Backend `401` beradi; kalit chiqib ketsa — yangisi qo'yiladi", ru: 'На запрос без ключа Backend отвечает `401`; если ключ утёк — ставят новый' } },
   { front: { uz: '`SANOQ_KALITI` qayerda turadi?', ru: 'Где хранится `SANOQ_KALITI`?' }, back: { uz: "Backend `.env` da va Render'da", ru: 'В `.env` Backend и на Render' }, note: { uz: "Agentga, chatga va repo'ga yozilmaydi", ru: 'Не пишется агенту, в чат и в репозиторий' } },
-  { front: { uz: 'Gipoteza qanday shaklda yoziladi?', ru: 'В какой форме пишется гипотеза?' }, back: { uz: "«Agar … qilsak, … o'zgaradi, chunki …»", ru: '«Если … сделаем, … изменится, потому что …»' }, note: { uz: '«Chunki» — nega shunday kutayotganimiz', ru: '«Потому что» — почему мы этого ждём' } },
-  { front: { uz: "Mehmon ko'rinishi nima?", ru: 'Что такое гостевой вид?' }, back: { uz: "Kirmagan odam ko'radigan ekran: ro'yxat bor, harakat uchun ro'yxatdan o'tish kerak", ru: 'Экран, который видит невошедший человек: список есть, для действия нужна регистрация' }, note: { uz: "Mentor misolida boshqa o'yinchilarning ismi unda yo'q", ru: 'В примере Ментора имён других игроков в нём нет' } },
+  { front: { uz: 'Gipoteza qanday shaklda yoziladi?', ru: 'В какой форме пишется гипотеза?' }, back: { uz: "«Agar … qilsak, … o'zgaradi, chunki …»", ru: '«Если … сделаем, … изменится, потому что …»' }, note: { uz: '«Chunki» — nega shunday kutayotganimiz', ru: "«Потому что» — почему мы ждём такого изменения" } },
+  { front: { uz: "Mehmon ko'rinishi nima?", ru: 'Что такое гостевой вид?' }, back: { uz: "Kirmagan odam ko'radigan ekran: ro'yxat bor, harakat uchun ro'yxatdan o'tish kerak", ru: "Экран, который видит тот, кто не вошёл: список есть, для действия нужна регистрация" }, note: { uz: "Mentor misolida boshqa o'yinchilarning ismi unda yo'q", ru: 'В примере Ментора имён других игроков в нём нет' } },
   { front: { uz: "APK o'rnatgan telefonda tuzatish o'zi paydo bo'ladimi?", ru: 'Появится ли исправление само на телефоне с установленным APK?' }, back: { uz: "Yo'q: yangi fayl tayyorlanadi va havola almashtiriladi", ru: 'Нет: готовят новый файл и меняют ссылку' }, note: { uz: "Backend esa push'dan keyin odatda o'zi yangilanadi", ru: 'А Backend после push обычно обновляется сам' } },
   { front: { uz: '2016-yilda Netflix nimani ochiq aytgan?', ru: 'Что Netflix открыто заявил в 2016 году?' }, back: { uz: "Ko'rishlarning qariyb 80 foizi qidiruvdan emas, tavsiyalardan keladi", ru: 'Почти 80 процентов просмотров приходят не из поиска, а из рекомендаций' }, note: { uz: "Netflix — film va serial ko'rsatadigan xizmat", ru: 'Netflix — сервис, который показывает фильмы и сериалы' } },
-  { front: { uz: "Tuzatish chiqdi — gipoteza to'g'ri ekani bilindimi?", ru: 'Исправление вышло — стало ли известно, что гипотеза верна?' }, back: { uz: "Yo'q: buni keyingi kunlardagi sonlar ko'rsatadi", ru: 'Нет: это покажут числа следующих дней' }, note: { uz: '«Tuzatildi» — ish fakti, natija — keyingi sonlar', ru: '«Исправлено» — факт работы, результат — следующие числа' } }
+  { front: { uz: "Tuzatish chiqdi — gipoteza to'g'ri ekani bilindimi?", ru: "Исправление вышло — уже известно, верна ли гипотеза?" }, back: { uz: "Yo'q: buni keyingi kunlardagi sonlar ko'rsatadi", ru: 'Нет: это покажут числа следующих дней' }, note: { uz: '«Tuzatildi» — ish fakti, natija — keyingi sonlar', ru: '«Исправлено» — факт работы, результат — следующие числа' } }
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2354,7 +2356,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   // «Endi siz bilasiz» — bugungi asosiy fikrni takrorlamaydi (T-048)
   const RECAP = [
     { uz: 'Har qadamda turli qurilmalar sanaladi: bitta qurilma necha marta ochsa ham — bitta.', ru: 'На каждом шаге считаются разные устройства: сколько бы раз одно устройство ни открывало — одно.' },
-    { uz: "To'xtab qolish qadamini eng kichik son emas, past foiz ko'rsatadi.", ru: 'Шаг остановки показывает не самое маленькое число, а низкий процент.' },
+    { uz: "To'xtab qolish qadamini eng kichik son emas, past foiz ko'rsatadi.", ru: "Где останавливаются, показывает не самое маленькое число, а низкий процент." },
     { uz: "Sanoq sahifasi maxfiy kalit bilan ochiladi; kalit agentga va repo'ga yozilmaydi.", ru: 'Страница подсчёта открывается по секретному ключу; ключ не пишут агенту и в репозиторий.' },
     { uz: "APK o'zi yangilanmaydi: tuzatishdan keyin yangi fayl tayyorlanadi va havola almashtiriladi.", ru: 'APK сам не обновляется: после исправления готовят новый файл и меняют ссылку.' },
     { uz: "Kam qurilmadagi farq — kuzatuv, isbot emas.", ru: 'Разница на малом числе устройств — наблюдение, не доказательство.' }
@@ -2372,7 +2374,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     tayyor: { uz: <>Tuzatish tayyor — <A>yangi versiya qoldi.</A></>, ru: <>Исправление готово — <A>осталась новая версия.</A></> },
     gipoteza: { uz: <>Gipoteza tayyor — <A>tuzatish qoldi.</A></>, ru: <>Гипотеза готова — <A>осталось исправление.</A></> },
     sanoq: { uz: <>Sanoq sahifasi tayyor — <A>gipoteza qoldi.</A></>, ru: <>Страница подсчёта готова — <A>осталась гипотеза.</A></> },
-    yoq: { uz: <>Sonlar o'qildi — <A>sanoq sahifasini tugating.</A></>, ru: <>Числа прочитаны — <A>закончите страницу подсчёта.</A></> }
+    yoq: { uz: <>Sanoq sahifasi hali tugamagan — <A>uyda tugating.</A></>, ru: <>Страница подсчёта ещё не готова — <A>закончите её дома.</A></> } // E 54 (F-1006-389)
   };
   const toliq = holat === 'chiqdi';
   const mashq = !isMentorL && gip && k.tur === 'mashq';
@@ -2599,7 +2601,7 @@ export default function PmDropOffLesson({ lang: langProp, onFinished, liveToken 
         .qs-ustun.bosh.tolqin { border-color: ${T.accent}; animation: do-tolqin-u 1.3s ease-out var(--d, 0s) 2; }
         .qs-ust-nomlar { display: grid; gap: 10px; }
         .qs-ustunlar.kichik .qs-ust-nomlar { gap: 8px; }
-        .qs-ust-nom { display: flex; flex-direction: column; align-items: center; gap: 3px; text-align: center; font-size: 11.5px; line-height: 1.3; font-weight: 700; color: ${T.ink2}; min-width: 0; overflow-wrap: break-word; }
+        .qs-ust-nom { display: flex; flex-direction: column; align-items: center; gap: 3px; text-align: center; font-size: 11.5px; line-height: 1.3; font-weight: 700; color: ${T.ink2}; min-width: 0; overflow-wrap: anywhere; hyphens: auto; }
         .qs-sanoq.yonma .qs-ust-nom { font-size: 10px; letter-spacing: -0.01em; }
         .qs-sanoq.yonma .qs-ust-maydon, .qs-sanoq.yonma .qs-ust-nomlar, .qs-sanoq.yonma .qs-oraliqlar { gap: 6px; }
         .qs-toxtash { font-style: normal; font-size: 10.5px; font-weight: 800; color: ${T.err}; background: ${T.errFon}; border-radius: 6px; padding: 1px 6px; }

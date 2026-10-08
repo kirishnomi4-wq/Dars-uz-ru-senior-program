@@ -29,7 +29,7 @@ Fidbek: qator yoniga `>> …`. Tasdiqlangach (GATE M) dars shu holatga keltirila
 ✎ eskidan nima o'zgardi (bor ekran bo'lsa)
 ```
 Oxirida: Nishonlar · Qisqa takrorlash oynalari (har ballik test — 3 karta) · Jonli viktorina (12, ✔) · Kartochkalar (10–12) · Yakun
-(chip · sarlavha · «Endi siz bilasiz» 3–5 · uyga vazifa · «Keyingi dars — …») · «KOD» belgilari ro'yxati (kod o'zgarishi kerak bo'lgan joylar).
+(chip · sarlavha · **«AI bilan davom» kartasi — sherik/juftlik/real suhbat bor darsda majburiy (PM-109): yo'riq 2 gap + tayyor so'rov + nusxalash** · «Endi siz bilasiz» 3–5 · uyga vazifa · «Keyingi dars — …») · «KOD» belgilari ro'yxati (kod o'zgarishi kerak bo'lgan joylar).
 
 ## Qolip turlari (har ekran bittasidan — `src/qolip/QOLIP.md`)
 | Tur | MD'da yoziladi |

@@ -27,7 +27,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–2 ≈ 13 · 1-amaliyot ≈ 25 �
    to'rtta yozuv, tartib o'zgarmaydi (ikki · kech · rad · imzo), `usul` — barqaror kalit; birinchi yozuv kartasi saqlanganda to'rttalasi yaratiladi (`boldi: ''`, `buzildi: null` — urinish hali bajarilmagan, `tuzatishQilindi: false`, `qayta: null`; 12-Modul 9.37 j).
    `qildim`, `kutdim`, `boldi` — o'quvchining o'z matni; ism, login, telefon, kalit qiymati yozilmaydi. Kalitni 12-dars o'qiydi (barqarorlik tekshiruvi). Boshqa darsning kaliti yozilmaydi.
    O'qiladi: `pm-m11d4-narx` — `ishlaydi` (1-amaliyot «Ochish» qatori) va `ekran.tugma` (2-amaliyot «Nima qildim» dagi to'lov tugmasi nomi; yo'q bo'lsa — «to'lov tugmasi») · `pm-m9d8-platforma.trek` (TAYANCHGA SAVOL 5).
-   Mentor misoli — «Maydon Jamoa», repo `maydon-jamoa`, teg `m13-dars-05-start` (= `m13-dars-04-done`; README'da eslatma «bu holatda ikki muammo bor — 5-darsda topiladi», tayanch 3) → `m13-dars-05-done`.
+   Mentor misoli — «Maydon Jamoa», repo `maydon-jamoa`, teg `m13-dars-05-start` (= `m13-dars-04-done` — agent 4-darsda yozgan kod, hech narsa ataylab buzilmaydi; README eslatmasi — pilotda topilgan muammolar bilan, tayanch 3; F-1007-463) → `m13-dars-05-done`.
 2. **Bugungi asosiy fikr (P-013; yakunda ko'rsatilmaydi — darsning ichki o'qi, SABOQ E 50):** Agentning «to'lov ishlaydi» degani — da'vo: to'lov xabari ikki marta, kech, rad yoki noto'g'ri imzo bilan kelganda nima bo'lishini o'zingiz buzib ko'rasiz, tuzatilgach o'sha usul bilan qayta tekshirasiz.
 3. **Oldingi darslardan keladigan narsa (aynan):**
    - **3-dars** (pilot `03`, tayanch 1.3, 9.1–9.6): `POST /tolov/webhook` — tartib imzo → takror → yozuv; javoblar: imzo mos emas — `401`, hech narsa yozilmaydi · yangi to'lov — `200 { ok: true }` · takror — `200 { takror: true }`, yozuv yo'q · «rad» ham yoziladi — `200 { ok: true }`.
@@ -48,11 +48,12 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–2 ≈ 13 · 1-amaliyot ≈ 25 �
      3) **rad etish** — «Rad etish (mashq)» (3-darsdagi tugma) ·
      4) **noto'g'ri imzo** — xabar `TOLOV_KALITI` bilan emas, boshqa kalit bilan imzolanadi (yangi tugma; 3-darsdagi «Imzosiz yuborish» da imzo umuman yo'q).
      Har urinish to'lov tugmasidan («To'lovga o'tish») boshlanadi — 4-darsdan mashq sahifasi faqat shu tugma bergan raqam bilan ishlaydi (tayanch 9.7); shuning uchun urinish oldidan Pro yo'q bo'lishi kerak (TAYANCHGA SAVOL 4).
-   - **Mentor misolida topilgan ikki muammo (tayanch 1.5 — aynan):**
+   - **Mentor misolida topilgan ikki muammo (tayanch 1.5 — aynan; pilotda tekshiriladi — ⛔ «qur» darvozasi):**
      1) **Ikki marta kelgan xabar Pro'ni ikki marta uzaytirdi** — `tolovlar` da bitta qator (3-dars himoyasi ishladi), lekin Pro 60 kunga uzaydi. Sabab: Pro'ni uzaytiradigan qator takror tekshiruvidan oldin ishlaydi. Tuzatish: Pro faqat yangi yozilgan to'lovdan keyin uzayadi («bitta tranzaksiyada» — faqat Mentor Yordami va REPO da; tayanch 2, TAQIQLAR 8).
      2) **Kechikkan xabar: sahifa «To'lov o'tmadi» dedi, keyin Pro yoqildi** — ilova esa eski holatda qoldi. Sabab: sahifa javobni 10 soniya kutib, «o'tmadi» deb yozgan. Tuzatish: sahifa «Javob kutilmoqda» ko'rsatadi; ilova qaytganda va «Qayta tekshirish» bosilganda `GET /men` ni qayta so'raydi.
      Rad etish va noto'g'ri imzo — **buzilmadi** (rad — Pro yoqilmadi; imzo — `401`). «Buzilmadi» ham natija.
-     ⛔ **«Qur» darvozasi:** Mentor repo'sida `m13-dars-05-start` + 1-amaliyot talabi bajarilgach ikki muammo haqiqiy telefonda takrorlanadimi, rad va noto'g'ri imzo buzmaydimi — pilotda tekshiriladi; natija boshqacha chiqsa, 2, 5-ekran sahnalari, `MENTOR_YOZUV`, testlar, arena va kartochkalar haqiqiy natijaga moslanadi; o'quv muvozanati uchun natija tanlanmaydi (12-Modul 9.37 a). Tekshirilmaguncha «muammo bor» — faqat «Mentor misolida» shaklida va shu ⛔ bilan.
+     ⛔ **«Qur» darvozasi:** Mentor repo'sida `m13-dars-05-start` + 1-amaliyot talabi bajarilgach ikki muammo haqiqiy telefonda takrorlanadimi, rad va noto'g'ri imzo buzmaydimi — pilotda tekshiriladi; natija boshqacha chiqsa, 2, 5-ekran sahnalari, `MENTOR_YOZUV`, 4-ekran savoli va izohlari, arena, kartochkalar, qisqa takrorlash va Pro Once tavsifi haqiqiy natijaga moslanadi (✔ o'rni o'zgarmaydi); o'quv muvozanati uchun natija tanlanmaydi (12-Modul 9.37 a). Tekshirilmaguncha «muammo bor» — faqat «Mentor misolida» shaklida va shu ⛔ bilan.
+     **Hech narsa ataylab buzilmaydi** (F-1007-463): `05-start` — agent 4-darsda yozgan kod; alohida «buzuq» tarmoq yoki fayl qilinmaydi. 4-dars talabi ikkala muammoni chaqirmaydi (yozuv va Pro bitta Database ishida; sahifaning kutishi — agentning tanlovi), shuning uchun pilotda ular chiqmasligi ham mumkin — unda Mentor misolida ham «buzilmadi» (bu ham natija).
    - **Mentor misolining buzish yozuvi** (bitta manba `MENTOR_YOZUV`; 2, 5-ekranlar, 2 va 3-amaliyot kutilgan natijasi, 3-amaliyot Yordami; Mentorning o'z matni, birinchi shaxsda — T-008; har urinish Pro yo'q holatdan):
 
    | Urinish | Nima qildim | Nima kutdim | Nima bo'ldi | Belgi | Tuzatishdan keyin |
@@ -64,11 +65,11 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–2 ≈ 13 · 1-amaliyot ≈ 25 �
 
    ⛔ Yozuv «qur» pilotida Mentor telefonida olinadi (yuqoridagi darvoza); har urinishdan oldin Mentor Pro'ni Neon'da bo'sh qiladi (A2 1-qadamdagi so'rov). «Neon'da Pro yozildi» — `pro_gacha` qatori.
    - **Qolgan holatlar — 1-amaliyot (tayanch 1.5 A1; Mentor misoli):** (1) rad etilgan to'lovdan keyin ilovada «To'lov o'tmadi — qayta urinib ko'ring» va «To'lovga o'tish» tugmasi · (2) natija hali kelmaganda ilovada «Javob kutilmoqda» ·
-     (3) Pro muddati tugashi: Pro o'zi o'chadi, «Har hafta takrorlansin» yana to'lov taklifi ekranini ochadi, yangi o'yin o'zi e'lon qilinmasligi kerak, e'lon qilingan o'yinlar qoladi; pul avtomatik yechilmaydi (tayanch 1.0) ·
+     (3) Pro muddati tugashi: Backend'da `pro` 4-darsdan muddatga qaraydi (`pro_gacha > now()`); bugun — ilova va «Doimiy o'yin»: «Har hafta takrorlansin» yana to'lov taklifi ekranini ochadi, yangi o'yin o'zi e'lon qilinmasligi kerak, e'lon qilingan o'yinlar qoladi; pul avtomatik yechilmaydi (tayanch 1.0; F-1007-463) ·
      (4) «Mashq to'lov» sahifasida ikki yangi tugma — «Kechiktirib yuborish», «Noto'g'ri imzo» (tayanch 3: `05-done` da bor; 2-amaliyotda kod yozilmaydi — tugmalar shu blokda; TAYANCHGA SAVOL 2).
-     Ilova natijani `GET /men` dan biladi: Mentor talabida javobga oxirgi to'lov holati qo'shiladi — `tolandi` · `rad` · `kutilmoqda` (TAYANCHGA SAVOL 9). Mentor misolida ilova natijani ilovaga qaytganda so'raydi; ilova ochiq turganda qayta so'ramaydi — 2-muammo shu yerda ko'rinadi (TAYANCHGA SAVOL 1).
+     Ilova natijani `GET /men` dan biladi: Mentor talabida javobga oxirgi to'lov holati qo'shiladi — shu foydalanuvchining eng oxirgi `boshlangan_tolovlar` yozuvi `tolovlar` da `tolandi` · `rad`, hali yo'q — `kutilmoqda` (TAYANCHGA SAVOL 9). Mentor misolida ilova natijani ilovaga qaytganda so'raydi; ilova ochiq turganda qayta so'ramaydi — 2-muammo shu yerda ko'rinadi (TAYANCHGA SAVOL 1).
    - **Halol chegaralar (darsda ochiq aytiladi):** «yangi o'yin o'zi e'lon qilinmasligi» darsda tekshirilmaydi — buning uchun o'yin vaqti o'tishi kerak (A1 4-qadam qatori; 12-dars va'da qilinmaydi — T-038) ·
-     «Kechiktirib yuborish» — haqiqiy uxlashning o'rnida mashq tugmasi (2-ekran QIzohi) · test rejim — real to'lovning aynan nusxasi emas: haqiqiy xizmatda sahifa va xabar boshqa kompaniya serveridan keladi (3-dars 11-ekran; bu darsda O'qituvchi eslatmasida).
+     «Kechiktirib yuborish» — uxlagan Backend'ning mashqi, aynan nusxasi emas (2-ekran QIzohi; F-1007-463) · test rejim — real to'lovning aynan nusxasi emas: haqiqiy xizmatda sahifa va xabar boshqa kompaniya serveridan keladi (3-dars 11-ekran; bu darsda O'qituvchi eslatmasida).
 5. **Atamalar (bir ma'no — bir so'z, T-014; tayanch 2 — ta'riflar so'zma-so'z; yangi atama yo'q — hammasi oldingi darslardan):**
    - **to'lov xabari** (texnik nomi webhook) · **to'lov taklifi ekrani** · **mashq to'lov** · **test rejim** · **takror xabar** · **rad etilgan to'lov** · **imzo** · **to'lov raqami** · **Pro** · **«Doimiy o'yin»** · **pullik obuna** (yolg'iz «obuna» yo'q) — tayanch 2, 3–4-darslardagi ma'nosida.
    - **buzish** · **buzish yozuvi** · **buzildi / buzilmadi** · **«Tuzatish qilindi»** · **«qayta tekshiruvda takrorlanmadi» / «qayta tekshiruvda yana buzildi»** · **da'vo** — 12-Modul 5-darsidagi ma'nosida; 2-ekranda bir gap bilan ko'prik (T-052): «12-Modulda ilovani uch usul bilan buzgansiz — bugun to'lov xabarini to'rt usul bilan».
@@ -78,7 +79,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–2 ≈ 13 · 1-amaliyot ≈ 25 �
    - **agent** (Antigravity) · **prompt** · **talab** (qayerda · nima qilsin · nima buzilmasin) · **Neon SQL Editor** · **README** · **`BUZISH.md`**.
    - **Ishlatilmaydi:** server (prozada; istisno — «boshqa kompaniya serveri», tayanch 9.5), tranzaksiya (o'quvchi matnida — faqat Mentor Yordamida va REPO da), «tuzatildi» belgi sifatida (→ «Tuzatish qilindi»), «buzilgan»/«buzuq» sifat sifatida, hodisa, obuna (yolg'iz), callback, idempotentlik, sandbox, «test holati», «sinov», A1/A2/A3, `m11-05`, «Modul 13». «qiymat» — faqat «kalit qiymati» birikmasida (3-dars promptlari bilan bir; 4-darsdagi narx usuli bu darsda yo'q).
 6. **Mentor misolidagi sonlar (tayanch 1.4, 1.5, 1.13, 6 — aynan):** narx **15 000 so'm / 30 kun — «Mentorning taxmini»** (har mashq sahifa maketida summa yonida kichik kulrang yorliq) · Pro **30 kun** (kutilgan) → **60 kun** (1-muammo) · kechiktirish **70 soniya** · sahifaning kutishi **10 soniya** (2-muammo sababi) ·
-   Render bepul xizmati **15 daqiqa** so'rovsiz qolsa uxlaydi, uyg'onishi ≈1 daqiqa (tayanch 6; o'quvchi matnida «bir daqiqagacha» — 12-Modul 9.19). Namuna belgilar (son emas): to'lov raqamlari `m-131` … `m-134` (soxta; 9.1 shakli — TAYANCHGA SAVOL 10), Mentor hisobi `id` = 7.
+   Render bepul xizmati **15 daqiqa** so'rovsiz qolsa uxlaydi, uyg'onishi ≈1 daqiqa (tayanch 6; o'quvchi matnida «bir daqiqagacha» — 12-Modul 9.19). Namuna belgilar (son emas): to'lov raqamlari — `m-` + 12 tasodifiy belgi (4-dars, tayanch 9.7), maketda qisqartirilgan: `m-c41e…`, `m-9b07…` (TAYANCHGA SAVOL 10), Mentor hisobi `id` = 7.
    Boshqa son yo'q; statistika deyilmaydi (T-043); komissiya aytilmaydi; Mentor misolida Pro'ni test rejimda yoqqanlar soni yo'q (tayanch 1.13).
 7. **Metafora yo'q. Keyssiz** (loyiha kuni, Qaror-0 21). Qahramon yo'q — vazifani Mentor beradi; odamlar roli bilan: tashkilotchi (Pro oladigan), o'yinchi. Payme, Click, Stripe bu darsda chizilmaydi (faqat O'qituvchi eslatmasida, tayanch 6 fakti).
 8. **Xavfsizlik va pul chegarasi:** «buzish» — faqat **o'z mahsulotida**, faqat «Mashq to'lov» tugmalari bilan; boshqa odamning sayti, Backend'i yoki haqiqiy to'lov xizmati tekshirilmaydi, hujum usuli o'rgatilmaydi, ortiqcha so'rov bilan «bosish» yo'q (TAQIQLAR 3).
@@ -128,7 +129,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–2 ≈ 13 · 1-amaliyot ≈ 25 �
   O'ngda — Backend tuguni: «Pro muddati: —» · `tolovlar` · «N qator». Telefon ustida bitta chat pufagi (Antigravity, T-008): «Tayyor! To'lov ishlaydi: to'langach Pro yoqiladi.»
 - **Harakat → Vizual o'zgarish:**
   1. «To'lovga o'tish» → telefon yorlig'i «ilova» → «brauzer»: «Mashq to'lov» sahifasi ochiladi (`MASHQ_SAHIFA`; «To'lash (mashq)» halqada, tekshiruv tugmalari kulrang — bu ekranda bosilmaydi).
-  2. «To'lash (mashq)» → sahifada yashil qator «To'landi (mashq)» → Backend ichida konvert «Mashq to'lov» dan webhook'ka uchadi, to'rt qator navbat bilan yonadi → `tolovlar` ga «m-131 · tolandi» → «Pro muddati: 30 kun» →
+  2. «To'lash (mashq)» → sahifada yashil qator «To'landi (mashq)» → Backend ichida konvert «Mashq to'lov» dan webhook'ka uchadi, to'rt qator navbat bilan yonadi → `tolovlar` ga «m-c41e… · tolandi» → «Pro muddati: 30 kun» →
      telefon yana «ilova»: «E'lon berish» ekranida «Har hafta takrorlansin» belgisi yoqiladi (to'lov taklifi ekrani ochilmaydi). Shundan keyin o'ngdagi variantlar faollashadi (bosilmaguncha xira).
 - Variantlar (radio, ballsiz; har birining o'z yengil chegarasi — E 40):
   - Ha — bitta to'lov o'tdi, demak ishlaydi
@@ -138,7 +139,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–2 ≈ 13 · 1-amaliyot ≈ 25 �
 - Javob — 1-variant: **Qiziq fikr!** Bu oddiy holat edi. Xabar ikki marta yoki kech kelsa ham shunday bo'ladimi — hali ko'rilmagan. (106)
 - Javob — 3-variant: **Qiziq fikr!** Agentning «ishlaydi» degani — da'vo: kech yoki ikki marta kelgan xabar bilan hali tekshirilmagan. (109)
 - Javobdan keyin: agent pufagi ostida kulrang yorliq «da'vo · tekshirilmagan» paydo bo'ladi. Tanlangan variant ixcham qator bo'lib qoladi (SABOQ 11).
-- Ballsiz (J-026: `correct: false` hammaga). Tugma: Davom etish
+- Ballsiz (J-026: `correct: false` hammaga; ✔ — faqat MD belgisi: qaysi javobga «Aynan!», ekranda belgi yo'q). Tugma: Davom etish
 ✎ Hook obyekti — darsning o'qitish obyekti (P-001): agentning «to'lov ishlaydi» degani va bitta oddiy to'lov. Uchala variant — o'quvchining o'z ichki savoli yoki javobi (P-016); 1 va 3-variant hayotda tez-tez uchraydigan fikr — javobi ularni yolg'onga chiqarmaydi, «hali ko'rilmagan», «hali tekshirilmagan» deydi.
   Sahna Mentorning bugungi holatida (1-amaliyot bajarilgan — tekshiruv tugmalari ko'rinadi; TAYANCHGA SAVOL 13). «To'lov xabari» — darsda birinchi uchrashganda to'liq nomi bilan (2-variant va uning javobi).
 
@@ -173,7 +174,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–2 ≈ 13 · 1-amaliyot ≈ 25 �
 - Sahna (`TOLOV_SAHNA`): telefon — brauzer, «Mashq to'lov» sahifasi (tekshiruv tugmalari faol, joriysi halqada) · Backend — «Mashq to'lov» va `POST /tolov/webhook` qismlari, `tolovlar`, «Pro muddati: —».
   Tepada qadam chiplari (tayyori ✓, joriysi accent): 1 Ikki marta · 2 Kechiktirib · 3 Rad · 4 Noto'g'ri imzo. Har urinish oldidan sahna o'zi boshlang'ich holatga qaytadi: kichik kulrang qator «Pro yo'q — yangi to'lov raqami».
 - **Harakat → Vizual o'zgarish:**
-  1. «Ikki marta yuborish» → Backend ichida ikki konvert `m-131` ketma-ket uchadi. Birinchisi: «imzo ✓» → «Pro +30 kun» → «raqam: yangi» → «yozuv» → javob `200 { ok: true }`, «Pro muddati: 30 kun».
+  1. «Ikki marta yuborish» → Backend ichida ikki konvert `m-9b07…` ketma-ket uchadi. Birinchisi: «imzo ✓» → «Pro +30 kun» → «raqam: yangi» → «yozuv» → javob `200 { ok: true }`, «Pro muddati: 30 kun».
      Ikkinchisi: «imzo ✓» → «Pro +30 kun» (qizil yonadi) → «raqam: bor» → yozilmadi → javob `200 { takror: true }`; `tolovlar` · «1 qator», lekin «Pro muddati: 60 kun» (qizil, kattalashib qaytadi). Chip ostida: «buzildi — qator bitta, Pro ikki marta uzaydi».
      Nom qatori (bitta, ko'prik — T-052): 12-Modulda ilovani uch usul bilan buzgansiz — bugun to'lov xabarini to'rt usul bilan.
   2. «Kechiktirib yuborish» → «Mashq to'lov» ichida soat yuradi (sahnada bir necha soniyada «0 → 70 soniya»); «10 soniya» da brauzerda qizil «To'lov o'tmadi» → telefon «ilova»ga o'tadi: «Javob kutilmoqda» →
@@ -183,7 +184,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–2 ≈ 13 · 1-amaliyot ≈ 25 �
   4. «Noto'g'ri imzo» → konvert, `X-Imzo` qatori qizil → «imzo ✗» → javob `401` → yangi qator yo'q, «Pro muddati: —». Chip ostida: «buzilmadi».
 - Natija qatori (yashil xulosa qutisining birinchi kichik qatori — E 42): «Taxminingiz ✕ — aslida: ikkitasi» yoki «Taxminingiz to'g'ri chiqdi ✓».
 - Xulosa: Bu misolda oddiy to'lov ishlagan, lekin ikki marta va kech kelgan xabar to'lovni buzdi. (87)
-- Qator (`QIzoh`, xulosa qutisining oxirgi kichik qatori): «Kechiktirib yuborish» uxlagan Backend o'rnida: haqiqiy bepul Backend 15 daqiqa so'rovsiz qolsa uxlaydi.
+- Qator (`QIzoh`, xulosa qutisining oxirgi kichik qatori): «Kechiktirib yuborish» — mashq, uxlashning nusxasi emas: haqiqiy bepul Backend 15 daqiqa so'rovsiz qolsa uxlaydi.
 - Sahna ostidagi qator (kichik, doim ko'rinadi): Bu tugmalar faqat o'z Backend'ingizni chaqiradi — boshqa odamning sayti yoki xizmati tekshirilmaydi.
 - Tugadi (199): qadam chiplari to'rt ixcham qatorga yig'iladi — «1 · Ikki marta yuborish · buzildi» · «2 · Kechiktirib yuborish · buzildi» · «3 · Rad etish · buzilmadi» · «4 · Noto'g'ri imzo · buzilmadi»; sahna (Backend tekshiruv qatorlari) fokusga; vizual ⛶ ichida (q17).
   Tugmalar: Orqaga · Avval o'zingiz belgilab ko'ring → Qadamlarni bajaring (N/4) → Davom etish
@@ -204,17 +205,18 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–2 ≈ 13 · 1-amaliyot ≈ 25 �
   2. **Prompt** — qavslarni to'ldiring (yonida kulrang namuna), «Nusxalash»ni bosing va Antigravity'ga yuboring (mobil trek ko'rinishi; web-trek gapi pastda):
      > Qayerda: `backend/` — to'lov natijasi va «Mashq to'lov» sahifasi; `mobil/` — to'lov taklifi ekrani va {pullik qulaylik} ishlatiladigan ekran.
      > Nima qilsin: 1) To'lovdan ilovaga qaytganda ilova shu to'lovning natijasini Backend'dan so'rasin va ko'rsatsin: to'langan — {pullik qulaylik} yoqilgan (avvalgidek); rad etilgan — «To'lov o'tmadi — qayta urinib ko'ring» va to'lov tugmasi; natija hali yo'q — «Javob kutilmoqda».
-     > 2) {pullik qulaylik} muddati tugasa, u o'zi o'chsin: {muddat tugaganda nima to'xtaydi va nima qoladi}. Pulni avtomatik yechadigan hech narsa qo'shma.
+     > 2) {pullik qulaylik} muddati tugaganda (Backend buni 4-darsdan biladi) ilova shunday ishlasin: {muddat tugaganda nima to'xtaydi va nima qoladi}. Pulni avtomatik yechadigan hech narsa qo'shma.
      > 3) «Mashq to'lov» sahifasiga ikki tugma qo'sh: «Kechiktirib yuborish» — xabarni 70 soniya kutib yuboradi; «Noto'g'ri imzo» — xabarni `TOLOV_KALITI` bilan emas, boshqa kalit bilan imzolaydi. Ikkalasining javobi ham boshqa tugmalardek sahifada ko'rinsin.
      > Nima buzilmasin: to'lov taklifi ekrani, to'lov tugmasi, sahifadagi eski tugmalar, `POST /tolov/webhook` dagi tekshiruvlar va {avvalgidek ishlashi kerak bo'lgan ishlar} avvalgidek ishlasin. `TOLOV_KALITI` qiymatini hech qayerga yozma. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Qavslar yonida kulrang namuna (Mentor misolidan):
      - {pullik qulaylik} — «masalan: Pro («Doimiy o'yin»)» (uch joyda bir xil — bitta qavs)
      - {muddat tugaganda nima to'xtaydi va nima qoladi} — «masalan: «Har hafta takrorlansin» yana to'lov taklifi ekranini ochsin, yangi o'yin o'zi e'lon qilinmasin; e'lon qilingan o'yinlar qolsin»
      - {avvalgidek ishlashi kerak bo'lgan ishlar} — «masalan: kirish, e'lon berish, qo'shilish, real vaqt va eslatmalar»
+     Tekshiruv («Nusxalash» bosilganda, bloklaydi): bu joyda kamida ikkita ish vergul bilan bo'lmasa yoki «hammasi», «ilova» kabi bitta so'z bo'lsa — Ikkita aniq ish yozing: masalan, kirish, e'lon berish. (54) (F-1007-461 sinfi)
      Yordam (ochiladigan) — Mentor misolidagi to'liq talab (mobil trek):
      > Qayerda: `backend/` — `GET /men` va «Mashq to'lov» sahifasi; `mobil/` — to'lov taklifi ekrani va «E'lon berish».
-     > Nima qilsin: 1) `GET /men` javobiga oxirgi to'lov holatini qo'sh: «To'lovga o'tish» bergan oxirgi raqam `tolovlar` da `tolandi` yoki `rad` bo'lsa — shu holat, hali yo'q bo'lsa — `kutilmoqda`. To'lovdan ilovaga qaytganda ilova `GET /men` ni so'rasin va ko'rsatsin: `tolandi` — Pro (avvalgidek); `rad` — «To'lov o'tmadi — qayta urinib ko'ring» va «To'lovga o'tish» tugmasi; `kutilmoqda` — «Javob kutilmoqda».
-     > 2) Pro muddati tugasa, Pro o'zi o'chsin: «Har hafta takrorlansin» yana to'lov taklifi ekranini ochsin, yangi o'yin o'zi e'lon qilinmasin; e'lon qilingan o'yinlar qolsin. Pulni avtomatik yechadigan hech narsa qo'shma.
+     > Nima qilsin: 1) `GET /men` javobiga oxirgi to'lov holatini qo'sh: shu foydalanuvchining eng oxirgi `boshlangan_tolovlar` yozuvi `tolovlar` da `tolandi` yoki `rad` bo'lsa — shu holat, `tolovlar` da hali yo'q bo'lsa — `kutilmoqda`. To'lovdan ilovaga qaytganda ilova `GET /men` ni so'rasin va ko'rsatsin: `tolandi` — Pro (avvalgidek); `rad` — «To'lov o'tmadi — qayta urinib ko'ring» va «To'lovga o'tish» tugmasi; `kutilmoqda` — «Javob kutilmoqda».
+     > 2) Pro muddati tugaganda (`GET /men` da `pro` 4-darsdan yolg'on bo'ladi): «Har hafta takrorlansin» yana to'lov taklifi ekranini ochsin, yangi o'yin o'zi e'lon qilinmasin; e'lon qilingan o'yinlar qolsin. Pulni avtomatik yechadigan hech narsa qo'shma.
      > 3) «Mashq to'lov» sahifasiga ikki tugma qo'sh: «Kechiktirib yuborish» — xabarni 70 soniya kutib yuboradi; «Noto'g'ri imzo» — xabarni `TOLOV_KALITI` bilan emas, boshqa kalit bilan imzolaydi. Ikkalasining javobi ham boshqa tugmalardek sahifada ko'rinsin.
      > Nima buzilmasin: to'lov taklifi ekrani, «To'lovga o'tish», sahifadagi to'rtta eski tugma va `POST /tolov/webhook` dagi tekshiruvlar; kirish, e'lon berish, qo'shilish, real vaqt va eslatmalar avvalgidek ishlasin. `TOLOV_KALITI` qiymatini hech qayerga yozma. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Web-trekda (Yordam ostida, trek kalitidan o'zi almashadi): «Qayerda» — `prototip/` — to'lov taklifi ko'rinadigan sahifa; «To'lovdan ilovaga qaytganda» → «To'lov oynasidan saytga qaytganda»; Backend qismi ikkala trekda bir xil.
@@ -224,7 +226,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–2 ≈ 13 · 1-amaliyot ≈ 25 �
      Mobil trekda Expo Go ilovani odatda o'zi qayta yuklaydi (bo'lmasa — terminalda `r`); web-trekda `git push` dan keyin Netlify saytni odatda o'zi yangilaydi.
      Xato chiqsa — faqat xato qatorini agentga yuboring (`.env` dagi kalit va tokenlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»
   4. **Telefonda tekshirish** — talabning har gapini o'zingiz ko'ring (web-trekda — saytingizda, telefon brauzerida yoki kompyuterda). Mentor misolida:
-     (1) **«Javob kutilmoqda»** — «To'lovga o'tish» → mashq sahifasi ochilgach hech narsa bosmang, ilovaga qayting: «Javob kutilmoqda» bo'lishi kerak.
+     (1) **«Javob kutilmoqda»** — «To'lovga o'tish» → mashq sahifasi ochilgach hech narsa bosmang, ilovaga qayting: «Javob kutilmoqda» bo'lishi kerak. Bu — ilova; mashq sahifasi kech javobda nima deyishini 2-amaliyotda «Kechiktirib yuborish» bilan ko'rasiz.
      (2) **«To'lov o'tmadi»** — brauzerdagi o'sha sahifaga qayting, «Rad etish (mashq)» ni bosing va ilovaga qayting: «To'lov o'tmadi — qayta urinib ko'ring» va to'lov tugmasi bo'lishi kerak.
      (3) **Muddat tugashi** — «To'lovga o'tish» → «To'lash (mashq)» → ilovada Pro yoqilganini ko'ring. Keyin Neon SQL Editor'da Pro muddatini kechaga qo'ying («Nusxalash» bilan):
          `UPDATE oyinchilar SET pro_gacha = CURRENT_DATE - 1 WHERE id = {hisob raqami};` — **`WHERE` siz yubormang: u hamma hisobni o'zgartiradi.** Ilovani yopib oching: Pro yo'q — «Har hafta takrorlansin» yana to'lov taklifi ekranini ochadi; e'lon qilingan o'yinlar ro'yxatda qoladi.
@@ -259,6 +261,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–2 ≈ 13 · 1-amaliyot ≈ 25 �
   - D: Ilova faqat o'qiydi — Pro muddatini Backend yozadi. (51)
 - Jonli darsda: bitta urinish. Xatodan keyin: «Qisqa takrorlash».
 - Izoh (MD): savol tashkilotchi Pro'si haqida (sinf 8, o'quvchi nuqtai nazari); «bu misolda» — boshqa loyihada sabab boshqa bo'lishi mumkin (to'g'ri izoh shu misolning fakti). D — `GET /men` faqat o'qishini (tayanch 1.4) eslatadi.
+  ⛔ Savol, to'g'ri va xato izohlari — Mentor misolidagi 1-muammodan; pilotda u takrorlanmasa, savol pilot natijasidan qayta yoziladi, ✔ o'rni C qoladi (A-bo'lim 4 ⛔; F-1007-463).
 
 ## 5 · Buzish yozuvi va qayta tekshiruv  ← QTushuncha (bashorat + 4 qadam)
 - Eyebrow: Tushuncha · buzish yozuvi
@@ -270,7 +273,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–2 ≈ 13 · 1-amaliyot ≈ 25 �
   - ilovada «Javob kutilmoqda» chiqqach: Ilovadagi «Qayta tekshirish» ni bosing.
   - 3-qadamdan keyin: Oxirgisi — «Qayta: ikki marta yuborish» ni bosing.
   - tugagach: Natijani taxminingiz bilan solishtiring.
-- Bashorat (ballsiz; tanlangach ixcham qator): **Kech kelgan xabarda Pro oxiri yoqildi. Bu urinish buzildimi?** · Yo'q — Pro baribir yoqildi · Ha — sahifa va ilova adashtirdi
+- Bashorat (ballsiz; tanlangach ixcham qator): **Kech kelgan xabarda Pro oxiri yoqildi. Bu urinish buzildimi?** · Yo'q — Pro oxiri yoqildi, demak to'lov ishladi · Ha — foydalanuvchiga noto'g'ri holat ko'rsatildi
 - Chap — telefon (ilova, «Javob kutilmoqda»). O'ng — buzish yozuvi kartasi (bittadan; `MENTOR_YOZUV` 2-qatori): «Kechiktirib yuborish» · uch qator yorlig'i «Nima qildim» · «Nima kutdim» · «Nima bo'ldi» (matni — A-bo'lim 4 jadvali) · belgi joyi bo'sh; ostida tugma «Solishtirish» (halqada);
   karta ustida kichik qator — boshqa uch urinish ixcham: «1 · Ikki marta yuborish · buzildi» · «3 · Rad etish · buzilmadi» · «4 · Noto'g'ri imzo · buzilmadi». Qadam belgilari: 1 Solishtiring · 2 Agentga bering · 3 Qayta: kechiktirib · 4 Qayta: ikki marta.
 - **Harakat → Vizual o'zgarish:**
@@ -303,13 +306,17 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–2 ≈ 13 · 1-amaliyot ≈ 25 �
      Neon so'rovlari kartasi (har biri «Nusxalash» bilan; jadval va ustun nomi — mahsulotingizdagidek; `{hisob raqami}` — 1-amaliyotda topganingiz):
      - Pullik qulaylikni boshlang'ich holatga qaytarish: `UPDATE oyinchilar SET pro_gacha = NULL WHERE id = {hisob raqami};` — **`WHERE` siz yubormang.**
      - Muddat: `SELECT pro_gacha FROM oyinchilar WHERE id = {hisob raqami};`
-     - Oxirgi to'lovlar: `SELECT tolov_raqami, holat, yaratilgan FROM tolovlar ORDER BY yaratilgan DESC LIMIT 3;`
+     - Oxirgi to'lovlar: `SELECT tolov_raqami, holat, yaratilgan FROM tolovlar WHERE oyinchi_id = {hisob raqami} ORDER BY yaratilgan DESC LIMIT 3;`
      Har urinish oldidan ilovada pullik qulaylik yo'q bo'lsin: bo'lsa — birinchi so'rovni yuboring va ilovani yopib oching (to'lov tugmasi faqat shunda ko'rinadi).
   2. **Buzish** — to'rt urinish, bittadan. Tepada ixcham chiziq: 1 · 2 · 3 · 4 (joriysi accent, tayyori ✓; bosib tanlanadi). Bir vaqtda bitta yozuv kartasi (E 53) — yorliq input ichida (E 43):
-     «1 · Nima qildim?» (oldindan yozilgan, tahrirlanadi) · «2 · Nima kutdim? — ekranda va Neon'da nima ko'rinishi kerak?» · «3 · Nima bo'ldi? — ko'rganingiz» · tugmalar **«Buzildi»** · **«Buzilmadi»** · o'ngda «Yordam».
+     «1 · Nima qildim?» (oldindan yozilgan, tahrirlanadi) · kulrang qator «Talab bo'yicha: …» (o'zgarmaydi) · «2 · Nima kutdim? — talabdagidek: ekranda va Neon'da nima ko'rinishi kerak?» · «3 · Nima bo'ldi? — ko'rganingiz» · tugmalar **«Buzildi»** · **«Buzilmadi»** · o'ngda «Yordam».
      **«Nima kutdim» ni tugmani bosishdan oldin yozing** — keyin natija bilan solishtirsa bo'ladi; u bo'sh bo'lsa, «Nima bo'ldi» ochilmaydi.
+     **«Buzildi»** — ko'rganingiz «Talab bo'yicha» qatoridan farq qilsa; mos kelsa — **«Buzilmadi»**.
+     «Talab bo'yicha» qatorlari (3, 4-darslar va bugungi 1-amaliyot talabidan; web-trekda «ilovada» → «saytda»):
+     (1) to'lov bir marta yoziladi, pullik qulaylik bir marta yoqiladi · (2) javob kelmaguncha «To'lov o'tmadi» deyilmaydi; xabar kelgach qulaylik ilovada ko'rinadi ·
+     (3) qulaylik yoqilmaydi; ilovada «To'lov o'tmadi — qayta urinib ko'ring» · (4) `401`, yangi yozuv yo'q, qulaylik yoqilmaydi.
      (1) **Ikki marta yuborish** — to'lov tugmasi → sahifada «Ikki marta yuborish» → sahifadagi ikki javobni o'qing → Neon: oxirgi to'lovlar va muddat.
-     (2) **Kechiktirib yuborish** — to'lov tugmasi → «Kechiktirib yuborish» → sahifaga 15 soniya qarang → ilovaga qayting va undan chiqmay bir daqiqa kuting → ilovaga va Neon'dagi muddatga qarang. Kutayotganda 1-urinish yozuvini qayta o'qing.
+     (2) **Kechiktirib yuborish** — to'lov tugmasi → «Kechiktirib yuborish» → sahifaga 15 soniya qarang → ilovaga qayting va undan chiqmay bir daqiqa kuting (chiqib qaytsangiz, ilova natijani qayta so'raydi) → ilovaga va Neon'dagi muddatga qarang. Kutayotganda 1-urinish yozuvini qayta o'qing.
      (3) **Rad etish** — to'lov tugmasi → «Rad etish (mashq)» → ilovaga qayting → Neon: oxirgi to'lovlar va muddat.
      (4) **Noto'g'ri imzo** — to'lov tugmasi → «Noto'g'ri imzo» → sahifadagi javobni o'qing → Neon: oxirgi to'lovlar va muddat.
      «Nima bo'ldi» — ekranda ko'rganingiz, taxmin emas. Xato chiqsa — faqat xato qatorini agentga yuboring (`.env` dagi kalit va tokenlarni emas): «Shu xato chiqdi: {xato}. Nima bo'lganini ayt. Kodni o'zgartirma.»
@@ -332,10 +339,11 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–2 ≈ 13 · 1-amaliyot ≈ 25 �
 - Tugmalar: Orqaga · Avval bajaring → Davom etish
 - ✎ MD izohi: «Nima qildim» oldindan (`USULLAR`): ««{to'lov tugmasi}» ni, keyin sahifada «Ikki marta yuborish» ni bosdim; javoblarga va Neon'ga qaradim.» · «… keyin «Kechiktirib yuborish» ni bosdim; sahifaga qaradim, keyin ilovaga qaytib, undan chiqmay bir daqiqa kutdim.» ·
   «… keyin «Rad etish (mashq)» ni bosdim va ilovaga qaytdim.» · «… keyin «Noto'g'ri imzo» ni bosdim; sahifadagi javobga va Neon'ga qaradim.» — `{to'lov tugmasi}` ← `pm-m11d4-narx.ekran.tugma` (yo'q bo'lsa «To'lov tugmasi»); web-trekda «ilovaga» → «saytga». Tahrirlanadi.
-  Tekshiruvni o'quvchi o'zi qiladi — agent faqat `BUZISH.md` ga ko'chiradi (sinf 10). «Buzildi» — o'quvchining o'z hukmi (kutish va natija solishtirildi). Neon `UPDATE` — o'z hisobi, `WHERE id` bilan (A-bo'lim 8; 11-Modul odati).
+  Tekshiruvni o'quvchi o'zi qiladi — agent faqat `BUZISH.md` ga ko'chiradi (sinf 10). «Buzildi» — o'quvchi «Nima bo'ldi» ni «Talab bo'yicha» qatori bilan solishtiradi: mezon — talab, taxmin emas (F-1007-463; `USULLAR[i].talab`, kalitga yozilmaydi). Neon `UPDATE` — o'z hisobi, `WHERE id` bilan (A-bo'lim 8; 11-Modul odati).
   `tolovlar` dagi qatorlar — mashq: bu kursda real to'lov yo'q, ularni o'chirish shart emas (3-dars A2 ✎ bilan bir).
 - O'qituvchi eslatmasi: «Kechiktirib yuborish» da o'quvchi ilovadan chiqib qaytsa, ilova natijani qayta so'raydi va 2-muammo ko'rinmasligi mumkin — shuning uchun «undan chiqmay bir daqiqa kuting». Mentor misolida natijani shu yo'l bilan olgan (⛔ pilot).
   Bitta urinish bir nechta muammoni ko'rsatishi mumkin (kech: sahifa ham, ilova ham); muammo soni urinish soniga teng bo'lishi shart emas. «Buzilmadi» chiqqan o'quvchiga «ataylab buzing» deyilmaydi.
+  «Nima kutdim» talabdan uzoq bo'lsa (masalan, «Pro 60 kun bo'ladi» deb yozsa) — «Talab bo'yicha» qatorini ko'rsating; hukm talab bo'yicha.
 
 ## 7 · 2-savol ✔ (jonli ball)  ← QTest
 - Eyebrow: Mashq · 2-savol
@@ -367,6 +375,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–2 ≈ 13 · 1-amaliyot ≈ 25 �
      > {buzish yozuvi}
      > Nima buzilmasin: {avvalgidek ishlashi kerak bo'lgan ishlar} avvalgidek ishlasin; `POST /tolov/webhook` dagi imzo va takror tekshiruvi, «Mashq to'lov» sahifasidagi oltita tugma qolsin. `TOLOV_KALITI` qiymatini hech qayerga yozma. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Qavslar: {buzish yozuvi} — `pm-m11d5-buzish` dan oldindan yoziladi (faqat `buzildi: true`; har biri «N · usul. Nima qildim: … Nima kutdim: … Nima bo'ldi: …») · {avvalgidek ishlashi kerak bo'lgan ishlar} — kulrang «masalan: kirish, e'lon berish, qo'shilish, real vaqt va eslatmalar».
+     Tekshiruv («Nusxalash» bosilganda, bloklaydi): bu joyda kamida ikkita ish vergul bilan bo'lmasa yoki «hammasi», «ilova» kabi bitta so'z bo'lsa — Ikkita aniq ish yozing: masalan, kirish, e'lon berish. (54) (F-1007-461 sinfi)
      Yordam (ochiladigan) — Mentor misolidagi to'liq talab:
      > Qayerda: `backend/` — `POST /tolov/webhook` va «Mashq to'lov» sahifasi; `mobil/` — to'lov natijasi ko'rinadigan joy.
      > Nima qilsin: pastdagi yozuvda «buzildi» belgili ikki urinishni tuzat: ilova «Nima kutdim» qatoridagidek ishlasin. Pro faqat yangi yozilgan to'lovdan keyin uzaysin — yozuv va Pro bitta tranzaksiyada. Javob hali kelmagan bo'lsa, sahifa «To'lov o'tmadi» emas, «Javob kutilmoqda» desin; ilovada «Javob kutilmoqda» ostida «Qayta tekshirish» tugmasi bo'lsin — ilova qaytganda va shu tugma bosilganda `GET /men` ni qayta so'rasin. Har muammoning sababini bir gap bilan ayt va qaysi faylni o'zgartirganingni ayt.
@@ -467,7 +476,7 @@ Oyna yorlig'i: Qayta tushuntirish · tugmalar: ← Oldingi · Keyingisi → · �
 |---|---|---|
 | Agentning «to'lov ishlaydi» degani nima? | Da'vo — hali tekshirilmagan gap | Natijani o'zingiz buzib ko'rib bilasiz |
 | Bu darsdagi to'rt buzish usuli qaysilar? | Ikki marta yuborish, kechiktirib yuborish, rad etish, noto'g'ri imzo | Faqat o'z mahsulotingizda, mashq to'lov tugmalari bilan |
-| «Kechiktirib yuborish» nima qiladi? | Xabarni 70 soniya kutib yuboradi | Uxlagan Backend o'rnida: haqiqiy bepul Backend 15 daqiqa so'rovsiz qolsa uxlaydi |
+| «Kechiktirib yuborish» nima qiladi? | Xabarni 70 soniya kutib yuboradi | Mashq, uxlashning nusxasi emas: haqiqiy bepul Backend 15 daqiqa so'rovsiz qolsa uxlaydi |
 | «Noto'g'ri imzo» bilan kelgan xabarga Backend nima qaytaradi? | `401` — hech narsa yozilmaydi | 3-darsdagi imzo tekshiruvi shu holatni ushlaydi |
 | Mentor misolida ikki marta kelgan xabar nimani buzdi? | Pro muddatini: u 60 kun bo'ldi | `tolovlar` da qator bitta edi — takror tekshiruvi ishlagan |
 | Bitta to'lov Pro'ni necha marta uzaytirishi kerak? | Bir marta — faqat yangi yozilgan to'lovdan keyin | Takror xabarga ham `200` qaytadi, lekin ikkinchi Pro yo'q |
@@ -480,8 +489,8 @@ Oyna yorlig'i: Qayta tushuntirish · tugmalar: ← Oldingi · Keyingisi → · �
 
 ## Jonli viktorina (arena, 12 savol) — ✔ o'rni A·B·C·D ×3 (aylanma), ekran savollarining nusxasi emas (§144)
 1. Agent «to'lov ishlaydi» dedi. Bu nima? ✔ Hali tekshirilmagan da'vo · Kod yozilganining isboti · Pro yoqilganining dalili · To'rt usuldan o'tgan natija
-2. «Kechiktirib yuborish» tugmasi nimaning o'rnida? Ikki marta kelgan xabarning · ✔ Uxlab qolgan Backend'ning · Soxta imzoli begona xabarning · Rad etilgan to'lov xabarining
-3. To'lovni qayerda va nima bilan buzib tekshirasiz? Sinfdoshingiz saytida, mashq tugmasi bilan · Payme sahifasida, haqiqiy kartangiz bilan · ✔ O'z mahsulotingizda, mashq tugmasi bilan · O'z mahsulotingizda, haqiqiy pul bilan
+2. «Kechiktirib yuborish» tugmasi nimaning mashqi? Ikki marta kelgan xabarning · ✔ Uxlab qolgan Backend'ning · Soxta imzoli begona xabarning · Rad etilgan to'lov xabarining
+3. To'lovni qayerda va nima bilan buzib tekshirasiz? Sinfdoshingiz saytida, mashq tugmasi bilan · Haqiqiy to'lov sahifasida, kartangiz bilan · ✔ O'z mahsulotingizda, mashq tugmasi bilan · O'z mahsulotingizda, haqiqiy pul bilan
 4. Imzosi noto'g'ri xabar keldi. Backend nima qilishi kerak? `200` qaytarib, to'lovni yozib qo'yadi · `200` qaytarib, faqat Pro'ni yoqadi · `401` qaytarib, lekin Pro'ni yoqadi · ✔ `401` qaytarib, hech narsa yozmaydi
 5. To'lov rad etildi. Pro nima bo'lishi kerak? ✔ O'zgarmaydi, yoqilmaydi · 30 kunga baribir yoqiladi · Faqat bir kunga yoqiladi · Yarim muddatga yoqiladi
 6. Mentor misolida ikki marta kelgan xabar nimani buzdi? `tolovlar` da ikki qator bo'ldi · ✔ Pro muddati ikki marta uzaydi · Imzo tekshiruvidan o'tmadi · Ilova Pro'ni ko'rsatmay qo'ydi
@@ -493,7 +502,7 @@ Oyna yorlig'i: Qayta tushuntirish · tugmalar: ← Oldingi · Keyingisi → · �
 12. Kech urinishda Mentor Pro yoqilganini qayerdan ko'rdi? Ilovada, ekran o'zi yangilanib · Sahifada, «To'landi» yozuvidan · Agentning chatdagi javobidan · ✔ Neon'da, Pro muddati qatoridan
 
 Kalitlar: A · B · C · D · A · B · C · D · A · B · C · D.
-- 3-savol: distraktorlar uch xil qoidani buzadi — boshqa odamning mahsuloti (TAQIQLAR 3) · haqiqiy xizmat va karta · haqiqiy pul (TAQIQLAR 1) — sinf 8; to'g'ri variant «faqat» so'zisiz.
+- 3-savol: distraktorlar uch xil qoidani buzadi — boshqa odamning mahsuloti (TAQIQLAR 3) · haqiqiy to'lov sahifasi va karta (brendsiz — F-1007-463) · haqiqiy pul (TAQIQLAR 1) — sinf 8; to'g'ri variant «faqat» so'zisiz.
 - 8-savol: «Mentor talabida» — 3-amaliyotdagi tuzatishdan keyingi holat (tayanch 1.5); ✔ «tugma» — «Qayta tekshirish» (5-ekranda ko'rsatilgan nom).
 - 11-savol: Mentor talabining qoidasi (tayanch 1.5 A1) — 1-amaliyotda ko'rinadi; yangi o'yin o'zi e'lon qilinmasligi so'ralmaydi (darsda tekshirilmaydi).
 - 12-savol: A-bo'lim 4 jadvali (kech — «Neon'da Pro yozildi»); distraktorlar uch xil: ilova (eski qoldi) · sahifa («o'tmadi» dedi) · agent so'zi (da'vo).
@@ -506,7 +515,7 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari — ru'da ham o'sha; R-008): to'lov x
 1. **Skelet:** `src/skelet/NamunaDars.jsx` dan (JR-14). `SCREEN_META` 12: hook · plan · concept · practice(blok) · test · concept · practice(blok) · test · practice(blok) · stats · flashcards (`sflash`) · summary.
    `INLINE_KEYS`: s4 **2 (C)** · s7 **0 (A)**; uch blok — `practice: -1`. Final tartib-mashqi yo'q (172). `LESSON_META.lessonId` — `m11-05-v1`, `lessonTitle` — «Loyiha kuni: to'lovni ulaymiz va buzib ko'ramiz».
 2. **Bitta manba (180):** `TOLOV_SAHNA` (3-dars sahnasi nusxasi, mashq holati: telefon — `ilova` / `brauzer`; Backend — «Mashq to'lov» va webhook qismlari, tekshiruv qatorlari, `tolovlar`, Pro muddati, soat) · `TOLOV_EKRANI` (tayanch 1.4 matni) ·
-   `MASHQ_SAHIFA` (sarlavha, test qatori, mahsulot qatori + summa + yorliq, olti tugma, javob qatorlari) · `ILOVA_HOLATLAR` («To'lov o'tmadi — qayta urinib ko'ring», «Javob kutilmoqda», «Qayta tekshirish») · `USULLAR` (kalit `ikki` · `kech` · `rad` · `imzo`, tugma nomi, «Nima qildim» shabloni) ·
+   `MASHQ_SAHIFA` (sarlavha, test qatori, mahsulot qatori + summa + yorliq, olti tugma, javob qatorlari) · `ILOVA_HOLATLAR` («To'lov o'tmadi — qayta urinib ko'ring», «Javob kutilmoqda», «Qayta tekshirish») · `USULLAR` (kalit `ikki` · `kech` · `rad` · `imzo`, tugma nomi, «Nima qildim» shabloni, «Talab bo'yicha» qatori — F-1007-463) ·
    `MENTOR_YOZUV` (A-bo'lim 4 jadvali) · `NEON_SOROVLAR` (uch so'rov va `UPDATE … CURRENT_DATE - 1`) — 0–2, 5-ekranlar, bloklar, kartochka va arena shundan o'qiydi.
 3. **`TolovSahna`** komponenti (3-dars `TolovSahna` ko'rinishi; nusxa, import emas — darslar mustaqil): chapda telefon (≈170×272 — SABOQ 22; yorliq ramka ustida — SABOQ 23), o'ngda Backend tuguni (ikki qism + jadval + Pro qatori).
    Propslar: `telefon` (`ilova` · `brauzer`), `ilovaEkran` (`taklif` · `elon` · `otmadi` · `kutilmoqda` · `kutilmoqdaTugma`), `sahifaJavob` (`null` · `tolandi` · `otmadi` · `kutilmoqda` · `401` · `takror`), `tekshiruvlar` (to'rt qator holati), `proQator` (`'—'` · `30` · `60`; tartib: `oldin` · `keyin`), `soat` (0–70), `konvertlar`, `eski` (bool).
@@ -518,7 +527,7 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari — ru'da ham o'sha; R-008): to'lov x
 7. **Amaliyot bloklari** — `ScreenBlok` (skeletdagi ulagich) + `QBlok` + `QPrompt` (`{…}` joylari). Har blok **4 qadam**; 5-qadam yo'q. «Davom etish» — 3-qadamdan keyin (E 55); blok bayrog'i — faqat 4-qadam «Bajardim»idan (12-Modul 9.36 h).
    - 1-amaliyot: `{pullik qulaylik}` (bitta qavs, uch joyda), `{muddat tugaganda nima to'xtaydi va nima qoladi}`, `{avvalgidek ishlashi kerak bo'lgan ishlar}` — bo'sh, kulrang «masalan»; 1-qadamdagi qo'shimcha qator — `pm-m11d4-narx.ishlaydi !== true` da.
      4-qadamdagi SQL va (2-amaliyotda) `NEON_SOROVLAR` — «Nusxalash» bilan, `{hisob raqami}` — o'quvchi o'zi qo'yadi (kalitga yozilmaydi). «Ortda qoldingizmi» — faqat shu blokda (SABOQ 39), ikki teg.
-   - 2-amaliyot: **`BuzishYozuvi`** komponenti (12-Modul 5-dars `BuzishYozuvi` ko'rinishi; nusxa): to'rt karta, bittadan, ixcham chiziq 1–4 (bosib tanlanadi); maydonlar — yorliq input ichida (E 43); «Nima kutdim» bo'sh bo'lsa «Nima bo'ldi» va belgi tugmalari qulf (shart xabari);
+   - 2-amaliyot: **`BuzishYozuvi`** komponenti (12-Modul 5-dars `BuzishYozuvi` ko'rinishi; nusxa): to'rt karta, bittadan, ixcham chiziq 1–4 (bosib tanlanadi); maydonlar — yorliq input ichida (E 43); «Nima qildim» ostida kulrang «Talab bo'yicha: …» (`USULLAR[i].talab`); «Nima kutdim» bo'sh bo'lsa «Nima bo'ldi» va belgi tugmalari qulf (shart xabari);
      `qildim` oldindan `USULLAR[i].qildim` (`{to'lov tugmasi}` ← `pm-m11d4-narx.ekran.tugma`; trekka qarab «ilovaga» / «saytga»); saqlash — maydondan chiqqanda va tugma bosilganda; birinchi saqlashda to'rtta yozuv yaratiladi (A-bo'lim 1).
      3-qadam prompti: `{to'liq yozuv}` ← `pm-m11d5-buzish` (to'rtala urinish: «N · usul. Nima qildim: … Nima kutdim: … Nima bo'ldi: … Belgi: …»).
    - 3-amaliyot: `{buzish yozuvi}` ← `pm-m11d5-buzish` (faqat `buzildi: true`); `{avvalgidek ishlashi kerak bo'lgan ishlar}` ← 1-amaliyot qoralamasi (dars ichidagi holat, kalitga yozilmaydi) yoki bo'sh; har «buzildi» urinish qatori: «Tuzatish qilindi» (3-qadam) va «Qayta tekshiruvda takrorlanmadi» / «Qayta tekshiruvda yana buzildi» (4-qadam) — ikki alohida tugma.
@@ -533,15 +542,15 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari — ru'da ham o'sha; R-008): to'lov x
 12. App.jsx `m11-05` qatoriga `comp: PaymentDayLesson` — «qur» bosqichida (asosiy seans, aniq Edit). ru — uz tasdiqlangach, bir yo'la (6-RU).
 
 ## REPO — `maydon-jamoa` («qur» bosqichida yoziladi, push — buyruq bilan; `m13-dars-05-start` = `m13-dars-04-done` → `m13-dars-05-done`, tayanch 3)
-1. **`m13-dars-05-start`** (= `04-done` + `README.md` eslatmasi «Bu holatda ikki muammo bor — 5-darsda topiladi.»). Shu tegda bo'lishi kerak bo'lgan holat (4-dars REPO bilan moslanadi — TAYANCHGA SAVOL 11, Shubhali 2):
+1. **`m13-dars-05-start`** (= `04-done` — agent 4-darsda yozgan kod, **ataylab buzilmaydi**, alohida «buzuq» tarmoq yo'q — F-1007-463; `README.md` eslatmasi pilotdan keyin, topilgan muammolar soni bilan: «Bu holatda N muammo bor — 5-darsda topiladi.»; topilmasa — eslatma yo'q). MD yozilgan taxmin — pilotda tekshiriladi (TAYANCHGA SAVOL 11, Shubhali 2):
    (a) `POST /tolov/webhook` da Pro uzaytirish (`holat = 'tolandi'` bo'lsa, `pro_gacha` = max(`pro_gacha`, bugun) + 30 kun) **takror tekshiruvidan oldin** turadi; (b) mashq sahifasi javobni 10 soniya kutadi, kelmasa «To'lov o'tmadi» yozadi; (c) ilova to'lovdan qaytganda `GET /men` ni bir marta so'raydi.
-2. **5-dars 1-amaliyot (Mentor talabi natijasi; oraliq holat, teg yo'q):** `GET /men` javobiga `oxirgiTolov` — `{ tolovRaqami, holat: 'tolandi' | 'rad' | 'kutilmoqda' }` («To'lovga o'tish» bergan oxirgi raqam bo'yicha; raqam qayerda saqlanishi — 4-dars `POST /tolov/boshlash` yechimiga qarab) ·
+2. **5-dars 1-amaliyot (Mentor talabi natijasi; oraliq holat, teg yo'q):** `GET /men` javobiga `oxirgiTolov` — `{ tolovRaqami, holat: 'tolandi' | 'rad' | 'kutilmoqda' }` (shu foydalanuvchining eng oxirgi `boshlangan_tolovlar` yozuvi → `tolovlar` dagi holati, yo'q — `kutilmoqda`; F-1007-463) ·
    ilovada «To'lov o'tmadi — qayta urinib ko'ring» + «To'lovga o'tish» va «Javob kutilmoqda» (qaytganda bir marta so'raydi) · Pro tugashi — ilova `proGacha` bo'yicha (o'tgan bo'lsa Pro yo'q; «Har hafta takrorlansin» → to'lov taklifi ekrani) ·
    `GET /oyinlar` dagi keyingi «Doimiy o'yin» faqat Pro muddati ichida yaratiladi (tayanch 9.26, 07.10: 7-darsda oferta 4-bandi kodda bor); 5-darsda ishlatib tekshirilmaydi (o'yin vaqti kerak) ·
-   mashq sahifasi: «Kechiktirib yuborish» (`POST /tolov-mashq/yubor { tur: 'kech' }` — Backend 70 soniyadan keyin xabarni imzolab o'z `POST /tolov/webhook` iga yuboradi; sahifaning so'rovi 10 soniyada tugaydi) va «Noto'g'ri imzo» (`tur: 'notogriImzo'` — HMAC boshqa, kodda yozilgan maxfiy bo'lmagan kalit bilan → `401`).
+   mashq sahifasi: «Kechiktirib yuborish» (`POST /tolov-mashq/yubor { tur: 'kech' }` — Backend 70 soniyadan keyin xabarni imzolab o'z `POST /tolov/webhook` iga yuboradi; sahifaning so'rovi 10 soniyada tugaydi; **zaxira** — so'rov 70 soniya ochiq tura olmasa (Render yoki brauzer uzsa): Backend sahifaga darhol `202 { kutilmoqda: true }` qaytaradi va xabarni 70 soniyadan keyin o'zi yuboradi, imzo va webhook tekshiruvlari bir xil; qaysi biri — pilotda, F-1007-463) va «Noto'g'ri imzo» (`tur: 'notogriImzo'` — HMAC boshqa, kodda yozilgan maxfiy bo'lmagan kalit bilan → `401`).
 3. **`m13-dars-05-done` (3-amaliyot natijasi):** webhook — imzo → takror → yozuv va Pro **bitta tranzaksiyada** (Pro faqat yangi `tolandi` yozuvidan keyin; takrorga `200 { takror: true }`, Pro o'zgarmaydi) ·
    sahifa 10 soniyada javob kelmasa «Javob kutilmoqda» ko'rsatadi (`kech` da Backend javobni kutmasdan `202`/`{ kutilmoqda: true }` qaytarishi mumkin — agentning tanlovi) · ilova: `AppState` faol bo'lganda va «Qayta tekshirish» bosilganda `GET /men` · `BUZISH.md` — «To'lov» bo'limi (`MENTOR_YOZUV` to'liq) · README «Darslar va teglar» → `m13-dars-05-done`.
-4. **Muhrdan oldin (⛔ «qur» darvozasi):** Mentor telefonida (Android, Expo Go) `05-start` + 1-amaliyot talabi bilan to'rt urinish — ikki muammo takrorlanadimi, rad va noto'g'ri imzo buzmaydimi; Render bepul xizmatida 70 soniyalik kechiktirish va o'ziga so'rov (9.4) ishlaydimi; `UPDATE … CURRENT_DATE - 1` va `= NULL` `pro_gacha` ustun turida ishlaydimi;
+4. **Muhrdan oldin (⛔ «qur» darvozasi):** Mentor telefonida (Android, Expo Go) va web-trekda (brauzer oynasiga qaytish) `05-start` + 1-amaliyot talabi bilan to'rt urinish — ikki muammo takrorlanadimi, rad va noto'g'ri imzo buzmaydimi; Render bepul xizmatida 70 soniyalik kechiktirish va o'ziga so'rov (9.4) ishlaydimi; `UPDATE … CURRENT_DATE - 1` va `= NULL` `pro_gacha` ustun turida ishlaydimi;
    3-amaliyot talabi bilan qayta tekshiruv — ikkala urinish takrorlanmaydimi. Natija boshqacha chiqsa — MD (2, 5-ekran, `MENTOR_YOZUV`, testlar, arena, kartochkalar) haqiqiy natijaga moslanadi. `tolovlar` dagi mashq qatorlari o'chirilmaydi (sanoqqa tushmaydi).
 
 ## Manbalar (o'zim tekshirdim yoki tayanch 6 orqali, 07.10.2026; o'quvchiga ko'rinmaydi)
@@ -566,29 +575,29 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari — ru'da ham o'sha; R-008): to'lov x
 6. **`pm-m11d5-buzish` yaratilishi:** 2-amaliyotdagi birinchi saqlashda to'rtta yozuv (`buzildi: null`); `kutdim` majburiy («Nima bo'ldi» undan oldin qulf). `tur` maydoni yo'q (tayanch 8 shaklida yo'q; bu darsda hamma urinish — o'quvchining o'z mahsulotida).
 7. **Pro tugashi — «yangi o'yin o'zi e'lon qilinmasin»** Mentor talabida bor, lekin darsda tekshirilmaydi (o'yin vaqti o'tishi kerak); REPO 2 da Mentor kodida bu qism **ishlaydi** (07.10 o'zgardi — tayanch 9.26: 7-darsda oferta 4-bandi kodda bor; 12-darsning 5-topilmasi endi doimiy o'yinning takror yaratilishi). O'quvchi matnida 12-dars va'da qilinmaydi.
 8. **Pro uzayishi:** «Pro bo'lmasa — bugundan, bo'lsa — muddatiga 30 kun» (tayanch 1.3 «uzaytiradi», 1.5 «60 kunga uzaydi»); 1.4 dagi «`pro_gacha` = bugun + 30 kun» — Pro yo'q holat uchun bir xil.
-9. **`GET /men` ga `oxirgiTolov`** (`tolandi` · `rad` · `kutilmoqda`) — Mentor talabida; o'quvchi talabida «Backend'dan so'rasin» (usul agentga). Oxirgi raqam Backend'da qanday eslab qolinishi — 4-dars `POST /tolov/boshlash` yechimiga bog'liq.
-10. **Namuna to'lov raqamlari** `m-131` … `m-134` (9.1 shakli; 3-darsdagi `m-101`, `m-102` bilan to'qnashmasin — takror bo'lib qoladi).
-11. **4-dars bilan kelishuv:** `04-done` da (a) Pro takror tekshiruvidan oldin uzayadi, (b) sahifa 10 soniya kutib «To'lov o'tmadi» yozadi, (c) ilova qaytganda bir marta so'raydi — 4-dars MD si va REPO si shu holatni qoldirishi kerak (tayanch 1.5 «`05-start` aynan shu holatda»). 04 MD ni ko'rmadim (parallel yozilmoqda).
+9. **`GET /men` ga `oxirgiTolov`** (`tolandi` · `rad` · `kutilmoqda`) — Mentor talabida; o'quvchi talabida «Backend'dan so'rasin» (usul agentga). Manba (F-1007-463): shu foydalanuvchining eng oxirgi `boshlangan_tolovlar` yozuvi (4-dars, tayanch 9.23) → `tolovlar` dagi holati; `tolovlar` da yo'q — `kutilmoqda`. Faqat `tolovlar` ning oxirgi qatori yetmaydi: kech xabar hali yozilmagan bo'ladi.
+10. **Namuna to'lov raqamlari** — `m-` + 12 tasodifiy belgi (4-dars, tayanch 9.7), maketda qisqartirilgan `m-c41e…`, `m-9b07…` (F-1007-463: avvalgi `m-131` … `m-134` ketma-ket raqamdek o'qilardi).
+11. **4-dars bilan kelishuv:** `04-done` da (a) Pro takror tekshiruvidan oldin uzayadi, (b) sahifa 10 soniya kutib «To'lov o'tmadi» yozadi, (c) ilova qaytganda bir marta so'raydi — MD shu taxmin bilan yozilgan. 04 MD ko'rildi (F-1007-462): talab (a) ni chaqirmaydi (yozuv va Pro bitta Database ishida), (b) talabda yo'q. **Holat ataylab yaratilmaydi** — pilot natijasi olinadi; (a) yoki (b) chiqmasa, MD moslanadi (F-1007-463).
 12. **Sahna** — telefon (ilova ↔ brauzer) · Backend (ichida «Mashq to'lov» va webhook) — 3-dars 11-ekrandagi «Mashq to'lov» holati; to'lov xabari konverti Backend ichida uchadi (telefondan Backend'ga to'lov xabari chizilmaydi — ilova pulni ko'rmaydi, 3-dars hooki).
 13. **Hook va 2-ekran sahnasi Mentorning 1-amaliyotdan keyingi holatida** (tekshiruv tugmalari ko'rinadi) — o'quvchi tugmalarni avval Mentor misolida ko'radi, keyin o'zi quradi.
 14. **2-amaliyot qadamlari:** Ochish → Buzish → Prompt (`BUZISH.md`) → Tekshirish (12-Modul 5-dars A1 da Ochish → Prompt → Buzish → Tekshirish edi; bu yerda agentga buzishdan oldin ish yo'q).
 15. **Nishonlar:** Pro Once · Same Button · Four Ways (ish bajarilgan) · Rechecked (bonus, kamida bitta qayta tekshiruv bilan) — grep 0.
 16. **Yakun — yetti holat** (E 54: har biri rost; «hech biri» — alohida).
 17. **«Ortda qoldingizmi»** — 1-amaliyotda, ikki teg (`05-start` — 4-dars ishi ortda qolganlar uchun; `05-done` — bugungi tayyor holat).
-18. **«Kechiktirib yuborish» urinishida «ilovadan chiqmay bir daqiqa kuting»** — 2-muammoni ko'rish sharti (chiqib qaytsa, ilova qayta so'raydi); O'qituvchi eslatmasida ochiq.
+18. **«Kechiktirib yuborish» urinishida «ilovadan chiqmay bir daqiqa kuting»** — 2-muammoni ko'rish sharti (chiqib qaytsa, ilova qayta so'raydi); O'qituvchi eslatmasida ochiq, o'quvchi matnida qavsda (F-1007-463).
 19. **5-ekran bashorati** «Pro oxiri yoqildi. Bu urinish buzildimi?» — buzish yozuvi qoidasining nozik joyi (natija oxiri to'g'ri, lekin kutilgani bo'lmadi).
-20. **Arena 3 da «Payme sahifasida, haqiqiy kartangiz bilan»** — brend faqat noto'g'ri variantda, pul chegarasini (TAQIQLAR 1) o'lchash uchun; darsning boshqa joyida brend yo'q (O'qituvchi eslatmasidan tashqari). Kerak bo'lmasa — «Haqiqiy to'lov sahifasida, kartangiz bilan».
+20. **Arena 3 da brend yo'q** (F-1007-463): «Haqiqiy to'lov sahifasida, kartangiz bilan» — pul chegarasini (TAQIQLAR 1) o'lchash uchun brend kerak emas; darsda brend faqat O'qituvchi eslatmasida.
 21. **Qaror-0 8 so'zi va tayanch 1.5 mexanikasi:** Qaror-0 8 (WH-q1 A) «uxlagan Backend» usulini «birinchi xabar javobsiz qoladi, qayta yuborilgani ikki marta yozilmasligi tekshiriladi» deb aytadi; tayanch 1.5 uni «Kechiktirib yuborish» (xabar 70 soniya kutib yuboriladi) bilan almashtirgan, 2-muammo — sahifaning 10 soniyalik kutishi.
     Men tayanch 1.5 ga amal qildim: «qayta yuborilgani ikki marta yozilmasligi» — 1-usul («Ikki marta yuborish») tekshiradi. «Kechiktirib yuborish» qayta yuborishni ham qilsa, Mentor misolida u ham Pro'ni 60 kunga uzaytirib, tayanchdagi natijaga zid chiqardi — shuning uchun qo'shmadim.
     Qaror-0 2 dagi «soxta imzo» — darsda tayanch so'zi «noto'g'ri imzo» (3-darsda «soxta» — imzosiz begona xabar ma'nosida band).
 
 ## Shubhali joylar (ishonchim komil emas)
 1. ⛔ **Mentor repo'sida ikki muammo** — `05-start` + 1-amaliyot talabidan keyin haqiqiy telefonda takrorlanadimi; rad va noto'g'ri imzo buzmaydimi. Pilotgacha 2, 5-ekran va `MENTOR_YOZUV` — reja.
-2. ⛔ **4-dars holati** (TAYANCHGA SAVOL 11) — 04 MD qanday sahifa va ilova yozishini bilmayman; mos kelmasa, 1-amaliyot talabi yoki `MENTOR_YOZUV` o'zgaradi.
-3. ⛔ **70 soniyalik kechiktirish Render bepul xizmatida** — so'rov tugagach Backend 70 soniya ishlab, o'z tashqi manziliga xabar yubora oladimi (9.4 dagi o'ziga so'rov bilan bir savol). Ishlamasa — kechiktirish Backend ichida chaqiruv bilan (imzo tekshiruvi baribir o'tadi).
+2. ⛔ **4-dars holati** (TAYANCHGA SAVOL 11) — 4-dars talabi bilan agent (a) va (b) ni yozmasligi ham mumkin (F-1007-462 dan talab qat'iyroq); unda Mentor misolida bu muammolar yo'q — 2, 4, 5-ekran, `MENTOR_YOZUV`, arena, kartochkalar haqiqiy natijaga moslanadi (ataylab buzilmaydi — F-1007-463).
+3. ⛔ **70 soniyalik kechiktirish Render bepul xizmatida** — so'rov tugagach Backend 70 soniya ishlab, o'z tashqi manziliga xabar yubora oladimi (9.4 dagi o'ziga so'rov bilan bir savol). Ishlamasa — REPO 2 zaxirasi (darhol `202`, 70 soniyadan keyin Backend o'zi yuboradi; F-1007-463); 2-muammo shu holatda ham ko'rinadimi — pilotda.
 4. **`pro_gacha` ustun turi** (sana yoki vaqt) — `CURRENT_DATE - 1` va `NULL` PostgreSQL'da ikkalasiga ham mos (Manbalar 1), lekin Mentor jadvalida sinalmagan; o'quvchi mahsulotida ustun nomi boshqa bo'lishi mumkin (matnda «mahsulotingizdagidek», agent zaxira).
 5. **Ilova «qaytganda» natijani so'rashi** — Expo'da ilovaning fonga o'tib qaytishi (`AppState`), web-trekda tab'ga qaytish — agentning tanlovi; ba'zi telefonda brauzerdan ilovaga qaytish boshqacha bo'lishi mumkin. Pilotda.
-6. ⛔ **90 daqiqa** — uch blok, ikki Render kutishi, 70 soniyalik urinish; taymer bilan pilotda (A-bo'lim 12).
+6. ⛔ **90 daqiqa** — uch blok, ikki Render kutishi, 70 soniyalik urinish; taymer bilan pilotda (A-bo'lim 12). ChatGPT bahosi — 125–160 daqiqa (o'lchanmagan); pilotda 90 dan oshsa, qisqartirish — foydalanuvchi qarori (masalan, 2-amaliyotda darsda ikki usul — ikki marta va kech; F-1007-463).
 7. **Neon'da `UPDATE`** — 11-Modulda o'quvchilar ishlatgan; o'quvchi `WHERE` siz yuborsa hamma hisob o'zgaradi (ogohlantirish 1 va 2-amaliyotda qalin; O'qituvchi eslatmasi). Pilotda kuzatiladi.
 8. **Mashq sahifasidagi olti tugma telefon ekranida** — sig'ishi va «Tekshiruv tugmalari» qatorining ko'rinishi vizual bosqichda (E 41).
 9. **«Javob kutilmoqda» sahifada qanday tugaydi** (natija kelgach sahifa o'zi yangilanadimi) — tayanchda yo'q; o'quvchi matnida faqat «Javob kutilmoqda» deyiladi, natijani ilova va Neon ko'rsatadi.
@@ -602,7 +611,7 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari — ru'da ham o'sha; R-008): to'lov x
 5. [x] **Kafolat va sabab da'vosi yo'q** — «To'lov ishlaydi» faqat agent pufagida va «da'vo» yorlig'i bilan; «Tuzatish qilindi» (ish fakti) va «qayta tekshiruvda takrorlanmadi» (natija) — alohida (5-ekran, 3-amaliyot, 7-savol); «tuzatildi» belgi sifatida yo'q (grep);
    «odatda», «mumkin», «kerak» — xabar kelishi va qayta yuklash haqida; «yangi o'yin o'zi e'lon qilinmasligi» — «bugun tekshirmaysiz» (1-amaliyot 4-qadam).
 6. [x] **Yakun, «Bajardim», yashil xabar, nishon — faqat rost holatda** — 11-ekran yetti sarlavha, har biri rost («hech biri» alohida); ✓ yorliq faqat 2-amaliyot 4-qadamidan; bloklarning yashil qatori holatga qarab (2, 3-amaliyot — ikki-uch holat); blok bayrog'i faqat 4-qadamdan; nishon tavsiflari qilingan ishni aytadi (Rechecked — faqat qayta tekshiruv bo'lsa).
-7. [x] **Ta'rif sanaladigan va amaliyotga mos** — «buzildi» — «Nima kutdim» va «Nima bo'ldi» solishtirildi; Pro muddati — kun bilan (30, 60); `tolovlar` — qator soni; «eng» so'zli ta'rif yo'q.
+7. [x] **Ta'rif sanaladigan va amaliyotga mos** — «buzildi» — «Nima bo'ldi» «Talab bo'yicha» qatoridan farq qiladi (F-1007-463); Pro muddati — kun bilan (30, 60); `tolovlar` — qator soni; «eng» so'zli ta'rif yo'q.
 8. [x] **Test: bitta himoyalanadigan javob** — 4 va 7-ekran: distraktorlar to'rt turkumdan (Kalit qatorlari); arena 3 — uch xil qoida; uzunlik ±15% va ✔ yolg'iz eng uzun emas (O'lchov); haqiqiy hayotda rost bo'lib qoladigan distraktor chiqarildi (arena 5 — «keyingi to'lovda yoqiladi» olib tashlandi; arena 12 — Telegram xabari o'rniga agent javobi: bu darsda «xabar» faqat to'lov xabari).
 9. [x] **Real odamlar xavfsizligi** — real odam bilan ish yo'q; tegadigani: buzish faqat o'z mahsulotida, boshqa odamning sayti/Backend'i/xizmati tekshirilmaydi (1-ekran, 2-ekran qatori, 2-amaliyot 1-qadam, arena 3); juftlikda ham har kim o'z mahsulotini buzadi (1-ekran O'qituvchi eslatmasi); kalit chatga va skrinshotga yozilmaydi.
 10. [x] **Tekshiruv — o'quvchining o'z yo'li, agent — zaxira** — 1-amaliyot tekshiruvi, 2-amaliyot buzishi va 3-amaliyot qayta tekshiruvi — o'quvchi bosadigan tugmalar, Neon so'rovlari; agent — hisob raqami va ustun nomini topishda zaxira, `BUZISH.md` ga ko'chirishda; tekshiruv akkaunti ochilmaydi (o'z hisobi, mashq to'lovi).
@@ -666,7 +675,7 @@ Test variantlari: ±15% o'rtachadan va ✔ yolg'iz eng uzun emas — 2 test, 12 
    60  Tuzatish kerak bo'lmadi: to'rt usul mahsulotingizni buzmadi.
 ## QIzoh qatorlari (chegara yo'q, bitta qator)
   110  Mentor misolida `m13-dars-05-start` — agent «to'lov ishlaydi» degan kod: to'rt usul bilan hali tekshirilmagan.
-  104  «Kechiktirib yuborish» uxlagan Backend o'rnida: haqiqiy bepul Backend 15 daqiqa so'rovsiz qolsa uxlaydi.
+  113  «Kechiktirib yuborish» — mashq, uxlashning nusxasi emas: haqiqiy bepul Backend 15 daqiqa so'rovsiz qolsa uxlaydi.
   110  Qayta tekshiruvda yana buzilsa, belgi «qayta tekshiruvda yana buzildi» bo'ladi — yozuv agentga qayta beriladi.
 ## Hook variantlari
    39  Ha — bitta to'lov o'tdi, demak ishlaydi
@@ -704,8 +713,8 @@ Test variantlari: ±15% o'rtachadan va ✔ yolg'iz eng uzun emas — 2 test, 12 
       D   41  Boshqa usul bilan qayta buzganda chiqmasa
 ## Arena (12) — ✔ o'rni va variant uzunliklari
   ✔A · 6 so'z · [25, 24, 24, 27] · o'rtacha 25.0 · OK  1. Agent «to'lov ishlaydi» dedi. Bu nima?
-  ✔B · 5 so'z · [27, 25, 29, 29] · o'rtacha 27.5 · OK  2. «Kechiktirib yuborish» tugmasi nimaning o'rnida?
-  ✔C · 7 so'z · [42, 41, 40, 38] · o'rtacha 40.2 · OK  3. To'lovni qayerda va nima bilan buzib tekshirasiz?
+  ✔B · 5 so'z · [27, 25, 29, 29] · o'rtacha 27.5 · OK  2. «Kechiktirib yuborish» tugmasi nimaning mashqi?
+  ✔C · 7 so'z · [42, 42, 40, 38] · o'rtacha 40.5 · OK  3. To'lovni qayerda va nima bilan buzib tekshirasiz?
   ✔D · 8 so'z · [38, 35, 35, 35] · o'rtacha 35.8 · OK  4. Imzosi noto'g'ri xabar keldi. Backend nima qilishi kerak?
   ✔A · 7 so'z · [23, 25, 24, 23] · o'rtacha 23.8 · OK  5. To'lov rad etildi. Pro nima bo'lishi kerak?
   ✔B · 8 so'z · [31, 29, 26, 30] · o'rtacha 29.0 · OK  6. Mentor misolida ikki marta kelgan xabar nimani buzdi?
@@ -731,6 +740,6 @@ Test variantlari: ±15% o'rtachadan va ✔ yolg'iz eng uzun emas — 2 test, 12 
 - [x] Emoji yo'q (nishon medali, arena, podium — o'yin qatlami) · kafolat gaplari yo'q (o'quvchi matnida grep: «har doim», «hech qachon», «darhol», «darrov», «albatta», «100%» — 0; «kafolat» faqat MD izohlarida emas — 0).
 - [x] Ichki kodlar o'quvchi matnida yo'q (A1/A2/A3 — faqat MD izohlarida; o'quvchiga «1-amaliyot», «2-amaliyot», «3-amaliyot»; `m11-05`, «Modul 13», «pilot», «sandbox», «idempotency» — yo'q); modul raqami LMS bo'yicha («12-Modulda»); tarixiy voqea yo'q · «KOD» (12) va «REPO» (4) ro'yxati to'liq.
 - [x] Karta (`QURISH_KARTASI.md`) T · P · S ko'rildi: T-002 · T-008 · T-009 · T-010 · T-011 (yangi atama yo'q; ko'priklar — 2, 5-ekran nom qatorlari) · T-014/015 («xabar» — faqat to'lov xabari; «test» — faqat «test rejim»; «holat» — to'lov holati; «tekshirish» — o'z ishi; «sinov» yo'q) · T-016/017 · T-024 · T-029 · T-034 ·
-      T-039 («to'lov yo'lingiz», «mahsulotingiz» — 3–4-darsdan bor) · T-042 · T-043 («Bu misolda», «Mentor misolida») · T-044 · T-045 (mashq — real to'lov nusxasi emas; «Kechiktirib yuborish» — uxlash o'rnida) · T-047 · T-048 · T-049 · T-052 · T-064 · T-066 · T-070 ·
+      T-039 («to'lov yo'lingiz», «mahsulotingiz» — 3–4-darsdan bor) · T-042 · T-043 («Bu misolda», «Mentor misolida») · T-044 · T-045 (mashq — real to'lov nusxasi emas; «Kechiktirib yuborish» — uxlashning mashqi, nusxasi emas) · T-047 · T-048 · T-049 · T-052 · T-064 · T-066 · T-070 ·
       P-001/002/004 · P-007 · P-008 · P-010 · P-013 · P-014/015 · P-016 · P-025 (uyga vazifa yo'q) · P-026 (xato yo'li — aniq qadam, ayb da'vosisiz) · P-028 · P-036 · P-046 · P-052 · P-055 · P-059 · P-062 · P-063 (`MENTOR_YOZUV`, `USULLAR`) · P-064 · P-067 ·
       S-001 · S-002 · S-004 · S-006 · S-008 · S-010 · S-015 · S-019 · S-020 · S-026 · S-040 · PM-018 (Mentor gapi real kompaniya qarorini da'vo qilmaydi) · SABOQ 9, 11, 12, 13, 16, 17, 19–31, 39, E 40–55.

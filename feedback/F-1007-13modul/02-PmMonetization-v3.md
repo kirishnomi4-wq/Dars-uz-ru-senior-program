@@ -22,9 +22,9 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` (6-ekran — K5 keys, 9-ekran — Ne
 ## A. Darsning tayanchi — tushunchalar, atamalar, misol-ip, bitta vizual
 
 1. **Darsning bitta natijasi** (dastur: «Asoslangan model tanlovi»; tayanch 1.2, 4; Qaror-0 2): o'quvchi o'z mahsuloti uchun besh modeldan bittasini tanlaydi va asoslaydi — **kim to'laydi** (rol), **nima uchun to'laydi**, **nima bepul qoladi**, **nega aynan shu** (mahsulotdan bitta fakt),
-   **kamida bitta rad etilgan model** va sababi; Neon'da **to'lashi mumkin bo'lganlar sonini** sanaydi (yoki taxmin yorlig'i bilan yozadi). Saqlanadi `pm-m11d2-model` (4, 7, 11-darslar o'qiydi). Uyga vazifa — yakun kartasida (alohida `.homework.jsx` yo'q).
+   **kamida bitta rad etilgan model** va sababi; Neon'da **to'lashi mumkin bo'lganlar sonini** sanaydi (yoki taxmin yorlig'i va asosi bilan yozadi). Saqlanadi `pm-m11d2-model` (4, 7, 11-darslar o'qiydi). Uyga vazifa — yakun kartasida (alohida `.homework.jsx` yo'q).
    Tanlov — hali taxmin: hech kim to'lamagan (yakun sarlavhasi holatga qarab; «modelingiz to'g'ri» deyilmaydi).
-2. **Bugungi asosiy fikr (P-013; dars ichida turadi, yakunda KO'RSATILMAYDI — SABOQ E 50):** Model kim to'lashi va nima bepul qolishidan tanlanadi — Mentor misolida o'yinchilar bepul qoladi, Pro'ni tashkilotchi oladi.
+2. **Bugungi asosiy fikr (P-013; dars ichida turadi, yakunda KO'RSATILMAYDI — SABOQ E 50):** Model tanlash kim to'lashi va nima bepul qolishidan boshlanadi — Mentor misolida o'yinchilar bepul qoladi, Pro'ni tashkilotchi oladi.
    (Tayanch 1.0 va 1.2 dan: «freemium — o'yinchilar uchun hamma narsa bepul …; tashkilotchi uchun «Pro»»; ko'prik K2 — «bepul qism qisqartirilmaydi».)
 3. **O'tilgan — qayta o'rgatilmaydi, o'sha so'zlar bilan (T-052; `00-MANBA.md` 4):**
    - O'tgan dars (13-Modul 1): **to'lovchi** — «pul to'laydigan foydalanuvchi» · **pullik obuna** — «ma'lum muddatga to'lanadigan foydalanish» (doim ikki so'z) · **Pro** — Mentor misolida tashkilotchi uchun 30 kunlik pullik obuna; undagi bitta qulaylik — **«Doimiy o'yin»**: har hafta shu kun va soatda o'yin o'zi e'lon qilinadi ·
@@ -36,10 +36,12 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` (6-ekran — K5 keys, 9-ekran — Ne
    - **monetizatsiya modeli** — «mahsulot qanday pul topishi» (tayanch 2). 4-ekran xulosasida tug'iladi — besh yo'l «Maydon Jamoa»ga qo'yib ko'rilgandan keyin; undan keyin qisqa shakli — **model**. Undan oldin hodisa tilida — «pul topish yo'li» (hook javoblari, reja 02, 4-ekran sarlavhasi va bashorati).
    - **bepul asos va pullik qo'shimcha** — «asosiy ish hamma uchun bepul, qo'shimcha qulaylik pullik» (tayanch 2; inglizchasi «freemium» — faqat kartochkada bir marta). App.jsx osti va reja yorlig'ida qisqa «bepul asos» (so'zma-so'z, P-015).
    - **pullik obuna** (model sifatida) — «har bir foydalanuvchi ma'lum muddatga to'laydi»; 4-ekranda nomi **«pullik obuna — hamma to'laydi»** (tayanch 1.2 «pullik obuna (hamma to'laydi)»). Pro ham pullik obuna, lekin faqat qo'shimcha uchun — 4-ekran 5-karta qatori va 5-ekran testi shu farqni ochadi. Inglizchasi «subscription» — kartochkada bir marta.
+     O'quvchi matnida «bu darsdagi pullik obuna modeli» deb chegaralanadi (recap, qisqa takrorlash, kartochka, arena 9): hayotda pullik obuna bepul qism bilan birga ham ishlatiladi — Pro shuning misoli (F-1007-460).
    - **reklama** — «boshqa kompaniya o'z mahsulotini foydalanuvchilarga ko'rsatish uchun to'laydi» (tayanch 2 «boshqa kompaniya e'loni uchun to'laydi»; «e'lon» bu darsda — o'yin e'loni, T-015 — TAYANCHGA SAVOL 19).
    - **B2B** — «boshqa biznes to'laydi» (tayanch 2, bir marta izoh — qisqartma birinchi ko'rinishda ochiladi, T-036); hodisa gapi reklamadan ajratadi: «mahsulot boshqa biznesning o'z ishiga xizmat qiladi» (TAYANCHGA SAVOL 6). Inglizchasi «business to business» — kartochkada.
    - **tranzaksiya** — «har to'lovdan ulush» (tayanch 2, bir marta izoh). Bu darsda faqat model nomi; boshqa ma'nosi (Database) tilga olinmaydi (TAQIQLAR 5, 8).
-   - **to'lashi mumkin bo'lganlar** — Neon sanog'i (10-ekran): to'lovchi bo'lishi mumkin bo'lgan foydalanuvchilar soni (tayanch 8 `soni`); «to'laganlar» emas — hali hech kim to'lamagan.
+   - **yuridik shaxs** — «ro'yxatdan o'tgan firma» (4-ekran 4-kartasida birinchi ko'rinishda qavsda; kartochkada «davlatda ro'yxatdan o'tgan firma»; arena 5 ballik — S-020; F-1007-460).
+   - **to'lashi mumkin bo'lganlar** — Neon sanog'i (10-ekran): to'lovchi roliga mos hisoblar soni (tayanch 8 `soni`); «to'laganlar» ham, «to'lashga tayyorlar» ham emas — hech kim to'lamagan va so'ralmagan (F-1007-460).
 5. **So'zlar (bir ma'no — bir so'z, T-014/T-015):**
    - **«yo'l»** — faqat «pul topish yo'li» (atama tug'ilguncha); boshqa ma'noda (to'lov yo'li, foydalanuvchi yo'li) bu darsda yo'q. **«model»** — 4-ekran xulosasidan keyin.
    - **«to'lovchi»** — pul to'laydigan foydalanuvchi (rol); **«to'lashi mumkin bo'lganlar»** — SQL sanog'i; **«foydalanuvchi»** — tushuncha; **«kishi»** — yo'q (son faqat «foydalanuvchi» bilan: «44 foydalanuvchi»); **«odam belgisi»** — MD dagi vizual ta'rifi.
@@ -58,7 +60,7 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` (6-ekran — K5 keys, 9-ekran — Ne
 7. **Misol-ip — «Maydon Jamoa» (tayanch 1.0):** o'tgan darsda Mentor ikki sonni hisobladi va Pro'ni reja qilib qo'ydi. Bugun — pul kimdan keladi: o'yinchimi, tashkilotchimi, boshqa kompaniyami? Besh yo'l «Maydon Jamoa»ga qo'yib ko'riladi, Mentor bittasini tanlaydi (Qaror-0 2).
    Keys — **K2 Telegram Premium** (6-ekran; ko'prik — tayanch 1.2 so'zi). Ikkinchi misol (P-002) yo'q: testlar va arena Mentor misoli, keys va o'quvchining o'z ishi haqida. Metafora yo'q.
 8. **Pul chegarasi (Qaror-0 6; TAQIQLAR 1):** reja ekranida bitta kulrang qator — «Bu modulda haqiqiy pul to'lanmaydi va so'ralmaydi.» · yakuniy «Modelim» kartasi ostida — «Hali hech kim to'lamagan — bu tanlov ham taxmin.» · uyga vazifa kartasi ostida — «Hech kimdan pul so'ramang: bugun faqat model tanlanadi.»
-   Tranzaksiya kartasida — «boshqalar nomidan pul yig'ish: yuridik shaxs va shartnoma kerak» (Mentor sababi, yuridik maslahat emas). Narx, karta, to'lov sahifasi yo'q.
+   Tranzaksiya kartasida — «Boshqalar nomidan pul yig'ish: yuridik shaxs (ro'yxatdan o'tgan firma) va shartnoma kerak.» (Mentor sababi, yuridik maslahat emas; rasmiy asos — Payme kassasi faqat yuridik shaxs yoki YaTT uchun, tayanch 6). Narx, karta, to'lov sahifasi yo'q.
 9. **Toza yuza (D4):** tugma, variant, karta, yorliqda emoji yo'q; telefon, odam belgilari, tanga belgisi, bino belgisi, muhrlar, Telegram va Neon maketlari — chizilgan (CSS/SVG), logotip yo'q; ✓ ✕ › ✎ — belgilar.
    «Maydon Jamoa» — telefon maketida o'z rangida (11-Modul 9.62 yashili); **Telegram** — o'z rangida (ko'k), logotipsiz, tanish chat ro'yxati maketida. O'yin qatlami (arena, nishon medali, podium) — mustasno. Matn o'lchovi — «O'lchov» bo'limi (skript bilan sanalgan; qavsdagi sonlar — belgilar soni).
 10. **Kod mexanikasi (tayanch 1.2, 4):** Neon SQL Editor — Mentor misolida tashkilotchilar soni:
@@ -66,24 +68,25 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` (6-ekran — K5 keys, 9-ekran — Ne
     O'quvchi — o'z Neon'ida o'z to'lovchi rolini sanaydi (jadval nomini agentdan so'raydi — faqat nom). Rol Database'da bo'lmasa (reklama, B2B, ota-ona) — «Database'da sanab bo'lmaydi» → taxmin yoki «Hozircha bilmayman».
     PM darslarida kod mexanikasi ketma-ket takrorlanmaydi: 1-dars — kod oynasi (JS) · bu dars — Neon SQL · 4-dars — bloklar (tayanch 4).
 11. **Saqlash kalitlari (tayanch 8; 9.19):** o'qiydi `pm-m11d1-birlik` (`tur`, `kimTolaydi`; `tur: 'mashq'` bo'lsa — qo'yilmaydi) · `pm-m9d5-prd` (`kim`, `funksiyalar`) · `pm-m10d1-lending` (`nom`) · `pm-m9d8-platforma` (`trek`);
-    yozadi `pm-m11d2-model` = `{ model: 'freemium' | 'obuna' | 'reklama' | 'b2b' | 'tranzaksiya', kim, nima, bepul, sabab, rad: [{ model, sabab }], soni: n | null, soniManba: 'database' | 'taxmin' | null, savedAt }`
-    — tayanch 8 sxemasi + bitta yangi maydon **`soniManba`** (TAYANCHGA SAVOL 1; 10-FILTR 4 — manba haqiqiy yo'ldan). Maydonlar qoidasi — KOD 8. Kalitga ism, login, telefon yozilmaydi (`kim` — rol). Kod qoralamasi kaliti yo'q (SQL Neon'da yoziladi).
+    yozadi `pm-m11d2-model` = `{ model: 'freemium' | 'obuna' | 'reklama' | 'b2b' | 'tranzaksiya', kim, nima, bepul, sabab, rad: [{ model, sabab }], soni: n | null, soniManba: 'database' | 'taxmin' | null, soniAsos: string | null, savedAt }`
+    — tayanch 8 sxemasi + yangi maydonlar **`soniManba`** (TAYANCHGA SAVOL 1; 10-FILTR 4 — manba haqiqiy yo'ldan) va **`soniAsos`** (taxmin nimaga tayangani — faqat `'taxmin'` da, aks holda `null`; F-1007-460). Maydonlar qoidasi — KOD 8. Kalitga ism, login, telefon yozilmaydi (`kim` — rol). Kod qoralamasi kaliti yo'q (SQL Neon'da yoziladi).
 12. **Vaqt (≈ 90 daqiqa — reja; ⛔ «qur» pilotida taymer bilan o'lchanadi, o'lchanmaguncha da'vo emas):** kirish va reja (0–1) ≈ 5 · kim to'laydi va 1-savol (2–3) ≈ 10 · besh yo'l va 2-savol (4–5) ≈ 15 · keys va 3-savol (6–7) ≈ 12 ·
     modelingiz (8) ≈ 15 · juftlikda tekshiruv (9) ≈ 10 · Neon SQL (10) ≈ 12 · yakuniy savol, podium, kartochkalar, arena (11–14) ≈ 11.
     **Ulgurmasangiz:** 8-ekran — PRD yo'q bo'lsa «Nima bepul» kartasi bitta maydon bilan; rad etilgan model — bitta yetadi · 9-ekran — juftlik vaqti yetmasa yakka rejim ·
     10-ekran — «Hozircha bilmayman» (sanoq uyga — uyga vazifa ③) · yakun sarlavhasi holatga qarab (14-ekran, to'rt holat).
+    Pilotda 90 daqiqadan oshsa — birinchi qisqaradigan joy oldindan belgilangan: 9-ekran yakka rejimga, 10-ekran sanog'i uyga (ChatGPT auditi bahosi 105–120 daqiqa — o'lchanmagan; F-1007-460).
 
 ## Darsning ipi va bitta vizual
 
 - **Modul ipi (tayanch 1.0, Qaror-0 2):** o'tgan darsda Mentor bitta foydalanuvchi qanchaga tushishi va qancha pul keltirishini hisobladi, Pro'ni reja qilib qo'ydi. Bugun — pul kimdan keladi: besh yo'l «Maydon Jamoa»ga qo'yib ko'riladi va Mentor bittasini tanlaydi; undan keyin — to'lov Backend'ga qanday yetib kelishi (3-dars; o'quvchi matnida va'da qilinmaydi — T-038).
-- **Dars ipi:** 0 — mahsulotingizga pul kimdan keladi (ballsiz) → 2 — Mentor misolida o'yinchi va tashkilotchi: kim to'laydi va nega (to'lovchi — o'tgan dars so'zi) → 3 — savol → 4 — besh yo'l «Maydon Jamoa»ga: to'rttasi mos emas, bittasi tanlandi — atama «monetizatsiya modeli» →
+- **Dars ipi:** 0 — mahsulotingizga pul kimdan keladi (ballsiz) → 2 — Mentor misolida o'yinchi va tashkilotchi: kim to'laydi va nega (to'lovchi — o'tgan dars so'zi) → 3 — savol → 4 — besh yo'l «Maydon Jamoa»ga: to'rttasi hozir tanlanmadi, bittasi tanlandi — atama «monetizatsiya modeli» →
   5 — savol: Pro pullik obuna bo'lsa, model nega boshqa → 6 — Telegram Premium: bepul qism qisqartirilmagan → 7 — savol: umumiy joy → 8 — o'z modelingiz → 9 — sherik tekshiruvi → 10 — Neon: to'lashi mumkin bo'lganlar → 11 — yakuniy savol → podium → kartochkalar → yakun (holatga qarab).
 - **Bitta vizual — «Pul qayerdan keladi» sahnasi (`ModelSahna`, dars bo'yi, 163/180; bitta manba `MENTOR_ROLLAR` + `YOLLAR` + o'quvchi kaliti `pm-m11d2-model`):**
   - **telefon** (chapda, ≈170×272): «Maydon Jamoa» — «O'yinlar» ekrani, karta «Shanba, 18:00 · Mahalla maydoni · 8 / 10»; rejimlar: o'yinchi («Qo'shilaman» yonadi) · tashkilotchi («E'lon berish» yonadi) · reklama joyi (o'yinlar ustida kulrang quti, yorlig'i «reklama», matnsiz). Telefon ichida Pro ko'rsatilmaydi — ilovada hali yo'q (9.21).
   - **odamlar** — telefon ostida odam belgilari (bosh, soch, rangli kiyim — D 36): 8 ta o'yinchi va 1 tashkilotchi (kichik «E'lon» belgisi bilan); kerak bo'lganda tashqarida **bino belgisi** (kompaniya) va **maydon egasi** (odam belgisi, maydon chizig'i yonida).
   - **tanga chizig'i** — to'lovchidan «Maydon Jamoa»ga oqadigan chizilgan tanga belgilari (emoji emas): kim to'layotgani shu chiziqdan ko'rinadi; to'lamaydiganlar ustida yashil kichik yorliq «bepul».
   - **Pro kartasi** (telefon yonida, kulrang ramka; yorliq «Mentorning rejasi»): «Pro — 30 kunlik pullik obuna» · «Doimiy o'yin: har hafta shu kun va soatda o'yin o'zi e'lon qilinadi».
-  - **yo'l kartasi** (o'ngda, 4-ekran): bitta katta karta «n / 5», ostida muhr — «mos emas» (kulrang) yoki «tanlandi» (yashil); qizil ishlatilmaydi («mos emas» — xato emas).
+  - **yo'l kartasi** (o'ngda, 4-ekran): bitta katta karta «n / 5», ostida muhr — «hozir tanlanmadi» (kulrang) yoki «tanlandi» (yashil); qizil ishlatilmaydi (yo'l yomon emas — Mentor misolida hozir olinmadi; F-1007-460).
   - **o'quvchi rejimi** (0, 8–10-ekranlar): telefon o'rnida mahsulot kartasi «{nom}» (`pm-m10d1-lending.nom`; yo'q bo'lsa «Mahsulotim»), to'lovchi belgisi va tanga chizig'i o'quvchi yozganidan (P-046).
   - Ishlatiladi: 0 (kichik) · 1 (o'zi yuradi) · 2 (telefon + odamlar + Pro kartasi) · 3, 5 (javobdan keyin kichik) · 4 (to'liq + yo'l kartasi) · 8 (o'quvchi rejimi) · 9 (ixcham) · 11 (javobdan keyin). 6-ekranda — `PremiumSahna` (keys maketi sahna o'rnini oladi, P-053), 10-ekranda — `NeonMaket`.
     Bir ekranda ko'pi bilan uch blok. `prefers-reduced-motion` da tanga oqimi va kirish to'lqini yo'q — yakuniy holat birdan qo'yiladi. Telefon kengligida (393) yo'l kartasi sahna ostiga tushadi; odam belgilari 9 ta — bir qator, kesilmaydi (E 41).
@@ -103,16 +106,18 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` (6-ekran — K5 keys, 9-ekran — Ne
   - Hamma foydalanuvchi oz-ozdan to'laydi (37)
   - Ba'zilari qo'shimcha uchun to'laydi (35)
   - Foydalanuvchi emas, kompaniya to'laydi (38)
+  - Hali bilmayman — kim to'lashi noma'lum (38)
 - Javob — «Hamma»: **Qiziq fikr! Bunday yo'lda har bir foydalanuvchi ma'lum muddatga to'laydi. Bepul qism bo'lmaydi.** (95)
 - Javob — «Ba'zilari»: **Qiziq fikr! Bunday yo'lda asosiy ish bepul qoladi. Pulni qo'shimcha kerak bo'lganlar to'laydi.** (94)
 - Javob — «Kompaniya»: **Qiziq fikr! Bunday yo'lda foydalanuvchi to'lamaydi. Kompaniya nima uchun to'lashini topish kerak.** (97)
+- Javob — «Hali bilmayman»: **Qiziq fikr! Hozircha tanga hech kimdan chiqmayapti. Kim to'lashini besh yo'lni solishtirib belgilaysiz.** (103)
 - **Harakat → Vizual o'zgarish:** variantni tanlash → tanlangan variant accent chegarada qotadi, qolgani xiralashadi; sahnada tanga chizig'i shu yo'l bo'yicha chiziladi: «Hamma» — har odam belgisidan tanga mahsulotga uchadi ·
-  «Ba'zilari» — bitta belgidan (accent), qolganlari ustida yashil «bepul» · «Kompaniya» — tashqarida bino belgisi kirib keladi, tanga undan; odamlar ustida «bepul». Yo'l nomi ochilmaydi (4-ekran kashfiyoti, P-036). Javob matni variantlar ostida.
+  «Ba'zilari» — bitta belgidan (accent), qolganlari ustida yashil «bepul» · «Kompaniya» — tashqarida bino belgisi kirib keladi, tanga undan; odamlar ustida «bepul» · «Hali bilmayman» — tanga chizig'i chizilmaydi, odamlar ustida kulrang «?». Yo'l nomi ochilmaydi (4-ekran kashfiyoti, P-036). Javob matni variantlar ostida.
   Jonli darsda — sinf ovozlari chizig'i (har variant va ovozlar soni).
-- Ballsiz (J-026: `correct: false` hammaga; uchala javob «Qiziq fikr!» bilan — maqtovsiz, hech biri yolg'onga chiqarilmaydi — KORPUS §119; T-028, T-067). Tugma: Bittasini tanlang → Davom etish
+- Ballsiz (J-026: `correct: false` hammaga; to'rttala javob «Qiziq fikr!» bilan — maqtovsiz, hech biri yolg'onga chiqarilmaydi — KORPUS §119; T-028, T-067). Tugma: Bittasini tanlang → Davom etish
 - Keyingi bosiladigan joy: tanlovgacha uch variant (har birining o'z chegarasi, navbatma-navbat to'lqin); tanlovdan keyin «Davom etish».
 - O'qituvchi eslatmasi: Javoblarni muhokama qilmang — uchala yo'l ham bugun ko'rinadi. Sinfdan so'rang: «Siz ishlatadigan bepul ilova pulni qayerdan topadi deb o'ylaysiz?» (javoblar og'zaki, sanalmaydi, qo'l ko'tartirilmaydi). Pul haqida — faqat taxmin: bugun hech kimdan pul so'ralmaydi.
-✎ Hook — o'quvchining o'z ishi (o'tgan darsda keltiradigan pulni hisobladi, «kim to'lashi mumkin»ni yozdi) va o'z savoli (P-016). Uch variant — uch oila (hamma to'laydi · bir qismi to'laydi · tashqaridan to'lanadi); payoff hech birini rad etmaydi.
+✎ Hook — o'quvchining o'z ishi (o'tgan darsda keltiradigan pulni hisobladi, «kim to'lashi mumkin»ni yozdi) va o'z savoli (P-016). To'rt variant — uch oila (hamma to'laydi · bir qismi to'laydi · tashqaridan to'lanadi) va «hali bilmayman» (1-dars `kimTolaydi: null` holati; mahsulotini pul topmaydigan deb bilgan o'quvchi majburan tanlamaydi — F-1007-460); payoff hech birini rad etmaydi.
   Mentor gapida yo'l nomlari va «bepul» so'zi yo'q — javobni oldindan aytmaydi.
 
 ## 1 · Reja  ← QReja
@@ -151,15 +156,15 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` (6-ekran — K5 keys, 9-ekran — Ne
 - **Harakat → Vizual o'zgarish:** 1-tugma → telefon o'yinchi ko'rinishiga o'tadi, o'yinchilar ustida «bepul»; 2-tugma → telefon tashkilotchi ko'rinishiga o'tadi, hafta kataklarida e'lon qayta yoziladi, Pro kartasi ochilib, kataklarda «o'zi» qoladi, tanga faqat tashkilotchidan uchadi.
   Xato harakat yo'q; bosilgan tugma qayta bosilsa — ko'rinish qaytadi, natija o'zgarmaydi.
 - Natija (bitta yashil blok; `tugadi` — tugmalar qatori yopiladi, telefon va rol kartasi butun enga; vizual ⛶ ichida — q17/q18): birinchi kichik qator — «Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz ✕ — aslida: har hafta» (tanlangan javob qaytarilmaydi — E 42).
-- Xulosa: Mentor rejasida pulni tashkilotchi to'laydi: Pro uning har haftalik ishini oladi. O'yinchilar bepul qoladi. (107)
+- Xulosa: Mentor rejasida tashkilotchi to'laydi: Pro uning har haftalik e'lonini o'zi qiladi. O'yinchilar bepul qoladi. (109)
 - Tugma (pastki): Avval belgilang → Rollarni bosing (n/2) → Davom etish
 - Ipucha (40 s harakatsizlikda; javobni aytmaydi): Yoqilgan rol tugmasini bosing — telefonda nima o'zgarishini ko'ring. (68)
 - Keyingi bosiladigan joy: bashorat variantlari → «O'yinchi» → «Tashkilotchi» → «Davom etish».
 - Mentor rejimi: proyektorda shu sahna; Mentor tugmalarni o'zi bosadi, sinf bashoratni ovoz bilan aytadi.
 - O'qituvchi eslatmasi: Pro — hali Mentorning rejasi: ilovada yo'q, bu darsda qachon qurilishi aytilmaydi. «To'lovchi» — o'tgan darsdagi so'z: pul to'laydigan foydalanuvchi; bu yerda «to'lashi mumkin» ma'nosida — hech kim to'lamagan.
-  Mentor sababi (tayanch 1.0): tashkilotchi har hafta e'lonni qayta yozadi va odam chaqiradi — Pro shu ishni oladi; o'yinchilar bepul qoladi — ular bo'lmasa o'yin to'lmaydi. Sahnadagi to'rtta Shanba — namuna, son emas.
+  Mentor sababi (tayanch 1.0): tashkilotchi har hafta e'lonni qayta yozadi — Pro shu ishni oladi (odam chaqirishni Pro qilmaydi — buni aytmang); o'yinchilar bepul qoladi — ular bo'lmasa o'yin to'lmaydi. Sahnadagi to'rtta Shanba — namuna, son emas.
   Sinfga savol: «Sizning mahsulotingizda kim har hafta bir xil ishni qayta qiladi?» (javoblar og'zaki, sanalmaydi).
-✎ Ekran tayanch 1.0 dagi Mentor sababini ikki rol orqali ko'rsatadi (9.21: «2-darsda — Mentor tanlovi va sababi»). Model nomi bu ekranda aytilmaydi — u 4-ekranda (beshta yo'l solishtirilgandan keyin) tug'iladi. «Odam chaqirish» qismi — TAYANCHGA SAVOL 8.
+✎ Ekran tayanch 1.0 dagi Mentor sababini ikki rol orqali ko'rsatadi (9.21: «2-darsda — Mentor tanlovi va sababi»). Model nomi bu ekranda aytilmaydi — u 4-ekranda (beshta yo'l solishtirilgandan keyin) tug'iladi. «Odam chaqirish» qismi — TAYANCHGA SAVOL 8 (✅ olib tashlandi, F-1007-460).
 
 ## 3 · 1-savol  ← QTest (✔ C, `correctIdx 2`; Mentor misoli)
 - Eyebrow: Tekshiruv · kim to'laydi (savol ustida yorliq yo'q — SABOQ 6)
@@ -189,36 +194,36 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` (6-ekran — K5 keys, 9-ekran — Ne
 - Vizual (≤ 3 blok): **chapda** — `ModelSahna` (telefon, odamlar, tanga chizig'i) · **o'ngda** — bitta katta yo'l kartasi (tepasida ixcham besh nuqta — o'tilgani ✓, joriysi accent; karta ichida «n / 5») · **pastda** — kartadagi tugma «Maydon Jamoa'ga qo'yish», keyin «Keyingi yo'l».
 - Har karta bir xil tartibda (T-011 — avval hodisa, keyin nom): ① hodisa gapi (karta tepasida) → ② «Maydon Jamoa'ga qo'yish» → sahna o'zgaradi → ③ nom yorlig'i kirib keladi «Bu — {nom}» → ④ yorliq «Mentorning taxmini» ostida bir qator sabab → ⑤ muhr. Keyingi kartaga o'tganda oldingisi ixcham qatorga yig'iladi (nom + muhr).
   1. **Hodisa:** «Har bir foydalanuvchi ma'lum muddatga pul to'laydi.» → nom **pullik obuna — hamma to'laydi** →
-     sahna: har odam belgisidan tanga chiqadi; keyin uch o'yinchi belgisi xiralashib, ustida «?», o'yin kartasidagi son «? / 10» bo'ladi. Qator: Telegram guruhi bepul — o'yinchilar ketsa, o'yin to'lmaydi. (59) Muhr: **mos emas**.
+     sahna: har odam belgisidan tanga chiqadi; keyin uch o'yinchi belgisi xiralashib, ustida «?», o'yin kartasidagi son «? / 10» bo'ladi. Qator: Telegram guruhi bepul — o'yinchilar ketsa, o'yin to'lmaydi. (59) Muhr: **hozir tanlanmadi**.
   2. **Hodisa:** «Boshqa kompaniya o'z mahsulotini ilovada ko'rsatish uchun to'laydi.» → nom **reklama** →
      sahna: telefonda o'yinlar ustida kulrang quti (yorlig'i «reklama», matnsiz, logotipsiz) paydo bo'ladi; tashqarida bino belgisi, tanga undan; odamlar ustida «bepul»; telefon tepasida kichik yorliq «44 foydalanuvchi».
-     Qator: 44 foydalanuvchi reklama beruvchiga juda kam; o'smirlar ma'lumotini Mentor reklamaga bermaydi. (94) Muhr: **mos emas**.
+     Qator: 44 foydalanuvchi — reklama beruvchi uchun hali kichik auditoriya. (65) Muhr: **hozir tanlanmadi**.
   3. **Hodisa:** «Mahsulot boshqa biznesning o'z ishiga xizmat qiladi — pulni o'sha biznes to'laydi.» → nom **B2B — boshqa biznes to'laydi** →
      sahna: telefon yonida maydon chizig'i va maydon egasi (odam belgisi), tanga undan chiqadi, lekin telefondan unga chiziq yo'q (uzuq); telefon ustida muammo gapi qatori yonadi: «O'yinchilar o'yindan oldin jamoaga yetarli odam yig'ishda va kim aniq kelishini bilishda qiynaladi.»
-     Qator: Maydon egasi to'lashi mumkin edi, lekin ilova bugun unga xizmat qilmaydi — muammo gapida u yo'q. (96) Muhr: **mos emas**.
+     Qator: Maydon egasi to'lashi mumkin edi, lekin ilova bugun unga xizmat qilmaydi — muammo gapida u yo'q. (96) Muhr: **hozir tanlanmadi**.
   4. **Hodisa:** «Ilova orqali o'tadigan har to'lovdan bir ulush oladi.» → nom **tranzaksiya — har to'lovdan ulush** →
-     sahna: o'yinchilardan tangalar telefon orqali maydon tomonga oqadi, kichik bo'lagi telefonda qoladi; keyin oqim ustiga qulf belgisi tushadi; burchakda kulrang teg «roadmap: uzoqroq».
-     Qator: Maydon pulini bo'lishish — boshqalar nomidan pul yig'ish: yuridik shaxs va shartnoma kerak. (91) Muhr: **mos emas**.
+     sahna: o'yinchilardan tangalar telefon orqali maydon tomonga oqadi, kichik bo'lagi telefonda qoladi; keyin oqim ustiga qulf belgisi tushadi; burchakda kulrang teg «Maydon pulini bo'lishish · roadmap: uzoqroq».
+     Qator: Boshqalar nomidan pul yig'ish: yuridik shaxs (ro'yxatdan o'tgan firma) va shartnoma kerak. (90) Muhr: **hozir tanlanmadi**.
   5. **Hodisa:** «Asosiy ish hamma uchun bepul, qo'shimcha qulaylik pullik.» → nom **bepul asos va pullik qo'shimcha** →
      sahna: o'yinchilar ustida yashil «bepul», tashkilotchi yonida Pro kartasi (2-ekrandagi), tanga faqat tashkilotchidan.
      Qator: O'yinchilar bepul qoladi, Pro'ni tashkilotchi oladi. Pro — pullik obuna, lekin faqat qo'shimcha uchun. (102) Muhr: **tanlandi** (yashil).
 - **Harakat → Vizual o'zgarish:** «Maydon Jamoa'ga qo'yish» → tanga chizig'i shu yo'l bo'yicha qayta chiziladi va telefonda o'sha yo'lning belgisi chiqadi (son «?», reklama qutisi, maydon egasi, qulf, Pro kartasi); nom yorlig'i va muhr tushadi; «Keyingi yo'l» → karta chapga suriladi, keyingisi kiradi, nuqtalar qatorida ✓.
-- Natija (bitta yashil blok; `tugadi` — tugmalar yopiladi, yo'l kartasi o'rnida besh ixcham qator: to'rtta kulrang «mos emas», bittasi yashil «tanlandi»; sahna 5-yo'l holatida; ⛶ ichida):
+- Natija (bitta yashil blok; `tugadi` — tugmalar yopiladi, yo'l kartasi o'rnida besh ixcham qator: to'rtta kulrang «hozir tanlanmadi», bittasi yashil «tanlandi»; sahna 5-yo'l holatida; ⛶ ichida):
   birinchi kichik qator — «Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz ✕ — aslida: bittasi».
 - Xulosa: Mahsulot qanday pul topishi — monetizatsiya modeli deyiladi. Mentor yo'llarni solishtirib, bittasini tanladi. (109) — atama shu yerda tug'iladi (T-011)
 - Tugma (pastki): Avval belgilang → Kartalarni oching (n/5) → Davom etish
 - Ipucha (40 s): Kartadagi «Maydon Jamoa'ga qo'yish»ni bosing — telefon o'zgaradi. (65)
 - Keyingi bosiladigan joy: bashorat → «Maydon Jamoa'ga qo'yish» → «Keyingi yo'l» (×5) → «Davom etish».
 - Mentor rejimi: proyektorda shu sahna; Mentor kartalarni o'zi ochadi, har kartada sinfdan «Bu yerda kim to'laydi?» deb so'raydi.
-- O'qituvchi eslatmasi: «Mos emas» — Mentor misolida va hozir; boshqa mahsulotda boshqa yo'l mos kelishi mumkin. Har sabab — Mentorning taxmini (tayanch 1.2).
-  Reklama: «o'smirlar ma'lumoti» — Mentor qarori, qonun haqida gapirmang. B2B: maydon egasi pul to'lashi mumkin edi, lekin ilova unga xizmat qilmaydi — muammo gapi o'yinchilar haqida.
-  Tranzaksiya: «Maydon pulini bo'lishish» — 11-Modul roadmap'ida «uzoqroq»; bu darsda so'z faqat to'lov ma'nosida — boshqa ma'nolarini tilga olmang. «Yuridik shaxs» so'ralsa — davlatda qayd etilgan firma yoki tashkilot; bu kursda hech kim boshqalar nomidan pul yig'maydi (keyingi darslarni va'da qilmang — T-038).
+- O'qituvchi eslatmasi: «Hozir tanlanmadi» — Mentor misolida va hozir: reklama va B2B keyinroq mumkin, tranzaksiya roadmap'da «uzoqroq»; boshqa mahsulotda boshqa yo'l mos kelishi mumkin. Har sabab — Mentorning taxmini (tayanch 1.2).
+  Reklama: sabab — auditoriya hali kichik. So'ralsa: Mentor o'smirlar ma'lumotini reklama uchun ishlatmaydi — bu Mentor qarori; reklama uchun ma'lumot berish shart emas. Qonun haqida gapirmang. B2B: maydon egasi pul to'lashi mumkin edi, lekin ilova unga xizmat qilmaydi — muammo gapi o'yinchilar haqida.
+  Tranzaksiya: «Maydon pulini bo'lishish» — 11-Modul roadmap'ida «uzoqroq»; bu darsda so'z faqat to'lov ma'nosida — boshqa ma'nolarini tilga olmang. «Yuridik shaxs» — kartada qavsda ochilgan («ro'yxatdan o'tgan firma»); rasmiy asos — Payme kassasi faqat yuridik shaxs yoki YaTT uchun (tayanch 6, 07.10.2026); bu kursda hech kim boshqalar nomidan pul yig'maydi (keyingi darslarni va'da qilmang — T-038).
   Pro ham pullik obuna, lekin model «pullik obuna» emas: hamma to'lamaydi — keyingi savol shuni so'raydi.
 ✎ Besh model — tayanch 1.2 Mentor jadvali (har yo'lning sababi tayanch so'zi bilan; reklama sababi so'zlari — TAYANCHGA SAVOL 5). Tartib — jadvaldan farqli: tanlangan yo'l oxirida (kashfiyot oxirgi kartada; bashorat «bittasi» ochilib qolmasin). Model nomi har kartada hodisadan keyin; umumiy atama — xulosada.
 
 ## 5 · 2-savol  ← QTest (✔ A, `correctIdx 0`; Mentor misoli)
 - Eyebrow: Tekshiruv · model (savol ustida yorliq yo'q)
-- Savol: **Pro pullik obuna bo'lsa, model nega boshqacha nomlanadi?** (8 so'z)
+- Savol: **Pro pullik bo'lsa ham, nega bu «pullik obuna» modeli emas?** (10 so'z)
   - ✔ A — Pro'dan boshqa hamma ish bepul qoladi (37)
   - B — Pro'ga hali hech kim pul to'lamagan (35)
   - C — Pro bilan birga ilovada reklama turadi (38)
@@ -252,6 +257,7 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` (6-ekran — K5 keys, 9-ekran — Ne
   - 3/3 **2024-yil** — Mentor: 2024-yilda Premium'ga pullik obuna bo'lganlar uch barobar ko'paydi — 12 million gacha. O'sha yili Telegram birinchi marta foydaga chiqdi.
     · sahna: telefon kichrayib chapga suriladi; o'ngda ikki alohida karta (orasida strelka yo'q — sabab chizilmaydi, sinf 5): «2024 · Premium'ga pullik obuna bo'lganlar» — ustun uch barobar o'sadi, ustida «×3 · 12 million gacha» ·
       «2024 · Telegram» — «birinchi marta foydaga chiqdi» va ostida kulrang «daromad — 1 milliard dollardan ko'p».
+      Ikki karta ostida kulrang qator: Ikkalasi bir yilda bo'lgan — biri ikkinchisining sababi ekani bu yerda aytilmagan. (82)
 - Bashorat natijasi (2/3 kadrida, `QTaxmin`): «Taxminingiz: … · haqiqatda: hech narsa qisqartirilmadi» yoki «Taxminingiz to'g'ri chiqdi»; bashorat kartasi tanlangan variant ✓/✕ bilan joyida qoladi.
 - **Harakat → Vizual o'zgarish:** «Voqea davomi» (pastki tugma, halqada) yoki bashorat varianti → Mentor gapi, kadr nomi va sahna almashadi (yangi element bir lahza ajralib kiradi; 3/3 da ustun o'sib chiqadi).
 - Xulosa (3/3 dan so'ng, pastda, yashil): Bu voqeada bepul Telegram qisqartirilmagan, Premium ustiga qo'shilgan. Mentor ham bepul qismni qisqartirmaydi. (110)
@@ -295,7 +301,7 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` (6-ekran — K5 keys, 9-ekran — Ne
 - **Markazda — bitta katta karta (joriy):**
   1. **Kim to'laydi** — maydon (yorliq input ichida — E 43) `Kim to'laydi? Rolini yozing, ism emas` · tugma «Hamma foydalanuvchi» · maydon `Nima uchun to'laydi? Pullik qism unga nima beradi`.
      Jonli qator (karta ostida): sahnada to'lovchi belgisi accent bo'ladi va undan tanga chizig'i chiziladi; «hamma foydalanuvchi» — har belgidan.
-  2. **Nima bepul** — PRD bo'lsa: uch funksiya qatori (nomi), har birida ikki tugma «bepul» · «pullik» (dastlab — «bepul»); ostida maydon `Yana nima bepul qoladi? Bo'lmasa — bo'sh qoldiring`.
+  2. **Nima bepul** — PRD bo'lsa: uch funksiya qatori (nomi), har birida ikki tugma «bepul» · «pullik» (dastlab — hech biri tanlanmagan: o'quvchi har funksiyani o'zi belgilaydi, F-1007-460); ostida maydon `Yana nima bepul qoladi? Bo'lmasa — bo'sh qoldiring`.
      PRD yo'q bo'lsa: bitta maydon `Bepul qismda nima qoladi? Hech narsa bo'lmasa — shunday yozing`.
      Jonli qator: «Bepul: {n} · pullik: {m}» (PRD qatorlaridan); sahnadagi mahsulot kartasi ichida funksiya nomlari ikki guruhga ajraladi — «bepul» (yashil) va «pullik» (to'lovchi tomonda).
   3. **Model** — besh tugma (bir qatorda ikki-uch, ixcham), har birining nomi va ostida kichik kulrang kim to'lashi:
@@ -312,9 +318,10 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` (6-ekran — K5 keys, 9-ekran — Ne
   - sabab 8 belgidan qisqa (bloklaydi): Nega aynan shu — mahsulotdan bitta fakt yozing. (47)
   - rad etilgan model yo'q (bloklaydi): Kamida bitta modelni rad etib, sababini yozing. (47)
   - rad sababi bo'sh (bloklaydi): Bu model nega mos emasligini yozing. (36)
-  - model «bepul asos…», bepul qism bo'sh yoki «hech narsa» (yumshoq): Bepul asos tanlandi — bepul nima qoladi? (40)
-  - model «pullik obuna», kim — «hamma foydalanuvchi» emas (yumshoq): Pullik obunada hamma to'laydi — «Kim to'laydi»ga qarang. (56)
-  - model «reklama» yoki «B2B», kim — «hamma foydalanuvchi» (yumshoq): Bu modelda foydalanuvchi emas, kompaniya to'laydi. (50)
+  - PRD funksiyasi belgilanmagan (bloklaydi): Har funksiyaga «bepul» yoki «pullik»ni tanlang. (47)
+  - model «bepul asos…», bepul qism bo'sh yoki «hech narsa» (bloklaydi — ta'rifga zid, F-1007-460): Bepul asos tanlandi — bepul nima qoladi? (40)
+  - model «pullik obuna», kim — «hamma foydalanuvchi» emas (yumshoq — to'lovchi foydalanuvchi bo'lmasligi mumkin: ota-ona farzandi uchun to'laydi): Bu modelda har foydalanuvchi uchun to'lanadi — shundaymi? (57)
+  - model «reklama» yoki «B2B», kim — «hamma foydalanuvchi» (bloklaydi — ta'rifga zid, F-1007-460): Bu modelda foydalanuvchi emas, kompaniya to'laydi. (50)
   - Yorliq (yumshoq xatodan keyin): Shunday qoldirsangiz — yana «Saqlash»ni bosing. (47)
 - Yordam (bosilsa ochiladi; Mentor misoli — namuna, umumiy qolip emas):
   Mentor misolida: kim to'laydi — tashkilotchi; nima uchun — «Doimiy o'yin»: har hafta shu kun va soatda o'yin o'zi e'lon qilinadi; bepul qoladi — o'yin e'loni, qo'shilish, chiqish va navbat; model — bepul asos va pullik qo'shimcha; sabab — o'yinchilar bo'lmasa o'yin to'lmaydi; rad etildi — pullik obuna: Telegram guruhi bepul.
@@ -382,8 +389,8 @@ JOIN oyinchilar o ON o.id = g.tashkilotchi_id
 WHERE o.namuna = false;
 ```
   ostida kulrang: `oyinlar` va `oyinchilar` — Mentor misolidagi jadvallar. Sizda nomlar boshqacha bo'lishi mumkin. (96)
-- Maydon (vazifa ostida; yorliq input ichida — E 43): `Neon ko'rsatgan son` (raqam) · ikkinchi tugma (chegarali) «Database'da sanab bo'lmaydi» → maydon `Taxminingiz: nechtasi to'lashi mumkin?` (yonida yorliq «taxmin») · tugma «Hozircha bilmayman».
-  Tekshiruv (`QXato`, bloklaydi): son bo'sh yoki son emas — Neon ko'rsatgan sonni shu yerga yozing. (39) · taxmin bo'sh — Taxminingizni yozing yoki «Hozircha bilmayman»ni bosing. (56)
+- Maydon (vazifa ostida; yorliq input ichida — E 43): `Neon ko'rsatgan son` (raqam) · ikkinchi tugma (chegarali) «Database'da sanab bo'lmaydi» → maydon `Taxminingiz: nechtasi to'lashi mumkin?` (yonida yorliq «taxmin») va maydon `Nimaga tayanib? Masalan: guruhda nechta tashkilotchi borligi` · tugma «Hozircha bilmayman».
+  Tekshiruv (`QXato`, bloklaydi): son bo'sh yoki son emas — Neon ko'rsatgan sonni shu yerga yozing. (39) · taxmin bo'sh — Taxminingizni yozing yoki «Hozircha bilmayman»ni bosing. (56) · asos bo'sh yoki 8 belgidan qisqa — Taxmin nimaga tayanganini yozing. (33)
 - Yordam (bosilsa ochiladi): Eslatma: `COUNT(DISTINCT …)` — takrorlanmagan qiymatlarni sanaydi (10-Modulda brauzer ID lar shunday sanalgan) · `JOIN … ON` — ikki jadvalni `id` orqali bog'laydi · `WHERE o.namuna = false` — namuna va tekshiruv akkauntlari sanalmaydi (12-Modul).
   Jadval nomini bilmasangiz — agentga yozing: «Database'da {to'lovchi roli} qaysi jadval va ustunda ko'rinadi? Faqat nomlarini ayt, hech narsani o'zgartirma.» `SELECT *` yozmang: jadvalda ism va login bor — sizga faqat son kerak. Faqat `SELECT` — `DELETE`, `UPDATE` yo'q.
   Masalan (Mentor misoli): to'lovchi — tashkilotchi; u `oyinlar` jadvalida `tashkilotchi_id` ustunida ko'rinadi.
@@ -392,16 +399,16 @@ WHERE o.namuna = false;
   Mentor misolida — 6 tashkilotchi: o'tgan darsdagi son shu SQL'dan. (66) O'quvchi son yozsa (yoki taxmin) → son artefakt-stripdagi «Modelim» ga uchadi: «to'lashi mumkin: {n}» (taxmin bo'lsa — yonida «taxmin»).
 - Tugma: **Bajardim — son yozildi** (qulf: darvoza yechilmagan bo'lsa — «Avval qator savolini yeching»; son, taxmin yoki «Hozircha bilmayman» yo'q bo'lsa — «Avval sonni yozing yoki tugmani bosing»). Bitta halol tugma (korpus §19).
 - Hammasi bajarilgach (yashil; holatga qarab):
-  - Neon soni: To'lashi mumkin bo'lganlar sanaldi — bu hali to'laganlar soni emas. (67)
-  - taxmin: To'lashi mumkin bo'lganlar taxmin bilan yozildi. (48)
+  - Neon soni: To'lashi mumkin bo'lganlar sanaldi: bu rolingizdagi hisoblar, to'lashga tayyorlar emas. (87)
+  - taxmin: To'lashi mumkin bo'lganlar taxmin va uning asosi bilan yozildi. (63)
   - «Hozircha bilmayman»: Sanoq hali qilinmadi — uyda Neon'da sanang yoki taxmin yozing. (62)
 - Pastki qator (kichik, kulrang): Vaqt tugasa — «Hozircha bilmayman»ni bosing: sanoq uyga qoladi. (63)
-- Saqlanadi («Bajardim» bosilganda): `pm-m11d2-model.soni` va `soniManba` — Neon soni → `soni: n`, `soniManba: 'database'` · taxmin → `soni: n`, `soniManba: 'taxmin'` · «Hozircha bilmayman» → `soni: null`, `soniManba: null` (10-FILTR 4 — manba haqiqiy yo'ldan; KOD 8).
+- Saqlanadi («Bajardim» bosilganda): `pm-m11d2-model.soni` va `soniManba` — Neon soni → `soni: n`, `soniManba: 'database'` · taxmin → `soni: n`, `soniManba: 'taxmin'`, `soniAsos: '…'` · «Hozircha bilmayman» → `soni: null`, `soniManba: null` (Neon soni va «bilmayman»da `soniAsos: null`) (10-FILTR 4 — manba haqiqiy yo'ldan; KOD 8).
   8-ekranda model hali saqlanmagan bo'lsa — son dars progressida turadi va model saqlanganda birga yoziladi (bo'sh model bilan kalit yaratilmaydi).
 - Nishon: Count Query! (darvoza birinchi urinishda va son yoki taxmin yozilganda).
 - Mentor rejimi: proyektorda Neon maketi; Mentor «Run»ni o'zi bosadi va 6 ni ko'rsatadi.
 - O'qituvchi eslatmasi: 12 daqiqa. Faqat `SELECT` — jadval o'zgarmaydi. Neon'da yo'l (rasmiy hujjat, 07.10.2026): loyihani tanlash → Postgres database → SQL Editor → branch va database → «Run».
-  6 — Pro olganlar emas: hali hech kim to'lamagan; bu — Pro kerak bo'lishi mumkin bo'lgan tashkilotchilar. O'chirilgan hisobning o'yinlari tashkilotchisiz qoladi (12-Modul «Hisobni o'chirish») — `JOIN` ularni sanamaydi.
+  6 — Pro olganlar emas: hali hech kim to'lamagan; bu — Pro to'lovchi roliga mos tashkilotchilar, to'lashga tayyorligi noma'lum (hech kim so'ralmagan). O'chirilgan hisobning o'yinlari tashkilotchisiz qoladi (12-Modul «Hisobni o'chirish») — `JOIN` ularni sanamaydi.
   `namuna` ustuni bo'lmasa — namuna akkauntlar bilan sanalgan son yozilmaydi: «Hozircha bilmayman», ustun — 12-Moduldagi ish. Son Mentornikidan farq qilishi tabiiy. Telefon va login ekranga chiqmasin.
 - Manba (o'quvchiga ko'rinmaydi): neon.com/docs/get-started/query-with-neon-sql-editor (07.10.2026: «Select Postgres database > SQL Editor», «click Run to view the results») · tayanch 1.2 (SQL aynan), 9.22 · 11-Modul tayanchi 146-qator (`oyinlar.tashkilotchi_id`) · 12-Modul tayanchi 9.5, 9.23.
 
@@ -413,14 +420,14 @@ WHERE o.namuna = false;
   - C — Qaysi model hozir eng mashhurligini (35)
   - D — Mentor kimdan pul olishni tanlaganini (37)
 - Kalit: **B** (index 1). To'rttalasi bir shaklda («…ni» bilan tugaydi); «kim» B va D da, «pul» A va D da — kalit so'z faqat to'g'rida emas; tire va qo'shtirnoq yo'q.
-- To'g'ri izohi: Model shu ikki savoldan chiqadi: kim to'laydi, nima bepul. (58)
+- To'g'ri izohi: Avval kim to'lashi va nima bepul qolishi aniqlanadi. (52)
 - Xato izohlari:
   - A: Telegram — voqea. Mahsulotingiz haqida nima kerak? (50)
   - C: Mashhurlik mahsulotingizga mos kelishini aytmaydi. (50)
   - D: Mentor misoli — namuna. Sizda kim to'laydi? (43)
   - (umumiy) O'z modelingizning birinchi ikki kartasini eslang. (50)
 - Javob topilgach (kichik, savol ostida): o'quvchining «Modelim» kartasi — «Kim to'laydi» va «Bepul qoladi» qatorlari yonadi (karta yo'q bo'lsa — Mentor misoli: «tashkilotchi» · «o'yin e'loni, qo'shilish»).
-- Izoh (MD): turkumlar har xil (sinf 8): A — boshqa olam (keys — mahsulot emas; narx bankda yo'q, fakt aytilmaydi) · C — mahsulotdan tashqari mezon (mashhurlik) · D — Mentor misolini qoida qilish (sinf 4). Bitta himoyalanadigan javob: dars modelni shu ikki savoldan tanlatdi (2, 4, 8-ekranlar).
+- Izoh (MD): turkumlar har xil (sinf 8): A — boshqa olam (keys — mahsulot emas; narx bankda yo'q, fakt aytilmaydi) · C — mahsulotdan tashqari mezon (mashhurlik) · D — Mentor misolini qoida qilish (sinf 4). Bitta himoyalanadigan javob: dars model tanlashni shu ikki savoldan boshladi (2, 4, 8-ekranlar); «nima uchun» va sabab — keyingi qadam (8-ekran). F-1007-460: savol o'zgarmadi — «oldin» boshlang'ich ikki savolni so'raydi; izoh deterministik formuladan («shu ikki savoldan chiqadi») tozalandi.
   Kalit ibora 3, 5, 7-ekranlar bilan takrorlanmaydi (S-008).
 
 ## 12 · Natijalar (podium)  ← QNatija
@@ -447,11 +454,11 @@ WHERE o.namuna = false;
 - Endi siz bilasiz (asosiy fikr so'zma-so'z takrorlanmaydi, T-048):
   - Mahsulot qanday pul topishi — monetizatsiya modeli.
   - Bepul asos va pullik qo'shimchada asosiy ish hamma uchun bepul, qo'shimcha qulaylik pullik.
-  - Pullik obuna modelida har bir foydalanuvchi to'laydi.
+  - Bu darsdagi pullik obuna modelida har bir foydalanuvchi to'laydi.
   - Telegram Premium voqeasida bepul qism qisqartirilmagan.
-  - To'lashi mumkin bo'lganlar soni — hali to'laganlar soni emas.
+  - To'lashi mumkin bo'lganlar — rolga mos hisoblar soni, to'lashga tayyorlar emas.
 - Uyga vazifa (`HwCard`, P-025 karta shaklida; yakunda aynan shu bandlar; alohida `.homework.jsx` yo'q): sarlavha **Uyda nima qilasiz?**
-  - Kim bilan: ota-ona yoki tanishingiz · Nechta: 1 model · Muddat: keyingi darsgacha
+  - Kim bilan: ota-ona yoki sinfdosh · Nechta: 1 model · Muddat: keyingi darsgacha
   - ① Modelingizni tushuntirib bering: kim to'laydi, nima uchun va nima bepul qoladi.
   - ② Yana bitta modelni mahsulotingizga qo'yib ko'ring: kim to'lardi va nega mos emas?
   - ③ Darsda qolgan qismni tugating: {holatga qarab — modelni tanlab saqlang · Neon'da sanang yoki taxmin yozing}. Hammasi tugagan bo'lsa ③ ko'rinmaydi.
@@ -478,11 +485,11 @@ WHERE o.namuna = false;
 Oyna yorlig'i: Qayta tushuntirish · tugmalar: ← Oldingi · Keyingisi → · ✓ Tushunarli — davom etamiz. Jonli darsda mentor «Qayta tushuntirishni ochish» bosganda chiqadi.
 - **3 · Kim to'laydi** — 1 O'yinchilar o'yinni to'ldiradi — ilova ular uchun bepul. · 2 Tashkilotchi har hafta o'yin e'lonini qayta yozadi. · 3 Pro shu ishni oladi — Mentor rejasida to'lovchi tashkilotchi.
   — Sinfga savol: Sizning mahsulotingizda kim har hafta bir xil ishni qayta qiladi?
-- **5 · Model** — 1 Mahsulot qanday pul topishi — monetizatsiya modeli. · 2 Pullik obuna modelida har bir foydalanuvchi to'laydi. · 3 Mentor modelida asosiy ish bepul, faqat qo'shimcha pullik.
+- **5 · Model** — 1 Mahsulot qanday pul topishi — monetizatsiya modeli. · 2 Bu darsdagi pullik obuna modelida har bir foydalanuvchi to'laydi. · 3 Mentor modelida asosiy ish bepul, faqat qo'shimcha pullik.
   — Sinfga savol: Mahsulotingizda nima bepul qolishi kerak?
 - **7 · Telegram Premium** — 1 2022-yil iyunda Telegram pullik obunani ishga tushirdi. · 2 Bepul Telegram qisqartirilmadi. · 3 Premium ustiga qulaylik qo'shdi.
   — Sinfga savol: Siz ishlatadigan ilovada pullik qism bormi?
-- **11 · Tanlov** — 1 Avval kim to'lashi yoziladi. · 2 Keyin nima bepul qolishi yoziladi. · 3 Model shu ikkisidan tanlanadi.
+- **11 · Tanlov** — 1 Avval kim to'lashi yoziladi. · 2 Keyin nima bepul qolishi yoziladi. · 3 Keyin model tanlanadi — sababi mahsulotdan.
   — Sinfga savol: Modelingizni bir gapda ayta olasizmi?
 
 ## Jonli viktorina — 12 savol (✔ o'rni: A 1·6·10 · B 3·8·11 · C 2·5·12 · D 4·7·9 — har biri 3 marta)
@@ -527,7 +534,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
    - ✔ B — Uch barobar ko'paydi (20)
    - C — Ikki barobar kamaydi (20)
    - D — O'n barobar ko'paydi (20)
-9. Pullik obuna modelida bepul qism qanday bo'ladi? (7 so'z) · ekran 4
+9. Bu darsdagi pullik obuna modelida bepul qism qanday bo'ladi? (9 so'z) · ekran 4
    - A — Asosiy ishi hamma uchun bepul (29)
    - B — Pulni boshqa kompaniya to'laydi (31)
    - C — Bepul qism kattaroq bo'ladi (27)
@@ -559,16 +566,16 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 |---|---|---|
 | Monetizatsiya modeli nima? | Mahsulot qanday pul topishi | Qisqasi — model |
 | Bepul asos va pullik qo'shimcha nima? | Asosiy ish hamma uchun bepul, qo'shimcha qulaylik pullik | Inglizchasi: freemium |
-| Pullik obuna modelida kim to'laydi? | Har bir foydalanuvchi — ma'lum muddatga | Inglizchasi: subscription |
-| Reklama modelida kim to'laydi? | Boshqa kompaniya — o'z mahsulotini ko'rsatish uchun | Mentor misolida mos emas: 44 foydalanuvchi reklama beruvchiga juda kam |
+| Bu darsdagi pullik obuna modelida kim to'laydi? | Har bir foydalanuvchi — ma'lum muddatga | Inglizchasi: subscription. Pro ham pullik obuna, lekin faqat qo'shimcha uchun |
+| Reklama modelida kim to'laydi? | Boshqa kompaniya — o'z mahsulotini ko'rsatish uchun | Mentor misolida hozir tanlanmadi: auditoriya hali kichik |
 | B2B nima? | Boshqa biznes to'laydi: mahsulot uning o'z ishiga xizmat qiladi | Inglizchasi: business to business |
 | Tranzaksiya modeli nima? | Ilova orqali o'tadigan har to'lovdan ulush olish | Mentor misolida — maydon pulini bo'lishish |
 | Mentor rejasida kim to'laydi va nega? | Tashkilotchi: Pro uning har haftalik o'yin e'lonini o'zi qiladi | «Doimiy o'yin» — har hafta shu kun va soatda o'yin o'zi e'lon qilinadi |
 | Nega Mentor o'yinchilardan pul so'ramaydi? | Ular bo'lmasa o'yin to'lmaydi | Telegram guruhi esa bepul |
 | Nega B2B Maydon Jamoa'ga hozir mos emas? | Ilova bugun maydon egasiga xizmat qilmaydi | Muammo gapida maydon egasi yo'q |
-| Maydon pulini bo'lishish nega hozir olinmadi? | Boshqalar nomidan pul yig'ish uchun yuridik shaxs va shartnoma kerak | Roadmap'da — «uzoqroq» |
+| Maydon pulini bo'lishish nega hozir olinmadi? | Boshqalar nomidan pul yig'ish uchun yuridik shaxs va shartnoma kerak | Yuridik shaxs — davlatda ro'yxatdan o'tgan firma. Roadmap'da — «uzoqroq» |
 | Telegram Premium chiqqanda bepul Telegram bilan nima bo'ldi? | Qisqartirilmadi — Premium ustiga qulaylik qo'shdi | 2022-yil iyun |
-| To'lashi mumkin bo'lganlar soni — to'laganlar sonimi? | Yo'q: hali hech kim to'lamagan | Mentor misolida — 6 tashkilotchi, Neon sanog'i |
+| To'lashi mumkin bo'lganlar soni — to'laganlar sonimi? | Yo'q: bu rolga mos hisoblar soni — hech kim to'lamagan | To'lashga tayyorligi ham noma'lum · Mentor misolida — 6 tashkilotchi |
 - §145: har javobdagi so'z darsda bor (monetizatsiya modeli — 4 · bepul asos, pullik obuna, reklama, B2B, tranzaksiya — 4 · Pro, «Doimiy o'yin», tashkilotchi — 2 · o'yinchilar to'ldiradi — 2 · maydon egasi, muammo gapi — 4 · yuridik shaxs, «uzoqroq» — 4 · Telegram Premium — 6 · 6 tashkilotchi — 10).
 - S-027: har old tomon — to'liq savol, «?» bilan; «ta'rif → atamani toping» shakli yo'q. Bugungi asosiy fikr kartochkada so'zma-so'z yo'q (P-013). freemium, subscription, business to business — faqat shu izohlarda (TAQIQLAR 5).
 - Tugmalar (qolip): O'rganilmoqda · Bildim · Takrorlash · hammasi bilinganda «Hammasini bilasiz! · 12/12 karta yodlandi · Qaytadan takrorlash»
@@ -583,25 +590,25 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
    s6 `QVoqea` · s8/s9 `QMustaqil` · s10 `QKod` (Neon varianti; o'ng ustun — 9-Modul 1-dars `QKOD_ONG` yechimi, SABOQ C) · s12 `QNatija` · `sflash` `QKartochka` · s14 `QYakun`.
 3. **`ModelSahna`** — bitta vizual (180; qolipda yo'q, yangi): qismlar `telefon` («Maydon Jamoa» o'z rangida — 11-Modul 9.62; rejimlar `oddiy` · `oyinchi` · `tashkilotchi` · `reklama` — o'yinlar ustida kulrang «reklama» qutisi; son rejimi `?`) ·
    `odamlar` (8 o'yinchi + 1 tashkilotchi; yorliqlar `bepul`, holatlar `xira`, `?`) · `tashqi` (`bino`, `maydonEgasi` + maydon chizig'i) · `tanga` (oqimlar `hamma` · `bitta` · `tashqi` · `orqali` (tranzaksiya: o'yinchilardan maydon tomonga, kichik bo'lagi telefonda) · `yoq`; `qulf`) ·
-   `proKarta` (yorliq «Mentorning rejasi»; yopiq/ochiq) · `haftalar` (4 katak «Shanba», holatlar `yozadi` → `ozi`) · `yolKarta` (`n / 5`, muhr `mosEmas` — kulrang, `tanlandi` — yashil; qizil yo'q) · `oquvchi` rejimi (mahsulot kartasi `nom`, to'lovchi belgisi, `bepul` yorliqlari — kalitdan).
+   `proKarta` (yorliq «Mentorning rejasi»; yopiq/ochiq) · `haftalar` (4 katak «Shanba», holatlar `yozadi` → `ozi`) · `yolKarta` (`n / 5`, muhr `tanlanmadi` («hozir tanlanmadi») — kulrang, `tanlandi` — yashil; qizil yo'q) · `oquvchi` rejimi (mahsulot kartasi `nom`, to'lovchi belgisi, `bepul` yorliqlari — kalitdan).
    Bosiladigan qismlar faylda e'lon qilinadi (`// qolip-maket: ms-rol ms-qoy ms-keyingi`). Rangli yon chiziq yo'q. `reduced-motion` — o'tishsiz. 393 da yo'l kartasi sahna ostida; odamlar bir qatorda, kesilmaydi (E 41 — DOM detektori).
 4. **Ma'lumot — bitta manba (A-4, A-6, 4-ekran aynan):** `MENTOR_ROLLAR` = 2 × `{ id, kim, nima, pul }` · `YOLLAR` = 5 × `{ id: 'obuna' | 'reklama' | 'b2b' | 'tranzaksiya' | 'freemium', hodisa, nom, sabab, muhr, sahna }` (tartib — 4-ekrandagidek) ·
    `MENTOR_MODEL` = `{ model: 'freemium', kim: 'tashkilotchi', nima, bepul, sabab, rad: [{ model: 'obuna', sabab }] }` (8-ekran Yordami va Mentor rejimi) · `MENTOR_SQL` (A-10 aynan; bo'sh joy `DISTINCT` o'rnida) · `MENTOR_SONI = 6` · `K2_KADR` = 3 × `{ nom, mentor, sahna }` (6-ekran aynan).
    `MODEL_NOM` = { freemium: 'Bepul asos va pullik qo'shimcha', obuna: 'Pullik obuna', reklama: 'Reklama', b2b: 'B2B', tranzaksiya: 'Tranzaksiya' } — 8, 9, 14-ekranlar va xulosa shundan.
-5. **s0** — o'qiydi `pm-m11d1-birlik` (`tur === 'real'` bo'lsa `kimTolaydi`), `pm-m10d1-lending.nom`; kalit yo'q yoki `tur === 'mashq'` — Mentor misoli; uch variant; tanlovga qarab `tanga` oqimi (`hamma` · `bitta` · `tashqi`); `correct: false` hammaga (J-026); javob matnlari — 0-ekran aynan.
+5. **s0** — o'qiydi `pm-m11d1-birlik` (`tur === 'real'` bo'lsa `kimTolaydi`), `pm-m10d1-lending.nom`; kalit yo'q yoki `tur === 'mashq'` — Mentor misoli; to'rt variant; tanlovga qarab `tanga` oqimi (`hamma` · `bitta` · `tashqi` · `yoq` — «Hali bilmayman», odamlar ustida «?»); `correct: false` hammaga (J-026); javob matnlari — 0-ekran aynan.
 6. **s2** — `QBashorat` (3 variant; to'g'risi «Har hafta») → 2 tugma: `oyinchi` (telefon rejimi, `bepul` yorliqlari, `QIzoh`) · `tashkilotchi` (telefon rejimi, `haftalar` `yozadi` → `proKarta` ochiladi → `ozi`, `tanga` `bitta`). 40 s ipucha.
    **s4** — `QBashorat` (to'g'risi «Bittasi») → `YOLLAR` ketma-ket (E 53): har kartada ① hodisa → «Maydon Jamoa'ga qo'yish» → `sahna` → ② `nom` → ③ yorliq «Mentorning taxmini» + `sabab` → ④ `muhr` → «Keyingi yo'l»; o'tgan karta ixcham qatorga; `tugadi` — besh ixcham qator.
 7. **s6** — `PremiumSahna` (chizilgan telefon, «Telegram» o'z rangida, logotipsiz; chat nomlari — bezak): 3 kadr; bashorat 1/3 da (`pre` kadr — javob ochilmaydi), natija 2/3 da (`QTaxmin`); 3/3 — ikki alohida karta (ustun ×3 o'sadi; strelka yo'q). Bankda yo'q narsa chizilmaydi (qulaylik nomlari, narx, Telegram tugmalari).
 8. **s8** — o'qish qoidasi (A-11); 3 karta ketma-ket (E 53), yorliq input ichida (E 43); **yozish qoidasi** (bitta funksiya, `node` da kamida 8 namuna bilan sinaladi — PM-108):
    - `model` — besh qiymatdan biri (tugma `id`); `kim` — rol matni yoki `'hamma foydalanuvchi'` (tugma); bo'sh — bloklaydi (`null` yo'q — model tanlash uchun to'lovchi kerak);
-   - `nima` — matn; `bepul` — PRD bo'lsa «bepul» belgilangan funksiya nomlari vergul bilan + qo'shimcha maydon matni; PRD yo'q — maydon matni; hammasi «pullik» va maydon bo'sh — `''`;
+   - `nima` — matn; `bepul` — PRD bo'lsa «bepul» belgilangan funksiya nomlari vergul bilan + qo'shimcha maydon matni (funksiyalar dastlab belgilanmagan — har biri tanlanmaguncha bloklaydi); PRD yo'q — maydon matni; hammasi «pullik» va maydon bo'sh — `''`;
    - `sabab` — ≥ 8 belgi; `rad` — 1–4 × `{ model, sabab }` (model — tanlangandan boshqa, takrorsiz; sabab bo'sh emas);
-   - `soni`, `soniManba` — 10-ekrandan; 8-ekran saqlaganda mavjud qiymat o'zgarmaydi, yo'q bo'lsa `null`, `null`; `savedAt` — har saqlashda;
-   - yozadi `localStorage` `pm-m11d2-model` = `{ model, kim, nima, bepul, sabab, rad, soni, soniManba, savedAt }` — tayanch 8 + `soniManba` (TAYANCHGA SAVOL 1). Ism, login, telefon yozilmaydi.
+   - `soni`, `soniManba`, `soniAsos` — 10-ekrandan; 8-ekran saqlaganda mavjud qiymat o'zgarmaydi, yo'q bo'lsa `null`, `null`; `savedAt` — har saqlashda;
+   - yozadi `localStorage` `pm-m11d2-model` = `{ model, kim, nima, bepul, sabab, rad, soni, soniManba, soniAsos, savedAt }` — tayanch 8 + `soniManba`, `soniAsos` (TAYANCHGA SAVOL 1; F-1007-460). Ta'rifga zid juftliklar (reklama/B2B + «hamma foydalanuvchi», bepul asos + bo'sh bepul qism) — bloklaydi; pullik obuna + rol — yumshoq. Ism, login, telefon yozilmaydi.
    Tekshiruvlar (bloklaydi / yumshoq — 8-ekran ro'yxati); yakuniy «Modelim» kartasi; «Yangilash»; nishon `myModel`; artefakt-strip «Modelim».
 9. **s9** — `SHERIK_SAVOL` 2 × `{ savol, karta }` (1 → «Kim to'laydi», 2 → «Model»; ✕ qatori shu kartani ochadi); taymer 1:00; varaq holati dars progressida (`belgi`, `izoh`, `ozgartirildi`), kalitga yozilmaydi; yakka rejim — Mentor gapi va sarlavha almashadi; tekshiruvlar; o'zgargan karta `pm-m11d2-model` ga (`savedAt`).
 10. **s10** — `QKod` Neon varianti (`HtmlCompiler` yo'q): chapda darvoza (3 variant, ballsiz, xato izohlari) · vazifa 3 band · trek qatori (`pm-m9d8-platforma.trek === 'web'` yoki kalit yo'q) · model qatori (`pm-m11d2-model.model` — `'reklama'` yoki `'b2b'`) · SQL bloki (bo'sh joy darvozadan keyin `DISTINCT`) ·
-    maydon (son · «Database'da sanab bo'lmaydi» → taxmin · «Hozircha bilmayman») · Yordam; o'ngda `NeonMaket` («SQL Editor», «Run» → `count` 6, `QIzoh`). «Bajardim» qulfi; yozish — 10-ekran «Saqlanadi» qoidasi (model saqlanmagan bo'lsa — progressda); nishon `countQuery`.
+    maydon (son · «Database'da sanab bo'lmaydi» → taxmin + asos · «Hozircha bilmayman») · Yordam; o'ngda `NeonMaket` («SQL Editor», «Run» → `count` 6, `QIzoh`). «Bajardim» qulfi; yozish — 10-ekran «Saqlanadi» qoidasi (model saqlanmagan bo'lsa — progressda); nishon `countQuery`.
 11. Testlar s3/s5/s7/s11 — `correctIdx` 2/0/3/1 = `INLINE_KEYS`; `RECAPS` {3, 5, 7, 11} (`ic` → 1/2/3 + `ask`); `Q_LABELS` {3, 5, 7, 11}. Savol ustida yorliq yo'q (SABOQ 6); javobdan keyingi kichik vizual — `QuestionScreen` `vizual` (SABOQ 4).
 12. `ACHIEVEMENTS` 4 (`whoPays`, `freePart`, `myModel`, `countQuery`) + `ACH_TRIGGERS`. `QUIZ_BANK` 12 (✔ 0·2·1·3·2·0·3·1·3·0·1·2 — A·B·C·D ×3) + `set_quiz_keys`; `QZ_BG_SHAPES` → fon so'zlari `{uz, ru}`, emoji yo'q (R-008). `FLASHCARDS` 12 ({front, back, note}) — `sflash` alohida ekranda. `SCREEN_INTENTS`.
 13. s14 `QYakun`: sarlavha **to'rt holat** — `pm-m11d2-model` dan (`model`, `soniManba`, `soni`; P-046); `recap` 5 qator = «Endi siz bilasiz» so'zma-so'z; «Bugungi asosiy fikr» — yakunda yo'q (E 50); `uyga` — `HwCard` (Kim bilan · Nechta · Muddat + ①②③; ③ holatdan yig'iladi); `keyingi` — «Webhook: to'lov Backend'ga qanday yetib keladi».
@@ -626,23 +633,23 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 - App.jsx 445–447 (grep 07.10.2026): `m11-01` → `m11-02` (osti so'zma-so'z) → `m11-03` «Webhook: to'lov Backend'ga qanday yetib keladi».
 
 ## TAYANCHGA SAVOL (o'zim qaror qildim — tasdiq kerak)
-1. **`pm-m11d2-model.soniManba`** — yangi maydon: `'database'` (Neon'da sanalgan) · `'taxmin'` (o'quvchi «Database'da sanab bo'lmaydi»ni bosib, taxminini yozgan) · `null` («Hozircha bilmayman»). Sabab: `soni` yolg'iz turganda 4-dars uni Database soni deb o'qiydi (sinf 3; 10-FILTR 4 — manba haqiqiy yo'l). Sanoq sanasi — `savedAt` (sanoq shu darsda qilinadi).
+1. **`pm-m11d2-model.soniManba`** (F-1007-460: + `soniAsos` — taxmin asosi, auditor 21-band) — yangi maydon: `'database'` (Neon'da sanalgan) · `'taxmin'` (o'quvchi «Database'da sanab bo'lmaydi»ni bosib, taxminini yozgan) · `null` («Hozircha bilmayman»). Sabab: `soni` yolg'iz turganda 4-dars uni Database soni deb o'qiydi (sinf 3; 10-FILTR 4 — manba haqiqiy yo'l). Sanoq sanasi — `savedAt` (sanoq shu darsda qilinadi).
    Tayanch 8 jadvaliga qo'shishni taklif qilaman; 4, 7, 11-darslar `soniManba: 'taxmin'` sonni «taxmin» yorlig'i bilan ko'rsatadi.
-2. **Maydonlar qoidasi** (sxemada faqat nomlar bor edi): `kim` — rol matni yoki `'hamma foydalanuvchi'` (1-dars `kimTolaydi` bilan bir qiymat); `bepul` — matn (PRD funksiyalaridan + qo'shimcha); `rad` — 1–4 element, kamida bitta (bloklaydi); `nima` — matn.
+2. **Maydonlar qoidasi** (F-1007-460: ta'rifga zid juftliklar endi bloklaydi, pullik obuna + rol — yumshoq; PRD funksiyalari dastlab belgilanmagan) (sxemada faqat nomlar bor edi): `kim` — rol matni yoki `'hamma foydalanuvchi'` (1-dars `kimTolaydi` bilan bir qiymat); `bepul` — matn (PRD funksiyalaridan + qo'shimcha); `rad` — 1–4 element, kamida bitta (bloklaydi); `nima` — matn.
 3. **10-ekranda model hali saqlanmagan bo'lsa** — son dars progressida turadi, model saqlanganda birga yoziladi (bo'sh `model` bilan kalit yaratilmaydi).
 4. **Besh yo'l tartibi** — tayanch 1.2 jadvalidan farqli: pullik obuna → reklama → B2B → tranzaksiya → bepul asos va pullik qo'shimcha (tanlangani oxirida — bashorat «bittasi» birinchi kartada ochilib qolmasin).
-5. **Reklama sababi so'zlari** — tayanch: «44 foydalanuvchida reklama beruvchiga deyarli foyda yo'q; o'smirlar ma'lumoti». Darsda: «44 foydalanuvchi reklama beruvchiga juda kam; o'smirlar ma'lumotini Mentor reklamaga bermaydi.»
+5. ✅ **Yopildi — F-1007-460:** qator «44 foydalanuvchi — reklama beruvchi uchun hali kichik auditoriya.»; «o'smirlar ma'lumoti» — faqat O'qituvchi eslatmasida, Mentor qarori sifatida (reklamaning ta'rifi emas). Avval: **Reklama sababi so'zlari** — tayanch: «44 foydalanuvchida reklama beruvchiga deyarli foyda yo'q; o'smirlar ma'lumoti». Darsda: «44 foydalanuvchi reklama beruvchiga juda kam; o'smirlar ma'lumotini Mentor reklamaga bermaydi.»
    «foyda» olib tashlandi — K2 dagi «foydaga chiqqan» (pul ma'nosi) bilan bir darsda ikki ma'no bo'lardi (T-015). «O'smirlar ma'lumoti» — Mentor qarori deb yozildi (qonun da'vosi yo'q); tayanchda shu ma'nomi — tasdiq kerak.
 6. **B2B hodisa gapi** — «Mahsulot boshqa biznesning o'z ishiga xizmat qiladi — pulni o'sha biznes to'laydi.» Tayanch izohi «boshqa biznes to'laydi» reklamada ham rost (reklama beruvchi ham biznes) — ikki model aralashmasligi uchun farq hodisa gapida. Kartochkada ham shunday.
-7. **Model nomi 4-ekranda «pullik obuna — hamma to'laydi»** (tayanch «pullik obuna (hamma to'laydi)»); Pro ham pullik obuna — 5-ekran testi farqni so'raydi. Ta'rif (1-dars) o'zgarmaydi.
-8. **«Odam chaqiradi»** — tayanch 1.0 sababi: «tashkilotchi har hafta e'lonni qayta yozadi va odam chaqiradi — Pro shu ishni oladi». «Doimiy o'yin» (o'yin o'zi e'lon qilinadi) odam chaqirishni qanday olishi aytilmagan — 2-ekranda faqat «o'yin e'lonini qayta yozadi»; to'liq sabab — O'qituvchi eslatmasida aynan.
-9. **«Yuridik shaxs»** — o'quvchi matnida izohsiz (tayanch so'zi); O'qituvchi eslatmasida «davlatda qayd etilgan firma yoki tashkilot». 7-darsda «yuridik shaxs yoki YaTT» kiritiladi — bu yerda va'da qilinmaydi.
+7. **Model nomi 4-ekranda «pullik obuna — hamma to'laydi»** (F-1007-460: o'quvchi matnida «bu darsdagi pullik obuna modeli») (tayanch «pullik obuna (hamma to'laydi)»); Pro ham pullik obuna — 5-ekran testi farqni so'raydi. Ta'rif (1-dars) o'zgarmaydi.
+8. ✅ **Yopildi — F-1007-460:** «odam chaqirish» Pro ishi sifatida aytilmaydi (O'qituvchi eslatmasi, tayanch 1.0, 1.4; 4-dars varag'i). Avval: **«Odam chaqiradi»** — tayanch 1.0 sababi: «tashkilotchi har hafta e'lonni qayta yozadi va odam chaqiradi — Pro shu ishni oladi». «Doimiy o'yin» (o'yin o'zi e'lon qilinadi) odam chaqirishni qanday olishi aytilmagan — 2-ekranda faqat «o'yin e'lonini qayta yozadi»; to'liq sabab — O'qituvchi eslatmasida aynan.
+9. ✅ **Yopildi — F-1007-460:** birinchi ko'rinishda qavsda «ro'yxatdan o'tgan firma» (4-ekran), kartochkada — «davlatda ro'yxatdan o'tgan firma» (S-020: arena 5 ballik). Avval: **«Yuridik shaxs»** — o'quvchi matnida izohsiz (tayanch so'zi); O'qituvchi eslatmasida «davlatda qayd etilgan firma yoki tashkilot». 7-darsda «yuridik shaxs yoki YaTT» kiritiladi — bu yerda va'da qilinmaydi.
 10. **K2 so'zlari** — «obunachilar» → «Premium'ga pullik obuna bo'lganlar» (Telegram'da «obunachi» — kanal obunachisi; ATAMA-q1 A). «2025-yil mayda — 15 million» — ekranda yo'q, faqat O'qituvchi eslatmasida (sahnada son ko'paymasin — T-109; fakt o'zgartirilmagan, toraytirilmagan). «1 milliard dollar» — 3/3 sahnada bitta kulrang qator.
 11. **K2 ko'prik gapi** — tayanch 1.2: «Bu voqeada bepul Telegram qisqartirilmagan — Premium ustiga qulaylik qo'shgan. Mentor ham bepul qismni qisqartirmaydi.» (118 belgi). Xulosa ≤110 uchun: «…, Premium ustiga qo'shilgan. …» (110); «qulaylik» — 2/3 kadr Mentor gapida.
 12. **Juftlikdagi ikki savol** — «Kim to'laydi va nima uchun to'laydi — aniq aytildimi?» · «Nega aynan shu model — sabab mahsulotdagi faktdanmi?» (dastur natijasidagi «asoslangan» so'zining ikki qismi). Varaq kalitga yozilmaydi (1-dars TS 11 naqshi).
-13. **Hook — sof so'rovnoma**, uchala javob «Qiziq fikr!» bilan (J-026 + T-028, T-067): o'quvchining o'z mahsuloti haqidagi savolda «to'g'ri» javob yo'q; «Aynan!» hech biriga berilmadi.
+13. **Hook — sof so'rovnoma** (F-1007-460: to'rtinchi variant «Hali bilmayman»; «Qiziq fikr!»ni olib tashlash — RAD, T-028/T-067), to'rttala javob «Qiziq fikr!» bilan (J-026 + T-028, T-067): o'quvchining o'z mahsuloti haqidagi savolda «to'g'ri» javob yo'q; «Aynan!» hech biriga berilmadi.
 14. **«Pul topish yo'li»** — atama tug'ilguncha hodisa so'zi (1-dars «olib kelish» naqshi); «yo'l» bu darsda boshqa ma'noda yo'q.
-15. **Neon sanog'i** — o'quvchi o'z Database'ida o'z to'lovchi rolini sanaydi; jadval va ustun nomini agentdan so'raydi (faqat nom, o'zgartirishsiz — 12-Modul 10-dars naqshi); SQL'ni o'zi yozadi. Darvoza — `DISTINCT` (10-Modulda o'tilgan). Maketda Mentor natijasi 6 — «o'tgan darsdagi son shu SQL'dan» (9.22).
+15. **Neon sanog'i** (F-1007-460: «to'lashi mumkin» — rolga mos hisoblar soni, to'lashga tayyorlik emas; o'quvchi matnida ochiq aytiladi) — o'quvchi o'z Database'ida o'z to'lovchi rolini sanaydi; jadval va ustun nomini agentdan so'raydi (faqat nom, o'zgartirishsiz — 12-Modul 10-dars naqshi); SQL'ni o'zi yozadi. Darvoza — `DISTINCT` (10-Modulda o'tilgan). Maketda Mentor natijasi 6 — «o'tgan darsdagi son shu SQL'dan» (9.22).
 16. **Mentor misolida bepul qoladiganlar** (8-ekran Yordami): «o'yin e'loni, qo'shilish, chiqish va navbat» — tayanch 1.0 «o'yinchilar uchun hamma narsa bepul (bugungi ilova o'zgarmaydi)» va «Pro — bitta qulaylik» dan; ro'yxat — 11-Modul funksiyalari nomlari.
 17. **Telegram sahnasidagi chat nomlari** — «Sinf chati» · «Oila» · «Futbol guruhi» (bezak, sonsiz; bank faktiga tegmaydi). Kerak bo'lmasa — matnsiz qatorlar o'rniga shu nomlar (SABOQ D 33).
 18. **Testlarda ikkinchi misol yo'q** — to'rttala test Mentor misoli, keys va o'quvchining o'z ishi haqida (P-002 — ruxsat, majburiy emas).
@@ -650,18 +657,18 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 20. **Uyga vazifa ②** — «Yana bitta modelni mahsulotingizga qo'yib ko'ring: kim to'lardi va nega mos emas?» — tayanchda yo'q mashq; 8-ekrandagi `rad` ga qo'shilishi mumkin (ko'pi bilan to'rtta).
 
 ## Shubhali joylar (ishonchim komil emas)
-1. ⛔ **90 daqiqa** — taqsimot reja (A-12); 4-ekran (besh karta, ≈10 daqiqa) va 8-ekran (uch karta, ≈15) uzoqroq cho'zilishi mumkin. «Qur» pilotida taymer bilan; sig'masa — 9-ekran yakka rejimga, 10-ekran sanog'i uyga.
+1. ⛔ **90 daqiqa** — taqsimot reja (A-12); 4-ekran (besh karta, ≈10 daqiqa) va 8-ekran (uch karta, ≈15) uzoqroq cho'zilishi mumkin (ChatGPT auditi: 105–120 daqiqa). «Qur» pilotida taymer bilan; sig'masa — 9-ekran yakka rejimga, 10-ekran sanog'i uyga.
 2. ⛔ **Mentor Database'ida SQL haqiqatan 6 qaytaradimi** — `oyinlar.tashkilotchi_id` (11-Modul jadvali) va `namuna` ustuni «qur» da Mentor repo'si va Neon'ida tekshiriladi (tayanch 6 «Tekshirilmagan» ro'yxati). Boshqa son chiqsa — tayanch 1.13 bilan birga MD moslanadi.
 3. ⛔ **O'quvchi Database'lari xilma-xil** — to'lovchi rolini 12 daqiqada topib sanash, agent faqat nomni aytishi, `namuna` ustuni borligi — pilotda sinaladi. Rol Database'da bo'lmasa — taxmin yo'li bor.
 4. **Neon interfeysi** — «Postgres database > SQL Editor» yo'li (rasmiy, 07.10.2026) o'zgarishi mumkin; o'quvchi matnida faqat «SQL Editor» va «Run».
-5. **5-ekran savoli** («Pro pullik obuna bo'lsa, model nega boshqacha nomlanadi?») — 13 yoshli uchun ikki qavatli bo'lishi mumkin; recap 5 va kartochka farqni yana ochadi.
-6. **Reklama sababi** («o'smirlar ma'lumotini Mentor reklamaga bermaydi») — Mentor qarori; auditor qonun so'rashi mumkin — qonun aytilmagan (TAQIQLAR 1: yuridik maslahat yo'q).
-7. **«Yuridik shaxs»** — o'smirga notanish so'z; o'quvchi matnida izohsiz (TAYANCHGA SAVOL 9).
+5. ✅ (F-1007-460) savol soddalashtirildi: «Pro pullik bo'lsa ham, nega bu «pullik obuna» modeli emas?». Avval: **5-ekran savoli** («Pro pullik obuna bo'lsa, model nega boshqacha nomlanadi?») — 13 yoshli uchun ikki qavatli bo'lishi mumkin; recap 5 va kartochka farqni yana ochadi.
+6. ✅ (F-1007-460) qator o'zgardi — TS 5. Avval: **Reklama sababi** («o'smirlar ma'lumotini Mentor reklamaga bermaydi») — Mentor qarori; auditor qonun so'rashi mumkin — qonun aytilmagan (TAQIQLAR 1: yuridik maslahat yo'q).
+7. ✅ (F-1007-460) «yuridik shaxs» — qavsda izoh (TAYANCHGA SAVOL 9).
 8. **Arena 2, 3** — distraktorlar boshqa modellarning to'lovchilari (bir oila); har birida kamida bittasi boshqa xato (2-B — reklamani teskari o'qish) — sinf 8 chegarasida, auditor ko'rsin.
-9. **K2 3/3** — «birinchi marta foydaga chiqdi» va Premium o'sishi bir kadrda: sahna sababni chizmaydi (ikki alohida karta), lekin o'quvchi «Premium tufayli» deb o'qishi mumkin — O'qituvchi eslatmasida ochiq.
-10. **Hook** — «hech kim to'lamaydi» varianti yo'q; mahsulotini pul topmaydigan deb bilgan o'quvchi uchalasidan birini majburan tanlaydi (sof so'rovnoma, ballsiz).
+9. ✅ (F-1007-460) ikki karta ostida o'quvchiga ko'rinadigan kulrang qator «Ikkalasi bir yilda bo'lgan — biri ikkinchisining sababi ekani bu yerda aytilmagan.». Avval: **K2 3/3** — «birinchi marta foydaga chiqdi» va Premium o'sishi bir kadrda: sahna sababni chizmaydi (ikki alohida karta), lekin o'quvchi «Premium tufayli» deb o'qishi mumkin — O'qituvchi eslatmasida ochiq.
+10. ✅ (F-1007-460) to'rtinchi variant «Hali bilmayman — kim to'lashi noma'lum». Avval: **Hook** — «hech kim to'lamaydi» varianti yo'q; mahsulotini pul topmaydigan deb bilgan o'quvchi uchalasidan birini majburan tanlaydi (sof so'rovnoma, ballsiz).
 11. **2-ekran hafta kataklari (to'rtta Shanba)** — son emas, namuna; auditor «4 hafta» deb o'qishi mumkin (O'qituvchi eslatmasida yozildi).
-12. **10-ekran taxmin yo'li** — «Database'da sanab bo'lmaydi» → o'quvchi taxmini: «son to'qish»ga o'xshashi mumkin; `soniManba: 'taxmin'` va yorliq bilan chegaralangan.
+12. **10-ekran taxmin yo'li** — «Database'da sanab bo'lmaydi» → o'quvchi taxmini: «son to'qish»ga o'xshashi mumkin; `soniManba: 'taxmin'`, yorliq va (F-1007-460) majburiy asos qatori `soniAsos` bilan chegaralangan.
 13. **Telegram maketi** — «Telegram Premium» qatori chat ro'yxatida — haqiqiy interfeys taqlidi emas (nom o'z rangida, logotipsiz); bank Premium qayerda ko'rinishini aytmaydi.
 
 ## Oldindan tuzatiladigan sinflar — o'z tekshiruvim (tayanch 7: 16 band + 13-Modul pul sinflari + 12-Modul tayanchi 7)
@@ -673,7 +680,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 6. [x] **Yakun, «Bajardim», nishon — faqat rost holatda** — yakun 4 holat (har biri kalitdan; «hali tanlanmagan» alohida — E 54); «Bajardim» — darvoza + son/taxmin/«bilmayman»; nishon tavsiflari qilingan ishni aytadi («Model Chosen» emas — «model tanlab, sababini yozib saqladingiz»).
 7. [x] **Ta'rif sanaladigan** — «to'lashi mumkin bo'lganlar» — `namuna = false`, kamida bitta o'yin e'lon qilgan hisob (Mentor; A-6); birlik — hisob; 44 (hisob) va 6 (hisob) bir o'lchovda, ayirilmaydi; K2 sonlari — yili bilan.
 8. [x] **Test: bitta himoyalanadigan javob** — 3 («rejasida» — kelajak emas), 5 (Pro va model farqi; B — rost, mos emas), 7 («umumiy» — B faqat Telegram uchun rost), 11 (turkumlar: keys · mashhurlik · Mentor qoida); arena distraktorlari — Shubhali 8.
-9. [x] **Real odamlar xavfsizligi** — juftlik — sinfdosh bilan (9); uyga vazifa ① — tanish, narx so'ralmaydi; «bugun hech kimga yozilmaydi» (8-ekran eslatmasi); qo'l ko'tartirib sanash yo'q (0, 8, 9); spam va bosim yo'q.
+9. [x] **Real odamlar xavfsizligi** — juftlik — sinfdosh bilan (9); uyga vazifa ① — ota-ona yoki sinfdosh (F-1007-459), narx so'ralmaydi; «bugun hech kimga yozilmaydi» (8-ekran eslatmasi); qo'l ko'tartirib sanash yo'q (0, 8, 9); spam va bosim yo'q.
 10. [—] **Tekshiruv — o'quvchining o'z yo'li, agent — zaxira** — agent faqat jadval nomini aytadi (10-ekran Yordami), tekshiruv akkaunti yaratilmaydi; Database'ga yozish yo'q (`SELECT`).
 11. [x] **Web-trek teng yo'l** — model trekka bog'liq emas; 8-ekran Yordami «Web-trekda ham shunday»; 10-ekran web-trek qatori (o'z Database'i); testlar ikkala trekka to'g'ri; telefon maketi — faqat Mentor misoli.
 12. [x] **Mentor misoli ichki izchil** — 44 · 6 · 30 kun · namuna o'yin — 1.0/1.13 aynan; narx (10 000, 15 000) ochilmaydi; Pro — «Mentorning rejasi» (9.21); «Maydon pulini bo'lishish» — bitta nom, «uzoqroq»; 6 — o'tgan dars soni bilan bir (9.22).
@@ -692,14 +699,14 @@ Skript: `scratchpad/md02/olchov.py` (07.10.2026) — MD da o'lchov uchun har mat
 | Nima | Soni | Eng qisqa | Eng uzun | Chegara |
 |---|---|---|---|---|
 | Sarlavha (0, 1, 2, 4, 6, 8, 9 ×2, 10, 13, 14 ×4) | 14 | 25 | 52 | ≤55 |
-| Hook javobi («Qiziq fikr!» bilan birga) | 3 | 94 | 97 | ≤120 |
-| Hook variantlari (0) | 3 | 35 | 38 | farq ≤15% |
+| Hook javobi («Qiziq fikr!» bilan birga) | 4 | 94 | 103 | ≤120 |
+| Hook variantlari (0) | 4 | 35 | 38 | farq ≤15% |
 | Xulosa va yashil yakun qatorlari (2, 4, 6, 9, 10 ×3 — sobit matn) | 7 | 48 | 110 | ≤110 |
 | `QIzoh`, kulrang va halol qatorlar (bitta qator) | 15 | 46 | 102 | ≤110 |
 | To'g'ri izohi (3, 5, 7, 11) | 4 | 43 | 58 | ≤60 |
-| Xato izohlari, `QXato` va tekshiruv xabarlari | 34 | 29 | 60 | ≤60 |
+| Xato izohlari, `QXato` va tekshiruv xabarlari | 36 | 29 | 60 | ≤60 |
 | Ipucha (2, 4) | 2 | 65 | 68 | — |
-| Test savollari (3, 5, 7, 11) va arena savollari — so'z | 16 | 3 | 8 | ≤12 |
+| Test savollari (3, 5, 7, 11) va arena savollari — so'z | 16 | 3 | 10 | ≤12 |
 
 | Test | ✔ | Uzunliklar (A · B · C · D) | Eng qisqa / eng uzun | Farq | O'rtachadan eng katta farq | ✔ yolg'iz eng uzunmi |
 |---|---|---|---|---|---|---|
@@ -724,6 +731,7 @@ Arena ✔ taqsimoti: A — 1, 6, 10 · B — 3, 8, 11 · C — 2, 5, 12 · D —
 Mentor gaplari (asosiy qator; skript — gaplar soni va sarlavha so'z o'zaklari kesishmasi): 0: 1 gap, kesishma 0/3 · 1: 2 gap, 2/5 · 2: 1 gap, 0/5 · 4: 1 gap, 2/5 (tugma nomi «Maydon Jamoa'ga qo'yish») · 6: kadrlar 1 · 1 · 2 gap, 1/5 · 8: 1 gap, 1/4 · 9: 1 gap, 0/4 · 10: 1 gap, 1/5.
 Reja (1) va keys 3/3 kadri — ikki gap, qolgan interaktiv ekranlar — bitta gap; hech biri «Bu…», «Hammasini…» bilan boshlanmaydi; kesishma hamma joyda 50% dan kam (T-072, KORPUS §225).
 Kafolat so'zlari («darrov», «darhol», «har doim», «hech qachon», «albatta», «100%») o'quvchi matnida — 0 (faqat A-5 «Ishlatilmaydi» va GATE M ro'yxatlarida, MD ichki).
+F-1007-460 (07.10, ChatGPT auditi Filtri) da o'zgargan qatorlar qayta sanaldi (Python `len`): hook 4-variant 38, javobi 103 · 2-ekran xulosa 109 · 4-ekran reklama qatori 65, tranzaksiya 90 · 6-ekran 3/3 kulrang qator 82 · 8-ekran `QXato` 47 · 57 · 10-ekran 33 · yashil 87 · 63 · 11-ekran to'g'ri izohi 52 · 5-ekran savoli 10 so'z, arena 9 — 9 so'z.
 `npm run lint:til feedback/F-1007-13modul/02-PmMonetization-v3.md` — **0 error, 1 warn** (07.10.2026, oxirgi tahrirdan keyin yurgizildi): warn — «Manbalar»dagi K2 bankining ruscha asli (kirill harf; o'quvchi ko'rmaydi; 12-Modul 10-dars Filtrida ham bank iqtibosi warn bo'lib qolgan).
 
 ## GATE M — o'z tekshiruvim
@@ -741,4 +749,4 @@ Kafolat so'zlari («darrov», «darhol», «har doim», «hech qachon», «albat
   T-035 (o'quvchi izohida belgi-formula yo'q; «×3» faqat keys sahnasida) · T-036 (B2B ochiladi) · T-038 (keyingi dars faqat yakun qatorida) · T-039 · T-042 (ta'riflar so'zma-so'z: 4-ekran, kartochka, Endi siz bilasiz) · T-043 («Mentor misolida», «bu voqeada») · T-045 (to'lashi mumkin — to'lagan emas; K2 — sabab yo'q) ·
   T-064 (2, 4-ekran sarlavhalari hook savolining so'zlari bilan) · P-001 · P-008 (≤3 blok) · P-012 (testlar 3, 5, 7, 11 — ketma-ket emas) · P-013 · P-014/P-015 · P-016 · P-025 · P-026 (10-ekran «Hozircha bilmayman») · P-033 · P-036 · P-046 (0, 8, 9, 10, 14) · P-052 · P-053 · P-055 · P-062 · P-064 · P-067 ·
   S-001 (savollar ≤12 so'z) · S-002/S-004/S-010 · S-006 · S-008 · S-015 · S-018 (Telegram, Telegram Premium) · S-019 · S-020 · S-026 · S-027 · §131 (million, milliard) · §144/§145 · PM-005 (2-tur) · PM-018 · PM-021 · PM-027 · PM-082 (darvoza-mashq, «…digan SQL yozamiz», nusxa yo'q) · PM-108 · J-026 · SABOQ 1–55.
-- [ ] GATE M — foydalanuvchi tasdig'i kutilmoqda; «qur» dan oldin ⛔: Mentor Neon'ida SQL natijasi (6), o'quvchi Database'larida sanash vaqti, 90 daqiqa.
+- [x] GATE M — ✅ 07.10 (13M-GATE-1, hammasi A); ChatGPT auditi — `02-FILTR.md` (F-1007-460); «qur» dan oldin ⛔: Mentor Neon'ida SQL natijasi (6), o'quvchi Database'larida sanash vaqti, 90 daqiqa.

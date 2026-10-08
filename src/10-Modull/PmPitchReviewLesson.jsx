@@ -644,7 +644,7 @@ const MENTOR_PITCH = {
     muammo: [{ k: 'm1', t: { uz: "O'yinchilar jamoaga odam yig'ishda qiynaladi.", ru: 'Игрокам трудно собрать людей в команду.' }, d: 0 }],
     yechim: [{ k: 'y1', demo: true, t: { uz: "Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.", ru: 'Организатор объявляет игру, игроки присоединяются одним нажатием и в день игры подтверждают, что придут.' } }],
     demo: [
-      { k: 'j1', demo: true, t: { uz: "Telefonda «Qo'shilaman» bosiladi: «8 / 10» o'rniga «9 / 10».", ru: 'На телефоне нажимают «Qo\'shilaman»: вместо «8 / 10» — «9 / 10».' } },
+      { k: 'j1', demo: true, t: { uz: "Telefonda «Qo'shilaman» bosiladi: «8 / 10» o'rniga «9 / 10».", ru: "На телефоне нажимают «Присоединяюсь»: вместо «8 / 10» — «9 / 10»." } },
       { k: 'j2', t: { uz: 'Ilovani odamlar ishlatyapti.', ru: 'Приложением пользуются люди.' }, d: 1 },
       { k: 'j3', t: { uz: "O'yinchilarga ilova yoqdi.", ru: 'Игрокам понравилось приложение.' }, d: 2 }
     ],
@@ -661,7 +661,7 @@ const MENTOR_PITCH = {
       yangiGap: { uz: 'Birinchi uch kunda ilovani ochgan 46 qurilmadan 17 tasi keyingi ikki kunda yana ochdi.', ru: 'Из 46 устройств, открывших приложение в первые три дня, 17 снова открыли его в следующие два дня.' },
       dalil: { son: { uz: '46 qurilmadan 17 tasi', ru: '17 из 46 устройств' }, manba: 'database', qachon: { uz: 'ishga tushirilganidan besh kun keyin', ru: 'через пять дней после запуска' } } },
     { id: 'd4', bolak: 'keyingi', k: 'k1', kalit: 'yoq', qaror: 'olib-tashlandi',
-      yangiGap: { uz: "E'lon berilgach «Havolani ulashish» tugmasi bilan tashkilotchi havolani o'z jamoasiga yuboradi.", ru: 'После объявления организатор кнопкой «Havolani ulashish» отправляет ссылку своей команде.' }, dalil: null }
+      yangiGap: { uz: "E'lon berilgach «Havolani ulashish» tugmasi bilan tashkilotchi havolani o'z jamoasiga yuboradi.", ru: "После объявления организатор кнопкой «Поделиться ссылкой» отправляет ссылку своей команде." }, dalil: null }
   ]
 };
 const MENTOR_MANBA = {
@@ -669,9 +669,9 @@ const MENTOR_MANBA = {
   database: [{ k: 'royxat', n: { uz: "ro'yxatdan o'tgan", ru: 'зарегистрировались' }, v: '38' }, { k: 'asosiy', n: { uz: 'asosiy harakatni qilgan', ru: 'сделали основное действие' }, v: '19' }],
   qaytgan: [{ k: 'q1', n: { uz: 'birinchi 3 kunda ochgan', ru: 'открыли в первые 3 дня' }, v: '46' }, { k: 'q2', n: { uz: 'keyingi 2 kunda yana ochgan', ru: 'снова открыли в следующие 2 дня' }, v: '17' }],
   sanoq: [{ k: 's1', n: { uz: 'ochdi', ru: 'открыли' }, v: '61' }, { k: 's2', n: { uz: "ro'yxatdan o'tdi", ru: 'зарегистрировались' }, v: '38' }, { k: 's3', n: { uz: "qo'shildi", ru: 'присоединились' }, v: '18' }, { k: 's4', n: { uz: 'kelishini tasdiqladi', ru: 'подтвердили приход' }, v: '14' }],
-  umami: [{ k: 'u1', n: { uz: 'tashriflar', ru: 'визиты' }, v: '74' }, { k: 'u2', n: { uz: "Qo'shilmoqchiman", ru: "Qo'shilmoqchiman" }, v: '41' }],
+  umami: [{ k: 'u1', n: { uz: 'tashriflar', ru: "посещения" }, v: '74' }, { k: 'u2', n: { uz: "Qo'shilmoqchiman", ru: "Хочу присоединиться" }, v: '41' }],
   vaqt: [{ k: 'v1', n: { uz: 'ishga tushirish kuni', ru: 'день запуска' }, v: '20' }, { k: 'v2', n: { uz: '3 kun keyin', ru: 'через 3 дня' }, v: '27' }, { k: 'v3', n: { uz: 'bir hafta keyin', ru: 'через неделю' }, v: '38' }],
-  zaxira: { uz: "ilovada e'lon berilgach «Havolani ulashish» tugmasi", ru: 'кнопка «Havolani ulashish» после объявления в приложении' }
+  zaxira: { uz: "ilovada e'lon berilgach «Havolani ulashish» tugmasi", ru: "кнопка «Поделиться ссылкой» после объявления в приложении" }
 };
 const mDalil = (d) => (d ? [tr(d.son || d.yozuv), tr(MANBA[d.manba]), tr(d.qachon)] : null);
 
@@ -861,7 +861,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
           variantlar={HOOK_OPTS.map(o => ({ id: o.id, t: tr(o.label) }))} tanlov={picked} onTanla={pick}
           javob={picked !== null && <p className="hook-ack fade-step">{tr(HOOK_JAVOB)}</p>}
         >
-          <Ustoz matn={[{ uz: "Javoblarni muhokama qilmang — uchalasi ham bugun ko'rinadi. Sinfdan so'rang: «11-Modul pitchingizda bugun eskirgan gap bormi?» Dars nomidagi «raqam» — matnda «son» (A-5).", ru: 'Не обсуждайте ответы — все три сегодня будут видны. Спросите класс: «Есть ли в вашем питче из 11-го модуля фраза, которая сегодня устарела?» «Raqam» из названия урока — в тексте «son» (A-5).' }]} />
+          <Ustoz matn={[{ uz: "Javoblarni muhokama qilmang — uchalasi ham bugun ko'rinadi. Sinfdan so'rang: «11-Modul pitchingizda bugun eskirgan gap bormi?» Dars nomidagi «raqam» — matnda «son» (A-5).", ru: "Не обсуждайте ответы — все три сегодня будут видны. Спросите класс: «Есть ли в вашем питче из 11-го модуля фраза, которая сегодня устарела?» «Цифры» из названия урока в тексте — «число» (A-5)." }]} />
         </QKirish>
       </div>
     </Stage>
@@ -873,7 +873,7 @@ const REJA = [
   { t: { uz: "Pitchingizdan tekshirsa bo'ladigan gaplarni topasiz", ru: 'Найдёте в питче фразы, которые можно проверить' }, teg: { uz: "da'vo", ru: 'утверждение' } },
   { t: { uz: "Har biriga sonlaringizdan dalil qo'yasiz", ru: 'К каждой поставите довод из ваших чисел' }, teg: { uz: 'dalil', ru: 'довод' } },
   { t: { uz: 'Dalilsiz gapni qayta yozasiz yoki olib tashlaysiz', ru: 'Фразу без довода перепишете или уберёте' }, teg: { uz: 'tuzatilgan pitch', ru: 'исправленный питч' } },
-  { t: { uz: "Pitchingizni Mentor bilan yakkama-yakka ko'rasiz", ru: 'Разберёте питч с Ментором один на один' }, teg: { uz: 'yakkama-yakka', ru: 'один на один' } }
+  { t: { uz: "Pitchingizni Mentor bilan yakkama-yakka ko'rasiz", ru: "Разберёте питч с Ментором на встрече один на один" }, teg: { uz: 'yakkama-yakka', ru: "встреча один на один" } }
 ];
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const [f, setF] = useState(0);
@@ -888,11 +888,11 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
       <QReja zoom={Zoomable}
         sarlavha={tr({ uz: <>Bugun pitchingizni <A>sonlaringiz bilan tuzatasiz.</A></>, ru: <>Сегодня вы исправите питч <A>своими числами.</A></> })}
         mentor={<Mentor>{tr({ uz: "Roadmap'ingizni 11-Modulda ko'rgansiz — bugun pitch. Har biringiz bilan yakkama-yakka gaplashaman: pitchingizni birga ko'ramiz.", ru: 'Свой roadmap вы смотрели в 11-м модуле — сегодня питч. С каждым поговорю один на один: посмотрим ваш питч вместе.' })}</Mentor>}
-        chapYorliq={tr({ uz: 'Dars oxirida — Mentor bilan yakkama-yakka: tuzatilgan pitch', ru: 'В конце урока — один на один с Ментором: исправленный питч' })}
+        chapYorliq={tr({ uz: 'Dars oxirida — Mentor bilan yakkama-yakka: tuzatilgan pitch', ru: "В конце урока — встреча с Ментором один на один: исправленный питч" })}
         chap={<div className="pd-reja"><PitchVaraq kichik sarlavha={<><NomMJ />{f >= 6 && <span className="pd-b-savol fade-step">?</span>}</>} bolaklar={bolaklar} /></div>}
         qadamlar={REJA.map(r => ({ t: tr(r.t), teg: tr(r.teg) }))}
       >
-        <Ustoz matn={[{ uz: "Roadmap holati va risklar bugun ochilmaydi — 11-Modul 15-darsida ko'rilgan (tayanch 1.11). Pitchning Keyingi qadam bo'lagi o'sha rejadan va 10-darsdagi zaxira rejadan.", ru: 'Состояние roadmap и риски сегодня не открываем — их смотрели на 15-м уроке 11-го модуля. Часть «Keyingi qadam» в питче — из того плана и из запасного плана 10-го урока.' }]} />
+        <Ustoz matn={[{ uz: "Roadmap holati va risklar bugun ochilmaydi — 11-Modul 15-darsida ko'rilgan (tayanch 1.11). Pitchning Keyingi qadam bo'lagi o'sha rejadan va 10-darsdagi zaxira rejadan.", ru: "Состояние roadmap и риски сегодня не открываем — их смотрели на 15-м уроке 11-го модуля. Часть «Следующий шаг» в питче — из того плана и из запасного плана 10-го урока." }]} />
       </QReja>
     </Stage>
   );
@@ -921,7 +921,7 @@ const s2Manba = (m) => {
   if (m.tur === 'intervyu') return <ManbaOyna tur="intervyu" sar={tr(MENTOR_MANBA.intervyu.sar)} qatorlar={intervyuQ(m.on)} xoch={m.xoch} />;
   if (m.tur === 'database') return <ManbaOyna tur="database" yorliq={tr(m.yorliq || MENTOR_MISOLIDA)} qatorlar={m.qaytgan ? mQator(MENTOR_MANBA.qaytgan, m.on ? ['q1', 'q2'] : []) : (m.chiziq ? [] : mQator(MENTOR_MANBA.database, m.on ? ['royxat', 'asosiy'] : []))} chiziq={m.chiziq} xoch={m.xoch} />;
   if (m.tur === 'sanoq') return <ManbaOyna tur="sanoq" yorliq={tr({ uz: 'qurilma', ru: 'устройство' })} qatorlar={mQator(MENTOR_MANBA.sanoq)} xoch={m.xoch} />;
-  if (m.tur === 'umami') return <ManbaOyna tur="umami" yorliq={tr({ uz: 'tashrif', ru: 'визит' })} qatorlar={mQator(MENTOR_MANBA.umami)} xoch={m.xoch} />;
+  if (m.tur === 'umami') return <ManbaOyna tur="umami" yorliq={tr({ uz: 'tashrif', ru: "посещение" })} qatorlar={mQator(MENTOR_MANBA.umami)} xoch={m.xoch} />;
   return <ManbaOyna tur="bosh" />;
 };
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1025,7 +1025,7 @@ const S3_QADAM = [{ uz: 'Son', ru: 'Число' }, { uz: 'Manba', ru: 'Исто�
 const S3_MANBA = [{ k: 'database', t: { uz: 'Database', ru: 'Database' } }, { k: 'umami', t: { uz: 'Umami', ru: 'Umami' } }, { k: 'intervyu', t: { uz: 'Intervyu yozuvlari', ru: 'Записи интервью' } }];
 const S3_XATO = {
   kop: { uz: '«Ko\'p» — son emas: necha kishi?', ru: '«Много» — не число: сколько человек?' },
-  umami: { uz: 'Umami lendingga tashrifni sanaydi — ilovadagi ishni emas.', ru: 'Umami считает визиты на лендинг — а не действия в приложении.' },
+  umami: { uz: 'Umami lendingga tashrifni sanaydi — ilovadagi ishni emas.', ru: "Umami считает посещения лендинга — а не действия в приложении." },
   intervyu: { uz: "Intervyular ilova chiqishidan oldin bo'lgan.", ru: 'Интервью были до выхода приложения.' },
   vaqt: { uz: 'Bu kunda boshqa son sanalgan — tegdagi son qachon edi?', ru: 'В этот день посчитано другое число — когда было число в теге?' }
 };
@@ -1107,7 +1107,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         vizual={<PitchDalil toliq={tugadi} manba={manba} zal={!tugadi && <Zal pufak={S3_PUFAK[qd] && tr(S3_PUFAK[qd])} ok={done} />} varaq={varaq} past={tanlov} />}
         xulosa={done && <XulosaQ natija={taxmin && <Natija togri={taxmin === '2'} haqiqat={{ uz: '2 — manba va qachon sanalgani', ru: '2 — источник и когда посчитано' }} />} matn={tr({ uz: 'Bu darsda har dalilda uch narsa bor: son yoki yozuv, manba va qachon olingani.', ru: 'В этом уроке в каждом доводе три вещи: число или запись, источник и когда получено.' })} />}
       >
-        <Ustoz matn={[{ uz: "Umami va Database sonlari — har xil o'lchov: tashrif va ro'yxatdan o'tgan kishi; ular bir-biridan ayirilmaydi (tayanch 1.13). «Qachon» — kun yoki davr: Mentor misolida «ishga tushirilganidan bir hafta keyin», o'quvchida — 10-darsdagi hisobot sanasi. Bu misolda dalil — son; intervyu va sinovdan olingan dalil yozuv ham bo'lishi mumkin («sinovchi tugmani topa olmadi») — 6-mashqda shunday maydon bor.", ru: 'Числа Umami и Database — разные измерения: визит и зарегистрированный человек; их не вычитают друг из друга. «Когда» — день или период: в примере Ментора «через неделю после запуска», у ученика — дата отчёта 10-го урока. В этом примере довод — число; довод из интервью и тестов может быть и записью («тестировщик не нашёл кнопку») — в 6-м упражнении есть такое поле.' },
+        <Ustoz matn={[{ uz: "Umami va Database sonlari — har xil o'lchov: tashrif va ro'yxatdan o'tgan kishi; ular bir-biridan ayirilmaydi (tayanch 1.13). «Qachon» — kun yoki davr: Mentor misolida «ishga tushirilganidan bir hafta keyin», o'quvchida — 10-darsdagi hisobot sanasi. Bu misolda dalil — son; intervyu va sinovdan olingan dalil yozuv ham bo'lishi mumkin («sinovchi tugmani topa olmadi») — 6-mashqda shunday maydon bor.", ru: "Числа Umami и Database — разные измерения: посещение и зарегистрированный человек; их не вычитают друг из друга. «Когда» — день или период: в примере Ментора «через неделю после запуска», у ученика — дата отчёта 10-го урока. В этом примере довод — число; довод из интервью и тестов может быть и записью («тестировщик не нашёл кнопку») — в 6-м упражнении есть такое поле." },
           { uz: "Sinfdoshlar sanoqqa kiradi, lekin alohida aytiladi (10-dars). Sinfga savol: «Zal «Qayerdan?» va «Qachon?» deb so'raganda, sizda javob bormi?»", ru: 'Одноклассники входят в подсчёт, но называются отдельно (10-й урок). Вопрос классу: «Когда зал спросит «Откуда?» и «Когда?», есть ли у вас ответ?»' }]} />
       </QTushuncha>
       {qatlam}
@@ -1186,8 +1186,8 @@ const hisobotTanlov = (h, bolak, p) => {
       qo('asosiy', { uz: nuqta(uz, P(As.manba), P(As.sana)), ru: nuqta(ru, P(As.manba), P(As.sana)) }, { son: { uz, ru }, manba: P(As.manba), qachon: P(As.sana) }, [{ n: { uz: 'asosiy harakatni qilgan', ru: 'сделали основное действие' }, v: P(As.soni) }]);
     }
     if (B && P(B.soni) != null) {
-      const nm = matnS(P(B.nima)) || 'Bosh raqam';
-      qo('bosh', { uz: nuqta(`${nm}: ${P(B.soni)}`, P(B.manba), P(B.sana)), ru: nuqta(`${nm}: ${P(B.soni)}`, P(B.manba), P(B.sana)) }, { son: { uz: `${nm}: ${P(B.soni)}`, ru: `${nm}: ${P(B.soni)}` }, manba: P(B.manba), qachon: P(B.sana) }, [{ n: nm, v: P(B.soni) }]);
+      const nm = matnS(P(B.nima)) || 'Bosh raqam', nmR = matnS(P(B.nima)) || 'Главное число';
+      qo('bosh', { uz: nuqta(`${nm}: ${P(B.soni)}`, P(B.manba), P(B.sana)), ru: nuqta(`${nmR}: ${P(B.soni)}`, P(B.manba), P(B.sana)) }, { son: { uz: `${nm}: ${P(B.soni)}`, ru: `${nmR}: ${P(B.soni)}` }, manba: P(B.manba), qachon: P(B.sana) }, [{ n: nm, v: P(B.soni) }]);
     }
     if (Q && P(Q.foiz) != null) {
       const uz = `Qaytganlar foizi: ${P(Q.foiz)}% — ${P(Q.birinchi)} qurilmadan ${P(Q.keyingi)} tasi${P(Q.davr) ? ` (${P(Q.davr)})` : ''}`;
@@ -1195,7 +1195,7 @@ const hisobotTanlov = (h, bolak, p) => {
       qo('qaytgan', { uz: nuqta(uz, P(Q.manba), P(Q.sana)), ru: nuqta(ru, P(Q.manba), P(Q.sana)) }, { son: { uz, ru }, manba: P(Q.manba), qachon: P(Q.sana) }, [{ n: { uz: 'birinchi ochgan', ru: 'открыли впервые' }, v: P(Q.birinchi) }, { n: { uz: 'yana ochgan', ru: 'открыли снова' }, v: P(Q.keyingi) }]);
     }
   }
-  if (bolak === 'muammo' && p && p.muammo.dalil) r.push({ k: 'pitch', t: { uz: `11-Modul pitchidagi dalil: ${p.muammo.dalil}`, ru: `Довод из питча 11-го модуля: ${p.muammo.dalil}` }, forma: { matn: p.muammo.dalil, manba: 'intervyu', qachon: '11-Modulda' } });
+  if (bolak === 'muammo' && p && p.muammo.dalil) r.push({ k: 'pitch', t: { uz: `11-Modul pitchidagi dalil: ${p.muammo.dalil}`, ru: `Довод из питча 11-го модуля: ${p.muammo.dalil}` }, forma: { matn: p.muammo.dalil, manba: 'intervyu', qachon: tr({ uz: '11-Modulda', ru: 'в 11-м модуле' }) } });
   return r;
 };
 // <dalil-tekshir> — dalil tekshiruvi (MD 6-ekran; PM-108: node da 8+ namuna bilan sinaladi). f: { matn, manba, qachon }; boshqalar — boshqa da'volardagi dalil matnlari
@@ -1217,7 +1217,7 @@ const DALIL_XATO = {
   raqam: { uz: 'Bu manba sanaydi — sonni yozing: nechta?', ru: 'Этот источник считает — напишите число: сколько?' },
   manba: { uz: 'Dalil qayerdan olingan — manbani tanlang.', ru: 'Откуда взят довод — выберите источник.' },
   qachon: { uz: 'Qachon olingan — kunini yoki davrini yozing.', ru: 'Когда получено — напишите день или период.' },
-  umami: { uz: 'Umami lendingga tashrifni sanaydi — ilovadagi ishni emas.', ru: 'Umami считает визиты на лендинг — а не действия в приложении.' },
+  umami: { uz: 'Umami lendingga tashrifni sanaydi — ilovadagi ishni emas.', ru: "Umami считает посещения лендинга — а не действия в приложении." },
   takror: { uz: "Bu dalil boshqa da'voda ham bor — ikkalasiga mosmi?", ru: 'Этот довод есть и в другом утверждении — подходит ли он к обоим?' }
 };
 // O'quvchi dalili: sanaydigan manba yoki matnda raqam → son, aks holda → yozuv (KOD 8)
@@ -1229,7 +1229,7 @@ const dalilYasa = (f) => {
 const dalilMatn = (d) => (d && d !== 'yoq' ? (d.son || d.yozuv || '') : '');
 const dalilKatak = (d) => (d && d !== 'yoq' ? [dalilMatn(d), d.mk ? tr(MANBA[d.mk]) : d.manba, d.qachon] : null);
 const FORMA0 = { matn: '', manba: null, qachon: '' };
-const YordamTugma = ({ ochiq, onClick }) => <QTugma ikkinchi className="pd-ms-yordam" aria-expanded={ochiq} onClick={onClick}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>;
+const YordamTugma = ({ ochiq, onClick }) => <QTugma ikkinchi className="pd-ms-yordam" aria-expanded={ochiq} onClick={onClick}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>;
 // «O'zim yozaman» — uch maydon (yorliq input ichida, doimiy raqam — E 43)
 const DalilForma = ({ f, setF, xato }) => (
   <div className="pd-forma fade-step">
@@ -1260,7 +1260,7 @@ const DalilTanlov = ({ opts, hisobotBor, tanlov, onTanla, sorov, forma, setForma
         </span>
       ))}
       <span className="pd-tanlov-w" style={{ animationDelay: `${opts.length * 90}ms` }}>
-        <button type="button" className={cx('pd-tanlov', 'ozi', tanlov === 'ozi' && 'on')} onClick={() => onTanla({ k: 'ozi' })}>{tr({ uz: "O'zim yozaman", ru: 'Напишу сам' })}</button>
+        <button type="button" className={cx('pd-tanlov', 'ozi', tanlov === 'ozi' && 'on')} onClick={() => onTanla({ k: 'ozi' })}>{tr({ uz: "O'zim yozaman", ru: "Свой вариант" })}</button>
       </span>
       {(tanlov === 'ozi' || tanlov === 'pitch') && <DalilForma f={forma} setF={setForma} xato={xato} />}
     </div>
@@ -1279,7 +1279,7 @@ const S5_XATO = {
   kop: { uz: 'Oltita yetadi — qolganini birlashtiring yoki olib tashlang.', ru: 'Шести достаточно — остальные объедините или уберите.' },
   muammo: { uz: "Muammo gapi ham da'vo bo'lishi mumkin — qarab chiqing.", ru: 'Фраза о проблеме тоже может быть утверждением — посмотрите.' }
 };
-const QOLDIR_SAQLA = { uz: 'Shunday qoldirsangiz — yana «Saqlash»ni bosing.', ru: 'Если оставить так — снова нажмите «Saqlash».' };
+const QOLDIR_SAQLA = { uz: 'Shunday qoldirsangiz — yana «Saqlash»ni bosing.', ru: "Если оставить так — снова нажмите «Сохранить»." };
 const S5_YORDAM = [
   { uz: "Uch joyga qarang: muammo gapi (kim qiynaladi), foydalanuvchilar haqidagi gap (nechta odam, nima qildi) va «tez orada», «hamma», «yoqdi» kabi so'zli gap.", ru: 'Посмотрите в три места: фраза о проблеме (кому трудно), фраза о пользователях (сколько людей, что сделали) и фраза со словами вроде «скоро», «все», «понравилось».' },
   { uz: "Yechim va asosiy harakatni zal jonli demoda o'zi ko'radi — bugun ularga dalil qo'yilmaydi. Web-trekda ham shunday — mahsulotingiz telefon brauzerida.", ru: 'Решение и основное действие зал сам увидит в живом демо — сегодня к ним довод не ставится. В веб-треке так же — ваш продукт в браузере телефона.' },
@@ -1342,6 +1342,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     setBi(3); setBirSaqlandi(true); setXato(null); setYumshoq(null); setYordam(false);
     onAnswer(screen, { stage: 'mustaqil', screenIdx: screen, practice: "Da'volar", saqlandi: true, solved: true, correct: true, picked: true, belgi, yangi, ozi, davolar });
     if (!yuborRef.current && live && live.mode === 'student') { yuborRef.current = true; live.submitAnswer(PRACTICE_BASE + screen, 'practice', 0, true, 0); }
+    jonliBelgi(live, ZONA_2, screen, davolar.length); // Mentor ro'yxatida «Da'volar n»
   };
   const oldinga = () => { if (bi === 2 || birSaqlandi) { saqla(); return; } setBi(bi + 1); setXato(null); setYumshoq(null); setYordam(false); setYMatn(''); };
   const yechimT = p ? p.yechim : '';
@@ -1402,7 +1403,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       >
         <Ustoz matn={[{ uz: "Ko'p o'quvchining 11-Modul pitchida foydalanuvchilar haqida gap yo'q — u ilova odamlarga yetmasdan yozilgan. «Bugun nima demoqchisiz?» deb so'rang: yangi gapni o'quvchi qo'shadi va tekshirsa bo'ladigan bo'lsa — o'zi belgilaydi.", ru: 'У многих учеников в питче 11-го модуля нет фразы о пользователях — он написан до того, как приложение дошло до людей. Спросите: «Что хотите сказать сегодня?» — новую фразу ученик добавляет и, если её можно проверить, отмечает сам.' },
           { uz: "Mentor misolini «to'g'ri javob» qilib bermang — da'volar har kimning o'z pitchidan. 11-Modul pitchidagi Database soni (`demo.son`) namuna va tekshiruv yozuvlari bilan sanalgan edi — bugun u ham da'vo.", ru: 'Не подавайте пример Ментора как «правильный ответ» — утверждения у каждого из своего питча. Число Database в питче 11-го модуля (`demo.son`) считалось вместе с образцами и проверочными записями — сегодня оно тоже утверждение.' }]} />
-        <MentorPracticeStats live={live} screen={screen} />
+        <MentorPracticeStats live={live} screen={screen} sanoq={[{ y: { uz: "Da'volarni belgilaganlar", ru: 'Отметили утверждения' }, zona: PRACTICE_BASE }]} chip={{ zona: ZONA_2, t: (r) => `${tr({ uz: "Da'volar", ru: 'Утверждения' })} ${r.picked}` }} />
       </QMustaqil>
       {qatlam}
     </Stage>
@@ -1410,8 +1411,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 
 // ===== SCREEN 6 — DALILLAR (QMustaqil, USTAXONA 2/3 — bittadan karta «Da'vo n / N»: chapda manba oynasi, o'ngda karta va dalil tegi; shu ekrandan keyin yakkama-yakka) =====
-const S6_YORDAM = { uz: "Dalil 10-darsdagi hisobotingizda: ro'yxatdan o'tganlar, asosiy harakatni qilganlar, bosh raqam, qaytganlar foizi. Muammo uchun — 11-Modul intervyu va sinov yozuvlari: son ham, kuzatgan narsangiz ham bo'ladi. Dalil topilmasa, uni o'ylab topmang — «Dalil yo'q»ni bosing.", ru: 'Довод — в вашем отчёте 10-го урока: зарегистрировавшиеся, сделавшие основное действие, главная цифра, процент вернувшихся. Для проблемы — записи интервью и тестов 11-го модуля: подойдёт и число, и то, что вы наблюдали. Если довода нет, не выдумывайте — нажмите «Dalil yo\'q».' };
-const QOLDIR_QOY = { uz: 'Shunday qoldirsangiz — yana «Dalilni qo\'yish»ni bosing.', ru: 'Если оставить так — снова нажмите «Dalilni qo\'yish».' };
+const S6_YORDAM = { uz: "Dalil 10-darsdagi hisobotingizda: ro'yxatdan o'tganlar, asosiy harakatni qilganlar, bosh raqam, qaytganlar foizi. Muammo uchun — 11-Modul intervyu va sinov yozuvlari: son ham, kuzatgan narsangiz ham bo'ladi. Dalil topilmasa, uni o'ylab topmang — «Dalil yo'q»ni bosing.", ru: "Довод — в вашем отчёте 10-го урока: зарегистрировавшиеся, сделавшие основное действие, главное число, процент вернувшихся. Для проблемы — записи интервью и тестов 11-го модуля: подойдёт и число, и то, что вы наблюдали. Если довода нет, не выдумывайте — нажмите «Довода нет»." };
+const QOLDIR_QOY = { uz: 'Shunday qoldirsangiz — yana «Dalilni qo\'yish»ni bosing.', ru: "Если оставить так — снова нажмите «Поставить довод»." };
 const MentorVaraq6 = () => <PitchVaraq sarlavha={<MentorSar />} bolaklar={mentorBolaklar(g => {
   if (g.d === undefined) return {};
   const dv = MENTOR_PITCH.davolar[g.d];
@@ -1452,6 +1453,13 @@ const useDalilHolat = () => {
     : opt ? [tr(opt.d.son), tr(MANBA[opt.d.mk]), String(opt.d.qachon || '')] : [];
   return { tanlov, opt, forma, setForma, sorov, xato, setXato, tanla, tozala, ol, kataklar, toliq: kataklar.length === 3 && kataklar.every(x => String(x || '').trim()) };
 };
+// 6, 7-ekran: da'volar saqlanmagan bo'lsa (masalan, qayta yuklashdan keyin) — bo'sh ekran o'rniga yo'l (F-1006-389)
+const DavoYoq = ({ orqaga }) => (
+  <div className="pd-davo-yoq fade-step">
+    <p className="pd-kul">{tr({ uz: "Da'volar hali belgilanmagan — avval pitchingizdagi da'volarni belgilang.", ru: 'Утверждения ещё не отмечены — сначала отметьте утверждения в питче.' })}</p>
+    <QTugma onClick={orqaga}>{tr({ uz: "Da'volarni belgilash", ru: 'Отметить утверждения' })}</QTugma>
+  </div>
+);
 const Screen6 = ({ screen, storedAnswer, answers, onAnswer, onNext, onPrev }) => {
   const { live, isMentor } = useJonli();
   const [p] = useState(pitchOl);
@@ -1487,6 +1495,7 @@ const Screen6 = ({ screen, storedAnswer, answers, onAnswer, onNext, onPrev }) =>
     const hammasi = davolar.every(d => yangi[d.gk]);
     onAnswer(screen, { stage: 'mustaqil', screenIdx: screen, practice: 'Dalillar', saqlandi: hammasi, solved: hammasi, correct: true, picked: true, dalillar: yangi });
     if (hammasi && !yuborRef.current && live && live.mode === 'student') { yuborRef.current = true; live.submitAnswer(PRACTICE_BASE + screen, 'practice', 0, true, 0); }
+    if (hammasi) jonliBelgi(live, ZONA_2, screen, davolar.filter(d => yangi[d.gk] && yangi[d.gk] !== 'yoq').length * 100 + davolar.length); // «Dalil n/N»: n·100 + N
   };
   const qoy = () => {
     const boshqalar = davolar.filter(d => d.gk !== dv.gk).map(d => dalilMatn(dal[d.gk])).filter(Boolean);
@@ -1530,26 +1539,26 @@ const Screen6 = ({ screen, storedAnswer, answers, onAnswer, onNext, onPrev }) =>
   };
   const xulosa = yoqSoni === 0
     ? { uz: "Hamma da'volaringizda dalil bor — manbasi va qachon olingani bilan.", ru: 'Во всех ваших утверждениях есть довод — с источником и тем, когда он получен.' }
-    : { uz: `${dalilBor} ta da'voda dalil bor, ${yoqSoni} tasida yo'q.`, ru: `Довод есть в ${dalilBor} утверждениях, нет — в ${yoqSoni}.` };
+    : { uz: `${dalilBor} ta da'voda dalil bor, ${yoqSoni} tasida yo'q.`, ru: `Утверждений с доводом: ${dalilBor}, без довода: ${yoqSoni}.` };
   let forma;
   if (isMentor) forma = <MentorVaraq6 />;
-  else if (!N) forma = <p className="pd-kul">{tr(S5_XATO.bosh)}</p>;
+  else if (!N) forma = <DavoYoq orqaga={onPrev} />;
   else if (tugadi) forma = <div className="pd-fokus fade-step">{oquvchiVaraq()}<QXulosa>{tr(xulosa)}</QXulosa></div>;
   else forma = <PitchDalil manba={oquvchiManba(dh.tanlov, dh.opt, dh.forma)} varaq={karta} />;
   return (
     <Stage eyebrow={tr({ uz: 'Mustaqil ish · dalil', ru: 'Самостоятельная работа · довод' })} screen={screen} scrollSignal={i * 10 + hal} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!tugadi && !isMentor} label={tugadi || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: "Dalil qo'ying", ru: 'Поставьте доводы' })} (${hal}/${N})`} onClick={onNext} /></>}>
       <QMustaqil
         sarlavha={tr({ uz: <>Har da'vongizga <A>dalil qo'ying.</A></>, ru: <>Поставьте <A>довод к каждому утверждению.</A></> })}
-        mentor={<Mentor>{tr({ uz: "Dalilni 10-darsdagi hisobotingizdan tanlang; dalil topilmasa — «Dalil yo'q»ni bosing.", ru: 'Выберите довод из отчёта 10-го урока; если довода нет — нажмите «Dalil yo\'q».' })}</Mentor>}
-        qadamlar={!isMentor && N > 0 && <><JonliQator matn={{ uz: "Yakkama-yakkada da'vo va dalillaringizni Mentorga o'z ekraningizda ko'rsatasiz.", ru: 'На разговоре один на один вы покажете Ментору свои утверждения и доводы на своём экране.' }} />{!tugadi && tepaChiziq}</>}
+        mentor={<Mentor>{tr({ uz: "Dalilni 10-darsdagi hisobotingizdan tanlang; dalil topilmasa — «Dalil yo'q»ni bosing.", ru: "Выберите довод из отчёта 10-го урока; если довода нет — нажмите «Довода нет»." })}</Mentor>}
+        qadamlar={!isMentor && N > 0 && <><JonliQator matn={{ uz: "Yakkama-yakkada da'vo va dalillaringizni Mentorga o'z ekraningizda ko'rsatasiz.", ru: "На встрече один на один вы покажете Ментору свои утверждения и доводы на своём экране." }} />{!tugadi && tepaChiziq}</>}
         forma={forma}
         yordam={!tugadi && yordam && <div className="pd-yordam-q fade-step"><span>{tr(S6_YORDAM)}</span></div>}
       >
-        <Ustoz matn={[{ uz: "Yakkama-yakka shu ekrandan keyin boshlanadi (A-8): o'quvchi ekranini ko'rsatadi; har o'quvchida bitta eng muhim da'vo, uning dalili va bitta dalilsiz gap — ≈ 2–3 daqiqa.", ru: 'Разговор один на один начинается после этого экрана: ученик показывает свой экран; у каждого одно самое важное утверждение, его довод и одна фраза без довода — ≈ 2–3 минуты.' },
+        <Ustoz matn={[{ uz: "Yakkama-yakka shu ekrandan keyin boshlanadi (A-8): o'quvchi ekranini ko'rsatadi; har o'quvchida bitta eng muhim da'vo, uning dalili va bitta dalilsiz gap — ≈ 2–3 daqiqa.", ru: "Встреча один на один начинается после этого экрана: ученик показывает свой экран; у каждого одно самое важное утверждение, его довод и одна фраза без довода — ≈ 2–3 минуты." },
           { uz: "Uch savol: «Bu son qayerdan va nimani sanaydi?» (ro'yxatdan o'tganlar soni bo'lsa — «sinfdoshlar alohida aytilganmi?») · «Bu dalil aynan shu gapni ko'rsatadimi?» · «Qaysi da'vo dalilsiz — qayta yozasizmi yoki olib tashlaysizmi?».", ru: 'Три вопроса: «Откуда это число и что оно считает?» (если это число зарегистрировавшихся — «одноклассники названы отдельно?») · «Этот довод показывает именно эту фразу?» · «Какое утверждение без довода — перепишете или уберёте?».' },
-          { uz: "Manba va gap mosligini dars tekshirmaydi (faqat Umami uchun yumshoq ogohlantirish bor) — buni siz ikkinchi savol bilan ko'rasiz: Umami tashrifi «ilovani ishlatyapti» da'vosiga qo'yilgan bo'lsa — «bu son nimani sanaydi?».", ru: 'Соответствие источника и фразы урок не проверяет (есть только мягкое предупреждение для Umami) — это вы видите вторым вопросом: если визит Umami поставлен к утверждению «пользуются приложением» — «что считает это число?».' },
+          { uz: "Manba va gap mosligini dars tekshirmaydi (faqat Umami uchun yumshoq ogohlantirish bor) — buni siz ikkinchi savol bilan ko'rasiz: Umami tashrifi «ilovani ishlatyapti» da'vosiga qo'yilgan bo'lsa — «bu son nimani sanaydi?».", ru: "Соответствие источника и фразы урок не проверяет (есть только мягкое предупреждение для Umami) — это вы видите вторым вопросом: если посещение из Umami поставлено к утверждению «пользуются приложением» — «что считает это число?»." },
           { uz: "«Dalil yo'q» — xato emas: sonni o'ylab topishdan yaxshiroq. Namuna va tekshiruv akkauntlari sanoqqa kirmagan bo'lishi kerak (10-dars).", ru: '«Довода нет» — не ошибка: это лучше, чем выдумать число. Образцы и проверочные аккаунты не должны входить в подсчёт (10-й урок).' }]} />
-        <MentorPracticeStats live={live} screen={screen} />
+        <MentorPracticeStats live={live} screen={screen} sanoq={[{ y: { uz: "Dalil qo'yganlar", ru: 'Поставили доводы' }, zona: PRACTICE_BASE }]} chip={{ zona: ZONA_2, t: (r) => `${tr({ uz: 'Dalil', ru: 'Довод' })} ${Math.floor(r.picked / 100)}/${r.picked % 100}`, toliq: (r) => Math.floor(r.picked / 100) === r.picked % 100 }} />
       </QMustaqil>
       {qatlam}
     </Stage>
@@ -1735,7 +1744,7 @@ const Screen7 = ({ screen, storedAnswer, answers, onAnswer, onNext, onPrev }) =>
       <PitchVaraq yondi={yondi} sarlavha={<span className="pd-sar-alm" key={sar}>{sar}</span>}
         tepa={<div className="pd-korik">
           <span className="pd-kul">{tr({ uz: "Belgilanmagan gaplarni ko'zdan kechiring: tekshirsa bo'ladigani qolmadimi?", ru: 'Просмотрите неотмеченные фразы: не осталось ли тех, что можно проверить?' })}</span>
-          <button type="button" className={cx('pd-chek', korib && 'on', !korib && 'pd-halqa')} aria-pressed={korib} onClick={() => { setKorib(k => !k); setXato(null); }}><i aria-hidden="true">{korib ? '✓' : ''}</i>{tr({ uz: "Ko'rib chiqdim", ru: 'Я просмотрел(а)' })}</button>
+          <button type="button" className={cx('pd-chek', korib && 'on', !korib && 'pd-halqa')} aria-pressed={korib} onClick={() => { setKorib(k => !k); setXato(null); }}><i aria-hidden="true">{korib ? '✓' : ''}</i>{tr({ uz: "Ko'rib chiqdim", ru: "Просмотрено" })}</button>
         </div>}
         bolaklar={BOLAK.map(b => ({
           id: b.id,
@@ -1764,7 +1773,7 @@ const Screen7 = ({ screen, storedAnswer, answers, onAnswer, onNext, onPrev }) =>
   };
   let forma;
   if (isMentor) forma = <MentorVaraq7 />;
-  else if (!davolar.length) forma = <p className="pd-kul">{tr(S5_XATO.bosh)}</p>;
+  else if (!davolar.length) forma = <DavoYoq orqaga={() => { onPrev(); onPrev(); }} />;
   else if (!hammasi) forma = karta;
   else forma = <div className="pd-fokus fade-step">
     {N === 0 && !saqlandi && <p className="pd-kul">{tr({ uz: "Dalilsiz da'vo yo'q — pitchingizni ko'rib, saqlang.", ru: 'Утверждений без довода нет — просмотрите питч и сохраните.' })}</p>}
@@ -1785,9 +1794,9 @@ const Screen7 = ({ screen, storedAnswer, answers, onAnswer, onNext, onPrev }) =>
           <JonliQator matn={{ uz: "Mentor chaqirganda pitchingizni ko'rsating; o'zgarsa — ✎ bilan o'zgartiring.", ru: 'Когда Ментор позовёт, покажите питч; если что-то изменится — исправьте через ✎.' }} />
         </>}
       >
-        <Ustoz matn={[{ uz: "Olib tashlash — mag'lubiyat emas: dalilsiz gap zal savolida qoqiladi. Qayta yozilgan gap eski da'voni isbotlamaydi — odamlar nima qilganini aytadi. Kelajak soni maqsad bo'lsa — maqsad deb aytiladi; «bo'ladi», «yetamiz» degan va'da esa dalil talab qiladi. Yakkama-yakkadan keyin o'quvchi ✎ bilan o'zgartiradi va «Yangilash»ni bosadi.", ru: 'Убрать — не поражение: фраза без довода споткнётся на вопросе зала. Переписанная фраза не доказывает старое утверждение — она говорит, что сделали люди. Если число из будущего — цель, его называют целью; обещание «будет», «дойдём» требует довода. После разговора один на один ученик исправляет через ✎ и нажимает «Yangilash».' },
+        <Ustoz matn={[{ uz: "Olib tashlash — mag'lubiyat emas: dalilsiz gap zal savolida qoqiladi. Qayta yozilgan gap eski da'voni isbotlamaydi — odamlar nima qilganini aytadi. Kelajak soni maqsad bo'lsa — maqsad deb aytiladi; «bo'ladi», «yetamiz» degan va'da esa dalil talab qiladi. Yakkama-yakkadan keyin o'quvchi ✎ bilan o'zgartiradi va «Yangilash»ni bosadi.", ru: "Убрать — не поражение: фраза без довода споткнётся на вопросе зала. Переписанная фраза не доказывает старое утверждение — она говорит, что сделали люди. Если число из будущего — цель, его называют целью; обещание «будет», «дойдём» требует довода. После встречи один на один ученик исправляет через ✎ и нажимает «Обновить»." },
           { uz: "Tez tugatgan o'quvchi Mentor chaqirguncha tuzatilgan pitchni sherigiga o'qib beradi; sherik bitta da'voni tanlab so'raydi: «Bu son qayerdan?»", ru: 'Кто закончил быстро, пока Ментор не позвал, читает исправленный питч соседу; сосед выбирает одно утверждение и спрашивает: «Откуда это число?»' }]} />
-        <MentorPracticeStats live={live} screen={screen} />
+        <MentorPracticeStats live={live} screen={screen} sanoq={[{ y: { uz: 'Tuzatilgan pitchni saqlaganlar', ru: 'Сохранили исправленный питч' }, zona: PRACTICE_BASE }]} />
       </QMustaqil>
       {qatlam}
     </Stage>
@@ -1905,14 +1914,14 @@ const QUIZ_BANK = [
   { q: { uz: 'Dalil nima?', ru: 'Что такое довод?' }, opts: [{ uz: "Pitchdagi eng ishonchli ko'ringan gap", ru: 'Самая убедительная на вид фраза питча' }, { uz: "Da'voni ko'rsatadigan son yoki yozuv", ru: 'Число или запись, которые показывают утверждение' }, { uz: 'Zal pitchdan keyin beradigan savol', ru: 'Вопрос, который зал задаст после питча' }, { uz: 'Pitch oxiridagi keyingi qadam gapi', ru: 'Фраза о следующем шаге в конце питча' }], correct: 1 },
   { q: { uz: 'Dalildagi manba nimani aytadi?', ru: 'Что говорит источник в доводе?' }, opts: [{ uz: 'Son qanchalik katta ekanini', ru: 'Насколько большое число' }, { uz: 'Son qaysi kuni sanalganini', ru: 'В какой день посчитано число' }, { uz: 'Bu son qayerdan olinganini', ru: 'Откуда взято это число' }, { uz: 'Sonni kim aytib berganini', ru: 'Кто назвал это число' }], correct: 2 },
   { q: { uz: "Mentor misolida «Ilovani odamlar ishlatyapti» dalili qayerdan?", ru: 'Откуда в примере Ментора довод «Приложением пользуются люди»?' }, opts: [{ uz: 'Umami: lendingga kirganlar soni', ru: 'Umami: число зашедших на лендинг' }, { uz: 'Intervyu yozuvlari, 11-Modul', ru: 'Записи интервью, 11-й модуль' }, { uz: "Sinfdoshlarning og'zaki gapi", ru: 'Устные слова одноклассников' }, { uz: "Database: ro'yxatdan o'tganlar", ru: 'Database: зарегистрировавшиеся' }], correct: 3 },
-  { q: { uz: 'Umami lendingda nimani sanaydi?', ru: 'Что считает Umami на лендинге?' }, opts: [{ uz: 'Tashrif va tugma bosilishini', ru: 'Визиты и нажатия кнопки' }, { uz: "Ro'yxatdan o'tgan akkauntlarni", ru: 'Зарегистрированные аккаунты' }, { uz: "O'yinga qo'shilgan odamlarni", ru: 'Людей, присоединившихся к игре' }, { uz: 'Ilovani ochgan qurilmalarni', ru: 'Устройства, открывшие приложение' }], correct: 0 },
+  { q: { uz: 'Umami lendingda nimani sanaydi?', ru: 'Что считает Umami на лендинге?' }, opts: [{ uz: 'Tashrif va tugma bosilishini', ru: "Посещения и нажатия кнопки" }, { uz: "Ro'yxatdan o'tgan akkauntlarni", ru: 'Зарегистрированные аккаунты' }, { uz: "O'yinga qo'shilgan odamlarni", ru: 'Людей, присоединившихся к игре' }, { uz: 'Ilovani ochgan qurilmalarni', ru: 'Устройства, открывшие приложение' }], correct: 0 },
   { q: { uz: "Ro'yxatdan o'tganlar soni bir haftada o'sdi. Pitchda qaysi sonni aytasiz?", ru: 'Число зарегистрировавшихся выросло за неделю. Какое число назовёте в питче?' }, opts: [{ uz: 'Birinchi kungi sonni — u aniqroq', ru: 'Число первого дня — оно точнее' }, { uz: 'Eng yangi sonni — sanasi bilan', ru: 'Самое новое число — с датой' }, { uz: "Ikki sonning o'rtachasini aytasiz", ru: 'Назовёте среднее двух чисел' }, { uz: "Ikki sonni qo'shib, jamini aytasiz", ru: 'Сложите два числа и назовёте сумму' }], correct: 1 },
   { q: { uz: "Mentor misolida «O'yinchilarga ilova yoqdi» bilan nima qilindi?", ru: 'Что сделали в примере Ментора с фразой «Игрокам понравилось приложение»?' }, opts: [{ uz: "O'zgarishsiz pitchda qoldirildi", ru: 'Оставили в питче без изменений' }, { uz: "Keyingi qadam bo'lagiga ko'chdi", ru: 'Перенесли в часть «Следующий шаг»' }, { uz: 'Database soni bilan qayta yozildi', ru: 'Переписали с числом из Database' }, { uz: "Sinfdoshlardan so'rab tasdiqlandi", ru: 'Подтвердили, спросив одноклассников' }], correct: 2 },
-  { q: { uz: "Mentor «Tez orada 50 ga yetamiz»ni nega olib tashladi?", ru: 'Почему Ментор убрал «Скоро дойдём до 50»?' }, opts: [{ uz: 'Maqsad sinf uchun juda katta edi', ru: 'Цель была слишком большой для класса' }, { uz: 'Zal kelajak haqida gap eshitmaydi', ru: 'Зал не слушает о будущем' }, { uz: 'Sinfdoshlar alohida aytilmagan edi', ru: 'Одноклассники не были названы отдельно' }, { uz: "Dalili yo'q edi: bu faqat va'da", ru: 'Довода не было: это только обещание' }], correct: 3 },
+  { q: { uz: "Mentor «Tez orada 50 ga yetamiz»ni nega olib tashladi?", ru: 'Почему Ментор убрал «Скоро дойдём до 50»?' }, opts: [{ uz: 'Maqsad sinf uchun juda katta edi', ru: 'Цель была слишком большой для класса' }, { uz: 'Zal kelajak haqida gap eshitmaydi', ru: "Зал не слушает фразы о будущем" }, { uz: 'Sinfdoshlar alohida aytilmagan edi', ru: 'Одноклассники не были названы отдельно' }, { uz: "Dalili yo'q edi: bu faqat va'da", ru: 'Довода не было: это только обещание' }], correct: 3 },
   { q: { uz: 'Sinfdoshlar sanoqqa kirsa, dalilda qanday aytiladi?', ru: 'Если одноклассники вошли в подсчёт, как это сказать в доводе?' }, opts: [{ uz: 'Alohida: nechtasi sinfdosh ekani', ru: 'Отдельно: сколько из них одноклассники' }, { uz: 'Aytilmaydi: ular ham foydalanuvchi', ru: 'Не говорят: они тоже пользователи' }, { uz: 'Sanoqdan butunlay olib tashlanadi', ru: 'Полностью убирают из подсчёта' }, { uz: 'Faqat sinfdoshlar soni aytiladi', ru: 'Называют только число одноклассников' }], correct: 0 },
-  { q: { uz: "Qayta yozilgan da'voda nima bo'ladi?", ru: 'Что есть в переписанном утверждении?' }, opts: [{ uz: "Ko'proq chiroyli sifat so'zlari", ru: 'Больше красивых прилагательных' }, { uz: "Dalildagi son gapning o'zida", ru: 'Число из довода в самой фразе' }, { uz: 'Zal savoliga oldindan javob', ru: 'Заранее ответ на вопрос зала' }, { uz: 'Avvalgi gapning qisqa shakli', ru: 'Короткая форма прежней фразы' }], correct: 1 },
+  { q: { uz: "Qayta yozilgan da'voda nima bo'ladi?", ru: 'Что есть в переписанном утверждении?' }, opts: [{ uz: "Ko'proq chiroyli sifat so'zlari", ru: 'Больше красивых прилагательных' }, { uz: "Dalildagi son gapning o'zida", ru: 'Число из довода в самой фразе' }, { uz: 'Zal savoliga oldindan javob', ru: "Ответ на вопрос зала заранее" }, { uz: 'Avvalgi gapning qisqa shakli', ru: 'Короткая форма прежней фразы' }], correct: 1 },
   { q: { uz: "Intervyu yozuvlari qaysi da'voga dalil bo'ladi?", ru: 'К какому утверждению записи интервью будут доводом?' }, opts: [{ uz: 'Ilovani nechta odam ishlatishiga', ru: 'Сколько людей пользуется приложением' }, { uz: 'Lendingga nechta odam kirganiga', ru: 'Сколько людей зашло на лендинг' }, { uz: 'Odamlar muammodan qiynalganiga', ru: 'Что людям трудно из-за проблемы' }, { uz: "Bu hafta nechta o'yin to'lganiga", ru: 'Сколько игр заполнилось на этой неделе' }], correct: 2 },
-  { q: { uz: "Yakkama-yakkada Mentor bilan nimani ko'rasiz?", ru: 'Что вы посмотрите с Ментором один на один?' }, opts: [{ uz: 'Arena natijangiz va ballaringizni', ru: 'Результат арены и ваши баллы' }, { uz: 'Kodingizning har bir qatorini', ru: 'Каждую строку вашего кода' }, { uz: 'Lending sahifangizning dizaynini', ru: 'Дизайн вашего лендинга' }, { uz: "Da'vo, dalil va qarorlaringizni", ru: 'Утверждения, доводы и ваши решения' }], correct: 3 }
+  { q: { uz: "Yakkama-yakkada Mentor bilan nimani ko'rasiz?", ru: "Что вы посмотрите с Ментором на встрече один на один?" }, opts: [{ uz: 'Arena natijangiz va ballaringizni', ru: 'Результат арены и ваши баллы' }, { uz: 'Kodingizning har bir qatorini', ru: 'Каждую строку вашего кода' }, { uz: 'Lending sahifangizning dizaynini', ru: 'Дизайн вашего лендинга' }, { uz: "Da'vo, dalil va qarorlaringizni", ru: 'Утверждения, доводы и ваши решения' }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2422,29 +2431,49 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
 // ===== 🛠️ JONLI PRAKTIKA (reusable) — o'quvchi VS Code'da bajaradi, ustoz kuzatadi =====
 // signal zonasi: <100 test · 100+ arena · 500+ praktika (to'qnashmaydi).
 const PRACTICE_BASE = 500;
+// Qo'shimcha Mentor statistikasi (MD «Mentor statistikasi», F-1006-389; 11-Modul MentorSanoq naqshi).
+// Server har zonada o'quvchining BIRINCHI signalini saqlaydi — shuning uchun har holat o'z zonasida: 500 — bajardi (yuqorida), 600 — ekranga xos holat.
+const ZONA_2 = 600;
+const _belgilar = new Set();
+const jonliBelgi = (live, zona, screen, picked = 0) => {
+  if (!live || live.mode !== 'student') return;
+  const k = zona + screen;
+  if (_belgilar.has(k)) return;
+  _belgilar.add(k);
+  live.submitAnswer(k, 'mstat', picked, true, 0);
+};
 // Mentor ko'rinishi sloti — "kim bajardi" jonli chiplar paneli. JONLI roli to'ldiradi.
-const MentorPracticeStats = ({ live, screen }) => {
-  const [data, setData] = useState({ players: null, doneIds: new Set() });
+// sanoq — [{ y: { uz, ru }, zona, shart?, qiymat? }] yorliqli sonlar · chip — { zona, t: (qator) => matn, toliq?: (qator) => bool } o'quvchi yonidagi qisqa son
+const MentorPracticeStats = ({ live, screen, sanoq, chip }) => {
+  const zonalar = [...new Set([...(sanoq || []).map(s => s.zona), ...(chip ? [chip.zona] : [])].filter(z => z !== PRACTICE_BASE))];
+  const [data, setData] = useState({ players: null, rows: [], z: {} });
   useEffect(() => {
     if (!live || live.mode !== 'mentor' || !live.pin) return;
     let on = true, t = null;
     const tick = async () => {
       try {
         // Praktika signali 500+ zonasida (test <100, arena 100+ bilan to'qnashmaydi)
-        const [players, rows] = await Promise.all([livePlayers(live.pin), liveAnswers(live.pin, PRACTICE_BASE + screen)]);
-        if (on) setData({ players, doneIds: new Set(rows.map(r => r.player_id)) });
+        const [players, rows, ...qolgan] = await Promise.all([livePlayers(live.pin), liveAnswers(live.pin, PRACTICE_BASE + screen), ...zonalar.map(z => liveAnswers(live.pin, z + screen))]);
+        if (on) setData({ players, rows, z: Object.fromEntries(zonalar.map((z, i) => [z, qolgan[i]])) });
       } catch {}
       if (on) t = setTimeout(tick, 3000);
     };
     tick();
     return () => { on = false; clearTimeout(t); };
-  }, [live && live.pin, screen]);
+  }, [live && live.pin, screen]); // eslint-disable-line
   if (!live || live.mode !== 'mentor') return null;
   const players = data.players || [];
-  const doers = players.filter(p => data.doneIds.has(p.id));
-  const waiting = players.filter(p => !data.doneIds.has(p.id));
+  const qatorlar = (z) => (z === PRACTICE_BASE ? data.rows : data.z[z] || []);
+  const doneIds = new Set(data.rows.map(r => r.player_id));
+  const sonOl = (s) => new Set(qatorlar(s.zona).filter(r => !s.shart || s.shart(r)).map(r => r.player_id)).size;
+  const chipM = chip ? new Map(qatorlar(chip.zona).map(r => [r.player_id, r])) : null;
+  const chipT = (p) => { const r = chipM && chipM.get(p.id); return r ? ` · ${chip.t(r)}` : ''; };
+  const toliq = (p) => { const r = chipM && chipM.get(p.id); return !!(r && chip.toliq && chip.toliq(r)); };
+  const doers = players.filter(p => doneIds.has(p.id));
+  const waiting = players.filter(p => !doneIds.has(p.id));
   return (
     <div className="lp-mstats fade-up">
+      {sanoq && sanoq.length > 0 && <div className="lp-msanoq">{sanoq.map((s, i) => <div key={i} className="lp-msanoq-q"><b>{data.players === null ? '—' : s.qiymat ? s.qiymat(qatorlar(s.zona)) : `${sonOl(s)} / ${players.length}`}</b><span>{tr(s.y)}</span></div>)}</div>}
       <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Kim bajardi', ru: 'Кто выполнил' })} — {doers.length}/{players.length}</div>
       {data.players === null ? (
         <p className="small" style={{ color: T.ink2, margin: 0, fontStyle: 'italic' }}>{tr({ uz: 'Yuklanmoqda…', ru: 'Загружается…' })}</p>
@@ -2452,8 +2481,8 @@ const MentorPracticeStats = ({ live, screen }) => {
         <p className="small" style={{ color: T.ink2, margin: 0, fontStyle: 'italic' }}>{tr({ uz: "Hali hech kim qo'shilmagan.", ru: 'Пока никто не присоединился.' })}</p>
       ) : (
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-          {doers.map(p => <span key={p.id} className="mstats-wait-chip" style={{ background: T.okFon, color: T.ok }}>✓ {p.nickname}</span>)}
-          {waiting.map(p => <span key={p.id} className="mstats-wait-chip" style={{ opacity: 0.6 }}>{p.nickname}</span>)}
+          {doers.map(p => <span key={p.id} className={`mstats-wait-chip${toliq(p) ? ' toliq' : ''}`} style={{ background: T.okFon, color: T.ok }}>✓ {p.nickname}{chipT(p)}</span>)}
+          {waiting.map(p => <span key={p.id} className="mstats-wait-chip" style={{ opacity: 0.6 }}>{p.nickname}{chipT(p)}</span>)}
         </div>
       )}
     </div>
@@ -2467,13 +2496,13 @@ const KARTALAR = [
   { front: { uz: 'Manba nima?', ru: 'Что такое источник?' }, back: { uz: 'Dalil qayerdan olingani', ru: 'Откуда взят довод' }, note: { uz: 'Database, sanoq sahifasi, Umami, intervyu yoki sinov yozuvlari', ru: 'Database, страница подсчёта, Umami, записи интервью или тестов' } },
   { front: { uz: 'Dalilda nega qachon sanalgani yoziladi?', ru: 'Зачем в доводе пишут, когда посчитано?' }, back: { uz: "Son vaqt o'tib o'zgaradi — zal qaysi kungi son ekanini bilishi uchun", ru: 'Число со временем меняется — чтобы зал знал, за какой день это число' }, note: { uz: 'Mentor misolida ishga tushirish kuni 20 edi, bir hafta keyin — 38', ru: 'В примере Ментора в день запуска было 20, через неделю — 38' } },
   { front: { uz: "«Ko'p odam ishlatyapti» degan gap dalil bo'ladimi?", ru: 'Будет ли доводом фраза «Пользуется много людей»?' }, back: { uz: "Yo'q: unda aniq son yo'q", ru: 'Нет: в ней нет точного числа' }, note: { uz: 'Necha kishi — shuni yozing', ru: 'Сколько человек — напишите это' } },
-  { front: { uz: 'Umami lendingda nimani sanaydi?', ru: 'Что считает Umami на лендинге?' }, back: { uz: 'Tashrif va tugma bosilishini', ru: 'Визиты и нажатия кнопки' }, note: { uz: "Ilovadagi ro'yxatdan o'tganlar — Database'da", ru: 'Зарегистрировавшиеся в приложении — в Database' } },
+  { front: { uz: 'Umami lendingda nimani sanaydi?', ru: 'Что считает Umami на лендинге?' }, back: { uz: 'Tashrif va tugma bosilishini', ru: "Посещения и нажатия кнопки" }, note: { uz: "Ilovadagi ro'yxatdan o'tganlar — Database'da", ru: 'Зарегистрировавшиеся в приложении — в Database' } },
   { front: { uz: "Dalilsiz da'vo bilan nima qilinadi?", ru: 'Что делают с утверждением без довода?' }, back: { uz: 'Qayta yoziladi yoki olib tashlanadi', ru: 'Переписывают или убирают' }, note: { uz: "Qayta yozilgan gap dalil ko'rsatadigan narsani aytadi", ru: 'Переписанная фраза говорит то, что показывает довод' } },
   { front: { uz: "Mentor «O'yinchilarga ilova yoqdi» gapini qanday qayta yozdi?", ru: 'Как Ментор переписал фразу «Игрокам понравилось приложение»?' }, back: { uz: '«Birinchi uch kunda ilovani ochgan 46 qurilmadan 17 tasi keyingi ikki kunda yana ochdi»', ru: '«Из 46 устройств, открывших приложение в первые три дня, 17 снова открыли его в следующие два дня»' }, note: { uz: "Bu gap «yoqdi»ni isbotlamaydi — qurilmalar nima qilganini aytadi", ru: 'Эта фраза не доказывает «понравилось» — она говорит, что сделали устройства' } },
   { front: { uz: "«Tez orada 50 ga yetamiz» gapi bilan nima bo'ldi?", ru: 'Что стало с фразой «Скоро дойдём до 50»?' }, back: { uz: "Olib tashlandi: bu dalilsiz va'da", ru: 'Убрали: это обещание без довода' }, note: { uz: "O'rniga Keyingi qadam bo'lagida — zaxira rejadagi ish", ru: 'Вместо неё в части «Следующий шаг» — дело из запасного плана' } },
   { front: { uz: 'Sinfdoshlar dalilda qanday aytiladi?', ru: 'Как в доводе называют одноклассников?' }, back: { uz: 'Sanaladi, lekin alohida aytiladi', ru: 'Их считают, но называют отдельно' }, note: { uz: 'Mentor misolida: 38 kishi, 11 tasi — sinfdosh', ru: 'В примере Ментора: 38 человек, 11 — одноклассники' } },
   { front: { uz: 'Tuzatilgan pitch nima?', ru: 'Что такое исправленный питч?' }, back: { uz: "Har da'vosida dalil bor yoki dalilsiz da'vosi olib tashlangan pitch", ru: 'Питч, в котором у каждого утверждения есть довод или утверждения без довода убраны' }, note: { uz: 'Bu — qoralama: uni yana tuzatishingiz mumkin', ru: 'Это черновик: его можно исправлять дальше' } },
-  { front: { uz: "Yakkama-yakkada Mentor nimani ko'radi?", ru: 'Что Ментор смотрит на разговоре один на один?' }, back: { uz: "Eng muhim da'vongiz, uning dalili va bitta qaroringizni", ru: 'Ваше самое важное утверждение, его довод и одно ваше решение' }, note: { uz: "Mentor «Bu dalil aynan shu gapni ko'rsatadimi?» deb so'raydi", ru: 'Ментор спрашивает: «Этот довод показывает именно эту фразу?»' } }
+  { front: { uz: "Yakkama-yakkada Mentor nimani ko'radi?", ru: "Что Ментор смотрит на встрече один на один?" }, back: { uz: "Eng muhim da'vongiz, uning dalili va bitta qaroringizni", ru: 'Ваше самое важное утверждение, его довод и одно ваше решение' }, note: { uz: "Mentor «Bu dalil aynan shu gapni ko'rsatadimi?» deb so'raydi", ru: 'Ментор спрашивает: «Этот довод показывает именно эту фразу?»' } }
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2500,7 +2529,7 @@ const HW_KARTA = [
 ];
 const HwCard = ({ keyingi, uchinchi }) => {
   const bandlar = [
-    { uz: "Yakkama-yakkada Mentor so'ragan da'voni tuzating: dalil qo'ying, qayta yozing yoki olib tashlang.", ru: 'Исправьте утверждение, о котором спросил Ментор: поставьте довод, перепишите или уберите.' },
+    { uz: "Yakkama-yakkada Mentor so'ragan da'voni tuzating: dalil qo'ying, qayta yozing yoki olib tashlang.", ru: "Исправьте утверждение, о котором Ментор спросил на встрече: поставьте довод, перепишите или уберите." },
     { uz: "Ro'yxatdan o'tganlar va asosiy harakatni qilganlarni Neon'da 10-darsdagi SQL bilan qayta sanang va bugungi sana bilan yozib qo'ying.", ru: 'Пересчитайте в Neon зарегистрировавшихся и сделавших основное действие тем же SQL, что на 10-м уроке, и запишите с сегодняшней датой.' },
     uchinchi && { uz: `Darsda qolgan qismni tugating: ${uchinchi.uz}.`, ru: `Доделайте то, что осталось с урока: ${uchinchi.ru}.` }
   ].filter(Boolean);
@@ -2552,11 +2581,11 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     dalil: { uz: <>Dalillar qo'yildi — <A>dalilsiz da'volar qoldi.</A></>, ru: <>Доводы поставлены — <A>остались утверждения без довода.</A></> },
     saqlash: { uz: <>Dalillar qo'yildi — <A>tuzatilgan pitchni saqlash qoldi.</A></>, ru: <>Доводы поставлены — <A>осталось сохранить исправленный питч.</A></> },
     davo: { uz: <>Da'volar topildi — <A>dalil qo'yish qoldi.</A></>, ru: <>Утверждения найдены — <A>осталось поставить доводы.</A></> },
-    yoq: { uz: <>Pitch ochildi — <A>da'volarni uyda belgilang.</A></>, ru: <>Питч открыт — <A>отметьте утверждения дома.</A></> }
+    yoq: { uz: <>Da'volar hali belgilanmagan — <A>uyda belgilang.</A></>, ru: <>Утверждения ещё не отмечены — <A>отметьте их дома.</A></> } // E 54 (F-1006-389)
   };
   const UCHINCHI = {
     dalil: { uz: "dalilsiz da'volarni qayta yozing yoki olib tashlang", ru: 'перепишите или уберите утверждения без довода' },
-    saqlash: null,
+    saqlash: { uz: 'tuzatilgan pitchni saqlang', ru: 'сохраните исправленный питч' },
     davo: { uz: "da'volaringizga dalil qo'ying", ru: 'поставьте доводы к утверждениям' },
     yoq: { uz: "pitchingizdagi da'volarni belgilang", ru: 'отметьте утверждения в питче' }
   };
@@ -2731,6 +2760,7 @@ export default function PmPitchReviewLesson({ lang: langProp, onFinished, liveTo
         .q-xulosa .pd-x-iz { display: block; margin-top: 7px; padding-top: 7px; border-top: 1px solid ${fon(T.ok, 0.18)}; font-size: 13px; line-height: 1.45; color: ${T.ink2}; }
         .pd-ustoz { display: flex; flex-direction: column; gap: 4px; margin-top: 10px; padding: 10px 12px; border-radius: 12px; border: 1px dashed ${T.line}; background: ${T.paper}; font-size: 13px; line-height: 1.5; color: ${T.ink2}; }
         .pd-ustoz b { color: ${T.ink}; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .pd-davo-yoq { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
         .pd-kul, p.pd-kul { font-size: 12.5px; line-height: 1.5; color: ${T.ink2}; }
         .pd-ogoh, p.pd-ogoh { font-size: 12.5px; line-height: 1.45; font-weight: 700; color: ${SARIQ}; }
         /* Sahna: chapda manba oynasi (o'lchami barqaror), o'ngda varaq; toliq — varaq butun enga */
@@ -3022,6 +3052,10 @@ export default function PmPitchReviewLesson({ lang: langProp, onFinished, liveTo
         @keyframes lp-done-pop { 0% { transform: scale(1); } 32% { transform: scale(1.05) translateY(-2px); } 60% { transform: scale(0.98); } 100% { transform: scale(1); } }
         @media (prefers-reduced-motion: reduce) { .lp-step.on .lp-check, .lp-done-btn.is-done { animation: none !important; } }
         .lp-mstats { background: ${T.accentSoft}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 6px; }
+        .lp-msanoq { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+        .lp-msanoq-q { display: flex; align-items: baseline; gap: 6px; padding: 6px 10px; border-radius: 10px; background: ${T.paper}; border: 1px solid ${T.line}; font-size: 12.5px; color: ${T.ink2}; }
+        .lp-msanoq-q b { font-size: 15px; font-weight: 800; color: ${T.ink}; font-variant-numeric: tabular-nums; }
+        .mstats-wait-chip.toliq { box-shadow: inset 0 0 0 1.5px ${T.ok}; font-weight: 800; }
 
         /* === 🃏 FLASHCARDS — qolipda: QKartochka (DE-204) === */
 

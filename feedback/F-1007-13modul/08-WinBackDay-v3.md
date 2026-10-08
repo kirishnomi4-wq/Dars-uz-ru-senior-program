@@ -12,7 +12,7 @@ odamlar — rol va tartib raqami bilan («1-o'yinchi»), chizilgan ko'rinishi bo
 Fidbek: qator yoniga `>> …` yozing. Tasdiqlangach (GATE M) dars shu holatda quriladi — `.jsx` ga hozir tegilmaydi. ⚠️ Testlarda to'g'ri javob O'RNI (shu MD dagi ✔) qurilgandan keyin o'zgarmaydi.
 Testlar: 4-ekran **C** · 7-ekran **B** · final tartib-mashqi yo'q (loyiha kuni, 172) · arena A·B·C·D ×3.
 Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2 ≈ 6 · Amaliyot 1 ≈ 24 · 4 ≈ 2 · 5 ≈ 6 · Amaliyot 2 ≈ 19 · 7 ≈ 2 · Amaliyot 3 ≈ 17 · podium, kartochkalar, yakun, arena ≈ 9 — jami ≈ 90.
-⛔ 90 daqiqaga sig'ishi — «qur» pilotida taymer bilan o'lchanadi (uch blokda uch marta Render kutishi bor, 3-amaliyot oxirida — o'rnatish fayli navbati); o'lchanmaguncha da'vo emas (tayanch 7.1). Ulgurmagan o'quvchi yo'li — A-bo'lim 10-band.
+⛔ 90 daqiqaga sig'ishi — «qur» pilotida taymer bilan o'lchanadi (uch blokda uch marta Render kutishi bor); o'lchanmaguncha da'vo emas (tayanch 7.1). Ulgurmagan o'quvchi yo'li — A-bo'lim 10-band.
 ⚠️ **Xavfsizlik chegarasi (TAQIQLAR 3, Qaror-0 14) — har ekranga tegadi:** bot faqat o'zi «Start» ni bosgan odamga yozadi · o'chirish bir bosishda · Telegram xabari haftasiga ko'pi bilan ikkita · Telegram chat raqami va Telegram nomi hech qayerda ko'rinmaydi
 (maketda, sahnada, promptda, saqlash kalitida, logda, skrinshotda; Database'da faqat chat raqami, ism va Telegram nomi umuman saqlanmaydi) · `TELEGRAM_BOT_TOKEN` va `TELEGRAM_SIR` qiymati faqat `backend/.env` da va Render sozlamasida · Telegram yosh chegarasi aytilmaydi.
 Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qulayligi (4-dars) faqat xabar sababi sifatida; Telegram xabarida to'lov taklifi yo'q.
@@ -24,7 +24,7 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
 1. **Bitta natija (tayanch 4, 1.8):** dars oxirida o'quvchining o'z repo'sida, o'z mahsuloti va trekida **Telegram xabari ishlaydi, o'chiriladi va sanaladi**: foydalanuvchi ilovada tugmani bosib botda «Start» ni bosadi (bir martalik kod bilan) —
    Backend uning Telegram chat raqamini saqlaydi · Backend biladigan haqiqiy o'zgarishda bot xabar yozadi (haftasiga ko'pi bilan ikkita) · «Telegram xabarlarini o'chirish» bir bosishda · xabardagi havola bilan ochilgani sanoq yozuvi `telegramdan-ochdi` · maxfiylik siyosatida bitta qator.
    Mentor misoli — «Maydon Jamoa», repo `maydon-jamoa`, teg `m13-dars-08-start` (= `m13-dars-07-done`) → `m13-dars-08-done` (tayanch 3, aynan). Uyga vazifa yo'q (loyiha kuni). Yangi saqlash kaliti yo'q (tayanch 8: 8-dars faqat `pm-m9d8-platforma` ni o'qiydi).
-2. **Bugungi asosiy fikr (P-013; yakunda ko'rsatilmaydi — darsning ichki o'qi, SABOQ E 50):** Ilova yopiq bo'lsa ham yangi o'yinni Backend biladi; Telegram xabari uni yetkazadi — lekin faqat botni o'zi boshlagan odamga, haftasiga ko'pi bilan ikkita va bir bosishda o'chiriladigan qilib.
+2. **Bugungi asosiy fikr (P-013; yakunda ko'rsatilmaydi — darsning ichki o'qi, SABOQ E 50):** O'yinchining ilovasi yopiq bo'lsa ham, yangi o'yin yaratilganini Backend biladi; Telegram xabari uni yetkazadi — lekin faqat botni o'zi boshlagan odamga, haftasiga ko'pi bilan ikkita va bir bosishda o'chiriladigan qilib.
 3. **Oldingi darslardan keladigan narsa (aynan):**
    - 7-Modul (kod `5`): bot — @BotFather'da `/newbot`, nom va foydalanuvchi nomi (oxiri «bot»), **token** — botni boshqarish kaliti, `.env` da turadi (`01-BotIntro.md` 6, 16-ekranlar) ·
      «Webhook — yangi xabar kelganda Telegram uni o'zi botning internetdagi manziliga (URL) yuboradi. Buning uchun botga internetda ochiq manzil kerak.» · «Bepul server uxlaydi; webhook xabari uni uyg'otadi.» · kartochka «Bitta tokenni laptop va serverda birga ishlatsa?» — «Ishlamaydi» (`07-BotFullProject.md`).
@@ -41,8 +41,8 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
    - **Mexanika (Mentor misoli; umumiy qolip emas):**
      A1 — **ulanish:** ilovada **«Telegram'da xabar olish»** → Backend bir martalik kod beradi → ilova havolani ochadi `t.me/<bot>?start=<kod>` → odam botda «Start» ni bosadi → Telegram so'rovni Backend'ning webhook manziliga yuboradi (7-Modul naqshi) →
      Backend sarlavhadagi maxfiy kalitni tekshiradi, kodni topadi va `oyinchilar.telegram_chat_id` ni yozadi → bot javobi chatda. Telegram'dan **faqat chat raqami** saqlanadi.
-     A2 — **xabar va haftalik chegara:** odam ilgari qatnashgan **«Doimiy o'yin»** keyingi haftaga e'lon qilinganda — Telegram xabari: «Shanba, 18:00 o'yini yana e'lon qilindi · Mahalla maydoni — {qo'shilganlar} / 10» + havola `?kanal=telegram` bilan
-     (son — xabar yuborilgan paytdagi son, yangi yaratilgan o'yinda u **0**; tayanch 1.8, 9.38). Bir odamga haftasiga ko'pi bilan ikkita; bitta o'yin haqida bir marta; Telegram xabarlarini Backend sanaydi.
+     A2 — **xabar va haftalik chegara:** odam ilgari qatnashgan **«Doimiy o'yin»** keyingi haftaga e'lon qilinganda — Telegram xabari: «Shanba, 18:00 o'yini yana e'lon qilindi · Mahalla maydoni» + havola `?kanal=telegram` bilan
+     (son yozilmaydi — Telegram xabari keyin o'zgarmaydi, son esa eskiradi; joriy sonni havola ko'rsatadi — F-1007-466, tayanch 1.8, 9.38). Bir odamga haftasiga ko'pi bilan ikkita; bitta o'yin haqida bir marta; Telegram xabarlarini Backend sanaydi.
      A3 — **o'chirish, sanoq, siyosat:** **«Telegram xabarlarini o'chirish»** — bir bosishda chat raqami o'chiriladi, xabar to'xtaydi · xabardagi havola bilan ochilganda sanoq yozuvi **`telegramdan-ochdi`** · `lending/maxfiylik.html` ga bitta qator.
    - **Rasmiy faktlar (tayanch 6, 07.10.2026 — aynan; Manbalar):** «Bots can't start conversations with users. A user must either add them to a group or send them a message first.» · `start` parametri — `A-Z`, `a-z`, `0-9`, `_`, `-`, 64 belgigacha ·
      webhook so'roviga `X-Telegram-Bot-Api-Secret-Token` sarlavhasi (setWebhook `secret_token`) · javob `2XY` bo'lmasa, Telegram so'rovni qayta yuboradi · bitta chatga sekundiga bittadan ko'p xabar yo'q.
@@ -50,7 +50,8 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
    - **Xabar yo'li va havola (Mentor misoli):** xabardagi havola — ilovaning **brauzer ko'rinishi** manzili `?kanal=telegram` bilan (web-trekda — sayt manzili). Telefonda havola brauzerda ochiladi: o'rnatilgan APK'ni havoladan ochish uchun alohida sozlash kerak
      (Android App Links — Expo hujjati, Manbalar 5), bu darsda yo'q — O'qituvchi eslatmasida. Brauzer ko'rinishi manzilda `kanal=telegram` ni ko'rsa, `telegramdan-ochdi` yozadi (bitta ochilishga bitta; `ochdi` ham yoziladi — 12-Modul qoidasi).
    - **Halol gaplar:** «Botni ulamagan odamga Telegram xabari yetmaydi: ilovani allaqachon tashlab ketgan va botni ulamagan odamga bugungi mexanika yetmaydi.» (1-ekran O'qituvchi eslatmasi; o'quvchi matnida — 2-ekran joriy qatori va kartochka 3 izohi) ·
-     «`telegramdan-ochdi` havola bilan ochilganini sanaydi — xabar odamni qaytardimi, buni aytmaydi.» (3-amaliyot, kartochka) · «APK o'zi yangilanmaydi» (3-amaliyot QIzoh).
+     «`telegramdan-ochdi` havola bilan ochilganini sanaydi — xabar odamni qaytardimi, buni aytmaydi.» (3-amaliyot, kartochka) · «APK o'zi yangilanmaydi» (3-amaliyot QIzoh) ·
+     «Yangi o'yin kimdir ilovani ochganda yaratiladi: hech kim ochmasa, xabar ham ketmaydi.» (2-ekran joriy qatori; F-1007-466: keyingi «Doimiy o'yin» `GET /oyinlar` so'ralganda yaratiladi — tayanch 1.4 Mentor qarori, vaqt bo'yicha yaratish yo'q).
 5. **Atamalar (bir ma'no — bir so'z, T-014; tayanch 2 — ta'riflar so'zma-so'z):**
    - **Telegram xabari** — Backend Telegram bot orqali yuboradigan xabar (2-ekranda harakatdan keyin tug'iladi). **eslatma** — telefon ekraniga ilova chiqaradigan xabar (12-Modul) — ikkalasi **aralashmaydi** (arena 12, kartochka 7).
      «xabar» bu darsda: Telegram xabari · **bot javobi** (odam «Start» ni bosganda bot yozadigan javob) · Mentorga yozilgan javoblar (0-ekran — «javob»). Birinchi uchrashganda to'liq nomi bilan.
@@ -58,7 +59,7 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
    - **bir martalik kod** — havoladagi qisqa harf-raqam qatori: faqat bir marta ishlaydi va tez eskiradi; Telegram chatini aynan shu hisob bilan bog'laydi (2-ekran). Doim to'liq — «bir martalik kod» («kod» yolg'iz — faqat dastur kodi; 10-darsdagi «taklif kodi» bilan aralashmaydi).
    - **Telegram'ni ulash** — foydalanuvchining o'zi «Telegram'da xabar olish» va «Start» ni bosishi; holat yozuvi «Telegram ulangan». (12-Modul ulanish belgisi «Ulangan» bu darsning maketlarida chizilmaydi — T-015.)
    - **Telegram so'rovi** — Telegram Backend'ning webhook manziliga yuboradigan so'rov (`POST /telegram/webhook`); **webhook** — 7-Modul va 3-dars so'zi, qayta ta'riflanmaydi.
-   - **maxfiy kalit** (`TELEGRAM_SIR`) — Telegram har so'rov sarlavhasida yuboradigan, o'quvchi o'zi o'ylagan uzun kalit; Backend uni `.env` dagisi bilan solishtiradi. 3-darsdagi imzodan farqi — kalitning o'zi keladi (faqat O'qituvchi eslatmasida).
+   - **maxfiy kalit** (`TELEGRAM_SIR`) — Telegram har so'rov sarlavhasida yuboradigan tasodifiy uzun kalit (terminalda yaratiladi — F-1007-461); Backend uni `.env` dagisi bilan solishtiradi. 3-darsdagi imzodan farqi — kalitning o'zi keladi (faqat O'qituvchi eslatmasida).
    - **haftalik chegara** — bir odamga haftasiga (dushanbadan yakshanbagacha) ko'pi bilan ikkita Telegram xabari; ilova eslatmalari bu sanoqqa kirmaydi (ular telefonda, o'z chegarasi bilan — 12-Modul).
    - **sanoq yozuvi** `telegramdan-ochdi` · **sanoq sahifasi** · **qurilma** (sanoq birligi). «hodisa» — bu darsda **ishlatilmaydi** (7-Moduldagi bot «hodisa»si bilan aralashmasin; kod nomlari `hodisaYoz`, `hodisalar`, `POST /hodisalar` — faqat prompt va kod qatorida).
    - **«Doimiy o'yin»** · **Pro** — 4-dars so'zlari, qayta ta'riflanmaydi; «obuna» bu darsda yo'q. **tashkilotchi · o'yinchi** (ismsiz; «1-o'yinchi» — tartib raqami).
@@ -75,12 +76,12 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
    Push odati: `git status` → `git add <fayl>` (`git add .` emas). Qaytarib bo'lmaydigan o'zgarish (tekshiruv yozuvlarini o'chirish) — agent avval ro'yxat ko'rsatadi, o'quvchi «Davom et» deydi (12-Modul 9.39 b).
    **Trek:** `pm-m9d8-platforma.trek` (yo'q bo'lsa — 1-amaliyot tepasida ikki tugma «Mobil trek» · «Web-trek», tanlov kalitga yoziladi — 11-Modul 9.77). Bot trekka bog'liq emas — Backend ikkala trekda bir; farq — tugma joyi va havola (sayt yoki brauzer ko'rinishi), «Ochish» va «Yordam» ostida bir gap.
    **«Davom etish»:** 1-amaliyot — faqat 4-qadam «Bajardim»idan keyin (2-amaliyot tekshiruvi shu ulanishga tayanadi — 12-Modul 9.41 i, 09-FILTR 39) · 2-amaliyot — 3-qadamdan keyin (tekshiruvni dars oxiriga qoldirish mumkin; 3-amaliyotdagi sanoq tekshiruvining zaxira yo'li bor) · 3-amaliyot — 4-qadamdan keyin.
-   Blok bajarilgani — faqat 4-qadam «Bajardim»idan (12-Modul 9.36 h); yakun sarlavhasi shu bayroqlardan.
+   Blok bajarilgani — faqat 4-qadam «Bajardim»idan (12-Modul 9.36 h); yakun sarlavhasi shu bayroqlar va 4-qadamdagi tekshiruv kartalaridan («Kutilganidek» / «Boshqacha» — F-1007-466).
 9. **Tekshiruv — o'quvchining o'z ko'zi bilan, agent — zaxira (tayanch 7.10):** ulanish, bot javobi, Telegram xabari, o'chirish, sanoq — o'quvchi o'z telefonida, Telegram'ida va Neon'da ko'radi. Agent faqat vaqti o'tgan tekshiruv o'yinlarini tayyorlaydi
    (bir haftani kutib o'tirmaslik uchun) va ularni o'zi aytgan `id` lar bo'yicha o'chiradi; tekshiruv akkaunti — `namuna = true` (12-Modul 9.5, 9.35 a). Neon'da chat raqamining o'zi ko'rsatilmaydi: `telegram_chat_id IS NOT NULL AS ulangan`.
-   Telegram akkaunti yo'q o'quvchi: yangi akkaunt ochmaydi — tekshiruv sherigining Telegram'ida, 3-amaliyotda «Telegram xabarlarini o'chirish» bilan uziladi (12-Modul xavfsizlik ro'yxati: «Yangi akkaunt ochish shart emas»).
-10. **Vaqt (90 daqiqa — reja) va ulgurmagan yo'l:** taqsimot tepada. Har blokda «Ulgurmasangiz» qatori; Render kutishi paytida ish beriladi (agent kodni ko'rsatadigan prompt — SABOQ 52). O'rnatish fayli 3-amaliyot oxirida boshlanadi, navbat podium va arena paytida yuradi;
-    tayyor bo'lmasa — havola **keyingi dars boshida** almashtiriladi («uyda» yo'q — 12-Modul 9.41 h). Yakun sarlavhasi holatga qarab (11-ekran). O'qituvchi eslatmasi — 1-ekranda.
+   Telegram akkaunti yo'q o'quvchi: yangi akkaunt ochmaydi — tekshiruv sherigining Telegram'ida, faqat `namuna = true` tekshiruv hisobiga ulanadi (o'quvchining o'z hisobiga emas — F-1007-466); 3-amaliyotda «Telegram xabarlarini o'chirish» bilan uziladi, tekshiruv hisobi `id` bo'yicha o'chiriladi (12-Modul xavfsizlik ro'yxati: «Yangi akkaunt ochish shart emas»).
+10. **Vaqt (90 daqiqa — reja) va ulgurmagan yo'l:** taqsimot tepada. Har blokda «Ulgurmasangiz» qatori; Render kutishi paytida ish beriladi (agent kodni ko'rsatadigan prompt — SABOQ 52). Yangi o'rnatish fayli bu darsda tayyorlanmaydi — GATE M M-q5 A (faqat 10 va 12-darsda); tekshiruv Expo Go va brauzer ko'rinishida (F-1007-466).
+    Yakun sarlavhasi holatga qarab (11-ekran). O'qituvchi eslatmasi — 1-ekranda.
 11. **Toza yuza (D4):** tugma, variant va maketda emoji yo'q; telefon, qulf ekrani, Telegram chati (pufaklar, «Start» tugmasi), Backend tuguni, konvert, chiziq — CSS/SVG; «Maydon Jamoa» nomi telefon maketida o'z rangida (11-Modul yashili); Telegram nomi — o'z rangida, logotipsiz (TAQIQLAR 0);
     rang — faqat holat foni (D3): ulangan / yuboriladi — `ok`, yuborilmaydi / eskirgan — `err`, kutish — `ink2`, joriy — `accent`. Maket va sahnada chat raqami, Telegram nomi, odam ismi chizilmaydi; bot nomi — `…_bot`.
     Matn o'lchovi: sarlavha ≤55 · Mentor ≤2 gap (interaktivda 1), sarlavhani takrorlamaydi · xulosa ≤110 · hook javobi ≤120 · to'g'ri va xato izohi ≤60 («O'lchov» bo'limi, skript bilan).
@@ -88,7 +89,7 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
 
 ## Darsning ipi va bitta vizual
 
-- **Ip (P-001/004):** «Maydon Jamoa» ikkinchi haftada ko'p qurilmada yana ochilmadi (12-Modul soni). Mentor tanish o'yinchilardan so'radi: ko'pi yangi o'yin chiqqanini bilmagan. Ilova yopiq bo'lsa, buni ilova bilmaydi — Backend biladi.
+- **Ip (P-001/004):** «Maydon Jamoa» ikkinchi haftada ko'p qurilmada yana ochilmadi (12-Modul soni). Mentor tanish o'yinchilardan so'radi: ko'pi yangi o'yin chiqqanini bilmagan. O'yinchining ilovasi yopiq bo'lsa, buni ilova bilmaydi — kimdir «O'yinlar»ni ochib, keyingi o'yin yaratilganda Backend biladi.
   Bot esa odamga birinchi bo'lib yozolmaydi: odam botni o'zi ulaydi, keyin Backend uning o'yini yana e'lon qilinganda Telegram xabarini yuboradi — haftasiga ko'pi bilan ikkita, bir bosishda o'chiriladigan, ochilishi sanaladigan. O'quvchi xuddi shuni o'z mahsulotida qiladi (uch blok).
 - **Hook:** «nega yana ochmadi?» → 0-ekranda Mentorning besh javobi → 2-ekranda Backend biladi, lekin bot birinchi yozolmaydi → ulanish → Telegram xabari → 1-blok (ulanish) → 5-ekranda Backend kimga yozadi → 2-blok (xabar va chegara) → 3-blok (o'chirish, sanoq, siyosat).
 - **Bitta vizual — «telefon · Backend · Telegram» sahnasi** (bitta manba `TG_SAHNA`, 163/180; TAQIQLAR 6: «xabar konvert bo'lib uchadi»):
@@ -107,10 +108,10 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
 - Eyebrow: Loyiha kuni · kirish
 - Sarlavha: **O'yinchilar ilovani nega yana ochmay qo'ydi?** (44)
 - Mentor (bosqichga qarab, SABOQ 11; har biri bitta gap):
-  - boshida: Mentor ilovani yana ochmagan tanish o'yinchilardan sababini so'radi — avval o'zingiz javobni tanlang.
+  - boshida: Mentor ilovani ochmay qo'ygan beshta tanishidan sababini so'radi — avval o'zingiz javobni tanlang.
   - javobdan keyin: Bugun eng ko'p aytilgan sababga bitta mexanika qurasiz — «Davom etish»ni bosing.
-- Maket (chap): «1-telefon · Mentor» — ekranda ro'yxat «Javoblar» · besh qator «1-o'yinchi» … «5-o'yinchi», har birida bo'sh kulrang pufak (sokin skelet; ism, rasm, chat nomi yo'q).
-  Telefon ustida hisoblagich (bitta, SABOQ 24), ustida kichik yorliq «Mentor misolida · qurilma»: «1-hafta · ilovani ochgan — 61» · «2-hafta · ulardan yana ochgan — 26» · «yana ochmagan — 35» (uch gorizontal ustun: 61 to'liq, 26 va 35 qisqa).
+- Maket (chap): «1-telefon · Mentor» — ekranda ro'yxat, yorliq «Mentor so'ragan tanishlar · odam» · besh qator «1-o'yinchi» … «5-o'yinchi», har birida bo'sh kulrang pufak (sokin skelet; ism, rasm, chat nomi yo'q).
+  Telefon ustida hisoblagich (bitta, SABOQ 24), ustida kichik yorliq «12-Modul sanog'i · qurilma, ismsiz»: «1-hafta · ilovani ochgan — 61» · «2-hafta · ulardan yana ochgan — 26» · «yana ochmagan — 35» (uch gorizontal ustun: 61 to'liq, 26 va 35 qisqa).
 - Variantlar (radio, ballsiz; har birining o'z yengil chegarasi — E 40):
   - Ilova ularga yoqmay qoldi
   - ✔ Yangi o'yin chiqqanini bilmadi
@@ -122,13 +123,13 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
   5-o'yinchi — kulrang «javob bermadi». Uch bir xil qator bir lahza accent bilan ajraladi. Telefon ostida kulrang qator chiqadi: «5 kishi — kichik son: sabab haqida dalil, isbot emas.» Tanlangan variant ixcham qator bo'lib qoladi (SABOQ 11).
 - Ballsiz (J-026: `correct: false` hammaga). Tugma: Davom etish
 - ✎ Hook obyekti — darsning o'qitish obyekti (P-001): ilovani yana ochmagan o'yinchi. Uchala variant «nima bo'ldi» shaklida; 1-variant — hech kim aytmagan, payoff uni yolg'onga chiqarmaydi («besh kishi kichik son»), 3-variant — rost (1 kishi) (P-016, §119).
-  Sonlar — tayanch 1.8, 1.13 aynan, maketda bir marta; Mentor ularni takrorlamaydi (P-062). 35 — qurilma, 5 — odam: ikkalasi alohida yorliq bilan, bir-biridan ayirilmaydi («5 tasi 35 ning ichidan» deyilmaydi — tayanchda yo'q).
+  Sonlar — tayanch 1.8, 1.13 aynan, maketda bir marta; Mentor ularni takrorlamaydi (P-062). 35 — qurilma, 5 — odam: ikkalasi alohida yorliq bilan, bir-biridan ayirilmaydi («5 tasi 35 ning ichidan» deyilmaydi — tayanchda yo'q). F-1007-466: Mentor beshtasini sanoqdan emas, o'zi tanigani uchun bilgan — ular ilovani ochmay qo'yganini o'zlari aytgan; ikki yorliq shuni ko'rsatadi.
   Javoblar — Mentor yozib olgan so'z, qo'shtirnoqda (T-008). «Aynan!» / «Qiziq fikr!» — qonun (T-028, T-067; tayanch 7 — rad etilganlar ro'yxati). «ilova yopiq turganda … bilishmagan» — 12-Modul 9-darsining halol chegarasi bilan bir; sabab da'vosi emas, o'yinchilarning o'z gapi.
 
 ## 1 · Bugun quramiz  ← QReja (172: tayyor natija + 3 qator + repo teglari)
 - Eyebrow: Reja
 - Sarlavha: **Bugun mahsulotingiz Telegram orqali xabar yuboradi.** (51)
-- Mentor: Nega ketishadi — ko'rdingiz; bugun bitta qaytarish mexanikasini uch blokda qurasiz, namuna «Yordam»da turadi.
+- Mentor: Besh javobda bitta sabab ko'proq uchradi — bugun shunga bitta mexanika qurasiz, namuna «Yordam»da turadi.
 - Chap — «Dars oxirida»: `TG_SAHNA` **tayyor** holatda, bir marta o'zi yuradi (DE-200): 1-telefon ilovasida «Telegram'da xabar olish» → telefon Telegram chatiga o'tadi → «Start» → bot javobi pufagi →
   Backend'da qator «Telegram: ulangan» yashil yonadi → o'yin qatori «Shanba, 18:00 · Mahalla maydoni» yangilanadi → konvert Telegram orqali telefonga → chatda Telegram xabari pufagi → havola bosiladi → telefon ostida sanoq qatori «Telegram'dan ochdi · +1» yashil yonadi.
 - O'ng — bugungi uch ish (tex-karta «01 · matn», bosilmaydi; teg yo'q — 172):
@@ -139,10 +140,10 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
 - Pastki qator 2 (kichik): «Maydon Jamoa» — namuna; amaliyotlarni o'z mahsulotingizda bajarasiz. Bot mobil va web-trekda bir xil ishlaydi.
 - Tugmalar: Orqaga · Boshlaymiz
 - O'qituvchi eslatmasi: eng og'ir qism — 1-amaliyot (yangi bot, ikki maxfiy qiymat `.env` va Render'da, Render kutishi). Uch blokda uch marta Render'da yangi versiya kutiladi — kutish paytida agentdan kodni ko'rsatishni so'rash ishi bor.
-  Bugun o'quvchilar real odamlarga yozmaydi: Mentorning besh o'yinchisi — Mentor misoli (tanishlar, ruxsat bilan). Telegram yosh chegarasi haqida gapirilmaydi. Telegram akkaunti yo'q o'quvchi yangi akkaunt ochmaydi — sherigining Telegram'ida tekshiradi.
-  Halol chegara: bot odamga birinchi bo'lib yozolmaydi — ilovani allaqachon tashlab ketgan va botni ulamagan odamga bugungi mexanika yetmaydi; u keyin ketishi mumkin bo'lganlar uchun. «Telegram xabari» va «eslatma» — ikki narsa: birinchisini Backend yuboradi, ikkinchisini ilova qo'yadi.
-  Sinfdagi tekshiruv o'yinlari, Telegram xabarlari yozuvlari va `telegramdan-ochdi` yozuvlari `id` bo'yicha o'chiriladi — aks holda o'quvchining haftalik chegarasi to'lib qoladi va sanoq buziladi. Uyga vazifa yo'q: o'rnatish fayli navbatda qolsa, havola keyingi dars boshida almashtiriladi.
-- ✎ Mentorning birinchi gapi — App.jsx `sub` («nega ketishadi va bitta qaytarish mexanikasi»; P-015). Sarlavhada yangi atama yo'q: «Telegram», «xabar» — kundalik so'z (T-011); «mahsulotingiz» — o'quvchida bor (T-039). Uch qator — natija nomi, kashfiyot ochilmaydi (bot birinchi yozolmasligi — 2-ekranda).
+  Bugun o'quvchilar real odamlarga yozmaydi: Mentorning besh o'yinchisi — Mentor misoli (tanishlar, ruxsat bilan). Telegram yosh chegarasi haqida gapirilmaydi. Telegram akkaunti yo'q o'quvchi yangi akkaunt ochmaydi — sherigining Telegram'ida, faqat `namuna = true` tekshiruv hisobi orqali tekshiradi (sherik chati o'quvchining o'z hisobiga ulanmaydi).
+  Halol chegara: bot odamga birinchi bo'lib yozolmaydi — ilovani allaqachon tashlab ketgan va botni ulamagan odamga bugungi mexanika yetmaydi; u keyin ketishi mumkin bo'lganlar uchun. Keyingi «Doimiy o'yin» kimdir «O'yinlar»ni ochganda yaratiladi (4-dars; bepul Backend uxlaydi — vaqt bo'yicha ish yo'q): butun hafta hech kim ochmasa, o'yin ham, xabar ham bo'lmaydi. «Telegram xabari» va «eslatma» — ikki narsa: birinchisini Backend yuboradi, ikkinchisini ilova qo'yadi.
+  Sinfdagi tekshiruv o'yinlari, Telegram xabarlari yozuvlari va `telegramdan-ochdi` yozuvlari `id` bo'yicha o'chiriladi — aks holda o'quvchining haftalik chegarasi to'lib qoladi va sanoq buziladi. Uyga vazifa yo'q. Yangi o'rnatish fayli bu darsda tayyorlanmaydi (M-q5 A) — APK o'rnatganlarda Telegram tugmasi hozircha yo'q.
+- ✎ Mentor gapi App.jsx `sub` ga tayanadi («nega ketishadi va bitta qaytarish mexanikasi»; P-015), lekin sabab isbot emasligini saqlaydi: «ko'proq uchradi» (F-1007-466). Sarlavhada yangi atama yo'q: «Telegram», «xabar» — kundalik so'z (T-011); «mahsulotingiz» — o'quvchida bor (T-039). Uch qator — natija nomi, kashfiyot ochilmaydi (bot birinchi yozolmasligi — 2-ekranda).
 
 ## 2 · Bot kimga yoza oladi?  ← QTushuncha (bashorat + 4 harakat)
 - Eyebrow: Tushuncha · Backend va bot
@@ -166,10 +167,10 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
   3. «Start» → chatda «/start» pufagi → konvert Telegram tugunidan Backend'ga (yorliq `POST /telegram/webhook`; konvert ichida qulf belgili qator «maxfiy kalit») → Backend'da qator «Telegram: ulanmagan» → «Telegram: ulangan» yashil (raqamsiz) →
      konvert Backend → Telegram → chatda bot javobi pufagi: «Ulandi. Siz qatnashgan «Doimiy o'yin» yana e'lon qilinsa, shu yerga yozaman. O'chirish — ilovada.» Backend ↔ Telegram chizig'i to'liq bo'ladi.
   4. «Shanba o'tdi» (yana) → Backend'da navbatdagi hafta o'yini qatori yashil yonadi «Shanba, 18:00 · 0 / 10 · yana e'lon qilindi» → konvert Backend → Telegram → telefonga → chatda yangi pufak (Telegram xabari):
-     «Shanba, 18:00 o'yini yana e'lon qilindi · Mahalla maydoni — 0 / 10» va ostida havola qatori `…netlify.app/?kanal=telegram`; qulf ekrani emas — Telegram chati; yorliq «Maydon Jamoa ilovasi hali ham yopiq».
+     «Shanba, 18:00 o'yini yana e'lon qilindi · Mahalla maydoni» va ostida havola qatori `…netlify.app/?kanal=telegram`; qulf ekrani emas — Telegram chati; yorliq «Maydon Jamoa ilovasi hali ham yopiq».
      Nom qatori (bitta): Backend bot orqali yuboradigan bu xabar — Telegram xabari.
   - Holat o'quvchi bosgan tartibdan chiziladi (P-046); noto'g'ri tanlov yo'q — qaror bashoratda, natija harakatda.
-- Joriy qator (4/4 dan keyin, bitta): Backend yangi o'yinni ilova yopiq bo'lsa ham biladi — bot esa faqat «Start»ni bosgan odamga yozadi. (99)
+- Joriy qator (4/4 dan keyin, bitta): Yangi o'yin kimdir ilovani ochganda yaratiladi: hech kim ochmasa, xabar ham ketmaydi. (85)
 - Natija qatori (yashil xulosa qutisining birinchi kichik qatori, E 42): «Taxminingiz ✕ — aslida: yo'q, o'yinchi botni o'zi boshlashi kerak» (yoki «Taxminingiz to'g'ri chiqdi ✓»).
 - Xulosa: Bu misolda yangi o'yinni Backend biladi; bot esa faqat «Start»ni bosgan odamga yoza oladi.
 - Qator (`QIzoh`, qutining oxirgi kichik qatori): Ulanishda faqat chat raqami saqlanadi: ism ham, Telegram nomi ham saqlanmaydi.
@@ -177,7 +178,7 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
 - Tugma (pastki): Avval taxminingizni belgilang → Harakatlarni navbat bilan bajaring (N/4) → Davom etish
 - ✎ Bitta g'oya (P-008): yangi o'yinni Backend biladi, lekin bot faqat o'zi boshlagan odamga yoza oladi (tayanch 1.8 boshi va rasmiy fakt). 1-harakat — 12-Modul 9-darsining halol chegarasi («ilova yopiq — yangi o'yinni bilmaydi») va yangi to'siq («bot birinchi yozolmaydi»);
   2–3-harakat — 1-blokning o'zi (ulanish); 4-harakat — 2-blok (xabar). T-011: hodisa sahnada → «bir martalik kod», «Telegram xabari» — harakatdan keyin nom qatorida. Bashorat — ha/yo'q, ikki daraja (S-015). «Start» — Telegram'dagi tugma nomi (tayanch 1.8; Shubhali 4).
-  Xabardagi «0 / 10» — xabar ketgan paytdagi son: yangi o'yin endigina yaratilgan (TAYANCHGA SAVOL 1). «Shanba o'tdi» — sahna tugmasi (vaqt o'tadi va kimdir ilovani ochadi; o'quvchi matnida «sahna» so'zi yo'q). Chat raqami ekranda hech qayerda chizilmaydi — faqat «ulangan / ulanmagan».
+  Xabarda son yo'q — eskiradi; joriy son havolada (TAYANCHGA SAVOL 1, F-1007-466). «Shanba o'tdi» — sahna tugmasi (vaqt o'tadi va kimdir ilovani ochadi; o'quvchi matnida «sahna» so'zi yo'q). Chat raqami ekranda hech qayerda chizilmaydi — faqat «ulangan / ulanmagan».
   Konvertdagi «maxfiy kalit» qatori izohsiz — 1-amaliyot «Ochish» uni nomlaydi (P-036). 1-savol shu qoidani boshqa tomondan so'raydi (§106): chat raqamini Backend qachon biladi.
 
 ## 3 · Amaliyot 1 — bot va ulanish  ← amaliyot bloki (QBlok + `ScreenBlok`, ≈24 daq)
@@ -186,22 +187,22 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
 - Mentor: Talab tayyor — uchta joyni o'z mahsulotingiz bilan to'ldirasiz; «1 · Ochish»dan boshlang.
 - Vazifa (prompt ustida, bitta qator): Foydalanuvchi ilovada tugmani bosib, botda «Start»ni bosadi — Backend uning Telegram chat raqamini saqlaydi, boshqa hech narsani emas.
 - Qadamlar (bittadan ochiladi, har birida «Bajardim»; «Avval bajaring» qulfi; hammasi o'z repo'ngizda, o'z mahsulotingizda):
-  1. **Ochish** — Antigravity'da o'z repo'ngizni oching — 7-darsda to'xtagan joyingizdan. Terminalda `git status`: `.env` fayllari ro'yxatda ko'rinmasin.
-     Telegram'da @BotFather'da yangi bot oching — 7-Modulda o'rgangan yo'l: `/newbot`, nom, keyin foydalanuvchi nomi (oxiri «bot» bilan). 7-Moduldagi botingiz o'sha moduldagi Backend'ga ulangan bo'lishi mumkin, bitta tokenni esa ikki joyda ishlatib bo'lmaydi — shuning uchun yangi bot.
-     `backend/.env` ga ikki qator yozing: `TELEGRAM_BOT_TOKEN=` va @BotFather bergan token · `TELEGRAM_SIR=` va o'zingiz o'ylagan uzun maxfiy kalit — faqat harf, raqam, `_` va `-`; boshqa joyda ishlatadigan parolingiz emas.
+  1. **Ochish** — Antigravity'da o'z repo'ngizni oching — 7-darsda to'xtagan joyingizdan. Terminalda `git status`: `.env` fayllari ro'yxatda ko'rinmasin; `git ls-files backend/.env` — natija bo'sh bo'lsin (chiqsa — o'qituvchiga ayting: kalitlar almashtiriladi).
+     Telegram'da @BotFather'da yangi bot oching — 7-Modulda o'rgangan yo'l: `/newbot`, nom, keyin foydalanuvchi nomi (oxiri «bot» bilan). 7-Moduldagi botingiz o'sha moduldagi Backend'ga ulangan bo'lishi mumkin: botning webhook manzili bitta — ikki Backend bitta botning so'rovlarini birga ololmaydi; shuning uchun yangi bot.
+     `backend/.env` ga ikki qator yozing: `TELEGRAM_BOT_TOKEN=` va @BotFather bergan token · `TELEGRAM_SIR=` va tasodifiy uzun kalit — terminalda yarating: `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"` (64 belgili harf-raqam; Telegram talabiga mos); o'zingiz o'ylagan so'z yoki parolingiz emas (F-1007-461).
      Ikkalasini Render'dagi xizmatingizning Environment bo'limiga ham qo'shib saqlang. **Token va kalitni agentga, chatga, README'ga va skrinshotga yozmang** — agent faqat ularning nomini biladi.
      Tekshiruv uchun hisob raqamingizni toping — Neon SQL Editor'da: `SELECT id FROM oyinchilar WHERE login = '{loginingiz}';` → «Run» (jadval va ustun nomi — mahsulotingizdagidek).
      Ikki savolga javob toping: tugma ilovangizning qayerida turadi? Foydalanuvchiga nima haqida yozasiz — bir gapda? (Mentor misolida: «Hisobdan chiqish» yonida; ostida «Siz qatnashgan «Doimiy o'yin» yana e'lon qilinsa — Telegram'da xabar; haftasiga ko'pi bilan ikkita».)
-     Telegram akkauntingiz bo'lmasa — yangisini ochmang: tekshiruvni sherigingiz o'z Telegram'ida qiladi, 3-amaliyotda uni o'chirasiz. Mobil trekda `npx expo start` ishlab tursin; web-trekda tugma saytingizda bo'ladi — bot ikkala trekda bir xil.
+     Telegram akkauntingiz bo'lmasa — yangisini ochmang: agentdan mahsulotingizda `namuna = true` tekshiruv hisobini ochishni so'rang, ilovaga shu hisob bilan kiring; «Start»ni sherigingiz o'z Telegram'ida bosadi. 3-amaliyot oxirida ulanish o'chiriladi, tekshiruv hisobi `id` bo'yicha o'chiriladi. Sherik Telegram'ini o'z hisobingizga ulamang. Mobil trekda `npx expo start` ishlab tursin; web-trekda tugma saytingizda bo'ladi — bot ikkala trekda bir xil.
   2. **Prompt** — qavslarni to'ldiring (yonida kulrang namuna), «Nusxalash»ni bosing va Antigravity'ga yuboring:
      > Qayerda: `backend/` — yangi Telegram bo'limi va foydalanuvchilar jadvaliga yangi ustunlar; {tugma turadigan joy}.
      > Nima qilsin: Telegram bot orqali foydalanuvchiga xabar yuborish uchun ulanishni qur. Bot tokeni — `.env` dagi `TELEGRAM_BOT_TOKEN`, maxfiy kalit — `.env` dagi `TELEGRAM_SIR`.
      > 1) Foydalanuvchilar jadvaliga: `telegram_chat_id` (bo'sh bo'lishi mumkin; Telegram chat raqami katta son — uni to'liq saqlaydigan tur tanla) va bir martalik kod uchun ikki ustun — kodning o'zi va amal qilish muddati.
-     > 2) Backend Render'da ishga tushganda (ochiq manzili bor bo'lsa) Telegram'ga webhook manzilini o'rnatsin: `{ochiq manzil}/telegram/webhook`, `secret_token` — `TELEGRAM_SIR`; laptopda — o'rnatmasin. Botning foydalanuvchi nomini `getMe` bilan olsin.
-     > 3) `POST /telegram/kod` — faqat hisobga kirgan foydalanuvchi uchun: yangi bir martalik kod (16 belgi, faqat harf va raqam), 10 daqiqa amal qiladi; javob — havola `https://t.me/{botning foydalanuvchi nomi}?start={kod}`.
-     > 4) `POST /telegram/webhook`: `X-Telegram-Bot-Api-Secret-Token` sarlavhasi `TELEGRAM_SIR` ga teng bo'lmasa — `401`, hech narsa qilma. Faqat shaxsiy chatdan kelgan `/start {kod}` ni ishla: kod topilsa va muddati o'tmagan bo'lsa — o'sha foydalanuvchiga chat raqamini yoz, kodni o'chir, bot shu chatga javob yozsin: «Ulandi. {xabar sababi}, shu yerga yozaman. O'chirish — ilovada.»
+     > 2) Backend Render'da ishga tushganda (ochiq manzili bor bo'lsa) Telegram'ga webhook manzilini o'rnatsin: `{ochiq manzil}/telegram/webhook`, `secret_token` — `TELEGRAM_SIR`; laptopda — o'rnatmasin. Botning foydalanuvchi nomini `getMe` bilan olsin. O'rnatish xato bersa — Backend ishlashda davom etsin, xato logga yozilsin (token va kalitsiz).
+     > 3) `POST /telegram/kod` — faqat hisobga kirgan foydalanuvchi uchun: yangi bir martalik kod (16 belgi, faqat harf va raqam, `crypto` bilan tasodifiy — `Math.random` emas), 10 daqiqa amal qiladi, logga yozilmaydi; javob — havola `https://t.me/{botning foydalanuvchi nomi}?start={kod}`.
+     > 4) `POST /telegram/webhook`: `X-Telegram-Bot-Api-Secret-Token` sarlavhasi `TELEGRAM_SIR` ga teng bo'lmasa — `401`, hech narsa qilma. Faqat shaxsiy chatdan kelgan `/start {kod}` ni ishla: kod topilsa va muddati o'tmagan bo'lsa — o'sha foydalanuvchiga chat raqamini yoz va kodni o'chir — uchalasi bitta Database ishida (bir vaqtdagi ikki so'rovdan faqat bittasi ulaydi); bot shu chatga javob yozsin: «Ulandi. {xabar sababi}, shu yerga yozaman. O'chirish — ilovada.»
      > Kod yo'q, eskirgan yoki ishlatilgan bo'lsa — bot javobi: «Havola eskirgan. Ilovada «Telegram'da xabar olish»ni qayta bosing.» Boshqa har qanday xabarga — «Bu bot ilovadan ulanadi: ilovada «Telegram'da xabar olish»ni bosing.»
-     > Telegram'ga javob — `200` (`401` holatidan tashqari). Telegram javob olmasa so'rovni qayta yuboradi: bir xil so'rov (`update_id`) ikkinchi marta kelsa — qayta ishlama.
+     > Telegram'ga javob — `200` (`401` holatidan tashqari). Telegram javob olmasa so'rovni qayta yuboradi: bir xil so'rov (`update_id`) ikkinchi marta kelsa — qayta ishlama; `update_id` ni Database'da noyob qilib eslab qol (Backend qayta ishga tushsa ham).
      > 5) Telegram so'rovidan faqat chat raqami saqlansin; ism, Telegram nomi va xabar matni saqlanmasin va logga yozilmasin. `GET /men` javobiga `telegram` (rost yoki yolg'on) qo'sh — chat raqamining o'zi ilovaga yuborilmasin.
      > 6) {tugma turadigan joy}da tugma «Telegram'da xabar olish», ostida kichik matn: «{xabar sababi} — Telegram'da xabar; haftasiga ko'pi bilan ikkita». Bosilganda `POST /telegram/kod` dan havolani olib Telegram'da ochsin. Ulangan bo'lsa — tugma o'rnida «Telegram ulangan».
      > Nima buzilmasin: {avvalgidek ishlashi kerak bo'lgan ishlar} avvalgidek ishlasin. `TELEGRAM_BOT_TOKEN` va `TELEGRAM_SIR` qiymatini kodga, logga va README'ga yozma — faqat `.env` dan o'qi; `backend/.env.example` va README'dagi o'zgaruvchilar ro'yxatiga nomlarini qiymatsiz qo'sh. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
@@ -209,15 +210,16 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
      - {tugma turadigan joy} — «masalan: `mobil/` — «Hisobdan chiqish» yonidagi sozlamalar qatori»
      - {xabar sababi} — «masalan: Siz qatnashgan «Doimiy o'yin» yana e'lon qilinsa»
      - {avvalgidek ishlashi kerak bo'lgan ishlar} — «masalan: kirish, e'lon berish, qo'shilish, eslatmalar va to'lov xabari»
+     Tekshiruv («Nusxalash» bosilganda, bloklaydi): bu joyda kamida ikkita ish vergul bilan bo'lmasa yoki «hammasi», «ilova» kabi bitta so'z bo'lsa — Ikkita aniq ish yozing: masalan, kirish, e'lon berish. (54) (F-1007-461 sinfi)
      Yordam (ochiladigan) — Mentor misolidagi to'liq talab:
      > Qayerda: `backend/` — yangi Telegram bo'limi va `oyinchilar` jadvaliga yangi ustunlar; `mobil/` — «Hisobdan chiqish» yonidagi sozlamalar qatori.
      > Nima qilsin: Telegram bot orqali o'yinchiga xabar yuborish uchun ulanishni qur. Bot tokeni — `.env` dagi `TELEGRAM_BOT_TOKEN`, maxfiy kalit — `.env` dagi `TELEGRAM_SIR`.
      > 1) `oyinchilar` ga: `telegram_chat_id` (bo'sh bo'lishi mumkin; Telegram chat raqami katta son — uni to'liq saqlaydigan tur tanla), `telegram_kod` va `telegram_kod_gacha` (bir martalik kod va uning amal qilish muddati).
-     > 2) Backend Render'da ishga tushganda (ochiq manzili bor bo'lsa) Telegram'ga webhook manzilini o'rnatsin: `{ochiq manzil}/telegram/webhook`, `secret_token` — `TELEGRAM_SIR`; laptopda — o'rnatmasin. Botning foydalanuvchi nomini `getMe` bilan olsin.
-     > 3) `POST /telegram/kod` — faqat hisobga kirgan o'yinchi uchun: yangi bir martalik kod (16 belgi, faqat harf va raqam), 10 daqiqa amal qiladi; javob — havola `https://t.me/{botning foydalanuvchi nomi}?start={kod}`.
-     > 4) `POST /telegram/webhook`: `X-Telegram-Bot-Api-Secret-Token` sarlavhasi `TELEGRAM_SIR` ga teng bo'lmasa — `401`, hech narsa qilma. Faqat shaxsiy chatdan kelgan `/start {kod}` ni ishla: kod topilsa va muddati o'tmagan bo'lsa — o'sha o'yinchiga chat raqamini yoz, kodni o'chir, bot shu chatga javob yozsin: «Ulandi. Siz qatnashgan «Doimiy o'yin» yana e'lon qilinsa, shu yerga yozaman. O'chirish — ilovada.»
+     > 2) Backend Render'da ishga tushganda (ochiq manzili bor bo'lsa) Telegram'ga webhook manzilini o'rnatsin: `{ochiq manzil}/telegram/webhook`, `secret_token` — `TELEGRAM_SIR`; laptopda — o'rnatmasin. Botning foydalanuvchi nomini `getMe` bilan olsin. O'rnatish xato bersa — Backend ishlashda davom etsin, xato logga yozilsin (token va kalitsiz).
+     > 3) `POST /telegram/kod` — faqat hisobga kirgan o'yinchi uchun: yangi bir martalik kod (16 belgi, faqat harf va raqam, `crypto` bilan tasodifiy — `Math.random` emas), 10 daqiqa amal qiladi, logga yozilmaydi; javob — havola `https://t.me/{botning foydalanuvchi nomi}?start={kod}`.
+     > 4) `POST /telegram/webhook`: `X-Telegram-Bot-Api-Secret-Token` sarlavhasi `TELEGRAM_SIR` ga teng bo'lmasa — `401`, hech narsa qilma. Faqat shaxsiy chatdan kelgan `/start {kod}` ni ishla: kod topilsa va muddati o'tmagan bo'lsa — o'sha o'yinchiga chat raqamini yoz va kodni o'chir — uchalasi bitta Database ishida (bir vaqtdagi ikki so'rovdan faqat bittasi ulaydi); bot shu chatga javob yozsin: «Ulandi. Siz qatnashgan «Doimiy o'yin» yana e'lon qilinsa, shu yerga yozaman. O'chirish — ilovada.»
      > Kod yo'q, eskirgan yoki ishlatilgan bo'lsa — bot javobi: «Havola eskirgan. Ilovada «Telegram'da xabar olish»ni qayta bosing.» Boshqa har qanday xabarga — «Bu bot ilovadan ulanadi: ilovada «Telegram'da xabar olish»ni bosing.»
-     > Telegram'ga javob — `200` (`401` holatidan tashqari). Telegram javob olmasa so'rovni qayta yuboradi: bir xil so'rov (`update_id`) ikkinchi marta kelsa — qayta ishlama.
+     > Telegram'ga javob — `200` (`401` holatidan tashqari). Telegram javob olmasa so'rovni qayta yuboradi: bir xil so'rov (`update_id`) ikkinchi marta kelsa — qayta ishlama; `update_id` ni Database'da noyob qilib eslab qol (Backend qayta ishga tushsa ham).
      > 5) Telegram so'rovidan faqat chat raqami saqlansin; ism, Telegram nomi va xabar matni saqlanmasin va logga yozilmasin. `GET /men` javobiga `telegram` (rost yoki yolg'on) qo'sh — chat raqamining o'zi ilovaga yuborilmasin.
      > 6) `mobil/` — «Hisobdan chiqish» yonidagi sozlamalar qatorida tugma «Telegram'da xabar olish», ostida kichik matn: «Siz qatnashgan «Doimiy o'yin» yana e'lon qilinsa — Telegram'da xabar; haftasiga ko'pi bilan ikkita». Bosilganda `POST /telegram/kod` dan havolani olib Telegram'da ochsin. Ulangan bo'lsa — tugma o'rnida «Telegram ulangan».
      > Nima buzilmasin: kirish, e'lon berish, qo'shilish, eslatmalar va to'lov xabari avvalgidek ishlasin. `TELEGRAM_BOT_TOKEN` va `TELEGRAM_SIR` qiymatini kodga, logga va README'ga yozma — faqat `.env` dan o'qi; `backend/.env.example` va README'dagi o'zgaruvchilar ro'yxatiga nomlarini qiymatsiz qo'sh. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
@@ -228,14 +230,15 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
      Mobil trekda Expo Go ilovani odatda o'zi qayta yuklaydi (bo'lmasa — terminalda `r`); web-trekda push'dan keyin Netlify saytni odatda o'zi yangilaydi.
      Xato chiqsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»
   4. **Tekshirish** — talabning har gapini o'zingiz ko'ring:
-     (1) Ilovangizda «Telegram'da xabar olish» → Telegram ochiladi → botda «Start». Bot javobi chiqishi kerak — bir daqiqagacha kechikishi mumkin: bepul Backend uxlab qolgan bo'lsa, uyg'onadi. Ilovani yangilang: tugma o'rnida «Telegram ulangan».
+     (1) Ilovangizda «Telegram'da xabar olish» → Telegram ochiladi → botda «Start» (tugma nomi Telegram tilingizga qarab boshqacha bo'lishi mumkin). Bot javobi chiqishi kerak — bir daqiqagacha kechikishi mumkin: bepul Backend uxlab qolgan bo'lsa, uyg'onadi. Ilovani yangilang: tugma o'rnida «Telegram ulangan».
      (2) Neon SQL Editor'da: `SELECT id, telegram_chat_id IS NOT NULL AS ulangan FROM oyinchilar WHERE id = {hisob raqamingiz};` → «Run» — `ulangan` ustunida `true`. So'rov ataylab shunday: chat raqamining o'zi ekranga chiqmaydi va hech qayerga yozilmaydi.
      (3) Botga oddiy xabar yozing (masalan, «salom») — bot «Bu bot ilovadan ulanadi: …» javobini yozishi kerak.
      (4) Terminalda `git grep -n "TELEGRAM_"`: natijada faqat nomlar (`process.env.…`, `.env.example`, README qatori). Qiymat chiqsa — agentga «Qiymatni koddan olib tashla, faqat `.env` dan o'qi.» deng, @BotFather'da yangi token oling (7-Modul) va `.env`, Render'da almashtiring.
      Mos kelmagan gapni agentga yozing: «{nima} talabdagidek emas: {qanday bo'lsin}. Boshqa joyga tegma, o'zgargan fayllarni ayt.»
 - O'ng tomon — «kutilgan natija · namuna: Maydon Jamoa» (ikki kadr bir marta o'zi yuradi): telefon — sozlamalar qatori «Telegram'da xabar olish» va ostidagi kichik matn → Telegram chati (`…_bot`): «/start» pufagi va bot javobi «Ulandi. Siz qatnashgan «Doimiy o'yin» yana e'lon qilinsa, shu yerga yozaman. O'chirish — ilovada.»;
   ostida Neon natijasi — bitta qator `id 7 · ulangan true`; ostida terminal kartasi — `git grep -n "TELEGRAM_"` natijasi: to'rt qator, hammasida faqat nom. Web-trekda telefon o'rnida brauzer oynasi.
-- Hammasi bajarilgach (yashil): Bot faqat «Start»ni bosgan foydalanuvchini taniydi; Backend'da faqat chat raqami turadi.
+- Tekshiruv kartasi (4-qadam oxirida, «Bajardim»dan oldin; dars holatida — 3, 10-darslar naqshi; F-1007-466): «Kutilganidek» · «Boshqacha». «Boshqacha» bo'lsa yashil qator o'rnida kulrang: Talabdagidek bo'lmagan joyni agentga yozing va qayta tekshiring. (64)
+- Hammasi bajarilgach (yashil, «Kutilganidek» da): Bot faqat «Start»ni bosgan foydalanuvchini taniydi; Backend'da faqat chat raqami turadi.
 - Qator (`QIzoh`, natija ostida, bitta): Kodni agent yozdi — Telegram xabari ishlashini 2-amaliyotdagi tekshiruv ko'rsatadi.
 - Pastki qator (kichik; darsda bir marta — SABOQ 39): Ortda qoldingizmi — Mentor misolini o'z repo'ngizdan tashqarida, yangi papkada oching: `git clone https://github.com/Azizbekcrypto/maydon-jamoa` · `cd maydon-jamoa` · `git checkout -f m13-dars-08-done` —
   oxirgi buyruqni faqat shu yangi papkada ishlating: u papkadagi o'zgarishlarni o'chiradi. `backend/.env` ga o'z qiymatlaringizni yozasiz (`TELEGRAM_BOT_TOKEN` — o'z botingizniki).
@@ -273,7 +276,7 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
   - to'rttasidan keyin: Endi 1-o'yinchi kartasida «Telegram xabarlarini o'chirish»ni bosing.
   - tugagach: Natijani taxminingiz bilan solishtiring.
 - Bashorat (ballsiz, 181; tanlangach ixcham qator): **To'rt o'yinchidan nechtasiga Telegram xabari ketadi?** · Bittasiga · Ikkitasiga · Uchtasiga
-- Chap: Backend kartasi (tepada, ixcham): «Shanba, 18:00 o'yini yana e'lon qilindi · Mahalla maydoni — 0 / 10» · ostida o'yinchi kartasi **bittadan** (SABOQ 9, 13; ustida «O'yinchi N / 4»), ichida uch qator:
+- Chap: Backend kartasi (tepada, ixcham): «Shanba, 18:00 o'yini yana e'lon qilindi · Mahalla maydoni» · ostida o'yinchi kartasi **bittadan** (SABOQ 9, 13; ustida «O'yinchi N / 4»), ichida uch qator:
   «O'tgan Shanba o'yinida: qatnashgan / qatnashmagan» · «Telegram: ulangan / ulanmagan» · «Bu hafta Telegram xabari: N / 2». Harakat tugmasi «Tekshirish» — karta ostida, halqada (SABOQ 21). Odam chizilmaydi — faqat «1-o'yinchi» yorlig'i.
 - O'ng: tekshiruv kartasi «Backend tekshiradi» (ostida kichik kulrang yorliq «bu kursda · Mentor misolida») — uch bo'sh katak: «O'tgan hafta shu o'yinda qatnashgan» · «Botni o'zi ulagan» · «Bu hafta ikkitadan kam xabar olgan».
 - O'yinchilar (shu tartibda; `KIMGA_OYINCHILAR`, TAYANCHGA SAVOL 10):
@@ -289,7 +292,7 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
 - Joriy qator (5-harakatdan keyin, bitta): O'chirish bir bosishda: chat raqami o'chadi va xabar ketmaydi. (62)
 - Natija qatori (yashil xulosa qutisining birinchi kichik qatori): «Taxminingiz ✕ — aslida: bittasiga» (yoki «Taxminingiz to'g'ri chiqdi ✓»).
 - Xulosa: Bu kursda xabar o'z o'yini qayta e'lon qilingan, botni ulagan odamga ketadi — haftasiga ko'pi bilan ikkita.
-- Qator (`QIzoh`, qutining oxirgi kichik qatori): Bu kursda xabar matnida faqat o'zgarish bor: kun, soat, joy, son — bosim ham, to'lov taklifi ham yo'q.
+- Qator (`QIzoh`, qutining oxirgi kichik qatori): Bu kursda xabar matnida faqat o'zgarish bor: kun, soat, joy — bosim ham, to'lov taklifi ham yo'q.
 - Tugadi (199): harakat paneli yopiladi; Backend kartasi, to'rt ixcham qator va tekshiruv kartasi butun enga, xulosa fokusda; vizual ⛶ ichida.
 - Tugma (pastki): Avval taxminingizni belgilang → Kartalarni tekshiring (N/4) → O'chirishni bosing → Davom etish
 - ✎ Bitta g'oya (P-008): Backend xabarni kimga yuborishini uch shart hal qiladi (tayanch 1.8: «odam ilgari qo'shilgan «Doimiy o'yin»», «haftasiga ko'pi bilan ikkita», «faqat o'zi «Start» ni bosgan»). «Bu kursda» — kurs qolipi, o'quvchi mahsulotiga majburiy shakl emas (sinf 4); o'quvchi o'z shartini 2-amaliyotda yozadi.
@@ -302,26 +305,26 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
 - Mentor: Qaysi o'zgarish haqida kimga yozishni o'zingiz tanlaysiz, namuna «Yordam» ortida; «1 · Ochish»dan boshlang.
 - Vazifa (prompt ustida, bitta qator): Backend biladigan haqiqiy o'zgarishda bot shu o'zgarish tegishli, botni ulagan odamga yozadi — haftasiga ko'pi bilan ikkita, bir narsa haqida bir marta.
 - Qadamlar (hammasi o'z repo'ngizda):
-  1. **Ochish** — o'z repo'ngiz, 1-amaliyotdan keyingi kod; botingiz ulangan. Ikki savolga javob toping: qaysi o'zgarishni bilmasa, foydalanuvchingiz ilovani qayta ochmay qo'yishi mumkin — va buni Backend biladimi? Bu o'zgarish kimga tegishli?
+  1. **Ochish** — o'z repo'ngiz, 1-amaliyotdan keyingi kod; botingiz ulangan. Savollarga javob toping: qaysi o'zgarishni bilmasa, foydalanuvchingiz ilovani qayta ochmay qo'yishi mumkin — va buni Backend biladimi? Bu o'zgarish kimga tegishli? U foydalanuvchidan biror harakat kutadimi (masalan, qo'shilish)? Harakat kutmasa — Telegram xabari shart emas.
      (Mentor misolida: o'yinchi qatnashgan «Doimiy o'yin» keyingi haftaga yana e'lon qilinganda — o'sha o'yinda qatnashganlarga.) Foydalanuvchilaringizdan so'ramagan bo'lsangiz — bu sizning taxminingiz, shunday deb biling.
      Mahsulotingizda «Doimiy o'yin» yo'q — Backend biladigan va foydalanuvchiga tegishli bitta o'zgarishni tanlang; ilova o'zi oldindan biladigan narsa (vaqt, muddat) — 12-Modulda eslatma bilan qilingan, Telegram shart emas.
-     Xabar matni — bu kursda faqat o'zgarish: kun, soat, joy yoki son; bosim, qo'rqitish va to'lov taklifi yo'q. Havola — mahsulotingiz manzili `?kanal=telegram` bilan: mobil trekda — ilovangizning brauzer ko'rinishi (telefonda havola brauzerda ochiladi), web-trekda — saytingiz.
+     Xabar matni — bu kursda faqat o'zgarish: kun, soat, joy; tez o'zgaradigan son (masalan, qo'shilganlar) yozilmaydi — u havolada ko'rinadi; bosim, qo'rqitish va to'lov taklifi yo'q. Havola — mahsulotingiz manzili `?kanal=telegram` bilan: mobil trekda — ilovangizning brauzer ko'rinishi (telefonda havola brauzerda ochiladi), web-trekda — saytingiz.
   2. **Prompt** — qavslarni to'ldiring (yonida kulrang namuna), «Nusxalash»ni bosing va Antigravity'ga yuboring:
      > Qayerda: `backend/` — Telegram bo'limi va {qaysi o'zgarishda} ro'y beradigan joy.
      > Nima qilsin: {qaysi o'zgarishda} — {kimga} bot orqali Telegram xabari yuborsin (faqat Telegram'ni ulaganlarga): «{xabar matni}», ostida havola `{mahsulot manzili}?kanal=telegram`.
-     > Haftalik chegara: bir odamga haftasiga (dushanbadan yakshanbagacha) ko'pi bilan ikkita Telegram xabari; bitta narsa haqida bitta odamga bir marta. Buning uchun yuborilgan xabarlarni yangi jadvalga yoz: kimga, nima haqida, qachon — xabar matni va chat raqamisiz.
-     > Xabar yuborish so'rov javobini kechiktirmasin; Telegram xabarni qabul qilmasa (masalan, odam botni bloklagan bo'lsa) — xato bilan to'xtama, keyingisiga o't. Bitta chatga sekundiga bittadan ko'p xabar yuborma.
+     > Haftalik chegara: bir odamga haftasiga (dushanbadan yakshanbagacha, `Asia/Tashkent` vaqti) ko'pi bilan ikkita Telegram xabari; bitta narsa haqida bitta odamga bir marta. Buning uchun xabarlarni yangi jadvalga yoz: kimga, nima haqida, qachon — xabar matni va chat raqamisiz; «kimga + nima haqida» jufti noyob.
+     > Tartib: avval chegarani sanab, jadvalga yozuv qo'sh — ikkalasi bitta Database ishida (bir vaqtdagi ikki so'rov ham chegaradan oshirmasin, bitta narsa haqida ikki marta yubormasin); faqat yozuv qo'shilgan bo'lsa — xabarni yubor. Telegram xabarni qabul qilmasa (masalan, odam botni to'xtatgan bo'lsa) — o'sha yozuvni o'chir, chat raqamiga tegma, keyingisiga o't. So'rov javobi xabarlar yuborilgach qaytsin. Bitta chatga sekundiga bittadan ko'p xabar yuborma.
      > Nima buzilmasin: 1-amaliyotdagi ulanish avvalgidek; Telegram'ni ulamagan odamga hech narsa yuborilmasin; xabarda to'lov taklifi bo'lmasin; `TELEGRAM_BOT_TOKEN` qiymati logga yozilmasin. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Qavslar yonida kulrang namuna (Mentor misolidan):
      - {qaysi o'zgarishda} — «masalan: «Doimiy o'yin»ning keyingi haftadagi o'yini yaratilganda»
      - {kimga} — «masalan: o'tgan haftadagi o'yinida qatnashgan o'yinchilarga»
-     - {xabar matni} — «masalan: {kun}, {soat} o'yini yana e'lon qilindi · {maydon} — {qo'shilganlar} / {kerak}»
+     - {xabar matni} — «masalan: {kun}, {soat} o'yini yana e'lon qilindi · {maydon}»
      - {mahsulot manzili} — «masalan: brauzer ko'rinishi manzili (Netlify)»
      Yordam (ochiladigan) — Mentor misolidagi to'liq talab:
      > Qayerda: `backend/` — Telegram bo'limi va «Doimiy o'yin»ning keyingi haftadagi o'yini yaratiladigan joy (`GET /oyinlar`, 4-dars).
-     > Nima qilsin: «Doimiy o'yin»ning keyingi haftadagi o'yini yaratilganda — o'tgan haftadagi o'yinida qatnashgan (`qoshildi` yoki `keladi`) va Telegram'ni ulagan o'yinchilarga bot orqali Telegram xabari yuborsin: «{kun}, {soat} o'yini yana e'lon qilindi · {maydon} — {qo'shilganlar} / {kerak}», ostida havola `{brauzer ko'rinishi manzili}?kanal=telegram`.
-     > Haftalik chegara: bir o'yinchiga haftasiga (dushanbadan yakshanbagacha) ko'pi bilan ikkita Telegram xabari; bitta o'yin haqida bitta o'yinchiga bir marta. Yuborilganlarni yangi jadvalga yoz: `telegram_xabarlar` — `id`, `oyinchi_id`, `oyin_id`, `yuborilgan`; `oyinchi_id` va `oyin_id` jufti noyob; xabar matni va chat raqami bu jadvalga yozilmasin.
-     > Xabar yuborish `GET /oyinlar` javobini kechiktirmasin; Telegram xabarni qabul qilmasa (masalan, o'yinchi botni bloklagan bo'lsa) — xato bilan to'xtama, keyingisiga o't. Bitta chatga sekundiga bittadan ko'p xabar yuborma.
+     > Nima qilsin: «Doimiy o'yin»ning keyingi haftadagi o'yini yaratilganda — o'tgan haftadagi o'yinida qatnashgan (`qoshildi` yoki `keladi`) va Telegram'ni ulagan o'yinchilarga bot orqali Telegram xabari yuborsin: «{kun}, {soat} o'yini yana e'lon qilindi · {maydon}», ostida havola `{brauzer ko'rinishi manzili}?kanal=telegram`.
+     > Haftalik chegara: bir o'yinchiga haftasiga (dushanbadan yakshanbagacha, `Asia/Tashkent` vaqti) ko'pi bilan ikkita Telegram xabari; bitta o'yin haqida bitta o'yinchiga bir marta. Xabarlarni yangi jadvalga yoz: `telegram_xabarlar` — `id`, `oyinchi_id`, `oyin_id`, `yuborilgan`; `oyinchi_id` va `oyin_id` jufti noyob; xabar matni va chat raqami bu jadvalga yozilmasin.
+     > Tartib: avval chegarani sanab, `telegram_xabarlar` ga yozuv qo'sh — ikkalasi bitta Database ishida (bir vaqtdagi ikki `GET /oyinlar` ham chegaradan oshirmasin, bitta o'yin haqida ikki marta yubormasin); faqat yozuv qo'shilgan bo'lsa — xabarni yubor. Telegram xabarni qabul qilmasa (masalan, o'yinchi botni to'xtatgan bo'lsa) — o'sha yozuvni o'chir, chat raqamiga tegma, keyingisiga o't. `GET /oyinlar` javobi xabarlar yuborilgach qaytsin. Bitta chatga sekundiga bittadan ko'p xabar yuborma.
      > Nima buzilmasin: keyingi o'yinni yaratish tartibi (4-dars) va 1-amaliyotdagi ulanish avvalgidek; Telegram'ni ulamagan o'yinchiga hech narsa yuborilmasin; xabarda to'lov taklifi bo'lmasin; `TELEGRAM_BOT_TOKEN` qiymati logga yozilmasin. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Web-trekda (Yordam ostida, bir gap): havola — saytingiz manzili `?kanal=telegram` bilan; qolgani o'sha (Backend ikkala trekda bir).
   3. **Ishga tushirish** — `git status` → `git add <fayl>` → `git commit -m "telegram xabari"` → `git push`. Render'da yangi versiya tugashini kuting. Kutayotganda agentga («Nusxalash» bilan):
@@ -335,35 +338,35 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
      (3) Xuddi shu ishni yana bir marta qiling (Mentor misolida — ilovani yana oching) — yangi xabar kelmasligi kerak: bitta narsa haqida bir marta.
      (4) Agentga: «Hozir yaratgan tekshiruv yozuvlarini — aytgan `id` laring bo'yicha — o'chirish ro'yxatini ko'rsat: tekshiruv akkauntlari, o'yinlar va ulardan yaratilgan yangi o'yinlar, qo'shilish yozuvlari va `telegram_xabarlar` dagi qatorlar. Men «Davom et» desam — o'chir.»
          Ro'yxatni o'qing: faqat bugungi tekshiruv yozuvlari bo'lsa — «Davom et». Shunda haftalik chegarangiz tekshiruv xabarlari bilan to'lib qolmaydi. Telegram chatidagi xabarlar qoladi — 3-amaliyotda havolasi kerak.
-- O'ng tomon — «kutilgan natija · namuna: Maydon Jamoa»: Telegram chati (`…_bot`) — ikki pufak: «Shanba, 15:00 o'yini yana e'lon qilindi · Mahalla maydoni — 0 / 10» va «Shanba, 16:00 o'yini yana e'lon qilindi · Mahalla maydoni — 0 / 10», har birining ostida havola qatori `…netlify.app/?kanal=telegram`;
+- O'ng tomon — «kutilgan natija · namuna: Maydon Jamoa»: Telegram chati (`…_bot`) — ikki pufak: «Shanba, 15:00 o'yini yana e'lon qilindi · Mahalla maydoni» va «Shanba, 16:00 o'yini yana e'lon qilindi · Mahalla maydoni», har birining ostida havola qatori `…netlify.app/?kanal=telegram`;
   ostida kulrang yorliq «17:00 o'yini haqida xabar yuborilmadi — haftalik chegara» va «tekshiruv o'yinlari; keyin o'chiriladi». Web-trekda — o'sha chat, havola sayt manzili bilan.
-- Hammasi bajarilgach (yashil): Telegram xabari faqat tegishli, botni ulagan odamga ketdi; uchinchisi yuborilmadi.
-- Qator (`QIzoh`, natija ostida, bitta): Xabarni Backend yubordi: ilova yopiq bo'lsa ham, yangi o'yinni u biladi.
+- Tekshiruv kartasi (4-qadam oxirida, «Bajardim»dan oldin; dars holatida — 3, 10-darslar naqshi; F-1007-466): «Kutilganidek» · «Boshqacha». «Boshqacha» bo'lsa yashil qator o'rnida kulrang: Talabdagidek bo'lmagan joyni agentga yozing va qayta tekshiring. (64)
+- Hammasi bajarilgach (yashil, «Kutilganidek» da): Telegram xabari faqat tegishli, botni ulagan odamga ketdi; uchinchisi yuborilmadi.
+- Qator (`QIzoh`, natija ostida, bitta): Xabarni Backend yubordi: o'yinchining ilovasi yopiq bo'lsa ham, yangi o'yinni u biladi.
 - Ulgurmasangiz: 4-qadamni dars oxirida bajaring — «Davom etish» 3-qadamdan keyin ochiladi; 3-amaliyotdagi sanoq tekshiruvini havolani brauzerda o'zingiz ochib qilasiz. Blok 4-qadam «Bajardim»idan keyin bajarilgan sanaladi.
 - Nishon (bonus): Weekly Two — 4-qadam «Bajardim»ida.
 - Tugmalar: Orqaga · Avval bajaring → Davom etish
 - ✎ MD izohi: talab zinapoyasi A2 — tayyor talab + 4 joy; mahsulot qarori (qaysi o'zgarish, kimga, matn) o'quvchida (sinf 13). Tekshiruv natijasini o'quvchi o'z Telegram'ida ko'radi; agent faqat vaqti o'tgan tekshiruv holatini tayyorlaydi va `id` bo'yicha o'chiradi (sinf 10; 12-Modul 9.35 a, 9.39 b).
-  Uch tekshiruv o'yini — bitta yurishda ham xabar, ham chegara ko'rinadi. Tekshiruv yozuvlari o'chirilmasa, o'quvchining shu haftadagi haqiqiy xabarlari chegaraga urilardi (12-Modul 9.41 i). «0 / 10» — yangi o'yin endigina yaratilgan (TAYANCHGA SAVOL 1).
-  Xabar `GET /oyinlar` ichida emas, javobni kutdirmasdan ketadi — qanday qilish agentning tanloviga qoladi (sinf 5). Bloklangan botga yuborilganda Telegram nima qaytarishi — tayanch 6 «tekshirilmagan» (Shubhali 5).
+  Uch tekshiruv o'yini — bitta yurishda ham xabar, ham chegara ko'rinadi. Tekshiruv yozuvlari o'chirilmasa, o'quvchining shu haftadagi haqiqiy xabarlari chegaraga urilardi (12-Modul 9.41 i). Xabarda son yo'q (TAYANCHGA SAVOL 1, F-1007-466).
+  Xabarlar yuborilgach `GET /oyinlar` javobi qaytadi (bepul Backend javobdan keyin uxlab qolsa, xabar yo'qolmasin); yozuv avval band qilinadi, Telegram xato bersa o'chiriladi (F-1007-466). Bloklangan botga yuborilganda Telegram nima qaytarishi — tayanch 6 «tekshirilmagan» (Shubhali 5).
 - O'qituvchi eslatmasi: «Telegram xabari» haftalik sanog'ini Backend yuritadi; ilova eslatmalari telefonda, o'z chegarasi bilan (12-Modul) — ikkisi bitta sanoqqa qo'shilmaydi (TAYANCHGA SAVOL 11). Xabar matnida «Pro oling» kabi taklif bo'lmaydi: bu dars — o'yinchini o'yinga qaytarish, pul emas.
 
 ## 7 · 2-savol ✔ (jonli ball)  ← QTest
 - Eyebrow: Mashq · 2-savol (yorliqsiz — SABOQ 6)
-- Savol: **Mentor misolida botni ulagan o'yinchi ilovani o'chirdi. O'yini yana e'lon qilinsa-chi?**
-  - A · Kelmaydi — Telegram xabari ilova orqali keladi
-  - B · ✔ Keladi — xabarni Telegram'dagi bot yozadi
-  - C · Keladi — Backend uni SMS orqali yuboradi
-  - D · Kelmaydi — Backend hisobini o'chirib qo'yadi
-- Kalit: **B** (index 1). To'rttalasi «Keladi / Kelmaydi — sabab» shaklida, ikkitadan (S-006, §107); «Telegram» A va B da, «Backend» C va D da; «bot» savolda ham bor (S-003: kalit so'z faqat to'g'rida emas); to'g'ri variant yolg'iz eng uzun emas (O'lchov).
+- Savol: **Mentor misolida Telegram xabari kelishi uchun telefonda ilova turishi shartmi?**
+  - A · Ha — Telegram xabari ilova orqali keladi
+  - B · ✔ Yo'q — xabarni Telegram'dagi bot yozadi
+  - C · Ha — Backend avval ilovaga so'rov yuboradi
+  - D · Yo'q — Backend uni SMS bo'lib yuboradi
+- Kalit: **B** (index 1). To'rttalasi «Ha / Yo'q — sabab» shaklida, ikkitadan (S-006, §107); «Telegram» A va B da, «Backend» C va D da; «ilova» savolda va A, C da (S-003: kalit so'z faqat to'g'rida emas); to'g'ri variant yolg'iz eng uzun emas (O'lchov).
 - To'g'ri izohi: Telegram xabari ilovaga emas, Telegram chatiga keladi.
 - Xato izohlari (≤60):
-  - A: Telegram xabarini Backend yuboradi — ilova shartmi?
-  - C: Mentor ilovasi telefon raqamini umuman so'ramaydi.
-  - D: Ilovani o'chirish hisobni o'chirmaydi — bu boshqa tugma.
+  - A: Xabar Telegram chatiga keladi — ilova bu yerda kerakmi?
+  - C: Backend Telegram'ga yozadi — ilovaga so'rov shart emas.
+  - D: Mentor ilovasi telefon raqamini umuman so'ramaydi.
 - Jonli darsda: bitta urinish. Xatodan keyin: «Qisqa takrorlash».
-- ✎ Yangi vaziyat (§106): 5-ekranda «ilovani o'chirgan» o'yinchi yo'q edi — savol 2-shart («botni o'zi ulagan») ilova telefonda turmasa ham bajarilishini so'raydi; 0-ekrandagi «ilovani o'chirdim» javobiga ulanadi (ip).
-  Savolda «O'yini yana e'lon qilinsa» — 1-shart (qatnashgan) bajarilgan; haftalik chegara aytilmagan — to'g'ri javob oddiy holat uchun. B — haqiqatda ham rost: botni bloklamagan va «o'chirish»ni bosmagan odamga Telegram xabari yetadi (Shubhali 5 — bloklangan bot).
-  Distraktorlar uch xil (sinf 8): Telegram xabari ilovaga bog'liq deb o'ylash (A) · yolg'on kanal (C — 12-Modulda telefon so'ralmaydi) · ilovani o'chirish — «Hisobni o'chirish» emas (D, 12-Modul 7-darsi).
+- ✎ Yangi vaziyat (§106): savol 2-shart («botni o'zi ulagan») ilova telefonda turmasa ham bajarilishini so'raydi; 0-ekrandagi «ilovani o'chirdim» javobiga ulanadi (ip). F-1007-466: savol shartsiz qilindi — «xabar keladimi» emas, «ilova shartmi»: haftalik chegara, to'xtatilgan bot yoki o'chirish B ni yolg'onga chiqarmaydi.
+  Distraktorlar uch xil (sinf 8): Telegram xabari ilovaga bog'liq deb o'ylash (A) · Backend ilovaga yozadi deb o'ylash (C) · yolg'on kanal (D — 12-Modulda telefon so'ralmaydi).
 
 ## 8 · Amaliyot 3 — o'chirish, sanoq va siyosat  ← amaliyot bloki (QBlok + `ScreenBlok`, ≈17 daq)
 - Eyebrow: Amaliyot 3 · o'lchov va nazorat
@@ -379,8 +382,8 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
      > Qayerda: `backend/` — Telegram bo'limi, `POST /hodisalar` va `GET /hodisalar/sanoq`; {o'chirish tugmasi joyi}; {havolani ochadigan qism}; `lending/sanoq.html` va `lending/maxfiylik.html`.
      > Nima qilsin: 1) «Telegram ulangan» yonida tugma «Telegram xabarlarini o'chirish» — so'rov oynasisiz, bir bosishda: Backend shu foydalanuvchining chat raqamini va kutayotgan bir martalik kodini o'chirsin, ilova yana «Telegram'da xabar olish»ni ko'rsatsin. Bu yo'l faqat hisobga kirgan foydalanuvchi uchun, faqat o'zining yozuviga.
      > 2) «Hisobni o'chirish»da chat raqami va Telegram xabarlari jadvalidagi yozuvlari ham o'chsin.
-     > 3) {havolani ochadigan qism} manzilida `kanal=telegram` bo'lsa — `hodisaYoz('telegramdan-ochdi')`, bitta ochilishga bitta yozuv. `POST /hodisalar` qabul qiladigan nomlarga `telegramdan-ochdi` qo'sh; `GET /hodisalar/sanoq` javobiga va sanoq sahifasiga qadamlar ostida yangi qator: «Telegram'dan ochdi» — turli qurilmalar soni.
-     > 4) `lending/maxfiylik.html` dagi «Qaysi ma'lumot?» va «Nima uchun?» javoblariga qo'sh: «{siyosat qatori}»
+     > 3) {havolani ochadigan qism} manzilida `kanal=telegram` bo'lsa — `hodisaYoz('telegramdan-ochdi')`, bitta ochilishga bitta yozuv — sahifa yuklanganda bir marta, qayta chizilganda emas. `POST /hodisalar` qabul qiladigan nomlarga `telegramdan-ochdi` qo'sh; `GET /hodisalar/sanoq` javobiga va sanoq sahifasiga qadamlar ostida yangi qator: «Telegram'dan ochdi» — turli qurilmalar soni.
+     > 4) `lending/maxfiylik.html` dagi «Qaysi ma'lumot?», «Nima uchun?» va «Qancha saqlanadi?» javoblariga qo'sh: «{siyosat qatori}» Gapni kod bilan solishtir: kodda shu ish uchun saqlanadigan, lekin gapda yo'q ma'lumot bo'lsa — uni ayt, o'zing qo'shma.
      > Nima buzilmasin: sanoq sahifasi faqat kalit bilan ochilsin; sanoq yozuvida ism, login va chat raqami bo'lmasin; 1–2-amaliyotdagi ulanish va xabar avvalgidek. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Qavslar yonida kulrang namuna (Mentor misolidan):
      - {o'chirish tugmasi joyi} — «masalan: `mobil/` — «Hisobdan chiqish» yonidagi sozlamalar qatori»
@@ -390,8 +393,8 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
      > Qayerda: `backend/` — Telegram bo'limi, `POST /hodisalar` va `GET /hodisalar/sanoq`; `mobil/` — «Hisobdan chiqish» yonidagi sozlamalar qatori va ilovaning brauzer ko'rinishi; `lending/sanoq.html` va `lending/maxfiylik.html`.
      > Nima qilsin: 1) «Telegram ulangan» yonida tugma «Telegram xabarlarini o'chirish» — so'rov oynasisiz, bir bosishda: Backend shu o'yinchining `telegram_chat_id`, `telegram_kod` va `telegram_kod_gacha` ni bo'shatsin, ilova yana «Telegram'da xabar olish»ni ko'rsatsin. Bu yo'l faqat hisobga kirgan o'yinchi uchun, faqat o'zining yozuviga.
      > 2) «Hisobni o'chirish»da `telegram_chat_id` va `telegram_xabarlar` dagi yozuvlari ham o'chsin.
-     > 3) Ilovaning brauzer ko'rinishi manzilida `kanal=telegram` bo'lsa — `hodisaYoz('telegramdan-ochdi')`, bitta ochilishga bitta yozuv (`ochdi` avvalgidek yoziladi). `POST /hodisalar` qabul qiladigan nomlarga `telegramdan-ochdi` qo'sh; `GET /hodisalar/sanoq` javobiga va sanoq sahifasiga qadamlar ostida yangi qator: «Telegram'dan ochdi» — turli qurilmalar soni.
-     > 4) `lending/maxfiylik.html` dagi «Qaysi ma'lumot?» va «Nima uchun?» javoblariga qo'sh: «Telegram'da xabar olishni yoqsangiz — Telegram chat raqamingiz va qaysi o'yin haqida xabar yuborilgani saqlanadi: siz qatnashgan «Doimiy o'yin» yana e'lon qilinganini yozish va haftasiga ikkitadan oshirmaslik uchun. Ismingiz va Telegram nomingiz saqlanmaydi. «Telegram xabarlarini o'chirish»ni bossangiz, chat raqami o'chiriladi.»
+     > 3) Ilovaning brauzer ko'rinishi manzilida `kanal=telegram` bo'lsa — `hodisaYoz('telegramdan-ochdi')`, bitta ochilishga bitta yozuv — sahifa yuklanganda bir marta, qayta chizilganda emas (`ochdi` avvalgidek yoziladi). `POST /hodisalar` qabul qiladigan nomlarga `telegramdan-ochdi` qo'sh; `GET /hodisalar/sanoq` javobiga va sanoq sahifasiga qadamlar ostida yangi qator: «Telegram'dan ochdi» — turli qurilmalar soni.
+     > 4) `lending/maxfiylik.html` dagi «Qaysi ma'lumot?», «Nima uchun?» va «Qancha saqlanadi?» javoblariga qo'sh: «Telegram'da xabar olishni yoqsangiz — Telegram chat raqamingiz va qaysi o'yin haqida xabar yuborilgani saqlanadi: siz qatnashgan «Doimiy o'yin» yana e'lon qilinganini yozish va haftasiga ikkitadan oshirmaslik uchun. Ismingiz va Telegram nomingiz saqlanmaydi. «Telegram xabarlarini o'chirish»ni bossangiz, chat raqami o'chiriladi; qaysi o'yin haqida xabar yuborilgani yozuvi hisobingiz o'chirilguncha qoladi.» Gapni kod bilan solishtir: kodda shu ish uchun saqlanadigan, lekin gapda yo'q ma'lumot bo'lsa — uni ayt, o'zing qo'shma.
      > Nima buzilmasin: sanoq sahifasi faqat kalit bilan ochilsin; sanoq yozuvida ism, login va chat raqami bo'lmasin; 1–2-amaliyotdagi ulanish va xabar avvalgidek. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Web-trekda (Yordam ostida, bir gap): «Qayerda» qatorida `mobil/` o'rnida saytingiz (`prototip/`) — tugma va `kanal=telegram` o'qish o'sha yerda; qolgani o'sha.
   3. **Ishga tushirish** — `git status` → `git add <fayl>` → `git commit -m "telegram o'chirish va sanoq"` → `git push`. Backend o'zgardi — Render'da yangi versiya tugashini kuting; lending sahifalari push'dan keyin odatda o'zi yangilanadi.
@@ -406,28 +409,26 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
      (3) Tekshiruv yozuvini haqiqiy sanoqdan chiqaring. Neon SQL Editor'da: `SELECT id, yaratilgan FROM hodisalar WHERE nom = 'telegramdan-ochdi' ORDER BY yaratilgan;` → «Run» — faqat bugun o'zingiz bosgan vaqtdagi qatorlar bo'lishi kerak; boshqa qator bo'lsa — unga tegmang.
          Agentga: «`hodisalar` jadvalidan faqat shu `id` li tekshiruv yozuvlarini o'chir: {id lar}.» Sanoq sahifasida qator 0 ga qaytadi.
      (4) Telefoningizda `lending/maxfiylik.html` ni oching — yangi qatoringiz turibdi. Telegram xabarini o'zingiz olmoqchi bo'lsangiz — «Telegram'da xabar olish» bilan qayta ulang; bu majburiy emas.
-     Oxirida (mobil trek): odamlardagi ilova uchun yangi o'rnatish fayli kerak — `eas build -p android --profile preview`. Navbatni kutmang: «Bajardim»ni bosing va davom eting.
-     Fayl dars oxirigacha tayyor bo'lsa — lendingdagi «Android: ilovani o'rnatish» havolasini almashtiring; bo'lmasa — keyingi dars boshida.
-- Blok ostida (faqat mobil trekda, oxirgi «Bajardim»dan keyin; ikki tugma, bittasi tanlanadi): «Havola almashtirildi» · «Fayl navbatda» — yakundagi yorliq shundan (12-Modul 9-darsi naqshi).
 - O'ng tomon — «kutilgan natija · namuna: Maydon Jamoa» (ikki maket bir marta o'zi yuradi):
   - telefon: sozlamalar qatori «Telegram ulangan» va tugma «Telegram xabarlarini o'chirish» → bosilgach qator «Telegram'da xabar olish» bo'lib qaytadi (sozlama qatori ko'rinishida, chiqish tugmasiga o'xshamaydi)
   - sanoq sahifasi (brauzer oynasi `…/sanoq.html`): qadamlar va «eslatmadan ochdi» qatorlari (kulrang, sonsiz) · ostida yangi qator yashil yonadi: «Telegram'dan ochdi · 1 qurilma» · yorliq «Mentorning o'z telefoni — tekshiruv; keyin o'chiriladi»
   - pastda maxfiylik sahifasidan bitta qator (Yordamdagi gapning boshi). Web-trekda telefon o'rnida brauzer oynasi.
-- Hammasi bajarilgach (yashil): O'chirish bir bosishda ishlaydi; Telegram xabaridan ochilganlar sanaladi.
-- Qator (`QIzoh`, natija ostida; faqat mobil trekda): APK o'zi yangilanmaydi: eski faylda Telegram tugmasi yo'q — yangisini o'rnatgach paydo bo'ladi.
-- Ulgurmasangiz: o'chirish va sanoq qatori birinchi; siyosat qatorini dars oxirida, o'rnatish faylini keyingi dars boshida bajaring. Tekshiruv yozuvlarini o'chirishni o'tkazib yubormang.
+- Tekshiruv kartasi (4-qadam oxirida, «Bajardim»dan oldin; dars holatida — 3, 10-darslar naqshi; F-1007-466): «Kutilganidek» · «Boshqacha». «Boshqacha» bo'lsa yashil qator o'rnida kulrang: Talabdagidek bo'lmagan joyni agentga yozing va qayta tekshiring. (64)
+- Hammasi bajarilgach (yashil, «Kutilganidek» da): O'chirish bir bosishda ishlaydi; Telegram xabaridan ochilganlar sanaladi.
+- Qator (`QIzoh`, natija ostida; faqat mobil trekda): APK o'zi yangilanmaydi: o'rnatilgan faylda Telegram tugmasi yo'q — bugun Expo Go va brauzerda tekshirasiz. (106)
+- Ulgurmasangiz: o'chirish va sanoq qatori birinchi; siyosat qatorini dars oxirida bajaring. Tekshiruv yozuvlarini o'chirishni o'tkazib yubormang.
 - Nishon (bonus): Easy Off — 4-qadam «Bajardim»ida.
 - Tugmalar: Orqaga · Avval bajaring → Davom etish
 - ✎ MD izohi: talab zinapoyasi A3 — tayyor talab + 3 joy. `telegramdan-ochdi` — «sanoq yozuvi» (tayanch 1.8, 2; T-015): havola bilan ochilganini sanaydi, sababni emas (sinf 5); «xabar qaytardi» deyilmaydi.
   O'chirish — so'rov oynasisiz, bir bosishda (tayanch 1.8, TAQIQLAR 3); «Hisobni o'chirish» bilan ham chat raqami o'chadi (TAYANCHGA SAVOL 13). Tekshiruv yozuvi o'chiriladi (12-Modul 9.41 i); o'quvchi `SELECT` bilan ko'radi, agent `id` bo'yicha o'chiradi — o'quvchi `DELETE` yozmaydi (sinf 10).
   Neon so'rovi chat raqamini ekranga chiqarmaydi (`IS NOT NULL`) — chat raqami hech qayerda ko'rinmaydi (TAQIQLAR 3). Siyosat qatori — Mentor gapi (TAYANCHGA SAVOL 14); o'quvchi o'z qatorini o'zi yozadi.
-  Brauzer ko'rinishi yangilanishi — 12-Modul 9.28 buyruqlari (Netlify'ga chiqish; menyu nomlari yo'q). O'rnatish fayli — «uyda» yo'q, keyingi dars boshida (12-Modul 9.41 h).
+  Brauzer ko'rinishi yangilanishi — 12-Modul 9.28 buyruqlari (Netlify'ga chiqish; menyu nomlari yo'q). Yangi o'rnatish fayli bu darsda yo'q — GATE M M-q5 A (F-1007-466).
 - O'qituvchi eslatmasi: telefonda Telegram xabaridagi havola brauzerda ochiladi — o'rnatilgan APK'ni havoladan ochish uchun alohida sozlash kerak (Android App Links: ilova sozlamasi va saytdagi tasdiq fayli — Expo hujjati), bu darsda yo'q.
   Shuning uchun Mentor misolida havola brauzer ko'rinishiga olib boradi; u yerda hisobga kirmagan odam o'yinlarni mehmon sifatida ko'radi (12-Modul 8-darsi). Ilovani o'chirib yuborgan odam ham havola orqali o'yinni ko'ra oladi.
 
 ## 9 · Natijalar (podium) — umumiy shablon
 - Jonli reyting: 2 savol (skelet infrasi); bloklar «Bajardim» — mentorga signal (`PRACTICE_BASE`, 5-Modul naqshi).
-- Savol yorliqlari (`Q_LABELS`): 4 — «1 — Chat raqami qachon keladi» · 7 — «2 — Ilova o'chirilsa»
+- Savol yorliqlari (`Q_LABELS`): 4 — «1 — Chat raqami qachon keladi» · 7 — «2 — Ilova shartmi»
 
 ## 10 · Takrorlash  ← QKartochka (12 karta, alohida ekran — SABOQ 12, 16)
 - Eyebrow: Takrorlash
@@ -438,26 +439,27 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
 - Tugmalar: Orqaga · Yakunlash →
 
 ## 11 · Yakun  ← QYakun (texnik darslar standarti, 172/192/204; SABOQ E 50)
-- Yuqori yorliqlar: ✓ Uch blok bajarildi (faqat 3-amaliyot 4-qadami bajarilganda; aks holda yorliq yo'q) · {N}/2 to'g'ri · mobil trekda, 3-amaliyotda «Fayl navbatda» tanlangan bo'lsa — kulrang yorliq «O'rnatish fayli navbatda»
-- Sarlavha (bloklar holatiga qarab, P-046; sinf 6 — o'quvchi qilgan ishni aytadi, har holat rost — E 54):
-  - uchala blok: **Telegram xabari ishlaydi, o'chiriladi va sanaladi.** (50)
-  - 1 va 2-blok: **Telegram xabari ishlaydi — o'chirish va sanoq qoldi.** (52)
-  - faqat 1-blok: **Bot ulandi — Telegram xabari va o'chirish qoldi.** (48)
+- Yuqori yorliqlar: ✓ Uch blok bajarildi (faqat 3-amaliyot 4-qadami bajarilganda; aks holda yorliq yo'q) · {N}/2 to'g'ri
+- Sarlavha (bloklar va tekshiruv kartalari holatiga qarab, P-046; sinf 6 — o'quvchi qilgan va ko'rgan ishni aytadi, har holat rost — E 54; F-1007-466):
+  - uchala blok, hammasi «Kutilganidek»: **Telegram xabari ishlaydi, o'chiriladi va sanaladi.** (50)
+  - bajarilgan blokda «Boshqacha» bor: **Telegram xabari qurildi — bitta joyni tuzatish qoldi.** (53)
+  - 1 va 2-blok («Kutilganidek»): **Telegram xabari ishlaydi — o'chirish va sanoq qoldi.** (52)
+  - faqat 1-blok («Kutilganidek»): **Bot ulandi — Telegram xabari va o'chirish qoldi.** (48)
   - boshqa holat: **Telegram xabari hali tugamagan — bloklarni bajaring.** (52)
 - CTA: CODE STRIKE (arena) — jonli darsda: Mentorni kuting
 - «Bugungi asosiy fikr» qutisi yakunda yo'q (SABOQ E 50) — fikr A-bo'lim 2-bandida, darsning ichki o'qi.
 - Endi siz bilasiz (5):
-  - Ilova yopiq bo'lsa ham yangi o'yinni Backend biladi — Telegram xabarini u yuboradi.
+  - O'yinchining ilovasi yopiq bo'lsa ham, yangi o'yin yaratilganini Backend biladi — Telegram xabarini u yuboradi.
   - Bot odamga birinchi bo'lib yozolmaydi: odam botni o'zi boshlashi kerak.
   - Bir martalik kod Telegram chatini aynan shu hisob bilan bog'laydi; Backend faqat chat raqamini saqlaydi.
   - Bu kursda Telegram xabari faqat odamning o'z o'yini haqida va haftasiga ko'pi bilan ikkita.
   - O'chirish bir bosishda; sanoq havola bilan ochilganini ko'rsatadi, xabar qaytardimi — buni emas.
-- Uyga vazifa — yo'q (loyiha kuni; tayanch 4). `uyga: null`. «O'rnatish fayli navbatda» yorlig'i ostida bitta qator: «Fayl tayyor bo'lgach, lendingdagi havolani keyingi dars boshida almashtirasiz.»
+- Uyga vazifa — yo'q (loyiha kuni; tayanch 4). `uyga: null`.
 - Keyingi dars — «Kim haqiqatan to'lashga tayyor?»: Mentor tekshiruvi: uchta yozma tasdiq.
 - Nishonlaringiz — N/4
 - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
 - Tugmalar: Orqaga · Qaytadan · Yakunlash
-- ✎ «ishlaydi» — o'quvchi o'z Telegram'ida xabarni ko'rgan (2-amaliyot 4-qadami); «sanaladi» — o'lchov tayyor, «foydalanuvchi qaytdi» deyilmaydi (sinf 5, 6). «Boshqa holat» — hech biri yoki tartibsiz holat: har holatda rost («hali tugamagan»).
+- ✎ «ishlaydi» — o'quvchi o'z Telegram'ida xabarni ko'rgan va «Kutilganidek» ni tanlagan (2-amaliyot 4-qadami; «Bajardim» — ish fakti, natija emas — F-1007-466); «sanaladi» — o'lchov tayyor, «foydalanuvchi qaytdi» deyilmaydi (sinf 5, 6). «Boshqa holat» — hech biri yoki tartibsiz holat: har holatda rost («hali tugamagan»).
   Sarlavhalar ikkala trekka to'g'ri (bot trekka bog'liq emas). «Keyingi dars» qatori — App.jsx `m11-09` nomi va osti (T-038: boshqa joyda va'da yo'q).
 
 ---
@@ -489,7 +491,7 @@ Oyna yorlig'i: Qayta tushuntirish · tugmalar: ← Oldingi · Keyingisi → · �
 | Old tomon (savol) | Orqa (javob) | Izoh |
 |---|---|---|
 | Mentor misolida yana ochmagan besh o'yinchi nima dedi? | Uchtasi — yangi o'yin chiqqanini bilmadim; bittasi — ilovani o'chirdim; bittasi javob bermadi | 5 kishi — kichik son: sabab haqida dalil, isbot emas |
-| Ilova yopiq bo'lsa, yangi o'yin haqida kim biladi? | Backend | Yopiq ilova yangi e'lonni bilmaydi (12-Modul) |
+| Ilova yopiq bo'lsa, yangi o'yin haqida kim biladi? | Backend | Yopiq ilova yangi e'lonni bilmaydi (12-Modul); o'yin kimdir ilovani ochganda yaratiladi |
 | Bot odamga birinchi bo'lib yoza oladimi? | Yo'q | Odam botni o'zi boshlashi kerak; botni ulamagan odamga Telegram xabari yetmaydi |
 | Bir martalik kod nima uchun kerak? | Telegram chatini aynan shu hisob bilan bog'lash uchun | Mentor misolida — 10 daqiqa va bir marta ishlaydi |
 | Telegram so'rovini Backend qanday taniydi? | Sarlavhadagi maxfiy kalit bilan | Kalit `.env` da: `TELEGRAM_SIR` |
@@ -526,25 +528,25 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari ru'da ham o'sha; R-008): Telegram xab
 1. **Skelet:** `src/skelet/NamunaDars.jsx` dan (JR-14). `SCREEN_META` 12: hook · plan · concept · practice · test · concept · practice · test · practice · stats · flashcards (`sflash`) · summary.
    `INLINE_KEYS`: s4 **2 (C)** · s7 **1 (B)**; bloklar (3, 6, 8) — `practice: -1`. Final tartib-mashqi yo'q (172). `LESSON_META.lessonId` — `m11-08-v1`, `lessonTitle` — «Loyiha kuni: ketayotgan foydalanuvchini qaytarish». App.jsx `m11-08` ga `comp: WinBackDayLesson` — «qur» bosqichida (asosiy seans).
 2. **Bitta manba (180):** `TG_SAHNA` (telefon ko'rinishlari `qulf` · `ilova` · `telegram`; Backend qatorlari; Telegram tuguni; chiziq holatlari `uzuq` · `toliq`; konvert turlari) · `QAYTISH_SONLAR` (61 · 26 · 35 — qurilma, 12-Modul) ·
-   `QAYTMAGAN_JAVOBLAR` (besh qator: 3 × «Yangi o'yin chiqqanini bilmadim» · «Telefonda joy qolmadi, ilovani o'chirdim» · «javob bermadi») · `TG_XABAR` (shablon `{kun}, {soat} o'yini yana e'lon qilindi · {maydon} — {qoshilgan} / {kerak}` + havola qatori) ·
+   `QAYTMAGAN_JAVOBLAR` (besh qator: 3 × «Yangi o'yin chiqqanini bilmadim» · «Telefonda joy qolmadi, ilovani o'chirdim» · «javob bermadi») · `TG_XABAR` (shablon `{kun}, {soat} o'yini yana e'lon qilindi · {maydon}` + havola qatori; son yo'q — F-1007-466) ·
    `BOT_JAVOBLARI` (uch matn — A1 talabi) · `KIMGA_OYINCHILAR` (5-ekran, to'rt karta) · `KATAKLAR` (5-ekran va recap 2) · `TEKSHIRUV_OYINLARI` (2-amaliyot kutilgan natijasi: 15:00 · 16:00 · 17:00) · `SIYOSAT_QATORI` · `YORDAM_A1` · `YORDAM_A2` · `YORDAM_A3` — ekranlar, bloklar o'ngi va kartochka shundan o'qiydi.
 3. **`TgSahna`** komponenti — 12-Modul 9-darsidagi ikki telefonli sahna naqshida (nusxa, import emas — darslar mustaqil): `telefon` (`qulf` · `ilova` · `telegram`), `backend` (qatorlar, «Telegram: ulanmagan / ulangan»), `telegramTugun`, `chiziq`, `konvertlar`, `pufaklar` (Telegram chati), `startTugma`, `yorliqlar`.
    Telegram chati — chizilgan: tepada «Telegram» o'z rangida va `…_bot`, pufaklar, pastda «Start». **Chat raqami, Telegram nomi, odam ismi hech bir holatda chizilmaydi.** Logotip yo'q (D4). Bosiladigan qismlar faylda e'lon qilinadi
    (`// qolip-maket: tg-shanba tg-ulash tg-start tg-tekshir tg-ochir`). `prefers-reduced-motion` da harakat to'xtaydi (DE-200).
-4. **0-ekran `QKirish`:** maket — telefon (javoblar ro'yxati, besh bo'sh qator) + uch ustunli hisoblagich (61 · 26 · 35, yorliq «Mentor misolida · qurilma»); javobdan keyin qatorlarga javoblar navbat bilan yoziladi, kulrang qator chiqadi (kirish animatsiyasi, SABOQ 19).
+4. **0-ekran `QKirish`:** maket — telefon (javoblar ro'yxati, besh bo'sh qator) + uch ustunli hisoblagich (61 · 26 · 35, yorliq «12-Modul sanog'i · qurilma, ismsiz»; javoblar ro'yxati — «Mentor so'ragan tanishlar · odam»); javobdan keyin qatorlarga javoblar navbat bilan yoziladi, kulrang qator chiqadi (kirish animatsiyasi, SABOQ 19).
 5. **2-ekran `QTushuncha`:** `QBashorat`/`QTaxmin` (yopilmaydi — ixcham qator), to'rt harakat navbat bilan (faol tugma halqada, qolganlari xira), konvertlar, telefon ko'rinishlari almashishi, ikki nom qatori (harakatdan keyin), joriy qator, `zoom`, `tugadi`. Holat bosishlar ro'yxatidan (P-046).
 6. **5-ekran `QTushuncha`:** `KIMGA_OYINCHILAR` bittadan («O'yinchi N / 4»), «Tekshirish» → `KATAKLAR` ga ✓/✗ navbat bilan (60–120 ms), yashil / qizil karta, qizil qator (`QXato` ≤60), o'tganlar ixcham qator; 5-harakat — 1-o'yinchi qatorida «Telegram xabarlarini o'chirish»; joriy qator, `QIzoh`, `zoom`, `tugadi`.
    Tekshiruv kartasi ostida yorliq «bu kursda · Mentor misolida».
 7. **4 va 7-ekran `QTest`** — matn yuqoridagidek; to'g'ri izoh bitta qisqa gap, xato izohlari ≤60.
 8. **Amaliyot bloklari** — `ScreenBlok` + `QBlok` + `QPrompt` (12-Modul 9-darsi naqshi): har blok **4 qadam**, hammasi o'quvchining o'z repo'sida; 5-qadam yo'q. `{…}` joylari — A1: 3, A2: 4, A3: 3 (bo'sh, yonida kulrang «masalan»); «Yordam» — Mentor misolidagi to'liq talab (`YORDAM_A1…A3`); web gapi — «Yordam» ostida, trek `pm-m9d8-platforma` dan.
    - Tekshirish qadamlaridagi agentga matnlar va Neon so'rovlari — «Nusxalash» bilan (prompt qutisi kabi). A2 4-qadamida «Mentor misolida» satri kulrang.
-   - «Davom etish»: A1 — faqat 4-qadam «Bajardim»idan keyin · A2 — 3-qadamdan keyin (E 55) · A3 — 4-qadamdan keyin. Blok bayrog'i — faqat 4-qadam «Bajardim»idan (12-Modul 9.36 h); yakun sarlavhasi shu bayroqlardan.
+   - «Davom etish»: A1 — faqat 4-qadam «Bajardim»idan keyin · A2 — 3-qadamdan keyin (E 55) · A3 — 4-qadamdan keyin. Blok bayrog'i — faqat 4-qadam «Bajardim»idan (12-Modul 9.36 h); yakun sarlavhasi shu bayroqlar va 4-qadamdagi tekshiruv kartalaridan («Kutilganidek» / «Boshqacha» — F-1007-466).
    - O'ng: A1 — telefon (ikki kadr) + Neon qatori + terminal kartasi · A2 — Telegram chati (ikki pufak + kulrang yorliq) · A3 — telefon + sanoq sahifasi (brauzer oynasi) + siyosat qatori. Web-trekda telefon o'rnida brauzer oynasi.
-   - A3 ostida (mobil trek) ikki tugma «Havola almashtirildi» · «Fayl navbatda» — dars holatida (`ccProgress`), yangi `pm-…` kaliti yo'q; yakun yorlig'i shundan. «Ortda qoldingizmi» — faqat A1 da (SABOQ 39), teg `m13-dars-08-done`.
+   - Har blok 4-qadamida tekshiruv kartasi «Kutilganidek» · «Boshqacha» — dars holatida (`ccProgress`; 3, 10-darslar naqshi), yangi `pm-…` kaliti yo'q; yashil qator va yakun sarlavhasi shundan (F-1007-466). «Ortda qoldingizmi» — faqat A1 da (SABOQ 39), teg `m13-dars-08-done`.
    - `ACH_TRIGGERS`: 4 → Start First · 7 → Still Reaches · A2 4-qadam «Bajardim» → Weekly Two · A3 4-qadam «Bajardim» → Easy Off.
    - ⚠️ Qolipda yo'q (12-Modul bloklari bilan bir — MEXANIZM-TAKLIF): `{…}` yonida kulrang «masalan», qadam ichidagi «Yordam», «Ulgurmasangiz» qatori, O'qituvchi eslatmasi, ikki tugmali tanlov — o'z faylida kichik o'rovchi bilan, `src/qolip` ga tegilmaydi.
 9. `RECAPS` 2 (kalit = 4 va 7) · `Q_LABELS` {4, 7} · `ACHIEVEMENTS` 4 · `QUIZ_BANK` 12 (to'g'ri javob 0·1·2·3 ×3) · flashcard 12 (`sflash`, Mentor yo'q, «Kartani bosing — javob ochiladi»; SABOQ 12, 16) · `QZ_BG_SHAPES` fon so'zlari {uz, ru}, emoji yo'q.
-10. **11-ekran `QYakun`:** sarlavha — blok bayroqlaridan (to'rt holat); ✓ yorliq faqat A3 bajarilganda; «O'rnatish fayli navbatda» yorlig'i va ostidagi qator — A3 tanlovidan; `recap` 5 qator; `uyga: null`; `keyingi` — yuqoridagi matn. «Bugungi asosiy fikr» qutisi yo'q (E 50).
+10. **11-ekran `QYakun`:** sarlavha — blok bayroqlari va tekshiruv kartalaridan (besh holat); ✓ yorliq faqat A3 bajarilganda; `recap` 5 qator; `uyga: null`; `keyingi` — yuqoridagi matn. «Bugungi asosiy fikr» qutisi yo'q (E 50).
 11. Test savoli ustida «To'g'ri javobni tanlang» yorlig'i yo'q (SABOQ 6). Hook javoblari «Aynan!» / «Qiziq fikr!» (T-028, T-067). `narrow` faqat 4, 7, 9-ekranlarda (171). Skelet tuzoqlari — 12-Modul SABOQ C («Skelet tuzoqlari» bandi).
 12. **Darvozalar:** `npm run gates -- src/11-Modull/WinBackDayLesson.jsx` 12/12 · `npm run lint:jsx` · `lint:olchov` 0 · `lint:emoji` (qolip) 0 · `python3 feedback/F-1005-10modul/stilsiz.py <fayl>` (SABOQ 31) · `lint:layout` 1280/1366/390 · surat 1280 + 393; har ekran «4 savol» (SABOQ 30) hisobotda.
 13. ru — uz tasdiqlangach, bir yo'la (6-RU; tayanch 10 lug'ati — «Telegram bot», «Yordam»; «Telegram xabari», «bir martalik kod», «chat raqami» — RU bosqichida o'lchanadi).
@@ -555,12 +557,12 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari ru'da ham o'sha; R-008): Telegram xab
    `POST /telegram/webhook` — `X-Telegram-Bot-Api-Secret-Token` `TELEGRAM_SIR` ga teng bo'lmasa — `401`; faqat `chat.type = 'private'` dagi `/start <kod>`; kod amal qilsa — `telegram_chat_id` yoziladi, kod bo'shatiladi, bot javobi (A1 matni); aks holda ikki javobdan biri; ishlangan `update_id` qayta ishlanmaydi; Telegram'ga `200`.
    Telegram so'rovidan faqat `chat.id` olinadi; `from.first_name`, `username`, xabar matni saqlanmaydi va logga yozilmaydi. `GET /men` ga `telegram: boolean`.
 2. `backend/` — `telegram_xabarlar` (`id` · `oyinchi_id` · `oyin_id` · `yuborilgan`; UNIQUE (`oyinchi_id`, `oyin_id`)). «Doimiy o'yin»ning keyingi haftadagi o'yini `GET /oyinlar` da yaratilganda — oldingi o'yinning `qoshildi`/`keladi` qatnashchilaridan `telegram_chat_id` bo'lgan va shu hafta
-   (dushanba–yakshanba) `telegram_xabarlar` da 2 tadan kam qatori borlarga `sendMessage`: `TG_XABAR` matni + `{brauzer ko'rinishi manzili}?kanal=telegram`; yuborilgani yoziladi; Telegram xatosida keyingisiga o'tiladi; `GET /oyinlar` javobi kutmaydi. Pro tekshiruvi qo'shilmaydi (12-dars topilmasi — tayanch 1.12).
+   (dushanba–yakshanba) `telegram_xabarlar` da 2 tadan kam qatori borlarga `sendMessage`: `TG_XABAR` matni + `{brauzer ko'rinishi manzili}?kanal=telegram`. Tartib (F-1007-466): haftalik sanoq va `telegram_xabarlar` ga yozuv — bitta Database ishida (UNIQUE band qilinadi) → faqat yozuv qo'shilgan bo'lsa `sendMessage` → Telegram xato bersa yozuv o'chiriladi (chat raqami qoladi) · `GET /oyinlar` javobi yuborishdan keyin qaytadi. Pro tugagan tashkilotchining keyingi o'yini yaratilmaydi (5-dars, 9.26) — xabar ham yo'q; takror yaratilish — 12-dars topilmasi (M-q4 A).
 3. `backend/` — o'chirish yo'li (token bilan; o'z yozuvi): `telegram_chat_id`, `telegram_kod`, `telegram_kod_gacha` bo'shatiladi · «Hisobni o'chirish» — `telegram_xabarlar` qatorlari ham · `POST /hodisalar` nomlariga `telegramdan-ochdi` · `GET /hodisalar/sanoq` — yangi maydon (turli `qurilma_id`).
 4. `mobil/` — «Hisobdan chiqish» yonida sozlama qatori: «Telegram'da xabar olish» (ostida matn) / «Telegram ulangan» + «Telegram xabarlarini o'chirish»; `Linking.openURL(havola)`; brauzer ko'rinishida manzilda `kanal=telegram` bo'lsa — `hodisaYoz('telegramdan-ochdi')` (bitta ochilishga bitta).
    `lending/sanoq.html` — qator «Telegram'dan ochdi». `lending/maxfiylik.html` — `SIYOSAT_QATORI`. `backend/.env.example` — `TELEGRAM_BOT_TOKEN=`, `TELEGRAM_SIR=` (qiymatsiz). `README.md` — o'zgaruvchilar ro'yxati; yangi «Telegram» bo'limi (ulanish, xabar, chegara, o'chirish, sanoq); «Darslar va teglar» jadvaliga `m13-dars-08-done`.
 5. ⛔ Muhrdan oldin («qur» darvozasi): Render'da `setWebhook` (uxlagan xizmat uyg'onganda ham) · haqiqiy Telegram'da «Start» → ulanish va bot javobi (Android va iPhone, Expo Go va brauzer ko'rinishi) · tekshiruv o'yinlari bilan ikki xabar va chegara · o'chirish · `telegramdan-ochdi` brauzer ko'rinishida ·
-   uxlagan Backend'ga kelgan Telegram so'rovi qayta yuborilganda bitta ulanish va bitta javob · uch blokning vaqti (taymer). Natija boshqacha chiqsa — MD haqiqiy natijaga moslanadi. Mentor misolida yangi APK tayyorlanib, lending havolasi almashtiriladi; Mentor tekshiruv yozuvlari muhrdan oldin `id` bo'yicha o'chiriladi.
+   uxlagan Backend'ga kelgan Telegram so'rovi qayta yuborilganda bitta ulanish va bitta javob · uch blokning vaqti (taymer). Natija boshqacha chiqsa — MD haqiqiy natijaga moslanadi. Yangi APK bu darsda yo'q (M-q5 A); Mentor tekshiruv yozuvlari muhrdan oldin `id` bo'yicha o'chiriladi.
 
 ## Manbalar (o'zim tekshirdim yoki tayanch 6 orqali, 07.10.2026; o'quvchiga ko'rinmaydi)
 1. Telegram — `core.telegram.org/bots/features` (o'zim, 07.10.2026), «Deep linking»: «https://t.me/your_bot?start=airplane» → bot «/start airplane» oladi · «A-Z, a-z, 0-9, _ and - are allowed. … The parameter can be up to 64 characters long.» ·
@@ -576,7 +578,7 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari ru'da ham o'sha; R-008): Telegram xab
 8. Pilot `03-PaymentWebhook-v3.md` (07.10): maxfiy kalit odati (`.env` + Render Environment, `git grep` — faqat nom), hisob raqamini Neon'da topish, «takror xabar», REPO 3 dagi `RENDER_EXTERNAL_URL`. → A1.
 
 ## TAYANCHGA SAVOL (o'zim qaror qildim — tasdiq kerak)
-1. ✅ (07.10 qabul — tayanch 1.8 tuzatildi, 9.38: «— 0 / 10») **Xabardagi son: tayanch 1.8 «— 3 / 10», MD da «— 0 / 10».** Tayanch: xabar «Doimiy o'yin» keyingi haftaga e'lon qilinganda ketadi (1.8; 1.12 da ham «yana e'lon qilindi va Telegram xabari ketdi»), keyingi o'yin `GET /oyinlar` da yaratiladi (1.4).
+1. ✅ (F-1007-466 — **B**: son olib tashlandi; tayanch 1.8, 9.38) **Xabardagi son: tayanch 1.8 «— 3 / 10», MD da «— 0 / 10».** Tayanch: xabar «Doimiy o'yin» keyingi haftaga e'lon qilinganda ketadi (1.8; 1.12 da ham «yana e'lon qilindi va Telegram xabari ketdi»), keyingi o'yin `GET /oyinlar` da yaratiladi (1.4).
    Yangi yaratilgan o'yinda hali hech kim qo'shilmagan — xabar ketgan paytda son **0** (11-Modul e'lon formasida qo'shilganlar maydoni yo'q). «3 / 10» faqat xabar keyinroq ketsa chiqadi — bu esa tayanchdagi vaqtga ham, «Backend uxlaydi — vaqtga bog'langan ish yo'q» qaroriga (1.4) ham zid.
    MD qarori: matn tayanch so'zi bilan, son — xabar yuborilgan paytdagi «qo'shilganlar / kerak» (2, 5-ekran, 2-amaliyot: «— 0 / 10»). Variantlar: **(A)** MD dagidek — tavsiya · **(B)** sonni olib tashlash: «Shanba, 18:00 o'yini yana e'lon qilindi · Mahalla maydoni» (Telegram xabari keyin o'zgarmaydi, son esa eskiradi) ·
    **(C)** «3 / 10» qoladi — xabar yaratilgandan keyin, kechiktirib yuboriladi (yangi mexanizm, sinfda tekshirib bo'lmaydi). Javobga qarab 2, 5-ekran, `TG_XABAR`, 2-amaliyot kutilgan natijasi va arena 8 yangilanadi.
@@ -592,7 +594,7 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari ru'da ham o'sha; R-008): Telegram xab
 11. **Haftalik chegara faqat Telegram xabarlari uchun** — Backend `telegram_xabarlar` dan sanaydi; ilova eslatmalari telefonda, o'z chegarasi bilan (12-Modul) — bitta sanoqqa qo'shilmaydi. Natijada bir odam bir haftada ilovadan ham, Telegram'dan ham xabar olishi mumkin. Hafta — dushanba–yakshanba (12-Modul 9.41 b).
 12. **Kimga** — oldingi haftadagi o'yinning `qoshildi` / `keladi` qatnashchilari (navbatdagilar va chiqqanlar — yo'q); tashkilotchi — faqat o'zi qatnashgan bo'lsa. Bitta o'yin haqida bitta odamga bir marta — UNIQUE (`oyinchi_id`, `oyin_id`).
 13. **O'chirish** — so'rov oynasisiz, bir bosishda; chat raqami va kutayotgan bir martalik kod bo'shatiladi; «Hisobni o'chirish» — `telegram_xabarlar` qatorlari ham. O'chirgandan keyin bot «o'chirildi» deb yozmaydi (ortiqcha xabar).
-14. **Siyosat qatori** (Mentor; `lending/maxfiylik.html`, «Qaysi ma'lumot?» va «Nima uchun?»): «Telegram'da xabar olishni yoqsangiz — Telegram chat raqamingiz va qaysi o'yin haqida xabar yuborilgani saqlanadi: siz qatnashgan «Doimiy o'yin» yana e'lon qilinganini yozish va haftasiga ikkitadan oshirmaslik uchun. Ismingiz va Telegram nomingiz saqlanmaydi. «Telegram xabarlarini o'chirish»ni bossangiz, chat raqami o'chiriladi.»
+14. **Siyosat qatori** (Mentor; `lending/maxfiylik.html`, «Qaysi ma'lumot?», «Nima uchun?» va «Qancha saqlanadi?» — F-1007-466): «Telegram'da xabar olishni yoqsangiz — Telegram chat raqamingiz va qaysi o'yin haqida xabar yuborilgani saqlanadi: siz qatnashgan «Doimiy o'yin» yana e'lon qilinganini yozish va haftasiga ikkitadan oshirmaslik uchun. Ismingiz va Telegram nomingiz saqlanmaydi. «Telegram xabarlarini o'chirish»ni bossangiz, chat raqami o'chiriladi; qaysi o'yin haqida xabar yuborilgani yozuvi hisobingiz o'chirilguncha qoladi.»
 15. **Talab zinapoyasi** — A1: tayyor talab + 3 joy · A2: + 4 joy · A3: + 3 joy (12-Modul 9-darsida uchala blokda uch qator o'quvchidan edi; bu yerda texnik qism — maxfiy kalit, kod, takror so'rov — o'quvchi yoza olmaydigan darajada, shuning uchun tayyor).
 16. **Havola** — mobil trekda ilovaning brauzer ko'rinishi `?kanal=telegram` (APK havoladan ochilmaydi — Manbalar 5), web-trekda sayt; `telegramdan-ochdi` brauzer ko'rinishida yoziladi; mobil trekda 3-amaliyotda brauzer ko'rinishi qayta chiqariladi (12-Modul 9.28). Tayanch «ilova ochilsa» — MD da «havola bilan ochilganda».
 17. **Sanoq sahifasi qatori nomi** — «Telegram'dan ochdi» (12-Modul «eslatmadan ochdi» naqshi).
@@ -600,29 +602,29 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari ru'da ham o'sha; R-008): Telegram xab
     keyin tekshiruv akkauntlari, o'yinlar, qo'shilish yozuvlari va `telegram_xabarlar` qatorlari `id` bo'yicha, ro'yxat va «Davom et» bilan o'chiriladi.
 19. **Xabar matni qoidasi** («bu kursda»): faqat o'zgarish — kun, soat, joy, son; bosim, qo'rqitish va to'lov taklifi yo'q (12-Modul 9-darsi qoidasi + TAQIQLAR 1).
 20. **Nishonlar:** Start First · Still Reaches · Weekly Two · Easy Off (grep 0).
-21. **Yakun sarlavhalari** — to'rt holat (uchala · 1–2 · faqat 1 · boshqa).
+21. **Yakun sarlavhalari** — besh holat (uchala «Kutilganidek» · «Boshqacha» bor · 1–2 · faqat 1 · boshqa; F-1007-466).
 22. **«Davom etish»** — A1 faqat 4-qadamdan keyin (A2 tekshiruvi ulanishga tayanadi; 12-Modul 9.41 i), A2 — 3-qadamdan keyin (A3 sanoq tekshiruvining zaxira yo'li bor), A3 — 4-qadamdan keyin.
-23. **Telegram akkaunti yo'q o'quvchi** — sherigining Telegram'ida tekshiradi; sherikning chat raqami o'quvchining Database'iga yoziladi va 3-amaliyotda o'chiriladi. Bu qabulmi yoki faqat Mentor namunasini ko'rishmi — foydalanuvchi qarori.
+23. ✅ **Telegram akkaunti yo'q o'quvchi** (F-1007-466) — sherigining Telegram'ida, faqat `namuna = true` tekshiruv hisobi orqali; sherik chati o'quvchining o'z hisobiga hech qachon ulanmaydi; 3-amaliyot oxirida ulanish va tekshiruv hisobi `id` bo'yicha o'chiriladi (tayanch 9.40 «sherigining Telegram'ida» shu ma'noda).
 24. **Maketdagi namunalar** — bot nomi `…_bot`, kod `k7Q…` (qisqartirilgan; haqiqiy botga mos kelib qolmasin); Mentor hisobi `id 7` (tayanch 9.1).
-25. **1-ekran** — sarlavha «Bugun mahsulotingiz Telegram orqali xabar yuboradi.» va uch qator; Mentorning birinchi gapi — App.jsx `sub`.
-26. **2-savol** — «ilovani o'chirgan, botni ulagan o'yinchi» (0-ekrandagi «o'chirdim» javobi bilan ip).
+25. **1-ekran** — sarlavha «Bugun mahsulotingiz Telegram orqali xabar yuboradi.» va uch qator; Mentor gapi — App.jsx `sub` ga tayanadi, «ko'proq uchradi» shaklida (F-1007-466).
+26. **2-savol** — F-1007-466: «Telegram xabari kelishi uchun telefonda ilova turishi shartmi?» (avvalgi «o'yini yana e'lon qilinsa-chi?» — chegara va to'xtatilgan botsiz B yagona emas edi).
 
 ## Shubhali joylar (ishonchim komil emas)
-1. ⛔ **«0 / 10» va tayanch «3 / 10»** — TAYANCHGA SAVOL 1; GATE M gacha tayanch bilan farq bor.
+1. ✅ **Xabardagi son** — olib tashlandi (F-1007-466; TAYANCHGA SAVOL 1).
 2. ⛔ **Uxlagan Render va Telegram so'rovi** — rasmiy hujjatda Telegram qancha kutishi va necha marta qayta yuborishi aniq emas («a reasonable amount of attempts»); bot javobi bir daqiqagacha kechikishi va takror so'rov ikki marta ishlanmasligi — Mentor repo'sida «qur» da sinaladi.
 3. ⛔ **`setWebhook` Backend ishga tushganda** — mahsulot Backend'i (NestJS) Telegraf'siz bo'lishi mumkin; `RENDER_EXTERNAL_URL` va so'rov yuborish usuli — agentning tanloviga qoladi; Render'da sinalmagan.
 4. **«Start» tugmasining yozuvi** — tayanch 1.8 so'zi; Telegram interfeysi tiliga qarab boshqacha yozilishi mumkin (o'zbekcha interfeysda — tekshirilmagan). Havolani ikkinchi marta ochganda Telegram «Start»ni yana ko'rsatadimi — tekshirilmagan; shuning uchun 1-amaliyot tekshiruvida havolani qayta ochish yo'q.
 5. **Botni bloklagan odamga yuborish** — Telegram qaytaradigan javob rasmiy sahifalarda topilmadi (tayanch 6 «tekshirilmagan»); talab umumiy («xato bilan to'xtama, keyingisiga o't»); bunday odamning chat raqamini o'chirish kerakmi — qaror yo'q.
-6. **Hafta va vaqt mintaqasi** — Render vaqti Toshkent vaqtidan farq qilishi mumkin; «dushanbadan yakshanbagacha» qaysi vaqt bo'yicha — talabda yo'q, agentning tanloviga qoladi; «qur» da ko'riladi.
-7. **Xabar `GET /oyinlar` javobini kutdirmasdan** — Render bepul xizmatida javob qaytgandan keyin ish davom etishi sinalmagan; ishlamasa — xabar javobdan oldin yuboriladi va javob biroz kechikadi (MD yangilanadi).
+6. ✅ **Hafta va vaqt mintaqasi** — F-1007-466: talabda `Asia/Tashkent` (tayanch 9.40; 4, 10-darslar bilan bir).
+7. ✅ **Xabar va `GET /oyinlar` javobi** — F-1007-466: xabarlar yuborilgach javob qaytadi; javob biroz kechikadi — «qur» da o'lchanadi.
 8. **Expo Go'da `t.me` havolasi** Telegram ilovasini ochishi va brauzer ko'rinishida (iPhone) `Linking.openURL` — sinalmagan; web-trekda yangi oynada Telegram Web yoki ilova ochiladi.
 9. **Brauzer ko'rinishida `kanal=telegram`** — Expo web eksportida manzil parametri o'qilishi (12-Modul 9.39 k darvozasi bilan bir) — sinalmagan.
-10. **Agent vaqti o'tgan «Doimiy o'yin» yarata olishi** va 4-dars mantig'i ulardan keyingi haftani yaratishi; tekshiruv tashkilotchisining Pro holati — Mentor repo'sida «qur» da. `08-done` da Pro tugagan tashkilotchining o'yini ham yaratiladi (12-darsning topilmasi, 1.12) — 8-dars buni aytmaydi va tuzatmaydi.
+10. **Agent vaqti o'tgan «Doimiy o'yin» yarata olishi** va 4-dars mantig'i ulardan keyingi haftani yaratishi; tekshiruv tashkilotchisining Pro holati — Mentor repo'sida «qur» da. F-1007-466: Pro tugagan tashkilotchining keyingi o'yini 5-darsdan yaratilmaydi (9.26; ⛔ 7-dars pilotida ilovada tekshiriladi); 12-darsning topilmasi — takror yaratilish (M-q4 A): bir vaqtdagi ikki ochilishda ikki o'yin va ikki xabar.
 11. **Yangi o'yinda son 0** — 11-Modul formasidan kelib chiqadi; tashkilotchi o'z o'yiniga avtomatik qo'shiladimi — tayanchda yo'q (bo'lsa, son 1 bo'ladi) — «qur» da.
-12. ⛔ **90 daqiqa** — uch blokda uch Render kutishi, 1-amaliyot og'ir (yangi bot, ikki maxfiy qiymat). Sig'masa — 2-amaliyot tekshiruvi dars oxiriga, siyosat qatori 3-amaliyot oxiriga (Ulgurmasangiz); pilotda taymer.
+12. ⛔ **90 daqiqa** — uch blokda uch Render kutishi, 1-amaliyot og'ir (yangi bot, ikki maxfiy qiymat). ChatGPT bahosi — 150–200 daqiqa (o'lchanmagan; F-1007-466); APK bu darsdan olib tashlandi (M-q5 A). Botni darsdan oldin ochib kelish — foydalanuvchi qarori. Sig'masa — 2-amaliyot tekshiruvi dars oxiriga, siyosat qatori 3-amaliyot oxiriga (Ulgurmasangiz); pilotda taymer.
 13. **Neon so'rovi `IS NOT NULL`** — o'quvchi chat raqamini ko'rmaydi; agent tekshiruvda `SELECT *` qilib chat raqamini chatga chiqarishi mumkin — promptlarda «chat raqami logga yozilmasin» bor, agent javobi uchun alohida taqiq yo'q.
 14. **Telegram yo'q o'quvchi va sherik** — TAYANCHGA SAVOL 23.
-15. **2-savol B** («Keladi») — botni bloklamagan va o'chirmagan odam uchun rost; savolda bu shartlar aytilmagan (12 so'z chegarasi) — «Mentor misolida» va «botni ulagan» bilan chegaralandi.
+15. ✅ **2-savol** — F-1007-466: savol «ilova shartmi?» ga o'zgardi — B shartlarsiz rost.
 
 ## Oldindan tuzatiladigan sinflar — o'z tekshiruvim (tayanch 7: 16 band + 12-Modul tayanchi 7 + pul sinflari)
 1. [x] **90 daqiqa — reja, o'lchov emas** — tepada taqsimot «reja, o'lchov emas» va ⛔ pilot taymeri; A-bo'lim 10; har blokda «Ulgurmasangiz»; Render kutishi paytida ish (uchala blok 3-qadami — kodni ko'rsatadigan prompt); o'rnatish fayli navbati kutilmaydi, «uyda» yo'q; «sig'adi» deyilmagan (Shubhali 12).
@@ -687,28 +689,28 @@ Ballik testlar ±15%, arena ±20% (o'rtachadan). Mentor gaplari — «…» ichi
    49     QXato: Botni boshlamagan — bot unga birinchi yozolmaydi.
    45     QXato: Bu hafta ikkita xabar oldi — uchinchisi yo'q.
    52     QXato: Shu o'yinda qatnashmagan — xabar unga tegishli emas.
-   51     A: Telegram xabarini Backend yuboradi — ilova shartmi?
-   50     C: Mentor ilovasi telefon raqamini umuman so'ramaydi.
-   56     D: Ilovani o'chirish hisobni o'chirmaydi — bu boshqa tugma.
+   55     A: Xabar Telegram chatiga keladi — ilova bu yerda kerakmi?
+   55     C: Backend Telegram'ga yozadi — ilovaga so'rov shart emas.
+   50     D: Mentor ilovasi telefon raqamini umuman so'ramaydi.
 ## Yashil, joriy, QIzoh qatorlari (≤110)
-   99     joriy: Backend yangi o'yinni ilova yopiq bo'lsa ham biladi — bot esa faqat «Start»ni bosgan odamga yozadi.
+   85     joriy: Yangi o'yin kimdir ilovani ochganda yaratiladi: hech kim ochmasa, xabar ham ketmaydi.
    78     QIzoh: Ulanishda faqat chat raqami saqlanadi: ism ham, Telegram nomi ham saqlanmaydi.
    88     yashil: Bot faqat «Start»ni bosgan foydalanuvchini taniydi; Backend'da faqat chat raqami turadi.
    83     QIzoh: Kodni agent yozdi — Telegram xabari ishlashini 2-amaliyotdagi tekshiruv ko'rsatadi.
    62     joriy: O'chirish bir bosishda: chat raqami o'chadi va xabar ketmaydi.
-  102     QIzoh: Bu kursda xabar matnida faqat o'zgarish bor: kun, soat, joy, son — bosim ham, to'lov taklifi ham yo'q.
+  97     QIzoh: Bu kursda xabar matnida faqat o'zgarish bor: kun, soat, joy — bosim ham, to'lov taklifi ham yo'q.
    82     yashil: Telegram xabari faqat tegishli, botni ulagan odamga ketdi; uchinchisi yuborilmadi.
-   72     QIzoh: Xabarni Backend yubordi: ilova yopiq bo'lsa ham, yangi o'yinni u biladi.
+   87     QIzoh: Xabarni Backend yubordi: o'yinchining ilovasi yopiq bo'lsa ham, yangi o'yinni u biladi.
    73     yashil: O'chirish bir bosishda ishlaydi; Telegram xabaridan ochilganlar sanaladi.
-   95     QIzoh: APK o'zi yangilanmaydi: eski faylda Telegram tugmasi yo'q — yangisini o'rnatgach paydo bo'ladi.
+  106     QIzoh: APK o'zi yangilanmaydi: o'rnatilgan faylda Telegram tugmasi yo'q — bugun Expo Go va brauzerda tekshirasiz.
 ## Reja qatorlari
    34     Ulanish: odam botni o'zi boshlaydi
    39     Xabar: o'z o'yini yana e'lon qilinganda
    41     O'chirish bir bosishda, ochilish sanaladi
 ## Mentor gaplari (gap soni · belgi)
-  1 gap · 101  Mentor ilovani yana ochmagan tanish o'yinchilardan sababini so'radi — avval o'zingiz javobni tanlang.
+  1 gap · 98  Mentor ilovani ochmay qo'ygan beshta tanishidan sababini so'radi — avval o'zingiz javobni tanlang.
   1 gap ·  80  Bugun eng ko'p aytilgan sababga bitta mexanika qurasiz — «Davom etish»ni bosing.
-  1 gap · 109  Nega ketishadi — ko'rdingiz; bugun bitta qaytarish mexanikasini uch blokda qurasiz, namuna «Yordam»da turadi.
+  1 gap · 105  Besh javobda bitta sabab ko'proq uchradi — bugun shunga bitta mexanika qurasiz, namuna «Yordam»da turadi.
   1 gap ·  78  Avval taxminingizni belgilang, keyin Backend ostidagi «Shanba o'tdi»ni bosing.
   1 gap ·  60  Endi telefondagi ilovada «Telegram'da xabar olish»ni bosing.
   1 gap ·  34  Telegram chatida «Start»ni bosing.
@@ -727,11 +729,11 @@ Ballik testlar ±15%, arena ±20% (o'rtachadan). Mentor gaplari — «…» ichi
       B   43  Bot telefon raqami orqali uni o'zi topganda
       C✔  42  O'yinchi kodli havolada «Start»ni bosganda
       D   38  Tashkilotchi «E'lon berish»ni bosganda
-  Mentor misolida botni ulagan o'yinchi ilovani o'chirdi. O'yini yana e'lon qilinsa-chi? · 11 so'z · [46, 41, 40, 44] · eng uzun 46 / eng qisqa 40 · ✔B · OK
-      A   46  Kelmaydi — Telegram xabari ilova orqali keladi
-      B✔  41  Keladi — xabarni Telegram'dagi bot yozadi
-      C   40  Keladi — Backend uni SMS orqali yuboradi
-      D   44  Kelmaydi — Backend hisobini o'chirib qo'yadi
+  Mentor misolida Telegram xabari kelishi uchun telefonda ilova turishi shartmi? · 10 so'z · [40, 39, 42, 38] · eng uzun 42 / eng qisqa 38 · ✔B · OK
+      A   40  Ha — Telegram xabari ilova orqali keladi
+      B✔  39  Yo'q — xabarni Telegram'dagi bot yozadi
+      C   42  Ha — Backend avval ilovaga so'rov yuboradi
+      D   38  Yo'q — Backend uni SMS bo'lib yuboradi
 ## Arena (12) — ✔ o'rni va variant uzunliklari (±20%)
    1. ✔A · 8 so'z · [33, 28, 30, 36] · OK  Mentor misolida yana ochmagan beshtadan ko'pi nima dedi?
    2. ✔B · 6 so'z · [38, 38, 35, 40] · OK  Bot odamga birinchi bo'lib yoza oladimi?
@@ -779,4 +781,4 @@ Ballik testlar ±15%, arena ±20% (o'rtachadan). Mentor gaplari — «…» ichi
   P-036 · P-046 · P-048 · P-052 · P-055 · P-059 · P-062 · P-063 (`TG_SAHNA`, `KATAKLAR`, `TG_XABAR`) · P-064 · P-067 · S-001 · S-002 · S-004 · S-006 · S-008 · S-010 · S-015 · S-018 (brend sifatida faqat Telegram — asbob, izohsiz kundalik nom, KORPUS §189) · S-019 · S-020 · S-026 · S-040 ·
   PM-030 · SABOQ 6, 9, 11, 12, 13, 16, 17, 19–31, 36, 39, E 40–55.
 - [x] Tekshiruv: `npm run lint:til feedback/F-1007-13modul/08-WinBackDay-v3.md` — **0 error**, 3 warn (74, 205, 221-qatorlar — 74 da prompt qoidasining o'zi tilga olingan, 205 va 221 — prompt matni: agentga yoziladigan prompt matnidagi murojaat shakli — T-002 istisnosi; 12-Modul SABOQ C: lint ogohlantirishi kutilgan, error emas).
-- [ ] GATE M da foydalanuvchi qarori kerak: TAYANCHGA SAVOL 1 («0 / 10» yoki tayanch «3 / 10»), 4 (faqat yangi bot), 23 (sherikning Telegram'i bilan tekshiruv).
+- [x] Ochiq savollar yopildi: TAYANCHGA SAVOL 1 (son yo'q — F-1007-466), 4 (faqat yangi bot — 9.39), 23 (sherik Telegram'i faqat `namuna = true` tekshiruv hisobiga — F-1007-466).

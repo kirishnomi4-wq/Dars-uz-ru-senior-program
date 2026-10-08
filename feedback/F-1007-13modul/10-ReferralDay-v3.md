@@ -36,15 +36,15 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2 ≈ 7 · Amaliyot 
      `10-done` da taklif kodi katta harf bilan solishtiriladi — kichik harf bilan yozilgani qabul qilinmaydi (tayanch 1.10, 1.12). O'quvchi matnida bu aytilmaydi (keyingi darsning topilmasi oldindan ochilmaydi — sinf 12); faqat O'qituvchi eslatmasida.
    - **Sanoq:** lending — Umami, `tashrif` kanal «taklif» bilan · Database — taklif kodi bilan ro'yxatdan o'tganlar (`taklif_qilgan_id`, `namuna = false`) · asosiy harakat — 12-Modul 9.23 SQL i shu hisoblar ichida. Umami'ga faqat kanal ketadi — taklif kodi yuborilmaydi (TAYANCHGA SAVOL 12).
    - **Mukofot (Qaror-0 15):** taklif qilgan odamga **Pro'ning bepul haftasi** (`pro_gacha` 7 kunga uzayadi; pul ham, chegirma ham emas; test rejimdagi pullik obuna muddati).
-     **Shart (Qaror-0 16 — uch shart va cheklov):** 1) taklif kodi bilan ochilgan **yangi hisob asosiy harakatni qilgach** · 2) o'zini taklif qilish (ikki hisob **bir qurilma ID** da) sanalmaydi · 3) **namuna** hisob sanalmaydi · cheklov: bitta odamga haftasiga ko'pi bilan **2** mukofot.
+     **Shart (Qaror-0 16 — uch shart va cheklov):** 1) taklif kodi bilan ochilgan **yangi hisob asosiy harakatni qilgach** · 2) o'zini taklif qilish (ikki hisob **bir qurilma ID** da) sanalmaydi · 3) **namuna** hisob sanalmaydi · cheklov: bitta taklif qilgan **hisobga** haftasiga ko'pi bilan **2** mukofot (Backend odamni emas, hisobni taniydi — F-1007-468).
      Havola faqat tanish doiraga; «do'stingni taklif qil — sovg'a» bosimi yo'q.
    - **Mentor natijasi (bir hafta; tayanch 1.10, 1.13 — aynan):** taklif havolasi bilan lending ochilgan — **18** (Umami; o'quvchi matnida «tashrif» — TAYANCHGA SAVOL 4) · taklif kodi bilan ro'yxatdan o'tgan **7** hisob · ulardan asosiy harakatni qilgan **4** ·
      shulardan **1** tasi taklif qilgan bilan bir qurilmada — sanalmadi · mukofot **3** ta (**2** tashkilotchiga) · jami ro'yxatdan o'tgan **51** (44 + 7).
-     Halol gap (so'zma-so'z): «Bir hafta va 7 kishi — kichik son: taklif havolasi ishlaganini ko'rsatadi, o'sishni isbotlamaydi.» **51 — baho yoki g'alaba deb aytilmaydi** (12-Modul «50 — baho emas» qoidasi): unda 11 sinfdosh va bir qurilmadagi hisob ham bor.
+     Halol gap (so'zma-so'z): «Bir hafta va 7 hisob — kichik son: taklif yo'li ishlaganini ko'rsatadi, o'sishni isbotlamaydi.» **51 — baho yoki g'alaba deb aytilmaydi** (12-Modul «50 — baho emas» qoidasi): unda 11 sinfdosh va bir qurilmadagi hisob ham bor.
    - **«Bir qurilma» qoidasining halol chegarasi:** u faqat bir qurilmani ushlaydi — ikkinchi qurilmadan (ikkinchi telefon, kompyuterdagi yashirin oyna) ochilgan hisobni ajrata olmaydi; haftalik cheklov shuning uchun ham bor (3-amaliyot QIzohi).
      Bir qurilmadagi ikki hisob — o'zini taklif qilish ham, oiladagi bitta telefon ham bo'lishi mumkin: qoida ikkalasini ajratmaydi, sabab haqida xulosa yo'q (5-ekran joriy qatori).
 5. **Atamalar (bir ma'no — bir so'z, T-014; tayanch 2 — ta'riflar so'zma-so'z):**
-   - **taklif havolasi · taklif kodi** — har foydalanuvchining o'z havolasi va 6 belgili kodi; 2-ekranda harakatdan keyin tug'iladi (T-011). Kartochkada bir marta «inglizchasi: referral». Ishlatilmaydi: referal (prozada), invite, promo-kod.
+   - **taklif havolasi · taklif kodi** — har hisobning o'z 6 belgili kodi va shu kod yozilgan havola (Mentor misolida ulashish tugmasi — tashkilotchining «O'yin» ekranida; F-1007-468); 2-ekranda harakatdan keyin tug'iladi (T-011). Kartochkada bir marta «inglizchasi: referral». Ishlatilmaydi: referal (prozada), invite, promo-kod.
      ⚠️ «kod» yolg'iz — faqat dastur kodi ma'nosida (agent promptidagi «Yozgan kodingda», «kod qatori», «kodda bor»); referal ma'nosida **doim «taklif kodi»** (T-015). Sahna tugmasi ham «Taklif kodini yozish».
    - **taklif qilgan** — havolani ulashgan hisob egasi (Mentor misolida — tashkilotchi) · **taklif kodi bilan ochilgan hisob** — yangi hisob («taklif qilingan» shakli ishlatilmaydi: «taklif qilgan» bilan ikki harfga farq qiladi — S-040).
    - **mukofot** — taklif uchun beriladigan narsa; Mentor misolida Pro'ning bepul haftasi (pul emas). Ishlatilmaydi: bonus, sovg'a, keshbek, chegirma (mukofot ma'nosida).
@@ -122,7 +122,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2 ≈ 7 · Amaliyot 
 
 ## 1 · Bugun quramiz  ← QReja (172: tayyor natija + 3 qator + repo teglari)
 - Eyebrow: Reja
-- Sarlavha: **Bugun har foydalanuvchiga o'z havolasini berasiz.** (49)
+- Sarlavha: **Bugun har hisobning o'z taklif kodi bo'ladi.** (44)
 - Mentor: Havola, sanoq va mukofotni uch blokda qurasiz — talab tayyor, qavslarini o'z mahsulotingiz bilan to'ldirasiz.
 - Chap — «Dars oxirida» + kulrang yorliq **unikal havola, sanoq va mukofot** (App.jsx osti so'zma-so'z, P-015; atama faqat yorliqda) + vizual: sahna **tayyor** holatda, bir marta o'zi yuradi (DE-200) —
   1-telefonda «Havolani ulashish» yonadi → havola qatori `…/?taklif=AB12CD&kanal=taklif` lendingga uchadi → lendingda «Taklif kodi: AB12CD» chiqadi. Shu yerda to'xtaydi: forma va mukofot ko'rsatilmaydi (2 va 5-ekran kashfiyoti — P-036; SABOQ D 33 — haqiqiy nomlar, bo'sh chiziq yo'q).
@@ -136,7 +136,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2 ≈ 7 · Amaliyot 
 - Keyingi bosiladigan joy: «Boshlaymiz».
 - O'qituvchi eslatmasi: eng og'ir qism — 3-amaliyot (ikki tekshiruv akkaunti, brauzer ko'rinishini yangilash, tozalash). Sinfda havolalarni bir-biriga yubortirmang va kim nechta odam taklif qilganini so'ramang (qo'l ko'tartirmang) — sherikning tekshiruvi tekshiruv akkaunti bilan, keyin o'chiriladi.
   Mukofot — pul emas: test rejimdagi Pro muddati. «Do'stingizni taklif qiling — sovg'a oling» kabi gap aytmang. Mentor misolidagi 51 ni bayram qilmang: unda 11 sinfdosh va bir qurilmadagi hisob ham bor; bu o'quvchilarga me'yor emas.
-  Mentor talabida taklif kodining katta-kichik harfi haqida gap yo'q — Mentor repo'si `10-done` da shu holatda qoladi (barqarorlik tekshiruvi — 12-dars, o'quvchiga aytmang); o'quvchi o'zi topsa — o'z mahsulotida tuzatsin.
+  F-1007-468: talabda kod bo'shliqsiz va katta harfga o'tkazilib solishtiriladi — kichik harf 12-darsga ataylab qoldirilmaydi (9.51; ilgari: «Mentor talabida katta-kichik harf haqida gap yo'q — 12-dars topadi»); o'quvchi o'zi topsa — o'z mahsulotida tuzatsin.
 - ✎ Sarlavhada yangi atama yo'q (T-011): «o'z havolasi» — «taklif havolasi» 2-ekranda tug'iladi; atamalar kulrang yorliqda. «unikal» — App.jsx so'zi, faqat yorliqda (TAYANCHGA SAVOL 24). Uch qator ot-shaklda (§224); reja qatorlarida «taklif kodi» yo'q (2-ekranda tug'iladi); 03 qatori qoidani ochmaydi (P-015).
 
 ## 2 · Havoladan ilovagacha  ← QTushuncha (bashorat + 4 harakat)
@@ -183,7 +183,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2 ≈ 7 · Amaliyot 
      Web-trekda: «Havolani ulashish» o'rnida — saytingizdagi ulashish yoki «Nusxalash» joyi; havola lendingga yoki saytingizga olib borishi mumkin — tanlov sizda.
   2. **Prompt** — qavslarni to'ldiring (yonida kulrang namuna), «Nusxalash»ni bosing va Antigravity'ga yuboring:
      > Qayerda: `backend/` — foydalanuvchilar jadvali va `GET /men`; {ulashish joyi}; {havola ochadigan sahifa}.
-     > Nima qilsin: har hisobga taklif kodi bo'lsin — yangi ustun `taklif_kodi`: 6 belgi, katta harf va raqam, jadvalda noyob. Yangi hisobga ro'yxatdan o'tishda berilsin, mavjud hisoblarning har biriga bir marta berilsin. `GET /men` javobiga `taklifKodi` qo'sh.
+     > Nima qilsin: har hisobga taklif kodi bo'lsin — yangi ustun `taklif_kodi`: 6 belgi, katta harf va raqam, jadvalda noyob. Yangi hisobga ro'yxatdan o'tishda berilsin (noyoblik to'qnashsa — yangi kod bilan qayta yozilsin, oldindan tekshirib emas), mavjud hisoblarning har biriga bir marta berilsin (qayta ishga tushsa ham bor kod almashmasin). Kod maxfiy emas: u bo'yicha hisob haqida hech narsa ko'rsatilmasin. `GET /men` javobiga `taklifKodi` qo'sh.
      > {ulashish joyi} shu havolani ulashsin: {havola manzili}`?taklif=`taklif kodi`&kanal=taklif`. Tugma nomi va joyi o'zgarmasin.
      > {havola ochadigan sahifa} manzilda `taklif` bo'lsa, qator ko'rsatsin: «Taklif kodi: …» va ostida «Ro'yxatdan o'tishda shu taklif kodini yozing.» `kanal` belgisi avvalgidek Umami'ga ketsin; taklif kodi Umami'ga yuborilmasin.
      > Nima buzilmasin: ro'yxatdan o'tish, kirish, Pro va boshqa `?kanal=` havolalar avvalgidek ishlasin; mavjud hisoblar o'chmasin va o'zgarmasin (faqat taklif kodi qo'shilsin); taklif kodida ism va login bo'lmasin. Boshqa joyga tegma, o'zgargan fayllarni ayt.
@@ -193,7 +193,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2 ≈ 7 · Amaliyot 
      - {havola manzili} — «masalan: lending manzili (Netlify)»
      Yordam (bosilsa ochiladi — Mentor misolidagi to'liq prompt, mobil trek):
      > Qayerda: `backend/` — `oyinchilar` jadvali va `GET /men`; `mobil/` — «O'yin» ekranidagi «Havolani ulashish» tugmasi; `lending/` — bosh sahifadagi «Qanday qo'shilaman» bo'limi.
-     > Nima qilsin: har hisobga taklif kodi bo'lsin — yangi ustun `taklif_kodi`: 6 belgi, katta harf va raqam, jadvalda noyob. Yangi hisobga ro'yxatdan o'tishda berilsin, mavjud hisoblarning har biriga bir marta berilsin. `GET /men` javobiga `taklifKodi` qo'sh.
+     > Nima qilsin: har hisobga taklif kodi bo'lsin — yangi ustun `taklif_kodi`: 6 belgi, katta harf va raqam, jadvalda noyob. Yangi hisobga ro'yxatdan o'tishda berilsin (noyoblik to'qnashsa — yangi kod bilan qayta yozilsin, oldindan tekshirib emas), mavjud hisoblarning har biriga bir marta berilsin (qayta ishga tushsa ham bor kod almashmasin). Kod maxfiy emas: u bo'yicha hisob haqida hech narsa ko'rsatilmasin. `GET /men` javobiga `taklifKodi` qo'sh.
      > «Havolani ulashish» shu havolani ulashsin: lending manzili + `?taklif=`taklif kodi`&kanal=taklif`. Tugma nomi va joyi o'zgarmasin.
      > Lending manzilda `taklif` bo'lsa, «Qanday qo'shilaman» bo'limida qator ko'rsatsin: «Taklif kodi: …» va ostida «Ro'yxatdan o'tishda shu taklif kodini yozing.» `kanal` belgisi avvalgidek Umami'ga ketsin; taklif kodi Umami'ga yuborilmasin.
      > Nima buzilmasin: ro'yxatdan o'tish, kirish, Pro va boshqa `?kanal=` havolalar avvalgidek ishlasin; mavjud hisoblar o'chmasin va o'zgarmasin (faqat taklif kodi qo'shilsin); taklif kodida ism va login bo'lmasin. Boshqa joyga tegma, o'zgargan fayllarni ayt.
@@ -215,7 +215,8 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2 ≈ 7 · Amaliyot 
   - brauzer: lending «Qanday qo'shilaman» — «Taklif kodi: AB12CD» · «Ro'yxatdan o'tishda shu taklif kodini yozing.» · «Android: ilovani o'rnatish» · «iPhone: brauzerda ochish»
   - Neon natijasi: `COUNT` — «0» (taklif kodisiz hisob yo'q)
   - web-trekda: brauzer oynasi — saytdagi havola va «Nusxalash», ochilgan sahifada «Taklif kodi: …».
-- Hammasi bajarilgach (yashil): Har hisobda taklif kodi bor; havola uni olib boradi va sahifa uni ko'rsatadi. (77)
+- Tekshiruv kartasi (4-band oxirida, «Bajardim»dan oldin; dars holatida — 3, 8-darslar naqshi; F-1007-468): «Kutilganidek» · «Boshqacha». «Boshqacha» bo'lsa yashil qator o'rnida kulrang: Talabdagidek bo'lmagan joyni agentga yozing va qayta tekshiring. (64)
+- Hammasi bajarilgach (yashil, «Kutilganidek» da): Har hisobda taklif kodi bor; havola uni olib boradi va sahifa uni ko'rsatadi. (77)
 - Qator (`QIzoh`, natija ostida, bitta): Umami'ga faqat kanal ketadi: taklif kodi va uni kim ochgani u yerda yozilmaydi. (79)
 - Pastki qator (kichik; darsda bir marta — SABOQ 39): Ortda qoldingizmi — Mentor misolini o'z repo'ngizdan tashqarida, yangi papkada oching: `git clone https://github.com/Azizbekcrypto/maydon-jamoa` · `cd maydon-jamoa` · `git checkout -f m13-dars-10-done` —
   oxirgi buyruqni faqat shu yangi papkada ishlating: u papkadagi o'zgarishlarni o'chiradi. Qanday ishlashini ko'rasiz, o'z repo'ngizdagi ishni shunga qarab qaytarasiz (`backend/.env` va `mobil/.env` ga o'z qiymatlaringizni yozasiz).
@@ -253,7 +254,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2 ≈ 7 · Amaliyot 
   - Chap tepada — sanoq qutilari (kulrang, sonsiz; ustida kichik yorliq «Mentor misolida · bir hafta»): «Umami · tashrif» — «Database · taklif kodi bilan ochilgan hisob» — «asosiy harakat qilgan hisob». Qutilar orasida ingichka chiziq (ayirish belgisi yo'q).
   - Chap pastda — hisob kartasi joyi (bitta katta karta; «Hisob N / 4»); karta ostida tugma «Qoidadan o'tkazish» (halqada, SABOQ 21) — 1-harakatgacha xira.
   - O'ngda — tekshiruv kartasi «Mukofot qoidasi» (ostida kulrang yorliq «Mentor misolida»): uch bo'sh katak — «Yangi hisob, asosiy harakat qildi» · «Taklif qilgan bilan boshqa qurilmada» · «Namuna hisob emas»;
-    ostida qator «Mukofot: 0» va kulrang qoida qatori «Bir odamga — haftasiga ko'pi bilan 2».
+    ostida qator «Mukofot: 0» va kulrang qoida qatori «Bir hisobga — haftasiga ko'pi bilan 2».
 - Hisob kartalari (shu tartibda; Mentor misoli — tayanch 1.10: 4 hisobdan 1 tasi bir qurilmada; tartib — sahna uchun, TAYANCHGA SAVOL 5):
   1. «Hisob 1 / 4» — «taklif kodi bilan ochilgan · asosiy harakat: bor · qurilma: taklif qilganniki emas · namuna: yo'q» → ✓ · ✓ · ✓
   2. «Hisob 2 / 4» — xuddi shunday → ✓ · ✓ · ✓
@@ -269,11 +270,11 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2 ≈ 7 · Amaliyot 
 - Joriy qator (4/4 dan keyin, bitta): Bir qurilma — o'zini taklif qilish ham, oiladagi bitta telefon ham bo'lishi mumkin: qoida ajratmaydi. (101)
 - Natija qatori (yashil qutining birinchi kichik qatori): «Taxminingiz ✕ — aslida: ko'pi (to'rttadan uchtasi)» yoki «Taxminingiz to'g'ri chiqdi ✓».
 - Xulosa: Bu misolda mukofot yangi hisob asosiy harakat qilgach beriladi; bir qurilmadagi va namuna hisob sanalmaydi. (107)
-- QIzoh (yashil qutining oxirgi kichik qatori — E 42): Bir hafta va 7 kishi — kichik son: taklif havolasi ishlaganini ko'rsatadi, o'sishni isbotlamaydi. (97)
+- QIzoh (yashil qutining oxirgi kichik qatori — E 42): Bir hafta va 7 hisob — kichik son: taklif yo'li ishlaganini ko'rsatadi, o'sishni isbotlamaydi. (97)
 - Tugadi (199): harakat paneli yopiladi; sanoq qutilari, ixcham kartalar va qoida kartasi butun enga, «Mukofot: 3 · 2 tashkilotchiga» fokusda; vizual ⛶ ichida.
 - Tugma (pastki): Avval taxminingizni belgilang → Sanoqni oching → Hisoblarni tekshiring (N/4) → Davom etish
 - Keyingi bosiladigan joy: bashorat variantlari → «Sanoqni ochish» → «Qoidadan o'tkazish» (har kartada) → «Davom etish».
-- O'qituvchi eslatmasi: 51 — 50 ga yetganini bayram qilmang: sonda 11 sinfdosh va mukofotga sanalmagan bir qurilmadagi hisob ham bor. «Bir hafta va 7 kishi — kichik son» gapini o'qib bering.
+- O'qituvchi eslatmasi: 51 — 50 ga yetganini bayram qilmang: sonda 11 sinfdosh va mukofotga sanalmagan bir qurilmadagi hisob ham bor. «Bir hafta va 7 hisob — kichik son» gapini o'qib bering.
   Haftalik cheklov bu misolda mukofotni to'xtatmadi (uch mukofot — ikki tashkilotchiga); u qanday ishlashi — 3-amaliyotda, kod qatorida.
 - ✎ Sonlar — tayanch 1.10, 1.13 aynan; har qutida birligi (sinf 7); 18 — «tashrif» (TAYANCHGA SAVOL 4); 51 va «44 + 7» — maketda, Mentor matnida yo'q (TAQIQLAR 5 — formula faqat maketda).
   Kataklar — Qaror-0 16 ning uch sharti; haftalik cheklov — alohida qator (to'rtinchi katak emas: u hisobga emas, taklif qilganga tegishli). «Yangi hisob» katagi Mentorning to'rt hisobida doim ✓ (to'rttasi asosiy harakat qilganlar) — 7 dan 4 ga o'tish qutilarda ko'rinadi.
@@ -290,15 +291,16 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2 ≈ 7 · Amaliyot 
      Web-trekda: havola va forma bitta brauzerda ochilsa, saytingiz taklif kodini havoladan maydonga o'zi qo'yishi mumkin — xohlasangiz, buni qavsga yozing; maydon baribir tahrirlanadi.
   2. **Prompt** — qavslarni to'ldiring, «Nusxalash»ni bosing va Antigravity'ga yuboring:
      > Qayerda: `backend/` — ro'yxatdan o'tish yo'li va foydalanuvchilar jadvali; {forma joyi}.
-     > Nima qilsin: formada yangi maydon «Taklif kodi (bo'lsa)» — majburiy emas. Taklif kodi yozilsa, Backend shu `taklif_kodi` li hisobni topsin va yangi hisobga yozsin: `taklif_qilgan_id`. Topilmasa — hisob ochilmasin va maydon ostida chiqsin: «{topilmasa xabar}». Bo'sh qolsa — hisob avvalgidek ochilsin.
+     > Nima qilsin: formada yangi maydon «Taklif kodi (bo'lsa)» — majburiy emas. Taklif kodi yozilsa, bo'shliqlari olib tashlanib katta harfga o'tkazilsin (ab12cd ham AB12CD), keyin Backend shu `taklif_kodi` li hisobni topsin va yangi hisobga yozsin: `taklif_qilgan_id`. Topilmasa — hisob ochilmasin va maydon ostida chiqsin: «{topilmasa xabar}». Bo'sh qolsa — hisob avvalgidek ochilsin.
      > Nima buzilmasin: taklif kodisiz ro'yxatdan o'tish, kirish va {avvalgidek ishlashi kerak bo'lgan ishlar} avvalgidek ishlasin; mavjud hisoblar o'zgarmasin. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Qavslar yonida kulrang namuna (Mentor misolidan):
      - {forma joyi} — «masalan: `mobil/` — «Ro'yxatdan o'tish» ekrani, «Parol» maydoni ostida»
      - {topilmasa xabar} — «masalan: Bunday taklif kodi topilmadi — tekshiring yoki maydonni bo'sh qoldiring.»
      - {avvalgidek ishlashi kerak bo'lgan ishlar} — «masalan: o'yin e'loni, qo'shilish, Pro va Telegram xabari»
+     Tekshiruv («Nusxalash» bosilganda, bloklaydi): bu joyda kamida ikkita ish vergul bilan bo'lmasa yoki «hammasi», «ilova» kabi bitta so'z bo'lsa — Ikkita aniq ish yozing: masalan, kirish, e'lon berish. (54) (F-1007-461 sinfi)
      Yordam (Mentor misolidagi to'liq prompt, mobil trek):
      > Qayerda: `backend/` — `POST /royxat` va `oyinchilar` jadvali; `mobil/` — «Ro'yxatdan o'tish» ekrani, «Parol» maydoni ostida.
-     > Nima qilsin: formada yangi maydon «Taklif kodi (bo'lsa)» — majburiy emas. Taklif kodi yozilsa, Backend shu `taklif_kodi` li hisobni topsin va yangi hisobga yozsin: `taklif_qilgan_id`. Topilmasa — hisob ochilmasin va maydon ostida chiqsin: «Bunday taklif kodi topilmadi — tekshiring yoki maydonni bo'sh qoldiring.» Bo'sh qolsa — hisob avvalgidek ochilsin.
+     > Nima qilsin: formada yangi maydon «Taklif kodi (bo'lsa)» — majburiy emas. Taklif kodi yozilsa, bo'shliqlari olib tashlanib katta harfga o'tkazilsin (ab12cd ham AB12CD), keyin Backend shu `taklif_kodi` li hisobni topsin va yangi hisobga yozsin: `taklif_qilgan_id`. Topilmasa — hisob ochilmasin va maydon ostida chiqsin: «Bunday taklif kodi topilmadi — tekshiring yoki maydonni bo'sh qoldiring.» Bo'sh qolsa — hisob avvalgidek ochilsin.
      > Nima buzilmasin: taklif kodisiz ro'yxatdan o'tish, kirish va o'yin e'loni, qo'shilish, Pro va Telegram xabari avvalgidek ishlasin; mavjud hisoblar o'zgarmasin. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Web-trekda (Yordam ostida, bir gap): «Qayerda» — saytingizdagi ro'yxatdan o'tish formasi; manzilda `taklif` bo'lsa, maydon shu taklif kodi bilan to'lib turishi mumkin — qolgani o'sha.
   3. **Ishga tushirish** — `git status` → `git add <fayl>` → `git commit -m "formada taklif kodi"` → `git push`. Render'da yangi deploy tugashini kuting.
@@ -319,7 +321,8 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2 ≈ 7 · Amaliyot 
   - telefon: «Ro'yxatdan o'tish» — «Ism: Tekshiruv» · «Login: tekshiruv1» · «Parol: ••••••» · «Taklif kodi (bo'lsa): AB12CD»; oldingi kadrda `ZZZZZZ` ostida qizil qator «Bunday taklif kodi topilmadi — tekshiring yoki maydonni bo'sh qoldiring.»
   - Neon natijalari: `taklif_qilgan_id` — tashkilotchi hisobining `id` si · taklif kodi bilan ochilgan — «1» · asosiy harakat qilgan — «0» · o'chirilgandan keyin — «0»; yorliq «tekshiruv akkaunti — keyin o'chiriladi»
   - web-trekda: brauzer oynasi — sayt formasi, maydon havoladan to'lgan.
-- Hammasi bajarilgach (yashil): Taklif kodi bilan ochilgan hisob taklif qilganga bog'landi va sanoqda ko'rindi; tekshiruv akkaunti o'chirildi. (108)
+- Tekshiruv kartasi (4-band oxirida, «Bajardim»dan oldin; dars holatida — 3, 8-darslar naqshi; F-1007-468): «Kutilganidek» · «Boshqacha». «Boshqacha» bo'lsa yashil qator o'rnida kulrang: Talabdagidek bo'lmagan joyni agentga yozing va qayta tekshiring. (64)
+- Hammasi bajarilgach (yashil, «Kutilganidek» da): Taklif kodi bilan ochilgan hisob taklif qilganga bog'landi va sanoqda ko'rindi; tekshiruv akkaunti o'chirildi. (108)
 - Qator (`QIzoh`, natija ostida): Sinfdagi tekshiruv akkaunti haqiqiy sanoqqa qo'shilmaydi — shuning uchun u o'chiriladi. (85)
 - Ulgurmasangiz: Umami tekshiruvini dars oxiriga qoldiring; tekshiruv akkauntini o'chirishni o'tkazib yubormang. «Davom etish» 4-band «Bajardim»idan keyin ochiladi — 3-amaliyot ham ro'yxatdan o'tish kodiga tegadi.
 - Nishon (bonus): Code Counted — oxirgi «Bajardim»da.
@@ -350,17 +353,17 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2 ≈ 7 · Amaliyot 
 - Mentor: Mukofot qoidasini o'z mahsulotingiz uchun qavslarda yozasiz; «1 · Ochish»dan boshlang.
 - Vazifa (prompt ustida, bitta qator): Taklif kodi bilan ochilgan hisob birinchi marta asosiy harakat qilganda mukofot bir marta tekshiriladi: bir qurilma va namuna hisob sanalmaydi, haftalik cheklov bor.
 - Bandlar (hammasi o'z repo'ngizda):
-  1. **Ochish** — uch savolga javob toping: mahsulotingizda asosiy harakat nima (12-Modulda sanagansiz)? Mukofot nima bo'ladi? Bir odamga haftasiga nechta?
+  1. **Ochish** — uch savolga javob toping: mahsulotingizda asosiy harakat nima (12-Modulda sanagansiz)? Mukofot nima bo'ladi? Bir hisobga haftasiga nechta?
      (Mentor misolida: asosiy harakat — o'yinga qo'shilish yoki o'yin e'lon qilish; mukofot — Pro'ning bepul haftasi, test rejimda; haftasiga ko'pi bilan 2.)
      Mukofot — pul, chegirma yoki narsa emas. Mahsulotingizda pullik qulaylik bo'lsa (4-darsda qurgansiz) — mukofot uning bepul muddati; bo'lmasa — mukofot qavsiga «hozircha yo'q — faqat natija yozilsin» deb yozing: qoida baribir har taklifning natijasini yozadi.
      Qoida qurilmani taniydi: ilova hisob ochilgan va havola ulashilgan qurilmaning ID sini Backend'ga yuboradi. Web-trekda — brauzer ID (10-Modul).
   2. **Prompt** — qavslarni to'ldiring, «Nusxalash»ni bosing va Antigravity'ga yuboring ({ulashish joyi} — 1-amaliyotda yozganingiz, oldindan qo'yiladi):
      > Qayerda: `backend/` — foydalanuvchilar jadvali, ro'yxatdan o'tish va asosiy harakat yo'llari; {ulashish joyi}; `lending/maxfiylik.html`.
-     > Nima qilsin: ilova ro'yxatdan o'tishda va havola ulashilganda shu qurilma ID sini Backend'ga yuborsin; Backend uni hisobga yozsin (`qurilma_id` — oxirgisi).
-     > Taklif kodi bilan ochilgan hisob birinchi marta {asosiy harakat}, Backend bir marta tekshirsin: 1) ikkala hisob ham namuna emas; 2) ikki hisobning `qurilma_id` si bir xil emas (taklif qilganniki noma'lum bo'lsa — mukofot yo'q); 3) taklif qilgan shu hafta (dushanbadan yakshanbagacha, Toshkent vaqti) {haftalik cheklov} tadan kam mukofot olgan.
-     > Hammasi to'g'ri bo'lsa: {mukofot}. Natijani taklif kodi bilan ochilgan hisobga yoz: `mukofot` — `berildi`, `bir-qurilma`, `namuna`, `nomalum` yoki `cheklov`, va vaqti. Bir hisob uchun mukofot bir marta tekshirilsin.
+     > Nima qilsin: ilova ro'yxatdan o'tishda, hisobga kirishda va havola ulashilganda shu qurilma ID sini Backend'ga yuborsin; Backend uni hisobning qurilmalari ro'yxatiga yozsin (yangi jadval: hisob va qurilma ID jufti noyob; eskisi o'chmaydi — hisob bir nechta qurilmada ishlatilishi mumkin).
+     > Taklif kodi bilan ochilgan hisob birinchi marta {asosiy harakat} — asosiy harakat avval saqlansin; keyin alohida Database ishida Backend bir marta tekshirsin: 1) ikkala hisob ham namuna emas; 2) yangi hisob ochilgan qurilma ID si taklif qilganning qurilmalari ichida yo'q (taklif qilganning qurilmasi hali yozilmagan bo'lsa — mukofot yo'q); 3) taklif qilgan hisob shu hafta (dushanbadan yakshanbagacha, Toshkent vaqti) {haftalik cheklov} tadan kam mukofot olgan — sanashda taklif qilgan hisob qatori qulflansin (bir vaqtdagi ikki so'rov ham cheklovdan oshirmasin).
+     > Natijani yangi jadvalga yoz — taklif natijalari: kim taklif qilgan, kim taklif qilingan (bitta hisobga bitta yozuv, noyob), natija — `berildi`, `bir-qurilma`, `namuna`, `nomalum` yoki `cheklov`, va vaqti. `berildi` bo'lsa, shu Database ishining ichida: {mukofot}. Taklif qilingan hisob o'chirilsa — yozuv qoladi, undagi hisob havolasi bo'shatiladi (haftalik sanoq buzilmasin). Tekshiruvda xato bo'lsa — asosiy harakat buzilmasin: xato logga yozilsin, yozuv qo'shilmasin, keyingi asosiy harakatda yana tekshirilsin.
      > {ulashish joyi} ostida bitta kulrang qator: «{qoida qatori}».
-     > `lending/maxfiylik.html` dagi «Qaysi ma'lumot?» javobiga bitta gap qo'sh: «Taklif mukofoti uchun hisob ochilgan va havola ulashilgan qurilma ID si saqlanadi — bir odam o'zini taklif qilmasligi uchun.»
+     > `lending/maxfiylik.html` dagi «Qaysi ma'lumot?» va «Nima uchun?» javoblariga qo'sh: «Taklif kodi bilan kelgan hisoblarda kim kimni taklif qilgani, mukofot natijasi va vaqti, hisob ishlatilgan qurilma ID lari saqlanadi — mukofotni qoidaga ko'ra berish va bir qurilma ID li hisoblarni ajratish uchun.» Mukofot bo'lsa — `lending/oferta.html` ga (7-dars) «Taklif mukofoti» bandi: qoida qatori va qachon berilmasligi (namuna hisob, bir qurilma ID, taklif qilganning qurilmasi noma'lum, haftalik cheklov). Gapni kod bilan solishtir: kodda shu ish uchun saqlanadigan, lekin gapda yo'q ma'lumot bo'lsa — uni ayt, o'zing qo'shma.
      > Nima buzilmasin: pul, chegirma yoki boshqa narsa berilmasin — faqat {mukofot}; asosiy harakat avvalgidek ishlasin; qurilma ID dan boshqa ma'lumot so'ralmasin. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Qavslar yonida kulrang namuna (Mentor misolidan):
      - {asosiy harakat} — «masalan: o'yinga qo'shilsa yoki o'yin e'lon qilsa»
@@ -369,11 +372,11 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2 ≈ 7 · Amaliyot 
      - {qoida qatori} — «masalan: Siz taklif qilgan yangi o'yinchi o'yinga qo'shilsa yoki o'yin e'lon qilsa — Pro'ga 7 kun qo'shiladi (haftasiga ko'pi bilan 2 marta).»
      Yordam (Mentor misolidagi to'liq prompt, mobil trek):
      > Qayerda: `backend/` — `oyinchilar` jadvali, `POST /royxat`, `POST /oyinlar` va `POST /oyinlar/:id/qoshilish`; `mobil/` — «Ro'yxatdan o'tish» ekrani va «O'yin» ekranidagi «Havolani ulashish» tugmasi; `lending/maxfiylik.html`.
-     > Nima qilsin: ilova ro'yxatdan o'tishda va «Havolani ulashish» bosilganda shu qurilma ID sini Backend'ga yuborsin; Backend uni hisobga yozsin (`qurilma_id` — oxirgisi).
-     > Taklif kodi bilan ochilgan hisob birinchi marta o'yinga qo'shilsa yoki o'yin e'lon qilsa, Backend bir marta tekshirsin: 1) ikkala hisob ham namuna emas; 2) ikki hisobning `qurilma_id` si bir xil emas (taklif qilganniki noma'lum bo'lsa — mukofot yo'q); 3) taklif qilgan shu hafta (dushanbadan yakshanbagacha, Toshkent vaqti) 2 tadan kam mukofot olgan.
-     > Hammasi to'g'ri bo'lsa: taklif qilganning `pro_gacha` si 7 kunga uzaysin (o'tgan yoki bo'sh bo'lsa — bugundan). Natijani taklif kodi bilan ochilgan hisobga yoz: `mukofot` — `berildi`, `bir-qurilma`, `namuna`, `nomalum` yoki `cheklov`, va vaqti. Bir hisob uchun mukofot bir marta tekshirilsin.
+     > Nima qilsin: ilova ro'yxatdan o'tishda, hisobga kirishda va «Havolani ulashish» bosilganda shu qurilma ID sini Backend'ga yuborsin; Backend uni `oyinchi_qurilmalari` ga yozsin (`oyinchi_id` va `qurilma_id` jufti noyob; eskisi o'chmaydi).
+     > Taklif kodi bilan ochilgan hisob birinchi marta o'yinga qo'shilsa yoki o'yin e'lon qilsa — qo'shilish yoki e'lon avval saqlansin; keyin alohida Database ishida Backend bir marta tekshirsin: 1) ikkala hisob ham namuna emas; 2) yangi hisob ochilgan qurilma ID si taklif qilganning `oyinchi_qurilmalari` ichida yo'q (taklif qilganniki hali yozilmagan bo'lsa — mukofot yo'q); 3) taklif qilgan hisob shu hafta (dushanbadan yakshanbagacha, Toshkent vaqti) 2 tadan kam mukofot olgan — sanashda taklif qilganning `oyinchilar` qatori qulflansin (`FOR UPDATE`).
+     > Natijani yangi jadvalga yoz: `taklif_natijalari` — `id`, `taklif_qilgan_id`, `taklif_qilingan_id` (noyob; hisob o'chirilsa — bo'shatiladi, yozuv qoladi), `natija` (`berildi` · `bir-qurilma` · `namuna` · `nomalum` · `cheklov`), `yaratilgan`. `berildi` bo'lsa, shu Database ishining ichida taklif qilganning `pro_gacha` si 7 kunga uzaysin (o'tgan yoki bo'sh bo'lsa — bugundan). Tekshiruvda xato bo'lsa — qo'shilish va e'lon buzilmasin: xato logga yozilsin, yozuv qo'shilmasin, keyingi harakatda yana tekshirilsin.
      > «Havolani ulashish» ostida bitta kulrang qator: «Siz taklif qilgan yangi o'yinchi o'yinga qo'shilsa yoki o'yin e'lon qilsa — Pro'ga 7 kun qo'shiladi (haftasiga ko'pi bilan 2 marta).»
-     > `lending/maxfiylik.html` dagi «Qaysi ma'lumot?» javobiga bitta gap qo'sh: «Taklif mukofoti uchun hisob ochilgan va havola ulashilgan qurilma ID si saqlanadi — bir odam o'zini taklif qilmasligi uchun.»
+     > `lending/maxfiylik.html` dagi «Qaysi ma'lumot?» va «Nima uchun?» javoblariga qo'sh: «Taklif kodi bilan kelgan hisoblarda kim kimni taklif qilgani, mukofot natijasi va vaqti, hisob ishlatilgan qurilma ID lari saqlanadi — mukofotni qoidaga ko'ra berish va bir qurilma ID li hisoblarni ajratish uchun.» Mukofot bo'lsa — `lending/oferta.html` ga (7-dars) «Taklif mukofoti» bandi: qoida qatori va qachon berilmasligi (namuna hisob, bir qurilma ID, taklif qilganning qurilmasi noma'lum, haftalik cheklov). Gapni kod bilan solishtir: kodda shu ish uchun saqlanadigan, lekin gapda yo'q ma'lumot bo'lsa — uni ayt, o'zing qo'shma.
      > Nima buzilmasin: pul, chegirma yoki boshqa narsa berilmasin — faqat Pro muddati; o'yin e'loni va qo'shilish avvalgidek ishlasin; qurilma ID dan boshqa ma'lumot so'ralmasin. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Web-trekda (Yordam ostida, bir gap): qurilma ID o'rnida — brauzer ID (10-Modulda yasagansiz); «Havolani ulashish» o'rnida — 1-amaliyotdagi ulashish joyingiz; qolgani o'sha.
   3. **Ishga tushirish** — `git status` → `git add <fayl>` → `git commit -m "taklif mukofoti va qoida"` → `git push`. Render'da yangi deploy tugashini kuting; maxfiylik sahifasi Netlify'da odatda o'zi yangilanadi.
@@ -381,40 +384,41 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2 ≈ 7 · Amaliyot 
      Kutayotganda agentga (SABOQ 52; «Nusxalash» bilan):
      > Yozgan kodingda to'rt joyni fayl nomi va qator raqami bilan ko'rsat: namuna tekshiriladigan qator, qurilma ID lar solishtiriladigan qator, haftalik cheklov sanaladigan qator va mukofot beriladigan qator. Har biri nima qilishini bitta gap bilan ayt. Kodni o'zgartirma.
      Xato chiqsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»
-  4. **Tekshirish** — ikki tekshiruv akkaunti bilan; har biridan keyin tekshiruv kartasida «Kutilganidek» yoki «Boshqacha»ni tanlang:
-     (1) Agent ko'rsatgan to'rt qatorni o'qing: avval namuna, qurilma va cheklov tekshiriladi, mukofot — eng oxirida.
-     (2) Neon SQL Editor'da: `SELECT id, pro_gacha FROM oyinchilar WHERE login = '{loginingiz}';` — `id` va `pro_gacha` ni yozib oling (bo'sh bo'lishi ham mumkin).
-     (3) **Bir qurilma** — telefoningizda (Expo Go) «Havolani ulashish»ni bosing va havolani faqat o'zingizga yuboring; keyin «Hisobdan chiqish» → taklif kodingiz bilan tekshiruv akkaunti (`tekshiruv2`) →
-         asosiy harakat — real foydalanuvchilarga tegmaydigan joyda (Mentor misolida — namuna o'yinga «Qo'shilaman»).
-         Neon: `SELECT mukofot FROM oyinchilar WHERE login = 'tekshiruv2';` — `bir-qurilma` bo'lishi kerak; sizning `pro_gacha` ingiz o'zgarmagan bo'lishi kerak. Kartada belgilang. Keyin «Hisobni o'chirish» va o'z hisobingizga qayta kiring.
-     (4) **Boshqa qurilma** — sherigingiz o'z telefoni brauzerida ilovangizning brauzer ko'rinishini ochadi (web-trekda — saytingizni), siz aytgan taklif kodi bilan tekshiruv akkaunti (`tekshiruv3`) ochadi va xuddi shu asosiy harakatni qiladi. Sherik bo'lmasa — o'zingiz kompyuterdagi yashirin oynada.
-         Neon: `tekshiruv3` ning `mukofot` i — `berildi`; sizning `pro_gacha` ingiz 7 kunga uzaygan bo'lishi kerak. Kartada belgilang. Keyin o'sha qurilmada «Hisobni o'chirish».
-         Ikkalasi ham bo'lmasa — agentga: «Tekshiruv uchun ro'yxatdan o'tish yo'li bilan bitta hisob och (namuna ism va login, haqiqiy emas), taklif kodi — {taklif kodim}, qurilma ID — yangi tasodifiy; namuna o'yinga qo'shil. Qaysi hisob va qaysi `id` ekanini ayt.» Tekshiruvdan keyin: «Faqat shu `id` li hisobni va uning yozuvlarini o'chir.»
-     (5) Tozalash — agentga: «`oyinchilar` da `id` = {id} hisobning `pro_gacha` sini {yozib olgan qiymat} ga qaytar. Boshqa narsaga tegma.» Neon: `SELECT COUNT(*) FROM oyinchilar WHERE login LIKE 'tekshiruv%';` → `0`; `pro_gacha` — (2) dagidek.
-     (6) Maxfiylik sahifangizni oching — yangi gap turibdi. Namuna va haftalik cheklov — (1) da kodda ko'rdingiz; bugun tekshiruv akkaunti bilan sinalmaydi.
+  4. **Tekshirish** — uch tekshiruv akkaunti bilan; o'z hisobingiz ishlatilmaydi — haqiqiy Pro muddatingiz o'zgarmaydi (F-1007-468). Har biridan keyin tekshiruv kartasida «Kutilganidek» yoki «Boshqacha»ni tanlang:
+     (1) Agent ko'rsatgan to'rt qatorni o'qing: avval namuna, qurilma va cheklov tekshiriladi, mukofot — eng oxirida; asosiy harakat mukofot tekshiruvidan oldin saqlanadi.
+     (2) **Taklif qiluvchi** — telefoningizda «Hisobdan chiqish» → ro'yxatdan o'tish formasida tekshiruv akkaunti `tekshiruv1` (shu qurilma ID si yoziladi). Neon: `SELECT id, taklif_kodi FROM oyinchilar WHERE login = 'tekshiruv1';` — kodni yozib oling.
+     (3) **Bir xil ID** — shu telefonda «Hisobdan chiqish» → `tekshiruv1` kodi bilan `tekshiruv2` → asosiy harakat — real foydalanuvchilarga tegmaydigan joyda (Mentor misolida — namuna o'yinga «Qo'shilaman»).
+         Neon (jadval nomi — agent aytganidek; Mentor misolida `taklif_natijalari`): `tekshiruv2` ning natijasi — `bir-qurilma`; `tekshiruv1` ning `pro_gacha` si o'zgarmagan. Kartada belgilang.
+     (4) **Boshqa ID** — sherigingiz o'z telefoni brauzerida ilovangizning brauzer ko'rinishini ochadi (web-trekda — saytingizni), `tekshiruv1` kodi bilan `tekshiruv3` ochadi va xuddi shu asosiy harakatni qiladi.
+         Sherik bo'lmasa — o'zingiz kompyuterdagi yashirin oynada: bu boshqa qurilma emas, boshqa brauzer ID (alohida xotira) — qoida uchun shunisi yetadi.
+         Neon: `tekshiruv3` ning natijasi — `berildi`; `tekshiruv1` ning `pro_gacha` si 7 kunga uzaygan. Kartada belgilang.
+         Ikkalasi ham bo'lmasa — agentga: «Tekshiruv uchun ro'yxatdan o'tish yo'li bilan bitta hisob och (namuna ism va login, haqiqiy emas), taklif kodi — {tekshiruv1 kodi}, qurilma ID — yangi tasodifiy; namuna o'yinga qo'shil. Qaysi hisob va qaysi `id` ekanini ayt.»
+     (5) Tozalash — agentga: «Bugungi tekshiruv hisoblari (`tekshiruv1`, `tekshiruv2`, `tekshiruv3`) va ularning taklif natijalari, qurilma yozuvlarini `id` lari bilan ko'rsat. Men «Davom et» desam — faqat shularni o'chir.»
+         Ro'yxatni o'qing, keyin «Davom et». Neon: `SELECT COUNT(*) FROM oyinchilar WHERE login LIKE 'tekshiruv%';` → `0`.
+     (6) Maxfiylik sahifangizni va ofertangizni oching — yangi gap va «Taklif mukofoti» bandi turibdi. Namuna va haftalik cheklov — (1) da kodda ko'rdingiz; bugun tekshiruv akkaunti bilan sinalmaydi.
      «Boshqacha» bo'lsa — agentga: «{tekshiruv}: kutganim {nima kutdim}, bo'ldi {nima bo'ldi}. Tuzat, o'zgargan fayllarni ayt.» → push → o'sha tekshiruvni qayta qiling (tekshiruv akkauntini yana oching va o'chiring).
      Oxirida (mobil trek): odamlardagi ilova uchun yangi o'rnatish fayli kerak — `eas build -p android --profile preview`. Navbatni kutmang: «Bajardim»ni bosing va davom eting.
      Fayl dars oxirigacha tayyor bo'lsa — lendingdagi «Android: ilovani o'rnatish» havolasini almashtiring; bo'lmasa — keyingi dars boshida.
-- Tekshiruv kartasi (chapda, 4-band ichida; ikkitasi, bittadan): nima qilinadi · nima kutiladi · tugmalar «Kutilganidek» · «Boshqacha» — dars holatida (`ccProgress`), yangi `pm-…` kaliti yo'q.
+- Tekshiruv kartasi (chapda, 4-band ichida; ikkitasi — (3) va (4), bittadan): nima qilinadi · nima kutiladi · tugmalar «Kutilganidek» · «Boshqacha» — dars holatida (`ccProgress`), yangi `pm-…` kaliti yo'q.
 - Blok ostida (faqat mobil trekda, oxirgi «Bajardim»dan keyin; ikki tugma, bittasi tanlanadi): «Havola almashtirildi» · «Fayl navbatda» — yakundagi yorliq shundan (12-Modul 9-darsi naqshi).
 - O'ng tomon — «kutilgan natija · namuna: Maydon Jamoa» (uch kadr bir marta o'zi yuradi):
-  - Neon jadvali `oyinchilar` (uch ustun: `login` · `taklif_qilgan_id` · `mukofot`): `tekshiruv2` · tashkilotchi `id` si · `bir-qurilma` (qizil) → `tekshiruv3` · tashkilotchi `id` si · `berildi` (yashil)
-  - tashkilotchi qatori: `pro_gacha` — «+7 kun» (yashil, bir lahza) · yorliq «tekshiruv — keyin qaytariladi» → keyingi kadrda avvalgi qiymat
+  - Neon jadvali `taklif_natijalari` (uch ustun: taklif qilgan · taklif qilingan · `natija`): `tekshiruv1` · `tekshiruv2` · `bir-qurilma` (qizil) → `tekshiruv1` · `tekshiruv3` · `berildi` (yashil)
+  - `tekshiruv1` qatori: `pro_gacha` — «+7 kun» (yashil, bir lahza) · yorliq «tekshiruv hisobi — keyin o'chiriladi»
   - telefon: «O'yin» ekrani — «Havolani ulashish», ostida kulrang qoida qatori: «Siz taklif qilgan yangi o'yinchi o'yinga qo'shilsa yoki o'yin e'lon qilsa — Pro'ga 7 kun qo'shiladi (haftasiga ko'pi bilan 2 marta).»
   - web-trekda: o'sha jadval va sayt sahifasi.
 - Hammasi bajarilgach (yashil, holatga qarab — sinf 6):
-  - ikkalasi «Kutilganidek» — Bir qurilmadagi hisob sanalmadi, boshqa qurilmadagisi mukofot berdi; tekshiruv izlari tozalandi. (96)
+  - ikkalasi «Kutilganidek» — Bir xil ID dagi hisob sanalmadi, boshqa ID dagisi mukofot berdi; tekshiruv izlari tozalandi. (92)
   - birortasi «Boshqacha» — Tekshiruv tugamagan: «Boshqacha» chiqqanini tuzatib, qayta tekshiring. (70)
-  - faqat bir qurilma belgilangan — Bir qurilma tekshirildi; boshqa qurilma tekshiruvi qoldi. (57)
+  - faqat bir xil ID belgilangan — Bir xil ID tekshirildi; boshqa ID tekshiruvi qoldi. (51)
 - Kulrang qator (yashil ostida): Namuna va haftalik cheklov — kodda bor, tekshiruv akkaunti bilan sinalmagan. (74)
-- Qator (`QIzoh`, natija ostida): Qoida bir qurilmani ushlaydi; ikkinchi qurilmadagi hisobni ajratmaydi — shuning uchun haftalik cheklov bor. (107)
-- Ulgurmasangiz: (4) boshqa qurilma tekshiruvini keyingi dars boshiga qoldiring — (5) tozalash ham o'sha paytda; (3) dan keyin tekshiruv akkauntini o'chirishni o'tkazib yubormang. «Davom etish» 3-banddan keyin ochiladi.
+- Qator (`QIzoh`, natija ostida): Qoida bir xil qurilma ID ni ushlaydi; boshqa ID dagi hisobni ajratmaydi — shuning uchun haftalik cheklov bor. (109)
+- Ulgurmasangiz: (4) boshqa ID tekshiruvini keyingi dars boshiga qoldiring — (5) tozalash ham o'sha paytda; tekshiruv akkauntlarini o'chirishni o'tkazib yubormang. «Davom etish» 3-banddan keyin ochiladi.
 - Nishon (bonus): Rule Checked — oxirgi «Bajardim»da, ikkala tekshiruv belgilangan bo'lsa (natijasidan qat'i nazar — tavsif qilingan ishni aytadi).
 - Tugmalar: Orqaga · Avval bajaring → Davom etish
-- ✎ Talab zinapoyasi — tayyor talab + 4 joy (mahsulot qarori: asosiy harakat, cheklov soni, mukofot, qoida qatori) + `{ulashish joyi}` 1-amaliyotdan (dars holati). Uch shart va cheklov — Qaror-0 16, tayanch 1.10 aynan; `qurilma_id`, `mukofot` holatlari, hafta chegarasi, `nomalum`, qoida qatori, maxfiylik gapi — TAYANCHGA SAVOL 7–11, 16, 19.
+- ✎ Talab zinapoyasi — tayyor talab + 4 joy (mahsulot qarori: asosiy harakat, cheklov soni, mukofot, qoida qatori) + `{ulashish joyi}` 1-amaliyotdan (dars holati). Uch shart va cheklov — Qaror-0 16, tayanch 1.10 aynan; `oyinchi_qurilmalari`, `taklif_natijalari` holatlari (F-1007-468), hafta chegarasi, `nomalum`, qoida qatori, maxfiylik gapi — TAYANCHGA SAVOL 7–11, 16, 19.
   Tekshiruv: bir qurilma — o'quvchining o'z telefoni (agentsiz); boshqa qurilma — sherik birinchi, yashirin oyna ikkinchi, agent — zaxira (sinf 10). Tekshiruv akkauntlari forma orqali (`namuna = false`) — aks holda 1-shart ularni sanamaydi; tekshiruvdan keyin darhol o'chiriladi (12-Modul 9.37 g) — TAYANCHGA SAVOL 18.
-  Tekshiruvdan qolgan Pro muddati agent orqali qaytariladi — o'quvchi `UPDATE` yozmaydi. Namuna va cheklov — telefonda sinalmagan; yashil qator buni da'vo qilmaydi, kulrang qator ochiq aytadi (12-Modul 09-FILTR 40 naqshi).
-  Yashirin oyna «boshqa qurilma» bo'lib o'tadi — QIzohdagi halol chegara aynan shu (bir odam ikki qurilma bilan qoidani chetlab o'ta oladi). Brauzer ko'rinishi — ⛔ «qur» (Shubhali 6).
+  F-1007-468: taklif qiluvchi ham tekshiruv hisobi (`tekshiruv1`) — o'quvchining haqiqiy Pro muddati o'zgarmaydi, qaytarish (`UPDATE`) yo'q. Namuna va cheklov — telefonda sinalmagan; yashil qator buni da'vo qilmaydi, kulrang qator ochiq aytadi (12-Modul 09-FILTR 40 naqshi).
+  Yashirin oyna «boshqa ID» bo'lib o'tadi (o'sha kompyuter, boshqa brauzer xotirasi) — QIzohdagi halol chegara aynan shu (bir odam ikki qurilma bilan qoidani chetlab o'ta oladi). Brauzer ko'rinishi — ⛔ «qur» (Shubhali 6).
 
 ## 9 · Natijalar (podium) — umumiy shablon
 - Jonli reyting: 2 savol (skelet infrasi); bloklar «Bajardim» — mentorga signal (`PRACTICE_BASE`, 5-Modul naqshi).
@@ -432,26 +436,27 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2 ≈ 7 · Amaliyot 
 - Yuqori yorliqlar: ✓ Uch blok bajarildi (faqat uchala blok bajarilgan va 3-amaliyotda ikkala tekshiruv «Kutilganidek» bo'lsa; aks holda yorliq yo'q) · {N}/2 to'g'ri ·
   mobil trekda, 3-amaliyotda «Fayl navbatda» tanlangan bo'lsa — kulrang yorliq «O'rnatish fayli navbatda»
 - Sarlavha (bloklar holatiga qarab, P-046; sinf 6 — har holat rost, E 54):
-  - uchala blok, ikkala tekshiruv «Kutilganidek»: **Havola, sanoq va mukofot qoidasi tekshirildi.** (45)
+  - uchala blok, hamma kartalar «Kutilganidek»: **Havola, sanoq va mukofotning ikki holati tekshirildi.** (53)
+  - 1 yoki 2-blok kartasi «Boshqacha»: **Taklif yo'li qurildi — bitta joyni tuzatish qoldi.** (50)
   - uchala blok, «Boshqacha» bor yoki bitta tekshiruv qolgan: **Havola va sanoq tayyor — mukofot tekshiruvi tugamagan.** (54)
-  - 1 va 2-blok: **Havola va sanoq tayyor — mukofot qoidasi qoldi.** (47)
-  - faqat 1-blok: **Havola tayyor — formadagi taklif kodi va mukofot qoldi.** (55)
+  - 1 va 2-blok («Kutilganidek»): **Havola va sanoq tayyor — mukofot qoidasi qoldi.** (47)
+  - faqat 1-blok («Kutilganidek»): **Havola tayyor — formadagi taklif kodi va mukofot qoldi.** (55)
   - 3-blok bor, lekin 1 yoki 2-blok yo'q: **Mukofot qoidasi bor — oldingi bloklarni tugating.** (49)
   - hech biri: **Taklif havolasi hali qurilmagan — bloklarni tugating.** (53)
 - CTA: CODE STRIKE (arena) — jonli darsda: Mentorni kuting
 - «Bugungi asosiy fikr» qutisi yakunda yo'q (SABOQ E 50) — fikr A-bo'lim 2-bandida, darsning ichki o'qi.
 - Endi siz bilasiz (5):
-  - Taklif havolasi — har foydalanuvchining o'z havolasi: unda uning taklif kodi bor.
+  - Taklif havolasi — hisobning o'z taklif kodi yozilgan havola.
   - Mentor ilovasida havoladagi taklif kodi APK'ga o'tmaydi — shuning uchun formada maydon bor.
   - Bu darsda Umami tashrifni kanal bilan sanaydi; kim taklif qilganini Database biladi.
   - Bu misolda mukofot yangi hisob asosiy harakat qilgach beriladi; bir qurilmadagi va namuna hisob sanalmaydi.
-  - Mentor misolidagi bir haftalik 7 hisob havola ishlaganini ko'rsatadi, o'sishni isbotlamaydi.
+  - Mentor misolidagi bir haftalik 7 hisob taklif yo'li ishlaganini ko'rsatadi, o'sishni isbotlamaydi.
 - Uyga vazifa — yo'q (loyiha kuni; tayanch 4). `uyga: null`. «O'rnatish fayli navbatda» yorlig'i ostida bitta qator: Fayl tayyor bo'lgach, lendingdagi havolani keyingi dars boshida almashtirasiz.
 - Keyingi dars — «Mahsulotingiz hozir qayerda?»: roadmap bilan solishtirish va shaxsiy hisobot.
 - Nishonlaringiz — N/4
 - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
 - Tugmalar: Orqaga · Qaytadan · Yakunlash
-- ✎ «tekshirildi» — faqat ikkala «Kutilganidek»da (o'quvchi o'zi ko'rgan natija); «mukofot ishlaydi» deyilmaydi — namuna va cheklov sinalmagan. Sarlavhalar trek bo'yicha farq qilmaydi (havola, sanoq, mukofot ikkala trekda bor).
+- ✎ «tekshirildi» — faqat hamma kartalar «Kutilganidek»da (o'quvchi o'zi ko'rgan natija); «mukofot ishlaydi» deyilmaydi — namuna va cheklov sinalmagan, sarlavha «ikki holati» deydi (F-1007-468). «tayyor» — o'sha blok kartasi «Kutilganidek» bo'lsa. Sarlavhalar trek bo'yicha farq qilmaydi (havola, sanoq, mukofot ikkala trekda bor).
   «Endi siz bilasiz» — bilim, ikkala trekka to'g'ri (2-qator «Mentor ilovasida» bilan chegaralangan). «Keyingi dars» qatori — App.jsx `m11-11` nomi va osti (T-038: boshqa joyda va'da yo'q).
 
 ---
@@ -460,7 +465,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2 ≈ 7 · Amaliyot 
 - **Own Link** — Formada taklif kodi maydoni nega kerakligini topdingiz (4-ekran, 1-savol)
 - **Fair Reward** — Bir qurilmadagi hisob mukofotga sanalmasligini topdingiz (7-ekran, 2-savol)
 - **Code Counted** — Taklif kodi bilan ochilgan tekshiruv akkauntini sanab, o'chirdingiz (2-amaliyot, oxirgi «Bajardim») — bonus, birinchi urinish sharti yo'q
-- **Rule Checked** — Mukofot qoidasini ikki tekshiruv akkaunti bilan tekshirdingiz (3-amaliyot, oxirgi «Bajardim») — bonus, birinchi urinish sharti yo'q; tavsif — qilingan ish, «mukofot ishlaydi» emas
+- **Rule Checked** — Bir xil ID va boshqa ID holatini tekshirdingiz (3-amaliyot, oxirgi «Bajardim») — bonus, birinchi urinish sharti yo'q; tavsif — qilingan ish, «mukofot ishlaydi» emas
 - Nishon olinganda: <nishon nomi> · <tavsifi> · bosib davom eting
 - Nomlar boshqa darslarda yo'q (grep `src/`, `feedback/`, 07.10: Own Link · Fair Reward · Code Counted · Rule Checked — 0). Ikki blok nishoni — ish uchun (P-048), tekin emas.
 
@@ -489,7 +494,7 @@ Oyna yorlig'i: Qayta tushuntirish · tugmalar: ← Oldingi · Keyingisi → · �
 | Kim kimni taklif qilgani qayerda yoziladi? | Database'da — yangi hisobda taklif qilgan yoziladi | Umami'ga faqat kanal ketadi |
 | Mukofot pul yoki chegirma bo'la oladimi? | Yo'q — Mentor misolida u Pro'ning bepul haftasi | Test rejimdagi pullik obuna muddati |
 | Mukofot qachon beriladi? | Taklif kodi bilan ochilgan yangi hisob asosiy harakat qilgach | Mentor misolida: o'yinga qo'shilsa yoki o'yin e'lon qilsa |
-| Mentor qoidasida qaysi hisob mukofotga sanalmaydi? | Taklif qilgan bilan bir qurilmadagi va namuna hisob | Bir odamga haftasiga ko'pi bilan 2 mukofot |
+| Mentor qoidasida qaysi hisob mukofotga sanalmaydi? | Taklif qilgan bilan bir qurilmadagi va namuna hisob | Bir hisobga haftasiga ko'pi bilan 2 mukofot |
 | «Bir qurilma» qoidasi nimani ajrata olmaydi? | Ikkinchi qurilmadan ochilgan hisobni | Shuning uchun haftalik cheklov ham bor |
 | Mentor misolida bir haftada taklif kodi bilan nechta hisob ochildi? | 7 ta; 4 tasi asosiy harakat qildi | Mukofot — 3 ta: bitta hisob taklif qilgan bilan bir qurilmada edi |
 | Umami'dagi tashrif va Database'dagi hisob — bir o'lchovmi? | Yo'q — biri sahifa ochilishi, biri ro'yxatdan o'tgan hisob | Shuning uchun ular ayirilmaydi |
@@ -531,7 +536,7 @@ Har savolni aytgan ekran — qavsda. Uzunliklar — `md10/olchov.py` (pastda «O
    - ✔ B — Hali yo'q — asosiy harakat kutiladi
    - C — Bor — taklif kodi to'g'ri yozilgan
    - D — Yo'q — bu hisob endi umuman sanalmaydi
-7. Mentor qoidasida bir odamga haftasiga nechta mukofot? (5, A3)
+7. Mentor qoidasida bir hisobga haftasiga nechta mukofot? (5, A3)
    - A — Har taklif uchun — hech cheklovsiz
    - B — Bitta — oyiga faqat bir marta
    - ✔ C — Ko'pi bilan ikkita — haftasiga
@@ -602,13 +607,13 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari ru'da ham o'sha; R-008): taklif havol
 1. `backend/` — `oyinchilar.taklif_kodi` (6 belgi, `A–Z` va `0–9`, UNIQUE): yangi hisobga `POST /royxat` da yasaladi (to'qnashsa — qayta yasaladi); mavjud hisoblarga bir martalik migratsiya bilan (o'chirish yo'q). `GET /men` javobiga `taklifKodi`.
 2. `mobil/` — «O'yin» ekranidagi «Havolani ulashish» (12-Modul `m12-dars-10-done` tugmasi; ulashish usuli o'zgarmaydi): ulashiladigan matn — `{LENDING}/?taklif=${taklifKodi}&kanal=taklif`. Tugma nomi va joyi o'zgarmaydi.
 3. `lending/index.html` — `URLSearchParams` bilan `taklif` o'qiladi: «Qanday qo'shilaman» bo'limida «Taklif kodi: …» va «Ro'yxatdan o'tishda shu taklif kodini yozing.»; Umami `tashrif` — faqat `kanal` bilan (taklif kodi yuborilmaydi).
-4. `backend/` `POST /royxat { ism, login, parol, taklifKodi?, qurilmaId? }` — `taklifKodi` bo'sh bo'lmasa: aynan solishtiriladi (**katta-kichik harf farqlanadi** — 12-darsdagi topilma, tayanch 1.10, 1.12); topilmasa — `400` va «Bunday taklif kodi topilmadi — tekshiring yoki maydonni bo'sh qoldiring.», hisob ochilmaydi;
+4. `backend/` `POST /royxat { ism, login, parol, taklifKodi?, qurilmaId? }` — `taklifKodi` bo'sh bo'lmasa: bo'shliqsiz va katta harfga o'tkazilib solishtiriladi (F-1007-468: talabda bor; avval kichik harf 12-darsga topilma sifatida qoldirilgan edi — 9.51, 12-Modul 9.37 a ga zid); topilmasa — `400` va «Bunday taklif kodi topilmadi — tekshiring yoki maydonni bo'sh qoldiring.», hisob ochilmaydi;
    topilsa — `taklif_qilgan_id`. `mobil/` «Ro'yxatdan o'tish» — «Parol» ostida «Taklif kodi (bo'lsa)».
-5. `backend/` — `oyinchilar.qurilma_id` (ro'yxatdan o'tishda; «Havolani ulashish» bosilganda — `POST /men/qurilma { qurilmaId }`, token bilan; nomi «qur» da aniqlanadi), `oyinchilar.mukofot` (`berildi` | `bir-qurilma` | `namuna` | `nomalum` | `cheklov` | `null`), `oyinchilar.mukofot_vaqti`.
-   Tekshiruv `POST /oyinlar` va `POST /oyinlar/:id/qoshilish` muvaffaqiyatli tugagach, bitta tranzaksiyada: hisobda `taklif_qilgan_id` bor va `mukofot IS NULL` bo'lsa → (1) ikkalasi `namuna = false`, aks holda `namuna` · (2) taklif qilganning `qurilma_id` si `null` — `nomalum`; teng — `bir-qurilma` ·
-   (3) taklif qilganning shu haftadagi (`date_trunc('week', …)` — dushanba, `Asia/Tashkent`) `berildi` lari soni ≥ 2 — `cheklov` · aks holda `berildi` va taklif qilganning `pro_gacha = GREATEST(COALESCE(pro_gacha, now()), now()) + interval '7 days'`. Natija va vaqt yoziladi; keyingi harakatlarda qayta tekshirilmaydi.
+5. `backend/` — `oyinchi_qurilmalari` (`oyinchi_id`, `qurilma_id`, UNIQUE juft; ro'yxatdan o'tishda, kirishda va «Havolani ulashish» bosilganda — `POST /men/qurilma { qurilmaId }`, token bilan) · `taklif_natijalari` (`id`, `taklif_qilgan_id`, `taklif_qilingan_id` UNIQUE, `ON DELETE SET NULL`, `natija`, `yaratilgan`) — F-1007-468: avvalgi `oyinchilar.qurilma_id` (oxirgisi) va `mukofot`, `mukofot_vaqti` o'rniga.
+   Tekshiruv `POST /oyinlar` va `POST /oyinlar/:id/qoshilish` saqlangach, alohida tranzaksiyada (xato asosiy harakatni qaytarmaydi): hisobda `taklif_qilgan_id` bor va `taklif_natijalari` da yozuvi yo'q bo'lsa → taklif qilganning `oyinchilar` qatori `FOR UPDATE` → (1) ikkalasi `namuna = false`, aks holda `namuna` · (2) taklif qilganning `oyinchi_qurilmalari` bo'sh — `nomalum`; yangi hisob qurilmasi ular ichida — `bir-qurilma` ·
+   (3) taklif qilganning shu haftadagi (`date_trunc('week', …)` — dushanba, `Asia/Tashkent`) `taklif_natijalari` dagi `berildi` lari soni ≥ 2 — `cheklov` · aks holda `berildi` va taklif qilganning `pro_gacha = GREATEST(COALESCE(pro_gacha, now()), now()) + interval '7 days'`. Natija yoziladi (UNIQUE — bir hisob bir marta); yozuv bo'lmasa (xato) — keyingi harakatda qayta tekshiriladi.
 6. `mobil/` — «Havolani ulashish» ostida kulrang qator (`QOIDA_QATORI`, A3 Yordam aynan). Brauzer ko'rinishida qurilma ID — ilovaning o'z saqlash joyidan (12-Modul qurilma ID si; web'da brauzer xotirasi).
-7. `lending/maxfiylik.html` — «Qaysi ma'lumot?» javobiga gap: «Taklif mukofoti uchun hisob ochilgan va havola ulashilgan qurilma ID si saqlanadi — bir odam o'zini taklif qilmasligi uchun.»
+7. `lending/maxfiylik.html` — «Qaysi ma'lumot?» va «Nima uchun?» javoblariga: «Taklif kodi bilan kelgan hisoblarda kim kimni taklif qilgani, mukofot natijasi va vaqti, hisob ishlatilgan qurilma ID lari saqlanadi — mukofotni qoidaga ko'ra berish va bir qurilma ID li hisoblarni ajratish uchun.» · `lending/oferta.html` — «Taklif mukofoti» bandi (qoida qatori + berilmaydigan to'rt holat; F-1007-468).
 8. `README.md` — yangi «Taklif» bo'limi (taklif kodi, havola, formadagi maydon, mukofot qoidasi — uch shart va cheklov, `mukofot` holatlari, «bir qurilma» qoidasining chegarasi); «Darslar va teglar» jadvaliga `m13-dars-10-done`.
 9. ⛔ Muhrdan oldin («qur» darvozasi): Render deploy; Expo Go'da va brauzer ko'rinishida forma, xabar, `taklif_qilgan_id`; «Hisobdan chiqish» qurilma ID ni o'chirmasligi (bir qurilma tekshiruvi shunga bog'liq — Shubhali 5); ikki tekshiruv (bir qurilma — `bir-qurilma`, Pro o'zgarmaydi; boshqa qurilma — `berildi`, Pro +7 kun) va tozalash;
    `ishtirokchilar.holat`, `oyinlar.tashkilotchi_id` nomlari (tayanch 6); namuna o'yin (`id` 1) hali bor-yo'qligi (12-Modul 9.44 oxiri); uchala blok vaqti (taymer). Mentor tekshiruv akkauntlari va Pro qaytarish — muhrdan oldin. Natija boshqacha chiqsa — MD haqiqiy natijaga moslanadi.
@@ -630,14 +635,14 @@ Bu darsda yangi tashqi xizmat fakti yo'q — barcha texnik va xizmat qadamlari o
    O'quvchi matnida faqat «Mukofot: 3 · 2 tashkilotchiga» (bo'linishi aytilmaydi). Agar «3 tadan 2 tasi tashkilotchiga, 1 tasi o'yinchiga» nazarda tutilgan bo'lsa — ayting: o'yinchida ham ulashish joyi kerak bo'ladi (hozir yo'q).
 4. **18 — «tashrif»** (tayanch 1.13 da «qurilma», 1.10 «Sanoq» qatorida «(tashrif)»): Umami qurilmani emas, ochilishni sanaydi (12-Modul 9.38 h; 10-Modul 02-FILTR 1) — o'quvchi matnida «18 tashrif». Tayanch 1.13 ni «tashrif» ga almashtirish taklifi.
 5. **5-ekran hisob kartalarining tartibi** (bir qurilmadagi — 3-karta) va karta ichidagi yozuvlar («asosiy harakat: bor», «namuna: yo'q») — sahna uchun; namuna «yo'q» — forma doim `false` yozadi (12-Modul 1.7).
-6. **Halol gap «Bir hafta va 7 kishi …»** — so'zma-so'z qoldirildi (QIzoh). Lekin 7 — hisob, ulardan biri taklif qilgan bilan bir qurilmada: «kishi» aniq emas. Taklif: «Bir hafta va 7 hisob — …» (tayanch 1.10 da).
-7. **`oyinchilar.qurilma_id`** (tayanchda yo'q): «bir qurilma» shartini tekshirish uchun hisobga qurilma ID yoziladi — ro'yxatdan o'tishda va «Havolani ulashish» bosilganda (oxirgisi). Taklif qilganning eski hisobi (12-Moduldan) qurilmasi faqat ulashganda ma'lum bo'ladi.
-8. **`oyinchilar.mukofot` va `mukofot_vaqti`** (tayanchda yo'q): taklif kodi bilan ochilgan hisobda natija — `berildi` · `bir-qurilma` · `namuna` · `nomalum` · `cheklov`; haftalik cheklov shu yozuvlardan sanaladi; bir hisob — bir marta.
-9. **`nomalum`:** taklif qilganning qurilma ID si hali yozilmagan bo'lsa (12-Moduldan beri havola ulashmagan) — mukofot berilmaydi (o'zini taklif qilishni tekshirib bo'lmaydi). Muqobili — berish; men xavfsizini tanladim.
+6. **Halol gap «Bir hafta va 7 hisob …»** — so'zma-so'z qoldirildi (QIzoh). Lekin 7 — hisob, ulardan biri taklif qilgan bilan bir qurilmada: «kishi» aniq emas. Taklif: «Bir hafta va 7 hisob — …» (tayanch 1.10 da).
+7. ✅ (F-1007-468: `oyinchi_qurilmalari` — hisobning hamma qurilmalari; «oxirgisi» bir qurilmadagi o'zini taklif qilishni boshqa qurilmadek ko'rsatishi mumkin edi) **`oyinchilar.qurilma_id`** (tayanchda yo'q): «bir qurilma» shartini tekshirish uchun hisobga qurilma ID yoziladi — ro'yxatdan o'tishda va «Havolani ulashish» bosilganda (oxirgisi). Taklif qilganning eski hisobi (12-Moduldan) qurilmasi faqat ulashganda ma'lum bo'ladi.
+8. ✅ (F-1007-468: `taklif_natijalari` — alohida jadval; taklif qilingan hisob o'chsa ham haftalik sanoq buzilmaydi) **`oyinchilar.mukofot` va `mukofot_vaqti`** (tayanchda yo'q): taklif kodi bilan ochilgan hisobda natija — `berildi` · `bir-qurilma` · `namuna` · `nomalum` · `cheklov`; haftalik cheklov shu yozuvlardan sanaladi; bir hisob — bir marta.
+9. **`nomalum`:** taklif qilganning qurilma ID si hali yozilmagan bo'lsa (12-Moduldan beri havola ulashmagan) — mukofot berilmaydi (o'zini taklif qilishni tekshirib bo'lmaydi). Muqobili — berish; men xavfsizini tanladim. F-1007-468: bu holat ofertadagi «Taklif mukofoti» bandida ochiq aytiladi; kirishda ham qurilma yoziladi — holat kamayadi.
 10. **Hafta** — dushanbadan yakshanbagacha, Toshkent vaqti (12-Modul 9.41 b ma'nosi); cheklovga yetganda shu taklif uchun mukofot berilmaydi va keyingi haftaga o'tmaydi (`cheklov`).
 11. **Mukofot payti** — taklif kodi bilan ochilgan hisob **birinchi marta** asosiy harakat qilganda (o'yinga qo'shilish yoki e'lon); keyin o'yindan chiqsa — mukofot qaytarib olinmaydi. `pro_gacha`: o'tgan yoki bo'sh bo'lsa — bugundan 7 kun.
 12. **Umami'ga faqat kanal** — taklif kodi Umami'ga yuborilmaydi (analitika va hisob bog'lanmasin); kim taklif qilgani — faqat Database'da.
-13. **Noto'g'ri taklif kodi** — hisob ochilmaydi, xabar «Bunday taklif kodi topilmadi — tekshiring yoki maydonni bo'sh qoldiring.» (12-darsdagi «kichik harf qabul qilinmadi» topilmasi shu yo'l bilan ko'rinadi — tayanch 1.12 «qabul qilinmadi»).
+13. **Noto'g'ri taklif kodi** — hisob ochilmaydi, xabar «Bunday taklif kodi topilmadi — tekshiring yoki maydonni bo'sh qoldiring.» (F-1007-468: kichik harf endi qabul qilinadi — talabda katta harfga o'tkaziladi).
 14. **Lending qatori** «Taklif kodi: AB12CD» ostida — «Ro'yxatdan o'tishda shu taklif kodini yozing.» (tayanchda faqat birinchi qator).
 15. **Mavjud hisoblarga taklif kodi** — 1-amaliyotda bir martalik (migratsiya; o'chirish yo'q).
 16. **Ilovadagi qoida qatori** (tayanchda yo'q): «Havolani ulashish» ostida kulrang «Siz taklif qilgan yangi o'yinchi o'yinga qo'shilsa yoki o'yin e'lon qilsa — Pro'ga 7 kun qo'shiladi (haftasiga ko'pi bilan 2 marta).» — shartni ochiq aytish uchun (7-dars «shartlarni ochiq aytish» ruhida); chorlov va bosim yo'q.
@@ -666,11 +671,12 @@ Bu darsda yangi tashqi xizmat fakti yo'q — barcha texnik va xizmat qadamlari o
 8. **`ishtirokchilar.holat`, `oyinlar.tashkilotchi_id`** — 12-Modul 9.23 SQL idan; ustun nomlari Neon'da «qur» da tekshiriladi (tayanch 6 «Tekshirilmagan»).
 9. **Namuna o'yin (`id` 1)** 13-Modulda hali bormi — 12-Modul 9.44 oxirida ochiq savol; yo'q bo'lsa tekshiruv akkaunti uchun real foydalanuvchilarsiz o'yin kerak bo'ladi (tashkilotchi o'zi e'lon qilgan alohida o'yin — lekin u o'chmaydi).
 10. **Mavjud hisoblarga taklif kodi berish** — migratsiyani agent qanday qilishi (jadval yaratish usuli 11-Modul loyihasidagi kabi) — agentning tanloviga qoladi; tekshiruv — Neon'dagi ikki `SELECT`.
-11. **Kichik harf** — Mentor `10-done` da kichik harf qabul qilinmaydi (tayanch 1.10, 1.12); o'quvchi agenti katta-kichik harfni o'zi tenglashtirishi mumkin (talabda yo'q — agentning tanloviga qoladi), unda 12-darsda o'quvchida bu topilma bo'lmaydi — bu normal.
+11. ✅ **Kichik harf** — F-1007-468: talabda (A2) kod katta harfga o'tkazilib solishtiriladi; 12-dars Mentor misoli pilot natijasidan (9.51).
 12. **Agent tekshiruv akkaunti** (zaxira) — ro'yxatdan o'tish yo'li bilan yangi qurilma ID yuborishi: agent API'ga so'rov yubora olishi (Render) — 12-Modul 9.35 a dagi kabi «qur» da.
-13. **`pro_gacha` ni qaytarish** — agent `UPDATE` qiladi; o'quvchi yozib olgan qiymat xato bo'lsa, Pro muddati noto'g'ri qoladi (test rejim — pul yo'q, zarar yo'q, lekin sanoq halolligi uchun (2) va (5) ni solishtirish kerak).
+13. ✅ (F-1007-468: qaytarish yo'q — taklif qiluvchi `tekshiruv1`) **`pro_gacha` ni qaytarish** — agent `UPDATE` qiladi; o'quvchi yozib olgan qiymat xato bo'lsa, Pro muddati noto'g'ri qoladi (test rejim — pul yo'q, zarar yo'q, lekin sanoq halolligi uchun (2) va (5) ni solishtirish kerak).
 14. **«Havolani ulashish» ulashish usuli** — 12-Modulda «qur» da tanlangan; qurilma ID yuborish shu tugmaga qo'shiladi — ulashish oynasi ochilishidan oldin so'rov o'tmasa, tugma kechikishi mumkin (agentning tanloviga qoladi).
 15. **Mukofot berilgani tashkilotchiga ko'rinishi** — Pro holati 4-darsdagi ko'rinishda (`GET /men`); «sizga 7 kun qo'shildi» kabi alohida xabar yo'q (kerak bo'lsa — keyingi ish, bugun yo'q).
+16. **Siyosat gapi va saqlanadigan ma'lumot** (7-dars Filtri sinfi, F-1007-465) — Mentor gapi faqat qurilma ID ni aytadi; `oyinchilar` da yana `taklif_qilgan_id` (kim taklif qilgani) va `mukofot` saqlanadi. Promptga «kodda saqlanadigan, lekin gapda yo'q ma'lumotni ayt» qo'shildi; Mentor gapining o'zi — 10-dars auditida.
 
 ## Oldindan tuzatiladigan sinflar — o'z tekshiruvim (tayanch 7: 16 band + 12-Modul tayanchi 7 + 13-Modul pul sinflari)
 1. [x] **90 daqiqa — reja, o'lchov emas** — tepada taqsimot «reja, o'lchov emas» va ⛔ pilot taymeri; A-bo'lim 12; har blokda «Ulgurmasangiz»; Render kutilganda kod qatorlarini o'qish (uchala blok, 3-band); tekshiruv keyingi blokdan keyinga surilmaydi (bir kodga tegadi — 12-Modul 9.41 i); o'rnatish fayli navbati kutilmaydi; «sig'adi» deyilmagan (Shubhali 1).
@@ -696,7 +702,7 @@ Bu darsda yangi tashqi xizmat fakti yo'q — barcha texnik va xizmat qadamlari o
   «test rejim» belgisi har to'lov ekranida [—] (to'lov ekrani yo'q; Pro mukofot bilan to'lovsiz uzayadi, reja pastki qatorida «test rejimdagi Pro muddati») · narx — «Mentorning taxmini» [—] (narx yo'q) · suhbat va tasdiqda bosim yo'q [x] — taklifda: «do'stingni taklif qil — sovg'a» yo'q, qoida qatori bosimsiz ·
   oferta — shablon [—] (7-dars; mukofot bandi — TAYANCHGA SAVOL 16) · mukofot — pul emas [x] (Qaror-0 15: pul ham, chegirma ham emas — A3 prompti «Nima buzilmasin»).
 
-## O'lchov (scratchpad `md10/olchov.py`, 07.10.2026; yakuniy fayl bo'yicha)
+## O'lchov (scratchpad `md10/olchov.py`, 07.10.2026; yakuniy fayl bo'yicha; F-1007-468 da o'zgargan qatorlar Python `len` bilan qayta o'lchandi, 08.10)
 Belgilar — oddiy `len` (`**` va «✔» siz); qavsdagi har son skript bilan tekshirildi va tuzatildi (`olchov.py --fix`; birinchi yurishda 36 ta qo'lda yozilgan son noto'g'ri edi, 4 ta chegaradan oshgan joy — 2 to'g'ri izoh, 1 sarlavha, 1 QIzoh — qisqartirildi;
 arena 5, 7, 10 da ✔ yolg'iz eng uzun edi — distraktorlar uzaytirildi; 1-savol D varianti ±15% dan chiqqan edi — qisqartirildi). Ballik testlar ±15%, arena ±20% (o'rtachadan).
 Mentor gaplari — interaktiv ekranlarda bitta gap; 0-ekran boshidagi gap 125 belgi (bitta gap, ikki qism «—» va «;» bilan — 12-Modul 9-darsida 112–129).
@@ -704,13 +710,14 @@ Mentor gaplari — interaktiv ekranlarda bitta gap; 0-ekran boshidagi gap 125 be
 ```
 ## Sarlavhalar (≤55)
    54  Yangi o'yinchini kim taklif qilgani qayerda ko'rinadi?
-   49  Bugun har foydalanuvchiga o'z havolasini berasiz.
+   44  Bugun har hisobning o'z taklif kodi bo'ladi.
    48  O'rnatilgan ilova kim taklif qilganini biladimi?
    50  Har hisobning o'z taklif kodi va havolasi bo'lsin.
    35  Qaysi hisob uchun mukofot beriladi?
    51  Formadagi taklif kodi taklif qilgan hisobni topsin.
    48  Mukofot faqat qoidaga mos taklif uchun berilsin.
-   45  Havola, sanoq va mukofot qoidasi tekshirildi.
+   53  Havola, sanoq va mukofotning ikki holati tekshirildi.
+   50  Taklif yo'li qurildi — bitta joyni tuzatish qoldi.
    54  Havola va sanoq tayyor — mukofot tekshiruvi tugamagan.
    47  Havola va sanoq tayyor — mukofot qoidasi qoldi.
    55  Havola tayyor — formadagi taklif kodi va mukofot qoldi.
@@ -739,14 +746,15 @@ Mentor gaplari — interaktiv ekranlarda bitta gap; 0-ekran boshidagi gap 125 be
    77  Har hisobda taklif kodi bor; havola uni olib boradi va sahifa uni ko'rsatadi.
    79  Umami'ga faqat kanal ketadi: taklif kodi va uni kim ochgani u yerda yozilmaydi.
   101  Bir qurilma — o'zini taklif qilish ham, oiladagi bitta telefon ham bo'lishi mumkin: qoida ajratmaydi.
-   97  Bir hafta va 7 kishi — kichik son: taklif havolasi ishlaganini ko'rsatadi, o'sishni isbotlamaydi.
+   97  Bir hafta va 7 hisob — kichik son: taklif yo'li ishlaganini ko'rsatadi, o'sishni isbotlamaydi.
   108  Taklif kodi bilan ochilgan hisob taklif qilganga bog'landi va sanoqda ko'rindi; tekshiruv akkaunti o'chirildi.
    85  Sinfdagi tekshiruv akkaunti haqiqiy sanoqqa qo'shilmaydi — shuning uchun u o'chiriladi.
-   96  Bir qurilmadagi hisob sanalmadi, boshqa qurilmadagisi mukofot berdi; tekshiruv izlari tozalandi.
+   92  Bir xil ID dagi hisob sanalmadi, boshqa ID dagisi mukofot berdi; tekshiruv izlari tozalandi.
    70  Tekshiruv tugamagan: «Boshqacha» chiqqanini tuzatib, qayta tekshiring.
-   57  Bir qurilma tekshirildi; boshqa qurilma tekshiruvi qoldi.
+   51  Bir xil ID tekshirildi; boshqa ID tekshiruvi qoldi.
+   64  Talabdagidek bo'lmagan joyni agentga yozing va qayta tekshiring.
    74  Namuna va haftalik cheklov — kodda bor, tekshiruv akkaunti bilan sinalmagan.
-  107  Qoida bir qurilmani ushlaydi; ikkinchi qurilmadagi hisobni ajratmaydi — shuning uchun haftalik cheklov bor.
+  109  Qoida bir xil qurilma ID ni ushlaydi; boshqa ID dagi hisobni ajratmaydi — shuning uchun haftalik cheklov bor.
 ## Reja qatorlari
    26  Har hisobning o'z havolasi
    31  Havola bilan kelganlar sanaladi
@@ -784,7 +792,7 @@ Mentor gaplari — interaktiv ekranlarda bitta gap; 0-ekran boshidagi gap 125 be
    4. ✔D · [34, 40, 38, 37] · OK  Taklif kodisiz kelgan odam Mentor ilovasida ro'yxatdan o'ta oladimi?
    5. ✔A · [36, 31, 31, 40] · OK  Mentor misolida taklif uchun mukofot nima?
    6. ✔B · [32, 35, 34, 38] · OK  Taklif kodi bilan ochilgan hisob hali hech narsa qilmagan. Mukofot-chi?
-   7. ✔C · [34, 29, 30, 27] · OK  Mentor qoidasida bir odamga haftasiga nechta mukofot?
+   7. ✔C · [34, 29, 30, 27] · OK  Mentor qoidasida bir hisobga haftasiga nechta mukofot?
    8. ✔D · [30, 30, 32, 31] · OK  Ikkinchi telefoni bor odam o'zini taklif qildi. «Bir qurilma» qoidasi-chi?
    9. ✔A · [31, 33, 33, 31] · OK  Mentor misolida 18 tashrif va 7 hisob. Ayirsa bo'ladimi?
   10. ✔B · [35, 48, 49, 38] · OK  Mentor misolida jami ro'yxatdan o'tgan — 51. Bu son nima?

@@ -7,6 +7,7 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // Bitta vizual — JonliSahna (ikki telefon, Backend tuguni, xona doirasi oyin-1). O'qiydi: pm-m10d3-talab.buzilmasin, pm-m9d8-platforma.trek; yangi kalit yozmaydi (tayanch 8).
 // JONLI: useLiveSession + INLINE_KEYS + CodeStrike arena + Podium. PRODUCTION: <style> ichidagi @import OLIB TASHLANADI.
 // ============================================================
+// ru-qoldiq-istisno s3: o'yin
 
 // D3: palitra umumiy qolipdan — neytral 5 · modul rangi 2 · holat 2 (shadowBase — soya, rang tokeni emas)
 const T = { ...qolipRang('tex'), shadowBase: '58, 53, 48' };
@@ -263,7 +264,7 @@ const RECAPS = {
     title: { uz: 'Ochiq ilova — jonli xabar, yopiq — eslatma', ru: 'Открытое приложение — живое сообщение, закрытое — напоминание' },
     cards: [
       { ic: null, h: { uz: 'Ilova ochiq — hodisa keladi, tepada jonli xabar chiqadi.', ru: 'Приложение открыто — приходит событие, вверху появляется живое сообщение.' }, vis: rcKod('oyin-ozgardi') },
-      { ic: null, h: { uz: "Boshqa odam qilgan o'zgarish jonli xabar bo'lib ko'rinmaydi.", ru: 'Изменение, сделанное другим человеком, не видно как живое сообщение.' }, vis: <RcMatn t={{ uz: 'ilova yopiq', ru: 'приложение закрыто' }} /> },
+      { ic: null, h: { uz: "Boshqa odam qilgan o'zgarish jonli xabar bo'lib ko'rinmaydi.", ru: "Изменение, сделанное другим человеком, не появится живым сообщением." }, vis: <RcMatn t={{ uz: 'ilova yopiq', ru: 'приложение закрыто' }} /> },
       { ic: null, h: { uz: "Eslatmani ilova o'zi oldindan qo'yadi, Backend emas.", ru: 'Напоминание заранее ставит само приложение, а не Backend.' }, vis: rcKod('scheduleNotificationAsync'), ask: { uz: "Ilova yopiq paytda o'yinchi joy bo'shaganini qanday bilishi mumkin edi?", ru: 'Как игрок мог бы узнать, что освободилось место, пока приложение закрыто?' } }
     ]
   }
@@ -572,6 +573,8 @@ const JONLI_XABARLAR = {
   navbatdan: { uz: "Navbatdan o'yinga o'tdingiz: Shanba, 18:00", ru: 'Вы перешли из очереди в игру: Суббота, 18:00' }
 };
 // Mentor eslatmasi: o'yindan bir soat oldin (oldin — daqiqa)
+// «Maydon Jamoa» nomi — 11-Modul tayanch 9.62 yashili (PM palitrasining ok yashilidan farqli; F-1006-389)
+const MAYDON_RANG = '#2E9E4F';
 const ESLATMA = { sarlavha: 'Maydon Jamoa', matn: { uz: 'Bugun, 18:00 · Mahalla maydoni', ru: 'Сегодня, 18:00 · Поле махалли' }, oldin: 60 };
 const JONLI_SAHNA = {
   t1: { uz: '1-telefon · siz', ru: 'Телефон 1 · вы' },
@@ -715,7 +718,7 @@ const Bashorat = ({ savol, variantlar, tanlov, onTanla }) => (tanlov == null
 // Taxmin natijasi — yashil xulosaning birinchi kichik qatori (E 42): tanlangan javob qaytarilmaydi
 const Natija = ({ togri, haqiqat }) => (togri
   ? <span className="jx-x-tx ok">{tr({ uz: "Taxminingiz to'g'ri chiqdi", ru: 'Ваше предположение оказалось верным' })} <b>✓</b></span>
-  : <span className="jx-x-tx">{tr({ uz: 'Taxminingiz', ru: 'Ваше предположение' })} <b className="yoq">✕</b> — {tr({ uz: 'aslida', ru: 'на деле' })}: <b>{tx(haqiqat)}</b></span>);
+  : <span className="jx-x-tx">{tr({ uz: 'Taxminingiz', ru: 'Ваше предположение' })} <b className="yoq">✕</b> — {tr({ uz: 'aslida', ru: "на самом деле" })}: <b>{tx(haqiqat)}</b></span>);
 // Bitta yashil quti: taxmin qatori · xulosa · izoh (QIzoh — shu qutining oxirgi kichik qatori, E 42)
 const XulosaQ = ({ natija, matn, izoh }) => <>{natija}<span className="jx-x-m">{matn}</span>{izoh && <span className="jx-x-iz">{izoh}</span>}</>;
 const QADAMLAR_Y = { uz: 'Qadamlarni bajaring', ru: 'Выполните шаги' };
@@ -730,7 +733,7 @@ const HOOK_OPTS = [
   { id: 'c', label: { uz: "Hech kim — ilovani o'zingiz ochib ko'rasiz", ru: 'Никто — вы сами откроете приложение и посмотрите' } }
 ];
 const HOOK_JAVOB = {
-  b: { uz: <><b>Aynan!</b> Bu misolda ilova «Qo'shilaman» bosilganda eslatmani o'yindan bir soat oldinga qo'yib qo'yadi.</>, ru: <><b>Именно!</b> В этом примере приложение при нажатии «Qo'shilaman» ставит напоминание за час до игры.</> },
+  b: { uz: <><b>Aynan!</b> Bu misolda ilova «Qo'shilaman» bosilganda eslatmani o'yindan bir soat oldinga qo'yib qo'yadi.</>, ru: <><b>Именно!</b> В этом примере приложение при нажатии «Присоединяюсь» ставит напоминание за час до игры.</> },
   a: { uz: <><b>Qiziq fikr!</b> Backend yuboradigan eslatma ham bor, u alohida sozlashni talab qiladi. Bu misolda vaqtni ilova qo'yadi.</>, ru: <><b>Интересная мысль!</b> Есть и напоминание, которое отправляет Backend, — оно требует отдельной настройки. В этом примере время ставит приложение.</> },
   c: { uz: <><b>Qiziq fikr!</b> 11-Modulda shunday edi: roadmap'da eslatma keyinroqqa qoldirilgan. Bugun u quriladi.</>, ru: <><b>Интересная мысль!</b> Так было в 11-м модуле: в roadmap напоминание отложили на потом. Сегодня мы его построим.</> }
 };
@@ -753,7 +756,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     <Stage eyebrow={tr({ uz: 'Loyiha kuni · kirish', ru: 'День проекта · введение' })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={!javob} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className={cx('jx-k', !javob && 'faol')}>
         <QKirish zoom={Zoomable}
-          sarlavha={tr({ uz: <>Ilovani yopgan bo'lsangiz, o'yinni sizga <span className="italic" style={{ color: T.accent }}>kim eslatadi</span>?</>, ru: <>Если вы закрыли приложение, <span className="italic" style={{ color: T.accent }}>кто напомнит</span> вам об игре?</> })}
+          sarlavha={tr({ uz: <>Ilovani yopgan bo'lsangiz, o'yinni sizga <span className="italic" style={{ color: T.accent }}>kim eslatadi</span>?</>, ru: <>Приложение закрыто — <span className="italic" style={{ color: T.accent }}>кто напомнит</span> вам об игре?</> })}
           mentor={<Mentor>{javob
             ? tr({ uz: "Telefon ekraniga qarang, keyin «Davom etish»ni bosing.", ru: 'Посмотрите на экран телефона, затем нажмите «Продолжить».' })
             : tr({ uz: "Mentor misolida siz Shanba 18:00 dagi o'yinga qo'shilgansiz, telefon esa cho'ntakda — avval javobni tanlang.", ru: 'В примере Ментора вы присоединились к игре в субботу в 18:00, а телефон в кармане — сначала выберите ответ.' })}</Mentor>}
@@ -784,8 +787,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz', ru: 'Начинаем' })} onClick={onNext} /></>}>
       <QReja zoom={Zoomable}
-        sarlavha={tr({ uz: <>Dars oxirida ilovangiz <span className="italic" style={{ color: T.accent }}>foydalanuvchini xabardor qiladi</span>.</>, ru: <>К концу урока ваше приложение <span className="italic" style={{ color: T.accent }}>будет оповещать пользователя</span>.</> })}
-        mentor={<Mentor>{tr({ uz: "Har qadamni avval Maydon Jamoa misolida ko'rasiz, keyin o'z mahsulotingizda qurasiz. Talabni har blokda ko'proq o'zingiz yozasiz.", ru: 'Каждый шаг вы сначала увидите на примере Maydon Jamoa, потом построите в своём продукте. С каждым блоком вы пишете требование всё больше сами.' })}</Mentor>}
+        sarlavha={tr({ uz: <>Dars oxirida ilovangiz <span className="italic" style={{ color: T.accent }}>foydalanuvchini xabardor qiladi</span>.</>, ru: <>К концу урока приложение <span className="italic" style={{ color: T.accent }}>известит пользователя</span>.</> })}
+        mentor={<Mentor>{tr({ uz: "Har qadamni avval Maydon Jamoa misolida ko'rasiz, keyin o'z mahsulotingizda qurasiz. Talabni har blokda ko'proq o'zingiz yozasiz.", ru: "Каждый шаг вы сначала увидите на примере Maydon Jamoa, потом построите в своём продукте. С каждым блоком вы всё больше пишете требование сами." })}</Mentor>}
         chapYorliq={tr({ uz: 'Dars oxirida', ru: 'В конце урока' })}
         chap={<div className="jx-reja-chap"><JonliSahna t1={yopiq
           ? { ekran: 'yopiq', soat: f >= 5 ? '17:00' : '16:59', soatYangi: f >= 5, eslatma: f >= 5 }
@@ -795,7 +798,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
         <p className="jx-reja-past">{tx({ uz: "repo `maydon-jamoa` · boshlang'ich holat `m12-dars-04-start` · namuna `m12-dars-04-done`", ru: 'репозиторий `maydon-jamoa` · начальное состояние `m12-dars-04-start` · образец `m12-dars-04-done`' })}</p>
         <p className="jx-reja-past2">{tr({ uz: "«Maydon Jamoa» — namuna; bloklarni o'z mahsulotingizda bajarasiz. Web-trekda 3-qadamda — saytdagi «Xabarlar» tasmasi.", ru: '«Maydon Jamoa» — образец; блоки вы выполняете в своём продукте. В веб-треке на 3-м шаге — лента «Xabarlar» на сайте.' })}</p>
         <Ustoz satrlar={[
-          { uz: "Darsning og'ir qismi — Amaliyot 1 (Backend o'zgaradi, Render kutiladi) va Amaliyot 3 (telefon ruxsati). Telefonda eslatma ruxsat oynasi va Android'dagi ko'rinishi pilotda sinaladi — o'quvchida chiqmasa, bu uning xatosi emas.", ru: 'Тяжёлая часть урока — Практика 1 (меняется Backend, ждём Render) и Практика 3 (разрешение телефона). Окно разрешения напоминаний и вид на Android проверяются в пилоте — если у ученика не появится, это не его ошибка.' },
+          { uz: "Darsning og'ir qismi — Amaliyot 1 (Backend o'zgaradi, Render kutiladi) va Amaliyot 3 (telefon ruxsati). Telefonda eslatma ruxsat oynasi va Android'dagi ko'rinishi pilotda sinaladi — o'quvchida chiqmasa, bu uning xatosi emas.", ru: "Сложная часть урока — Практика 1 (меняется Backend, ждём Render) и Практика 3 (разрешение телефона). Окно разрешения напоминаний и вид на Android проверяются в пилоте — если у ученика не появится, это не его ошибка." },
           { uz: "Uchish rejimi va uzilish bu darsda tekshirilmaydi (5-darsning ishi; o'quvchiga aytilmaydi). Mentor repo'sidagi `m12-dars-04-done` qayta ulanishni maxsus boshqarmaydi.", ru: 'Режим полёта и обрыв на этом уроке не проверяются (задача 5-го урока; ученику не говорим). `m12-dars-04-done` в репозитории Ментора специально не управляет переподключением.' }
         ]} />
       </QReja>
@@ -804,7 +807,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
 };
 
 // ===== SCREEN 2 — TUSHUNCHA · xona (bashorat + 2 qadam): 2-telefon o'yinni ochadi → oyin-ochildi → nuqta xonaga → ikkala son 2; «‹ O'yinlar» → nuqta chiqadi → faqat 1-telefon son 1 =====
-const S2_TAXMIN = [{ k: 'ozgarmaydi', t: { uz: "O'zgarmaydi", ru: 'Не изменится' } }, { k: 'tortsa', t: { uz: "Pastga tortganda o'zgaradi", ru: 'Изменится при потягивании вниз' } }, { k: 'ozi', t: { uz: "O'zi 2 ga o'tadi", ru: 'Само станет 2' } }];
+const S2_TAXMIN = [{ k: 'ozgarmaydi', t: { uz: "O'zgarmaydi", ru: 'Не изменится' } }, { k: 'tortsa', t: { uz: "Pastga tortganda o'zgaradi", ru: "Изменится, если потянуть вниз" } }, { k: 'ozi', t: { uz: "O'zi 2 ga o'tadi", ru: 'Само станет 2' } }];
 const NUQTA_A = { id: 'a', h: '' };
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const avval = !!storedAnswer;
@@ -842,12 +845,12 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       [300, () => { setQ(2); setBand(false); }]]);
   };
   const mentor = !taxmin || q === 0 ? { uz: "Avval taxminingizni belgilang, keyin 2-telefonda Shanba 18:00 o'yinini oching.", ru: 'Сначала отметьте предположение, затем на телефоне 2 откройте игру в субботу в 18:00.' }
-    : q === 1 ? { uz: "Endi 2-telefonda «‹ O'yinlar» ni bosib, ro'yxatga qayting.", ru: "Теперь на телефоне 2 нажмите «‹ O'yinlar» и вернитесь к списку." }
+    : q === 1 ? { uz: "Endi 2-telefonda «‹ O'yinlar» ni bosib, ro'yxatga qayting.", ru: "Теперь на телефоне 2 нажмите «‹ Игры» и вернитесь к списку." }
       : { uz: 'Natijani taxminingiz bilan solishtiring.', ru: 'Сравните результат со своим предположением.' };
   return (
     <Stage eyebrow={tr({ uz: 'Tushuncha · xona', ru: 'Понятие · комната' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={tr(navYorliq(taxmin, q, 2, done))} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
-        sarlavha={tr({ uz: <>O'yin ekrani hozir <span className="italic" style={{ color: T.accent }}>nechta qurilmada</span> ochiq?</>, ru: <>На скольких <span className="italic" style={{ color: T.accent }}>устройствах</span> сейчас открыт экран игры?</> })}
+        sarlavha={tr({ uz: <>O'yin ekrani hozir <span className="italic" style={{ color: T.accent }}>nechta qurilmada</span> ochiq?</>, ru: <><span className="italic" style={{ color: T.accent }}>На скольких устройствах</span> сейчас открыт экран игры?</> })}
         mentor={<Mentor>{tr(mentor)}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={{ uz: "2-telefon o'yinni ochsa, 1-telefondagi son nima bo'ladi?", ru: 'Если телефон 2 откроет игру, что станет с числом на телефоне 1?' }} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
         vizual={<div className="jx-viz">
@@ -875,7 +878,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Упражнение · вопрос 1' })}
     questionText="Bitta o'yinchi o'yinni telefoni va planshetida ochdi. «Hozir ko'ryapti» qanchaga oshadi?"
-    question={tr({ uz: <h2 className="title h-ask">Bitta o'yinchi o'yinni telefoni va planshetida ochdi. «Hozir ko'ryapti» <span className="italic" style={{ color: T.accent }}>qanchaga oshadi</span>?</h2>, ru: <h2 className="title h-ask">Один игрок открыл игру на телефоне и планшете. <span className="italic" style={{ color: T.accent }}>На сколько вырастет</span> «Hozir ko'ryapti»?</h2> })}
+    question={tr({ uz: <h2 className="title h-ask">Bitta o'yinchi o'yinni telefoni va planshetida ochdi. «Hozir ko'ryapti» <span className="italic" style={{ color: T.accent }}>qanchaga oshadi</span>?</h2>, ru: <h2 className="title h-ask">Один игрок открыл игру на телефоне и планшете. <span className="italic" style={{ color: T.accent }}>На сколько вырастет</span> «Сейчас смотрят»?</h2> })}
     options={[
       { uz: 'Bittaga — bitta odam bir marta sanaladi', ru: 'На одно — один человек считается один раз' },
       { uz: 'Ikkiga — har ochiq ekran alohida sanaladi', ru: 'На два — каждый открытый экран считается отдельно' },
@@ -886,7 +889,7 @@ const Screen4 = (props) => (
     explainWrong={{
       0: { uz: 'Son odamlarni sanaydimi yoki ochiq ekranlarni?', ru: 'Число считает людей или открытые экраны?' },
       2: { uz: "Bu son Database'da bormidi? Uni kim sanaydi?", ru: 'Было ли это число в Database? Кто его считает?' },
-      3: { uz: "O'yinni ochish va «Qo'shilaman»ni bosish — bir ishmi?", ru: "Открыть игру и нажать «Qo'shilaman» — одно и то же?" },
+      3: { uz: "O'yinni ochish va «Qo'shilaman»ni bosish — bir ishmi?", ru: "Открыть игру и нажать «Присоединяюсь» — одно и то же?" },
       default: { uz: 'Son odamlarni sanaydimi yoki ochiq ekranlarni?', ru: 'Число считает людей или открытые экраны?' }
     }} />
 );
@@ -943,9 +946,9 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     setBand(true); setSoat('17:00');
     ketma([[550, () => setEslatma(true)], [700, () => { setQ(4); setBand(false); }]]);
   };
-  const mentor = !taxmin || q === 0 ? { uz: "Avval taxminingizni belgilang, keyin 2-telefonda «Qo'shilaman»ni bosing.", ru: "Сначала отметьте предположение, затем на телефоне 2 нажмите «Qo'shilaman»." }
+  const mentor = !taxmin || q === 0 ? { uz: "Avval taxminingizni belgilang, keyin 2-telefonda «Qo'shilaman»ni bosing.", ru: "Сначала отметьте предположение, затем на телефоне 2 нажмите «Присоединяюсь»." }
     : q === 1 ? { uz: "Endi 1-telefondagi «Ilovani yopish»ni bosing.", ru: 'Теперь нажмите «Закрыть приложение» у телефона 1.' }
-      : q === 2 ? { uz: "2-telefonda «O'yindan chiqish»ni bosing va 1-telefonga qarang.", ru: "На телефоне 2 нажмите «O'yindan chiqish» и посмотрите на телефон 1." }
+      : q === 2 ? { uz: "2-telefonda «O'yindan chiqish»ni bosing va 1-telefonga qarang.", ru: "На телефоне 2 нажмите «Выйти из игры» и посмотрите на телефон 1." }
         : q === 3 ? { uz: "Endi «17:00 ga o'tkazish»ni bosing va 1-telefonga qarang.", ru: 'Теперь нажмите «Перевести на 17:00» и посмотрите на телефон 1.' }
           : { uz: 'Natijani taxminingiz bilan solishtiring.', ru: 'Сравните результат со своим предположением.' };
   const qadam = (n) => (!tugadi && taxmin && q === n - 1 && !band ? {
@@ -953,7 +956,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     3: { n: 3, t: { uz: "O'yindan chiqing", ru: 'Выйдите из игры' } }, 4: { n: 4, t: { uz: 'Soatni suring', ru: 'Переведите часы' } } }[n] : null);
   const t1osti = <>
     {!tugadi && <button type="button" className={cx('jx-yopish', q < 1 && 'xira', halqa(q === 1 && !band))} disabled={q !== 1 || band} onClick={yop}>{tr({ uz: 'Ilovani yopish', ru: 'Закрыть приложение' })}</button>}
-    {korinmadi && <span className="jx-korinmadi fade-step">{tr({ uz: "jonli xabar ko'rinmadi", ru: 'живое сообщение не показано' })}</span>}
+    {korinmadi && <span className="jx-korinmadi fade-step">{tr({ uz: "jonli xabar ko'rinmadi", ru: "живое сообщение не появилось" })}</span>}
   </>;
   const beOsti = !tugadi && <div className="jx-soat-q">
     <Qadam q={qadam(4)} />
@@ -963,7 +966,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Tushuncha · ochiq va yopiq', ru: 'Понятие · открыто и закрыто' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={tr(navYorliq(taxmin, q, 4, done))} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
-        sarlavha={tr({ uz: <>Ilova ochiq va yopiq: o'zgarish sizga <span className="italic" style={{ color: T.accent }}>qanday yetadi</span>?</>, ru: <>Приложение открыто и закрыто: <span className="italic" style={{ color: T.accent }}>как изменение доходит</span> до вас?</> })}
+        sarlavha={tr({ uz: <>Ilova ochiq va yopiq: o'zgarish sizga <span className="italic" style={{ color: T.accent }}>qanday yetadi</span>?</>, ru: <>Открыто и закрыто: как изменение <span className="italic" style={{ color: T.accent }}>дойдёт до вас</span>?</> })}
         mentor={<Mentor>{tr(mentor)}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={{ uz: "Ilova yopiq paytda joy bo'shasa, bu telefoningizda ko'rinadimi?", ru: 'Если место освободится, пока приложение закрыто, это будет видно на вашем телефоне?' }} variantlar={S5_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
         vizual={<div className="jx-viz">
@@ -1001,7 +1004,7 @@ const Screen7 = (props) => (
     explainWrong={{
       0: { uz: 'Bu misolda Backend yuboradigan eslatma qurilganmi?', ru: 'В этом примере построено напоминание, которое отправляет Backend?' },
       1: { uz: 'Jonli xabar qaysi paytda chiqadi — ilova ochiq turgandami?', ru: 'Когда появляется живое сообщение — пока приложение открыто?' },
-      2: { uz: "Ilova eslatmani qachon qo'yadi — kim qo'shilganda?", ru: 'Когда приложение ставит напоминание — кто присоединился?' },
+      2: { uz: "Ilova eslatmani qachon qo'yadi — kim qo'shilganda?", ru: "Когда приложение ставит напоминание — при чьём присоединении?" },
       default: { uz: 'Jonli xabar qaysi paytda chiqadi — ilova ochiq turgandami?', ru: 'Когда появляется живое сообщение — пока приложение открыто?' }
     }} />
 );
@@ -1094,14 +1097,14 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob o'rni A·B·C·D ×3 (MD, aylanma; ekran savollarining nusxasi emas — §144)
 const QUIZ_BANK = [
   { q: { uz: 'Mentor misolida `korayotganlar-ozgardi` kimlarga boradi?', ru: 'Кому в примере Ментора идёт `korayotganlar-ozgardi`?' }, opts: [{ uz: "Shu o'yin xonasidagi ulanishlarga", ru: 'Соединениям в комнате этой игры' }, { uz: 'Hamma ulangan ilovalarga birdaniga', ru: 'Всем подключённым приложениям сразу' }, { uz: "O'yinni e'lon qilgan tashkilotchiga", ru: 'Организатору, объявившему игру' }, { uz: "Database'dagi hamma o'yinchilarga", ru: 'Всем игрокам в Database' }], correct: 0 },
-  { q: { uz: "Siz «O'yinlar» ekranidasiz, kimdir o'yinni ochdi. Sizga yangi son keladimi?", ru: "Вы на экране «O'yinlar», кто-то открыл игру. Придёт ли вам новое число?" }, opts: [{ uz: 'Ha — hamma ulangan ilovaga boradi', ru: 'Да — идёт всем подключённым приложениям' }, { uz: "Yo'q — siz o'yin xonasida emassiz", ru: 'Нет — вы не в комнате игры' }, { uz: "Ha — ro'yxatdagi har kartaga boradi", ru: 'Да — идёт каждой карточке в списке' }, { uz: "Yo'q — son Database'dan olinadi", ru: 'Нет — число берётся из Database' }], correct: 1 },
-  { q: { uz: "Boshqa telefonda o'yin ekrani yopildi. Sizdagi «Hozir ko'ryapti» nima bo'ladi?", ru: "На другом телефоне закрыли экран игры. Что будет с вашим «Hozir ko'ryapti»?" }, opts: [{ uz: "O'zgarmaydi, pastga tortish kerak", ru: 'Не изменится, нужно потянуть вниз' }, { uz: 'Nolga tushadi, xona yopilib qoladi', ru: 'Упадёт до нуля, комната закроется' }, { uz: 'Bittaga kamayadi, hodisa o\'zi keladi', ru: 'Уменьшится на одно, событие придёт само' }, { uz: 'Bittaga oshadi, yana bir ekran ochildi', ru: 'Вырастет на одно, открылся ещё экран' }], correct: 2 },
-  { q: { uz: "Nega «Hozir ko'ryapti» sonini hodisaning o'zi olib keladi?", ru: "Почему число «Hozir ko'ryapti» приносит само событие?" }, opts: [{ uz: "Son juda tez o'zgarib turadi", ru: 'Число меняется очень быстро' }, { uz: "Ilova so'rov yubora olmaydi", ru: 'Приложение не может отправить запрос' }, { uz: 'Backend shunday tezroq ishlaydi', ru: 'Так Backend работает быстрее' }, { uz: "Bu son Database'da saqlanmaydi", ru: 'Это число не хранится в Database' }], correct: 3 },
+  { q: { uz: "Siz «O'yinlar» ekranidasiz, kimdir o'yinni ochdi. Sizga yangi son keladimi?", ru: "Вы на экране «Игры», кто-то открыл игру. Придёт ли вам новое число?" }, opts: [{ uz: 'Ha — hamma ulangan ilovaga boradi', ru: 'Да — идёт всем подключённым приложениям' }, { uz: "Yo'q — siz o'yin xonasida emassiz", ru: 'Нет — вы не в комнате игры' }, { uz: "Ha — ro'yxatdagi har kartaga boradi", ru: 'Да — идёт каждой карточке в списке' }, { uz: "Yo'q — son Database'dan olinadi", ru: 'Нет — число берётся из Database' }], correct: 1 },
+  { q: { uz: "Boshqa telefonda o'yin ekrani yopildi. Sizdagi «Hozir ko'ryapti» nima bo'ladi?", ru: "На другом телефоне закрыли экран игры. Что будет с вашим «Сейчас смотрят»?" }, opts: [{ uz: "O'zgarmaydi, pastga tortish kerak", ru: 'Не изменится, нужно потянуть вниз' }, { uz: 'Nolga tushadi, xona yopilib qoladi', ru: 'Упадёт до нуля, комната закроется' }, { uz: 'Bittaga kamayadi, hodisa o\'zi keladi', ru: 'Уменьшится на одно, событие придёт само' }, { uz: 'Bittaga oshadi, yana bir ekran ochildi', ru: 'Вырастет на одно, открылся ещё экран' }], correct: 2 },
+  { q: { uz: "Nega «Hozir ko'ryapti» sonini hodisaning o'zi olib keladi?", ru: "Почему число «Сейчас смотрят» приносит само событие?" }, opts: [{ uz: "Son juda tez o'zgarib turadi", ru: 'Число меняется очень быстро' }, { uz: "Ilova so'rov yubora olmaydi", ru: 'Приложение не может отправить запрос' }, { uz: 'Backend shunday tezroq ishlaydi', ru: 'Так Backend работает быстрее' }, { uz: "Bu son Database'da saqlanmaydi", ru: 'Это число не хранится в Database' }], correct: 3 },
   { q: { uz: "Ilova ochiq. O'yiningizda joy bo'shadi. Nima ko'rasiz?", ru: 'Приложение открыто. В вашей игре освободилось место. Что вы увидите?' }, opts: [{ uz: 'Ekran tepasida qisqa jonli xabar', ru: 'Короткое живое сообщение вверху экрана' }, { uz: 'Telefon ekranida eslatma kartasi', ru: 'Карточку напоминания на экране телефона' }, { uz: "Hech narsa, ro'yxatni yangilash kerak", ru: 'Ничего, нужно обновить список' }, { uz: 'Ilova o\'zi yopilib, qayta ochiladi', ru: 'Приложение само закроется и откроется' }], correct: 0 },
-  { q: { uz: "O'zingiz «Qo'shilaman»ni bosdingiz. Mentor misolida jonli xabar chiqadimi?", ru: "Вы сами нажали «Qo'shilaman». Появится ли в примере Ментора живое сообщение?" }, opts: [{ uz: "Ha — har bir qo'shilish uchun chiqadi", ru: 'Да — появляется при каждом присоединении' }, { uz: "Yo'q — o'z harakatingiz uchun chiqmaydi", ru: 'Нет — для вашего действия не появляется' }, { uz: 'Ha — ismingiz bilan birga tepada chiqadi', ru: 'Да — появляется вверху с вашим именем' }, { uz: "Yo'q — jonli xabar tashkilotchiga chiqadi", ru: 'Нет — живое сообщение появляется организатору' }], correct: 1 },
+  { q: { uz: "O'zingiz «Qo'shilaman»ni bosdingiz. Mentor misolida jonli xabar chiqadimi?", ru: "Вы сами нажали «Присоединяюсь». Появится ли в примере Ментора живое сообщение?" }, opts: [{ uz: "Ha — har bir qo'shilish uchun chiqadi", ru: 'Да — появляется при каждом присоединении' }, { uz: "Yo'q — o'z harakatingiz uchun chiqmaydi", ru: 'Нет — для вашего действия не появляется' }, { uz: 'Ha — ismingiz bilan birga tepada chiqadi', ru: 'Да — появляется вверху с вашим именем' }, { uz: "Yo'q — jonli xabar tashkilotchiga chiqadi", ru: 'Нет — живое сообщение появляется организатору' }], correct: 1 },
   { q: { uz: "Rejalashtirilgan eslatmani kim qo'yadi?", ru: 'Кто ставит запланированное напоминание?' }, opts: [{ uz: "Backend, hodisa bo'lgan zahoti yuborib", ru: 'Backend, отправляя сразу при событии' }, { uz: "Tashkilotchi, o'yinni e'lon qilgan paytda", ru: 'Организатор, когда объявляет игру' }, { uz: "Ilovaning o'zi, vaqtini oldindan belgilab", ru: 'Само приложение, заранее назначив время' }, { uz: "Telefon, har kuni bir xil soatda o'zi", ru: 'Телефон, сам каждый день в одно время' }], correct: 2 },
-  { q: { uz: 'Mentor misolida eslatma qachon chiqishi kerak?', ru: 'Когда в примере Ментора должно появиться напоминание?' }, opts: [{ uz: "O'yin boshlanadigan daqiqaning o'zida", ru: 'В саму минуту начала игры' }, { uz: "Qo'shilgan zahoti, faqat bir marta", ru: 'Сразу при присоединении, один раз' }, { uz: "O'yindan bir kun oldin, kechqurun", ru: 'За день до игры, вечером' }, { uz: "O'yin boshlanishidan bir soat oldin", ru: 'За час до начала игры' }], correct: 3 },
-  { q: { uz: "Mentor misolida «O'yindan chiqish» bosildi. Eslatma nima bo'ladi?", ru: "В примере Ментора нажали «O'yindan chiqish». Что будет с напоминанием?" }, opts: [{ uz: 'Bekor qilinadi, endi chiqmaydi', ru: 'Отменится, больше не появится' }, { uz: "Baribir o'z vaqtida chiqadi", ru: 'Всё равно появится вовремя' }, { uz: "Boshqa o'yinga ko'chib o'tadi", ru: 'Перейдёт на другую игру' }, { uz: 'Tashkilotchiga yuborib qo\'yiladi', ru: 'Будет отправлено организатору' }], correct: 0 },
+  { q: { uz: 'Mentor misolida eslatma qachon chiqishi kerak?', ru: 'Когда в примере Ментора должно появиться напоминание?' }, opts: [{ uz: "O'yin boshlanadigan daqiqaning o'zida", ru: "Ровно в минуту начала игры" }, { uz: "Qo'shilgan zahoti, faqat bir marta", ru: 'Сразу при присоединении, один раз' }, { uz: "O'yindan bir kun oldin, kechqurun", ru: 'За день до игры, вечером' }, { uz: "O'yin boshlanishidan bir soat oldin", ru: 'За час до начала игры' }], correct: 3 },
+  { q: { uz: "Mentor misolida «O'yindan chiqish» bosildi. Eslatma nima bo'ladi?", ru: "В примере Ментора нажали «Выйти из игры». Что будет с напоминанием?" }, opts: [{ uz: 'Bekor qilinadi, endi chiqmaydi', ru: 'Отменится, больше не появится' }, { uz: "Baribir o'z vaqtida chiqadi", ru: 'Всё равно появится вовремя' }, { uz: "Boshqa o'yinga ko'chib o'tadi", ru: 'Перейдёт на другую игру' }, { uz: 'Tashkilotchiga yuborib qo\'yiladi', ru: 'Будет отправлено организатору' }], correct: 0 },
   { q: { uz: 'Backend yuboradigan eslatma uchun nima kerak?', ru: 'Что нужно для напоминания, которое отправляет Backend?' }, opts: [{ uz: 'Expo Go va telefondagi eslatma ruxsati', ru: 'Expo Go и разрешение напоминаний на телефоне' }, { uz: 'Google yoki Apple xizmati va sozlash', ru: 'Сервис Google или Apple и настройка' }, { uz: "Ochiq ulanish va Backend'dagi xona", ru: 'Открытое соединение и комната в Backend' }, { uz: '`expo-notifications` paketining o\'zi', ru: 'Только пакет `expo-notifications`' }], correct: 1 },
   { q: { uz: "Mentor misolida eslatmaga ruxsat berilmadi. Nima bo'ladi?", ru: 'В примере Ментора не дали разрешение на напоминания. Что будет?' }, opts: [{ uz: 'Ilova ochilmaydi, eslatma chiqadi', ru: 'Приложение не откроется, напоминание появится' }, { uz: 'Ilova ishlaydi, eslatma ham chiqadi', ru: 'Приложение работает, напоминание тоже появится' }, { uz: 'Ilova ishlaydi, eslatma chiqmaydi', ru: 'Приложение работает, напоминание не появится' }, { uz: "Ilova yopiladi, ruxsat qayta so'raladi", ru: 'Приложение закроется, разрешение спросят снова' }], correct: 2 },
   { q: { uz: 'Web-trekda uchinchi amaliyotda nima quriladi?', ru: 'Что строится в веб-треке на третьей практике?' }, opts: [{ uz: 'Brauzer eslatmasi, alohida sozlab', ru: 'Напоминание браузера, с отдельной настройкой' }, { uz: 'Telefonga yuboriladigan SMS xabar', ru: 'SMS-сообщение на телефон' }, { uz: 'Har daqiqada sahifani yangilash', ru: 'Обновление страницы каждую минуту' }, { uz: "Sahifadagi «Xabarlar» tasmasi", ru: 'Лента «Xabarlar» на странице' }], correct: 3 },
@@ -1713,14 +1716,14 @@ const Yordam = ({ satrlar }) => {
   const [ochiq, setOchiq] = useState(false);
   return (
     <>
-      <QTugma ikkinchi className="jx-yordam-btn" aria-expanded={ochiq} onClick={() => setOchiq(o => !o)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>
+      <QTugma ikkinchi className="jx-yordam-btn" aria-expanded={ochiq} onClick={() => setOchiq(o => !o)}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>
       {ochiq && <span className="jx-yordam fade-step">{satrlar.map((l, i) => <span key={i} className={cx('jx-yordam-s', l.web && 'web')}>{tx(l)}</span>)}</span>}
     </>
   );
 };
 const ORTDA = ['git clone https://github.com/Azizbekcrypto/maydon-jamoa', 'cd maydon-jamoa', 'git checkout -f m12-dars-04-done'];
 const BLOK_TUGADI = { uz: "Blok tugadi — «Davom etish»ni bosing.", ru: 'Блок завершён — нажмите «Продолжить».' };
-const XATO_GAP = { uz: "Xato bo'lsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»", ru: 'Если ошибка — отправьте агенту строку ошибки (не значения `.env`, не токен и не ключи): «Вот такая ошибка: {ошибка}. Исправь.»' };
+const XATO_GAP = { uz: "Xato bo'lsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»", ru: "Если есть ошибка — отправьте агенту строку ошибки (не значения `.env`, не токен и не ключи): «Вот такая ошибка: {ошибка}. Исправь.»" };
 function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyebrow, title, mentor, steps, natija, ortda, doneText, joyBosh = {}, ulgur, ulgurQadam = 3, ustoz, ustida }) {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = live || _gate.live;
@@ -1838,7 +1841,7 @@ const A1_BUZ = { uz: '{buzilmasin}', ru: '{что не сломать}' };
 const A1_PROMPT = [
   { t: { uz: "Qayerda: `backend/` — 2-darsdagi gateway; `mobil/` — `src/ulanish.ts` va {sanaladigan ekran}.", ru: 'Где: `backend/` — gateway из 2-го урока; `mobil/` — `src/ulanish.ts` и {экран для подсчёта}.' } },
   { t: { uz: "Nima qilsin: {sanaladigan ekran} ochilganda ilova Backend'ga hodisa yuborsin va Backend shu ulanishni xonaga qo'shsin; ekran yopilganda — xonadan chiqarsin. Ekran har yozuv uchun alohida ochilsa — har yozuvning o'z xonasi bo'lsin.", ru: 'Что сделать: когда открывается {экран для подсчёта}, приложение отправляет событие в Backend, и Backend добавляет это соединение в комнату; когда экран закрывается — убирает из комнаты. Если экран открывается отдельно для каждой записи — у каждой записи своя комната.' } },
-  { t: { uz: "Xonadagi ulanishlar soni o'zgarsa, Backend shu xonaga yangi sonni yuborsin — ulanish uzilganda ham; ekranda «Hozir ko'ryapti: N» tursin, N ga o'zim ham kiraman. Ism ko'rsatilmasin — faqat son.", ru: 'Если число соединений в комнате меняется, Backend отправляет в эту комнату новое число — и при обрыве соединения тоже; на экране «Hozir ko\'ryapti: N», в N вхожу и я сам. Имён не показывать — только число.' } },
+  { t: { uz: "Xonadagi ulanishlar soni o'zgarsa, Backend shu xonaga yangi sonni yuborsin — ulanish uzilganda ham; ekranda «Hozir ko'ryapti: N» tursin, N ga o'zim ham kiraman. Ism ko'rsatilmasin — faqat son.", ru: "Если число соединений в комнате меняется, Backend отправляет в эту комнату новое число — и при обрыве соединения тоже; на экране пусть будет «Hozir ko'ryapti: N» («Сейчас смотрят: N»), в N вхожу и я сам. Имён не показывать — только число." } },
   { t: { uz: "Nima buzilmasin: {buzilmasin}; ro'yxat o'zi yangilanishi, ulanish belgisi va ekranni kim ko'ra olishi avvalgidek qolsin. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: 'Что не сломать: {что не сломать}; самообновление списка, значок соединения и то, кто может видеть экран, остаются как раньше. Не трогай файлы `.env`. Больше ничего не трогай, назови изменённые файлы.' } }
 ];
 const A1_JOYLAR = [
@@ -1853,7 +1856,7 @@ const A1_KOD_PROMPT = [
 const A1_YORDAM = [
   { uz: "Qayerda: `backend/` — 2-darsdagi gateway; `mobil/` — `src/ulanish.ts` va «O'yin» ekrani (`src/app/oyin/[id].tsx`).", ru: "Где: `backend/` — gateway из 2-го урока; `mobil/` — `src/ulanish.ts` и экран «O'yin» (`src/app/oyin/[id].tsx`)." },
   { uz: "Nima qilsin: har o'yinga alohida xona — `oyin-{id}`. «O'yin» ekrani ochilganda ilova `oyin-ochildi` (`{ oyinId }`) yuborsin va Backend shu ulanishni o'sha xonaga qo'shsin; ekran yopilganda — `oyin-yopildi`, xonadan chiqarsin.", ru: "Что сделать: у каждой игры своя комната — `oyin-{id}`. Когда открывается экран «O'yin», приложение отправляет `oyin-ochildi` (`{ oyinId }`), и Backend добавляет это соединение в ту комнату; когда экран закрывается — `oyin-yopildi`, убирает из комнаты." },
-  { uz: "Xonadagi ulanishlar soni o'zgarsa, Backend shu xonaga `korayotganlar-ozgardi` (`{ oyinId, soni }`) yuborsin — ulanish uzilganda ham; «O'yin» ekranida «Hozir ko'ryapti: N» tursin, N ga o'zim ham kiraman. Ism ko'rsatilmasin — faqat son.", ru: "Если число соединений в комнате меняется, Backend отправляет в эту комнату `korayotganlar-ozgardi` (`{ oyinId, soni }`) — и при обрыве соединения тоже; на экране «O'yin» «Hozir ko'ryapti: N», в N вхожу и я сам. Имён не показывать — только число." },
+  { uz: "Xonadagi ulanishlar soni o'zgarsa, Backend shu xonaga `korayotganlar-ozgardi` (`{ oyinId, soni }`) yuborsin — ulanish uzilganda ham; «O'yin» ekranida «Hozir ko'ryapti: N» tursin, N ga o'zim ham kiraman. Ism ko'rsatilmasin — faqat son.", ru: "Если число соединений в комнате меняется, Backend отправляет в эту комнату `korayotganlar-ozgardi` (`{ oyinId, soni }`) — и при обрыве соединения тоже; на экране «O'yin» пусть будет «Hozir ko'ryapti: N» («Сейчас смотрят: N»), в N вхожу и я сам. Имён не показывать — только число." },
   { uz: "Nima buzilmasin: kirish, e'lon berish, qo'shilish, tasdiq, chiqish va navbat avvalgidek ishlasin; pastga tortib yangilash, ro'yxat o'zi yangilanishi va ulanish belgisi qolsin. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: 'Что не сломать: вход, объявление игры, присоединение, подтверждение, выход и очередь работают как раньше; обновление потягиванием вниз, самообновление списка и значок соединения остаются. Не трогай файлы `.env`. Больше ничего не трогай, назови изменённые файлы.' }
 ];
 const A1_YORDAM_WEB = { web: true, uz: "Web-trekda: «Qayerda» — `prototip/` dagi `src/ulanish.js` va sanaladigan sahifa; Backend qismi ikkala trekda bir xil, «Hozir ko'ryapti» sahifada turadi.", ru: "В веб-треке: «Где» — `src/ulanish.js` в `prototip/` и страница для подсчёта; часть Backend в обоих треках одинакова, «Hozir ko'ryapti» стоит на странице." };
@@ -1862,16 +1865,16 @@ const ScreenA1 = (props) => {
   const joyBosh = useMemo(() => { const b = talabBuzilmasin(); return b ? { [tr(A1_BUZ)]: b } : {}; }, []);
   return (
     <ScreenBlok {...props} eyebrow={{ uz: "Amaliyot 1 · hozir ko'ryapti", ru: 'Практика 1 · сейчас смотрят' }}
-      title={{ uz: <>Ilovangizda «Hozir ko'ryapti» <span className="italic" style={{ color: T.accent }}>soni ko'rinsin</span>.</>, ru: <>Пусть в вашем приложении <span className="italic" style={{ color: T.accent }}>будет видно число</span> «Hozir ko'ryapti».</> }}
-      mentor={{ uz: "Talab tayyor — bitta joyga qaysi ekran sanalishini yozasiz; «1 · Ochish»dan boshlang.", ru: 'Требование готово — в одно место вы пишете, какой экран считается; начните с «1 · Ochish».' }}
+      title={{ uz: <>Ilovangizda «Hozir ko'ryapti» <span className="italic" style={{ color: T.accent }}>soni ko'rinsin</span>.</>, ru: <>Пусть <span className="italic" style={{ color: T.accent }}>будет видно число</span> «Сейчас смотрят».</> }}
+      mentor={{ uz: "Talab tayyor — bitta joyga qaysi ekran sanalishini yozasiz; «1 · Ochish»dan boshlang.", ru: "Требование готово — в одно место впишите, какой экран считается; начните с «1 · Открыть»." }}
       ustida={trekTugma} joyBosh={joyBosh}
       steps={[
         { h: { uz: 'Ochish', ru: 'Открыть' }, t: { uz: "Antigravity'da o'z repo'ngizni oching (3-darsdagi holat: ilova Backend'ga ulangan, ro'yxat o'zi yangilanadi). Terminalda `git status`: `.env` fayllari ro'yxatda ko'rinmasin.", ru: 'Откройте свой репозиторий в Antigravity (состояние 3-го урока: приложение подключено к Backend, список обновляется сам). В терминале `git status`: файлов `.env` в списке быть не должно.' },
           bandlar: [
             { uz: "Mobil trekda `cd mobil`, `npx expo start` ishlab tursin va ilova telefoningizda ochiq bo'lsin; web-trekda saytingiz Netlify'da ochiq tursin.", ru: 'В мобильном треке `cd mobil`, пусть работает `npx expo start` и приложение открыто на телефоне; в веб-треке пусть сайт открыт на Netlify.' },
-            { uz: "Sanaladigan ekranni tanlang: Mentor misolida — «O'yin» ekrani, har o'yinga alohida xona. Mahsulotingizda bitta yozuv uchun alohida ochiladigan ekran bo'lmasa — eng ko'p ochiladigan ekranni oling: unda bitta xona bo'ladi. Mahsulotingizni bir vaqtda bitta odam ishlatsa — son sizning ochiq qurilmalaringizni sanaydi (masalan, telefon va kompyuter).", ru: "Выберите экран для подсчёта: в примере Ментора — экран «O'yin», у каждой игры своя комната. Если в вашем продукте нет отдельного экрана для одной записи — возьмите самый открываемый экран: у него будет одна комната. Если продуктом одновременно пользуется один человек — число считает ваши открытые устройства (например, телефон и компьютер)." }
+            { uz: "Sanaladigan ekranni tanlang: Mentor misolida — «O'yin» ekrani, har o'yinga alohida xona. Mahsulotingizda bitta yozuv uchun alohida ochiladigan ekran bo'lmasa — eng ko'p ochiladigan ekranni oling: unda bitta xona bo'ladi. Mahsulotingizni bir vaqtda bitta odam ishlatsa — son sizning ochiq qurilmalaringizni sanaydi (masalan, telefon va kompyuter).", ru: "Выберите экран для подсчёта: в примере Ментора — экран «O'yin» («Игра»), у каждой игры своя комната. Если в вашем продукте нет отдельного экрана для одной записи — возьмите экран, который открывают чаще всего: у него будет одна комната. Если продуктом одновременно пользуется один человек — число считает ваши открытые устройства (например, телефон и компьютер)." }
           ] },
-        { h: { uz: 'Prompt', ru: 'Промпт' }, t: { uz: "qavsni to'ldiring (yonida kulrang namuna), «Nusxalash»ni bosing va Antigravity'ga yuboring:", ru: 'заполните скобку (рядом серый образец), нажмите «Скопировать» и отправьте в Antigravity:' },
+        { h: { uz: 'Prompt', ru: 'Промпт' }, t: { uz: "qavsni to'ldiring (yonida kulrang namuna), «Nusxalash»ni bosing va Antigravity'ga yuboring:", ru: "заполните пропуск в скобках (рядом серый образец), нажмите «Скопировать» и отправьте в Antigravity:" },
           prompt: { satrlar: A1_PROMPT, joylar: A1_JOYLAR }, yordam: trek === 'mobil' ? A1_YORDAM : [...A1_YORDAM, A1_YORDAM_WEB] },
         { h: { uz: 'Ishga tushirish', ru: 'Запуск' }, t: { uz: "agent tugatgach: `git status` — o'zgargan fayllar agent aytgani bilan bir xil, `.env` ro'yxatda yo'q; har faylni `git add <fayl>` bilan qo'shing, `git commit -m \"hozir ko'ryapti\"`, `git push`.", ru: 'когда агент закончит: `git status` — изменённые файлы совпадают с тем, что сказал агент, `.env` в списке нет; добавьте каждый файл через `git add <fayl>`, `git commit -m "hozir ko\'ryapti"`, `git push`.' },
           bandlar: [
@@ -1891,10 +1894,10 @@ const ScreenA1 = (props) => {
           ] }
       ]}
       natija={<NatijaA1 trek={trek} />}
-      doneText={{ uz: "«Hozir ko'ryapti» ishlaydi: ochiq ekranlar sanaladi, ism ko'rinmaydi.", ru: '«Hozir ko\'ryapti» работает: считаются открытые экраны, имён не видно.' }}
+      doneText={{ uz: "«Hozir ko'ryapti» ishlaydi: ochiq ekranlar sanaladi, ism ko'rinmaydi.", ru: "«Сейчас смотрят» работает: считаются открытые экраны, имён не видно." }}
       ulgur={{ uz: "Ulgurmasangiz: Render kutishi cho'zilsa — 3-qadamdan keyin «Davom etish» ochiladi: Amaliyot 2 ga o'ting. 4-qadamni Amaliyot 2 tekshiruvi bilan birga qilib, shu yerga qaytib «Bajardim»ni bosasiz — blok shundan keyin bajarilgan sanaladi.", ru: 'Если не успеваете: если ожидание Render затянулось — после шага 3 откроется «Продолжить»: переходите к Практике 2. Шаг 4 сделайте вместе с проверкой Практики 2, вернитесь сюда и нажмите «Готово» — блок засчитывается после этого.' }}
       ortda={{ uz: "(faqat shu yangi papkada — buyruq papkadagi o'zgarishlarni o'chiradi) — qanday ishlashini ko'rasiz, o'z repo'ngizdagi qadamni shunga qarab qaytarasiz (`backend/.env` va `mobil/.env` ga o'z qiymatlaringizni yozasiz).", ru: '(только в этой новой папке — команда удаляет изменения в папке) — увидите, как это работает, и повторите шаг в своём репозитории по образцу (в `backend/.env` и `mobil/.env` впишете свои значения).' }}
-      ustoz={[{ uz: "Render'da yangi versiya chiqqanda ulanish uziladi — belgi bir oz «Ulanmoqda…» bo'lib turishi mumkin; o'quvchi shundan keyin «O'yin» ekranini qaytadan ochsin. Uchish rejimi bu blokda yo'q.", ru: "Когда на Render выходит новая версия, соединение обрывается — значок может немного побыть «Ulanmoqda…»; после этого ученик пусть заново откроет экран «O'yin». Режима полёта в этом блоке нет." }]}
+      ustoz={[{ uz: "Render'da yangi versiya chiqqanda ulanish uziladi — belgi bir oz «Ulanmoqda…» bo'lib turishi mumkin; o'quvchi shundan keyin «O'yin» ekranini qaytadan ochsin. Uchish rejimi bu blokda yo'q.", ru: "Когда на Render выходит новая версия, соединение обрывается — значок может немного побыть «Подключается…»; после этого ученик пусть заново откроет экран «O'yin». Режима полёта в этом блоке нет." }]}
     />
   );
 };
@@ -1929,11 +1932,11 @@ const ScreenA2 = (props) => {
   const joyBosh = useMemo(() => ({ [tr(A2_YANA)]: tr(A2_BOSH.yana), [tr(A2_BUZ)]: tr(A2_BOSH.buz) }), []);
   return (
     <ScreenBlok {...props} eyebrow={{ uz: 'Amaliyot 2 · jonli xabar', ru: 'Практика 2 · живое сообщение' }}
-      title={{ uz: <>Ochiq ilovada o'zgarish <span className="italic" style={{ color: T.accent }}>jonli xabar</span> bo'lib chiqsin.</>, ru: <>Пусть в открытом приложении изменение появляется <span className="italic" style={{ color: T.accent }}>живым сообщением</span>.</> }}
-      mentor={{ uz: "Endi «Nima qilsin» qatorini o'zingiz yozasiz — qaysi o'zgarishda qanday xabar chiqishini siz tanlaysiz; «1 · Ochish»dan boshlang.", ru: 'Теперь строку «Что сделать» вы пишете сами — вы выбираете, при каком изменении какое сообщение появится; начните с «1 · Ochish».' }}
+      title={{ uz: <>Ochiq ilovada o'zgarish <span className="italic" style={{ color: T.accent }}>jonli xabar</span> bo'lib chiqsin.</>, ru: <>Пусть изменение приходит <span className="italic" style={{ color: T.accent }}>живым сообщением</span>.</> }}
+      mentor={{ uz: "Endi «Nima qilsin» qatorini o'zingiz yozasiz — qaysi o'zgarishda qanday xabar chiqishini siz tanlaysiz; «1 · Ochish»dan boshlang.", ru: "Теперь строку «Что сделать» вы пишете сами — вы выбираете, при каком изменении какое сообщение появится; начните с «1 · Открыть»." }}
       ustida={trekTugma} joyBosh={joyBosh}
       steps={[
-        { h: { uz: 'Ochish', ru: 'Открыть' }, t: { uz: "`README.md` dagi «Real vaqt» bo'limini oching: har qatorda kim nima qiladi va ekranda nima o'zgaradi. Foydalanuvchining o'ziga tegishli o'zgarishlarni belgilang — ular jonli xabarga arziydi. Har o'zgarish jonli xabarga arzimaydi: foydalanuvchi darhol bilishi kerak bo'lganini tanlang — qolganlari ekranda jimgina yangilanadi.", ru: 'Откройте раздел «Real vaqt» в `README.md`: в каждой строке — кто что делает и что меняется на экране. Отметьте изменения, которые касаются самого пользователя, — они стоят живого сообщения. Не каждое изменение стоит живого сообщения: выберите то, что пользователь должен узнать сразу, — остальное тихо обновляется на экране.' },
+        { h: { uz: 'Ochish', ru: 'Открыть' }, t: { uz: "`README.md` dagi «Real vaqt» bo'limini oching: har qatorda kim nima qiladi va ekranda nima o'zgaradi. Foydalanuvchining o'ziga tegishli o'zgarishlarni belgilang — ular jonli xabarga arziydi. Har o'zgarish jonli xabarga arzimaydi: foydalanuvchi darhol bilishi kerak bo'lganini tanlang — qolganlari ekranda jimgina yangilanadi.", ru: "Откройте раздел «Real vaqt» в `README.md`: в каждой строке — кто что делает и что меняется на экране. Отметьте изменения, которые касаются самого пользователя, — они заслуживают живого сообщения. Не каждое изменение его заслуживает: выберите то, что пользователь должен узнать сразу, — остальное тихо обновляется на экране." },
           bandlar: [
             { uz: "Mentor misolida — beshta: yana bir o'yinchi qo'shildi · joy bo'shadi · o'yin to'ldi · kelishini tasdiqladi (faqat tashkilotchiga) · navbatdan o'yinga o'tdingiz.", ru: 'В примере Ментора — пять: присоединился ещё один игрок · освободилось место · игра заполнена · подтвердили приход (только организатору) · вы перешли из очереди в игру.' },
             { uz: "Talabdagi «Yana» qatorida Mentor misolining uch qoidasi tayyor turibdi: faqat o'ziga tegishli yozuv uchun · o'z harakati uchun emas · ismsiz. Mahsulotingizga mos kelmasa, tahrirlang.", ru: 'В строке «Ещё» требования уже стоят три правила примера Ментора: только для записи, которая касается самого пользователя · не для его собственного действия · без имени. Если не подходит вашему продукту — отредактируйте.' }
@@ -1943,7 +1946,7 @@ const ScreenA2 = (props) => {
         { h: { uz: 'Ishga tushirish', ru: 'Запуск' }, t: { uz: "`git status` → har faylni `git add <fayl>` bilan → `git commit -m \"jonli xabar\"` → `git push`. Agent Backend'ni ham o'zgartirgan bo'lsa — Render'da yangi versiya tugashini kuting.", ru: '`git status` → каждый файл через `git add <fayl>` → `git commit -m "jonli xabar"` → `git push`. Если агент изменил и Backend — дождитесь окончания новой версии на Render.' },
           bandlar: [{ uz: "Mobil trekda Expo Go ilovani odatda o'zi qayta yuklaydi (bo'lmasa — `r`); web-trekda — Netlify.", ru: 'В мобильном треке Expo Go обычно сам перезагружает приложение (если нет — `r`); в веб-треке — Netlify.' }],
           err: XATO_GAP },
-        { h: { uz: 'Telefonda tekshirish', ru: 'Проверка на телефоне' }, t: { uz: "talabingizning har gapini bajarib ko'ring. Mentor misolida (siz Shanba 18:00 o'yiniga qo'shilgansiz; ilova «O'yinlar»da ochiq tursin):", ru: "проверьте каждое предложение требования. В примере Ментора (вы присоединились к игре в субботу в 18:00; приложение открыто на «O'yinlar»):" },
+        { h: { uz: 'Telefonda tekshirish', ru: 'Проверка на телефоне' }, t: { uz: "talabingizning har gapini bajarib ko'ring. Mentor misolida (siz Shanba 18:00 o'yiniga qo'shilgansiz; ilova «O'yinlar»da ochiq tursin):", ru: "проверьте каждое предложение требования. В примере Ментора (вы присоединились к игре в субботу в 18:00; приложение открыто на «O'yinlar» («Игры»)):" },
           bandlar: [
             { uz: "(1) Agentga: «Tekshiruv uchun yangi akkaunt och (namuna ism va raqam bilan, haqiqiy emas) va shu akkaunt nomidan Shanba 18:00 o'yiniga qo'shilish so'rovini yubor. Akkaunt va yangi yozuv `id` sini ayt.» → ekran tepasida «Shanba, 18:00 — yana bir o'yinchi qo'shildi: 9 / 10» bir necha soniya chiqishi kerak.", ru: '(1) Агенту: «Открой новый аккаунт для проверки (с образцом имени и номера, не настоящими) и от его имени отправь запрос на присоединение к игре в субботу в 18:00. Скажи `id` аккаунта и новой записи.» → вверху экрана на несколько секунд должно появиться «Суббота, 18:00 — присоединился ещё один игрок: 9 / 10».' },
             { uz: "(2) Agentga: «O'sha tekshiruv akkauntini men qo'shilmagan o'yinga ham qo'sh, `id` sini ayt.» → jonli xabar chiqmasligi kerak: o'yin sizga tegishli emas.", ru: '(2) Агенту: «Добавь тот же проверочный аккаунт и в игру, к которой я не присоединился, скажи `id`.» → живое сообщение не должно появиться: игра вас не касается.' },
@@ -1972,7 +1975,7 @@ const A3_JOYLAR = [
   { k: A3_B, s: { uz: 'Oldin ishlagan qaysi narsa joyida qolsin?', ru: 'Что из работавшего раньше должно остаться на месте?' } }
 ];
 const A3_YORDAM_MOBIL = [
-  { uz: "Qayerda: `mobil/` — «O'yin» ekranidagi «Qo'shilaman» va «O'yindan chiqish» (`src/app/oyin/[id].tsx`).", ru: "Где: `mobil/` — «Qo'shilaman» и «O'yindan chiqish» на экране «O'yin» (`src/app/oyin/[id].tsx`)." },
+  { uz: "Qayerda: `mobil/` — «O'yin» ekranidagi «Qo'shilaman» va «O'yindan chiqish» (`src/app/oyin/[id].tsx`).", ru: "Где: `mobil/` — «Qo'shilaman» («Присоединяюсь») и «O'yindan chiqish» («Выйти из игры») на экране «O'yin» (`src/app/oyin/[id].tsx`)." },
   { uz: "Nima qilsin: «Qo'shilaman» muvaffaqiyatli bo'lganda ilova eslatmani o'yindan bir soat oldinga rejalashtirsin: sarlavha «Maydon Jamoa», matn «Bugun, 18:00 · Mahalla maydoni» (soat va maydon — o'sha o'yindan).", ru: "Что сделать: когда «Qo'shilaman» прошло успешно, приложение планирует напоминание за час до игры: заголовок «Maydon Jamoa», текст «Сегодня, 18:00 · Поле махалли» (время и поле — из той же игры)." },
   { uz: "O'yinga bir soatdan kam qolgan bo'lsa — rejalashtirmasin. «O'yindan chiqish» bosilganda shu o'yinning eslatmasi bekor bo'lsin. Bitta o'yinga bitta eslatma: qayta rejalashtirilsa — eskisi bekor bo'lsin. Ilova ochiq paytga to'g'ri kelsa ham, eslatma ko'rinsin.", ru: "Если до игры меньше часа — не планировать. При нажатии «O'yindan chiqish» напоминание этой игры отменяется. Одна игра — одно напоминание: при повторном планировании старое отменяется. Даже если время совпадёт с открытым приложением, напоминание должно быть видно." },
   { uz: "Nima buzilmasin: qo'shilish, chiqish, navbat, jonli xabar va «Hozir ko'ryapti» avvalgidek ishlasin.", ru: "Что не сломать: присоединение, выход, очередь, живое сообщение и «Hozir ko'ryapti» работают как раньше." },
@@ -1990,9 +1993,9 @@ const ScreenA3 = (props) => {
   return (
     <ScreenBlok {...props} key={trek || 'yoq'} eyebrow={web ? { uz: 'Amaliyot 3 · xabarlar tasmasi', ru: 'Практика 3 · лента сообщений' } : { uz: 'Amaliyot 3 · eslatma', ru: 'Практика 3 · напоминание' }}
       title={web
-        ? { uz: <>Sayt ochiq paytdagi xabarlar <span className="italic" style={{ color: T.accent }}>tasmada tursin</span>.</>, ru: <>Пусть сообщения, пока сайт открыт, <span className="italic" style={{ color: T.accent }}>остаются в ленте</span>.</> }
-        : { uz: <>Ilova yopiq bo'lsa ham, kerakli payt <span className="italic" style={{ color: T.accent }}>eslatma chiqsin</span>.</>, ru: <>Даже если приложение закрыто, в нужный момент <span className="italic" style={{ color: T.accent }}>пусть появится напоминание</span>.</> }}
-      mentor={{ uz: "Oxirgi blokda uch qatorni o'zingiz yozasiz — har qator ostida kulrang savol, Mentor misoli «Yordam»da; «1 · Ochish»dan boshlang.", ru: 'В последнем блоке три строки вы пишете сами — под каждой серый вопрос, пример Ментора в «Помощи»; начните с «1 · Ochish».' }}
+        ? { uz: <>Sayt ochiq paytdagi xabarlar <span className="italic" style={{ color: T.accent }}>tasmada tursin</span>.</>, ru: <>Пока сайт открыт, сообщения <span className="italic" style={{ color: T.accent }}>остаются в ленте</span>.</> }
+        : { uz: <>Ilova yopiq bo'lsa ham, kerakli payt <span className="italic" style={{ color: T.accent }}>eslatma chiqsin</span>.</>, ru: <>Даже закрытое приложение <span className="italic" style={{ color: T.accent }}>напомнит вовремя</span>.</> }}
+      mentor={{ uz: "Oxirgi blokda uch qatorni o'zingiz yozasiz — har qator ostida kulrang savol, Mentor misoli «Yordam»da; «1 · Ochish»dan boshlang.", ru: "В последнем блоке три строки вы пишете сами — под каждой серый вопрос, пример Ментора — в «Подсказке»; начните с «1 · Открыть»." }}
       ustida={trekTugma}
       steps={[
         { h: { uz: 'Ochish', ru: 'Открыть' }, t: { uz: "eslatma nima uchun kerakligini toping: foydalanuvchi o'z ishini qachon unutishi mumkin? Mentor misolida — o'yinga qo'shilgan o'yinchi o'yin vaqtini unutmasin: eslatma o'yindan bir soat oldin.", ru: 'найдите, зачем нужно напоминание: когда пользователь может забыть о своём деле? В примере Ментора — присоединившийся игрок не должен забыть время игры: напоминание за час до игры.' },
@@ -2017,7 +2020,7 @@ const ScreenA3 = (props) => {
       ]}
       natija={<NatijaA3 trek={trek} />}
       doneText={web ? { uz: 'Tasma ishlaydi: sahifa ochiq paytdagi xabarlar turadi, talabni o\'zingiz yozdingiz.', ru: 'Лента работает: сообщения, пока страница открыта, остаются, требование вы написали сами.' } : { uz: "Eslatma test holatida chiqdi, chiqilganda bekor bo'ldi: talabni o'zingiz yozdingiz.", ru: 'Напоминание появилось в тестовом режиме и отменилось при выходе: требование вы написали сами.' }}
-      ulgur={{ uz: "Ulgurmasangiz: vaqt tugasa — yakun ekrani nima qolganini aytadi; «Ortda qoldingizmi» bilan Mentor misolini ochib, qolgan qadamni o'z repo'ngizda tugatasiz.", ru: 'Если не успеваете: если время кончится — итоговый экран скажет, что осталось; через «Отстали» откройте пример Ментора и закончите оставшийся шаг в своём репозитории.' }}
+      ulgur={{ uz: "Ulgurmasangiz: vaqt tugasa — yakun ekrani nima qolganini aytadi; Amaliyot 1 dagi «Ortda qoldingizmi» qatori bilan Mentor misolini ochib, qolgan qadamni o'z repo'ngizda tugatasiz.", ru: 'Если не успеваете: если время кончится — итоговый экран скажет, что осталось; через строку «Отстали» в Практике 1 откройте пример Ментора и закончите оставшийся шаг в своём репозитории.' }}
       ustoz={[{ uz: "Expo Go'da ruxsat oynasi Expo Go nomidan chiqishi mumkin — pilotda ko'riladi. Telefonda «Bezovta qilmang» rejimi yoqilgan bo'lsa, eslatma ovozsiz kelishi mumkin. Android'da eslatma bir necha daqiqa kechikishi mumkin. Navbatdan o'yinga o'tgan o'yinchiga eslatma qo'yilmaydi — birinchi versiya cheklovi; o'quvchi so'rasa, shunday deng.", ru: 'В Expo Go окно разрешения может появиться от имени Expo Go — проверяется в пилоте. Если на телефоне включён режим «Не беспокоить», напоминание может прийти без звука. На Android напоминание может задержаться на несколько минут. Игроку, перешедшему из очереди в игру, напоминание не ставится — ограничение первой версии; если ученик спросит, так и скажите.' }]}
     />
   );
@@ -2026,12 +2029,12 @@ const ScreenA3 = (props) => {
 // 🃏 KARTOCHKALAR — alohida ekran, Mentorsiz (SABOQ 12, 16); karta yuzi ingichka halqada, puls 3 marta (E 49)
 const KARTALAR = [
   { front: { uz: 'Xona nima?', ru: 'Что такое комната?' }, back: { uz: "Backend'dagi ulanishlar guruhi", ru: 'Группа соединений в Backend' }, note: { uz: "Hodisa faqat shu guruhdagilarga boradi; Mentor misolida har o'yinning xonasi — `oyin-{id}`", ru: 'Событие идёт только тем, кто в этой группе; в примере Ментора комната каждой игры — `oyin-{id}`' } },
-  { front: { uz: "«Hozir ko'ryapti» nimani sanaydi?", ru: "Что считает «Hozir ko'ryapti»?" }, back: { uz: 'Ekranni hozir ochib turgan ulanishlarni', ru: 'Соединения, у которых сейчас открыт экран' }, note: { uz: "Bitta odam ikki qurilmada — ikkita; ism ko'rsatilmaydi", ru: 'Один человек на двух устройствах — два; имена не показываются' } },
+  { front: { uz: "«Hozir ko'ryapti» nimani sanaydi?", ru: "Что считает «Сейчас смотрят»?" }, back: { uz: 'Ekranni hozir ochib turgan ulanishlarni', ru: 'Соединения, у которых сейчас открыт экран' }, note: { uz: "Bitta odam ikki qurilmada — ikkita; ism ko'rsatilmaydi", ru: 'Один человек на двух устройствах — два; имена не показываются' } },
   { front: { uz: 'Nega `korayotganlar-ozgardi` sonning o\'zini olib keladi?', ru: 'Почему `korayotganlar-ozgardi` приносит само число?' }, back: { uz: "Bu son Database'da yo'q", ru: 'Этого числа нет в Database' }, note: { uz: 'U faqat Backend xotirasidagi ulanishlardan sanaladi', ru: 'Оно считается только по соединениям в памяти Backend' } },
   { front: { uz: 'Jonli xabar nima?', ru: 'Что такое живое сообщение?' }, back: { uz: 'Ilova ochiq turganda ekran tepasida bir necha soniya chiqadigan qisqa xabar', ru: 'Короткое сообщение на несколько секунд вверху экрана, пока приложение открыто' }, note: { uz: "Mentor misolida: «Shanba, 18:00 — joy bo'shadi: 8 / 10»", ru: 'В примере Ментора: «Суббота, 18:00 — освободилось место: 8 / 10»' } },
   { front: { uz: 'Mentor misolida jonli xabar kimga chiqadi?', ru: 'Кому в примере Ментора появляется живое сообщение?' }, back: { uz: "O'yin o'ziga tegishli bo'lgan o'yinchiga: qo'shilgan, navbatda turgan yoki e'lon qilgan", ru: 'Игроку, которого игра касается: присоединился, стоит в очереди или объявил' }, note: { uz: "O'z harakati uchun chiqmaydi; ism yo'q", ru: 'Для собственного действия не появляется; имени нет' } },
   { front: { uz: 'Eslatma nima?', ru: 'Что такое напоминание?' }, back: { uz: 'Telefon ekraniga chiqadigan xabar', ru: 'Сообщение на экране телефона' }, note: { uz: "Ilova yopiq bo'lsa ham chiqadi", ru: 'Появляется, даже если приложение закрыто' } },
-  { front: { uz: 'Rejalashtirilgan eslatma nima?', ru: 'Что такое запланированное напоминание?' }, back: { uz: "Ilova o'zi oldindan vaqtini belgilab qo'ygan eslatma", ru: 'Напоминание, время которого приложение само заранее назначило' }, note: { uz: "Mentor misolida — «Qo'shilaman» bosilganda, o'yindan bir soat oldinga", ru: "В примере Ментора — при нажатии «Qo'shilaman», за час до игры" } },
+  { front: { uz: 'Rejalashtirilgan eslatma nima?', ru: 'Что такое запланированное напоминание?' }, back: { uz: "Ilova o'zi oldindan vaqtini belgilab qo'ygan eslatma", ru: 'Напоминание, время которого приложение само заранее назначило' }, note: { uz: "Mentor misolida — «Qo'shilaman» bosilganda, o'yindan bir soat oldinga", ru: "В примере Ментора — при нажатии «Присоединяюсь», за час до игры" } },
   { front: { uz: 'Backend yuboradigan eslatma nima?', ru: 'Что такое напоминание, которое отправляет Backend?' }, back: { uz: 'Hodisa bo\'lganda Backend telefonga yuboradigan eslatma', ru: 'Напоминание, которое Backend отправляет на телефон при событии' }, note: { uz: "Inglizchasi: push notification. Alohida sozlash kerak, Expo Go'da ishlamaydi; bu modulda qurilmaydi", ru: 'По-английски: push notification. Нужна отдельная настройка, в Expo Go не работает; в этом модуле не строим' } },
   { front: { uz: "Mentor misolida ilova yopiq paytda joy bo'shasa, nima bo'ladi?", ru: 'Что будет в примере Ментора, если место освободится, пока приложение закрыто?' }, back: { uz: 'Telefonga hech narsa kelmaydi', ru: 'На телефон ничего не придёт' }, note: { uz: "Ilova ochilganda yangi son Backend'dan so'raladi", ru: 'Когда приложение откроется, новое число запросят у Backend' } },
   { front: { uz: "Eslatmaga ruxsat berilmasa, nima bo'ladi?", ru: 'Что будет, если не дать разрешение на напоминания?' }, back: { uz: 'Ilova ishlayveradi, eslatma chiqmaydi', ru: 'Приложение работает, напоминание не появляется' }, note: { uz: 'Ruxsat telefon sozlamalaridan yoqiladi', ru: 'Разрешение включается в настройках телефона' } },
@@ -2057,12 +2060,12 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 
 // ===== YAKUN — QYakun (DE-204) + «Keyingi dars» qatori; uyga vazifa yo'q (tayanch 4: loyiha kuni). Sarlavha bloklar holatidan (har biri rost — E 54); ✓ yorlig'i faqat uchala blokda =====
 const YAKUN_SARLAVHA = {
-  uchala: { uz: "Uch qism ishlayapti: oxirgi talabni o'zingiz yozdingiz.", ru: 'Три части работают: последнее требование вы написали сами.' },
-  a12mobil: { uz: 'Jonli xabar ishlaydi — eslatma qoldi.', ru: 'Живое сообщение работает — осталось напоминание.' },
-  a12web: { uz: "Jonli xabar ishlaydi — «Xabarlar» tasmasi qoldi.", ru: 'Живое сообщение работает — осталась лента «Xabarlar».' },
-  a1: { uz: "«Hozir ko'ryapti» ishlaydi — jonli xabar qoldi.", ru: '«Hozir ko\'ryapti» работает — осталось живое сообщение.' },
-  a1yoq: { uz: "«Hozir ko'ryapti»ni telefonda tekshirish qoldi.", ru: 'Осталось проверить «Hozir ko\'ryapti» на телефоне.' },
-  yoq: { uz: 'Loyiha kuni hali tugamagan — qolgan qadamni tugating.', ru: 'День проекта ещё не завершён — закончите оставшийся шаг.' }
+  uchala: { uz: "Uch qism ishlayapti: oxirgi talabni o'zingiz yozdingiz.", ru: 'Три части работают: последнее требование — ваше.' },
+  a12mobil: { uz: 'Jonli xabar ishlaydi — eslatma qoldi.', ru: 'Живое сообщение есть — осталось напоминание.' },
+  a12web: { uz: "Jonli xabar ishlaydi — «Xabarlar» tasmasi qoldi.", ru: 'Живое сообщение есть — осталась лента «Xabarlar».' },
+  a1: { uz: "«Hozir ko'ryapti» ishlaydi — jonli xabar qoldi.", ru: "«Сейчас смотрят» есть — осталось живое сообщение." },
+  a1yoq: { uz: "«Hozir ko'ryapti»ni telefonda tekshirish qoldi.", ru: "Осталось проверить «Сейчас смотрят» на телефоне." },
+  yoq: { uz: 'Loyiha kuni hali tugamagan — qolgan qadamni tugating.', ru: 'День проекта не завершён — доделайте оставшееся.' }
 };
 const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
   const _gate = useContext(LiveGateCtx) || {};
@@ -2086,7 +2089,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const holat = a1 && a2 && a3 ? 'uchala' : a1 && a2 ? (web ? 'a12web' : 'a12mobil') : a1 ? 'a1' : (a2 || a3) ? 'a1yoq' : 'yoq';
   const RECAP = [
     { uz: "Xona — Backend'dagi ulanishlar guruhi: hodisa faqat shu guruhdagilarga boradi.", ru: 'Комната — группа соединений в Backend: событие идёт только тем, кто в этой группе.' },
-    { uz: "«Hozir ko'ryapti» ochiq ekranlarni sanaydi, odamlarni emas.", ru: '«Hozir ko\'ryapti» считает открытые экраны, а не людей.' },
+    { uz: "«Hozir ko'ryapti» ochiq ekranlarni sanaydi, odamlarni emas.", ru: "«Сейчас смотрят» считает открытые экраны, а не людей." },
     { uz: "Mentor misolida jonli xabar faqat o'yinchiga tegishli o'zgarishda va ismsiz chiqadi.", ru: 'В примере Ментора живое сообщение появляется только при изменении, которое касается игрока, и без имени.' },
     { uz: 'Eslatmani tekshirish uchun test holatida vaqt vaqtincha qisqartiriladi, keyin qaytariladi.', ru: 'Чтобы проверить напоминание, в тестовом режиме время временно сокращают, потом возвращают.' },
     { uz: "Agent «bajardim» desa ham, talabning har gapini telefonda o'zingiz tekshirasiz.", ru: 'Даже если агент говорит «сделал», каждое предложение требования вы проверяете на телефоне сами.' }
@@ -2280,7 +2283,7 @@ export default function LiveNotifyDayLesson({ lang: langProp, onFinished, liveTo
         .jx-telefon { position: relative; width: 172px; height: 272px; flex: none; display: flex; flex-direction: column; gap: 5px; border: 2px solid ${T.ink}; border-radius: 24px; padding: 8px; background: ${T.paper}; box-shadow: 0 12px 26px -14px rgba(${T.shadowBase},0.4); overflow: hidden; }
         .jx-telefon.yopiq { background: ${fon(T.ink, 0.86)}; transition: background 0.4s; }
         .jx-tel-bar { display: flex; align-items: center; justify-content: center; height: 18px; flex: none; }
-        .jx-tel-nom { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 12.5px; color: ${T.ok}; letter-spacing: 0.01em; }
+        .jx-tel-nom { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 12.5px; color: ${MAYDON_RANG}; letter-spacing: 0.01em; }
         .jx-tel-ekran { position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; animation: jx-ekran 0.35s ease-out both; }
         @keyframes jx-ekran { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: none; } }
         .jx-oyin { display: flex; flex-direction: column; gap: 3px; flex: 1; min-height: 0; }
@@ -2314,11 +2317,11 @@ export default function LiveNotifyDayLesson({ lang: langProp, onFinished, liveTo
         .jx-qulf-kun { font-size: 12px; font-weight: 600; opacity: 0.8; margin-bottom: 8px; }
         .jx-eslatma { align-self: stretch; display: flex; flex-direction: column; gap: 1px; padding: 7px 9px; border-radius: 12px; background: ${fon(T.paper, 0.9)}; color: ${T.ink}; text-align: left; animation: jx-tush 0.5s cubic-bezier(.3,1.3,.5,1) both; }
         @keyframes jx-tush { from { opacity: 0; transform: translateY(-34px); } to { opacity: 1; transform: none; } }
-        .jx-es-nom { font-size: 11px; font-weight: 800; color: ${T.ok}; }
+        .jx-es-nom { font-size: 11px; font-weight: 800; color: ${MAYDON_RANG}; }
         .jx-es-m { font-size: 11.5px; line-height: 1.3; color: ${T.ink}; }
         .jx-es-y { font-style: normal; font-size: 10px; font-weight: 700; color: ${T.ink2}; margin-top: 2px; }
         .jx-ilova { margin-top: auto; align-self: flex-start; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 0 0 6px 6px; }
-        .jx-ilova-sh { width: 40px; height: 40px; border-radius: 12px; background: ${T.ok}; box-shadow: inset 0 -5px 0 ${fon(T.ink, 0.18)}; }
+        .jx-ilova-sh { width: 40px; height: 40px; border-radius: 12px; background: ${MAYDON_RANG}; box-shadow: inset 0 -5px 0 ${fon(T.ink, 0.18)}; }
         .jx-ilova-t { font-size: 10px; font-weight: 700; color: ${T.paper}; }
         /* Jonli xabar — ilova ichida, ilova ranglarida: tepadan tushadi, bir necha soniyadan keyin ko'tarilib yo'qoladi */
         .jx-jonli { position: absolute; left: 6px; right: 6px; top: 6px; z-index: 3; display: flex; flex-direction: column; gap: 1px; padding: 7px 9px; border-radius: 12px; background: ${T.ink}; color: ${T.paper}; box-shadow: 0 10px 22px -10px rgba(${T.shadowBase},0.6); animation: jx-tush 0.45s cubic-bezier(.3,1.3,.5,1) both; }

@@ -1,4 +1,4 @@
-# 12-Modul — davom prompti (holat: 07.10.2026 17:17; hammasi commit `0d80850` va push ✓)
+# 12-Modul — davom prompti (holat: 08.10.2026 01:13 — MODUL YOPILDI, QA saytda; oxirgi commit `0d80850`, keyingi o'zgarishlar COMMITSIZ)
 
 ## Yangi seansga nusxalanadigan qisqa matn
 
@@ -18,6 +18,13 @@ Keyin men darslarni ko'rib fidbek beraman — retsept B (tashxis avval, tuzatish
 - Repo ildizidagi `_tmp21*.mjs`, `_m18*.mjs`, `.shot*.tmp.mjs` — boshqa seanslarniki, tegilmaydi.
 
 ## 2. Holat
+**08.10 01:13 — 12-MODUL YOPILDI (F-1006-389, foydalanuvchi: «nimalar ochiq qoldi yopamizda modulni QA ga chiqarib beramiz»):**
+umumiy tuzatish (rang `#2E9E4F`, 6-dars 4-ekran, 8/11 yakun E 54, 11-dars `DavoYoq`) · MD dagi jonli qismlar (Mentor statistikasi 1/6/10/11/12, ovoz chizig'i 6/10/12, 12-dars katta soat) ·
+RU + yakuniy MD 12/12 (`QURUVCHI_TOPSHIRIQ_3.md`, 12 agent 6+6, har biri o'zim tekshirildi; `YAKUNIY/`) · agentlar topgan ~20 kod nuqsoni tuzatildi · `modul:yopish` ✓ (`--qabul A,E,G`, sabab jurnalda) ·
+QA **https://coddycamp-12modul.vercel.app** (smoke 24/24; tartib — xotira `m12-qa-deploy-tartibi`). **Commit qilinmagan** — 07.10 17:17 dan keyingi hamma o'zgarish ishchi daraxtda.
+Ochiq (QA ga): ru matnni taniydigan tekshiruvlar faqat o'zbekcha so'zni biladi (7, 10, 11, 12) · maketdagi real ilova yorliqlari ru da ikki xil · 10-dars «ism · n / 4» chipi · P-033 rescue 110 s (modulda yo'q). QA fidbeki — retsept B, **F-1006-390** dan.
+
+(07.10 holati:)
 **12/12 dars qurildi va tekshirildi** (13-qator «Zaxira dars» — dasturda ataylab bo'sh, MD/fayl yo'q).
 
 | Dars | Kalit | Fayl (`src/10-Modull/`) | Turi | Holat |

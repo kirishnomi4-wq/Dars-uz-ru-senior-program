@@ -8,6 +8,7 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // Bitta vizual — ChatTelefon (ro'yxat · chat · qoralama · yuborildi), bitta manba MENTOR_JOYLAR + MENTOR_POST. Saqlaydi: pm-m10d6-kanallar, pm-m10d6-code (tayanch 8).
 // O'qiydi: pm-m9d3-intervyu, pm-m10d1-lending, pm-m9d8-platforma (yo'q bo'lsa ham ekran ishlaydi). PRODUCTION: <style> ichidagi @import OLIB TASHLANADI.
 // ============================================================
+// ru-qoldiq-istisno s11: sinf
 
 // D3: palitra umumiy qolipdan — neytral 5 · modul rangi 2 · holat 2 (shadowBase — soya, rang tokeni emas)
 const T = { ...qolipRang('pm'), shadowBase: '27, 22, 48' };
@@ -259,9 +260,9 @@ const RECAPS = {
   3: {
     title: { uz: 'Kanal: uch savol', ru: 'Канал: три вопроса' },
     cards: [
-      { ic: '1', h: { uz: "Auditoriyangiz shu yerdami? Dalil — intervyudagi «Hozir nima bilan» javobi.", ru: 'Ваша аудитория здесь? Доказательство — ответ «Чем сейчас» в интервью.' } },
+      { ic: '1', h: { uz: "Auditoriyangiz shu yerdami? Dalil — intervyudagi «Hozir nima bilan» javobi.", ru: "Ваша аудитория здесь? Довод — ответ «Чем сейчас» в интервью." } },
       { ic: '2', h: { uz: "Siz u yerda a'zomisiz?", ru: 'Вы там состоите?' } },
-      { ic: '3', h: { uz: "U yerda post yozishga ruxsat bormi? Bittasiga «yo'q» — tanlanmaydi.", ru: 'Есть ли там разрешение писать пост? На один ответ «нет» — не выбирается.' }, ask: { uz: "Siz a'zo bo'lmagan katta guruhga post yozsa bo'ladimi?", ru: 'Можно ли писать пост в большую группу, где вы не состоите?' } }
+      { ic: '3', h: { uz: "U yerda post yozishga ruxsat bormi? Bittasiga «yo'q» — tanlanmaydi.", ru: "Есть ли там разрешение писать пост? Хоть на один ответ «нет» — место не выбирают." }, ask: { uz: "Siz a'zo bo'lmagan katta guruhga post yozsa bo'ladimi?", ru: 'Можно ли писать пост в большую группу, где вы не состоите?' } }
     ]
   },
   5: {
@@ -573,6 +574,8 @@ const INTERVYU_KEY = 'pm-m9d3-intervyu';
 // Brend — nom o'z rangida, logotipsiz (PM-028/029, S-018)
 const Tg = () => <span className="kn-tg">Telegram</span>;
 const Fb = () => <span className="kn-fb">Facebook</span>;
+// «Maydon Jamoa» nomi — 11-Modul tayanch 9.62 yashili (PM palitrasining ok yashilidan farqli; F-1006-389)
+const MAYDON_RANG = '#2E9E4F';
 const MJ = () => <span className="kn-mj">Maydon Jamoa</span>;
 // Matndagi «Maydon Jamoa» — o'z rangida (post maketida)
 const mjAjrat = (s) => (typeof s === 'string' && s.includes('Maydon Jamoa')
@@ -595,7 +598,7 @@ const MENTOR_JOYLAR = [
     ] },
   { id: 'shahar', nom: { uz: 'Shahar futbol kanali', ru: 'Городской футбольный канал' }, tur: { uz: 'Telegram kanali · katta', ru: 'Telegram-канал · большой' },
     javoblar: [
-      { yozuv: { uz: "Intervyuda bu kanal tilga olinmagan — dalil yo'q.", ru: 'В интервью этот канал не упоминался — доказательства нет.' }, togri: '?' },
+      { yozuv: { uz: "Intervyuda bu kanal tilga olinmagan — dalil yo'q.", ru: "В интервью этот канал не упоминался — довода нет." }, togri: '?' },
       { yozuv: { uz: "Mentor bu kanalda a'zo emas.", ru: 'Ментор не состоит в этом канале.' }, togri: false },
       { yozuv: { uz: "Kanalga post yozishga ruxsat yo'q.", ru: 'Разрешения писать пост в канал нет.' }, togri: false }
     ] }
@@ -820,7 +823,7 @@ const HOOK_OPTS = [
 const HOOK_JAVOB = {
   guruh: { uz: <><b>Aynan!</b> Mentor misolida odamlar tanish guruhda allaqachon yig'ilgan — havolani o'sha yerda ko'radi.</>, ru: <><b>Именно!</b> В примере Ментора люди уже собрались в знакомой группе — там они и увидят ссылку.</> },
   qidiruv: { uz: <><b>Qiziq fikr!</b> Qidiruvga odam nom yozadi — «Maydon Jamoa» nomini esa hali kam odam biladi.</>, ru: <><b>Интересная мысль!</b> В поиск человек пишет название — а название «Maydon Jamoa» пока знают немногие.</> },
-  tasodif: { uz: <><b>Qiziq fikr!</b> Tasodif ham bo'ladi, lekin uni kutib bo'lmaydi — havolani odamlarga o'zingiz ko'rsatasiz.</>, ru: <><b>Интересная мысль!</b> Случайность тоже бывает, но на неё не рассчитаешь — ссылку людям показываете вы сами.</> }
+  tasodif: { uz: <><b>Qiziq fikr!</b> Tasodif ham bo'ladi, lekin uni kutib bo'lmaydi — havolani odamlarga o'zingiz ko'rsatasiz.</>, ru: <><b>Интересная мысль!</b> Случайность тоже бывает, но на неё нельзя рассчитывать — ссылку людям показываете вы сами.</> }
 };
 // Yo'l belgisi: qidiruv qatori · chat pufagi · «?»
 const YolBelgi = ({ id }) => (
@@ -830,6 +833,28 @@ const YolBelgi = ({ id }) => (
     {id === 'tasodif' && <b>?</b>}
   </span>
 );
+// Jonli dars: hook ovozlari chizig'i (sof so'rovnoma, J-026; MD 0-ekran «sinf ovozlari chizig'i», F-1006-389; 11-Modul naqshi)
+const OvozChizigi = ({ live, screen, variantlar, mening }) => {
+  const [son, setSon] = useState(null);
+  const pin = live && live.pin;
+  useEffect(() => {
+    if (!pin) return undefined;
+    let on = true, t = null;
+    const ayl = async () => {
+      try { const rows = await liveAnswers(pin, screen); if (on) setSon(variantlar.map((_, i) => rows.filter(r => r.picked === i).length)); } catch { /* keyingi aylanishda */ }
+      if (on) t = setTimeout(ayl, 3000);
+    };
+    ayl();
+    return () => { on = false; clearTimeout(t); };
+  }, [pin, screen]); // eslint-disable-line
+  if (!son) return null;
+  const jami = son.reduce((a, b) => a + b, 0);
+  return (
+    <div className="ovoz fade-step">
+      {variantlar.map((v, i) => <div key={i} className={`ovoz-q${mening === i ? ' men' : ''}`}><span>{v}</span><span className="ovoz-y"><i style={{ width: `${jami ? Math.round((son[i] / jami) * 100) : 0}%` }} /></span><b>{son[i]}</b></div>)}
+    </div>
+  );
+};
 const HookMaket = ({ tanlov }) => (
   <div className="kn-hook">
     {tanlov && <div className="kn-yol" key={tanlov}><YolBelgi id={tanlov} /><i className="kn-yol-ch" /></div>}
@@ -838,8 +863,14 @@ const HookMaket = ({ tanlov }) => (
   </div>
 );
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
+  const { live } = useJonli();
+  const isLive = !!(live && live.pin && (live.mode === 'student' || live.mode === 'mentor'));
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
-  const pick = (v) => { if (picked !== null) return; setPicked(v); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: false }); };
+  const pick = (v) => {
+    if (picked !== null) return;
+    setPicked(v); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: false });
+    if (live && live.mode === 'student') live.submitAnswer(screen, 's0', HOOK_OPTS.findIndex(o => o.id === v), false, 0);
+  };
   return (
     <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} scrollSignal={picked ? 1 : 0} navContent={<NavNext optionalLive disabled={picked === null} label={picked === null ? tr({ uz: 'Bittasini tanlang', ru: 'Выберите один вариант' }) : tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className={cxx('kn-s0', picked === null && 'kutish')}>
@@ -848,7 +879,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
           mentor={<Mentor>{tr({ uz: "Lending internetda, ochilishi esa hali kam — o'zingizga yaqin javobni belgilang.", ru: 'Лендинг в интернете, но открывают его пока редко — отметьте близкий вам ответ.' })}</Mentor>}
           maket={<HookMaket tanlov={picked} />}
           variantlar={HOOK_OPTS.map(o => ({ id: o.id, t: tr(o.label) }))} tanlov={picked} onTanla={pick}
-          javob={picked !== null && <p className="hook-ack fade-step">{tr(HOOK_JAVOB[picked])}</p>}
+          javob={<>
+            {picked !== null && <p className="hook-ack fade-step">{tr(HOOK_JAVOB[picked])}</p>}
+            {isLive && (picked !== null || live.mode === 'mentor') && <OvozChizigi live={live} screen={screen} variantlar={HOOK_OPTS.map(o => tr(o.label))} mening={HOOK_OPTS.findIndex(o => o.id === picked)} />}
+          </>}
         />
       </div>
     </Stage>
@@ -874,7 +908,7 @@ const RejaTelefon = () => (
 const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz', ru: 'Начинаем' })} onClick={onNext} /></>}>
     <QReja zoom={Zoomable}
-      sarlavha={tr({ uz: <>Bugun mahsulotingizni <A>birinchi odamlarga tanishtirasiz.</A></>, ru: <>Сегодня вы представите продукт <A>первым людям.</A></> })}
+      sarlavha={tr({ uz: <>Bugun mahsulotingizni <A>birinchi odamlarga tanishtirasiz.</A></>, ru: <>Сегодня вы представите свой продукт <A>первым людям.</A></> })}
       mentor={<Mentor>{tr({ uz: "Lending bor — endi uni odamlar ko'rishi kerak. Qayerda ko'rishini o'zingiz tanlaysiz, matnni ham o'zingiz yozasiz.", ru: 'Лендинг есть — теперь его должны увидеть люди. Где увидят, выбираете вы, и текст тоже пишете сами.' })}</Mentor>}
       chapYorliq={tr({ uz: <>Dars oxirida: <code className="kn-teg">kanallar</code> va birinchi <code className="kn-teg">post</code></>, ru: <>В конце урока: <code className="kn-teg">каналы</code> и первый <code className="kn-teg">пост</code></> })}
       chap={<RejaTelefon />}
@@ -885,7 +919,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
 
 // ===== SCREEN 2 — UCH SAVOL (QTushuncha markaziy: 6 javob ketma-ket, javob telefondagi katakka uchadi; atama «kanal» — misoldan keyin) =====
 const S2_XATO = [
-  { uz: 'Dalil — intervyudagi javob: unda shu joy bormi?', ru: 'Доказательство — ответ из интервью: есть ли там это место?' },
+  { uz: 'Dalil — intervyudagi javob: unda shu joy bormi?', ru: "Довод — ответ из интервью: есть ли в нём это место?" },
   { uz: "Yozuvni qayta o'qing: Mentor u yerda a'zomi?", ru: 'Перечитайте запись: состоит ли там Ментор?' },
   { uz: 'Yozuvda ruxsat haqida nima deyilgan?', ru: 'Что сказано в записи о разрешении?' }
 ];
@@ -929,7 +963,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const izohlar = (
     <div className="kn-izohlar">
       {guruhOk && <Atama y={tr({ uz: 'kanal', ru: 'канал' })}>{tr({ uz: 'Odamlar mahsulot haqida eshitadigan joy — kanal deyiladi.', ru: 'Место, где люди слышат о продукте, называется каналом.' })}</Atama>}
-      {shaharOk && <QIzoh>{tr({ uz: "Dalil yo'q — «yo'q» degani emas: bu joyni a'zolik va ruxsat to'xtatdi.", ru: 'Нет доказательства — не значит «нет»: это место остановили членство и разрешение.' })}</QIzoh>}
+      {shaharOk && <QIzoh>{tr({ uz: "Dalil yo'q — «yo'q» degani emas: bu joyni a'zolik va ruxsat to'xtatdi.", ru: "Нет довода — не значит «нет»: это место отсеяли членство и разрешение." })}</QIzoh>}
     </div>
   );
   const karta = !done && (
@@ -958,7 +992,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         vizual={tugadi
           ? <div className="kn-fokus kn-yon">{telefon}{izohlar}</div>
           : <div className="kn-split">{<div className="kn-chap">{telefon}{izohlar}</div>}{karta}</div>}
-        xulosa={done && tr({ uz: "Bizda kanal uch savol bilan tanlanadi: bittasiga «yo'q» bo'lsa, u joy tanlanmaydi.", ru: 'У нас канал выбирают по трём вопросам: если на один ответ «нет», место не выбирается.' })}
+        xulosa={done && tr({ uz: "Bizda kanal uch savol bilan tanlanadi: bittasiga «yo'q» bo'lsa, u joy tanlanmaydi.", ru: "У нас канал выбирают по трём вопросам: если хоть на один ответ «нет», это место не выбирают." })}
       />
       {qatlam}
     </Stage>
@@ -981,7 +1015,7 @@ const Screen3 = (props) => (
       0: { uz: "Qo'shilgan zahoti yozish — egasidan ruxsat so'ralmagan.", ru: 'Писать сразу после вступления — разрешения у владельца не спросили.' },
       1: { uz: 'Ular sizni tanimaydi — notanishga shaxsiy yozilmaydi.', ru: 'Они вас не знают — незнакомым лично не пишут.' },
       3: { uz: "Yangi akkaunt ham ruxsat bermaydi — egasi so'ralmagan.", ru: 'Новый аккаунт тоже не даёт разрешения — владельца не спросили.' },
-      default: { uz: "Uch savolni shu guruhga bering: qaysi biri «yo'q»?", ru: 'Задайте этой группе три вопроса: на какой ответ «нет»?' }
+      default: { uz: "Uch savolni shu guruhga bering: qaysi biri «yo'q»?", ru: "Примените к этой группе три вопроса: на какой ответ «нет»?" }
     }}
     vizual={<div className="kn-tviz-q"><ChatQator mini q={{ k: 'sport', nom: tr({ uz: "Sport to'garagi", ru: 'Спортивный кружок' }), tur: tr({ uz: 'Telegram guruhi', ru: 'Telegram-группа' }), belgilar: [null, false, false] }} /></div>} />
 );
@@ -1022,10 +1056,10 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   });
   const chatNom = tr({ uz: 'Mahalla futbol guruhi · 60 kishi', ru: 'Футбольная группа махалли · 60 человек' });
   const telefon = (
-    <ChatTelefon ustYorliq={tr({ uz: 'Mentor telefoni', ru: 'Телефон Ментора' })} holat="chat" chatNom={chatNom}
-      bolaklar={bolaklar(false)} tepa={done && <span className="ct-atama fade-step">post</span>} />
+    <ChatTelefon ustYorliq={tr({ uz: 'Mentor telefoni', ru: 'Телефон Ментора' })} holat="chat" chatNom={chatNom} className="katta"
+      bolaklar={bolaklar(false)} tepa={done && <span className="ct-atama fade-step">{tr({ uz: 'post', ru: 'пост' })}</span>} />
   );
-  const izoh = done && <Atama y="post">{tr({ uz: 'Kanalga yoziladigan matn — post deyiladi.', ru: 'Текст, который пишут в канал, называется постом.' })}</Atama>;
+  const izoh = done && <Atama y={tr({ uz: 'post', ru: 'пост' })}>{tr({ uz: 'Kanalga yoziladigan matn — post deyiladi.', ru: 'Текст, который пишут в канал, называется постом.' })}</Atama>;
   const yorliqlar = !done && (
     <div className="kn-karta kn-yorlar">
       <span className="q-yorliq">{tr({ uz: "To'rt yorliq", ru: 'Четыре ярлыка' })} · {joyda.length} / 4</span>
@@ -1042,16 +1076,16 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         })}
       </div>
       {xato && <QXato>{tr(S4_XATO[xato])}</QXato>}
-      {ipucha && <p className="kn-ipucha fade-step">{tr({ uz: "Tanlangan yorliq ostidagi kulrang izohni o'qing — matnning qaysi joyi shuni aytadi?", ru: 'Прочитайте серую подсказку под выбранным ярлыком — какое место текста говорит об этом?' })}</p>}
+      {ipucha && <p className="kn-ipucha fade-step">{tr({ uz: "Tanlangan yorliq ostidagi kulrang izohni o'qing — matnning qaysi joyi shuni aytadi?", ru: "Прочитайте серое пояснение под выбранным ярлыком — какое место текста говорит об этом?" })}</p>}
     </div>
   );
   return (
     <Stage eyebrow={tr({ uz: 'Tushuncha · post', ru: 'Понятие · пост' })} screen={screen} scrollSignal={joyda.length} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Yorliqlarni joylang', ru: 'Расставьте ярлыки' })} (${joyda.length}/4)`} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
         sarlavha={tr({ uz: <>Mahalla guruhiga Mentor <A>nima deb yozdi?</A></>, ru: <>Что Ментор <A>написал в группу махалли?</A></> })}
-        mentor={<Mentor>{tr({ uz: "Avval o'ngdagi yorliqni tanlang, so'ng chapdagi matnda uning joyini bosing.", ru: 'Сначала выберите ярлык справа, затем нажмите его место в тексте слева.' })}</Mentor>}
+        mentor={<Mentor>{tr({ uz: "Avval o'ngdagi yorliqni tanlang, so'ng chapdagi matnda uning joyini bosing.", ru: "Сначала выберите ярлык справа, затем нажмите на его место в тексте слева." })}</Mentor>}
         vizual={tugadi
-          ? <div className="kn-fokus"><ChatOyna nom={chatNom} keng><PostPufak bolaklar={bolaklar(true)} tepa={<span className="ct-atama">post</span>} /></ChatOyna>{izoh}</div>
+          ? <div className="kn-fokus"><ChatOyna nom={chatNom} keng><PostPufak bolaklar={bolaklar(true)} tepa={<span className="ct-atama">{tr({ uz: 'post', ru: 'пост' })}</span>} /></ChatOyna>{izoh}</div>
           : <div className="kn-split"><div className="kn-chap">{telefon}{izoh}</div>{yorliqlar}</div>}
         xulosa={done && tr({ uz: "Bizda post to'rt qatordan iborat: kim uchun, nima foyda, bitta harakat va halol holat.", ru: 'У нас пост состоит из четырёх строк: для кого, какая польза, одно действие и честное состояние.' })}
       />
@@ -1178,9 +1212,9 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     </div>
   );
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · xavfsizlik', ru: 'Понятие · безопасность' })} screen={screen} scrollSignal={vi} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Vaziyatlarga javob bering', ru: 'Ответьте на ситуации' })} (${vi}/6)`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · xavfsizlik', ru: 'Понятие · безопасность' })} screen={screen} scrollSignal={vi} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Vaziyatlarga javob bering', ru: "Оцените ситуации" })} (${vi}/6)`} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
-        sarlavha={tr({ uz: <>Postni yuborishdan oldin <A>nimani tekshirasiz?</A></>, ru: <>Что вы <A>проверяете</A> перед отправкой поста?</> })}
+        sarlavha={tr({ uz: <>Postni yuborishdan oldin <A>nimani tekshirasiz?</A></>, ru: <>Перед отправкой поста <A>что вы проверяете?</A></> })}
         mentor={<Mentor>{tr({ uz: "Har vaziyatga «Mumkin» yoki «Mumkin emas» deb javob bering.", ru: 'На каждую ситуацию ответьте «Можно» или «Нельзя».' })}</Mentor>}
         vizual={tugadi ? <div className="kn-fokus">{royxat}</div> : <div className="kn-split kn-s6">{royxat}{karta}</div>}
         xulosa={done && tr({ uz: 'Bu kursda post olti band tekshirilgandan keyin yuboriladi.', ru: 'В этом курсе пост отправляют после проверки по шести пунктам.' })}
@@ -1248,7 +1282,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Biznes olamidan', ru: 'Из мира бизнеса' })} screen={screen} scrollSignal={b} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={kutish} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Voqea davomi', ru: 'Продолжение истории' })} (${b + 1}/3)`} onClick={keyingi} /></>}>
       <QVoqea
-        sarlavha={tr({ uz: <><Fb /> <A>kimlardan boshlangan?</A></>, ru: <>С кого <A>начинался</A> <Fb />?</> })}
+        sarlavha={tr({ uz: <><Fb /> <A>kimlardan boshlangan?</A></>, ru: <><Fb />: <A>с кого он начинался?</A></> })}
         nuqtalar={<>
           <Mentor key={'m' + b}>{tr(kadr.m)}</Mentor>
           <div className="kn-nuq"><span className="kn-nuq-l">{yorliq}</span>{FACEBOOK_KADR.map((_, i) => <i key={i} className={i < b ? 'ok' : i === b ? 'cur' : ''} />)}</div>
@@ -1274,7 +1308,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen8 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: "Tekshiruv · Facebook'dagidek", ru: 'Проверка · как в Facebook' })}
     questionText="Facebook voqeasi birinchi kanal haqida nimani eslatadi?"
-    question={tr({ uz: <h2 className="title h-ask"><Fb /> voqeasi birinchi kanal haqida <A>nimani eslatadi?</A></h2>, ru: <h2 className="title h-ask">О чём история <Fb /> <A>напоминает</A> про первый канал?</h2> })}
+    question={tr({ uz: <h2 className="title h-ask"><Fb /> voqeasi birinchi kanal haqida <A>nimani eslatadi?</A></h2>, ru: <h2 className="title h-ask">Что история <Fb /> <A>подсказывает про первый канал?</A></h2> })}
     options={[
       { uz: 'Auditoriyasi eng katta joydan boshlashni', ru: 'Начинать с места с самой большой аудиторией' },
       { uz: 'Bir kunda hamma guruhga yozib chiqishni', ru: 'За один день написать во все группы' },
@@ -1284,7 +1318,7 @@ const Screen8 = (props) => (
     explainCorrect={{ uz: 'Bu voqeada xizmat avval kichik, yopiq auditoriyada ochilgan.', ru: 'В этой истории сервис сначала открылся в маленькой закрытой аудитории.' }}
     explainWrong={{
       0: { uz: 'Facebook eng katta auditoriyadan boshlaganmi?', ru: 'Facebook начинал с самой большой аудитории?' },
-      1: { uz: 'Bu voqeada hamma uchun ochilish — ikki yildan keyin.', ru: 'В этой истории для всех открылись — через два года.' },
+      1: { uz: 'Bu voqeada hamma uchun ochilish — ikki yildan keyin.', ru: "В этой истории для всех сервис открылся через два года." },
       2: { uz: 'Garvard — Facebook auditoriyasi edi. Siznikichi?', ru: 'Гарвард был аудиторией Facebook. А ваша?' },
       default: { uz: 'Facebook avval kimlar uchun ochilganini eslang.', ru: 'Вспомните, для кого сначала открылся Facebook.' }
     }}
@@ -1298,7 +1332,7 @@ const kanallarYoz = (patch) => { const d = { ...kanallarOl(), ...patch, savedAt:
 const BOSHQA_RE = /@|t\.me\/|http|\d{7,}/i;
 const S9_XATO = {
   tur: { uz: 'Avval joy turini tanlang.', ru: 'Сначала выберите тип места.' },
-  boshqa: { uz: 'Guruh nomi va havolasi yozilmaydi — faqat turini yozing.', ru: 'Название и ссылку группы не пишут — только тип.' },
+  boshqa: { uz: 'Guruh nomi va havolasi yozilmaydi — faqat turini yozing.', ru: "Название и ссылку группы не пишут — укажите только тип." },
   takror: { uz: "Bu tur ro'yxatda bor — boshqa joyni tanlang.", ru: 'Этот тип уже в списке — выберите другое место.' }
 };
 const ruxsatQator = (turId) => (turId === 'sinf'
@@ -1335,6 +1369,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     const data = { stage: 'practice', screenIdx: screen, practice: 'Kanallar', royxat: ro, yopildi: yop, solved: true, picked: true, correct: otdi };
     if (storedAnswer === undefined || (otdi && !(storedAnswer && storedAnswer.correct)) || yop !== !!(storedAnswer && storedAnswer.yopildi) || ro.length !== ((storedAnswer && storedAnswer.royxat) || []).length) onAnswer(screen, data);
     if (otdi && live && live.mode === 'student' && !(storedAnswer && storedAnswer.correct)) live.submitAnswer(PRACTICE_BASE + screen, 'practice', 0, true, 0);
+    if (ro.some(p => joyOtdi(p.j) && p.j[2] === 'soraladi')) jonliBelgi(live, ZONA_2, screen);
   };
   const turTanla = (id) => {
     if (!karta) return;
@@ -1380,7 +1415,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     : <ChatTelefon ustYorliq={tr({ uz: 'sizning telefoningiz', ru: 'ваш телефон' })} holat="royxat" telRef={telRef}
         sarlavha={<>{tr({ uz: 'Kanallarim', ru: 'Мои каналы' })} · <b key={royxat.length}>{royxat.length} / 3</b></>}
         qatorlar={yopildi ? qatorlar : [...qatorlar, ...[0, 1, 2].slice(royxat.length).map(i => ({ k: 'joy' + i, joy: String(i + 1), holat: i === royxat.length && karta ? 'joriy' : undefined }))]}
-        ostida={royxat.some(p => p.j[2] === 'soraladi' && joyOtdi(p.j)) && <QIzoh>{tr({ uz: 'Ruxsat olingach bu joyga post yuboriladi — hozircha u kanal emas.', ru: 'Когда разрешение получено, сюда отправляют пост — пока это не канал.' })}</QIzoh>} />;
+        ostida={royxat.some(p => p.j[2] === 'soraladi' && joyOtdi(p.j)) && <QIzoh>{tr({ uz: 'Ruxsat olingach bu joyga post yuboriladi — hozircha u kanal emas.', ru: "Когда получите разрешение, сюда можно отправить пост — пока это не канал." })}</QIzoh>} />;
   const SAVOL_ROW = (i, val) => (
     <button key={'s' + i} type="button" className="kn-ok-q fade-step" onClick={() => javob(i, null)}>
       <i>{i + 1}</i><span>{tr(UCH_SAVOL[i])}</span><b>{val === true || val === 'bor' ? tr({ uz: 'Ha', ru: 'Да' }) : val === 'soraladi' ? tr({ uz: "Uyda so'rayman", ru: 'Спрошу дома' }) : tr({ uz: "Yo'q", ru: 'Нет' })}</b>
@@ -1422,7 +1457,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       {xato && <QXato>{tr(S9_XATO[xato])}</QXato>}
       {yordam && <p className="kn-yordam fade-step">{tr({ uz: "Mentor misolida: mahalla futbol guruhi — ha · ha · ha (intervyuda 5 o'yinchidan 5 tasi Telegram guruhida; a'zo; egasidan ruxsat olingan). Shahar futbol kanali — a'zo emas, ruxsat yo'q: tanlanmadi.", ru: 'В примере Ментора: футбольная группа махалли — да · да · да (в интервью 5 игроков из 5 — в Telegram-группе; состоит; разрешение владельца получено). Городской футбольный канал — не состоит, разрешения нет: не выбран.' })}</p>}
       <div className="kn-karta-tug">
-        <QTugma ikkinchi aria-expanded={yordam} onClick={() => setYordam(y => !y)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>
+        <QTugma ikkinchi aria-expanded={yordam} onClick={() => setYordam(y => !y)}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>
         {!tahrirda && otganlar.length > 0 && <QTugma ikkinchi onClick={yetarliBos}>{tr({ uz: 'Yetarli', ru: 'Достаточно' })}</QTugma>}
         <QTugma className={cxx(qadam === 4 && 'kn-halqa')} onClick={saqla}>{tr({ uz: 'Saqlash', ru: 'Сохранить' })}</QTugma>
       </div>
@@ -1437,15 +1472,16 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <QMustaqil
         sarlavha={tr({ uz: <>Kanallaringizni <A>uch savol bilan tanlang.</A></>, ru: <>Выберите свои каналы <A>по трём вопросам.</A></> })}
         mentor={<Mentor>{intervyu
-          ? tr({ uz: "Joy turini tanlang va uch savolga javob bering — birinchisiga dalil 11-Modul intervyularingizda.", ru: 'Выберите тип места и ответьте на три вопроса — доказательство для первого в ваших интервью 11-го модуля.' })
-          : tr({ uz: "Joy turini tanlang va uch savolga javob bering — birinchisiga dalil intervyu qog'ozingizda.", ru: 'Выберите тип места и ответьте на три вопроса — доказательство для первого в вашем листе интервью.' })}</Mentor>}
+          ? tr({ uz: "Joy turini tanlang va uch savolga javob bering — birinchisiga dalil 11-Modul intervyularingizda.", ru: "Выберите тип места и ответьте на три вопроса: довод для первого — в ваших интервью 11-го модуля." })
+          : tr({ uz: "Joy turini tanlang va uch savolga javob bering — birinchisiga dalil intervyu qog'ozingizda.", ru: "Выберите тип места и ответьте на три вопроса: довод для первого — в вашем листе интервью." })}</Mentor>}
         forma={isMentor
           ? <div className="kn-fokus">{telefon}</div>
           : (yopildi && !formaOchiq)
             ? <div className="kn-fokus">{telefon}{xulosa && <QXulosa>{xulosa}</QXulosa>}</div>
             : <div className="kn-split">{telefon}{kartaEl}</div>}
       >
-        <MentorPracticeStats live={live} screen={screen} />
+        <SinfHolat live={live} screen={screen} />
+        <MentorPracticeStats live={live} screen={screen} sanoq={[{ y: { uz: 'Kanal tanlaganlar', ru: 'Выбрали канал' }, zona: PRACTICE_BASE }, { y: { uz: 'Ruxsat uyda', ru: "Спросят дома" }, zona: ZONA_2 }]} />
       </QMustaqil>
       {qatlam}
     </Stage>
@@ -1456,11 +1492,11 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const POST_MAYDON = [
   { id: 'kim', h: { uz: 'Kim uchun', ru: 'Для кого' }, savol: { uz: 'Post kimga qaratilgan?', ru: 'Кому адресован пост?' }, ph: { uz: 'Birinchi qator', ru: 'Первая строка' }, max: 100,
     yordam: { uz: "Mentor misolida: «Mahalla futbolchilari, Shanba o'yiniga kim kelishini bitta joyda ko'rish uchun «Maydon Jamoa» ilovasini qurdim» — kimga qaratilgani birinchi so'zlarda.", ru: 'В примере Ментора: «Футболисты махалли, чтобы видеть в одном месте, кто придёт на субботнюю игру, я построил приложение «Maydon Jamoa»» — кому адресован, видно по первым словам.' } },
-  { id: 'foyda', h: { uz: 'Nima foyda', ru: 'Какая польза' }, savol: { uz: 'Odam nima oladi?', ru: 'Что получит человек?' }, ph: { uz: 'Bir gap', ru: 'Одно предложение' }, max: 120,
+  { id: 'foyda', h: { uz: 'Nima foyda', ru: 'Какая польза' }, savol: { uz: 'Odam nima oladi?', ru: 'Что получит человек?' }, ph: { uz: 'Bir gap', ru: "Одна фраза" }, max: 120,
     yordam: { uz: "Mentor misolida: «o'yin e'lon qilinadi, «Qo'shilaman» bosiladi, nechta odam yig'ilgani ko'rinib turadi» — lending foydalaridan.", ru: 'В примере Ментора: «объявляется игра, нажимают «Присоединяюсь», видно, сколько людей собралось» — из польз лендинга.' } },
   { id: 'harakat', h: { uz: 'Bitta harakat', ru: 'Одно действие' }, savol: { uz: 'Odam nima qiladi?', ru: 'Что сделает человек?' }, ph: { uz: 'Bir qisqa gap', ru: 'Одна короткая фраза' }, max: 60,
     yordam: { uz: "Mentor misolida: «sahifasini ko'ring» — bitta ish, bitta havola.", ru: 'В примере Ментора: «посмотрите страницу» — одно дело, одна ссылка.' } },
-  { id: 'holat', h: { uz: 'Halol holat', ru: 'Честное состояние' }, savol: { uz: 'Hozir nima tayyor?', ru: 'Что готово сейчас?' }, ph: { uz: 'Bir gap', ru: 'Одно предложение' }, max: 80,
+  { id: 'holat', h: { uz: 'Halol holat', ru: 'Честное состояние' }, savol: { uz: 'Hozir nima tayyor?', ru: 'Что готово сейчас?' }, ph: { uz: 'Bir gap', ru: "Одна фраза" }, max: 80,
     yordam: { uz: "Mentor misolida: «Ilova ishlayapti, o'rnatish havolasi hozircha yo'q». Web-trekda sayt allaqachon ishlasa — shuni yozing.", ru: 'В примере Ментора: «Приложение работает, ссылки для установки пока нет». В веб-треке, если сайт уже работает, — так и напишите.' } }
 ];
 // Tekshiruv (PM-032: bo'sh, telefon/akkaunt, maktab raqami — bloklaydi; va'da va bo'sh sifat — yumshoq, ikkinchi «Saqlash» bilan o'tadi). Namuna sinovi: scratchpad 06-qurish/sinov.mjs
@@ -1472,7 +1508,7 @@ const S10_XABAR = {
   bosh: { uz: "Bu qator bo'sh — postda joyi ko'rinmay qoladi.", ru: 'Эта строка пуста — в посте её место останется пустым.' },
   shaxsiy: { uz: 'Postga telefon va akkaunt nomi yozilmaydi.', ru: 'В пост не пишут телефон и имя аккаунта.' },
   maktab: { uz: 'Maktab raqami postga yozilmaydi.', ru: 'Номер школы в пост не пишут.' },
-  vada: { uz: "Hali yo'q narsa bo'lsa — postga yozilmaydi.", ru: 'Если этого ещё нет — в пост не пишется.' },
+  vada: { uz: "Hali yo'q narsa bo'lsa — postga yozilmaydi.", ru: "Если этого ещё нет — в пост это не пишут." },
   sifat: { uz: "Bu umumiy so'z — odam aynan nima oladi?", ru: 'Это общее слово — что именно получит человек?' }
 };
 function s10Tekshir(k, v) {
@@ -1552,11 +1588,11 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (POST_MAYDON.every(m => s[m.id])) setTimeout(() => setQism(q => Math.max(q, 3)), 650);
   };
   const katakBos = (i) => { if (i === 1) return; setKataklar(k => k.map((x, n) => (n === i ? !x : x))); };
-  const mentorgaBos = () => { setMentorga(true); setKataklar(k => k.map((x, n) => (n === 1 ? true : x))); setYangiK('band2'); };
+  const mentorgaBos = () => { setMentorga(true); setKataklar(k => k.map((x, n) => (n === 1 ? true : x))); setYangiK('band2'); jonliBelgi(live, ZONA_2, screen); };
   const nusxala = async () => { try { await navigator.clipboard.writeText(postMatni(post, havola)); setNusxa(true); setTimeout(() => setNusxa(false), 1600); } catch { /* clipboard yopiq */ } };
   const yakunla = (tanlov) => {
     const yb = tanlov === 'yubordim' ? { qayerda: 'sinf chati' } : null;
-    setYuborildi(yb); setQism(5); if (yb) setYashil(1);
+    setYuborildi(yb); setQism(5); if (yb) { setYashil(1); jonliBelgi(live, ZONA_3, screen); }
     javobYoz({ yuborildi: yb, qism: 5, tanlov });
   };
   // Telefon: qoralama · yuborildi; qatorlar yozilgan sari pufakka tushadi (4-ekrandagidek rangli chiziq va yorliq)
@@ -1580,7 +1616,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="kn-kirish kn-qism" key={'f' + joriyK}>
         <span className="q-yorliq">{tr(M.h)} · {POST_MAYDON.findIndex(m => m.id === joriyK) + 1} / 4</span>
         <b className="kn-karta-nom">{tr(M.savol)}</b>
-        {joriyK === 'foyda' && foydalar.length > 0 && <span className="kn-kulrang">{tr({ uz: 'Lendingdagi foydalaringiz:', ru: 'Пользы на вашем лендинге:' })} {foydalar.slice(0, 3).map((f, i) => <React.Fragment key={i}>{i > 0 && ' · '}«{f}»</React.Fragment>)}</span>}
+        {joriyK === 'foyda' && foydalar.length > 0 && <span className="kn-kulrang">{tr({ uz: 'Lendingdagi foydalaringiz:', ru: "Пользы вашего лендинга:" })} {foydalar.slice(0, 3).map((f, i) => <React.Fragment key={i}>{i > 0 && ' · '}«{f}»</React.Fragment>)}</span>}
         <label className="kn-maydon">
           <input ref={inpRef} className={cxx('kn-inp', 'katta', xato && 'err', !String(qiy).trim() && 'kn-halqa-i')} value={qiy} maxLength={M.max} placeholder={tr(M.ph)} aria-label={tr(M.h)}
             onChange={(e) => setQiy(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') saqla(); }} />
@@ -1588,14 +1624,14 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </label>
         {joriyK === 'harakat' && (havola
           ? <code className="kn-havola">{havola}</code>
-          : <span className="kn-kulrang">{tr({ uz: "Lending manzili hali yo'q — Netlify'ga chiqargach havola shu yerga qo'shiladi.", ru: 'Адреса лендинга ещё нет — ссылка добавится сюда после публикации на Netlify.' })}</span>)}
+          : <span className="kn-kulrang">{tr({ uz: "Lending manzili hali yo'q — Netlify'ga chiqargach havola shu yerga qo'shiladi.", ru: "Адреса лендинга ещё нет — ссылка появится здесь, когда выложите его на Netlify." })}</span>)}
         {joriyK === 'holat' && <span className="kn-kulrang">{tr({ uz: "Hali yo'q narsa va'da qilinmaydi.", ru: 'То, чего ещё нет, не обещают.' })}</span>}
       </div>
       {xato && <QXato>{tr(S10_XABAR[xato.x])}</QXato>}
-      {xato && !xato.blok && <span className="kn-kulrang">{tr({ uz: "Shunday qoldirsangiz — yana «Saqlash»ni bosing.", ru: 'Если оставить так — снова нажмите «Сохранить».' })}</span>}
+      {xato && !xato.blok && <span className="kn-kulrang">{tr({ uz: "Shunday qoldirsangiz — yana «Saqlash»ni bosing.", ru: "Если оставляете так — снова нажмите «Сохранить»." })}</span>}
       {yordam && <p className="kn-yordam fade-step">{tr(M.yordam)}</p>}
       <div className="kn-karta-tug">
-        <QTugma ikkinchi aria-expanded={yordam} onClick={() => setYordam(y => !y)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>
+        <QTugma ikkinchi aria-expanded={yordam} onClick={() => setYordam(y => !y)}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>
         <QTugma className={cxx(String(qiy).trim() && 'kn-halqa')} onClick={saqla}>{tr({ uz: 'Saqlash', ru: 'Сохранить' })}</QTugma>
       </div>
     </div>
@@ -1604,8 +1640,8 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <div className="kn-karta kn-kirish">
       <span className="q-yorliq">{juft ? tr({ uz: '2 · Sherik', ru: '2 · Партнёр' }) : tr({ uz: "2 · O'qish", ru: '2 · Чтение' })}</span>
       <p className="kn-matn">{juft
-        ? tr({ uz: "Sherigingiz postni chapdagi telefondan o'qib, har qator yonida «Bor» yoki «Topilmadi»ni bosadi.", ru: 'Партнёр читает пост на телефоне слева и у каждой строки нажимает «Есть» или «Не нашёл».' })
-        : tr({ uz: "Postni ovoz chiqarib o'qing va har qator yonida «Bor» yoki «Topilmadi»ni bosing.", ru: 'Прочитайте пост вслух и у каждой строки нажмите «Есть» или «Не нашёл».' })}</p>
+        ? tr({ uz: "Sherigingiz postni chapdagi telefondan o'qib, har qator yonida «Bor» yoki «Topilmadi»ni bosadi.", ru: "Партнёр читает пост на телефоне слева и у каждой строки нажимает «Есть» или «Не найдено»." })
+        : tr({ uz: "Postni ovoz chiqarib o'qing va har qator yonida «Bor» yoki «Topilmadi»ni bosing.", ru: "Прочитайте пост вслух и у каждой строки нажмите «Есть» или «Не найдено»." })}</p>
       <ul className="kn-sherik">
         {POST_MAYDON.map((m, i) => {
           const v = sherik[m.id];
@@ -1614,10 +1650,10 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <li key={m.id} className={cxx('q-' + m.id, v && 'bor')}>
               <span className="kn-sherik-n">{tr(m.h).toLowerCase()}</span>
               {v
-                ? <span className="kn-sherik-v">{v === 'bor' ? <b className="okc">✓ {tr({ uz: 'Bor', ru: 'Есть' })}</b> : <><b>{tr({ uz: 'Topilmadi', ru: 'Не нашёл' })}</b><button type="button" className="kn-tahrir" onClick={() => setTahrirK(m.id)} aria-label={tr({ uz: 'Tahrirlash', ru: 'Редактировать' })}>✎</button></>}</span>
+                ? <span className="kn-sherik-v">{v === 'bor' ? <b className="okc">✓ {tr({ uz: 'Bor', ru: 'Есть' })}</b> : <><b>{tr({ uz: 'Topilmadi', ru: "Не найдено" })}</b><button type="button" className="kn-tahrir" onClick={() => setTahrirK(m.id)} aria-label={tr({ uz: 'Tahrirlash', ru: 'Редактировать' })}>✎</button></>}</span>
                 : <span className={cxx('kn-javoblar', 'ixcham', faol && 'kn-chorla')}>
                     <button type="button" className="kn-javob kn-bor" onClick={() => sherikBos(m.id, 'bor')}>{tr({ uz: 'Bor', ru: 'Есть' })}</button>
-                    <button type="button" className="kn-javob kn-bor" onClick={() => sherikBos(m.id, 'yoq')}>{tr({ uz: 'Topilmadi', ru: 'Не нашёл' })}</button>
+                    <button type="button" className="kn-javob kn-bor" onClick={() => sherikBos(m.id, 'yoq')}>{tr({ uz: 'Topilmadi', ru: "Не найдено" })}</button>
                   </span>}
             </li>
           );
@@ -1642,26 +1678,26 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         ? <>
             <b className="kn-karta-nom">{tr({ uz: "Mentorga ko'rsating", ru: 'Покажите Ментору' })}</b>
             <span className="kn-kulrang">{tr({ uz: 'Mentor postni o\'qiydi va sinf chatiga yuborish-yubormaslikni aytadi', ru: 'Ментор прочитает пост и скажет, отправлять ли его в чат класса' })}</span>
-            <div className="kn-karta-tug"><QTugma className="kn-halqa" onClick={mentorgaBos}>{tr({ uz: "Mentorga ko'rsatdim", ru: 'Показал Ментору' })}</QTugma></div>
+            <div className="kn-karta-tug"><QTugma className="kn-halqa" onClick={mentorgaBos}>{tr({ uz: "Mentorga ko'rsatdim", ru: "Ментор посмотрел" })}</QTugma></div>
           </>
         : <div className="kn-karta-tug chap">
             {havola && <QTugma ikkinchi onClick={nusxala}>{nusxa ? tr({ uz: 'Nusxalandi ✓', ru: 'Скопировано ✓' }) : tr({ uz: 'Nusxalash', ru: 'Копировать' })}</QTugma>}
-            {havola && <QTugma className="kn-halqa" onClick={() => yakunla('yubordim')}>{tr({ uz: 'Yubordim', ru: 'Отправил' })}</QTugma>}
+            {havola && <QTugma className="kn-halqa" onClick={() => yakunla('yubordim')}>{tr({ uz: 'Yubordim', ru: "Отправлено" })}</QTugma>}
             <QTugma ikkinchi onClick={() => yakunla('uyda')}>{havola ? tr({ uz: 'Kanallarimga uyda yuboraman', ru: 'Отправлю в свои каналы дома' }) : tr({ uz: 'Uyda yuboraman', ru: 'Отправлю дома' })}</QTugma>
           </div>)
         : <>
-            <span className="kn-kulrang">{tr({ uz: "Mentorga hali ko'rsatilmagan — post saqlanadi.", ru: 'Ментору ещё не показан — пост сохранится.' })}</span>
+            <span className="kn-kulrang">{tr({ uz: "Mentorga hali ko'rsatilmagan — post saqlanadi.", ru: "Пост ещё не показан Ментору — он сохранится." })}</span>
             <div className="kn-karta-tug"><QTugma className="kn-halqa" onClick={() => yakunla('uyda')}>{tr({ uz: 'Uyda yuboraman', ru: 'Отправлю дома' })}</QTugma></div>
           </>}
     </div>
   );
   const xulosa = done && (yuborildi
-    ? tr({ uz: "Post sinf chatida: to'rt qatori yozilgan, Mentorga ko'rsatilgan.", ru: 'Пост в чате класса: четыре строки написаны, Ментору показан.' })
+    ? tr({ uz: "Post sinf chatida: to'rt qatori yozilgan, Mentorga ko'rsatilgan.", ru: "Пост в чате класса: четыре строки написаны, Ментор его посмотрел." })
     : mentorga
       ? tr({ uz: 'Post tayyor — kanallaringizga uyda, ruxsat bilan yuborasiz.', ru: 'Пост готов — отправите в свои каналы дома, с разрешением.' })
       : tr({ uz: "Post tayyor — avval Mentorga ko'rsatasiz.", ru: 'Пост готов — сначала покажете Ментору.' }));
-  const chip = juft ? [{ uz: 'Yozish', ru: 'Запись' }, { uz: 'Sherik', ru: 'Партнёр' }, { uz: "Ro'yxat", ru: 'Список' }, { uz: 'Yuborish', ru: 'Отправка' }]
-    : [{ uz: 'Yozish', ru: 'Запись' }, { uz: "O'qish", ru: 'Чтение' }, { uz: "Ro'yxat", ru: 'Список' }, { uz: 'Yuborish', ru: 'Отправка' }];
+  const chip = juft ? [{ uz: 'Yozish', ru: "Написание" }, { uz: 'Sherik', ru: 'Партнёр' }, { uz: "Ro'yxat", ru: 'Список' }, { uz: 'Yuborish', ru: 'Отправка' }]
+    : [{ uz: 'Yozish', ru: "Написание" }, { uz: "O'qish", ru: 'Чтение' }, { uz: "Ro'yxat", ru: 'Список' }, { uz: 'Yuborish', ru: 'Отправка' }];
   return (
     <Stage eyebrow={juft ? tr({ uz: 'Juftlikda ish', ru: 'Работа в паре' }) : tr({ uz: 'Mustaqil ish', ru: 'Самостоятельная работа' })} screen={screen} scrollSignal={qism * 10 + (fiBosh + 1)} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: "To'rt qismni bajaring", ru: 'Выполните четыре части' })} (${Math.min(qism - 1, 4)}/4)`} onClick={onNext} /></>}>
       <QMustaqil
@@ -1669,14 +1705,14 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         mentor={<Mentor>{juft
           ? tr({ uz: "Post avval Mentorga ko'rsatiladi: to'rt qatorni yozing, keyin sherigingizga o'qiting.", ru: 'Пост сначала показывают Ментору: напишите четыре строки, потом дайте прочитать партнёру.' })
           : tr({ uz: "Post avval Mentorga ko'rsatiladi: to'rt qatorni yozing, keyin ovoz chiqarib o'qing.", ru: 'Пост сначала показывают Ментору: напишите четыре строки, потом прочитайте вслух.' })}</Mentor>}
-        qadamlar={!isMentor && !done && <QQadamlar qadamlar={chip.map((c, i) => `${i + 1} ${tr(c)}`)} joriy={Math.min(qism, 4) - 1} />}
+        qadamlar={!isMentor && !done && <QQadamlar qadamlar={chip.map(c => tr(c))} joriy={Math.min(qism, 4) - 1} />}
         forma={isMentor
           ? <div className="kn-fokus">{telefon}</div>
           : done
             ? <div className="kn-fokus"><ChatOyna nom={tr({ uz: 'Sinf chati', ru: 'Чат класса' })} keng yashil={!!yashil}><PostPufak bolaklar={bolaklar} holat={telHolat} /></ChatOyna><QXulosa>{xulosa}</QXulosa></div>
             : <div className="kn-split">{telefon}{yozishKarta || sherikKarta || royxatKarta || yuborishKarta}</div>}
       >
-        <MentorPracticeStats live={live} screen={screen} />
+        <MentorPracticeStats live={live} screen={screen} sanoq={[{ y: { uz: 'Post yozdi', ru: 'Написали пост' }, zona: PRACTICE_BASE }, { y: { uz: "Mentorga ko'rsatdi", ru: 'Показали Ментору' }, zona: ZONA_2 }, { y: { uz: 'Sinf chatiga yubordi', ru: 'Отправили в чат класса' }, zona: ZONA_3 }]} />
       </QMustaqil>
       {qatlam}
     </Stage>
@@ -1715,9 +1751,9 @@ const KOD_VAZIFA = [
 // Kod oynasi shart yorliqlarida kod-chip yo'q — belgisiz matn
 const kodYorliq = (v) => ({ uz: v.uz.split(String.fromCharCode(96)).join(''), ru: v.ru.split(String.fromCharCode(96)).join('') });
 const KOD_SHART = [
-  { uz: "1 — «guruh» belgili havoladan «guruh» chiqsin.", ru: '1 — из ссылки с меткой «guruh» пусть выйдет «guruh».' },
-  { uz: '2 — Belgisiz havoladan «belgisiz» chiqsin.', ru: '2 — из ссылки без метки пусть выйдет «belgisiz».' },
-  { uz: "3 — Namuna sahifada to'rt qator, har birida kanal bo'lsin.", ru: '3 — на странице-примере четыре строки, в каждой — канал.' }
+  { uz: "1 — «guruh» belgili havoladan «guruh» chiqsin.", ru: "1 — Из ссылки с меткой «guruh» должно выйти «guruh»." },
+  { uz: '2 — Belgisiz havoladan «belgisiz» chiqsin.', ru: "2 — Из ссылки без метки должно выйти «belgisiz»." },
+  { uz: "3 — Namuna sahifada to'rt qator, har birida kanal bo'lsin.", ru: "3 — На странице-примере четыре строки, в каждой — канал." }
 ];
 const KOD_TASK = {
   eyebrow: { uz: 'Kod yozish', ru: 'Пишем код' },
@@ -1793,9 +1829,9 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     }
   };
   return (
-    <Stage eyebrow={tr({ uz: 'Kod yozish', ru: 'Пишем код' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !stage2 ? tr({ uz: '① Kod-savolini yeching', ru: '① Решите вопрос о коде' }) : tr({ uz: '② Kodni yozing', ru: '② Напишите код' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Kod yozish', ru: 'Пишем код' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !stage2 ? tr({ uz: '① Kod-savolini yeching', ru: "① Ответьте на вопрос по коду" }) : tr({ uz: '② Kodni yozing', ru: '② Напишите код' })} onClick={onNext} /></>}>
       <QKod
-        sarlavha={tr({ uz: <>Havoladan kanalni topadigan <A>kod yozamiz.</A></>, ru: <>Пишем <A>код,</A> который находит канал по ссылке.</> })}
+        sarlavha={tr({ uz: <>Havoladan kanalni topadigan <A>kod yozamiz.</A></>, ru: <>Пишем код, который <A>находит канал по ссылке.</A></> })}
         mentor={<Mentor>{tr({ uz: 'Har kanalga havola oxiriga belgi qo\'shiladi — kod shu belgini o\'qiydi.', ru: 'К ссылке для каждого канала в конце добавляют метку — код читает эту метку.' })}</Mentor>}
         vazifa={<>
           {!gpick && !isMentor && !done ? (
@@ -1817,14 +1853,14 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {done && <QXulosa>{tr({ uz: "Kod to'rt havolaning kanalini topdi; belgisi yo'q havola — «belgisiz».", ru: 'Код нашёл канал у четырёх ссылок; ссылка без метки — «belgisiz».' })}</QXulosa>}
         </>}
         yordam={stage2 && <div className="kn-kyordam">
-          <QTugma ikkinchi aria-expanded={yordam} onClick={() => setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>
+          <QTugma ikkinchi aria-expanded={yordam} onClick={() => setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>
           {yordam && <>
             <QIzoh>{fmtCode(tr({ uz: '`new URLSearchParams(belgilar)` belgilarni o\'qiydi, `.get("kanal")` esa `kanal` qiymatini beradi; belgi bo\'lmasa `get` — `null` qaytaradi.', ru: '`new URLSearchParams(belgilar)` читает метки, а `.get("kanal")` даёт значение `kanal`; если метки нет, `get` возвращает `null`.' }))}</QIzoh>
             <QIzoh>{fmtCode(tr({ uz: '`null` bo\'lsa `"belgisiz"` qaytaring — `||` yoki `if` bilan.', ru: 'Если `null` — верните `"belgisiz"` через `||` или `if`.' }))}</QIzoh>
           </>}
         </div>}
         {...{ [QKOD_ONG]: <div className="kn-kodoyna">
-          {stage2 && !done && <div className="kn-mgap fade-step"><img src={MENTOR_IMG} alt="" aria-hidden="true" /><span>{tr({ uz: "Tugmani bosing — kod oynasi ochiladi: kodni yozasiz va natijasini shu yerda ko'rasiz.", ru: 'Нажмите кнопку — откроется окно кода: вы пишете код и сразу видите результат.' })}</span></div>}
+          {stage2 && !done && <div className="kn-mgap fade-step"><img src={MENTOR_IMG} alt="" aria-hidden="true" /><span>{tr({ uz: "Tugmani bosing — kod oynasi ochiladi: kodni yozasiz va natijasini shu yerda ko'rasiz.", ru: "Нажмите кнопку — откроется окно кода: напишете код и увидите результат прямо здесь." })}</span></div>}
           {stage2 && <div className="kn-amal"><QTugma className={cxx(!done && !isMentor && 'kn-halqa')} ikkinchi={done} onClick={() => setOpen(true)}>{tr({ uz: 'Kompilyatorni ochish', ru: 'Открыть компилятор' })}</QTugma></div>}
           {done
             ? <ul className="kn-kod-natija fade-step">{['guruh', 'sinf', 'instagram', 'belgisiz'].map((k, i) => <li key={k} style={{ '--i': i }}><b>kanal: {k}</b> · https://maydon-jamoa.example/{k === 'belgisiz' ? '' : '?kanal=' + k}</li>)}</ul>
@@ -1949,13 +1985,13 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang — 12 savol, ✔ o'rni MD dagidek: A 2·5·10 · B 3·7·11 · C 1·6·8 · D 4·9·12 (3/3/3/3)
 const QUIZ_BANK = [
-  { q: { uz: 'Intervyuda hamma «Telegram guruhida yozamiz» dedi. Bu qaysi savolga dalil?', ru: 'В интервью все сказали «пишем в Telegram-группе». Доказательство для какого вопроса?' }, opts: [{ uz: "Siz bu guruhda a'zomisiz?", ru: 'Вы состоите в этой группе?' }, { uz: 'Bu guruhda ruxsat bormi?', ru: 'Есть ли разрешение в этой группе?' }, { uz: 'Auditoriyangiz shu yerdami?', ru: 'Ваша аудитория здесь?' }, { uz: 'Bu guruhda necha kishi bor?', ru: 'Сколько людей в группе?' }], correct: 2 },
+  { q: { uz: 'Intervyuda hamma «Telegram guruhida yozamiz» dedi. Bu qaysi savolga dalil?', ru: "В интервью все сказали «пишем в Telegram-группе». Довод для какого вопроса?" }, opts: [{ uz: "Siz bu guruhda a'zomisiz?", ru: 'Вы состоите в этой группе?' }, { uz: 'Bu guruhda ruxsat bormi?', ru: 'Есть ли разрешение в этой группе?' }, { uz: 'Auditoriyangiz shu yerdami?', ru: 'Ваша аудитория здесь?' }, { uz: 'Bu guruhda necha kishi bor?', ru: 'Сколько людей в группе?' }], correct: 2 },
   { q: { uz: 'Mentor misolida shahar futbol kanali nega tanlanmadi?', ru: 'Почему в примере Ментора не выбран городской футбольный канал?' }, opts: [{ uz: "A'zo emas va ruxsat ham yo'q", ru: 'Не состоит и разрешения нет' }, { uz: 'Futbol haqida yozilmas ekan', ru: 'Там не пишут о футболе' }, { uz: 'Kanalda odam juda kam ekan', ru: 'В канале очень мало людей' }, { uz: 'Kanal endigina ochilgan ekan', ru: 'Канал только что открыт' }], correct: 0 },
   { q: { uz: "Sinfdoshingiz guruhga qo'shilgan kuniyoq post yubordi. Nima qilinmadi?", ru: 'Одноклассник отправил пост в день вступления в группу. Что не сделано?' }, opts: [{ uz: "Postda birorta rasm yo'q edi", ru: 'В посте не было картинки' }, { uz: "Egasidan ruxsat so'ralmadi", ru: 'Не спросили разрешения владельца' }, { uz: 'Post qisqaroq qilib yozilmadi', ru: 'Пост не написали короче' }, { uz: 'Havola eng oxiriga yozilmadi', ru: 'Ссылку не поставили в самый конец' }], correct: 1 },
   { q: { uz: 'Postning qaysi qatori odamni sahifaga olib boradi?', ru: 'Какая строка поста ведёт человека на страницу?' }, opts: [{ uz: 'Kim uchun — postdagi birinchi gap', ru: 'Для кого — первая фраза поста' }, { uz: 'Nima foyda — odam nimani olishi', ru: 'Какая польза — что получит человек' }, { uz: 'Halol holat — hozir nima tayyor', ru: 'Честное состояние — что готово сейчас' }, { uz: 'Bitta harakat — lending havolasi', ru: 'Одно действие — ссылка на лендинг' }], correct: 3 },
   { q: { uz: 'Postingizda «Tez orada hamma narsa bo\'ladi» deb yozdingiz. Nima qilasiz?', ru: 'Вы написали в посте «Скоро будет всё». Что сделаете?' }, opts: [{ uz: 'Hozir tayyor narsani yozasiz', ru: 'Напишете, что готово сейчас' }, { uz: 'Gapni oxirgi qatorga surasiz', ru: 'Перенесёте фразу в последнюю строку' }, { uz: "Gap oxiriga undov qo'yasiz", ru: 'Поставите восклицательный знак' }, { uz: 'Gapni qalin harfda yozasiz', ru: 'Напишете фразу жирным' }], correct: 0 },
-  { q: { uz: "Postga qaysi ma'lumot yozilmaydi?", ru: 'Какие данные не пишут в пост?' }, opts: [{ uz: 'Mahsulotning nomi', ru: 'Название продукта' }, { uz: 'Lendingning havolasi', ru: 'Ссылку на лендинг' }, { uz: 'Maktabingiz raqami', ru: 'Номер вашей школы' }, { uz: 'Mahsulotning foydasi', ru: 'Пользу продукта' }], correct: 2 },
-  { q: { uz: 'Guruhda notanish odam uchrashishni taklif qildi. Nima qilasiz?', ru: 'Незнакомец в группе предложил встретиться. Что сделаете?' }, opts: [{ uz: "Yolg'iz o'zingiz borib ko'rasiz", ru: 'Пойдёте один посмотреть' }, { uz: 'Faqat kattalar bilan hal qilasiz', ru: 'Решите только со взрослыми' }, { uz: 'Sinfdosh bilan ikkovlashib borasiz', ru: 'Пойдёте вдвоём с одноклассником' }, { uz: 'Unga uy manzilingizni yozasiz', ru: 'Напишете ему домашний адрес' }], correct: 1 },
+  { q: { uz: "Postga qaysi ma'lumot yozilmaydi?", ru: 'Какие данные не пишут в пост?' }, opts: [{ uz: 'Mahsulotning nomi', ru: 'Название продукта' }, { uz: 'Lendingning havolasi', ru: "Ссылка на лендинг" }, { uz: 'Maktabingiz raqami', ru: 'Номер вашей школы' }, { uz: 'Mahsulotning foydasi', ru: "Польза продукта" }], correct: 2 },
+  { q: { uz: 'Guruhda notanish odam uchrashishni taklif qildi. Nima qilasiz?', ru: 'Незнакомец в группе предложил встретиться. Что сделаете?' }, opts: [{ uz: "Yolg'iz o'zingiz borib ko'rasiz", ru: "Пойдёте в одиночку" }, { uz: 'Faqat kattalar bilan hal qilasiz', ru: 'Решите только со взрослыми' }, { uz: 'Sinfdosh bilan ikkovlashib borasiz', ru: 'Пойдёте вдвоём с одноклассником' }, { uz: 'Unga uy manzilingizni yozasiz', ru: 'Напишете ему домашний адрес' }], correct: 1 },
   { q: { uz: 'Facebook voqeasida nima hajmdan muhimroq?', ru: 'Что в истории Facebook важнее размера?' }, opts: [{ uz: "Saytdagi rasmlar ko'pligi", ru: 'Много картинок на сайте' }, { uz: "Funksiyalarning ko'pligi", ru: 'Много функций' }, { uz: 'Auditoriyaning zichligi', ru: 'Плотность аудитории' }, { uz: 'Asoschilarning tajribasi', ru: 'Опыт основателей' }], correct: 2 },
   { q: { uz: 'Facebook hamma uchun qachon ochilgan?', ru: 'Когда Facebook открылся для всех?' }, opts: [{ uz: 'Birinchi kuniyoq', ru: 'В первый же день' }, { uz: 'Bir oydan keyin', ru: 'Через месяц' }, { uz: 'Besh yildan keyin', ru: 'Через пять лет' }, { uz: 'Ikki yildan keyin', ru: 'Через два года' }], correct: 3 },
   { q: { uz: "Guruh egasidan ruxsat so'radingiz, javob yo'q. Nima qilasiz?", ru: 'Вы спросили разрешения у владельца группы, ответа нет. Что сделаете?' }, opts: [{ uz: 'Boshqa kanalingizdan boshlaysiz', ru: 'Начнёте с другого своего канала' }, { uz: 'Javob kutmay guruhga yuborasiz', ru: 'Отправите в группу, не дожидаясь' }, { uz: "A'zolarga alohida yozib chiqasiz", ru: 'Напишете участникам по отдельности' }, { uz: 'Boshqa akkauntdan guruhga yozasiz', ru: 'Напишете в группу с другого аккаунта' }], correct: 0 },
@@ -2470,29 +2506,67 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
 // ===== 🛠️ JONLI PRAKTIKA (reusable) — o'quvchi VS Code'da bajaradi, ustoz kuzatadi =====
 // signal zonasi: <100 test · 100+ arena · 500+ praktika (to'qnashmaydi).
 const PRACTICE_BASE = 500;
+// Qo'shimcha Mentor statistikasi (MD «Mentor statistikasi», F-1006-389; 11-Modul MentorSanoq naqshi).
+// Server har zonada o'quvchining BIRINCHI signalini saqlaydi — shuning uchun har holat o'z zonasida: 500 — bajardi (yuqorida), 600 va 700 — ekranga xos holatlar.
+const ZONA_2 = 600;
+const ZONA_3 = 700;
+const _belgilar = new Set();
+const jonliBelgi = (live, zona, screen, picked = 0) => {
+  if (!live || live.mode !== 'student') return;
+  const k = zona + screen;
+  if (_belgilar.has(k)) return;
+  _belgilar.add(k);
+  live.submitAnswer(k, 'mstat', picked, true, 0);
+};
+// Jonli dars: o'quvchiga sinf holati (MD 9-ekran «Sinfda: N bajardi · N hali bajarmoqda»; 11-Modul SinfHolat naqshi)
+const SinfHolat = ({ live, screen }) => {
+  const [d, setD] = useState(null);
+  const pin = live && live.mode === 'student' && live.pin;
+  useEffect(() => {
+    if (!pin) return undefined;
+    let on = true, t = null;
+    const ayl = async () => {
+      try { const [pl, rows] = await Promise.all([livePlayers(pin), liveAnswers(pin, PRACTICE_BASE + screen)]); if (on) setD({ jami: pl.length, ok: new Set(rows.map(r => r.player_id)).size }); } catch { /* keyingi aylanishda */ }
+      if (on) t = setTimeout(ayl, 3000);
+    };
+    ayl();
+    return () => { on = false; clearTimeout(t); };
+  }, [pin, screen]);
+  if (!d) return null;
+  return <p className="kn-sinf">{tr({ uz: `Sinfda: ${d.ok} bajardi · ${Math.max(0, d.jami - d.ok)} hali bajarmoqda`, ru: `В классе: ${d.ok} выполнили · ${Math.max(0, d.jami - d.ok)} ещё выполняют` })}</p>;
+};
 // Mentor ko'rinishi sloti — "kim bajardi" jonli chiplar paneli. JONLI roli to'ldiradi.
-const MentorPracticeStats = ({ live, screen }) => {
-  const [data, setData] = useState({ players: null, doneIds: new Set() });
+// sanoq — [{ y: { uz, ru }, zona, shart?, qiymat? }] yorliqli sonlar · chip — { zona, t: (qator) => matn, toliq?: (qator) => bool } o'quvchi yonidagi qisqa son
+const MentorPracticeStats = ({ live, screen, sanoq, chip }) => {
+  const zonalar = [...new Set([...(sanoq || []).map(s => s.zona), ...(chip ? [chip.zona] : [])].filter(z => z !== PRACTICE_BASE))];
+  const [data, setData] = useState({ players: null, rows: [], z: {} });
   useEffect(() => {
     if (!live || live.mode !== 'mentor' || !live.pin) return;
     let on = true, t = null;
     const tick = async () => {
       try {
         // Praktika signali 500+ zonasida (test <100, arena 100+ bilan to'qnashmaydi)
-        const [players, rows] = await Promise.all([livePlayers(live.pin), liveAnswers(live.pin, PRACTICE_BASE + screen)]);
-        if (on) setData({ players, doneIds: new Set(rows.map(r => r.player_id)) });
+        const [players, rows, ...qolgan] = await Promise.all([livePlayers(live.pin), liveAnswers(live.pin, PRACTICE_BASE + screen), ...zonalar.map(z => liveAnswers(live.pin, z + screen))]);
+        if (on) setData({ players, rows, z: Object.fromEntries(zonalar.map((z, i) => [z, qolgan[i]])) });
       } catch {}
       if (on) t = setTimeout(tick, 3000);
     };
     tick();
     return () => { on = false; clearTimeout(t); };
-  }, [live && live.pin, screen]);
+  }, [live && live.pin, screen]); // eslint-disable-line
   if (!live || live.mode !== 'mentor') return null;
   const players = data.players || [];
-  const doers = players.filter(p => data.doneIds.has(p.id));
-  const waiting = players.filter(p => !data.doneIds.has(p.id));
+  const qatorlar = (z) => (z === PRACTICE_BASE ? data.rows : data.z[z] || []);
+  const doneIds = new Set(data.rows.map(r => r.player_id));
+  const sonOl = (s) => new Set(qatorlar(s.zona).filter(r => !s.shart || s.shart(r)).map(r => r.player_id)).size;
+  const chipM = chip ? new Map(qatorlar(chip.zona).map(r => [r.player_id, r])) : null;
+  const chipT = (p) => { const r = chipM && chipM.get(p.id); return r ? ` · ${chip.t(r)}` : ''; };
+  const toliq = (p) => { const r = chipM && chipM.get(p.id); return !!(r && chip.toliq && chip.toliq(r)); };
+  const doers = players.filter(p => doneIds.has(p.id));
+  const waiting = players.filter(p => !doneIds.has(p.id));
   return (
     <div className="lp-mstats fade-up">
+      {sanoq && sanoq.length > 0 && <div className="lp-msanoq">{sanoq.map((s, i) => <div key={i} className="lp-msanoq-q"><b>{data.players === null ? '—' : s.qiymat ? s.qiymat(qatorlar(s.zona)) : `${sonOl(s)} / ${players.length}`}</b><span>{tr(s.y)}</span></div>)}</div>}
       <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Kim bajardi', ru: 'Кто выполнил' })} — {doers.length}/{players.length}</div>
       {data.players === null ? (
         <p className="small" style={{ color: T.ink2, margin: 0, fontStyle: 'italic' }}>{tr({ uz: 'Yuklanmoqda…', ru: 'Загружается…' })}</p>
@@ -2500,8 +2574,8 @@ const MentorPracticeStats = ({ live, screen }) => {
         <p className="small" style={{ color: T.ink2, margin: 0, fontStyle: 'italic' }}>{tr({ uz: "Hali hech kim qo'shilmagan.", ru: 'Пока никто не присоединился.' })}</p>
       ) : (
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-          {doers.map(p => <span key={p.id} className="mstats-wait-chip" style={{ background: T.okFon, color: T.ok }}>✓ {p.nickname}</span>)}
-          {waiting.map(p => <span key={p.id} className="mstats-wait-chip" style={{ opacity: 0.6 }}>{p.nickname}</span>)}
+          {doers.map(p => <span key={p.id} className={`mstats-wait-chip${toliq(p) ? ' toliq' : ''}`} style={{ background: T.okFon, color: T.ok }}>✓ {p.nickname}{chipT(p)}</span>)}
+          {waiting.map(p => <span key={p.id} className="mstats-wait-chip" style={{ opacity: 0.6 }}>{p.nickname}{chipT(p)}</span>)}
         </div>
       )}
     </div>
@@ -2512,7 +2586,7 @@ const MentorPracticeStats = ({ live, screen }) => {
 const KARTOCHKALAR = [
   { front: { uz: 'Kanal nima?', ru: 'Что такое канал?' }, back: { uz: 'Odamlar mahsulot haqida eshitadigan joy', ru: 'Место, где люди слышат о продукте' } },
   { front: { uz: 'Bizda kanal qaysi uch savol bilan tanlanadi?', ru: 'По каким трём вопросам у нас выбирают канал?' }, back: { uz: "Auditoriyangiz shu yerdami? Siz u yerda a'zomisiz? U yerda post yozishga ruxsat bormi?", ru: 'Ваша аудитория здесь? Вы там состоите? Есть ли там разрешение писать пост?' } },
-  { front: { uz: "«Auditoriyangiz shu yerdami?» savoliga dalil qayerdan olinadi?", ru: 'Откуда берут доказательство для вопроса «Ваша аудитория здесь?»' }, back: { uz: "Intervyudagi «Hozir nima bilan» javobidan", ru: 'Из ответа «Чем сейчас» в интервью' } },
+  { front: { uz: "«Auditoriyangiz shu yerdami?» savoliga dalil qayerdan olinadi?", ru: "Откуда берут довод для вопроса «Ваша аудитория здесь?»" }, back: { uz: "Intervyudagi «Hozir nima bilan» javobidan", ru: 'Из ответа «Чем сейчас» в интервью' } },
   { front: { uz: "Uch savoldan biriga «yo'q» bo'lsa, nima bo'ladi?", ru: 'Что будет, если на один из трёх вопросов ответ «нет»?' }, back: { uz: 'U joy kanal sifatida tanlanmaydi', ru: 'Это место не выбирают каналом' } },
   { front: { uz: 'Post nima?', ru: 'Что такое пост?' }, back: { uz: 'Kanalga yoziladigan matn', ru: 'Текст, который пишут в канал' } },
   { front: { uz: "Bizda post qaysi to'rt qatordan iborat?", ru: 'Из каких четырёх строк у нас состоит пост?' }, back: { uz: 'Kim uchun, nima foyda, bitta harakat va halol holat', ru: 'Для кого, какая польза, одно действие и честное состояние' } },
@@ -2549,7 +2623,7 @@ const HW_KARTA = [
 // Agentga talab — MD aynan (agentga matn buyruq shaklida, T-002; lint:til ogohlantirishi kutilgan)
 const HW_PROMPT1 = [
   { uz: 'Qayerda: lending/index.html. Boshqa fayl va papkalarga tegma.', ru: 'Где: lending/index.html. Другие файлы и папки не трогай.' },
-  { uz: "Nima qilsin: sahifa ochilganda havoladagi kanal belgisini o'qisin (masalan, ?kanal=sinf) va Umami'ga tashrif hodisasini yozsin, ma'lumotida kanal bo'lsin. Belgi bo'lmasa — kanal qiymati \"belgisiz\".", ru: 'Что сделать: при открытии страницы прочитай метку kanal из ссылки (например, ?kanal=sinf) и запиши в Umami событие tashrif, в данных — kanal. Если метки нет — значение kanal "belgisiz".' },
+  { uz: "Nima qilsin: sahifa ochilganda havoladagi kanal belgisini o'qisin (masalan, ?kanal=sinf) va Umami'ga tashrif hodisasini yozsin, ma'lumotida kanal bo'lsin. Belgi bo'lmasa — kanal qiymati \"belgisiz\".", ru: "Что сделать: при открытии страницы прочитай метку канала из ссылки (например, ?kanal=sinf) и запиши в Umami событие tashrif, в его данных — kanal. Если метки нет — значение kanal \"belgisiz\"." },
   { uz: "Nima buzilmasin: sahifa matni, asosiy tugma va uning Umami hodisasi o'zgarmasin. Sahifa hech qanday shaxsiy ma'lumot yig'masin. Umami yuklanmasa ham sahifa ishlasin. O'zgargan fayllarni ayt.", ru: 'Что не сломать: текст страницы, главная кнопка и её событие Umami не должны меняться. Страница не должна собирать никаких личных данных. Страница должна работать, даже если Umami не загрузился. Назови изменённые файлы.' }
 ];
 const HW_PROMPT3 = [
@@ -2565,7 +2639,7 @@ const HwCard = ({ keyingi, trek }) => (
         <p>{fmtCode(tr({ uz: "Antigravity'da o'z repo'ngizni oching; `git status` — `.env` ko'rinmasin. Agentga talab:", ru: 'Откройте свой репозиторий в Antigravity; `git status` — `.env` не должен быть виден. Требование агенту:' }))}</p>
         <QPrompt til={__lang} satrlar={HW_PROMPT1.map(tr)} />
         <p>{fmtCode(tr({ uz: "Keyin: `git status` — faqat `lending/index.html` → `git add lending/index.html` → commit → `git push`; Netlify odatda o'zi yangilanadi. Lending havolasini oxiriga `?kanal=sinf` qo'shib oching — Umami'da `tashrif` hodisasi ko'rinishi kerak (bir daqiqa kutib yangilang; ba'zi brauzer sozlamalarida Umami yozmasligi mumkin). Umami sahifa ochilishini o'zi ham sanaydi — `tashrif` o'sha ochilishni kanal belgisi bilan yozadi. Agentning hisobotiga emas — Umami'ga qarang.", ru: 'Затем: `git status` — только `lending/index.html` → `git add lending/index.html` → commit → `git push`; Netlify обычно обновляется сам. Откройте ссылку лендинга, добавив в конец `?kanal=sinf`, — в Umami должно появиться событие `tashrif` (подождите минуту и обновите; при некоторых настройках браузера Umami может не записать). Umami и сам считает открытия страницы — `tashrif` записывает это открытие с меткой канала. Смотрите не на отчёт агента, а в Umami.' }))}</p>
-        <p>{fmtCode(tr({ uz: "Ishlamasa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas). Lending hali internetda bo'lmasa — avval uni Netlify'ga chiqaring (1-dars uyga vazifasi).", ru: 'Не работает — отправьте агенту строку ошибки (не значения `.env`, токены и ключи). Если лендинга ещё нет в интернете — сначала опубликуйте его на Netlify (домашнее задание 1-го урока).' }))}</p>
+        <p>{fmtCode(tr({ uz: "Ishlamasa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas). Lending hali internetda bo'lmasa — avval uni Netlify'ga chiqaring (1-dars uyga vazifasi).", ru: "Если не работает — отправьте агенту строку ошибки (не значения `.env`, не токены и ключи). Если лендинга ещё нет в интернете — сначала выложите его на Netlify (домашнее задание 1-го урока)." }))}</p>
       </div></li>
       <li><i>②</i><div>
         <b>{tr({ uz: 'Haqiqiy kanalingizga post.', ru: 'Пост в ваш настоящий канал.' })}</b>
@@ -2578,7 +2652,7 @@ const HwCard = ({ keyingi, trek }) => (
         <p>{fmtCode(tr({ uz: "Terminalda, ilova papkasida (Mentor misolida `mobil/`): `npm install --global eas-cli` → `eas login` (Expo akkauntingiz bilan; akkaunt ma'lumotini hech kimga bermang) → `eas build:configure` → agentga talab:", ru: 'В терминале, в папке приложения (в примере Ментора `mobil/`): `npm install --global eas-cli` → `eas login` (со своим аккаунтом Expo; данные аккаунта никому не давайте) → `eas build:configure` → требование агенту:' }))}</p>
         <QPrompt til={__lang} satrlar={HW_PROMPT3.map(tr)} />
         <p>{fmtCode(tr({ uz: "→ `eas build -p android --profile preview` — kalit (keystore) so'ralsa, EAS o'zi yaratadi va saqlaydi. Tayyor bo'lgach havola chiqadi: telefoningizda oching va o'rnating — Android ogohlantirish ko'rsatadi: ilova do'kondan emas, to'g'ridan-to'g'ri o'rnatiladi.", ru: '→ `eas build -p android --profile preview` — если спросят ключ (keystore), EAS создаст и сохранит его сам. Когда будет готово, появится ссылка: откройте на телефоне и установите — Android покажет предупреждение: приложение ставится не из магазина, а напрямую.' }))}</p>
-        <p>{fmtCode(tr({ uz: "Bepul navbat sekin bo'lishi mumkin; bepul hisobda oyiga 15 tagacha Android o'rnatish fayli tayyorlash mumkin. Xato chiqsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas).", ru: 'Бесплатная очередь может быть медленной; на бесплатном аккаунте можно готовить до 15 установочных файлов Android в месяц. Если ошибка — отправьте агенту строку ошибки (не значения `.env`, токены и ключи).' }))}</p>
+        <p>{fmtCode(tr({ uz: "Bepul navbat sekin bo'lishi mumkin; bepul hisobda oyiga 15 tagacha Android o'rnatish fayli tayyorlash mumkin. Xato chiqsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas).", ru: "Бесплатная очередь может быть медленной; на бесплатном аккаунте можно готовить до 15 установочных файлов Android в месяц. Если появится ошибка — отправьте агенту строку ошибки (не значения `.env`, не токены и ключи)." }))}</p>
       </div></li>}
     </ol>
     {keyingi && <span className="kn-hw-keyingi">{keyingi}</span>}
@@ -2629,7 +2703,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     kanallar: { uz: <>Kanallar tanlandi — <A>postni yozib tugating.</A></>, ru: <>Каналы выбраны — <A>допишите пост.</A></> },
     boshlandi: { uz: <>Kanal tanlash boshlandi — <A>qolganini tugating.</A></>, ru: <>Выбор каналов начат — <A>завершите остальное.</A></> },
     qisman: { uz: <>Post hali tugamagan — <A>to'rt qatorni yozib chiqing.</A></>, ru: <>Пост ещё не закончен — <A>допишите четыре строки.</A></> },
-    yoq: { uz: <>Kanal hali tanlanmagan — <A>uch savol bilan tanlab chiqing.</A></>, ru: <>Канал ещё не выбран — <A>выберите по трём вопросам.</A></> }
+    yoq: { uz: <>Kanal hali tanlanmagan — <A>uch savol bilan tanlab chiqing.</A></>, ru: <>Канал ещё не выбран — <A>выберите его по трём вопросам.</A></> }
   };
   const toliq = holat === 'yuborildi' || holat === 'mentorga';
   const keyingi = tr({ uz: <>Keyingi dars — <b>«50 foydalanuvchiga qanday yetasiz?»</b></>, ru: <>Следующий урок — <b>«Как дойти до 50 пользователей?»</b></> });
@@ -2789,7 +2863,7 @@ export default function PmChannelsLesson({ lang: langProp, onFinished, liveToken
         /* === DARSNING O'Z VIZUALI — ChatTelefon (ct-), lending maketi (kl-, kj-), Facebook sahnasi (fb-), dars elementlari (kn-). Faqat qolip tokenlari (D3); brend rangi — faqat nom yorlig'ida === */
         .kn-tg { font-weight: 800; font-style: normal; color: #229ED9; letter-spacing: 0.01em; }
         .kn-fb { font-weight: 800; font-style: normal; color: #1877F2; }
-        .kn-mj { font-weight: 800; color: ${T.ok}; }
+        .kn-mj { font-weight: 800; color: ${MAYDON_RANG}; }
         .kn-teg { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; text-transform: none; letter-spacing: 0; color: ${T.ink2}; background: ${T.bg}; border: 1px solid ${T.line}; border-radius: 6px; padding: 1px 6px; }
         /* Navbatdagi harakat: bitta tugma — halqa, puls 3 marta, kattalashishsiz (E 40) */
         .kn-halqa { position: relative; outline: 2px solid ${T.accent}; outline-offset: 2px; animation: kn-puls 2.2s ease-out .3s 3; }
@@ -2833,6 +2907,7 @@ export default function PmChannelsLesson({ lang: langProp, onFinished, liveToken
         .ct-q.h-yoq .ct-q-y, .ct-q.h-kutish .ct-q-y { background: ${T.ink2}; }
         .ct-ava { grid-area: ava; align-self: start; width: 20px; height: 20px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; color: #fff; background: #229ED9; }
         .ct-q.mini .ct-ava { width: 30px; height: 30px; font-size: 13px; align-self: center; }
+        .ct-q:has(> .ct-q-y) .ct-q-nom { padding-right: 40px; } /* «kanal» belgisi nom ustiga tushmasin (layout D) */
         .ct-q-nom { grid-area: nom; min-width: 0; font-size: 10.5px; line-height: 1.2; font-weight: 800; color: ${T.ink}; overflow-wrap: anywhere; }
         .ct-q-alt { grid-area: alt; min-width: 0; display: flex; flex-direction: column; line-height: 1.2; }
         .ct-q-alt span { font-size: 9.5px; color: ${T.ink2}; }
@@ -2869,6 +2944,14 @@ export default function PmChannelsLesson({ lang: langProp, onFinished, liveToken
         .ct-holat.ok { color: ${T.ok}; animation: kn-tush .45s both; }
         .ct-atama { align-self: flex-start; font-size: 9.5px; font-weight: 800; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 99px; padding: 1px 8px; }
         .ct-b-m { overflow-wrap: anywhere; }
+        /* 4-ekran: post — ekranning asosiy matni, telefon kattaroq (F-1006-389; 9.5px o'qilmasdi) */
+        .ct-wrap.katta .ct-tel { width: 260px; height: 380px; border-radius: 30px; padding: 10px 9px; }
+        .ct-wrap.katta .ct-bar { height: 20px; font-size: 14px; }
+        .ct-wrap.katta .ct-chat-h, .ct-wrap.katta .ct-chat-h b { font-size: 12px; }
+        .ct-wrap.katta .ct-puf { padding: 8px 9px; gap: 3px; }
+        .ct-wrap.katta .ct-b { font-size: 12.5px; line-height: 1.4; padding: 2px 3px 3px; }
+        .ct-wrap.katta .ct-b-y { font-size: 10px; }
+        .ct-wrap.katta .ct-atama { font-size: 11px; }
         .kn-bolak { cursor: pointer; }
         .kn-bor { min-width: 64px; }
         .kn-darvoza { text-align: left; }
@@ -2889,12 +2972,12 @@ export default function PmChannelsLesson({ lang: langProp, onFinished, liveToken
         .kl-kor { position: relative; }
         .kl-ichi { display: flex; gap: 14px; align-items: center; padding: 14px 16px; }
         .kl-chap { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 9px; align-items: flex-start; }
-        .kl-nom { font-weight: 800; font-size: 13px; color: ${T.ok}; }
+        .kl-nom { font-weight: 800; font-size: 13px; color: ${MAYDON_RANG}; }
         h3.kl-sar { margin: 0; font-size: clamp(18px,2vw,22px); line-height: 1.2; font-weight: 800; color: ${T.ink}; letter-spacing: -0.01em; }
         .kl-tugma { font-weight: 800; font-size: 13px; border-radius: 10px; padding: 8px 14px; background: ${T.accent}; color: #fff; }
         .kj-tel { position: relative; width: 170px; height: 272px; flex: none; zoom: 0.62; display: flex; flex-direction: column; gap: 6px; border: 2px solid ${T.ink}; border-radius: 24px; padding: 8px; background: ${T.paper}; box-shadow: 0 12px 26px -14px rgba(${T.shadowBase},0.4); overflow: hidden; }
         .kj-bar { display: flex; align-items: center; justify-content: center; height: 16px; flex: none; }
-        .kj-nom { font-weight: 800; font-size: 12.5px; color: ${T.ok}; }
+        .kj-nom { font-weight: 800; font-size: 12.5px; color: ${MAYDON_RANG}; }
         .kj-ekran { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 4px; }
         .kj-sar { font-size: 13px; font-weight: 800; color: ${T.ink}; }
         .kj-kun { margin-top: 4px; font-size: 11px; font-weight: 700; color: ${T.ink2}; text-transform: uppercase; letter-spacing: 0.05em; }
@@ -3249,6 +3332,17 @@ export default function PmChannelsLesson({ lang: langProp, onFinished, liveToken
         @keyframes lp-done-pop { 0% { transform: scale(1); } 32% { transform: scale(1.05) translateY(-2px); } 60% { transform: scale(0.98); } 100% { transform: scale(1); } }
         @media (prefers-reduced-motion: reduce) { .lp-step.on .lp-check, .lp-done-btn.is-done { animation: none !important; } }
         .lp-mstats { background: ${T.accentSoft}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 6px; }
+        .ovoz { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border-radius: 12px; background: ${T.paper}; border: 1px solid ${T.line}; }
+        .ovoz-q { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) 28px; align-items: center; gap: 8px; font-size: 12.5px; color: ${T.ink2}; }
+        .ovoz-q.men { color: ${T.accent}; font-weight: 700; }
+        .ovoz-q b { text-align: right; color: ${T.ink}; font-variant-numeric: tabular-nums; }
+        .ovoz-y { height: 8px; border-radius: 4px; background: ${T.line}; overflow: hidden; }
+        .ovoz-y i { display: block; height: 100%; background: ${T.accent}; transition: width 0.6s ease-out; }
+        .kn-sinf { margin: 0; font-size: 12.5px; color: ${T.ink2}; }
+        .lp-msanoq { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+        .lp-msanoq-q { display: flex; align-items: baseline; gap: 6px; padding: 6px 10px; border-radius: 10px; background: ${T.paper}; border: 1px solid ${T.line}; font-size: 12.5px; color: ${T.ink2}; }
+        .lp-msanoq-q b { font-size: 15px; font-weight: 800; color: ${T.ink}; font-variant-numeric: tabular-nums; }
+        .mstats-wait-chip.toliq { box-shadow: inset 0 0 0 1.5px ${T.ok}; font-weight: 800; }
 
         /* === 🃏 FLASHCARDS — qolipda: QKartochka (DE-204) === */
 

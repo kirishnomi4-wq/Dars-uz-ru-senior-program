@@ -65,7 +65,7 @@ function useIsMobile(breakpoint = 640) {
 }
 
 const LESSON_META = { lessonId: 'm10-05-v1', lessonTitle: { uz: "Ulanish uzilsa: buzamiz va tuzatamiz", ru: "Если соединение оборвётся: ломаем и чиним" } };
-// 20 ekran · oqim: kirish → reja → (tushuncha → test)× → kod → tushuncha → test → sxema → mustaqil ish → final → 2 amaliyot bloki → podium → kartochkalar → yakun
+// 19 ekran · oqim: kirish → reja → (tushuncha → test)× → kod → tushuncha → test → sxema → mustaqil ish → final → 2 amaliyot bloki → podium → kartochkalar → yakun
 const HW_TOKENS = [
   { t: { uz: 'buzish yozuvi', ru: 'запись поломки' }, l: 6, tp: 20, s: 13, d: 6 },
   { t: { uz: 'qayta ulanish', ru: 'переподключение' }, l: 70, tp: 14, s: 12, d: 7.5 },
@@ -592,6 +592,8 @@ const lsOqi = (k) => { try { return JSON.parse(localStorage.getItem(k) || 'null'
 const NAMUNA_OYIN = { id: 1, vaqt: { uz: 'Shanba, 18:00', ru: 'Суббота, 18:00' }, joy: { uz: 'Mahalla maydoni', ru: 'Поле махалли' }, kerak: 10 };
 // Jonli xabar matni — tayanch 1.4 (so'zma-so'z)
 const JONLI_XABAR = { uz: "Shanba, 18:00 — yana bir o'yinchi qo'shildi: 9 / 10", ru: 'Суббота, 18:00 — присоединился ещё один игрок: 9 / 10' };
+// «Maydon Jamoa» nomi — 11-Modul tayanch 9.62 yashili (PM palitrasining ok yashilidan farqli; F-1006-389)
+const MAYDON_RANG = '#2E9E4F';
 const SAHNA = {
   t1: { uz: '1-telefon · siz', ru: 'Телефон 1 · вы' },
   t2: { uz: "2-telefon · boshqa o'yinchi", ru: 'Телефон 2 · другой игрок' },
@@ -633,23 +635,23 @@ const YOZUV_QATOR = [
 const USULLAR = [
   { k: 'internet', nom: { uz: 'Internetni uzish', ru: 'Отключить интернет' }, qilaman: { uz: "Uchish rejimini yoqaman; belgi «Ulanmoqda…» bo'lgach boshqa akkaunt o'zgarish qiladi; keyin o'chiraman.", ru: 'Включаю режим полёта; когда значок станет «Подключается…», другой аккаунт вносит изменение; потом выключаю.' } },
   { k: 'fon', nom: { uz: 'Fonga olib qaytarish', ru: 'Свернуть и вернуться' }, qilaman: { uz: "Boshqa ilovaga o'taman; shu payt boshqa akkaunt o'zgarish qiladi; bir daqiqadan keyin qaytaman.", ru: 'Переключаюсь на другое приложение; в это время другой аккаунт вносит изменение; через минуту возвращаюсь.' } },
-  { k: 'versiya', nom: { uz: "Backend'ning yangi versiyasi", ru: 'Новая версия Backend' }, qilaman: { uz: "Render'da Backend'ni qayta chiqaraman; belgi «Ulangan» bo'lgach, boshqa akkaunt o'zgarish qiladi.", ru: 'Перевыпускаю Backend на Render; когда значок станет «Подключено», другой аккаунт вносит изменение.' } }
+  { k: 'versiya', nom: { uz: "Backend'ning yangi versiyasi", ru: 'Новая версия Backend' }, qilaman: { uz: "Render'da Backend'ni qayta chiqaraman; belgi «Ulangan» bo'lgach, boshqa akkaunt o'zgarish qiladi.", ru: "Запускаю повторный деплой Backend на Render; когда значок станет «Подключено», другой аккаунт вносит изменение." } }
 ];
 const usulNom = (k) => (USULLAR.find(u => u.k === k) || USULLAR[0]).nom;
 // Mentor misolining buzish yozuvi (A-bo'lim 4-band jadvali, aynan) — 9, 11-ekranlar, A1/A2 kutilgan natija, A2 Yordami, 12-ekran Mentor rejimi
 const MENTOR_YOZUV = [
   { usul: 'internet', belgi: 'buzildi', keyin: 'takrorlanmadi',
-    qildim: { uz: "Uchish rejimini yoqdim; belgi «Ulanmoqda…» bo'lgach agent tekshiruv akkauntidan «Shanba, 18:00» ga qo'shildi; keyin uchish rejimini o'chirdim.", ru: 'Включил режим полёта; когда значок стал «Подключается…», агент с тестового аккаунта присоединился к «Суббота, 18:00»; потом выключил режим полёта.' },
+    qildim: { uz: "Uchish rejimini yoqdim; belgi «Ulanmoqda…» bo'lgach agent tekshiruv akkauntidan «Shanba, 18:00» ga qo'shildi; keyin uchish rejimini o'chirdim.", ru: "Включил режим полёта; когда значок стал «Подключается…», агент с проверочного аккаунта присоединился к «Суббота, 18:00»; потом выключил режим полёта." },
     kutdim: { uz: "Belgi «Ulangan» bo'lgach, «9 / 10» ko'rinadi.", ru: 'Когда значок станет «Подключено», будет видно «9 / 10».' },
     boldi: { uz: "Belgi «Ulangan», lekin «8 / 10» qoldi.", ru: 'Значок «Подключено», но осталось «8 / 10».' } },
   { usul: 'fon', belgi: 'buzilmadi', keyin: null,
-    qildim: { uz: "Boshqa ilovaga o'tdim; shu payt agent tekshiruv akkauntidan qo'shildi; bir daqiqadan keyin qaytdim.", ru: 'Переключился на другое приложение; в это время агент присоединился с тестового аккаунта; через минуту вернулся.' },
+    qildim: { uz: "Boshqa ilovaga o'tdim; shu payt agent tekshiruv akkauntidan qo'shildi; bir daqiqadan keyin qaytdim.", ru: "Переключился на другое приложение; в это время агент присоединился с проверочного аккаунта; через минуту вернулся." },
     kutdim: { uz: "Qaytganimda «9 / 10» ko'rinadi.", ru: 'Когда вернусь, будет видно «9 / 10».' },
     boldi: { uz: "Qaytganimda «9 / 10», belgi «Ulangan».", ru: 'Когда вернулся — «9 / 10», значок «Подключено».' } },
   { usul: 'versiya', belgi: 'buzildi', keyin: 'takrorlanmadi',
-    qildim: { uz: "Render'da Backend'ni qayta chiqardim; belgi yana «Ulangan» bo'lgach, ikkinchi telefonda o'yinni ochdim va agent tekshiruv akkauntidan qo'shildi.", ru: 'Перевыпустил Backend на Render; когда значок снова стал «Подключено», открыл игру на втором телефоне, и агент присоединился с тестового аккаунта.' },
-    kutdim: { uz: "Bitta jonli xabar; ikkinchi telefonda «Hozir ko'ryapti: 2».", ru: 'Одно живое сообщение; на втором телефоне «Hozir ko\'ryapti: 2».' },
-    boldi: { uz: "Jonli xabar ikki marta chiqdi; ikkinchi telefonda «Hozir ko'ryapti: 1».", ru: 'Живое сообщение появилось дважды; на втором телефоне «Hozir ko\'ryapti: 1».' } }
+    qildim: { uz: "Render'da Backend'ni qayta chiqardim; belgi yana «Ulangan» bo'lgach, ikkinchi telefonda o'yinni ochdim va agent tekshiruv akkauntidan qo'shildi.", ru: "Запустил повторный деплой Backend на Render; когда значок снова стал «Подключено», открыл игру на втором телефоне, и агент присоединился с проверочного аккаунта." },
+    kutdim: { uz: "Bitta jonli xabar; ikkinchi telefonda «Hozir ko'ryapti: 2».", ru: "Одно живое сообщение; на втором телефоне «Сейчас смотрят: 2»." },
+    boldi: { uz: "Jonli xabar ikki marta chiqdi; ikkinchi telefonda «Hozir ko'ryapti: 1».", ru: "Живое сообщение появилось дважды; на втором телефоне «Сейчас смотрят: 1»." } }
 ];
 // Buzishdan qayta tekshiruvgacha — 6 bo'lak (13-ekran final)
 const TUZATISH_YOLI = [
@@ -804,7 +806,7 @@ const Bashorat = ({ savol, variantlar, tanlov, onTanla }) => (tanlov == null
 // Taxmin natijasi — yashil xulosaning birinchi, kichik qatori (E 42): tanlangan javob qaytarilmaydi (u tepada turibdi)
 const Natija = ({ togri, haqiqat, haqYorliq }) => (togri
   ? <span className="bf-x-tx ok">{tr({ uz: "Taxminingiz to'g'ri chiqdi", ru: 'Ваше предположение оказалось верным' })} <b>✓</b></span>
-  : <span className="bf-x-tx">{tr({ uz: 'Taxminingiz', ru: 'Ваше предположение' })} <b className="yoq">✕</b> — {tr(haqYorliq || { uz: 'aslida', ru: 'на деле' })}: <b>{tx(haqiqat)}</b></span>);
+  : <span className="bf-x-tx">{tr({ uz: 'Taxminingiz', ru: 'Ваше предположение' })} <b className="yoq">✕</b> — {tr(haqYorliq || { uz: 'aslida', ru: "на самом деле" })}: <b>{tx(haqiqat)}</b></span>);
 // Bitta yashil quti: taxmin qatori · xulosa · izoh (E 42 — izoh alohida kulrang qator bo'lib osilmaydi)
 const XulosaQ = ({ natija, matn, izoh }) => <>{natija}<span className="bf-x-m">{matn}</span>{izoh && <span className="bf-x-iz">{izoh}</span>}</>;
 const navYorliq = (taxmin, q, jami, qadamY, done) => (done ? { uz: 'Davom etish', ru: 'Продолжить' }
@@ -824,7 +826,7 @@ const HOOK_OPTS = [
 const HOOK_JAVOB = {
   a: { uz: <><b>Qiziq fikr!</b> Hozir internet bor edi. Talabdagi chekka holat esa uzilishda bo'ladi — uni hali hech kim ko'rmadi.</>, ru: <><b>Интересная мысль!</b> Сейчас интернет был. А крайний случай из требования бывает при обрыве — его ещё никто не видел.</> },
   b: { uz: <><b>Aynan!</b> Chekka holat oddiy paytda ko'rinmaydi. Uni o'zingiz yuzaga keltirasiz va nima bo'lganiga qaraysiz.</>, ru: <><b>Именно!</b> Крайний случай в обычное время не виден. Вы сами его вызываете и смотрите, что произошло.</> },
-  c: { uz: <><b>Qiziq fikr!</b> Agentning «bajardim» degani — da'vo. Natijani o'zingiz ko'rmaguningizcha, u tekshirilmagan.</>, ru: <><b>Интересная мысль!</b> «Сделал» агента — это заявление. Пока вы сами не увидите результат, оно не проверено.</> }
+  c: { uz: <><b>Qiziq fikr!</b> Agentning «bajardim» degani — da'vo. Natijani o'zingiz ko'rmaguningizcha, u tekshirilmagan.</>, ru: <><b>Интересная мысль!</b> Слово агента «сделал» — это утверждение. Пока вы сами не увидите результат, оно не проверено.</> }
 };
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const avval = !!storedAnswer;
@@ -853,12 +855,12 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     <Stage eyebrow={tr({ uz: 'Dars · kirish', ru: 'Урок · введение' })} screen={screen} scrollSignal={sc} navContent={<NavNext optionalLive disabled={!javob} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className={cx('bf-k', faol && !javob && 'faol')}>
         <QKirish zoom={Zoomable}
-          sarlavha={tr({ uz: <>Ulanish uzilsa ham ishlashini <span className="italic" style={{ color: T.accent }}>qanday bilasiz</span>?</>, ru: <>Как вы узнаете, что всё работает <span className="italic" style={{ color: T.accent }}>и при обрыве соединения</span>?</> })}
+          sarlavha={tr({ uz: <>Ulanish uzilsa ham ishlashini <span className="italic" style={{ color: T.accent }}>qanday bilasiz</span>?</>, ru: <>Работает ли всё при обрыве — <span className="italic" style={{ color: T.accent }}>как вы узнаете</span>?</> })}
           mentor={<Mentor>{faol
             ? tr({ uz: "Endi o'ngdagi javoblardan birini tanlang.", ru: 'Теперь выберите один из ответов справа.' })
-            : tr({ uz: "Mentor misolida agent talabdagi uch chekka holatni «bajardim» dedi — ikkinchi telefonda «Qo'shilaman» ni bosing.", ru: 'В примере Ментора агент сказал, что «сделал» три крайних случая из требования, — нажмите «Qo\'shilaman» на втором телефоне.' })}</Mentor>}
+            : tr({ uz: "Mentor misolida agent talabdagi uch chekka holatni «bajardim» dedi — ikkinchi telefonda «Qo'shilaman» ni bosing.", ru: "В примере Ментора агент сказал, что «сделал» три крайних случая из требования, — нажмите «Присоединяюсь» на втором телефоне." })}</Mentor>}
           maket={<div className="bf-k0">
-            <div className="bf-agent fade-step"><Puf kim="Antigravity">{tr(AGENT_DEDI)}</Puf>{javob && <em className="bf-dava fade-step">{tr({ uz: "da'vo · tekshirilmagan", ru: 'заявление · не проверено' })}</em>}</div>
+            <div className="bf-agent fade-step"><Puf kim="Antigravity">{tr(AGENT_DEDI)}</Puf>{javob && <em className="bf-dava fade-step">{tr({ uz: "da'vo · tekshirilmagan", ru: "утверждение · не проверено" })}</em>}</div>
             <IkkiTelefonSahna ixcham
               t1={{ belgi: 'ulangan', son: son1, sonYangi: son1 === 9 && !avval, koryapti: 2, qoshildi: true, jx }}
               t2={{ belgi: 'ulangan', son: bosildi ? 9 : 8, sonYangi: bosildi && !avval, koryapti: 2, qoshildi: bosildi, onQoshil: bosildi ? null : qoshil, qoshilHalqa: !bosildi }}
@@ -891,15 +893,15 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz', ru: 'Начинаем' })} onClick={onNext} /></>}>
       <QReja zoom={Zoomable}
         sarlavha={tr({ uz: <>Bugun ilovangizni <span className="italic" style={{ color: T.accent }}>buzib ko'rasiz va tuzatasiz</span>.</>, ru: <>Сегодня вы <span className="italic" style={{ color: T.accent }}>сломаете и исправите</span> своё приложение.</> })}
-        mentor={<Mentor>{tr({ uz: "Avval Maydon Jamoa'da uch muammoni topib, sababini ko'rasiz. Keyin xuddi shuni o'z ilovangizda qilasiz.", ru: 'Сначала найдёте три проблемы в Maydon Jamoa и увидите их причину. Потом сделаете то же в своём приложении.' })}</Mentor>}
+        mentor={<Mentor>{tr({ uz: "Avval Maydon Jamoa'da uch muammoni topib, sababini ko'rasiz. Keyin xuddi shuni o'z ilovangizda qilasiz.", ru: "Сначала найдёте три проблемы в «Maydon Jamoa» и увидите их причину. Потом сделаете то же в своём приложении." })}</Mentor>}
         chapYorliq={tr({ uz: 'Dars oxirida', ru: 'В конце урока' })}
         chap={<RejaYozuv />}
         qadamlar={REJA.map(r => ({ t: tr(r.t), teg: tr(r.teg) }))}
       >
         <p className="bf-reja-past">{tx({ uz: "o'z repo'ngiz — `BUZISH.md` va tuzatishlar · Mentor misoli `maydon-jamoa` · boshlanish `m12-dars-05-start` · namuna `m12-dars-05-done`", ru: 'ваш репозиторий — `BUZISH.md` и исправления · пример Ментора `maydon-jamoa` · начало `m12-dars-05-start` · образец `m12-dars-05-done`' })}</p>
-        <QIzoh>{tx({ uz: "Mentor misolida `m12-dars-05-start` — agent «bajardim» deganidan keyingi kod; muammolar shu darsda topiladi.", ru: 'В примере Ментора `m12-dars-05-start` — код после того, как агент сказал «сделал»; проблемы находятся на этом уроке.' })}</QIzoh>
+        <QIzoh>{tx({ uz: "Mentor misolida `m12-dars-05-start` — agent «bajardim» deganidan keyingi kod; muammolar shu darsda topiladi.", ru: "В примере Ментора `m12-dars-05-start` — код после того, как агент сказал «сделал»; проблемы находим на этом уроке." })}</QIzoh>
         {isMentor && <Ustoz satrlar={[
-          { uz: "Og'ir qismlar — 8-ekran (kod oynasi) va ikki blok (Render'da qayta chiqarish bir necha daqiqa olishi mumkin). 2, 4, 6-ekranlarga ortiqcha vaqt bermang. Juftlikda ishlash qulay: sherik telefonida ham shu ekran ochiq tursa, «Hozir ko'ryapti» tekshiriladi.", ru: 'Тяжёлые части — экран 8 (окно кода) и два блока (перевыпуск на Render может занять несколько минут). Не тратьте лишнее время на экраны 2, 4, 6. Удобно работать в паре: если на телефоне партнёра открыт тот же экран, проверяется «Hozir ko\'ryapti».' },
+          { uz: "Og'ir qismlar — 8-ekran (kod oynasi) va ikki blok (Render'da qayta chiqarish bir necha daqiqa olishi mumkin). 2, 4, 6-ekranlarga ortiqcha vaqt bermang. Juftlikda ishlash qulay: sherik telefonida ham shu ekran ochiq tursa, «Hozir ko'ryapti» tekshiriladi.", ru: "Тяжёлые части — экран 8 (окно кода) и два блока (повторный деплой на Render может занять несколько минут). Не тратьте лишнее время на экраны 2, 4, 6. Удобно работать в паре: если на телефоне партнёра открыт тот же экран, проверяется «Сейчас смотрят»." },
           { uz: "Qayta ulanish raqamlari (o'quvchi so'rasa): socket.io birinchi urinishni ≈1 soniyadan keyin qiladi, har urinishda kutish ikki barobar o'sadi, lekin 5 soniyadan oshmaydi; urinishlar soni sukutda cheklanmagan. Darsda — «odatda bir necha soniyada».", ru: 'Цифры переподключения (если ученик спросит): socket.io делает первую попытку примерно через 1 секунду, с каждой попыткой ожидание растёт вдвое, но не больше 5 секунд; число попыток по умолчанию не ограничено. На уроке — «обычно за несколько секунд».' }
         ]} />}
       </QReja>
@@ -953,7 +955,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             t2={{ belgi: 'ulangan', son: qoshildi ? 9 : 8, sonYangi: qoshildi && !avval, qoshildi, onQoshil: q === 1 && !band ? qoshil : null, qoshilHalqa: q === 1 && !band,
               qadam: q === 1 && !band ? { n: 2, t: { uz: "Ikkinchi telefonda qo'shiling", ru: 'Присоединитесь на втором телефоне' } } : null }}
             c1={c1} c2="ochiq" k1={k1} y1={kelmadi ? SAHNA.kelmadi : null} />
-          {done && <p className="bf-nom fade-step">{tr({ uz: <>Ilovaning chekka holatini ataylab yuzaga keltirib tekshirish — <b>buzish</b>.</>, ru: <>Намеренно вызвать крайний случай приложения и проверить — <b>«ломать»</b>.</> })}</p>}
+          {done && <p className="bf-nom fade-step">{tr({ uz: <>Ilovaning chekka holatini ataylab yuzaga keltirib tekshirish — <b>buzish</b>.</>, ru: <>Проверить приложение, намеренно вызвав крайний случай, — это <b>поломка</b>.</> })}</p>}
         </div>}
         xulosa={done && <XulosaQ natija={taxmin && <Natija togri={taxmin === '8'} haqiqat={{ uz: '«8 / 10» — eski son', ru: '«8 / 10» — старое число' }} />}
           matn={tr({ uz: "Bu misolda uzilish paytida yuborilgan hodisa keyin kelmadi: belgi «Ulangan», son esa eski.", ru: 'В этом примере событие, отправленное во время обрыва, потом не пришло: значок «Подключено», а число старое.' })}
@@ -1032,7 +1034,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Tushuncha · qayta ulanish', ru: 'Понятие · переподключение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={tr(navYorliq(taxmin, q, 2, QADAMLAR_Y, done))} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
         sarlavha={tr({ uz: <>Qayta ulanganda <span className="italic" style={{ color: T.accent }}>qaysi kod</span> yana ishlaydi?</>, ru: <>Какой код <span className="italic" style={{ color: T.accent }}>снова срабатывает</span> при переподключении?</> })}
-        mentor={<Mentor>{tr({ uz: "Backend tugunidagi «Yangi versiya» ni bosing va telefon ostidagi kodning yonadigan qatorlariga qarang.", ru: 'Нажмите «Yangi versiya» в узле Backend и посмотрите на загорающиеся строки кода под телефоном.' })}</Mentor>}
+        mentor={<Mentor>{tr({ uz: "Backend tugunidagi «Yangi versiya» ni bosing va telefon ostidagi kodning yonadigan qatorlariga qarang.", ru: "Нажмите «Новая версия» в узле Backend и посмотрите на загорающиеся строки кода под телефоном." })}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={{ uz: 'Qayta ulangach, bitta qo\'shilishga nechta jonli xabar chiqadi?', ru: 'Сколько живых сообщений появится на одно присоединение после переподключения?' }} variantlar={S4_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
         vizual={<div className="bf-viz">
           <IkkiTelefonSahna
@@ -1123,9 +1125,9 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Tushuncha · xona', ru: 'Понятие · комната' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={tr(navYorliq(taxmin, q, 2, QADAMLAR_Y, done))} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
-        sarlavha={tr({ uz: <>Qayta ulangan ilova <span className="italic" style={{ color: T.accent }}>o'yin xonasida</span> bormi?</>, ru: <>Есть ли переподключённое приложение <span className="italic" style={{ color: T.accent }}>в комнате игры</span>?</> })}
-        mentor={<Mentor>{tr({ uz: "Avval «Yangi versiya» ni bosing, keyin ikkinchi telefonda o'yinni oching.", ru: 'Сначала нажмите «Yangi versiya», потом откройте игру на втором телефоне.' })}</Mentor>}
-        bashorat={!tugadi && <Bashorat savol={{ uz: "Ikkinchi telefon o'yinni ochganda «Hozir ko'ryapti» nechani ko'rsatadi?", ru: 'Сколько покажет «Hozir ko\'ryapti», когда второй телефон откроет игру?' }} variantlar={S6_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
+        sarlavha={tr({ uz: <>Qayta ulangan ilova <span className="italic" style={{ color: T.accent }}>o'yin xonasida</span> bormi?</>, ru: <>Переподключённое приложение <span className="italic" style={{ color: T.accent }}>в комнате игры</span>?</> })}
+        mentor={<Mentor>{tr({ uz: "Avval «Yangi versiya» ni bosing, keyin ikkinchi telefonda o'yinni oching.", ru: "Сначала нажмите «Новая версия», потом откройте игру на втором телефоне." })}</Mentor>}
+        bashorat={!tugadi && <Bashorat savol={{ uz: "Ikkinchi telefon o'yinni ochganda «Hozir ko'ryapti» nechani ko'rsatadi?", ru: "Сколько покажет счётчик «Сейчас смотрят», когда второй телефон откроет игру?" }} variantlar={S6_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
         vizual={<div className="bf-viz">
           <IkkiTelefonSahna
             t1={{ belgi, son: 8, koryapti: 1, koryEski, qoshildi: true }}
@@ -1149,7 +1151,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen7 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Упражнение · вопрос 3' })}
     questionText="Qayta ulangach «Hozir ko'ryapti» ekraningizni sanamadi. Nega?"
-    question={tr({ uz: <h2 className="title h-ask">Qayta ulangach «Hozir ko'ryapti» ekraningizni sanamadi. <span className="italic" style={{ color: T.accent }}>Nega?</span></h2>, ru: <h2 className="title h-ask">После переподключения «Hozir ko'ryapti» не посчитал ваш экран. <span className="italic" style={{ color: T.accent }}>Почему?</span></h2> })}
+    question={tr({ uz: <h2 className="title h-ask">Qayta ulangach «Hozir ko'ryapti» ekraningizni sanamadi. <span className="italic" style={{ color: T.accent }}>Nega?</span></h2>, ru: <h2 className="title h-ask">После переподключения счётчик «Сейчас смотрят» не учёл ваш экран. <span className="italic" style={{ color: T.accent }}>Почему?</span></h2> })}
     options={[
       { uz: 'Backend uzilgan ulanishni xonada qoldirgan', ru: 'Backend оставил оборванное соединение в комнате' },
       { uz: "Ilova qayta ulangach o'yin ekranini yopgan", ru: 'Приложение закрыло экран игры после переподключения' },
@@ -1169,6 +1171,7 @@ const Screen7 = (props) => (
 // Skelet tuzog'i (MEXANIZM 11): HtmlCompiler faqat BIRINCHI JS faylni ulaydi va tekshiruvda async ni kutmaydi (load + 50 ms).
 // Yechim: app.js — birinchi JS fayl (o'quvchi yozadi); namuna.js tabda o'qish uchun ko'rinadi, ishlaydigan nusxasi previewCss orqali head'ga skript bo'lib kiradi (pilot 02 yo'li).
 // Tekshiruv sinxron: namuna funksiyasi ulan() ni to'g'ridan-to'g'ri chaqiradi (1 s kutmasdan), har shart holatni o'zi boshidan qo'yadi.
+// ru-qoldiq-istisno s8: o'yinchi qo'shildi shanba mahalla maydoni
 const KOD_INDEX = ['<p class="belgi">Ulanmoqda…</p>', '<div class="oyin">', '  <p>Shanba, 18:00 · Mahalla maydoni</p>', '  <p class="hisob"><span class="son">…</span> / 10</p>', '</div>', '<div class="xabarlar"></div>', '<button class="uzish">Internetni uzish</button>', '<button class="qaytar">Internetni qaytarish</button>', "<button class=\"boshqa\">Boshqa o'yinchi qo'shildi</button>", ''].join('\n');
 const NAMUNA_IZ = {
   uz: ["// Backend va ulanish o'rnida NAMUNA (haqiqiy Backend emas):", "// son shu faylda turadi; uchta tugma internetni uzadi, qaytaradi va hodisa yuboradi."],
@@ -1238,7 +1241,7 @@ const KodNatija = ({ faol }) => {
       <span className="bf-no-bar"><i /><i /><i /><b>{tr({ uz: 'Natija', ru: 'Результат' })}</b></span>
       <div className="bf-no-tana">
         <span className={cx('bf-no-belgi', s.ulangan && 'ok')}>{s.ulangan ? 'Ulangan' : 'Ulanmoqda…'}</span>
-        <span className="bf-no-p">{tr(NAMUNA_OYIN.vaqt)} · {tr(NAMUNA_OYIN.joy)}</span>
+        <span className="bf-no-p">{NAMUNA_OYIN.vaqt.uz} · {NAMUNA_OYIN.joy.uz}</span>
         <span className="bf-no-h"><b key={String(s.son)} className={cx(s.son !== null && s.son > 8 && 'bf-pop')}>{s.son === null ? '…' : s.son}</b> / 10</span>
         {s.xabar.map((n, i) => <span key={i} className="bf-no-x fade-step">{"Shanba, 18:00 — yana bir o'yinchi qo'shildi: " + n + ' / 10'}</span>)}
         <span className="bf-no-tugmalar">
@@ -1281,7 +1284,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>}
         </>}
         yordam={!done && <div className="bf-kyordam">
-          <QTugma ikkinchi aria-expanded={yordam} onClick={() => setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>
+          <QTugma ikkinchi aria-expanded={yordam} onClick={() => setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>
           {yordam && <QIzoh>{tx({ uz: "Ikki `ulanish.on` bir-birining ichida turmaydi: ikkalasi ham qatorning eng chap chetidan boshlanadi. Jonli xabar ikki marta chiqsa — `oyin-ozgardi` tinglovchisi hali `connect` ichida.", ru: 'Два `ulanish.on` не стоят друг внутри друга: оба начинаются с самого левого края строки. Если живое сообщение появляется дважды — слушатель `oyin-ozgardi` всё ещё внутри `connect`.' })}</QIzoh>}
         </div>}
         bajardim={!done && <div className="bf-bajardim"><QTugma className={halqa(shart)} disabled={!shart} onClick={bajardim}>{tr({ uz: 'Bajardim', ru: 'Готово' })}</QTugma></div>}
@@ -1303,7 +1306,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 
 // ===== SCREEN 9 — TUSHUNCHA · buzish yozuvi (bashorat + 3 urinish, bittadan — SABOQ 9, E 53): telefon usulni o'ynaydi → yozuv qatorlari → belgi; to'g'risi ixcham qatorga tushadi =====
-const S9_TAXMIN = [{ k: 'bir', t: { uz: 'Bittasi', ru: 'Одна' } }, { k: 'ikki', t: { uz: 'Ikkitasi', ru: 'Две' } }, { k: 'uch', t: { uz: 'Uchalasi', ru: 'Все три' } }];
+const S9_TAXMIN = [{ k: 'bir', t: { uz: 'Bittasi', ru: "Один" } }, { k: 'ikki', t: { uz: 'Ikkitasi', ru: "Два" } }, { k: 'uch', t: { uz: 'Uchalasi', ru: 'Все три' } }];
 const TEL_BOSH = { belgi: 'ulangan', son: 8, ekran: 'oyin', samolyot: undefined, eski: false, jx: 0, qoshildi: true };
 const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const avval = !!storedAnswer;
@@ -1322,7 +1325,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const korish = () => {
     if (!taxmin || done || faza !== 0) return;
     setFaza(1); setXato(false);
-    if (fi === 0) ketma([[0, () => setTel({ ...TEL_BOSH, samolyot: true, belgi: 'ulanmoqda' })], [2000, () => setTel({ ...TEL_BOSH, samolyot: false, belgi: 'ulangan', eski: true })], [700, () => setFaza(2)], [900, () => setFaza(3)]]);
+    if (fi === 0) ketma([[0, () => setTel({ ...TEL_BOSH, samolyot: true, belgi: 'ulanmoqda' })], [2000, () => setTel({ ...TEL_BOSH, samolyot: false, belgi: 'ulangan', eski: SAHNA.eski })], [700, () => setFaza(2)], [900, () => setFaza(3)]]);
     else if (fi === 1) ketma([[0, () => setTel({ ...TEL_BOSH, ekran: 'boshqa' })], [1900, () => setTel({ ...TEL_BOSH, son: 9 })], [800, () => setFaza(2)], [900, () => setFaza(3)]]);
     else ketma([[0, () => setTel({ ...TEL_BOSH, belgi: 'ulanmoqda' })], [1500, () => setTel({ ...TEL_BOSH, belgi: 'ulangan' })], [600, () => setTel({ ...TEL_BOSH, son: 9, jx: 2 })], [800, () => setFaza(2)], [900, () => setFaza(3)]]);
   };
@@ -1362,7 +1365,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>
           {done && <p className="bf-nom fade-step">{tr({ uz: <>Har urinishga uch qator — nima qildim, nima kutdim, nima bo'ldi: <b>buzish yozuvi</b>.</>, ru: <>На каждую попытку три строки — что сделал, что ожидал, что произошло: <b>запись поломки</b>.</> })}</p>}
         </div>}
-        xulosa={done && <XulosaQ natija={taxmin && <Natija togri={taxmin === 'ikki'} haqYorliq={{ uz: 'Mentor misolida', ru: 'в примере Ментора' }} haqiqat={{ uz: 'ikkitasi — fonga olish buzmadi', ru: 'две — сворачивание не сломало' }} />}
+        xulosa={done && <XulosaQ natija={taxmin && <Natija togri={taxmin === 'ikki'} haqYorliq={{ uz: 'Mentor misolida', ru: 'в примере Ментора' }} haqiqat={{ uz: 'ikkitasi — fonga olish buzmadi', ru: "два — сворачивание не сломало" }} />}
           matn={tr({ uz: "Mentor misolida uch urinishdan ikkitasi buzildi; «buzilmadi» ham natija — u ham yoziladi.", ru: 'В примере Ментора из трёх попыток две сломали; «не сломалось» — тоже результат, его тоже записывают.' })}
           izoh={tr({ uz: "Buzib tekshirishni faqat o'z ilovangizda qilasiz. Boshqa odamning ilovasi yoki sayti tekshirilmaydi.", ru: 'Ломать для проверки вы будете только своё приложение. Чужое приложение или сайт не проверяют.' })} />}
       />
@@ -1482,7 +1485,7 @@ const buzishYoz = (fn) => {
   try { localStorage.setItem(BUZISH_KALIT, JSON.stringify({ urinishlar: ur })); } catch { /* xotira yopiq */ }
   return ur;
 };
-const YordamTugma = ({ ochiq, onClick }) => <QTugma ikkinchi className="bf-ms-yordam" aria-expanded={ochiq} onClick={onClick}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>;
+const YordamTugma = ({ ochiq, onClick }) => <QTugma ikkinchi className="bf-ms-yordam" aria-expanded={ochiq} onClick={onClick}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>;
 const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const isMentor = useMentorLive();
   const init = useRef(null);
@@ -1551,8 +1554,8 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {xato && <QXato>{tr({ uz: "«Nima kutaman» bo'sh — ekranda nima ko'rinishini yozing.", ru: '«Чего я жду» пусто — напишите, что будет видно на экране.' })}</QXato>}
         </div>}
         yordam={!saqlandi && yordam && <div className="bf-yordam-q fade-step">
-          <QIzoh>{tr({ uz: "Kutishni ekranda ko'rinadigan narsa bilan yozing: son, belgi, jonli xabar, «Hozir ko'ryapti». «To'g'ri ishlaydi» deb yozilsa, keyin solishtirib bo'lmaydi.", ru: 'Записывайте ожидание тем, что видно на экране: число, значок, живое сообщение, «Hozir ko\'ryapti». Если написать «работает правильно», потом не с чем сравнить.' })}</QIzoh>
-          <QIzoh>{tr({ uz: "Mahsulotingizda jonli xabar yoki «Hozir ko'ryapti» bo'lmasa — real vaqt nuqtangizdagi son yoki ro'yxatni yozing. «Hozir ko'ryapti» ni faqat ikkinchi ekran bo'lsa (sherik telefoni) tekshira olasiz.", ru: 'Если в вашем продукте нет живого сообщения или «Hozir ko\'ryapti» — запишите число или список в своей точке реального времени. «Hozir ko\'ryapti» можно проверить, только если есть второй экран (телефон партнёра).' })}</QIzoh>
+          <QIzoh>{tr({ uz: "Kutishni ekranda ko'rinadigan narsa bilan yozing: son, belgi, jonli xabar, «Hozir ko'ryapti». «To'g'ri ishlaydi» deb yozilsa, keyin solishtirib bo'lmaydi.", ru: "Записывайте ожидание тем, что видно на экране: число, значок, живое сообщение, «Сейчас смотрят». Если написать «работает правильно», потом не с чем сравнить." })}</QIzoh>
+          <QIzoh>{tr({ uz: "Mahsulotingizda jonli xabar yoki «Hozir ko'ryapti» bo'lmasa — real vaqt nuqtangizdagi son yoki ro'yxatni yozing. «Hozir ko'ryapti» ni faqat ikkinchi ekran bo'lsa (sherik telefoni) tekshira olasiz.", ru: "Если в вашем продукте нет живого сообщения или «Сейчас смотрят» — запишите число или список в своей точке реального времени. «Сейчас смотрят» можно проверить, только если есть второй экран (телефон партнёра)." })}</QIzoh>
           <span className="bf-yordam-misol"><b>{tr({ uz: 'Mentor misoli', ru: 'Пример Ментора' })}</b><span><i>3</i>{tr({ uz: "masalan: Belgi «Ulangan» bo'lgach, «9 / 10» ko'rinadi.", ru: 'например: Когда значок станет «Подключено», будет видно «9 / 10».' })}</span></span>
         </div>}
       >{saqlandi && <QXulosa>{tr({ uz: "Kutishingiz yozildi — amaliyotda har urinishdan keyin nima bo'lganini yoniga yozasiz.", ru: 'Ваше ожидание записано — на практике после каждой попытки рядом запишете, что произошло.' })}</QXulosa>}</QMustaqil>
@@ -1683,7 +1686,7 @@ const QZ_BG_SHAPES = [
   { ch: 'ulanish.on', l: 22, t: 34, s: 20, d: 20, dl: 1.9 },
   { ch: { uz: 'tinglovchi', ru: 'слушатель' }, l: 16, t: 16, s: 20, d: 18, dl: 2.9 },
   { ch: { uz: 'xona', ru: 'комната' }, l: 88, t: 42, s: 22, d: 22, dl: 0.6 },
-  { ch: { uz: "«Hozir ko'ryapti»", ru: '«Hozir ko\'ryapti»' }, l: 50, t: 6, s: 18, d: 24, dl: 1.3 },
+  { ch: { uz: "«Hozir ko'ryapti»", ru: "«Сейчас смотрят»" }, l: 50, t: 6, s: 18, d: 24, dl: 1.3 },
   { ch: { uz: '«Ulangan»', ru: '«Подключено»' }, l: 30, t: 58, s: 20, d: 26, dl: 2.4 },
   { ch: { uz: '«Ulanmoqda…»', ru: '«Подключается…»' }, l: 84, t: 84, s: 18, d: 21, dl: 3.4 },
   { ch: { uz: 'tuzatish qilindi', ru: 'исправление сделано' }, l: 2, t: 44, s: 18, d: 23, dl: 2.7 },
@@ -2284,7 +2287,7 @@ const Yordam = ({ satrlar }) => {
   const [ochiq, setOchiq] = useState(false);
   return (
     <>
-      <QTugma ikkinchi className="bf-yordam-btn" aria-expanded={ochiq} onClick={() => setOchiq(o => !o)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>
+      <QTugma ikkinchi className="bf-yordam-btn" aria-expanded={ochiq} onClick={() => setOchiq(o => !o)}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>
       {ochiq && <span className="bf-yordam fade-step">{satrlar.map((l, i) => <span key={i} className="bf-yordam-s">{tx(l)}</span>)}</span>}
     </>
   );
@@ -2417,7 +2420,7 @@ const NatijaA1 = ({ trek, toliq }) => (
 );
 const A1_JOY = { uz: '{boshqa akkaunt qiladigan o\'zgarish}', ru: '{изменение, которое делает другой аккаунт}' };
 const A1_PROMPT = [
-  { uz: "Qayerda: `backend/` — faqat o'qish uchun, kod va fayllarni o'zgartirma; Database'da — faqat o'zing yaratadigan tekshiruv akkaunti va yozuvi.", ru: 'Где: `backend/` — только для чтения, код и файлы не меняй; в Database — только тестовый аккаунт и запись, которые ты создашь сам.' },
+  { uz: "Qayerda: `backend/` — faqat o'qish uchun, kod va fayllarni o'zgartirma; Database'da — faqat o'zing yaratadigan tekshiruv akkaunti va yozuvi.", ru: "Где: `backend/` — только для чтения, код и файлы не меняй; в Database — только проверочный аккаунт и запись, которые ты создашь сам." },
   { uz: "Nima qilsin: tekshiruv uchun yangi akkaunt och (namuna ism va raqam bilan, haqiqiy emas) va shu akkaunt nomidan {boshqa akkaunt qiladigan o'zgarish} so'rovini tayyorla, lekin yuborma. «Yubor» desam — yubor va qaysi akkaunt, qaysi `id` ekanini ayt. «O'chir» desam — faqat o'sha `id` dagi yozuvni o'chir.", ru: 'Что сделать: открой новый аккаунт для проверки (с образцовым именем и номером, не настоящими) и подготовь от его имени запрос {изменение, которое делает другой аккаунт}, но не отправляй. Скажу «Yubor» — отправь и скажи, какой аккаунт и какой `id`. Скажу «O\'chir» — удали только запись с этим `id`.' },
   { uz: "Nima buzilmasin: kod, `.env` va boshqa yozuvlarga tegma; haqiqiy odamning akkauntidan foydalanma.", ru: 'Что не сломать: не трогай код, `.env` и другие записи; не используй аккаунт настоящего человека.' }
 ];
@@ -2441,14 +2444,14 @@ const ScreenA1 = (props) => {
   const buzildiBor = ur.some(u => u.buzildi === true);
   return (
     <ScreenBlok {...props} eyebrow={{ uz: "Amaliyot 1 · o'z mahsulotingiz", ru: 'Практика 1 · ваш продукт' }}
-      title={{ uz: <>Mahsulotingizni uch usul bilan buzing va <span className="italic" style={{ color: T.accent }}>yozib boring</span>.</>, ru: <>Сломайте свой продукт тремя способами и <span className="italic" style={{ color: T.accent }}>записывайте</span>.</> }}
-      mentor={{ uz: "Kod yozilmaydi: agent faqat boshqa akkaunt nomidan o'zgarish qiladi, kuzatish va yozuv — sizda; «1 · Ochish»dan boshlang.", ru: 'Код не пишем: агент только вносит изменение от имени другого аккаунта, наблюдение и запись — за вами; начните с «1 · Ochish».' }}
+      title={{ uz: <>Mahsulotingizni uch usul bilan buzing va <span className="italic" style={{ color: T.accent }}>yozib boring</span>.</>, ru: <>Сломайте продукт тремя способами и <span className="italic" style={{ color: T.accent }}>записывайте</span>.</> }}
+      mentor={{ uz: "Kod yozilmaydi: agent faqat boshqa akkaunt nomidan o'zgarish qiladi, kuzatish va yozuv — sizda; «1 · Ochish»dan boshlang.", ru: "Код не пишем: агент только вносит изменение от имени другого аккаунта, наблюдение и запись — за вами; начните с «1 · Открыть»." }}
       ustida={<TrekTanlov trek={trek} onTanla={tanla} />}
       steps={[
-        { h: { uz: 'Ochish', ru: 'Открыть' }, t: { uz: "ilovangiz telefonda ochiq va kirgan holda bo'lsin (mobil trekda: `cd mobil`, `npx expo start`, Expo Go). Real vaqt nuqtangiz turgan ekranni oching — Mentor misolida «O'yin»: belgi «Ulangan» bo'lishi kerak.", ru: 'пусть приложение открыто на телефоне, и вы вошли (в мобильном треке: `cd mobil`, `npx expo start`, Expo Go). Откройте экран с вашей точкой реального времени — в примере Ментора «O\'yin»: значок должен быть «Подключено».' },
+        { h: { uz: 'Ochish', ru: 'Открыть' }, t: { uz: "ilovangiz telefonda ochiq va kirgan holda bo'lsin (mobil trekda: `cd mobil`, `npx expo start`, Expo Go). Real vaqt nuqtangiz turgan ekranni oching — Mentor misolida «O'yin»: belgi «Ulangan» bo'lishi kerak.", ru: "приложение должно быть открыто на телефоне, вход выполнен (в мобильном треке: `cd mobil`, `npx expo start`, Expo Go). Откройте экран с вашей точкой реального времени — в примере Ментора экран игры: значок должен быть «Подключено»." },
           ichki: <span className="bf-band">{tx({ uz: "Terminalda `git status`: `.env` fayllari ro'yxatda ko'rinmasin.", ru: 'В терминале `git status`: файлы `.env` не должны быть в списке.' })} <b>{tr({ uz: "Buzish faqat o'z ilovangizda: boshqa odamning ilovasi yoki sayti tekshirilmaydi.", ru: 'Ломаем только своё приложение: чужое приложение или сайт не проверяют.' })}</b></span>,
           bandlar: [
-            { uz: "Sherik bo'lsa — uning telefonida ham shu ekran ochiq tursin (web havola yoki Android'dagi Expo Go; Expo akkauntingiz ma'lumoti berilmaydi).", ru: 'Если есть партнёр — пусть у него на телефоне тоже открыт этот экран (веб-ссылка или Expo Go на Android; данные вашего аккаунта Expo не передаются).' },
+            { uz: "Sherik bo'lsa — uning telefonida ham shu ekran ochiq tursin (web havola yoki Android'dagi Expo Go; Expo akkauntingiz ma'lumoti berilmaydi).", ru: "Если есть партнёр — пусть у него на телефоне тоже будет открыт этот экран (веб-ссылка или Expo Go на Android; данные вашего аккаунта Expo не передаются)." },
             { uz: "Web-trekda: saytingizni telefon brauzerida oching — uchish rejimi telefonda yoqiladi (kompyuterda Wi-Fi'ni o'chirish dars sahifasini ham uzadi); «ilovani yopib qayta ochish» o'rniga — sahifani yangilang.", ru: 'В веб-треке: откройте сайт в браузере телефона — режим полёта включается на телефоне (выключение Wi-Fi на компьютере отключит и страницу урока); вместо «закрыть и снова открыть приложение» — обновите страницу.' }
           ] },
         { h: { uz: 'Prompt', ru: 'Промпт' }, t: { uz: "qavsni to'ldiring (yonida kulrang namuna), «Nusxalash»ni bosing va Antigravity'ga yuboring:", ru: 'заполните скобку (рядом серый образец), нажмите «Скопировать» и отправьте в Antigravity:' },
@@ -2458,10 +2461,10 @@ const ScreenA1 = (props) => {
             { uz: "O'zgarishni boshqa akkaunt qiladi: sherik o'z telefonida yoki web-trekda o'zingiz kompyuterdagi yashirin oynada (11-Moduldagi ikkinchi namuna akkaunt bilan; keyin o'zgarishni o'zingiz qaytarasiz), bo'lmasa — agent («Yubor»).", ru: 'Изменение делает другой аккаунт: партнёр на своём телефоне или в веб-треке вы сами в скрытом окне на компьютере (со вторым образцовым аккаунтом из 11-го модуля; потом изменение отмените сами), иначе — агент («Yubor»).' },
             { uz: "(1) Internetni uzish — uchish rejimini yoqing va belgi «Ulanmoqda…» bo'lishini kuting (bir daqiqagacha). Keyin o'zgarish qilinsin; bo'lgach uchish rejimini o'chiring. Belgi «Ulangan» bo'lgach, ekranga qarang.", ru: '(1) Отключить интернет — включите режим полёта и дождитесь значка «Подключается…» (до минуты). Потом пусть будет сделано изменение; после этого выключите режим полёта. Когда значок станет «Подключено», посмотрите на экран.' },
             { uz: "(2) Fonga olib qaytarish — boshqa ilovaga o'ting va o'zgarish qilinsin. Bir daqiqadan keyin ilovaga qayting va ekranga qarang.", ru: '(2) Свернуть и вернуться — перейдите в другое приложение, и пусть будет сделано изменение. Через минуту вернитесь в приложение и посмотрите на экран.' },
-            { uz: "(3) Backend'ning yangi versiyasi — ilova ochiq tursin. Render sahifasida Backend xizmatingizni oching: «Manual Deploy» → «Deploy latest commit». Belgi «Ulanmoqda…» ga o'tib, yana «Ulangan» bo'lishi kerak — bu bir necha daqiqa cho'zilishi mumkin; kutayotganda 1 va 2-urinish yozuvini qayta o'qing. «Ulangan» bo'lgach, o'zgarish qilinsin va ekranga qarang (sherik bo'lsa — uning telefonidagi «Hozir ko'ryapti» ga ham).", ru: '(3) Новая версия Backend — приложение пусть открыто. На странице Render откройте свой сервис Backend: «Manual Deploy» → «Deploy latest commit». Значок должен перейти в «Подключается…» и снова стать «Подключено» — это может занять несколько минут; пока ждёте, перечитайте записи попыток 1 и 2. Когда станет «Подключено», пусть будет сделано изменение, и посмотрите на экран (если есть партнёр — и на «Hozir ko\'ryapti» на его телефоне).' },
-            { uz: "Bugun Backend kodi o'zgarmaydi, shuning uchun Render'da qo'lda qayta chiqarasiz. 11-Moduldagi sozlamada `backend/` ichidagi o'zgarish push qilinsa, Render yangi versiyani odatda o'zi ishga tushiradi.", ru: 'Сегодня код Backend не меняется, поэтому перевыпускаете на Render вручную. При настройке из 11-го модуля, если запушить изменение внутри `backend/`, Render обычно сам запускает новую версию.' }
+            { uz: "(3) Backend'ning yangi versiyasi — ilova ochiq tursin. Render sahifasida Backend xizmatingizni oching: «Manual Deploy» → «Deploy latest commit». Belgi «Ulanmoqda…» ga o'tib, yana «Ulangan» bo'lishi kerak — bu bir necha daqiqa cho'zilishi mumkin; kutayotganda 1 va 2-urinish yozuvini qayta o'qing. «Ulangan» bo'lgach, o'zgarish qilinsin va ekranga qarang (sherik bo'lsa — uning telefonidagi «Hozir ko'ryapti» ga ham).", ru: "(3) Новая версия Backend — приложение должно быть открыто. На странице Render откройте свой сервис Backend: «Manual Deploy» → «Deploy latest commit». Значок должен перейти в «Подключается…» и снова стать «Подключено» — это может занять несколько минут; пока ждёте, перечитайте записи попыток 1 и 2. Когда станет «Подключено», пусть будет сделано изменение, и посмотрите на экран (если есть партнёр — и на «Сейчас смотрят» на его телефоне)." },
+            { uz: "Bugun Backend kodi o'zgarmaydi, shuning uchun Render'da qo'lda qayta chiqarasiz. 11-Moduldagi sozlamada `backend/` ichidagi o'zgarish push qilinsa, Render yangi versiyani odatda o'zi ishga tushiradi.", ru: "Сегодня код Backend не меняется, поэтому повторный деплой на Render вы запускаете вручную. При настройке из 11-го модуля, если запушить изменение внутри `backend/`, Render обычно сам запускает новую версию." }
           ],
-          keyin: [{ uz: "Xato chiqsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Nima bo'lganini ayt.»", ru: 'Если появилась ошибка — отправьте агенту строку ошибки (не значения `.env`, токен и ключи): «Shu xato chiqdi: {xato}. Nima bo\'lganini ayt.»' }],
+          keyin: [{ uz: "Xato chiqsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Nima bo'lganini ayt.»", ru: 'Если появилась ошибка — отправьте агенту строку ошибки (не значения `.env`, токен и ключи): «Вышла такая ошибка: {ошибка}. Скажи, что произошло.»' }],
           err: null },
         { h: { uz: 'Tekshirish', ru: 'Проверка' }, t: { uz: "uch yozuvni o'qing: «Nima bo'ldi» — ekranda ko'rganingiz, taxmin emas; har belgi «Nima kutdim» bilan solishtirilgan. Agentga yozing: «Tekshiruv akkauntini ham `id` si bo'yicha o'chir. Yaratgan akkaunt va yozuvlaringning `id` larini ayt: hammasi o'chdimi?»", ru: 'прочитайте три записи: «Что произошло» — то, что вы увидели на экране, а не догадка; каждая отметка сравнена с «Что я ожидал». Напишите агенту: «Tekshiruv akkauntini ham `id` si bo\'yicha o\'chir. Yaratgan akkaunt va yozuvlaringning `id` larini ayt: hammasi o\'chdimi?»' },
           bandlar: [{ uz: "Agent javobi — uning so'zi; ilovada son boshidagidek bo'lishi kerak — buni o'zingiz ko'rasiz.", ru: 'Ответ агента — его слова; в приложении число должно быть как в начале — это вы увидите сами.' }] }
@@ -2471,10 +2474,10 @@ const ScreenA1 = (props) => {
       doneText={buzildiBor ? { uz: 'Uch usul bajarildi va yozildi: topilgan muammolar keyingi blokda tuzatiladi.', ru: 'Три способа выполнены и записаны: найденные проблемы исправим в следующем блоке.' }
         : { uz: "Uch usul bajarildi: mahsulotingiz buzilmadi — bu ham natija.", ru: 'Три способа выполнены: ваш продукт не сломался — это тоже результат.' }}
       ortda={{ uz: "(faqat shu yangi papkada — buyruq papkadagi o'zgarishlarni o'chiradi) — agent «bajardim» deganidan keyingi kod; qanday ishlashini ko'rasiz, o'z repo'ngizdagi qadamni shunga qarab qaytarasiz (`backend/.env` va `mobil/.env` ga o'z qiymatlaringizni yozasiz).", ru: '(только в этой новой папке — команда удаляет изменения в папке) — код после того, как агент сказал «сделал»; увидите, как он работает, и по нему повторите шаг в своём репозитории (в `backend/.env` и `mobil/.env` впишите свои значения).' }}
-      ulgur={{ uz: "Ulgurmasangiz: Render'da qayta chiqarish cho'zilsa — 3-usul uyga vazifaning 1-bandi; 1 va 2-urinishdan keyin «Davom etish» ochiladi — 2-amaliyotga o'ting. Blok uchala usul va 4-qadamdan keyin bajarilgan sanaladi.", ru: 'Если не успеваете: если перевыпуск на Render затянулся — способ 3 станет пунктом 1 домашнего задания; после попыток 1 и 2 откроется «Продолжить» — переходите ко 2-й практике. Блок считается выполненным после всех трёх способов и шага 4.' }}
+      ulgur={{ uz: "Ulgurmasangiz: Render'da qayta chiqarish cho'zilsa — 3-usul uyga vazifaning 1-bandi; 1 va 2-urinishdan keyin «Davom etish» ochiladi — 2-amaliyotga o'ting. Blok uchala usul va 4-qadamdan keyin bajarilgan sanaladi.", ru: "Если не успеваете: если повторный деплой на Render затянулся — способ 3 станет пунктом 1 домашнего задания; после попыток 1 и 2 откроется «Продолжить» — переходите ко 2-й практике. Блок считается выполненным после всех трёх способов и шага 4." }}
       ustoz={[
         { uz: "Expo Go uchish rejimidan keyin ilovani qayta yuklasa (ekran boshidan ochilsa), 1-urinishda muammo ko'rinmay qolishi mumkin — pilotda tekshiriladi. Uzilishni payqash 45 soniyagacha cho'zilishi mumkin — shuning uchun o'zgarish belgi «Ulanmoqda…» bo'lgandan keyin qilinadi; bir daqiqada o'tmasa ham urinish yoziladi.", ru: 'Если Expo Go после режима полёта перезагрузит приложение (экран откроется заново), в попытке 1 проблема может не проявиться — проверяется на пилоте. Обнаружение обрыва может занять до 45 секунд — поэтому изменение делают после значка «Подключается…»; если за минуту не перешёл, попытку всё равно записывают.' },
-        { uz: "Render'da «Manual Deploy» nomi — rasmiy hujjatdan; interfeys boshqacha ko'rinsa, o'quvchiga xizmatni qayta chiqaradigan tugmani ko'rsating.", ru: 'Название «Manual Deploy» на Render — из официальной документации; если интерфейс выглядит иначе, покажите ученику кнопку перевыпуска сервиса.' }
+        { uz: "Render'da «Manual Deploy» nomi — rasmiy hujjatdan; interfeys boshqacha ko'rinsa, o'quvchiga xizmatni qayta chiqaradigan tugmani ko'rsating.", ru: "Название «Manual Deploy» на Render — из официальной документации; если интерфейс выглядит иначе, покажите ученику кнопку повторного деплоя сервиса." }
       ]}
     />
   );
@@ -2546,10 +2549,10 @@ const ScreenA2 = (props) => {
   return (
     <ScreenBlok {...props} eyebrow={{ uz: "Amaliyot 2 · o'z repo'ngiz", ru: 'Практика 2 · ваш репозиторий' }}
       title={{ uz: <>Topilgan muammolarni tuzating va <span className="italic" style={{ color: T.accent }}>qayta tekshiring</span>.</>, ru: <>Исправьте найденные проблемы и <span className="italic" style={{ color: T.accent }}>перепроверьте</span>.</> }}
-      mentor={{ uz: "Yozuvingizni agentga so'zma-so'z berasiz: tuzatishni u qiladi, natijani esa siz tekshirasiz; «1 · Ochish»dan boshlang.", ru: 'Свою запись вы отдаёте агенту слово в слово: исправляет он, а результат проверяете вы; начните с «1 · Ochish».' }}
+      mentor={{ uz: "Yozuvingizni agentga so'zma-so'z berasiz: tuzatishni u qiladi, natijani esa siz tekshirasiz; «1 · Ochish»dan boshlang.", ru: "Свою запись вы отдаёте агенту слово в слово: исправляет он, а результат проверяете вы; начните с «1 · Открыть»." }}
       ustida={<TrekTanlov trek={trek} onTanla={tanla} />}
       steps={[
-        { h: { uz: 'Ochish', ru: 'Открыть' }, t: { uz: "1-amaliyotdagi yozuvingiz pastdagi talabga o'zi qo'yilgan — «buzildi» belgili urinishlarni o'qib chiqing. Ilovangiz telefonda ochiq tursin (mobil trekda `npx expo start` ishlab tursin).", ru: 'ваша запись из 1-й практики уже подставлена в требование ниже — прочитайте попытки с отметкой «сломалось». Пусть приложение открыто на телефоне (в мобильном треке пусть работает `npx expo start`).' },
+        { h: { uz: 'Ochish', ru: 'Открыть' }, t: { uz: "1-amaliyotdagi yozuvingiz pastdagi talabga o'zi qo'yilgan — «buzildi» belgili urinishlarni o'qib chiqing. Ilovangiz telefonda ochiq tursin (mobil trekda `npx expo start` ishlab tursin).", ru: "ваша запись из 1-й практики уже подставлена в требование ниже — прочитайте попытки с отметкой «сломалось». Приложение должно быть открыто на телефоне (в мобильном треке должен работать `npx expo start`)." },
           bandlar: [{ uz: "Hech biri «buzildi» bo'lmasa — 2 va 3-qadamni o'tkazib yuboring: 4-qadamda faqat `BUZISH.md` yoziladi.", ru: 'Если ни одной «сломалось» нет — пропустите шаги 2 и 3: на шаге 4 пишется только `BUZISH.md`.' }] },
         { h: { uz: 'Prompt', ru: 'Промпт' }, t: { uz: "qavslarni tekshiring (tahrirlasangiz bo'ladi), «Nusxalash»ni bosing va Antigravity'ga yuboring:", ru: 'проверьте скобки (можно отредактировать), нажмите «Скопировать» и отправьте в Antigravity:' },
           prompt: a2Prompt(trek, satrlar), namuna: ish ? [] : [{ joy: tr(A2_JOY_ISH), n: A2_ISH_NAMUNA }], toldir: ish ? { [tr(A2_JOY_ISH)]: ish } : {}, yordam: a2Yordam(trek) },
@@ -2561,11 +2564,11 @@ const ScreenA2 = (props) => {
             { uz: "Agentdan o'zgartirgan kodidagi ikki joyni ko'rsatishni so'rang — darsda ko'rgan `connect` va tinglovchini o'z loyihangizda topasiz:", ru: 'Попросите агента показать два места в изменённом коде — найдёте в своём проекте `connect` и слушателя, которых видели на уроке:' }
           ],
           prompt: A2_KOD_PROMPT, ichkiKeyin: true,
-          keyin: [{ uz: "Xato chiqsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»", ru: 'Если появилась ошибка — отправьте агенту строку ошибки (не значения `.env`, токен и ключи): «Shu xato chiqdi: {xato}. Tuzat.»' }],
+          keyin: [{ uz: "Xato chiqsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»", ru: 'Если появилась ошибка — отправьте агенту строку ошибки (не значения `.env`, токен и ключи): «Вышла такая ошибка: {ошибка}. Исправь.»' }],
           tugmalar: 'tuz' },
         { h: { uz: 'Qayta tekshirish va GitHub', ru: 'Перепроверка и GitHub' }, t: { uz: "«buzildi» belgili har urinishni o'sha usul bilan qaytaring (ilovani yopib oching, agentga «Yubor», keyin «O'chir»). Tanlang: «Qayta tekshiruvda takrorlanmadi» · «Qayta tekshiruvda yana buzildi».", ru: 'повторите каждую попытку с отметкой «сломалось» тем же способом (закройте и откройте приложение, агенту «Yubor», потом «O\'chir»). Выберите: «При повторной проверке не повторилось» · «При повторной проверке снова сломалось».' },
           bandlar: [
-            { uz: "Yana buzilsa — agentga: «{usul} qayta tekshiruvda yana buzildi: {nima bo'ldi}. Tuzat.» va o'sha usulni yana bir marta qaytaring; qolgani — uyda.", ru: 'Если снова сломалось — агенту: «{usul} qayta tekshiruvda yana buzildi: {nima bo\'ldi}. Tuzat.» и повторите этот способ ещё раз; остальное — дома.' },
+            { uz: "Yana buzilsa — agentga: «{usul} qayta tekshiruvda yana buzildi: {nima bo'ldi}. Tuzat.» va o'sha usulni yana bir marta qaytaring; qolgani — uyda.", ru: 'Если снова сломалось — агенту: «{способ} снова сломался при повторной проверке: {что произошло}. Исправь.» и повторите этот способ ещё раз; остальное — дома.' },
             { uz: 'Keyin agentga:', ru: 'Потом агенту:' }
           ],
           prompt: [{ uz: "`BUZISH.md` yarat: pastdagi yozuvimni so'zma-so'z ko'chir — har urinishning uch qatori, belgisi, tuzatish va qayta tekshiruv natijasi. Boshqa faylga tegma.", ru: 'Создай `BUZISH.md`: перенеси мою запись ниже слово в слово — три строки каждой попытки, отметку, исправление и результат повторной проверки. Другие файлы не трогай.' }, ...toliq.map(s => ({ uz: s, ru: s }))],
@@ -2584,7 +2587,7 @@ const ScreenA2 = (props) => {
 };
 
 const KARTALAR = [
-  { front: { uz: 'Buzish nima?', ru: 'Что значит «ломать»?' }, back: { uz: 'Ilovaning chekka holatini ataylab yuzaga keltirib tekshirish', ru: 'Намеренно вызвать крайний случай приложения и проверить' }, note: { uz: "Bu darsda — faqat o'z ilovangizda, uch usul bilan", ru: 'На этом уроке — только в своём приложении, тремя способами' } },
+  { front: { uz: 'Buzish nima?', ru: "Что такое поломка?" }, back: { uz: 'Ilovaning chekka holatini ataylab yuzaga keltirib tekshirish', ru: "Проверить приложение, намеренно вызвав крайний случай" }, note: { uz: "Bu darsda — faqat o'z ilovangizda, uch usul bilan", ru: 'На этом уроке — только в своём приложении, тремя способами' } },
   { front: { uz: 'Uch buzish usuli qaysilar?', ru: 'Какие три способа поломки?' }, back: { uz: "Internetni uzish, fonga olib qaytarish, Backend'ning yangi versiyasi", ru: 'Отключить интернет, свернуть и вернуться, новая версия Backend' }, note: { uz: 'Mentor misolida ikkitasi ilovani buzdi', ru: 'В примере Ментора два из них сломали приложение' } },
   { front: { uz: 'Buzish yozuvida qaysi uch qator bor?', ru: 'Какие три строки в записи поломки?' }, back: { uz: "Nima qildim, nima kutdim, nima bo'ldi", ru: 'Что сделал, что ожидал, что произошло' }, note: { uz: 'Oxirida belgi: buzildi yoki buzilmadi', ru: 'В конце отметка: сломалось или не сломалось' } },
   { front: { uz: '«Nima kutdim» qachon yoziladi?', ru: 'Когда пишут «Что я ожидал»?' }, back: { uz: 'Buzishdan oldin', ru: 'До поломки' }, note: { uz: "Shunda natija bilan solishtirsa bo'ladi", ru: 'Тогда его можно сравнить с результатом' } },
@@ -2595,7 +2598,7 @@ const KARTALAR = [
   { front: { uz: "Ulanish uzilsa, xonada nima bo'ladi?", ru: 'Что происходит в комнате, если соединение оборвалось?' }, back: { uz: 'Ulanish xonadan chiqadi', ru: 'Соединение выходит из комнаты' }, note: { uz: "Mentor misolida qayta ulangach ilova o'yin xonasiga qayta kiradi", ru: 'В примере Ментора после переподключения приложение снова входит в комнату игры' } },
   { front: { uz: '«Tuzatish qilindi» nimani bildiradi?', ru: 'Что означает «исправление сделано»?' }, back: { uz: "Kodda o'zgartirish qilingani — bu ish fakti", ru: 'Что в коде внесено изменение — это факт работы' }, note: { uz: "Natijani qayta tekshiruv ko'rsatadi", ru: 'Результат покажет повторная проверка' } },
   { front: { uz: '«Qayta tekshiruvda takrorlanmadi» qachon yoziladi?', ru: 'Когда пишут «при повторной проверке не повторилось»?' }, back: { uz: "O'sha usul bilan qayta buzib ko'rilganda muammo chiqmasa", ru: 'Если при повторной поломке тем же способом проблема не появилась' }, note: { uz: 'Shu telefonda, shu urinishda — hamma telefon uchun isbot emas', ru: 'На этом телефоне, в этой попытке — не доказательство для всех телефонов' } },
-  { front: { uz: 'Agentning «bajardim» degani nima?', ru: 'Что значит «сделал» от агента?' }, back: { uz: "Da'vo — hali tekshirilmagan", ru: 'Заявление — ещё не проверено' }, note: { uz: "Natijani o'zingiz buzib ko'rib bilasiz", ru: 'Результат вы узнаете, сами сломав и посмотрев' } }
+  { front: { uz: 'Agentning «bajardim» degani nima?', ru: "Агент сказал «сделал» — что это значит?" }, back: { uz: "Da'vo — hali tekshirilmagan", ru: "Утверждение — ещё не проверено" }, note: { uz: "Natijani o'zingiz buzib ko'rib bilasiz", ru: 'Результат вы узнаете, сами сломав и посмотрев' } }
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2616,7 +2619,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 
 // ===== YAKUN — QYakun (DE-204, texnik darslar standarti; E 50). Sarlavha va ✓ yorlig'i holatga qarab (pm-m10d5-buzish + A1, A2 bayroqlari; E 54 — har holatda rost) =====
 const HW_QADAM = [
-  { b: { uz: 'Tugatish', ru: 'Завершить' }, t: { uz: "— darsda ulgurmagan usulni bajaring va yozing (ko'pincha — Render'da qayta chiqarish); «buzildi» bo'lsa — yozuvni agentga bering va o'sha usul bilan qayta tekshiring.", ru: '— выполните и запишите способ, на который не хватило времени (чаще всего — перевыпуск на Render); если «сломалось» — отдайте запись агенту и перепроверьте тем же способом.' } },
+  { b: { uz: 'Tugatish', ru: 'Завершить' }, t: { uz: "— darsda ulgurmagan usulni bajaring va yozing (ko'pincha — Render'da qayta chiqarish); «buzildi» bo'lsa — yozuvni agentga bering va o'sha usul bilan qayta tekshiring.", ru: "— выполните и запишите способ, на который не хватило времени (чаще всего — повторный деплой на Render); если «сломалось» — отдайте запись агенту и перепроверьте тем же способом." } },
   { b: { uz: 'Yana bir marta', ru: 'Ещё раз' }, t: { uz: "— bugun natijasi kutganingizdan boshqacha chiqqan yoki qayta tekshiruvi tugamagan usulni ertaga yana bajaring: natija o'shandaymi? Farq bo'lsa, `BUZISH.md` ga yangi urinish qo'shing.", ru: '— способ, результат которого сегодня отличался от ожидаемого или повторная проверка которого не закончена, выполните завтра ещё раз: результат тот же? Если есть разница, добавьте в `BUZISH.md` новую попытку.' } },
   { b: { uz: 'Talab', ru: 'Требование' }, t: { uz: "— bugun topilgan har muammo talabingizdagi chekka holatlar ro'yxatida bormi? Yo'q bo'lsa — README'dagi «Real vaqt» bo'limiga bitta chekka holat qo'shing.", ru: '— есть ли каждая найденная сегодня проблема в списке крайних случаев вашего требования? Если нет — добавьте один крайний случай в раздел «Real vaqt» в README.' } }
 ];
@@ -2661,11 +2664,11 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           : hechBiri ? 'yoq' : 'boshlandi';
   const SARLAVHA = {
     toliq: { uz: 'Topilgan muammolar tuzatildi va qayta tekshirildi.', ru: 'Найденные проблемы исправлены и перепроверены.' },
-    buzilmadi: { uz: 'Uch usul bajarildi — mahsulotingiz buzilmadi.', ru: 'Три способа выполнены — ваш продукт не сломался.' },
-    qayta: { uz: 'Tuzatish qilindi — qayta tekshirish qoldi.', ru: 'Исправление сделано — осталась повторная проверка.' },
+    buzilmadi: { uz: 'Uch usul bajarildi — mahsulotingiz buzilmadi.', ru: 'Три способа выполнены — продукт не сломался.' },
+    qayta: { uz: 'Tuzatish qilindi — qayta tekshirish qoldi.', ru: 'Исправление сделано — осталось перепроверить.' },
     tuzatish: { uz: 'Muammolar yozildi — tuzatish qoldi.', ru: 'Проблемы записаны — осталось исправление.' },
-    boshlandi: { uz: 'Buzish boshlandi — qolgan usullarni uyda bajaring.', ru: 'Поломка начата — остальные способы выполните дома.' },
-    yoq: { uz: 'Buzish yozuvi hali yozilmagan — usullarni uyda bajaring.', ru: 'Запись поломки ещё не написана — выполните способы дома.' }
+    boshlandi: { uz: 'Buzish boshlandi — qolgan usullarni uyda bajaring.', ru: 'Поломка начата — остальные способы дома.' },
+    yoq: { uz: 'Buzish yozuvi hali yozilmagan — usullarni uyda bajaring.', ru: 'Записи поломки ещё нет — выполните способы дома.' }
   };
   // ✓ «BUZISH.md tayyor» — faqat 1 yoki 2-holatda va BUZISH.md yozilgan bo'lsa (A2 oxirgi qadami)
   const chipBor = (holat === 'toliq' || holat === 'buzilmadi') && a2;
@@ -2861,11 +2864,11 @@ export default function BreakAndFixLesson({ lang: langProp, onFinished, liveToke
         .bf-sahna.yot .bf-tel-ust:has(.bf-kod) { width: auto; }
         .bf-tel-yorliq { position: absolute; top: -28px; left: 50%; transform: translateX(-50%); font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; white-space: nowrap; }
         .bf-tel-yorliq.b1 { background: ${T.accentSoft}; color: ${T.accent}; } .bf-tel-yorliq.b2 { background: ${fon(T.ink, 0.08)}; color: ${T.ink}; }
-        .bf-tel-yorliq.tex { position: static; transform: none; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; background: ${T.paper}; border: 1.5px solid ${T.line}; color: ${T.ink2}; }
+        .bf-tel-yorliq.tex { position: static; transform: none; padding: 2px 7px; font-family: 'JetBrains Mono', monospace; font-size: 11px; background: ${T.paper}; border: 1.5px solid ${T.line}; color: ${T.ink2}; }
         .bf-telefon { position: relative; width: 172px; height: 272px; flex: none; display: flex; flex-direction: column; gap: 5px; border: 2px solid ${T.ink}; border-radius: 24px; padding: 8px; background: ${T.paper}; box-shadow: 0 12px 26px -14px rgba(${T.shadowBase},0.4); overflow: hidden; }
         .bf-telefon.tortiladi { touch-action: none; cursor: grab; }
         .bf-tel-bar { position: relative; display: flex; align-items: center; justify-content: center; height: 18px; flex: none; }
-        .bf-tel-nom { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 12.5px; color: ${T.ok}; letter-spacing: 0.01em; }
+        .bf-tel-nom { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 12.5px; color: ${MAYDON_RANG}; letter-spacing: 0.01em; }
         .bf-samolyot { position: absolute; right: 0; top: -1px; width: 22px; height: 20px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid ${T.line}; border-radius: 7px; background: ${T.bg}; color: ${T.ink2}; cursor: pointer; padding: 0; transition: background 0.25s, color 0.25s; }
         .bf-samolyot.on { background: ${T.accent}; color: #fff; border-color: ${T.accent}; }
         .bf-samolyot:disabled { cursor: default; }
@@ -2935,8 +2938,8 @@ export default function BreakAndFixLesson({ lang: langProp, onFinished, liveToke
         .bf-chiziq-i { position: absolute; display: block; opacity: 0; transition: opacity 0.3s; }
         .bf-chiziq.yot .bf-chiziq-i { left: 0; right: 0; top: calc(50% - 1.5px); height: 3px; }
         .bf-chiziq.tik .bf-chiziq-i { top: 0; bottom: 0; left: calc(50% - 1.5px); width: 3px; }
-        .bf-chiziq.yot.h-savol .bf-chiziq-i, .bf-chiziq.yot.h-sondi .bf-chiziq-i, .bf-chiziq.yot.h-uzilgan .bf-chiziq-i, .bf-chiziq.yot.h-tiklan .bf-chiziq-i { opacity: 1; background: repeating-linear-gradient(90deg, ${fon(T.ink, 0.28)} 0 7px, transparent 7px 13px); }
-        .bf-chiziq.tik.h-savol .bf-chiziq-i, .bf-chiziq.tik.h-sondi .bf-chiziq-i, .bf-chiziq.tik.h-uzilgan .bf-chiziq-i, .bf-chiziq.tik.h-tiklan .bf-chiziq-i { opacity: 1; background: repeating-linear-gradient(180deg, ${fon(T.ink, 0.28)} 0 7px, transparent 7px 13px); }
+        /* kesik-ok: shtrix = doimiy bo'lmagan yoki uzilgan ulanish (holat belgisi, bezak emas) */ .bf-chiziq.yot.h-savol .bf-chiziq-i, .bf-chiziq.yot.h-sondi .bf-chiziq-i, .bf-chiziq.yot.h-uzilgan .bf-chiziq-i, .bf-chiziq.yot.h-tiklan .bf-chiziq-i { opacity: 1; background: repeating-linear-gradient(90deg, ${fon(T.ink, 0.28)} 0 7px, transparent 7px 13px); }
+        /* kesik-ok: shtrix = doimiy bo'lmagan yoki uzilgan ulanish (holat belgisi, bezak emas) */ .bf-chiziq.tik.h-savol .bf-chiziq-i, .bf-chiziq.tik.h-sondi .bf-chiziq-i, .bf-chiziq.tik.h-uzilgan .bf-chiziq-i, .bf-chiziq.tik.h-tiklan .bf-chiziq-i { opacity: 1; background: repeating-linear-gradient(180deg, ${fon(T.ink, 0.28)} 0 7px, transparent 7px 13px); }
         .bf-chiziq.h-sondi .bf-chiziq-i { opacity: 0.55; }
         .bf-chiziq.h-sorov .bf-chiziq-i { opacity: 1; background: ${T.accent}; box-shadow: 0 0 10px ${fon(T.accent, 0.5)}; }
         .bf-chiziq.h-bir .bf-chiziq-i { background: ${T.accent}; animation: bf-bir 1.4s ease-out both; }
@@ -2992,7 +2995,7 @@ export default function BreakAndFixLesson({ lang: langProp, onFinished, liveToke
         .bf-kod-y code { font-family: 'JetBrains Mono', monospace; color: ${CODE.attr}; }
         .bf-kod-p { display: flex; flex-direction: column; overflow-x: auto; }
         .bf-kod-q { display: block; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; line-height: 1.6; white-space: pre; padding: 0 4px; border-radius: 4px; transition: background 0.3s; }
-        .bf-kod-q.yon { background: ${fon(CODE.attr, 0.16)}; box-shadow: inset 2px 0 0 ${CODE.attr}; } /* qizil fon xato qatordek o'qilardi (F-1006-379) */ .bf-kod-q.xira { background: ${fon(T.paper, 0.1)}; color: ${CODE.comment}; }
+        .bf-kod-q.yon { background: ${fon(CODE.attr, 0.16)}; box-shadow: inset 0 0 0 1px ${fon(CODE.attr, 0.5)}; } /* qizil fon xato qatordek o'qilardi (F-1006-379) */ .bf-kod-q.xira { background: ${fon(T.paper, 0.1)}; color: ${CODE.comment}; }
         .bf-kod-q.err { background: ${fon(T.err, 0.45)}; } .bf-kod-q.ok { background: ${fon(T.ok, 0.4)}; }
         .bf-kod-iz { font-size: 11.5px; line-height: 1.45; color: ${CODE.punct}; }
         .bf-kod-iz .qcode { background: ${fon(T.paper, 0.12)}; color: ${CODE.attr}; }
@@ -3203,7 +3206,7 @@ export default function BreakAndFixLesson({ lang: langProp, onFinished, liveToke
         .bf-tingl { display: inline-flex; align-items: baseline; gap: 6px; padding: 6px 12px; border-radius: 10px; background: ${T.paper}; border: 1px solid ${T.line}; font-size: 13px; font-weight: 700; color: ${T.ink2}; }
         .bf-tingl b { font-family: 'JetBrains Mono', monospace; font-size: 16px; color: ${T.ink}; }
         .bf-kod-q.ikki { animation: bf-ikki 1.4s ease-in-out both; }
-        @keyframes bf-ikki { 0%, 40%, 100% { background: transparent; } 15%, 60% { background: ${fon(CODE.attr, 0.3)}; box-shadow: inset 2px 0 0 ${CODE.attr}; } 85% { background: ${fon(CODE.attr, 0.16)}; } }
+        @keyframes bf-ikki { 0%, 40%, 100% { background: transparent; } 15%, 60% { background: ${fon(CODE.attr, 0.3)}; box-shadow: inset 0 0 0 1px ${CODE.attr}; } 85% { background: ${fon(CODE.attr, 0.16)}; } }
         .bf-no-belgi { display: inline-flex; padding: 2px 10px; border-radius: 999px; background: ${T.accentSoft}; color: ${T.accent}; font-size: 12px; font-weight: 800; }
         .bf-no-belgi.ok { background: ${fon(T.ok, 0.12)}; color: ${T.ok}; }
         .bf-no-x { display: block; max-width: 320px; padding: 6px 10px; border-radius: 10px; background: ${T.ink}; color: ${T.paper}; font-size: 12px; }
