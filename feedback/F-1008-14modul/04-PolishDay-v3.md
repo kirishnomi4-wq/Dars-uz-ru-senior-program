@@ -1,8 +1,8 @@
-# 14-Modul · 4-dars «Loyiha kuni: demo uchun sayqal» — MD v3 (yangi dars, loyiha kuni) <!-- TAXMIN T20 -->
+# 14-Modul · 4-dars «Loyiha kuni: demo uchun sayqal» — MD v3 (yangi dars, loyiha kuni)
 
 Fayl: `src/12-Modull/PolishDayLesson.jsx` (kalit `m12-04`, App.jsx `type: 'Proyekt'`, 470-qator) · **12 ekran** (8 dars ekrani + 3 amaliyot bloki + kartochkalar; podium umumiy shablon) · faqat o'zbekcha (ru — 6-RU bosqichida)
 Dars yangi — hamma ekran noldan, to'liq yozildi. Loyiha kuni (dasturda AI-PRAKT), keyssiz (tayanch 5). Qolip: QKirish · QReja · QTushuncha ×2 · QTest ×2 · QBlok ×3 · podium · QKartochka · QYakun. Kod — `src/skelet/NamunaDars.jsx` dan.
-Menyu (DE-205, App.jsx 470-qator, `00-NOMLAR.md` 4-qator): «Loyiha kuni: demo uchun sayqal» · osti «demo yo'lidagi uch joy: bosish, yuklanish, muvaffaqiyat» · <!-- TAXMIN T20 -->
+Menyu (DE-205, App.jsx 470-qator, `00-NOMLAR.md` 4-qator): «Loyiha kuni: demo uchun sayqal» · osti «demo yo'lidagi uch joy: bosish, yuklanish, muvaffaqiyat» ·
 oldingi `m12-03` «Mahsulot tezligi: o'lchaymiz va tezlashtiramiz» · keyingi `m12-05` «Guruh pitchingizda nimani tuzatishni aytadi?».
 Namuna (tuzilish, hajm): 13-Modul `08-WinBackDay-v3.md` + `08-FILTR.md` (loyiha kuni, uch blok, tekshiruv kartasi «Kutilganidek» / «Boshqacha», besh holatli yakun) · 12-Modul `04-LiveNotifyDay-v3.md` (uch blok, «Bajardim» qoidasi) ·
 9-Modul `05-Animation-v3.md` (animatsiya so'zlari, «Harakatni kamaytirish», `prefers-reduced-motion`) · pilotlar `03-ProductSpeed-v3.md` (DevTools, yangi versiya, «Ortda qoldingizmi») va `07-PmDemoTest-v3.md` (4-dars natijasiga ishora) — matn ko'chirilmadi.
@@ -12,18 +12,18 @@ Fidbek: qator yoniga `>> …` yozing. Tasdiqlangach (GATE M) dars shu holatda qu
 Testlar: 4-ekran **C** · 7-ekran **B** · final tartib-mashqi yo'q (loyiha kuni, 172) · arena A·B·C·D ×3.
 Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2 ≈ 8 · Amaliyot 1 ≈ 20 · 4 ≈ 2 · 5 ≈ 7 · Amaliyot 2 ≈ 18 · 7 ≈ 2 · Amaliyot 3 ≈ 20 · podium, kartochkalar, yakun, arena ≈ 8 — jami ≈ 90.
 ⛔ 90 daqiqaga sig'ishi — «qur» pilotida taymer bilan o'lchanadi (uch blokda agent kutishi va DevTools bilan tekshiruv; 3-amaliyotda brauzer ko'rinishini qayta chiqarish); o'lchanmaguncha da'vo emas (tayanch 7.1). Ulgurmagan o'quvchi yo'li — A-bo'lim 10-band.
-⚠️ **Chegara (tayanch 1.0, 1.4) — har ekranga tegadi:** yangi funksiya qo'shilmaydi — faqat demo yo'lidagi uch joyning ko'rinishi o'zgaradi; Backend'ga tegilmaydi; tekshiruv — real odamlar qo'shilmagan o'yinda (Mentor misolida namuna o'yin), har bosishdan keyin «O'yindan chiqish» (12-Modul tayanchi 9.44 c). <!-- TAXMIN T7 -->
+⚠️ **Chegara (tayanch 1.0, 1.4) — har ekranga tegadi:** yangi funksiya qo'shilmaydi — faqat demo yo'lidagi uch joyning ko'rinishi o'zgaradi; Backend kodiga tegilmaydi (tekshiruv uchun faqat namuna yozuv yaratilishi mumkin — 04-FILTR 7); tekshiruv — real odamlar qo'shilmagan o'yinda (Mentor misolida namuna o'yin), har bosishdan keyin «O'yindan chiqish» (12-Modul tayanchi 9.44 c).
 Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10» → «9 / 10» (tayanch 1.0, 1.14). «Demo buzilmaydi», «demo yarqiraydi» kabi da'vo yo'q — natija faqat o'quvchining o'z tekshiruvi bilan (sinf 5).
 
 ---
 
 ## A. Darsning tayanchi — tushunchalar, atamalar, misol-ip, bitta vizual (163/180)
 
-1. **Bitta natija (tayanch 1.4, 4):** dars oxirida o'quvchining o'z repo'sida, o'z mahsuloti va trekida **demo yo'lidagi uch joy** o'zgargan va o'zi tekshirgan: <!-- TAXMIN T7 -->
+1. **Bitta natija (tayanch 1.4, 4):** dars oxirida o'quvchining o'z repo'sida, o'z mahsuloti va trekida **demo yo'lidagi uch joy** o'zgargan va o'zi tekshirgan:
    1) **bosish javobi** — demo yo'lidagi asosiy tugma bosilishi bilan holatini o'zgartiradi (Mentor misolida «Qo'shilaman» → «Qo'shilmoqda…» va kichik kutish belgisi), javob kelguncha qayta bosilmaydi ·
-   2) **yuklanish holati** — ro'yxat yuklanayotganda bo'sh joy o'rnida **joy egallovchi** kulrang kartalar (haqiqiy karta o'lchamida) ·
-   3) **muvaffaqiyat** — ish bajarilganda kichik animatsiya (Mentor misolida «8 / 10» → «9 / 10» bir lahza kattalashib qaytadi) · qurilmada harakat kamaytirilgan bo'lsa — uch joyda ham animatsiya o'chadi, holat qoladi · yangi versiya chiqarilgan.
-   Mentor misoli — «Maydon Jamoa», repo `maydon-jamoa`, teg `m14-dars-04-start` (= `m14-dars-03-done`) → `m14-dars-04-done` (tayanch 3, aynan). <!-- TAXMIN T4 -->
+   2) **yuklanish holati** — ro'yxat yuklanayotganda bo'sh joy o'rnida **joy egallovchi** (haqiqiy kontent egallaydigan joyga yaqin shaklda; Mentor misolida — ikkita kulrang karta; 04-FILTR 10, 31) ·
+   3) **muvaffaqiyat** — ish bajarilganda kichik animatsiya (Mentor misolida «8 / 10» → «9 / 10» bir lahza kattalashib qaytadi) · qurilmada harakat kamaytirilgan bo'lsa — shu uch joydagi harakat o'chadi, holat qoladi (bu demo yo'lining qoidasi, umumiy qonun emas — 04-FILTR 3) · yangi versiya chiqarilgan.
+   Mentor misoli — «Maydon Jamoa», repo `maydon-jamoa`, teg `m14-dars-04-start` (= `m14-dars-03-done`) → `m14-dars-04-done` (tayanch 3, aynan).
    Uyga vazifa yo'q (loyiha kuni; sinf 14). Yangi saqlash kaliti yo'q (tayanch 4, 8: 4-dars faqat `pm-m9d8-platforma` ni o'qiydi; natija — repo).
 2. **Bugungi asosiy fikr (P-013; yakunda ko'rsatilmaydi — darsning ichki o'qi, SABOQ E 50):** Demo yo'lida ekran har bosish, kutish va natijaga javob beradi — hakam bosilganini, ma'lumot kelayotganini va ish bajarilganini ko'radi; harakat kamaytirilsa ham bu holatlar qoladi.
 3. **Oldingi darslardan keladigan narsa (aynan; T-052):**
@@ -33,18 +33,18 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
      prototipdagi animatsiya (11-Modul 1.6: «Qo'shilaman» dan keyin «8 / 10» → «9 / 10» silliq o'zgaradi — `prototip/`, web).
    - 12-Modul: **brauzer ko'rinishi** — yangi versiyada `npx expo export -p web` → `netlify deploy --prod --dir dist`, push'dan keyin o'zi yangilanmaydi (9.28) · **jonli demo** — real odamlar qo'shilmagan o'yinda (Mentor — namuna o'yin), keyin «O'yindan chiqish» (9.44 c) · `namuna = true` (9.5).
    - 13-Modul 12-darsi: yangi funksiya qo'shilmaydi, faqat tuzatish va tekshirish; agentning «tayyor» degani — da'vo (sinf 5).
-   - 14-Modul 3-darsi: DevTools (F12 yoki Ctrl + Shift + I) · **sahifa siljishi** — `width` va `height` rasm joyini oldindan band qiladi, sahifa siljimaydi · **yuklanadigan kod hajmi** — ilovaning kodi. 1-darsi: **hakam** (glosssiz).
+   - 14-Modul 3-darsi: DevTools (F12 yoki Ctrl + Shift + I) · **sahifa siljishi** — `width` va `height` rasm joyini oldindan band qilishga yordam beradi (03-FILTR 11) · **yuklanadigan kod hajmi** — ilovaning kodi. 1-darsi: **hakam** (glosssiz).
    - Agent (Antigravity) · talab (qayerda · nima qilsin · nima buzilmasin) · push odati: `git status` — o'zgargan fayllar agent ro'yxati bilan bir xil, `.env` yo'q; `git add <fayl>` (tayanch 3).
-4. **Mazmun (tayanch 1.4 — aynan; tafsilotlar — TAYANCHGA SAVOL):** <!-- TAXMIN T7 -->
+4. **Mazmun (tayanch 1.4 — aynan; tafsilotlar — TAYANCHGA SAVOL):**
    - **Demo yo'lidagi uch joy** (hakam ko'radigan 1–2 daqiqa): 1) bosish javobi · 2) yuklanish holati · 3) muvaffaqiyat. Reja va bloklar shu tartibda (App.jsx osti so'zma-so'z — P-015); sahnadagi demo yo'li esa ekranlar tartibida: «O'yinlar» ochiladi (yuklanish) → «Qo'shilaman» (bosish) → son o'zgaradi (muvaffaqiyat).
    - **9-Moduldan farqi** (0, 2-ekran O'qituvchi eslatmasi): u yerda animatsiya qoidalari o'rganilgan; bu yerda — faqat demo yo'li, yangi funksiya yo'q. Bugun animatsiya so'zlari qayta o'rgatilmaydi — 5-ekranda faqat «Harakatni kamaytirish» eslanadi.
-   - **`prefers-reduced-motion`** (tayanch 1.4): animatsiya o'chadi, holat qoladi — yozuv, kulrang kartalar, yangi son. Mobil trekda ilova telefon sozlamasini o'qiydi (React Native `AccessibilityInfo`); brauzer ko'rinishida bu `prefers-reduced-motion` orqali o'qiladi (Manbalar 1, 2); web-trekda — `prefers-reduced-motion` (9-Modul).
+   - **`prefers-reduced-motion`** (tayanch 1.4): bu demo yo'lidagi harakatlar o'chadi, holat qoladi — yozuv, kulrang kartalar, yangi son (sayt o'zi ortiqcha harakatni kamaytiradi — brauzer hamma animatsiyani majburan o'chirmaydi; 04-FILTR 3). Mobil trekda ilova telefon sozlamasini o'qiydi (React Native `AccessibilityInfo`); brauzer ko'rinishida bu `prefers-reduced-motion` orqali o'qiladi (Manbalar 1, 2); web-trekda — `prefers-reduced-motion` (9-Modul).
    - **Uch blok (tayanch 1.4):** A1 bosish javobi · A2 yuklanish holati · A3 muvaffaqiyat + reduced-motion tekshiruvi + yangi versiya. Har blok: talab → tekshirish (o'quvchi o'zi) → «Bajardim».
    - **Halol gaplar:** sayqal tezlikni oshirmaydi — kutish vaqti o'sha qoladi, faqat ekran kutishni ko'rsatadi (2-ekran QIzoh, 2-amaliyot QIzoh) · tez internetda kulrang kartalar bir lahza ko'rinib o'tishi yoki umuman ko'rinmasligi mumkin — shuning uchun tekshiruv sekin tarmoq bilan (A2) ·
      agentning «tayyor» degani — da'vo; ko'rinishni o'quvchi brauzerda o'zi ko'radi (A1–A3 QIzoh).
-5. **Atamalar (bir ma'no — bir so'z, T-014; tayanch 2 — ta'riflar so'zma-so'z):** <!-- TAXMIN T19 -->
+5. **Atamalar (bir ma'no — bir so'z, T-014; tayanch 2 — ta'riflar so'zma-so'z):**
    - **sayqal** (yangi; 2-ekranda harakatdan keyin tug'iladi: «Demo yo'lidagi shunday kichik o'zgarishlar sayqal deyiladi.») — ta'rif yadrosi «demo yo'lidagi kichik o'zgarishlar» dars bo'yi so'zma-so'z (T-042): 2-ekran nom qatori, kartochka 1 (uch joy nomi bilan), «Endi siz bilasiz» 1. Kartochkada bir marta «inglizchasi: polish». Sarlavhalarda yo'q (T-011; dars nomida — App.jsx).
-   - **demo yo'li** — demoda hakam ko'radigan ekranlar va bosishlar (Mentor misolida: «O'yinlar» → «O'yin» → «Qo'shilaman»; o'quvchi matnida strelkasiz, so'z bilan). «Demo stsenariysi», «demo o'tishi» — 6-dars so'zlari, bu darsda **ishlatilmaydi** (sinf 12).
+   - **demo yo'li** — demoda hakam ko'radigan ekranlar va bosishlar (Mentor misolida: «O'yinlar» → «O'yin» → «Qo'shilaman»; o'quvchi matnida strelkasiz, so'z bilan). «Demo ssenariysi», «demo o'tishi» — 6-dars so'zlari, bu darsda **ishlatilmaydi** (sinf 12).
    - **bosish javobi** (yangi; 1-amaliyot vazifa qatorida, 2-ekran sahnasidan keyin) — «Tugma bosilishi bilan o'z holatini o'zgartirishi — bosish javobi deyiladi.» **kutish belgisi** — 9-Modul so'zi. Tugma yozuvlari: «Qo'shilaman» · «Qo'shilmoqda…» (yangi, TAYANCHGA SAVOL 2) · «Qo'shildingiz».
    - **yuklanish holati** — ro'yxat yuklanayotgan payt ekranda ko'rinadigan narsa. **joy egallovchi** (yangi; 2-ekran 3-harakatidan keyin) — tayanch so'zi aynan: «Yuklanayotganda ma'lumot o'rnida turadigan kulrang shakl — joy egallovchi.» Kartochkada «inglizchasi: skeleton».
      **kulrang karta** — Mentor misolidagi joy egallovchi (o'quvchi matnida «kulrang kartalar»). **kutish yozuvi** — 11-Modul so'zi, matni aynan.
@@ -52,26 +52,27 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
    - **animatsiya** · **ortiqcha harakat** · **«Harakatni kamaytirish»** · `prefers-reduced-motion` — 9-Modul so'zlari, qayta ta'riflanmaydi. «harakat kamaytirilgan» — qurilma sozlamasi yoqilgan holat.
    - **namuna o'yin** — real odamlar qo'shilmagan o'yin (Mentor misolida «Shanba, 18:00 · Mahalla maydoni», `namuna = true` akkauntlar bilan — 12-Modul). **tekshirish · tekshiruv** — o'quvchining o'z ishi; «sinov» bu darsda **yo'q** (tayanch 2).
    - **agent** · **prompt** · **talab** · **trek** · **brauzer ko'rinishi** · **yangi versiya** · **DevTools** (3-dars) · **Network**, **Rendering** — Chrome DevTools bo'limlari (UI nomi, tarjima qilinmaydi — T-033); «Slow 4G», «No throttling», `prefers-reduced-motion: reduce` — UI yozuvlari.
-   - **Ishlatilmaydi:** polish, skeleton, loader, spinner (prozada), «bezak», «yarqiraydi», «chiroyli qilish» (maqsad sifatida), demo stsenariysi, demo o'tishi, sinov, «tezlashdi» (bu darsda tezlik o'lchanmaydi), A1/A2/A3, `m12-04`, «Modul 14».
+   - **Ishlatilmaydi:** polish, skeleton, loader, spinner (prozada), «bezak», «yarqiraydi», «chiroyli qilish» (maqsad sifatida), demo ssenariysi, demo o'tishi, sinov, «tezlashdi» (bu darsda tezlik o'lchanmaydi), A1/A2/A3, `m12-04`, «Modul 14».
 6. **Mentor misoli (tayanch 1.0, 1.4, 1.14 — aynan; o'quvchi matnida «Mentor misolida»):**
    - Demo yo'li ekranlari: **«O'yinlar»** (karta «Shanba, 18:00 · Mahalla maydoni · 8 / 10»; yuklanayotganda kutish yozuvi) → **«O'yin»** («‹ O'yinlar» · «Shanba, 18:00 · Mahalla maydoni» · katta son «8 / 10» · tugma «Qo'shilaman»). Namuna o'yin — real odamlar qo'shilmagan (12-Modul 9.44 c).
-   - Mentor sayqali (`m14-dars-04-done`; yangi tafsilot — TAYANCHGA SAVOL 2–5): «Qo'shilaman» bosilishi bilan «Qo'shilmoqda…» + kichik kutish belgisi, tugma o'chiq · «O'yinlar» yuklanayotganda **ikkita kulrang karta** (haqiqiy karta o'lchamida, ichida kulrang chiziqlar sokin miltillaydi), ostida kutish yozuvi qoladi ·
-     qo'shilgach son «8 / 10» → «9 / 10» 0,3 soniya ichida biroz kattalashib, o'z o'lchamiga qaytadi; tugma «Qo'shildingiz» · harakat kamaytirilgan bo'lsa — miltillash, aylanish va kattalashish yo'q, holatlar harakatsiz almashadi.
-   - **Sonlar:** faqat namuna o'yin «8 / 10» → «9 / 10» (tayanch 1.0). Boshqa son yo'q (1.14); statistika deyilmaydi (T-043). Kutish vaqti sahnada soniyasiz — «bir lahza» (son to'qilmaydi). «0,3 soniya» — Mentor talabidagi dizayn qiymati, o'lchov emas.
+   - Mentor sayqali (`m14-dars-04-done`; yangi tafsilot — TAYANCHGA SAVOL 2–5): «Qo'shilaman» bosilishi bilan «Qo'shilmoqda…» + kichik kutish belgisi, tugma o'chiq · «O'yinlar» yuklanayotganda **ikkita kulrang karta** (haqiqiy karta o'lchamida, ichida kulrang chiziqlar — harakatsiz; 04-FILTR 16), ostida kutish yozuvi qoladi ·
+     qo'shilgach son «8 / 10» → «9 / 10» bir lahza biroz kattalashib, o'z o'lchamiga qaytadi (soniya aytilmaydi — 04-FILTR 15); tugma «Qo'shildingiz» · harakat kamaytirilgan bo'lsa — aylanish va kattalashish yo'q: kutish belgisi yashirinadi, «Qo'shilmoqda…» yozuvi qoladi; holatlar harakatsiz almashadi (04-FILTR 4).
+   - **Sonlar:** faqat namuna o'yin «8 / 10» → «9 / 10» (tayanch 1.0). Boshqa son yo'q (1.14); statistika deyilmaydi (T-043). Kutish vaqti va animatsiya davomi sahnada soniyasiz — «bir lahza» (son to'qilmaydi; «0,3 soniya» olib tashlandi — 04-FILTR 15).
    - Mentor sayqalining haqiqiy ko'rinishi (kulrang kartalar soni, kutish belgisi shakli, Expo Go'da harakat kamaytirilganda kutish belgisi) — ⛔ «qur» pilotida Mentor repo'sida ko'riladi; MD dagi sahna — namuna.
 7. **Metafora yo'q. Keyssiz** (tayanch 5). Qahramon yo'q — vazifani Mentor beradi; odamlar roli bilan: hakam (ismsiz, gapsiz), o'yinchi, tashkilotchi. Ikkinchi misol faqat 1-savolda — uy vazifalari ilovasi (P-002; 13-Modul TAQIQLAR 4 ro'yxatidan).
 8. **Amaliyot bloki (tayanch 1.4; 13-Modul 8-dars naqshi):** to'rt qadamning hammasi o'quvchining **o'z repo'sida, o'z mahsuloti va trekida** (Ochish → Prompt → Ishga tushirish → Tekshirish). Mentor misoli — namuna (o'ngda «kutilgan natija · namuna: Maydon Jamoa», `{…}` yonida kulrang «masalan: …», «Yordam»da to'liq talab).
    **Talab zinapoyasi:** A1 — tayyor talab + 4 joy (`{ilova papkasi}` oldindan, `{asosiy tugma}`, `{kutish yozuvi}`, `{avvalgidek ishlashi kerak bo'lgan ishlar}`) · A2 — + 3 joy (`{ilova papkasi}` oldindan, `{ro'yxat ekrani}`, `{kartada nima bor}`) · A3 — + 3 joy (`{ilova papkasi}` oldindan, `{muvaffaqiyat joyi}`, `{qanday harakat}`); reduced-motion qismi — tayyor.
-   Prompt — agentga buyruq shaklida (T-002); oxirida «Boshqa joyga tegma, o'zgargan fayllarni ayt.» Har blokda: «Backend'ga tegma» va «Animatsiya uchun yangi kutubxona qo'shma — loyihada bor vosita bilan qil» (3-darsda yuklanadigan kod hajmi o'lchangan; yangi kutubxona uni oshirishi mumkin).
+   Prompt — agentga buyruq shaklida (T-002); oxirida «Boshqa joyga tegma, o'zgargan fayllarni ayt.» Har blokda: «Backend kodiga tegma» va «Animatsiya uchun yangi kutubxona qo'shma — loyihada bor vosita bilan qil» (3-darsda yuklanadigan kod hajmi o'lchangan; yangi kutubxona uni oshirishi mumkin).
    Xato yo'li (har blok 3-qadamida, bitta gap): «Xato chiqsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»» Push odati — `git add <fayl>` (`git add .` emas).
    **Trek:** `pm-m9d8-platforma.trek` (yo'q bo'lsa — 1-amaliyot tepasida ikki tanlov tugmasi «Mobil trek» · «Web-trek»; tanlov dars holatida (`ccProgress`), boshqa darsning kalitiga yozilmaydi — sinf 3). `{ilova papkasi}` trekdan: `mobil/` | `prototip/`.
    Brauzerda ko'rish: mobil trek — `mobil/` da `npx expo start`, keyin terminalda `w` (ilova kompyuter brauzerida ochiladi; Manbalar 5) · web-trek — `prototip/` da `npm run dev` (03 pilot TS 14). Telefonda: mobil — Expo Go (`npx expo start`, odatda o'zi qayta yuklanadi; bo'lmasa terminalda `r`); web — telefon brauzerida sayt.
-   **«Davom etish»:** A1 — 3-qadamdan keyin (push qilingan bo'lsa; tekshiruvni 3-amaliyotdagi umumiy tekshiruv bilan qilish mumkin) · A2 — 3-qadamdan keyin · A3 — 4-qadamdan keyin (yangi versiya va oxirgi tekshiruv). Blok bajarilgani — faqat 4-qadam «Bajardim»idan (12-Modul 9.36 h); yakun sarlavhasi shu bayroqlar va 4-qadamdagi tekshiruv kartalaridan («Kutilganidek» / «Boshqacha» — 13-Modul F-1007-466).
+   **Tartib (04-FILTR 1):** agent o'zgartiradi → 3-qadam: lokal ishga tushirish, `git status` → 4-qadam: tekshiruv (DevTools) → kutilganidek bo'lsa push (A3 da — push, yangi versiya, deploy'da bir marta). Tekshirilmagan kod push qilinmaydi.
+   **«Davom etish»:** A1 — 3-qadamdan keyin (kod lokal, push qilinmagan; tekshiruv va push 3-amaliyot boshida) · A2 — 3-qadamdan keyin · A3 — 4-qadamdan keyin (yangi versiya va oxirgi tekshiruv). Blok bajarilgani — faqat 4-qadam «Bajardim»idan (12-Modul 9.36 h); yakun sarlavhasi shu bayroqlar va 4-qadamdagi tekshiruv kartalaridan («Kutilganidek» / «Boshqacha» — 13-Modul F-1007-466).
 9. **Tekshiruv — o'quvchining o'z ko'zi bilan, agent — zaxira (sinf 10):** uch joyni o'quvchi o'zi ko'radi — kompyuter brauzerida, DevTools bilan: **Network** bo'limida «Slow 4G» (javob sekin keladi — bosish javobi va kulrang kartalar ko'rinadi) · **Rendering** bo'limida `prefers-reduced-motion: reduce` (harakat kamaytirilgan holat). Ochish yo'li — Manbalar 3, 4.
-   Tekshiruv — **real odamlar qo'shilmagan o'yinda** (Mentor misolida — namuna o'yin «Shanba, 18:00»); har bosishdan keyin «O'yindan chiqish» bilan holat boshiga qaytariladi (tayanch 9.10, 12-Modul 9.44 c). Bunday yozuv bo'lmasa — agent bitta namuna yozuv ochadi (`namuna = true`), haqiqiy yozuvlarga tegilmaydi (1-amaliyot 1-qadam).
+   Tekshiruv — **real odamlar qo'shilmagan o'yinda** (Mentor misolida — namuna o'yin «Shanba, 18:00»); har bosishdan keyin «O'yindan chiqish» bilan holat boshiga qaytariladi (tayanch 9.10, 12-Modul 9.44 c). Bunday yozuv bo'lmasa — agent bitta namuna yozuv ochadi (`namuna = true`, namuna akkaunt bilan, sanoq va xabarlardan tashqarida), haqiqiy yozuvlarga tegilmaydi (1-amaliyot 1-qadam).
    Telefonda (Expo Go yoki telefon brauzeri) bir marta bosib ko'rish — 3-amaliyot 4-qadam. Telefonning «Harakatni kamaytirish» sozlamasi — menyu nomi yozilmaydi (P-028), ixtiyoriy.
 10. **Vaqt (90 daqiqa — reja) va ulgurmagan yo'l:** taqsimot tepada. Backend o'zgarmaydi — Render kutishi yo'q; tashqi kutish faqat 3-amaliyotda (`netlify deploy`). Agent ishlayotganda — kodni ko'rsatadigan prompt (SABOQ 52, har blok 3-qadami).
-    Har blokda «Ulgurmasangiz» qatori. Sig'masa — oldindan belgilangan qisqartirish: 1-amaliyot tekshiruvi 3-amaliyotdagi umumiy tekshiruvga qo'shiladi · 3-amaliyotda telefonda ko'rish o'tkazib yuboriladi. Yakun sarlavhasi holatga qarab (11-ekran). O'qituvchi eslatmasi — 1-ekranda.
+    Har blokda «Ulgurmasangiz» qatori. Sig'masa (auditor bahosi 115–150 daqiqa xavfi — 04-FILTR 39) — oldindan belgilangan qisqartirish: 3-amaliyotda telefonda ko'rish o'tkaziladi · 3-amaliyot animatsiyasi minimal (bitta harakat) · deploy'dagi tekshiruv o'qituvchi boshqaruvida · kartochkalar uyda. 1 va 2-amaliyot tekshiruvi push'dan oldin shart — o'tkazilmaydi. Yakun sarlavhasi holatga qarab (11-ekran). O'qituvchi eslatmasi — 1-ekranda.
 11. **Saqlash kaliti (tayanch 8):** o'qiydi `pm-m9d8-platforma` (`trek`) → yozadi — **yo'q** (natija — repo, teg `m14-dars-04-done`). Blok holati, tekshiruv kartalari («Kutilganidek» / «Boshqacha»), trek tanlovi (kalit yo'q bo'lsa) — dars holatida (`ccProgress`). Ism, login, manzil hech qayerga yozilmaydi.
 12. **Toza yuza (D4):** tugma, variant va maketda emoji yo'q; brauzer, telefon kengligidagi ilova, kulrang kartalar, kutish belgisi, kalit, demo yo'li chizig'i — CSS/SVG; «Maydon Jamoa» nomi ilova sarlavhasida o'z rangida (11-Modul yashili), logotipsiz (TAQIQLAR 0).
     Rang — holat foni (D3): javob beradi / qoldi — `ok`, jim / o'chdi — `err` yoki `ink2`, joriy — `accent`, kulrang kartalar — `line`/`ink2`. Matn o'lchovi: sarlavha ≤55 · Mentor ≤2 gap (interaktivda 1) · xulosa ≤110 · hook javobi ≤120 · to'g'ri va xato izohi ≤60 («O'lchov» bo'limi, skript bilan).
@@ -79,18 +80,18 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
 
 ## Darsning ipi va bitta vizual
 
-- **Ip (P-001/004):** «Maydon Jamoa» — mahalladagi mini-futbol uchun jamoa yig'adigan ilova (tayanch 1.0). Hakamlar oldida chiqishda demo yo'li — «O'yinlar» → «O'yin» → «Qo'shilaman» — proyektorda ko'rinadi. Sekin javobda ekran bir lahza jim turadi: bosilgani ko'rinmaydi, ro'yxat o'rni bo'sh, son birdan almashadi. <!-- TAXMIN T8 -->
+- **Ip (P-001/004):** «Maydon Jamoa» — mahalladagi mini-futbol uchun jamoa yig'adigan ilova (tayanch 1.0). Hakamlar oldida chiqishda demo yo'li — «O'yinlar» → «O'yin» → «Qo'shilaman» — proyektorda ko'rinadi. Sekin javobda ekran bir lahza jim turadi: bosilgani ko'rinmaydi, ro'yxat o'rni bo'sh, son birdan almashadi.
   Bugun Mentor yangi ekran ham, yangi tugma ham qo'shmaydi — o'sha uch joyni o'zgartiradi va har birini sekin tarmoqda hamda harakat kamaytirilgan holatda o'zi tekshiradi. O'quvchi xuddi shuni o'z demo yo'lida qiladi (uch blok).
 - **Hook:** «Qo'shilaman» bosiladi — ekran jim → 2-ekranda butun demo yo'li «Oldin» va «Keyin»: yangi narsa qo'shilmadi, uch joy o'zgardi (sayqal, joy egallovchi) → 1-blok (bosish javobi) → 1-savol → 5-ekran: harakat kamaytirilsa nima qoladi → 2-blok (kulrang kartalar) → 2-savol → 3-blok (muvaffaqiyat, harakat kamaytirilgan holat, yangi versiya).
-- **Bitta vizual — «demo yo'li sahnasi»** (`SayqalSahna`, bitta manba `SAYQAL_SAHNA`, 163/180): <!-- TAXMIN T8 -->
+- **Bitta vizual — «demo yo'li sahnasi»** (`SayqalSahna`, bitta manba `SAYQAL_SAHNA`, 163/180):
   - **brauzer oynasi** (yorliq ramka ustida «laptop · proyektorga»; o'lcham barqaror, ≈ 360×300; manzil satri `maydon-jamoa-….netlify.app`), ichida telefon kengligidagi ilova (brauzer ko'rinishi): **«O'yinlar»** — sarlavha «Maydon Jamoa» (o'z rangida), ro'yxat joyi (kutish yozuvi · kulrang kartalar · karta «Shanba, 18:00 · Mahalla maydoni · 8 / 10») ·
     **«O'yin»** — «‹ O'yinlar», «Shanba, 18:00 · Mahalla maydoni», katta son «8 / 10», tugma «Qo'shilaman» / «Qo'shilmoqda…» (kichik kutish belgisi, tugma kulrang) / «Qo'shildingiz».
   - **tepada ikki tanlov tugmasi** (2-ekran): «Oldin» · «Keyin» — Mentor ilovasi sayqaldan oldin va keyin (bitta manba: `m14-dars-04-start` / `-done` ko'rinishi). Ostida kulrang yorliq: «Backend sekin javob beradi — namuna».
   - **pastda demo yo'li chizig'i** — uch nuqta, ekranlar tartibida: «yuklanish» · «bosish» · «muvaffaqiyat»; holat: kulrang (ko'rilmagan) → qizil (jim) → yashil (javob beradi); har nuqta ostida bitta qisqa yorliq.
   - **o'ngda** (5-ekran) chizilgan kalit «Harakatni kamaytirish» va jadval «Harakat · Holat» (P-057: har qator muhri — «o'chdi» kulrang / «qoldi» yashil ✓).
-  - Holatlar almashadi: bosish nuqtasi (kichik doira) · kutish belgisi aylanadi · kulrang chiziqlar sokin miltillaydi · son bir lahza kattalashib qaytadi. `prefers-reduced-motion` da sahnaning o'z harakati to'xtaydi — holatlar harakatsiz almashadi (DE-200); kalit yoqilganda ham shunday (5-ekran).
+  - Holatlar almashadi: bosish nuqtasi (kichik doira) · kutish belgisi aylanadi · son bir lahza kattalashib qaytadi (kulrang kartalar — harakatsiz). `prefers-reduced-motion` da sahnaning o'z harakati to'xtaydi — holatlar harakatsiz almashadi (DE-200); kalit yoqilganda ham shunday (5-ekran).
   - Ishlatilishi: 0 («O'yin», «Oldin») · 1 (tayyor holat, bir marta o'zi yuradi) · 2 (to'liq sahna, ikki tanlov tugmasi) · 5 (kalit + jadval) · bloklarning o'ng tomoni (kutilgan natija — sahnaning kattasi) · 4, 7 (javobdan keyingi kichik ko'rinish).
-- **Yakun:** demo yo'lidagi uch joy o'zgardi va o'zingiz tekshirdingiz · uyga vazifa yo'q · keyingi dars — «Guruh pitchingizda nimani tuzatishni aytadi?». <!-- TAXMIN T20 -->
+- **Yakun:** demo yo'lidagi uch joy o'zgardi va o'zingiz tekshirdingiz · uyga vazifa yo'q · keyingi dars — «Guruh pitchingizda nimani tuzatishni aytadi?».
 
 ---
 
@@ -98,15 +99,15 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
 - Eyebrow: Loyiha kuni · kirish
 - Sarlavha: **Tugmani bosgach, ekranda birinchi nima o'zgardi?** (48)
 - Mentor (bosqichga qarab, SABOQ 11; har biri bitta gap):
-  - boshida: Hakam demoni proyektorda kuzatadi — sahnadagi «Qo'shilaman»ni bosing va ekranga qarang. <!-- TAXMIN T8 -->
+  - boshida: Hakam demoni proyektorda kuzatadi — sahnadagi «Qo'shilaman»ni bosing va ekranga qarang.
   - javobdan keyin: Bugun hakam ko'radigan shunday joylar bilan ishlaysiz — «Davom etish»ni bosing.
 - Maket (chap): `SayqalSahna` «Oldin» holatida — brauzer oynasi «laptop · proyektorga», ichida «O'yin» ekrani: «‹ O'yinlar» · «Shanba, 18:00 · Mahalla maydoni» · katta son «8 / 10» · tugma «Qo'shilaman» (halqada). Ramka ustida yorliq «Mentor misoli · Maydon Jamoa». O'ngdagi variantlar xira — tugma bosilmaguncha.
 - **Harakat → Vizual o'zgarish:** «Qo'shilaman» → tugmada bosish nuqtasi (kichik doira) bir lahza ko'rinadi; keyin ekran **jim**: tugma yozuvi, rangi va son o'zgarmaydi, kutish belgisi yo'q → bir lahzadan keyin son birdan «9 / 10», tugma birdan «Qo'shildingiz».
   Shundan keyin o'ngdagi variantlar faollashadi (har birining o'z yengil chegarasi, navbatma-navbat to'lqin — E 40).
 - Variantlar (radio, ballsiz):
-  - Tugmaning rangi va yozuvi
-  - Aylanadigan kutish belgisi
-  - ✔ Bir lahza hech narsa
+  - Tugmaning yozuvi o'zgardi
+  - Kutish belgisi chiqdi
+  - ✔ Avval hech narsa o'zgarmadi (04-FILTR 20: savol «nima o'zgardi?» — variantlar bir shaklda)
 - Javob — 3-variant: **Aynan!** Bir lahza ekran jim turdi: bosilgani ham, kutish ham ko'rinmadi — son keyin birdan almashdi.
 - Javob — 1-variant: **Qiziq fikr!** Tugma faqat son almashganda o'zgardi — undan oldin u avvalgidek turdi.
 - Javob — 2-variant: **Qiziq fikr!** Kutish belgisi chiqmadi — ekran javob kelguncha bir xil turdi.
@@ -118,15 +119,15 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
 
 ## 1 · Bugun quramiz  ← QReja (172: tayyor natija + 3 qator + repo teglari)
 - Eyebrow: Reja
-- Sarlavha: **Bugun demo yo'lingizdagi uch joy hakamga javob beradi.** (54)
+- Sarlavha: **Bugun demo yo'lingizdagi uch joyni o'zgartirasiz.** (49) — natija va'dasi (P-014), «hakamga javob beradi» da'vosi olindi (04-FILTR 18)
 - Mentor: Yangi funksiya qo'shmaysiz — hakam ko'radigan ekranlardagi uch joyni o'zgartirasiz, namuna «Yordam»da turadi.
 - Chap — «Dars oxirida»: `SayqalSahna` **tayyor** holatda («Keyin»), bir marta o'zi yuradi (DE-200): «O'yinlar» — kulrang kartalar → karta o'sha joyga keladi → «O'yin» → «Qo'shilaman» → «Qo'shilmoqda…» → son «8 / 10» → «9 / 10» bir lahza kattalashib qaytadi, «Qo'shildingiz»;
-  demo yo'li chizig'ining uch nuqtasi navbat bilan yashil yonadi. <!-- TAXMIN T7 -->
-- O'ng — bugungi uch ish (tex-karta «01 · matn», bosilmaydi; teg yo'q — 172; tartib App.jsx osti so'zma-so'z: bosish, yuklanish, muvaffaqiyat — P-015): <!-- TAXMIN T7 -->
+  demo yo'li chizig'ining uch nuqtasi navbat bilan yashil yonadi.
+- O'ng — bugungi uch ish (tex-karta «01 · matn», bosilmaydi; teg yo'q — 172; tartib App.jsx osti so'zma-so'z: bosish, yuklanish, muvaffaqiyat — P-015):
   - 01 · Bosish: tugma bosilishi bilan o'zgaradi
   - 02 · Yuklanish: ro'yxat o'rnida kulrang kartalar
   - 03 · Muvaffaqiyat: son kichik harakat bilan o'zgaradi
-- Pastki qator (mono, kichik): o'z repo'ngiz · Mentor misoli `maydon-jamoa` · boshlang'ich teg `m14-dars-04-start` · namuna `m14-dars-04-done` <!-- TAXMIN T4 -->
+- Pastki qator (mono, kichik): o'z repo'ngiz · Mentor misoli `maydon-jamoa` · boshlang'ich teg `m14-dars-04-start` · namuna `m14-dars-04-done`
 - Pastki qator 2 (kichik): «Maydon Jamoa» — namuna; amaliyotlarni o'z mahsulotingizda bajarasiz. Uch joy mobil va web-trekda bir xil.
 - Tugmalar: Orqaga · Boshlaymiz
 - O'qituvchi eslatmasi: bugun Backend'ga tegilmaydi — Render kutishi yo'q; uch blok ham ilova kodida (`mobil/` yoki `prototip/`). Tekshiruv kompyuter brauzerida, DevTools bilan: Network bo'limida «Slow 4G» va Rendering bo'limida `prefers-reduced-motion: reduce` — o'quvchilar ikkalasini birinchi marta ko'radi, 1-amaliyotda bir daqiqa ko'rsating.
@@ -143,7 +144,7 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
   - 2-harakatdan keyin: Endi tepadagi «Keyin»ni bosing — Mentor o'zgartirgan ilova ochiladi.
   - 3-harakatdan keyin: Endi «Qo'shilaman»ni yana bir marta bosing.
   - tugagach: Natijani taxminingiz bilan solishtiring.
-- Bashorat (ballsiz, 181; yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — qo'shiladigan narsa o'sish tartibida): **Mentor demo yo'lini yaxshilash uchun nima qo'shadi?** · Yangi narsa qo'shmaydi · Bitta yangi tugma · Bitta yangi ekran
+- Bashorat (ballsiz, 181; yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — qo'shiladigan narsa o'sish tartibida): **Mentor demo yo'li uchun yangi funksiya qo'shadimi?** · Yo'q, qo'shmaydi · Bitta yangi tugma · Bitta yangi ekran (04-FILTR 21: kutish belgisi va kulrang karta — UI elementi, funksiya emas)
   Tanlangach yopilmaydi: ixcham qator «TAXMININGIZ · savol · tanlangan variant» natija chiqquncha turadi.
 - Sahna (`SayqalSahna`): tepada tanlov tugmalari «Oldin» (tanlangan) · «Keyin» (2-harakatdan oldin xira) · brauzer oynasi · pastda demo yo'li chizig'i (uch kulrang nuqta: yuklanish · bosish · muvaffaqiyat) · kulrang yorliq «Backend sekin javob beradi — namuna».
   Sahna tugmasi (chegarali, ramkadan tashqarida): «O'yinlar»ni ochish (halqada). Ostida kichik hisoblagich: «Ekranlar: 2 · tugmalar: o'sha».
@@ -151,23 +152,23 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
   1. «O'yinlar»ni ochish («Oldin») → brauzerda «O'yinlar»: ro'yxat joyi oq, faqat kutish yozuvi «O'yinlar yuklanmoqda — bu bir daqiqagacha cho'zilishi mumkin.» → bir lahzadan keyin karta «Shanba, 18:00 · Mahalla maydoni · 8 / 10» birdan paydo bo'ladi, yozuv yo'qoladi →
      chiziqdagi «yuklanish» nuqtasi qizil, ostida yorliq «ro'yxat o'rni bo'sh turdi». Sahna o'zi kartani bosadi (bosish nuqtasi) — «O'yin» ekrani ochiladi, «Qo'shilaman» halqada.
   2. «Qo'shilaman» («Oldin») → 0-ekrandagidek: ekran jim, keyin son birdan «9 / 10», tugma «Qo'shildingiz» → «bosish» nuqtasi qizil «bosilgani ko'rinmadi», «muvaffaqiyat» nuqtasi qizil «son birdan almashdi». «Keyin» tugmasi faollashadi (halqada).
-  3. «Keyin» → sahna boshidan qayta: «O'yinlar» ochiladi — ro'yxat joyida **ikkita kulrang karta** (haqiqiy karta o'lchamida, ichida kulrang chiziqlar sokin miltillaydi), ostida o'sha kutish yozuvi → karta birinchi kulrang karta o'rniga, o'sha o'lchamda keladi, ikkinchisi so'nadi; hech narsa sakramaydi →
-     «yuklanish» nuqtasi yashil «nima kelishi ko'rindi». Nom qatori (bitta): Yuklanayotganda ma'lumot o'rnida turadigan kulrang shakl — joy egallovchi. <!-- TAXMIN T19 -->
+  3. «Keyin» → sahna boshidan qayta: «O'yinlar» ochiladi — ro'yxat joyida **ikkita kulrang karta** (haqiqiy karta o'lchamida, ichida kulrang chiziqlar — harakatsiz), ostida o'sha kutish yozuvi → karta birinchi kulrang karta o'rniga, o'sha o'lchamda keladi, ikkinchisi so'nadi; hech narsa sakramaydi →
+     «yuklanish» nuqtasi yashil «nima kelishi ko'rindi». Nom qatori (bitta): Yuklanayotganda ma'lumot o'rnida turadigan kulrang shakl — joy egallovchi.
      Sahna o'zi kartani bosadi — «O'yin» ekrani, «Qo'shilaman» halqada.
   4. «Qo'shilaman» («Keyin») → tugma bosilishi bilan «Qo'shilmoqda…» bo'ladi, yonida kichik kutish belgisi aylanadi, tugma kulrang (o'chiq) → «bosish» nuqtasi yashil «bosilgani ko'rindi» → javob kelgach son «8 / 10» → «9 / 10» bir lahza kattalashib qaytadi, tugma «Qo'shildingiz» → «muvaffaqiyat» nuqtasi yashil «o'zgarish ko'rindi».
-     Hisoblagich bir lahza accent bilan yonadi: «Ekranlar: 2 · tugmalar: o'sha». Nom qatori (bitta): Demo yo'lidagi shunday kichik o'zgarishlar sayqal deyiladi. <!-- TAXMIN T19 -->
+     Hisoblagich bir lahza accent bilan yonadi: «Ekranlar: 2 · tugmalar: o'sha». Nom qatori (bitta): Demo yo'lidagi shunday kichik o'zgarishlar sayqal deyiladi.
   - Holat o'quvchi bosgan tartibdan chiziladi (P-046); noto'g'ri tanlov yo'q — qaror bashoratda, natija harakatda.
 - Joriy qator (4/4 dan keyin, bitta): Ekranlar va tugmalar o'sha — o'zgargani uch joyning ko'rinishi. (63)
-- Natija qatori (yashil xulosa qutisining birinchi kichik qatori, E 42): «Taxminingiz ✕ — aslida: yangi narsa qo'shmaydi» (yoki «Taxminingiz to'g'ri chiqdi ✓»).
+- Natija qatori (yashil xulosa qutisining birinchi kichik qatori, E 42): «Taxminingiz ✕ — aslida: yo'q, qo'shmaydi» (yoki «Taxminingiz to'g'ri chiqdi ✓»).
 - Xulosa: Bu misolda yangi ekran ham, tugma ham qo'shilmadi: bosish, yuklanish va natija endi ekranda ko'rinadi.
 - Qator (`QIzoh`, qutining oxirgi kichik qatori): Sayqal kutishni qisqartirmaydi — ekran kutish borligini ko'rsatadi.
 - Tugadi (199): harakat paneli, tanlov tugmalari va sahna tugmasi yopiladi; brauzer va demo yo'li chizig'i (uch yashil nuqta) butun enga, «muvaffaqiyat» nuqtasi fokusda; vizual ⛶ ichida (q17).
 - Tugma (pastki): Avval taxminingizni belgilang → Harakatlarni navbat bilan bajaring (N/4) → Davom etish
 - Keyingi bosiladigan joy: bashorat variantlari → «O'yinlar»ni ochish (halqa) → «Qo'shilaman» → «Keyin» → «Qo'shilaman» → «Davom etish».
-- O'qituvchi eslatmasi: 9-Modulda o'quvchilar animatsiya «bosildi», «o'zgardi», «tayyor» deb javob berishini ko'rgan — bugungi uch joy shuning demo yo'lidagi o'rni. Kutish yozuvi 11-Modulda qo'shilgan: u qancha kutishni aytadi; kulrang kartalar — nima kelishini.
+- O'qituvchi eslatmasi: 9-Modulda o'quvchilar animatsiya «bosildi», «o'zgardi», «tayyor» deb javob berishini ko'rgan — bugungi uch joy shuning demo yo'lidagi o'rni. Kutish yozuvi 11-Modulda qo'shilgan: u kutish borligini aytadi; kulrang kartalar — nima kelishini (vaqt da'vosi darsning qoidasi emas — 04-FILTR 13).
   Sayqal tezlikni oshirmaydi (3-darsda tezlik alohida o'lchangan) — kutish vaqti o'sha qoladi. Sahnadagi «Oldin» va «Keyin» — Mentor ilovasining namunasi; o'quvchi ilovasida «Oldin» holatda kutish yozuvi bo'lmasligi ham mumkin.
 - ✎ Bitta g'oya (P-008): yangi funksiyasiz — o'sha ekranlarda uch joy (tayanch 1.4: «yangi funksiya yo'q», uch joy). T-011: hodisa sahnada → «joy egallovchi» (3-harakatdan keyin) → «sayqal» (4-harakatdan keyin, uch joy ko'ringach); «bosish javobi» — 1-amaliyot vazifa qatorida (nom qatori bitta ekranda ikkitadan oshmasin).
-  Bashorat — bir o'lchov (qo'shiladigan narsa: hech narsa · tugma · ekran), o'sish tartibida (S-015). Sahnada son faqat «8 / 10» → «9 / 10» (tayanch 1.0); kechikish soniyasiz. Joy egallovchi haqiqiy karta o'lchamida — 3-darsdagi «joy oldindan band — sahifa siljimaydi» g'oyasi bilan bir (A2 talabi).
+  Bashorat — bir o'lchov (qo'shiladigan narsa: hech narsa · tugma · ekran), o'sish tartibida (S-015). Sahnada son faqat «8 / 10» → «9 / 10» (tayanch 1.0); kechikish soniyasiz. Joy egallovchi haqiqiy kontentga yaqin o'lchamda — 3-darsdagi «joy oldindan band — siljish kamayadi» g'oyasi bilan bir (A2 talabi).
   Xulosa «Bu misolda» bilan chegaralangan (sinf 4). Ikkinchi kulrang karta so'nishi — sahna namunasi (Mentor ro'yxatidagi o'yinlar soni tayanchda yo'q; TAYANCHGA SAVOL 3).
 
 ## 3 · Amaliyot 1 — bosish javobi  ← amaliyot bloki (QBlok + `ScreenBlok`, ≈20 daq)
@@ -181,10 +182,11 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
      Bugun ilovaga yangi narsa qo'shilmaydi: agent «yana bir narsa qo'shay» desa — «Yo'q, faqat talabdagi ish» deng.
      Demo yo'lingizni ilovada bir marta bosib chiqing va ikki savolga javob toping: hakam oldida qaysi tugmani bosasiz? Javob kelguncha tugmada qanday yozuv tursin? (Mentor misolida: «O'yin» ekranidagi «Qo'shilaman»; yozuv «Qo'shilmoqda…».)
      Tekshirish uchun real odamlar qo'shilmagan yozuv kerak (Mentor misolida — namuna o'yin «Shanba, 18:00»). Bunday yozuv bo'lmasa — agentga «Nusxalash» bilan yuboring:
-     > Demo tekshiruvi uchun bitta namuna yozuv yarat: {namuna yozuv}. `namuna = true` bo'lsin, haqiqiy foydalanuvchilarning yozuvlariga tegma. Kodni o'zgartirma. Qaysi yozuv va qaysi `id` ekanini ayt.
+     > Demo tekshiruvi uchun bitta namuna yozuv yarat: {namuna yozuv}. `namuna = true` bo'lsin va faqat namuna akkaunt bilan — haqiqiy foydalanuvchilarning yozuvlariga tegma; bu yozuv sanoq, eslatma, Telegram xabari va taklif sanog'iga kirmasligini tekshirib ayt (`namuna` belgisi shuni qiladi — 12-Modul). Backend kodini o'zgartirma. Qaysi yozuv va qaysi `id` ekanini ayt.
+     Agent «`namuna` belgisi sanoq yoki xabarni chetlamaydi» desa — tekshiruvdan keyin yozuvni o'chiring (agentga: «{id} namuna yozuvini o'chir, boshqa joyga tegma»); Backend kodiga bugun tegilmaydi (04-FILTR 8, 9).
      Qavs yonida kulrang namuna: {namuna yozuv} — «masalan: o'yin «Juma, 18:00 · Mahalla maydoni», kerak 10, hali hech kim qo'shilmagan».
   2. **Prompt** — qavslarni to'ldiring (yonida kulrang namuna), «Nusxalash»ni bosing va Antigravity'ga yuboring:
-     > Qayerda: `{ilova papkasi}` — {asosiy tugma} turgan ekran. Backend'ga tegma.
+     > Qayerda: `{ilova papkasi}` — {asosiy tugma} turgan ekran. Backend kodiga tegma.
      > Nima qilsin: {asosiy tugma} bosilishi bilan, javob kelishini kutmasdan, tugma yozuvi «{kutish yozuvi}» ga almashsin, yonida kichik kutish belgisi chiqsin va tugma o'chiq bo'lsin — javob kelguncha qayta bosilmasin, ikkinchi so'rov yuborilmasin.
      > Javob kelgach — tugma avvalgi yakuniy holatiga o'tsin (ilovada qanday bo'lsa, shunday). Xato kelsa — tugma yana bosiladigan bo'lsin va ilovadagi xato xabari avvalgidek chiqsin.
      > Nima buzilmasin: {avvalgidek ishlashi kerak bo'lgan ishlar} avvalgidek ishlasin. Yangi ekran, yangi tugma yoki yangi funksiya qo'shma. Animatsiya uchun yangi kutubxona qo'shma — loyihada bor vosita bilan qil. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
@@ -195,13 +197,12 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
      - {avvalgidek ishlashi kerak bo'lgan ishlar} — «masalan: kirish, «O'yinlar» ro'yxati, «O'yindan chiqish», jonli son»
      Tekshiruv («Nusxalash» bosilganda, bloklaydi): bu joyda kamida ikkita ish vergul bilan bo'lmasa yoki «hammasi», «ilova» kabi bitta so'z bo'lsa — Ikkita aniq ish yozing: masalan, kirish, ro'yxat. (49)
      Yordam (ochiladigan) — Mentor misolidagi to'liq talab (mobil trek):
-     > Qayerda: `mobil/` — «O'yin» ekrani, «Qo'shilaman» tugmasi. Backend'ga tegma.
+     > Qayerda: `mobil/` — «O'yin» ekrani, «Qo'shilaman» tugmasi. Backend kodiga tegma.
      > Nima qilsin: «Qo'shilaman» bosilishi bilan, javob kelishini kutmasdan, tugma yozuvi «Qo'shilmoqda…» ga almashsin, yonida kichik kutish belgisi chiqsin va tugma o'chiq bo'lsin — javob kelguncha qayta bosilmasin, ikkinchi qo'shilish so'rovi yuborilmasin.
      > Javob kelgach — tugma «Qo'shildingiz» bo'lsin (avvalgidek). Xato kelsa — tugma yana «Qo'shilaman» bo'lsin va ilovadagi xato xabari avvalgidek chiqsin.
      > Nima buzilmasin: kirish, «O'yinlar» ro'yxati, «O'yindan chiqish», jonli son va «Hozir ko'ryapti» avvalgidek ishlasin. Yangi ekran, yangi tugma yoki yangi funksiya qo'shma. Animatsiya uchun yangi kutubxona qo'shma — loyihada bor vosita bilan qil. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Web-trekda (Yordam ostida, bir gap): «Qayerda» qatorida `mobil/` o'rnida `prototip/` va saytingizdagi asosiy tugma turadi; qolgani o'sha.
-  3. **Ishga tushirish** — agent tugatgach: `git status` — o'zgargan fayllar agent aytgani bilan bir xil, `.env` ro'yxatda yo'q, `backend/` o'zgarmagan; har faylni `git add <fayl>` bilan qo'shing, `git commit -m "sayqal: bosish javobi"`, `git push`.
-     Brauzerda oching: mobil trek — `mobil/` da `npx expo start`, keyin terminalda `w` (ilova kompyuter brauzerida ochiladi); web-trek — `prototip/` da `npm run dev`.
+  3. **Ishga tushirish** — agent tugatgach brauzerda oching: mobil trek — `mobil/` da `npx expo start`, keyin terminalda `w` (ilova kompyuter brauzerida ochiladi); web-trek — `prototip/` da `npm run dev`. `git status` — o'zgargan fayllar agent aytgani bilan bir xil, `.env` ro'yxatda yo'q, `backend/` o'zgarmagan. **Push hali yo'q** — avval 4-qadam tekshiruvi, push uning oxirida (04-FILTR 1).
      Kutayotganda agentga («Nusxalash» bilan; SABOQ 52):
      > Yozgan kodingda ikki joyni fayl nomi va qator raqami bilan ko'rsat: tugma o'chiq bo'ladigan qator va javob kelgach tugma qaytadigan qator. Har biri nima qilishini bitta gap bilan ayt. Kodni o'zgartirma.
      Xato chiqsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»
@@ -209,22 +210,24 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
      (1) DevTools'ni oching (F12 yoki Ctrl + Shift + I; Mac: Cmd + Option + I) → **Network** bo'limi → tepadagi ro'yxatdan «Slow 4G» ni tanlang. Endi javob sekin keladi.
      (2) Real odamlar qo'shilmagan o'yinni (yoki 1-qadamdagi namuna yozuvni) oching va asosiy tugmani **tez ikki marta** bosing. Tugma birinchi bosishdayoq yozuvini o'zgartirishi va bosilmasligi kerak; javob kelgach — yakuniy holat, natija (Mentor misolida son) bir marta o'zgaradi.
      (3) «O'yindan chiqish» (yoki mahsulotingizdagi shunday tugma) bilan holatni boshiga qaytaring.
+     (3b) Network ro'yxatiga qarang: asosiy so'rov faqat **bitta** ketdi — ikkinchi bosishdan yangi qator chiqmadi (Mentor misolida — qo'shilish so'rovi bitta qator; 04-FILTR 5).
      (4) Network bo'limida «No throttling» ni tanlang — keyingi ishlar odatdagi tezlikda bo'lsin.
-     Mos kelmagan gapni agentga yozing: «{nima} talabdagidek emas: {qanday bo'lsin}. Boshqa joyga tegma, o'zgargan fayllarni ayt.»
+     (5) Kutilganidek bo'lsa — har faylni `git add <fayl>` bilan qo'shing, `git commit -m "sayqal: bosish javobi"`, `git push` (tekshiruvdan keyin push — 04-FILTR 1).
+     Mos kelmagan gapni agentga yozing: «{nima} talabdagidek emas: {qanday bo'lsin}. Boshqa joyga tegma, o'zgargan fayllarni ayt.» → qayta tekshiring, keyin push.
 - O'ng tomon — «kutilgan natija · namuna: Maydon Jamoa» (uch kadr bir marta o'zi yuradi): «O'yin» ekrani — «Qo'shilaman» → «Qo'shilmoqda…» (kichik kutish belgisi, tugma kulrang; ustida ikki bosish doirasi, ikkinchisi yonida kulrang yorliq «yuborilmadi») → «Qo'shildingiz», son «9 / 10»;
-  ostida DevTools parchasi — Network bo'limi, ro'yxatda «Slow 4G» tanlangan. Web-trekda o'sha tugma sayt sahifasida.
+  ostida DevTools parchasi — Network bo'limi, ro'yxatda «Slow 4G» tanlangan va qo'shilish so'rovi bitta qator. Web-trekda o'sha tugma sayt sahifasida.
 - Tekshiruv kartasi (4-qadam oxirida, «Bajardim»dan oldin; dars holatida — 13-Modul F-1007-466 naqshi): «Kutilganidek» · «Boshqacha». «Boshqacha» bo'lsa yashil qator o'rnida kulrang: Talabdagidek bo'lmagan joyni agentga yozing va qayta tekshiring. (64)
 - Hammasi bajarilgach (yashil, «Kutilganidek» da): Tugma bosilishi bilan o'zgaradi; javob kelguncha qayta bosilmaydi. (66)
 - Qator (`QIzoh`, natija ostida, bitta): Agentning «tayyor» degani — da'vo; tugmani sekin tarmoqda o'zingiz ko'rdingiz. (78)
-- Pastki qator (kichik; darsda bir marta — SABOQ 39): Ortda qoldingizmi — Mentor misolini o'z repo'ngizdan tashqarida, yangi papkada oching: `git clone https://github.com/Azizbekcrypto/maydon-jamoa` · `cd maydon-jamoa` · `git checkout -f m14-dars-04-done` — <!-- TAXMIN T4 -->
+- Pastki qator (kichik; darsda bir marta — SABOQ 39): Ortda qoldingizmi — Mentor misolini o'z repo'ngizdan tashqarida, yangi papkada oching: `git clone https://github.com/Azizbekcrypto/maydon-jamoa` · `cd maydon-jamoa` · `git checkout -f m14-dars-04-done` —
   oxirgi buyruqni faqat shu yangi papkada ishlating: u papkadagi o'zgarishlarni o'chiradi. `mobil/.env` ga o'z qiymatlaringizni yozasiz.
-- Ulgurmasangiz: «Davom etish» 3-qadamdan keyin ochiladi (push qilingan bo'lsa) — 4-qadamni 3-amaliyotdagi umumiy tekshiruv bilan birga qiling. Blok 4-qadam «Bajardim»idan keyin bajarilgan sanaladi.
+- Ulgurmasangiz: «Davom etish» 3-qadamdan keyin ochiladi — kod push qilinmagan holda qoladi (tekshirilmagan kod odamlarga chiqmaydi); 4-qadam (tekshiruv va push) 3-amaliyot boshida. Blok 4-qadam «Bajardim»idan keyin bajarilgan sanaladi.
 - Tugmalar: Orqaga · Avval bajaring → Davom etish
 - ✎ MD izohi: talab zinapoyasi A1 — tayyor talab + 4 joy; mahsulot qarori (qaysi tugma, qanday yozuv, nima buzilmasin) o'quvchida (sinf 13). «Javob kelgach — avvalgi yakuniy holat» — o'quvchi ilovasida tugmaning keyingi holati har xil bo'lishi mumkin (tayyor qism umumiy). Xato holati — tugma qotib qolmasin (bosish javobining teskari xavfi).
-  Ikki marta bosish — talabning o'zi («qayta bosilmasin»); bu blokda o'quvchi buni sekin tarmoqda bir marta ko'radi. Demo sharoitidagi qayta ko'rish — 7-darsning ishi, bu yerda va'da qilinmaydi (sinf 12, 16; 07 MD TAYANCHGA SAVOL 15). <!-- TAXMIN T7 -->
-  Namuna yozuv — `namuna = true` (12-Modul 9.5), o'chirilmaydi: u demo uchun ham kerak bo'lishi mumkin (TAYANCHGA SAVOL 9). Backend'ga tegilmaydi — so'rovni ikkinchi marta yubormaslik ilova tomonida.
+  Ikki marta bosish — talabning o'zi («qayta bosilmasin»); bu blokda o'quvchi buni sekin tarmoqda bir marta ko'radi. Demo sharoitidagi qayta ko'rish — 7-darsning ishi, bu yerda va'da qilinmaydi (sinf 12, 16; 07 MD TAYANCHGA SAVOL 15).
+  Namuna yozuv — `namuna = true` (12-Modul 9.5): sanoq va xabarlardan chiqarilgan bo'lsa qoladi (demo uchun ham kerak), chiqarilmagan bo'lsa tekshiruvdan keyin o'chiriladi (TAYANCHGA SAVOL 9; 04-FILTR 8, 9). Backend kodiga tegilmaydi — so'rovni ikkinchi marta yubormaslik ilova tomonida.
 - O'qituvchi eslatmasi: DevTools'ni birinchi marta ochayotganlarga Network bo'limini proyektorda ko'rsating; «Slow 4G» faqat shu oynada ishlaydi. Ilovada xato xabari bo'lmasa — agent uni qo'shmaydi (yangi funksiya emas, tayyor holat qoladi); o'quvchi buni «Boshqacha» deb belgilamaydi.
-  Tugma yozuvi o'quvchi ilovasida boshqacha bo'ladi («Yuborilmoqda…», «Saqlanmoqda…») — muhimi, bosilgani ko'rinsin.
+  Tugma yozuvi o'quvchi ilovasida boshqacha bo'ladi («Yuborilmoqda…», «Saqlanmoqda…») — muhimi, bosilgani ko'rinsin. Tugmani o'chirish tasodifiy ikki marta bosishni kamaytiradi — bu Backend himoyasi emas: bir xil so'rovni ikki marta qabul qilmaslik Backend ishi, bu darsda yo'q (04-FILTR 6).
 
 ## 4 · 1-savol ✔ (jonli ball)  ← QTest
 - Eyebrow: Mashq · 1-savol (savol ustida «To'g'ri javobni tanlang» yorlig'i yo'q — SABOQ 6)
@@ -234,7 +237,7 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
   - C · ✔ Bosilishi bilan o'zgarib, qayta bosilmasin
   - D · Bosilganda boshqa ekranga o'tib ketaversin
 - Kalit: **C** (index 2). To'rttalasi «tugma nima qilsin» shaklida (fe'l «-sin»); qo'shtirnoq, tire hech birida yo'q; «qayta» B va C da (kalit so'z faqat to'g'rida emas); to'g'ri variant yolg'iz eng uzun emas (O'lchov).
-- To'g'ri izohi: Bosilgani shu zahoti ko'rinadi, ikkinchisi yuborilmaydi.
+- To'g'ri izohi: Bosilgani tugma holatida ko'rinadi; ikkinchisi yuborilmaydi.
 - Xato izohlari (≤60):
   - A: Bir lahza jim tugmani odam yana bosmaydimi?
   - B: Bitta vazifa ikki marta yuborilsa, nima bo'ladi?
@@ -243,7 +246,7 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
 - Jonli darsda: bitta urinish. Xatodan keyin: «Qisqa takrorlash».
 - Nishon: Tap Echo — birinchi urinishda to'g'ri.
 - ✎ Ikkinchi misol (P-002) — uy vazifalari ilovasi; savol ekrandan ko'chirilmaydi (§106): darsda «Qo'shilaman», savolda boshqa tugma va boshqa ish. Distraktorlar uch turkumdan (sinf 8): jim qolish (A — sayqalsiz holat) · ikki marta yuborish (B — ikkinchi bosish yo'li ochiq) · chalg'itish (D — natija ko'rinmaydi).
-  D hayotda ham yaxshi javob emas: yuborilgani ko'rinmaydi va qayta bosish yo'li baribir ochiq. «Bosilishi bilan» — darsning o'z so'zi; to'g'ri izohdagi «shu zahoti» T-020 ro'yxatida yo'q.
+  D hayotda ham yaxshi javob emas: yuborilgani ko'rinmaydi va qayta bosish yo'li baribir ochiq. «Bosilishi bilan» — darsning o'z so'zi; to'g'ri izohdagi «shu zahoti» olib tashlandi (04-FILTR 35).
 
 ## 5 · Harakat kamaytirilsa  ← QTushuncha (bashorat + 2 harakat; solishtirish jadvali — P-057)
 - Eyebrow: Tushuncha · harakatni kamaytirish
@@ -254,69 +257,70 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
   - 1-harakatdan keyin: Endi «O'yin» ekranida «Qo'shilaman»ni bosing va jadvalni kuzating.
   - tugagach: Natijani taxminingiz bilan solishtiring.
 - Bashorat (ballsiz, 181; tanlangach ixcham qator; S-015 — qoladigan narsa o'sish tartibida): **Harakat kamaytirilsa, sayqaldan nima qoladi?** · Hech narsa qolmaydi · Faqat yozuvlar qoladi · Yozuv, kartalar va son qoladi
-- Chap: `SayqalSahna` «Keyin» holatida (brauzer, «O'yinlar» ekrani). O'ng: chizilgan kalit «Harakatni kamaytirish» (o'chiq; halqada) va jadval «Harakat · Holat» — olti bo'sh qator (bitta manba `HARAKAT_HOLAT`):
-  «kulrang kartalar miltillashi» · «kulrang kartalar» · «kutish belgisi aylanishi» · «Qo'shilmoqda… yozuvi» · «son kattalashishi» · «9 / 10».
+- Chap: `SayqalSahna` «Keyin» holatida (brauzer, «O'yinlar» ekrani). O'ng: chizilgan kalit «Harakatni kamaytirish» (o'chiq; halqada) va jadval «Harakat · Holat» — besh bo'sh qator (bitta manba `HARAKAT_HOLAT`):
+  «kulrang kartalar» · «kutish belgisi aylanishi» · «Qo'shilmoqda… yozuvi» · «son kattalashishi» · «9 / 10».
 - **Harakat → Vizual o'zgarish:**
-  1. «Harakatni kamaytirish» → kalit yashil; sahna «O'yinlar»ni qayta ochadi: ikkita kulrang karta turadi, lekin chiziqlar miltillamaydi; karta o'sha joyga silliq kirishsiz keladi →
-     jadvalda: «kulrang kartalar miltillashi — o'chdi» (kulrang muhr) · «kulrang kartalar — qoldi» (yashil ✓). Sahna o'zi kartani bosadi — «O'yin» ekrani, «Qo'shilaman» halqada.
-  2. «Qo'shilaman» → tugma «Qo'shilmoqda…» bo'ladi, kutish belgisi aylanmaydi (harakatsiz turadi); son «8 / 10» → «9 / 10» kattalashmasdan almashadi, tugma «Qo'shildingiz» →
+  1. «Harakatni kamaytirish» → kalit yashil; sahna «O'yinlar»ni qayta ochadi: ikkita kulrang karta turadi (ular harakatsiz edi — o'zgarmaydi); karta o'sha joyga silliq kirishsiz keladi →
+     jadvalda: «kulrang kartalar — qoldi» (yashil ✓). Sahna o'zi kartani bosadi — «O'yin» ekrani, «Qo'shilaman» halqada.
+  2. «Qo'shilaman» → tugma «Qo'shilmoqda…» bo'ladi, kutish belgisi chiqmaydi — yozuv yetadi (harakatsiz aylanuvchi belgi buzilgan ko'rinadi — 04-FILTR 4); son «8 / 10» → «9 / 10» kattalashmasdan almashadi, tugma «Qo'shildingiz» →
      jadvalda navbat bilan: «kutish belgisi aylanishi — o'chdi» · «Qo'shilmoqda… yozuvi — qoldi» · «son kattalashishi — o'chdi» · «9 / 10 — qoldi».
      Nom qatori (bitta; 9-Modul ta'rifi aynan): Qurilmada harakat kamaytirilganini sayt `prefers-reduced-motion` orqali biladi.
-  - Holat bosishlar tartibidan (P-046); jadval faqat yuqoridagi olti qatorni ko'rsatadi, boshqa hech narsa qo'shilmaydi (P-057).
+  - Holat bosishlar tartibidan (P-046); jadval faqat yuqoridagi besh qatorni ko'rsatadi, boshqa hech narsa qo'shilmaydi (P-057).
 - Natija qatori (yashil xulosa qutisining birinchi kichik qatori, E 42): «Taxminingiz ✕ — aslida: yozuv, kartalar va son qoladi» (yoki «Taxminingiz to'g'ri chiqdi ✓»).
-- Xulosa: Harakat kamaytirilsa, animatsiya o'chadi: yozuv, kulrang kartalar va yangi son qoladi.
+- Xulosa: Bu demo yo'lida harakat kamaytirilsa, harakat o'chadi: yozuv, kulrang kartalar va yangi son qoladi.
 - Qator (`QIzoh`, qutining oxirgi kichik qatori): Telefondagi ilova bu sozlamani telefonning o'zidan o'qiydi.
-- Tugadi (199): kalit va harakat paneli yopiladi; brauzer va jadval (uch «o'chdi», uch «qoldi») butun enga, «qoldi» ustuni fokusda; vizual ⛶ ichida (q17).
+- Tugadi (199): kalit va harakat paneli yopiladi; brauzer va jadval (ikki «o'chdi», uch «qoldi») butun enga, «qoldi» ustuni fokusda; vizual ⛶ ichida (q17).
 - Tugma (pastki): Avval taxminingizni belgilang → Harakatlarni bajaring (N/2) → Davom etish
 - Keyingi bosiladigan joy: bashorat variantlari → kalit (halqa) → «Qo'shilaman» → «Davom etish».
 - O'qituvchi eslatmasi: 9-Modulda aytilgan: ba'zi odamlarga ko'p harakat noqulay — boshi aylanishi mumkin, ular qurilmada harakatni kamaytiradi (MDN, Manbalar 2). Hakam ham, sinfdagi mehmon ham shunday sozlamada bo'lishi mumkin — demo holati baribir tushunarli qolishi kerak.
   Sahnadagi kalit — chizilgan (9-Modul 12-ekran naqshi); haqiqiy sozlama nomi qurilmaga qarab boshqacha. Darsda tekshiruv — kompyuter brauzerida, DevTools'ning Rendering bo'limida (3-amaliyot).
 - ✎ Bitta g'oya (P-008): animatsiya o'chadi, holat qoladi (tayanch 1.4) — uch joyda ham. 9-Modulda o'tilgan qoida qayta o'qitilmaydi — o'sha ta'rif nom qatorida aynan (T-052), mobil trek uchun QIzoh (telefon sozlamasi; Manbalar 1). Jadval — solishtirish sahnasi: har tomon o'z shaklida, muhr gapga (P-057).
-  2-savol shu qoidani boshqa joyda — telefonda, muvaffaqiyat animatsiyasida so'raydi (§106). 2-amaliyot (kulrang kartalar) shu ekrandan keyin — joy egallovchi bu yerda ham ko'rinadi, miltillashi esa 3-amaliyotda harakat kamaytirilgan holatda tekshiriladi.
+  2-savol shu qoidani boshqa joyda — telefonda, muvaffaqiyat animatsiyasida so'raydi (§106). 2-amaliyot (kulrang kartalar) shu ekrandan keyin — joy egallovchi bu yerda ham ko'rinadi (harakatsiz — 04-FILTR 16).
 
 ## 6 · Amaliyot 2 — yuklanish holati  ← amaliyot bloki (QBlok + `ScreenBlok`, ≈18 daq)
 - Eyebrow: Amaliyot 2 · o'z repo'ngiz
-- Sarlavha: **Ro'yxat kelguncha o'rnida kulrang kartalar tursin.** (50)
+- Sarlavha: **Ro'yxat yuklanayotganda bo'sh joy qolmasin.** (43) (umumiy — joy egallovchi ichida tug'iladi; 04-FILTR 10)
 - Mentor: Kulrang kartalar ro'yxatingiz kartalariga o'xshasin — namuna «Yordam» ortida; «1 · Ochish»dan boshlang.
-- Vazifa (prompt ustida, bitta qator): <!-- TAXMIN T7 --> Demo yo'lidagi ro'yxat yuklanayotganda bo'sh joy o'rnida joy egallovchi kulrang kartalar turadi — haqiqiy karta o'lchamida, ro'yxat kelganda hech narsa siljimaydi.
+- Vazifa (prompt ustida, bitta qator): Demo yo'lidagi ro'yxat yuklanayotganda bo'sh joy o'rnida joy egallovchi turadi — haqiqiy kontent egallaydigan joyga yaqin shaklda; ro'yxat kelganda katta siljish bo'lmaydi.
 - Qadamlar (hammasi o'z repo'ngizda):
   1. **Ochish** — o'z repo'ngiz, 1-amaliyotdan keyingi kod. Kompyuter brauzerida ilovangizni oching, DevTools → Network → «Slow 4G» va demo yo'lingizdagi ro'yxat ekranini yangilang: ro'yxat kelguncha ekranda nima turadi?
      Ikki savolga javob toping: qaysi ekran hakam oldida birinchi yuklanadi? Bitta kartada nimalar bor — kulrang karta shuni takrorlaydi? (Mentor misolida: «O'yinlar» ro'yxati; kartada kun va soat, maydon, son.)
-     Mahsulotingizda kutish yozuvi bo'lsa — u qoladi: u qancha kutishni aytadi, kulrang kartalar — nima kelishini. Keyin Network bo'limida «No throttling» ga qaytaring.
+     Mahsulotingizda kutish yozuvi bo'lsa — u qoladi: u kutish borligini aytadi, kulrang kartalar — nima kelishini. Keyin Network bo'limida «No throttling» ga qaytaring.
   2. **Prompt** — qavslarni to'ldiring (yonida kulrang namuna), «Nusxalash»ni bosing va Antigravity'ga yuboring:
-     > Qayerda: `{ilova papkasi}` — {ro'yxat ekrani}. Backend'ga tegma.
-     > Nima qilsin: ro'yxat yuklanayotganda bo'sh joy o'rnida joy egallovchi chiqsin: ikkita kulrang karta — haqiqiy karta o'lchamida va shaklida, ichida {kartada nima bor} o'rnida kulrang chiziqlar; chiziqlar sokin miltillasin.
-     > Ro'yxat kelganda kartalar kulrang kartalar o'rniga, o'sha joyga chiqsin — ekrandagi boshqa narsalar siljimasin. Kutish yozuvi bo'lsa — joy egallovchi ostida qolsin. Ro'yxat bo'sh kelsa yoki xato bo'lsa — ilovadagi avvalgi xabar chiqsin, kulrang kartalar qolib ketmasin.
+     > Qayerda: `{ilova papkasi}` — {ro'yxat ekrani}. Backend kodiga tegma.
+     > Nima qilsin: ro'yxat yuklanayotganda bo'sh joy o'rnida joy egallovchi chiqsin: ekranda birinchi ko'rinadigan ro'yxat joyini taxminan to'ldiradigan kulrang shakllar — haqiqiy kontentga yaqin shakl va o'lchamda (soni ekraningizga qarab), ichida {kartada nima bor} o'rnida kulrang chiziqlar (harakatsiz).
+     > Ro'yxat kelganda haqiqiy kontent joy egallovchi o'rniga, o'sha joyga chiqsin — ekrandagi boshqa narsalar iloji boricha siljimasin. Kutish yozuvi bo'lsa — joy egallovchi ostida qolsin. Ro'yxat bo'sh kelsa yoki xato bo'lsa — ilovadagi avvalgi xabar chiqsin, kulrang kartalar qolib ketmasin.
      > Nima buzilmasin: 1-amaliyotdagi tugma, ro'yxatni yangilash va kartani bosib o'yinni ochish avvalgidek ishlasin. Yangi ekran yoki yangi funksiya qo'shma. Animatsiya uchun yangi kutubxona qo'shma — loyihada bor vosita bilan qil. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Qavslar yonida kulrang namuna (Mentor misolidan):
      - {ilova papkasi} — oldindan, trekdan: `mobil/` yoki `prototip/`
      - {ro'yxat ekrani} — «masalan: «O'yinlar» ekrani, o'yinlar ro'yxati»
      - {kartada nima bor} — «masalan: kun va soat, maydon, «8 / 10» kabi son»
      Yordam (ochiladigan) — Mentor misolidagi to'liq talab (mobil trek):
-     > Qayerda: `mobil/` — «O'yinlar» ekrani (`mobil/src/app/index.tsx`), o'yinlar ro'yxati. Backend'ga tegma.
-     > Nima qilsin: ro'yxat yuklanayotganda bo'sh joy o'rnida joy egallovchi chiqsin: ikkita kulrang karta — o'yin kartasi o'lchamida va shaklida, ichida kun va soat, maydon va son o'rnida kulrang chiziqlar; chiziqlar sokin miltillasin.
+     > Qayerda: `mobil/` — «O'yinlar» ekrani (`mobil/src/app/index.tsx`), o'yinlar ro'yxati. Backend kodiga tegma.
+     > Nima qilsin: ro'yxat yuklanayotganda bo'sh joy o'rnida joy egallovchi chiqsin: ikkita kulrang karta — o'yin kartasi o'lchamida va shaklida, ichida kun va soat, maydon va son o'rnida kulrang chiziqlar (harakatsiz).
      > Ro'yxat kelganda o'yin kartalari kulrang kartalar o'rniga, o'sha joyga chiqsin — ekrandagi boshqa narsalar siljimasin. «O'yinlar yuklanmoqda — bu bir daqiqagacha cho'zilishi mumkin.» yozuvi joy egallovchi ostida qolsin. Ro'yxat bo'sh kelsa yoki xato bo'lsa — ilovadagi avvalgi xabar chiqsin, kulrang kartalar qolib ketmasin.
      > Nima buzilmasin: «Qo'shilaman» tugmasi (1-amaliyot), pastga tortib yangilash va kartani bosib o'yinni ochish avvalgidek ishlasin. Yangi ekran yoki yangi funksiya qo'shma. Animatsiya uchun yangi kutubxona qo'shma — loyihada bor vosita bilan qil. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Web-trekda (Yordam ostida, bir gap): «Qayerda» qatorida `prototip/` va saytingizdagi ro'yxat sahifasi; qolgani o'sha.
-  3. **Ishga tushirish** — `git status` → `git add <fayl>` → `git commit -m "sayqal: joy egallovchi"` → `git push`. Brauzerda yangilang (mobil — `npx expo start` ishlab turgan bo'lsa, odatda o'zi qayta yuklanadi; bo'lmasa terminalda `r`; web — `npm run dev`).
+  3. **Ishga tushirish** — brauzerda yangilang (mobil — `npx expo start` ishlab turgan bo'lsa, odatda o'zi qayta yuklanadi; bo'lmasa terminalda `r`; web — `npm run dev`) va ro'yxat ekrani ochilishini ko'ring; `git status` — o'zgargan fayllar agent aytgani bilan bir xil. Push — 4-qadam oxirida (04-FILTR 1).
      Kutayotganda agentga («Nusxalash» bilan):
      > Yozgan kodingda ikki joyni fayl nomi va qator raqami bilan ko'rsat: kulrang kartalar chiqadigan shart va kulrang karta o'lchami yozilgan qator. Har biri nima qilishini bitta gap bilan ayt. Kodni o'zgartirma.
      Xato chiqsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»
   4. **Tekshirish** — o'zingiz ko'ring:
-     (1) DevTools → Network → «Slow 4G» (yoki «3G»), ro'yxat ekranini yangilang: bo'sh joy o'rnida kulrang kartalar turishi, chiziqlar sokin miltillashi kerak.
-     (2) Ro'yxat kelganda kartalar o'sha joyga chiqishi kerak: tugmalar, sarlavha va boshqa narsalar sakramaydi.
+     (1) DevTools → Network → «Slow 4G» (yoki «3G»), ro'yxat ekranini yangilang: bo'sh joy o'rnida joy egallovchi turishi kerak.
+     (2) Ro'yxat kelganda kontent o'sha joyga chiqadi: tugmalar, sarlavha va boshqa narsalarda sezilarli sakrash ko'rindimi? Ko'rinmasa — kutilganidek (04-FILTR 11).
      (3) «No throttling» ni tanlab yana yangilang: kulrang kartalar bir lahza ko'rinib o'tishi yoki umuman ko'rinmasligi mumkin — bu ham to'g'ri.
-- O'ng tomon — «kutilgan natija · namuna: Maydon Jamoa» (bir marta o'zi yuradi): «O'yinlar» — ikkita kulrang karta va ostida kutish yozuvi → karta «Shanba, 18:00 · Mahalla maydoni · 8 / 10» birinchi kulrang karta o'rniga, ikkinchisi so'nadi; yonida kulrang yorliq «sahifa siljimadi».
+     (4) Kutilganidek bo'lsa — `git add <fayl>` → `git commit -m "sayqal: joy egallovchi"` → `git push` (tekshiruvdan keyin push — 04-FILTR 1).
+- O'ng tomon — «kutilgan natija · namuna: Maydon Jamoa» (bir marta o'zi yuradi): «O'yinlar» — ikkita kulrang karta va ostida kutish yozuvi → karta «Shanba, 18:00 · Mahalla maydoni · 8 / 10» birinchi kulrang karta o'rniga, ikkinchisi so'nadi; yonida kulrang yorliq «sakrash yo'q».
   Ostida DevTools parchasi — Network, «Slow 4G». Web-trekda — sayt sahifasidagi ro'yxat.
 - Tekshiruv kartasi (4-qadam oxirida, «Bajardim»dan oldin): «Kutilganidek» · «Boshqacha». «Boshqacha» bo'lsa yashil qator o'rnida kulrang: Talabdagidek bo'lmagan joyni agentga yozing va qayta tekshiring. (64)
 - Hammasi bajarilgach (yashil, «Kutilganidek» da): Ro'yxat kelguncha kulrang kartalar turdi; kartalar o'sha joyga chiqdi. (70)
 - Qator (`QIzoh`, natija ostida, bitta): Kulrang kartalar kutishni qisqartirmaydi — nima kelishini ko'rsatadi. (69)
-- Ulgurmasangiz: «Davom etish» 3-qadamdan keyin ochiladi — 4-qadamni 3-amaliyotdagi umumiy tekshiruv bilan birga qiling. Blok 4-qadam «Bajardim»idan keyin bajarilgan sanaladi.
-- Nishon (bonus): Grey Cards — 4-qadam «Bajardim»ida (natijadan qat'i nazar — tavsif qilingan ishni aytadi; 13-Modul M-q6 A naqshi).
+- Ulgurmasangiz: «Davom etish» 3-qadamdan keyin ochiladi — kod push qilinmagan holda qoladi; 4-qadam (tekshiruv va push) 3-amaliyot boshida. Blok 4-qadam «Bajardim»idan keyin bajarilgan sanaladi.
+- Nishon (bonus): Grey Cards — 4-qadam «Bajardim» + tekshiruv kartasi belgilanganda (natijadan qat'i nazar — tavsif qilingan ishni aytadi; 13-Modul M-q6 A naqshi; 04-FILTR 29).
 - Tugmalar: Orqaga · Avval bajaring → Davom etish
-- ✎ MD izohi: talab zinapoyasi A2 — tayyor talab + 3 joy; ro'yxat ekrani va karta tarkibi — o'quvchi qarori (sinf 13). «Ikkita kulrang karta» — talabning tayyor qismi (tayanch 1.4 «kulrang kartalar»; soni — TAYANCHGA SAVOL 3).
-  «Haqiqiy karta o'lchamida» — 3-darsdagi `width`/`height` g'oyasi bilan bir (joy oldindan band — sahifa siljimaydi); bu darsda CLS o'lchanmaydi, o'quvchi ko'z bilan ko'radi (sinf 7: «siljimaydi» — ekranda ko'rinadigan narsa). Bo'sh ro'yxat va xato — kulrang kartalar qolib ketmasligi (holat yolg'on bo'lmasin).
-- O'qituvchi eslatmasi: «Slow 4G» bilan ham ro'yxat tez kelsa — «3G» ni tanlang. Kulrang kartalar soni o'quvchi ro'yxatidagi yozuvlar soniga teng bo'lishi shart emas: muhimi, birinchi karta o'z joyida chiqsin. Kutish yozuvi yo'q mahsulotda u qo'shilmaydi (yangi funksiya emas).
+- ✎ MD izohi: talab zinapoyasi A2 — tayyor talab + 3 joy; ro'yxat ekrani va karta tarkibi — o'quvchi qarori (sinf 13). «Ikkita kulrang karta» — faqat Mentor Yordamida; o'quvchi talabida soni va shakli ekranga qarab (04-FILTR 10, 31; TAYANCHGA SAVOL 3).
+  «Haqiqiy karta o'lchamida» — 3-darsdagi `width`/`height` g'oyasi bilan bir (joy oldindan band — katta siljish kamayadi); bu darsda CLS o'lchanmaydi, o'quvchi ko'z bilan ko'radi (sinf 7: «siljimaydi» — ekranda ko'rinadigan narsa). Bo'sh ro'yxat va xato — kulrang kartalar qolib ketmasligi (holat yolg'on bo'lmasin).
+- O'qituvchi eslatmasi: «Slow 4G» bilan ham ro'yxat tez kelsa — «3G» ni tanlang; baribir tez kelsa (ma'lumot keshdan yoki jonli ulanishdan) — Network'da «Disable cache» ni belgilab yangilang. ⛔ Mentor ilovasida kulrang kartalar «Slow 4G» bilan ko'rinishi — pilotda (04-FILTR 12). Kulrang kartalar soni o'quvchi ro'yxatidagi yozuvlar soniga teng bo'lishi shart emas: muhimi, birinchi karta o'z joyida chiqsin. Kutish yozuvi yo'q mahsulotda u qo'shilmaydi (yangi funksiya emas).
 
 ## 7 · 2-savol ✔ (jonli ball)  ← QTest
 - Eyebrow: Mashq · 2-savol (yorliqsiz — SABOQ 6)
@@ -341,45 +345,44 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
 - Eyebrow: Amaliyot 3 · o'z repo'ngiz
 - Sarlavha: **Natijada ekran kichik harakat bilan javob bersin.** (49)
 - Mentor: Animatsiya qisqa bo'lsin va harakat kamaytirilganda o'chsin; «1 · Ochish»dan boshlang.
-- Vazifa (prompt ustida, bitta qator): <!-- TAXMIN T7 --> Ish bajarilganda ekrandagi o'zgarish kichik animatsiya bilan ko'rinadi; harakat kamaytirilgan qurilmada uch joyda ham animatsiya o'chadi, holat qoladi.
+- Vazifa (prompt ustida, bitta qator): Ish bajarilganda ekrandagi o'zgarish kichik animatsiya bilan ko'rinadi; harakat kamaytirilgan qurilmada uch joyda ham animatsiya o'chadi, holat qoladi.
 - Qadamlar (hammasi o'z repo'ngizda):
   1. **Ochish** — o'z repo'ngiz, 2-amaliyotdan keyingi kod. Demo yo'lingiz oxirida nima o'zgaradi — son, yozuv yoki belgi? Shu joyda qanday kichik harakat bo'lsin? (Mentor misolida: «O'yin» ekranidagi son «8 / 10» → «9 / 10» bir lahza kattalashib qaytadi.)
      9-Modul qoidasi: harakat «bajarildi» deb javob bersin — uzoq, takrorlanadigan yoki ekran bo'ylab katta harakat ortiqcha.
   2. **Prompt** — qavslarni to'ldiring (yonida kulrang namuna), «Nusxalash»ni bosing va Antigravity'ga yuboring:
-     > Qayerda: `{ilova papkasi}` — {muvaffaqiyat joyi}; 1–2-amaliyotdagi tugma va kulrang kartalar. Backend'ga tegma.
+     > Qayerda: `{ilova papkasi}` — {muvaffaqiyat joyi}; 1–2-amaliyotdagi tugma va kulrang kartalar. Backend kodiga tegma.
      > Nima qilsin: 1) Ish bajarilganda {muvaffaqiyat joyi} da kichik animatsiya bo'lsin: {qanday harakat}. Animatsiya qisqa bo'lsin va bir marta o'ynasin.
-     > 2) Qurilmada harakatni kamaytirish yoqilgan bo'lsa — bu animatsiya, kulrang kartalar miltillashi va kutish belgisi aylanishi bo'lmasin; yangi holat harakatsiz almashsin: yozuv, kulrang kartalar va yangi qiymat ko'rinib tursin. Sozlamani qanday o'qiganingni ayt.
+     > 2) Qurilmada harakatni kamaytirish yoqilgan bo'lsa — bu animatsiya bo'lmasin va kutish belgisi aylanmasin (uni yashir — kutish yozuvi yetadi); yangi holat harakatsiz almashsin: yozuv, kulrang kartalar va yangi qiymat ko'rinib tursin. Sozlamani qanday o'qiganingni ayt.
      > Nima buzilmasin: 1–2-amaliyotdagi tugma va kulrang kartalar avvalgidek ishlasin. Yangi ekran yoki yangi funksiya qo'shma. Animatsiya uchun yangi kutubxona qo'shma — loyihada bor vosita bilan qil. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Qavslar yonida kulrang namuna (Mentor misolidan):
      - {ilova papkasi} — oldindan, trekdan: `mobil/` yoki `prototip/`
      - {muvaffaqiyat joyi} — «masalan: «O'yin» ekranidagi son «8 / 10»»
      - {qanday harakat} — «masalan: son biroz kattalashib, o'z o'lchamiga qaytsin»
      Yordam (ochiladigan) — Mentor misolidagi to'liq talab (mobil trek):
-     > Qayerda: `mobil/` — «O'yin» ekranidagi son; 1–2-amaliyotdagi «Qo'shilaman» tugmasi va «O'yinlar» ekranidagi kulrang kartalar. Backend'ga tegma.
-     > Nima qilsin: 1) Qo'shilish muvaffaqiyatli bo'lganda son («8 / 10» → «9 / 10») 0,3 soniya ichida biroz kattalashib, o'z o'lchamiga qaytsin. Animatsiya bir marta o'ynasin; son boshqa sabab bilan o'zgarsa (jonli son) — animatsiya bo'lmasin.
-     > 2) Telefonda harakatni kamaytirish yoqilgan bo'lsa — React Native `AccessibilityInfo` orqali bil (brauzer ko'rinishida u `prefers-reduced-motion` ni o'qiydi) — son kattalashmasin, kulrang kartalar miltillamasin, kutish belgisi aylanmasin; yangi holat harakatsiz almashsin: «Qo'shilmoqda…» yozuvi, kulrang kartalar va yangi son ko'rinib tursin.
+     > Qayerda: `mobil/` — «O'yin» ekranidagi son; 1–2-amaliyotdagi «Qo'shilaman» tugmasi va «O'yinlar» ekranidagi kulrang kartalar. Backend kodiga tegma.
+     > Nima qilsin: 1) Qo'shilish muvaffaqiyatli bo'lganda son («8 / 10» → «9 / 10») bir lahza biroz kattalashib, o'z o'lchamiga qaytsin (davomi — loyihada bor animatsiya vaqti). Animatsiya bir marta o'ynasin; son boshqa sabab bilan o'zgarsa (jonli son) — animatsiya bo'lmasin.
+     > 2) Telefonda harakatni kamaytirish yoqilgan bo'lsa — React Native `AccessibilityInfo` orqali bil (brauzer ko'rinishida u `prefers-reduced-motion` ni o'qiydi) — son kattalashmasin, kutish belgisi yashirinsin (aylanuvchi belgi harakatsiz qolmasin); yangi holat harakatsiz almashsin: «Qo'shilmoqda…» yozuvi, kulrang kartalar va yangi son ko'rinib tursin.
      > Nima buzilmasin: «Qo'shilaman» tugmasi va kulrang kartalar avvalgidek ishlasin. Yangi ekran yoki yangi funksiya qo'shma. Animatsiya uchun yangi kutubxona qo'shma — loyihada bor vosita bilan qil. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Web-trekda (Yordam ostida, bir gap): `prototip/` da sozlama `prefers-reduced-motion` orqali o'qiladi (9-Modul: `@media (prefers-reduced-motion: reduce)`); qolgani o'sha.
-  3. **Ishga tushirish** — `git status` → `git add <fayl>` → `git commit -m "sayqal: muvaffaqiyat va harakatni kamaytirish"` → `git push`. Keyin **yangi versiya** (trekka qarab bitta yo'l ko'rinadi):
-     - mobil trek — brauzer ko'rinishi: `mobil/` da `npx expo export -p web`, keyin `netlify deploy --prod --dir dist` (12-Modul buyruqlari; push'dan keyin o'zi yangilanmaydi).
-     - web-trek — push'dan keyin Netlify saytni odatda o'zi yangilaydi; bir necha daqiqa kuting.
-     Kutayotganda agentga («Nusxalash» bilan):
+  3. **Ishga tushirish** — lokal ko'ring (mobil — `npx expo start`, web — `npm run dev`: asosiy tugma bosilganda kichik animatsiya chiqadimi); `git status` — o'zgargan fayllar agent aytgani bilan bir xil. Push va yangi versiya — 4-qadam oxirida (04-FILTR 1).
+     Agent ishlayotganda agentga («Nusxalash» bilan):
      > Yozgan kodingda ikki joyni fayl nomi va qator raqami bilan ko'rsat: harakatni kamaytirish sozlamasi o'qiladigan qator va son animatsiyasi boshlanadigan qator. Har biri nima qilishini bitta gap bilan ayt. Kodni o'zgartirma.
      Xato chiqsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»
-  4. **Tekshirish** — yangi versiyada, hakam ko'radigandek (kompyuter brauzerida, laptopda): <!-- TAXMIN T8 -->
-     (1) Yangi versiyani oching, DevTools → Network → «Slow 4G». Demo yo'lini boshidan oxirigacha bosib chiqing: kulrang kartalar → asosiy tugma bosilishi bilan o'zgaradi → natijada kichik animatsiya. «O'yindan chiqish» bilan holatni boshiga qaytaring.
+  4. **Tekshirish** — avval lokal, hakam ko'radigandek (kompyuter brauzerida, laptopda):
+     (1) Lokal ilovada DevTools → Network → «Slow 4G». Demo yo'lini boshidan oxirigacha bosib chiqing: kulrang kartalar → asosiy tugma bosilishi bilan o'zgaradi → natijada kichik animatsiya. «O'yindan chiqish» bilan holatni boshiga qaytaring.
      (2) Rendering bo'limini oching: Ctrl + Shift + P (Mac: Cmd + Shift + P) → «rendering» deb yozing → «Show Rendering». «Emulate CSS media feature prefers-reduced-motion» ro'yxatidan `prefers-reduced-motion: reduce` ni tanlang va sahifani yangilang.
-         Demo yo'lini yana bosib chiqing: miltillash, aylanish va kattalashish yo'q — yozuv, kulrang kartalar va yangi son ko'rinib turadi. Holatni boshiga qaytaring.
+         Demo yo'lini yana bosib chiqing: aylanish va kattalashish yo'q (kutish belgisi yashirin, yozuv bor) — yozuv, kulrang kartalar va yangi son ko'rinib turadi. Holatni boshiga qaytaring.
      (3) Rendering'da tanlovni «No emulation» ga, Network'da «No throttling» ga qaytaring.
-     (4) Telefoningizda bir marta oching (mobil — Expo Go yoki telefon brauzerida brauzer ko'rinishi; web — sayt) va asosiy tugmani bosing: o'sha uch joy ko'rinadimi. Holatni boshiga qaytaring.
-     Mos kelmagan gapni agentga yozing: «{nima} talabdagidek emas: {qanday bo'lsin}. Boshqa joyga tegma, o'zgargan fayllarni ayt.» → push → yangi versiya → qayta tekshiring.
-- O'ng tomon — «kutilgan natija · namuna: Maydon Jamoa» (ikki qator, bir marta o'zi yuradi): yuqorida — «O'yin»: «Qo'shilmoqda…» → son «9 / 10» bir lahza kattalashib qaytadi, «Qo'shildingiz»; pastda o'sha kadr, yorliq «prefers-reduced-motion: reduce» — son harakatsiz almashadi, kutish belgisi harakatsiz.
+     (4) Kutilganidek bo'lsa — `git add <fayl>` → `git commit -m "sayqal: muvaffaqiyat va harakatni kamaytirish"` → `git push`; keyin **yangi versiya** (trekka qarab bitta yo'l ko'rinadi): mobil trek — brauzer ko'rinishi: `mobil/` da `npx expo export -p web`, keyin `netlify deploy --prod --dir dist` (12-Modul buyruqlari; push'dan keyin o'zi yangilanmaydi) · web-trek — push'dan keyin Netlify saytni odatda o'zi yangilaydi; bir necha daqiqa kuting (kutayotganda — kodni ko'rsatadigan prompt).
+     (5) Yangi versiyada bir marta demo yo'lini bosib chiqing (deploy'dagi qisqa tekshiruv); telefoningizda bir marta ochish (mobil — Expo Go yoki telefon brauzeri; web — sayt) — ixtiyoriy, vaqt bo'lsa. Holatni boshiga qaytaring.
+     Mos kelmagan gapni agentga yozing: «{nima} talabdagidek emas: {qanday bo'lsin}. Boshqa joyga tegma, o'zgargan fayllarni ayt.» → lokal qayta tekshiring, keyin push.
+- O'ng tomon — «kutilgan natija · namuna: Maydon Jamoa» (ikki qator, bir marta o'zi yuradi): yuqorida — «O'yin»: «Qo'shilmoqda…» → son «9 / 10» bir lahza kattalashib qaytadi, «Qo'shildingiz»; pastda o'sha kadr, yorliq «prefers-reduced-motion: reduce» — son harakatsiz almashadi, kutish belgisi yo'q, «Qo'shilmoqda…» bor.
   Ostida terminal kartasi — `netlify deploy --prod --dir dist` natijasidagi manzil qatori (`….netlify.app`). Web-trekda — sayt sahifasi va Netlify'dagi oxirgi yangilanish qatori.
 - Tekshiruv kartasi (4-qadam oxirida, «Bajardim»dan oldin): «Kutilganidek» · «Boshqacha». «Boshqacha» bo'lsa yashil qator o'rnida kulrang: Talabdagidek bo'lmagan joyni agentga yozing va qayta tekshiring. (64)
 - Hammasi bajarilgach (yashil, «Kutilganidek» da): Natijada kichik animatsiya bor; harakat kamaytirilganda holat qoldi. (68)
 - Qator (`QIzoh`, natija ostida, bitta; faqat mobil trekda): APK o'zi yangilanmaydi — bugun demo brauzer ko'rinishida tekshirildi. (69)
-- Ulgurmasangiz: (4) telefonda ko'rishni o'tkazib yuboring — kompyuterdagi tekshiruv asosiy. Avvalgi bloklarning 4-qadami qolgan bo'lsa — shu yerdagi (1) va (2) bilan birga qiling va o'sha bloklarda ham «Bajardim»ni bosing. «Davom etish» 4-qadamdan keyin ochiladi.
-- Nishon (bonus): Calm Mode — 4-qadam «Bajardim»ida (natijadan qat'i nazar — tavsif qilingan ishni aytadi).
+- Ulgurmasangiz: (5) dagi telefonda ko'rishni o'tkazib yuboring — kompyuterdagi tekshiruv asosiy. Avvalgi bloklarning 4-qadami qolgan bo'lsa — shu yerdagi (1) va (2) bilan birga qiling, keyin push (o'sha bloklarda ham «Bajardim»). «Davom etish» 4-qadamdan keyin ochiladi.
+- Nishon (bonus): Calm Mode — 4-qadam «Bajardim» + tekshiruv kartasi belgilanganda (natijadan qat'i nazar — tavsif qilingan ishni aytadi; 04-FILTR 29).
 - Tugmalar: Orqaga · Avval bajaring → Davom etish
 - ✎ MD izohi: talab zinapoyasi A3 — tayyor talab + 3 joy; animatsiya shakli o'quvchi qarori (sinf 13), reduced-motion qismi — tayyor (texnik). «Sozlamani qanday o'qiganingni ayt» — agent tanlovini o'quvchi ko'radi (mobil — `AccessibilityInfo`, web — `prefers-reduced-motion`; Manbalar 1, 2).
   Tekshiruv — DevTools emulyatsiyasi bilan (telefon sozlamasini o'zgartirish shart emas — menyu nomi yozilmaydi, P-028). Brauzer ko'rinishida `prefers-reduced-motion` ni React Native Web o'qiydi (Manbalar 2) — kompyuterdagi tekshiruv mobil trek uchun ham ishlaydi; Expo Go'da (native) ko'rinishi ⛔ pilot (Shubhali 3).
@@ -400,7 +403,7 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
 - Tugmalar: Orqaga · Yakunlash →
 
 ## 11 · Yakun  ← QYakun (texnik darslar standarti, 172/192/204; SABOQ E 50)
-- Yuqori yorliqlar: ✓ Uch blok bajarildi (faqat 3-amaliyot 4-qadami bajarilganda; aks holda yorliq yo'q) · {N}/2 to'g'ri
+- Yuqori yorliqlar: ✓ Uch blok bajarildi (faqat uchala blok bayrog'i — A1, A2 va A3 «Bajardim» — bo'lganda; «A3 tugadi = uchalasi tugadi» emas — 04-FILTR 28) · {N}/2 to'g'ri
 - Sarlavha (bloklar va tekshiruv kartalari holatiga qarab, P-046; sinf 6 — o'quvchi qilgan va ko'rgan ishni aytadi, har holat rost — E 54; ustunlik tartibi — yuqoridan):
   - uchala blok, hammasi «Kutilganidek»: **Demo yo'lidagi uch joy o'zgardi va tekshirildi.** (47)
   - bajarilgan blokda «Boshqacha» bor: **Sayqal qilindi — tuzatiladigan joy qoldi.** (41)
@@ -412,11 +415,11 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
 - Endi siz bilasiz (5):
   - Sayqal — demo yo'lidagi kichik o'zgarishlar; yangi funksiya qo'shilmaydi.
   - Bosish javobi: tugma bosilishi bilan o'zgaradi va javob kelguncha qayta bosilmaydi.
-  - Joy egallovchi haqiqiy karta o'lchamida bo'lsa, ro'yxat kelganda sahifa siljimaydi.
-  - Muvaffaqiyat animatsiyasi qisqa bo'ladi va ish bajarilganini ko'rsatadi.
-  - Harakat kamaytirilsa, animatsiya o'chadi: yozuv, kulrang kartalar va yangi son qoladi.
+  - Joy egallovchi haqiqiy kontentga yaqin joy egallasa, ro'yxat kelgandagi katta siljishni kamaytiradi.
+  - Bu darsdagi muvaffaqiyat animatsiyasi qisqa va bir martalik — ish bajarilganini ko'rsatadi.
+  - Bu demo yo'lida harakat kamaytirilsa, harakat o'chadi; yozuv, kulrang kartalar va yangi son qoladi.
 - Uyga vazifa — yo'q (loyiha kuni; sinf 14). `uyga: null`.
-- Keyingi dars — «Guruh pitchingizda nimani tuzatishni aytadi?» <!-- TAXMIN T20 -->
+- Keyingi dars — «Guruh pitchingizda nimani tuzatishni aytadi?»
 - Nishonlaringiz — N/4
 - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
 - Tugmalar: Orqaga · Qaytadan · Yakunlash
@@ -428,8 +431,8 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
 ## Nishonlar (4) — inglizcha nom va medal (o'yin qatlami)
 - **Tap Echo** — Tugma bosilishi bilan nima qilishini topdingiz (4-ekran, 1-savol)
 - **Still Shows** — Harakatsiz ham yangi son ko'rinishini topdingiz (7-ekran, 2-savol)
-- **Grey Cards** — Kulrang kartalarni sekin tarmoqda o'zingiz tekshirdingiz (2-amaliyot, 4-qadam «Bajardim») — bonus, birinchi urinish sharti yo'q
-- **Calm Mode** — Harakat kamaytirilgan holatni o'zingiz tekshirdingiz (3-amaliyot, 4-qadam «Bajardim») — bonus, birinchi urinish sharti yo'q
+- **Grey Cards** — Yuklanish holatini sekin tarmoqda o'zingiz tekshirdingiz (2-amaliyot, 4-qadam «Bajardim» + tekshiruv kartasi) — bonus, birinchi urinish sharti yo'q
+- **Calm Mode** — Harakat kamaytirilgan holatni o'zingiz tekshirdingiz (3-amaliyot, 4-qadam «Bajardim» + tekshiruv kartasi) — bonus, birinchi urinish sharti yo'q
 - Nishon olinganda: <nishon nomi> · <tavsifi> · bosib davom eting
 - Nomlar boshqa darslarda yo'q (grep `src/`, `feedback/`, 08.10: Tap Echo · Still Shows · Grey Cards · Calm Mode — 0). Ikki blok nishoni — ish uchun (P-048), tekin emas; tavsif «tekshirdingiz» — natija da'vosi emas.
 
@@ -442,7 +445,7 @@ Oyna yorlig'i: Qayta tushuntirish · tugmalar: ← Oldingi · Keyingisi → · �
    - 3 · Javob kelgach — yakuniy holat, masalan «Qo'shildingiz».
    - Sinfga savol: Demo paytida tugma jim tursa, siz nima qilgan bo'lardingiz?
 2. 2-savol (7-ekran) — «Harakat kamaytirilsa»
-   - 1 · Animatsiya o'chadi: miltillash, aylanish, kattalashish.
+   - 1 · Bu demo yo'lida harakat o'chadi: aylanish va kattalashish.
    - 2 · Holat qoladi: yozuv, kulrang kartalar, yangi son.
    - Saytda buni ko'rsatadi · `prefers-reduced-motion`
    - Sinfga savol: Harakat kamaytirilganda tugma yozuvi nega qolishi kerak?
@@ -456,10 +459,10 @@ Oyna yorlig'i: Qayta tushuntirish · tugmalar: ← Oldingi · Keyingisi → · �
 | Bosish javobi nima? | Tugma bosilishi bilan o'z holatini o'zgartirishi | Javob kelguncha tugma qayta bosilmaydi |
 | Mentor misolida «Qo'shilaman» bosilgach nima chiqadi? | «Qo'shilmoqda…» yozuvi va kichik kutish belgisi | Javob kelgach — «Qo'shildingiz» |
 | Joy egallovchi nima? | Yuklanayotganda ma'lumot o'rnida turadigan kulrang shakl | Inglizchasi: skeleton |
-| Kulrang kartalar qanday o'lchamda bo'ladi? | Haqiqiy kartalar o'lchamida | Ro'yxat kelganda sahifa siljimaydi |
-| Kutish yozuvi va kulrang kartalarning farqi nima? | Yozuv qancha kutishni aytadi, kartalar nima kelishini ko'rsatadi | Mentor misolida ikkalasi birga turadi |
+| Kulrang kartalar qanday o'lchamda bo'ladi? | Haqiqiy kartalarga yaqin o'lchamda | Ro'yxat kelgandagi katta siljishni kamaytiradi |
+| Kutish yozuvi va kulrang kartalarning farqi nima? | Yozuv kutish borligini aytadi, kartalar nima kelishini ko'rsatadi | Mentor misolida ikkalasi birga turadi |
 | Muvaffaqiyat animatsiyasi qanday bo'ladi? | Qisqa va bir marta | Mentor misolida son bir lahza kattalashib qaytadi |
-| Harakat kamaytirilsa nima o'chadi? | Animatsiya: miltillash, aylanish, kattalashish | Holat qoladi: yozuv, kulrang kartalar, yangi son |
+| Bu darsda harakat kamaytirilsa nima o'chadi? | Harakat: aylanish va kattalashish | Holat qoladi: yozuv, kulrang kartalar, yangi son |
 | Saytda harakat kamaytirilganini nima ko'rsatadi? | `prefers-reduced-motion` | Telefondagi ilova buni telefon sozlamasidan o'qiydi |
 | Javobni sekin qilib qanday tekshirasiz? | DevTools'da Network bo'limida «Slow 4G» bilan | Keyin «No throttling» ga qaytaring |
 | Animatsiya uchun nega yangi kutubxona qo'shilmaydi? | Yuklanadigan kod hajmi oshishi mumkin | Loyihada bor vosita bilan qilinadi |
@@ -486,7 +489,7 @@ Oyna yorlig'i: Qayta tushuntirish · tugmalar: ← Oldingi · Keyingisi → · �
    - Tugmaning ichida, yozuv o'rnida
    - ✔ Ma'lumot o'rnida, uning o'lchamida
 5. Kulrang kartalar nega haqiqiy karta o'lchamida bo'ladi? (6)
-   - ✔ Ro'yxat kelganda sahifa siljimasin
+   - ✔ Ro'yxat kelganda sakrash kamaysin
    - Kartalar chiroyliroq ko'rinsin deb
    - Backend javobi tezroq kelsin deb
    - Kutish yozuvi kerak bo'lmasin deb
@@ -537,10 +540,10 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari ru'da ham o'sha; R-008): sayqal · bo
 1. **Skelet:** `src/skelet/NamunaDars.jsx` dan (JR-14). `SCREEN_META` 12: hook · plan · concept · practice · test · concept · practice · test · practice · stats · flashcards (`sflash`) · summary.
    `INLINE_KEYS`: s4 **2 (C)** · s7 **1 (B)**; bloklar (3, 6, 8) — `practice: -1`. Final tartib-mashqi yo'q (172). `LESSON_META.lessonId` — `m12-04-v1`, `lessonTitle` — «Loyiha kuni: demo uchun sayqal». App.jsx `m12-04` (470-qator) ga `comp: PolishDayLesson` + import — «qur» bosqichida (asosiy seans); bu agent App.jsx ga tegmaydi.
 2. **Bitta manba (180):** `SAYQAL_SAHNA` (brauzer: ekranlar `oyinlar` · `oyin`; ro'yxat holatlari `bosh` (kutish yozuvi) · `kulrang` · `karta`; tugma holatlari `qoshilaman` · `qoshilmoqda` · `qoshildingiz`; son `8 / 10` → `9 / 10`; rejimlar `oldin` · `keyin` · `kamaytirilgan`) ·
-   `DEMO_YOLI` (uch nuqta: `yuklanish` · `bosish` · `muvaffaqiyat`; har biri `oldin`/`keyin` yorlig'i bilan — 2-ekran matnlari) · `KUTISH_YOZUVI` («O'yinlar yuklanmoqda — bu bir daqiqagacha cho'zilishi mumkin.» — 11-Modul 9.95 aynan) · `TUGMA_YOZUVLARI` · `HARAKAT_HOLAT` (5-ekran, olti qator) ·
+   `DEMO_YOLI` (uch nuqta: `yuklanish` · `bosish` · `muvaffaqiyat`; har biri `oldin`/`keyin` yorlig'i bilan — 2-ekran matnlari) · `KUTISH_YOZUVI` («O'yinlar yuklanmoqda — bu bir daqiqagacha cho'zilishi mumkin.» — 11-Modul 9.95 aynan) · `TUGMA_YOZUVLARI` · `HARAKAT_HOLAT` (5-ekran, besh qator) ·
    `YORDAM_A1` · `YORDAM_A2` · `YORDAM_A3` · `NAMUNA_YOZUV` (A1 1-qadam) — ekranlar, bloklar o'ngi va kartochka shundan o'qiydi.
 3. **`SayqalSahna`** komponenti (qolipda yo'q, yangi): brauzer oynasi (≈360×300, o'lcham barqaror; yorliq «laptop · proyektorga»; manzil satri), ichida telefon kengligidagi ilova; tepada tanlov tugmalari «Oldin» · «Keyin»; pastda demo yo'li chizig'i; 5-ekranda o'ngda chizilgan kalit «Harakatni kamaytirish» va jadval.
-   Animatsiyalar (sahnaning o'zi): bosish doirasi, kutish belgisi aylanishi, kulrang chiziqlar miltillashi (sokin, ~1,5 s davr), son kattalashishi (bir marta). `kamaytirilgan` rejimda va `prefers-reduced-motion` da — harakatsiz almashish (DE-200). «Maydon Jamoa» nomi — 11-Modul yashili. Logotip/emoji yo'q (D4).
+   Animatsiyalar (sahnaning o'zi): bosish doirasi, kutish belgisi aylanishi, son kattalashishi (bir marta); kulrang kartalar — harakatsiz (04-FILTR 16). `kamaytirilgan` rejimda va `prefers-reduced-motion` da — harakatsiz almashish (DE-200). «Maydon Jamoa» nomi — 11-Modul yashili. Logotip/emoji yo'q (D4).
    Bosiladigan qismlar faylda e'lon qilinadi (`// qolip-maket: sq-qoshil sq-oyinlar sq-oldin sq-keyin sq-kalit`). Maketda hech narsa kesilmaydi (E 41); 393 kenglikda brauzer o'lchami barqaror.
 4. **0-ekran `QKirish`:** maket — `SayqalSahna` `oldin`, «O'yin» ekrani; «Qo'shilaman» bosilmaguncha variantlar xira; bosilgach jim oraliq (sahna ~1,5 s, son ko'rsatilmaydi), keyin son va tugma birdan; javobdan keyin «bosildi · ekranda o'zgarish yo'q · son o'zgardi» chizig'i.
 5. **2-ekran `QTushuncha`:** `QBashorat`/`QTaxmin` (yopilmaydi — ixcham qator), to'rt harakat navbat bilan (faol tugma halqada, qolganlari xira), «Keyin» tugmasi 2-harakatdan keyin faollashadi, sahna o'zi kartani bosadi (1, 3-harakatdan keyin), ikki nom qatori (3 va 4-harakatdan keyin), hisoblagich, joriy qator, `zoom`, `tugadi`. Holat bosishlar ro'yxatidan (P-046).
@@ -548,22 +551,22 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari ru'da ham o'sha; R-008): sayqal · bo
 7. **4 va 7-ekran `QTest`** — matn yuqoridagidek; javobdan keyingi kichik vizual (`QuestionScreen` `vizual`, SABOQ 4); to'g'ri izoh bitta qisqa gap, xato izohlari ≤60.
 8. **Amaliyot bloklari** — `ScreenBlok` + `QBlok` + `QPrompt` (13-Modul 8-darsi naqshi): har blok **4 qadam**, hammasi o'quvchining o'z repo'sida. `{…}` joylari — A1: 4 (`{ilova papkasi}` oldindan), A2: 3 (`{ilova papkasi}` oldindan), A3: 3 (`{ilova papkasi}` oldindan); bo'sh joylar yonida kulrang «masalan»; «Yordam» — `YORDAM_A1…A3`; web gapi — «Yordam» ostida, trek `pm-m9d8-platforma` dan (yo'q — A1 tanlov tugmalari, dars holatida).
    - A1 1-qadam — namuna yozuv prompti («Nusxalash» bilan, `{namuna yozuv}`); A1 2-qadam — `{avvalgidek…}` tekshiruvi (kamida ikki ish, QXato 45). Har blok 3-qadamida kodni ko'rsatadigan prompt (SABOQ 52). DevTools yo'riqlari — oddiy matn (tugma emas).
-   - A3 3-qadam — trekka qarab bitta yo'l ko'rinadi (mobil — `npx expo export -p web` → `netlify deploy --prod --dir dist`; web — Netlify o'zi). A3 `QIzoh` — faqat mobil trekda.
-   - «Davom etish»: A1 — 3-qadamdan keyin · A2 — 3-qadamdan keyin · A3 — 4-qadamdan keyin (E 55; MD qarori). Blok bayrog'i — faqat 4-qadam «Bajardim»idan; har blok 4-qadamida tekshiruv kartasi «Kutilganidek» · «Boshqacha» — dars holatida (`ccProgress`), yangi `pm-…` kaliti yo'q.
-   - «Ortda qoldingizmi» — faqat A1 da (SABOQ 39), teg `m14-dars-04-done`. `ACH_TRIGGERS`: 4 → Tap Echo · 7 → Still Shows · A2 4-qadam «Bajardim» → Grey Cards · A3 4-qadam «Bajardim» → Calm Mode.
+   - Push — har blokning 4-qadami oxirida, tekshiruvdan keyin (04-FILTR 1); A3 4-qadam (4) — trekka qarab bitta yo'l ko'rinadi (mobil — `npx expo export -p web` → `netlify deploy --prod --dir dist`; web — Netlify o'zi), (5) — deploy'da bir marta. A3 `QIzoh` — faqat mobil trekda.
+   - «Davom etish»: A1 — 3-qadamdan keyin · A2 — 3-qadamdan keyin · A3 — 4-qadamdan keyin (E 55; MD qarori). Blok bayrog'i — faqat 4-qadam «Bajardim»idan; har blok 4-qadamida tekshiruv kartasi «Kutilganidek» · «Boshqacha» — dars holatida (`ccProgress` — localStorage, reload'da joyiga qaytadi, K-003; 04-FILTR 27), yangi `pm-…` kaliti yo'q.
+   - «Ortda qoldingizmi» — faqat A1 da (SABOQ 39), teg `m14-dars-04-done`. `ACH_TRIGGERS`: 4 → Tap Echo · 7 → Still Shows · A2 4-qadam «Bajardim» + tekshiruv kartasi → Grey Cards · A3 4-qadam «Bajardim» + tekshiruv kartasi → Calm Mode (04-FILTR 29).
    - ⚠️ Qolipda yo'q (12–13-Modul bloklari bilan bir — MEXANIZM-TAKLIF): `{…}` yonida kulrang «masalan», oldindan to'ldirilgan qavs, qadam ichidagi «Yordam», «Ulgurmasangiz», O'qituvchi eslatmasi, tekshiruv kartasi, trek tanlov tugmalari — o'z faylida kichik o'rovchi bilan, `src/qolip` ga tegilmaydi.
 9. `RECAPS` 2 (kalit = 4 va 7) · `Q_LABELS` {4, 7} · `ACHIEVEMENTS` 4 · `QUIZ_BANK` 12 (to'g'ri javob 0·1·2·3 ×3) · flashcard 12 (`sflash`, Mentor yo'q, «Kartani bosing — javob ochiladi»; SABOQ 12, 16) · `QZ_BG_SHAPES` fon so'zlari {uz, ru}, emoji yo'q.
-10. **11-ekran `QYakun`:** sarlavha — blok bayroqlari va tekshiruv kartalaridan (besh holat, ustunlik tartibi); ✓ yorliq faqat A3 bajarilganda; `recap` 5 qator = «Endi siz bilasiz» so'zma-so'z; `uyga: null`; `keyingi` — yuqoridagi matn. «Bugungi asosiy fikr» qutisi yo'q (E 50).
+10. **11-ekran `QYakun`:** sarlavha — blok bayroqlari va tekshiruv kartalaridan (besh holat, ustunlik tartibi); ✓ yorliq — uchala blok bayrog'i AND (04-FILTR 28); `recap` 5 qator = «Endi siz bilasiz» so'zma-so'z; `uyga: null`; `keyingi` — yuqoridagi matn. «Bugungi asosiy fikr» qutisi yo'q (E 50).
 11. Test savoli ustida «To'g'ri javobni tanlang» yorlig'i yo'q (SABOQ 6). Hook javoblari «Aynan!» / «Qiziq fikr!» (T-028, T-067). `narrow` faqat 4, 7, 9-ekranlarda (171).
 12. **Darvozalar:** `npm run gates -- src/12-Modull/PolishDayLesson.jsx` 12/12 · `npm run lint:jsx` · `lint:olchov` 0 · `lint:emoji` (qolip) 0 · `python3 feedback/F-1005-10modul/stilsiz.py <fayl>` (SABOQ 31) · `lint:layout` 1280/1366/390 · surat 1280 + 393; har ekran «4 savol» (SABOQ 30) hisobotda; haqiqiy click bilan har tugma (E 47).
     ⚠️ CSS izohida va matn konstantalarida backtik yo'q (CLAUDE.md). `{…}` qavslar — matn (prompt qavsi), JSX ifodasi emas.
 13. ru — uz tasdiqlangach, bir yo'la (6-RU; «sayqal», «joy egallovchi» — tayanch 10 lug'atidagi taklif, RU bosqichida o'lchanadi; «Qo'shilmoqda…» — yangi).
 
-## REPO — `maydon-jamoa` («qur» bosqichida yoziladi, push — buyruq bilan; `m14-dars-04-start` = `m14-dars-03-done` → `m14-dars-04-done`, tayanch 3) <!-- TAXMIN T4 -->
+## REPO — `maydon-jamoa` («qur» bosqichida yoziladi, push — buyruq bilan; `m14-dars-04-start` = `m14-dars-03-done` → `m14-dars-04-done`, tayanch 3)
 1. **Bosish javobi** (`mobil/` — «O'yin» ekrani): «Qo'shilaman» bosilishi bilan «Qo'shilmoqda…» + kichik kutish belgisi, tugma o'chiq; javob kelgach «Qo'shildingiz»; xatoda — yana «Qo'shilaman» va avvalgi xato xabari. Ikkinchi qo'shilish so'rovi yuborilmaydi (ilova tomonida). Backend o'zgarmaydi.
-2. **Joy egallovchi** (`mobil/src/app/index.tsx` — «O'yinlar»): ro'yxat yuklanayotganda ikkita kulrang karta (o'yin kartasi o'lchamida, kulrang chiziqlar sokin miltillaydi), ostida kutish yozuvi (11-Modul 9.95, o'zgarmaydi); ro'yxat kelganda kartalar o'sha joyga; bo'sh ro'yxat va xatoda — avvalgi xabar.
-3. **Muvaffaqiyat animatsiyasi** (`mobil/` — «O'yin»): qo'shilish muvaffaqiyatli bo'lganda son 0,3 soniya ichida biroz kattalashib qaytadi (bir marta); jonli son o'zgarganda — animatsiyasiz. Yangi kutubxona yo'q (loyihadagi vosita bilan).
-4. **Harakatni kamaytirish:** `AccessibilityInfo.isReduceMotionEnabled()` va `reduceMotionChanged` (brauzer ko'rinishida — `prefers-reduced-motion`) — son kattalashmaydi, kulrang chiziqlar miltillamaydi, kutish belgisi aylanmaydi; holatlar harakatsiz almashadi.
+2. **Joy egallovchi** (`mobil/src/app/index.tsx` — «O'yinlar»): ro'yxat yuklanayotganda ikkita kulrang karta (o'yin kartasi o'lchamida, kulrang chiziqlar harakatsiz), ostida kutish yozuvi (11-Modul 9.95, o'zgarmaydi); ro'yxat kelganda kartalar o'sha joyga; bo'sh ro'yxat va xatoda — avvalgi xabar.
+3. **Muvaffaqiyat animatsiyasi** (`mobil/` — «O'yin»): qo'shilish muvaffaqiyatli bo'lganda son bir lahza biroz kattalashib qaytadi (bir marta; soniya aytilmaydi); jonli son o'zgarganda — animatsiyasiz. Yangi kutubxona yo'q (loyihadagi vosita bilan).
+4. **Harakatni kamaytirish:** `AccessibilityInfo.isReduceMotionEnabled()` va `reduceMotionChanged` (brauzer ko'rinishida — `prefers-reduced-motion`) — son kattalashmaydi, kutish belgisi yashirinadi (yozuv qoladi); holatlar harakatsiz almashadi.
 5. **Yangi versiya:** brauzer ko'rinishi — `npx expo export -p web` → `netlify deploy --prod --dir dist`; APK bu tegda qayta tayyorlanmaydi (demo — brauzerda, tayanch 9.6; TAYANCHGA SAVOL 8). `README.md` — «Darslar va teglar» jadvaliga `m14-dars-04-done`.
 6. ⛔ **Muhrdan oldin («qur» darvozasi):** Mentor brauzer ko'rinishida «Slow 4G» bilan uch joy · Rendering `prefers-reduced-motion: reduce` bilan uch joy (React Native Web o'qishi) · Expo Go'da (Android va iPhone) telefon sozlamasi bilan · kulrang kartalar soni va ko'rinishi Mentor ro'yxatiga mos ·
    `npx expo start` → `w` Mentor loyihasida ishlashi · uch blokning vaqti (taymer). Natija boshqacha chiqsa — MD va sahna haqiqiy natijaga moslanadi.
@@ -585,23 +588,24 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari ru'da ham o'sha; R-008): sayqal · bo
    13-Modul tayanchi 3 (teglar, push odati) · 14-Modul pilotlari 03 (DevTools, «Ortda qoldingizmi»), 07 (A-3: 4-dars «bosish javobi», TS 15). → A-3, bloklar, kartochka 7.
 
 ## TAYANCHGA SAVOL (o'zim qaror qildim — tasdiq kerak)
-1. **Kutish yozuvi va joy egallovchi birga** — tayanch 1.4 «bo'sh ekran o'rniga kulrang kartalar» deydi, lekin Mentor ilovasida 11-Modul 15-darsidan beri «O'yinlar» da kutish yozuvi bor (9.95). Qaror: yozuv qoladi, kulrang kartalar uning ustida (yozuv — qancha kutish, kartalar — nima keladi). 2-ekran «Oldin» holati — oq maydon + kutish yozuvi.
+1. **Kutish yozuvi va joy egallovchi birga** — tayanch 1.4 «bo'sh ekran o'rniga kulrang kartalar» deydi, lekin Mentor ilovasida 11-Modul 15-darsidan beri «O'yinlar» da kutish yozuvi bor (9.95). Qaror: yozuv qoladi, kulrang kartalar uning ustida (yozuv — kutish bor, kartalar — nima keladi; «qancha» — 04-FILTR 13). 2-ekran «Oldin» holati — oq maydon + kutish yozuvi.
    Muqobil — kulrang kartalar yozuv o'rniga (yozuv olib tashlanadi): 11-Modul kutish yozuvining sababi (Render uyg'onishi — bir daqiqagacha) yo'qoladi, shuning uchun olmadim.
 2. **«Qo'shilmoqda…»** — kutish paytidagi tugma yozuvi (yangi; 12-Modul «Ulanmoqda…» naqshi) + kichik kutish belgisi; javobdan keyin «Qo'shildingiz» (11-Modul). Xatoda — yana «Qo'shilaman» va ilovadagi avvalgi xato xabari (yangi xabar matni yo'q).
-3. **Kulrang kartalar soni — ikkita** (Mentor talabi va sahna); Mentor ro'yxatidagi o'yinlar soni tayanchda yo'q — sahnada bitta karta keladi, ikkinchi kulrang karta so'nadi (sahna namunasi). O'quvchi talabida «ikkita» — tayyor qism; o'quvchi o'zgartirishi mumkin.
-4. **Muvaffaqiyat animatsiyasi** (Mentor): son 0,3 soniya ichida biroz kattalashib qaytadi, bir marta; jonli son (boshqa odam qo'shilgani) o'zgarganda animatsiya yo'q — muvaffaqiyat o'z harakatiga javob. «0,3 soniya» — dizayn qiymati (9-Modul `transition` naqshi), statistika emas; tayanch 1.14 ga kirmaydi deb oldim.
-5. **Kulrang chiziqlar «sokin miltillaydi»** — joy egallovchining o'zi ham animatsiya; harakat kamaytirilganda to'xtaydi (5-ekran jadvali, A3 talabi). Tayanchda miltillash yo'q — qo'shmasa ham bo'ladi (unda 5-ekran jadvali besh qatorga tushadi).
+3. **Kulrang kartalar soni — ikkita** (Mentor talabi va sahna; o'quvchi talabida soni ekranga qarab — 04-FILTR 10 QABUL); Mentor ro'yxatidagi o'yinlar soni tayanchda yo'q — sahnada bitta karta keladi, ikkinchi kulrang karta so'nadi (sahna namunasi). O'quvchi talabida «ikkita» — tayyor qism; o'quvchi o'zgartirishi mumkin.
+4. **Muvaffaqiyat animatsiyasi** (Mentor): son 0,3 soniya ichida biroz kattalashib qaytadi, bir marta; jonli son (boshqa odam qo'shilgani) o'zgarganda animatsiya yo'q — muvaffaqiyat o'z harakatiga javob. «0,3 soniya» — dizayn qiymati (9-Modul `transition` naqshi), statistika emas; tayanch 1.14 ga kirmaydi deb oldim. → **04-FILTR 15: RAD — bankdan tashqari yangi son; «bir lahza» yetadi, davom — loyihada bor animatsiya vaqti.**
+5. **Kulrang chiziqlar «sokin miltillaydi»** — joy egallovchining o'zi ham animatsiya; harakat kamaytirilganda to'xtaydi (5-ekran jadvali, A3 talabi). Tayanchda miltillash yo'q — qo'shmasa ham bo'ladi (unda 5-ekran jadvali besh qatorga tushadi). → **04-FILTR 16, 17: miltillash olib tashlandi — joy egallovchi harakatsiz, jadval besh qator; reduced-motion tekshiruvi ikki harakat (aylanish, kattalashish) bilan yetadi.**
 6. **Tekshiruv asbobi — Chrome DevTools** (Network «Slow 4G», Rendering `prefers-reduced-motion: reduce`) — tayanchda tekshiruv yo'li aytilmagan; rasmiy hujjatdan (Manbalar 3, 4). Telefon sozlamasi bilan tekshirish — ixtiyoriy, menyu nomisiz.
 7. **Mobil trekda brauzerda ko'rish — `npx expo start`, keyin `w`** (Expo CLI, Manbalar 5) — kursda bu yo'l ilgari ishlatilmagan (12-Modul faqat `npx expo export -p web` + Netlify). Rad etilsa — A1, A2 tekshiruvi ham Netlify'dagi brauzer ko'rinishida (har blokda eksport — vaqt ko'payadi).
 8. **APK bu darsda qayta tayyorlanmaydi** — demo brauzerda (tayanch 1.6, 9.6: ikkinchi qurilma ham telefon brauzeri); 3-dars A3 da APK bor edi. A3 `QIzoh` (mobil): «APK o'zi yangilanmaydi — bugun demo brauzer ko'rinishida tekshirildi.»
-9. **Namuna yozuv** (A1 1-qadam) — real odamlar qo'shilmagan o'yin bo'lmasa, agent `namuna = true` yozuv ochadi va **o'chirilmaydi** (demo uchun ham kerak bo'lishi mumkin — 6-dars «ro'yxat bo'sh» riski, tayanch 1.6). 7-dars tekshiruv akkauntidan farqi — bu yozuv sanoqqa kirmaydi va qoladi. O'chirish kerak bo'lsa — 6-dars qarori.
-10. **Backend'ga tegilmaydi** — uch joy ham ilova tomonida; ikkinchi qo'shilish so'rovi ilova tomonida to'xtatiladi (Backend'dagi takror himoyasi — bu darsda yo'q; 7-dars ikki marta bosishni demo sharoitida ko'radi).
+9. **Namuna yozuv** (A1 1-qadam) — real odamlar qo'shilmagan o'yin bo'lmasa, agent `namuna = true` yozuv ochadi va **o'chirilmaydi** (demo uchun ham kerak bo'lishi mumkin — 6-dars «ro'yxat bo'sh» riski, tayanch 1.6). 7-dars tekshiruv akkauntidan farqi — bu yozuv sanoqqa kirmaydi va qoladi. O'chirish kerak bo'lsa — 6-dars qarori. → **04-FILTR 9 (shartli qabul): qoladi faqat `namuna` belgisi sanoq, eslatma, Telegram xabari va taklif sanog'idan chiqarsa; chiqarmasa — tekshiruvdan keyin o'chiriladi.**
+10. **Backend'ga tegilmaydi** — uch joy ham ilova tomonida; ikkinchi qo'shilish so'rovi ilova tomonida to'xtatiladi (Backend'dagi takror himoyasi — bu darsda yo'q; 7-dars ikki marta bosishni demo sharoitida ko'radi). → **04-FILTR 7: «Backend kodiga tegma» (namuna yozuv — ma'lumot, kod emas).**
 11. **Bloklar tartibi** — tayanch 1.4 (bosish · yuklanish · muvaffaqiyat), demo yo'li esa ekranlar tartibida (yuklanish · bosish · muvaffaqiyat). Reja va bloklar — tayanch tartibida (App.jsx osti), sahnadagi chiziq — ekranlar tartibida.
 12. **Nishonlar:** Tap Echo · Still Shows · Grey Cards · Calm Mode (grep 0); ikki blok nishoni — ish uchun (13-Modul 8-dars naqshi, M-q6 A).
 13. **Yakun — besh holat** (uchala «Kutilganidek» · «Boshqacha» bor · 1–2-blok · qisman · hech narsa); «hech narsa» — «1-amaliyotdan boshlang» (loyiha kunida «uyda» yo'q).
 14. **2-savol** — «Mentor misolida» bilan (talab shunday yozilgan); boshqa ilovada animatsiya boshqacha bo'lishi mumkin — savol Mentor talabiga bog'langan.
 15. **1-savoldagi ikkinchi misol** — uy vazifalari ilovasi, «Yuborish» va «Yuborilmoqda…» (P-002; 13-Modul TAQIQLAR 4 ro'yxatidan).
-16. **«demo yo'li»** — bu darsdagi so'z (hakam ko'radigan ekranlar va bosishlar); 6-darsdagi «demo stsenariysi» bilan bir ma'noga o'tmasligi uchun bu darsda «stsenariy», «demo o'tishi» ishlatilmadi. 6-dars agenti «demo yo'li» ni qanday ishlatishi — to'lqin kelishuvi kerak bo'lishi mumkin (07 pilot ham «demo yo'li» ishlatgan).
+17. **`ccProgress` reload'dan keyin saqlanadimi** (04-FILTR 27) — ha: localStorage, K-003 (progress-saqlov, F-0730-01); blok bayroqlari va tekshiruv kartalari yo'qolmaydi.
+16. **«demo yo'li»** — bu darsdagi so'z (hakam ko'radigan ekranlar va bosishlar); 6-darsdagi «demo ssenariysi» bilan bir ma'noga o'tmasligi uchun bu darsda «ssenariy», «demo o'tishi» ishlatilmadi. 6-dars agenti «demo yo'li» ni qanday ishlatishi — to'lqin kelishuvi kerak bo'lishi mumkin (07 pilot ham «demo yo'li» ishlatgan).
 
 ## Shubhali joylar (ishonchim komil emas)
 **⛔ «qur» darvozasi (pilotda sinaladi — o'lchanmaguncha da'vo emas):**
@@ -624,7 +628,7 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari ru'da ham o'sha; R-008): sayqal · bo
 3. [x] **Saqlash kaliti — shartnoma** — yangi kalit yozilmaydi (tayanch 4, 8); o'qiydi faqat `pm-m9d8-platforma.trek`; blok holati, tekshiruv kartalari, trek tanlovi — dars holatida; boshqa darsning kalitiga yozilmaydi; ism, login, manzil yozilmaydi.
 4. [x] **Mentor misoli va kurs qolipi — umumiy qoida emas** — «Mentor misolida» (0, 2, 7-ekran, kartochka 2, 4, 7, 8, bloklar «Ochish»), «Bu misolda» (2-ekran xulosa); uch joy — o'quvchi o'z tugmasi, ro'yxati va muvaffaqiyat joyini tanlaydi (`{…}`); «Qo'shilmoqda…» — namuna.
 5. [x] **Kafolat va sabab da'vosi yo'q** — «demo buzilmaydi», «yarqiraydi», «tezlashdi» yo'q; sayqal kutishni qisqartirmaydi (2-ekran QIzoh, A2 QIzoh, kartochka 7); agentning «tayyor» degani — da'vo (A1 QIzoh, arena 12); kulrang kartalar tez internetda ko'rinmasligi ham to'g'ri (A2); kafolat so'zlari o'quvchi matnida 0 (O'lchov).
-6. [x] **Yakun, «Bajardim», nishon — faqat rost holatda** — 11-ekran besh sarlavha (hech narsa holati alohida); ✓ yorliq faqat A3 bajarilganda; blok bayrog'i 4-qadamdan; yashil qator faqat «Kutilganidek» da; Grey Cards, Calm Mode — «tekshirdingiz».
+6. [x] **Yakun, «Bajardim», nishon — faqat rost holatda** — 11-ekran besh sarlavha (hech narsa holati alohida); ✓ yorliq — uchala blok bayrog'i AND; blok bayrog'i 4-qadamdan; yashil qator faqat «Kutilganidek» da; Grey Cards, Calm Mode — «tekshirdingiz».
 7. [x] **Ta'rif sanaladigan va amaliyotga mos** — bosish javobi: «bosilishi bilan … javob kelguncha qayta bosilmaydi» — o'quvchi tez ikki marta bosib ko'radi; joy egallovchi: «haqiqiy karta o'lchamida … siljimaydi» — ko'z bilan; harakat kamaytirilgan holat — Rendering emulyatsiyasi bilan.
 8. [x] **Test: bitta himoyalanadigan javob** — 1-savol: D hayotda ham yaxshi javob emas (✎); 2-savol: «Mentor misolida» bilan bog'langan (TS 14); distraktorlar uch turkumdan; uzunlik ±15% (O'lchov); ✔ yolg'iz eng uzun emas; arena 8, 9 — to'rt bo'lim ham haqiqiy, bittasi to'g'ri.
 9. [x] **Real odamlar xavfsizligi** — tekshiruv faqat real odamlar qo'shilmagan o'yinda, keyin «O'yindan chiqish» (A-9, A1, 1-ekran eslatmasi); namuna yozuv `namuna = true`, haqiqiy yozuvlarga tegilmaydi; hakam — ismsiz, gapsiz, fikri o'ylab topilmaydi (0-ekran ✎); sinfda animatsiyalar solishtirilmaydi (A3 eslatmasi).
@@ -648,11 +652,11 @@ Mexanik tekshiruv (`vositalar/mdtekshir.py`): ekran 12/12 · arena A3 B3 C3 D3 �
 ```
 ## Sarlavhalar (≤55)
    48     Tugmani bosgach, ekranda birinchi nima o'zgardi?
-   54     Bugun demo yo'lingizdagi uch joy hakamga javob beradi.
+   49     Bugun demo yo'lingizdagi uch joyni o'zgartirasiz.
    46     Yangi ekransiz demo yo'li qanday yaxshilanadi?
    50     Tugma bosilishi bilan o'zgarsin, qayta bosilmasin.
    42     Harakat kamaytirilsa, ekranda nima qoladi?
-   50     Ro'yxat kelguncha o'rnida kulrang kartalar tursin.
+   43     Ro'yxat yuklanayotganda bo'sh joy qolmasin.
    49     Natijada ekran kichik harakat bilan javob bersin.
    25     O'zingizni sinab ko'ring.
    47     Demo yo'lidagi uch joy o'zgardi va tekshirildi.
@@ -662,13 +666,13 @@ Mexanik tekshiruv (`vositalar/mdtekshir.py`): ekran 12/12 · arena A3 B3 C3 D3 �
    52     Demo yo'li hali sayqallanmagan — bloklarni bajaring.
 ## Xulosalar (≤110)
   102     Bu misolda yangi ekran ham, tugma ham qo'shilmadi: bosish, yuklanish va natija endi ekranda ko'rinadi.
-   86     Harakat kamaytirilsa, animatsiya o'chadi: yozuv, kulrang kartalar va yangi son qoladi.
+  99     Bu demo yo'lida harakat kamaytirilsa, harakat o'chadi: yozuv, kulrang kartalar va yangi son qoladi.
 ## Hook javoblari (≤120)
    99     Aynan! Bir lahza ekran jim turdi: bosilgani ham, kutish ham ko'rinmadi — son keyin birdan almashdi.
    82     Qiziq fikr! Tugma faqat son almashganda o'zgardi — undan oldin u avvalgidek turdi.
    74     Qiziq fikr! Kutish belgisi chiqmadi — ekran javob kelguncha bir xil turdi.
 ## To'g'ri izohlar (bitta gap, ≤60)
-   56     Bosilgani shu zahoti ko'rinadi, ikkinchisi yuborilmaydi.
+   60     Bosilgani tugma holatida ko'rinadi; ikkinchisi yuborilmaydi.
    52     Animatsiya o'chadi, yangi son esa baribir ko'rinadi.
 ## Xato izohlari (≤60)
    43     A: Bir lahza jim tugmani odam yana bosmaydimi?
@@ -730,7 +734,7 @@ Mexanik tekshiruv (`vositalar/mdtekshir.py`): ekran 12/12 · arena A3 B3 C3 D3 �
    2. ✔B · 6 so'z · [33, 35, 34, 35] · og'ish 4% OK  Sayqaldan keyin demo yo'lida nima o'zgaradi?
    3. ✔C · 7 so'z · [37, 34, 36, 32] · og'ish 8% OK  Javob sekin kelsa, «Qo'shilaman» bosilgach qanday turadi?
    4. ✔D · 4 so'z · [37, 33, 31, 34] · og'ish 10% OK  Joy egallovchi qayerda turadi?
-   5. ✔A · 7 so'z · [34, 34, 32, 33] · og'ish 4% OK  Kulrang kartalar nega haqiqiy karta o'lchamida bo'ladi?
+   5. ✔A · 7 so'z · [33, 34, 32, 33] · og'ish 4% OK  Kulrang kartalar nega haqiqiy karta o'lchamida bo'ladi?
    6. ✔B · 7 so'z · [30, 34, 33, 37] · og'ish 10% OK  Kutish yozuvi bo'lsa, kulrang kartalar nima beradi?
    7. ✔C · 6 so'z · [37, 36, 36, 32] · og'ish 9% OK  Harakat kamaytirilgan qurilmada sayqaldan nima qoladi?
    8. ✔D · 5 so'z · [29, 32, 30, 31] · og'ish 5% OK  Harakat kamaytirilganini DevTools'da qayerda tanlaysiz?
@@ -758,8 +762,8 @@ Mexanik tekshiruv (`vositalar/mdtekshir.py`): ekran 12/12 · arena A3 B3 C3 D3 �
    11 · Yakun  ← QYakun (texnik darslar standarti, 172/192/204; SABOQ E 50)
 ```
 
-## TAXMIN belgilari
-Jami 23 ta `<!-- TAXMIN Tn -->` belgisi (qavsda — nechta joyda). Qaror-0 javobi boshqacha bo'lsa — aynan shu joylar tuzatiladi.
+## Qaror-0 tasdiqlangan joylar (GATE M `14M-GATE-1`, 08.10 — hammasi A; belgilar olib tashlandi)
+Jami 23 ta `<!-- TAXMIN Tn -->` belgisi (qavsda — nechta joyda). Qaror-0 javobi (08.10): hammasi A — belgilar olib tashlandi, joylar ro'yxati tarix uchun.
 - **T4** (4) — teglar `m14-dars-04-start` / `-done`, «Ortda qoldingizmi» birinchi blokda — A-1 · 1-ekran pastki qatori · 3-ekran (Amaliyot 1) «Ortda qoldingizmi» · REPO sarlavhasi
 - **T7** (8) — sayqal joylari: bosish javobi · yuklanish holati (joy egallovchi) · muvaffaqiyat; reduced-motion; yangi funksiya yo'q — sarlavha bloki (chegara) · A-1 · A-4 · 1-ekran (tayyor holat, uch qator) · 3-ekran ✎ (ikki marta bosish va 7-dars) · 6-ekran vazifa · 8-ekran vazifa
 - **T8** (4) — demo laptop brauzerida, proyektorga (mobil trekda — brauzer ko'rinishi) — ip · bitta vizual (yorliq «laptop · proyektorga») · 0-ekran Mentori · 8-ekran 4-qadam (hakam ko'radigandek tekshirish)
@@ -775,7 +779,7 @@ Jami 23 ta `<!-- TAXMIN Tn -->` belgisi (qavsda — nechta joyda). Qaror-0 javob
   Bashoratlar tanlangach ixcham qator bo'lib qoladi; har harakatli ekranda faol element halqada, Mentor aynan shu harakatni aytadi (SABOQ 11, 19–30; E 40).
 - [x] Sarlavha ≤55 bitta qator · Mentor ≤2 gap (interaktivda 1), sarlavhani takrorlamaydi · xulosa ≤110 · hook javobi ≤120 · to'g'ri va xato izohi ≤60 — «O'lchov» (eng uzun: sarlavha 54, xulosa 102, hook javobi 99, to'g'ri izoh 55, xato izohi 51).
 - [x] Atamalar oldingi darslar bilan bir xil (grep): animatsiya, ortiqcha harakat, «Harakatni kamaytirish», `prefers-reduced-motion`, kutish belgisi — 9-Modul · «Qo'shilaman» / «Qo'shildingiz», «O'yindan chiqish», kutish yozuvi — 11-Modul · brauzer ko'rinishi, `namuna`, namuna o'yin — 12-Modul ·
-  yangi: sayqal, joy egallovchi (tayanch 2 ta'rifi aynan), bosish javobi — hodisadan keyin; siz-forma; tugma va yorliqlar ot-shaklda («Oldin», «Keyin», «Qo'shilmoqda…», «Kutilganidek»); agent promptlari — buyruq shaklida (T-002); «sinov», «demo o'tishi», «demo stsenariysi» o'quvchi matnida yo'q.
+  yangi: sayqal, joy egallovchi (tayanch 2 ta'rifi aynan), bosish javobi — hodisadan keyin; siz-forma; tugma va yorliqlar ot-shaklda («Oldin», «Keyin», «Qo'shilmoqda…», «Kutilganidek»); agent promptlari — buyruq shaklida (T-002); «sinov», «demo o'tishi», «demo ssenariysi» o'quvchi matnida yo'q.
 - [x] Testlar: variantlar bir shaklda, uzunligi ±15% (skript), to'g'ri javob yolg'iz eng uzun emas; kalit so'z / tire / qo'shtirnoq faqat to'g'rida emas · ✔: s4 C · s7 B · arena A·B·C·D ×3 (A B C D aylanma) · inkor-savol yo'q · ballik testlar ketma-ket emas (4, 7).
 - [—] Final: tartib-mashqi yo'q (loyiha kuni, 172) — uya izohi talabi qo'llanmaydi.
 - [x] Emoji yo'q (nishon medali, arena, podium — o'yin qatlami) · kafolat gaplari yo'q (skript grep: «har doim», «hech qachon», «darhol», «darrov», «albatta», «100%», «bir zumda», «kafolat» — KOD dan oldingi matnda 0).

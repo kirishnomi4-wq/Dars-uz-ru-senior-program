@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, Suspense, lazy } from 'react'
 
-// 5-Modul QA-demosi (2026-09-28): alohida Vercel loyihasi — QA ko'rib fidbek beradi.
+// 7-Modul (LMS v9 raqami; kod src/5-Modull) QA-demosi (2026-09-28; 08.10 dan sayt coddycamp-7modul): alohida Vercel loyihasi — QA ko'rib fidbek beradi.
 // LMS'ga yuklanmaydi (foydalanuvchi qarori 28.09: LMS'ga faqat integratsiyalashgan 1–4-Modul).
 // Tartib va komponentlar App.jsx (m5) bilan bir xil; katalog UZ-RU (cc_lang), har darsga lang prop uzatiladi.
 const BotIntroLesson = lazy(() => import('../5-Modull/BotIntroLesson.jsx'))
@@ -20,8 +20,8 @@ const PmLesson21 = lazy(() => import('../5-Modull/PmLesson21.jsx'))
 const MODULES = [
   {
     id: 'm5',
-    label: { uz: '5-Modul', ru: '5-Модуль' },
-    heading: { uz: '5-Modul — Botlar va avtomatlashtirish', ru: '5-Модуль — Боты и автоматизация' },
+    label: { uz: '7-Modul', ru: '7-Модуль' },
+    heading: { uz: '7-Modul — Botlar va avtomatlashtirish', ru: '7-Модуль — Боты и автоматизация' },
     lead: { uz: "Real odamlar bilan birinchi jonli mahsulot tajribasi — dastur tartibida.", ru: 'Первый живой продукт с реальными людьми — в порядке программы.' },
     lessons: [
       { key: 'm5-01', n: 1, type: 'Kod', emoji: '🤖', title: { uz: "Bot nima", ru: "Что такое бот" }, sub: { uz: "hodisaga javob beradigan mantiq: signal keladi, bot amal qiladi", ru: "логика, отвечающая на событие: пришёл сигнал — бот действует" }, comp: BotIntroLesson },
@@ -60,7 +60,7 @@ const CHIP_LABEL = {
 }
 const UI = {
   eyebrow: { uz: 'CoddyCamp · Senior 2026', ru: 'CoddyCamp · Senior 2026' },
-  h1: { uz: '5-Modul darslari', ru: 'Уроки 5-го модуля' },
+  h1: { uz: '7-Modul darslari', ru: 'Уроки 7-го модуля' },
   lead: { uz: "Darsni bosing — to'liq ochiladi.", ru: 'Нажмите на урок — он откроется полностью.' },
   loading: { uz: 'Dars yuklanmoqda…', ru: 'Урок загружается…' },
   back: { uz: "Darslar ro'yxatiga qaytish", ru: 'Вернуться к списку уроков' },

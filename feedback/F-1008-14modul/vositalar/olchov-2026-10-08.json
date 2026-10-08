@@ -1,0 +1,195 @@
+{
+ "_izoh": "Haqiqiy o'lchov — 08.10.2026, Lighthouse 13.5.0, headless Chrome (Kali, shu kompyuter), har biri BIR o'lchov; Mobile — form-factor mobile (simulated throttling), Desktop — preset desktop. Har o'lchashda son biroz farq qiladi (rasmiy). Sayt egalari haqida baho emas — o'lchov sharoiti bilan birga aytiladi. To'liq JSON: scratchpad lh/ (14-Modul seansi).",
+ "saytlar": {
+  "youtube": {
+   "url": "https://www.youtube.com/",
+   "mobile": {
+    "baho": 31,
+    "fcp_s": 6.3,
+    "si_s": 7.1,
+    "lcp_s": 7.8,
+    "tbt_ms": 1997,
+    "cls": 0.001,
+    "keraksiz_js_kib": 651,
+    "jami_kib": 1357,
+    "olchamsiz_rasm": 0,
+    "siljishlar": 2,
+    "vaqt": "2026-10-08T08:14:42.893Z"
+   },
+   "desktop": {
+    "baho": 28,
+    "fcp_s": 4.4,
+    "si_s": 4.4,
+    "lcp_s": 7.6,
+    "tbt_ms": 950,
+    "cls": 0.025,
+    "keraksiz_js_kib": 3292,
+    "jami_kib": 6089,
+    "olchamsiz_rasm": 0,
+    "siljishlar": 3,
+    "vaqt": "2026-10-08T08:33:26.447Z"
+   }
+  },
+  "olx": {
+   "url": "https://www.olx.uz/",
+   "mobile": {
+    "baho": 30,
+    "fcp_s": 3.1,
+    "si_s": 10.8,
+    "lcp_s": 7.5,
+    "tbt_ms": 7725,
+    "cls": 0.066,
+    "keraksiz_js_kib": 1354,
+    "jami_kib": 4219,
+    "olchamsiz_rasm": 1,
+    "siljishlar": 10,
+    "vaqt": "2026-10-08T08:13:42.818Z"
+   },
+   "desktop": {
+    "baho": 60,
+    "fcp_s": 1.0,
+    "si_s": 3.2,
+    "lcp_s": 1.0,
+    "tbt_ms": 1478,
+    "cls": 0.04,
+    "keraksiz_js_kib": 1727,
+    "jami_kib": 4823,
+    "olchamsiz_rasm": 4,
+    "siljishlar": 3,
+    "vaqt": "2026-10-08T08:34:01.592Z"
+   }
+  },
+  "kun": {
+   "url": "https://kun.uz/",
+   "mobile": {
+    "baho": 54,
+    "fcp_s": 1.7,
+    "si_s": 6.4,
+    "lcp_s": 3.8,
+    "tbt_ms": 2141,
+    "cls": 0.006,
+    "keraksiz_js_kib": 495,
+    "jami_kib": 1956,
+    "olchamsiz_rasm": 1,
+    "siljishlar": 1,
+    "vaqt": "2026-10-08T08:14:15.396Z"
+   },
+   "desktop": {
+    "baho": 74,
+    "fcp_s": 0.8,
+    "si_s": 1.6,
+    "lcp_s": 3.5,
+    "tbt_ms": 174,
+    "cls": 0,
+    "keraksiz_js_kib": 499,
+    "jami_kib": 1670,
+    "olchamsiz_rasm": 1,
+    "siljishlar": 0,
+    "vaqt": "2026-10-08T08:32:57.548Z"
+   }
+  },
+  "texnomart": {
+   "url": "https://texnomart.uz/",
+   "mobile": {
+    "baho": 9,
+    "fcp_s": 1.8,
+    "si_s": 13.0,
+    "lcp_s": 19.8,
+    "tbt_ms": 5170,
+    "cls": 1.544,
+    "keraksiz_js_kib": 678,
+    "jami_kib": 7203,
+    "olchamsiz_rasm": 0,
+    "siljishlar": 5,
+    "vaqt": "2026-10-08T08:31:59.392Z"
+   }
+  },
+  "olcha": {
+   "url": "https://olcha.uz/",
+   "mobile": {
+    "baho": 36,
+    "fcp_s": 1.6,
+    "si_s": 9.6,
+    "lcp_s": 6.1,
+    "tbt_ms": 4114,
+    "cls": 0.106,
+    "keraksiz_js_kib": 652,
+    "jami_kib": 3195,
+    "olchamsiz_rasm": 6,
+    "siljishlar": 2,
+    "vaqt": "2026-10-08T08:31:30.842Z"
+   }
+  },
+  "instagram": {
+   "url": "https://www.instagram.com/",
+   "mobile": {
+    "baho": 44,
+    "fcp_s": 1.6,
+    "si_s": 3.0,
+    "lcp_s": 13.7,
+    "tbt_ms": 3144,
+    "cls": 0.056,
+    "keraksiz_js_kib": 1634,
+    "jami_kib": 2592,
+    "olchamsiz_rasm": 1,
+    "siljishlar": 1,
+    "vaqt": "2026-10-08T08:32:34.413Z"
+   }
+  },
+  "asaxiy": {
+   "url": "https://asaxiy.uz/",
+   "mobile": {
+    "baho": 31,
+    "fcp_s": 4.5,
+    "si_s": 10.2,
+    "lcp_s": 6.1,
+    "tbt_ms": 3507,
+    "cls": 0.011,
+    "keraksiz_js_kib": 402,
+    "jami_kib": 57334,
+    "olchamsiz_rasm": 0,
+    "siljishlar": 4,
+    "vaqt": "2026-10-08T08:30:44.010Z"
+   }
+  },
+  "daryo": {
+   "url": "https://daryo.uz/",
+   "mobile": {
+    "baho": 52,
+    "fcp_s": 1.9,
+    "si_s": 4.4,
+    "lcp_s": 5.2,
+    "tbt_ms": 1387,
+    "cls": 0,
+    "keraksiz_js_kib": 265,
+    "jami_kib": 1483,
+    "olchamsiz_rasm": 0,
+    "siljishlar": 0,
+    "vaqt": "2026-10-08T08:30:13.452Z"
+   }
+  },
+  "gazeta": {
+   "url": "https://www.gazeta.uz/oz/",
+   "mobile": {
+    "baho": 47,
+    "fcp_s": 1.5,
+    "si_s": 4.0,
+    "lcp_s": 9.7,
+    "tbt_ms": 1443,
+    "cls": 0,
+    "keraksiz_js_kib": 577,
+    "jami_kib": 1703,
+    "olchamsiz_rasm": 1,
+    "siljishlar": 1,
+    "vaqt": "2026-10-08T08:29:50.541Z"
+   }
+  }
+ },
+ "elementlar": {
+  "olx_lcp": "e'lon rasmi (img, 270x… o'lchamli rasm)",
+  "kun_lcp": "bosh yangilik rasmi (img)",
+  "youtube_lcp": "matn bloki «Start watching videos to help us build a feed…»",
+  "olx_cls": "«Продолжить в приложении» banneri va «Ознакомьтесь с категориями OLX» bloki siljigan — 10 siljish",
+  "texnomart_cls": "pastki qism (footer) 5 marta siljigan"
+ }
+}

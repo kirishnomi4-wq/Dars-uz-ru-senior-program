@@ -11,13 +11,13 @@ Menyu nomi umumiy (o'quvchining o'z mahsulotiga ham to'g'ri keladi); Mentor miso
 | 3 | m12-03 | Kod | **Mahsulot tezligi: o'lchaymiz va tezlashtiramiz** | 46 | Lighthouse, rasmlar va yuklanadigan kod hajmi — oldin va keyin | `ProductSpeedLesson.jsx` |
 | 4 | m12-04 | Proyekt | **Loyiha kuni: demo uchun sayqal** | 30 | demo yo'lidagi uch joy: bosish, yuklanish, muvaffaqiyat | `PolishDayLesson.jsx` |
 | 5 | m12-05 | PM | **Guruh pitchingizda nimani tuzatishni aytadi?** | 44 | pitch mashqi 1: guruh fidbeki va tuzatishlar ro'yxati | `PmPitchTrainingLesson.jsx` |
-| 6 | m12-06 | Kod | **Demoga tayyorgarlik: risklar va B reja** | 38 | demo stsenariysi, B reja va yangi funksiyani to'xtatish | `DemoPrepLesson.jsx` |
+| 6 | m12-06 | Kod | **Demoga tayyorgarlik: risklar va B reja** | 38 | demo ssenariysi, B reja va yangi funksiyani to'xtatish | `DemoPrepLesson.jsx` |
 | 7 | m12-07 | PM (PM+PRAKT) | **Investor ko'zi bilan: demo buzilmaydimi?** | 40 | demo tekshiruvi: buzamiz, agent tuzatadi, uch marta to'liq o'tish | `PmDemoTestLesson.jsx` |
 | 8 | m12-08 | PM | **Final pitchingiz 5 daqiqaga tayyormi?** | 37 | pitch mashqi 2: taymer va savol-javob | `PmFinalPitchLesson.jsx` |
 | 9 | m12-09 | Kod | **Video-portfolio: 3 daqiqada o'zingiz va mahsulot** | 48 | ssenariy, ekran yozuvi va havola | `VideoPortfolioLesson.jsx` |
 | 10 | m12-10 | PM | **Birinchi buyurtmani qayerdan topasiz?** | 37 | frilans va stajirovka: reja va ikki xat | `PmFreelanceLesson.jsx` |
 | 11 | m12-11 | PM | **Qaysi xalqaro dasturga ariza berasiz?** | 37 | Diamond Challenge, Y Combinator: shartlar va ariza | `PmProgramsLesson.jsx` |
-| 12 | m12-12 | PM | **Keyingi olti oyda nima qilasiz?** | 31 | Mentor bilan yakkama-yakka: shaxsiy reja | `PmNextStepsLesson.jsx` |
+| 12 | m12-12 | PM | **Keyingi olti oyda nima qilasiz?** | 31 | Mentor bilan yakkama-yakka: olti oylik reja | `PmNextStepsLesson.jsx` |
 | 13 | m12-13 | PM | **Demo Day'ga tayyormisiz?** | 24 | hakamlar oldidan to'liq repetitsiya | `PmDressRehearsalLesson.jsx` |
 | 14 | m12-14 | Rezerv | **Zaxira dars: zalni tayyorlash** | 29 | tashkiliy dars | — (`comp` siz) |
 | 15 | m12-15 | PM | **Bitiruvchilar bilan uchrashuv** | 29 | tadbir — tashkilotchi bilan | — (`comp` siz) |

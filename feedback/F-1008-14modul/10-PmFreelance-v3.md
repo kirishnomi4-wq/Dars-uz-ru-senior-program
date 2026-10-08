@@ -2,15 +2,15 @@
 
 Fayl: `src/12-Modull/PmFreelanceLesson.jsx` (yangi; kod `src/skelet/NamunaDars.jsx` dan) · kalit `m12-10` · **12 ekran** (keyssiz PM shakli — tayanch 4) · faqat o'zbekcha (ru — 6-RU bosqichida)
 Fidbek: qator yoniga `>> …` yozing. Bu MD tasdiqlangach (GATE M), dars shu holatda quriladi — `.jsx` hozir yo'q, hamma ekran noldan.
-⚠️ **TAXMIN:** Qaror-0 javobi hali yo'q — `<!-- TAXMIN Tn -->` belgili qatorlar tavsiya (A) variantga tayanadi (ro'yxat — oxirida «TAXMIN belgilari»). Javob boshqacha bo'lsa, aynan shu qatorlar tuzatiladi.
+✅ **Qaror-0 tasdiqlandi** (GATE M `14M-GATE-1`, 08.10.2026, F-1008-558): TAXMIN T1–T20 hammasi A — MD shunga yozilgan edi, `<!-- TAXMIN Tn -->` belgilari olib tashlandi (qayerda bo'lgani — oxirida «Qaror-0 tasdiqlangan joylar»).
 Quruvchi qoidalari (12-Modul `QURUVCHI_SABOQ.md` A–E majburiy; E 40–55 qat'iy): kartochkalar alohida ekran, Mentorsiz · test ustida yorliq yo'q · keyingi bosiladigan joy doim ko'rinadi (har variantning o'z yengil chegarasi — E 40; bitta navbatdagi tugma — halqa) ·
 bashorat tanlangach yopilmaydi — ixcham qator natijagacha turadi, natija yashil xulosa qutisining birinchi kichik qatori (E 42) · ko'p maydonli ish — bittadan karta (E 53) · yorliq input ichida (E 43) · ekranda ≤ 3 blok · telefon maketi chapda (≈170×272, o'lchami barqaror) ·
 odamlar real ko'rinishda, ismsiz (D 36) · maketda hech narsa kesilmaydi (E 41) · yakun — E 50 standarti («Bugungi asosiy fikr» qutisi yakunda yo'q) · yakuniy holat ixcham (1280×800 da skrollsiz).
 ⚠️ Testlarda to'g'ri javob O'RNI (yangi dars, kodda shunday qoladi): 3-ekran — **C** (`correctIdx 2`) · 5-ekran — **A** (`0`) · 8-ekran — **D** (`3`) — `INLINE_KEYS` bilan bir xil; arena 12 savol — A·B·C·D ×3.
-Menyu (App.jsx 475–477, grep 08.10.2026, DE-205): `m12-09` «Video-portfolio: 3 daqiqada o'zingiz va mahsulot» → **`m12-10` «Birinchi buyurtmani qayerdan topasiz?»** (osti: «frilans va stajirovka: reja va ikki xat», `type: 'PM'`, `comp` hali yo'q) → `m12-11` «Qaysi xalqaro dasturga ariza berasiz?». <!-- TAXMIN T20 -->
-Tur (PM-005): **2-tur sof PM** — artefakt yozma matn: buyurtma rejasi (kim · nima · qachon) va ikki kompaniyaga xat; mustaqil ish majburiy (7-ekran). **Keyssiz** (tayanch 5). **Kod ekrani yo'q** (tayanch 4: QMustaqil). **REPO yo'q** (tayanch 3: `m14-dars-10-done` = `07-done`). <!-- TAXMIN T18 -->
+Menyu (App.jsx 475–477, grep 08.10.2026, DE-205): `m12-09` «Video-portfolio: 3 daqiqada o'zingiz va mahsulot» → **`m12-10` «Birinchi buyurtmani qayerdan topasiz?»** (osti: «frilans va stajirovka: reja va ikki xat», `type: 'PM'`, `comp` hali yo'q) → `m12-11` «Qaysi xalqaro dasturga ariza berasiz?».
+Tur (PM-005): **2-tur sof PM** — artefakt yozma matn: buyurtma rejasi (kim · nima · qachon) va ikki xil kompaniya turi uchun ikki xat qoralamasi (kompaniyaning o'zi uyda tanlanadi — 10-FILTR 1); mustaqil ish majburiy (7-ekran). **Keyssiz** (tayanch 5). **Kod ekrani yo'q** (tayanch 4: QMustaqil). **REPO yo'q** (tayanch 3: `m14-dars-10-done` = `07-done`).
 ⚠️ **Real odamlar va o'smir xavfsizligi bilan ishlaydigan dars** (TAQIQLAR 1, 3; sinf 9, 18): darsda hech kimga yozilmaydi va hech qayerda profil ochilmaydi — reja va xatlar yoziladi, xat yuborish uyda, ixtiyoriy, ota-ona bilan; pul va kelishuv — ota-ona orqali;
-Upwork yosh chegarasining rasmiy matni tekshirilmagan — **aniq yosh da'vo qilinmaydi**: tayanch iborasi («odatda 18 yoshdan; shartini ota-ona bilan saytning o'zidan o'qing») bir marta, testlarda va kartochkalarda son yo'q. <!-- TAXMIN T13 -->
+Upwork yosh chegarasining rasmiy matni tekshirilmagan — **aniq yosh da'vo qilinmaydi**: tayanch iborasi («Upwork kabi xalqaro saytlarda yosh sharti bor — uni ota-ona bilan saytning o'zidan o'qing») bir marta, testlarda va kartochkalarda son yo'q.
 ⚠️ Modul raqami o'quvchi matnida — LMS raqami («7-Modulda», «12-Modulda»); kod raqami faqat fayl yo'lida. Dars raqami o'quvchi matnida yo'q. Keyingi dars (xalqaro dastur), olti oylik reja, Demo Day — o'quvchi matnida va'da qilinmaydi (T-038; tayanch 9.13).
 Manba: `00-MODUL-TAYANCH.md` (**1.10 — Upwork iborasi, lokal buyurtma rejasi, ikki xat — AYNAN** · 1.0 · 1.9 — `pm-m12d9-video` · 1.14 — sonlar · 2 — frilans, buyurtma, buyurtmachi, stajirovka, so'rov · 3 · 4 · 6 — Upwork tekshirilmagan · 7 — 18 sinf · 8 — `pm-m12d10-ish` · 9 — to'lqin kelishuvlari) ·
 `00-TAQIQLAR.md` (0, 1, 2, 3, 4, 5, 6, 7) · `00-NOMLAR.md` · `00-MANBA.md` (1 — dastur 10-qator · 4 — o'tilgan atamalar · 5 — Upwork 403) · `qaror-0.json` (ISH — T13) · `MD_TOPSHIRIQ_2.md` (10-qator va 10-band) ·
@@ -21,8 +21,8 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
 
 ## A. Darsning tayanchi — tushunchalar, atamalar, misol-ip, bitta vizual
 
-1. **Darsning bitta natijasi** (dastur: «Birinchi buyurtma rejasi + 2 kompaniyaga xat»; tayanch 1.10, 4): o'quvchi o'zi uchun **birinchi buyurtma rejasini** (kim · nima · qachon) va **ikki kompaniyaga xatni** (kimman · nima qurdim · nima so'rayman) yozadi. <!-- TAXMIN T13 -->
-   Bittadan karta (E 53): reja — uch karta, har xat — bitta karta. Saqlanadi `pm-m12d10-ish` (12-dars o'qiydi — tayanch 8). Xat darsda yuborilmaydi: yuborish — uyda, ixtiyoriy, ota-ona bilan (tayanch 1.10). <!-- TAXMIN T13 -->
+1. **Darsning bitta natijasi** (dastur: «Birinchi buyurtma rejasi + 2 kompaniyaga xat»; tayanch 1.10, 4): o'quvchi o'zi uchun **birinchi buyurtma rejasini** (kim · nima · qachon) va **ikki xil kompaniya turi uchun ikki xat qoralamasini** (kimman · nima qurdim · nima so'rayman) yozadi — kompaniya nomi, manzili va yuborish darsda yo'q, shuning uchun «ikki kompaniyaga xat yozildi» deyilmaydi (10-FILTR 1).
+   Bittadan karta (E 53): reja — uch karta, har xat — bitta karta. Saqlanadi `pm-m12d10-ish` (12-dars o'qiydi — tayanch 8). Xat darsda yuborilmaydi: yuborish — uyda, ixtiyoriy, ota-ona bilan (tayanch 1.10).
    Natija besh holatda bo'lishi mumkin (11-ekran sarlavhasi shunga qarab — sinf 6, E 54): reja va ikki xat · reja bor, xatlar to'liq emas · xat bor, reja to'liq emas · reja qisman, xat yo'q · hech narsa yozilmagan. Belgi ✓ va nishonlar — faqat qilingan ishga.
    Faqat shu A-bo'limda (o'quvchi matnida yo'q — T-038): 12-dars `pm-m12d10-ish` ni olti oylik rejaning «ish» yo'nalishiga o'qiydi (tayanch 1.12); 11-dars — xalqaro dastur.
 2. **Bugungi asosiy fikr** (P-013; dars ichidagi o'q — yakunda KO'RSATILMAYDI, SABOQ E 50): Birinchi buyurtma tanish doiradan, ota-ona orqali rejalanadi; kompaniyaga esa alohida hurmatli xat yoziladi. (108)
@@ -30,12 +30,12 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
    - 2 va 12-Modul: **sayt** · **lending** (mahsulot sahifasi — 12-Modul) · 7-Modul: **Telegram bot** (AvtoPizza boti — 10-Modul tayanchi 137-qator ro'yxati) · 11–13-Modul: **«Maydon Jamoa»**, **tashkilotchi**, **o'yinchi**, **agent**.
    - 12-Modul 6-darsi: **olti bandli xavfsizlik ro'yxati** (`XAVFSIZLIK`) va uning ostidagi qator «Uchrashuv taklifi kelsa — faqat kattalar bilan.» — bu darsda shu qator so'zma-so'z (T-042) · 13-Modul 6, 9-darslari: **tanish** ↔ **notanish**, xabar «bir marta, har odamga alohida», «ota-ona xabardor».
    - 14-Modul: **so'rov** — «bitta aniq iltimos: tanishtirish · maslahat · sinash joyi» (tayanch 2; bu darsda xatdagi so'rov — stajirovka yoki maslahat) · **video-portfolio** (o'zi va mahsuloti haqida 3 daqiqalik video) · «51 foydalanuvchi» (Mentor pitchining Raqamlar bo'lagi — tayanch 1.1, 1.14).
-4. **Bugun yangi — har biri misoldan KEYIN, bir marta (T-011, PM-030); ta'riflar dars bo'yi so'zma-so'z (T-042):** <!-- TAXMIN T19 -->
-   - **frilans · buyurtmachi** — «Buyurtma bilan ishlash frilans deyiladi; ish beradigan odam yoki kompaniya — buyurtmachi.» (tayanch 2 aynan; 2-ekran, 2-tugmadan keyin `QIzoh` — tanish doiradagi odamga ish uchib borgandan keyin). «buyurtma» — dars nomidagi kundalik so'z, alohida ta'rifsiz.
+4. **Bugun yangi — har biri misoldan KEYIN, bir marta (T-011, PM-030); ta'riflar dars bo'yi so'zma-so'z (T-042):**
+   - **frilans · buyurtmachi** — «Mustaqil, buyurtma bilan ishlash frilans deyiladi; ish beradigan odam yoki kompaniya — buyurtmachi.» (tayanch 2 — «mustaqil» qo'shildi, 10-FILTR 44; 2-ekran, 2-tugmadan keyin `QIzoh` — tanish doiradagi odamga ish uchib borgandan keyin). «buyurtma» — dars nomidagi kundalik so'z, alohida ta'rifsiz.
    - **stajirovka** — «Kompaniyada o'qib ishlash davri stajirovka deyiladi» (tayanch 2 aynan; 2-ekran, 3-tugmadan keyin `QIzoh`).
    - **tanish doira** (oddiy so'z, TAQIQLAR 1 iborasi) — sizni va ota-onangizni taniydigan odamlar: tanish do'kon, maktab, to'garak (2-ekran kartasidagi uch rol). Juftligi — «notanish» (13-Modul so'zi).
-   - **yosh sharti** (oddiy so'z) — xalqaro saytda kim ishlay olishi haqidagi shart; o'zi saytdan o'qiladi, son darsda bir marta va «odatda» bilan (2-ekran `QIzoh`). <!-- TAXMIN T13 -->
-   - **buyurtma rejasi** (oddiy so'z) — uch qator: kim · nima · qachon (4-ekran xulosasi; tayanch 1.10). **xat** (oddiy so'z) — kompaniyaga yoziladigan xat, uch qism: kimman · nima qurdim · nima so'rayman (6-ekran xulosasi). <!-- TAXMIN T13 -->
+   - **yosh sharti** (oddiy so'z) — xalqaro saytda kim ishlay olishi haqidagi shart; o'zi saytdan o'qiladi, son darsda bir marta va «odatda» bilan (2-ekran `QIzoh`).
+   - **buyurtma rejasi** (oddiy so'z) — uch qator: kim · nima · qachon (4-ekran xulosasi; tayanch 1.10). **xat** (oddiy so'z) — kompaniyaga yoziladigan xat, uch qism: kimman · nima qurdim · nima so'rayman (6-ekran xulosasi).
 5. **So'zlar (bir ma'no — bir so'z, T-014/T-015; tayanch 2 «Ishlatilmaydi» ustuni):**
    - **«buyurtma»** — bu darsda faqat bajariladigan ish (7-Moduldagi bot orqali ovqat buyurtmasi ma'nosi bu darsda yo'q) · **«buyurtmachi»** — ish beradigan odam yoki kompaniya. «zakaz», «klient», «mijoz» (bu ma'noda) — yo'q.
    - **«stajirovka»** — «amaliyot» emas (amaliyot — dars ichidagi blok), «intern» emas. **«xat»** — kompaniyaga yoziladigan xat; «xabar», «pochta xati», «maktub» — ishlatilmaydi (13-Modulda «xabar» — chat xabari).
@@ -43,8 +43,8 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
    - **«xalqaro sayt»** — Upwork kabi buyurtma topiladigan sayt; «xalqaro dastur» — bu darsda yo'q (faqat yakundagi «Keyingi dars» qatorida nom). **«profil»** — saytdagi o'z sahifangiz (11, 12-Modul MD larida ishlatilgan kundalik so'z).
    - **«kompaniya turi»** — kompaniyaning nima qilishi («mobil ilova qiladigan kompaniya»), nomi emas — kalit maydoni (tayanch 8); real kompaniya nomi darsda yozilmaydi, uyda tanlanadi.
    - **«jamoa»** — prozada ishlatilmaydi (tayanch 2: «Maydon Jamoa» — nom; Jamoa — 1-darsdagi pitch bo'lagi). Mentor xatida futbol ma'nosi o'rniga «o'yinchi yig'iladi». **«sinov»** — yo'q. **«tekshiruv»** — faqat test eyebrow'ida (kurs naqshi).
-   - **Ishlatilmaydi:** zakaz, klient, intern, rezyume, CV, vakansiya, maosh, investitsiya (faqat «pul so'ralmaydi» tekshiruvida), frilanser (prozada), «freelance», «portfel», «spam» (faqat 8-ekran xato izohida bir marta — o'smir kundalik so'zi), «albatta», «darrov», «kafolat».
-6. **Mentor misoli — «Maydon Jamoa» egasining birinchi ish yo'li (bitta manba `MENTOR_ISH`, 180-qonun; ⚠️ tayanchda faqat qoida bor, Mentor matni yo'q — men yozdim, TAYANCHGA SAVOL 1, 2; o'quvchiga «Mentor misolida»):** <!-- TAXMIN T13 -->
+   - **Ishlatilmaydi:** zakaz, klient, intern, rezyume, CV, vakansiya, maosh, investitsiya (faqat «pul so'ralmaydi» tekshiruvida), frilanser (prozada), «freelance», «portfel», «spam» (yo'q — 10-FILTR 7), «albatta», «darrov», «kafolat».
+6. **Mentor misoli — «Maydon Jamoa» egasining birinchi ish yo'li (bitta manba `MENTOR_ISH`, 180-qonun; ⚠️ tayanchda faqat qoida bor, Mentor matni yo'q — men yozdim, TAYANCHGA SAVOL 1, 2; o'quvchiga «Mentor misolida»):**
 
 | Qism | Matn (o'quvchi ko'radi) | Tayanch |
 |---|---|---|
@@ -53,7 +53,7 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
 | Yo'llar · Kompaniya | «stajirovka yoki maslahat» · holat «bugun: ikki xat» | 1.10 |
 | Buyurtma · Kim | «maktabdagi futbol to'garagining murabbiyi» | TS 1 (rol, ismsiz; misol-ip — futbol) |
 | Buyurtma · Nima | «to'garak uchun lending: mashg'ulot kunlari va yozilish tartibi» | TS 1 (kursda qurilgan narsa — lending) |
-| Buyurtma · Qachon | «shu hafta, mashg'ulotdan keyin — ota-onam bilan» | TS 1 (pul va kelishuv — ota-ona orqali) |
+| Buyurtma · Qachon | «keyingi mashg'ulotdan keyin — ota-onam bilan» | TS 1 (pul va kelishuv — ota-ona orqali; «shu hafta» nisbiy sana edi — 10-FILTR 27, 28) |
 | 1-xat · kompaniya turi · so'rov | «mobil ilova qiladigan kompaniya» · stajirovka | TS 2 |
 | 2-xat · kompaniya turi · so'rov | «sayt qiladigan kompaniya» · maslahat | TS 2 |
 
@@ -63,28 +63,28 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
      Ikki so'rov gapi — 7-ekran «Stajirovka» / «Maslahat» tugmalari qo'yadigan gaplar ham shu (`SOROV_GAP`, bitta manba — P-063).
    - Mentor xatida ism, telefon, manzil, maktab raqami, video havolasi yo'q (sinf 9); «Agent bilan» — 1-darsdagi Jamoa bo'lagi bilan bir (rost rol, sinf 12). Kompaniya nomi o'ylab topilmaydi — faqat turi (sinf 4, TAQIQLAR 0).
    - Mentor misoli — namuna, majburiy shakl emas (sinf 4): o'quvchining buyurtmachisi, ishi, kompaniya turi va so'rovi — o'zining.
-7. **Sonlar (faqat tayanch 1.14):** 51 foydalanuvchi (Mentor xatida) · «8 / 10» (namuna o'yin, telefon maketida) · reja — 3 qator, xat — 3 qism, xatlar — 2 (kurs qolipi). «18» — faqat tayanch iborasida, bir marta (2-ekran `QIzoh`), «odatda» bilan. Boshqa son, narx, so'm va sanalar — yo'q. <!-- TAXMIN T13 -->
-   Ikkinchi misol (testlar, P-002): «tanish do'kon», «3D o'yin» (kursda qurilmagan ish) — o'smir olami, Mentor sonlari emas.
-8. **Keys yo'q** (tayanch 5, Qaror-0 T18). Upwork — keys emas, xalqaro sayt misoli (tayanch 1.10); faqat nomi va yosh sharti haqidagi tayanch iborasi, boshqa fakt (narx, komissiya, sayt tugmalari) yo'q (P-028). <!-- TAXMIN T18 -->
+7. **Sonlar (faqat tayanch 1.14):** 51 foydalanuvchi (Mentor xatida) · «8 / 10» (namuna o'yin, telefon maketida) · reja — 3 qator, xat — 3 qism, xatlar — 2 (kurs qolipi). «18» — yo'q (ibora sonsiz — GATE M M-q2 A). Boshqa son, narx, so'm va sanalar — yo'q.
+   Ikkinchi misol (testlar, P-002): «tanish do'kon», «qilmagan ish» — o'smir olami, Mentor sonlari emas.
+8. **Keys yo'q** (tayanch 5, Qaror-0 T18). Upwork — keys emas, xalqaro sayt misoli (tayanch 1.10); faqat nomi va yosh sharti haqidagi tayanch iborasi, boshqa fakt (narx, komissiya, sayt tugmalari) yo'q (P-028).
 9. **Toza yuza (D4):** tugma, variant, karta, yorliqda emoji yo'q; ✓ ✕ › ✎ — belgilar. Odamlar, bino, konvert, brauzer, telefon — chizilgan (CSS/SVG), logotip yo'q. «Upwork» nomi — brauzer maketida o'z rangida (rang — ⛔ «qur»da rasmiy brend sahifasidan; topilmasa neytral `ink` — TAYANCHGA SAVOL 9).
 10. **Real odamlar va pul chegarasi (sinf 9, 17, 18; TAQIQLAR 1, 3):**
     - darsda hech kimga yozilmaydi, hech qanday saytda profil ochilmaydi va ochib ko'rsatilmaydi; xalqaro saytda profil faqat o'z nomidan — ota-ona yoki boshqa odam nomidan ochilmaydi (TAQIQLAR 1);
     - birinchi buyurtma — tanish doira; pul va kelishuv — ota-ona orqali; narx, so'm darsda aytilmaydi va yozdirilmaydi (rejaga ish yoziladi);
-    - xat — bitta kompaniyaga bitta, hurmatli, shoshiltirishsiz; javob kelmasa yoki «yo'q» desa — qayta yozilmaydi; yuborish — uyda, ixtiyoriy, ota-ona biladigan pochtadan; «Uchrashuv taklifi kelsa — faqat kattalar bilan.» (12-Modul qatori aynan);
-    - xatda va kalitda: ism (xatda — ixtiyoriy, uyda qo'shiladi), telefon, manzil, maktab raqami, akkaunt nomi, kompaniya xodimi ismi, video havolasi — yo'q; kalitda xat matni ham yo'q (tayanch 8 sxemasi; TAYANCHGA SAVOL 3);
+    - xat — bitta kompaniyaga bitta, hurmatli, shoshiltirishsiz; javob kelmasa yoki «yo'q» desa — qayta yozilmaydi (bu kursning bosimsizlik qoidasi, umumiy ish normasi emas — 10-FILTR 4); yuborish — uyda, ixtiyoriy, ota-ona biladigan pochtadan; «Uchrashuv taklifi kelsa — faqat kattalar bilan.» (12-Modul qatori aynan);
+    - xatda va kalitda: ism (xatda — ixtiyoriy, uyda qo'shiladi), telefon, manzil, maktab raqami, akkaunt nomi, kompaniya xodimi ismi, video havolasi — yo'q; kalitda xat matni — `xatlar[].matn` (≤420, tekshiruvdan o'tgan; GATE M M-q4 A) (tayanch 8 sxemasi; TAYANCHGA SAVOL 3);
     - sinfda kim nechta xat yozgani, kimga yozmoqchi ekani so'ralmaydi va sanalmaydi; Mentor ekranida — faqat saqlash signallari (matn, kompaniya turi, son yo'q); o'quvchi Mentor nomidan yozmaydi («Mentorim tavsiya qildi» yo'q).
 11. **Trek (sinf 11):** ikkala trekka bitta matn — «sayt, bot va o'z mahsulotingiz»; buyurtma «Nima» kartasida tugmalar «Lending» · «Telegram bot» — kursda ikkala trek qurgan narsalar. Trek kaliti o'qilmaydi.
 12. **Kod mexanikasi:** kod ekrani yo'q. Darsning o'z mexanikalari: uch yo'l kartasi (2) · reja kataklari (4) · xat konverti (6) · bittadan karta: reja (3 karta) va xat (2 karta) (7). 13-Moduldagi chat-telefon va juftlik tekshiruvi takrorlanmaydi.
 13. **Vaqt taqsimoti — 90 daqiqa (sinf 1 — reja, o'lchov emas):** kirish va reja (0, 1) ≈ 5 · uch yo'l (2) ≈ 10 · 1-savol (3) ≈ 3 · buyurtma rejasi (4) ≈ 8 · 2-savol (5) ≈ 3 · xat (6) ≈ 9 ·
     buyurtma va xatlar (7) ≈ 32 (reja ≈ 10 · 1-xat ≈ 12 · 2-xat ≈ 10) · yakuniy savol (8) ≈ 3 · podium, kartochkalar, arena, yakun (9–11) ≈ 14 → jami ≈ 87; 3 daqiqa zaxira.
-    **Ulgurmasangiz:** 7-ekran — yozilgani saqlanadi, qolgan karta yoki 2-xat — uyga vazifa ①; yakun sarlavhasi «hali tugamagan» (E 54) · jonli darsda Mentor 7-ekranni `optionalLive` bilan o'tkazadi · arena vaqti qisqarsa — kartochkalar uyda.
-    Tashqi kutish yo'q (repo, build, xizmat, javob kutilmaydi). ⛔ Taqsimot — reja: «qur» pilotida 12–15 o'quvchi bilan taymer (ayniqsa 7-ekran — 32 daqiqa); «sig'adi» deyilmaydi.
+    **Ulgurmasangiz:** 7-ekran — kamida reja va 1-xat darsda (markaziy artefakt — `optionalLive` yo'q, 10-FILTR 51), 2-xat — uyga vazifa ①; yakun sarlavhasi «hali tugamagan» (E 54) · arena va kartochkalar — vaqt qolsa, bo'lmasa uyda.
+    Tashqi kutish yo'q (repo, build, xizmat, javob kutilmaydi). ⛔ Taqsimot — reja: «qur» pilotida 12–15 o'quvchi bilan taymer (ayniqsa 7-ekran — 32 daqiqa); «sig'adi» deyilmaydi. Auditor bahosi: 100–125 daqiqa (10-FILTR 50) — o'lchovgacha da'vo emas.
 14. **Saqlash kalitlari (tayanch 8; sinf 3):**
-    - **o'qiydi:** `pm-m12d9-video` — `bolaklar.kim` (7-ekran 1-xat «Kimman» maydoni), `bolaklar.nima` («Nima qurdim»), `bor` (`true` bo'lsa — kulrang qator «Ota-onangiz rozi bo'lsa, video havolasini uyda qo'shasiz.»). Havola kalitda yo'q (tayanch 8). Kalit yo'q yoki maydon bo'sh — maydon bo'sh, placeholder bilan.
-    - **yozadi:** `pm-m12d10-ish` = `{ buyurtma: { kim, nima, qachon }, xatlar: [{ kompaniyaTuri, soroq }], yuborildi: n | null, savedAt }` (tayanch 8 aynan). Maydonlar shartnomasi:
+    - **o'qiydi:** `pm-m12d9-video` — `bolaklar.kimman` (7-ekran 1-xat «Kimman» maydoni), `bolaklar.nimaQurdim` («Nima qurdim»), `bor` va `tekshiruv` (`bor === true` **va** `tekshiruv.ovozBor`, `.maxfiyNarsaYoq`, `.sigdi` uchalasi `true` bo'lsa — kulrang qator «Ota-onangiz rozi bo'lsa, video havolasini uyda qo'shasiz.»; tekshiruvdan o'tmagan video haqida havola eslatmasi chiqmaydi — 09-FILTR 8, 10-FILTR 18, 19). Havola kalitda yo'q (tayanch 8). Kalit yo'q yoki maydon bo'sh — maydon bo'sh, placeholder bilan.
+    - **yozadi:** `pm-m12d10-ish` = `{ buyurtma: { kim, nima, qachon }, xatlar: [{ kompaniyaTuri, soroq, matn }], savedAt }` (tayanch 8 aynan; `yuborildi` olindi — hech qaysi dars yozmaydi, 10-FILTR 17). Maydonlar shartnomasi:
       `buyurtma.kim` — rol (≤40, ismsiz) yoki `null` (karta saqlanmagan) · `buyurtma.nima` — ish (≤80) yoki `null` · `buyurtma.qachon` — gaplashish kuni (≤40) yoki `null` ·
-      `xatlar` — saqlangan xatlar (0–2; tartib: 1-xat, 2-xat): `kompaniyaTuri` — kompaniya nima qilishi (≤40, nomi emas), `soroq` — `'stajirovka'` | `'maslahat'` (TAYANCHGA SAVOL 4) ·
-      `yuborildi` — bu darsda doim `null` (yuborish uyda; TAYANCHGA SAVOL 5) · `savedAt` — har «Saqlash»da. Har «Saqlash» faqat o'z maydonini yozadi (birlashtiriladi). Xat matni, ism, telefon, kompaniya nomi, xodim ismi, havola — yozilmaydi. Boshqa darsning kalitiga yozmaydi.
+      `xatlar` — saqlangan xatlar (0–2; tartib: 1-xat, 2-xat): `kompaniyaTuri` — kompaniya nima qilishi (≤40, nomi emas), `soroq` — `'stajirovka'` | `'maslahat'` (TAYANCHGA SAVOL 4) · `matn` — saqlangan to'liq xat (≤420; telefon, akkaunt va havola tekshiruvidan o'tgan; ism maydoni yo'q — GATE M M-q4 A) ·
+      `savedAt` — har «Saqlash»da (oxirgi o'zgarish vaqti — qolip). Har «Saqlash» faqat o'z maydonini yozadi (birlashtiriladi). Ism, telefon, kompaniya nomi, xodim ismi, havola — yozilmaydi (xat matni faqat tekshiruvdan o'tgan holda saqlanadi). Boshqa darsning kalitiga yozmaydi.
 
 ## Darsning ipi va bitta vizual
 
@@ -107,7 +107,7 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
 
 ## 0 · Kirish  ← QKirish
 - Eyebrow: Kirish
-- Sarlavha: **Birinchi buyurtmani qayerdan topasiz?** (37) — dars nomi (DE-205) <!-- TAXMIN T20 -->
+- Sarlavha: **Birinchi buyurtmani qayerdan topasiz?** (37) — dars nomi (DE-205)
 - Mentor: Kursda sayt, bot va o'z mahsulotingizni qurdingiz — shunday ishni boshqa odamga ham qilib berish mumkin.
 - Maket (chap; `IshVaraq` kirish holati): telefon «Maydon Jamoa» (o'yin ekrani), ustida kulrang yorliq «Mentor misoli»; telefondan o'ngga uchta nomsiz kulrang yo'l chizig'i ketadi (oxirlari bo'sh — 2-ekran kashfiyoti, P-036). ≤ 3 blok: maket · variantlar · javob.
 - Variantlar (radio, o'ng; bir uzunlikda — P-016):
@@ -127,9 +127,9 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
 
 ## 1 · Reja  ← QReja
 - Eyebrow: Reja
-- Sarlavha: **Bugun birinchi buyurtma rejasi va ikki xat yozasiz.** (51) <!-- TAXMIN T13 -->
-- Mentor: Xatlarni darsda yozasiz, yuborish esa — uyda, ota-onangiz bilan. <!-- TAXMIN T13 -->
-- Chap — «Dars oxirida» + kulrang yorliq **frilans va stajirovka: reja va ikki xat** (App.jsx 476 osti so'zma-so'z — P-015) <!-- TAXMIN T20 -->
+- Sarlavha: **Bugun birinchi buyurtma rejasi va ikki xat yozasiz.** (51)
+- Mentor: Xatlarni darsda yozasiz, yuborish esa — uyda, ota-onangiz bilan.
+- Chap — «Dars oxirida» + kulrang yorliq **frilans va stajirovka: reja va ikki xat** (App.jsx 476 osti so'zma-so'z — P-015)
   + vizual: `IshVaraq` skeleti o'zi yuradi (DE-200) — varaq sarlavhasi «Buyurtma va xatlar», uch qism nomi birma-bir yoziladi: Yo'llar · Buyurtma · Xatlar; kataklar va konvertlar uzuq (bo'sh), chapda telefon. Matnli javob yo'q — 2-ekran kashfiyotini ochmaydi (P-036).
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
   - 01 · Birinchi buyurtma qayerdan chiqishi mumkinligini bilib olasiz · `uch yo'l`
@@ -145,31 +145,31 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
 - Sarlavha: **Birinchi buyurtma qayerdan chiqishi mumkin?** (43) — 0-ekran savoliga javob beradigan ekran (T-064)
 - Mentor: Tugmalarni birma-bir bosing va har yo'lning shartiga qarang.
   (Birinchi harakat — bashorat; uning yo'rig'i `QBashorat` yorlig'ida «Avval o'zingiz belgilab ko'ring», Mentor takrorlamaydi — T-047.)
-- Bashorat (ballsiz, 181; S-015 — bitta o'lchov: son, o'sish tartibida): **Mentor bugun nechta yo'lni rejalaydi?** · Bitta · Ikkita · Uchta — tanlangach ixcham qator; tugmalar shundan keyin yoqiladi. <!-- TAXMIN T13 -->
+- Bashorat (ballsiz, 181; S-015 — bitta o'lchov: son, o'sish tartibida): **Mentor bugun nechta yo'lni rejalaydi?** · Bitta · Ikkita · Uchta — tanlangach ixcham qator; tugmalar shundan keyin yoqiladi.
 - Vizual (≤ 3 blok: telefon · varaq · tugmalar qatori): **chapda** telefon «Maydon Jamoa» · **o'ngda** varaq «Mentor misoli · Buyurtma va xatlar» — **Yo'llar** qismi joriy: uchta bo'sh karta (nomsiz, uzuq chegara); Buyurtma va Xatlar — ixcham kulrang qator.
 - Tugmalar (ixcham, bir qatorda; joriysi accent, bosilgani ✓): 1 Xalqaro sayt · 2 Tanish doira · 3 Kompaniya
 - **Harakat → Vizual o'zgarish:**
   1. «Xalqaro sayt» → 1-karta ochiladi: kichik brauzer maketi — manzil qatorida «upwork.com», sahifada nom «Upwork» (o'z rangida, logotipsiz) va kulrang chiziqlar; brauzer ustiga qulf belgisi tushadi, yorliq «yosh sharti»;
-     karta ostida kulrang qator: Profil faqat o'z nomingizdan — ota-ona yoki boshqa odam nomidan ochilmaydi. (75) · karta holati — kulrang yorliq «uyda, ota-ona bilan». <!-- TAXMIN T13 -->
-     `QIzoh`: Upwork kabi saytlarda yosh sharti bor: odatda 18 yoshdan; shartini ota-ona bilan saytning o'zidan o'qing. (105) <!-- TAXMIN T13 -->
+     karta ostida kulrang qator: Bu kursda qoida: boshqa odam nomidan profil ochmang — faqat o'z nomingizdan. (76) (kurs qoidasi, sayt siyosati emas — 10-FILTR 21) · karta holati — kulrang yorliq «uyda, ota-ona bilan».
+     `QIzoh`: Upwork kabi xalqaro saytlarda yosh sharti bor — uni ota-ona bilan saytning o'zidan o'qing. (90)
   2. «Tanish doira» → 2-karta ochiladi: uch real ko'rinishdagi qiyofa navbat bilan chiqadi, ismsiz, rol yorliqlari «tanish do'kon» · «maktab» · «to'garak»; telefondagi «Maydon Jamoa» dan kichik sayt kartasi ajralib, «to'garak» qiyofasiga uchadi;
-     karta holati — accent yorliq «bugun: buyurtma rejasi». <!-- TAXMIN T13 -->
-     `QIzoh`: Buyurtma bilan ishlash frilans deyiladi; ish beradigan odam yoki kompaniya — buyurtmachi. (89) <!-- TAXMIN T19 -->
+     karta holati — accent yorliq «bugun: buyurtma rejasi».
+     `QIzoh`: Mustaqil, buyurtma bilan ishlash frilans deyiladi; ish beradigan odam yoki kompaniya — buyurtmachi. (99)
   3. «Kompaniya» → 3-karta ochiladi: chizilgan bino shakli, undan konvert chiqib varaqning **Xatlar** qismiga uchadi va o'sha qismda «1-xat» konverti uzuq chegarada paydo bo'ladi; karta yorlig'i «stajirovka yoki maslahat» · holat — accent «bugun: ikki xat».
-     `QIzoh`: Kompaniyada o'qib ishlash davri stajirovka deyiladi — uni xat bilan so'raysiz. (78) <!-- TAXMIN T19 -->
+     `QIzoh`: Kompaniyada o'qib ishlash davri stajirovka deyiladi — uni xat bilan so'raysiz. (78)
   Natija (yashil xulosa qutisining birinchi kichik qatori — E 42): «Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz ✕ — aslida: ikkita».
   Ipucha (40 s harakatsizlikda; javobni aytmaydi): Yoqilgan tugmani bosing va yo'l kartasiga qarang. (49)
-- Xulosa: Bu misolda bugun ikki yo'l rejalanadi: tanish doiradan buyurtma va kompaniyaga xat. (83) <!-- TAXMIN T13 -->
+- Xulosa: Bu misolda bugun ikki yo'l rejalanadi: tanish doiradan buyurtma va kompaniyaga xat. (83)
 - Tugma (pastki): Avval belgilang → Tugmalarni bosing (N/3) → Davom etish · `tugadi`: tugmalar qatori yo'qoladi, varaq butun enga (DE-199); vizual ⛶ ichida (q17).
 - Keyingi bosiladigan joy: bashorat variantlari → joriy tugma (to'lqin 2–3 marta) → «Davom etish».
-- O'qituvchi eslatmasi: Upwork — xalqaro saytga misol, reklama emas. Uning rasmiy shartlari bu darsda tekshirilmagan: «odatda 18 yoshdan» — shuning uchun «saytning o'zidan o'qing». Sinfda profil ochilmaydi va sayt ochib ko'rsatilmaydi. <!-- TAXMIN T13 -->
+- O'qituvchi eslatmasi: Upwork — xalqaro saytga misol, reklama emas. Uning rasmiy shartlari bu darsda tekshirilmagan, aniq yosh aytilmaydi — shuning uchun «saytning o'zidan o'qing». Sinfda profil ochilmaydi va sayt ochib ko'rsatilmaydi.
   Tanish doira — o'quvchini va ota-onasini taniydigan odamlar: tanish do'kon, maktab, to'garak. Notanish odamga buyurtma so'rab yozilmaydi; uchrashuv — faqat kattalar bilan.
   Sinfdan so'rang: tanishlaringiz orasida kimga sayt yoki bot kerak bo'lishi mumkin? (javoblar og'zaki, ism va manzil aytilmaydi)
 ✎ Uchala atama (frilans, buyurtmachi, stajirovka) — misoldan keyin, `QIzoh` da bir marta (T-011, PM-030). Yo'llar «yaxshi/yomon» deb baholanmaydi: xalqaro sayt — shart bilan, uyda; tanish doira va kompaniya — bugun.
 
 ## 3 · 1-savol  ← QTest (✔ C, `correctIdx 2`; ikkinchi misol — sinfdosh, P-002)
 - Eyebrow: Tekshiruv · xalqaro sayt (savol ustida yorliq yo'q — SABOQ 6)
-- Savol: **Sinfdoshingiz Upwork'da ishlamoqchi. U avval nima qiladi?** <!-- TAXMIN T13 -->
+- Savol: **Sinfdoshingiz Upwork'da ishlamoqchi. U avval nima qiladi?**
   - A — Akasining nomi bilan profil ochib qo'yadi (41)
   - B — Ota-onasiga aytmasdan o'zi profil ochadi (40)
   - ✔ C — Shartini ota-onasi bilan saytdan o'qiydi (40)
@@ -190,68 +190,69 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
 - Eyebrow: Tushuncha · buyurtma rejasi
 - Sarlavha: **Birinchi buyurtma rejasida nima yoziladi?** (41)
 - Mentor: Tugmalarni birma-bir bosing va Mentor rejasi qanday to'lishini ko'ring.
-- Bashorat (ballsiz; S-015 — bitta o'lchov: ish qanchalik tanish, tanishdan notanishga): **Mentor buyurtmaga qanday ish tanlaydi?** · Kursda qurgan ishiga o'xshash · Qisman o'rgangan boshqa ish · Hali umuman qilmagan ish — tanlangach ixcham qator; tugmalar shundan keyin yoqiladi. <!-- TAXMIN T13 -->
+- Bashorat (ballsiz; S-015 — bitta o'lchov: ish qanchalik tanish, tanishdan notanishga): **Mentor buyurtmaga qanday ish tanlaydi?** · Kursda qurgan ishiga o'xshash · Qisman o'rgangan boshqa ish · Hali umuman qilmagan ish — tanlangach ixcham qator; tugmalar shundan keyin yoqiladi.
 - Vizual (≤ 3 blok): **chapda** telefon «Maydon Jamoa» · **o'ngda** varaq — **Buyurtma** qismi joriy: uch bo'sh katak «Kim · Nima · Qachon»; Yo'llar — ixcham qator («Tanish doira» kartasi accent), Xatlar — ixcham kulrang.
 - Tugmalar (ixcham, bir qatorda): 1 Kim · 2 Nima · 3 Qachon
 - **Harakat → Vizual o'zgarish:**
   1. «Kim» → «Kim» katagiga sirg'alib yoziladi: «maktabdagi futbol to'garagining murabbiyi»; katak yonida real ko'rinishdagi qiyofa (rol yorlig'i, ismsiz), ustida kulrang belgi «tanish».
      `QIzoh`: Rejada ism emas, rol yoziladi: tanish do'kon, maktab yoki to'garak. (67)
   2. «Nima» → telefon ostida kichik brauzer kartasi «Maydon Jamoa» lendingi paydo bo'ladi; uning nusxasi «Nima» katagiga uchib, sarlavhasi «Futbol to'garagi» ga almashadi; katakda: «to'garak uchun lending: mashg'ulot kunlari va yozilish tartibi».
-     `QIzoh`: Bu darsda birinchi buyurtma — kursda qurganingizga o'xshash ish: lending yoki bot. (82) <!-- TAXMIN T13 -->
-  3. «Qachon» → «Qachon» katagiga: «shu hafta, mashg'ulotdan keyin — ota-onam bilan»; murabbiy qiyofasi yoniga ikkinchi qiyofa qo'shiladi (yorliq «ota-ona»); katak ostidagi qator «Pul va kelishuv — ota-ona orqali.» accent bilan bir lahza ajraladi.
-     `QIzoh`: Qachon — aniq kun; pul va kelishuv esa ota-ona orqali bo'ladi. (62) <!-- TAXMIN T13 -->
+     `QIzoh`: Bu darsda birinchi buyurtma — kursda qurganingizga o'xshash ish: lending yoki bot. (82)
+  3. «Qachon» → «Qachon» katagiga: «keyingi mashg'ulotdan keyin — ota-onam bilan»; murabbiy qiyofasi yoniga ikkinchi qiyofa qo'shiladi (yorliq «ota-ona»); katak ostidagi qator «Pul va kelishuv — ota-ona orqali.» accent bilan bir lahza ajraladi.
+     `QIzoh`: Qachon — qaysi paytda gaplashasiz; pul va kelishuv esa ota-ona orqali. (70) («aniq kun» ta'rifi Mentor misoliga mos emas edi — 10-FILTR 27)
   Natija (yashil xulosa qutisining birinchi kichik qatori): «Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz ✕ — aslida: kursda qurgan ishiga o'xshash».
   Ipucha (40 s): Yoqilgan tugmani bosing va reja katagiga qarang. (48)
-- Xulosa: Bu darsda buyurtma rejasi uch qatordan iborat: kim, nima va qachon. (67) <!-- TAXMIN T13 -->
+- Xulosa: Bu darsda buyurtma rejasi uch qatordan iborat: kim, nima va qachon. (67)
 - Tugma (pastki): Avval belgilang → Tugmalarni bosing (N/3) → Davom etish · `tugadi`: tugmalar yo'qoladi, Buyurtma qismi fokusga (DE-199); vizual ⛶ ichida.
 - Keyingi bosiladigan joy: bashorat → joriy tugma → «Davom etish».
-- O'qituvchi eslatmasi: Mentor misolida narx yo'q: pul va kelishuv — ota-ona orqali; bepul qilish yoki pul olish — o'quvchi va ota-onasining qarori, darsda so'm aytilmaydi. «Qachon» — buyurtmachi bilan gaplashish kuni, ish tugash muddati emas.
-  «Nima» — o'quvchi kursda qilgan ish: sayt yoki lending (2, 12-Modul), Telegram bot (7-Modul). Hali qilmagan ishni birinchi buyurtma qilib olmaydi. Rejada ism, telefon, manzil yo'q.
+- O'qituvchi eslatmasi: Mentor misolida narx yo'q: pul va kelishuv — ota-ona orqali; real kelishuv ota-ona bilan bo'ladi, darsda so'm aytilmaydi (10-FILTR 29). «Qachon» — buyurtmachi bilan gaplashish payti, ish tugash muddati emas.
+  «Nima» — o'quvchi kursda qilgan ish: sayt yoki lending (2, 12-Modul), Telegram bot (7-Modul). Bu kursda birinchi buyurtma uchun oldin qilganingizga o'xshash ish tanlanadi (umumiy frilans qonuni emas — 10-FILTR 24). Rejada ism, telefon, manzil yo'q.
   Sinfdan so'rang: kursda qurganingizdan qaysi biri tanishingizga kerak bo'lishi mumkin?
 ✎ Mentor misoli — tayanchda yo'q tafsilot (TAYANCHGA SAVOL 1): futbol to'garagi — misol-ip olamida qoladi (P-001), «tanish doira» uch rolidan biri (tayanch 1.10).
 
 ## 5 · 2-savol  ← QTest (✔ A, `correctIdx 0`; ikkinchi misol — tanish do'kon, P-002)
 - Eyebrow: Tekshiruv · buyurtma rejasi (savol ustida yorliq yo'q)
-- Savol: **Sinfdoshlaringiz buyurtma rejasini yozdi. Qaysi biri to'g'ri tuzilgan?**
+- Savol: **Sinfdoshlaringiz buyurtma rejasini yozdi. Qaysi biri bu kurs qoidasiga mos?** (9 so'z; kurs qoidasi tekshiriladi — 10-FILTR 26)
   - ✔ A — Tanish do'kon · lending · shanba, ota-onam bilan (48)
   - B — Tanish do'kon · lending · shanba, ota-onamsiz (45)
-  - C — Tanish do'kon · 3D o'yin · shanba, ota-onam bilan (49)
+  - C — Tanish do'kon · qilmagan ish · shanba, ota-onam bilan (53)
   - D — Tanish do'kon · lending · qachondir, ota-onam bilan (51)
-- To'g'ri izohi: Tanish odam, kursdagidek ish, aniq kun va ota-ona bor. (54)
+- To'g'ri izohi: Tanish odam, kursdagidek ish, aniq payt va ota-ona bor. (55)
 - Xato izohlari (≤60):
   - B: Pul va kelishuv haqida kim bilan gaplashiladi? (46)
   - C: Bu ishni kursda qurganmisiz? (28)
-  - D: «Qachondir» — bu qaysi kun? (27)
+  - D: «Qachondir» — bu qaysi payt? (28)
   - (umumiy) Mentor rejasining uch qatorini eslang. (38)
 - Javob topilgach (kichik, savol ostida): varaqning Buyurtma qismi ixcham — uch katak yashil ✓, ostida «Pul va kelishuv — ota-ona orqali.»
 - Jonli darsda: bitta urinish. Xatodan keyin: «Qisqa takrorlash».
 - Izoh (MD): to'rttala variant bir shaklda (kim · nima · qachon), «Tanish do'kon» hammasida — test faqat «nima» va «qachon» qatorini tekshiradi. Uch distraktor uch turkumda: B — ota-onasiz (4-ekran 3-tugma) · C — kursda qurilmagan ish (4-ekran 2-tugma) · D — aniq kun yo'q (4-ekran 3-tugma `QIzoh`).
-  «lending» A, B, D da; «ota-onam» A, C, D da — kalit so'z faqat to'g'rida emas. «3D o'yin» — kursda qurilmagan (2, 7, 11–13-Modul ishlari ichida yo'q); hayotda ham birinchi buyurtma uchun xavfli tanlov.
+  «lending» A, B, D da; «ota-onam» A, C, D da — kalit so'z faqat to'g'rida emas. «qilmagan ish» — o'quvchi hali qilmagan ish (10-FILTR 25: «3D o'yin» — ayrim o'quvchi o'yin qurgan bo'lishi mumkin edi); kurs qoidasi: birinchi buyurtma — oldin qilganingizga o'xshash ish.
 
 ## 6 · Kompaniyaga xat  ← QTushuncha (ketma-ket, 3 tugma)
 - Eyebrow: Tushuncha · kompaniyaga xat
 - Sarlavha: **Kompaniyaga xatda nimani aytasiz?** (33)
 - Mentor: Tugmalarni birma-bir bosing va Mentor xati qanday yig'ilishini ko'ring.
-- Bashorat (ballsiz; S-015 — bitta o'lchov: son, o'sish tartibida): **Mentor bitta xatni nechta kompaniyaga yuboradi?** · Bittaga · Beshtaga · O'ntaga — tanlangach ixcham qator; tugmalar shundan keyin yoqiladi. <!-- TAXMIN T13 -->
+- Bashorat (ballsiz; S-015 — bitta o'lchov: son, o'sish tartibida): **Mentor bitta xatni nechta kompaniyaga yuboradi?** · Bittaga · Beshtaga · O'ntaga — tanlangach ixcham qator; tugmalar shundan keyin yoqiladi.
 - Vizual (≤ 3 blok): **chapda** telefon «Maydon Jamoa» · **o'ngda** varaq — **Xatlar** qismi joriy: ochiq konvert-karta «1-xat · mobil ilova qiladigan kompaniya» — ichida «Assalomu alaykum!», uch bo'sh qator (uzuq), «Hurmat bilan,»; Yo'llar va Buyurtma — ixcham kulrang.
 - Tugmalar (ixcham, bir qatorda): 1 Kimman · 2 Nima qurdim · 3 Nima so'rayman
 - **Harakat → Vizual o'zgarish:**
   1. «Kimman» → birinchi qator yoziladi: «Men maktab o'quvchisiman, dasturlashni o'rganyapman.»; qator ostida kulrang: Ism — ixtiyoriy; telefon, manzil va maktab raqami yozilmaydi. (61)
      `QIzoh`: Kimman — bitta gap: kim ekaningiz va nimani o'rganayotganingiz. (63)
   2. «Nima qurdim» → telefondagi «Maydon Jamoa» ekrani kichrayib xatga uchadi va qator bo'ladi: «Agent bilan "Maydon Jamoa" ilovasini qurdim: unda mahalladagi mini-futbolga o'yinchi yig'iladi. Hozir 51 foydalanuvchi bor.»;
-     qator ostida kulrang: Video-portfolio bo'lsa — havolasini uyda qo'shasiz. (51) <!-- TAXMIN T12 -->
-     `QIzoh`: Nima qurdim — bitta mahsulot, u nima qilishi va bitta son: ro'yxat emas. (72)
+     qator ostida kulrang: Video-portfolio bo'lsa — havolasini uyda qo'shasiz. (51)
+     `QIzoh`: Nima qurdim — bitta mahsulot, u nima qilishi va, manbasi bo'lsa, bitta son: ro'yxat emas. (89) (son majburiy emas — 10-FILTR 11)
+     Qator ostida kulrang: Mentor misolida son bor; sizda manbali son bo'lsa yoziladi, bo'lmasa — yo'q. (10-FILTR 12)
   3. «Nima so'rayman» → qator: «Kompaniyangizda o'quvchilar uchun stajirovka bormi? Bo'lsa, qanday qatnashsam bo'ladi?»; konvert yopiladi, ustida yorliq «yuborish — uyda»; yonida ikkinchi konvert kulrang chiqadi «2-xat · sayt qiladigan kompaniya · maslahat»;
-     konvertlar ostida qator: Uchrashuv taklifi kelsa — faqat kattalar bilan. (47) (12-Modul qatori aynan) <!-- TAXMIN T13 -->
-     `QIzoh`: Har kompaniyaga alohida xat yoziladi; javob kelmasa yoki «yo'q» desa — qayta yozilmaydi. (88) <!-- TAXMIN T13 -->
+     konvertlar ostida qator: Uchrashuv taklifi kelsa — faqat kattalar bilan. (47) (12-Modul qatori aynan)
+     `QIzoh`: Har kompaniyaga alohida xat; bu kursda javob kelmasa qayta yozmaysiz — boshqasiga alohida xat. (94)
   Natija (yashil xulosa qutisining birinchi kichik qatori): «Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz ✕ — aslida: bittaga».
   Ipucha (40 s): Yoqilgan tugmani bosing va xatga qarang. (40)
-- Xulosa: Bu darsda kompaniyaga xat uch qismdan iborat: kimman, nima qurdim va nima so'rayman. (84) <!-- TAXMIN T13 -->
+- Xulosa: Bu darsda kompaniyaga xat uch qismdan iborat: kimman, nima qurdim va nima so'rayman. (84)
 - Tugma (pastki): Avval belgilang → Tugmalarni bosing (N/3) → Davom etish · `tugadi`: tugmalar yo'qoladi, ikki konvert fokusga; vizual ⛶ ichida.
 - Keyingi bosiladigan joy: bashorat → joriy tugma → «Davom etish».
-- O'qituvchi eslatmasi: Mentor xatida kompaniya nomi yo'q — faqat turi; real kompaniyani o'quvchi uyda, ota-onasi bilan tanlaydi va uning saytidagi rasmiy aloqa manziliga, ota-onasi biladigan pochtadan yuboradi. Javob kelmasligi ham mumkin — bu ham natija; qayta-qayta yozilmaydi.
+- O'qituvchi eslatmasi: Mentor xatida kompaniya nomi yo'q — faqat turi; real kompaniyani o'quvchi uyda, ota-onasi bilan tanlaydi va uning saytidagi rasmiy aloqa manziliga, ota-onasi biladigan pochtadan yuboradi. Javob kelmasligi ham mumkin — bu ham natija; bu kursda qayta-qayta yozilmaydi (kattalar hayotida bir marta muloyim eslatish bo'lishi mumkin — darsda o'rgatilmaydi, bosim chegarasi uchun).
   So'rov — bitta: stajirovka yoki maslahat (1-darsdagi «bitta aniq so'rov» ma'nosi). Xatda pul, maosh, investitsiya so'ralmaydi. «Nima qurdim» — bitta mahsulot, funksiyalar ro'yxati emas.
-  Sinfdan so'rang: sizning xatingizda «Nima qurdim» qismiga qaysi mahsulot va qaysi son yoziladi?
+  Sinfdan so'rang: sizning xatingizda «Nima qurdim» qismiga qaysi mahsulot yoziladi — manbali son bormi?
 ✎ Xat qismlari — tayanch 1.10 so'zlari (kimman · nima qurdim · nima so'rayman). Mentor xati matni — tayanchda yo'q (TAYANCHGA SAVOL 2). «Uchrashuv taklifi …» qatori — 12-Modul `XAVFSIZLIK` ostidagi gap so'zma-so'z (T-042, bitta manba).
 
 ## 7 · Buyurtma va xatlar  ← QMustaqil (USTAXONA — ketma-ket karta, 3 qism; SABOQ 9, 13, 17, 29; E 43, E 53)
@@ -261,46 +262,46 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
   - 1-qism: Kartadagi savolga bitta qisqa javob yozing va «Saqlash»ni bosing.
   - 2-qism (`pm-m12d9-video` bor): Video-portfolio uchun yozganlaringiz xatga qo'yildi: kompaniya turini yozing va so'rovni tanlang.
     2-qism (yo'q): Kompaniya turini yozing, so'rovni tanlang va xatning qolgan qismlarini to'ldiring.
-  - 3-qism: Ikkinchi xat boshqa kompaniyaga: turini yozing va so'rovni tanlang.
+  - 3-qism: Ikkinchi xat boshqa turdagi kompaniya uchun: turini yozing va so'rovni tanlang.
 - Qism yorliqlari (ot-shakl, T-073): 1 Buyurtma · 2 1-xat · 3 2-xat
 - Joylashuv (≤ 3 blok): **chapda** — varaq «Buyurtma va xatlarim» (Yo'llar ixcham · Buyurtma · Xatlar) · **o'ngda — bitta katta karta (joriy)** · tepada ixcham chiziq «Buyurtma va xatlarim · n/5» (3 qator + 2 xat; saqlangani ✓, SABOQ 17).
 - Kirish (P-046; saqlangan narsa bo'lsa — o'zi qo'yiladi, tahrirlash mumkin; yo'q bo'lsa — bo'sh):
-  - `pm-m12d9-video.bolaklar.kim` → 1-xat «Kimman» maydoni · `.nima` → «Nima qurdim» · `bor === true` → xat kartasi ostida kulrang qator: Ota-onangiz rozi bo'lsa, video havolasini uyda qo'shasiz. (57) <!-- TAXMIN T12 -->
-  - 2-xat «Kimman» va «Nima qurdim» — 1-xatdan qo'yiladi (tahrirlanadi); kompaniya turi va so'rov — yangi.
+  - `pm-m12d9-video.bolaklar.kimman` → 1-xat «Kimman» maydoni · `.nimaQurdim` → «Nima qurdim» · `bor === true` va `tekshiruv` uchalasi `true` → xat kartasi ostida kulrang qator: Ota-onangiz rozi bo'lsa, video havolasini uyda qo'shasiz. (57) (havola bo'lmasa ham xat to'liq)
+  - 2-xat «Kimman» va «Nima qurdim» — 1-xatdan qo'yiladi (tahrirlanadi); kompaniya turi va so'rov — yangi. Kartada kulrang qator: «Kimman» va «Nima qurdim» o'sha bo'lishi mumkin; kompaniya turi va so'rovni moslang — har kompaniya uchun alohida nusxa. (10-FILTR 8, 9)
 - **1-qism · Buyurtma** (bittadan karta, «n / 3»; yorliq input ichida — raqam belgisi + savol placeholder'da, E 43; tugmalar bir qatorda: «Saqlash» · (2-kartada) ikkinchi tugmalar · o'ngda «Yordam»):
-  ① **Kim** — placeholder `Kim? Rolini yozing, ismsiz` (≤40) · kulrang: Tanish doira: tanish do'kon, maktab yoki to'garak. (50) <!-- TAXMIN T13 -->
-  ② **Nima** — placeholder `Nima qilib berasiz?` (≤80) · ikkinchi tugmalar «Lending» · «Telegram bot» → maydon boshiga so'z qo'shiladi («lending: » / «Telegram bot: »), `{…}` qolmaydi · kulrang: Kursda qurganingizga o'xshash ish. (34) <!-- TAXMIN T13 -->
-  ③ **Qachon** — placeholder `Qachon gaplashasiz? Aniq kun` (≤40) · kulrang: Pul va kelishuv — ota-ona orqali. (33) <!-- TAXMIN T13 -->
+  ① **Kim** — placeholder `Kim? Rolini yozing, ismsiz` (≤40) · kulrang: Tanish doira: tanish do'kon, maktab yoki to'garak. (50)
+  ② **Nima** — placeholder `Nima qilib berasiz?` (≤80) · ikkinchi tugmalar «Lending» · «Telegram bot» → maydon boshiga so'z qo'shiladi («lending: » / «Telegram bot: »), `{…}` qolmaydi · kulrang: Kursda qurganingizga o'xshash ish. (34)
+  ③ **Qachon** — placeholder `Qachon gaplashasiz? Qaysi payt` (≤40) · kulrang: Pul va kelishuv — ota-ona orqali. (33)
   - Tekshiruv (`QXato`, ≤60; javob maydon ostida; «yo'naltiradi» — ikkinchi «Saqlash» bilan o'tadi, «bloklaydi» — o'tmaydi):
     - maydon bo'sh (bloklaydi): Bitta qisqa javob yozing. (25)
-    - ① yoki ③ da «@», «t.me/», «+998» yoki 7+ raqam ketma-ket (bloklaydi): Rol yozing — ism, telefon va akkaunt nomi emas. (47) (13-Modul 9-dars matni aynan)
-    - ① da «upwork», «xalqaro», «notanish» (yo'naltiradi): Birinchi buyurtma — tanish doiradan: kimni taniysiz? (52) <!-- TAXMIN T13 -->
-    - ② yoki ③ da «pul», «so'm», «dollar», «narx» (yo'naltiradi): Narxni ota-onangiz bilan kelishasiz — bu yerga ishni yozing. (60) <!-- TAXMIN T13 -->
-    - ③ da «qachondir», «bir kun», «keyinroq», «bilmayman» (yo'naltiradi): Aniq kun yozing: shu hafta qaysi kuni? (38)
+    - ① yoki ③ da «@», «t.me/», «+998» (bloklaydi): Rol yozing — ism, telefon va akkaunt nomi emas. (47) (13-Modul 9-dars matni aynan) · 7+ raqam ketma-ket (yumshoq — 10-FILTR 13): Bu yerga son emas, rol va ish yoziladi. (38)
+    - ① da «upwork», «xalqaro», «notanish» (yo'naltiradi): Birinchi buyurtma — tanish doiradan: kimni taniysiz? (52)
+    - ② yoki ③ da «pul», «so'm», «dollar», «narx» (yo'naltiradi): Narxni ota-onangiz bilan kelishasiz — bu yerga ishni yozing. (60)
+    - ③ da «qachondir», «bir kun», «keyinroq», «bilmayman» (yo'naltiradi): Qaysi paytda gaplashasiz — aniq yozing. (39)
     - Yorliq (yo'naltiruvchi xatodan keyin): Shunday qoldirsangiz — yana «Saqlash»ni bosing. (47)
-  - Yordam (kartaga qarab bitta qator — Mentor misolidan, A-6 aynan): ① Mentor misolida: «maktabdagi futbol to'garagining murabbiyi» · ② Mentor misolida: «to'garak uchun lending: mashg'ulot kunlari va yozilish tartibi» · ③ Mentor misolida: «shu hafta, mashg'ulotdan keyin — ota-onam bilan».
+  - Yordam (kartaga qarab bitta qator — Mentor misolidan, A-6 aynan): ① Mentor misolida: «maktabdagi futbol to'garagining murabbiyi» · ② Mentor misolida: «to'garak uchun lending: mashg'ulot kunlari va yozilish tartibi» · ③ Mentor misolida: «keyingi mashg'ulotdan keyin — ota-onam bilan».
 - **2-qism · 1-xat** (bitta karta — xat qolipi; o'zgaradigan joylar uzuq ramkada — U-041; E 53: bitta xat — bitta karta):
-  - **Kompaniya turi** — placeholder `Qanday kompaniya? Nomi emas, turi` (≤40) · kulrang: Kompaniyaning o'zini uyda, ota-onangiz bilan tanlaysiz. (55) <!-- TAXMIN T13 -->
+  - **Kompaniya turi** — placeholder `Qanday kompaniya? Nomi emas, turi` (≤40) · kulrang: Kompaniyaning o'zini uyda, ota-onangiz bilan tanlaysiz. (55)
   - **So'rov** — ikki tugma (bittasi tanlanadi; har birining o'z chegarasi — E 40): «Stajirovka» · «Maslahat» → «Nima so'rayman» qatoriga `SOROV_GAP` dagi gap sirg'alib qo'yiladi (tahrirlanadi).
   - **Xat** (konvert ichida, yuqoridan pastga):
     «Assalomu alaykum!» (o'zgarmaydi) ·
     ① placeholder `Kimman? Bitta gap` (≤120) ·
-    ② placeholder `Nima qurdingiz? Mahsulot, u nima qiladi va bitta son` (≤160) ·
+    ② placeholder `Nima qurdingiz? Mahsulot, u nima qiladi; manbasi bor bo'lsa bitta son` (≤160) ·
     ③ «Nima so'rayman» — tugmadan (≤140) ·
     «Hurmat bilan,» + kulrang «ism — xohlasangiz, uyda» (o'zgarmaydi; ism maydoni yo'q).
   - Tugmalar bir qatorda: «Saqlash» · «Nusxalash» (saqlangandan keyin yoqiladi; to'liq xat — salom va «Hurmat bilan,» bilan) · o'ngda «Yordam».
   - Tekshiruv (`QXato`, ≤60):
     - kompaniya turi bo'sh (bloklaydi): Qanday kompaniya — turini yozing. (33)
     - ① yoki ② bo'sh, so'rov tanlanmagan (bloklaydi): Xatning uch qismini to'ldiring. (31)
-    - «@», «t.me/», «+998» yoki 7+ raqam ketma-ket (bloklaydi): Xatga telefon va akkaunt nomi yozilmaydi. (41)
-    - «http», «www», «.uz», «.com» (bloklaydi): Havolani uyda, yuborishdan oldin qo'shasiz. (43) <!-- TAXMIN T12 -->
+    - «@», «t.me/», «+998» (bloklaydi): Xatga telefon va akkaunt nomi yozilmaydi. (41) · 7+ raqam ketma-ket (yumshoq; «@» yolg'iz — ⛔ pilotda soxta signal tekshiriladi, 10-FILTR 13, 14): Bu son telefon emasmi? Tekshirib, yana bosing. (46)
+    - «http», «www», «.uz», «.com» (bloklaydi): Havolani uyda, yuborishdan oldin qo'shasiz. (43)
     - xat jami 420 belgidan uzun (bloklaydi): Xat uzun — har qism bitta-ikkita gap bo'lsin. (45)
-    - «pul», «so'm», «dollar», «maosh», «investitsiya» (yo'naltiradi; «pullik» emas — alohida so'z): Bu xatda pul so'ralmaydi — stajirovka yoki maslahat so'rang. (60) <!-- TAXMIN T13 -->
+    - «pul», «so'm», «dollar», «maosh», «investitsiya» (yo'naltiradi; «pullik» emas — alohida so'z): Bu xatda pul so'ralmaydi — stajirovka yoki maslahat so'rang. (60)
     - «tezroq», «darhol», «zudlik», «javob bering» (yo'naltiradi): Xatda shoshiltirish yo'q — so'rov bir marta, hurmat bilan. (58)
-    - ② da «funksiya» so'zi yoki 3 va undan ko'p vergul (yo'naltiradi): Ro'yxat emas — bitta mahsulot va u nima qilishi. (48)
+    - ② da «funksiya» so'zi (yo'naltiradi; vergul soni heuristikasi yo'q — 02-FILTR 11): Ro'yxat emas — bitta mahsulot va u nima qilishi. (48)
     - Yorliq (yo'naltiruvchi xatodan keyin): Shunday qoldirsangiz — yana «Saqlash»ni bosing. (47)
   - Yordam: Mentor misolida: kompaniya turi — «mobil ilova qiladigan kompaniya», so'rov — stajirovka. Xat: «Assalomu alaykum! Men maktab o'quvchisiman, dasturlashni o'rganyapman. Agent bilan "Maydon Jamoa" ilovasini qurdim: unda mahalladagi mini-futbolga o'yinchi yig'iladi. Hozir 51 foydalanuvchi bor. Kompaniyangizda o'quvchilar uchun stajirovka bormi? Bo'lsa, qanday qatnashsam bo'ladi? Hurmat bilan, …»
-    Oxirgi qator: Xatni ota-onangiz biladigan pochtadan yuborasiz; javob kelmasa — qayta yozmaysiz. <!-- TAXMIN T13 -->
+    Oxirgi qator: Xatni ota-onangiz biladigan pochtadan yuborasiz; javob kelmasa — qayta yozmaysiz.
 - **3-qism · 2-xat** (2-qism kartasi, yangi konvert): «Kimman» va «Nima qurdim» — 1-xatdan; **Kompaniya turi** va **So'rov** — yangi. Tekshiruvlar — 2-qismdagidek, qo'shimcha:
   - kompaniya turi 1-xatdagi bilan harfma-harf bir xil (yo'naltiradi): 1-xatdagi kompaniyaning o'zimi? Boshqasini yozing. (50)
   - Yordam: Mentor misolida: kompaniya turi — «sayt qiladigan kompaniya», so'rov — maslahat: «Mahsulotimni ko'rib, bitta maslahat bera olasizmi: keyin nimani o'rganishim kerak?» Har kompaniyaga — alohida xat, bir marta.
@@ -308,13 +309,13 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
   2, 3-qism so'rov tugmasi → gap konvertdagi «Nima so'rayman» qatoriga sirg'aladi · «Saqlash» → konvert yopilib varaqning Xatlar qismiga uchadi (ustida «yuborish — uyda»), «Nusxalash» yoqiladi ·
   tekshiruvdan o'tmagan maydon `err` fon, ostida bitta `QXato`. Hammasi tugagach karta yopiladi, varaq «Buyurtma va xatlarim» butun enga — har qator va konvertda ✎ (bosilsa o'sha karta qayta ochiladi — SABOQ 29); uzun matn «…» bilan qisqaradi, karta cho'zilmaydi.
 - Xulosa (holatdan, P-046):
-  - reja 3/3 va ikki xat saqlangan: Buyurtma rejasi va ikki xat yozildi: yuborish — uyda, ota-ona bilan. (68) <!-- TAXMIN T13 -->
+  - reja 3/3 va ikki xat saqlangan: Buyurtma rejasi va ikki xat yozildi: yuborish — uyda, ota-ona bilan. (68)
   - boshqa holat (qisman): Yozilgani saqlandi — qolganini uyda yozasiz. (44)
-- Saqlash: `pm-m12d10-ish` — har «Saqlash»da o'z maydoni: `buyurtma.kim` / `.nima` / `.qachon` · `xatlar[0]`, `xatlar[1]` = `{ kompaniyaTuri, soroq }` · `yuborildi: null` · `savedAt` (A-14 shartnomasi). Xat matni kalitga yozilmaydi (TAYANCHGA SAVOL 3).
-- Tugma (pastki): Qismlarni bajaring (N/3) → Davom etish (`optionalLive`; qism o'tkazilsa — yakun holati «hali tugamagan»).
+- Saqlash: `pm-m12d10-ish` — har «Saqlash»da o'z maydoni: `buyurtma.kim` / `.nima` / `.qachon` · `xatlar[0]`, `xatlar[1]` = `{ kompaniyaTuri, soroq, matn }` · `savedAt` (A-14 shartnomasi). Xat matni `matn` da saqlanadi — ✎ bilan qayta ochilganda to'ldirilgan chiqadi (GATE M M-q4 A).
+- Tugma (pastki): Qismlarni bajaring (N/3) → Davom etish (jonli darsda ham majburiy — darsning markaziy artefakti, `optionalLive` yo'q; kamida reja va 1-xat darsda, 2-xat uyga ① — 10-FILTR 51; qism o'tkazilsa — yakun holati «hali tugamagan»).
 - Keyingi bosiladigan joy: joriy maydon (accent, to'lqin) → (2-kartada) «Lending» / «Telegram bot» → «Saqlash» (maydon yozilgach halqada) → xat kartasida kompaniya turi → so'rov tugmalari → «Saqlash» → «Davom etish».
 - Artefakt-strip (U-042): shu ekrandan — «Buyurtma va xatlarim · n/5» (ixcham); test, arena, podium va yakunda yo'q (E 50).
-- Nishonlar: Order Plan! (reja 3/3 saqlanganda) · Two Letters! (ikki xat saqlanganda, kompaniya turi har xil) · One Ask! (ikkala xat yo'naltiruvchi xatosiz saqlanganda: pul, shoshiltirish, ro'yxat yo'q).
+- Nishonlar: Order Plan! (reja 3/3 saqlanganda) · Two Letters! (ikki xat saqlanganda, kompaniya turi har xil) · One Ask! (ikkala xat saqlangan, har birida bitta so'rov tanlangan — strukturali; «xat yaxshi» demaydi, 10-FILTR 49).
 - Mentor rejimi: forma o'rniga Mentor misoli (A-6: reja va ikki xat, ochiq). Mentor statistikasi: «Reja yozdi» · «Xat yozdi» — matn, kompaniya turi va son yo'q (TAQIQLAR 3).
 - O'qituvchi eslatmasi: ≈ 32 daqiqa: reja ≈ 10 · 1-xat ≈ 12 · 2-xat ≈ 10. Darsda hech kimga yuborilmaydi — «Nusxalash» faqat uyda yuborish uchun. Kompaniya nomini sinfda qidirib o'tirmang: bugun — turi, kompaniyaning o'zi — uyda, ota-ona bilan.
   Eng ko'p xato: rejada ism yoki notanish odam · «Nima» da kursda qilinmagan ish · xatda funksiyalar ro'yxati yoki pul so'rovi. Kim nechta xat yozganini so'ramang va sanamang; xatlarni proyektorga chiqarmang.
@@ -322,21 +323,21 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
 
 ## 8 · Yakuniy savol  ← QTest (✔ D, `correctIdx 3`; ikkala trekka to'g'ri)
 - Eyebrow: Yakuniy tekshiruv (savol ustida yorliq yo'q)
-- Savol: **Kompaniya xatingizga bir hafta javob bermadi. Endi nima qilasiz?** <!-- TAXMIN T13 -->
+- Savol: **Kompaniya xatingizga javob bermadi. Bu kursda nima qilasiz?** (8 so'z; «bir hafta» — tayanchdan tashqari muddat edi, 10-FILTR 3)
   - A — Har kuni qayta yozib, javobini so'rayman (40)
-  - B — Shu xatni yana o'nta kompaniyaga tashlayman (43)
+  - B — Shu xatni ko'p kompaniyaga bir xil yuboraman (44)
   - C — Ofisiga yolg'iz borib, javobini kutaman (39)
   - ✔ D — Qayta yozmayman, boshqa kompaniya tanlayman (43)
-- To'g'ri izohi: Javob kelmasa, qayta yozilmaydi — boshqasiga alohida xat. (57)
+- To'g'ri izohi: Bu kursda: javob kelmasa qayta yozmaysiz — boshqasiga xat. (58)
 - Xato izohlari (≤60):
   - A: Har kuni yozish — hurmatmi yoki bosim? (38)
-  - B: Bitta xat ko'p joyga — bu spam emasmi? (38)
+  - B: Bir xil xatni ko'p joyga yuborish to'g'rimi? (44) («spam» so'zi olindi — 10-FILTR 7)
   - C: Notanish joyga kim bilan boriladi? (34)
   - (umumiy) Javob kelmasa nima qilinadi — eslang. (37)
 - Javob topilgach (kichik): varaqning Xatlar qismi — 1-xat konvertida kulrang yorliq «javob yo'q — qayta yozilmaydi», yonida yangi konvert accent chegarada.
 - Jonli darsda: bitta urinish. Xatodan keyin: «Qisqa takrorlash».
-- Izoh (MD): uch distraktor uch turkumda: A — bosim (qayta-qayta yozish) · B — spam (bitta xat ko'p joyga) · C — xavfsizlik (notanish joyga yolg'iz). To'rttalasi «…-aman/-ayman» shaklida; «javob» A, C da; «kompaniya» B, D da; «yoz» A, D da — kalit so'z faqat to'g'rida emas.
-  A — hayotda bir marta eslatish odatiy bo'lishi mumkin; «har kuni» — bosim (13-Modul 9-dars naqshi); bu darsning qoidasi: javob kelmasa — qayta yozilmaydi (6-ekran `QIzoh`). 6-ekran bashorati (bitta xat — bittaga) va arena 7, 8 bilan kalit ibora takrorlanmaydi (S-008): bu yerda — o'quvchining keyingi harakati.
+- Izoh (MD): uch distraktor uch turkumda: A — bosim (qayta-qayta yozish) · B — bir xil xat ko'p joyga · C — xavfsizlik (notanish joyga yolg'iz). Savol «bu kursda» bilan — kurs qoidasi tekshiriladi, umumiy ish odati emas (10-FILTR 4, 5). To'rttalasi «…-aman/-ayman» shaklida; «javob» A, C da; «kompaniya» B, D da; «yoz» A, D da — kalit so'z faqat to'g'rida emas.
+  A — hayotda bir marta muloyim eslatish odatiy bo'lishi mumkin; «har kuni» — bosim (13-Modul 9-dars naqshi); bu kursning qoidasi (voyaga yetmagan o'quvchi bosim o'tkazmaydi): javob kelmasa — qayta yozmaysiz, boshqasiga alohida xat (6-ekran `QIzoh`; umumiy norma deb berilmaydi — 10-FILTR 4). 6-ekran bashorati (bitta xat — bittaga) va arena 7, 8 bilan kalit ibora takrorlanmaydi (S-008): bu yerda — o'quvchining keyingi harakati.
 
 ## 9 · Natijalar (podium)  ← QNatija
 - Jonli reyting — qolip standarti (yakka rejimda — o'z natijasi): 3 savol (3, 5, 8); 7-ekran «Saqlash» — Mentorga signal (`PRACTICE_BASE`, ball yo'q). Kim nechta xat yozgani sanalmaydi — podium faqat test ballari (TAQIQLAR 3).
@@ -361,18 +362,18 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
 - Arena tugmasi (o'yin qatlami, darsdan): CODE STRIKE · 12 SAVOL · 15 SONIYA · PODIUM · (jonli darsda) Mentorni kuting
 - «Bugungi asosiy fikr» qutisi — yo'q (E 50; fikr A-2 da — darsning ichki o'qi).
 - Endi siz bilasiz (T-048 — asosiy fikr so'zma-so'z takrorlanmaydi; 2 va 4-qator — 4, 6-ekran xulosalari aynan, T-042):
-  - Upwork kabi xalqaro saytlarning yosh shartini ota-ona bilan saytning o'zidan o'qiysiz. (86) <!-- TAXMIN T13 -->
-  - Bu darsda buyurtma rejasi uch qatordan iborat: kim, nima va qachon. (67) <!-- TAXMIN T13 -->
-  - Birinchi buyurtma — tanish doiradan; pul va kelishuv — ota-ona orqali. (70) <!-- TAXMIN T13 -->
-  - Bu darsda kompaniyaga xat uch qismdan iborat: kimman, nima qurdim va nima so'rayman. (84) <!-- TAXMIN T13 -->
-  - Har kompaniyaga alohida xat; javob kelmasa — qayta yozilmaydi. (62) <!-- TAXMIN T13 -->
+  - Upwork kabi xalqaro saytlarning yosh shartini ota-ona bilan saytning o'zidan o'qiysiz. (86)
+  - Bu darsda buyurtma rejasi uch qatordan iborat: kim, nima va qachon. (67)
+  - Birinchi buyurtma — tanish doiradan; pul va kelishuv — ota-ona orqali. (70)
+  - Bu darsda kompaniyaga xat uch qismdan iborat: kimman, nima qurdim va nima so'rayman. (84)
+  - Har kompaniyaga alohida xat; bu kursda javob kelmasa — qayta yozmaysiz. (71)
 - Uyga vazifa (`HwCard` — P-025 karta shaklida; yakunda aynan shu qadamlar): sarlavha **Uyda nima qilasiz?**
   - Kim uchun: buyurtma rejangiz va xatlaringiz · Nechta: 3 ish · Muddat: keyingi darsgacha
   - ① Yozilmay qolgan qator yoki xat bo'lsa — uni yozing.
-  - ② Buyurtma rejangizni ota-onangizga ko'rsating va buyurtmachi bilan qachon birga gaplashishingizni kelishing. <!-- TAXMIN T13 -->
-  - ③ Xohlasangiz — ota-onangiz bilan ikki kompaniyani tanlab, xatlarni yuboring; javob kelmasa, qayta yozmang. <!-- TAXMIN T13 -->
+  - ② Buyurtma rejangizni ota-onangizga ko'rsating va buyurtmachi bilan qachon birga gaplashishingizni kelishing.
+  - ③ Ixtiyoriy: xohlasangiz — ota-onangiz bilan ikki kompaniyani tanlab, rasmiy aloqa manzilini topib, xatlarni yuboring; javob kelmasa, qayta yozmang.
   - Tugma: Amaliy topshiriqni bajarish →
-- Keyingi dars — «Qaysi xalqaro dasturga ariza berasiz?» <!-- TAXMIN T20 -->
+- Keyingi dars — «Qaysi xalqaro dasturga ariza berasiz?»
 - Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
 - Tartib (E 50): belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. «Bugungi asosiy fikr» qutisi, holat chiplari, artefakt-strip — yakunda yo'q. Ichki skroll qutisi yo'q (SABOQ 18).
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
@@ -384,18 +385,18 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
 ## Nishonlar (4) — inglizcha nom qoladi; medal belgisi — o'yin qatlami (§184: qilingan ishni aytadi, ≤48 belgi)
 - **Rules First!** (3-ekran, birinchi urinishda) — Yosh shartini qayerdan o'qishni topdingiz (41)
 - **Order Plan!** (7-ekran, reja 3/3 saqlanganda) — Buyurtma rejasining uch qatorini yozdingiz (42)
-- **Two Letters!** (7-ekran, ikki xat, kompaniya turi har xil) — Ikki kompaniyaga alohida xat yozdingiz (38)
-- **One Ask!** (7-ekran, ikkala xat yo'naltiruvchi xatosiz) — Xatni pul so'ramay, shoshiltirmay yozdingiz (43)
+- **Two Letters!** (7-ekran, ikki xat, kompaniya turi har xil) — Ikki xil kompaniya uchun ikkita xat yozdingiz (45)
+- **One Ask!** (7-ekran, ikkala xat saqlangan, har birida bitta so'rov tanlangan) — Ikki xatda bittadan so'rov tanladingiz (38) (strukturali fakt — 10-FILTR 49)
 - Yozuvlar: Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki. · Nishon birinchi urinish uchun edi. · Nishonlar — n/4
-- Tekin bonus yo'q (S-034, P-048): to'rttasi ham ish qilingan ekranda; 2, 4, 6-ekranlar (tugmali tushuncha) nishonsiz. Xatda pul yoki shoshiltirish so'zi qolsa — One Ask! berilmaydi.
+- Tekin bonus yo'q (S-034, P-048): to'rttasi ham ish qilingan ekranda; 2, 4, 6-ekranlar (tugmali tushuncha) nishonsiz. One Ask! — tanlangan so'rov soni bo'yicha; matn sifatiga bog'lanmaydi.
 
 ## Qisqa takrorlash oynalari (har ballik test — 3 karta; S-026: PM darsida emoji o'rniga raqam 1/2/3)
 Jonli darsda mentor «Qayta tushuntirishni ochish» bosganda chiqadi (qolip yozuvlari).
-- **3 · Xalqaro saytda avval nima** — 1 Upwork kabi xalqaro saytlarda yosh sharti bor. · 2 Shart ota-ona bilan saytning o'zidan o'qiladi. · 3 Profil faqat o'z nomingizdan ochiladi. <!-- TAXMIN T13 -->
+- **3 · Xalqaro saytda avval nima** — 1 Upwork kabi xalqaro saytlarda yosh sharti bor. · 2 Shart ota-ona bilan saytning o'zidan o'qiladi. · 3 Boshqa odam nomidan profil ochilmaydi — bu kurs qoidasi.
   — Sinfga savol: Saytning shartini qayerdan o'qiysiz?
-- **5 · Buyurtma rejasi** — 1 Kim — tanish doiradan, rol bilan, ismsiz. · 2 Nima — kursda qurganingizga o'xshash ish. · 3 Qachon — aniq kun; pul va kelishuv — ota-ona orqali. <!-- TAXMIN T13 -->
+- **5 · Buyurtma rejasi** — 1 Kim — tanish doiradan, rol bilan, ismsiz. · 2 Nima — kursda qurganingizga o'xshash ish. · 3 Qachon — gaplashish payti; pul va kelishuv — ota-ona orqali.
   — Sinfga savol: Rejangizning qaysi qatori hali aniq emas?
-- **8 · Javob kelmasa** — 1 Har kompaniyaga alohida xat, bir marta. · 2 Javob kelmasa yoki «yo'q» desa — qayta yozilmaydi. · 3 Uchrashuv taklifi kelsa — faqat kattalar bilan. <!-- TAXMIN T13 -->
+- **8 · Javob kelmasa** — 1 Har kompaniyaga alohida xat, bir marta. · 2 Bu kursda javob kelmasa yoki «yo'q» desa — qayta yozilmaydi. · 3 Uchrashuv taklifi kelsa — faqat kattalar bilan.
   — Sinfga savol: Javob kelmasa, keyin nima qilasiz?
 
 ## Jonli viktorina — 12 savol (✔ o'rni: A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12 — har biri 3 marta)
@@ -410,7 +411,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
    - ✔ To'garak uchun lending
    - To'garak uchun kanal
    - To'garak uchun videolar
-3. Buyurtmada pul va kelishuv kim orqali bo'ladi? (4) <!-- TAXMIN T13 -->
+3. Buyurtmada pul va kelishuv kim orqali bo'ladi? (4)
    - Sinfdoshingiz orqali
    - Faqat o'zingiz orqali
    - ✔ Ota-onangiz orqali
@@ -425,7 +426,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
    - Yolg'iz o'zim boraman
    - Sinfdoshim bilan birga
    - Chatdagi tanishim bilan
-6. Upwork kabi saytning yosh shartini qayerdan bilasiz? (2) <!-- TAXMIN T13 -->
+6. Upwork kabi saytning yosh shartini qayerdan bilasiz? (2)
    - Sinfdoshlarim aytgan gapdan
    - ✔ Saytdan, ota-ona bilan o'qib
    - Yoshimni kattaroq yozib ko'rib
@@ -440,20 +441,20 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
    - Xodimning telefonini so'rayman
    - Ofisiga borib, qayta so'rayman
    - ✔ Bu kompaniyaga qayta yozmayman
-9. Buyurtmachiga birinchi navbatda qanday ish qilib berasiz? (4) <!-- TAXMIN T13 -->
+9. Buyurtmachiga birinchi navbatda qanday ish qilib berasiz? (4)
    - ✔ Kursda qurganimga o'xshash ish
    - Hali hech qilmagan katta ish
    - Buyurtmachi aytgan har qanday ish
    - Do'stim maslahat bergan ish
 10. Mentor buyurtmachi bilan qachon gaplashadi? (4)
     - Lending to'liq tayyor bo'lgach
-    - ✔ Shu hafta, mashg'ulotdan keyin
+    - ✔ Keyingi mashg'ulotdan keyin
     - Kompaniyadan javob kelgandan keyin
     - Upwork'da profil ochilgandan keyin
 11. Xatning «Nima qurdim» qismiga nima yoziladi? (6)
     - Mahsulotning hamma funksiyasi
     - Telefon raqami va uy manzili
-    - ✔ Bitta mahsulot va bitta son
+    - ✔ Mahsulot va u nima qilishi
     - Kompaniyani maqtaydigan gap
 12. Rejaning «Kim» qatoriga nima yoziladi? (4)
     - Ish tugaydigan kun
@@ -471,16 +472,16 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 | Old tomon | Orqa tomon |
 |---|---|
 | Birinchi buyurtma qaysi uch yo'ldan chiqishi mumkin? | Xalqaro sayt, tanish doira va kompaniya |
-| Upwork kabi saytning yosh shartini qanday bilasiz? | Ota-ona bilan, saytning o'zidan o'qiysiz <!-- TAXMIN T13 --> |
-| Xalqaro saytda profil kimning nomidan ochiladi? | Faqat o'z nomingizdan — ota-ona yoki boshqa odam nomidan emas <!-- TAXMIN T13 --> |
-| Frilans nima? | Buyurtma bilan ishlash <!-- TAXMIN T19 --> |
-| Buyurtmachi kim? | Ish beradigan odam yoki kompaniya <!-- TAXMIN T19 --> |
-| Stajirovka nima? | Kompaniyada o'qib ishlash davri <!-- TAXMIN T19 --> |
-| Buyurtma rejasi qaysi uch qatordan iborat? | Kim, nima va qachon <!-- TAXMIN T13 --> |
-| Birinchi buyurtmada pul va kelishuv kim orqali bo'ladi? | Ota-ona orqali <!-- TAXMIN T13 --> |
-| Birinchi buyurtma uchun qanday ish tanlanadi? | Kursda qurganingizga o'xshash ish: lending yoki bot <!-- TAXMIN T13 --> |
-| Kompaniyaga xat qaysi uch qismdan iborat? | Kimman, nima qurdim va nima so'rayman <!-- TAXMIN T13 --> |
-| Kompaniya javob bermasa nima qilinadi? | Qayta yozilmaydi; boshqa kompaniyaga alohida xat yoziladi <!-- TAXMIN T13 --> |
+| Upwork kabi saytning yosh shartini qanday bilasiz? | Ota-ona bilan, saytning o'zidan o'qiysiz |
+| Xalqaro saytda profil kimning nomidan ochiladi? | Faqat o'z nomingizdan — ota-ona yoki boshqa odam nomidan emas |
+| Frilans nima? | Mustaqil, buyurtma bilan ishlash |
+| Buyurtmachi kim? | Ish beradigan odam yoki kompaniya |
+| Stajirovka nima? | Kompaniyada o'qib ishlash davri |
+| Buyurtma rejasi qaysi uch qatordan iborat? | Kim, nima va qachon |
+| Birinchi buyurtmada pul va kelishuv kim orqali bo'ladi? | Ota-ona orqali |
+| Birinchi buyurtma uchun qanday ish tanlanadi? | Kursda qurganingizga o'xshash ish: lending yoki bot |
+| Kompaniyaga xat qaysi uch qismdan iborat? | Kimman, nima qurdim va nima so'rayman |
+| Kompaniya javob bermasa bu kursda nima qilinadi? | Qayta yozilmaydi; boshqa kompaniyaga alohida xat yoziladi |
 | Kompaniya uchrashuvga chaqirsa, kim bilan borasiz? | Faqat kattalar bilan |
 
 - Tugmalar (qolip): O'rganilmoqda · Bildim · Takrorlash · hammasi bilinganda «Hammasini bilasiz! · 12/12 karta yodlandi · Qaytadan takrorlash»
@@ -501,14 +502,14 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
    **`XAVF_QATOR`** — «Uchrashuv taklifi kelsa — faqat kattalar bilan.» (12-Modul `XAVFSIZLIK` ostidagi qator uz/ru aynan — `src/10-Modull` dagi matndan nusxa, o'zgartirilmaydi).
 4. s0: `QKirish` — javoblar «Aynan!» / «Qiziq fikr!», ballsiz (`correct: false` hammaga — J-026); tanlovga qarab yo'l chizig'i va nomsiz belgi.
 5. s2/s4/s6: `QBashorat` → 3 tugma (har biri vizualni o'zgartiradi + `QIzoh`); natija va `QIzoh` — yashil xulosa qutisi ichida (E 42); 40 s ipucha. s2 1-tugmadagi `QIzoh` — tayanch iborasi aynan (A-4); 6-ekran 3-tugmada `XAVF_QATOR`.
-6. s7: 3 qism — Buyurtma (3 karta, ketma-ket, E 53) · 1-xat · 2-xat (har biri bitta karta: kompaniya turi + so'rov tugmalari + konvert ichida uch maydon); o'qiydi `pm-m12d9-video` (`bolaklar.kim`, `bolaklar.nima`, `bor`); yo'q bo'lsa — bo'sh maydon.
+6. s7: 3 qism — Buyurtma (3 karta, ketma-ket, E 53) · 1-xat · 2-xat (har biri bitta karta: kompaniya turi + so'rov tugmalari + konvert ichida uch maydon); o'qiydi `pm-m12d9-video` (`bolaklar.kimman`, `bolaklar.nimaQurdim`, `bor` + `tekshiruv.*` — uchalasi `true` bo'lsa havola eslatmasi); yo'q bo'lsa — bo'sh maydon.
    «Lending» / «Telegram bot» — maydon boshiga so'z qo'shadi; «Stajirovka» / «Maslahat» — `SOROV_GAP` gapini qo'yadi (tahrirlanadi); 2-xat «Kimman», «Nima qurdim» — 1-xatdan.
-   Tekshiruv funksiyasi (bo'sh · telefon/akkaunt `@`, `t.me/`, `+998`, 7+ raqam · havola · uzunlik 420 · `upwork|xalqaro|notanish` · pul so'zlari (alohida so'z — «pullik» emas) · `qachondir|bir kun|keyinroq|bilmayman` · shoshiltirish so'zlari · `funksiya` yoki 3+ vergul · 2-xat kompaniya turi = 1-xat) —
+   Tekshiruv funksiyasi (bo'sh · telefon/akkaunt `@`, `t.me/`, `+998` — bloklaydi, 7+ raqam — yumshoq · havola · uzunlik 420 · `upwork|xalqaro|notanish` · pul so'zlari (alohida so'z — «pullik» emas) · `qachondir|bir kun|keyinroq|bilmayman` · shoshiltirish so'zlari · `funksiya` yoki 3+ vergul · 2-xat kompaniya turi = 1-xat) —
    PM-108 tartibida kamida 12 namuna bilan `node` da sinaladi (apostrof `normT` bilan — 12-Modul naqshi). «Nusxalash» — `navigator.clipboard` (⛔ LMS iframe ichida ishlashi «qur»da sinaladi; ishlamasa — matn tanlanadigan qutida).
    Artefakt-strip «Buyurtma va xatlarim · n/5» (U-042); nishonlar `orderPlan`, `twoLetters`, `oneAsk`.
-7. **Saqlash** `localStorage` `pm-m12d10-ish` = `{ buyurtma: { kim, nima, qachon }, xatlar: [{ kompaniyaTuri, soroq }], yuborildi: null, savedAt }` (A-14) — har «Saqlash»da o'z maydoni yoziladi (birlashtiriladi), `savedAt` yangilanadi;
-   saqlanmagan qator — `null`; `xatlar` — saqlangan xatlar (0–2), `soroq` — `'stajirovka'` | `'maslahat'`. Xat matni, ism, telefon, kompaniya nomi, havola — hech qaysi maydonga yozilmaydi (sinf 3). Boshqa darsning kalitiga yozmaydi.
-   Xat matni dars holatida (sahifa ochiq turganda) qoladi; kalitga yozilishi — TAYANCHGA SAVOL 3 javobidan keyin.
+7. **Saqlash** `localStorage` `pm-m12d10-ish` = `{ buyurtma: { kim, nima, qachon }, xatlar: [{ kompaniyaTuri, soroq, matn }], savedAt }` (A-14; `yuborildi` yo'q — 10-FILTR 17) — har «Saqlash»da o'z maydoni yoziladi (birlashtiriladi), `savedAt` yangilanadi;
+   saqlanmagan qator — `null`; `xatlar` — saqlangan xatlar (0–2), `soroq` — `'stajirovka'` | `'maslahat'`. Ism, telefon, kompaniya nomi, havola — hech qaysi maydonga yozilmaydi (sinf 3). Boshqa darsning kalitiga yozmaydi.
+   Xat matni `xatlar[].matn` da saqlanadi — sahifa yopilsa ham qoladi (GATE M M-q4 A).
 8. **App.jsx** (asosiy seans; bu agent tegmaydi): `m12-10` qatoriga `comp: PmFreelanceLesson` + import. `sub` o'zgarmaydi («frilans va stajirovka: reja va ikki xat» — reja yorlig'i bilan so'zma-so'z).
 9. Testlar s3/s5/s8 — `correctIdx` 2/0/3 = `INLINE_KEYS`; `RECAPS` 3/5/8 (`ic` → 1/2/3); `Q_LABELS`. Savol ustida yorliq yo'q (SABOQ 6). Kichik vizual — `QuestionScreen` `vizual`, javob topilgach (SABOQ 4). Arena `QUIZ_BANK` 12, ✔ A3 B3 C3 D3 (`set_quiz_keys` avto).
 10. Jonli ball: `INLINE_KEYS` = { s3: 2, s5: 0, s8: 3, yollar: -1, buyurtma: -1, xat: -1, practice: -1 }; `SCREEN_META` == screens; `SCREEN_INTENTS`.
@@ -519,7 +520,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
   ⚠️ CSS izohida backtik yo'q (CLAUDE.md); qo'shtirnoqli gaplar («"Maydon Jamoa" ilovasini») — JS satrida ekranlanadi.
 
 ## REPO
-Amaliy blok yo'q (PM darsi, kod ekrani yo'q) — o'quvchi repo'siga ham, `maydon-jamoa` ga ham tegilmaydi; xatlar va reja repo'ga yozilmaydi (tayanch 3). <!-- TAXMIN T4 -->
+Amaliy blok yo'q (PM darsi, kod ekrani yo'q) — o'quvchi repo'siga ham, `maydon-jamoa` ga ham tegilmaydi; xatlar va reja repo'ga yozilmaydi (tayanch 3).
 
 | Teg | Holat |
 |---|---|
@@ -540,31 +541,31 @@ Amaliy blok yo'q (PM darsi, kod ekrani yo'q) — o'quvchi repo'siga ham, `maydon
 ---
 
 ## TAYANCHGA SAVOL (o'zim qaror qildim — tasdiq kerak)
-1. **Mentor misolining buyurtma rejasi** tayanchda yo'q (1.10 da faqat qoida). Yozdim: Kim — «maktabdagi futbol to'garagining murabbiyi» · Nima — «to'garak uchun lending: mashg'ulot kunlari va yozilish tartibi» · Qachon — «shu hafta, mashg'ulotdan keyin — ota-onam bilan».
+1. **Mentor misolining buyurtma rejasi** tayanchda yo'q (1.10 da faqat qoida). Yozdim: Kim — «maktabdagi futbol to'garagining murabbiyi» · Nima — «to'garak uchun lending: mashg'ulot kunlari va yozilish tartibi» · Qachon — «keyingi mashg'ulotdan keyin — ota-onam bilan» (10-FILTR 27: «shu hafta» nisbiy sana, «aniq kun» ta'rifi «qaysi payt»ga).
    Sabab: misol-ip futbol olamida qoladi (P-001), «to'garak» — tayanchdagi uch roldan biri, lending — kursda qurilgan narsa. Taklif: tayanch 1.10 ga qo'shish (12-dars ham shu misolni ko'rsa — bir xil bo'lsin).
 2. **Mentor ikki xati** tayanchda yo'q. Yozdim (A-6): 1-xat — «mobil ilova qiladigan kompaniya», stajirovka · 2-xat — «sayt qiladigan kompaniya», maslahat; matn — «Men maktab o'quvchisiman…», «Agent bilan "Maydon Jamoa" ilovasini qurdim… Hozir 51 foydalanuvchi bor.» (51 — tayanch 1.14). Taklif: tayanch 1.10 ga.
-3. **Xat matni kalitga yozilmaydi** (sxema `xatlar: [{ kompaniyaTuri, soroq }]`). Xat uyda yuboriladi — sahifa yopilsa matn yo'qoladi, faqat «Nusxalash» qoladi. Taklif A: `xatlar[].matn` (≤420; telefon, akkaunt, havola tekshiruvidan o'tgan; ism maydoni yo'q) qo'shish · B: hozirgidek (faqat «Nusxalash»). Men B yozdim (tayanch aynan), A ni tavsiya qilaman.
+3. **Xat matni kalitga yozilmaydi** (sxema `xatlar: [{ kompaniyaTuri, soroq }]`). Xat uyda yuboriladi — sahifa yopilsa matn yo'qoladi, faqat «Nusxalash» qoladi. Taklif A: `xatlar[].matn` (≤420; telefon, akkaunt, havola tekshiruvidan o'tgan; ism maydoni yo'q) qo'shish · B: hozirgidek (faqat «Nusxalash»). Men B yozdim (tayanch aynan), A ni tavsiya qilaman. → **GATE M M-q4 A (08.10): `xatlar[].matn` qo'shildi (sxema, A-14, 7-ekran, KOD, tayanch 8).**
 4. **`soroq` ma'nosi** — `'stajirovka'` | `'maslahat'` deb oldim (tayanch 1.10: «nima so'rayman (stajirovka yoki maslahat)»). Boshqa ma'no ko'zda tutilgan bo'lsa — ayting.
-5. **`yuborildi: n | null`** — darsda yuborilmaydi, shuning uchun bu darsda doim `null`. Kim yangilaydi? Taklif: 12-dars «Xat yubordingizmi?» deb o'z kalitida so'raydi (10-dars kalitiga yozmaydi) yoki 10-darsga qaytganda 7-ekran varag'ida ixtiyoriy «Yubordim: 0 · 1 · 2».
+5. **`yuborildi: n | null`** → 10-FILTR 17: olindi (hech qaysi dars yozmaydi; 12-dars o'z kalitida so'rasa — o'sha yerda). Avvalgi savol: darsda yuborilmaydi, shuning uchun bu darsda doim `null`. Kim yangilaydi? Taklif: 12-dars «Xat yubordingizmi?» deb o'z kalitida so'raydi (10-dars kalitiga yozmaydi) yoki 10-darsga qaytganda 7-ekran varag'ida ixtiyoriy «Yubordim: 0 · 1 · 2».
 6. **`buyurtma` maydonlari** — saqlanmagan qator `null`; uzunliklar: kim ≤40, nima ≤80, qachon ≤40. Tasdiqlansa — tayanch 8 ga.
-7. **`pm-m12d9-video` dan o'qish** — `bolaklar.kim` → «Kimman», `bolaklar.nima` → «Nima qurdim», `bor` → kulrang qator. 9-dars MD maydon nomlarini tayanch 8 dagidek saqlasa ishlaydi; boshqacha bo'lsa — moslanadi.
-8. **Upwork iborasi** — tayanch 1.10 aynan: «odatda 18 yoshdan; shartini ota-ona bilan saytning o'zidan o'qing». «18» faqat 2-ekran `QIzoh` da, bir marta; testda, kartochkada, yakunda son yo'q. Topshiriq «aniq yosh da'vo qilmang» deydi — agar «odatda 18» ham olinsin desangiz,
+7. **`pm-m12d9-video` dan o'qish** — `bolaklar.kimman` → «Kimman», `bolaklar.nimaQurdim` → «Nima qurdim», `bor` + `tekshiruv` → kulrang qator. → 09-FILTR 8 va 10-FILTR 18: 9-dars yakuniy sxemasiga moslandi (`kimman`, `nimaQurdim`, `tekshiruv.ovozBor/maxfiyNarsaYoq/sigdi`).
+8. **Upwork iborasi** — tayanch 1.10 aynan: «Upwork kabi xalqaro saytlarda yosh sharti bor — uni ota-ona bilan saytning o'zidan o'qing». Avval «odatda 18 yoshdan» edi — topshiriq «aniq yosh da'vo qilmang» degani uchun savol qilingan. → **GATE M M-q2 A (08.10): sonsiz ibora qabul qilindi — qo'llandi (2-ekran `QIzoh`, A-bo'lim, O'qituvchi eslatmasi, tayanch 1.10, TAQIQLAR, 12-dars yumshoq tekshiruvi).** Testda, kartochkada, yakunda son yo'q.
    tayyor muqobil: «Upwork kabi xalqaro saytlarda yosh sharti bor — uni ota-ona bilan saytning o'zidan o'qing.» (2-ekran `QIzoh`, O'qituvchi eslatmasi — 2 joy).
 9. **«Upwork» nom rangi** — tekshirilmagan. Taklif: «qur»da rasmiy brend sahifasidan; tasdiqlanmasa — neytral `ink` (o'z rangi qoidasi — TAQIQLAR 0 — buzilmasin deb).
 10. **Dasturdagi «suhbat»** (dastur: «kompaniyaga xat, suhbat») — bu darsda alohida suhbat mashqi yo'q; faqat «Uchrashuv taklifi kelsa — faqat kattalar bilan.» qatori (12-Modul aynan). Suhbatga tayyorlanish kerakmi — tayanch qarori.
 11. **«tanish doira»** — tayanch 2 jadvalida yo'q (TAQIQLAR 1 iborasi). Oddiy so'z sifatida ishlatdim, ta'rifsiz — uch rol bilan (tanish do'kon, maktab, to'garak). Atama sifatida jadvalga qo'shish kerakmi?
 12. **Video havolasi xatda** — havola darsda yozilmaydi (bloklanadi), «uyda, yuborishdan oldin qo'shasiz» (tayanch 1.9: havola kalitga yozilmaydi; T12 — video ommaviy emas). Xatga havola qo'yish video qoidasiga zid emasmi («faqat havola bilan» ko'rinadigan joy — kompaniyaga yuborish mumkinmi)? Men «bo'lsa — uyda, ota-ona bilan» deb qoldirdim.
 13. **13-Modul 9-darsidagi «Bu odamga yozishimdan ota-onam xabardor» belgisi** bu darsda yo'q — darsda hech kimga yozilmaydi. Uyga vazifa ③ «ota-onangiz bilan» deydi. Yetarlimi?
-14. **Ikkinchi xat «Kimman» va «Nima qurdim»** — 1-xatdan qo'yiladi; tekshiruv faqat kompaniya turi bir xilligini ko'radi (bir xil matn ikki kompaniyaga — spam emas, chunki har kompaniyaga bitta). To'g'ri tushundimmi?
+14. **Ikkinchi xat «Kimman» va «Nima qurdim»** — 1-xatdan qo'yiladi; tekshiruv faqat kompaniya turi bir xilligini ko'radi (bir xil matn ikki kompaniyaga — spam emas, chunki har kompaniyaga bitta). To'g'ri tushundimmi? → 10-FILTR 8, 9: ha — «har kompaniya uchun alohida nusxa», kartada kulrang qator.
 15. **Dars raqami o'quvchi matnida** — yo'q («Video-portfolio uchun yozganlaringiz»), pilot 01 qoidasi bilan bir. Tayanch 9 da aniq qoida yo'q — 2-to'lqinda hammaga bir xil bo'lsin.
-16. **«spam»** so'zi — 8-ekran xato izohida bir marta (TAQIQLAR 3 da bor; o'smir kundalik so'zi). Lug'atda o'zbekchasi kerakmi («bitta xatni ko'p joyga tashlash»)?
+16. **«spam»** so'zi — 8-ekran xato izohida bir marta (TAQIQLAR 3 da bor; o'smir kundalik so'zi). Lug'atda o'zbekchasi kerakmi («bitta xatni ko'p joyga tashlash»)? → 10-FILTR 7: «spam» olindi — «Bir xil xatni ko'p joyga yuborish to'g'rimi?»
 
 ## Shubhali joylar (ishonchim komil emas)
 - ⛔ **«Qur» darvozasi:** 7-ekran ≈32 daqiqa (12–15 o'quvchi bilan taymer) · xat kartasi (kompaniya turi + so'rov tugmalari + konvertda uch maydon) 1280×800 da skrollsiz sig'ishi (U-006; sig'masa — konvert chapdagi varaqda, karta faqat maydonlar) ·
   «Nusxalash» LMS iframe ichida (clipboard ruxsati) · «Upwork» nom rangi · tekshiruv funksiyasi — `node` da namunalar bilan (ayniqsa «pul» va «pullik», «narx» va «narxi», 7+ raqam va sana).
-- **Upwork «odatda 18 yoshdan»** — rasmiy matn o'qilmadi (403). Iboraning o'zi «odatda» bilan yumshatilgan, lekin son bor — TAYANCHGA SAVOL 8 dagi muqobil tayyor.
+- **Upwork yosh sharti** — rasmiy matn o'qilmadi (403). Ibora sonsiz (GATE M M-q2 A): «yosh sharti bor — saytning o'zidan o'qing».
 - **Mentor misoli (reja va xatlar)** — tayanchda yo'q, men yozdim (TAYANCHGA SAVOL 1, 2). Futbol to'garagi murabbiyi — «tanish», lekin Mentor misolining yoshi va maktabi aytilmaydi; «Men maktab o'quvchisiman» — Mentor misoli o'quvchi rolida (1-darsdagi «sinfdoshlarim» bilan bir).
-- **5-ekran C «3D o'yin»** — kursda 3D o'yin qurilmagan (2, 7, 11–13-Modul); lekin JS darslarida o'yin olami bo'lgan — o'quvchi «o'yin qurganman» deyishi mumkin. «3D» shu farqni beradi deb oldim; auditor ko'rsin.
+- **5-ekran C** — «3D o'yin» → «qilmagan ish» (10-FILTR 25): o'quvchining o'z tajribasiga bog'lanmaydi.
 - **8-ekran A «Har kuni qayta yozib»** — hayotda bir marta eslatish odatiy; «har kuni» — bosim. Distraktor faqat «har kuni» bilan noto'g'ri — chegara aniqmi?
 - **8-ekran D «boshqa kompaniya tanlayman»** — darsda «boshqa kompaniyaga alohida xat» to'g'ridan-to'g'ri aytilmagan, faqat «har kompaniyaga alohida xat» va «qayta yozilmaydi» (6-ekran `QIzoh`). Kartochka 11 shu bog'lanishni beradi.
 - **Arena 1 «Mahalladagi maydonning egasi»** — 1-darsdagi Mentor so'rovi («maydon egalari bilan tanishtiring»); o'quvchi uni buyurtmachi deb o'ylashi mumkin — distraktor kuchli, lekin Mentor rejasi aniq (4-ekran).
@@ -574,21 +575,21 @@ Amaliy blok yo'q (PM darsi, kod ekrani yo'q) — o'quvchi repo'siga ham, `maydon
 ---
 
 ## Oldindan tuzatiladigan sinflar — o'z tekshiruvim (tayanch 7, 18 band)
-1. [x] **90 daqiqa — reja** — A-13: taqsimot (≈87 + 3 zaxira), «Ulgurmasangiz» (7-ekran — saqlangani qoladi, uyga vazifa ①, `optionalLive`, yakun «hali tugamagan»), tashqi kutish yo'q, ⛔ pilotda taymer; «sig'adi» yo'q. Amaliy blok yo'q — blok-darajasidagi «Ulgurmasangiz» tegishli emas.
+1. [x] **90 daqiqa — reja** — A-13: taqsimot (≈87 + 3 zaxira), «Ulgurmasangiz» (7-ekran — saqlangani qoladi, uyga vazifa ①, `optionalLive` yo'q — 10-FILTR 51, yakun «hali tugamagan»), tashqi kutish yo'q, ⛔ pilotda taymer; «sig'adi» yo'q. Amaliy blok yo'q — blok-darajasidagi «Ulgurmasangiz» tegishli emas.
 2. [x] **Tekshirilmagan tashqi qadam** — Upwork shartlari: «saytning o'zidan o'qing» (umumiy so'z, tayanch iborasi); sayt ochilmaydi, tugma nomi yo'q; xat yuborish — «rasmiy aloqa manzili», «pochta» (umumiy so'z); ⛔ «qur»: Upwork rangi, «Nusxalash» (Shubhali joylar).
-3. [x] **Saqlash kaliti — shartnoma** — `pm-m12d10-ish` tayanch 8 aynan (A-14, KOD 7): `null` — saqlanmagan, `soroq` ikki qiymat, `yuborildi: null`; boshqa dars kalitiga yozmaydi; o'qiydi `pm-m12d9-video` (havolasiz); ism, telefon, havola, xodim ismi, xat matni yo'q (TAYANCHGA SAVOL 3–7).
+3. [x] **Saqlash kaliti — shartnoma** — `pm-m12d10-ish` tayanch 8 aynan (A-14, KOD 7): `null` — saqlanmagan, `soroq` ikki qiymat, `yuborildi` yo'q (10-FILTR 17); boshqa dars kalitiga yozmaydi; o'qiydi `pm-m12d9-video` (havolasiz); ism, telefon, havola, xodim ismi, xat matni yo'q (TAYANCHGA SAVOL 3–7).
 4. [x] **Mentor misoli — umumiy qoida emas** — «Bu misolda» (2 xulosa), «Mentor misolida» (7 Yordam, arena 1), «Bu darsda» (4, 6 xulosalari — kurs qolipi); 7-ekranda o'quvchining o'z buyurtmachisi, ishi, kompaniya turi va so'rovi; Mentor xati — «namuna».
 5. [x] **Kafolat va sabab da'vosi yo'q** — «javob keladi», «stajirovka beradi», «buyurtma topasiz» yo'q; 6-ekran eslatmasi «Javob kelmasligi ham mumkin — bu ham natija»; Upwork — «odatda» va «saytning o'zidan o'qing».
 6. [x] **Yakun, nishon — faqat rost holatda** — 11-ekran 5 holat («hech narsa saqlanmagan» bilan — E 54), ✓ va nishon faqat birinchisida; Order Plan! / Two Letters! / One Ask! — saqlangan ma'lumotdan; xat yuborildi deb hech qayerda aytilmaydi.
 7. [x] **Ta'rif sanaladigan** — reja 3 qator, xat 3 qism (aniq nomlar bilan), «kompaniya turi» — nima qilishi (nom emas); 51 — «foydalanuvchi» (1.14 birligi); «bitta kompaniyaga bitta xat» — sanaladigan.
-8. [x] **Test: bitta himoyalanadigan javob** — s3 (boshqa nom · ota-onasiz · shartsiz), s5 (ota-onasiz · kursdan tashqari ish · aniq kunsiz), s8 (bosim · spam · yolg'iz uchrashuv); har testda uch turkum; s3 da yosh soni yo'q.
+8. [x] **Test: bitta himoyalanadigan javob** — s3 (boshqa nom · ota-onasiz · shartsiz), s5 (ota-onasiz · qilmagan ish · aniq paytsiz), s8 (bosim · spam · yolg'iz uchrashuv); har testda uch turkum; s3 da yosh soni yo'q.
 9. [x] **Real odamlar xavfsizligi** — A-10 to'liq: darsda hech kimga yozilmaydi; tanish doira; pul — ota-ona orqali; xat — bitta, bir marta, uyda, ixtiyoriy; uchrashuv — kattalar bilan; xatda telefon/akkaunt bloklanadi; podium va Mentor ekranida son/matn yo'q; Mentor nomidan yozilmaydi.
 10. [—] **Tekshiruv — o'quvchining o'z yo'li, agent — zaxira** — bu darsda agent ishlamaydi, tekshiruv akkaunti yo'q; agent faqat Mentor xatida («Agent bilan … qurdim») — rost rol.
 11. [x] **Web-trek teng yo'l** — «sayt, bot va o'z mahsulotingiz» (0), «Lending» · «Telegram bot» (7) — ikkala trek qurgan narsalar; testlar ikkala trekka to'g'ri; trek kaliti o'qilmaydi.
 12. [x] **Mentor misoli ichki izchil** — Mentor xatidagi son (51) va rol (agent bilan) 1-darsdagi Raqamlar va Jamoa bo'laklari bilan bir; «maydon egasi» (1-dars so'rovi) buyurtmachi qilinmadi; keyingi darslar (xalqaro dastur, olti oylik reja) ochilmaydi.
 13. [x] **O'quvchi talabida Mentorning qarori yo'q** — 7-ekranda maydonlar o'quvchiniki (`pm-m12d9-video` yoki bo'sh); Mentor matni faqat Yordam'da; so'rov gapi tugmadan qo'yiladi, lekin tanlov va tahrir — o'quvchida.
 14. [x] **Uyga vazifa yengil va aniq** — 3 ish: ① shartli, ② ko'rsatish va kun kelishish, ③ ixtiyoriy («Xohlasangiz»); Upwork'da profil ochish yo'q.
-15. [x] **Ayb da'vosi yo'q** — xato izohlari va `QXato` lar keyingi qadamni aytadi («Aniq kun yozing…», «Boshqasini yozing»); «sizning xatongiz emas» yo'q.
+15. [x] **Ayb da'vosi yo'q** — xato izohlari va `QXato` lar keyingi qadamni aytadi («Qaysi paytda gaplashasiz…», «Boshqasini yozing»); «sizning xatongiz emas» yo'q.
 16. [x] **Kelajak va'dasi yo'q** — xatda «tez orada», «katta bo'ladi» yo'q; «Nima qurdim» — bor narsa (51 foydalanuvchi); 11-dars, 12-dars, Demo Day — o'quvchi matnida yo'q (faqat «Keyingi dars» qatori).
 17. [x] **Pul va investitsiya** — xatda pul, maosh, investitsiya so'ralmaydi (7-ekran tekshiruvi, arena 4); buyurtmada narx darsda aytilmaydi, pul — ota-ona orqali (4, 5, 7; arena 3).
 18. [x] **Yosh va rasmiy shartlar** — Upwork: faqat tayanch iborasi, bir marta, «odatda» va «saytning o'zidan o'qing» bilan; profil faqat o'z nomidan (2-ekran, s3, kartochka 3); testda va kartochkada son yo'q; manba holati — «Manbalar» (403).
@@ -652,7 +653,7 @@ ARENA ✔ taqsimoti: {'A': 3, 'B': 3, 'C': 3, 'D': 3}
 Ekran testlari: s3 C · s5 A · s8 D (uchalasi har xil o'rinda). Mentor gaplari «Bu…», «Hammasini…» bilan boshlanmaydi, sarlavhani takrorlamaydi (qo'lda va skript bilan).
 `npm run -s lint:til -- feedback/F-1008-14modul/10-PmFreelance-v3.md` — natija hisobotda (oxirgi tahrirdan keyin qayta yurgizildi).
 
-## TAXMIN belgilari
+## Qaror-0 tasdiqlangan joylar (GATE M `14M-GATE-1`, 08.10 — hammasi A; belgilar olib tashlandi)
 Jami 70 ta `<!-- TAXMIN … -->` izohi, 70 ta Tn belgisi.
 
 | Tn | Soni | Qayerda (bo'lim) |

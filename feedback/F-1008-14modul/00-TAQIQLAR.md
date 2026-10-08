@@ -12,7 +12,7 @@ Manbalar: `QOIDALAR.md` · `konveyer/QURISH_KARTASI.md` · `MATN_ETALONI.md` · 
 ## 1. Bu modulning eng qat'iy chegaralari (T3, T12, T13, T14)
 - **Investitsiya so'ralmaydi:** pitchning «Keyingi qadam» bo'lagida — aniq yordam so'rovi (tanishtirish, maslahat, sinash joyi); pul summasi, ulush, «investitsiya kerak» — yo'q (o'smirda yuridik shaxs yo'q).
 - **Video (9-dars, 2-dars):** yuz va ism — ixtiyoriy; ommaviy joyga yuklanmaydi; ota-ona roziligi; ekranda maxfiy kalit, `.env`, login, boshqa odamlarning ma'lumoti va yozishmasi ko'rinmaydi. Video havolasi hech qaysi kalitga yozilmaydi. 2-darsdagi video telefonda qoladi.
-- **Yosh va rasmiy shartlar:** Upwork kabi saytlar — «odatda 18 yoshdan; shartini ota-ona bilan saytning o'zidan o'qing» (rasmiy matn tekshirilmagan — aniq yosh da'vo qilinmaydi); profil ota-ona yoki boshqa odam nomidan ochilmaydi.
+- **Yosh va rasmiy shartlar:** Upwork kabi saytlar — «Upwork kabi xalqaro saytlarda yosh sharti bor — uni ota-ona bilan saytning o'zidan o'qing» (rasmiy matn tekshirilmagan — aniq yosh da'vo qilinmaydi); profil ota-ona yoki boshqa odam nomidan ochilmaydi.
   Diamond Challenge — faqat tayanch 6 dagi rasmiy shartlar; YC — «bugungi yo'l emas» (rasmiy FAQ dan); lokal grantlar — nomi aytilmaydi.
 - **Buyurtma va pul:** birinchi buyurtma — tanish doira (tanish do'kon, maktab, to'garak); pul va kelishuv — ota-ona orqali; notanish bilan uchrashuv — faqat kattalar bilan.
 - **Kafolat yo'q:** «investor pul beradi», «qabul qilinasiz», «demo buzilmaydi», «mahsulot tezlashadi» — yo'q; natija faqat o'lchov yoki tekshiruv bilan.
@@ -34,7 +34,7 @@ Manbalar: `QOIDALAR.md` · `konveyer/QURISH_KARTASI.md` · `MATN_ETALONI.md` · 
 
 ## 4. Misol-ip va odamlar
 - Bir dars — bitta misol-ip «Maydon Jamoa» (P-001); ikkinchi misol faqat qisqa mashq yoki testda (P-002), o'smir olamidan.
-- O'quvchining o'z mahsuloti — uning ishi; Mentor misoli — namuna: olti bo'lak, uch yo'nalish, demo stsenariysi — «Mentor misolida».
+- O'quvchining o'z mahsuloti — uning ishi; Mentor misoli — namuna: olti bo'lak, uch yo'nalish, demo ssenariysi — «Mentor misolida».
 - Metafora — ko'pi bilan bitta, bir marta (T-016); taqiq obrazlar: «voronka», «sehr», «yurak», «miya», «raketa» (o'sish), «oltin».
 
 ## 5. So'z va ohang (13-Modul TAQIQLAR 5 — kuchda)
@@ -45,7 +45,7 @@ Manbalar: `QOIDALAR.md` · `konveyer/QURISH_KARTASI.md` · `MATN_ETALONI.md` · 
 - Modul raqami — LMS raqami («13-Modulda»). Dasturda inglizcha nom tarjima qilinmaydi: Lighthouse, Expo, Render, Netlify, Upwork, Y Combinator, Diamond Challenge, Demo Day.
 - **Lug'at juftliklari** (to'lig'i — tayanch 2): Q&A → **savol-javob** · storytelling → **hikoya** · performance → **tezlik** (baho — «Lighthouse bahosi») · bundle → **yuklanadigan kod hajmi** · lazy load → **keyin yuklash** · polish → **sayqal** · skeleton → **joy egallovchi** ·
   progon → **demo o'tishi** · feature freeze → **yangi funksiya to'xtatildi** · demo-test → **demo tekshiruvi** · Metrikalar (bo'lak) → **Raqamlar** · Keyin (bo'lak) → **Keyingi qadam** · intern → **stajirovka** (amaliyot emas) · akselerator → **xalqaro dastur**.
-- **Bitta darsda bitta ma'no (T-015):** «sinov» — faqat real odam bilan (guruh va mehmon — «tinglovchi», «hakam»); «tekshiruv» — o'quvchining o'z tekshiruvi; «demo» — jonli demo yoki demo stsenariysi; «amaliyot» — faqat dars ichidagi blok.
+- **Bitta darsda bitta ma'no (T-015):** «sinov» — faqat real odam bilan (guruh va mehmon — «tinglovchi», «hakam»); «tekshiruv» — o'quvchining o'z tekshiruvi; «demo» — jonli demo yoki demo ssenariysi; «amaliyot» — faqat dars ichidagi blok.
 
 ## 6. Ekran tuzilishi (13-Modul TAQIQLAR 6 — kuchda)
 - Sarlavha ≤55 belgi, bitta qator; yangi atama PM sarlavhasida yo'q (T-011). Mentor ≤2 gap (interaktivda 1), sarlavhani takrorlamaydi. Hook javobi ≤120, «Aynan!» / «Qiziq fikr!». Xulosa ≤110 · xato izohi ≤60.
