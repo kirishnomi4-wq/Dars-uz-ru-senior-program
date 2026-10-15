@@ -170,7 +170,7 @@ export const HOMEWORK = {
     ru: 'Карточку с урока откройте дома в VS Code и обогатите — после каждого изменения Ctrl+S, браузер обновится сам. Скриншот готовой карточки загрузите на платформу.',
   },
   items: [
-    { uz: "Hobbi ro'yxati — card ichiga ul/li bilan 3 ta hobbi", ru: 'Список хобби — 3 хобби внутри карточки через ul/li' },
+    { uz: "O'zgartirish so'rovi — Gemini'ga card uchun bitta aniq so'rov, natija Live Server'da", ru: 'Запрос на изменение — один точный запрос Gemini для карточки, результат в Live Server' },
     { uz: 'Havola — Telegram yoki sevimli saytingizga a href', ru: 'Ссылка — a href на Telegram или любимый сайт' },
     { uz: "Rang tajribasi — fonni boshqa rangga o'zgartirish", ru: 'Эксперимент с цветом — другой цвет фона' },
     { uz: 'Sahifa nomi — title ichiga ismingiz', ru: 'Имя страницы — ваше имя в title' },
@@ -210,6 +210,7 @@ const SCREEN_META = [
   { id: 's10',  type: 'exploration', template: 'custom',   scored: false, scope: null },          // 10 QADAM 6 — card CSS → praktika
   { id: 's11',  type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },// 11 TEST 3 — link/stylesheet
   { id: 's12',  type: 'exploration', template: 'custom',   scored: false, scope: null },          // 12 Tezkor tugmalar (shortcut)
+  { id: 'sai',  type: 'exploration', template: 'custom',   scored: false, scope: null },          // 13 YANGI — 7-qadam: AI bilan aniq prompt (F-1013)
   { id: 's13',  type: 'test',        template: 'custom',   scored: true,  scope: 'final' },       // 13 YAKUNIY yozma — Go Live
   { id: 's14',  type: 'case',        template: 'custom',   scored: false, scope: null },          // 14 FINAL — jonli card tasdig'i + tantana
   { id: 'sproj', type: 'case',      template: 'custom',   scored: false, scope: null },          // 15 Demo Day loyihasi (F-0803-30)
@@ -304,11 +305,13 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
   );
 };
 const NavBack = ({ onPrev }) => <button className="btn-ghost" onClick={onPrev} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Orqaga', ru: 'Назад' })}</button>;
-const NavNext = ({ disabled, label, onClick, optionalLive }) => {
+const NavNext = ({ disabled, label, onClick, optionalLive, mentorLock }) => {
   const gate = useContext(LiveGateCtx);
   const locked = !!(gate && gate.locked);
   const live = gate && gate.live;
-  const freeRide = !!(optionalLive && live && live.mode === 'student' && live.status !== 'ended' && live.mentorAlive);
+  // F-1012: mentor (jonli dars va LMS preview) topshiriqqa qulflanmaydi; o'quvchi allaqachon o'tgan ekranga qaytsa ham qulf yo'q
+  // F-1013-02: test ekrani (mentorLock) — mentor avval «Natijani ochish» bosadi, keyin o'tadi (odatiy tartib saqlanadi)
+  const freeRide = !!((optionalLive && live && live.mode === 'student' && live.status !== 'ended' && live.mentorAlive) || (live && live.mode === 'mentor' && !mentorLock) || (gate && gate.passed));
   const lbl = label != null ? tr(label) : tr({ uz: 'Davom etish', ru: 'Продолжить' });
   return <button data-tour="next" className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? tr({ uz: "Mentor hali bu sahifaga o'tmadi", ru: 'Ментор ещё не перешёл на эту страницу' }) : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : (freeRide && disabled ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : lbl)}</button>;
 };
@@ -419,7 +422,7 @@ const RECAPS = {
     ]
   },
   // idx 13 — s13 (yakuniy yozma): «Go Live» — butun ish sikli
-  13: {
+  14: {
     title: { uz: 'Bir bosishda jonli sahifa', ru: 'Живая страница в одно нажатие' }, cards: [
       { ic: '⚡', h: { uz: 'Tugma nomi — Go Live', ru: 'Кнопка называется Go Live' },
         body: {
@@ -756,7 +759,7 @@ const QuestionScreen = ({ screen, scope, eyebrow, question, questionText, option
   const revealed = !oneShot || !!(live && (live.revealScreen === screen || (live.mentorMax ?? live.mentorScreen) > screen || live.status === 'ended' || !live.mentorAlive));
   const waiting = oneShot && solved && !revealed; // javob qotdi — natija mentordan kutilmoqda
   return (
-    <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' })) : solved ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (oneShot ? tr({ uz: 'Javob tanlang', ru: 'Выберите ответ' }) : tr({ uz: "To'g'ri javobni toping", ru: 'Найдите верный ответ' }))} onClick={onNext} /></>}>
+    <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext mentorLock disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' })) : solved ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (oneShot ? tr({ uz: 'Javob tanlang', ru: 'Выберите ответ' }) : tr({ uz: "To'g'ri javobni toping", ru: 'Найдите верный ответ' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ justifyContent: 'flex-start', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>⚡ {tr({ uz: "Jonli dars — bitta urinish, o'ylab bosing!", ru: 'Живой урок — одна попытка, думайте перед кликом!' })}</p>}
@@ -909,7 +912,8 @@ function DragDropOrder({ items, hints, onSolved }) {
     if (typeof from === 'number') ns[from] = null;
     ns[slotIdx] = id;
     let np = from === 'pool' ? pool.filter(x => x !== id) : pool.slice();
-    if (occ) np = [...np, occ];
+    // F-0922-54 / F-1012-04: o'z katagiga qayta tashlanganda occ = shu kartaning o'zi — poolga qaytarilmaydi (nusxa chiqmasin)
+    if (occ && occ !== id) np = [...np, occ];
     return { pool: np, slots: ns };
   });
   const toPool = (slotIdx) => setSt(({ pool, slots }) => {
@@ -974,7 +978,7 @@ const VSCODE_FLASHCARDS = [
   { front: { uz: "VS Code'ga yangi imkoniyat qo'shadigan mini-dastur qanday ataladi?", ru: 'Как называется мини-программа, добавляющая VS Code новые возможности?' }, back: { uz: "Extension (qo'shimcha dastur)", ru: 'Extension (дополнение)' }, note: { uz: 'kubiklar belgisidagi Extensions panelidan o\'rnatiladi', ru: 'ставится из панели Extensions со значком кубиков' } },
   { front: { uz: "Sahifani brauzerda jonli ochadigan qo'shimcha dastur qaysi?", ru: 'Какое дополнение живо открывает страницу в браузере?' }, back: 'Live Server', note: { uz: "pastki ko'k chiziqdagi Go Live tugmasi bilan ishga tushadi", ru: 'запускается кнопкой Go Live на нижней синей полосе' } },
   { front: { uz: 'Qaysi manzil «mening kompyuterim» degani?', ru: 'Какой адрес означает «мой компьютер»?' }, back: '127.0.0.1', note: { uz: 'sahifani hozircha faqat siz ko\'rasiz — bu internet emas', ru: 'страницу пока видите только вы — это не интернет' } },
-  { front: { uz: '127.0.0.1:5500 manzilidagi 5500 raqami nima?', ru: 'Что такое число 5500 в адресе 127.0.0.1:5500?' }, back: { uz: 'Eshik raqami (port)', ru: 'Номер двери (порт)' }, note: { uz: 'sahifa aynan shu eshikdan chiqadi', ru: 'страница выходит именно через эту дверь' } },
+  { front: { uz: "AI'ga yoziladigan aniq vazifa matni nima deyiladi?", ru: 'Как называется точный текст задания для ИИ?' }, back: { uz: 'Prompt', ru: 'Промпт' }, note: { uz: 'nima kerak, qaysi faylga, nima bo\'lmasin — aniq yoziladi', ru: 'что нужно, в какой файл, чего не должно быть — пишется точно' } },
   { front: { uz: "Bo'sh HTML faylda tayyor shablonni nima bilan chiqarasiz?", ru: 'Чем вы выводите готовый шаблон в пустом HTML-файле?' }, back: '! + Tab', note: { uz: "Emmet yordamchisi butun shablonni o'zi yozadi", ru: 'помощник Emmet сам пишет весь шаблон' } },
   { front: { uz: 'Faylni saqlash uchun qaysi tugmalarni bosasiz?', ru: 'Какие клавиши вы нажимаете, чтобы сохранить файл?' }, back: 'Ctrl + S', note: { uz: "saqlaganingizdan keyin brauzer o'zi yangilanadi", ru: 'после сохранения браузер обновляется сам' } },
   { front: { uz: 'Xato yozib qo\'ysangiz, orqaga qaytadigan tugmalar qaysi?', ru: 'Какие клавиши возвращают назад, если вы ошиблись?' }, back: 'Ctrl + Z', note: { uz: "oxirgi harakatni bekor qiladi — xatodan qo'rqmang", ru: 'отменяет последнее действие — не бойтесь ошибок' } },
@@ -1277,7 +1281,7 @@ const ScreenHook = ({ screen, storedAnswer, onAnswer, onNext }) => {
 //  EKRAN 1 — MAQSAD: namuna-card + 6 qadam
 // ============================================================
 const ScreenGoal = ({ screen, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's1', text: "Mana shu card — o'zingiz haqingizdagi kichkina sahifa. Dars oxirida u o'z kompyuteringizda ishlaydi. Unga 6 qadamda yetib boramiz.", trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's1', text: "Mana shu card — o'zingiz haqingizdagi kichkina sahifa. Dars oxirida u o'z kompyuteringizda ishlaydi. Unga 7 qadamda yetib boramiz.", trigger: 'on_mount', waits_for: null }]);
   const STEPS = [
     { text: { uz: "VS Code'ni yuklab o'rnatamiz", ru: 'Скачиваем и ставим VS Code' }, tag: 'code.visualstudio.com' },
     { text: { uz: 'Oynasi bilan tanishamiz', ru: 'Знакомимся с окном' }, tag: 'Explorer · Extensions' },
@@ -1285,6 +1289,7 @@ const ScreenGoal = ({ screen, onNext, onPrev }) => {
     { text: { uz: 'Jonli serverni yoqamiz', ru: 'Включаем живой сервер' }, tag: 'Go Live' },
     { text: { uz: 'Card HTML\u2019ini yig\u2019amiz', ru: 'Собираем HTML карточки' }, tag: 'div.card' },
     { text: { uz: "Card'ga stil beramiz", ru: 'Оформляем карточку' }, tag: 'style.css' },
+    { text: { uz: "AI'ga aniq prompt bilan card'ni boyitamiz", ru: 'Дополняем карточку точным промптом для ИИ' }, tag: 'gemini.google.com' },
   ];
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState(false);
@@ -1298,7 +1303,7 @@ const ScreenGoal = ({ screen, onNext, onPrev }) => {
   );
   const StepsBlock = (
     <Col>
-      <p className="flow-label">{tr({ uz: '6 qadam', ru: '6 шагов' })}</p>
+      <p className="flow-label">{tr({ uz: '7 qadam', ru: '7 шагов' })}</p>
       <ol className="roadmap">
         {STEPS.map((s, i) => (
           <li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}>
@@ -1318,13 +1323,13 @@ const ScreenGoal = ({ screen, onNext, onPrev }) => {
         <div className="head">
           <h2 className="title h-title fade-up">{tr({ uz: <>Bugun <span className="italic" style={{ color: T.accent }}>o'z kompyuteringizda</span> birinchi sahifangizni yasaysiz.</>, ru: <>Сегодня вы сделаете первую страницу <span className="italic" style={{ color: T.accent }}>на своём компьютере</span>.</> })}</h2>
         </div>
-        <Mentor>{tr({ uz: <>Mana shu <b style={{ color: T.ink }}>card</b> — o'zingiz haqingizdagi kichkina sahifa. Dars oxirida u <b style={{ color: T.ink }}>o'z kompyuteringizda</b> ishlaydi. Unga <b style={{ color: T.ink }}>6 qadamda</b> yetib boramiz.</>, ru: <>Вот эта <b style={{ color: T.ink }}>card</b> — маленькая страница о вас самих. К концу урока она заработает <b style={{ color: T.ink }}>на вашем компьютере</b>. Дойдём до неё за <b style={{ color: T.ink }}>6 шагов</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Mana shu <b style={{ color: T.ink }}>card</b> — o'zingiz haqingizdagi kichkina sahifa. Dars oxirida u <b style={{ color: T.ink }}>o'z kompyuteringizda</b> ishlaydi. Unga <b style={{ color: T.ink }}>7 qadamda</b> yetib boramiz.</>, ru: <>Вот эта <b style={{ color: T.ink }}>card</b> — маленькая страница о вас самих. К концу урока она заработает <b style={{ color: T.ink }}>на вашем компьютере</b>. Дойдём до неё за <b style={{ color: T.ink }}>6 шагов</b>.</> })}</Mentor>
         {!isNarrow ? (
           <Split>{PreviewBlock}{StepsBlock}</Split>
         ) : !showSteps ? (
           <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>
             {PreviewBlock}
-            <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>📋 {tr({ uz: "Bugungi 6 qadamni ko'rish", ru: 'Посмотреть 6 шагов на сегодня' })}</button>
+            <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>📋 {tr({ uz: "Bugungi 7 qadamni ko'rish", ru: 'Посмотреть 6 шагов на сегодня' })}</button>
           </div>
         ) : (
           <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>
@@ -2007,6 +2012,100 @@ const ScreenKeys = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ============================================================
 //  EKRAN 13 — YAKUNIY YOZMA TEST (scored, final): Go Live
 // ============================================================
+//  EKRAN 13 — 7-QADAM: AI bilan aniq prompt (F-1013, GATE M m1-15: D02 ✓ · q1 A)
+//  Ish tartibi: gemini.google.com (13+, O'zbekistonda bor) → aniq prompt → kodni faylga → Live Server.
+//  Antigravity — faqat ixtiyoriy qator (rasmiy FAQ: 18 yoshdan kichiklarga yopiq). Tugma NOMI emas, JOYI aytiladi (P-028).
+// ============================================================
+const AI_PROMPT = [
+  { uz: 'Menga shaxsiy card yasab ber. Ikki fayl kerak: index.html va style.css.', ru: 'Сделай мне личную карточку. Нужны два файла: index.html и style.css.' },
+  { uz: "Cardda: ismim — {ismingiz}, kim bo'lmoqchiman — {orzu-kasbingiz}, 3 ta hobbim — {hobbi 1}, {hobbi 2}, {hobbi 3}.", ru: 'На карточке: меня зовут — {ваше имя}, кем хочу стать — {профессия мечты}, 3 моих хобби — {хобби 1}, {хобби 2}, {хобби 3}.' },
+  { uz: 'Card sahifa markazida tursin, burchaklari yumaloq, ostida yengil soya bo\'lsin.', ru: 'Карточка в центре страницы, углы скруглённые, снизу лёгкая тень.' },
+  { uz: "index.html'da style.css <link> bilan ulangan bo'lsin.", ru: 'В index.html style.css подключён через <link>.' },
+  { uz: 'Faqat HTML va CSS ishlat, JavaScript kerak emas. Har faylni alohida kod blokida ber.', ru: 'Используй только HTML и CSS, JavaScript не нужен. Каждый файл дай в отдельном блоке кода.' },
+];
+// Prompt qutisi: {…} joylari ajralib ko'rinadi, «Nusxalash» butun matnni oladi (clipboard rad etilsa — matn belgilanadi)
+function AiPromptBox() {
+  const [ok, setOk] = useState(false);
+  const ref = useRef(null);
+  const lines = AI_PROMPT.map(l => tr(l));
+  const copy = async () => {
+    try { await navigator.clipboard.writeText(lines.join('\n')); setOk(true); setTimeout(() => setOk(false), 1600); }
+    catch { const r = document.createRange(); if (ref.current) { r.selectNodeContents(ref.current); const s = window.getSelection(); s.removeAllRanges(); s.addRange(r); } }
+  };
+  return (
+    <div className="aip-box">
+      <div className="aip-head"><span className="aip-kim">{tr({ uz: 'Siz → Gemini', ru: 'Вы → Gemini' })}</span><button type="button" className="aip-copy" onClick={copy}>{ok ? tr({ uz: '✓ Nusxalandi', ru: '✓ Скопировано' }) : tr({ uz: 'Nusxalash', ru: 'Скопировать' })}</button></div>
+      <div ref={ref} className="aip-lines">
+        {lines.map((l, i) => <p key={i} className="aip-line">{String(l).split(/(\{[^}]+\})/g).map((p, k) => (/^\{.+\}$/.test(p) ? <span key={k} className="aip-joy">{p}</span> : p))}</p>)}
+      </div>
+    </div>
+  );
+}
+const ScreenAi = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const _gate = useContext(LiveGateCtx) || {};
+  const _isMentorLive = !!(_gate.live && _gate.live.mode === 'mentor');
+  const audio = useAudio([{ id: 'sai', text: "Bu qadamni ham o'z kompyuteringizda bajarasiz. AI'ga yoziladigan aniq vazifa matni prompt deyiladi. Gemini saytiga kiring, tayyor promptni yuboring, kelgan kodni o'qib, fayllarga qo'ying va Live Server'da tekshiring.", trigger: 'on_mount', waits_for: null }]);
+  const [view, setView] = useState(0);
+  const done = !!(storedAnswer && storedAnswer.correct);
+  const VIEWS = [
+    { id: 0, chip: { uz: '1 · Gemini', ru: '1 · Gemini' } },
+    { id: 1, chip: { uz: '2 · Prompt', ru: '2 · Промпт' } },
+    { id: 2, chip: { uz: '3 · Faylga', ru: '3 · В файл' } },
+  ];
+  const STEPS = [
+    { id: 'kirish', t: { uz: "`gemini.google.com`ni oching va kiring", ru: 'Откройте `gemini.google.com` и войдите' }, d: { uz: "O'z Google akkauntingiz bilan. Parol, telefon raqami va uy manzilini Gemini'ga yozmang.", ru: 'Своим аккаунтом Google. Не пишите в Gemini пароль, номер телефона и домашний адрес.' } },
+    { id: 'prompt', t: { uz: 'Promptni yuboring', ru: 'Отправьте промпт' }, d: { uz: "Chapdagi promptni nusxalang, `{…}` joylarni o'zingiz haqingizda to'ldiring va yuboring.", ru: 'Скопируйте промпт слева, заполните места `{…}` о себе и отправьте.' } },
+    { id: 'fayl', t: { uz: 'Kodni faylga qo\'ying', ru: 'Вставьте код в файл' }, d: { uz: "Har kod blokini VS Code'dagi o'z fayliga qo'ying va `Ctrl+S` bosing. Avval o'qing: `<link>` qatori bormi?", ru: 'Каждый блок кода вставьте в свой файл в VS Code и нажмите `Ctrl+S`. Сначала прочитайте: есть ли строка `<link>`?' } },
+    { id: 'tekshir', t: { uz: "Live Server'da tekshiring", ru: 'Проверьте в Live Server' }, d: { uz: "Card markazda, ismingiz va 3 ta hobbingiz ko'rinadi. Boshqacha chiqsa, ko'rganingizni aniq yozing: «Card chap chetda turibdi. Markazga qo'y.»", ru: 'Карточка в центре, видны имя и 3 хобби. Если иначе — точно напишите, что видите: «Карточка стоит слева. Поставь в центр.»' } },
+  ];
+  return (
+    <Stage eyebrow={tr({ uz: '7-qadam · AI bilan', ru: '7-й шаг · С ИИ' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={_isMentorLive ? false : !done} label={_isMentorLive || done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Qadamlarni belgilang', ru: 'Отметьте шаги' })} onClick={onNext} /></>}>
+      <div className="screen">
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI card'ingizni qanday <span className="italic" style={{ color: T.accent }}>boyitadi</span>?</>, ru: <>Как ИИ <span className="italic" style={{ color: T.accent }}>дополнит</span> вашу карточку?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Bu qadamni ham <b style={{ color: T.ink }}>o'z kompyuteringizda</b> bajarasiz. AI'ga yoziladigan aniq vazifa matni <b style={{ color: T.ink }}>prompt</b> deyiladi — qanchalik aniq yozsangiz, natija shunchalik siz kutgandek chiqadi.</>, ru: <>Этот шаг тоже выполняете <b style={{ color: T.ink }}>на своём компьютере</b>. Точный текст задания для ИИ называется <b style={{ color: T.ink }}>промпт</b> — чем точнее напишете, тем ближе результат к ожидаемому.</> })}</Mentor>
+        <Split>
+          <Col>
+            <div className="fade-up delay-1" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+              {VIEWS.map(v => <button key={v.id} className={`chip ${view === v.id ? 'chip-on' : ''}`} onClick={() => setView(v.id)}>{tr(v.chip)}</button>)}
+            </div>
+            <div className="demo-swap" key={view}>
+              {view === 0 && (
+                <BrowserWin url="gemini.google.com" tab="Gemini" minH={190}>
+                  <div className="aim-site">
+                    <div className="aim-top"><span className="aim-logo">Gemini</span><span className="aim-kir">{tr({ uz: 'kirish', ru: 'войти' })}</span></div>
+                    <p className="aim-salom">{tr({ uz: 'Salom! Nima qilamiz?', ru: 'Привет! Что сделаем?' })}</p>
+                    <div className="aim-input"><span>{tr({ uz: 'yozish maydoni', ru: 'поле ввода' })}</span><i className="aim-send">↑</i></div>
+                    <p className="inst-sub">{tr({ uz: "O'ng yuqoridagi tugma bilan o'z Google akkauntingizga kiring. Akkauntingiz bo'lmasa — mentorga ayting.", ru: 'Войдите в свой аккаунт Google кнопкой справа вверху. Нет аккаунта — скажите ментору.' })}</p>
+                  </div>
+                </BrowserWin>
+              )}
+              {view === 1 && <AiPromptBox />}
+              {view === 2 && (
+                <div className="aim-javob">
+                  {['index.html', 'style.css'].map((nm, i) => (
+                    <div key={nm} className="aim-blok">
+                      <div className="aim-blok-h"><span className="mono">{nm}</span><span className="aim-copy" aria-hidden="true">⧉</span></div>
+                      <pre className="aim-kod">{i === 0 ? '<link rel="stylesheet" href="style.css">\n<div class="card">…</div>' : '.card {\n  margin: 40px auto;\n  border-radius: 16px;\n}'}</pre>
+                      <span className="aim-strelka">→ VS Code · my-site/{nm}</span>
+                    </div>
+                  ))}
+                  <p className="inst-sub">{tr({ uz: "Har kod bloki tepasidagi nusxalash belgisini bosing va mos faylga qo'ying.", ru: 'Нажмите значок копирования над каждым блоком кода и вставьте в нужный файл.' })}</p>
+                </div>
+              )}
+            </div>
+          </Col>
+          <Col>
+            <StepChecklist screen={screen} storedAnswer={storedAnswer} onAnswer={onAnswer} steps={STEPS} taskLabel={tr({ uz: 'AI bilan card', ru: 'Карточка с ИИ' })} />
+            {done && !_isMentorLive && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Prompt aniq bo'lsa, AI siz kutgan card'ni beradi — siz esa uni o'qib, tekshirib, faylga qo'yasiz.", ru: 'Если промпт точный, ИИ даёт ожидаемую карточку — а вы читаете, проверяете и вставляете её в файл.' })}</p></div>}
+            <p className="aim-ixtiyoriy">{tr({ uz: "Ixtiyoriy: 18 yoshdan katta bo'lsangiz yoki ota-onangiz o'z akkaunti bilan kirib bersa, shu ishni Antigravity dasturida ham qilish mumkin.", ru: 'По желанию: если вам больше 18 или родители войдут своим аккаунтом, то же самое можно сделать в программе Antigravity.' })}</p>
+          </Col>
+        </Split>
+      </div>
+    </Stage>
+  );
+};
+
+// ============================================================
 const ScreenFinalTest = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's13', text: "Yakuniy savol. VS Code'ning pastki ko'k chizig'idagi qaysi tugma sahifangizni brauzerda jonli ochadi? Nomini pastdagi katakka yozing.", trigger: 'on_mount', waits_for: null }]);
   const gate = useContext(LiveGateCtx) || {};
@@ -2077,7 +2176,7 @@ const ScreenFinale = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     { uz: 'my-site loyihasi: index.html + style.css', ru: 'Проект my-site: index.html + style.css' },
     { uz: '`!` + Tab — shablon bir soniyada', ru: '`!` + Tab — шаблон за секунду' },
     { uz: 'Go Live — jonli server 127.0.0.1:5500', ru: 'Go Live — живой сервер 127.0.0.1:5500' },
-    { uz: "O'z ismingiz yozilgan yashil card", ru: 'Зелёная card с вашим именем' },
+    { uz: "AI bilan boyitilgan o'z card'ingiz", ru: 'Ваша card, дополненная с помощью ИИ' },
   ];
   return (
     <Stage eyebrow={tr({ uz: 'Marra', ru: 'Финиш' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
@@ -2151,9 +2250,10 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
     tr({ uz: '! + Tab bilan tayyor shablon olish', ru: 'Получать готовый шаблон через ! + Tab' }),
     tr({ uz: "Live Server bilan sahifani jonli ko'rish", ru: 'Живо смотреть страницу через Live Server' }),
     tr({ uz: 'Card yasab, CSS bilan bezash', ru: 'Делать card и оформлять её CSS' }),
+    tr({ uz: "AI'ga aniq prompt yozib, kodini o'qib faylga qo'yish", ru: 'Писать ИИ точный промпт, читать код и вставлять его в файл' }),
   ];
   const HOMEWORK = [
-    { b: tr({ uz: "Hobbi ro'yxati", ru: 'Список хобби' }), t: tr({ uz: "— card ichiga `ul`/`li` bilan 3 ta hobbi", ru: '— 3 хобби внутри карточки через `ul`/`li`' }) },
+    { b: tr({ uz: "O'zgartirish so'rovi", ru: 'Запрос на изменение' }), t: tr({ uz: "— Gemini'ga card uchun bitta aniq so'rov yozing (masalan: «Card ostiga Telegram havolasini qo'sh»), natijani Live Server'da tekshiring", ru: '— напишите Gemini один точный запрос для карточки (например: «Добавь под карточкой ссылку на Telegram»), проверьте результат в Live Server' }) },
     { b: tr({ uz: 'Havola', ru: 'Ссылка' }), t: tr({ uz: "— Telegram yoki sevimli saytingizga `a href`", ru: '— `a href` на Telegram или любимый сайт' }) },
     { b: tr({ uz: 'Rang tajribasi', ru: 'Эксперимент с цветом' }), t: tr({ uz: "— fonni boshqa rangga o'zgartirib ko'ring", ru: '— попробуйте другой цвет фона' }) },
     { b: tr({ uz: 'Sahifa nomi', ru: 'Имя страницы' }), t: tr({ uz: "— `title` ichiga ismingizni yozing", ru: '— напишите своё имя в `title`' }) },
@@ -2209,7 +2309,7 @@ const Q_LABELS = {
   4: { uz: 'Explorer — fayllar paneli', ru: 'Explorer — панель файлов' },
   8: { uz: 'Go Live nima qiladi', ru: 'Что делает Go Live' },
   11: { uz: 'CSS ulanishi (link)', ru: 'Подключение CSS (link)' },
-  13: { uz: '«Go Live» yozish (yakuniy)', ru: 'Написать «Go Live» (финал)' },
+  14: { uz: '«Go Live» yozish (yakuniy)', ru: 'Написать «Go Live» (финал)' },
 };
 
 const Confetti = () => {
@@ -2445,13 +2545,13 @@ const QZ_BG_SHAPES = [
   { ch: '.html',   l: 2,  t: 46, s: 24, c: 'rgba(203,173,255,0.10)', d: 26, dl: 2.6 },
 ];
 const QUIZ_BANK = [
-  { q: { uz: "Dunyodagi dasturchilar eng ko'p ishlatadigan kod redaktori qaysi?", ru: 'Каким редактором кода пользуется больше всего разработчиков в мире?' }, opts: ['Word', 'VS Code', 'Photoshop', 'Paint'], correct: 1 },
+  { q: { uz: "Dunyodagi dasturchilar eng ko'p ishlatadigan kod redaktori qaysi?", ru: 'Каким редактором кода пользуется больше всего разработчиков в мире?' }, opts: ['Word', 'VS Code', 'Excel', 'PowerPoint'], correct: 1 },
   { q: { uz: 'VS Code qaysi saytdan yuklab olinadi?', ru: 'С какого сайта скачивается VS Code?' }, opts: ['`code.visualstudio.com`', '`vscode-download.net`', '`microsoft-code.uz`', '`get-vscode.org`'], correct: 0 },
   { q: { uz: "Loyihadagi fayllar ro'yxati ko'rinadigan chap panel qanday ataladi?", ru: 'Как называется левая панель со списком файлов проекта?' }, opts: [{ uz: 'Terminal', ru: 'Terminal' }, { uz: 'Extensions', ru: 'Extensions' }, { uz: 'Explorer', ru: 'Explorer' }, { uz: 'Status bar', ru: 'Status bar' }], correct: 2 },
-  { q: { uz: 'Live Server nima?', ru: 'Что такое Live Server?' }, opts: [{ uz: 'Rasm tahrirlaydigan vosita', ru: 'Инструмент для правки картинок' }, { uz: 'Kod saqlaydigan xotira turi', ru: 'Вид памяти для хранения кода' }, { uz: "Shrift o'rnatadigan dastur", ru: 'Программа для установки шрифтов' }, { uz: "Sahifani jonli ochadigan qo'shimcha dastur", ru: 'Дополнение, открывающее страницу вживую' }], correct: 3 },
-  { q: { uz: '«Go Live» tugmasi VS Code oynasining qayerida turadi?', ru: 'Где в окне VS Code находится кнопка «Go Live»?' }, opts: [{ uz: 'Yuqoridagi menyu qatorida', ru: 'В строке меню сверху' }, { uz: "Pastki ko'k chiziqda (status bar)", ru: 'На нижней синей полосе (status bar)' }, { uz: 'Explorer panelining ichida', ru: 'Внутри панели Explorer' }, { uz: "Sichqoncha o'ng tugma menyusida", ru: 'В меню правой кнопки мыши' }], correct: 1 },
+  { q: { uz: 'Live Server nima?', ru: 'Что такое Live Server?' }, opts: [{ uz: 'Rasm tahrirlaydigan kichik vosita', ru: 'Небольшой редактор картинок' }, { uz: 'Kodni saqlaydigan xotira turi', ru: 'Вид памяти для хранения кода' }, { uz: "Shriftlarni o'rnatadigan dastur", ru: 'Программа для установки шрифтов' }, { uz: 'Sahifani jonli ochadigan dastur', ru: 'Программа, открывающая страницу вживую' }], correct: 3 },
+  { q: { uz: '«Go Live» tugmasi VS Code oynasining qayerida turadi?', ru: 'Где в окне VS Code находится кнопка «Go Live»?' }, opts: [{ uz: 'Yuqoridagi menyu qatorida', ru: 'В строке меню сверху' }, { uz: "Pastdagi ko'k status bar chizig'ida", ru: 'На нижней синей полосе status bar' }, { uz: 'Explorer panelining ichida', ru: 'Внутри панели Explorer' }, { uz: "Sichqoncha o'ng tugma menyusida", ru: 'В меню правой кнопки мыши' }], correct: 1 },
   { q: { uz: '`127.0.0.1` manzili nimani bildiradi?', ru: 'Что означает адрес `127.0.0.1`?' }, opts: [{ uz: 'Internetdagi katta serverni', ru: 'Большой сервер в интернете' }, { uz: "Google'ning bosh sahifasini", ru: 'Главную страницу Google' }, { uz: "O'z kompyuteringizni", ru: 'Ваш собственный компьютер' }, { uz: 'Uydagi Wi-Fi routerni', ru: 'Домашний Wi-Fi роутер' }], correct: 2 },
-  { q: { uz: '`127.0.0.1:5500` dagi 5500 raqami nima?', ru: 'Что за число 5500 в `127.0.0.1:5500`?' }, opts: [{ uz: 'Port — server eshigining raqami', ru: 'Порт — номер двери сервера' }, { uz: 'Sahifadagi belgilar soni', ru: 'Число символов на странице' }, { uz: 'Koddagi qatorlar soni', ru: 'Число строк в коде' }, { uz: 'Kirish uchun parol raqami', ru: 'Числовой пароль для входа' }], correct: 0 },
+  { q: { uz: '`127.0.0.1:5500` dagi 5500 raqami nima?', ru: 'Что за число 5500 в `127.0.0.1:5500`?' }, opts: [{ uz: "Port, ya'ni eshik raqami", ru: 'Порт, то есть номер двери' }, { uz: 'Sahifadagi belgilar soni', ru: 'Число символов на странице' }, { uz: 'Koddagi qatorlar soni', ru: 'Число строк в коде' }, { uz: 'Kirish uchun parol raqami', ru: 'Числовой пароль для входа' }], correct: 0 },
   { q: { uz: "Bo'sh index.html'da tayyor HTML shablonni nima chiqaradi?", ru: 'Что выдаёт готовый HTML-шаблон в пустом index.html?' }, opts: ['`?` + Enter', '`#` + Space', '`*` + Shift', '`!` + Tab'], correct: 3 },
   { q: { uz: '`Ctrl + S` birikmasi nima qiladi?', ru: 'Что делает сочетание `Ctrl + S`?' }, opts: [{ uz: 'Faylni saqlaydi', ru: 'Сохраняет файл' }, { uz: "Faylni o'chiradi", ru: 'Удаляет файл' }, { uz: 'Yangi fayl ochadi', ru: 'Открывает новый файл' }, { uz: 'Kodni nusxalaydi', ru: 'Копирует код' }], correct: 0 },
   { q: { uz: "Yangi qo'shimcha dastur (extension) qayerdan o'rnatiladi?", ru: 'Откуда устанавливается новое дополнение (extension)?' }, opts: [{ uz: 'Explorer panelidan', ru: 'Из панели Explorer' }, { uz: 'Terminal panelidan', ru: 'Из панели Terminal' }, { uz: "Status bar'dagi tugmadan", ru: 'С кнопки на status bar' }, { uz: 'Extensions panelidan', ru: 'Из панели Extensions' }], correct: 3 },
@@ -3079,6 +3179,7 @@ export default function VsCodeLesson({ lang: langProp, onFinished, onPractice, l
   }
   const saved = savedRef.current;
   const [screen, setScreen] = useState(() => saved ? Math.min(Math.max(saved.screen || 0, 0), TOTAL_SCREENS - 1) : 0);
+  const [maxReached, setMaxReached] = useState(() => (saved ? Math.max(saved.maxReached || 0, saved.screen || 0) : 0)); // F-1012-03
   const [answers, setAnswers] = useState(() => (saved && saved.answers) || {});
   const [practice, setPractice] = useState(null);   // lokal overlay: { task, starter, done } yoki null
   const [mentorPractice, setMentorPractice] = useState(null); // jonli darsda mentor praktika paneli: { task, starter, fromScreen }
@@ -3203,7 +3304,7 @@ export default function VsCodeLesson({ lang: langProp, onFinished, onPractice, l
   const reset = () => { if (!firstPassRef.current) { firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1000) }; setFpPractice(true); } progClear(LESSON_META.lessonId); pracClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); setPractice(null); setMentorPractice(null); startTimeRef.current = Date.now(); };
   // F-0730-01: har o'zgarishda progress saqlanadi (screen + javoblar + nishonlar + boshlangan vaqt)
   useEffect(() => {
-    progWrite(LESSON_META.lessonId, { screen, answers, earned: [...earnedRef.current], missed: [...missedRef.current], firstPass: firstPassRef.current, startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
+    progWrite(LESSON_META.lessonId, { screen, maxReached, answers, earned: [...earnedRef.current], missed: [...missedRef.current], firstPass: firstPassRef.current, startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
   }, [screen, answers, earned, missed, fpPractice]);
 
   // Javob kaliti: inline testlar + jang savollari (QUIZ_BANK'dan) — mentor ochganda serverga yuklanadi
@@ -3211,6 +3312,8 @@ export default function VsCodeLesson({ lang: langProp, onFinished, onPractice, l
   const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken }); // liveToken — LMS'dan (avval null, keyin keladi)
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
+  // F-1012-03: eng uzoq yetilgan ekran (qayta boshlashda 0) — undan oldingi ekranlarda «Davom etish» qulflanmaydi
+  useEffect(() => { setMaxReached(m => (screen === 0 && !Object.keys(answers || {}).length) ? 0 : Math.max(m, screen)); }, [screen, answers]);
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);
   useEffect(() => { live.reportScreen(screen); }, [screen, live.mode, live.pin]); // eslint-disable-line
   // 🏅 Yakuniy ekranga yetganda: bitiruvchi nishoni
@@ -3243,7 +3346,7 @@ export default function VsCodeLesson({ lang: langProp, onFinished, onPractice, l
     if (typeof onFinished === 'function') onFinished(sealPayload(LESSON_META.lessonId, payload));
   };
 
-  const screens = [ScreenHook, ScreenGoal, ScreenInstall, ScreenTour, ScreenTest1, ScreenFolder, ScreenEmmet, ScreenLive, ScreenTest2, ScreenCardHtml, ScreenCardCss, ScreenTest3, ScreenKeys, ScreenFinalTest, ScreenFinale, ScreenDemoIdea, ScreenPodium, ScreenFlashcards, ScreenSummary];
+  const screens = [ScreenHook, ScreenGoal, ScreenInstall, ScreenTour, ScreenTest1, ScreenFolder, ScreenEmmet, ScreenLive, ScreenTest2, ScreenCardHtml, ScreenCardCss, ScreenTest3, ScreenKeys, ScreenAi, ScreenFinalTest, ScreenFinale, ScreenDemoIdea, ScreenPodium, ScreenFlashcards, ScreenSummary];
   const Current = screens[screen];
   return (
     <LangContext.Provider value={lang}>
@@ -3829,6 +3932,29 @@ export default function VsCodeLesson({ lang: langProp, onFinished, onPractice, l
         .ai-card { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; display: flex; flex-direction: column; gap: 11px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
         .ai-row { display: flex; align-items: center; gap: 9px; } .ai-badge { font-family: 'Manrope'; font-weight: 800; font-size: 11px; color: #fff; background: ${T.blue}; padding: 3px 9px; border-radius: 6px; } .ai-bubble { font-size: 13px; color: ${T.ink2}; }
         .ai-code { background: ${CODE.bg}; border-radius: 9px; padding: 10px 12px; display: flex; flex-direction: column; gap: 3px; }
+        /* F-1013 · 7-qadam «AI bilan»: prompt qutisi va Gemini maketlari (klass nomlari izohda backtiksiz) */
+        .aip-box { background: ${T.paper}; border-radius: 14px; padding: 14px 16px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.16); display: flex; flex-direction: column; gap: 10px; }
+        .aip-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .aip-kim { font-family: 'Manrope'; font-weight: 700; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: ${T.ink2}; }
+        .aip-copy { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.accent}; background: ${T.accentSoft}; border: none; border-radius: 8px; padding: 7px 12px; cursor: pointer; }
+        .aip-copy:hover { box-shadow: 0 6px 14px -6px rgba(255,79,40,0.45); }
+        .aip-lines { display: flex; flex-direction: column; gap: 6px; }
+        .aip-line { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 13px; line-height: 1.5; color: ${T.ink}; overflow-wrap: anywhere; }
+        .aip-joy { background: ${T.accentSoft}; color: ${T.accent}; border-radius: 5px; padding: 0 4px; font-weight: 700; }
+        .aim-site { display: flex; flex-direction: column; gap: 10px; padding: 12px 16px 14px; }
+        .aim-top { display: flex; align-items: center; justify-content: space-between; }
+        .aim-logo { font-family: 'Manrope'; font-weight: 800; font-size: 16px; color: ${T.ink}; }
+        .aim-kir { font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: #fff; background: ${T.blue}; border-radius: 99px; padding: 5px 14px; box-shadow: 0 0 0 3px ${T.accentSoft}, 0 0 0 5px ${T.accent}; }
+        .aim-salom { font-family: 'Manrope'; font-weight: 700; font-size: 18px; color: ${T.ink2}; text-align: center; margin: 6px 0 !important; }
+        .aim-input { display: flex; align-items: center; justify-content: space-between; border: 1.5px solid ${T.ink3}; border-radius: 99px; padding: 8px 8px 8px 14px; font-size: 13px; color: ${T.ink3}; }
+        .aim-send { font-style: normal; width: 26px; height: 26px; border-radius: 50%; background: ${T.ink}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; }
+        .aim-javob { display: flex; flex-direction: column; gap: 10px; }
+        .aim-blok { background: ${T.paper}; border-radius: 12px; overflow: hidden; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.16); }
+        .aim-blok-h { display: flex; justify-content: space-between; align-items: center; padding: 6px 12px; background: ${T.bg}; font-size: 12px; color: ${T.ink2}; }
+        .aim-copy { font-size: 15px; color: ${T.accent}; border-radius: 6px; padding: 0 5px; box-shadow: 0 0 0 2px ${T.accent}; }
+        .aim-kod { margin: 0; background: ${CODE.bg}; color: ${CODE.text}; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; line-height: 1.55; padding: 10px 12px; white-space: pre-wrap; overflow-wrap: anywhere; }
+        .aim-strelka { display: block; padding: 6px 12px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 600; color: ${T.success}; }
+        .aim-ixtiyoriy { margin: 4px 0 0 !important; font-size: 12.5px; line-height: 1.45; color: ${T.ink3}; }
         .ai-line { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 13px; color: ${CODE.text}; cursor: pointer; padding: 4px 7px; border-radius: 6px; transition: all 0.15s; } .ai-line:hover { background: rgba(255,255,255,0.06); } .ai-line .tg { color: ${CODE.tag}; }
         .ai-line.bad { background: rgba(255,79,40,0.16); box-shadow: inset 0 0 0 1px ${T.accent}; } .ai-line.ok { background: rgba(31,122,77,0.16); }
         .ai-prompt { font-size: 12px; color: ${T.ink3}; margin: 0; font-style: italic; } .note-h { font-weight: 700; font-size: 13px; margin: 0 0 4px; }
@@ -4561,7 +4687,7 @@ export default function VsCodeLesson({ lang: langProp, onFinished, onPractice, l
           .kcap-card:not(.seen), .cd-hot:not(.cd-seen), .vc-anim .vcard, .vc-anim .vc-a1, .vc-anim .vc-a2, .vc-anim .vc-a3 { animation: none !important; opacity: 1; }
         }
       `}</style>
-      <LiveGateCtx.Provider value={{ locked, live }}>
+      <LiveGateCtx.Provider value={{ locked, live, passed: screen < maxReached }}>
         <AchCtx.Provider value={earned}>
         <AchMissCtx.Provider value={achMissVal}>
         <div className="lesson-root">

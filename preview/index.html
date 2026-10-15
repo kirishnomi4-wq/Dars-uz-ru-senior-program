@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>LMS preview · simulyator</title>
+    <!--
+      Faqat ISHLAB CHIQISH uchun (vite dev), F-1015. LMS'ning /preview sahifasi o'rnida turadi
+      (kontrakt: jsx_preview_mode_backend_contract.md §2.1–2.2): YIG'ILGAN dars faylini (build-lms) ochadi
+      va unga visitMode="preview", har ochilishda yangi previewRunId, liveToken=null, bo'sh onFinished beradi.
+        /preview/?jsx=/node_modules/.cache/lms-preview/InternetLesson.jsx&visit_mode=preview
+      Yig'ish:  LMS_OUT_DIR=node_modules/.cache/lms-preview node scripts/build-lms.mjs <dars>
+      Sinov:    node scripts/e2e-preview.mjs
+    -->
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/preview/main.jsx"></script>
+  </body>
+</html>

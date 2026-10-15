@@ -3,6 +3,7 @@
 // Sahifa yopilayotganda (pagehide / yashirin) kutilayotgan yozuv keepalive bilan darhol ketadi.
 // localStorage yozuvi (kesh) o'zgarishsiz qoladi — server yo'q bo'lsa ham dars ishlayveradi.
 import { progressPut, setProgWriteHook } from './liveClient.js';
+import { isPreview } from './previewMode.js';
 import { noteEarned } from './resultDetails.js';
 
 const DEBOUNCE_MS = 2000;
@@ -18,7 +19,7 @@ const channels = new Map();
 export function setProgressChannel(lessonId, ch) {
   const prev = channels.get(lessonId);
   if (prev) { clearTimeout(prev.timer); flush(lessonId, { keepalive: true }); }
-  if (!ch) { channels.delete(lessonId); return; }
+  if (!ch || isPreview()) { channels.delete(lessonId); return; } // F-1015: preview'da server-progress kanali ochilmaydi
   channels.set(lessonId, { ...ch, timer: null, pending: null, inFlight: false });
 }
 

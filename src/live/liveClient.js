@@ -1,4 +1,5 @@
 import { noteProgressCleared } from './resultDetails.js'; // F-0924-20 (resultDetails faqat i18n import qiladi — sikl yo'q)
+import { isPreview } from './previewMode.js';
 // Jonli-dars mijozi — toza fetch, kutubxonasiz. Server: dars-api (server/), Supabase o'rnini bosadi.
 // URL bundler'dan keladi (vite/esbuild `define` → __DARS_API_URL__); berilmasa PROD (LMS serveri, Kristina 2026-09-08).
 // Staging: DARS_API_URL=https://staging-dars-api.coddycamp.uz (build-lms / vite). Lokal: http://127.0.0.1:3001.
@@ -24,6 +25,12 @@ const API = `${LIVE_API_URL}/api/v1/live`;
 
 // Server har xatoni { error, message } shaklida beradi; `message` o'quvchiga ko'rsatiladi
 // (masalan «Bu ism band — boshqa ism tanlang»). Shakl buzilsa — umumiy xabar.
+// F-1015: preview'da dars-api'ga so'rov chiqmaydi — ikkinchi himoya qatlami (hook preview'da baribir chaqirmaydi)
+function net(url, init) {
+  if (isPreview()) { const e = new Error('preview: dars-api yopiq'); e.code = 'preview_offline'; return Promise.reject(e); }
+  return fetch(url, init);
+}
+
 async function errorFrom(r, fallback) {
   let msg = '';
   try { msg = (await r.json()).message || ''; } catch { /* JSON emas */ }
@@ -37,7 +44,7 @@ async function errorFrom(r, fallback) {
 
 /** POST /rpc/<fn> — setof → massiv, scalar → qiymat, void → null (204). */
 export async function liveRpc(fn, body) {
-  const r = await fetch(`${API}/rpc/${fn}`, {
+  const r = await net(`${API}/rpc/${fn}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body || {}),
@@ -50,14 +57,14 @@ export async function liveRpc(fn, body) {
 
 /** Sessiya qatori; yo'q bo'lsa null (404). Brauzer ETag/304 ni o'zi hal qiladi (cache-control: no-cache). */
 export async function liveGet(pin) {
-  const r = await fetch(`${API}/session/${encodeURIComponent(pin)}`);
+  const r = await net(`${API}/session/${encodeURIComponent(pin)}`);
   if (r.status === 404) return null;
   if (!r.ok) throw new Error(`get: ${r.status}`);
   return r.json();
 }
 
 async function liveList(url) {
-  const r = await fetch(url);
+  const r = await net(url);
   if (!r.ok) throw new Error(`list: ${r.status}`);
   return r.json();
 }
@@ -69,7 +76,7 @@ export const liveQuizAnswers = (pin) => liveList(`${API}/answers/${encodeURIComp
 
 // ---- LMS-ko'prik: liveToken (LMS bergan JWT) bilan kirish. Token faqat Authorization sarlavhasida, hech qayerda saqlanmaydi.
 async function lmsFetch(method, url, liveToken, body) {
-  const r = await fetch(url, {
+  const r = await net(url, {
     method,
     headers: { Authorization: `Bearer ${liveToken}`, ...(body ? { 'Content-Type': 'application/json' } : {}) },
     body: body ? JSON.stringify(body) : undefined,
@@ -92,7 +99,7 @@ export const lmsMe = (liveToken, lessonId) => lmsFetch('GET', `${LIVE_API_URL}/a
 export const lmsRestart = (liveToken, lessonId) => lmsFetch('POST', `${LIVE_API_URL}/api/v1/lms/restart`, liveToken, { lesson_id: lessonId });
 /** PUT /me/progress — server-progress (progressSync.js chaqiradi). keepalive: sahifa yopilayotganda ham yetib borsin. */
 export async function progressPut(liveToken, body, { keepalive = false } = {}) {
-  const r = await fetch(`${LIVE_API_URL}/api/v1/me/progress`, {
+  const r = await net(`${LIVE_API_URL}/api/v1/me/progress`, {
     method: 'PUT',
     headers: { Authorization: `Bearer ${liveToken}`, 'Content-Type': 'application/json' },
     body: JSON.stringify(body),

@@ -302,7 +302,7 @@ export function formatHtml(src) {
 //  AVTO-YIG'ILGAN — QO'LDA TAHRIRLAMANG. Manba: src/compilator/teg-xaritasi.json (odam o'qiydigani: feedback/F-0929-LMS-yuklash/TEG_XARITASI.md)
 //  Qayta yig'ish: node scripts/gen-teg-royxat.mjs · Darvoza: node scripts/lint-teg-royxat.mjs
 //  Har teg `dars` bilan: `stage` berilgan darsda faqat o'sha darsgacha o'tilganlari chiqadi (Q2).
-const TEG_TARTIB = ["m1-01","m1-02","m1-03","m1-04","m1-14","m1-05","m1-06","m1-07","m1-08","m1-15","m1-10","m1-09","m1-11","m1-12","m1-13","m2-01","m2-02","m2-03","m2-04","m2-05","m2-06","m2-07","m2-08","m2-09","m2-10","m2-11","m2-12","m2-13","m2-14","m2-15","m2-16","m3-*","m4-*","m4a-*","m4b-*","m4c-*"];
+const TEG_TARTIB = ["m1-01","m1-02","m1-03","m1-04","m1-14","m1-05","m1-06","m1-07","m1-15","m1-08","m1-10","m1-09","m1-11","m1-12","m1-13","m2-01","m2-02","m2-03","m2-04","m2-05","m2-06","m2-07","m2-08","m2-09","m2-10","m2-11","m2-12","m2-13","m2-14","m2-15","m2-16","m3-*","m4-*","m4a-*","m4b-*","m4c-*"];
 const BOSQICH = {"_izoh":"Qaysi darsdan qaysi imkoniyat ochiladi (Q5). Dars kompilyatorga `stage` bermasa — hammasi ochiq (2-Moduldan boshlab).","emmet":"m1-15","class_id_qisqartma":"m1-06","css_maslahat":"m1-06","js_maslahat":"m2-02"};
 const TAG_MENU_ALL = [
   { t: "h1", dars: "m1-03", matn: true, d: {"uz":"eng katta sarlavha","ru":"самый большой заголовок"} },
@@ -1175,6 +1175,21 @@ document.addEventListener('error',function(e){
 },true);
 <\/script>`;
 
+// F-1013 (m1-08 pilot): <base target="_blank"> sababli shu sahifadagi «#bo'lim» havolasi ham yangi (bo'sh) oynada ochilardi —
+// endi faqat «#…» havola natija oynasining o'zida bo'limga tushadi; boshqa havolalar avvalgidek yangi oynada. Faqat ko'rinadigan preview'da.
+const ANCHOR_NAV = `<script>
+document.addEventListener('click',function(e){
+  var a=e.target&&e.target.closest?e.target.closest('a[href^="#"]'):null;
+  if(!a)return;
+  e.preventDefault();
+  var id=a.getAttribute('href').slice(1),el=null;
+  try{id=decodeURIComponent(id)}catch(_){}
+  if(id)el=document.getElementById(id);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  else if(!id)window.scrollTo({top:0,behavior:'smooth'});
+},true);
+<\/script>`;
+
 const wrapDoc = (html, css, js, opts = {}) => {
   // K-C-09: o'quvchi kodi hujjatning QAYSI satridan boshlanishi aniq hisoblanadi (prefiksdagi
   // `\n` soni — CSS/HTML uzunligiga qarab o'zgaradi) va CONSOLE_FORWARD'ga uzatiladi.
@@ -1191,6 +1206,7 @@ ${css || ''}</style>
 ${opts.harness || '' /* K-C-11: capture+probes bitta skript, o'quvchi kodidan OLDIN (head) */}
 ${opts.consoleNonce != null ? CONSOLE_FORWARD(opts.consoleNonce, pos) : ''}
 ${opts.harness ? '' : IMG_FALLBACK() /* faqat KO'RINADIGAN preview; tekshiruv-hujjati toza qoladi */}
+${opts.harness ? '' : ANCHOR_NAV}
 </head>
 <body>
 `;

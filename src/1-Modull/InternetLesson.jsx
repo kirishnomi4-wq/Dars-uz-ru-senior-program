@@ -312,7 +312,7 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
   );
 };
 const NavBack = ({ onPrev }) => <button className="btn-ghost" onClick={onPrev} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Orqaga', ru: 'Назад' })}</button>;
-const NavNext = ({ disabled, label = { uz: 'Davom etish', ru: 'Продолжить' }, onClick, optionalLive }) => {
+const NavNext = ({ disabled, label = { uz: 'Davom etish', ru: 'Продолжить' }, onClick, optionalLive, mentorLock }) => {
   const gate = useContext(LiveGateCtx);
   const locked = !!(gate && gate.locked); // jonli darsda mentordan oldinga o'tib bo'lmaydi
   // optionalLive: animatsiya-mashq sahifalari. Jonli dars DAVOMIDA (o'quvchi hali ozod
@@ -320,7 +320,9 @@ const NavNext = ({ disabled, label = { uz: 'Davom etish', ru: 'Продолжи�
   // qolmasin. Erkin rejimda (ended / mentor uzilgan / self) yana MAJBURIY bo'ladi.
   // Testlar va 16-sahifa (IP-o'yin) optionalLive bermaydi — ular doim majburiy.
   const live = gate && gate.live;
-  const freeRide = !!(optionalLive && live && live.mode === 'student' && live.status !== 'ended' && live.mentorAlive);
+  // F-1012: mentor (jonli dars va LMS preview) topshiriqqa qulflanmaydi; o'quvchi allaqachon o'tgan ekranga qaytsa ham qulf yo'q
+  // F-1013-02: test ekrani (mentorLock) — mentor avval «Natijani ochish» bosadi, keyin o'tadi (odatiy tartib saqlanadi)
+  const freeRide = !!((optionalLive && live && live.mode === 'student' && live.status !== 'ended' && live.mentorAlive) || (live && live.mode === 'mentor' && !mentorLock) || (gate && gate.passed));
   return <button data-tour="next" className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? tr({ uz: 'Mentor hali bu sahifaga o\'tmadi', ru: 'Ментор ещё не перешёл на эту страницу' }) : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : (freeRide && disabled ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr(label))}</button>;
 };
 
@@ -387,7 +389,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
   const revealed = !oneShot || !!(live && (live.revealScreen === screen || (live.mentorMax ?? live.mentorScreen) > screen || live.status === 'ended' || !live.mentorAlive));
   const waiting = oneShot && solved && !revealed; // javob qotdi — natija mentordan kutilmoqda
   return (
-    <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval natijani oching', ru: 'Сначала откройте результат' }) : solved ? { uz: 'Davom etish', ru: 'Продолжить' } : (oneShot ? { uz: 'Javob tanlang', ru: 'Выберите ответ' } : { uz: "To'g'ri javobni toping", ru: 'Найдите правильный ответ' })} onClick={onNext} /></>}>
+    <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext mentorLock disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval natijani oching', ru: 'Сначала откройте результат' }) : solved ? { uz: 'Davom etish', ru: 'Продолжить' } : (oneShot ? { uz: 'Javob tanlang', ru: 'Выберите ответ' } : { uz: "To'g'ri javobni toping", ru: 'Найдите правильный ответ' })} onClick={onNext} /></>}>
       <div className="screen" style={{ justifyContent: 'flex-start', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{tr(question)}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: '⚡ Jonli dars — bitta urinish, o\'ylab bosing!', ru: '⚡ Живой урок — одна попытка, думайте перед выбором!' })}</p>}
@@ -2708,7 +2710,8 @@ function DragDropOrder({ items, hints, onSolved, onWrong }) {
     if (typeof from === 'number') ns[from] = null;
     ns[slotIdx] = id;
     let np = from === 'pool' ? pool.filter(x => x !== id) : pool.slice();
-    if (occ) np = [...np, occ];
+    // F-0922-54 / F-1012-04: o'z katagiga qayta tashlanganda occ = shu kartaning o'zi — poolga qaytarilmaydi (nusxa chiqmasin)
+    if (occ && occ !== id) np = [...np, occ];
     return { pool: np, slots: ns };
   });
   const toPool = (slotIdx) => setSt(({ pool, slots }) => {
@@ -3016,6 +3019,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
   }
   const saved = savedRef.current;
   const [screen, setScreen] = useState(() => saved ? Math.min(Math.max(saved.screen || 0, 0), TOTAL_SCREENS - 1) : 0);
+  const [maxReached, setMaxReached] = useState(() => (saved ? Math.max(saved.maxReached || 0, saved.screen || 0) : 0)); // F-1012-03
   const [answers, setAnswers] = useState(() => (saved && saved.answers) || {});
   const startTimeRef = useRef(saved?.startedAt || Date.now());
   // 🏅 Nishonlar
@@ -3081,7 +3085,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
   };
   // F-0730-01: har o'zgarishda progress saqlanadi (screen + javoblar + nishonlar + boshlangan vaqt)
   useEffect(() => {
-    progWrite(LESSON_META.lessonId, { screen, answers, earned: [...earnedRef.current], missed: [...missedRef.current], firstPass: firstPassRef.current, startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
+    progWrite(LESSON_META.lessonId, { screen, maxReached, answers, earned: [...earnedRef.current], missed: [...missedRef.current], firstPass: firstPassRef.current, startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
   }, [screen, answers, earned, missed, practice]);
 
   // Jonli dars: o'quvchi mentordan oldinga o'tolmaydi (high-water mark)
@@ -3090,6 +3094,8 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
   const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken }); // liveToken — LMS'dan (avval null, keyin keladi)
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
+  // F-1012-03: eng uzoq yetilgan ekran (qayta boshlashda 0) — undan oldingi ekranlarda «Davom etish» qulflanmaydi
+  useEffect(() => { setMaxReached(m => (screen === 0 && !Object.keys(answers || {}).length) ? 0 : Math.max(m, screen)); }, [screen, answers]);
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);
   // Mentor: har sahifa almashganda o'z holatini e'lon qiladi
   useEffect(() => { live.reportScreen(screen); }, [screen, live.mode, live.pin]); // eslint-disable-line
@@ -4488,7 +4494,7 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         @media (hover: none) { .live-badge { opacity: 0.62; } }
 
       `}</style>
-      <LiveGateCtx.Provider value={{ locked, live }}>
+      <LiveGateCtx.Provider value={{ locked, live, passed: screen < maxReached }}>
         <AchCtx.Provider value={earned}>
         <AchMissCtx.Provider value={achMissVal}>
         <div className="lesson-root">

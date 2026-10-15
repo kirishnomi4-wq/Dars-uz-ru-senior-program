@@ -44,6 +44,7 @@ export function LiveGate({ live, title = 'Jonli dars' }) {
   const link = { background: 'none', border: 'none', color: LT.ink3, fontSize: 13, cursor: 'pointer', alignSelf: 'center' };
   const lms = live.lms || { state: 'idle' };
   const [pinFallback, setPinFallback] = useState(false); // LMS-tanlovdan «kod bilan kiraman»ga o'tish
+  if (live.preview) return null; // F-1015: preview'da PIN-oyna yo'q (AC-07) — rejim 'self', bu yerga normal yetib kelmaydi
 
   // LMS orqali avto-kirish ketmoqda — kutish kartasi (token kelib, server javob berguncha)
   if (lms.state === 'joining' || (live.hasLmsToken && lms.state === 'idle')) {
@@ -109,6 +110,8 @@ export function LiveBadge({ live, total }) {
     tick();
     return () => { on = false; clearTimeout(t); };
   }, [live.mode, live.pin, live.ended]);
+  // F-1015: «Bilimlar bazasi» preview — o'qituvchi paneli yo'q, faqat shu kichik belgi
+  if (live.preview) return <div data-tour="live" data-live="badge-preview" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> {tr({ uz: "Oldindan ko'rish", ru: 'Предпросмотр' })}</div>;
   if (live.mode === 'mentor') {
     if (live.ended) return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> {tr({ uz: '🔓 O\'quvchilar erkin qilindi', ru: '🔓 Ученики отпущены' })}</div>;
     return (<>

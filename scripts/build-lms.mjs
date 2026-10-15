@@ -30,8 +30,9 @@
 // ============================================================
 import { build } from 'esbuild';
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, statSync } from 'node:fs';
-import { join, basename } from 'node:path';
+import { join, basename, resolve, dirname } from 'node:path';
 import { mergeReactImports } from './react-merge.mjs';
+import { createHash } from 'node:crypto';
 
 const OUT_DIR = process.env.LMS_OUT_DIR || 'lms'; // LMS_OUT_DIR — mashq/sinov uchun boshqa papka (lms/ ga tegmasdan)
 // ── Modul → LMS papkasi (2026-08-25) ────────────────────────────────────────
@@ -77,10 +78,35 @@ function findLessons() {
 
 // ── Bitta darsni yig'ish ────────────────────────────────────────────────────
 // sharedSpec berilsa — kompilyator bundle'ga KIRMAYDI: importi <spec> bo'lib qoladi.
-async function one(entry, sharedSpec) {
-  const name = basename(entry);
+// F-1015 (LMS preview): dars proplari (visitMode, previewRunId) umumiy modulga yetib borishi uchun
+// default eksport kichik o'ram bilan yig'iladi — dars manbasi o'zgarmaydi. visitMode bo'lmasa o'ram
+// hech narsa qilmaydi: proplar darsga o'z holicha uzatiladi.
+const PREVIEW_MODULE = resolve('src/live/previewMode.js');
+const entryWrapper = (abs) =>
+  `import { createElement as __ccEl } from 'react';\n` +
+  `import __CcLesson from ${JSON.stringify(abs)};\n` +
+  `import { notePreviewProps as __ccNotePreview } from ${JSON.stringify(PREVIEW_MODULE)};\n` +
+  `export * from ${JSON.stringify(abs)};\n` +
+  `export default function CcLessonEntry(props) { __ccNotePreview(props); return __ccEl(__CcLesson, props); }\n`;
+
+// --as (F-1015, reliz): dars boshqa joydagi NUSXADAN yig'iladi (masalan arxiv/…/CssPractice.jsx), lekin xuddi `asPath`
+// joyida turgandek: nisbiy importlar (../live, ../compilator) o'sha papkadan, chiqish nomi va OUT_MAP — `asPath` bo'yicha.
+// Manba fayl o'zgarmaydi; bannerda haqiqiy manba va md5 yoziladi.
+async function one(entry, sharedSpec, asPath = null) {
+  const name = basename(asPath || entry);
+  const abs = resolve(entry);
+  const asDir = asPath ? dirname(resolve(asPath)) : null;
+  const md5 = asPath ? createHash('md5').update(readFileSync(abs)).digest('hex') : null;
+  const asPlugin = asPath ? [{
+    name: 'as-path',
+    setup(b) {
+      const re = new RegExp('^' + abs.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '$');
+      b.onLoad({ filter: re }, () => ({ contents: readFileSync(abs, 'utf8'), loader: 'jsx', resolveDir: asDir }));
+    },
+  }] : [];
   const res = await build({
-    entryPoints: [entry],
+    // sourcefile darsning o'z nomi bo'lmasin — aks holda esbuild importni o'ramning o'ziga ulaydi (cheksiz chizish)
+    stdin: { contents: entryWrapper(abs), loader: 'js', resolveDir: dirname(abs), sourcefile: `lms-entry:${name}` },
     bundle: true,
     format: 'esm',
     jsx: 'preserve',            // JSX chiqishda SAQLANADI — LMS o'zi kompilyatsiya qiladi
@@ -92,31 +118,31 @@ async function one(entry, sharedSpec) {
     legalComments: 'inline',
     write: false,               // birlashtirishdan keyin o'zimiz yozamiz
     logLevel: 'silent',
-    plugins: sharedSpec ? [{
+    plugins: [...asPlugin, ...(sharedSpec ? [{
       name: 'shared-compiler',
       setup(b) {
         // Kompilyatorga ishora qilgan har qanday import → tashqi <spec>
         b.onResolve({ filter: /compilator[\\/]HtmlCompiler/ }, () => ({ path: sharedSpec, external: true }));
       },
-    }] : [],
+    }] : [])],
   });
 
   const usesCompiler = /from\s+['"][^'"]*compilator\/HtmlCompiler/.test(readFileSync(entry, 'utf8'));
   const banner =
     '// ============================================================\n' +
     '//  AVTO-YIG\'ILGAN FAYL — QO\'LDA TAHRIRLAMANG.\n' +
-    `//  Manba:  ${entry.replace(/\\/g, '/')}\n` +
+    `//  Manba:  ${entry.replace(/\\/g, '/')}${asPath ? ` (md5 ${md5}) — ${asPath} o'rnida (--as)` : ''}\n` +
     (sharedSpec
       ? `//  Kompilyator: TASHQI MODUL — ${sharedSpec}\n` +
-        `//  Qayta yig'ish:  node scripts/build-lms.mjs --shared ${sharedSpec} ${entry.replace(/\\/g, '/')}\n`
+        `//  Qayta yig'ish:  node scripts/build-lms.mjs --shared ${sharedSpec} ${entry.replace(/\\/g, '/')}${asPath ? ` --as ${asPath}` : ''}\n`
       : (usesCompiler ? `//          ${COMPILER}\n` : `//  Kompilyator: yo'q (dars uni import qilmaydi)\n`) +
-        `//  Qayta yig'ish:  node scripts/build-lms.mjs ${entry.replace(/\\/g, '/')}\n`) +
+        `//  Qayta yig'ish:  node scripts/build-lms.mjs ${entry.replace(/\\/g, '/')}${asPath ? ` --as ${asPath}` : ''}\n`) +
     '//  Tahrir MANBAGA kiritiladi, keyin shu buyruq qayta yuriladi.\n' +
     '// ============================================================\n';
 
   const merged = mergeReactImports(res.outputFiles[0].text);
   const outName = sharedSpec ? name.replace(/\.jsx$/, '.shared.jsx') : name;
-  const dir = outDirFor(entry);
+  const dir = outDirFor(asPath || entry);
   mkdirSync(dir, { recursive: true });
   const outPath = join(dir, outName);
   writeFileSync(outPath, banner + merged, 'utf8');
@@ -133,7 +159,14 @@ const sharedSpec = sharedIdx !== -1 ? rawArgs[sharedIdx + 1] : null;
 if (sharedIdx !== -1 && !sharedSpec) { console.log(`${RED}--shared dan keyin modul manzili/nomi kerak${R}`); process.exit(1); }
 // (bug tuzatildi 2026-08-17: `--shared`siz rejimda `i !== sharedIdx + 1` = `i !== 0` birinchi nishonni yeb qo'yardi → hamma dars yig'ilardi)
 const args = sharedIdx === -1 ? rawArgs : rawArgs.filter((a, i) => i !== sharedIdx && i !== sharedIdx + 1);
-const targets = args.length ? args.map((a) => a.replace(/\\/g, '/')) : findLessons();
+// `<fayl> --as <src-yo'l>` juftligi: oldingi fayl shu yo'l o'rnida yig'iladi
+const AS = new Map();
+const plain = [];
+for (let i = 0; i < args.length; i++) {
+  if (args[i] === '--as') { if (!plain.length || !args[i + 1]) { console.log(`${RED}--as <fayl> dan keyin keladi va yo'l kerak${R}`); process.exit(1); } AS.set(plain[plain.length - 1], args[i + 1].replace(/\\/g, '/')); i++; continue; }
+  plain.push(args[i].replace(/\\/g, '/'));
+}
+const targets = plain.length ? plain : findLessons();
 
 if (!targets.length) { console.log(`${RED}Yig'iladigan dars topilmadi${R}`); process.exit(1); }
 mkdirSync(OUT_DIR, { recursive: true });
@@ -142,7 +175,7 @@ console.log(`${B}LMS uchun yig'ilmoqda${R} ${DIM}(${targets.length} ta dars → 
 let bad = 0;
 for (const t of targets) {
   try {
-    const r = await one(t, sharedSpec);
+    const r = await one(t, sharedSpec, AS.get(t) || null);
     console.log(`  ${GRN}✓${R} ${r.name.padEnd(26)} ${String(r.lines).padStart(5)} qator  ${String(r.kb).padStart(4)} KB  ${DIM}${r.imports} import${R}`);
   } catch (e) {
     bad++;

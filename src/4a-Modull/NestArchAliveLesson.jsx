@@ -7,7 +7,8 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 //         restoran binosini (fayl xaritasi) o'rganish va BUYURTMA YO'LINI O'ZI YIG'ISH.
 // Repo: https://github.com/Azizbekcrypto/IntroNestArxitechture
 // 🍽️ BIRLASHTIRUVCHI DUNYO — RESTORAN (3 darsga yagona lug'at):
-//   Guard = 🛡️ eshik qo'riqchisi · Controller = 🤵 ofitsiant · ValidationPipe+DTO = 🧐 nazoratchi + 📋 anketa
+//   Guard = 🛡️ eshik qo'riqchisi · ValidationPipe+DTO = 🧐 nazoratchi + 📋 anketa · Controller = 🤵 ofitsiant
+//   (F-1012-01: NestJS tartibi — Guard → Pipe → Controller handler → Service; nazoratchi ofitsiantdan OLDIN)
 //   Service = 👨‍🍳 oshpaz · BaseService = 📖 retsept kitobi · Repository = 📦 omborchi · PostgreSQL = 🗄️ ombor
 //   Entity = 📐 javon chizmasi · Module = 📑 shtat jadvali · successRes = 🍽️ bir xil lagan · AppModule.imports = 🪧 kirish taxtasi
 // INTERAKTIV BEAT'lar: s9 «Buyurtma yo'li» (drag + 3 mijoz) · s14 aktiv shtat jadvali (DI) ·
@@ -224,11 +225,13 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
   );
 };
 const NavBack = ({ onPrev }) => <button className="btn-ghost" onClick={onPrev} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Orqaga', ru: 'Назад' })}</button>;
-const NavNext = ({ disabled, label = { uz: 'Davom etish', ru: 'Продолжить' }, onClick, optionalLive }) => {
+const NavNext = ({ disabled, label = { uz: 'Davom etish', ru: 'Продолжить' }, onClick, optionalLive, mentorLock }) => {
   const gate = useContext(LiveGateCtx);
   const locked = !!(gate && gate.locked);
   const live = gate && gate.live;
-  const freeRide = !!(optionalLive && live && live.mode === 'student' && live.status !== 'ended' && live.mentorAlive);
+  // F-1012: mentor (jonli dars va LMS preview) topshiriqqa qulflanmaydi; o'quvchi allaqachon o'tgan ekranga qaytsa ham qulf yo'q
+  // F-1013-02: test ekrani (mentorLock) — mentor avval «Natijani ochish» bosadi, keyin o'tadi (odatiy tartib saqlanadi)
+  const freeRide = !!((optionalLive && live && live.mode === 'student' && live.status !== 'ended' && live.mentorAlive) || (live && live.mode === 'mentor' && !mentorLock) || (gate && gate.passed));
   return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? tr({ uz: "Mentor hali bu sahifaga o'tmadi", ru: 'Ментор ещё не перешёл на эту страницу' }) : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : (freeRide && disabled ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr(label))}</button>;
 };
 
@@ -483,7 +486,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
   const revealed = !oneShot || !!(live && (live.revealScreen === screen || (live.mentorMax ?? live.mentorScreen) > screen || live.status === 'ended' || !live.mentorAlive));
   const waiting = oneShot && solved && !revealed; // javob qotdi — natija mentordan kutilmoqda
   return (
-    <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' })) : solved ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (oneShot ? tr({ uz: 'Javob tanlang', ru: 'Выберите ответ' }) : tr({ uz: "To'g'ri javobni toping", ru: 'Найдите правильный ответ' }))} onClick={onNext} /></>}>
+    <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : undefined} navContent={<><NavBack onPrev={onPrev} /><NavNext mentorLock disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' })) : solved ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (oneShot ? tr({ uz: 'Javob tanlang', ru: 'Выберите ответ' }) : tr({ uz: "To'g'ri javobni toping", ru: 'Найдите правильный ответ' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ justifyContent: 'flex-start', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, подумайте перед нажатием!' })}</p>}
@@ -642,13 +645,13 @@ const ZONES = {
 };
 const STATIONS = [
   { k: 'guard',     z: 'hall',  icon: '🛡️', name: { uz: "Eshik qo'riqchisi", ru: 'Охранник у входа' }, code: 'Guard',                 d: { uz: "Odamni umuman kiritadimi? Klub kartasi (token) bormi — yo'q bo'lsa 401.", ru: 'Пускать ли человека вообще? Есть ли клубная карта (токен) — если нет, 401.' } },
-  { k: 'waiter',    z: 'hall',  icon: '🤵',   name: { uz: 'Ofitsiant', ru: 'Официант' },          code: 'Controller',            d: { uz: "Tashqi dunyo bilan yagona gaplashuvchi. @Get / @Post — uning eshiklari.", ru: 'Единственный, кто говорит с внешним миром. @Get / @Post — его двери.' } },
   { k: 'inspector', z: 'hall',  icon: '🧐',   name: { uz: 'Nazoratchi + anketa', ru: 'Контролёр + анкета' }, code: 'ValidationPipe + DTO', d: { uz: "Anketa to'g'ri to'ldirilganmi? Noto'g'ri bo'lsa — 400, ichkariga kiritmaydi.", ru: 'Правильно ли заполнена анкета? Если нет — 400, внутрь не пропустит.' } },
+  { k: 'waiter',    z: 'hall',  icon: '🤵',   name: { uz: 'Ofitsiant', ru: 'Официант' },          code: 'Controller',            d: { uz: "Tashqi dunyo bilan yagona gaplashuvchi. @Get / @Post — uning eshiklari.", ru: 'Единственный, кто говорит с внешним миром. @Get / @Post — его двери.' } },
   { k: 'chef',      z: 'kitch', icon: '👨‍🍳', name: { uz: 'Oshpaz + retsept kitobi', ru: 'Повар + книга рецептов' }, code: 'Service + BaseService', d: { uz: "Yagona harakat qiluvchi: parolni shifrlaydi, retsept kitobidagi tayyor qadamni bajaradi.", ru: 'Единственный, кто действует: шифрует пароль, выполняет готовый шаг из книги рецептов.' } },
   { k: 'store',     z: 'store', icon: '🗄️', name: { uz: 'Ombor + omborchi', ru: 'Склад + кладовщик' },    code: 'PostgreSQL + Repository', d: { uz: "Oshpaz omborga o'zi kirmaydi — omborchiga aytadi, u javon chizmasi bo'yicha qo'yadi.", ru: 'Повар сам на склад не ходит — говорит кладовщику, а тот кладёт всё по чертежу стеллажа.' } },
   { k: 'tray',      z: 'hall',  icon: '🍽️', name: { uz: 'Bir xil lagan', ru: 'Одинаковый поднос' },       code: 'successRes',            d: { uz: "Har taom bir xil idishda chiqadi: { statusCode, message, data }.", ru: 'Каждое блюдо выносят в одинаковой посуде: { statusCode, message, data }.' } }
 ];
-const ROUTE = ['guard', 'waiter', 'inspector', 'chef', 'store', 'tray'];
+const ROUTE = ['guard', 'inspector', 'waiter', 'chef', 'store', 'tray']; // F-1012-01: Pipe (nazoratchi) Controller'dan (ofitsiant) oldin
 const ST_BY_K = Object.fromEntries(STATIONS.map(s => [s.k, s]));
 const CUSTOMERS = [
   { id: 'ok',      icon: '🟢', label: { uz: "To'g'ri mijoz", ru: 'Правильный клиент' },   req: "POST /admin · token ✓ · { username: 'ali', password: 'Aa1!xyz' }", token: true,  valid: true },
@@ -657,7 +660,7 @@ const CUSTOMERS = [
 ];
 // Bir yo'l — uch taqdir. Har bekat o'z shartini tekshiradi; xato tartibda AYNAN o'sha bekatda yiqiladi.
 function runPath(slots, c) {
-  const st = { auth: false, valid: false, cooked: false, saved: false };
+  const st = { auth: false, valid: false, taken: false, cooked: false, saved: false };
   for (let i = 0; i < slots.length; i++) {
     const k = slots[i];
     if (k === 'guard') {
@@ -666,9 +669,14 @@ function runPath(slots, c) {
     } else if (k === 'inspector') {
       if (!c.valid) return { at: i, code: '400', expected: !st.cooked, msg: st.cooked ? { uz: "Nazoratchi KECH tekshirdi — oshpaz bo'sh anketa bo'yicha taom pishirib bo'lgan.", ru: 'Контролёр проверил СЛИШКОМ ПОЗДНО — повар уже приготовил блюдо по пустой анкете.' } : { uz: "Nazoratchi anketani rad etdi: username bo'sh. Iflos ma'lumot omborgacha bormadi.", ru: 'Контролёр отклонил анкету: username пустой. Грязные данные до склада не дошли.' } };
       st.valid = true;
+    } else if (k === 'waiter') {
+      // F-1012-01: ofitsiant (Controller) faqat tekshirilgan anketani oladi — nazoratchi undan keyin tursa, tartib xato
+      if (!st.valid) return { at: i, code: '500', expected: false, msg: { uz: "Ofitsiant tekshirilmagan anketani oshxonaga olib ketdi — nazoratchi undan oldin turishi kerak.", ru: 'Официант унёс на кухню непроверенную анкету — контролёр должен стоять перед ним.' } };
+      st.taken = true;
     } else if (k === 'chef') {
       if (!st.auth) return { at: i, code: '401', expected: false, msg: { uz: "Oshpaz tekshirilmagan odamga taom pishiryapti — qo'riqchi hali eshikda emas, kartani hech kim ko'rmadi!", ru: 'Повар готовит блюдо непроверенному человеку — охранник ещё не стоит у двери, карту никто не посмотрел!' } };
       if (!st.valid) return { at: i, code: '500', expected: false, msg: { uz: "Oshpaz tekshirilmagan anketa bilan ishladi — iflos ma'lumot oshxonaga kirdi.", ru: 'Повар работал с непроверенной анкетой — грязные данные попали на кухню.' } };
+      if (!st.taken) return { at: i, code: '500', expected: false, msg: { uz: "Oshpazga buyurtmani hech kim olib kelmadi — ofitsiant hali zalda.", ru: 'Повару никто не принёс заказ — официант ещё в зале.' } };
       st.cooked = true;
     } else if (k === 'store') {
       if (!st.cooked) return { at: i, code: '500', expected: false, msg: { uz: "Omborchi hali tayyor bo'lmagan narsani omborga qo'yolmaydi.", ru: 'Кладовщик не может положить на склад то, что ещё не готово.' } };
@@ -701,7 +709,8 @@ function DragDropOrder({ items, hints, onSolved, doneText }) {
     if (typeof from === 'number') ns[from] = null;
     ns[slotIdx] = id;
     let np = from === 'pool' ? pool.filter(x => x !== id) : pool.slice();
-    if (occ) np = [...np, occ];
+    // F-0922-54 / F-1012-04: o'z katagiga qayta tashlanganda occ = shu kartaning o'zi — poolga qaytarilmaydi (nusxa chiqmasin)
+    if (occ && occ !== id) np = [...np, occ];
     return { pool: np, slots: ns };
   });
   const toPool = (slotIdx) => setSt(({ pool, slots }) => {
@@ -1106,7 +1115,8 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (typeof from === 'number') ns[from] = null;
     ns[slotIdx] = id;
     let np = from === 'pool' ? pool.filter(x => x !== id) : pool.slice();
-    if (occ) np = [...np, occ];
+    // F-0922-54 / F-1012-04: o'z katagiga qayta tashlanganda occ = shu kartaning o'zi — poolga qaytarilmaydi (nusxa chiqmasin)
+    if (occ && occ !== id) np = [...np, occ];
     return { pool: np, slots: ns };
   });
   const toPool = (slotIdx) => setSt(({ pool, slots }) => {
@@ -2560,7 +2570,7 @@ const ScreenNestPractice = (props) => (
       { uz: "`.env` faylini to'ldiring va `npm run start:dev` bilan serverni yoqing", ru: 'Заполните файл `.env` и включите сервер командой `npm run start:dev`' },
       { uz: "Brauzerda `localhost:3000/api/v1` — Swagger menyusini oching", ru: 'Откройте в браузере `localhost:3000/api/v1` — меню Swagger' },
       { uz: "Bitta endpointni `Try it out` bilan sinang va javobni ko'ring", ru: 'Попробуйте один endpoint через `Try it out` и посмотрите ответ' },
-      { uz: "Yoningizdagi do'stingizga `POST /admin` yo'lini aytib bering: qo'riqchi → ofitsiant → nazoratchi → oshpaz → ombor → lagan", ru: 'Расскажите соседу путь `POST /admin`: охранник → официант → контролёр → повар → склад → поднос' },
+      { uz: "Yoningizdagi do'stingizga `POST /admin` yo'lini aytib bering: qo'riqchi → nazoratchi → ofitsiant → oshpaz → ombor → lagan", ru: 'Расскажите соседу путь `POST /admin`: охранник → контролёр → официант → повар → склад → поднос' },
     ]} />
 );
 
@@ -2616,7 +2626,7 @@ const Screen20 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     tr({ uz: "Tayyor loyiha clone qilinadi (noldan yozilmaydi)", ru: 'Готовый проект клонируют (не пишут с нуля)' }),
     tr({ uz: "Swagger — restoran menyusi: barcha eshiklar ro'yxati", ru: 'Swagger — меню ресторана: список всех дверей' }),
     tr({ uz: "Bino: core (ombor zonasi) · api (bo'limlar) · infrastructure (jihozlar) · common (qo'riqchi)", ru: 'Здание: core (зона склада) · api (разделы) · infrastructure (оборудование) · common (охранник)' }),
-    tr({ uz: "Buyurtma yo'li: qo'riqchi → ofitsiant → nazoratchi → oshpaz → ombor → bir xil lagan", ru: 'Путь заказа: охранник → официант → контролёр → повар → склад → одинаковый поднос' }),
+    tr({ uz: "Buyurtma yo'li: qo'riqchi → nazoratchi → ofitsiant → oshpaz → ombor → bir xil lagan", ru: 'Путь заказа: охранник → контролёр → официант → повар → склад → одинаковый поднос' }),
     tr({ uz: "Yangi bo'lim = 5 qadam: Entity → DTO → Service → Controller → Module", ru: 'Новый раздел = 5 шагов: Entity → DTO → Service → Controller → Module' })
   ];
   const HOMEWORK = [
@@ -2684,6 +2694,7 @@ export default function NestArchAliveLesson({ lang: langProp, onFinished, liveTo
   }
   const saved = savedRef.current;
   const [screen, setScreen] = useState(() => saved ? Math.min(Math.max(saved.screen || 0, 0), TOTAL_SCREENS - 1) : 0);
+  const [maxReached, setMaxReached] = useState(() => (saved ? Math.max(saved.maxReached || 0, saved.screen || 0) : 0)); // F-1012-03
   const [answers, setAnswers] = useState(() => (saved && saved.answers) || {});
   const startTimeRef = useRef(saved?.startedAt || Date.now());
   // 🏅 Nishonlar
@@ -2721,6 +2732,8 @@ export default function NestArchAliveLesson({ lang: langProp, onFinished, liveTo
   const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken }); // liveToken — LMS'dan (avval null, keyin keladi)
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
+  // F-1012-03: eng uzoq yetilgan ekran (qayta boshlashda 0) — undan oldingi ekranlarda «Davom etish» qulflanmaydi
+  useEffect(() => { setMaxReached(m => (screen === 0 && !Object.keys(answers || {}).length) ? 0 : Math.max(m, screen)); }, [screen, answers]);
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);
   useEffect(() => { live.reportScreen(screen); }, [screen, live.mode, live.pin]); // eslint-disable-line
   // 🃏 Flashcard ekrani jonli darsda (mentor boshqaruvida) o'quvchida ko'rsatilmaydi
@@ -2746,7 +2759,7 @@ export default function NestArchAliveLesson({ lang: langProp, onFinished, liveTo
   const reset = () => { if (!firstPassRef.current) { firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1000) }; setFpPractice(true); } progClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); startTimeRef.current = Date.now(); };
   // F-0730-01: har o'zgarishda progress saqlanadi (screen + javoblar + nishonlar + boshlangan vaqt)
   useEffect(() => {
-    progWrite(LESSON_META.lessonId, { screen, answers, earned: [...earnedRef.current], missed: [...missedRef.current], firstPass: firstPassRef.current, startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
+    progWrite(LESSON_META.lessonId, { screen, maxReached, answers, earned: [...earnedRef.current], missed: [...missedRef.current], firstPass: firstPassRef.current, startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
   }, [screen, answers, earned, missed, fpPractice]);
 
   const finishLesson = () => {
@@ -2762,6 +2775,7 @@ export default function NestArchAliveLesson({ lang: langProp, onFinished, liveTo
     const finalCorrect = finalAnswers.filter(a => a.correct).length;
     const payload = {
       lessonId: LESSON_META.lessonId, lessonTitle: LESSON_META.lessonTitle,
+      nickname: live.nickname || null, livePin: live.pin || null, liveMode: live.mode, // F-1012-05: jonli/mustaqil belgisi (1–2-Modul naqshi)
       durationSec: fp ? fp.durationSec : Math.floor((Date.now() - startTimeRef.current) / 1000),
       totalQuestions: scoredMeta.length, correctAnswers,
       scorePercent: scoredMeta.length ? Math.round((correctAnswers / scoredMeta.length) * 100) : 0,
@@ -3679,7 +3693,7 @@ export default function NestArchAliveLesson({ lang: langProp, onFinished, liveTo
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>
-      <LiveGateCtx.Provider value={{ locked, live }}>
+      <LiveGateCtx.Provider value={{ locked, live, passed: screen < maxReached }}>
         <div className="lesson-root">
           {live.mode === 'choosing' ? (
             <LiveGate live={live} title={{ uz: 'Nest arxitektura darsi', ru: 'Урок архитектуры Nest' }} />

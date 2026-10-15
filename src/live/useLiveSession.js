@@ -15,6 +15,7 @@ import {
   lmsJoin, lmsRestart, peekTokenRole,
 } from './liveClient.js';
 import { setProgressChannel } from './progressSync.js';
+import { notePreviewProps } from './previewMode.js';
 
 // Ekranlar shu kontekst orqali «qulf»ni va live obyektini oladi: { locked, live }
 export const LiveGateCtx = createContext(null);
@@ -28,15 +29,20 @@ const STORED_MODES = ['self', 'student', 'mentor', 'solo', 'review'];
  * @param {{ liveToken?: string|null, lessonVersion?: string|null }} [opts]
  */
 export function useLiveSession(lessonId, answerKey, opts = {}) {
-  const liveToken = opts.liveToken || null;
+  // F-1015: preview (Bilimlar bazasi) — doim ustun: token e'tiborsiz, eski liveSession tiklanmaydi, rejim 'self'.
+  // 'self' qoldiriladi (yangi rejim nomi emas): 20 dars `live.mode === 'self'` ni alohida tekshiradi.
+  const previewRef = useRef(null);
+  if (previewRef.current === null) previewRef.current = notePreviewProps(opts);
+  const preview = previewRef.current;
+  const liveToken = preview ? null : (opts.liveToken || null);
   const lessonVersion = opts.lessonVersion || null;
   const keyRef = useRef(answerKey); keyRef.current = answerKey; // javob kaliti — mentor darsni ochganda serverga avto-yuklanadi (SQL shart emas)
   useEffect(() => { unsealPayload(lessonId); }, [lessonId]); // F-0918-07: dars har ochilganda onFinished muhri toza — eski sessiya yuki yangi urinishga o'tmaydi
   const initRef = useRef(undefined);
-  if (initRef.current === undefined) initRef.current = LIVE_ENABLED ? liveRead(lessonId) : null;
+  if (initRef.current === undefined) initRef.current = LIVE_ENABLED && !preview ? liveRead(lessonId) : null;
   const init = initRef.current;
   const [mode, setMode] = useState(() => {
-    if (!LIVE_ENABLED) return 'self';
+    if (!LIVE_ENABLED || preview) return 'self';
     if (init && STORED_MODES.includes(init.mode)) return init.mode;
     return 'choosing';
   });
@@ -368,5 +374,6 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
     startMentor, joinStudent, selfStudy, reportScreen, endSession, submitAnswer, recordAttempt, quiz, quizControl, revealScreen, mentorReveal,
     playerId: playerRef.current?.id || null, nickname: nickRef.current,
     lms, joinWithToken, hasLmsToken: !!liveToken, attempt, serverProgress, restartAttempt, liveJoinedNote,
+    preview,
   };
 }
