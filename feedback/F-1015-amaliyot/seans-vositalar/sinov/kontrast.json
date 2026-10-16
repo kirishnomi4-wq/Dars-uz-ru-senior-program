@@ -1,0 +1,427 @@
+[
+ {
+  "s": "mentor-msg body «Bugun Demo Day saytingiz»",
+  "k": 19.28,
+  "e": "s0"
+ },
+ {
+  "s": "ds-logo «To'garak jadvali»",
+  "k": 6.7,
+  "e": "s0"
+ },
+ {
+  "s": "ds-nav «Jadval\nAloqa»",
+  "k": 6.7,
+  "e": "s0"
+ },
+ {
+  "s": "ds-tag «MAKTAB TO'GARAKLARI · 20»",
+  "k": 5.18,
+  "e": "s0"
+ },
+ {
+  "s": "ds-h1 «To'garak jadvali endi te»",
+  "k": 9.97,
+  "e": "s0"
+ },
+ {
+  "s": "ds-p «Jadval faqat devorda edi»",
+  "k": 7.28,
+  "e": "s0"
+ },
+ {
+  "s": "ds-tugma «Jadvalni ko'rish»",
+  "k": 5.18,
+  "e": "s0"
+ },
+ {
+  "s": "ds-h2 «Jadval»",
+  "k": 17.76,
+  "e": "s0"
+ },
+ {
+  "s": "ds-p «Hamma to'garak vaqti bit»",
+  "k": 7.56,
+  "e": "s0"
+ },
+ {
+  "s": "ds-h2 «Manzil»",
+  "k": 17.76,
+  "e": "s0"
+ },
+ {
+  "s": "ds-p «Qaysi xonada bo'lishini »",
+  "k": 7.56,
+  "e": "s0"
+ },
+ {
+  "s": "ds-h2 «Telefonda»",
+  "k": 17.76,
+  "e": "s0"
+ },
+ {
+  "s": "ds-p «Uydan ham, yo'lda ham oc»",
+  "k": 7.56,
+  "e": "s0"
+ },
+ {
+  "s": "ds-ft «To'garak jadvali · 2026»",
+  "k": 7.28,
+  "e": "s0"
+ },
+ {
+  "s": "mentor-msg body «Bugun bosh sahifa: HTML'»",
+  "k": 19.28,
+  "e": "s1"
+ },
+ {
+  "s": "ds-logo «To'garak jadvali»",
+  "k": 6.7,
+  "e": "s1"
+ },
+ {
+  "s": "ds-nav «Jadval\nAloqa»",
+  "k": 6.7,
+  "e": "s1"
+ },
+ {
+  "s": "ds-tag «MAKTAB TO'GARAKLARI · 20»",
+  "k": 5.18,
+  "e": "s1"
+ },
+ {
+  "s": "ds-h1 «To'garak jadvali endi te»",
+  "k": 9.97,
+  "e": "s1"
+ },
+ {
+  "s": "ds-p «Jadval faqat devorda edi»",
+  "k": 7.28,
+  "e": "s1"
+ },
+ {
+  "s": "ds-tugma «Jadvalni ko'rish»",
+  "k": 5.18,
+  "e": "s1"
+ },
+ {
+  "s": "ds-h2 «Jadval»",
+  "k": 17.76,
+  "e": "s1"
+ },
+ {
+  "s": "ds-p «Hamma to'garak vaqti bit»",
+  "k": 7.56,
+  "e": "s1"
+ },
+ {
+  "s": "ds-h2 «Manzil»",
+  "k": 17.76,
+  "e": "s1"
+ },
+ {
+  "s": "ds-p «Qaysi xonada bo'lishini »",
+  "k": 7.56,
+  "e": "s1"
+ },
+ {
+  "s": "ds-h2 «Telefonda»",
+  "k": 17.76,
+  "e": "s1"
+ },
+ {
+  "s": "ds-p «Uydan ham, yo'lda ham oc»",
+  "k": 7.56,
+  "e": "s1"
+ },
+ {
+  "s": "ds-ft «To'garak jadvali · 2026»",
+  "k": 7.28,
+  "e": "s1"
+ },
+ {
+  "s": "qcode «mening-saytim»",
+  "k": 19.28,
+  "e": "s1"
+ },
+ {
+  "s": "qcode «index.html»",
+  "k": 19.28,
+  "e": "s1"
+ },
+ {
+  "s": "qcode «style.css»",
+  "k": 19.28,
+  "e": "s1"
+ },
+ {
+  "s": "qcode «index.html»",
+  "k": 19.28,
+  "e": "s1"
+ },
+ {
+  "s": "qcode «!»",
+  "k": 19.28,
+  "e": "s1"
+ },
+ {
+  "s": "LI «1\nLoyihangizni yozing va»",
+  "k": 19.28,
+  "e": "a1"
+ },
+ {
+  "s": "LI «2\n«Promptni nusxalash» →»",
+  "k": 19.28,
+  "e": "a1"
+ },
+ {
+  "s": "LI «3\nJavobdagi kodni index.»",
+  "k": 19.28,
+  "e": "a1"
+ },
+ {
+  "s": "qcode «index.html»",
+  "k": 19.28,
+  "e": "a1"
+ },
+ {
+  "s": "qcode «Ctrl+S»",
+  "k": 19.28,
+  "e": "a1"
+ },
+ {
+  "s": "LI «4\nLive Server'da qarang:»",
+  "k": 19.28,
+  "e": "a1"
+ },
+ {
+  "s": "am-uslub-btn  «Minimalist\noq fon, tinch»",
+  "k": 17.54,
+  "e": "a2"
+ },
+ {
+  "s": "am-uslub-btn  «Yorqin\nquvnoq ranglar»",
+  "k": 17.54,
+  "e": "a2"
+ },
+ {
+  "s": "am-uslub-btn  «Qorong'i\nto'q fon, oq ma»",
+  "k": 17.54,
+  "e": "a2"
+ },
+ {
+  "s": "am-uslub-btn  «Gradient\nrang o'tishlari»",
+  "k": 17.54,
+  "e": "a2"
+ },
+ {
+  "s": "ds-logo «To'garak jadvali»",
+  "k": 6.7,
+  "e": "a2"
+ },
+ {
+  "s": "ds-nav «Jadval\nAloqa»",
+  "k": 6.7,
+  "e": "a2"
+ },
+ {
+  "s": "ds-tag «MAKTAB TO'GARAKLARI · 20»",
+  "k": 5.18,
+  "e": "a2"
+ },
+ {
+  "s": "ds-h1 «To'garak jadvali endi te»",
+  "k": 9.97,
+  "e": "a2"
+ },
+ {
+  "s": "ds-p «Jadval faqat devorda edi»",
+  "k": 7.28,
+  "e": "a2"
+ },
+ {
+  "s": "ds-tugma «Jadvalni ko'rish»",
+  "k": 5.18,
+  "e": "a2"
+ },
+ {
+  "s": "ds-h2 «Jadval»",
+  "k": 17.76,
+  "e": "a2"
+ },
+ {
+  "s": "ds-p «Hamma to'garak vaqti bit»",
+  "k": 7.56,
+  "e": "a2"
+ },
+ {
+  "s": "ds-h2 «Manzil»",
+  "k": 17.76,
+  "e": "a2"
+ },
+ {
+  "s": "ds-p «Qaysi xonada bo'lishini »",
+  "k": 7.56,
+  "e": "a2"
+ },
+ {
+  "s": "ds-h2 «Telefonda»",
+  "k": 17.76,
+  "e": "a2"
+ },
+ {
+  "s": "ds-p «Uydan ham, yo'lda ham oc»",
+  "k": 7.56,
+  "e": "a2"
+ },
+ {
+  "s": "ds-ft «To'garak jadvali · 2026»",
+  "k": 7.28,
+  "e": "a2"
+ },
+ {
+  "s": "small am-osti «Gemini javobida kartalar»",
+  "k": 6.23,
+  "e": "a2"
+ },
+ {
+  "s": "qcode «display: flex»",
+  "k": 6.23,
+  "e": "a2"
+ },
+ {
+  "s": "qcode «gap»",
+  "k": 6.23,
+  "e": "a2"
+ },
+ {
+  "s": "LI «1\nstyle.css da asosiy ra»",
+  "k": 19.28,
+  "e": "a3"
+ },
+ {
+  "s": "qcode «style.css»",
+  "k": 19.28,
+  "e": "a3"
+ },
+ {
+  "s": "qcode «#34d399»",
+  "k": 19.28,
+  "e": "a3"
+ },
+ {
+  "s": "LI «2\nCtrl+H bosing: yuqori »",
+  "k": 19.28,
+  "e": "a3"
+ },
+ {
+  "s": "qcode «Ctrl+H»",
+  "k": 19.28,
+  "e": "a3"
+ },
+ {
+  "s": "qcode «Ctrl+Alt+Enter»",
+  "k": 19.28,
+  "e": "a3"
+ },
+ {
+  "s": "LI «3\nCtrl+S — Live Server'd»",
+  "k": 19.28,
+  "e": "a3"
+ },
+ {
+  "s": "qcode «Ctrl+S»",
+  "k": 19.28,
+  "e": "a3"
+ },
+ {
+  "s": "ds-logo «To'garak jadvali»",
+  "k": 16.3,
+  "e": "a3"
+ },
+ {
+  "s": "ds-nav «Jadval\nAloqa»",
+  "k": 16.3,
+  "e": "a3"
+ },
+ {
+  "s": "ds-tag «MAKTAB TO'GARAKLARI · 20»",
+  "k": 8.76,
+  "e": "a3"
+ },
+ {
+  "s": "ds-h1 «To'garak jadvali endi te»",
+  "k": 16.3,
+  "e": "a3"
+ },
+ {
+  "s": "ds-p «Jadval faqat devorda edi»",
+  "k": 12.02,
+  "e": "a3"
+ },
+ {
+  "s": "ds-tugma «Jadvalni ko'rish»",
+  "k": 10.69,
+  "e": "a3"
+ },
+ {
+  "s": "ds-h2 «Jadval»",
+  "k": 13.35,
+  "e": "a3"
+ },
+ {
+  "s": "ds-p «Hamma to'garak vaqti bit»",
+  "k": 9.85,
+  "e": "a3"
+ },
+ {
+  "s": "ds-h2 «Manzil»",
+  "k": 13.35,
+  "e": "a3"
+ },
+ {
+  "s": "ds-p «Qaysi xonada bo'lishini »",
+  "k": 9.85,
+  "e": "a3"
+ },
+ {
+  "s": "ds-h2 «Telefonda»",
+  "k": 13.35,
+  "e": "a3"
+ },
+ {
+  "s": "ds-p «Uydan ham, yo'lda ham oc»",
+  "k": 9.85,
+  "e": "a3"
+ },
+ {
+  "s": "ds-ft «To'garak jadvali · 2026»",
+  "k": 12.02,
+  "e": "a3"
+ },
+ {
+  "s": "mentor-msg body «Avval sahifangizni ustoz»",
+  "k": 19.28,
+  "e": "s16"
+ },
+ {
+  "s": "qcode «ul { text-align: center;»",
+  "k": 19.28,
+  "e": "s16"
+ },
+ {
+  "s": "qcode «li { margin: 0 auto; }»",
+  "k": 19.28,
+  "e": "s16"
+ },
+ {
+  "s": "qcode «ul { display: flex; }»",
+  "k": 19.28,
+  "e": "s16"
+ },
+ {
+  "s": "qcode «li { padding: 16px; }»",
+  "k": 19.28,
+  "e": "s16"
+ }
+]

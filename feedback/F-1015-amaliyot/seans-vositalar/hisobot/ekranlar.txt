@@ -1,0 +1,398 @@
+
+### m1-08 src/1-Modull/HtmlPractice.jsx (13)
+ 0 Screen0            []  |  | 29q
+ 1 Screen1            []  | SIM_TIMER VSCODE | 41q
+ 2 Screen2            []  |  | 42q
+ 3 ScreenA1           [Amaliyot 1 · header, bo'lim]  | GEMINI TEST | 24q
+ 4 Screen3            []  | GEMINI MC TEST | 26q
+ 5 Screen4            []  | SIM_TIMER | 48q
+ 6 ScreenA2           [Amaliyot 2 · menyu, havola]  | GEMINI TEST | 25q
+ 7 Screen5            [] '🏆 Test yakunlandi!', ru: '🏆 Тест завершён!' })} | SIM_TIMER MC PRACTICEDONE TEST | 534q
+ 8 ScreenA3           [Amaliyot 3 · ro'yxat, footer]  | TEST | 26q
+ 9 ScreenA4           [Amaliyot 4 · dizayn]  | GEMINI TEST | 42q
+10 ScreenPodium       [] <>Kim g'olib?, ru: <>Кто победитель? })} | BAJARDIM QBLOK NUSXA SIM_TIMER VSCODE GEMINI PRACTICEDONE | 254q
+11 ScreenFlashcards   [] <>O'zingizni sinab ko'ring., ru: <>Проверьте себя. })} | BAJARDIM VSCODE GEMINI PRACTICEDONE | 788q
+12 SummaryScreen      []  |  | 0q
+
+### m1-10 src/1-Modull/CssPractice.jsx (20)
+ 0 Screen0            [] <>Bir xil sayt — nega biri chiroyli?, ru: <>Один и тот же сайт — почему один красивый? })} | SIM_TIMER | 45q
+ 1 Screen1            [] <>Portfolioni qanday chiroyli qilamiz?, ru: <>Как сделать портфолио красивым? })} | SIM_TIMER DRAG | 129q
+ 2 Screen2            [] <>Ismingizni bo'yash uchun nima yozamiz?, ru: <>Что мы пишем, чтобы покрасить ваше имя? }) | DRAG | 52q
+ 3 Screen3            [] <>Saytimizga qanday fon beramiz?, ru: <>Какой фон дадим нашему сайту? })} | MC | 32q
+ 4 Screen4            []  | MC TEST | 11q
+ 5 Screen5            [] <>Ismingiz qanday ko'zga tashlansin?, ru: <>Как ваше имя должно бросаться в глаза? })}</d | MC | 32q
+ 6 Screen6            []  | MC TEST | 11q
+ 7 Screen7            [] <>Menyuni qanday bir qatorga tizamiz?, ru: <>Как выстроить меню в один ряд? })} | MC | 32q
+ 8 Screen8            []  | MC TEST | 11q
+ 9 Screen9            [] <>"Men haqimda"ni qanday joylashtiramiz?, ru: <>Как расположим раздел «Обо мне»? })}</div | MC | 32q
+10 Screen10           [] <>Loyihalarni qanday kartaga aylantiramiz?, ru: <>Как превратить проекты в карточки? })}< | MC | 32q
+11 Screen11           []  | MC TEST | 11q
+12 Screen12           [] <>Havolani, tugmaga qanday aylantiramiz?, ru: <>Как превратить ссылку в кнопку? })} | MC | 32q
+13 Screen13           [] <>Butun saytni qanday markazga qo'yamiz?, ru: <>Как поставить весь сайт по центру? })}</d | SIM_TIMER MC | 35q
+14 Screen14           []  | MC TEST | 11q
+15 Screen15           [] <>Hammasini birlashtirib, saytga yig'amizmi?, ru: <>Соберём всё вместе в сайт? })} | SIM_TIMER | 61q
+16 Screen16           [] <>Endi o'zingiz CSS yozing., ru: <>Теперь напишите CSS сами. })} | INPUT SIM_TIMER | 139q
+17 ScreenPodium       []  | COMPILER SIM_TIMER | 1085q
+18 ScreenFlashcards   [] <>O'zingizni sinab ko'ring., ru: <>Проверьте себя. })} |  | 14q
+19 Screen17           [] <>Siz dizayner bo'ldingiz., ru: <>Вы стали дизайнером. })}{/* 54-qonun (P0 PmUserStory / | COMPILER SIM_TIMER | 796q
+
+### m2-08 src/2-Modull/PracticeLesson1.jsx (19)
+ 0 Screen0            [] <>Chiroyli sayt, lekin tugma bosilsa — hech nima bo'lmaydi, ru: <>Красивый сайт, но нажима | SIM_TIMER | 58q
+ 1 Screen1            [] <>Bugun saytimizni jonlantiramiz, ru: <>Сегодня мы оживим наш сайт })} |  | 66q
+ 2 Screen2            [] <>Tugma bosilganda aslida nima sodir bo'ladi?, ru: <>Что на самом деле происходит при нажа | SIM_TIMER | 54q
+ 3 Screen3            [] <>Sayt foydalanuvchining qaysi harakatlarini sezadi?, ru: <>Какие действия пользователя за | INPUT | 71q
+ 4 Screen4            [] <>Veb-saytda "hodisa" (event) nima?, ru: <>Что такое «событие» (event) на веб-сайте? })}< | MC TEST | 15q
+ 5 Screen5            [] <>Necha marta bosilganini sayt qanday eslab qoladi?, ru: <>Как сайт запоминает, сколько ра | SIM_TIMER | 47q
+ 6 Screen6            [] <>Bitta tugma butun sayt ko'rinishini qanday o'zgartiradi?, ru: <>Как одна кнопка меняет в |  | 40q
+ 7 Screen7            [] <>Tugma 3 marta bosilsa, son nechta bo'ladi?, ru: <>Если нажать кнопку 3 раза, чему будет  | MC TEST | 16q
+ 8 Screen8            [] <>Menyu qanday qilib o'zi ochilib-yopiladi?, ru: <>Как меню само открывается и закрывается |  | 46q
+ 9 Screen9            [] <>Siz yozayotganingizni sayt qanday darhol sezadi?, ru: <>Как сайт мгновенно замечает, что | INPUT | 37q
+10 Screen10           [] <>Bo'sh forma yuborilsa, sayt buni qanday payqaydi?, ru: <>Как сайт замечает, что отправил | INPUT | 59q
+11 Screen11           [] <>Foydalanuvchi ism yozganda salom jonli o'zgarishi uchun qaysi hodisa kerak?, ru: <>Польз | MC TEST | 15q
+12 Screen12           [] <>Mana — saytingiz endi to'liq jonlandi, ru: <>Вот он — ваш сайт теперь полностью ожил })} | INPUT SIM_TIMER | 65q
+13 Screen13           [] <>Interaktivlik qachon kerak?, ru: <>Когда нужна интерактивность? })} |  | 49q
+14 Screen14           [] <>Shularni endi AI'ga aytib qildirsak-chi?, ru: <>А что если теперь поручить это AI? })}< | BAJARDIM SIM_TIMER | 86q
+15 Screen15           [] <>Oxirgi sinov: tugmani o'zingiz to'g'ri jonlantiring, ru: <>Последнее испытание: оживите  |  | 64q
+16 ScreenPodium       [] <>Kim g'olib?, ru: <>Кто победитель? })} | SIM_TIMER | 274q
+17 ScreenFlashcards   [] <>O'zingizni sinab ko'ring., ru: <>Проверьте себя. })} | COMPILER INPUT SIM_TIMER | 1591q
+18 Screen16           [] <>Statik saytni jonli saytga aylantirdingiz, ru: <>Вы превратили статичный сайт в живой }) | SIM_TIMER ANTIGRAV | 111q
+
+### m2-09 src/2-Modull/PracticeLesson2.jsx (19)
+ 0 Screen0            [Kirish] <>AI'ga shunchaki «sayt yasab ber» desangiz — nima chiqadi?, ru: <>Что получится, если ска | SIM_TIMER | 62q
+ 1 Screen1            [Reja] <>AI hammasini yasaydi — unda nega biz kerakmiz?, ru: <>AI делает всё сам — зачем тогда мы |  | 52q
+ 2 Screen2            [Tezlik] <>Aniq buyruq bersak, AI qanchalik tez quradi?, ru: <>Если дать точную команду — насколько | SIM_TIMER | 42q
+ 3 Screen3            [Buyruqning 4 ingredienti] <>Yaxshi buyruq nimalardan tashkil topadi?, ru: <>Из чего состоит хорошая команда? })}</d |  | 47q
+ 4 Screen4            [Mashq · 1-savol] <>Yaxshi prompt yomonidan nimasi bilan farq qiladi?, ru: <>Чем хороший промпт отличается о | MC TEST | 16q
+ 5 Screen5            [Prompt-quruvchi] <>Har bir blok natijani qanday o'zgartiradi?, ru: <>Как каждый блок меняет результат? })} |  | 23q
+ 6 Screen6            [Yomon ⚔️ Yaxshi] <>Nega bir maqsad ikki xil natija beradi?, ru: <>Почему одна цель даёт два разных результа | SIM_TIMER | 48q
+ 7 Screen7            [Mashq · 2-savol] <>O'yin promo sahifa uchun qaysi buyruq eng yaxshi?, ru: <>Какая команда для промо-страниц | MC TEST | 16q
+ 8 Screen8            [Iteratsiya] <>AI birinchi urinishda mukammal qiladimi?, ru: <>Делает ли AI идеально с первой попытки?  |  | 46q
+ 9 Screen9            [Mashq · 3-savol] <>AI birinchi urinishda xohlaganingizday qilmasa, nima qilasiz?, ru: <>AI с первой попытки | MC TEST | 16q
+10 Screen10           [Tekshirish] <>AI so'rovni har doim aniq tushunadimi?, ru: <>Всегда ли AI понимает запрос точно? })}</ |  | 63q
+11 Screen11           [AI bilan ishlash] <>AI bilan eng yaxshi natijani qanday olamiz?, ru: <>Как получить с AI самый крутой резуль |  | 49q
+12 Screen13           [Tez-tez] <>Bitta usul bilan nechta xil sayt qura olasiz?, ru: <>Сколько разных сайтов можно построи | SIM_TIMER | 44q
+13 Screen12           [O'z loyihangiz] <>Endi o'zingiz qanday sayt yaratasiz?, ru: <>Какой сайт вы теперь создадите сами? })}</d | PRACTICEDONE | 34q
+14 Screen14           [Haqiqiy asbob] <>Bu usulni endi haqiqiy loyihada qanday ishlatamiz?, ru: <>Как использовать этот способ в | SIM_TIMER ANTIGRAV | 45q
+15 Screen15           [Yakuniy · amaliy] <>Oxirgi sinov: to'liq buyruq tuzing, ru: <>Последнее испытание: составьте полную команду  | NUSXA SIM_TIMER ANTIGRAV | 146q
+16 ScreenPodium       [Natijalar] <>Kim g'olib?, ru: <>Кто победитель? })} | SIM_TIMER PRACTICEDONE | 1684q
+17 ScreenFlashcards   [Takrorlash] <>O'zingizni sinab ko'ring., ru: <>Проверьте себя. })} |  | 13q
+18 Screen16           [Tayyor] <>Endi AI bilan tez va sifatli sayt qura olasiz, ru: <>Теперь вы можете строить с AI сайты | SIM_TIMER ANTIGRAV | 89q
+
+### m2-11 src/2-Modull/PracticeLesson3.jsx (19)
+ 0 Screen0            [] <>To'g'ridan-to'g'ri "do'kon yasab ber" desak — nima bo'ladi?, ru: <>Что будет, если сразу | SIM_TIMER | 55q
+ 1 Screen1            [] <>Katta loyihani qanday boshlaymiz?, ru: <>Как начать большой проект? })} |  | 47q
+ 2 Screen2            [] <>Katta vazifa aslida ko'p kichik qadam, ru: <>Большая задача — это много маленьких шагов  |  | 41q
+ 3 Screen3            [] <>Avval nimani qurish shart?, ru: <>Что строить обязательно в первую очередь? })} |  | 42q
+ 4 Screen4            [] <>MVP nima degani?, ru: <>Что означает MVP? })}} | MC TEST | 21q
+ 5 Screen5            [] <>MVP'ni nimadan boshlaymiz?, ru: <>С чего начинаем MVP? })} | DRAG | 21q
+ 6 Screen6            [] <>Bir buyruq — bir natija. Qaysi biri aniq?, ru: <>Одна команда — один результат. Какая из | SIM_TIMER | 54q
+ 7 Screen7            [] <>Mini-do'kon qurishni nimadan boshlaysiz?, ru: <>С чего начнёте строить мини-магазин? })} | MC TEST | 16q
+ 8 Screen8            [] <>Reja tayyor — endi AI birinchi ishlaydigan versiyani quradi, ru: <>План готов — теперь A | BAJARDIM SIM_TIMER | 47q
+ 9 Screen9            [] <>Asosiy qism rejaga mos chiqdimi?, ru: <>Основа получилась по плану? })} |  | 44q
+10 Screen10           [] <>Bu bosqichda do'konning qaysi qismini qurdik?, ru: <>Какую часть магазина мы построили н | MC TEST | 16q
+11 Screen11           [] <>Asosiy qism tayyor — keyin nima?, ru: <>Основа готова — что дальше? })} |  | 81q
+12 Screen12           [] <>Endi boshqa loyihani bo'laklang, ru: <>Теперь разбейте другой проект })} |  | 25q
+13 Screen13           [] <>Bu usulni kim ishlatadi?, ru: <>Кто пользуется этим методом? })} |  | 48q
+14 Screen14           [] <>Antigravity'da rejani qanday tasdiqlaymiz?, ru: <>Как подтвердить план в Antigravity? }) | BAJARDIM SIM_TIMER ANTIGRAV | 47q
+15 Screen15           [] <>Oxirgi sinov: restoran sayti, ru: <>Последнее испытание: сайт ресторана })} |  | 39q
+16 ScreenPodium       [] <>Kim g'olib?, ru: <>Кто победитель? })} | SIM_TIMER DRAG | 282q
+17 ScreenFlashcards   [] <>O'zingizni sinab ko'ring., ru: <>Проверьте себя. })} | SIM_TIMER | 1500q
+18 Screen16           [] <>Endi siz — loyihaning arxitektori, ru: <>Теперь Вы — архитектор проекта })}{/* 54-qonun | SIM_TIMER ANTIGRAV | 89q
+
+### m2-12 src/2-Modull/PracticeLesson4.jsx (19)
+ 0 Screen0            [] <>Do'kon ko'rinadi, lekin sotib olib bo'lmaydi, ru: <>Магазин видно, но купить нельзя })} |  | 47q
+ 1 Screen1            [] <>Do'konni oxiriga yetkazamiz, ru: <>Доводим магазин до конца })} |  | 47q
+ 2 Screen2            [] <>Xaridor mahsulotni qanday savatga soladi?, ru: <>Как покупатель кладёт товар в корзину?  | BAJARDIM SIM_TIMER | 49q
+ 3 Screen3            [] <>Xaridor qancha to'lashini qayerdan biladi?, ru: <>Откуда покупатель узнает, сколько плат | SIM_TIMER | 41q
+ 4 Screen4            [] <>Oddiy katalogni haqiqiy do'konga aylantirgan narsa nima?, ru: <>Что превратило обычный к | MC TEST | 15q
+ 5 Screen5            [] <>Mana — sizning ishlaydigan do'koningiz!, ru: <>Вот он — Ваш работающий магазин! })}</di |  | 37q
+ 6 Screen6            [] <>Jami narx to'g'ri hisoblanyaptimi?, ru: <>Итоговая цена считается правильно? })} |  | 38q
+ 7 Screen7            [] <>Bugni AI'ga aniq tushuntiramiz, ru: <>Объясняем баг ИИ точно })} |  | 44q
+ 8 Screen8            [] <>AI bugni tuzatishi uchun unga qanday aytish kerak?, ru: <>Как сказать ИИ, чтобы он почин | MC TEST | 15q
+ 9 Screen9            [] <>Do'konni qanday yanada qulay qilamiz?, ru: <>Как сделать магазин ещё удобнее? })} |  | 45q
+10 Screen10           [] <>MVP "tayyor" deganda nimani nazarda tutamiz?, ru: <>Что мы имеем в виду, когда говорим:  | MC TEST | 15q
+11 Screen11           [] <>MVP tayyor — internetga chiqaramiz!, ru: <>MVP готов — выпускаем в интернет! })} | SIM_TIMER | 42q
+12 Screen12           [] <>Mana — siz qurgan do'kon!, ru: <>Вот магазин, который построили Вы! })} |  | 46q
+13 Screen13           [] <>Qarang — qancha yo'l bosib o'tdingiz, ru: <>Посмотрите, какой путь Вы прошли })} |  | 58q
+14 Screen14           [] <>Antigravity'da to'liq loyiha shunday quriladi, ru: <>Вот как в Antigravity строится полн | ANTIGRAV DRAG | 61q
+15 Screen15           [] <>Oxirgi sinov: har qanday loyiha — bir xil 5 qadam, ru: <>Последнее испытание: любой прое | DRAG | 38q
+16 ScreenPodium       [] <>Kim g'olib?, ru: <>Кто победитель? })} | SIM_TIMER DRAG | 336q
+17 ScreenFlashcards   [] <>O'zingizni sinab ko'ring., ru: <>Проверьте себя. })} | SIM_TIMER | 1565q
+18 Screen16           [] <>Endi siz istalgan loyihani qura olasiz, ru: <>Теперь Вы можете построить любой проект }) | SIM_TIMER ANTIGRAV | 90q
+
+### m3-07 src/3-Modull/ReactCrudPracticeLesson.jsx (22)
+ 0 Screen0            [] <>Kartochkalar ko'rinadi — lekin nega ularni o'zgartirib bo'lmaydi?, ru: <>Карточки видны  | SIM_TIMER | 63q
+ 1 Screen1            [] <>Bugun bitta to'liq ilovani AI bilan bitirasiz., ru: <>Сегодня вы завершите одно полное п |  | 58q
+ 2 Screen2            [] <>Har ilova 4 ta amal ustida turadi., ru: <>Каждое приложение стоит на 4 действиях. })}</ |  | 55q
+ 3 Screen3            [] <>Har amal o'yinlarni qanday o'zgartiradi?, ru: <>Как каждое действие меняет игры? })}</d | SIM_TIMER | 83q
+ 4 Screen4            [] <>CRUD — bu nima?, ru: <>CRUD — это <span | MC TEST | 15q
+ 5 Screen5            [] <>Yangi o'yin ro'yxatga qanday qo'shiladi?, ru: <>Как новая игра добавляется в список? })} |  | 45q
+ 6 ScreenPractice1    []  | VSCODE TEST | 12q
+ 7 Screen5b           [] <>Ro'yxatga yangi o'yin qo'shish uchun qaysi kod?, ru: <>Какой код добавит новую игру в сп | MC TEST | 15q
+ 8 Screen6            [] <>Bitta o'yin o'zgaradi — qolganlari joyida qoladimi?, ru: <>Одна игра меняется — останутс | TERMINAL | 42q
+ 9 ScreenPractice2    []  | TEST | 12q
+10 Screen7            [] <>Keraksiz o'yinni ro'yxatdan qanday olib tashlaymiz?, ru: <>Как убрать ненужную игру из с | TERMINAL | 45q
+11 ScreenPractice3    []  | SIM_TIMER TEST | 104q
+12 Screen8            [] <>Bitta o'yinni o'chirish uchun qaysi kod?, ru: <>Какой код удалит одну игру? })}} | MC TEST | 15q
+13 Screen9            [] <>Reja tayyor — endi loyihani AI bilan quramiz., ru: <>План готов — теперь строим проект в | BAJARDIM SIM_TIMER | 69q
+14 Screen10           [] <>Nega o'chirishdan oldin "Rostdan?" deb so'raladi?, ru: <>Почему перед удалением спрашива |  | 49q
+15 Screen11           [] <>Endi o'zingiz — loyihani to'liq boshqaring., ru: <>Теперь сами — полностью управляйте пр |  | 47q
+16 Screen12           [] <>O'yinning like sonini oshirish — qaysi amal?, ru: <>Увеличить число лайков игры — какое  | MC TEST | 15q
+17 Screen13           [] <>AI yordam beradi — siz esa tekshirasiz., ru: <>AI помогает — а проверяете вы. })} | VSCODE | 58q
+18 Screen14           [] <>Oxirgi qadam: qo'shish kodini o'zingiz yozing., ru: <>Последний шаг: сами напишите код д | INPUT SIM_TIMER VSCODE PRACTICEDONE | 159q
+19 ScreenPodium       [] <>Kim g'olib?, ru: <>Кто победитель? })} | SIM_TIMER | 87q
+20 ScreenFlashcards   [] <>O'zingizni sinab ko'ring., ru: <>Проверьте себя. })} | SIM_TIMER VSCODE | 544q
+21 Screen15           [] <>To'liq ilovani o'zingiz bitirdingiz., ru: <>Вы сами завершили полное приложение. })}{/* | SIM_TIMER VSCODE ANTIGRAV | 939q
+
+### m3-11 src/3-Modull/ReactRouterPracticeLesson.jsx (22)
+ 0 Screen0            [] <>Sahifalar orasida o'tganda nega ekran oqarib ketdi?, ru: <>Почему при переходе между стр | SIM_TIMER | 62q
+ 1 Screen1            [] <>Bugun rejani siz tuzasiz — AI esa yozadi., ru: <>Сегодня план составляете вы — а AI пише | DRAG | 54q
+ 2 Screen2            [] <>Qaysi manzil qaysi sahifaga olib boradi?, ru: <>Какой <span className="italic" style={{  | DRAG | 44q
+ 3 Screen3            [] <>Bu ro'yxatni React qaysi so'zlar bilan yozadi?, ru: <>Какими словами React записывает эт |  | 48q
+ 4 Screen4            [] <> nima qiladi?, ru: <>Что <span className="italic" style={{ color: T.acce | MC TEST | 15q
+ 5 Screen5            [] <>Havolaning ikki turi — qaysi biri butun olamni qayta yuklamaydi?, ru: <>Два вида ссылок  |  | 33q
+ 6 Screen5b           [] <>Qaysi biri sahifani qayta yuklamaydi?, ru: <>Что из этого не перезагружает страницу? })} | MC TEST | 15q
+ 7 Screen6            [] <>Bitta "O'yin" sahifasi minglab o'yinga qanday yetadi?, ru: <>Как одной страницы «Игра» х |  | 44q
+ 8 Screen7            [] <>Endi to'liq ilova — sahifalar orasida yuring., ru: <>Теперь полное приложение — гуляйте  |  | 48q
+ 9 ScreenPracticeRouter []  | VSCODE TERMINAL TEST | 13q
+10 Screen8            [] <>/game/7 manzilida :id nimaga teng?, ru: | MC TEST | 15q
+11 Screen9            [] <>Ro'yxat tayyor — endi AI quradi., ru: <>Список готов — теперь строит AI. })} | BAJARDIM SIM_TIMER | 78q
+12 ScreenPracticeCard []  | TEST | 12q
+13 Screen10           [] <>"Saqlash" bosilgach, Bosh sahifaga kim olib o'tadi?, ru: <>После нажатия «Сохранить» кто | SIM_TIMER | 58q
+14 Screen11           [] <>Endi o'zingiz: ilovaga yangi sahifa qo'shing., ru: <>Теперь сами: добавьте в приложение  |  | 57q
+15 Screen12           [] <>"Saqlash" bosilgach, kod orqali Bosh sahifaga qaytarish — nima bilan?, ru: <>После нажат | MC TEST | 15q
+16 Screen13           [] <>AI yordam beradi — siz esa tekshirasiz., ru: <>AI помогает — а проверяете вы. })} | SIM_TIMER VSCODE DRAG PRACTICEDONE | 294q
+17 ScreenPracticeFinal []  | TERMINAL TEST | 27q
+18 Screen14           [] <>Oxirgi qadam: Qo'shish sahifasini ro'yxatga ulang., ru: <>Последний шаг: подключите к сп | INPUT VSCODE | 68q
+19 ScreenPodium       [] <>Kim g'olib?, ru: <>Кто победитель? })} | SIM_TIMER VSCODE | 86q
+20 ScreenFlashcards   [] <>O'zingizni sinab ko'ring., ru: <>Проверьте себя. })} | SIM_TIMER | 560q
+21 Screen15           [] <>Ko'p sahifali ilovangiz tayyor., ru: <>Ваше многостраничное приложение готово. })}{/* 5 | SIM_TIMER VSCODE ANTIGRAV | 943q
+
+### m3-12 src/3-Modull/ReactProjectDayLesson.jsx (23)
+ 0 Screen0            [] <>4 ta alohida kuchni bitta ilovaga birlashtira olamizmi?, ru: <>Сможем ли мы объединить 4 |  | 58q
+ 1 Screen1            [] <>Bugun siz loyiha boshlig'isiz — AI esa jamoangiz., ru: <>Сегодня Вы — руководитель проек | ANTIGRAV | 59q
+ 2 Screen2            [] <>Quruvchidan oldin — chizma. Har sahifa nima qiladi?, ru: <>Перед стройкой — схема. Что д | SIM_TIMER | 75q
+ 3 Screen3            [] <>Bir xil ish — ikki xil prompt. Farqi katta., ru: <>Одна и та же задача — два разных пром |  | 43q
+ 4 Screen4            [] <>Qaysi prompt agentga aniqroq?, ru: <>Какой промпт для агента точнее? })}} | MC TEST | 16q
+ 5 Screen5            [] <>1-qism: Katalogni agentga qurdiring., ru: <>Часть 1: поручите агенту построить каталог.  |  | 38q
+ 6 Screen5b           [] <>Katalogni serverdan yuklash uchun?, ru: <>Что нужно, чтобы загрузить каталог с сервера?  | MC TEST | 16q
+ 7 ScreenPractice1    []  | VSCODE TERMINAL ANTIGRAV TEST | 12q
+ 8 Screen6            [] <>2-qism: har mashinaga alohida sahifa., ru: <>Часть 2: каждой машине — отдельная страница |  | 41q
+ 9 ScreenPractice2    []  | ANTIGRAV TEST | 12q
+10 Screen7            [] <>3-qism: ijara + jami narx — ilovaning o'zagi., ru: <>Часть 3: аренда + итоговая цена — с |  | 61q
+11 Screen8            [] <>Tesla $80/kun, 3 kunga — jami?, ru: <>Tesla по <span className="mono" style={} | MC TEST | 16q
+12 ScreenPractice3    []  | ANTIGRAV TEST | 12q
+13 Screen9            [] <>4-qism: mashina qo'shish — va agentni sayqallash., ru: <>Часть 4: добавление машины — и  | BAJARDIM | 65q
+14 Screen10           [] <>Endi to'liq ilovani o'zingiz ishlating., ru: <>Теперь испытайте полное приложение сами.  |  | 63q
+15 Screen11           [] <>AI yordam beradi — siz esa tekshirasiz., ru: <>ИИ помогает — а проверяете Вы. })} |  | 61q
+16 Screen12           [] <>Agent kodi natijasi to'liq emas — nima qilasiz?, ru: <>Результат кода агента неполный —  | MC TEST | 16q
+17 ScreenPractice4    []  | BAJARDIM VSCODE TEST | 941q
+18 Screen13           [] <>Bu mashina edi — lekin istalgan saytni shu yo'l bilan., ru: <>Это были машины — но тем ж | VSCODE | 50q
+19 Screen14           [] <>Oxirgi qadam: ilovaning o'zagini o'zingiz yozing., ru: <>Последний шаг: напишите сердце  | INPUT VSCODE | 64q
+20 ScreenPodium       [] <>Kim g'olib?, ru: <>Кто победитель? })} | SIM_TIMER PRACTICEDONE | 662q
+21 ScreenFlashcards   [] <>O'zingizni sinab ko'ring., ru: <>Проверьте себя. })} |  | 16q
+22 Screen15           [] <>To'liq ilovani AI bilan qurdingiz., ru: <>Вы построили с ИИ полное приложение. })}{/* 5 | SIM_TIMER ANTIGRAV | 229q
+
+### m3-13 src/3-Modull/ReactBuildSiteLesson.jsx (20)
+ 0 Screen0            [] <>Endi o'zingiz sayt qurasiz — AI'ga nima deysiz?, ru: <>Теперь вы строите сайт сами — что |  | 52q
+ 1 Screen1            [] <>Oxirgi mahorat: saytni bo'laklab, aniq prompt bilan qurish., ru: <>Последний навык: разб |  | 59q
+ 2 Screen2            [] <>Birinchi bo'lish: sayt nechta sahifa?, ru: <>Первое деление: сколько страниц у сайта? }) | SIM_TIMER | 56q
+ 3 Screen3            [] <>Bosh sahifa — qaysi bo'limlardan tuzilgan?, ru: <>Из каких секций состоит главная страни |  | 57q
+ 4 Screen4            [] <>Katta saytni AI bilan qanday quramiz?, ru: <>Как мы строим большой сайт с ИИ? })}} | MC TEST | 16q
+ 5 Screen5            [] <>Gridda 4 ta taom — lekin nechta komponent?, ru: <>В сетке 4 блюда — но сколько компонент |  | 43q
+ 6 Screen5b           [] <>Bir xil karta 12 marta takrorlansa?, ru: <>Если карточка повторяется 12 раз? })}} | MC TEST | 16q
+ 7 Screen6            [] <>Har ma'lumot qayerda yashaydi?, ru: <>Где живут какие данные? })} | SIM_TIMER | 58q
+ 8 Screen7            [] <>"Bosh sahifa qur" yetarli emas — aniq prompt yozamiz., ru: <>«Построй главную» — мало. П |  | 50q
+ 9 Screen8            [] <>Aniq prompt tayyor — endi agentga yuboramiz., ru: <>Точный промпт готов — теперь отправи |  | 38q
+10 Screen9            [] <>Qaysi prompt eng yaxshi natija beradi?, ru: <>Какой промпт даст лучший результат? })}</ | MC TEST | 16q
+11 Screen10           [] <>AI qurdi — siz tekshirasiz va tuzatasiz., ru: <>ИИ построил — вы проверяете и чините. }) | SIM_TIMER | 56q
+12 Screen11           [] <>Endi o'z saytingizni tanlab, bo'laklang., ru: <>Теперь выберите свой сайт и разбейте его |  | 51q
+13 Screen12           [] <>AI hamma kodni bitta ulkan komponentga yozdi — nima qilasiz?, ru: <>ИИ написал весь код  | MC TEST | 16q
+14 Screen13           [] <>Qarang — siz qancha yo'l bosib o'tdingiz., ru: <>Посмотрите, какой путь вы прошли. })}< | VSCODE | 50q
+15 Screen14           [] <>Oxirgi qadam: takrorlanuvchi komponentni o'zingiz yarating., ru: <>Последний шаг: создай | INPUT VSCODE | 66q
+16 ScreenBuildPractice []  | ANTIGRAV TEST | 14q
+17 ScreenPodium       [] <>Kim g'olib?, ru: <>Кто победитель? })} | BAJARDIM SIM_TIMER VSCODE PRACTICEDONE | 618q
+18 ScreenFlashcards   [] <>O'zingizni sinab ko'ring., ru: <>Проверьте себя. })} | SIM_TIMER | 101q
+19 Screen15           [] <>Siz endi React dasturchisiz., ru: <>Теперь вы — React-разработчик. })}{/* 54-qonun (P0 | BAJARDIM SIM_TIMER VSCODE ANTIGRAV | 924q
+
+### m4-08 src/4-Modull/BackendCrudPracticeLesson.jsx (19)
+ 0 Screen0            [Kirish] <>Saytdagi mashinalar ro'yxatini nega o'zgartirib bo'lmaydi?, ru: <>Почему список машин на | SIM_TIMER | 64q
+ 1 Screen1            [Reja] <>AvtoIjara'ni haqiqiy ilovaga qanday aylantiramiz?, ru: <>Как превратить AvtoIjara в наст | POSTMAN | 57q
+ 2 Screen2            [1-qadam · ME'MOR] <>Mashinalar haqida bazada qaysi ma'lumotni saqlaymiz?, ru: <>Какие данные о машинах будем |  | 57q
+ 3 Screen3            [2-qadam · ko'prik] <>Express baza bilan qanday gaplashadi?, ru: <>Как Express разговаривает с базой? })}</di |  | 48q
+ 4 Screen4            [Mashq · 1-savol] <>Har mashinaning takrorlanmas raqami uchun qaysi ustun?, ru: <>Какой столбец нужен для ун | MC TEST | 20q
+ 5 Screen5            [3-qadam · REJISSYOR] <>AI'ga qaysi buyruq to'g'ri kod yozdiradi?, ru: <>Какая команда заставит AI написать прав | POSTMAN | 61q
+ 6 Screen5b           [Mashq · 2-savol] <>Barcha mashinalarni qaytarish uchun qaysi juftlik?, ru: <>Какая пара нужна, чтобы вернут | MC TEST | 15q
+ 7 Screen6            [Create · qo'shish] <>Yangi mashina bazaga qanday qo'shiladi?, ru: <>Как новая машина добавляется в базу? })} | POSTMAN | 49q
+ 8 Screen7            [] <>Bitta mashinani o'zgartirish — qaysi birini server qayerdan biladi?, ru: <>Изменить одну | SIM_TIMER | 61q
+ 9 Screen8            [Mashq · 3-savol] <>Bazaga yangi mashina qo'shish uchun?, ru: <>Что нужно, чтобы добавить в базу новую машин | MC TEST | 15q
+10 Screen9            [4-qadam · NAZORATCHI] <>Server o'chsa — ma'lumot saqlanib qoladimi?, ru: <>Если сервер выключится — данные сохра |  | 38q
+11 Screen10           [] <>Server xato qaytardi — bu bizga nimani aytmoqchi?, ru: <>Сервер вернул ошибку — что он х |  | 56q
+12 Screen11           [Amaliyot · to'liq zanjir] <>Endi o'zingiz — to'rt amalni ham yuboring., ru: <>Теперь сами — отправьте все четыре дей | SIM_TIMER | 69q
+13 Screen12           [Mashq · 4-savol] <>Express ichida bazaga SQL yuborish uchun?, ru: <>Что нужно в Express, чтобы отправить SQ | TERMINAL MC TEST | 15q
+14 Screen13           [Qoida · xulosa] <>Mashinalar endi qayerda yashaydi — kodda yoki bazada?, ru: <>Где теперь живут машины — в | SIM_TIMER VSCODE POSTMAN PRACTICEDONE | 99q
+15 ScreenFinalPractice []  | VSCODE TERMINAL POSTMAN TEST | 31q
+16 ScreenPodium       [Natijalar] <>Kim g'olib?, ru: <>Кто победитель? })} | SIM_TIMER | 87q
+17 ScreenFlashcards   [Takrorlash] <>O'zingizni sinab ko'ring., ru: <>Проверьте себя. })} | SIM_TIMER VSCODE POSTMAN | 624q
+18 Screen15           [Tayyor] <>AvtoIjara backend'ini o'zingiz qurdingiz., ru: <>Вы сами собрали backend AvtoIjara. })} | SIM_TIMER VSCODE ANTIGRAV POSTMAN | 1018q
+
+### m4-10 src/4-Modull/FullstackConnectPracticeLesson.jsx (20)
+ 0 Screen0            [] <>Bazaga mashina qo'shdik — lekin saytda ko'rinmayapti. Nega?, ru: <>Добавили машину в баз | SIM_TIMER POSTMAN | 74q
+ 1 Screen1            [] <>Frontni backendga qanday ulaymiz?, ru: <>Как соединить фронт с бэкендом? })} |  | 52q
+ 2 Screen2            [] <>Sayt va server — bitta dasturmi yoki ikkita?, ru: <>Сайт и сервер — одна программа или д |  | 58q
+ 3 Screen3            [] <>Katalog mashinalarni qayerdan olishi kerak?, ru: <>Откуда каталог должен брать машины? } |  | 47q
+ 4 Screen4            []  | MC TEST | 15q
+ 5 Screen5            [] <>Mashinalarni serverdan qanday yuklab olamiz?, ru: <>Как загрузить машины с сервера? })} |  | 44q
+ 6 Screen6            [] <>Bitta fetch bosilganda nima sodir bo'ladi?, ru: <>Что происходит при одном fetch? })}</ |  | 41q
+ 7 Screen7            []  | MC TEST | 15q
+ 8 Screen8            [] <>Ma'lumot kelguncha foydalanuvchi nimani ko'radi?, ru: <>Что видит пользователь, пока дан |  | 48q
+ 9 Screen9            []  | MC TEST | 15q
+10 Screen10           [] <>Saytni ochdik — konsoldagi qizil xato nimani aytmoqchi?, ru: <>Открыли сайт — о чём гово | SIM_TIMER | 77q
+11 Screen11           [] <>Forma orqali qo'shilgan mashina darrov ko'rinadimi?, ru: <>Машина, добавленная через фор |  | 53q
+12 Screen12           [] <>Mashina qo'shilganda ma'lumot qaysi yo'lni bosib o'tadi?, ru: <>Какой путь проходят данн |  | 34q
+13 Screen13           [] <>Endi o'zingiz — to'liq ulangan saytni boshqaring., ru: <>Теперь сами — управляйте полнос |  | 41q
+14 Screen14           []  | MC TEST | 15q
+15 Screen15           [] <>Fullstack — bir qarashda nima?, ru: <>Fullstack — что это одним взглядом? })} | SIM_TIMER VSCODE PRACTICEDONE | 90q
+16 ScreenConnectPractice []  | SIM_TIMER VSCODE TEST | 104q
+17 ScreenPodium       [] <>Kim g'olib?, ru: <>Кто победитель? })} | SIM_TIMER | 84q
+18 ScreenFlashcards   [] <>O'zingizni sinab ko'ring., ru: <>Проверьте себя. })} | SIM_TIMER | 501q
+19 Screen17           [] <>Front va backni o'zingiz uladingiz., ru: <>Фронт и бэк вы соединили сами. })}{/* 54-qon | SIM_TIMER VSCODE ANTIGRAV | 1118q
+
+### m4-13 src/4-Modull/FullstackProjectDayLesson.jsx (25)
+ 0 Screen0            [] <>Qorovul qaysi joy bo'shligini qog'ozda kuzatib bo'ladimi?, ru: <>Сможет ли охранник усле | SIM_TIMER | 59q
+ 1 Screen1            [] <>Qorovul uchun stoyanka ilovasini qanday quramiz?, ru: <>Как мы построим приложение стоян | ANTIGRAV | 48q
+ 2 Screen2            [] <>Bu ilovani kim ishlatadi — unga qanday ko'rinish kerak?, ru: <>Кто будет пользоваться эт |  | 45q
+ 3 Screen3            [] <>Birinchi jadval — joylar haqida nimani saqlaymiz?, ru: <>Первая таблица — что мы храним  |  | 49q
+ 4 Screen4            [] <>Joy bo'sh/bandligini qaysi ustun saqlaydi?, ru: <>Какой столбец хранит, свободно или зан | MC TEST | 15q
+ 5 Screen5            [] <>Bugungi kirish-chiqishlarni — kunlik tarixni — qayerga yozamiz?, ru: <>Куда записывать с |  | 45q
+ 6 Screen6            [] <>Bitta joyda ko'p marta mashina turadi — ularni qanday bog'laymiz?, ru: <>На одном месте  |  | 36q
+ 7 Screen7            [] <>Sessiyani joyga qaysi ustun bog'laydi?, ru: <>Какой столбец привязывает сеанс к месту? } | MC TEST | 31q
+ 8 ScreenPractice1    []  | VSCODE TERMINAL ANTIGRAV TEST | 12q
+ 9 Screen8            [] <>Backendni AI'ga qanday yozdiramiz?, ru: <>Как поручить ИИ написать бэкенд? })} |  | 43q
+10 Screen9            [] <>Endpointlar joyni qanday o'zgartiradi?, ru: <>Как endpoint-ы меняют место? })} |  | 44q
+11 Screen9b           [] <>Endi qorovul panelini (front) yozdiramiz., ru: <>Теперь поручим ИИ панель охранника (фро |  | 32q
+12 Screen10           [] <>Mashina kirganda qaysi amal?, ru: <>Какая операция — когда машина въезжает? })}} | MC TEST | 15q
+13 ScreenPractice2    []  | POSTMAN TEST | 11q
+14 Screen11           [] <>Endi sinaymiz — panel jonlanadimi?, ru: <>Теперь проверим — панель оживёт? })} | INPUT SIM_TIMER | 69q
+15 Screen12           [] <>Qorovul kunlik tarixni ochdi — lekin joy "2" deb chiqyapti, A2 qayerda?, ru: <>Охранник  |  | 42q
+16 Screen13           [] <>Sessiya yoniga joy belgisini qo'shish uchun?, ru: <>Что нужно, чтобы показать рядом с се | MC TEST | 15q
+17 ScreenPractice3    []  | TEST | 11q
+18 Screen14           [] <>Stoyanka boshqaruv paneli — hammasi joyidami?, ru: <>Панель управления стоянкой — всё ли | INPUT SIM_TIMER | 60q
+19 Screen15           [] <>Fullstack loyiha — bir qarashda nima?, ru: <>Fullstack-проект — что это, если одним взгл | VSCODE | 28q
+20 Screen16           [] <>Oxirgi qadam: bog'lanish shartini o'zingiz yozing., ru: <>Последний шаг: напишите услови | INPUT VSCODE | 57q
+21 ScreenPractice4    []  | BAJARDIM TEST | 959q
+22 ScreenPodium       [] <>Kim g'olib?, ru: <>Кто победитель? })} | SIM_TIMER PRACTICEDONE | 622q
+23 ScreenFlashcards   [] <>O'zingizni sinab ko'ring., ru: <>Проверьте себя. })} | SIM_TIMER | 79q
+24 Screen17           [] <>AvtoStoyanka panelini o'zingiz qurdingiz., ru: <>Панель AvtoStoyanka Вы построили сами.  | SIM_TIMER ANTIGRAV | 163q
+
+### m4-14 src/4-Modull/FullstackFeedbackLesson.jsx (21)
+ 0 Screen0            [] <>Siz qurdingiz — lekin u boshqaga qulaymi?, ru: <>Вы построили — но удобно ли это другому |  | 49q
+ 1 Screen1            [] <>Tayyor ilovani qanday yaxshilaymiz?, ru: <>Готовое приложение — как его улучшить? })}</ | ANTIGRAV | 48q
+ 2 Screen2            [] <>Qanday fikr foydali — "zo'r"mi yoki aniqmi?, ru: <>Какой отзыв полезен — «круто» или кон |  | 42q
+ 3 Screen3            [] <>Sinfdoshlar nima dedi?, ru: <>Что сказали одноклассники? })} | SIM_TIMER | 53q
+ 4 Screen4            [] <>Qaysi fikr eng foydali?, ru: <>Какой отзыв самый полезный? })}} | MC DRAG TEST | 15q
+ 5 Screen5            [] <>Avval qaysi birini qilamiz?, ru: <>Что делаем в первую очередь? })} | SIM_TIMER | 127q
+ 6 Screen6            [] <>Avval qaysi tuzatishni qilamiz?, ru: <>Какое исправление делаем первым? })}} | MC TEST | 15q
+ 7 Screen7            [] <>Tasodifiy chiqarishni qanday to'xtatamiz?, ru: <>Как остановить случайный выезд? })}</d |  | 52q
+ 8 Screen8            [] <>Qorovul holatni bir qarashda ko'rsinmi?, ru: <>Пусть охранник видит всё с одного взгляда |  | 38q
+ 9 Screen9            [] <>Narx va joylarni qorovul o'zi sozlasin — qanday qilamiz?, ru: <>Пусть охранник сам настр |  | 42q
+10 Screen10           [] <>Mavjud narxni o'zgartirish uchun?, ru: <>Что нужно, чтобы изменить существующую цену? }) | MC TEST | 15q
+11 Screen11           [] <>Endi o'zingiz — narx va joylarni sozlang., ru: <>Теперь сами — настройте цену и места. } |  | 49q
+12 Screen12           [] <>Yangilangan panel — endi qanday ishlaydi?, ru: <>Обновлённая панель — как она работает т |  | 46q
+13 Screen13           [] <>Mahsulotni yaxshilash sikli qanday?, ru: <>Как выглядит цикл улучшения продукта? })} | MC TEST | 15q
+14 Screen14           [] <>4-modulda nimalarni qurdingiz?, ru: <>Что Вы построили в 4-м модуле? })} |  | 34q
+15 Screen15           [] <>Yaxshi dasturchi nimasi bilan ajralib turadi?, ru: <>Чем выделяется хороший разработчик? | VSCODE | 26q
+16 Screen16           [] <>Oxirgi qadam: chiqishda tasdiqni o'zingiz yozing., ru: <>Последний шаг: напишите подтвер | INPUT VSCODE | 54q
+17 ScreenFeedbackPractice []  | SIM_TIMER TEST | 103q
+18 ScreenPodium       [] <>Kim g'olib?, ru: <>Кто победитель? })} | BAJARDIM SIM_TIMER VSCODE | 1002q
+19 ScreenFlashcards   [] <>O'zingizni sinab ko'ring., ru: <>Проверьте себя. })} | SIM_TIMER DRAG | 532q
+20 Screen17           [] <>Siz endi fullstack quruvchisiz., ru: <>Теперь Вы — fullstack-строитель. })}{/* 54-qonun | SIM_TIMER PRACTICEDONE | 131q
+
+### m4a-04 src/4a-Modull/NestArchPracticeLesson.jsx (23)
+ 0 Screen0            [] <>Mana siz quradigan narsa — haqiqiy onlayn kitob do'koni., ru: <>Вот что вы построите — н |  | 56q
+ 1 Screen1            [] <>Bugun ko'p kod yozmaysiz — siz bosh dasturchisiz., ru: <>Сегодня вы почти не пишете код  |  | 47q
+ 2 Screen2            [] <>Kitob do'koni qanday ma'lumotlarni saqlaydi — va ular bir-biriga qanday ulanadi?, ru: <> | SIM_TIMER | 74q
+ 3 Screen3            [] <>Agent aynan aytganingizni yozadi — ko'proq emas., ru: <>Агент пишет ровно то, что вы ска |  | 58q
+ 4 Screen4            [] <>AI yozib berdi — endi uni qanday tekshiramiz?, ru: <>ИИ написал код — как теперь его про |  | 33q
+ 5 Screen5            [] <>AI yozgach, sizning eng muhim vazifangiz?, ru: <>ИИ написал код — ваша самая важная зада | MC TEST | 15q
+ 6 Screen6            [] <>Har kim kitob qo'sha olsa — do'kon nima bo'ladi?, ru: <>Если книги может добавлять кто у |  | 52q
+ 7 Screen7            [] <>Qaysi eshik ochiq, qaysi biri faqat admin uchun?, ru: <>Какая дверь <span className="ita | SIM_TIMER | 41q
+ 8 Screen8            [] <>Mijoz POST /book qilsa nima bo'ladi?, ru: <>Клиент делает POST /book — <span className=" | MC TEST | 29q
+ 9 Screen9            [] <>Har kitobning muqovasida bitta yorliq bor., ru: <>На обложке каждой книги — один ярлык.  | SIM_TIMER | 144q
+10 Screen10           [] <>Kitob jadvalini yig'ing — qaysi qator Entity'ga tegishli?, ru: <>Соберите таблицу книг — |  | 39q
+11 Screen11           [] <>"Top kitoblar" bo'limi — yangi metod yozamizmi?, ru: <>Раздел «Топ-книги» — писать ли но |  | 43q
+12 Screen12           [] <>Top kitoblarni qanday qaytaramiz?, ru: <>Топ-книги — как их вернуть? })}} | MC TEST | 15q
+13 Screen13           [] <>Oxirgi resurs — Buyurtma. Qaysi kitobga bog'lanadi?, ru: <>Последний ресурс — Заказ. К к |  | 48q
+14 Screen14           [] <>Do'kon ochildi — lekin bironta buyurtma kelmayapti., ru: <>Магазин открылся — но не приш | SIM_TIMER | 92q
+15 Screen15           [] <>Mijoz buyurtma berolsin desak, qatorni qanday tuzatamiz?, ru: <>Чтобы клиент мог заказат | MC TEST | 15q
+16 Screen16           [] <>Hammasi birga: bitta haqiqiy xarid qanday kechadi?, ru: <>Всё вместе: как проходит одна  |  | 44q
+17 Screen17           [] <>Sizning KitobShop'ingiz — to'liq tirik!, ru: <>Ваш KitobShop — полностью живой! })}</di |  | 49q
+18 Screen19           [] <>Ochilishdan oldin: beshta da'vodan bittasi yolg'on., ru: <>Перед открытием: одно из пяти | SIM_TIMER VSCODE PRACTICEDONE | 138q
+19 ScreenKitobShopPractice []  | VSCODE TEST | 35q
+20 ScreenPodium       [] <>Kim g'olib?, ru: <>Кто победитель? })} | SIM_TIMER | 87q
+21 ScreenFlashcards   [] <>O'zingizni sinab ko'ring., ru: <>Проверьте себя. })} | BAJARDIM SIM_TIMER | 631q
+22 Screen20           [] <>Endi siz backend dasturchisisiz., ru: <>Теперь вы — бэкенд-разработчик. })}{/* 54-qonun | BAJARDIM SIM_TIMER VSCODE | 1023q
+
+### m4c-04 src/4c-Modull/FullPipelineProjectLesson.jsx (18)
+ 0 Screen0            [] <>1- va 2-darsda nuqtalarni va yo'l xaritasini o'rgandingiz. Bugun — loyiha kuni: hammasin | TERMINAL | 51q
+ 1 Screen1            [] <>Bugun to'liq lentani qanday quramiz?, ru: <>Как сегодня построим полный конвейер? })}</ |  | 39q
+ 2 Screen2            [] <>Nega ✈️ Uchirish nuqtasi lentaning oxirida turadi?, ru: <>Почему точка ✈️ Взлёт стоит в  | MC TEST | 22q
+ 3 Screen3            [] <>TABLO qizil. Sababni jurnaldan toping., ru: <>ТАБЛО красное. Найдите причину в журнале.  |  | 44q
+ 4 Screen4            [] <>Bitta faylda 5 nuqta — qanday joylashadi?, ru: <>Как в одном файле размещаются 5 точек?  |  | 37q
+ 5 Screen5            [] <>Bitta yo'l xaritasida 5 nuqta qanday tashkil qilinadi?, ru: <>Как организуются 5 точек в | MC TEST | 21q
+ 6 Screen6            [] <>Bo'sh yo'l xaritasidan siz to'liq lenta quring., ru: <>Постройте полный конвейер из пуст | SIM_TIMER DRAG | 111q
+ 7 Screen7            [] <>O'lcham ramkasi nuqtasi lentadan olib tashlansa, oqibati nima?, ru: <>Если точку Габарит | MC TEST | 19q
+ 8 Screen8            [] <>Har yuk darhol yo'lovchiga chiqmaydi., ru: <>Не всякий багаж сразу попадает к пассажиру. |  | 45q
+ 9 Screen9            [] <>Sinov reysi va haqiqiy reys orasidagi asosiy farq nima?, ru: <>В чём главная разница меж | MC TEST | 20q
+10 Screen10           [] <>v3 productionda xato chiqardi. Qaysi versiyaga qaytamiz?, ru: <>v3 выдала ошибку в produ |  | 62q
+11 Screen11           [] <>Repo sahifasida TABLO qanday ko'rinadi?, ru: <>Как выглядит ТАБЛО на странице репозитори |  | 37q
+12 Screen12           [] <>TABLO qizil bo'lib qolsa, birinchi navbatda nima qilinadi?, ru: <>Если ТАБЛО стало красн | MC TEST | 15q
+13 Screen13           [] <>Oxirgi qadam: o'zingiz to'ldiring., ru: <>Последний шаг: заполните сами. })} | INPUT SIM_TIMER VSCODE PRACTICEDONE | 115q
+14 ScreenFullPipelinePractice []  | VSCODE TEST | 29q
+15 ScreenPodium       [] <>Kim g'olib?, ru: <>Кто победитель? })} | SIM_TIMER | 86q
+16 ScreenFlashcards   [] <>O'zingizni sinab ko'ring., ru: <>Проверьте себя. })} | BAJARDIM SIM_TIMER | 620q
+17 Screen14           [] <>Loyihangiz endi o'zi uchadi., ru: <>Теперь ваш проект летает сам. })}{/* 54-qonun (P0 P | SIM_TIMER VSCODE | 927q
+
+### m4c-05 src/4c-Modull/AiPipelineProjectLesson.jsx (20)
+ 0 Screen0            [] <>Lentada qizil chiroq yondi. Jurnal uzun va chalkash — nima qilasiz?, ru: <>На ленте заго |  | 47q
+ 1 Screen1            [] <>Yordamchiga ishonamizmi — yoki tekshirib ishonamizmi?, ru: <>Верим Помощнику — или верим | ANTIGRAV | 45q
+ 2 Screen2            [] <>Uzun jurnalda 5 muhim qism yashiringan., ru: <>В длинном журнале спрятаны 5 важных часте |  | 38q
+ 3 Screen3            [] <>Yordamchiga qanday so'raysiz?, ru: <>Как именно вы спросите Помощника? })} |  | 44q
+ 4 Screen4            [] <>Yordamchiga yaxshi so'rov qanday bo'ladi?, ru: <>Каким должен быть хороший запрос Помощн | MC TEST | 20q
+ 5 Screen5            [] <>Yordamchi uchta xatoni qanchalik tez topadi?, ru: <>Как быстро Помощник найдёт три ошибк |  | 44q
+ 6 Screen6            [] <>Yordamchi ikki xil yordam beradi — kim uchiradi?, ru: <>Помощник помогает по-разному — к |  | 42q
+ 7 Screen7            [] <>Yordamchi avval qaysi nuqtada to'xtaganini aniqlaydi., ru: <>Сначала Помощник определяет |  | 29q
+ 8 Screen8            [] <>Yordamchi taklif berdi. Birinchi nima qilasiz?, ru: <>Помощник дал предложение. Что вы с | MC TEST | 23q
+ 9 Screen9            [] <>Qizil chiroq. Yordamchidan yordam so'rang — lekin tekshirishni unutmang., ru: <>Красный  |  | 101q
+10 Screen10           [] <>Yordamchi sababni noto'g'ri aytsa — buni qanday bilasiz?, ru: <>Помощник поставил неверн | MC TEST | 20q
+11 Screen11           [] <>Nega Yordamchidan foydalanamiz?, ru: <>Зачем нам вообще Помощник? })} |  | 42q
+12 Screen12           [] <>Yordamchi bu safar sababni noto'g'ri aytdi. Nima bo'ladi?, ru: <>В этот раз Помощник пос |  | 46q
+13 Screen13           [] <>Yordamchi yo'l xaritasi taklif qildi — siz tekshirasiz., ru: <>Помощник предложил маршру | SIM_TIMER | 68q
+14 Screen14           [] <>Birinchi taklif noto'g'ri chiqdi. Nima qilasiz?, ru: <>Первое предложение оказалось неве | MC TEST | 23q
+15 Screen15           [] <>Oxirgi qadam: Yordamchi bilan tuzatish tartibini yig'ing., ru: <>Последний шаг: соберите | SIM_TIMER DRAG | 590q
+16 ScreenAiPractice   []  | ANTIGRAV TEST | 28q
+17 ScreenPodium       [] <>Kim g'olib?, ru: <>Кто победитель? })} | SIM_TIMER VSCODE PRACTICEDONE | 143q
+18 ScreenFlashcards   [] <>O'zingizni sinab ko'ring., ru: <>Проверьте себя. })} | SIM_TIMER VSCODE TERMINAL ANTIGRAV | 998q
+19 SummaryScreen      []  |  | 0q
+
+### m4c-07 src/4c-Modull/FullProPipelineLesson.jsx (20)
+ 0 Screen0            [] <>Lentangiz yashil chiqdi — lekin productionda sayt ishlamay qoldi. Nega?, ru: <>Ваша лент |  | 50q
+ 1 Screen1            [] <>Lentani ishonchli qanday qilamiz?, ru: <>Как сделать ленту надёжной? })} |  | 44q
+ 2 Screen2            [] <>Parallel lentalar — bitta yuk, bir nechta muhit., ru: <>Параллельные ленты — один груз,  |  | 44q
+ 3 Screen3            [] <>3 muhit birdan aylanadi — qaysi biri sinadi?, ru: <>3 среды крутятся одновременно — кака | SIM_TIMER | 53q
+ 4 Screen4            [] <>Parallel lentalar (matrix) nima uchun kerak?, ru: <>Зачем нужны параллельные ленты (matr | MC TEST | 15q
+ 5 Screen5            [] <>Har push'da hamma paket qaytadan yuklanadi?, ru: <>При каждом push все пакеты заново ска |  | 36q
+ 6 Screen6            [] <>Yaqin javon bilan — qancha tezroq?, ru: <>С ближней полкой — насколько быстрее? })}</di |  | 37q
+ 7 Screen7            [] <>Yo'l xaritasida cache qanday yoziladi?, ru: <>Как записывается cache в маршрутной карте? |  | 38q
+ 8 Screen8            [] <>Yaqin javon (cache) nimaga yordam beradi?, ru: <>Чем помогает ближняя полка (cache)? })} | MC TEST | 15q
+ 9 Screen9            [] <>Maxfiy kalitni yo'l xaritasiga qanday yozasiz?, ru: <>Как записать секретный ключ в марш |  | 43q
+10 Screen10           [] <>Maxfiy kalitni qanday ishlatish xavfsiz?, ru: <>Как безопасно использовать секретный клю | MC TEST | 19q
+11 Screen11           [] <>Haqiqiy reysdan oldin — sinov reysi., ru: <>Перед настоящим рейсом — тестовый рейс. })} |  | 44q
+12 Screen12           [] <>Sinov reysi yashil edi — haqiqiy reysda nima bo'ldi?, ru: <>Тестовый рейс был зелёным —  |  | 37q
+13 Screen13           [] <>Lentani o'zingiz ishonchli qiling., ru: <>Сделайте ленту надёжной сами. })} |  | 58q
+14 Screen14           [] <>Yangi yuk production'da buzuq chiqdi. Nima qilasiz?, ru: <>Новый багаж в продакшене оказ | MC TEST | 23q
+15 Screen15           [] <>Oxirgi qadam: ishonchli lentani to'g'ri tartibda yig'ing., ru: <>Последний шаг: соберите | SIM_TIMER DRAG | 570q
+16 ScreenProPractice  []  | TEST | 28q
+17 ScreenPodium       [] <>Kim g'olib?, ru: <>Кто победитель? })} | SIM_TIMER VSCODE PRACTICEDONE | 144q
+18 ScreenFlashcards   [] <>O'zingizni sinab ko'ring., ru: <>Проверьте себя. })} | SIM_TIMER VSCODE TERMINAL | 1003q
+19 SummaryScreen      []  |  | 0q

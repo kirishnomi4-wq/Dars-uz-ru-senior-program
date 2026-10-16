@@ -1,0 +1,80 @@
+<style>
+.pr{background:#f5f4ef;color:#15181d;border:1px solid #e3e1d8;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px;font-size:14px;margin-bottom:22px}
+.pr *{box-sizing:border-box}
+.pr-eb{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#5b6370;font-weight:700}
+.pr-eb::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#ff4f28;margin-right:6px;vertical-align:middle}
+.pr code{font-family:ui-monospace,Menlo,monospace;font-size:.92em;background:#e8e6df;color:#15181d;padding:1px 5px;border-radius:4px}
+.pr-h{font-weight:800;font-size:20px;margin:0}
+.pr-m{background:#fff;border-radius:10px;padding:10px 12px;font-size:13.5px}
+.pr-m b{color:#ff4f28;font-size:11px;display:block}
+.pr-split{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pr-split>*{min-width:0}
+@media (max-width:640px){.pr-split{grid-template-columns:1fr}}
+.pr-card{background:#fff;border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.pr-lbl{font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:#5b6370;font-weight:700}
+.pr-card ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:3px;font-size:13px}
+.pr-ex{background:#1b2238;color:#e9edf7;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;border-radius:8px;padding:10px;white-space:pre-wrap;line-height:1.5}
+.pr-low{font-size:12.5px;color:#5b6370}
+.pr-low u{color:#ff4f28;text-decoration:underline;font-weight:600}
+.pr-nav{display:flex;justify-content:space-between;border-top:1px solid #e3e1d8;padding-top:10px}
+.pr-btn{background:#ff4f28;color:#fff;font-weight:700;border-radius:8px;padding:7px 14px;font-size:13px}
+.pr-back{font-weight:600;padding:7px 4px;font-size:13px}
+.ps{border-radius:8px;overflow:hidden;border:1px solid #d9d7cf;background:#f2f2f2;font-family:Arial,sans-serif;font-size:10px;color:#222}
+.ps-bar{background:#e8e6df;padding:4px 8px;font-family:ui-monospace,monospace;font-size:9px;color:#777}
+.ps-hd{background:#1b2238;color:#fff;text-align:center;padding:10px 6px}
+.ps-hd b{font-size:13px;display:block}
+.ps-hd i{color:#ffb199;font-style:normal}
+.ps-nav{display:flex;justify-content:center;gap:6px;margin-top:6px}
+.ps-nav span{color:#fff;text-decoration:underline}
+.ps.t .ps-nav span,.ps.k .ps-nav span,.ps.r .ps-nav span{text-decoration:none;background:rgba(255,255,255,.14);padding:2px 7px;border-radius:999px}
+.ps.t .ps-nav span.h,.ps.k .ps-nav span.h{background:#ff4f28}
+.ps.r .ps-nav span.h{background:#1f9d55}
+.ps-sec{background:#fff;margin:6px 8px;border-radius:6px;padding:6px 8px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.ps-sec h5{margin:0 0 3px;color:#ff4f28;font-size:10.5px}
+.ps.r .ps-sec h5{color:#1f9d55}
+.ps-ul{margin:0;padding-left:14px}
+.ps.k .ps-ul,.ps.r .ps-ul{display:flex;gap:4px;padding:0;list-style:none}
+.ps.k .ps-ul li,.ps.r .ps-ul li{flex:1;border:1.5px solid #ff4f28;border-radius:5px;padding:4px;font-size:9px}
+.ps.r .ps-ul li{border-color:#1f9d55}
+.ps-ft{background:#1b2238;color:#fff;text-align:center;padding:5px;font-size:9px}
+.ps-cur{display:inline-block;margin-left:2px;font-size:10px}
+.pr-ring{outline:2px dashed #ff4f28;outline-offset:2px;border-radius:999px}
+.pr-states{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.pr-states>div{min-width:0;display:flex;flex-direction:column;gap:4px}
+@media (max-width:760px){.pr-states{grid-template-columns:repeat(2,1fr)}}
+.pr-cap{font-size:12px;font-weight:700}
+</style>
+<section class="pr" aria-label="Prototip: a1 ish ekrani">
+  <span class="pr-eb">Prototip · a1 ish ekrani (darsning o'z ko'rinishida, 1280 px soddalashtirilgan)</span>
+  <span class="pr-eb" style="color:#15181d">Amaliyot 1 · menyu</span>
+  <p class="pr-h">Menyu havolalarini tugmaga aylantiring.</p>
+    <div class="pr-split">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="pr-card"><span class="pr-lbl">Vazifa</span><span>Menyudagi havolalar tugmadek ko'rinsin, sichqoncha ustiga borganda rangi o'zgarsin.</span></div>
+      <div class="pr-card"><span class="pr-lbl">Promptda ayting</span>
+        <ul><li>nima o'zgarsin — fon, ichki bo'shliq, yumaloq burchak; sichqoncha ustida boshqa rang</li><li>faqat <code>style.css</code>, HTML'ga tegmasin</li><li>hozirgi <code>style.css</code></li></ul>
+        <span class="pr-lbl">Masalan</span>
+        <div class="pr-ex">Menyu havolalarimni tugmaga aylantir: fon, ichki bo'shliq, yumaloq burchak.
+Sichqoncha ustiga borganda tugma rangi o'zgarsin.
+Faqat style.css'ni o'zgartir, HTML'ga tegma. To'liq style.css'ni qaytar.
+Mana style.css: {style.css kodini shu yerga qo'ying}</div>
+      </div>
+      <span class="pr-low">Ortda qoldingizmi? <u>Namuna kodini nusxalash</u></span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <span class="pr-lbl">Kutilgan natija</span>
+      <div class="ps t"><div class="ps-bar">portfolio · Live Server</div><div class="ps-hd"><b>Aziza Karimova</b><i>Frontend dasturchi</i><div class="ps-nav"><span>Men haqimda</span><span class="h pr-ring">Loyihalarim<span class="ps-cur">↖</span></span><span>Aloqa</span></div></div><div class="ps-sec"><h5>Men haqimda</h5>Salom! Men HTML o'rganyapman va o'z saytimni yasayapman.</div><div class="ps-sec"><h5>Loyihalarim</h5><ul class="ps-ul"><li>Birinchi HTML sahifam</li><li>Ro'yxatdan o'tish formasi</li><li>CSS bilan bezalgan kartochka</li></ul></div><div class="ps-ft">Aziza Karimova, 2026</div></div>
+      <span class="pr-low">Sichqoncha ustida turgan holat CSS'da <code>:hover</code> deb yoziladi — Gemini javobida <code>nav a:hover</code> kabi qoidani toping.</span>
+    </div>
+  </div>
+  <div class="pr-nav"><span class="pr-back">Orqaga</span><span class="pr-btn">Davom etish</span></div>
+</section>
+<section class="pr" aria-label="Bitta vizual — 4 holat">
+  <span class="pr-eb">Bitta vizual dars bo'yi · PfSahifa 4 holati</span>
+  <div class="pr-states">
+    <div><span class="pr-cap">boshi — o'tgan dars</span><div class="ps"><div class="ps-hd"><b>Aziza Karimova</b><i>Frontend dasturchi</i><div class="ps-nav"><span>Men haqimda</span><span>Loyihalarim</span><span>Aloqa</span></div></div><div class="ps-sec"><h5>Loyihalarim</h5><ul class="ps-ul"><li>HTML sahifa</li><li>Forma</li><li>Kartochka</li></ul></div></div></div>
+    <div><span class="pr-cap">a1 — tugmalar</span><div class="ps t"><div class="ps-hd"><b>Aziza Karimova</b><i>Frontend dasturchi</i><div class="ps-nav"><span>Men haqimda</span><span class="h">Loyihalarim</span><span>Aloqa</span></div></div><div class="ps-sec"><h5>Loyihalarim</h5><ul class="ps-ul"><li>HTML sahifa</li><li>Forma</li><li>Kartochka</li></ul></div></div></div>
+    <div><span class="pr-cap">a2 — kartochkalar</span><div class="ps k"><div class="ps-hd"><b>Aziza Karimova</b><i>Frontend dasturchi</i><div class="ps-nav"><span>Men haqimda</span><span class="h">Loyihalarim</span><span>Aloqa</span></div></div><div class="ps-sec"><h5>Loyihalarim</h5><ul class="ps-ul"><li>HTML sahifa</li><li>Forma</li><li>Kartochka</li></ul></div></div></div>
+    <div><span class="pr-cap">a3 — o'z rangi (masalan)</span><div class="ps r"><div class="ps-hd"><b>Aziza Karimova</b><i>Frontend dasturchi</i><div class="ps-nav"><span>Men haqimda</span><span class="h">Loyihalarim</span><span>Aloqa</span></div></div><div class="ps-sec"><h5>Loyihalarim</h5><ul class="ps-ul"><li>HTML sahifa</li><li>Forma</li><li>Kartochka</li></ul></div></div></div>
+  </div>
+</section>

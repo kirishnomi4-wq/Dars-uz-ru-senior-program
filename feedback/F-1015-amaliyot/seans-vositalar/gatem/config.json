@@ -1,0 +1,34 @@
+{
+ "title": "GATE M · CSS Praktika pilot",
+ "kod": "m1-10",
+ "eyebrow": "F-1015 · praktika qolipi pilot · 20 → 9 ekran · faqat o'zbekcha",
+ "kirish": "m1-10 «CSS Praktika» yangi qolipda: 6 ish ekrani + natijalar, kartochkalar, yakun. Ish VS Code + Gemini + Live Server'da, ustoz bilan birga; dars ekrani faqat yo'l ko'rsatadi, o'tish «Davom etish». Yuqorida — ish ekranining prototipi (darsning o'z ko'rinishida), pastda — 2 savol va to'liq MD. Tavsiya birinchi turadi.",
+ "darslar": [
+  {
+   "id": "D01",
+   "guruh": "2-Modul",
+   "qisqa": "m1-10",
+   "eyebrow": "2-Modul · 11-dars · src/1-Modull/CssPractice.jsx",
+   "nom": "CSS Praktika — Portfolioni bezaymiz",
+   "fayl": "01-m1-10-v3.md",
+   "xulosa": "Ip: o'quvchining m1-08 dagi portfoliosi, bugun faqat style.css. a1 menyu tugmalari (Gemini, :hover) · a2 loyiha kartochkalari (Gemini, flex + gap) · a3 o'z rangi (AI'siz, Ctrl+H). Topshirish — 1 ballik savol (✔ C, display: flex), arena 12 savol aynan. Nishonlar bloklarga bog'langan (bonus). Kompilyator, 6 test va 7 tanlov ekrani olinadi.",
+   "savollar": [
+    {
+     "savol": "Prompt maslahati qanday ko'rinadi?",
+     "variantlar": [
+      ["A", "Uch band + «Masalan:» matni, nusxalash tugmasisiz — o'quvchi o'zi yozadi"],
+      ["B", "Uch band + «Masalan:» + «Nusxalash» (m1-08 dagidek) — tezroq, lekin faqat nusxalanadi"],
+      ["C", "Faqat uch band, misolsiz — eng mustaqil, sekin o'quvchi qotishi mumkin"]
+     ]
+    },
+    {
+     "savol": "a1 dagi `:hover` (yangi atama) qoladimi?",
+     "variantlar": [
+      ["A", "Qoladi — hodisa natija suratida, atama bir qatorda; eski darsda «keyingi darslarda :hover» va'dasi bor edi"],
+      ["B", "Olinadi — a1 faqat tugma ko'rinishi, kartochkadan ham chiqadi"]
+     ]
+    }
+   ]
+  }
+ ]
+}

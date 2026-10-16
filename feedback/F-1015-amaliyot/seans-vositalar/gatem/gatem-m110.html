@@ -1,0 +1,542 @@
+<title>GATE M · CSS Praktika pilot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap">
+<style>
+:root {
+  /* Layout: bitta ustun — xulosa, regressiya, 7 savol (surat + prototip + variant), savolsiz ro'yxat, pastda yopishqoq javob */
+  --bg: #f3f4f1; --surface: #ffffff; --ink: #1b1d1a; --muted: #5d625a; --line: #dfe2dc;
+  --accent: #e8542a; --accent-soft: #fde9e2; --ok: #1f7a4d; --ok-soft: #e3f3ea; --warn: #9a5b00; --warn-soft: #fbf0dc;
+  --bad: #b3261e; --bad-soft: #fbe4e2; --code-bg: #eef0eb; --shade: rgba(20,22,19,.82);
+  --f-body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #161816; --surface: #1f221f; --ink: #ecede9; --muted: #a3a89f; --line: #333733;
+  --accent: #ff7a50; --accent-soft: #3a2219; --ok: #5fd39a; --ok-soft: #173326; --warn: #f0b75a; --warn-soft: #3a2c12;
+  --bad: #ff8a80; --bad-soft: #3d1c1a; --code-bg: #2a2d29; --shade: rgba(0,0,0,.86); color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #161816; --surface: #1f221f; --ink: #ecede9; --muted: #a3a89f; --line: #333733;
+  --accent: #ff7a50; --accent-soft: #3a2219; --ok: #5fd39a; --ok-soft: #173326; --warn: #f0b75a; --warn-soft: #3a2c12;
+  --bad: #ff8a80; --bad-soft: #3d1c1a; --code-bg: #2a2d29; --shade: rgba(0,0,0,.86); color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--f-body); }
+.wrap { max-width: 1000px; margin: 0 auto; padding-inline: 16px; padding-block: 28px 64px; display: grid; gap: 26px }
+header h1 { font-size: 28px; line-height: 1.2; margin: 0 0 6px; text-wrap: balance; letter-spacing: -0.01em }
+header p { margin: 0; color: var(--muted); max-width: 72ch }
+.eyebrow { font: 600 11px/1.3 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted) }
+h3.sec { margin: 8px 0 -8px; font-size: 18px }
+.nums { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px }
+.num { border: 1px solid var(--line); border-radius: 10px; padding: 12px; font-size: 13px; color: var(--muted); background: var(--surface) }
+.num b { display: block; font-size: 24px; color: var(--ink); font-variant-numeric: tabular-nums; line-height: 1.2 }
+.lead { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; display: grid; gap: 8px }
+.lead p { margin: 0; max-width: 78ch }
+section.q { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; display: grid; gap: 14px; min-width: 0 }
+section.q h2 { margin: 2px 0 0; font-size: 20px; line-height: 1.3; text-wrap: balance }
+.ctx { margin: 0; max-width: 78ch }
+code { font: 13px/1.4 var(--f-mono); background: var(--code-bg); padding: 1px 5px; border-radius: 4px }
+.shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px }
+figure { margin: 0; display: grid; gap: 6px; min-width: 0 }
+figure img { width: 100%; border-radius: 8px; border: 1px solid var(--line); display: block }
+figcaption { font-size: 13px; color: var(--muted) }
+figcaption b { color: var(--ink) }
+img.zoom { cursor: zoom-in }
+.opts { display: grid; gap: 10px }
+.opt { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; border: 1px solid var(--line); border-radius: 10px; padding: 13px 14px; cursor: pointer; background: var(--surface) }
+.opt:has(input:checked) { border-color: var(--accent); background: var(--accent-soft) }
+.opt input { margin: 3px 0 0; accent-color: var(--accent); width: 18px; height: 18px }
+.opt .t { font-weight: 700 }
+.opt .d { display: block; color: var(--muted); font-size: 14px; margin-top: 3px }
+.tag { display: inline-block; font: 600 11px/1 var(--f-mono); letter-spacing: .04em; padding: 4px 7px; border-radius: 999px; margin-left: 8px; vertical-align: 2px; background: var(--ok-soft); color: var(--ok) }
+/* prototiplar */
+.proto { display: grid; gap: 14px; border: 1px dashed var(--line); border-radius: 12px; padding: 14px; background: var(--bg) }
+.proto.two { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+.pcol { display: grid; gap: 8px; align-content: start; min-width: 0 }
+.plbl { font: 600 11px/1.3 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted) }
+.mock { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px; display: grid; gap: 8px; min-height: 150px; align-content: start }
+.mock.center { place-items: center; text-align: center; align-content: center }
+.m-btn { justify-self: start; background: var(--accent); color: #fff; font-size: 12px; font-weight: 700; padding: 6px 10px; border-radius: 7px }
+.m-card { border: 1px solid var(--line); border-radius: 7px; padding: 7px; display: grid; gap: 4px }
+.m-card i { display: block; height: 6px; border-radius: 3px; background: var(--line) }
+.m-card i.s { width: 55% }
+.m-note { font-size: 12.5px; color: var(--muted) }
+.mock.live { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 10px }
+.sk-l, .sk-r { display: grid; gap: 6px; align-content: start; min-width: 0 }
+.sk-f { font: 600 11px/1.3 var(--f-mono); color: var(--muted) }
+.sk-code { margin: 0; font: 11.5px/1.5 var(--f-mono); background: var(--code-bg); border-radius: 6px; padding: 8px; white-space: pre-wrap; word-break: break-word }
+.sk-add { display: none; color: var(--ok); font-weight: 600 }
+#sk.on .sk-add { display: inline }
+.sk-btn { justify-self: start; font: 700 12px/1 var(--f-body); background: var(--surface); color: var(--accent); border: 1.5px solid var(--accent); border-radius: 7px; padding: 7px 10px; cursor: pointer }
+#sk.on .sk-btn { color: var(--muted); border-color: var(--line) }
+.sk-bub { background: var(--code-bg); border-radius: 10px 10px 10px 3px; padding: 8px 10px; font-size: 13px; transition: background .25s }
+#sk.on .sk-bub { background: var(--ok-soft) }
+.sk-v { font-size: 12px; color: var(--bad); font-weight: 600 }
+#sk.on .sk-v { color: var(--ok) }
+.q2-row { border-radius: 8px; padding: 10px; display: grid; gap: 7px }
+.q2-row.old { background: #f1eefc; border: 1px solid #d9d2f5; color: #1b1d1a }
+.q2-row.old .q2-opts span { background: #fff; border: 1px solid #ddd8f0; color: #333 }
+.q2-row.old .q2-opts span.o2 { background: #e3f4fb; border: 2px solid #2a8fb5 }
+.q2-row.new { background: var(--surface); border: 1px solid var(--line) }
+.q2-t { font-weight: 700; font-size: 13px }
+.q2-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 6px }
+.q2-opts span { font-size: 12px; border: 1px solid var(--line); border-radius: 7px; padding: 6px 8px; min-width: 0 }
+.q2-row.new .q2-opts span.on { border: 1.5px solid var(--accent); background: var(--accent-soft); color: var(--accent); font-weight: 700 }
+.q2-res { font-size: 12px; color: var(--muted) }
+.q3-emoji { font-size: 34px }
+.q3-tt { font-weight: 700; font-size: 14px; max-width: 30ch }
+.mock.chat { gap: 7px }
+.c-u { justify-self: end; background: var(--accent-soft); border-radius: 10px 10px 3px 10px; padding: 6px 9px; font-size: 12px; max-width: 80% }
+.c-a { display: grid; gap: 4px; width: 80% }
+.c-a i { display: block; height: 6px; border-radius: 3px; background: var(--line) }
+.c-a i.s { width: 60% }
+.c-in { border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; font-size: 12px; color: var(--muted) }
+.c-warn { justify-self: center; font-size: 10.5px; color: var(--muted); padding: 2px 6px; border-radius: 5px; outline: 2px solid var(--accent); outline-offset: 2px; animation: blink 1.6s ease-in-out infinite }
+@keyframes blink { 50% { outline-color: transparent } }
+/* savolsiz ro'yxat */
+.fxl { display: grid; gap: 12px }
+.fx { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 14px }
+.fx-th { display: grid; gap: 6px; align-content: start }
+.fx-th img { width: 100%; border-radius: 6px; border: 1px solid var(--line); display: block }
+.fx-b { display: grid; gap: 6px; align-content: start; min-width: 0 }
+.fx-h { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center }
+.fid { font: 700 13px/1 var(--f-mono) }
+.where { font-size: 13px; color: var(--muted) }
+.pill { font: 600 11px/1 var(--f-mono); padding: 4px 7px; border-radius: 999px }
+.pill.bad { background: var(--bad-soft); color: var(--bad) }
+.pill.warn { background: var(--warn-soft); color: var(--warn) }
+.pill.ok { background: var(--ok-soft); color: var(--ok) }
+.pill.acc { background: var(--accent-soft); color: var(--accent) }
+.pill.mute { background: var(--code-bg); color: var(--muted) }
+.acc-l { margin-left: auto; font-size: 13px; display: flex; gap: 6px; align-items: center; cursor: pointer }
+.acc-l input { accent-color: var(--accent); width: 16px; height: 16px }
+.what, .sol { margin: 0; font-size: 14px }
+.sol { color: var(--muted) }
+.sol b { color: var(--ink) }
+#f19 { border-color: var(--bad) }
+/* javob */
+textarea { width: 100%; min-height: 60px; font: 14px/1.5 var(--f-body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 10px }
+textarea:focus-visible, button:focus-visible, .opt:focus-within, .acc-l:focus-within { outline: 2px solid var(--accent); outline-offset: 2px }
+.answer { position: sticky; bottom: env(safe-area-inset-bottom, 0px); background: var(--surface); border: 1px solid var(--accent); border-radius: 14px; padding: 14px; display: grid; gap: 10px; box-shadow: 0 8px 24px rgba(0,0,0,.08) }
+.answer pre { margin: 0; font: 13px/1.5 var(--f-mono); white-space: pre-wrap; word-break: break-word; background: var(--code-bg); padding: 10px 12px; border-radius: 8px }
+.row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap }
+button.copy { font: 700 14px/1 var(--f-body); background: var(--accent); color: #fff; border: 0; border-radius: 8px; padding: 12px 18px; cursor: pointer }
+.status { font-size: 13px; color: var(--ok) }
+/* lightbox */
+#lb { position: fixed; inset: 0; background: var(--shade); display: grid; place-items: center; padding: 16px; z-index: 50; cursor: zoom-out }
+#lb[hidden] { display: none }
+#lb img { max-width: 100%; max-height: 92vh; border-radius: 8px }
+@media (max-width: 720px) { .shots, .proto.two, .mock.live { grid-template-columns: 1fr } .nums { grid-template-columns: repeat(2, minmax(0, 1fr)) } .fx { grid-template-columns: 1fr } section.q { padding: 16px } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important } }
+
+.dars > * { min-width: 0; } .dars details { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); }
+.dars summary { cursor: pointer; padding: 12px 14px; font-weight: 700; }
+.mdv { padding: 4px 18px 18px; overflow-x: auto; min-width: 0; font-size: 14.5px; line-height: 1.55; }
+.mdv h1 { font-size: 20px; } .mdv h2 { font-size: 17px; margin-top: 22px; border-top: 1px solid var(--line); padding-top: 14px; } .mdv h3 { font-size: 15px; }
+.mdv table { border-collapse: collapse; font-size: 13px; display: block; overflow-x: auto; } .mdv td, .mdv th { border: 1px solid var(--line); padding: 5px 8px; vertical-align: top; }
+.mdv pre { background: var(--code-bg, rgba(0,0,0,.05)); padding: 10px; border-radius: 8px; overflow-x: auto; } .mdv blockquote { margin: 0; padding-left: 12px; border-left: 3px solid var(--line); color: var(--muted); }
+.mdv li { margin: 3px 0; } .mdv code { overflow-wrap: anywhere; } .mdv p, .mdv li { overflow-wrap: anywhere; } .savollar { display: grid; gap: 10px; grid-template-columns: minmax(0, 1fr); } .qq, .qq .opts, .qq .opt, .qq .opt > span { min-width: 0; } .qq-h, .qq .opt .t { overflow-wrap: anywhere; } .qq-h { font-weight: 700; margin: 0 0 6px; }
+.kalit { font: 600 11px/1 'JetBrains Mono', monospace; color: var(--accent); border: 1px solid var(--line); border-radius: 6px; padding: 2px 6px; margin-right: 4px; vertical-align: 1px; } .tasdiq { grid-template-columns: 1fr 1fr; } @media (max-width: 640px) { .tasdiq { grid-template-columns: 1fr; } }
+.answer { position: static; } #ans { max-height: 220px; overflow: auto; } .nav a.javob { border-color: var(--accent); color: var(--accent); font-weight: 700; }
+.nav { display: flex; flex-wrap: wrap; gap: 8px; } .nav a { font-size: 13px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px; text-decoration: none; color: var(--ink); }
+</style>
+<div class="wrap">
+  <header><div class="eyebrow">F-1015 · praktika qolipi pilot · 20 → 9 ekran · faqat o&#x27;zbekcha</div><h1>GATE M · CSS Praktika pilot</h1><p>m1-10 «CSS Praktika» yangi qolipda: 6 ish ekrani + natijalar, kartochkalar, yakun. Ish VS Code + Gemini + Live Server&#x27;da, ustoz bilan birga; dars ekrani faqat yo&#x27;l ko&#x27;rsatadi, o&#x27;tish «Davom etish». Yuqorida — ish ekranining prototipi (darsning o&#x27;z ko&#x27;rinishida), pastda — 2 savol va to&#x27;liq MD. Tavsiya birinchi turadi.</p></header>
+  <div class="nav"><a href="#D01">D01 · m1-10</a><a class="javob" href="#javob">Javob</a></div>
+  <style>
+.pr{background:#f5f4ef;color:#15181d;border:1px solid #e3e1d8;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px;font-size:14px;margin-bottom:22px}
+.pr *{box-sizing:border-box}
+.pr-eb{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#5b6370;font-weight:700}
+.pr-eb::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#ff4f28;margin-right:6px;vertical-align:middle}
+.pr code{font-family:ui-monospace,Menlo,monospace;font-size:.92em;background:#e8e6df;color:#15181d;padding:1px 5px;border-radius:4px}
+.pr-h{font-weight:800;font-size:20px;margin:0}
+.pr-m{background:#fff;border-radius:10px;padding:10px 12px;font-size:13.5px}
+.pr-m b{color:#ff4f28;font-size:11px;display:block}
+.pr-split{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pr-split>*{min-width:0}
+@media (max-width:640px){.pr-split{grid-template-columns:1fr}}
+.pr-card{background:#fff;border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.pr-lbl{font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:#5b6370;font-weight:700}
+.pr-card ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:3px;font-size:13px}
+.pr-ex{background:#1b2238;color:#e9edf7;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;border-radius:8px;padding:10px;white-space:pre-wrap;line-height:1.5}
+.pr-low{font-size:12.5px;color:#5b6370}
+.pr-low u{color:#ff4f28;text-decoration:underline;font-weight:600}
+.pr-nav{display:flex;justify-content:space-between;border-top:1px solid #e3e1d8;padding-top:10px}
+.pr-btn{background:#ff4f28;color:#fff;font-weight:700;border-radius:8px;padding:7px 14px;font-size:13px}
+.pr-back{font-weight:600;padding:7px 4px;font-size:13px}
+.ps{border-radius:8px;overflow:hidden;border:1px solid #d9d7cf;background:#f2f2f2;font-family:Arial,sans-serif;font-size:10px;color:#222}
+.ps-bar{background:#e8e6df;padding:4px 8px;font-family:ui-monospace,monospace;font-size:9px;color:#777}
+.ps-hd{background:#1b2238;color:#fff;text-align:center;padding:10px 6px}
+.ps-hd b{font-size:13px;display:block}
+.ps-hd i{color:#ffb199;font-style:normal}
+.ps-nav{display:flex;justify-content:center;gap:6px;margin-top:6px}
+.ps-nav span{color:#fff;text-decoration:underline}
+.ps.t .ps-nav span,.ps.k .ps-nav span,.ps.r .ps-nav span{text-decoration:none;background:rgba(255,255,255,.14);padding:2px 7px;border-radius:999px}
+.ps.t .ps-nav span.h,.ps.k .ps-nav span.h{background:#ff4f28}
+.ps.r .ps-nav span.h{background:#1f9d55}
+.ps-sec{background:#fff;margin:6px 8px;border-radius:6px;padding:6px 8px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.ps-sec h5{margin:0 0 3px;color:#ff4f28;font-size:10.5px}
+.ps.r .ps-sec h5{color:#1f9d55}
+.ps-ul{margin:0;padding-left:14px}
+.ps.k .ps-ul,.ps.r .ps-ul{display:flex;gap:4px;padding:0;list-style:none}
+.ps.k .ps-ul li,.ps.r .ps-ul li{flex:1;border:1.5px solid #ff4f28;border-radius:5px;padding:4px;font-size:9px}
+.ps.r .ps-ul li{border-color:#1f9d55}
+.ps-ft{background:#1b2238;color:#fff;text-align:center;padding:5px;font-size:9px}
+.ps-cur{display:inline-block;margin-left:2px;font-size:10px}
+.pr-ring{outline:2px dashed #ff4f28;outline-offset:2px;border-radius:999px}
+.pr-states{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.pr-states>div{min-width:0;display:flex;flex-direction:column;gap:4px}
+@media (max-width:760px){.pr-states{grid-template-columns:repeat(2,1fr)}}
+.pr-cap{font-size:12px;font-weight:700}
+</style>
+<section class="pr" aria-label="Prototip: a1 ish ekrani">
+  <span class="pr-eb">Prototip · a1 ish ekrani (darsning o'z ko'rinishida, 1280 px soddalashtirilgan)</span>
+  <span class="pr-eb" style="color:#15181d">Amaliyot 1 · menyu</span>
+  <p class="pr-h">Menyu havolalarini tugmaga aylantiring.</p>
+    <div class="pr-split">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="pr-card"><span class="pr-lbl">Vazifa</span><span>Menyudagi havolalar tugmadek ko'rinsin, sichqoncha ustiga borganda rangi o'zgarsin.</span></div>
+      <div class="pr-card"><span class="pr-lbl">Promptda ayting</span>
+        <ul><li>nima o'zgarsin — fon, ichki bo'shliq, yumaloq burchak; sichqoncha ustida boshqa rang</li><li>faqat <code>style.css</code>, HTML'ga tegmasin</li><li>hozirgi <code>style.css</code></li></ul>
+        <span class="pr-lbl">Masalan</span>
+        <div class="pr-ex">Menyu havolalarimni tugmaga aylantir: fon, ichki bo'shliq, yumaloq burchak.
+Sichqoncha ustiga borganda tugma rangi o'zgarsin.
+Faqat style.css'ni o'zgartir, HTML'ga tegma. To'liq style.css'ni qaytar.
+Mana style.css: {style.css kodini shu yerga qo'ying}</div>
+      </div>
+      <span class="pr-low">Ortda qoldingizmi? <u>Namuna kodini nusxalash</u></span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <span class="pr-lbl">Kutilgan natija</span>
+      <div class="ps t"><div class="ps-bar">portfolio · Live Server</div><div class="ps-hd"><b>Aziza Karimova</b><i>Frontend dasturchi</i><div class="ps-nav"><span>Men haqimda</span><span class="h pr-ring">Loyihalarim<span class="ps-cur">↖</span></span><span>Aloqa</span></div></div><div class="ps-sec"><h5>Men haqimda</h5>Salom! Men HTML o'rganyapman va o'z saytimni yasayapman.</div><div class="ps-sec"><h5>Loyihalarim</h5><ul class="ps-ul"><li>Birinchi HTML sahifam</li><li>Ro'yxatdan o'tish formasi</li><li>CSS bilan bezalgan kartochka</li></ul></div><div class="ps-ft">Aziza Karimova, 2026</div></div>
+      <span class="pr-low">Sichqoncha ustida turgan holat CSS'da <code>:hover</code> deb yoziladi — Gemini javobida <code>nav a:hover</code> kabi qoidani toping.</span>
+    </div>
+  </div>
+  <div class="pr-nav"><span class="pr-back">Orqaga</span><span class="pr-btn">Davom etish</span></div>
+</section>
+<section class="pr" aria-label="Bitta vizual — 4 holat">
+  <span class="pr-eb">Bitta vizual dars bo'yi · PfSahifa 4 holati</span>
+  <div class="pr-states">
+    <div><span class="pr-cap">boshi — o'tgan dars</span><div class="ps"><div class="ps-hd"><b>Aziza Karimova</b><i>Frontend dasturchi</i><div class="ps-nav"><span>Men haqimda</span><span>Loyihalarim</span><span>Aloqa</span></div></div><div class="ps-sec"><h5>Loyihalarim</h5><ul class="ps-ul"><li>HTML sahifa</li><li>Forma</li><li>Kartochka</li></ul></div></div></div>
+    <div><span class="pr-cap">a1 — tugmalar</span><div class="ps t"><div class="ps-hd"><b>Aziza Karimova</b><i>Frontend dasturchi</i><div class="ps-nav"><span>Men haqimda</span><span class="h">Loyihalarim</span><span>Aloqa</span></div></div><div class="ps-sec"><h5>Loyihalarim</h5><ul class="ps-ul"><li>HTML sahifa</li><li>Forma</li><li>Kartochka</li></ul></div></div></div>
+    <div><span class="pr-cap">a2 — kartochkalar</span><div class="ps k"><div class="ps-hd"><b>Aziza Karimova</b><i>Frontend dasturchi</i><div class="ps-nav"><span>Men haqimda</span><span class="h">Loyihalarim</span><span>Aloqa</span></div></div><div class="ps-sec"><h5>Loyihalarim</h5><ul class="ps-ul"><li>HTML sahifa</li><li>Forma</li><li>Kartochka</li></ul></div></div></div>
+    <div><span class="pr-cap">a3 — o'z rangi (masalan)</span><div class="ps r"><div class="ps-hd"><b>Aziza Karimova</b><i>Frontend dasturchi</i><div class="ps-nav"><span>Men haqimda</span><span class="h">Loyihalarim</span><span>Aloqa</span></div></div><div class="ps-sec"><h5>Loyihalarim</h5><ul class="ps-ul"><li>HTML sahifa</li><li>Forma</li><li>Kartochka</li></ul></div></div></div>
+  </div>
+</section>
+<section class="q dars" id="D01">
+  <div class="eyebrow">2-Modul · 11-dars · src/1-Modull/CssPractice.jsx</div><h2>CSS Praktika — Portfolioni bezaymiz</h2>
+  <p class="ctx">Ip: o&#x27;quvchining m1-08 dagi portfoliosi, bugun faqat style.css. a1 menyu tugmalari (Gemini, :hover) · a2 loyiha kartochkalari (Gemini, flex + gap) · a3 o&#x27;z rangi (AI&#x27;siz, Ctrl+H). Topshirish — 1 ballik savol (✔ C, display: flex), arena 12 savol aynan. Nishonlar bloklarga bog&#x27;langan (bonus). Kompilyator, 6 test va 7 tanlov ekrani olinadi.</p>
+  <div class="savollar"><div class="eyebrow">Savollar</div><div class="qq"><p class="qq-h"><span class="kalit">D01-q0</span> Prompt maslahati qanday ko&#x27;rinadi?</p><div class="opts"><label class="opt"><input type="radio" name="D01-q0" value="A" checked><span><span class="t">A · Uch band + «Masalan:» matni, nusxalash tugmasisiz — o&#x27;quvchi o&#x27;zi yozadi</span><span class=tag>TAVSIYA</span></span></label><label class="opt"><input type="radio" name="D01-q0" value="B"><span><span class="t">B · Uch band + «Masalan:» + «Nusxalash» (m1-08 dagidek) — tezroq, lekin faqat nusxalanadi</span></span></label><label class="opt"><input type="radio" name="D01-q0" value="C"><span><span class="t">C · Faqat uch band, misolsiz — eng mustaqil, sekin o&#x27;quvchi qotishi mumkin</span></span></label></div></div><div class="qq"><p class="qq-h"><span class="kalit">D01-q1</span> a1 dagi <code>:hover</code> (yangi atama) qoladimi?</p><div class="opts"><label class="opt"><input type="radio" name="D01-q1" value="A" checked><span><span class="t">A · Qoladi — hodisa natija suratida, atama bir qatorda; eski darsda «keyingi darslarda :hover» va&#x27;dasi bor edi</span><span class=tag>TAVSIYA</span></span></label><label class="opt"><input type="radio" name="D01-q1" value="B"><span><span class="t">B · Olinadi — a1 faqat tugma ko&#x27;rinishi, kartochkadan ham chiqadi</span></span></label></div></div></div>
+  <details><summary>MD v3 — to'liq matn (01-m1-10-v3.md)</summary><div class="mdv"><h1>2-Modul (kod: 1-Modul) · 11-dars «CSS Praktika — Portfolioni bezaymiz» — MD v3 (pilot: 20 → 9 ekran)</h1>
+<p>Fayl: <code>src/1-Modull/CssPractice.jsx</code> · <strong>9 ekran</strong> (6 ish + natijalar · kartochkalar · yakun) · faqat o'zbekcha (ru — oxirida, MD tasdiqlangach)
+Asos: GATE Q-1015 (F-1015-301/302/303): ekranlarni kamaytirish, praktikaga vaqt qolsin; ish VS Code + <strong>gemini.google.com</strong> + Live Server'da, <strong>ustoz bilan birga</strong>.
+Dars ekrani faqat yo'l ko'rsatadi: vazifa (1 gap) · Gemini'ga prompt bo'yicha maslahat · kutilgan natija surati. O'tish — «Davom etish». Isbot, kod joylash, avto-tekshiruv, qulf — <strong>yo'q</strong>.
+Bu darsda faqat Gemini (GitHub akkaunti keyingi darsda ochiladi — Copilot 3-Moduldan). Fidbek: <code>&gt;&gt; …</code>. <strong>KOD</strong> — kod o'zgarishi.
+Zaxira: <code>arxiv/F-1015-amaliyot-oldin/CssPractice.jsx</code> (pilot tasdiqlanmasa CRM'ga shu nusxa yuklanadi — o'chirilmaydi).</p>
+<hr />
+<h2>A. Darsning tayanchi</h2>
+<ol>
+<li><strong>Dasturdagi o'rni (App.jsx):</strong> oldingi dars — «HTML Praktika — Portfolio sayt» (m1-08): o'quvchi <code>portfolio</code> papkasida <code>index.html</code> qurib, oxirgi blokda Gemini'dan <strong>dizaynli <code>style.css</code></strong> oldi.
+   Keyingi dars — «Git va GitHub — kodni internetga chiqaramiz». Menyu nomi o'zgarmaydi.</li>
+<li><strong>Bitta ip:</strong> o'quvchining o'z portfoliosi (namuna — «Aziza Karimova», m1-08 dagi bilan bir xil). HTML o'zgarmaydi — bugun <strong>faqat <code>style.css</code></strong>.</li>
+<li><strong>Bitta g'oya:</strong> Gemini bergan dizayn — tayyor narsa emas, uni o'qib, o'zgartirib, o'zingizniki qilasiz. Ikki blokni Gemini bilan, uchinchisini <strong>o'zingiz</strong> (AI'siz).</li>
+<li><strong>Atamalar (bir ma'no — bir so'z):</strong> <code>style.css</code> · qoida · xususiyat · selektor (m1-06/07 dagidek) · <code>display: flex</code>, <code>gap</code> — «CSS darsidagi flexbox» (m1-07) ·
+   <code>border-radius</code> — yumaloq burchak (VS Code darsida o'tilgan) · <strong>yangi:</strong> <code>:hover</code> — «sichqoncha ustida turgan holat» (a1 da, hodisadan keyin nomlanadi) ·
+   <strong>yangi:</strong> <code>Ctrl+H</code> — «topish va almashtirish» (a3 da).</li>
+<li><strong>Prompt maslahati (har blok bir xil uch band):</strong> nima o'zgarsin · faqat <code>style.css</code>, HTML'ga tegmasin · hozirgi <code>style.css</code> ni qo'shing. Pastida «Masalan:» — o'quvchi o'zi yozadi (savol 1).</li>
+<li><strong>Bitta vizual — <code>PfSahifa</code> (KOD):</strong> portfolio maketi, 4 holat: <code>boshi</code> (m1-08 dizayni: qorong'i header, oq bo'lim-kartochkalar, to'q sariq sarlavhalar) →
+   <code>tugma</code> (menyu havolalari — yumaloq tugmalar, bittasi sichqoncha ostida to'q sariq) → <code>karta</code> («Loyihalarim» — 3 ta yonma-yon kartochka) → <code>rang</code> (to'q sariq o'rnida yashil).
+   Har ish ekranining o'ngida — o'sha blokning <strong>natijasi</strong> (oldingi holatdan farqi halqa bilan belgilangan).</li>
+<li><strong>Ortda qolgan o'quvchi:</strong> har blok pastida bitta qator — «Ortda qoldingizmi? [Namuna kodini nusxalash]» (blok boshidagi <code>style.css</code>). Ustoz ko'rsatadi; qo'shimcha shart yo'q.</li>
+<li><strong>Olib tashlanadi (KOD):</strong> kompilyator (<code>HtmlCompiler</code> importi, portal, <code>PRACTICE_AFTER</code>, <code>TASK_HEADER/MENU/BUTTON</code>, <code>TASK_HW</code>, <code>prac*</code> saqlov), eski 2–15-ekranlar (6 test, 7 ta «?» tanlov, «Saytni yig'ish»), «o'tgan darsdagi flexbox» xatosi.</li>
+</ol>
+<hr />
+<h2>0 · Kirish  ← QKirish</h2>
+<ul>
+<li>Eyebrow: CSS Praktika · kirish</li>
+<li>Sarlavha: <strong>Bu sahifada nima o'zgargan?</strong> (27)</li>
+<li>Mentor: Chapda — o'tgan darsdagi sahifangiz, o'ngda — bugun oxirida shunday bo'ladi. Ikkalasiga qarang va javobni tanlang.</li>
+<li>Maket: chapda <code>PfSahifa boshi</code>, o'ngda <code>PfSahifa rang</code> (tugmalar + kartochkalar + yashil). Yorliqlar: «O'tgan dars» · «Bugun oxirida».</li>
+<li>Variantlar (navbat bilan yonadi, m1-08 0-ekrani naqshi):</li>
+<li>Faqat <code>style.css</code> o'zgargan, matnlar o'sha-o'sha ✔</li>
+<li>HTML butunlay qaytadan yozilgan</li>
+<li>Bu boshqa odamning sayti</li>
+<li>Javob (darrov): ✔ «<strong>Aynan!</strong> Ism, bo'limlar, matnlar — o'sha. O'zgargani faqat <code>style.css</code>.» (≈62) · boshqasi: «<strong>Qiziq fikr!</strong> Matnlarga qarang: ism va bo'limlar o'sha. O'zgargani faqat <code>style.css</code>.» (≈80)</li>
+<li>Tugma: Javobni tanlang → Davom etish</li>
+<li>Ball yo'q (hook).
+✎ eski «Bir xil sayt — nega biri chiroyli?» (bezaksiz ↔ bezatilgan) — m1-08 endi dizayn bilan tugaydi, «bezaksiz» holat yo'q.</li>
+</ul>
+<h2>1 · Tayyorgarlik  ← QReja</h2>
+<ul>
+<li>Eyebrow: Reja</li>
+<li>Sarlavha: <strong>Bugun nimani o'zgartirasiz?</strong> (27)</li>
+<li>Mentor: Bugun faqat <code>style.css</code> ustida ishlaymiz — HTML o'zgarmaydi. Ikki blokni Gemini bilan, uchinchisini o'zingiz qilasiz.</li>
+<li>Chapda — tayyorlanish (3 qator, belgilash yo'q):
+  1. VS Code'da <code>portfolio</code> papkasini oching, <code>style.css</code> ni oching, Go Live.
+  2. Boshqa oynada gemini.google.com'ni oching.
+  3. Ustoz bilan birga — har blokni hamma birga boshlaydi.</li>
+<li>O'ngda — «Bugungi 3 blok» (QReja chiplari): <code>01 · Menyu — tugmalar · :hover</code> · <code>02 · Loyihalar — kartochkalar · flex</code> · <code>03 · O'z rangingiz · Ctrl+H</code> + kichik <code>PfSahifa rang</code>.</li>
+<li>Pastki qator: O'tgan darsdagi sahifangiz yo'qmi? [index.html namunasi] [style.css namunasi] — nusxalab o'z faylingizga qo'ying.</li>
+<li>Tugma: Davom etish
+✎ eski «6 bezash qadami» → 3 blok; Live Server manzili isboti yo'q (F-1015-302).</li>
+</ul>
+<h2>a1 · Amaliyot 1 — menyu tugmalari  ← amaliyot bloki (≈12 daq)</h2>
+<ul>
+<li>Eyebrow: Amaliyot 1 · menyu</li>
+<li>Sarlavha: <strong>Menyu havolalarini tugmaga aylantiring.</strong> (39)</li>
+<li>Mentor: yo'q (F-1015-304: «Promptda ayting» bandlari va «Masalan» bilan takror edi — §216)</li>
+<li>Chapda:</li>
+<li><strong>Vazifa:</strong> Menyudagi havolalar tugmadek ko'rinsin, sichqoncha ustiga borganda rangi o'zgarsin.</li>
+<li><strong>Promptda ayting:</strong> nima o'zgarsin (menyu havolalari — fon, ichki bo'shliq, yumaloq burchak; sichqoncha ustida — boshqa rang) · faqat <code>style.css</code>, HTML'ga tegmasin · hozirgi <code>style.css</code>.</li>
+<li><strong>Masalan:</strong>
+    &gt; Menyu havolalarimni tugmaga aylantir: fon, ichki bo'shliq, yumaloq burchak.
+    &gt; Sichqoncha ustiga borganda tugma rangi o'zgarsin.
+    &gt; Faqat style.css'ni o'zgartir, HTML'ga tegma. To'liq style.css'ni qaytar.
+    &gt; Mana style.css: {style.css kodini shu yerga qo'ying}</li>
+<li>O'ngda — «kutilgan natija»: <code>PfSahifa tugma</code> (bitta tugma ostida sichqoncha belgisi, to'q sariq).
+  Ostida bitta qator: «Sichqoncha ustida turgan holat CSS'da <code>:hover</code> deb yoziladi — Gemini javobida <code>nav a:hover</code> kabi qoidani toping.»</li>
+<li>Pastki qator: Ortda qoldingizmi? [Namuna kodini nusxalash] (boshlang'ich <code>style.css</code>)</li>
+<li>Tugma: Orqaga · Davom etish</li>
+<li>Nishon (bonus, «Davom etish»da): <strong>Spacer</strong> — «Menyu havolalarini tugmaga aylantirdingiz» (41)</li>
+</ul>
+<h2>a2 · Amaliyot 2 — loyiha kartochkalari  ← amaliyot bloki (≈12 daq)</h2>
+<ul>
+<li>Eyebrow: Amaliyot 2 · kartochkalar</li>
+<li>Sarlavha: <strong>Loyihalaringizni yonma-yon kartochka qiling.</strong> (44)</li>
+<li>Mentor: yo'q (F-1015-304: natija ostidagi qator bilan takror edi — §216)</li>
+<li>Chapda:</li>
+<li><strong>Vazifa:</strong> «Loyihalarim» ro'yxatidagi har ish alohida kartochka bo'lsin, uchalasi bir qatorda tursin.</li>
+<li><strong>Promptda ayting:</strong> nima o'zgarsin («Loyihalarim» ro'yxati — yonma-yon kartochkalar, orasida bo'shliq, yumaloq burchak) · faqat <code>style.css</code> · hozirgi <code>style.css</code>.</li>
+<li><strong>Masalan:</strong>
+    &gt; «Loyihalarim» bo'limidagi ro'yxatni yonma-yon kartochkalarga aylantir.
+    &gt; Har kartochka: oq fon, ramka, yumaloq burchak, ichki bo'shliq. Orasida bo'shliq bo'lsin.
+    &gt; Faqat style.css'ni o'zgartir, HTML'ga tegma. To'liq style.css'ni qaytar.
+    &gt; Mana style.css: {style.css kodini shu yerga qo'ying}</li>
+<li>O'ngda — kutilgan natija: <code>PfSahifa karta</code>. Ostida: «Bu CSS darsidagi flexbox: <code>display: flex</code> — yonma-yon, <code>gap</code> — orasidagi bo'shliq.»</li>
+<li>Pastki qator: Ortda qoldingizmi? [Namuna kodini nusxalash] (a1 oxiridagi <code>style.css</code>)</li>
+<li>Tugma: Orqaga · Davom etish</li>
+<li>Nishon (bonus): <strong>Lined Up!</strong> — «Loyihalarni yonma-yon kartochkalarga tizdingiz» (44)</li>
+</ul>
+<h2>a3 · Amaliyot 3 — o'z rangingiz  ← amaliyot bloki, AI'siz (≈8 daq)</h2>
+<ul>
+<li>Eyebrow: Amaliyot 3 · Gemini'siz</li>
+<li>Sarlavha: <strong>Saytga o'zingiz tanlagan rangni bering.</strong> (39)</li>
+<li>Mentor: yo'q (F-1015-304: eski gap 1–2-qadamlarni takrorlardi — §216; «Gemini'siz» eyebrow'da)</li>
+<li>Chapda — 3 qadam (raqamli qatorlar, belgilash yo'q):
+  1. <code>style.css</code> da asosiy rangni toping — tugmalar va sarlavhalarda takrorlanadigan kod (namunada <code>#ff4f28</code>).
+  2. <code>Ctrl+H</code> bosing: yuqori qatorga eski rangni, pastkisiga yangisini yozing va <code>Ctrl+Alt+Enter</code> bosing — hammasi birdan almashadi.
+  3. <code>Ctrl+S</code> — Live Server'da sahifaga qarang.</li>
+<li>Yordam (bitta qator): Rang kodini bilmasangiz — VS Code'da rang kodi yonidagi kichik kvadratni bosing, rang tanlagich ochiladi.</li>
+<li>O'ngda — kutilgan natija: <code>PfSahifa rang</code> (to'q sariq o'rnida yashil — «masalan» yorlig'i bilan; o'quvchi rangi boshqa bo'ladi).</li>
+<li>Pastki qator: Ortda qoldingizmi? [Namuna kodini nusxalash] (a2 oxiridagi <code>style.css</code>)</li>
+<li>Tugma: Orqaga · Davom etish</li>
+<li>Nishon (bonus): <strong>Color Master</strong> — «Saytga o'zingiz tanlagan rangni berdingiz» (40)</li>
+</ul>
+<h2>s16 · Topshirish  ← QTest (ballik, yagona)</h2>
+<ul>
+<li>Eyebrow: Topshirish</li>
+<li>Sarlavha: <strong>Kartochkalarni bir qatorga qaysi qoida tizadi?</strong> (45)</li>
+<li>Mentor: Avval sahifangizni ustozga ko'rsating. Keyin savolga javob bering.</li>
+<li>Variantlar (✔ C):</li>
+<li>A <code>ul { text-align: center; }</code></li>
+<li>B <code>li { margin: 0 auto; }</code></li>
+<li>C <code>ul { display: flex; }</code> ✔</li>
+<li>D <code>li { padding: 16px; }</code></li>
+<li>To'g'ri izohi: «<code>display: flex</code> ichidagi elementlarni bir qatorga tizadi.» (≈52)</li>
+<li>Xato izohlari (≤60): A «<code>text-align</code> matnni joylaydi, kartochkalarni emas.» · B «<code>margin: 0 auto</code> bitta blokni markazga qo'yadi.» · D «<code>padding</code> — kartochka ichidagi bo'shliq.»</li>
+<li>Jonli: kalit <code>INLINE_KEYS.s16 = 2</code> (KOD).
+✎ eski s16 «Endi o'zingiz CSS yozing» (kompilyatorda bitta qoida) olinadi.</li>
+</ul>
+<h2>Natijalar (spodium) — o'zgarmaydi</h2>
+<ul>
+<li>Podium, arena (CODE STRIKE) — 12 savol va kalitlar <strong>aynan</strong> (0 2 1 3 0 2 3 1 0 3 1 2).</li>
+<li>Mavzu tekshiruvi (F-1015-304, o'quvchi-matn grep): hammasi o'tilgan — almashtirish kerak emas.
+  | # | Mavzu | Qayerda o'tilgan |
+  |---|---|---|
+  | 1 · 2 | <code>color</code> · <code>background-color</code> | m1-06 (CSS asoslari) · namuna <code>style.css</code> |
+  | 3 | <code>text-align: center</code> | m1-06 · namuna (<code>header</code>) |
+  | 4 · 5 · 11 | <code>display: flex</code> · <code>gap</code> · <code>justify-content</code> | m1-07 (layout, flexbox) · a2 · s16 |
+  | 6 · 7 | <code>padding</code> · <code>margin</code> | m1-06 · kartochkalar |
+  | 8 · 9 · 10 | selektor · xususiyat · <code>;</code> | m1-06 |
+  | 12 | <code>margin: 0 auto</code> | m1-15 VS Code darsi («Markazlash uchun <code>margin: 40px auto</code>») · namuna (<code>section</code>) — m1-06/07 da yo'q |</li>
+</ul>
+<h2>Kartochkalar (sflash) — 10 ta</h2>
+<table>
+<thead>
+<tr>
+<th>Old tomoni</th>
+<th>Orqa tomoni</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Harflar rangini qaysi xususiyat beradi?</td>
+<td><code>color</code></td>
+</tr>
+<tr>
+<td>Element fonini qaysi xususiyat beradi?</td>
+<td><code>background-color</code></td>
+</tr>
+<tr>
+<td>Burchakni yumaloq qiladigan xususiyat?</td>
+<td><code>border-radius</code></td>
+</tr>
+<tr>
+<td>Sichqoncha ustida turgan holat qanday yoziladi?</td>
+<td><code>:hover</code> (masalan <code>nav a:hover</code>)</td>
+</tr>
+<tr>
+<td>Elementlarni yonma-yon qatorga nima tizadi?</td>
+<td><code>display: flex</code></td>
+</tr>
+<tr>
+<td>Flex elementlar orasidagi bo'shliq?</td>
+<td><code>gap</code></td>
+</tr>
+<tr>
+<td>Element ichidagi bo'shliq?</td>
+<td><code>padding</code></td>
+</tr>
+<tr>
+<td>Elementlar orasidagi tashqi bo'shliq?</td>
+<td><code>margin</code></td>
+</tr>
+<tr>
+<td>VS Code'da bir so'zni butun faylda almashtirish?</td>
+<td><code>Ctrl+H</code></td>
+</tr>
+<tr>
+<td>Gemini'ga dizayn so'rovida nima qo'shiladi?</td>
+<td>Hozirgi <code>style.css</code> va «HTML'ga tegma»</td>
+</tr>
+<tr>
+<td>✎ eski 10 kartadan 6 tasi qoldi (color, background-color, flex, gap, padding, margin); text-align, margin: 0 auto, selektor, justify-content o'rnida — bugungi ish.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Yakun (s17)</h2>
+<ul>
+<li>Chip: CSS praktika tugadi</li>
+<li>Sarlavha: <strong>Siz dizayner bo'ldingiz.</strong> (o'zgarmaydi)</li>
+<li>«Endi siz bilasiz»:</li>
+<li>Gemini bergan <code>style.css</code> ni o'qib, kerakli qoidani topasiz</li>
+<li>Gemini'ga «nima o'zgarsin · faqat <code>style.css</code> · hozirgi kod» bilan yozasiz</li>
+<li><code>:hover</code> — sichqoncha ustidagi holat, <code>display: flex</code> + <code>gap</code> — yonma-yon kartochkalar</li>
+<li>Rangni butun faylda <code>Ctrl+H</code> bilan o'zingiz almashtirasiz</li>
+<li>Uyga vazifa (karta) — <strong>Portfolioni yana bir qadam o'zingizniki qiling</strong> — VS Code'da:
+  1. Gemini'ga o'zingiz prompt yozib, footer'ni bezang
+  2. «Aloqa»dagi «Pochta» havolasini menyudagi tugmalardek qiling — Gemini'siz, a1 dagi qoidadan foydalanib
+  Tayyor sahifaning skrinshotini platformaga yuklang.</li>
+<li>Nishonlaringiz (4 ta: Spacer · Lined Up! · Color Master · Designer)</li>
+<li>Keyingi dars — «Git va GitHub»: portfolio kodingizni GitHub'ga joylaysiz.
+✎ eski uyga vazifa kompilyatorda (avto-tekshiruv) edi → VS Code + skrinshot; «keyingi darslarda: border-radius, :hover» qatori olindi (bugun o'tildi).</li>
+</ul>
+<h2>Nishonlar (F-1015-303, foydalanuvchi qarori)</h2>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>Nomi</th>
+<th>Qachon</th>
+<th>Tavsif (≤48)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spacer</td>
+<td>Spacer</td>
+<td>a1 «Davom etish»</td>
+<td>Menyu havolalarini tugmaga aylantirdingiz</td>
+</tr>
+<tr>
+<td>layout</td>
+<td>Lined Up!</td>
+<td>a2 «Davom etish»</td>
+<td>Loyihalarni yonma-yon kartochkalarga tizdingiz</td>
+</tr>
+<tr>
+<td>color</td>
+<td>Color Master</td>
+<td>a3 «Davom etish»</td>
+<td>Saytga o'zingiz tanlagan rangni berdingiz</td>
+</tr>
+<tr>
+<td>graduate</td>
+<td>Designer</td>
+<td>yakun</td>
+<td>CSS praktikani oxirigacha bajardingiz</td>
+</tr>
+<tr>
+<td>Hammasi bonus (§184: qilingan ishni aytadi, «birinchi urinish» qatori yo'q). 152-qonundan («bonus — darsda bittadan») istisno — foydalanuvchi qarori (nishon-bonus-qismaslik).</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Qisqa takrorlash oynasi (s16 uchun, 3 karta)</h2>
+<ol>
+<li><code>display: flex</code> — ichidagi elementlarni bir qatorga tizadi. Vizual: <code>ul</code> → <code>li li li</code> yonma-yon.</li>
+<li><code>gap</code> — kartochkalar orasidagi bo'shliq; <code>padding</code> — kartochka ichidagi. Vizual: ikki o'q.</li>
+<li>Savol: «Kartochkalar ustma-ust tursa, qaysi qoidani qo'shasiz?»</li>
+</ol>
+<hr />
+<h2>«KOD» ro'yxati</h2>
+<ol>
+<li><code>SCREEN_META</code> — 9: <code>s0</code> hook · <code>s1</code> rule · <code>a1</code>, <code>a2</code>, <code>a3</code> practice (ballsiz) · <code>s16</code> test (ballik, scope final) · <code>spodium</code> · <code>sflash</code> · <code>s17</code>. <code>screens</code> massivi shunga.</li>
+<li><code>INLINE_KEYS = { s16: 2 }</code> · <code>RECAPS</code> faqat s16 indeksi (5) · <code>ACH_TRIGGERS</code> testlardan olinadi; a1/a2/a3 <code>onNext</code>da <code>earn(...)</code>, <code>graduate</code> — yakunda (bor).</li>
+<li>Yangi <code>PfSahifa</code> (4 holat, qolip tokenlari, emoji yo'q) va namuna kodlari: <code>NAMUNA_HTML</code> (m1-08 A3 dagi <code>index.html</code>), <code>NAMUNA_CSS_0/1/2</code> (pastda) + «Namuna kodini nusxalash».</li>
+<li>Olinadi: <code>HtmlCompiler</code> importi va portali, <code>PRACTICE_AFTER</code>, <code>TASK_*</code>, <code>prac*</code>, <code>PRACTICE_DONE_BASE</code> signallari, eski <code>Screen2…Screen15</code>, <code>CSS_FLASHCARDS</code> eski kartalari.</li>
+<li><code>HOMEWORK</code> — <code>type: 'file'</code> (m1-08 naqshi, skrinshot). Yakundagi «Amaliy topshiriqni bajarish →» (kompilyator) olinadi.</li>
+<li>Saqlanadi: <code>lessonId</code> (<code>css-practice-portfolio-v3</code>), arena 12 savol, podium, mentor rejimi, F-1012 navigatsiya (<code>maxReached</code>, <code>gate.passed</code>, <code>mentorLock</code>), <code>onFinished</code>.</li>
+<li>Sinov: gates (12) · <code>lint:jsx</code> · <code>lint:til</code> · 9 ekran surati 1280 + 390 · <strong>kontrast</strong> (F-1015-304): har kod-belgi (mentor, bandlar, natija osti, «Masalan») — matn/fon ≥ 4.5:1, kunduzgi va tungi rejimda (<code>getComputedStyle</code> bilan o'lchanadi) · <strong>eski progress</strong>: <code>ccProgress</code> da <code>total: 20, screen: 15</code> → dars 0-ekrandan, bo'sh ekran/pageerror yo'q; server-progress <code>total</code> farqi ham ·
+   navtest2 (self) · mentor (a1–a3 ochiq) · <code>smoke-onfinished-all</code> (faqat argumentsiz — avval so'rab).</li>
+</ol>
+<h3>Namuna <code>style.css</code> (KOD — <code>NAMUNA_CSS_0</code>, m1-08 dizayniga mos)</h3>
+<pre><code class="language-css">body { margin: 0; font-family: Arial, sans-serif; background: #f2f2f2; color: #222; }
+header { background: #1b2238; color: #fff; text-align: center; padding: 32px 24px; }
+header p { color: #ffb199; }
+nav { display: flex; justify-content: center; gap: 16px; margin-top: 16px; }
+nav a { color: #fff; }
+section { max-width: 800px; margin: 24px auto; background: #fff; padding: 24px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); }
+h2 { color: #ff4f28; }
+footer { background: #1b2238; color: #fff; text-align: center; padding: 16px; }
+</code></pre>
+<p><code>NAMUNA_CSS_1</code> = 0 + <code>nav a { text-decoration: none; background: rgba(255, 255, 255, 0.12); padding: 8px 16px; border-radius: 999px; }</code> <code>nav a:hover { background: #ff4f28; }</code>
+<code>NAMUNA_CSS_2</code> = 1 + <code>#loyihalar ul { display: flex; gap: 16px; padding: 0; list-style: none; }</code> <code>#loyihalar li { flex: 1; border: 2px solid #ff4f28; border-radius: 12px; padding: 16px; }</code></p>
+<hr />
+<h2>GATE M m1-10 — ✓ 15.10 (F-1015-304): 1 A · 2 A + 3 izoh (kontrast · arena mavzulari · a1 mentor takrori)</h2>
+<h2>Siz hal qiladigan savollar (GATE M)</h2>
+<ol>
+<li><strong>Prompt maslahati qanday ko'rinadi?</strong>
+   A (tavsiya): uch band + «Masalan:» matni, <strong>nusxalash tugmasisiz</strong> — o'quvchi o'zi yozadi (yoki o'zgartirib yozadi), ish «bosish»ga aylanmaydi.
+   B: uch band + «Masalan:» + «Nusxalash» (m1-08 dagidek) — tezroq, lekin o'quvchi faqat nusxalaydi.
+   C: faqat uch band, misolsiz — eng mustaqil, sekin o'quvchi qotib qolishi mumkin.</li>
+<li><strong>a1 dagi <code>:hover</code> (yangi atama).</strong>
+   A (tavsiya): qoladi — hodisa (sichqoncha ustida rang o'zgaradi) natija suratida ko'rinadi, atama bir qatorda nomlanadi; eski darsda «keyingi darslarda :hover» va'dasi bor edi, m1-08 uyga vazifasida ham shu misol.
+   B: a1 faqat tugma ko'rinishi (<code>:hover</code>siz), kartochkadan ham olinadi.</li>
+</ol></div></details>
+  <div class="opts tasdiq"><label class="opt"><input type="radio" name="D01" value="tasdiq" checked><span><span class="t">Tasdiq</span><span class="d">MD shu holda koddan quriladi</span></span></label>
+  <label class="opt"><input type="radio" name="D01" value="izoh"><span><span class="t">Izoh bilan</span><span class="d">pastdagi izoh maydoniga yozing (ekran raqami bilan)</span></span></label></div>
+</section>
+  <div class="answer" id="javob"><div class="eyebrow">Javob — nusxalab chatga qo'ying</div><pre id="ans"></pre>
+    <textarea id="note" placeholder="Izoh: dars raqami · ekran raqami · nima o'zgarsin"></textarea>
+    <div class="row"><button type="button" class="copy" id="cp">Javobni nusxalash</button><span class="status" id="st" aria-live="polite"></span></div></div>
+</div>
+<script>
+(function () {
+  var out = document.getElementById('ans'), note = document.getElementById('note'), st = document.getElementById('st');
+  var N = ["D01"], Q = ["D01-q0", "D01-q1"], G = "m1-10";
+  function v(n) { var c = document.querySelector('input[name="' + n + '"]:checked'); return c ? c.value : '-'; }
+  function build() {
+    var s = 'GATE M ' + G + '\nDarslar: ' + N.map(function (n) { return n + ' ' + (v(n) === 'tasdiq' ? '✓' : 'izoh'); }).join(' · ');
+    if (Q.length) s += '\nSavollar: ' + Q.map(function (q) { return q + ' ' + v(q); }).join(' · ');
+    var t = note.value.trim(); if (t) s += '\nIzoh: ' + t; out.textContent = s;
+  }
+  document.addEventListener('change', build); note.addEventListener('input', build); build();
+  document.getElementById('cp').addEventListener('click', function () {
+    var t = out.textContent;
+    function sel() { var r = document.createRange(); r.selectNodeContents(out); var x = window.getSelection(); x.removeAllRanges(); x.addRange(r); st.textContent = 'Belgilandi — Ctrl+C bosing'; }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(function () { st.textContent = 'Nusxalandi'; }, sel); else sel();
+  });
+})();
+</script>

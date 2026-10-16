@@ -1,0 +1,5 @@
+{"title":"GATE M · 2-M praktika","kod":"2M-praktika","eyebrow":"F-1015 · 2-Modul partiyasi · m1-08 HTML Praktika · QORALAMA (pilot va GATE V2 tasdig'idan keyin javob beriladi)",
+"kirish":"m1-08 F-1015 qolipida: 13 → 9 ekran, «Bajardim» yo'q, ish VS Code + Gemini'da ustoz bilan. Bog'liqlik: GATE V2 (m1-10 Demo Day) qabul qilinsa — dizayn m1-08 da qoladi. Tavsiya birinchi turadi.",
+"darslar":[{"id":"D01","qisqa":"m1-08","eyebrow":"2-Modul · 10-dars · src/1-Modull/HtmlPractice.jsx","nom":"HTML Praktika — Portfolio sayt","fayl":"03-m1-08-v4.md",
+"xulosa":"s0 kirish (o'zgarmaydi) · s1 tayyorgarlik · A1 header + «Men haqimda» · A2 menyu, loyihalar, aloqa, footer · A3 dizayn · s5 topshirish (✔ D, id=\"aloqa\") · 3 standart. Olinadi: 2- va 5-ekran tushunchalari, 3-ekran testi, 16 «Bajardim». Nishonlar bloklarga.",
+"savollar":[{"savol":"Bloklar soni","variantlar":[["A","3 blok (A2 = qolgan HTML bitta blokda) → 9 ekran"],["B","4 blok (v3.2 dagidek) → 10 ekran"]]},{"savol":"Qoladigan test","variantlar":[["A","id=\"aloqa\" (havola — A2 bilan bog'liq)"],["B","<section> (bo'lim tegi)"]]}]}]}

@@ -1,0 +1,367 @@
+<title>Praktika qayta qolipi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: bitta ustun hisobot (max 1040px), bo'limlar raqamli (a–e) — so'rov tartibi; qaror kartalari oxirida, nusxalash pastda */
+:root{
+  --bg:#f3f4f6; --panel:#ffffff; --ink:#15181d; --muted:#5b6370; --line:#dde1e7;
+  --accent:#2f5bd3; --accent-soft:#e6ecfb;
+  --ok:#1f8a4c; --ok-soft:#e3f4ea; --warn:#b26b00; --warn-soft:#fbf0dc; --bad:#c2372b; --bad-soft:#fbe6e3;
+  --code:#1b2238; --code-ink:#e9edf7;
+  --f-body:"Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12151a; --panel:#1a1e25; --ink:#e8ebf0; --muted:#9aa3b2; --line:#2b313b;
+  --accent:#7d9cff; --accent-soft:#232c45;
+  --ok:#4cc27e; --ok-soft:#173326; --warn:#e3a33a; --warn-soft:#352a14; --bad:#f07466; --bad-soft:#3a1d1a;
+  --code:#0d1120; --code-ink:#e9edf7; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#12151a; --panel:#1a1e25; --ink:#e8ebf0; --muted:#9aa3b2; --line:#2b313b;
+  --accent:#7d9cff; --accent-soft:#232c45;
+  --ok:#4cc27e; --ok-soft:#173326; --warn:#e3a33a; --warn-soft:#352a14; --bad:#f07466; --bad-soft:#3a1d1a;
+  --code:#0d1120; --code-ink:#e9edf7; color-scheme:dark;}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+.wrap{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:36px}
+h1{font-size:clamp(26px,4vw,36px);line-height:1.15;margin:0;text-wrap:balance;font-weight:800;letter-spacing:-.01em}
+h2{font-size:22px;margin:0;text-wrap:balance;font-weight:800;display:flex;gap:10px;align-items:baseline}
+h2 .lt{font-family:var(--f-mono);font-size:14px;color:var(--accent);font-weight:600}
+h3{font-size:16px;margin:0;font-weight:700}
+p{margin:0;max-width:72ch}
+.lead{color:var(--muted);font-size:16px}
+section{display:flex;flex-direction:column;gap:14px}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+code,.mono{font-family:var(--f-mono);font-size:.9em}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.kpi b{font-size:28px;font-variant-numeric:tabular-nums}
+.kpi span{color:var(--muted);font-size:13px}
+.tbl{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:860px;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;color:var(--muted);font-weight:700;background:var(--bg);position:sticky;top:0}
+td.n{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+tr.grp td{background:var(--accent-soft);font-weight:700;font-size:12px;letter-spacing:.04em}
+.bar{display:flex;align-items:center;gap:8px}
+.bar i{display:block;height:8px;border-radius:4px;background:var(--bad);opacity:.75}
+.bar.lo i{background:var(--ok)}
+.pill{display:inline-block;font-size:11.5px;font-weight:700;padding:1px 8px;border-radius:999px;white-space:nowrap}
+.p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)} .p-bad{background:var(--bad-soft);color:var(--bad)} .p-n{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+.note{font-size:13px;color:var(--muted)}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+figure img{display:block;width:100%;height:auto;border-bottom:1px solid var(--line)}
+figcaption{padding:10px 12px;font-size:13px;display:flex;flex-direction:column;gap:4px}
+figcaption b{font-size:13.5px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.cols>*{min-width:0}
+.pm{display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:13.5px}
+.pm ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.pm .plus h4{color:var(--ok)} .pm .minus h4{color:var(--bad)}
+h4{margin:0 0 4px;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+@media (max-width:520px){.pm{grid-template-columns:1fr}}
+/* Prototip: darsning o'z brendi (dars ichidagi ko'rinish) */
+.proto{background:#f5f4ef;color:#15181d;border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:10px;font-size:13px;border:1px solid #e3e1d8}
+.proto .eb{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#5b6370;font-weight:700}
+.proto .eb::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#ff4f28;margin-right:6px;vertical-align:middle}
+.proto .t{font-weight:800;font-size:15px}
+.proto .ta{background:#1b2238;color:#e9edf7;font-family:var(--f-mono);font-size:11.5px;border-radius:6px;padding:10px;white-space:pre;overflow-x:auto;line-height:1.5}
+.proto .req{display:flex;flex-direction:column;gap:4px}
+.proto .r{display:flex;gap:6px;align-items:center;background:#fff;border-radius:6px;padding:5px 8px;font-size:12px}
+.proto .r .d{width:16px;height:16px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;flex:none}
+.proto .r.y .d{background:#1f8a4c} .proto .r.n .d{background:#c2372b}
+.proto .btn{align-self:flex-start;background:#ff4f28;color:#fff;font-weight:700;border-radius:8px;padding:6px 12px;font-size:12px}
+.proto .btn.off{opacity:.45}
+.proto .in{background:#fff;border:1.5px solid #15181d;border-radius:6px;padding:7px 9px;font-family:var(--f-mono);font-size:12px}
+.proto .chip{display:inline-block;background:#fff;border-radius:999px;padding:3px 9px;font-size:11.5px;margin:0 4px 4px 0;border:1px solid #e3e1d8}
+.proto .chip.on{background:#e3f4ea;border-color:#1f8a4c;color:#1f8a4c;font-weight:700}
+.ai{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.ai .panel{display:flex;flex-direction:column;gap:8px}
+.ai dl{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;margin:0;font-size:13px}
+.ai dt{color:var(--muted)} .ai dd{margin:0}
+.ai .verdict{font-weight:700;font-size:13px}
+.ai .rec{outline:2px solid var(--ok);outline-offset:-1px}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;counter-reset:s}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.step .no{font-family:var(--f-mono);font-size:12px;color:var(--accent);font-weight:600}
+.step.std{background:var(--bg);border-style:dashed}
+.step ul{margin:0;padding-left:18px;font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:2px}
+.step .chk{font-size:12px;font-weight:700;color:var(--ok)}
+.q{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.q .qh{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.q .qid{font-family:var(--f-mono);font-size:13px;color:var(--accent);font-weight:600}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;border:1.5px solid var(--line);border-radius:9px;padding:10px 12px;cursor:pointer;background:var(--panel)}
+.opt:hover{border-color:var(--accent)}
+.opt:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.opt input{margin-top:4px;accent-color:var(--accent)}
+.opt .ol{font-weight:700}
+.opt .od{font-size:13px;color:var(--muted)}
+.rec-tag{font-size:11px;font-weight:800;color:var(--ok);background:var(--ok-soft);border-radius:999px;padding:1px 8px;margin-left:6px;white-space:nowrap}
+textarea{width:100%;min-height:54px;border:1.5px solid var(--line);border-radius:8px;padding:8px 10px;font:inherit;font-size:13.5px;background:var(--panel);color:var(--ink);resize:vertical}
+textarea:focus,.opt:focus-within{outline:2px solid var(--accent);outline-offset:1px}
+.answer{position:sticky;bottom:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px;box-shadow:0 -6px 20px rgba(0,0,0,.08);margin-bottom:env(safe-area-inset-bottom,0px)}
+.answer pre{margin:0;background:var(--code);color:var(--code-ink);font-family:var(--f-mono);font-size:12.5px;border-radius:8px;padding:10px 12px;white-space:pre-wrap;word-break:break-word}
+.answer button{align-self:flex-start;background:var(--accent);color:#fff;border:0;border-radius:8px;padding:9px 16px;font:inherit;font-weight:700;cursor:pointer}
+.answer button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.callout{border-left:4px solid var(--warn);background:var(--warn-soft);padding:10px 14px;border-radius:0 8px 8px 0;font-size:14px}
+.callout.bad{border-color:var(--bad);background:var(--bad-soft)}
+a{color:var(--accent)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header style="display:flex;flex-direction:column;gap:8px">
+  <span class="eyebrow">F-1015-300 · 3-seans · 1-qadam: hisobot (kodga tegilmagan)</span>
+  <h1>Praktikalar: haqiqiy ish yoki bosib o'tish?</h1>
+  <p class="lead">LMS 2–6-Modullardagi 18 praktika darsi o'lchandi. Maqsad: o'quvchi ishni 2–3 AI vositasi bilan VS Code va Live Server'da haqiqatan o'zi bajarsin, darsda esa 6–8 ta ekran qolsin. Oxirida 7 ta qaror savoli bor, javobni bitta tugma bilan nusxalaysiz.</p>
+</header>
+
+<div class="kpis">
+  <div class="kpi"><b>18</b><span>praktika darsi, 2–6-Modul</span></div>
+  <div class="kpi"><b>13–25</b><span>ekran bitta darsda (maqsad 6–8)</span></div>
+  <div class="kpi"><b>~75%</b><span>asosiy ekranlar haqiqiy ishsiz yoki tekshiruvsiz o'tadi</span></div>
+  <div class="kpi"><b>0</b><span>tashqi ish (VS Code) avtomatik tekshirilgan dars yo'q</span></div>
+</div>
+
+<!-- a -->
+<section>
+  <h2><span class="lt">a)</span> 18 praktikaning hozirgi holati</h2>
+  <p class="note">Qanday hisoblandi: <code>SCREEN_META</code> turlari bo'yicha. «Bosib o'tish» ustuni haqiqiy ish bo'lmagan yoki ish natijasi tekshirilmaydigan ekranlarni sanaydi: kirish, qoida, dars ichidagi o'yin yoki simulyatsiya, keys va o'zi belgilab «Bajardim» bilan yopiladigan amaliyot. Bu ulush natijalar, kartochka va yakun ekranlarisiz hisoblangan. Testlar tekshiriladi, shuning uchun ular bu ustunga kirmaydi.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Dars</th><th>Mavzu</th><th class="n">Ekran</th><th>Bosib o'tish</th><th class="n">Test</th><th>Haqiqiy ish (ekran)</th><th>Ish qanday yopiladi</th><th>AI / vosita</th></tr></thead>
+    <tbody>
+    <tr class="grp"><td colspan="8">2-MODUL · Men internetdaman</td></tr>
+    <tr><td class="mono">m1-08</td><td>HTML Praktika (14.10)</td><td class="n">13</td><td><div class="bar"><i style="width:64px"></i>8/10</div></td><td class="n">2</td><td><span class="pill p-ok">4 · VS Code</span></td><td><span class="pill p-bad">16 × «Bajardim»</span></td><td>Gemini (haqiqiy) · VS Code · Live Server</td></tr>
+    <tr><td class="mono">m1-10</td><td>CSS Praktika</td><td class="n">20</td><td><div class="bar lo"><i style="width:19px"></i>4/17</div></td><td class="n">6</td><td><span class="pill p-warn">0 · 3 ta dars ichidagi kompilyator</span></td><td><span class="pill p-ok">kompilyator o'zi tekshiradi</span></td><td>AI yo'q (nomida «AI bilan tugma» bor) · 7 ta «?» ni tanlash</td></tr>
+    <tr class="grp"><td colspan="8">3-MODUL · Sistemalar qanday o'ylaydi</td></tr>
+    <tr><td class="mono">m2-08</td><td>Saytni jonlantiramiz</td><td class="n">19</td><td><div class="bar"><i style="width:60px"></i>12/16</div></td><td class="n">4</td><td><span class="pill p-warn">0 · 3 ta dars ichidagi kompilyator</span></td><td><span class="pill p-ok">kompilyator o'zi tekshiradi</span></td><td>AI faqat simulyatsiyada (Antigravity eslatmasi)</td></tr>
+    <tr><td class="mono">m2-09</td><td>AI bilan tez sayt</td><td class="n">19</td><td><div class="bar"><i style="width:60px"></i>12/16</div></td><td class="n">4</td><td><span class="pill p-bad">0</span></td><td><span class="pill p-n">—</span></td><td>«Agentga yuborish» — soxta agent, Antigravity 15 marta</td></tr>
+    <tr><td class="mono">m2-11</td><td>Dekompozitsiya</td><td class="n">19</td><td><div class="bar"><i style="width:60px"></i>12/16</div></td><td class="n">4</td><td><span class="pill p-bad">0</span></td><td><span class="pill p-n">—</span></td><td>Antigravity simulyatsiyasi (rejani tasdiqlash)</td></tr>
+    <tr><td class="mono">m2-12</td><td>MVP tayyor (deploy)</td><td class="n">19</td><td><div class="bar"><i style="width:60px"></i>12/16</div></td><td class="n">4</td><td><span class="pill p-bad">0</span></td><td><span class="pill p-n">—</span></td><td>Antigravity va deploy simulyatsiyasi</td></tr>
+    <tr class="grp"><td colspan="8">4-MODUL · Frontend — React</td></tr>
+    <tr><td class="mono">m3-07</td><td>CRUD</td><td class="n">22</td><td><div class="bar"><i style="width:59px"></i>14/19</div></td><td class="n">5</td><td><span class="pill p-ok">3 · VS Code</span></td><td><span class="pill p-bad">chek-ro'yxat + «Bajardim»</span></td><td>VS Code (o'zi yozadi) · Antigravity eslatmasi</td></tr>
+    <tr><td class="mono">m3-11</td><td>React Router</td><td class="n">22</td><td><div class="bar"><i style="width:59px"></i>14/19</div></td><td class="n">5</td><td><span class="pill p-ok">3 · VS Code</span></td><td><span class="pill p-bad">chek-ro'yxat + «Bajardim»</span></td><td>VS Code (o'zi yozadi)</td></tr>
+    <tr><td class="mono">m3-12</td><td>Loyiha kuni — AvtoIjara</td><td class="n">23</td><td><div class="bar"><i style="width:60px"></i>15/20</div></td><td class="n">5</td><td><span class="pill p-ok">4 · VS Code</span></td><td><span class="pill p-bad">chek-ro'yxat + «Bajardim»</span></td><td><span class="pill p-bad">Antigravity (18+)</span> · VS Code</td></tr>
+    <tr><td class="mono">m3-13</td><td>Istalgan saytni qurish</td><td class="n">20</td><td><div class="bar"><i style="width:57px"></i>12/17</div></td><td class="n">5</td><td><span class="pill p-ok">1</span></td><td><span class="pill p-bad">chek-ro'yxat + «Bajardim»</span></td><td><span class="pill p-bad">Antigravity (18+)</span> · «Qurar-bot» simulyatsiyasi</td></tr>
+    <tr class="grp"><td colspan="8">5-MODUL · Ma'lumot va bog'lanishlar</td></tr>
+    <tr><td class="mono">m4-08</td><td>Backend CRUD</td><td class="n">19</td><td><div class="bar"><i style="width:60px"></i>12/16</div></td><td class="n">4</td><td><span class="pill p-ok">1</span></td><td><span class="pill p-bad">chek-ro'yxat + «Bajardim»</span></td><td>VS Code · Postman</td></tr>
+    <tr><td class="mono">m4-10</td><td>Fullstack ulash</td><td class="n">20</td><td><div class="bar"><i style="width:61px"></i>13/17</div></td><td class="n">4</td><td><span class="pill p-ok">1</span></td><td><span class="pill p-bad">chek-ro'yxat + «Bajardim»</span></td><td>VS Code (fetch, CORS)</td></tr>
+    <tr><td class="mono">m4-13</td><td>Loyiha kuni — AvtoStoyanka</td><td class="n">25</td><td><div class="bar"><i style="width:62px"></i>17/22</div></td><td class="n">5</td><td><span class="pill p-ok">4</span></td><td><span class="pill p-bad">chek-ro'yxat + «Bajardim»</span></td><td><span class="pill p-bad">Antigravity (18+)</span> · Postman</td></tr>
+    <tr><td class="mono">m4-14</td><td>Fikr bilan yaxshilash</td><td class="n">21</td><td><div class="bar"><i style="width:58px"></i>13/18</div></td><td class="n">5</td><td><span class="pill p-ok">1</span></td><td><span class="pill p-bad">chek-ro'yxat + «Bajardim»</span></td><td>sinfdoshlar + «AI» (nomi yo'q)</td></tr>
+    <tr class="grp"><td colspan="8">6-MODUL · NestJS + Test + CI/CD</td></tr>
+    <tr><td class="mono">m4a-04</td><td>KitobShop backend</td><td class="n">23</td><td><div class="bar"><i style="width:64px"></i>16/20</div></td><td class="n">4</td><td><span class="pill p-ok">1</span></td><td><span class="pill p-bad">chek-ro'yxat + «Bajardim»</span></td><td>VS Code · «AI yordamchisi» · Swagger</td></tr>
+    <tr><td class="mono">m4c-04</td><td>To'liq lentani qurish</td><td class="n">18</td><td><div class="bar"><i style="width:53px"></i>10/15</div></td><td class="n">5</td><td><span class="pill p-ok">1</span></td><td><span class="pill p-bad">chek-ro'yxat + «Bajardim»</span></td><td>VS Code · GitHub Actions</td></tr>
+    <tr><td class="mono">m4c-05</td><td>AI bilan lentani boshqarish</td><td class="n">20</td><td><div class="bar"><i style="width:57px"></i>12/17</div></td><td class="n">5</td><td><span class="pill p-ok">1</span></td><td><span class="pill p-bad">chek-ro'yxat + «Bajardim»</span></td><td><span class="pill p-bad">Antigravity (18+)</span> yoki boshqa AI · GitHub</td></tr>
+    <tr><td class="mono">m4c-07</td><td>Ishonchli lenta</td><td class="n">20</td><td><div class="bar"><i style="width:57px"></i>12/17</div></td><td class="n">5</td><td><span class="pill p-ok">1</span></td><td><span class="pill p-bad">chek-ro'yxat + «Bajardim»</span></td><td>GitHub Actions (<code>ci.yml</code>)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="cols">
+    <div class="panel"><h3>Uch xil holat</h3><p class="note" style="margin-top:6px">1) <b>m2-08…m2-12</b>: haqiqiy ish umuman yo'q. AI'ni dars ichidagi soxta agent «quradi». 2) <b>m3-07…m4c-07</b>: haqiqiy ish bor (1–4 ekran), lekin o'quvchi bosqichlarni o'zi belgilab «Bajardim»ni bosadi va hech narsa tekshirilmaydi. 3) <b>m1-10, m2-08</b>: kod dars ichidagi kompilyatorda yoziladi va avtomatik tekshiriladi, lekin bu VS Code ham emas, AI ham emas.</p></div>
+    <div class="panel"><h3>Antigravity muammosi</h3><p class="note" style="margin-top:6px">4 ta dars (m3-12, m3-13, m4-13, m4c-05) haqiqiy ishni <b>Antigravity</b>'da qildiradi. Rasmiy FAQ'ga ko'ra u 18 yoshdan kichiklarga yopiq, o'quvchilarimiz esa 13–17 yoshda. Yana 6 ta dars uni simulyatsiya yoki eslatma sifatida ko'rsatadi.</p></div>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Haqiqiy suratlar · hozirgi darslar, 1280 px</span>
+  <div class="shots">
+    <figure><img src="@@m108@@" alt="m1-08 A1 bloki: bitta qadam va Bajardim tugmasi"><figcaption><b>m1-08 · A1</b><span>Har qadamni o'quvchi o'zi «Bajardim» bilan yopadi: 4 blok × 4 qadam = 16 marta bosiladi. Ish haqiqiy, lekin bajarilganini dars bilmaydi.</span></figcaption></figure>
+    <figure><img src="@@m307@@" alt="m3-07 Checkpoint 1: to'rt bosqichli chek-ro'yxat"><figcaption><b>m3-07 · Checkpoint 1</b><span>Topshiriq VS Code'da bajariladi, lekin 4 bosqichni belgilash kodsiz ham mumkin. 12 ta darsdagi 23 ta amaliyot ekrani shu tuzilishda.</span></figcaption></figure>
+    <figure><img src="@@m209@@" alt="m2-09: Agentga yuborish — dars ichidagi soxta agent"><figcaption><b>m2-09 · «Agentga yuborish»</b><span>Promptni AI emas, dars ichidagi tayyor animatsiya «quradi». O'quvchi o'zi hech qanday prompt yozmaydi.</span></figcaption></figure>
+    <figure><img src="@@m110@@" alt="m1-10: to'rt variantdan bitta CSS xususiyatini tanlash"><figcaption><b>m1-10 · bezak</b><span>CSS Praktikaning 7 ta ekranida kod yozilmaydi, faqat 4 variantdan bittasi tanlanadi. AI darsda yo'q.</span></figcaption></figure>
+  </div>
+</section>
+
+<!-- b -->
+<section>
+  <h2><span class="lt">b)</span> m1-08 yangi maqsadga mosmi?</h2>
+  <div class="cols">
+    <div class="panel" style="display:flex;flex-direction:column;gap:8px"><h3 style="color:var(--ok)">Mos qismlari</h3>
+      <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px;font-size:14px">
+        <li>Ish haqiqiy: kod VS Code'da, prompt gemini.google.com'da, natija Live Server'da (13.10 kelishuvi).</li>
+        <li>Prompt «Nusxalash» bilan beriladi, A2/A3 da hozirgi kod ham qo'shiladi, ya'ni AI bilan ketma-ket ishlash bor.</li>
+        <li>Kompilyator olib tashlangan, ish o'quvchining kompyuterida.</li>
+      </ul></div>
+    <div class="panel" style="display:flex;flex-direction:column;gap:8px"><h3 style="color:var(--bad)">Rad etilgan naqsh</h3>
+      <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px;font-size:14px">
+        <li><b>16 marta «Bajardim»</b>: har qadam o'quvchining o'z so'zi bilan yopiladi, dars natijani ko'rmaydi. Bu aynan «bosdim → bosdim → qildim» naqshi.</li>
+        <li>Prompt tayyor holda beriladi, o'quvchi o'zi yozmaydi, faqat nusxalaydi.</li>
+        <li>«Namuna kodini nusxalash» bilan ishni qilmay oldinga o'tish mumkin.</li>
+        <li>Faqat bitta AI (Gemini). 13 ekran, maqsad esa 6–8.</li>
+      </ul></div>
+  </div>
+  <p class="callout"><b>Xulosa:</b> m1-08 yo'nalishi to'g'ri, lekin isbot yo'q. Tuzilmasi (4 blok, bitta ip, VS Code va Gemini) qolipga asos bo'la oladi. Yangi qolip qabul qilinsa, «Bajardim» o'rniga isbot qo'yilishi kerak (7-savol).</p>
+</section>
+
+<!-- c -->
+<section>
+  <h2><span class="lt">c)</span> «Haqiqatan qildi»ni qanday bilamiz</h2>
+  <div class="cols">
+    <div class="panel" style="display:flex;flex-direction:column;gap:12px">
+      <h3>V1 · AI bergan kodni darsga joylaydi, dars o'zi tekshiradi</h3>
+      <div class="proto">
+        <span class="eb">Amaliyot 2 · menyu</span>
+        <span class="t">VS Code'dagi style.css kodini shu yerga joylang</span>
+        <div class="ta">nav {
+  display: flex;
+  gap: 24px;
+}
+h1 { color: #ff4f28; }</div>
+        <div class="req">
+          <div class="r y"><span class="d">✓</span><code>nav</code> — display: flex</div>
+          <div class="r y"><span class="d">✓</span><code>nav</code> — gap bor</div>
+          <div class="r n"><span class="d">✕</span><code>nav a</code> — havola rangi yo'q. AI'dan so'rang yoki o'zingiz yozing</div>
+        </div>
+        <span class="btn off">2/3 — davom etish yopiq</span>
+      </div>
+      <div class="pm"><div class="plus"><h4>Afzal</h4><ul><li>Eng kuchli isbot: kod bor va talabga mos.</li><li>Mexanizm tayyor: <code>HtmlCompiler</code> tekshiruvlari (<code>cssProp</code>, <code>cssValue</code>…) m1-10 da ishlayapti.</li><li>Xato aniq ko'rsatiladi.</li></ul></div><div class="minus"><h4>Kamchilik</h4><ul><li>Do'stining kodini joylash mumkin.</li><li>React va backend (ko'p fayl, server) uchun qiyin.</li></ul></div></div>
+    </div>
+    <div class="panel" style="display:flex;flex-direction:column;gap:12px">
+      <h3>V2 · O'z promptini joylaydi, dars uni tekshiradi</h3>
+      <div class="proto">
+        <span class="eb">Amaliyot 2 · menyu</span>
+        <span class="t">Gemini'ga yozgan promptingizni shu yerga joylang</span>
+        <div class="in">Portfolio saytimga menyu qo'sh: Men haqimda, Loyihalar, Aloqa. Bir qatorda tursin. Mana hozirgi kodim: …</div>
+        <div><span class="chip on">✓ nima kerak</span><span class="chip on">✓ hozirgi kod</span><span class="chip on">✓ ko'rinishi</span><span class="chip">qaysi fayl</span></div>
+        <span class="btn">3/4 — yetarli, Gemini'ga yuboring</span>
+      </div>
+      <div class="pm"><div class="plus"><h4>Afzal</h4><ul><li>«Aniq prompt» mahoratini o'lchaydi, bu 13.10 kelishuvining o'zagi.</li><li>Hamma darsda ishlaydi (backend ham).</li><li>Tez va oson.</li></ul></div><div class="minus"><h4>Kamchilik</h4><ul><li>Natija ishlaganini isbotlamaydi.</li><li>Kalit so'zlarni qo'shib aldash mumkin.</li></ul></div></div>
+    </div>
+    <div class="panel" style="display:flex;flex-direction:column;gap:12px">
+      <h3>V3 · Natijadan aniq bir narsani yozadi</h3>
+      <div class="proto">
+        <span class="eb">Amaliyot · Postman</span>
+        <span class="t">POST /cars dan keyin server qaytargan <code>id</code> nechchi?</span>
+        <div class="in">id: 4</div>
+        <span class="note" style="color:#5b6370">Javob mentorning «Kim bajardi» ro'yxatida chiqadi. Hammada 4 bo'lsa — hammasi to'g'ri.</span>
+        <span class="btn">Yuborish</span>
+      </div>
+      <div class="pm"><div class="plus"><h4>Afzal</h4><ul><li>Natijani ko'rmagan javob bera olmaydi.</li><li>Backend, CI va deploy darslarida yagona yo'l.</li><li>Telefonda ham yoziladi.</li></ul></div><div class="minus"><h4>Kamchilik</h4><ul><li>Javob o'quvchiga xos bo'lsa, dars to'g'riligini bilmaydi va mentor ko'radi.</li><li>Har blokka alohida savol o'ylash kerak.</li></ul></div></div>
+    </div>
+  </div>
+  <p class="callout"><b>Tavsiya, V4 = birlashma:</b> har blokda avval <b>V2</b> (o'z promptini yozadi, tez tekshiruv), keyin natijani tekshirish: HTML/CSS/JS darslarida (m1-08…m2-12) <b>V1</b> (kodni joylaydi), React va backend darslarida (m3…m4c) <b>V3</b> (natijadan bitta aniq qiymat). Mentor ekranida «Kim bajardi» qoladi.</p>
+</section>
+
+<!-- d -->
+<section>
+  <h2><span class="lt">d)</span> Qaysi AI vositalari: yosh, O'zbekiston, narx</h2>
+  <div class="ai">
+    <div class="panel rec"><h3>Gemini <span class="rec-tag">ASOSIY</span></h3>
+      <dl><dt>Qayerda</dt><dd>gemini.google.com (chat)</dd><dt>Yosh</dt><dd>13+: o'z Google akkauntini boshqara oladigan yosh. O'zbekiston Google ro'yxatida yo'q, shuning uchun 13 yosh amal qiladi. O'smirlarga qo'shimcha himoya bor.</dd><dt>O'zbekiston</dt><dd>✓ rasmiy ro'yxatda bor</dd><dt>Narx</dt><dd>Bepul</dd></dl>
+      <span class="verdict" style="color:var(--ok)">Kursda allaqachon bor (memory sinfda-gemini).</span></div>
+    <div class="panel rec"><h3>GitHub Copilot Free <span class="rec-tag">2-VOSITA</span></h3>
+      <dl><dt>Qayerda</dt><dd>VS Code ichida: yozayotganda kodni to'ldiradi va chatda javob beradi</dd><dt>Yosh</dt><dd>13+ (GitHub shartlari)</dd><dt>O'zbekiston</dt><dd>GitHub ochiladi, alohida cheklov topilmadi</dd><dt>Narx</dt><dd>Bepul: oyiga taxminan 2000 ta to'ldirish va 50 ta chat so'rovi (ikkilamchi manbalar)</dd></dl>
+      <span class="verdict" style="color:var(--warn)">GitHub akkaunti kerak. Chat limiti kichik, shuning uchun asosan to'ldirish uchun ishlatiladi.</span></div>
+    <div class="panel"><h3>ChatGPT <span class="pill p-warn" style="margin-left:6px">ixtiyoriy</span></h3>
+      <dl><dt>Qayerda</dt><dd>chatgpt.com</dd><dt>Yosh</dt><dd>13+, lekin 18 yoshgacha ota-ona roziligi shart (OpenAI)</dd><dt>O'zbekiston</dt><dd>✓ qo'llab-quvvatlanadi</dd><dt>Narx</dt><dd>Bepul darajasi bor</dd></dl>
+      <span class="verdict" style="color:var(--warn)">Ota-ona roziligi sinf uchun to'siq. «Ikkinchi fikr» sifatida ixtiyoriy.</span></div>
+    <div class="panel"><h3>Ishlatib bo'lmaydi</h3>
+      <dl><dt>Antigravity</dt><dd><span class="pill p-bad">18+</span> rasmiy FAQ</dd><dt>Claude</dt><dd><span class="pill p-bad">18+</span> Anthropic shartlari</dd><dt>Gemini Code Assist</dt><dd><span class="pill p-bad">yopilgan</span> 18.06.2026 dan shaxsiy akkauntlarda ishlamaydi, Google uni Antigravity'ga ko'chiradi (rasmiy FAQ)</dd></dl>
+      <span class="verdict" style="color:var(--bad)">VS Code ichidagi Google AI'si endi yo'q. Shuning uchun 2-vosita Copilot.</span></div>
+  </div>
+  <p class="note">Manbalar: <a href="https://support.google.com/gemini/answer/13575153" target="_blank" rel="noopener">Gemini mamlakatlari</a> · <a href="https://support.google.com/accounts/answer/1350409" target="_blank" rel="noopener">Google akkaunt yoshi</a> · <a href="https://help.openai.com/en/articles/8313401-educator-faq" target="_blank" rel="noopener">OpenAI: 13–18 ota-ona roziligi</a> · <a href="https://help.openai.com/en/articles/7947663-chatgpt-supported-countries" target="_blank" rel="noopener">ChatGPT mamlakatlari</a> · <a href="https://conductatlas.com/platform/github/github-terms-of-service/minimum-age-requirement-13-years/" target="_blank" rel="noopener">GitHub 13+</a> · <a href="https://code.visualstudio.com/docs/copilot/faq" target="_blank" rel="noopener">Copilot Free (VS Code FAQ)</a> · <a href="https://www.anthropic.com/legal/consumer-terms" target="_blank" rel="noopener">Claude 18+</a> · <a href="https://developers.google.com/gemini-code-assist/resources/faqs" target="_blank" rel="noopener">Gemini Code Assist FAQ</a>. 15.10.2026 da tekshirildi. Copilot limit raqamlari GitHub'ning rasmiy sahifasida qayta tekshiriladi.</p>
+</section>
+
+<!-- e -->
+<section>
+  <h2><span class="lt">e)</span> Bitta praktika uchun qolip: 8 ekran</h2>
+  <p class="note">Bitta ip: o'quvchi bitta narsani boshidan oxirigacha quradi. Har ish ekrani isbot bilan yopiladi, «Bajardim» qo'yilmaydi. Misol m1-10 CSS Praktika (pilot) uchun.</p>
+  <div class="flow">
+    <div class="step"><span class="no">1 · s0</span><h3>Bugun nima qurasiz</h3><ul><li>Tayyor natija surati (oldin → keyin)</li><li>1 ta bashorat savoli</li></ul></div>
+    <div class="step"><span class="no">2 · s1</span><h3>Tayyorgarlik</h3><ul><li>VS Code papkasi, Live Server, Gemini, Copilot</li><li>3 qator, 1 tugma</li></ul><span class="chk">Isbot: Live Server manzilini yozadi</span></div>
+    <div class="step"><span class="no">3 · A1</span><h3>1-blok · Gemini bilan</h3><ul><li>Vazifa, 1 gap</li><li>O'z promptini yozadi (V2)</li><li>Gemini → VS Code → Live Server</li></ul><span class="chk">Isbot: kodni joylaydi (V1)</span></div>
+    <div class="step"><span class="no">4 · A2</span><h3>2-blok · Copilot bilan</h3><ul><li>VS Code'da izoh yozadi, Copilot kodni to'ldiradi</li><li>O'zi qabul qiladi yoki o'zgartiradi</li></ul><span class="chk">Isbot: kodni joylaydi (V1)</span></div>
+    <div class="step"><span class="no">5 · A3</span><h3>3-blok · o'zingiz o'zgartiring</h3><ul><li>AI kodi ichidan bitta qiymatni topib, o'zi o'zgartiradi (rang, o'lcham)</li><li>AI'siz yoki AI'dan izoh so'rab</li></ul><span class="chk">Isbot: o'zgargan qiymat (V1 + V3)</span></div>
+    <div class="step"><span class="no">6 · s2</span><h3>Topshirish</h3><ul><li>Butun saytni Live Server'da mentorga ko'rsatadi</li><li>1 ta baholanadigan savol (jonli ball)</li></ul><span class="chk">Isbot: natija savoli (V3)</span></div>
+    <div class="step std"><span class="no">7 · standart</span><h3>Natijalar</h3><ul><li>Podium va arena, o'zgarmaydi</li></ul></div>
+    <div class="step std"><span class="no">8 · standart</span><h3>Yakun</h3><ul><li>Nishon, uyga vazifa (VS Code), keyingi dars</li><li>Kartochkalar shu yerga birlashadi yoki olinadi (3-savol)</li></ul></div>
+  </div>
+  <p class="note">Texnik qism: <code>lessonId</code>, arena 12 savoli va kalitlari, <code>HOMEWORK</code>, F-1012 navigatsiyasi, mentor qulfi va 500+ amaliyot signali saqlanadi. Fayl har qadamda ishlaydigan holatda qoladi. Isbot ekrani <code>HtmlCompiler</code>'ning <code>checks</code> funksiyalaridan foydalanadi, kompilyator faylining o'ziga tegilmaydi.</p>
+</section>
+
+<!-- savollar -->
+<section id="savollar">
+  <h2><span class="lt">?</span> Qaror savollari</h2>
+  <p class="note">Har savolda bittasini tanlang. Kerak bo'lsa izoh yozing, keyin pastdagi tugma bilan javobni nusxalang. Tavsiya birinchi turadi.</p>
+  <div id="qs" style="display:flex;flex-direction:column;gap:14px"></div>
+  <div class="answer">
+    <pre id="out">GATE Q-1015</pre>
+    <button type="button" id="copy">Javobni nusxalash</button>
+  </div>
+</section>
+
+</div>
+
+<script>
+const QS = [
+ {id:'Q1', t:"Ishni qanday isbotlaymiz?", o:[
+  ['A',"Birlashma (V4)","Har blokda o'z prompti (V2). Keyin HTML/CSS/JS darslarida kodni joylash (V1), React va backend darslarida natija qiymati (V3).",1],
+  ['B',"Faqat kodni joylash (V1)","Eng kuchli isbot, lekin backend darslarida qiyin."],
+  ['C',"Faqat o'z prompti (V2)","Tez, lekin natija tekshirilmaydi."],
+  ['D',"Faqat natijadan qiymat (V3)","Hamma darsga mos, lekin ko'p javobni mentor ko'radi."]]},
+ {id:'Q2', t:"Qaysi AI vositalari?", o:[
+  ['A',"Gemini va GitHub Copilot Free","Ikkalasi 13+ va bepul. Biri chat, ikkinchisi VS Code ichida.",1],
+  ['B',"Gemini va ChatGPT","Ikkalasi chat. ChatGPT uchun 18 yoshgacha ota-ona roziligi kerak."],
+  ['C',"Faqat Gemini","Eng sodda, lekin bitta vosita, «2–3 ta» sharti bajarilmaydi."],
+  ['D',"Uchalasi: Gemini, Copilot, ChatGPT (ixtiyoriy)","Asosiysi A, ChatGPT faqat «ikkinchi fikr» qatori."]]},
+ {id:'Q3', t:"8 ta ekranga natijalar, kartochka va yakun kiradimi?", o:[
+  ['A',"6 ish ekrani + natijalar + yakun = 8","Kartochkalar ekrani olinadi, kerakli kartochkalar yakunga o'tadi.",1],
+  ['B',"6 ish ekrani + hozirgi 3 standart ekran = 9","Natijalar, kartochka va yakun o'zgarmaydi. Eng kam xavf."],
+  ['C',"5 ish ekrani + 3 standart ekran = 8","Ish bloklari 3 tadan 2 taga tushadi."]]},
+ {id:'Q4', t:"Testlar soni qancha bo'ladi?", o:[
+  ['A',"1 ta baholanadigan savol (Topshirish ekranida) va arena","Jonli ball relsi qoladi. Hozirgi 4–6 ta test olinadi.",1],
+  ['B',"2 ta savol va arena","Har yarimdan keyin bittadan."],
+  ['C',"Testsiz, faqat arena","Eng qisqa. Baholanadigan ekran soni 0 bo'ladi, LMS hisobini qayta tekshirish kerak."]]},
+ {id:'Q5', t:"«Namuna kodini nusxalash» (ortda qolganlar uchun) nima bo'ladi?", o:[
+  ['A',"Qoladi, lekin isbot o'quvchiga xos narsani so'raydi","Masalan, o'z ismi yoki o'zi tanlagan rang. Namunani joylagan o'quvchi isbotdan o'ta olmaydi.",1],
+  ['B',"Olib tashlanadi","Ortda qolgan o'quvchiga mentor yordam beradi."],
+  ['C',"Hozirgidek qoladi","Isbotni chetlab o'tish mumkin bo'ladi."]]},
+ {id:'Q6', t:"Antigravity'ga tayangan 4 dars (m3-12, m3-13, m4-13, m4c-05)?", o:[
+  ['A',"Gemini va Copilot'ga o'tkaziladi","Qolip bilan birga. Antigravity faqat «18+ ixtiyoriy» qatori bo'lib qoladi.",1],
+  ['B',"Antigravity qoladi, Gemini muqobil qator bo'ladi","O'quvchilarning ko'pchiligi undan foydalana olmaydi."]]},
+ {id:'Q7', t:"m1-08 (HTML Praktika, 14.10) nima bo'ladi?", o:[
+  ['A',"Pilotdan keyin yangi qolipga o'tadi","«Bajardim» o'rniga isbot qo'yiladi va 8 ekranga tushadi. Qolgan 16 dars bilan birga.",1],
+  ['B',"Pilot m1-08 da bo'ladi, m1-10 o'rniga","Tuzilmasi tayyor, faqat isbot qo'shiladi. Tezroq, lekin m1-10 keyinga qoladi."],
+  ['C',"Hozirgidek qoladi","Yaqinda tasdiqlangan, «Bajardim» naqshi qoladi."]]},
+];
+const qs=document.getElementById('qs');
+QS.forEach(q=>{
+  const box=document.createElement('div');box.className='q';
+  box.innerHTML=`<div class="qh"><span class="qid">${q.id}</span><h3>${q.t}</h3></div><div class="opts" role="radiogroup" aria-label="${q.t}"></div><textarea id="note-${q.id}" placeholder="Izoh yoki «Boshqa» (ixtiyoriy)"></textarea>`;
+  const opts=box.querySelector('.opts');
+  q.o.forEach(([k,l,d,rec])=>{
+    const lab=document.createElement('label');lab.className='opt';
+    lab.innerHTML=`<input type="radio" name="${q.id}" id="${q.id}-${k}" value="${k}"><span><span class="ol">${k} · ${l}</span>${rec?'<span class="rec-tag">tavsiya</span>':''}<br><span class="od">${d}</span></span>`;
+    opts.appendChild(lab);
+  });
+  const lab=document.createElement('label');lab.className='opt';
+  lab.innerHTML=`<input type="radio" name="${q.id}" id="${q.id}-X" value="Boshqa"><span><span class="ol">Boshqa</span><br><span class="od">Izohda yozing</span></span>`;
+  opts.appendChild(lab);
+  qs.appendChild(box);
+});
+const out=document.getElementById('out');
+function render(){
+  const lines=['GATE Q-1015 (praktika qolipi)'];
+  QS.forEach(q=>{
+    const c=document.querySelector(`input[name="${q.id}"]:checked`);
+    const n=document.getElementById('note-'+q.id).value.trim();
+    lines.push(`${q.id} ${c?c.value:'—'}${n?' · '+n:''}`);
+  });
+  out.textContent=lines.join('\n');
+  try{localStorage.setItem('q1015',JSON.stringify(QS.map(q=>{const c=document.querySelector(`input[name="${q.id}"]:checked`);return [c?c.value:null,document.getElementById('note-'+q.id).value]})))}catch(e){}
+}
+try{const s=JSON.parse(localStorage.getItem('q1015')||'null');if(s)QS.forEach((q,i)=>{const [v,n]=s[i]||[];if(v){const el=document.querySelector(`input[name="${q.id}"][value="${v}"]`);if(el)el.checked=true}if(n)document.getElementById('note-'+q.id).value=n})}catch(e){}
+document.addEventListener('change',render);document.addEventListener('input',render);render();
+document.getElementById('copy').addEventListener('click',async e=>{
+  const b=e.currentTarget;
+  try{await navigator.clipboard.writeText(out.textContent);b.textContent='Nusxalandi'}
+  catch(err){const r=document.createRange();r.selectNodeContents(out);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Belgilandi, Ctrl+C bosing'}
+  setTimeout(()=>b.textContent='Javobni nusxalash',2000);
+});
+</script>

@@ -1,0 +1,49 @@
+✅ eski progress (total 20, screen 15) → 0-ekran — 01/09
+✅ eski progress: ekran bo'sh emas — 722 belgi
+✅ eski progress: pageerror yo'q
+✅ eski progress: eski nishonlar ko'chmadi — hisoblagich 0
+✅ total 9, screen 25 → oxirgi ekran (clamp) — 09/09
+✅ clamp: pageerror yo'q
+✅ s0: javobdan keyin maket siljimadi — 263,150,422 → 263,150,422
+✅ s0: maket — namuna matn
+✅ s0: xato javobga «Qiziq fikr!»
+✅ s0 → s1
+✅ s1: «Avval tayyorlaning» kartasi (3 qadam)
+✅ s1: eski g'oya-banki yo'q
+✅ a1 ochildi, «Davom etish» faol — 03/09
+✅ a1: boshida faqat forma (prompt yopiq)
+✅ a1: 2 qator to'lganda prompt hali yopiq
+✅ a1: 3 qator to'lgach ham «Saqlash»siz prompt yopiq
+✅ a1: o'ngda Qadamlar (maket yo'q)
+✅ a1: saqlangach forma yig'ildi (inputlar yo'q, nom ko'rinadi)
+✅ a1: prompt — o'quvchi yozgani bilan
+✅ a1: «Prompt tayyor» qatori
+✅ a1: «Promptni nusxalash» — to'liq prompt — Demo Day loyiham — «Sport vaqti» — uchun bosh sahi
+✅ a1: tahrirlashda prompt jonli yangilanadi
+✅ a1: «Namuna kodini nusxalash» yo'q
+✅ a1: ccDemoDay ga yozildi (css + yechim) — {"css":{"nom":"Sport vaqti PRO","muammo":"Seksiya vaqtini telefon qilib so'rash kerak","ta
+✅ a1: «Ortda qoldingizmi» yo'q
+✅ a2 ochildi, «Davom etish» faol — 04/09
+✅ a2: uslub tanlanmaguncha prompt yopiq
+✅ a2: uslub saqlandi (qorongi) — qorongi
+✅ a2: prompt uslubga mos (Poppins, #0f172a)
+✅ a2: maket qorong'i
+✅ a2: «Ortda qoldingizmi» yo'q
+✅ a3 ochildi, «Davom etish» faol — 05/09
+✅ a3: «Ortda qoldingizmi» yo'q
+✅ a1–a3: 3 nishon (Kick Off, Styled, Color Master) — hisoblagich 3
+✅ s16 ochildi — 06/09
+✅ s16: A xato — izoh
+✅ s16: C to'g'ri — izoh
+✅ s16 → a4 yaxshilash
+✅ a4: boshida prompt yopiq
+✅ a4: prompt — yozilgan kamchilik bilan
+✅ a4: «Keyingi kamchilik» — maydonlar tozalandi, hisob 1
+✅ a4 → podium (kartochkalar yo'q)
+✅ yakun (09/09)
+✅ yakun: uyga vazifa VS Code + skrinshot, kompilyator yo'q
+✅ onFinished: 1 savol, birinchi urinish xato → 0/1 — {"tq":1,"ca":0,"ft":1,"passed":false}
+✅ oqim: pageerror yo'q
+✅ kontrast ≥ 4.5 (85 element, 6 ekran)
+✅ 390 px: gorizontal toshish yo'q (s0–s16)
+✅ 390 px: pageerror yo'q
