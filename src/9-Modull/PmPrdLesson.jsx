@@ -1441,6 +1441,7 @@ const QABUL = { uz: 'Qabul', ru: "Принять" };
 const QABUL_KUL = { uz: 'Qabul — bugungi tekshiruv natijasi: PRD keyin ham yangilanadi.', ru: "Ответ «принять» — итог сегодняшней проверки: PRD и дальше будет обновляться." };
 // Har qadamda ochiq bo'limlar: savolga tegishlisi (1 → Dalil · 2 → muammo gapi, funksiyalar, «Keyin» · 3 → funksiyalar, Bosh raqam)
 const S8_OCHIQ = [['dalil'], ['muammo', 'funksiyalar', 'qilmaymiz'], ['funksiyalar', 'boshRaqam'], ['muammo', 'dalil', 'funksiyalar', 'qilmaymiz', 'boshRaqam']];
+const S8_OCHIQ_YAKUN = ['dalil', 'funksiyalar', 'qilmaymiz', 'boshRaqam']; // 213.14: yakunda tekshirilgan va tuzatilgan bo'limlar ochiq, qolgani bir qator
 const tuzatishMatn = (id) => `${tr({ uz: 'Tuzatish', ru: "Исправить" })}: ${tr(BOL[id].nom)}`;
 const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [taxmin, setTaxmin] = useState(storedAnswer?.taxmin ?? null);
@@ -1453,8 +1454,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const uch = useUch();
   const kech = useKechik();
   const done = qabul;
-  const tugadi = useTugadi(done, 3200, !!storedAnswer);
-  useTepaga(tugadi && !storedAnswer);
+  const tugadi = useTugadi(done, 700, !!storedAnswer); // 213.14 (F-1015-325): yakun — tepaga surish va uzoq kutish yo'q
   const hafta = useSanab(son >= 10 ? 1 : 0, 300);
   // 3-qadam: telefonda «Qo'shilaman» ikki marta o'zi bosiladi — «8 / 10» → «9 / 10» → «10 / 10 · To'ldi»
   useEffect(() => { if (qadam !== 2 || son >= 10) return; kech(() => { setSon(9); setBos(1); }, 800); kech(() => { setSon(10); setBos(2); }, 1700); }, [qadam]); // eslint-disable-line
@@ -1486,15 +1486,18 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const keyinRo = [...MENTOR_PRD.keyin.slice(0, MENTOR_PRD.qoralama.keyin).map(tr), ...(tuz >= 1 ? [{ t: tr(MENTOR_PRD.keyin[2]), osti: !tugadi && tr(S8_PUL_DALIL) }] : [])];
   const bolimlar = BOLIMLAR.map(b => {
     const asos = { id: b.id, nom: b.nom, holat: tek(b.id) };
-    if (b.id === 'dalil') return { ...asos, matn: sonAjrat(tr(MENTOR_PRD.dalil), qadam === 0 && !!taxmin), osti: <span className="pr-kul">{tr(KUL_DALIL)}</span> };
-    if (b.id === 'funksiyalar') return { ...asos, ichi: fnRo, ung: tuz === 1 ? <span className="pr-muhr acc mini" key="t">{tuzatishMatn('funksiyalar')}</span> : tuz === 2 ? <b className="pr-bo-ok" key="ok">✓</b> : null };
-    if (b.id === 'qilmaymiz') return { ...asos, ichi: <Qutilar qilmaymiz={MENTOR_PRD.qilmaymiz.map(tr)} keyin={keyinRo} uchK="s8" /> };
-    if (b.id === 'boshRaqam') return { ...asos, matn: tr(MENTOR_PRD.boshRaqam) };
+    if (b.id === 'dalil') return { ...asos, matn: sonAjrat(tr(MENTOR_PRD.dalil), qadam === 0 && !!taxmin), osti: !done && <span className="pr-kul">{tr(KUL_DALIL)}</span>, ung: done ? <b className="pr-bo-ok" key="ok">✓ {tr({ uz: 'dalil bor', ru: 'довод есть' })}</b> : null };
+    if (b.id === 'funksiyalar') return { ...asos, ichi: fnRo, ung: tuz === 1 ? <span className="pr-muhr acc mini" key="t">{tuzatishMatn('funksiyalar')}</span> : tuz === 2 ? <b className="pr-bo-ok" key="ok">✓{done ? ' ' + tr({ uz: 'bajariladi', ru: 'выполнимо' }) : ''}</b> : null };
+    if (b.id === 'qilmaymiz') return { ...asos, ichi: done
+      ? <p className="pr-bo-t">{MENTOR_PRD.qilmaymiz.map(tr).join(', ')} · <b>{tr({ uz: 'Keyin', ru: 'Потом' })}:</b> {keyinRo.map(k => (typeof k === 'string' ? k : k.t)).join(', ')}</p>
+      : <Qutilar qilmaymiz={MENTOR_PRD.qilmaymiz.map(tr)} keyin={keyinRo} uchK="s8" /> };
+    if (b.id === 'boshRaqam') return { ...asos, matn: done ? `${tr(MENTOR_PRD.boshRaqam)} · ${tr({ uz: 'bu hafta', ru: 'на этой неделе' })}: 1` : tr(MENTOR_PRD.boshRaqam), ung: done ? <b className="pr-bo-ok" key="ok">✓ {tr({ uz: 'sanaladi', ru: 'считается' })}</b> : null };
     if (b.id === 'muammo' || b.id === 'kim' || b.id === 'yechim') return { ...asos, matn: tr(MENTOR_PRD[b.id]) };
     return asos;
   });
   const tx = S8_TAXMIN.find(x => x.k === taxmin);
-  const s8Xulosa = done && <QXulosa>{tx && <TaxQator togri={!!tx.ok} javob={tr(tx.t).toLowerCase()} haqiqat={tr({ uz: 'bitta tuzatish bilan', ru: 'с одним исправлением' })} />}{tr({ uz: 'Mentor tekshiruvi — uch savol: ', ru: 'Проверка Ментора — три вопроса: ' })}{tsQator()}.</QXulosa>;
+  // 213.14 (F-1015-325): yakun — bitta karta (PRD, ✓ bilan) + bitta xulosa; telefon, sanoq, alohida izoh va ostki yorliq yo'q
+  const s8Xulosa = done && <>{tx && <TaxQator togri={!!tx.ok} javob={tr(tx.t).toLowerCase()} haqiqat={tr({ uz: 'bitta tuzatish bilan', ru: 'с одним исправлением' })} />}{tr({ uz: 'Mentor tekshiruvi — uch savol: ', ru: 'Проверка Ментора — три вопроса: ' })}{tsQator()}. {tr({ uz: 'Javob — qabul yoki tuzatish.', ru: 'Ответ — «принять» или «исправить».' })}</>;
   return (
     <Stage eyebrow={tr({ uz: 'Tushuncha · Mentor tekshiruvi', ru: 'Понятие · проверка Ментора' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Savollarni bering', ru: 'Задайте вопросы' })} (${Math.min(qadam, 3)}/3)`} onClick={onNext} /></>}>
       <div className="pr-w pr-ong pr-s8w">
@@ -1518,17 +1521,14 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>}
             {xato && <QXato>{tr(S8_XATO[xato.q])}</QXato>}
           </div>}
-          vizual={!taxmin ? null : <div className={cxp('pr-s8', tugadi && 'tinch', qadam < 2 && !done && 'bir')}>
-            {(qadam >= 2 || done) && <div className="pr-chap">{/* telefon faqat 3-savolda — «10 / 10 · To'ldi» shu yerda kerak */}
+          xulosa={done && s8Xulosa}
+          vizual={!taxmin ? null : <div className={cxp('pr-s8', tugadi && 'tinch', (qadam < 2 || done) && 'bir')}>
+            {qadam >= 2 && !done && <div className="pr-chap">{/* telefon faqat 3-savolda — «10 / 10 · To'ldi» shu yerda kerak */}
               <JamoaTelefon holat="elon" son={son} bosildi={bos}
                 ostida={qadam >= 2 && <div className="pr-hafta fade-step"><span>{tr({ uz: "Bu hafta to'lgan o'yinlar", ru: 'Заполненных игр на этой неделе' })}: <b key={hafta}>{hafta}</b></span>{!tugadi && <em className="pr-kul">{tr({ uz: "Bu raqam muammo gapiga qaraydi: o'yin kerakli odam soniga yetdimi?", ru: "Это число смотрит на формулировку проблемы: набрала ли игра нужное число людей?" })}</em>}</div>} />
-              {s8Xulosa && <div className="pr-xul-chap">{s8Xulosa}</div>}
             </div>}
             <div className="pr-s8-o">
-              <PrdSahifa nom={<MaydonJamoa />} bolimlar={bolimlar} ochiq={S8_OCHIQ[done ? 3 : qadam]}
-                muhr={done && { tur: 'ok', t: tr(QABUL) }} ostiYorliq={done && tr({ uz: 'Mentor tekshiruvi', ru: 'Проверка Ментора' })} ostiMatn={done && tr(QABUL_KUL)} />
-              {done && <QIzoh>{tr({ uz: "PRD ni uch savol bilan ko'rish — Mentor tekshiruvi deyiladi. Javob — qabul yoki tuzatish.", ru: "Когда PRD смотрят через три вопроса, это называют проверкой Ментора. Ответ — «принять» или «исправить»." })}</QIzoh>}
-              {s8Xulosa && <div className="pr-xul-ost">{s8Xulosa}</div>}
+              <PrdSahifa nom={<MaydonJamoa />} bolimlar={bolimlar} ochiq={done ? S8_OCHIQ_YAKUN : S8_OCHIQ[qadam]} muhr={done && { tur: 'ok', t: tr(QABUL) }} />
             </div>
           </div>}
         />
@@ -2931,6 +2931,7 @@ export default function PmPrdLesson({ lang: langProp, onFinished, liveToken }) {
         .pr-s10.bir { grid-template-columns: minmax(0,1fr); }
         .pr-sahifa .pr-bir-sav { align-items: flex-start; padding-top: 6px; border-top: 1px solid ${T.line}; }
         .pr-sahifa .pr-s9-k, .pr-sahifa .pr-s10-o { padding-top: 10px; border-top: 1px solid ${T.line}; }
+        .pr-sahifa .pr-s9-k .pr-bk, .pr-sahifa .pr-s10-o .pr-skarta { box-shadow: none; border: 0; border-radius: 0; background: transparent; padding-left: 0; padding-right: 0; padding-bottom: 2px; } /* 213.3 / F-1015-327: sahifa ichida ikkinchi ramka yo'q */
         .pr-sahifa .pr-bk, .pr-sahifa .pr-skarta { box-shadow: none; border: 1.5px solid ${fon(T.accent, 0.35)}; padding: 14px 16px; }
         .pr-ish .pr-s4-b { margin-top: 6px; }
         .pr-yk-olindi { padding: 5px 10px; border-radius: 8px; background: ${T.paper}; border: 1.5px solid ${T.line}; box-shadow: 0 6px 12px -8px rgba(${T.shadowBase},0.4); font-size: 11.5px; font-weight: 800; color: ${T.ink2}; transform: rotate(calc((var(--i) - 1) * 5deg)); animation: pr-kir 0.4s ease-out both; animation-delay: calc(var(--i) * 0.1s); }

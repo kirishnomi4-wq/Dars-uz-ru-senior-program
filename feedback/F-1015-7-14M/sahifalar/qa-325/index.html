@@ -1,0 +1,113 @@
+<title>PRD darsi — yakun holati</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: bitta ustun; har band = sizning so'zingiz → hozirgi surat → tashxis → taklif-namuna (dars palitrasida) → tanlov */
+:root {
+  --bg: #f4f3f8; --card: #ffffff; --ink: #1d1b2b; --ink2: #5d5a72; --line: #e2e0ec; --accent: #5b3fd6; --accent-soft: #ece8fd; --warn: #b4540f; --warn-soft: #fbeedd;
+  --f-body: 'Manrope', system-ui, sans-serif; --f-mono: 'JetBrains Mono', ui-monospace, monospace;
+  /* dars palitrasi — namuna oynasi ikki mavzuda ham dars qanday ko'rinsa shunday */
+  --d-bg: #F2F0FA; --d-paper: #FFFFFF; --d-line: #E7E3F4; --d-ink: #1B1630; --d-ink2: #565073; --d-accent: #5B3DE6; --d-asoft: #EBE5FD; --d-ok: #1F7A4D; --d-okfon: #E3F0E8; --d-err: #C2362B; --d-errfon: #FAE3E0; --d-mute: #F6F4FC;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #15141c; --card: #1f1d29; --ink: #ecebf4; --ink2: #a7a4ba; --line: #34314a; --accent: #a593ff; --accent-soft: #2c2650; --warn: #f0a35a; --warn-soft: #3a2a18; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #15141c; --card: #1f1d29; --ink: #ecebf4; --ink2: #a7a4ba; --line: #34314a; --accent: #a593ff; --accent-soft: #2c2650; --warn: #f0a35a; --warn-soft: #3a2a18; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 80px; }
+.wrap { max-width: 1060px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+h1 { font-size: clamp(22px, 3vw, 30px); margin: 0; text-wrap: balance; } h2 { font-size: 19px; margin: 0; text-wrap: balance; } h3 { font-size: 14px; margin: 0; color: var(--ink2); text-transform: uppercase; letter-spacing: .06em; }
+p { margin: 0; max-width: 78ch; } .lead { color: var(--ink2); }
+.band { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+.id { font-family: var(--f-mono); font-size: 12px; color: var(--accent); letter-spacing: .04em; }
+.soz { border-left: 3px solid var(--accent); padding: 4px 12px; color: var(--ink2); font-style: italic; }
+.ikki { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 16px; align-items: start; }
+@media (max-width: 860px) { .ikki { grid-template-columns: 1fr; } }
+figure { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+figure img { width: 100%; border-radius: 8px; border: 1px solid var(--line); display: block; }
+figcaption { font-size: 12.5px; color: var(--ink2); }
+.tanlov { display: flex; flex-direction: column; gap: 8px; }
+.tanlov .v { display: flex; gap: 10px; align-items: baseline; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; }
+.tanlov .v b { font-family: var(--f-mono); color: var(--accent); flex-shrink: 0; }
+.tanlov .v.tavsiya { border-color: var(--accent); background: var(--accent-soft); }
+.ogoh { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-weight: 600; }
+ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+/* ---- dars namunasi (mock) ---- */
+.dars { background: var(--d-bg); color: var(--d-ink); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+.dars .t { font-size: 20px; font-weight: 800; letter-spacing: -.01em; } .dars .t i { font-style: normal; color: var(--d-accent); }
+.dars .hol { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--d-ink2); }
+.k { background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.k .y { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--d-ink2); }
+.q { display: flex; align-items: center; gap: 10px; background: var(--d-mute); border-radius: 10px; padding: 9px 12px; }
+.q .n { width: 20px; color: var(--d-ink2); font-family: var(--f-mono); font-size: 12px; } .q b { flex: 1; font-weight: 700; } .q .s { color: var(--d-ink2); font-size: 12.5px; }
+.q.chet { color: var(--d-ink2); } .q.chet b { font-weight: 600; }
+.chip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--d-line); background: var(--d-paper); border-radius: 999px; padding: 6px 12px; font-weight: 700; font-size: 13px; }
+.chip.on { border-color: var(--d-accent); color: var(--d-accent); background: var(--d-asoft); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.ok { color: var(--d-ok); background: var(--d-okfon); border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 800; }
+.yoq { color: var(--d-err); background: var(--d-errfon); border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 800; }
+.mute { color: var(--d-ink2); font-size: 13px; }
+.form { display: flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--f-mono); font-size: 14px; flex-wrap: wrap; }
+.form .b { background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 8px; padding: 4px 10px; min-width: 38px; text-align: center; } .form .b.bosh { color: var(--d-ink2); }
+.form .r { background: var(--d-accent); color: #fff; border-radius: 8px; padding: 4px 10px; font-weight: 700; }
+.bar { display: grid; grid-template-columns: 20px minmax(0, 1fr) minmax(90px, 1.2fr) 42px; align-items: center; gap: 10px; background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 10px; padding: 8px 12px; }
+.bar.top { border-color: var(--d-accent); } .bar .n { color: var(--d-ink2); font-family: var(--f-mono); font-size: 12px; } .bar .f { font-family: var(--f-mono); font-size: 11px; color: var(--d-ink2); }
+.bar .tr { height: 8px; border-radius: 999px; background: var(--d-line); overflow: hidden; } .bar .tr i { display: block; height: 100%; background: var(--d-accent); border-radius: 999px; }
+.bar .v { font-family: var(--f-mono); font-weight: 700; color: var(--d-accent); text-align: right; }
+.bar.chet { opacity: .6; } .bar.chet .tr i { background: var(--d-ink2); } .bar.chet .v { color: var(--d-ink2); }
+.ok-qator { background: var(--d-okfon); color: var(--d-ok); border-radius: 10px; padding: 9px 12px; font-weight: 700; }
+.qadam { display: flex; gap: 8px; align-items: center; } .qadam .d { width: 22px; height: 22px; border-radius: 50%; background: var(--d-accent); color: #fff; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.uch { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; align-items: start; }
+.tug { display: inline-flex; align-items: center; border-radius: 10px; padding: 7px 14px; font-weight: 800; font-size: 13px; background: var(--d-accent); color: #fff; }
+.tug.ik { background: var(--d-paper); color: var(--d-accent); border: 1px solid var(--d-accent); }
+.voronka { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.voronka .s { background: var(--d-asoft); border-radius: 10px; padding: 8px 14px; font-weight: 700; display: flex; gap: 8px; align-items: baseline; } .voronka .s b { font-size: 20px; color: var(--d-accent); font-family: var(--f-mono); }
+.voronka .s.fin { background: var(--d-accent); color: #fff; } .voronka .s.fin b { color: #fff; }
+</style>
+<div class="wrap">
+  <header class="band">
+    <span class="id">F-1015-293 · 12-Modul 8-dars m10-08 «Qayerda to'xtab qolishyapti?» · «Bittadan» (213) tashxisi · 18.10</span>
+    <h1>2-ekranda bashorat javob bilan birga; 5-ekran (Netflix voqeasi) to'g'ri</h1>
+    <p class="lead"><b>Dars oxirida o'quvchi:</b> o'z qadam sonlaridan foizlarni hisoblab, odamlar qayerda to'xtab qolayotganini topadi va gipoteza yozadi.</p>
+<div class="wrap">
+  <header class="band">
+    <span class="id">F-1015-325 · 326 · 11-Modul 5-dars m9-05 «G'oyangiz bir sahifaga sig'adimi?» · QA fidbek 18.10 kech</span>
+    <h1>9-ekran: ish tugagach hamma narsa birdan turibdi — yakun holati uchun yangi qoida taklifi; 10-ekran: layout allaqachon tuzatilgan (saytda eski build)</h1>
+    <p class="soz">Siz: «juda to'lib ketgan UI, bunday pagelar ko'p, nima ketyatganini tushunish qiyin, animatsiya keraksizmi — dizayn va metodika tomondan o'ylash kerak».</p>
+  </header>
+  <section class="band"><span class="id">F-1015-325 · 9-ekran · Mentor tekshiruvi · yakun holati</span><h2>Tashxis: jarayon tugadi, lekin jarayonning hamma bo'lagi ekranda qoldi</h2>
+    <div class="ikki"><figure><img src="r/qa-s8.jpg" alt="QA surat"><figcaption>Sizning suratingiz — uch savol berilgan, «Qabul» muhri</figcaption></figure>
+    <div><p>Ekranda bir vaqtda 6 narsa: telefon («10 / 10 · To'ldi» — faqat 3-savolning dalili edi) · «Bu hafta to'lgan o'yinlar: 1» · taxmin natijasi (yashil) · Mentor tekshiruvi izohi · to'liq PRD (7 bo'lim, 6-bo'limda ikki quti) · «Qabul» muhri + sahifa ostidagi yorliq va kulrang qator. O'quvchi savollarga javob berib bo'ldi — endi unga <b>faqat natija</b> kerak: tekshirilgan PRD va bitta xulosa.</p>
+    <p><b>Metodika.</b> Bu ekranning maqsadi — «Mentor tekshiruvi = uch savol» tushunchasi. Yakunda o'quvchi ko'rishi kerak: qaysi uch bo'lim tekshirildi (✓), nima tuzatildi (Keyin'ga ketgan funksiya), hukm (Qabul). Telefon va sanoq — jarayon dalili, yakunda o'z ishini qilib bo'lgan.</p>
+    <p><b>Animatsiya.</b> Hozir: sahifa tepaga suriladi, 3,2 soniya kutib «tinch» holatga o'tadi, son sanab chiqadi, funksiya «Keyin»ga uchadi. Ma'no tashiydigani ikkitasi: ✓ ning bo'limga tushishi va funksiyaning «Keyin»ga uchishi (tuzatishni ko'rsatadi). Qolgani — bezak.</p></div></div>
+    <h3>Taklif A — «Yakun = faqat natija» (yangi qonun 213.14, keyin sinf-supurish)</h3>
+    <div class="ikki">
+      <div class="dars">
+        <span class="hol">Tushuncha · Mentor tekshiruvi · yakun (namuna)</span>
+        <div class="k"><div style="display:flex;justify-content:space-between;align-items:center"><b style="color:var(--d-ok)">Maydon Jamoa</b><span class="ok">QABUL</span></div>
+          <div class="q"><span class="n">1</span><b>Muammo</b><span class="s">o'yindan oldin odam yig'ish</span></div>
+          <div class="q"><span class="n">2</span><b>Dalil</b><span class="s">5 tadan 4 tasi — yozuvlardan</span><span class="ok">✓ dalil bor</span></div>
+          <div class="q chet"><span class="n">3</span><b>Kim uchun</b><span class="s">tashkilotchi</span></div>
+          <div class="q chet"><span class="n">4</span><b>Yechim</b><span class="s">e'lon → qo'shilish → tasdiq</span></div>
+          <div class="q"><span class="n">5</span><b>Uchta funksiya</b><span class="s">e'lon va qo'shilish · tasdiq · chiqish va navbat</span><span class="ok">✓ bajariladi</span></div>
+          <div class="q chet"><span class="n">6</span><b>Qilmaymiz / Keyin</b><span class="s">chat, reyting · <u>maydon pulini bo'lishish</u> → Keyin</span></div>
+          <div class="q"><span class="n">7</span><b>Bosh raqam</b><span class="s">haftada to'lgan o'yinlar — bu hafta: 1</span><span class="ok">✓ sanaladi</span></div>
+        </div>
+        <div class="ok-qator">Taxminingiz: uch tuzatish bilan · haqiqatda: bitta tuzatish bilan. Mentor tekshiruvi — uch savol: dalil bormi, bajariladimi, bosh raqam sanaladimi.</div>
+      </div>
+      <div class="tanlov">
+        <div class="v tavsiya"><b>A</b><span><b>Yakun holati = bitta karta + bitta xulosa.</b> Telefon, «Bu hafta…» sanoq, alohida izoh va sahifa ostidagi yorliq ketadi; ularning ma'nosi PRD ichiga bir qatordan tushadi (Dalil — ✓ dalil bor; Funksiya — ✓ bajariladi; Bosh raqam — «bu hafta: 1» + ✓ sanaladi; tuzatilgan funksiya 6-bo'limda «→ Keyin»). Tekshirilmagan bo'limlar kulrang bir qator. Xulosa — bitta yashil qator (taxmin natijasi + ta'rif). Animatsiya: faqat ✓ va «Keyin»ga uchish; tepaga surish va 3,2 s kutish olinadi.</span></div>
+        <div class="v"><b>B</b><span>Faqat telefon va sanoqni olish, qolgani joyida.</span></div>
+        <div class="v"><b>C</b><span>Tegilmaydi.</span></div>
+      </div>
+    </div>
+    <p class="ogoh">«Bunday pagelar ko'p» — bu sinf: ish tugagach jarayon elementlari ekranda qoladi. A ma'qul bo'lsa: DARS_ETALON 213.14 «Yakun — faqat natija» yoziladi, m9-05 9-ekran pilot, keyin 7–14-M dagi hamma tushuncha-ekranlarining yakun holati o'lchanadi (telefon/harakat/alohida izoh qolganlari) va ro'yxat bilan sizga ko'rsatiladi — avval o'lchov, keyin supurish.</p>
+  </section>
+  <section class="band"><span class="id">QURILDI · F-1015-325 (A) + 327 · 18.10 kech</span><h2>Keyingi holat</h2>
+    <div class="ikki"><figure><img src="r/k-s8.jpg" alt="9-ekran yakun keyin"><figcaption>9-ekran yakun: bitta karta — PRD «Qabul» muhri bilan, ✓ dalil bor / ✓ bajariladi / ✓ sanaladi, 6-bo'lim bir qator («… · Keyin: …»), tekshirilmaganlari bir qator; ostida bitta xulosa. Telefon, sanoq, alohida izoh, ostki yorliq yo'q; tepaga surish va 3,2 s kutish olindi.</figcaption></figure>
+    <figure><img src="r/k-s8-m.jpg" alt="telefon" style="max-width:300px"><figcaption>Telefonda</figcaption></figure></div>
+    <div class="ikki"><figure><img src="r/k-s9.jpg" alt="10-ekran keyin"><figcaption>10-ekran (F-1015-327): savol kartasi sahifa ichida ramkasiz va soyasiz — bitta chiziq ajratadi; faqat joriy chip belgili</figcaption></figure>
+    <p>Qonun: DARS_ETALON 213.14 «Yakun — faqat natija» yozildi (pilot m9-05 9-ekran); 213.3 ga «karta ichidagi karta ramkasiz» izohi (327). Keyingi qadam — sizning ko'rigingizdan so'ng: 7–14-M tushuncha-ekranlarining yakun holatini o'lchash (storedAnswer bilan surat) va ro'yxat.</p></div></section>
+  <section class="band"><span class="id">F-1015-326 · 10-ekran · #layout</span><h2>Savol kartasi sahifa kartasidan tashqarida va tor — bu holat joriy kodda yo'q</h2>
+    <div class="ikki"><figure><img src="r/qa-s9.jpg" alt="QA surat"><figcaption>Sizning suratingiz (coddycamp-11modul)</figcaption></figure><figure><img src="r/lokal-s9.jpg" alt="lokal"><figcaption>Joriy kod (lokal, bugun): savol kartasi PRD kartasining ichida, to'liq enda — F-1015-235/236 (17.10 tun)</figcaption></figure></div>
+    <p><b>Tashxis.</b> Brauzeringizda eski build qolgan (kesh) yoki sayt eski. Taklif: 11-M QA saytini qayta deploy qilaman, siz sahifani qattiq yangilaysiz (Cmd+Shift+R). Kod o'zgarishi kerak emas.</p>
+  </section>
+</div>

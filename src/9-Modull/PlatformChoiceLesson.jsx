@@ -891,8 +891,8 @@ const NatijaBlok = ({ togri, haqiqat, xulosa, izoh }) => (
     <div className="q-xulosa pc-nb">
       {haqiqat !== undefined && <span className={cxx('pc-nb-t', togri && 'ok')}>{togri ? <>✓ {tr({ uz: "Taxminingiz to'g'ri chiqdi", ru: 'Ваше предположение подтвердилось' })}</> : haqiqat}</span>}
       <span className="pc-nb-x">{xulosa}</span>
+      {izoh && <QIzoh>{izoh}</QIzoh>}{/* 213.13 (F-1015-328): izoh yashil qutining oxirgi kichik qatori — kartasiz osilmaydi (E 42) */}
     </div>
-    {izoh && <QIzoh>{izoh}</QIzoh>}
   </div>
 );
 const Haqiqat = ({ taxmin, haqiqat, yorliq }) => <>{tr({ uz: 'Taxminingiz', ru: 'Ваше предположение' })}: {taxmin} · {yorliq || tr({ uz: 'haqiqatda', ru: 'на деле' })}: <b>{haqiqat}</b></>;

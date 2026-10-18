@@ -184,10 +184,11 @@ Mentor misoli — «Maydon Jamoa» PRD si (dars bo'yi bir xil):
   - 1-savolda «Yo'q»: Dalil bo'limini qayta o'qing: unda nechta odamdan nechtasi?
   - 2-savolda boshqa funksiya: Bu funksiya muammo gapidan keladi — boshqasini qarang.
   - 3-savolda «Yo'q»: Telefonga qarang: «10 / 10» — bitta to'lgan o'yin.
-- Uch savoldan keyin: sahifa tepasiga yashil muhr «Qabul»; sahifa ostida yorliq «Mentor tekshiruvi» va kulrang qator: Qabul — bugungi tekshiruv natijasi: PRD keyin ham yangilanadi.
+- Uch savoldan keyin (213.14, F-1015-325, 18.10): telefon va sanoq ketadi; sahifa bir o'zi — «Qabul» muhri, Dalil «✓ dalil bor», Funksiyalar «✓ bajariladi», Bosh raqam «… · bu hafta: 1 ✓ sanaladi», 6-bo'lim bir qator («… · Keyin: …, maydon pulini bo'lishish»); muammo/kim/yechim bir qatorda. Sahifa ostidagi yorliq va kulrang qator, alohida izoh — yo'q; ularning gapi xulosada. Animatsiya: tepaga surish va 3,2 s kutish yo'q.
+  - (eski: sahifa ostida yorliq «Mentor tekshiruvi» va kulrang qator — olindi)
   - Izoh: PRD ni uch savol bilan ko'rish — Mentor tekshiruvi deyiladi. Javob — qabul yoki tuzatish.
 - Natija: «Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz: … · haqiqatda: bitta tuzatish bilan»
-- Xulosa: Mentor tekshiruvi — uch savol: dalil bormi, bajariladimi, bosh raqam sanaladimi.
+- Xulosa (bitta): Mentor tekshiruvi — uch savol: dalil bormi, bajariladimi, bosh raqam sanaladimi. Javob — qabul yoki tuzatish.
 - Tugma: Savollarni bering (N/3) → Davom etish
 
 ## 9 · O'z PRD ingiz

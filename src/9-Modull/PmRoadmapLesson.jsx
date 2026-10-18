@@ -1260,9 +1260,9 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <p className="rm-eslat"><b>{tr({ uz: '8-Moduldan:', ru: 'Из 8-го модуля:' })}</b> {tr({ uz: 'Ufq — ishlar qachon boshlanishiga qarab ajratilgan vaqt bo\'lagi.', ru: "Горизонт — отрезок времени, куда работы попадают по тому, когда они начинаются." })}</p>
           <UfqDoska {...joy} yangi={yangi} poydevorOn={poy} roadmap={rm} keng={tugadi} />
         </div>}
-        natija={poy
+        natija={!done && (poy
           ? <QIzoh>{tr({ uz: 'Poydevor RICE ga kirmaydi: busiz hech bir funksiya ishlamaydi.', ru: 'Фундамент не входит в RICE: без него ни одна функция не работает.' })}</QIzoh>
-          : ipucha && <QIzoh>{tr({ uz: "Chapdagi halqali ishni bosing — u qaysi ufqqa tushishini ko'ring.", ru: 'Нажмите работу в рамке слева — посмотрите, в какой горизонт она попадёт.' })}</QIzoh>}
+          : ipucha && <QIzoh>{tr({ uz: "Chapdagi halqali ishni bosing — u qaysi ufqqa tushishini ko'ring.", ru: 'Нажмите работу в рамке слева — посмотрите, в какой горизонт она попадёт.' })}</QIzoh>)}
         xulosa={done && <>{taxmin && <TaxminQator togri={taxmin === 'keyinroq'} javob={ufqQ(taxmin)} haqiqat={ufqQ('keyinroq')} />}{tr({ uz: 'Bitiruvgacha shunday uch ufqli reja roadmap deyiladi: qaysi ish qaysi ufqda turadi.', ru: 'Такой план из трёх горизонтов до выпуска называют roadmap: какая работа в каком горизонте.' })}</>}
       />
       <MentorNote>{tr({ uz: "8-Modulda ufqlar «uch oy · olti oy» edi (mashq uchun) — bugun modullar. 8-Modul qoidasini eslating: ishni ufqqa unga kerak narsaning tayyor bo'lish payti qo'yadi; RICE esa tartibni ko'rsatadi. «Ro'yxat o'zi yangilanishi» — 12-Modul ishi; 11-Modulda ilova ekran ochilganda va pastga tortib yangilaganda so'raydi — bu tafsilotni faqat so'rasa ayting. Poydevor — 10-dars: bugun uning ichini ochmang.", ru: "В 8-м модуле горизонты были «три месяца · шесть месяцев» (для упражнения) — сегодня это модули. Напомните правило 8-го модуля: работу в горизонт ставит момент, когда готово нужное ей; RICE же показывает порядок. «Автообновление списка» — работа 12-го модуля; в 11-м модуле приложение запрашивает данные при открытии экрана и при обновлении свайпом вниз — эту деталь говорите, только если спросят. Фундамент — 10-й урок: сегодня не раскрывайте, что внутри." })}</MentorNote>
