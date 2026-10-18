@@ -26,7 +26,7 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 
 
 
@@ -147,12 +147,13 @@ const REFLECT_KEY = 'pm-m2d7-reflection';
 
 // Zaxira ro'yxat (40-qonun): 2-darsdagi kartalar topilmasa — namuna bilan ishlanadi.
 const FALLBACK_FEATURES = [
-  { id: 'f1', ic: '🎬', uz: 'Seanslar va narxlar', ru: 'Сеансы и цены' },
-  { id: 'f2', ic: '🕒', uz: 'Ish vaqti va manzil', ru: 'Часы работы и адрес' },
-  { id: 'f3', ic: '🎫', uz: 'Chipta band qilish tugmasi', ru: 'Кнопка бронирования билета' },
-  { id: 'f4', ic: '🎟', uz: 'Chegirma kodi', ru: 'Код скидки' },
-  { id: 'f5', ic: '🍿', uz: 'Bufet menyusi', ru: 'Меню буфета' },
-  { id: 'f6', ic: '⭐', uz: 'Tomoshabin sharhlari', ru: 'Отзывы зрителей' },
+  // F-1017-216: `model` — darsning haqiqati (11-ekran namunasi bilan bir xil); o'quvchi javobi zid kelsa yumshoq izoh. O'z kartalarida (own*) yo'q.
+  { id: 'f1', ic: '🎬', model: 'v1', uz: 'Seanslar va narxlar', ru: 'Сеансы и цены' },
+  { id: 'f2', ic: '🕒', model: 'v1', uz: 'Ish vaqti va manzil', ru: 'Часы работы и адрес' },
+  { id: 'f3', ic: '🎫', model: 'v1', uz: 'Chipta band qilish tugmasi', ru: 'Кнопка бронирования билета' },
+  { id: 'f4', ic: '🎟', model: 'backlog', why: { uz: "chegirma kodisiz ham chipta sotiladi, hisob-kitobiga bir necha kun ketadi", ru: 'без кода скидки билеты тоже продаются, а расчёты займут несколько дней' }, uz: 'Chegirma kodi', ru: 'Код скидки' },
+  { id: 'f5', ic: '🍿', model: 'v2', why: { uz: "bufet menyusiz ham chipta sotiladi", ru: 'без меню буфета билеты тоже продаются' }, uz: 'Bufet menyusi', ru: 'Меню буфета' },
+  { id: 'f6', ic: '⭐', model: 'backlog', why: { uz: "sharhlarsiz ham sayt ishlaydi, sharh tizimiga bir necha kun ketadi", ru: 'без отзывов сайт тоже работает, а система отзывов займёт несколько дней' }, uz: 'Tomoshabin sharhlari', ru: 'Отзывы зрителей' },
 ];
 // M2-D2 kalitini o'qish (96-qonun modul-ipi: o'quvchi 2-darsda YOZGAN imkoniyatlar shu yerga keladi).
 // 🔴 F-0803-22: bu ko'prik ilgari HECH QACHON ishlamagan — ikki shart ham noto'g'ri edi.
@@ -1138,7 +1139,7 @@ const ScaleCard = ({ ic, title, need, cost, onNeed, onCost }) => (
           <div className="tz-q-btns">{NEED_OPTS.map(o => <button key={o.id} className="tz-opt" onClick={() => onNeed(o.id)}>{tr(o)}</button>)}</div>
         </div>
       ) : (
-        <div className="tz-done"><span>✓ {tr(NEED_OPTS.find(o => o.id === need))}</span>{onNeed && <button className="tz-redo" onClick={() => onNeed(null)} title={tr({ uz: 'qayta tanlash', ru: 'выбрать заново' })}>↻</button>}</div>
+        <div className="tz-done"><span>{tr({ uz: 'Javobingiz:', ru: 'Ваш ответ:' })} {tr(NEED_OPTS.find(o => o.id === need))}</span>{onNeed && <button className="tz-redo" onClick={() => onNeed(null)} title={tr({ uz: 'qayta tanlash', ru: 'выбрать заново' })}>↻</button>}</div>
       )}
       {!need ? (
         <div className="tz-lock">⏳ {tr({ uz: 'Ikkinchi savol — javobdan keyin', ru: 'Второй вопрос — после ответа' })}</div>
@@ -1148,7 +1149,7 @@ const ScaleCard = ({ ic, title, need, cost, onNeed, onCost }) => (
           <div className="tz-q-btns">{COST_OPTS.map(o => <button key={o.id} className="tz-opt" onClick={() => onCost(o.id)}>{tr(o)}</button>)}</div>
         </div>
       ) : (
-        <div className="tz-done"><span>✓ {tr(COST_OPTS.find(o => o.id === cost))}</span>{onCost && <button className="tz-redo" onClick={() => onCost(null)} title={tr({ uz: 'qayta tanlash', ru: 'выбрать заново' })}>↻</button>}</div>
+        <div className="tz-done"><span>{tr({ uz: 'Javobingiz:', ru: 'Ваш ответ:' })} {tr(COST_OPTS.find(o => o.id === cost))}</span>{onCost && <button className="tz-redo" onClick={() => onCost(null)} title={tr({ uz: 'qayta tanlash', ru: 'выбрать заново' })}>↻</button>}</div>
       )}
     </div>
   </div>
@@ -1289,8 +1290,15 @@ const ScrScale = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     const lvl = levelOf(n, c);
     const next = { ...res, [cur.id]: lvl };
     setRes(next); writeDraft(next);
-    setLastNote({ lvl, note: noteFor(n, c) });
+    const title = tr(cur);
+    const mismatch = cur.model && cur.model !== lvl
+      ? tr({ uz: `Namunada «${title}» — «${tr(bucketOf(cur.model))}»: ${tr(cur.why || { uz: '', ru: '' })}.`, ru: `В образце «${title}» — «${tr(bucketOf(cur.model))}»: ${tr(cur.why || { uz: '', ru: '' })}.` })
+      : null;
+    setLastNote({ lvl, title, note: noteFor(n, c), mismatch });
     setNeed(null); setCost(null);
+    // F-1017-216: oldingi kartaning xulosasi yangi karta ostida uzoq turmasin — 3,5 s (zid-izoh 9 s)
+    setTimeout(() => setLastNote(p => (p && p.title === title ? (p.mismatch ? { ...p, note: null } : null) : p)), 3500);
+    if (mismatch) setTimeout(() => setLastNote(p => (p && p.title === title ? null : p)), 9000);
   };
   const counts = BUCKETS.map(b => ({ ...b, n: items.filter(f => res[f.id] === b.key).length }));
   return (
@@ -1313,7 +1321,8 @@ const ScrScale = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         ) : (
           <div className="frame-success fade-step"><p className="body" style={{ margin: 0 }}>{tr({ uz: "Oltala imkoniyat tarozidan o'tdi. Endi ochilish ro'yxatini uchtaga keltiramiz.", ru: 'Все шесть возможностей взвешены. Теперь доведём список к открытию до трёх.' })}</p></div>
         )}
-        {lastNote && cur && <p className={`tz-note lvl lvl-${lastNote.lvl} fade-step`}>{bucketOf(lastNote.lvl).ic} {tr(lastNote.note)}</p>}
+        {lastNote && cur && lastNote.note && <p className={`tz-note lvl lvl-${lastNote.lvl} fade-step`}>{bucketOf(lastNote.lvl).ic} «{lastNote.title}»: {tr(lastNote.note)}</p>}
+        {lastNote && cur && lastNote.mismatch && <p className="tz-note calm fade-step" style={{ color: T.ink2 }}>💬 {lastNote.mismatch}</p>}
         <div className="bkt-row fade-up delay-2">
           {counts.map(b => <span key={`${b.key}-${b.n}`} className={`bkt lvl lvl-${b.key} ${b.n ? 'has' : ''} ${lastNote && lastNote.lvl === b.key ? 'land' : ''}`}>{b.ic} {tr(b)} <b>{b.n}</b></span>)}
         </div>
@@ -1485,7 +1494,7 @@ function ochilishRoyxati(nomlar, darajalar) {
 console.log(ochilishRoyxati(nomlar, darajalar));`;
 const KODING_CONDS = [
   { id: 'c1', label: { uz: 'Sikl ichida shart bor', ru: 'Внутри цикла есть условие' }, hint: { uz: 'Sikl har imkoniyatni birma-bir oladi. Ichida so\'rang: bu imkoniyatning darajasi nima?', ru: 'Цикл берёт каждую возможность по очереди. Спросите внутри: какой у неё уровень?' } },
-  { id: 'c2', label: { uz: '"v1" tekshirilyapti', ru: 'Проверяется "v1"' }, hint: { uz: 'Tenglikni bitta emas, uchta teng belgi tekshiradi: === "v1".', ru: 'Равенство проверяют не одним, а тремя знаками равенства: === "v1".' } },
+  { id: 'c2', label: { uz: '"v1" tekshirilyapti', ru: 'Проверяется "v1"' }, hint: { uz: 'Tenglikni ikki teng belgi tekshiradi: == "v1". Bitta = qiymat soladi, tekshirmaydi.', ru: 'Равенство проверяют два знака равенства: == "v1". Один = присваивает значение, а не проверяет.' } },
   { id: 'c3', label: { uz: 'Uchta nom chiqdi', ru: 'Вышли три названия' }, hint: { uz: 'Natija bo\'sh chiqsa — natija ga nom qo\'shilmayapti. natija = natija + nomlar[i] qatorini eslang.', ru: 'Если результат пустой — к natija не добавляется название. Вспомните строку natija = natija + nomlar[i].' } },
 ];
 const readKoding = () => { try { const v = JSON.parse(localStorage.getItem(KODING_KEY) || 'null'); return v && typeof v === 'object' ? v : null; } catch { return null; } };
@@ -1506,7 +1515,7 @@ const mkKodTask = (starter) => ({
   files: [{ name: KOD_FILE, lang: 'js', starter }],
   requirements: [
     { id: 'c1', label: KODING_CONDS[0].label, hint: KODING_CONDS[0].hint, check: C.custom((x) => /if\s*\(/.test(x.js || '') && /darajalar\s*\[\s*i\s*\]/.test(x.js || '')) },
-    { id: 'c2', label: KODING_CONDS[1].label, hint: KODING_CONDS[1].hint, js: /===\s*("v1"|'v1')/ },
+    { id: 'c2', label: KODING_CONDS[1].label, hint: KODING_CONDS[1].hint, js: /={2,3}\s*("v1"|'v1')/ }, // F-1017-204: darsda == o'tilgan — == ham, === ham qabul
     { id: 'c3', label: KODING_CONDS[2].label, hint: KODING_CONDS[2].hint, eval: KOD_EVAL_C3, equals: 'true' },
   ],
 });
@@ -1804,7 +1813,7 @@ const ScrSummary = ({ screen, answers, achievements, onReset, onPrev, onFinish }
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
+    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
@@ -1815,7 +1824,7 @@ const ScrSummary = ({ screen, answers, achievements, onReset, onPrev, onFinish }
   const isNarrow = useIsMobile(768);
   const toggleGloss = () => setOpen(o => { const nv = !o; if (nv && isNarrow) setTimeout(() => { if (glossRef.current) glossRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' }); }, 80); return nv; });
   return (
-    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash', ru: 'Завершить' })}</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash', ru: 'Завершить' })}</FinishBtn></>}>
       <div className="screen">
         <div className="hero"><div className="hero-l">
           <div className="hero-chips"><span className="done-chip fade-up"><span className="tick">{Ico.check(11)}</span> {tr({ uz: 'Dars tugadi', ru: 'Урок завершён' })}</span>{!isMentorL && <span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span>}</div>
@@ -1825,7 +1834,7 @@ const ScrSummary = ({ screen, answers, achievements, onReset, onPrev, onFinish }
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : undefined} />
         </div>
-        {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+        {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <Zoomable>
           <div className="split">
             <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span style={{ color: T.success, display: 'inline-flex' }}>{Ico.check(15)}</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{SUM_RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck" style={{ display: 'inline-flex' }}>{Ico.check(15)}</span><span>{tr(r)}</span></li>))}</ul></div>
@@ -2784,7 +2793,7 @@ export default function PmLesson5({ lang: langProp, onFinished, liveToken }) {
         .tz-opt { font-family: 'Manrope'; font-weight: 700; font-size: clamp(13px,1.6vw,14.5px); background: ${T.bg}; color: ${T.ink}; border: none; border-radius: 12px; padding: 12px 17px; cursor: pointer; box-shadow: inset 0 0 0 1.5px ${T.line}; transition: all 0.16s; }
         .tz-opt:hover { transform: translateY(-2px); box-shadow: inset 0 0 0 1.5px ${T.accent}, 0 8px 18px -10px rgba(91,61,230,0.4); }
         .tz-opt.lvl:hover { box-shadow: inset 0 0 0 1.5px var(--lv), 0 8px 18px -10px rgba(${T.shadowBase},0.32); }
-        .tz-done { display: flex; align-items: center; gap: 8px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.success}; background: ${T.successSoft}; border-radius: 10px; padding: 8px 13px; }
+        .tz-done { display: flex; align-items: center; gap: 8px; font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.ink2}; background: ${T.bg}; border: 1px solid ${T.line}; border-radius: 10px; padding: 8px 13px; } /* F-1017-216: tanlangan javob neytral — bu ekranda to'g'ri javob yo'q */
         .tz-redo { margin-left: auto; background: none; border: none; cursor: pointer; color: ${T.ink3}; font-size: 14px; }
         .tz-lock { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; color: ${T.ink3}; background: ${T.bg}; border-radius: 10px; padding: 9px 13px; border: 1.5px dashed ${T.ink3}55; }
         .tz-note.tz-note { margin: 0; font-family: 'Manrope'; font-weight: 600; font-size: 13.5px; color: ${T.ink2}; background: ${T.bg}; border-radius: 4px 11px 11px 4px; padding: 10px 14px; }

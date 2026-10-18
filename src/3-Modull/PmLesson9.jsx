@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo, createContext, useContext, useCallback } from 'react';
 // Kod kompilyatori — UMUMIY modul (F-0809-05 · GATE S 3-qarori). Tugma bilan ochiladigan
-// to'liq-ekran asbob, shuning uchun CodeStrike brendida (PM_DARS_ETALON 1-bo'lim istisnosi).
+// to'liq-ekran oyna, shuning uchun CodeStrike brendida (PM_DARS_ETALON 1-bo'lim istisnosi).
 import HtmlCompiler, { checks as C } from '../compilator/HtmlCompiler.jsx';
 import { useCompilerScale } from '../compilator/useCompilerScale.js';
 const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c92bef604c7ad68380dd.png';
@@ -34,7 +34,7 @@ const T = {
 };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 
 
 
@@ -1485,8 +1485,8 @@ const KOD_TASK = {
   eyebrow: { uz: 'Koding · qabul shartlari', ru: 'Кодинг · условия приёмки' },
   title: { uz: 'Buyurtmani qabul qilsa bo\'ladimi?', ru: 'Можно ли принять этот заказ?' },
   brief: {
-    uz: <>Funksiya uchta shartni tekshirsin: <b>taom tanlangan</b>, <b>soni kamida 1</b>, <b>soni 9 tadan oshmaydi</b> (bufet oynasida «+» tugmasi 9 tada to'xtaydi). Hammasi bajarilsa <span className="mono">true</span>, aks holda <span className="mono">false</span> qaytsin. Pastdagi to'rt sinov shartlarni bittadan sinaydi.</>,
-    ru: <>Пусть функция проверит три условия: <b>блюдо выбрано</b>, <b>количество минимум 1</b>, <b>количество не больше 9</b> (в окне буфета кнопка «+» останавливается на 9). Если выполнено всё — пусть вернёт <span className="mono">true</span>, иначе <span className="mono">false</span>. Четыре проверки внизу проверяют условия по одному.</>,
+    uz: <>Funksiya uchta shartni tekshirsin: <b>taom tanlangan</b>, <b>soni kamida 1</b>, <b>soni 9 tadan oshmaydi</b> (bufet oynasida «+» tugmasi 9 tada to'xtaydi). Hammasi bajarilsa <span className="mono">true</span>, aks holda <span className="mono">false</span> qaytsin. Pastdagi to'rt sinov shartlarni bittadan sinaydi. Har shart uchun alohida <span className="mono">if</span> yozing: bajarilmasa — darhol <span className="mono">return false</span>, oxirida <span className="mono">return true</span>.</>, /* F-1017-204: && o'rgatilmagan — o'tilgan if bilan yo'l */
+    ru: <>Пусть функция проверит три условия: <b>блюдо выбрано</b>, <b>количество минимум 1</b>, <b>количество не больше 9</b> (в окне буфета кнопка «+» останавливается на 9). Если выполнено всё — пусть вернёт <span className="mono">true</span>, иначе <span className="mono">false</span>. Четыре проверки внизу проверяют условия по одному. Для каждого условия напишите отдельный <span className="mono">if</span>: не выполнено — сразу <span className="mono">return false</span>, в конце — <span className="mono">return true</span>.</>,
   },
   files: [{ name: 'app.js', lang: 'js', starter: KOD_STARTER, placeholder: { uz: "// uchta shartni tekshiring va true yoki false qaytaring", ru: '// проверьте три условия и верните true или false' } }],
   requirements: [
@@ -2555,7 +2555,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await live.quizControl('lobby', -1); } catch { return; } }
+    if (isMentorL && quizSt === 'off') { try { await live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
   // Uy-vazifa — alohida ekran emas, kapsula bosilganda shu yerda ochiladi
@@ -2580,7 +2580,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
     </div>
   );
   return (
-    <Stage eyebrow={tr({ uz: 'Dars yakuni', ru: 'Итог урока' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Yakunlash ✓</button></>}>
+    <Stage eyebrow={tr({ uz: 'Dars yakuni', ru: 'Итог урока' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>Yakunlash ✓</FinishBtn></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="hero">
           <div className="hero-l">
@@ -2592,7 +2592,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : undefined} />
         </div>
-        {arena && <QuizArena live={live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+        {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         {/* «Endi siz bilasiz» va nishonlar yonma-yon (58-qonun): yakun-sahifasi bir ko'z bilan ko'rinadi. */}
         {isMentorL ? recapCard : (
           <div className="split sum2">
@@ -2848,7 +2848,7 @@ const CSS_LESSON = `
   @media (prefers-reduced-motion: reduce) { .dfc, .dfc:hover { transition: none; transform: none; } .dfc.open .dfc-b { animation: none; } }
 
   /* IMZO-VIZUAL (s4): ISHGA TUSHIRIB KO'RISH — chapda ishlaydigan oyna, o'ngda shartlar */
-  /* Chapda ish-asbob (oyna), o'ngda hujjat (shartlar): hujjat matni uzunroq — biroz kengroq ustun.
+  /* Chapda ish-oynasi, o'ngda hujjat (shartlar): hujjat matni uzunroq — biroz kengroq ustun.
      861–1000px oralig'ida ustunlar tenglashadi, aks holda forma siqilib qoladi. */
   .split.s4 { grid-template-columns: minmax(0,0.94fr) minmax(0,1.06fr); }
   @media (max-width: 1000px) { .split.s4 { grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(12px,2vw,20px); } }

@@ -1,0 +1,257 @@
+<title>QA fidbek 169–175</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: bitta ustun; har band — rasm, tashxis, taklif, tanlov. 172-band ichida jonli «bittadan» namunasi */
+:root {
+  --bg: #f4f3f8; --card: #ffffff; --ink: #1d1b2b; --ink2: #5d5a72; --line: #e2e0ec;
+  --accent: #5b3fd6; --accent-soft: #ece8fd; --ok: #1f7a4d; --ok-soft: #e3f3ea; --warn: #b4530f; --warn-soft: #fdf0e3;
+  --f-body: 'Manrope', system-ui, sans-serif; --f-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #15141c; --card: #1f1d29; --ink: #ecebf4; --ink2: #a7a4ba; --line: #34314a;
+  --accent: #a593ff; --accent-soft: #2c2650; --ok: #6fd3a0; --ok-soft: #1d3329; --warn: #f2a868; --warn-soft: #3a2a1a; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #15141c; --card: #1f1d29; --ink: #ecebf4; --ink2: #a7a4ba; --line: #34314a;
+  --accent: #a593ff; --accent-soft: #2c2650; --ok: #6fd3a0; --ok-soft: #1d3329; --warn: #f2a868; --warn-soft: #3a2a1a; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 90px; }
+.wrap { max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+h1 { font-size: clamp(22px, 3vw, 30px); margin: 0; text-wrap: balance; }
+h2 { font-size: 19px; margin: 0; text-wrap: balance; }
+p { margin: 0; max-width: 75ch; }
+.lead { color: var(--ink2); }
+.band { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+.id { font-family: var(--f-mono); font-size: 12px; color: var(--accent); letter-spacing: .04em; }
+.holat { display: inline-block; font-size: 12px; font-weight: 800; border-radius: 99px; padding: 3px 10px; background: var(--warn-soft); color: var(--warn); }
+.holat.yoq { background: var(--ok-soft); color: var(--ok); }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+figure { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+figure img { border-radius: 8px; border: 1px solid var(--line); display: block; width: 100%; cursor: zoom-in; }
+figcaption { font-size: 12.5px; color: var(--ink2); } figcaption b { color: var(--ink); }
+ul, ol { margin: 0; padding-left: 20px; } li { margin: 3px 0; }
+.tanlov { display: flex; flex-direction: column; gap: 8px; border-top: 1px dashed var(--line); padding-top: 12px; }
+.tanlov label { display: flex; gap: 10px; align-items: flex-start; padding: 9px 12px; border-radius: 10px; border: 1px solid var(--line); cursor: pointer; }
+.tanlov label:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.tanlov input[type=radio] { margin-top: 4px; accent-color: var(--accent); }
+.tav { font-size: 11px; font-weight: 800; color: var(--ok); background: var(--ok-soft); border-radius: 99px; padding: 1px 8px; margin-left: 6px; white-space: nowrap; }
+textarea { width: 100%; box-sizing: border-box; min-height: 44px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); font: inherit; padding: 8px 10px; }
+.olchov { font-family: var(--f-mono); font-size: 12.5px; background: var(--bg); border-radius: 8px; padding: 10px 12px; overflow-x: auto; white-space: pre; }
+/* jonli namuna: bittadan keladigan sahna */
+.demo { background: var(--bg); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 12px; min-height: 260px; }
+.demo-iz { display: flex; flex-wrap: wrap; gap: 6px; min-height: 28px; }
+.demo-chip { font-size: 12.5px; font-weight: 700; color: var(--ok); background: var(--ok-soft); border-radius: 99px; padding: 4px 10px; animation: chipin .45s ease-out both; }
+.demo-sahna { position: relative; min-height: 170px; }
+.demo-karta { background: var(--card); border-radius: 14px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; max-width: 520px; box-shadow: 0 10px 26px -16px rgba(0,0,0,.35); animation: kir .45s ease-out both; }
+.demo-karta.ket { animation: ket .4s ease-in both; }
+.demo-karta h3 { margin: 0; font-size: 17px; }
+.demo-karta p { color: var(--ink2); font-size: 14px; }
+.demo-tug { display: flex; gap: 8px; flex-wrap: wrap; }
+.demo-tug button { font: inherit; font-weight: 700; border: 0; border-radius: 10px; padding: 9px 16px; cursor: pointer; background: var(--accent-soft); color: var(--accent); }
+.demo-tug button.asosiy { background: var(--accent); color: #fff; }
+.demo-tayyor { font-weight: 700; color: var(--ok); animation: kir .45s ease-out both; }
+@keyframes kir { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes ket { to { opacity: 0; transform: translateY(-10px) scale(.97); } }
+@keyframes chipin { from { opacity: 0; transform: scale(.8); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .demo-karta, .demo-karta.ket, .demo-chip, .demo-tayyor { animation: none; } }
+.yakun { position: sticky; bottom: 0; background: var(--card); border: 1px solid var(--accent); border-radius: 14px; padding: 14px 16px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.yakun pre { flex: 1 1 320px; min-width: 0; margin: 0; font-family: var(--f-mono); font-size: 12.5px; white-space: pre-wrap; color: var(--ink2); }
+button.nusxa { font: inherit; font-weight: 800; background: var(--accent); color: #fff; border: 0; border-radius: 10px; padding: 10px 18px; cursor: pointer; }
+button:focus-visible, label:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+#zoom { position: fixed; inset: 0; background: rgba(0,0,0,.82); display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 20; cursor: zoom-out; }
+#zoom img { max-width: 100%; max-height: 100%; border-radius: 8px; }
+</style>
+
+<div class="wrap">
+  <header style="display:flex;flex-direction:column;gap:8px">
+    <span class="id">F-1015-169 … 175 · 17.10 · 8- va 11-Modul QA rasmlari</span>
+    <h1>Halqa, toza ekran va dars mazmuni bo'yicha qarorlar</h1>
+    <p class="lead">Rasmlar 15 ta. Ular 7 ta mavzuga ajraldi. Har mavzuda: rasm → tashxis → taklif → tanlov. Oxirida «Javobni nusxalash».</p>
+  </header>
+
+  <!-- 169 -->
+  <section class="band">
+    <span class="id">F-1015-169 · rasm 16, 17, 19, 20, 24 · #global</span>
+    <h2>Guruh atrofida ikki qavat ramka yonib-o'chadi <span class="holat">hozir bor</span></h2>
+    <div class="grid2">
+      <figure><img src="{{r20}}" alt=""><figcaption><b>m9-02 kirish:</b> uchala variant atrofida ikki qavat ramka.</figcaption></figure>
+      <figure><img src="{{r24}}" alt=""><figcaption><b>m9-04 s10:</b> chiplar qatori va raqamlar qatori ramkada.</figcaption></figure>
+    </div>
+    <p>Tashxis: 11–14-Modulda (19 fayl, 61 qoida) «bosing» ishorasi butun guruhga qo'yilgan: doimiy <code>outline: 2px</code> va uning ustida kengayib so'nadigan ikkinchi ramka. 1–8-Modulda va qolipda ishora faqat bitta elementda, guruhni o'ramaydi. Shuning uchun bu sahifalar boshqa modullardan ajralib, «rasvo» ko'rinadi.</p>
+    <div class="grid2">
+      <figure><img src="{{pa0}}" alt=""><figcaption><b>Hozir</b> (m9-02 kirish).</figcaption></figure>
+      <figure><img src="{{pa1}}" alt=""><figcaption><b>Taklif:</b> guruh ramkasi yo'q. Variantlarning o'zi tugma, ishora shart emas.</figcaption></figure>
+      <figure><img src="{{pb0}}" alt=""><figcaption><b>Hozir</b> (m9-04 s10).</figcaption></figure>
+      <figure><img src="{{pb1}}" alt=""><figcaption><b>Taklif.</b></figcaption></figure>
+    </div>
+    <div class="tanlov" data-id="169">
+      <label><input type="radio" name="169" value="A"> <span><b>A</b> — guruh ramkasi hamma joydan olinadi (19 fayl). Ishora kerak bo'lsa — faqat navbatdagi bitta elementda, past yorug'likda, 2–3 marta va to'xtaydi (7–8-Modul uslubi) <span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="169" value="B"> <span><b>B</b> — ishora umuman yo'q: variantlar va tugmalarning o'zi yetarli</span></label>
+      <label><input type="radio" name="169" value="Boshqa"> <span>Boshqa</span></label>
+      <textarea placeholder="Izoh (ixtiyoriy)"></textarea>
+    </div>
+  </section>
+
+  <!-- 170 -->
+  <section class="band">
+    <span class="id">F-1015-170 · rasm 15 · m6-02 Natijalar</span>
+    <h2>Halqa atrofidagi chiziq <span class="holat yoq">jonli saytda yo'q</span></h2>
+    <div class="grid2"><figure><img src="{{r15}}" alt=""><figcaption>Rasmda halqa atrofida chiziq bor, ostidagi «Testlarda birinchi urinishda…» yozuvi esa yo'q. Demak bu eski fayl.</figcaption></figure></div>
+    <p>coddycamp-8modul hozir tekshirildi: halqa chiziqsiz, ostida hisob qoidasi yozilgan. Brauzer eski faylni ko'rsatgan — <b>Ctrl+Shift+R</b>.</p>
+  </section>
+
+  <!-- 171 -->
+  <section class="band">
+    <span class="id">F-1015-171 · rasm 18 · m9-01 s9 «Oltita g'oyani bittalab yozing»</span>
+    <h2>Maydon juda ko'p: 6 g'oya × 3 maydon = 18 ta <span class="holat">hozir bor</span></h2>
+    <div class="grid2"><figure><img src="{{r18}}" alt=""><figcaption>Har g'oyaga manba + Muammo + Kim uchun + Yechim.</figcaption></figure><figure><img src="{{pc0}}" alt=""><figcaption>Boshlang'ich holat.</figcaption></figure></div>
+    <p>Keyingi dars (m9-02) bu g'oyalarni uch savol bilan saralaydi va saralash kartasida uchala maydonni ko'rsatadi. Maydonni kamaytirsak, m9-02 ham moslanadi.</p>
+    <div class="tanlov" data-id="171">
+      <label><input type="radio" name="171" value="A"> <span><b>A</b> — m9-01 da har g'oyaga <b>bitta qator</b>: muammo («kim nimadan qiynaladi»). «Kim uchun» va «Yechim» m9-02 da faqat saralashdan o'tgan g'oyalarga yoziladi (6 × 1 + 3 × 2 = 12, bir ekranda emas) <span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="171" value="B"> <span><b>B</b> — 6 g'oya o'rniga <b>3 g'oya</b>, uch maydon qoladi (9 ta)</span></label>
+      <label><input type="radio" name="171" value="C"> <span><b>C</b> — 6 g'oya, faqat «Muammo» va «Kim uchun» (12 ta), «Yechim» olinadi</span></label>
+      <label><input type="radio" name="171" value="Boshqa"> <span>Boshqa</span></label>
+      <textarea placeholder="Izoh (ixtiyoriy)"></textarea>
+    </div>
+  </section>
+
+  <!-- 172 -->
+  <section class="band">
+    <span class="id">F-1015-172 · rasm 21, 25, 26, 28, 29 · #global UX</span>
+    <h2>Ekran bir yo'la to'lib ketadi — bittadan kelsin, bajarilgani ketsin <span class="holat">hozir bor</span></h2>
+    <div class="grid2">
+      <figure><img src="{{r21}}" alt=""><figcaption><b>m9-02 s9:</b> ro'yxat, «Chetda», karta, uch savol, yordam — hammasi birdan.</figcaption></figure>
+      <figure><img src="{{r25}}" alt=""><figcaption><b>m9-05 s2:</b> telefon, 7 bo'limli PRD, taxmin, izoh — bir ekranda.</figcaption></figure>
+      <figure><img src="{{r28}}" alt=""><figcaption><b>m9-05 s5:</b> chegaralar ichida chegara.</figcaption></figure>
+      <figure><img src="{{r29}}" alt=""><figcaption><b>m9-05 s9:</b> to'rt ustun bir vaqtda.</figcaption></figure>
+    </div>
+    <p>Sizning g'oyangiz (matematika darsi kabi): bir vaqtda bitta narsa. Bajarilgani yig'ilib tepaga ixcham qatorga ketadi, keyingisi animatsiya bilan keladi, ekran toza qoladi. Quyida <b>jonli namuna</b>: m9-02 saralash shu tartibda.</p>
+    <div class="demo" id="demo">
+      <div class="demo-iz" id="demo-iz" aria-live="polite"></div>
+      <div class="demo-sahna" id="demo-sahna"></div>
+    </div>
+    <p>Qoida (taklif):</p>
+    <ul>
+      <li>Ekranda bir vaqtda <b>bitta faol karta</b>. Bajarilgani tepadagi ixcham qatorga (chip) aylanadi, keyingisi pastdan kirib keladi (0,4 s).</li>
+      <li>Bitta ekranda <b>bitta chegarali quti</b>. Ichidagi qismlar chiziq bilan emas, oraliq bilan ajratiladi.</li>
+      <li>Ma'lumot karta ichida ham bosqichma-bosqich ochiladi (masalan PRD bo'limlari bittadan).</li>
+    </ul>
+    <div class="tanlov" data-id="172">
+      <label><input type="radio" name="172" value="A"> <span><b>A</b> — avval <b>pilot</b>: m9-02 s9 va m9-05 s2 ni shu qoida bilan qayta quraman, siz ko'rasiz. Ma'qul bo'lsa — qonun va 11–14-Modul bo'yicha o'lchov + modulma-modul supurish <span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="172" value="B"> <span><b>B</b> — darhol qonun va hamma ekranlarga</span></label>
+      <label><input type="radio" name="172" value="Boshqa"> <span>Boshqa</span></label>
+      <textarea placeholder="Izoh (ixtiyoriy)"></textarea>
+    </div>
+  </section>
+
+  <!-- 173 -->
+  <section class="band">
+    <span class="id">F-1015-173 · rasm 22 · m9-02 «Oltita g'oyadan qaysi uchtasi qoladi?»</span>
+    <h2>O'z g'oyalarida «Ha · Ha · Ha → O'tdi» — dars nimani o'rgatyapti? <span class="holat">savol</span></h2>
+    <div class="grid2"><figure><img src="{{r22}}" alt=""><figcaption>Bema'ni g'oyalar ham «O'tdi» bo'ldi.</figcaption></figure></div>
+    <p>Dars rejasi: 6 g'oyani uch savol bilan saralash (Bajariladimi? · Real auditoriya bormi? · Qiziqmi?), keyin qolganlarni RICE bilan tartiblash. Mentor misolida savollar sabab bilan ishlaydi («pul va yetkazish kerak» → chetga). O'quvchining o'z ekranida esa sabab so'ralmaydi — «Ha» bosish ko'p o'ylashni talab qilmaydi, shuning uchun o'rgatilayotgan narsa ko'rinmay qoladi.</p>
+    <div class="tanlov" data-id="173">
+      <label><input type="radio" name="173" value="A"> <span><b>A</b> — o'z saralashida har «Ha»/«Yo'q» ostida bitta qisqa sabab tanlanadi (2–3 tayyor variant, masalan «5 tanishim bor» / «tanishim yo'q»). Natija ekrani nima o'rganilganini aytadi: «uch savol g'oyani his bilan emas, dalil bilan saraladi» <span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="173" value="B"> <span><b>B</b> — o'z saralashi darsdan olinadi (uyga vazifa bo'ladi), darsda faqat Mentor misoli va RICE</span></label>
+      <label><input type="radio" name="173" value="Boshqa"> <span>Boshqa — fikringizni yozing (masalan «bitta darsda qilvormasa kerak» deganda nimani nazarda tutdingiz)</span></label>
+      <textarea placeholder="Izoh (ixtiyoriy)"></textarea>
+    </div>
+  </section>
+
+  <!-- 174 -->
+  <section class="band">
+    <span class="id">F-1015-174 · rasm 23 · m9-04 s7 «Biznes olamidan»</span>
+    <h2>«YouTube» 5 marta takrorlanadi, «tanishuv sayti» tushunarsiz va o'smirga mos emas <span class="holat">hozir bor</span></h2>
+    <div class="grid2"><figure><img src="{{r23}}" alt=""><figcaption>Sarlavha, Mentor, yorliq, izoh, sahna, karta yorlig'i — hammasida «YouTube».</figcaption></figure></div>
+    <p>Fakt: YouTube 2005-yilda haqiqatan «video tanishuv» sayti sifatida boshlangan, lekin o'smir auditoriyasi uchun bu misol mos emas («tanishuv» so'zi noto'g'ri tushuniladi). Darsning g'oyasi esa boshqa: odamlar mahsulotni kutilmagan ishga ishlatsa, g'oya o'zgaradi.</p>
+    <div class="tanlov" data-id="174">
+      <label><input type="radio" name="174" value="A"> <span><b>A</b> — misolni almashtirish: <b>Instagram</b> — avval Burbn degan joy belgilash ilovasi edi, odamlar faqat rasm almashish qismini ishlatgan, qolgani olib tashlangan. Brend nomi ekranda bir marta (sarlavha), qolgan joyda takrorlanmaydi <span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="174" value="B"> <span><b>B</b> — YouTube qoladi, «tanishuv sayti» o'rniga «o'zi haqida video qo'yiladigan sayt»; takrorlar olinadi</span></label>
+      <label><input type="radio" name="174" value="Boshqa"> <span>Boshqa</span></label>
+      <textarea placeholder="Izoh (ixtiyoriy)"></textarea>
+    </div>
+  </section>
+
+  <!-- 175 -->
+  <section class="band">
+    <span class="id">F-1015-175 · rasm 27 (26) · m9-05 s4 · test javobidan keyin</span>
+    <h2>Javob ostidagi kichik PRD kartasi ortiqcha <span class="holat">hozir bor</span></h2>
+    <div class="grid2"><figure><img src="{{r27}}" alt=""><figcaption>Siz ustidan chizgansiz: «Mahalla to'garaklari · Muammo · Dalil».</figcaption></figure><figure><img src="{{r26}}" alt=""><figcaption>m9-05 s3 — PRD to'liq ko'rinishi (172 pilotiga kiradi).</figcaption></figure></div>
+    <div class="tanlov" data-id="175">
+      <label><input type="radio" name="175" value="A"> <span><b>A</b> — kartani olib tashlash; shu turdagi «javobdan keyingi takror karta»ni 11–14-Modul testlarida qidirib, xuddi shunday olish <span class="tav">tavsiya</span></span></label>
+      <label><input type="radio" name="175" value="B"> <span><b>B</b> — faqat shu ekranda</span></label>
+      <label><input type="radio" name="175" value="Boshqa"> <span>Boshqa</span></label>
+      <textarea placeholder="Izoh (ixtiyoriy)"></textarea>
+    </div>
+  </section>
+
+  <div class="yakun">
+    <pre id="javob">—</pre>
+    <button type="button" class="nusxa" id="nusxa">Javobni nusxalash</button>
+  </div>
+</div>
+<div id="zoom" hidden><img alt=""></div>
+
+<script>
+const yig = () => [...document.querySelectorAll('.tanlov')].map(t => {
+  const id = t.dataset.id, v = (t.querySelector('input:checked') || {}).value || '—', iz = t.querySelector('textarea').value.trim();
+  return `${id}: ${v}${iz ? ' — ' + iz : ''}`;
+}).join('\n');
+const jav = document.getElementById('javob');
+const yangila = () => { jav.textContent = yig(); };
+document.addEventListener('input', yangila); document.addEventListener('change', yangila); yangila();
+document.getElementById('nusxa').addEventListener('click', async (e) => {
+  const t = yig();
+  try { await navigator.clipboard.writeText(t); e.target.textContent = 'Nusxalandi'; }
+  catch { const r = document.createRange(); r.selectNodeContents(jav); const s = getSelection(); s.removeAllRanges(); s.addRange(r); e.target.textContent = 'Belgilandi — Ctrl+C'; }
+  setTimeout(() => { e.target.textContent = 'Javobni nusxalash'; }, 1800);
+});
+const z = document.getElementById('zoom');
+document.querySelectorAll('figure img').forEach(i => i.addEventListener('click', () => { z.querySelector('img').src = i.src; z.hidden = false; }));
+z.addEventListener('click', () => { z.hidden = true; });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') z.hidden = true; });
+
+// Jonli namuna: m9-02 saralash — bittadan karta
+const GOYALAR = [
+  { nom: 'Jamoa yig\'ish', muammo: 'o\'yinga odam yetmaydi' },
+  { nom: 'Eski darsliklar', muammo: 'eski darslik uyda yillab turadi' },
+  { nom: 'Yo\'qolgan buyumlar', muammo: 'maktabda yo\'qolgan narsa topilmaydi' },
+];
+const SAVOLLAR = [
+  { s: 'Bajariladimi?', iz: 'Birinchi versiyasini 6 haftada qura olasizmi?' },
+  { s: 'Real auditoriya bormi?', iz: 'Gaplasha oladigan kamida 5 tanishingiz bormi?' },
+  { s: 'Qiziqmi?', iz: 'Bitiruvgacha shu ustida ishlashni xohlaysizmi?' },
+];
+const sahna = document.getElementById('demo-sahna'), iz = document.getElementById('demo-iz');
+let gi = 0, qi = 0, yoq = false;
+const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+function chiz() {
+  sahna.innerHTML = '';
+  if (gi >= GOYALAR.length) {
+    const d = document.createElement('div'); d.className = 'demo-karta';
+    d.innerHTML = '<h3>Saralash tugadi</h3><p>Chiplarga qarang: qaysi g\'oya qaysi savolda to\'xtadi.</p><div class="demo-tug"><button type="button" class="asosiy">Qaytadan</button></div>';
+    d.querySelector('button').onclick = () => { gi = 0; qi = 0; yoq = false; iz.innerHTML = ''; chiz(); };
+    sahna.append(d); return;
+  }
+  const g = GOYALAR[gi], q = SAVOLLAR[qi];
+  const d = document.createElement('div'); d.className = 'demo-karta';
+  d.innerHTML = `<span style="font-size:12px;font-weight:800;color:var(--accent)">G'OYA ${gi + 1} / ${GOYALAR.length} · SAVOL ${qi + 1} / 3</span><h3>${g.nom} — ${q.s}</h3><p>${g.muammo}. ${q.iz}</p><div class="demo-tug"><button type="button" class="asosiy">Ha</button><button type="button">Yo'q</button></div>`;
+  const [ha, yo] = d.querySelectorAll('button');
+  const keyingi = (javob) => {
+    if (!javob) yoq = true;
+    d.classList.add('ket');
+    setTimeout(() => {
+      if (!javob || qi === 2) {
+        const c = document.createElement('span'); c.className = 'demo-chip';
+        if (!javob) { c.textContent = `${g.nom} · ${q.s} ✕`; c.style.color = 'var(--warn)'; c.style.background = 'var(--warn-soft)'; }
+        else c.textContent = `${g.nom} · o'tdi ✓`;
+        iz.append(c); gi++; qi = 0; yoq = false;
+      } else qi++;
+      chiz();
+    }, reduce ? 0 : 380);
+  };
+  ha.onclick = () => keyingi(true); yo.onclick = () => keyingi(false);
+  sahna.append(d);
+}
+chiz();
+</script>

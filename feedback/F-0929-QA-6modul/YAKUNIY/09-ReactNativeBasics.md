@@ -1,16 +1,21 @@
 # 9-dars «React Native — asoslari» — yakuniy matn
 
+> ✎ **F-1015-122 (16.10, 208-qonun 4-band, foydalanuvchi qarori — 2-variant):** dars yuzasidagi bezak emoji kodda olingan — sarlavha, yorliq, karta ikonlari, fayl tablari, test/amaliyot yorliqlari, tugmalar. Qolgan: sxema tugunlari, keys sahnasi, o'yin qatlami (nishon, arena, podium), Yakun, takrorlash oynasi, Mentor paneli, bot/ilova maketidagi mahsulot mazmuni. Bu MD dagi shunday bezak emoji endi ekranda yo'q.
+
+
 Fayl: `src/6-Modull/ReactNativeBasicsLesson.jsx` · 20 ekran · Keyingi dars: «RN: komponent, navigatsiya, API»
 Holat: 05.10.2026 — kodga mos (dars eski qolipda, MD v3 bo'yicha qayta qurilmagan)
 Jonli darsga kirish oynasi sarlavhasi: React Native darsi
 
+> ✎ **F-1015-155 (17.10, foydalanuvchi qarori «A» — repo'ga moslash):** misol-ip «mini-do'kon / Telefon — 2 500 000 / Sotib olish» → TelegramBotNest repo'sidagi AvtoPizza (`dars-6-09-done`, `mobile/App.js`): sarlavha AvtoPizza · Margarita — 45 000 so'm · tugma «Buyurtma berish»; kod fayli «ShopScreen.js» → «App.js»; brauzer manzili → localhost:5173 (8-dars sayti). Maket satridagi telefon emojisi olindi (repo matni bilan bir xil). Tuzilma, ekranlar, ball, `correctIdx` o'zgarmagan.
+
 ## 0 · Kirish
 - Eyebrow: Dars · kirish
-- Sarlavha: Mijozlar do'konni ilovada ko'rmoqchi. Qila olasizmi?
+- Sarlavha: Mijozlar AvtoPizza menyusini ilovada ko'rmoqchi. Qila olasizmi?
 - Mentor: React darslarida web ilova yozishni o'rgandingiz. Endi savol: telefon ilovasi uchun hammasini noldan o'rganish kerakmi? Tugmani bosing — javobni ko'ring.
 - Telefon (chapda):
   - tugma bosilguncha: ekran xira, ichida «?» · ostida: telefon (o'chiq)
-  - tugma bosilgach: mini-do'kon · Telefon — 2 500 000 · Sotib olish (tugma ko'rinishida) · ostida: React Native bilan — ilova ochildi!
+  - tugma bosilgach: AvtoPizza · Margarita — 45 000 so'm · Buyurtma berish (tugma ko'rinishida) · ostida: React Native bilan — ilova ochildi!
 - Tugma: ▶ Ilovani telefonda ochish → ✓ Ko'rdingiz
 - Savol (o'ngda; variantlar tugma bosilgach faollashadi): Telefon ilovasi uchun nima qilasiz?
   - Hammasini noldan o'rganaman — mobil butunlay boshqa
@@ -25,14 +30,15 @@ Jonli darsga kirish oynasi sarlavhasi: React Native darsi
 ## 1 · Reja
 - Eyebrow: Reja
 - Sarlavha: React bilimingizni telefonga olib chiqamiz.
-- Mentor: Yaxshi xabar: mobil ilova — butunlay yangi dunyo emas. **React bilimingiz** qoladi; bir nechta yangi komponent va Expo vositasini o'rganasiz.
+- Mentor: Yaxshi xabar: mobil ilova — butunlay yangi dunyo emas. **React bilimingiz** qoladi; bir nechta yangi komponent va Expo'ni o'rganasiz.
 - Yorliq: dars oxirida — birinchi ekraningiz telefonda
-- Telefon: mini-do'kon · Telefon — 2 500 000 · Sotib olish · ostida: mini-do'kon (RN)
+- Telefon: AvtoPizza · Margarita — 45 000 so'm · Buyurtma berish · ostida: AvtoPizza (RN)
 - Bugungi 4 qadam:
-  1. React Native nima — React bilan mobil ilova · rn
-  2. Web va mobil: qaysi komponent nimaga mos · farq
-  3. Expo va Expo Go bilan telefonda ko'rish · expo
-  4. Birinchi ekranni yig'ish · ekran
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-121, 208-qonun 0-band: takror olindi)*
+  1. React Native nima — React bilan mobil ilova
+  2. Web va mobil: qaysi komponent nimaga mos
+  3. Expo va Expo Go bilan telefonda ko'rish
+  4. Birinchi ekranni yig'ish
 - Tugmalar (telefonda): 4 qadamni ko'rish · ↩ Natijani ko'rish
 - Tugmalar (pastda): Orqaga · Boshlaymiz →
 
@@ -67,7 +73,7 @@ Jonli darsga kirish oynasi sarlavhasi: React Native darsi
   - `<div>→<View>` — Quti: ichiga boshqa elementlar joylanadi (bo'limlar, qatorlar).
   - `<p> / <span>→<Text>` — Matn. React Native'da **har qanday matn** `<Text>` ichida bo'lishi shart — bu eng muhim qoida.
   - `CSS / className→StyleSheet / style` — Alohida CSS fayl emas, JS obyekt: StyleSheet.create({...}).
-- Ko'rinish (o'ngda): brauzer oynasi (manzil: mini-dokon.uz) — mini-do'kon · Telefon — 2 500 000 · Sotib olish · ostida: Web ko'rinishi
+- Ko'rinish (o'ngda): brauzer oynasi (manzil: localhost:5173) — AvtoPizza · Margarita — 45 000 so'm · Buyurtma berish · ostida: Web ko'rinishi
 - Almashtirgich tugma: Mobil ko'rinishi ↔ Web ko'rinishi (mobilda: o'sha mazmun telefonda, ostida: Mobil ko'rinishi)
 - Natija (3 juftlik ochilgach): React bilimingiz o'sha — faqat ekran elementlari boshqacha nomlanadi va ishlaydi.
 - Tugmalar (pastda): Orqaga · 3 juftlikni oching (N/3) → Davom etish
@@ -84,7 +90,7 @@ Jonli darsga kirish oynasi sarlavhasi: React Native darsi
   - To'g'ri: To'g'ri! React Native React bilimingiz bilan iOS va Android uchun haqiqiy mobil ilova yasash imkonini beradi.
   - 1-variant: React Native web uchun emas — u mobil ilova yasaydi. Web uchun oddiy React ishlatiladi.
   - 2-variant: Bu — Database vazifasi (PostgreSQL). React Native — mobil ilova interfeysi uchun.
-  - 3-variant: Faqat o'yin emas — har qanday mobil ilova: do'kon, chat, bank ilovasi.
+  - 3-variant: Faqat o'yin emas — har qanday mobil ilova: pitsa buyurtmasi, chat, bank ilovasi.
   - (umumiy) React Native — React bilan mobil ilova yasash uchun.
 - Test yozuvlari (4, 8, 11, 14-ekran uchun bir xil): To'g'ri · Qaytadan urinib ko'ring · birinchi urinish xato bo'lsa: Qisqa takrorlash — mavzuni yana bir ko'rish · jonli darsda: Jonli dars — bitta urinish, o'ylab bosing! · Javobingiz qabul qilindi · Hozir to'g'ri javobni bilib olasiz. · To'g'ri javob: <harf> — <to'g'ri variant>
 - Tugmalar (pastda): Orqaga · To'g'ri javobni toping (jonli darsda: Javob tanlang) → Davom etish · Mentor o'tmagan bo'lsa: Mentorni kuting (izoh: Mentor hali bu sahifaga o'tmadi)
@@ -98,7 +104,7 @@ Jonli darsga kirish oynasi sarlavhasi: React Native darsi
 import { View, Text } from 'react-native'
 
 <View>
-  <Text>Salom, mini-do'kon!</Text>
+  <Text>Salom, AvtoPizza!</Text>
 </View>
 ```
 - Tugma: Muhim qoida nima? → ✓ Ko'rdingiz
@@ -132,7 +138,7 @@ const s = StyleSheet.create({
 - Qism tugmalari (har biri «+», qo'shilgach ✓):
   - View — quti
   - Text — sarlavha
-  - Text — mahsulot
+  - Text — pitsa
 - Kod «App.js» — boshida:
 ```js
 <View>   // View qo'shing
@@ -141,14 +147,14 @@ const s = StyleSheet.create({
 - Kod — uchala qism qo'shilgach:
 ```js
 <View>
-  <Text>mini-do'kon</Text>
-  <Text>Telefon</Text>
+  <Text>AvtoPizza</Text>
+  <Text>Margarita</Text>
 </View>
 ```
 - Telefon (o'ngda):
   - boshida (xira): bo'sh ekran
   - faqat View qo'shilganda: View qo'shildi — endi Text qo'shing
-  - Text'lar qo'shilgan sari: mini-do'kon · Telefon
+  - Text'lar qo'shilgan sari: AvtoPizza · Margarita
 - Natija (yashil): Mana — birinchi mobil ekraningiz! View ichida ikkita Text. Xuddi React'dagidek, faqat View va Text bilan.
 - Tugmalar (pastda): Orqaga · Ekranni yig'ing (N/3) → Davom etish
 
@@ -169,8 +175,8 @@ const s = StyleSheet.create({
 - Test yozuvlari va tugmalar — 4-ekrandagidek.
 
 ## 9 · Expo nima
-- Eyebrow: Vosita · Expo
-- Sarlavha: Expo — React Native bilan ishlashni osonlashtiradigan vosita.
+- Eyebrow: Tushuncha · Expo
+- Sarlavha: Expo — React Native bilan ishlashni osonlashtiradigan dastur.
 - Mentor: React Native'ni Expo'siz o'rnatish murakkabroq: Xcode yoki Android Studio kabi katta dasturlar kerak bo'ladi. Expo loyihani yaratish, ishga tushirish va telefonda sinashni osonlashtiradi. Tugmani bosing.
 - Karta «Expo nima?»: React Native loyihasini yaratish, ishga tushirish va telefonda ko'rishni osonlashtiradigan tayyor to'plam. Boshlovchilar uchun qulay.
 - Tugma: Nega Expo qulay? → ✓ Ko'rdingiz
@@ -188,7 +194,7 @@ const s = StyleSheet.create({
 - Chapda: kompyuter oynasi (sarlavhasida: npx expo start) ichida QR kod · ostida: kompyuterdagi QR kod
 - O'q → telefon:
   - skanerlashdan oldin (xira): QR kodni kuting… · ostida: Expo Go (kutyapti)
-  - skanerlangach: mini-do'kon · Telefon — 2 500 000 · Sotib olish · ostida: ulandi (yashil nuqta bilan)
+  - skanerlangach: AvtoPizza · Margarita — 45 000 so'm · Buyurtma berish · ostida: ulandi (yashil nuqta bilan)
 - Tugma: QR kodni skanerlash (bosilgach tugma o'rnida natija chiqadi)
 - Natija (yashil): Mana natija! Kodni o'zgartirib saqlasangiz, Expo o'zgarishni telefonga tez yuboradi.
 - Tugmalar (pastda): Orqaga · QR kodni skanerlang → Davom etish
@@ -211,21 +217,21 @@ const s = StyleSheet.create({
 
 ## 12 · To'liq ekran
 - Eyebrow: Hayotiy · to'liq ekran
-- Sarlavha: Mini-do'kon mobil ilovasining birinchi ekrani.
-- Mentor: Endi to'liqroq ekran quramiz: sarlavha, mahsulot, narx va tugma. Har qatorni qo'shing va telefonda paydo bo'lishini kuzating. Tugma uchun yangi komponent ishlatamiz: **Pressable** — bosish mumkin bo'lgan element.
-- Kod «ShopScreen.js» (har bosishda bitta qator qo'shiladi):
+- Sarlavha: AvtoPizza mobil ilovasining birinchi ekrani.
+- Mentor: Endi to'liqroq ekran quramiz: sarlavha, pitsa, narx va tugma. Har qatorni qo'shing va telefonda paydo bo'lishini kuzating. Tugma uchun yangi komponent ishlatamiz: **Pressable** — bosish mumkin bo'lgan element.
+- Kod «App.js» (har bosishda bitta qator qo'shiladi):
 ```js
 <View style={s.card}>
-  <Text style={s.title}>mini-do'kon</Text>
-  <Text>Telefon</Text>
-  <Text style={s.price}>2 500 000 so'm</Text>
-  <Pressable style={s.btn}><Text>Sotib olish</Text></Pressable>
+  <Text style={s.title}>AvtoPizza</Text>
+  <Text>Margarita</Text>
+  <Text style={s.price}>45 000 so'm</Text>
+  <Pressable style={s.btn}><Text>Buyurtma berish</Text></Pressable>
 </View>
 ```
 - Tugma: ▶ Qurishni boshlash → Keyingi qator → → ✓ Ekran tayyor
-- Telefon (ostida: mini-do'kon mobil):
+- Telefon (ostida: AvtoPizza mobil):
   - boshida: kod yozilmoqda…
-  - qator qo'shilgan sari: mini-do'kon (sarlavha) · Telefon · 2 500 000 so'm (narx) · Sotib olish (tugma)
+  - qator qo'shilgan sari: AvtoPizza (sarlavha) · Margarita · 45 000 so'm (narx) · Buyurtma berish (tugma)
 - Natija (yashil): To'liq ekran! View ichida Text'lar va Pressable (bosiladigan tugma). Xuddi React mantiqida — faqat mobil komponentlar bilan.
 - Tugmalar (pastda): Orqaga · Ekranni quring (N/4) → Davom etish
 
@@ -275,11 +281,11 @@ const s = StyleSheet.create({
 - Sarlavha: Birinchi mobil ekraningizni yozing
 - Mentor: Bu topshiriqni **o'z kompyuteringizda** bajaring. Har bosqichni bajarib, belgilab boring. Tugagach **«Bajardim»** tugmasini bosing — ustoz kuzatib turadi.
 - TOPSHIRIQ: Bitta `<View>` va ichida 2 ta `<Text>` bo'lgan birinchi ekranni o'zingiz yozing. O'zingizda bajarib, «Bajardim» tugmasini bosasiz; mentor kuzatadi.
-- Bosqichlar — belgilab boring (bosilgani ✓ bilan belgilanadi):
+- Bosqichlar (yorliqsiz — Mentor «belgilab boring» deydi ✎ F-1015-166; bosilgani ✓ bilan belgilanadi):
   1. `snack.expo.dev` ni oching — bu brauzerda React Native kodini yozib, natijasini darrov ko'radigan sayt
   2. `import { View, Text } from 'react-native'` ni yozing
   3. Bitta `<View>` qo'shing
-  4. View ichiga 2 ta `<Text>` yozing (masalan, sarlavha va mahsulot)
+  4. View ichiga 2 ta `<Text>` yozing (masalan, sarlavha va pitsa nomi)
   5. Natijani o'ng tomondagi telefon oynasida yoki Expo Go'da (QR orqali) ko'ring
   6. Uyda xohlasangiz: xuddi shu ekranni VS Code'da Expo loyihasi sifatida yarating (yulduzcha bilan — qo'shimcha)
 - Tugma: Yana N qadam → Bajardim → ✓ Bajarildi — ustozni kuting
@@ -302,7 +308,7 @@ Natijalar (podium) — jonli reyting
 | React Native'da stillar qayerda yoziladi? | StyleSheet | Alohida CSS fayl emas, JS obyekt |
 | CSS'dagi background-color React Native'da qanday yoziladi? | backgroundColor | camelCase: ikkinchi so'z bosh harf bilan |
 | React Native'da elementlar standart holatda qaysi yo'nalishda joylashadi? | Yuqoridan pastga | Web'da — chapdan o'ngga |
-| Mobil loyihani tez boshlashga yordam beradigan vosita? | Expo | Yaratish, ishga tushirish va sinashni osonlashtiradi |
+| Mobil loyihani tez boshlashga yordam beradigan dastur? | Expo | Yaratish, ishga tushirish va sinashni osonlashtiradi |
 | Ilovani o'z telefoningizda ko'rish uchun qaysi ilova kerak? | Expo Go | QR kodni skanerlaysiz |
 | Expo Go ishlashi uchun odatda qanday shart kerak? | Telefon va kompyuter bitta Wi-Fi'da | Aks holda ilova ochilmasligi mumkin |
 | Bosiladigan tugma uchun qaysi komponent ishlatiladi? | Pressable | Ichiga Text qo'yiladi |
@@ -314,7 +320,7 @@ Natijalar (podium) — jonli reyting
 
 ## 19 · Yakun
 - Eyebrow: Tayyor
-- Belgi: ✓ Birinchi mobil ekran tayyor (yonida: N/5 to'g'ri)
+- Belgi: ✓ Dars tugadi · Testlar: N/N ✎ F-1015-161
 - Sarlavha: React bilimingiz endi telefonda ham ishlaydi.
 - Jonli viktorina tugmasi: CODE STRIKE · kutish holatida: Mentorni kuting
 - Endi siz bilasiz
@@ -324,13 +330,15 @@ Natijalar (podium) — jonli reyting
   - Expo va Expo Go — QR kodni skanerlab, ilovani telefonda ko'rasiz
   - React bilimingiz (komponent, props, state) — o'sha
 - Tugma: Uyga vazifa · Amaliy topshiriqni bajarish → (fonda: amaliyot · loyiha · mashq · natija)
-- Uyga vazifa (bosilgach):
+- Uyda nima qilasiz? (Uyga vazifa bosilgach)
+  - Kim uchun — AvtoPizza ilovasi · Nechta — 1 ekran · Muddat — keyingi darsgacha
   - **Moslang** — web React komponentingizni qog'ozda React Native'ga o'tkazing (`div` → `View`, `p` → `Text`)
   - **Yozing** — bitta View va 2 ta Text bo'lgan birinchi ekran kodini yozing
-  - **O'ylang** — mini-do'kon mobil ilovasida yana qanday ekranlar bo'ladi?
+  - **O'ylang** — AvtoPizza mobil ilovasida yana qanday ekranlar bo'ladi?
   - Keyingi dars — React Native'da ko'p ekranli ilova: ekranlar orasida o'tish (navigatsiya) va API'dan ma'lumot olish.
 - Nishonlaringiz — N/4 (olingan nishonda nomi va tavsifi, olinmaganida faqat nomi)
 - Tugmalar (pastda): Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10, S1-A): uy vazifasi kartasi P-025 — sarlavha «Uyda nima qilasiz?» (bannerdagi «Uyga vazifa» bilan takror emas); maydonlar: Kim uchun — mini-do'kon ilovasi · Nechta — 1 ekran · Muddat — keyingi darsgacha (qiymatlar topshiriq matnidan); qadamlar raqam-doira; «Keyingi dars» karta ichida; bezak emoji olindi.
 
 ## Nishonlar
 - Yuqoridagi hisoblagich: N/4 · bosilganda: Badges — N/4 (har nishon nomi; olinmagani qulf bilan)

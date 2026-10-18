@@ -310,9 +310,10 @@ Natijalar (podium) — jonli reyting
   - Mentor misolida jonli xabar faqat o'yinchiga tegishli o'zgarishda va ismsiz chiqadi.
   - Eslatmani tekshirish uchun test holatida vaqt vaqtincha qisqartiriladi, keyin qaytariladi.
   - Agent «bajardim» desa ham, talabning har gapini telefonda o'zingiz tekshirasiz.
-- Keyingi dars — **«Ulanish uzilsa: buzamiz va tuzatamiz»**.
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Keyingi dars — **«Ulanish uzilsa: buzamiz va tuzatamiz»**.
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Open Screens** — Ochiq ekranlar sanalishini birinchi urinishda topdingiz (4-ekran, birinchi urinishda to'g'ri)

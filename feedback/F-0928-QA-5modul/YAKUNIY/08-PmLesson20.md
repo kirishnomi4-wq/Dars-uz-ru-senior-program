@@ -87,7 +87,7 @@ Holat: 04.10.2026 — kodga mos
 - Tugmalar: Orqaga · Javobni tanlang → Davom etish
 
 ## 6 · Biznes olamidan · Airbnb
-- Eyebrow: Biznes olamidan (bosqich yorlig'i: «Biznes olamidan · n / 5»; bashoratda: «Avval o'zingiz belgilab ko'ring · n / 5»)
+- Eyebrow: Biznes olamidan (bosqich yorlig'i: «Airbnb»; bashoratda: «Avval o'zingiz belgilab ko'ring»; sanoq tugmada «Keyingi bosqich (n/5)» *(✎ F-1015-120, 208-qonun 0-band: takror olindi)*)
 - Sarlavha: **Airbnb asoschilari javobni qayerdan topdi?**
 - Bosqichlar:
   1. **2007-yil. San-Frantsiskoda katta yig'in bo'ldi, mehmonxonalarda joy qolmadi** — Airbnb — begona odamning uyida ijaraga turish xizmati. Uni boshlagan odamlar — asoschilar — o'shanda o'z uyiga uchta havo to'shagi qo'yib, kelganlarga joy berishdi. Kompaniya shundan boshlandi.
@@ -124,13 +124,13 @@ Holat: 04.10.2026 — kodga mos
 - Lenta (2-darsda ro'yxat yozilgan bo'lsa): 2-darsda yozganingiz: {1} · {2} · {3} — uyda savollarni ularga ham berasiz.
 - Mentor: Yoningizdagi odam avval botingizni ishlatib ko'rsin. Keyin unga savollaringizni bering va har javobni o'sha zahoti yozib oling.
 - Qadamlar: 1-savol · 2-savol · 3-savol
-- 1-qadam: maydon «Nimani so'raysiz?» → tugma «Savolni odamga o'qib bering»
+- 1-qadam: maydon «Nimani so'raysiz?» → tugma «Savolni odamga o'qib bering» (doim bosiladi; savol yozilmagan bo'lsa yonida: savol yozilmagan, kursor maydonga ✎ F-1015-164)
   - kelajak haqidagi savol bo'lsa: Bu ish hali bo'lmagan — javobi va'da bo'ladi. Allaqachon bo'lgan kunni so'rang.
   - javobi «ha» bo'ladigan savol bo'lsa: Bunday savolga odam shunchaki «ha» deydi. Bo'lib o'tgan ishni so'rang: oxirgi marta qachon…?
 - 2-qadam: savol matni (✎ — Tahrirlash) · maydon «U nima dedi?»
   - xulosa so'zi bo'lsa: Bu sizning xulosangiz — eshitgan javobni u aytganidek yozing.
   - boshqa holatda: Savol kelajakni so'ramayapti, javobda xulosa so'zi yo'q — saqlashingiz mumkin.
-  - Tugma: ✓ Saqlash / ✓ Yangilash · yetishmasa yonida: savol yozilmagan · savol hali berilmagan · eshitgan javob yozilmagan
+  - Tugma: ✓ Saqlash / ✓ Yangilash · yetishmasa yonida: savol yozilmagan · savol hali berilmagan · eshitgan javob yozilmagan (tugma doim bosiladi; bosilsa yozuv ajraladi, kursor maydonga ✎ F-1015-164)
 - Uchtasi tayyor bo'lgach: Suhbat varag'ingiz — «1 {savol} → «{eshitgan}» ✎» (×3)
 - Topshiriq: Savol bo'lib o'tgan ishni so'raydi · Har javob — u aytganidek
 - Yordam: Savolingizni «Oxirgi marta qachon …?» yoki «O'sha kuni qanday qildingiz?» deb boshlang. · Bu ish allaqachon bo'lganmi? Bu gapni odam aytdimi yoki siz chiqardingizmi?
@@ -142,7 +142,7 @@ Holat: 04.10.2026 — kodga mos
 - Eyebrow: Tekshiruv · to'rt savol
 - Sarlavha: **To'rt savol: qaysi biri varaqqa tushadi?**
 - Mentor: Har savolni ikki narsaga tekshiring: so'ralgan ish hali bo'lmaganmi? Javob savolning o'zida aytilmaganmi? Ikkalasi ham yo'q bo'lsa, savol varaqqa tushadi.
-- Karta: Savol n / 4
+- Karta: Savol (sanoq tugmada «Yana N savol qoldi») *(✎ F-1015-120, 208-qonun 0-band: takror olindi)*
 - Javob tugmalari: Ish hali bo'lmagan · Javob savolda aytilgan · Varaqqa tushadi
 - Savollar (✔ to'g'ri javob → izoh):
   1. Botni oxirgi marta qachon ochgansiz? — ✔ Varaqqa tushadi → Bo'lib o'tgan kun so'raldi — odam kunni o'zi aytadi.
@@ -259,19 +259,20 @@ Holat: 04.10.2026 — kodga mos
 ## 15 · Yakun
 15-ekran.
 - Eyebrow: Dars yakuni
-- Belgi: ✓ Suhbat varag'i tayyor
+- Belgi: ✓ Dars tugadi · Testlar: N/N ✎ F-1015-161
 - Sarlavha: **Uchta savol berdingiz va eshitganingizni yozdingiz.** (yonida: n/4 to'g'ri javob)
-- Bugungi asosiy fikr — Javob sizda emas: uni botingizni ishlatgan odam biladi.
-- Arena tugmasi: 12 SAVOL · 15 SONIYA · PODIUM · (jonli darsda mentor boshlamaguncha) Mentorni kuting
+- Arena tugmasi: (jonli darsda mentor boshlamaguncha) Mentorni kuting
 - ✓ Endi siz bilasiz:
   - Botni ishlatgan odamdan bo'lib o'tgan ishini so'rash — suhbat.
   - Bo'lib o'tgan ishni so'ragan savol — voqea savoli.
   - Javobidan bo'lib o'tgan ish bilinmaydigan savol — bo'sh savol.
   - Varaqqa xulosangiz emas, eshitgan javob tushadi — u aytganidek.
-- Nishonlaringiz — n/4
 - Uyga vazifa · Amaliy topshiriqni bajarish →
+- Nishonlaringiz — n/4
 - Keyingi dars — **«Foydalanuvchi fikri va iteratsiya».** Botga kelgan fikrlarni saralab, qaysi birini birinchi tuzatishni tanlaysiz.
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10, S2-A): «To'liq / Qisqa» tanlovi qoladi; karta banner ostida JOYIDA ochiladi (popup/varaq yo'q — PM 77/58 dagi qatlam yechimi bekor), «Topshiriq kartasi · TO'LIQ» sarlavha-qatori olindi (tanlangan chip bilan takror), maydonlar quti, qadamlar raqam-doira, bitta ustun; «Keyingi dars» karta ichida; HW ochilganda Yakun siqilmaydi (:has(.hw-chips) qoidalari olindi), banner 138px.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Good Listener** (4-ekran) — To'rt savolni berdingiz va varaqqa tushadigan qatorni birinchi urinishda topdingiz

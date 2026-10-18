@@ -1,0 +1,2345 @@
+[
+ {
+  "key": "m6-01",
+  "mode": "self",
+  "screens": 19,
+  "total": 19,
+  "clicks": 31,
+  "realFound": false,
+  "findings": [
+   {
+    "screen": 18,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Data Keeper »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 18,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Data Keeper »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 18,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Data Keeper »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m6-03",
+  "mode": "self",
+  "screens": 20,
+  "total": 20,
+  "clicks": 40,
+  "realFound": false,
+  "findings": [
+   {
+    "screen": 19,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 Role Mapp»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 Role Mapp»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 Role Mapp»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m6-04",
+  "mode": "self",
+  "screens": 20,
+  "total": 20,
+  "clicks": 39,
+  "realFound": false,
+  "findings": [
+   {
+    "screen": 19,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 Chat vs A»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 Chat vs A»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 Chat vs A»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m6-05",
+  "mode": "self",
+  "screens": 20,
+  "total": 20,
+  "clicks": 40,
+  "realFound": false,
+  "findings": [
+   {
+    "screen": 19,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 Right Ski»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 Right Ski»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 Right Ski»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m6-07",
+  "mode": "self",
+  "screens": 20,
+  "total": 20,
+  "clicks": 38,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 16,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 42,
+      "who": "button.lp-done-btn «Yana 5 qadam»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 16,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 42,
+      "who": "button.lp-done-btn «Yana 4 qadam»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 16,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 42,
+      "who": "button.lp-done-btn «Yana 5 qadam»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 Clear Tri»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 Clear Tri»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 Clear Tri»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m6-08",
+  "mode": "self",
+  "screens": 21,
+  "total": 21,
+  "clicks": 45,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 3,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 17,
+      "who": "button.btn «▶ Buyurtmani boshlash»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 3,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 17,
+      "who": "button.btn «Keyingi qadam →»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 17,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 72,
+      "who": "button.lp-done-btn «Yana 5 qadam»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 17,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 72,
+      "who": "button.lp-done-btn «Yana 4 qadam»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 17,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 72,
+      "who": "button.lp-done-btn «Yana 5 qadam»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 20,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 226,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 Full Pipe»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 20,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 226,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 Full Pipe»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 20,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 226,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 Full Pipe»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m6-09",
+  "mode": "self",
+  "screens": 20,
+  "total": 20,
+  "clicks": 41,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 16,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 72,
+      "who": "button.lp-done-btn «Yana 6 qadam»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 16,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 72,
+      "who": "button.lp-done-btn «Yana 5 qadam»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 16,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 72,
+      "who": "button.lp-done-btn «Yana 6 qadam»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 RN Start »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 RN Start »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 RN Start »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m6-10",
+  "mode": "self",
+  "screens": 20,
+  "total": 20,
+  "clicks": 43,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 3,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 22,
+      "who": "div.frame-success.fade-step «3 ta mahsulot — 3 qator, avtomatik. »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 3,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 22,
+      "who": "div.frame-success.fade-step «3 ta mahsulot — 3 qator, avtomatik. »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 16,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 216,
+      "who": "button.lp-done-btn «Yana 5 qadam»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 16,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 216,
+      "who": "button.lp-done-btn «Yana 4 qadam»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 16,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 216,
+      "who": "button.lp-done-btn «Yana 5 qadam»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 List Buil»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 List Buil»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 List Buil»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m6-11",
+  "mode": "self",
+  "screens": 20,
+  "total": 20,
+  "clicks": 41,
+  "realFound": false,
+  "findings": [
+   {
+    "screen": 19,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 226,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 API Conne»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 226,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 API Conne»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 226,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 API Conne»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m6-13",
+  "mode": "self",
+  "screens": 21,
+  "total": 21,
+  "clicks": 43,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 16,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 12,
+      "who": "button.lp-done-btn «Yana 6 qadam»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 16,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 12,
+      "who": "button.lp-done-btn «Yana 5 qadam»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 16,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 12,
+      "who": "button.lp-done-btn «Yana 6 qadam»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 20,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 226,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 One Syste»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 20,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 226,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 One Syste»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 20,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 226,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 One Syste»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m7-01",
+  "mode": "self",
+  "screens": 17,
+  "total": 17,
+  "clicks": 25,
+  "realFound": false,
+  "findings": [
+   {
+    "screen": 9,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [
+     {
+      "el": "span.ak-matn",
+      "over": 19,
+      "w": 396,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "anywhere",
+      "clip": "span.ak-matn",
+      "txt": "To'garak qaysi xonada ekanini bilmay, o'quvc"
+     },
+     {
+      "el": "span.ak-matn",
+      "over": 9,
+      "w": 409,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "anywhere",
+      "clip": "span.ak-matn",
+      "txt": "Maktab oldida velosiped qo'yadigan joy yo'q "
+     },
+     {
+      "el": "span.ak-matn",
+      "over": 48,
+      "w": 409,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "anywhere",
+      "clip": "span.ak-matn",
+      "txt": "Kechqurun ko'cha chirog'i yonmaydi — o'smirl"
+     },
+     {
+      "el": "span.ak-matn",
+      "over": 79,
+      "w": 389,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "anywhere",
+      "clip": "span.ak-matn",
+      "txt": "Suv qachon o'chirilishini qo'shnilar kech bi"
+     }
+    ],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 9,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [
+     {
+      "el": "span.ak-matn",
+      "over": 19,
+      "w": 396,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "anywhere",
+      "clip": "span.ak-matn",
+      "txt": "To'garak qaysi xonada ekanini bilmay, o'quvc"
+     },
+     {
+      "el": "span.ak-matn",
+      "over": 9,
+      "w": 409,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "anywhere",
+      "clip": "span.ak-matn",
+      "txt": "Maktab oldida velosiped qo'yadigan joy yo'q "
+     },
+     {
+      "el": "span.ak-matn",
+      "over": 48,
+      "w": 409,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "anywhere",
+      "clip": "span.ak-matn",
+      "txt": "Kechqurun ko'cha chirog'i yonmaydi — o'smirl"
+     },
+     {
+      "el": "span.ak-matn",
+      "over": 79,
+      "w": 389,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "anywhere",
+      "clip": "span.ak-matn",
+      "txt": "Suv qachon o'chirilishini qo'shnilar kech bi"
+     }
+    ],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 9,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [
+     {
+      "el": "span.ak-matn",
+      "over": 19,
+      "w": 396,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "anywhere",
+      "clip": "span.ak-matn",
+      "txt": "To'garak qaysi xonada ekanini bilmay, o'quvc"
+     },
+     {
+      "el": "span.ak-matn",
+      "over": 9,
+      "w": 409,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "anywhere",
+      "clip": "span.ak-matn",
+      "txt": "Maktab oldida velosiped qo'yadigan joy yo'q "
+     },
+     {
+      "el": "span.ak-matn",
+      "over": 48,
+      "w": 409,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "anywhere",
+      "clip": "span.ak-matn",
+      "txt": "Kechqurun ko'cha chirog'i yonmaydi — o'smirl"
+     },
+     {
+      "el": "span.ak-matn",
+      "over": 79,
+      "w": 389,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "anywhere",
+      "clip": "span.ak-matn",
+      "txt": "Suv qachon o'chirilishini qo'shnilar kech bi"
+     }
+    ],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 16,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 201,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Product Spot»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 16,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 476,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Product Spot»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 16,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 476,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Product Spot»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m7-02",
+  "mode": "self",
+  "screens": 16,
+  "total": 16,
+  "clicks": 23,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 1,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": [
+     {
+      "el": "span.fi-sh-matn",
+      "gap": 0,
+      "txt": "«"
+     }
+    ]
+   },
+   {
+    "screen": 9,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 17,
+      "who": "div.fi-sh.ustun «SHABLON Kim bilan yoningizdagi odam »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 9,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 65,
+      "who": "div.fi-sh.ustun «SHABLON Kim bilan yoningizdagi odam »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 9,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 65,
+      "who": "div.fi-sh.ustun «SHABLON Kim bilan yoningizdagi odam »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 12,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 22,
+      "who": "p.q-izoh «O'sha kunni so'rang: «O'shanda nima »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 15,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 243,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 First Record»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 15,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 567,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 First Record»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 15,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 567,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 First Record»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m7-03",
+  "mode": "self",
+  "screens": 17,
+  "total": 17,
+  "clicks": 24,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 62,
+      "who": "div.q-karta «Kod yozuvlar[4] ni chiqarsa, termina»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 62,
+      "who": "div.q-karta «Kod yozuvlar[4] ni chiqarsa, termina»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 62,
+      "who": "div.q-karta «Kod yozuvlar[4] ni chiqarsa, termina»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 16,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 290,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Pattern Spot»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 16,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 586,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Pattern Spot»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 16,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 586,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Pattern Spot»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m7-04",
+  "mode": "self",
+  "screens": 18,
+  "total": 18,
+  "clicks": 29,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 7,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 39,
+      "who": "div.mz-chizma «O'yinchi Maydon egasi Sayt · React M»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 17,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 314,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/5 🔒 Booking Guar»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 17,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 502,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/5 🔒 Booking Guar»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 17,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 502,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/5 🔒 Booking Guar»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m7-05",
+  "mode": "self",
+  "screens": 20,
+  "total": 20,
+  "clicks": 33,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 22,
+      "who": "div.an-sayt «localhost:5173 Maydon Shanba 16:00–1»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 24,
+      "who": "li «1 O'yinchi katakni bosadi»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 10,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 213,
+      "who": "div.an-kod «App.jsx import { motion, AnimatePres»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 10,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 213,
+      "who": "div.an-kod «App.jsx import { motion, AnimatePres»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 10,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 213,
+      "who": "div.an-kod «App.jsx import { motion, AnimatePres»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 326,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/5 🔒 Smooth Press»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 514,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/5 🔒 Smooth Press»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 514,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/5 🔒 Smooth Press»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m7-06",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 20,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 3,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 14,
+      "who": "div.ad-panel «1-kun 2-kun 3-kun 4-kun 5-kun Maydon»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 7,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 61,
+      "who": "span.ad-ortda-iz «— web/.env o'zgarmaydi»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 7,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 61,
+      "who": "span.ad-ortda-iz «— web/.env o'zgarmaydi»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 7,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 61,
+      "who": "span.ad-ortda-iz «— web/.env o'zgarmaydi»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 8,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 14,
+      "who": "div.q-test-javob.qayta «QAYTADAN URINIB KO'RING Skript bo'l»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 281,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Drop Spotter»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 566,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Drop Spotter»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 566,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Drop Spotter»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m7-07",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 19,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 26,
+      "who": "div.q-karta.mf-bk «BO'LAK 2 / 4 Bu bo'lak promptga kera»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 57,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/3 🔒 Three Parts »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m7-08",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 19,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 0,
+    "step": 0,
+    "clip": [
+     {
+      "el": "div.dm-kq",
+      "cut": 171,
+      "txt": "16:00 bo'sh 17:00 band 18:00 bo'sh 19:00 bo'"
+     }
+    ],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 0,
+    "step": 1,
+    "clip": [
+     {
+      "el": "div.dm-kq",
+      "cut": 171,
+      "txt": "16:00 bo'sh 17:00 band 18:00 bo'sh 19:00 bo'"
+     }
+    ],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 0,
+    "step": 2,
+    "clip": [
+     {
+      "el": "div.dm-kq",
+      "cut": 171,
+      "txt": "16:00 bo'sh 17:00 band 18:00 bo'sh 19:00 bo'"
+     }
+    ],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [
+     {
+      "el": "div.dm-kq",
+      "cut": 171,
+      "txt": "16:00 bo'sh 17:00 band 18:00 bo'sh 19:00 bo'"
+     }
+    ],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 73,
+      "who": "div.dm-tel.dm-diz «Shanba Du Se Ch Pa Ju Sh Ya 16:00 17»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 2,
+    "step": 1,
+    "clip": [
+     {
+      "el": "div.dm-kq",
+      "cut": 171,
+      "txt": "16:00 bo'sh 17:00 band 18:00 bo'sh 19:00 bo'"
+     }
+    ],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 2,
+    "step": 2,
+    "clip": [
+     {
+      "el": "div.dm-kq",
+      "cut": 171,
+      "txt": "16:00 bo'sh 17:00 band 18:00 bo'sh 19:00 bo'"
+     }
+    ],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 7,
+      "who": "code.q-blok-buyruq «git checkout -f dars-08-start»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 7,
+      "who": "code.q-blok-buyruq «git checkout -f dars-08-start»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 7,
+      "who": "code.q-blok-buyruq «git checkout -f dars-08-start»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 7,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 54,
+      "who": "code.q-blok-buyruq «git checkout -f dars-08-done»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 7,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 54,
+      "who": "code.q-blok-buyruq «git checkout -f dars-08-done»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 7,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 54,
+      "who": "code.q-blok-buyruq «git checkout -f dars-08-done»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 201,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Pattern Pick»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 469,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Pattern Pick»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 2,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 469,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Pattern Pick»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m7-09",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 17,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 3,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": [
+     {
+      "el": "span.q-joy",
+      "gap": 0,
+      "txt": "{o'yinchidan nima so'ralsin}"
+     }
+    ]
+   },
+   {
+    "screen": 5,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 21,
+      "who": "div.mc-db «DATABASE bandlar kun soat ism telefo»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": [
+     {
+      "el": "span.q-joy",
+      "gap": 0,
+      "txt": "{egaga nima ko'rinsin}"
+     },
+     {
+      "el": "span.q-joy",
+      "gap": 0,
+      "txt": "{o'yinchi sahifasida nima ko'r"
+     }
+    ]
+   },
+   {
+    "screen": 8,
+    "step": 1,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": [
+     {
+      "el": "span.q-joy",
+      "gap": 0,
+      "txt": "{Render manzilingiz}"
+     }
+    ]
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 86,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/3 🔒 One Booking »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m7-10",
+  "mode": "self",
+  "screens": 13,
+  "total": 16,
+  "clicks": 20,
+  "realFound": false,
+  "findings": [],
+  "errs": [
+   "NAV: page.waitForTimeout: Target page, context or browser has bee"
+  ],
+  "vp": "1280x773"
+ }
+]

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mentor fidbek qarorlari</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* Qaror varag'i: mentor surati, bizning ikki surat, tashxis, qaysi darslar, variantlar, nusxalash */
+:root {
+  --bg: #F6F4F1; --card: #FFFFFF; --ink: #1B1A19; --ink2: #5E5A55; --line: #E4DFD8;
+  --accent: #E8481F; --accent-soft: #FDE9E2; --ok: #157A43; --ok-soft: #E3F4EA; --warn: #9A6400; --warn-soft: #FBF1DC;
+  --f-body: 'Manrope', system-ui, sans-serif; --f-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #171615; --card: #22201E; --ink: #F1EEEA; --ink2: #ABA59D; --line: #35322E;
+  --accent: #FF7A4D; --accent-soft: #3A2219; --ok: #5BD08E; --ok-soft: #173024; --warn: #E8B451; --warn-soft: #33280F; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #171615; --card: #22201E; --ink: #F1EEEA; --ink2: #ABA59D; --line: #35322E;
+  --accent: #FF7A4D; --accent-soft: #3A2219; --ok: #5BD08E; --ok-soft: #173024; --warn: #E8B451; --warn-soft: #33280F; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 960px; margin: 0 auto; padding-block: 28px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 20px; }
+h1 { font-size: clamp(24px, 4vw, 32px); font-weight: 800; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+.lead { color: var(--ink2); margin: 6px 0 0; max-width: 72ch; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+section { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: grid; gap: 12px; min-width: 0; }
+h2 { font-size: 19px; margin: 0; font-weight: 800; text-wrap: balance; }
+h3 { font-size: 15px; margin: 4px 0 0; font-weight: 800; }
+p, li { max-width: 74ch; } p { margin: 0; } ul, ol { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
+code { font-family: var(--f-mono); font-size: 0.88em; background: var(--accent-soft); color: var(--ink); padding: 1px 5px; border-radius: 4px; }
+figure { margin: 0; display: grid; gap: 6px; min-width: 0; }
+figure img { width: 100%; border-radius: 8px; border: 1px solid var(--line); display: block; }
+figcaption { font-size: 13px; color: var(--ink2); }
+.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink2); }
+.k { font-family: var(--f-mono); font-size: 11px; border-radius: 99px; padding: 1px 7px; white-space: nowrap; }
+.k.bad { background: var(--accent-soft); color: var(--accent); } .k.ok { background: var(--ok-soft); color: var(--ok); } .k.warn { background: var(--warn-soft); color: var(--warn); }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 10px; align-items: flex-start; border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 12px; cursor: pointer; }
+.opt:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.opt input { margin-top: 4px; accent-color: var(--accent); }
+.opt b { display: block; } .opt span { color: var(--ink2); font-size: 14px; }
+.rec { font-family: var(--f-mono); font-size: 11px; color: var(--ok); background: var(--ok-soft); border-radius: 99px; padding: 1px 8px; margin-left: 6px; white-space: nowrap; font-style: normal; }
+textarea { width: 100%; box-sizing: border-box; min-height: 40px; border: 1.5px solid var(--line); border-radius: 10px; padding: 8px 10px; font: inherit; background: var(--card); color: var(--ink); resize: vertical; }
+details.past { background: transparent; border: 1px dashed var(--line); border-radius: 12px; padding: 12px 16px; color: var(--ink2); font-size: 14px; }
+details.past summary { cursor: pointer; font-weight: 700; color: var(--ink); }
+pre { margin: 0; font-family: var(--f-mono); font-size: 13px; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 12px; white-space: pre-wrap; overflow-x: auto; }
+button { font: inherit; font-weight: 800; background: var(--accent); color: #fff; border: none; border-radius: 10px; padding: 11px 18px; cursor: pointer; justify-self: start; }
+button:focus-visible, .opt:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+#copied { color: var(--ok); font-size: 14px; }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">LMS 3 · 1-praktika «Saytni jonlantirish» (m2-08) · F-1017-225 · 17.10</div>
+    <h1>Mentor fidbek qarorlari</h1>
+    <p class="lead"><b>✅ Bajarildi 18.10 00:40 (qaror A, avtopilot):</b> 71 darsda «Yakunlash» → «Yakunlandi ✓» + xabar, CODE STRIKE server xatosida xabar + mashq arenasi; DE 220. Jurnal: <code>feedback/F-1017-mentor-2-6M/JURNAL.md</code>. Quyidagisi — qaror paytidagi tashxis.</p>
+    <p class="lead">Mentor: «CODE STRIKE va Yakunlash ishlamayapti». Tekshirdim: bu bitta darsning xatosi emas — yakun ekrani hamma darsda bir xil qurilgan. Ikki tugma ikki xil sababdan «o'lik» ko'rinadi. Pastda dalil, sabab va variantlar.</p>
+  </header>
+
+  <details class="past">
+    <summary>Oldingi qarorlar (bajarilgan)</summary>
+    <p>202 · 204 · 213 («Buyurtma yo'li» 4 blok olindi) · 215 («Sahifa yig'amiz» A) · 216 (Tarozi A) · 221 (ReactFirstComponent A′ 23→19) · <b>225 (yakun ekrani A — 71 dars, DE 220)</b>.</p>
+  </details>
+
+  <section>
+    <h2>Mentor ko'rgani va bizda bo'lgani</h2>
+    <div class="shots">
+      <figure><img src="img/yk-mentor.png" alt="Mentor surati: yakun ekrani, CODE STRIKE va Uyga vazifa"><figcaption><b>Mentor (LMS, 17.10):</b> yakun ekrani — CODE STRIKE va pastdagi «Yakunlash ✓» bosilganda hech nima bo'lmaydi.</figcaption></figure>
+      <figure><img src="img/yk-arena.png" alt="Bizda: CODE STRIKE bosilganda arena ochildi"><figcaption><b>Bizda, solo rejimda:</b> CODE STRIKE bosildi → arena ochildi (12 savol · 15 soniya). Ya'ni tugmaning o'zi buzilmagan.</figcaption></figure>
+      <figure><img src="img/yk-yakunlash.png" alt="Bizda: Yakunlash bosilgandan keyin ekran o'zgarmadi"><figcaption><b>Bizda, «Yakunlash ✓» bosilgandan KEYIN:</b> ekran aynan shunday qoldi. Natija LMS'ga uzatildi (tekshirildi), lekin dars o'zi hech narsa ko'rsatmaydi.</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>Sabab — ikki tugma, ikki xil sabab</h2>
+    <h3>1 · «Yakunlash ✓» — dars natijani LMS'ga beradi va jim turadi</h3>
+    <p>Tugma bosilganda dars natijani LMS'ga uzatadi (<code>onFinished</code>), o'zi esa ekranda hech narsa o'zgartirmaydi — «Yakunlandi» yozuvi ham, tugmaning o'chishi ham yo'q. Ekranni yopish LMS ishi. <b>O'quvchi</b> uchun LMS natijani qabul qilib darsni yopadi — shuning uchun o'quvchida «ishlaydi». <b>Mentor</b> uchun LMS natijani olmaydi (mentor-sahifa, Bilimlar bazasi, yakshanbadan keyingi preview — LMS o'zi «bo'sh funksiya beraman» degan, IT javobi §6) → tugma bosilgan, lekin hech narsa ko'rinmaydi.</p>
+    <p>Bu barcha LMS 2–6 darslarida bir xil: birortasida ham yakundan keyingi holat yo'q (31 ta dars tekshirildi — 0 ta).</p>
+    <h3>2 · CODE STRIKE — rejimga qarab</h3>
+    <ul>
+      <li><b>Solo</b> (token yo'q, yakshanbadan keyin Bilimlar bazasi preview'i ham shu): bosilganda arena ochiladi — ishlaydi (surat).</li>
+      <li><b>Mentor-rejim</b> (Davomat'dan jonli dars tokeni bilan ochilgan): bosilganda serverga «arena lobbisini och» so'rovi ketadi; server xato qaytarsa dars <b>jim qaytadi</b> — xabar ham, arena ham yo'q. Mentor aynan shuni ko'rgan bo'lishi mumkin.</li>
+      <li><b>O'quvchi-rejim</b>, mentor arenani ochmagan: banner xira, ostida «⏳ Mentorni kuting» — bu ataylab.</li>
+    </ul>
+    <p>Mentor qaysi rejimda bo'lgani suratdan ko'rinmaydi — <b>qayerdan ochganini so'rash kerak</b> (pastda savol). Server loglarini (Dozzle) ko'rishga ruxsat berilmadi.</p>
+  </section>
+
+  <section>
+    <h2>Qaysi darslar</h2>
+    <div class="tbl"><table>
+      <tr><th>Nima</th><th>Qamrov (LMS 2–6)</th><th>Holat</th></tr>
+      <tr><td>«Yakunlash ✓» dars ichida hech narsa ko'rsatmaydi</td><td>hamma dars (uy vazifalari ham)</td><td><span class="k bad">70/70</span></td></tr>
+      <tr><td>CODE STRIKE mentor-rejimda server xatosini jim yutadi</td><td>hamma dars, 5 tasi boshqacha yozilgan (PmLesson3·4·6·7, ReactRouterPractice — alohida ko'riladi)</td><td><span class="k bad">65+</span></td></tr>
+      <tr><td>CODE STRIKE solo / preview</td><td>—</td><td><span class="k ok">ishlaydi</span></td></tr>
+    </table></div>
+    <p>Demak «muammoli darslar» ro'yxati yo'q — mexanizm hamma darsda bitta. Tuzatish ham bitta qolip bilan hammasiga.</p>
+  </section>
+
+  <section>
+    <h2>Variantlar</h2>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q1" value="A — ikkalasi, 70 darsda bir xil (Yakunlash tasdig'i + CODE STRIKE xato-xabari va solo arena)" id="q1a" checked><div><b>A · Ikkalasi, hamma darsda bir xil <em class="rec">tavsiya</em></b><span>(1) «Yakunlash ✓» bosilgach tugma «Yakunlandi ✓» bo'ladi, qisqa xabar chiqadi (LMS yopmasa ham ko'rinadi). (2) CODE STRIKE mentor-rejimda server xato bersa — xabar + arena solo ochiladi. 70 fayl → KATTA ro'yxatiga, nazorat seansida bitta codemod bilan.</span></div></label>
+      <label class="opt"><input type="radio" name="q1" value="B — faqat Yakunlash tasdig'i (70 dars); CODE STRIKE tegilmaydi" id="q1b"><div><b>B · Faqat «Yakunlash» tasdig'i</b><span>CODE STRIKE yakshanbadan keyin preview'da o'zi ishlaydi; mentor-rejim jim-xatosi qoladi.</span></div></label>
+      <label class="opt"><input type="radio" name="q1" value="C — darsga tegilmaydi; LMS'dan so'raladi: mentor/preview sahifasi onFinished'da darsni yopsin" id="q1c"><div><b>C · Dars tomonida hech narsa, LMS'ga xat</b><span>Mentor-sahifa va preview «Yakunlash»da darsni yopsin — ularning ishi. Kutish uzoq bo'lishi mumkin.</span></div></label>
+    </div>
+    <textarea id="q1n" placeholder="Izoh"></textarea>
+    <h3>Qachon?</h3>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q2" value="yakshanba relizidan KEYIN" id="q2a" checked><div><b>Yakshanba (18.10) relizidan keyin <em class="rec">tavsiya</em></b><span>70 fayl qayta yig'iladi — relizga 1 kun qolganda xavfli.</span></div></label>
+      <label class="opt"><input type="radio" name="q2" value="relizdan OLDIN, shu hafta oxiri" id="q2b"><div><b>Relizdan oldin</b><span>Relizga kirsin — ammo 70 dars qayta tekshiriladi.</span></div></label>
+    </div>
+    <h3>Mentor darsni qayerdan ochgan? (bilsangiz)</h3>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q3" value="Davomat / jonli dars tugmasi (mentor-rejim)" id="q3a"><div><b>Davomat — jonli dars tugmasi</b><span>Mentor-rejim: CODE STRIKE server so'rovi jim yiqilgan bo'lishi mumkin.</span></div></label>
+      <label class="opt"><input type="radio" name="q3" value="Bilimlar bazasi" id="q3b"><div><b>Bilimlar bazasi</b><span>Hozir (relizgacha) u ham mentor-token bilan ochiladi.</span></div></label>
+      <label class="opt"><input type="radio" name="q3" value="o'quvchi akkaunti" id="q3c"><div><b>O'quvchi akkaunti bilan</b><span>Banner xira + «Mentorni kuting» — ataylab.</span></div></label>
+      <label class="opt"><input type="radio" name="q3" value="bilmayman" id="q3d" checked><div><b>Bilmayman</b><span>Mentordan so'rab beraman.</span></div></label>
+    </div>
+  </section>
+
+  <section>
+    <h2>Javob</h2>
+    <pre id="out"></pre>
+    <button type="button" id="copy">Javobni nusxalash</button>
+    <span id="copied" hidden>Nusxalandi, chatga qo'ying.</span>
+  </section>
+</div>
+
+<script>
+const val = n => (document.querySelector(`input[name="${n}"]:checked`) || {}).value || '—';
+const note = id => { const t = document.getElementById(id).value.trim(); return t ? ` · izoh: ${t}` : ''; };
+function render() { document.getElementById('out').textContent = `F-1017-225 qaror\n1 (yakun ekrani): ${val('q1')}${note('q1n')}\n2 (qachon): ${val('q2')}\n3 (mentor qayerdan ochgan): ${val('q3')}`; }
+document.querySelectorAll('input, textarea').forEach(e => e.addEventListener('input', render));
+render();
+document.getElementById('copy').addEventListener('click', () => {
+  const t = document.getElementById('out').textContent, ok = document.getElementById('copied');
+  navigator.clipboard.writeText(t).then(() => { ok.hidden = false; }).catch(() => {
+    const r = document.createRange(); r.selectNodeContents(document.getElementById('out'));
+    const s = getSelection(); s.removeAllRanges(); s.addRange(r); ok.textContent = 'Matn belgilandi, Ctrl+C bosing.'; ok.hidden = false;
+  });
+});
+</script>
+</html>

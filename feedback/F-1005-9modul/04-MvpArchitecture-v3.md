@@ -99,7 +99,7 @@ Tashqi audit (ChatGPT) Filtri: `04-FILTR.md` — 05.10.2026 qo'llandi.
 - Eyebrow: Tushuncha · qismlar
 - Sarlavha: **Har ishni qaysi qism bajaradi?** (30)
 - Mentor: Har ish bitta qismda bajariladi — shunda agentga qayerga yozishni aniq aytasiz. Kartadagi ish qaysi qismda bajarilsa, o'sha qismni bosing. (F-1005-95 A: ishlar bittadan karta)
-- Bashorat (ballsiz, yorliq «Avval o'zingiz belgilab ko'ring»): **«Maydon» MVP siga nechta qism kerak?** · Bitta · Uchta · Beshta — tanlov saqlanadi.
+- Bashorat yo'q — saralashning o'zi topshiriq (181 faqat bosib ko'riladigan ekranga); ish kartasida «N / 6» yo'q — tugma aytadi. *(✎ F-1015-114, 208-qonun 0-band: takror olindi)*
 - Chap — MVP kartasi (kichik, 3-darsdan): Kun bo'yicha vaqt kataklari · Katakni band qilish · Egasi uchun bandlar ro'yxati. Ostida 6 ish-tugmasi (aralash):
   Kataklarni ko'rsatadi · Band katakni boshqa rangda chizadi · Katak bo'shligini tekshiradi · Ega parolini tekshiradi · Bandni saqlaydi · Eslatma yuboradi
 - O'ng — chizma: Sayt · Backend · Database kulrang (texnologiya nomisiz — 9-ekranda yoziladi) + chetda uzuq chiziqli **«Keyin»** qutisi (joylash zonasi).
@@ -112,10 +112,9 @@ Tashqi audit (ChatGPT) Filtri: `04-FILTR.md` — 05.10.2026 qo'llandi.
   - Ega parolini tekshiradi: Parolni brauzerda tekshirish xavfli — bu Backend ishi. (54)
   - Bandni saqlaydi: Sahifa yopilsa ham band qolsin — bu Database ishi. (50)
   - Eslatma yuboradi (uch qismdan biriga): Eslatma «keyin» ro'yxatida — bugungi chizmaga kirmaydi. (55)
-- Natija qatori: «Taxminingiz: … · haqiqatda: uchta» (yoki «Taxminingiz to'g'ri chiqdi»).
 - Xulosa (6/6): Bu MVP da uch qism yetadi: sayt ko'rsatadi, Backend qoidani tekshiradi, Database bandlarni saqlaydi. (100)
 - Tugadi (199): harakat paneli yopiladi, chizma butun enga chiqadi; vizual ⛶ ichida (q17).
-- Tugmalar: Orqaga · Avval o'zingiz belgilab ko'ring → 6 ishni joylang (N/6) → Davom etish
+- Tugmalar: Orqaga · 6 ishni joylang (N/6) → Davom etish
 
 ## 3 · 1-savol (jonli ball)  ← QTest
 - Eyebrow: Mashq · 1-savol · yorliq «To'g'ri javobni tanlang»
@@ -136,15 +135,15 @@ Tashqi audit (ChatGPT) Filtri: `04-FILTR.md` — 05.10.2026 qo'llandi.
 - Eyebrow: Tushuncha · ma'lumot
 - Sarlavha: **Bitta band uchun nimani yozib qo'yamiz?** (39)
 - Mentor: Egasi har bandda kim va qachon kelishini bilishi kerak. Formaga va katakka qarab, kerakli ustunlarni bosing.
-- Chap — sayt maketi (chizmadagi Sayt tugunining kattasi): Shanba · 18:00 tanlangan · forma: Ism «Ali» · Telefon «+998 90 000 00 01» · «Band qilish» (hozircha xira).
+- Chap — sayt maketi (chizmadagi Sayt tugunining kattasi): Shanba · 18:00 tanlangan · forma: Ism «Ali» · Telefon «+998 90 000 00 01» (tugma hali yo'q). *(✎ F-1015-164: xira «Band qilish» olindi)*
   Ostida 6 ustun-tugmasi: `kun` · `soat` · `ism` · `telefon` · `baho` · `tolov`
 - O'ng — Database tugunidagi jadval kartasi `bandlar`: `id` va `yaratilgan` kulrang turibdi, yonida izoh «Database o'zi to'ldiradi»; to'rtta bo'sh ustun uzuq chiziqli (hisoblagich N/4).
 - **Harakat → Vizual o'zgarish:** ustun-tugmasini bosish → to'g'ri bo'lsa ustun jadval sarlavhasiga kiradi va sayt maketida mos joy bir lahza yonadi
   (`kun` → «‹ Shanba ›» · `soat` → 18:00 katagi · `ism`, `telefon` → forma qatorlari). Noto'g'ri → tugma silkinadi, bir qator:
   - `baho`: Baho «qilmaymiz» ro'yxatida — jadvalga kirmaydi. (48)
   - `tolov`: To'lov «keyin» ro'yxatida — bugun ustun ochilmaydi. (51)
-  4/4 da «Band qilish» yonadi → o'quvchi bosadi → jadvalga birinchi qator tushadi: `1 · 2026-10-10 · 18:00 · Ali · +998 90 000 00 01 · 2026-10-05 14:02`;
-  sayt maketida 18:00 katagi band rangga o'tadi.
+  4/4 da formada «Band qilish» paydo bo'ladi (halqa bilan) → o'quvchi bosadi → jadvalga birinchi qator tushadi: `1 · 2026-10-10 · 18:00 · Ali · +998 90 000 00 01 · 2026-10-05 14:02`;
+  sayt maketida 18:00 katagi band rangga o'tadi, tugma o'rnida yashil «Band qilindi» (0-ekrandagidek). *(✎ F-1015-164)*
 - Joriy qator (qator tushgach, bitta): Jadvaldagi har qator — bitta band.
 - Xulosa: Ustunlar bugungi funksiyalardan chiqadi: kun, soat, ism, telefon. Baho va to'lov jadvalga kirmaydi. (99)
 - Qator (`QIzoh`, xulosadan keyin; audit 1, 3): `kun` — sana, `telefon` — matn (+998 va bo'shliq son emas). Bir xil kun va soat jadvalda ikki marta turmaydi. (109)
@@ -193,6 +192,7 @@ Tashqi audit (ChatGPT) Filtri: `04-FILTR.md` — 05.10.2026 qo'llandi.
 - Bashorat (ballsiz): **Tokensiz `GET /bandlar` nima qaytaradi?** · Bandlar ro'yxatini · Bo'sh ro'yxatni · 401 xatosini
 - Chapda qadam-ro'yxati (o'tgani ✓): 1 Ro'yxatni oching · 2 Parol bilan kiring · 3 Ro'yxatni qayta oching
 - O'ngda chizma: Maydon egasi → Sayt (ega sahifasi: «Bandlar» tugmasi · parol katagi · «Kirish») ↔ Backend (`.env` belgisi) → Database (`bandlar`, 2 qator).
+  Ega sahifasida tugma faqat o'z navbatida ko'rinadi: bashoratdan oldin — tugma yo'q (parol katagi turadi); 1- va 3-qadam — «Bandlar»; 2-qadam — «Kirish»; tugagach — ro'yxat. *(✎ F-1015-164: bosib bo'lmaydigan tugma olindi)*
 - **Harakat → Vizual o'zgarish:**
   1. «Bandlar» → konvert `GET /bandlar` (tokensiz) → Backend tuguni qizil yonadi, javob `401` → saytda «Avval kiring». Chizmada uchinchi yo'l qatori — qulf belgisi bilan.
   2. Parol (namuna «••••••») → «Kirish» → konvert `POST /kirish` → Backend parolni `.env` dagi `EGA_PAROLI` bilan solishtiradi, `✓` → javob — token
@@ -295,7 +295,7 @@ Tashqi audit (ChatGPT) Filtri: `04-FILTR.md` — 05.10.2026 qo'llandi.
 - Sarlavha: **«Maydon» Backend'ini oching va Database'ga ulang.** (49)
 - Mentor: Chizmadagi ikki qism bugun `maydon` papkasida paydo bo'ladi — «1 · Ochish»dan boshlang.
 - Qadamlar (bittadan ochiladi, har birida «Bajardim»):
-  1. **Ochish** — GitHub'da `github.com/Azizbekcrypto/maydon` → «Fork» (o'z nusxangiz). Terminalda: `git clone https://github.com/{sizning login}/maydon.git` · `cd maydon`, papkani Antigravity'da oching. neon.tech da New project oching (nom: `maydon`) va «Connection string» ni nusxalang.
+  1. **Ochish** — GitHub'da `github.com/Azizbekcrypto/maydon` → «Fork» (o'z nusxangiz). Unda faqat README bor — sayt va Backend'ni shu darsdan o'zingiz qurasiz (tayyor namuna — `yechim` tarmog'ida). Terminalda: `git clone https://github.com/{sizning login}/maydon.git` · `cd maydon`, papkani Antigravity'da oching. neon.tech da New project oching (nom: `maydon`) va «Connection string» ni nusxalang.
   2. **Prompt** — «Nusxalash»ni bosing va Antigravity'ga yuboring:
      > `maydon` papkasida `backend/` yarat — `README.md` dagi stack bo'yicha, port 3000.
      > `backend/.env` dagi `DATABASE_URL` bilan PostgreSQL'ga ulan. `.env` ni `.gitignore` ga qo'sh.
@@ -373,6 +373,7 @@ Tashqi audit (ChatGPT) Filtri: `04-FILTR.md` — 05.10.2026 qo'llandi.
   - Keyingi dars — «Animatsiya: interfeys javob beradi». Bugungi statik kataklar bosilganda javob beradigan bo'ladi.
 - Nishonlaringiz — N/5
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10, S1-A): uy vazifasi kartasi P-025 — sarlavha «Uyda nima qilasiz?» (bannerdagi «Uyga vazifa» bilan takror emas); maydonlar: Kim uchun — o'z MVP'ingiz · Nechta — 2 prompt · Muddat — keyingi darsgacha (qiymatlar topshiriq matnidan); qadamlar raqam-doira; «Keyingi dars» karta ichida; bezak emoji olindi.
 
 ---
 

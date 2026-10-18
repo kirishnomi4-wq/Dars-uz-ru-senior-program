@@ -54,11 +54,13 @@ Holat: 06.10.2026 — kodga mos
 - Maket: o'yinchi telefoni (`https://maydon-x7k2p9.netlify.app`) → `GET /vaqtlar` → app.netlify.com kartasi → Backend · Render → Database · Neon
   - Netlify kartasi: Yangi nom yozing (1/3) · Project name — maydon-x7k2p9 (ipucha `maydon-…`) · Saqlash
   - Noto'g'ri belgi yozilsa: Faqat kichik lotin harf, raqam va chiziqcha.
+  - «Saqlash» bashoratdan keyin chiqadi va doim bosiladi; nom yaroqsiz bo'lsa ostida qizil qator, kursor maydonga: (bo'sh) Avval yangi nomni yozing. · (eski nom) Bu eski nom — yangisini yozing. *(✎ F-1015-164)*
   - Backend · Render: `WEB_ORIGIN` · `https://maydon-x7k2p9.netlify.app` (bosiladi) · `GET /` · `GET /health`
 - Qadamlar:
   1. Yangi nom yozing → «Saqlash» — telefon manzili yangi nomga almashadi. Joriy qator: Nom o'zgarsa, manzil ham o'zgaradi.
   2. Saytni oching (2/3, telefon ostidagi tugma) — sahifada «Vaqtlarni yuklab bo'lmadi. Birozdan keyin urinib ko'ring.»; Backend · Render qizil — «ruxsat ro'yxatida yo'q». Joriy qator: Backend'ning ruxsat ro'yxatida (CORS) hali eski manzil turibdi.
   3. `WEB_ORIGIN` ni yangilang (3/3; telefon ostidagi tugma yoki Render'dagi `WEB_ORIGIN` qatori) — qiymat yangi manzilga almashadi, tugunda «deploy…», keyin «✓ 200», telefonda kataklar chiqadi.
+     Render'dagi `WEB_ORIGIN` qatori faqat shu qadamda bosiladi (halqa bilan); qolgan paytda — oddiy qiymat. *(✎ F-1015-164)*
 - Natija bloki:
   - Taxminingiz: … · haqiqatda: `WEB_ORIGIN` yangilangach chiqdi (to'g'ri bo'lsa: ✓ Taxminingiz to'g'ri chiqdi)
   - Netlify nomi o'zgarsa, manzil ham o'zgaradi. Yangi manzil Render'dagi `WEB_ORIGIN` ga yoziladi.
@@ -92,7 +94,7 @@ Holat: 06.10.2026 — kodga mos
   - Ha, ko'radi
   - Yo'q, ko'rmaydi
 - Maket: o'yinchi telefoni (manzil `http://maydon-mahalla.netlify.app`, yonida kulrang yorliq «faraz»; forma: 18:00 · Ism — Ali · Telefon — +998 90 000 00 01 · Band qilish) → bepul Wi-Fi → Backend · Render
-- Qadamlar (telefon ostidagi tugma, N/3):
+- Qadamlar (telefon ostidagi tugma; hisob «N/3» faqat pastki tugmada — F-1015-115):
   1. `http://` bilan yuboring — `POST /bandlar` ochiq yuradi; bepul Wi-Fi tugunida: `ism: Ali · telefon: +998 90 000 00 01`
   2. `https://` bilan yuboring — konvert qulfli yuradi; Wi-Fi tugunida: `k3#9Qz…`; Backend'ga ma'lumot to'liq yetadi. Joriy qator: Yo'lda o'qib bo'lmaydigan ko'rinishga aylantirish — shifrlash. Shifrlangan ulanish HTTPS deyiladi.
   3. Manzil chetidagi belgini bosing — panel: Connection is secure · sertifikat: `*.netlify.app`
@@ -203,7 +205,7 @@ Holat: 06.10.2026 — kodga mos
   - Ha, shu zahoti ochiladi
   - Yo'q, avval DNS, keyin sertifikat
 - Maket: o'yinchi telefoni (manzil `www.maydon-mahalla.uz`) → DNS → app.netlify.com · Domain management (`maydon-mahalla.netlify.app` ✓) · ostida «Domen sotuvchisi paneli» — Mentor misoli · maket · vaqt tezlashtirilgan
-- Qadamlar (telefon ostidagi tugma, N/3):
+- Qadamlar (telefon ostidagi tugma; hisob «N/3» faqat pastki tugmada — F-1015-115):
   1. Domenni Netlify'ga qo'shing — ro'yxatga `www.maydon-mahalla.uz` tushadi: Pending DNS verification; DNS qizil, telefonda: Saytga ulanib bo'lmadi
   2. DNS yozuvini qo'shing — sotuvchi panelida: `www` → `maydon-mahalla.netlify.app` · yozuv turi: CNAME; DNS ✓, domen qatori ✓. Joriy qator: Domen qaysi saytga olib borishini aytadigan yozuv — DNS yozuvi. DNS manzilni shu yozuvdan topadi.
   3. Sertifikatni tekshiring — Netlify kartasida: HTTPS · Let's Encrypt ✓; telefonda `https://www.maydon-mahalla.uz` — kataklar chiqadi.
@@ -343,6 +345,7 @@ Holat: 06.10.2026 — kodga mos
 - Katta tugma: Uyga vazifa · Amaliy topshiriqni bajarish → (fonda suzuvchi so'zlar: domen · HTTPS · /health · UptimeRobot) — bosilgach karta, pastdagi «Yakun» bo'limida.
 - Nishonlaringiz — N/5 (olingan nishonda nomi va tavsifi, olinmaganida faqat nomi)
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — sarlavha «Uyda nima qilasiz?», maydonlar katta quti (yorliq bosh harfda, «:» siz), qadamlar raqam-doira, «Keyingi dars» karta ichida (13.5px); qadam matni o'zgarmagan.
 
 ## Nishonlar
 - **Right Origin** — Nom o'zgargach WEB_ORIGIN ni yangilashni bildingiz (3-ekran, 1-savol — birinchi urinishda)

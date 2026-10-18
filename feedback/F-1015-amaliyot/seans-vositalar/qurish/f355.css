@@ -1,0 +1,23 @@
+        /* ===== F-1015-355 · m4c-05: Copilot Chat maketi, jurnal, diff (izohda backtick yo'q) ===== */
+        .lesson-root .ai-badge { background: #0B6E8F; }
+        .ci-tablo { margin-left: auto; font: 700 11.5px 'JetBrains Mono', monospace; border-radius: 6px; padding: 3px 8px; }
+        .ci-tablo.green { background: ${T.successSoft}; color: ${T.success}; }
+        .ci-tablo.red { background: #FAE3E0; color: #A3271D; }
+        .cp-bad { color: #FF9A8B; }
+        .cp-ok { color: #7DD181; }
+        .cp-skip { color: #94a3b8; }
+        .cp-chat { display: flex; flex-direction: column; gap: 10px; }
+        .cp-chat-h { display: flex; align-items: center; gap: 8px; font: 700 13px 'Manrope', sans-serif; color: ${T.ink2}; }
+        .cp-siz.cp-siz { margin: 0; align-self: flex-end; max-width: 92%; background: ${T.blueSoft}; color: ${T.ink}; border-radius: 12px 12px 4px 12px; padding: 8px 12px; font-size: 13.5px; }
+        .cp-javob { display: flex; flex-direction: column; gap: 8px; background: ${T.bg}; border-radius: 12px 12px 12px 4px; padding: 10px 12px; font-size: 13.5px; color: ${T.ink}; }
+        .cp-javob p { margin: 0; }
+        .cp-diff { border-radius: 8px; overflow-x: auto; background: ${CODE.bg}; font: 500 12.5px 'JetBrains Mono', monospace; }
+        .cp-diff > div { padding: 3px 10px; white-space: pre; }
+        .cp-diff-f { color: #cbd5e1; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .cp-del { color: #FFB4A8; background: rgba(239,68,68,0.16); }
+        .cp-add { color: #9BE7A5; background: rgba(74,222,128,0.14); }
+        .cp-rad { margin: 0; font: 700 12.5px 'Manrope', sans-serif; color: #A3271D; }
+        .cp-term { margin: 0; }
+        .ag-tek { display: flex; flex-direction: column; gap: 8px; }
+        .ag-tek-q { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: ${T.ink}; cursor: pointer; }
+        .ag-tek-q input { margin-top: 3px; accent-color: ${T.success}; width: 16px; height: 16px; }

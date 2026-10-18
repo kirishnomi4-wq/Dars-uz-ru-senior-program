@@ -1,0 +1,281 @@
+<title>Namuna 171–174</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Literata:ital,opsz,wght@1,7..72,500&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: bitta ustun; har bandda «hozir» surati + jonli namuna (dars ekrani — darsning o'z PM palitrasida) */
+:root {
+  --bg: #f4f3f8; --card: #ffffff; --ink: #1d1b2b; --ink2: #5d5a72; --line: #e2e0ec; --accent: #5b3fd6; --accent-soft: #ece8fd;
+  --f-body: 'Manrope', system-ui, sans-serif; --f-mono: 'JetBrains Mono', ui-monospace, monospace;
+  /* dars palitrasi (qolip PM) — namuna oynasi ikki mavzuda ham dars qanday ko'rinsa shunday */
+  --d-bg: #F2F0FA; --d-paper: #FFFFFF; --d-line: #E7E3F4; --d-ink: #1B1630; --d-ink2: #565073; --d-accent: #5B3DE6; --d-asoft: #EBE5FD; --d-ok: #1F7A4D; --d-okfon: #E3F0E8; --d-err: #C2362B; --d-errfon: #FAE3E0;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #15141c; --card: #1f1d29; --ink: #ecebf4; --ink2: #a7a4ba; --line: #34314a; --accent: #a593ff; --accent-soft: #2c2650; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #15141c; --card: #1f1d29; --ink: #ecebf4; --ink2: #a7a4ba; --line: #34314a; --accent: #a593ff; --accent-soft: #2c2650; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 80px; }
+.wrap { max-width: 1060px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+h1 { font-size: clamp(22px, 3vw, 30px); margin: 0; text-wrap: balance; } h2 { font-size: 19px; margin: 0; }
+p { margin: 0; max-width: 78ch; } .lead { color: var(--ink2); }
+.band { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+.id { font-family: var(--f-mono); font-size: 12px; color: var(--accent); letter-spacing: .04em; }
+.ikki { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: 16px; align-items: start; }
+@media (max-width: 860px) { .ikki { grid-template-columns: 1fr; } }
+figure { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+figure img { width: 100%; border-radius: 8px; border: 1px solid var(--line); display: block; cursor: zoom-in; }
+figcaption, .kichik { font-size: 12.5px; color: var(--ink2); }
+ul { margin: 0; padding-left: 20px; } li { margin: 3px 0; }
+.qayta { align-self: flex-start; font: inherit; font-size: 13px; font-weight: 700; border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+
+/* ===== dars ekrani (namuna) ===== */
+.dars { background: var(--d-bg); color: var(--d-ink); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 12px; min-height: 420px; }
+.d-eb { font-size: 11px; font-weight: 800; letter-spacing: .12em; color: var(--d-ink2); text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
+.d-eb::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--d-accent); }
+.d-sar { font-size: 21px; font-weight: 800; line-height: 1.25; margin: 0; } .d-sar em { font-style: normal; color: var(--d-accent); }
+.d-mentor { display: flex; gap: 10px; align-items: flex-start; } .d-mentor b { font-size: 12px; color: var(--d-accent); display: block; }
+.d-ava { width: 30px; height: 30px; border-radius: 50%; background: #2a2340; flex: none; display: grid; place-items: center; color: #ff8a3d; font-size: 14px; }
+.d-mtx { background: var(--d-paper); border-radius: 12px; padding: 9px 13px; font-size: 14px; }
+.d-karta { background: var(--d-paper); border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 10px 24px -16px rgba(27,22,48,.35); animation: kir .4s ease-out both; }
+.d-karta.ket { animation: ket .35s ease-in both; }
+.d-yorliq { font-size: 11px; font-weight: 800; letter-spacing: .06em; color: var(--d-ink2); text-transform: uppercase; }
+.d-chiplar { display: flex; flex-wrap: wrap; gap: 6px; }
+.d-chip { font: inherit; font-size: 13px; font-weight: 700; color: var(--d-ink); background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 10px; padding: 7px 12px; cursor: pointer; }
+.d-chip:hover { border-color: var(--d-accent); }
+.d-chip.on { background: var(--d-asoft); border-color: var(--d-accent); color: var(--d-accent); }
+.d-chip.ishl { opacity: .45; cursor: default; }
+.d-tanlov { display: flex; flex-direction: column; gap: 6px; }
+.d-tq { font: inherit; text-align: left; font-size: 13.5px; background: var(--d-bg); border: 0; border-radius: 9px; padding: 8px 11px; cursor: pointer; color: var(--d-ink); }
+.d-tq:hover { background: var(--d-asoft); }
+.d-qator { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 10px; align-items: center; }
+.d-qator > span { font-size: 11px; font-weight: 800; letter-spacing: .06em; color: var(--d-ink2); text-transform: uppercase; }
+.d-tayyor { font-size: 14px; font-weight: 600; background: var(--d-bg); border-radius: 9px; padding: 8px 11px; display: flex; justify-content: space-between; gap: 8px; animation: kir .3s ease-out both; }
+.d-tayyor button { font: inherit; font-size: 12px; border: 0; background: none; color: var(--d-ink2); cursor: pointer; }
+.d-inp { font: inherit; font-size: 14px; width: 100%; box-sizing: border-box; border: 1.5px solid var(--d-line); border-radius: 9px; padding: 8px 11px; background: var(--d-paper); color: var(--d-ink); }
+.d-inp:focus { outline: none; border-color: var(--d-accent); }
+.d-amal { display: flex; justify-content: flex-end; align-items: center; gap: 10px; flex-wrap: wrap; }
+.d-btn { font: inherit; font-size: 14px; font-weight: 800; border: 0; border-radius: 10px; padding: 9px 18px; cursor: pointer; background: var(--d-accent); color: #fff; }
+.d-btn.ikk { background: var(--d-paper); color: var(--d-ink); border: 1px solid var(--d-line); }
+.d-sabab { font-size: 13px; font-weight: 600; color: var(--d-err); }
+.d-ro { display: flex; flex-wrap: wrap; gap: 6px; min-height: 30px; align-items: center; }
+.d-ro-l { font-size: 11px; font-weight: 800; letter-spacing: .06em; color: var(--d-ink2); text-transform: uppercase; margin-right: 4px; }
+.d-rc { font-size: 12.5px; font-weight: 700; border-radius: 99px; padding: 4px 10px; background: var(--d-paper); border: 1px solid var(--d-line); animation: chipin .4s ease-out both; }
+.d-rc.ok { background: var(--d-okfon); border-color: transparent; color: var(--d-ok); } .d-rc.chet { background: #F0EEF6; color: var(--d-ink2); border-color: transparent; }
+.d-hn { display: flex; gap: 8px; }
+.d-nuqta { display: flex; gap: 5px; } .d-nuqta i { width: 8px; height: 8px; border-radius: 50%; background: var(--d-line); } .d-nuqta i.on { background: var(--d-accent); } .d-nuqta i.ok { background: var(--d-ok); } .d-hn .d-btn { min-width: 74px; }
+.d-sav-n { font-family: var(--f-mono); font-size: 11.5px; font-weight: 700; color: var(--d-ink2); }
+.d-xulosa { background: var(--d-okfon); color: var(--d-ink); border-radius: 12px; padding: 12px 14px; font-size: 14px; animation: kir .4s ease-out both; }
+.d-sahna { background: #fff; border: 1px solid var(--d-line); border-radius: 12px; overflow: hidden; }
+.d-bar { display: flex; gap: 5px; padding: 7px 10px; background: #F4F2FB; } .d-bar i { width: 7px; height: 7px; border-radius: 50%; background: #D9D4EC; }
+.d-yt { padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; } .d-yt b { color: #FF0000; font-size: 17px; }
+.d-yt-tor { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; } .d-yt-tor span { height: 46px; border-radius: 6px; background: #FDE9D9; display: grid; place-items: end start; font-size: 11px; font-weight: 700; padding: 4px 6px; }
+.d-yt-tor span.bo { background: #F1EFF8; border: 1.5px dashed #DCD6EE; }
+.d-kalit { display: flex; gap: 6px; flex-wrap: wrap; } .d-kalit span { font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 99px; background: #F0EEF6; color: var(--d-ink2); } .d-kalit span.on { background: var(--d-accent); color: #fff; }
+@keyframes kir { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes ket { to { opacity: 0; transform: translateY(-8px) scale(.98); } }
+@keyframes chipin { from { opacity: 0; transform: scale(.85); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .d-karta, .d-karta.ket, .d-rc, .d-tayyor, .d-xulosa { animation: none; } }
+button:focus-visible { outline: 2px solid var(--d-accent); outline-offset: 2px; }
+#zoom { position: fixed; inset: 0; background: rgba(0,0,0,.82); display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 20; cursor: zoom-out; }
+#zoom img { max-width: 100%; max-height: 100%; border-radius: 8px; }
+#zoom[hidden] { display: none; }
+</style>
+
+<div class="wrap">
+  <header style="display:flex;flex-direction:column;gap:8px">
+    <span class="id">F-1015-171 · 173 · 172 · 174 — kodga tegilmagan, faqat namuna</span>
+    <h1>Qurishdan oldin: uch ekranning yangi ko'rinishi</h1>
+    <p class="lead">Chapda — hozirgi holat surati, o'ngda — jonli namuna (bosib ko'ring). Matnlar darsning o'zidan. Ko'rib, qaysi biri ma'qul, nimani o'zgartirish kerak — yozing.</p>
+  </header>
+
+  <!-- 171 -->
+  <section class="band">
+    <span class="id">171 · m9-01 «Oltita g'oyani bittalab yozing» — D varianti</span>
+    <h2>Har g'oyada asosan bitta maydon yoziladi</h2>
+    <div class="ikki">
+      <figure><img src="{{r18}}" alt=""><figcaption><b>Hozir:</b> manba + uch bo'sh maydon har g'oyada (6 × 3 = 18).</figcaption></figure>
+      <div class="dars" id="d171"></div>
+    </div>
+    <ul class="kichik">
+      <li>Manba bosilganda ro'yxat ochiladi → bitta bosish bilan Muammo (yoki «Keyin» qutisidan Yechim) to'ladi.</li>
+      <li>«Kim uchun» — to'rt tayyor tugma, kerak bo'lsa «Boshqa» → yozish.</li>
+      <li>Bo'sh qism faqat bitta — u yoziladi. Tepada «G'oyalarim n / 6» qatori o'sadi. Ma'lumot tuzilishi o'zgarmaydi — keyingi darslar buzilmaydi.</li>
+    </ul>
+    <button type="button" class="qayta" data-qayta="171">Namunani boshidan</button>
+  </section>
+
+  <!-- 173 + 172 -->
+  <section class="band">
+    <span class="id">173 + 172 · m9-02 «G'oyalaringizdan qaysilari uch savoldan o'tadi?»</span>
+    <h2>Bittadan: bitta g'oya, bitta savol, javob ostida sabab</h2>
+    <div class="ikki">
+      <figure><img src="{{r21}}" alt=""><figcaption><b>Hozir:</b> ro'yxat, «Chetda», karta va uch savol — hammasi birdan; «Ha»da sabab so'ralmaydi.</figcaption></figure>
+      <div class="dars" id="d173"></div>
+    </div>
+    <ul class="kichik">
+      <li>Ekranda bitta ixcham karta: g'oya nomi va uch nuqta (qaysi savol), bitta kulrang qator — yechim, savol va qisqa izoh.</li>
+      <li>«Ha» yoki «Yo'q» bosilganda — ikki-uch tayyor sabab chiqadi, bittasi tanlanadi (shu yerda o'quvchi o'ylaydi).</li>
+      <li>«Yo'q» — g'oya chetga, qolgan savollar so'ralmaydi. Bajarilgan g'oya tepadagi qatorga chip bo'lib ketadi, keyingisi kiradi.</li>
+      <li>Oxirida xulosa: nechta o'tdi va nima uchun — sabablaringizdan yig'iladi.</li>
+    </ul>
+    <button type="button" class="qayta" data-qayta="173">Namunani boshidan</button>
+  </section>
+
+  <!-- 174 -->
+  <section class="band">
+    <span class="id">174 · m9-04 «Biznes olamidan» — B varianti</span>
+    <h2>YouTube qoladi; «tanishuv» so'zi yo'q; nom ekranda bir marta</h2>
+    <div class="ikki">
+      <figure><img src="{{r23}}" alt=""><figcaption><b>Hozir:</b> «YouTube» — sarlavha, Mentor, yorliq, izoh, sahna, karta yorlig'i (6 marta); «Tanishuv sayti».</figcaption></figure>
+      <div class="dars" id="d174"></div>
+    </div>
+    <ul class="kichik">
+      <li>Nom — sarlavhada va sahnadagi sayt logotipida (maket), boshqa joyda «bu sayt».</li>
+      <li>1-bosqich: «O'zi haqida video» — odamlar o'zi haqida qisqa video qo'yishi kerak edi; bu g'oya ishlamagan.</li>
+      <li>Taxmin variantlari: «Faqat o'zi haqidagi videoni» · «Asosan o'zi haqidagi videoni» · «Har xil videoni».</li>
+    </ul>
+    <button type="button" class="qayta" data-qayta="174">Namunani boshidan</button>
+  </section>
+</div>
+<div id="zoom" hidden><img alt=""></div>
+
+<script>
+const $ = (h) => { const t = document.createElement('template'); t.innerHTML = h.trim(); return t.content.firstChild; };
+const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+const kut = (f) => setTimeout(f, reduce ? 0 : 330);
+const bosh = (sar, mentor) => `<div class="d-eb">Mustaqil ish</div><h3 class="d-sar">${sar}</h3><div class="d-mentor"><span class="d-ava">●</span><div><b>Mentor</b><div class="d-mtx">${mentor}</div></div></div>`;
+
+/* ===== 171 ===== */
+const ROYXAT = ["o'yinga odam yetmaydi, kim kelishi noma'lum", "uy vazifasi chatlarda yo'qoladi", "maktabda yo'qolgan narsa topilmaydi", "to'garak qayerda va qachon — bilinmaydi"];
+const KEYIN = ["o'yindan oldin eslatma", "ro'yxat o'zi yangilanadi"];
+const KIMLAR = ['sinfdoshlar', 'mahalladagilar', 'ota-onalar', "o'qituvchilar"];
+let s171;
+function d171() {
+  const el = document.getElementById('d171'); s171 = s171 || { goyalar: [], g: { manba: null, muammo: '', kim: '', yechim: '' }, ochiq: null, sabab: '' };
+  const { goyalar, g } = s171;
+  el.innerHTML = bosh("Oltita g'oyani <em>bittalab</em> yozing.", "Manbani tanlang — keyin bo'sh qolgan qismni yozing.");
+  const ro = $(`<div class="d-ro"><span class="d-ro-l">G'oyalarim ${goyalar.length} / 6</span></div>`);
+  goyalar.forEach((x, i) => ro.append($(`<span class="d-rc">${i + 1} · ${x.yechim}</span>`))); el.append(ro);
+  if (goyalar.length >= 6) { el.append($(`<div class="d-xulosa">Oltita g'oya tayyor. Har birida muammo, kim uchun va yechim bor.</div>`)); return; }
+  const k = $(`<div class="d-karta"></div>`);
+  const ch = $(`<div class="d-chiplar"></div>`);
+  [['royxat', "9-Modul ro'yxati"], ['keyin', '«Keyin» qutisi'], ['kuzatuv', 'Yangi kuzatuv']].forEach(([id, t]) => {
+    const b = $(`<button type="button" class="d-chip ${g.manba === id ? 'on' : ''}">${t}</button>`);
+    b.onclick = () => { s171.g = { manba: id, muammo: '', kim: g.kim, yechim: '' }; s171.ochiq = id === 'kuzatuv' ? null : id; s171.sabab = ''; d171(); };
+    ch.append(b);
+  });
+  k.append(ch);
+  if (s171.ochiq) {
+    const lst = s171.ochiq === 'royxat' ? ROYXAT : KEYIN, maydon = s171.ochiq === 'royxat' ? 'muammo' : 'yechim';
+    const t = $(`<div class="d-tanlov"><span class="d-yorliq">${s171.ochiq === 'royxat' ? 'muammoni tanlang' : 'funksiyani tanlang'}</span></div>`);
+    lst.forEach(m => { const used = goyalar.some(x => x[maydon] === m); const b = $(`<button type="button" class="d-tq" ${used ? 'disabled style="opacity:.45"' : ''}>${m}${used ? ' ✓' : ''}</button>`); if (!used) b.onclick = () => { s171.g[maydon] = m; s171.ochiq = null; d171(); }; t.append(b); });
+    k.append(t);
+  }
+  if (g.manba && !s171.ochiq) {
+    // Muammo
+    const qat = (nom, k2, ichi) => { const q = $(`<div class="d-qator"><span>${nom}</span></div>`); q.append(ichi); return q; };
+    const tayyor = (k2) => { const d = $(`<div class="d-tayyor"><span>${g[k2]}</span><button type="button">↻</button></div>`); d.querySelector('button').onclick = () => { s171.g[k2] = ''; d171(); }; return d; };
+    const inp = (k2, ph) => { const i = $(`<input class="d-inp" placeholder="${ph}">`); i.oninput = () => { s171.g[k2] = i.value; }; i.value = g[k2]; return i; };
+    k.append(qat('Muammo', 'muammo', g.muammo && g.manba === 'royxat' ? tayyor('muammo') : inp('muammo', 'Kim, qayerda, nimadan qiynaldi?')));
+    const kimQ = $(`<div class="d-chiplar"></div>`);
+    if (g.kim && !g.kimBoshqa) { kimQ.append(tayyor('kim')); }
+    else if (g.kimBoshqa) { kimQ.append(inp('kim', 'Aynan qanday odamlar?')); }
+    else { KIMLAR.forEach(x => { const b = $(`<button type="button" class="d-chip">${x}</button>`); b.onclick = () => { s171.g.kim = x; d171(); }; kimQ.append(b); }); const b = $(`<button type="button" class="d-chip">Boshqa…</button>`); b.onclick = () => { s171.g.kimBoshqa = true; d171(); }; kimQ.append(b); }
+    k.append(qat('Kim uchun', 'kim', kimQ));
+    k.append(qat('Yechim', 'yechim', g.yechim && g.manba === 'keyin' ? tayyor('yechim') : inp('yechim', 'Mahsulot nima qiladi?')));
+    const amal = $(`<div class="d-amal"></div>`);
+    if (s171.sabab) amal.append($(`<span class="d-sabab">${s171.sabab}</span>`));
+    const sq = $(`<button type="button" class="d-btn">Saqlash</button>`);
+    sq.onclick = () => {
+      const bosh2 = ['muammo', 'kim', 'yechim'].find(x => !String(s171.g[x] || '').trim());
+      if (bosh2) { s171.sabab = { muammo: 'Muammoni yozing.', kim: 'Kim uchunligini tanlang.', yechim: 'Yechimni yozing.' }[bosh2]; d171(); return; }
+      k.classList.add('ket'); kut(() => { s171.goyalar.push({ ...s171.g }); s171.g = { manba: null, muammo: '', kim: '', yechim: '' }; s171.sabab = ''; d171(); });
+    };
+    amal.append(sq); k.append(amal);
+  }
+  el.append(k);
+}
+
+/* ===== 173 + 172 ===== */
+const G173 = [
+  { nom: "Jamoa yig'ish", m: "o'yinga odam yetmaydi", y: "o'yin e'loni va «Qo'shilaman»" },
+  { nom: 'Eski darsliklar', m: 'eski darslik uyda yillab turadi', y: "ishlatilgan darsliklar e'loni" },
+  { nom: "Yo'qolgan buyumlar", m: "maktabda yo'qolgan narsa topilmaydi", y: "topilgan buyumlar e'loni" },
+];
+const S173 = [
+  { s: 'Bajariladimi?', qisqa: '6 haftada qura olasizmi?', iz: 'Birinchi versiyasini shu modulning 6 haftasida qura olasizmi?', ha: ['Bitta e\'lon sahifasi — 6 haftaga sig\'adi', 'Shunga o\'xshashini avval qurganman'], yoq: ["Pul va yetkazib berish kerak — 6 haftaga sig'maydi", "Juda ko'p qism kerak"] },
+  { s: 'Real auditoriya bormi?', qisqa: 'Gaplasha oladigan 5 tanishingiz bormi?', iz: 'Gaplasha oladigan kamida 5 tanishingiz bormi?', ha: ['Sinfda 5 tadan ko\'p shunday odam bor', 'Mahallada o\'ynaydiganlarni bilaman'], yoq: ['Kamida 5 tanish topilmadi', "Bunday odamni bilmayman"] },
+  { s: 'Qiziqmi?', qisqa: 'Bitiruvgacha shu ustida ishlaysizmi?', iz: 'Bitiruvgacha shu ustida ishlashni xohlaysizmi?', ha: ["O'zim ham shu muammoga duch kelganman", 'Ishlatishlarini ko\'rishni xohlayman'], yoq: ["Menga qiziq emas", "Boshqa g'oya ko'proq yoqadi"] },
+];
+let s173;
+function d173() {
+  const el = document.getElementById('d173'); s173 = s173 || { gi: 0, qi: 0, javob: null, natija: [] };
+  el.innerHTML = bosh("G'oyalaringizdan qaysilari <em>uch savoldan</em> o'tadi?", 'Bitta g\'oya, bitta savol: javob bering va nima uchunligini tanlang.');
+  const ro = $(`<div class="d-ro"><span class="d-ro-l">Saralandi ${s173.natija.length} / ${G173.length}</span></div>`);
+  s173.natija.forEach(n => ro.append($(`<span class="d-rc ${n.otdi ? 'ok' : 'chet'}">${n.nom} · ${n.otdi ? "o'tdi ✓" : 'chetda'}</span>`))); el.append(ro);
+  if (s173.gi >= G173.length) {
+    const otdi = s173.natija.filter(n => n.otdi), chet = s173.natija.filter(n => !n.otdi);
+    el.append($(`<div class="d-xulosa"><b>${G173.length} ta g'oyadan ${otdi.length} tasi o'tdi.</b><br>${chet.map(n => `${n.nom} — ${n.sabab}`).join('<br>')}<br><span style="color:var(--d-ink2)">Uch savol g'oyani yoqqan-yoqmaganiga qarab emas, sabab bilan saraladi.</span></div>`));
+    return;
+  }
+  const g = G173[s173.gi], q = S173[s173.qi];
+  const k = $(`<div class="d-karta"></div>`);
+  // ixcham: nom + nuqtalar · bitta kulrang qator (yechim) · savol + qisqa izoh
+  k.append($(`<div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><b style="font-size:16px">${g.nom}</b><span class="d-nuqta">${[0,1,2].map(i => `<i class="${i < s173.qi ? 'ok' : i === s173.qi ? 'on' : ''}"></i>`).join('')}</span></div>`));
+  k.append($(`<div style="font-size:13px;color:var(--d-ink2);margin-top:-6px">${g.y}</div>`));
+  k.append($(`<div><div style="font-weight:800;font-size:17px">${q.s}</div><div style="font-size:13px;color:var(--d-ink2)">${q.qisqa}</div></div>`));
+  if (!s173.javob) {
+    const hn = $(`<div class="d-hn"></div>`);
+    [['ha', 'Ha'], ['yoq', "Yo'q"]].forEach(([j, t]) => { const b = $(`<button type="button" class="d-btn ${j === 'yoq' ? 'ikk' : ''}">${t}</button>`); b.onclick = () => { s173.javob = j; d173(); }; hn.append(b); });
+    k.append(hn);
+  } else {
+    const t = $(`<div class="d-tanlov"><span class="d-yorliq">${s173.javob === 'ha' ? 'Ha — nima uchun?' : "Yo'q — nima uchun?"}</span></div>`);
+    q[s173.javob].forEach(sb => { const b = $(`<button type="button" class="d-tq">${sb}</button>`); b.onclick = () => {
+      k.classList.add('ket');
+      kut(() => {
+        if (s173.javob === 'yoq') { s173.natija.push({ nom: g.nom, otdi: false, sabab: `${q.s} ✕ ${sb.toLowerCase()}` }); s173.gi++; s173.qi = 0; }
+        else if (s173.qi === 2) { s173.natija.push({ nom: g.nom, otdi: true }); s173.gi++; s173.qi = 0; }
+        else s173.qi++;
+        s173.javob = null; d173();
+      });
+    }; t.append(b); });
+    const orq = $(`<button type="button" class="d-chip" style="align-self:flex-start">↻ javobni o'zgartirish</button>`); orq.onclick = () => { s173.javob = null; d173(); };
+    k.append(t); k.append(orq);
+  }
+  el.append(k);
+}
+
+/* ===== 174 ===== */
+const B174 = [
+  { h: "O'zi haqida video", m: "Bu sayt avval odamlar o'zi haqida qisqa video qo'yadigan joy bo'lib boshlangan.", tor: ['O\'zim haqimda', '', ''] },
+  { h: 'Har xil video', m: "Bu g'oya ishlamagan. Lekin asoschilar odamlar saytga har xil video yuklayotganini payqagan.", tor: ['Musiqa', 'Futbol', 'Mashina', 'Gul', 'Kitob'] },
+  { h: 'Hamma narsa uchun video', m: "Asoschilar saytni «hamma narsa uchun video» qilib o'zgartirgan — shu ishlagan.", tor: ['Musiqa', 'Futbol', 'Mashina', 'Gul', 'Kitob', 'Sayohat'] },
+];
+const T174 = ["Faqat o'zi haqidagi videoni", "Asosan o'zi haqidagi videoni", 'Har xil videoni'];
+let s174;
+function d174() {
+  const el = document.getElementById('d174'); s174 = s174 || { b: 0, t: null };
+  const b = B174[s174.b];
+  el.innerHTML = `<div class="d-eb">Biznes olamidan</div><h3 class="d-sar">YouTube qanday g'oyadan <em>boshlangan?</em></h3><div class="d-mentor"><span class="d-ava">●</span><div><b>Mentor</b><div class="d-mtx">${b.m}</div></div></div>`;
+  const k = $(`<div class="d-karta" style="align-items:center"></div>`);
+  k.append($(`<div class="d-kalit">${B174.map((x, i) => `<span class="${i === s174.b ? 'on' : ''}">${i + 1}</span>`).join('')}</div>`));
+  k.append($(`<div style="font-weight:800;font-size:16px">${b.h}</div>`));
+  const sahna = $(`<div class="d-sahna" style="width:100%;max-width:420px"><div class="d-bar"><i></i><i></i><i></i></div><div class="d-yt"><b>YouTube</b><div class="d-yt-tor">${b.tor.map(x => `<span class="${x ? '' : 'bo'}">${x}</span>`).join('')}</div></div></div>`);
+  k.append(sahna);
+  if (s174.b === 0) {
+    const t = $(`<div style="width:100%;display:flex;flex-direction:column;gap:6px"><span class="d-yorliq">Avval o'zingiz belgilab ko'ring</span><div style="font-weight:700">Odamlar saytga qanday video yuklagan?</div><div class="d-chiplar"></div></div>`);
+    T174.forEach(x => { const c = $(`<button type="button" class="d-chip ${s174.t === x ? 'on' : ''}">${x}</button>`); c.onclick = () => { s174.t = x; d174(); }; t.querySelector('.d-chiplar').append(c); });
+    k.append(t);
+  }
+  if (s174.b === 2) k.append($(`<div class="d-xulosa" style="width:100%">${s174.t ? `Taxminingiz: ${s174.t} · haqiqatda: <b>har xil videoni</b><br>` : ''}Asoschilar g'oyani odamlar saytda nima qilayotganiga qarab o'zgartirgan.</div>`));
+  const amal = $(`<div class="d-amal" style="width:100%"></div>`);
+  if (s174.b < 2) { const nx = $(`<button type="button" class="d-btn" ${s174.b === 0 && !s174.t ? 'style="opacity:.5"' : ''}>Keyingi bosqich (${s174.b + 1}/3)</button>`); nx.onclick = () => { if (s174.b === 0 && !s174.t) return; s174.b++; d174(); }; amal.append(nx); }
+  k.append(amal);
+  el.append(k);
+}
+
+d171(); d173(); d174();
+document.querySelectorAll('[data-qayta]').forEach(b => b.onclick = () => { const id = b.dataset.qayta; if (id === '171') { s171 = null; d171(); } if (id === '173') { s173 = null; d173(); } if (id === '174') { s174 = null; d174(); } });
+const z = document.getElementById('zoom');
+document.querySelectorAll('figure img').forEach(i => i.addEventListener('click', () => { z.querySelector('img').src = i.src; z.hidden = false; }));
+z.addEventListener('click', () => { z.hidden = true; });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') z.hidden = true; });
+</script>

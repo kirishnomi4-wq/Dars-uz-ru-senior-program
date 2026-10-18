@@ -37,11 +37,11 @@ Mentor misoli (dars bo'yi bir xil):
 - Mentor: O'tgan modulda «Maydon» qurildi va sinovdan keyin tuzatildi. Bugungi misol ham shu sayt haqida.
 - Chap: Dars oxirida — bosh raqam, OKR va birinchi tajriba
   - OKR doskasi skeleti: maqsad, uchta qator va tajriba qatori kulrang chiziqlardan birma-bir to'q chiziqqa aylanadi (matnsiz), oxirida tajriba chizig'i bitta qatorga ulanadi
-- Reja:
-  1. Qaysi raqamni o'stirishni tanlaysiz · bosh raqam
-  2. Oy oxirida yetganingizni sanashni o'rganasiz · asosiy natija
-  3. Oyning birinchi o'zgarishini tanlaysiz · tajriba
-  4. Loyihangizga keyingi oy uchun yozasiz · OKR
+- Reja (teg yo'q — keyingi ekranlar eyebrow'ini takrorlardi) *(✎ F-1015-115, 208-qonun 0-band: takror olindi)*:
+  1. Qaysi raqamni o'stirishni tanlaysiz
+  2. Oy oxirida yetganingizni sanashni o'rganasiz
+  3. Oyning birinchi o'zgarishini tanlaysiz
+  4. Loyihangizga keyingi oy uchun yozasiz
 - Tugmalar: Orqaga · Boshlaymiz
 
 ## 2 · Maqsad va asosiy natija
@@ -81,9 +81,9 @@ Mentor misoli (dars bo'yi bir xil):
 - Eyebrow: Tushuncha · kim nima qildi
 - Sarlavha: Qaysi qator *mehnatni emas, natijani* sanaydi?
 - Mentor: Keyingi oyga yana qatorlar yozildi, hammasida raqam bor. Har birini OKR doskasiga yoki «Qilinadigan ishlar» ro'yxatiga joylang.
-- Bashorat (Avval o'zingiz belgilab ko'ring): Besh qatordan nechtasi asosiy natija bo'ladi? · 1 · 2 · 3
+- Bashorat yo'q — saralashning o'zi topshiriq (208/0 e). *(✎ F-1015-115, 208-qonun 0-band: takror olindi)*
 - Doska: o'ngda maqsad + 1-asosiy natija «Haftada band qilingan vaqtlar · hozir 6 → oy oxirida 20»; karta ostida «Qilinadigan ishlar»; chapda uch ustun
-- Qatorlar bittadan (karta «N/5», qator matni, «hozir …» → «oy oxirida …»; tugmalar: OKR doskasiga · Qilinadigan ishlar):
+- Qatorlar bittadan (qator matni — «N/5» faqat tugmada, «hozir …» → «oy oxirida …»; tugmalar: OKR doskasiga · Qilinadigan ishlar):
   1. Mahalla chatiga yozilgan e'lonlar · hozir 0 → oy oxirida 4 — Qilinadigan ishlar
   2. Vaqtni tanlaganlardan band qilganlar foizi · hozir 24% → oy oxirida 40% — OKR doskasiga (chapda «Vaqtni tanladi» → «Band qildi» oralig'ida yorliq «24%»)
   3. Saytga qo'shilgan yangi rasmlar · hozir 0 → oy oxirida 3 — Qilinadigan ishlar
@@ -92,7 +92,6 @@ Mentor misoli (dars bo'yi bir xil):
   - Noto'g'ri joy: Bu raqam qilgan ishingizni sanaydimi yoki natijani?
   - Nishon: Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki. / Nishon birinchi urinish uchun edi.
 - 5/5 dan keyin «Qilinadigan ishlar» ostida yorliq «mehnat raqami»
-- Natija: «Taxminingiz to'g'ri chiqdi: 2.» yoki «Taxminingiz: N · haqiqatda: 2»
 - Xulosa: Bu misolda asosiy natijalar o'yinchilar nima qilganini sanaydi. Siz qilgan ish soni — mehnat raqami.
 - Tugma: Qatorlarni joylang (N/5) → Davom etish
 
@@ -157,12 +156,13 @@ Mentor misoli (dars bo'yi bir xil):
 - Mentor: Maqsadni muammo gapingizdan oling: muammo hal bo'lganda odamlar nima qiladi? Har qatorni yozib, «Doskaga yozish»ni bosing.
 - Chapda forma, o'ngda o'quvchining OKR doskasi (OKR · keyingi oy):
   - Doska tepasida: **Muammo:** o'tgan modulda yozilgan muammo gapingiz; topilmasa — maydon «Loyihangiz muammosini bir gapda yozing»
-- Forma tepasida: OKR'im · bosqich belgilari 1–5 (yozilgani ✓) · N/5
+- Forma tepasida qator yo'q: tugma «(N/5)» va o'ngdagi doska (joriy qator ajralgan) aytadi. *(✎ F-1015-115, 208-qonun 0-band: takror olindi)*
 - Bosqichlar (bittadan):
   1. Maqsad — «Odamlar nima qilsin?»
   2. 1-asosiy natija · 3. 2-asosiy natija · 4. 3-asosiy natija — «Nima sanaladi?» · «Hozir» · «Oy oxirida»
   5. Tajriba — «Bitta o'zgarish» · Qaysi asosiy natijaga? (o'quvchi yozgan uchta qator)
 - Tugmalar: Yordam · Doskaga yozish
+  - asosiy qator bo'sh bo'lsa: tugma o'chiq emas — bosilganda tugma ostida `QXato`, kursor qatorga: Avval maqsadni yozing. · Avval nima sanalishini yozing. · Avval bitta o'zgarishni yozing. *(✎ F-1015-164)*
 - Tekshiruv yozuvlari:
   - Maqsadda raqam bo'lmaydi — uni asosiy natijaga o'tkazing.
   - Hozirgi raqamni yozing; bilmasangiz — «?» qo'ying.
@@ -204,6 +204,7 @@ WHERE ______ >= NOW() - INTERVAL '7 days';
   - Maket ostida: Sizning soningiz shu katakda chiqadi — u sizning Database'ingizdan. Mentor misolida — 6.
   - Qator: Bosh raqam · Band qildi · haftada · 6 · Mentor misoli (son yozilgach — o'quvchining soni · Database'dan)
 - Tugma: Bajardim — SQL ishladi, son yozildi (qulf: Avval ustun savolini yeching · Avval Neon ko'rsatgan sonni yozing)
+  - qulf tugma shaklida emas — tugma o'rnida kulrang matn (`QIzoh`); ustun tanlanib, son yozilgach o'rnida haqiqiy tugma chiqadi *(✎ F-1015-164)*
 - Bajarilgach: Bosh raqam Database'dan olindi — u o'ylab topilmaydi.
 - Tugma (pastki): Bajardim — SQL ishladi, son yozildi → Davom etish
 

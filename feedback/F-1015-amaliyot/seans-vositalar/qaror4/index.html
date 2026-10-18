@@ -1,0 +1,152 @@
+<title>Praktika qarorlari 17.10</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: bitta ustun, har savol — o'z kartasi; pastda nusxalanadigan javob */
+:root {
+  --bg: #eef1f4; --surface: #ffffff; --ink: #14181d; --muted: #59626d; --line: #d6dce3;
+  --accent: #c2410c; --accent-soft: #fde8dc; --ok: #1f7a4d; --ok-soft: #e1f2e8; --bad: #b42318; --code-bg: #1a2230; --code-fg: #e6e9ee;
+  --f-body: 'Manrope', system-ui, sans-serif; --f-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #11151a; --surface: #1a2028; --ink: #e9edf2; --muted: #9aa5b1; --line: #2d3540;
+  --accent: #fb8c5a; --accent-soft: #3a2418; --ok: #5fd39a; --ok-soft: #173326; --bad: #f97066; --code-bg: #0b0f14; --code-fg: #e6e9ee; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #11151a; --surface: #1a2028; --ink: #e9edf2; --muted: #9aa5b1; --line: #2d3540;
+  --accent: #fb8c5a; --accent-soft: #3a2418; --ok: #5fd39a; --ok-soft: #173326; --bad: #f97066; --code-bg: #0b0f14; --code-fg: #e6e9ee; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 860px; margin: 0 auto; padding-block: 28px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 20px; }
+h1 { font-size: clamp(24px, 4vw, 32px); font-weight: 800; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+h2 { font-size: 19px; font-weight: 800; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+.lead { color: var(--muted); max-width: 65ch; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.qhead { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.qn { font-family: var(--f-mono); font-weight: 700; font-size: 13px; color: var(--accent); background: var(--accent-soft); border-radius: 6px; padding: 2px 8px; }
+.tag { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.done { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.done li { display: grid; grid-template-columns: 34px 1fr; gap: 10px; align-items: start; }
+.done b.n { font-family: var(--f-mono); color: var(--ok); }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 620px) { .pair { grid-template-columns: 1fr; } }
+figure { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+figure img { width: 100%; border-radius: 10px; border: 1px solid var(--line); background: #fff; }
+figcaption { font-size: 13px; color: var(--muted); }
+figcaption b { color: var(--ink); }
+.opts { display: grid; gap: 10px; }
+.opt { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; border: 1.5px solid var(--line); border-radius: 10px; padding: 12px 14px; cursor: pointer; }
+.opt:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.opt input { margin: 3px 0 0; accent-color: var(--accent); width: 16px; height: 16px; }
+.opt:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+.opt strong { display: block; }
+.opt span.d { color: var(--muted); font-size: 14px; }
+.opt .row { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 14px; align-items: center; }
+@media (max-width: 620px) { .opt .row { grid-template-columns: 1fr; } }
+.opt .row img { width: 100%; border-radius: 8px; border: 1px solid var(--line); background: #fff; }
+.k { font-family: var(--f-mono); font-size: 12px; font-weight: 700; border-radius: 5px; padding: 1px 6px; font-variant-numeric: tabular-nums; }
+.k.ok { color: var(--ok); background: var(--ok-soft); }
+.k.no { color: var(--bad); background: var(--accent-soft); }
+.rec { font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ok); background: var(--ok-soft); border-radius: 5px; padding: 1px 6px; margin-left: 6px; }
+textarea { width: 100%; box-sizing: border-box; font: 500 14px var(--f-body); color: var(--ink); background: var(--surface); border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 12px; min-height: 44px; resize: vertical; }
+textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+code { font-family: var(--f-mono); font-size: 0.9em; background: var(--bg); border-radius: 5px; padding: 1px 5px; }
+.note { font-size: 14px; color: var(--muted); border-left: 3px solid var(--line); padding-left: 12px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 12px; color: var(--muted); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+td.n { font-family: var(--f-mono); font-variant-numeric: tabular-nums; text-align: right; }
+.tbl { overflow-x: auto; }
+.answer { position: sticky; bottom: env(safe-area-inset-bottom, 0px); }
+pre#out { margin: 0; background: var(--code-bg); color: var(--code-fg); font: 500 13px/1.6 var(--f-mono); border-radius: 10px; padding: 14px; white-space: pre-wrap; overflow-x: auto; }
+button.copy { align-self: flex-start; font: 800 14px var(--f-body); color: #fff; background: var(--accent); border: 0; border-radius: 10px; padding: 11px 18px; cursor: pointer; }
+button.copy:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+#copied { font-size: 13px; color: var(--ok); font-weight: 700; }
+</style>
+
+<div class="wrap">
+  <header style="display:flex;flex-direction:column;gap:8px">
+    <p class="tag">Praktikalar · 17.10 · 4-raund (12:10)</p>
+    <h1>Chip namunasi va tugma rangi</h1>
+    <p class="lead">Sudraladigan chipni bitta darsda gradientga o'tkazdim — ko'ring, ma'qul bo'lsa hamma modullarga tarqataman. Asosiy tugma uchun 5 ta rang varianti haqiqiy darsda suratga olindi. Tanlab, pastdagi tugma bilan javobni nusxalang.</p>
+  </header>
+
+  <section class="card">
+    <p class="tag">Qilindi</p>
+    <ul class="done">
+      <li><b class="n">1</b><span>m2-11 «Do'kon qismlari» chiplari gradientga o'tdi (pastda surat). Darvozalar avvalgidek, sinov 46/46.</span></li>
+      <li><b class="n">2</b><span>Tekshiruvchi rol-fayliga 3 ov-bandi yozildi (20–22): tarjimasiz tugma yozuvi → oq ekran · ekranlar qisqarganda «Eslatma» boshqa savolga chiqadi · sudraladigan chip faqat gradient. <code>lint:prompt</code> toza.</span></li>
+    </ul>
+  </section>
+
+  <section class="card" id="q13">
+    <div class="qhead"><span class="qn">13</span><h2>m2-11 chiplari — shunday bo'lsinmi?</h2></div>
+    <div class="pair">
+      <figure><img src="chip-oldin.png" alt="Oldin: Do'kon qismlari oq fonda, kulrang chegara, qora yozuv"><figcaption><b>Oldin</b> · oq chip, kulrang chegara</figcaption></figure>
+      <figure><img src="chip-keyin.png" alt="Keyin: chiplar to'q sariq gradientda, oq yozuv, chapda ⠿ belgisi"><figcaption><b>Keyin</b> · gradient, oq yozuv, ⠿ — tanlangani halqa bilan, «Shart»dagi raqam oq doirada</figcaption></figure>
+    </div>
+    <p>Hamma modullarda shunday qolgan oq sudraladigan elementlar topildi (faqat sanaldi, hech biriga tegilmadi):</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Tur</th><th>Qayerda</th><th style="text-align:right">Fayl</th></tr></thead>
+      <tbody>
+        <tr><td><code>.dd-chip</code> — oddiy sudraladigan chip</td><td>1–4c-Modul (PmLesson2 ham)</td><td class="n">17</td></tr>
+        <tr><td>Boshqa nomli chip / karta (<code>.cdrag-chip</code>, <code>.oc-plate-chip</code>, <code>.ip-gap</code>, <code>.rz-card</code>…)</td><td>4, 4a, 5, 7, 8, 12-Modul</td><td class="n">10</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">Ikkinchi qatordagi 10 tasining bir qismi chip emas, katta karta (masalan, kartani ustunga sudrash). Ularni bittalab ko'rib, faqat chipga o'xshaganini o'zgartiraman, kartalar ro'yxatini sizga alohida ko'rsataman. 5–12-Modul fayllari boshqa seanslarniki — ularga nazorat seansi orqali o'taman.</p>
+    <div class="opts" role="radiogroup" aria-label="13-savol">
+      <label class="opt"><input type="radio" id="q13a" name="q13" value="A — tasdiq, hamma modullarga tarqat (kartalarni alohida ko'rsat)"><span><strong>A · Tasdiq — hammasiga tarqat <span class="rec">Tavsiya</span></strong><span class="d">17 ta <code>.dd-chip</code> bir xil qator bilan almashadi; qolgan 10 tasini ko'rib, chiplarni o'zgartiraman, kartalarni sizga ko'rsataman. Har faylga darvozalar.</span></span></label>
+      <label class="opt"><input type="radio" id="q13b" name="q13" value="B — chipni o'zgartir (izohda)"><span><strong>B · Chipda nimadir o'zgarsin</strong><span class="d">Izohga yozing (rang, o'lcham, ⠿ belgisi…) — tuzatib, yana ko'rsataman.</span></span></label>
+    </div>
+    <textarea id="q13x" placeholder="Izoh (ixtiyoriy)"></textarea>
+  </section>
+
+  <section class="card" id="q14">
+    <div class="qhead"><span class="qn">14</span><h2>Asosiy tugma rangi — qaysi biri?</h2></div>
+    <p>To'q sariq asosiy tugma («Saqlash», «Tekshirish»…) — <b>78 darsda</b> bitta umumiy fayldan (<code>src/qolip</code>) keladi. Oq yozuv shu fonda yaxshi o'qilmaydi: kontrast <b>3.28</b>, me'yor <b>4.5</b>. Suratlar — m1-08 HTML Praktika, forma to'ldirilgan holat; faqat tugma o'zgargan.</p>
+    <div class="opts" role="radiogroup" aria-label="14-savol">
+      <label class="opt"><input type="radio" id="q14a" name="q14" value="A — hozirgidek qolsin (#FF4F28, oq)"><span><div class="row"><span><strong>A · Hozirgidek <span class="k no">3.28</span></strong><span class="d">Brend rangi, oq yozuv. Me'yordan past — oftobda, eski proyektorda xira.</span></span><img src="tugma-A.png" alt="A: yorqin to'q sariq tugma, oq yozuv Saqlash"></div></span></label>
+      <label class="opt"><input type="radio" id="q14b" name="q14" value="B — biroz to'qroq fon #D93A16, oq yozuv"><span><div class="row"><span><strong>B · Biroz to'qroq fon <span class="k ok">4.60</span> <span class="rec">Tavsiya</span></strong><span class="d">Rang deyarli o'sha, faqat bir pog'ona to'q. Me'yorga yetadi, ko'rinish o'zgarmaydi.</span></span><img src="tugma-B.png" alt="B: biroz to'qroq to'q sariq tugma, oq yozuv"></div></span></label>
+      <label class="opt"><input type="radio" id="q14c" name="q14" value="C — to'qroq fon #C93412, oq yozuv"><span><div class="row"><span><strong>C · To'qroq fon <span class="k ok">5.27</span></strong><span class="d">Yozuv aniqroq, lekin tugma qizg'ishroq — brendning boshqa joylaridan farq qiladi.</span></span><img src="tugma-C.png" alt="C: to'q qizg'ish-sariq tugma, oq yozuv"></div></span></label>
+      <label class="opt"><input type="radio" id="q14d" name="q14" value="D — fon o'sha, yozuv qora #1A1A1A"><span><div class="row"><span><strong>D · Fon o'sha, yozuv qora <span class="k ok">5.31</span></strong><span class="d">Brend rangi to'liq qoladi. Lekin oq yozuvli boshqa tugmalar («Davom etish» va h.k.) bilan uslub farq qiladi.</span></span><img src="tugma-D.png" alt="D: yorqin to'q sariq tugma, qora yozuv"></div></span></label>
+      <label class="opt"><input type="radio" id="q14e" name="q14" value="E — hozirgi rang, yozuv katta (19px qalin)"><span><div class="row"><span><strong>E · Hozirgi rang, katta yozuv <span class="k ok">3.28 · katta matn</span></strong><span class="d">Katta qalin yozuvga 3.0 yetadi. Rang o'zgarmaydi, lekin tugma kattalashadi — tor kartalarda joy yeydi.</span></span><img src="tugma-E.png" alt="E: yorqin to'q sariq tugma, kattaroq oq yozuv"></div></span></label>
+    </div>
+    <p class="note">Tanlov umumiy faylga tegadi — o'zgarishni nazorat seansi orqali qilaman (umumiy fayllar kelishuvi). Bu darslarning fayllari o'zgarmaydi.</p>
+    <textarea id="q14x" placeholder="Izoh (ixtiyoriy)"></textarea>
+  </section>
+
+  <section class="card answer" aria-live="polite">
+    <p class="tag">Javobingiz</p>
+    <pre id="out">Variantlarni tanlang…</pre>
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><button class="copy" id="copyBtn" type="button">Javobni nusxalash</button><span id="copied" hidden>Nusxalandi — chatga qo'ying</span></div>
+  </section>
+</div>
+
+<script>
+(function () {
+  var qs = ['q13', 'q14'];
+  function build() {
+    var lines = [];
+    qs.forEach(function (q) {
+      var c = document.querySelector('input[name="' + q + '"]:checked');
+      var x = document.getElementById(q + 'x');
+      var t = q.slice(1) + ') ' + (c ? c.value : '—');
+      if (x && x.value.trim()) t += ' · izoh: ' + x.value.trim();
+      lines.push(t);
+    });
+    var s = lines.join('\n');
+    document.getElementById('out').textContent = s;
+    return s;
+  }
+  document.addEventListener('change', build);
+  document.addEventListener('input', build);
+  build();
+  document.getElementById('copyBtn').addEventListener('click', function () {
+    var txt = build();
+    var done = function () { var el = document.getElementById('copied'); el.hidden = false; setTimeout(function () { el.hidden = true; }, 2200); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(done, selectOut);
+    } else selectOut();
+  });
+  function selectOut() { var r = document.createRange(); r.selectNodeContents(document.getElementById('out')); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); }
+})();
+</script>

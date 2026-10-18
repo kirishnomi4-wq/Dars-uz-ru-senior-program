@@ -1,7 +1,7 @@
 # 7-dars «Jonli prototip: qog'ozdan bosiladigan ekrangacha» — yakuniy matn
 
 Fayl: `src/9-Modull/LivePrototypeLesson.jsx` · 20 ekran · Keyingi dars: «Arxitektura va platforma: web yoki mobil ilova»
-Holat: 07.10.2026 — kodga mos
+Holat: 18.10.2026 — kodga mos (v4, F-1015-254…256 avtopilot: 7-ekran bashorat yolg'iz (213.7); reja-satri, 1-ekran chat, 9-ekran chizma+papka, 11-ekran agent telefonlari va «Tuzatish talabi» — karta)
 
 Darsning bitta vizuali — «Maydon Jamoa» telefoni uch holatda: qog'oz (qalam chizig'i) · prototip (toza, namuna ma'lumot) · jonli (animatsiya bilan).
 Uch ekran: **O'yinlar** · **O'yin** · **E'lon berish**. Namuna ma'lumot (dars bo'yi bir xil):
@@ -38,10 +38,11 @@ O'yinlar ekrani: sarlavha «O'yinlar», to'rt o'yin kartasi (kun, soat, maydon, 
 - Mentor: Avval Maydon Jamoa misolida ko'rasiz, keyin o'z mahsulotingiz uchun o'z repo'ngizda qilasiz.
 - Chap — Dars oxirida: telefon bir marta o'zi o'ynaydi: O'yin ekrani qog'oz holatida → prototip holati → «Qo'shilaman» bosiladi → «8» → «9» (jonli)
 - Reja:
-  1. Qog'ozda ekranlarni chizish · wireframe
-  2. Surat bilan talab yozish · talab
-  3. Agent qurgan ekranlarni qog'ozdagi bilan solishtirish · prototip
-  4. Uch animatsiya qo'shish · Motion
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*
+  1. Qog'ozda ekranlarni chizish
+  2. Surat bilan talab yozish
+  3. Agent qurgan ekranlarni qog'ozdagi bilan solishtirish
+  4. Uch animatsiya qo'shish
 - Pastki qator: o'z repo'ngiz — bugun ochasiz · Mentor misoli `maydon-jamoa` · tayyor holat `m11-dars-07-done`
 - Tugmalar: Orqaga · Boshlaymiz
 
@@ -54,7 +55,7 @@ O'yinlar ekrani: sarlavha «O'yinlar», to'rt o'yin kartasi (kun, soat, maydon, 
   2. O'yinchi kun bo'yicha o'yinlarni ko'radi
   3. O'yinchi bitta o'yinni ochib, kim qo'shilganini ko'radi
   4. O'yinchi «Qo'shilaman» ni bosadi va «8 / 10» o'zgaradi
-- O'ng — qog'ozda uch bo'sh telefon ramkasi: O'yinlar · O'yin · E'lon berish. Hisoblagich: Joylandi: N / 4
+- O'ng — qog'ozda uch bo'sh telefon ramkasi: O'yinlar · O'yin · E'lon berish. (hisob faqat pastki tugmada — F-1015-116)
   - To'g'ri ramka: gap ramkaga uchib kiradi va qalam chizig'idagi bo'lakka aylanadi; joylangan gap oldida ✓
   - Boshqa ramka: Bu ish boshqa ekranda bajariladi.
   - 4/4 da ramkalar orasida strelkalar chiziladi
@@ -65,7 +66,7 @@ O'yinlar ekrani: sarlavha «O'yinlar», to'rt o'yin kartasi (kun, soat, maydon, 
 - Eyebrow: Tushuncha · wireframe
 - Sarlavha: O'yinlar ekrani *qog'ozda* qanday chiziladi?
 - Mentor: Har bo'lak uchun tanlang: «Qog'ozga» yoki «Chizilmaydi».
-- Bo'lak-karta bittadan (N / 6), tugmalar: Qog'ozga · Chizilmaydi
+- Bo'lak-karta bittadan (hisob faqat pastki tugmada — F-1015-116), tugmalar: Qog'ozga · Chizilmaydi
   1. «O'yinlar» sarlavhasi — ✔ Qog'ozga
   2. O'yin kartasi: kun, soat, maydon, «8 / 10» — ✔ Qog'ozga
   3. «E'lon berish» tugmasining joyi — ✔ Qog'ozga
@@ -75,7 +76,7 @@ O'yinlar ekrani: sarlavha «O'yinlar», to'rt o'yin kartasi (kun, soat, maydon, 
 - Xato izohlari:
   - 1–4 da «Chizilmaydi»: Busiz ekranda qayerda nima turishi noma'lum qoladi.
   - 5–6 da «Qog'ozga»: Qog'ozdagi chizma rangsiz — bu keyin tanlanadi.
-- O'ng — qog'ozda O'yinlar ekrani: «Qog'ozga» tanlangan bo'lak qalam bilan chiziladi (kartalarda «Sh 18:00 · Mahalla 8 / 10»; strelka «→ O'yin»); ostida kulrang ustun «Chizilmaydi». Hisoblagich: Saralandi: N / 6
+- O'ng — qog'ozda O'yinlar ekrani: «Qog'ozga» tanlangan bo'lak qalam bilan chiziladi (kartalarda «Sh 18:00 · Mahalla 8 / 10»; strelka «→ O'yin»); ostida kulrang ustun «Chizilmaydi». (hisob faqat pastki tugmada — F-1015-116).
 - Nom qatori: Ekranning qog'ozdagi bunday sodda chizmasi **wireframe** deyiladi: qayerda nima turadi.
 - Xulosa: Bugungi wireframe joyni va o'tishni ko'rsatadi: kartalar, tugmalar, strelkalar; rang va shrift tanlanmaydi.
 - Tugma: Bo'laklarni saralang (N/6) → Davom etish
@@ -122,7 +123,7 @@ O'yinlar ekrani: sarlavha «O'yinlar», to'rt o'yin kartasi (kun, soat, maydon, 
 - Mentor: Bu misolda Maydon Jamoa ekranlari namuna ma'lumot bilan qurilgan — «Qo'shilaman» ni bosing, keyin sahifani yangilang.
 - Bashorat (Avval o'zingiz belgilab ko'ring): Sahifa yangilansa, nima ko'rinadi? · «8 / 10» · «9 / 10»
   - Tanlangach ixcham qator: Taxminingiz · savol · tanlov
-- Chap — telefon (prototip, O'yin ekrani), ustida brauzer qatori va tugma «↻ Yangilash» («Qo'shilaman» dan keyin faollashadi)
+- Chap — telefon (prototip, O'yin ekrani), ustida brauzer qatori va tugma «↻ Yangilash» («Qo'shilaman» dan keyin chiqadi; bungacha qatorda faqat uch nuqta) *(✎ F-1015-164)*
 - O'ng — fayl `prototip/src/namuna.js`:
 ```js
 export const oyinlar = [
@@ -194,7 +195,7 @@ export const oyinlar = [
 - Eyebrow: Tekshirish
 - Sarlavha: Agent qurgan ekranlar *wireframe'ga mosmi?*
 - Mentor: Agent ba'zi joyni taxmin qilishi mumkin — tepada bor, pastda yo'q bo'lakni bosing.
-- Tepada — wireframe (qog'oz, uch ekran), pastda — agent qurgan prototip (uch ekran). Hisoblagich: Farq: N / 3
+- Tepada — wireframe (qog'oz, uch ekran), pastda — agent qurgan prototip (uch ekran). (hisob faqat pastki tugmada — F-1015-116)
 - Uch farq (topilgani qizil belgi, prototipda bo'sh joy), har biri «Tuzatish talabi» qutisiga qator bo'lib tushadi:
   - O'yinlar kartalariga «8 / 10»
   - O'yin ekraniga qo'shilganlar
@@ -209,7 +210,7 @@ export const oyinlar = [
 - Eyebrow: Tushuncha · jonli prototip
 - Sarlavha: Animatsiya prototipga *nima qo'shadi?*
 - Mentor: 9-Modulda Maydon kataklariga animatsiya yozgansiz, usullari o'sha — har kalitni yoqing va telefonda tekshirib ko'ring.
-- Chap — uch kalit (bittadan faollashadi). Hisoblagich: Tekshirildi: N / 3
+- Chap — uch kalit (bittadan chiqadi: joriy kalit bosiladi, yoqilgani holat bo'lib qoladi, navbati kelmagani ko'rinmaydi *(✎ F-1015-164)*). (hisob faqat pastki tugmada — F-1015-116)
   1. Karta kichrayib qaytadi · `transform` + `transition`
   2. Son kattalashib, silliq qaytadi · `transition`
   3. Ekranlar silliq almashadi · Motion
@@ -226,7 +227,7 @@ export const oyinlar = [
   1. `.son` qoidasiga qo'shing: `transition: transform 0.3s;`
   2. `.son.yangi` qoidasini yozing: `transform: scale(1.3);`
   3. Natija oynasida «Qo'shilaman» ni bosing — son kattalashib, silliq qaytsin.
-- Tugmalar: Yordam · Bajardim (kod oynasidan qaytgach ochiladi)
+- Tugmalar: Yordam · Bajardim (kod tekshiruvdan o'tib, oynadan qaytgach chiqadi; bungacha ko'rinmaydi *(✎ F-1015-164)*)
   - Yordam: Son kattalashmasa, `.son.yangi` da ikki klass orasida bo'sh joy yo'qligini va `0.3s` da «s» harfi borligini tekshiring.
 - O'ng — `style.css` ko'rinishi va tugma «Kompilyatorni ochish»; ostida: Kod oynasi ochiladi — kodni yozasiz va natijasini shu yerda ko'rasiz.
 - Kod oynasi: style.css — sonni silliq kattalashtiring
@@ -402,7 +403,6 @@ Natijalar (podium) — jonli reyting
   - 2-amaliyot bajarilgan: Qog'ozdagi ekranlaringiz endi *bosiladi va jonli*.
   - faqat 1-amaliyot: Bosiladigan prototipingiz tayyor — *animatsiya uyda*.
   - 1-amaliyot bajarilmagan: Prototip boshlandi — *qolgan qadamlar uyda*.
-- Bugungi asosiy fikr: Qog'ozdagi wireframe ekranni agentga aniq ko'rsatadi; namuna ma'lumot va animatsiya uni Backend'siz bosiladigan, jonli prototipga aylantiradi.
 - CODE STRIKE arenasi (jonli darsda mentor boshlaguncha: Mentorni kuting)
 - ✓ Endi siz bilasiz:
   - Wireframe — ekranning qog'ozdagi sodda chizmasi: qayerda nima turadi.
@@ -417,7 +417,9 @@ Natijalar (podium) — jonli reyting
   3. **Tekshirish** — prototipni telefon ko'rinishida bosib chiqing: wireframe'dagi har tugma kerakli ekranni ochadimi?
   - Keyingi dars — **«Arxitektura va platforma: web yoki mobil ilova»**: prototip tayyor, endi uning ortida qanday qismlar turishi va qaysi platforma kerakligi navbati.
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — sarlavha «Uyda nima qilasiz?», maydonlar katta quti (yorliq bosh harfda, «:» siz), qadamlar raqam-doira, «Keyingi dars» karta ichida (13.5px); qadam matni o'zgarmagan.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Paper First** — Wireframe'ga nima kirishini topdingiz (4-ekran, birinchi urinishda to'g'ri)

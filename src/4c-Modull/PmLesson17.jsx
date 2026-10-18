@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, createContext, useContext, useCallback, useMemo } from 'react';
 // Kod kompilyatori — UMUMIY modul (F-0809-05 · GATE S 3-qarori). Tugma bilan ochiladigan
-// to'liq-ekran asbob, shuning uchun CodeStrike brendida (PM_DARS_ETALON 1-bo'lim istisnosi).
+// to'liq-ekran oyna, shuning uchun CodeStrike brendida (PM_DARS_ETALON 1-bo'lim istisnosi).
 import HtmlCompiler, { checks as C } from '../compilator/HtmlCompiler.jsx';
 import { useCompilerScale } from '../compilator/useCompilerScale.js';
 const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c92bef604c7ad68380dd.png';
@@ -33,7 +33,7 @@ const T = {
 };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 
 
 
@@ -1474,9 +1474,23 @@ const bolaklar = [
 const SIGIM = 5; // bir hafta — 5 ish kuni
 
 function haftalar(bolaklar) {
-  // Ishlarni tartib bilan haftalarga joylang.
-  // Har haftada kunlar yig'indisi SIGIM dan oshmasin.
-  return [];
+  const natija = [];   // tayyor haftalar
+  let hafta = [];      // hozir to'ldirilayotgan hafta
+  let kunlar = 0;      // shu haftadagi kunlar yig'indisi
+
+  for (let i = 0; i < bolaklar.length; i++) {
+    const ish = bolaklar[i];
+    // ← false o'rniga shart yozing: shu ish qo'shilsa, haftadagi kunlar SIGIM dan oshib ketadimi?
+    if (false) {
+      natija.push(hafta);   // hafta to'ldi — natijaga
+      hafta = [];           // yangi hafta boshlanadi
+      kunlar = 0;
+    }
+    hafta.push(ish.nom);
+    kunlar = kunlar + ish.kun;
+  }
+  natija.push(hafta);       // oxirgi hafta
+  return natija;
 }
 
 console.log(haftalar(bolaklar));
@@ -1492,9 +1506,23 @@ const bolaklar = [
 const SIGIM = 5; // одна неделя — 5 рабочих дней
 
 function haftalar(bolaklar) {
-  // Разложите задачи по неделям, сохраняя порядок.
-  // Сумма дней в каждой неделе не должна превышать SIGIM.
-  return [];
+  const natija = [];   // готовые недели
+  let hafta = [];      // неделя, которую сейчас заполняем
+  let kunlar = 0;      // сумма дней в этой неделе
+
+  for (let i = 0; i < bolaklar.length; i++) {
+    const ish = bolaklar[i];
+    // ← вместо false напишите условие: если добавить эту задачу, дней в неделе станет больше SIGIM?
+    if (false) {
+      natija.push(hafta);   // неделя заполнена — в результат
+      hafta = [];           // начинается новая неделя
+      kunlar = 0;
+    }
+    hafta.push(ish.nom);
+    kunlar = kunlar + ish.kun;
+  }
+  natija.push(hafta);       // последняя неделя
+  return natija;
 }
 
 console.log(haftalar(bolaklar));
@@ -1502,13 +1530,14 @@ console.log(haftalar(bolaklar));
 console.log(haftalar(bolaklar).length);   // 3` };
 
 // Shartlar XULQ-ATVORGA bog'langan (manba-regex sanog'i emas): for...of bilan ham,
-// reduce bilan ham yozilgan to'g'ri yechim o'tadi; starter holatida uchalasi ham qizil.
+// reduce bilan ham yozilgan to'g'ri yechim o'tadi. F-1017-204 dan starter — skelet: 1-shart (massiv ichida massiv)
+// boshidanoq yashil, 2–3 — shart yozilguncha qizil (if (false) da hammasi bitta haftaga tushadi).
 const KOD_DATA = "[{nom:'topdim-tugmasi',kun:1},{nom:'egasiga-xabar',kun:2},{nom:'menda-belgisi',kun:2},{nom:'rasm-qoshish',kun:2},{nom:'chat',kun:4}]";
 const KOD_TASK = {
   eyebrow: { uz: "Koding · haftalarga bo'lish", ru: 'Кодинг · разбивка по неделям' },
-  title: { uz: 'app.js — haftalar() funksiyasini yozing', ru: 'app.js — напишите функцию haftalar()' },
-  brief: { uz: <>Besh ishni <b>tartib bilan</b> haftalarga joylang.</>, ru: <>Разложите пять задач по неделям <b>по порядку</b>.</> },
-  files: [{ name: 'app.js', lang: 'js', starter: KOD_STARTER, placeholder: { uz: '// ishlarni haftalarga joylang', ru: '// разложите задачи по неделям' } }],
+  title: { uz: 'app.js — haftalar() ga bitta shart yozing', ru: 'app.js — допишите одно условие в haftalar()' },
+  brief: { uz: <>Sikl tayyor, ishlar haftalarga <b>tartib bilan</b> tushadi. Bitta joyni to'ldiring: <code className="qcode">false</code> o'rniga shart — shu ish qo'shilsa, hafta 5 kundan oshib ketadimi?</>, ru: <>Цикл готов, задачи попадают в недели <b>по порядку</b>. Заполните одно место: вместо <code className="qcode">false</code> — условие: если добавить эту задачу, неделя превысит 5 дней?</> }, // F-1017-204: noldan algoritm o'rniga skelet — ichma-ich massiv va taqsimlash o'tilmagan
+  files: [{ name: 'app.js', lang: 'js', starter: KOD_STARTER, placeholder: { uz: '// false o\'rniga shart yozing', ru: '// вместо false напишите условие' } }],
   requirements: [
     { id: 'royxat', label: { uz: "Funksiya haftalar ro'yxatini (massiv ichida massivlar) qaytaradi", ru: 'Функция возвращает список недель (массив массивов)' },
       check: C.evalEquals(`(function(){var r=haftalar(${KOD_DATA});return Array.isArray(r)&&r.length>0&&r.every(Array.isArray);})()`, 'true', { uz: "Har hafta — alohida ro'yxat; bo'sh massiv o'tmaydi", ru: 'Каждая неделя — отдельный список; пустой массив не проходит' }) },
@@ -1534,7 +1563,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [yordamOpen, setYordamOpen] = useState(false);
   const missT = useRef(null);
   const [st, setSt] = useState(() => ({
-    code: (typeof storedAnswer?.code === 'string' ? storedAnswer.code : null) || (saved && saved.code) || tr(KOD_STARTER), // F-0914-10: saqlangan javob matn bo'lmasa — zaxira-zanjir (oq ekran himoyasi)
+    code: (typeof storedAnswer?.code === 'string' ? storedAnswer.code : null) || (saved && saved.code && /\bkunlar\b/.test(saved.code) ? saved.code : null) || tr(KOD_STARTER), /* F-1017-204: eski bo'sh starter tiklanmasin */ // F-0914-10: saqlangan javob matn bo'lmasa — zaxira-zanjir (oq ekran himoyasi)
     done: !!(storedAnswer && storedAnswer.solved) || !!(saved && saved.done),
   }));
   const { code, done } = st;
@@ -1639,7 +1668,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           zoomni bekor qiladi — kompilyator o'z lz sida, viewport ICHIDA qoladi. */}
       {open && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg, ...hcScale }}>
-          <HtmlCompiler lang={__lang} task={KOD_TASK} starterCode={code || tr(KOD_STARTER)} storageKey={`${KODING_KEY}:code`}
+          <HtmlCompiler lang={__lang} task={KOD_TASK} starterCode={code || tr(KOD_STARTER)} storageKey={`${KODING_KEY}:code2`}
             onContinue={finishPractice} onBack={() => { setOpen(false); writeKodingOpen(false); }} />
         </div>
       )}
@@ -2507,7 +2536,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await live.quizControl('lobby', -1); } catch { return; } }
+    if (isMentorL && quizSt === 'off') { try { await live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
   // Uy-vazifa — alohida ekran emas, kapsula bosilganda shu yerda ochiladi
@@ -2532,7 +2561,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
     </div>
   );
   return (
-    <Stage eyebrow={tr({ uz: 'Dars yakuni', ru: 'Итог урока' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
+    <Stage eyebrow={tr({ uz: 'Dars yakuni', ru: 'Итог урока' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className="screen s-fin" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="hero">
           <div className="hero-l">
@@ -2544,7 +2573,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Дождитесь ментора' }) : undefined} />
         </div>
-        {arena && <QuizArena live={live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+        {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         {/* «Endi siz bilasiz» va nishonlar yonma-yon (58-qonun): yakun-sahifasi bir ko'z bilan ko'rinadi. */}
         {isMentorL ? recapCard : (
           <div className="split sum2">

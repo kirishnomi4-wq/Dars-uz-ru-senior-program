@@ -150,10 +150,11 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
   Vizual (`ShartlarSahna`, tayyor holat, bir marta o'zi yuradi — DE-200): telefonda to'lov taklifi ekrani, «To'lovga o'tish» ostida ikki havola «Pro shartlari» · «Maxfiylik siyosati» → «Pro shartlari» bosiladi → chiziq bo'ylab nuqta → brauzer `maydon-jamoa-….netlify.app/oferta.html`:
   tepada «Mashq hujjati — real to'lov qabul qilinmaydi», sarlavha «Pro shartlari», olti band sarlavhasi (Kim taklif qiladi · Nima beriladi · Narx va muddat · Pro tugasa · Bekor qilish va pulni qaytarish · Aloqa) — matnsiz: band matni va qaysi biri bugun yozilishi — 4-ekran kashfiyoti (P-015); sarlavhalar — haqiqiy mazmun (SABOQ 33).
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
-  - 01 · To'lovchi nimaga rozi bo'lishini bilasiz · `oferta`
-  - 02 · Qaysi shart bugun yozilishini ajratasiz · `real ishga tushirish`
-  - 03 · O'z shartlaringizni sahifaga yozasiz · `oferta.html`
-  - 04 · Siyosatga to'lov haqida gap qo'shib, havola qo'yasiz · `maxfiylik siyosati`
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
+  - 01 · To'lovchi nimaga rozi bo'lishini bilasiz
+  - 02 · Qaysi shart bugun yozilishini ajratasiz
+  - 03 · O'z shartlaringizni sahifaga yozasiz
+  - 04 · Siyosatga to'lov haqida gap qo'shib, havola qo'yasiz
 - Pastki qator (mono, kichik): repo — o'z repo'ngiz · Mentor misoli `maydon-jamoa` · namuna `m13-dars-07-done`
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz
 - O'qituvchi eslatmasi: Menyu ostidagi «saytda» — dars natijasi: oferta va siyosat lending sahifalari bo'lib internetda turadi. Darsda hech kim pul olmaydi va hech narsa sotmaydi; oferta — mashq hujjati. Sotuvchi, pulni qaytarish va aloqa — real ishga tushirishda (bu kursda emas).
@@ -163,9 +164,8 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
 - Eyebrow: Tushuncha · shartlar
 - Sarlavha: **Tashkilotchi to'lasa, nimaga rozi bo'ladi?** (42)
 - Mentor: Tashkilotchining har savoli uchun tanlang: javobi to'lov taklifi ekranida bormi?
-  (Birinchi harakat — bashorat; uning yo'rig'i `QBashorat` yorlig'ida, Mentor takrorlamaydi — T-047.)
-- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 zinapoya): **Ekran olti savoldan nechtasiga javob beradi?** · 1 · 2 · 4 — tanlangach yopilmaydi: ixcham qator «Taxminingiz: N» natijagacha turadi; tugmalar shundan keyin yoqiladi.
-- Vizual (≤ 3 blok: telefon · savol kartasi va tugmalar · varaq): **chapda** — telefon (A-6 to'lov taklifi ekrani) va yonida tashkilotchi · **o'rtada** — joriy savol kartasi (tashkilotchi pufagi shaklida, «Savol n / 6») va ostida ikki tugma «Ekranda bor» · «Ekranda yo'q» ·
+- Bashorat yo'q — «Ekranda bor / yo'q» belgilashning o'zi topshiriq (208/0 e); tugmalar darhol faol. *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
+- Vizual (≤ 3 blok: telefon · savol kartasi va tugmalar · varaq): **chapda** — telefon (A-6 to'lov taklifi ekrani) va yonida tashkilotchi · **o'rtada** — joriy savol kartasi (tashkilotchi pufagi shaklida, yorlig'i «Savol» — sanoq va katakchalar yo'q, hisob tugmada *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*) va ostida ikki tugma «Ekranda bor» · «Ekranda yo'q» ·
   **o'ngda** — varaq «Shartlar» (bo'sh; ustida hisoblagich «ekranda yo'q · n»).
 - Kartalar (navbat bilan; tashkilotchining gapi — T-008):
   1. «Pulimga nima olaman?» ✔ Ekranda bor → telefonda «Har hafta shu kun va soatda o'yin o'zi e'lon qilinadi.» qatori accent bilan yonadi
@@ -180,10 +180,10 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
   - 3-savol, «Ekranda bor»: «Test rejim» — bugungi mashq haqida, keyingi oy haqida emas. (60)
   - 4, 5, 6-savol, «Ekranda bor»: Telefonda shu savolga javob beradigan qatorni toping. (53)
   6/6 dan keyin: tugmalar va savol kartasi yopiladi; telefondagi ikki yonib turgan qator ham varaqqa ko'chadi (yonida kulrang «ekranda ham bor») — varaq «Shartlar» to'liq: olti savol.
-- Natija (bitta blok — E 42; `tugadi`: harakat paneli yopiladi, telefon va varaq butun enga, ⛶ ichida — q17/q18): yashil xulosa qutisi — birinchi kichik qator taxmin: «Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz ✕ — aslida: 2».
+- Natija (bitta blok — E 42; `tugadi`: harakat paneli yopiladi, telefon va varaq butun enga, ⛶ ichida — q17/q18): yashil xulosa qutisi (taxmin qatorisiz *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*).
 - Xulosa: Odam to'lasa — shartlarga rozi bo'ladi. Bu misolda ekran ikki savolga javob beradi, to'rttasiga — yo'q. (103)
 - `QIzoh` (qutining oxirgi kichik qatori — E 42): Hamma uchun ochiq taklif — nima beriladi, qancha turadi, qanday shart bilan — oferta deyiladi. (94) — atama «oferta» shu yerda tug'iladi (T-011)
-- Tugma (pastki): Avval belgilang → Savollarni ajrating (N/6) → Davom etish
+- Tugma (pastki): Savollarni ajrating (N/6) → Davom etish
 - Ipucha (40 s harakatsizlikda; javobni aytmaydi): Telefondagi qatorlardan biri shu savolga javob beradimi? (56)
 - Keyingi bosiladigan joy: bashorat variantlari → ikki tugma (navbatma-navbat to'lqin) → «Davom etish».
 - Nishon: Ask Before Pay! (olti savol birinchi urinishda).
@@ -216,8 +216,8 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
 - Eyebrow: Tushuncha · oferta bandlari
 - Sarlavha: **Mentor ofertaga qaysi shartlarni bugun yoza oladi?** (50)
 - Mentor: Har band uchun tanlang: u bugun yoziladimi yoki real ishga tushirishda?
-- Bashorat (ballsiz; S-015 — o'sish tartibida): **Olti banddan nechtasini Mentor bugun yoza oladi?** · 2 · 3 · 4 — tanlangach ixcham qator natijagacha turadi; tugmalar shundan keyin yoqiladi.
-- Vizual (≤ 3 blok: band kartasi va tugmalar · brauzer · kulrang qator): **chapda** — joriy band kartasi («Band n / 6»: band nomi + ostida kulrang to'lovchi savoli) va ikki tugma «Bugun yoziladi» · «Real ishga tushirishda» ·
+- Bashorat yo'q — «Bugun / Real ishga tushirishda» ajratishning o'zi topshiriq (208/0 e); tugmalar darhol faol. *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
+- Vizual (≤ 3 blok: band kartasi va tugmalar · brauzer · kulrang qator): **chapda** — joriy band kartasi (yorlig'i «Band» — sanoqsiz *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*: band nomi + ostida kulrang to'lovchi savoli) va ikki tugma «Bugun yoziladi» · «Real ishga tushirishda» ·
   **o'ngda** — brauzer `maydon-jamoa-….netlify.app/oferta.html`: sarlavha «Pro shartlari», olti band sarlavhasi, matn joylari uzuq chiziqli bo'sh (to'ldiriladigan joy — U-041) ·
   **tugmalar ostida — doimiy kulrang qator** (darsda bir marta — A-4): Real ishga tushirish — ota-onaning yozma roziligi va yuridik shaxs (ro'yxatdan o'tgan tashkilot) yoki YaTT (yakka tartibdagi tadbirkor) bilan; bu kursda emas. (158)
 - Bandlar (navbat bilan; matn — tayanch 1.7 so'zma-so'z, A-6 jadvali):
@@ -236,10 +236,10 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
   - 5-band, «Bugun»: Mashqda pul yechiladimi? Qaytaradigan pul bormi? (48)
   - 6-band, «Bugun»: Aloqaga kimning telefoni yoziladi — sotuvchi bormi? (51)
   6/6 dan keyin: brauzerda tepada «Mashq hujjati — real to'lov qabul qilinmaydi», oxirida «Bu hujjat yuridik maslahat emas.» bir lahza ajralib kiradi; tugmalar yopiladi, sahifa butun enga (⛶).
-- Natija (bitta blok — E 42): yashil xulosa qutisi — birinchi kichik qator taxmin («Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz ✕ — aslida: 3»).
+- Natija (bitta blok — E 42): yashil xulosa qutisi (taxmin qatorisiz *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*).
 - Xulosa: Bu mashqda ofertaga bugun ishlaydigan narsa yoziladi; qolgani — real ishga tushirishda. (87)
 - `QIzoh` (qutining oxirgi kichik qatori): «Mashq hujjati» va «yuridik maslahat emas» qatorlari sahifa mashq ekanini ochiq aytadi. (87)
-- Tugma (pastki): Avval belgilang → Bandlarni ajrating (N/6) → Davom etish
+- Tugma (pastki): Bandlarni ajrating (N/6) → Davom etish
 - Ipucha (40 s): Bu bandni Mentor bugun rost yoza oladimi? (41)
 - Keyingi bosiladigan joy: bashorat → ikki tugma (navbatma-navbat to'lqin) → «Davom etish».
 - Nishon: Clause Sorter! (olti band birinchi urinishda).
@@ -253,7 +253,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
 - Sarlavha: **Mahsulotingiz ofertasini yozing.** (32)
 - Mentor: Bugun ishlaydigan bandlarni o'zingiz yozasiz, qolgan uchtasi Mentor ofertasidagidek qoladi — birinchi kartadan boshlang.
 - **Chapda — telefon** (`ShartlarSahna` telefon holati: o'quvchining to'lov taklifi ekrani — `pm-m11d4-narx.ekran`; ramka ustida «4-darsdagi ekraningiz»). Kalit yo'q bo'lsa — telefon ko'rinmaydi, karta va varaq bitta ustunda (bo'sh ustun yo'q — SABOQ 20).
-  **O'ngda — bitta katta karta (joriy qism)**, ostida ixcham varaq «{nom} shartlari» (`{nom}` bo'sh bo'lsa — «Ofertam»): olti band; 1, 5, 6 — kulrang tayyor matn (A-6), 2, 3, 4 — uzuq ramkali joy (U-041). Maydonlarda yorliq input ichida — raqam belgisi va qisqa savol (E 43).
+  **O'ngda — bitta katta karta (joriy qism; yorlig'ida qism nomi, «n / 3» yo'q — hisob tugmada *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*)**, ostida ixcham varaq «{nom} shartlari» (`{nom}` bo'sh bo'lsa — «Ofertam»): olti band; 1, 5, 6 — kulrang tayyor matn (A-6), 2, 3, 4 — uzuq ramkali joy (U-041). Maydonlarda yorliq input ichida — raqam belgisi va qisqa savol (E 43).
 - Qismlar (ketma-ket; «Saqlash» o'ngda — 187; har qismda ikkinchi tugma «Hali bilmayman» — band matni «[savol]», `savol: true`):
   1. **Nima beriladi** — nom (≤ 20; placeholder «Pullik qismingiz nomi») · matn (≤ 120; placeholder «Odam to'lasa, nima oladi?»).
      Kulrang qator (`pm-m11d2-model.nima` bo'lsa): 2-darsda yozganingiz: «{nima}». Kalit yo'q — qator ko'rinmaydi.
@@ -469,6 +469,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
 - Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
 - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18). Artefakt-strip yakunda yo'q (E 50).
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
 - Izoh (MD): uyga vazifada keyingi darslar aytilmaydi (T-038). ② — bitta tanish odam, tanish doira (TAQIQLAR 3); «sinov» so'zi o'quvchi matnida ishlatilmadi — «ochsin», «so'rang». Uyga vazifa yengil: ① faqat qolgan ish bo'lsa (sinf 14).
   Yakun sarlavhalari kalitdan yig'iladi: `bandlar` (bor / yo'q) · Amaliyot 1 va 2 bayrog'i (4-qadam «Bajardim») · `chiqdi`, `havolalar` · `bandlar[].savol` (P-046).
 

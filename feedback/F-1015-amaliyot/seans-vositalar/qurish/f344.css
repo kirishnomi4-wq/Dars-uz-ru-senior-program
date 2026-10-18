@@ -1,0 +1,12 @@
+        /* ===== F-1015-344 · m3-07: kod oynasi (qiymatlar), CRUD jadvali (izohda backtick yo'q) ===== */
+        .sk-izoh { color: #94a3b8; }
+        .sk-nur { border-radius: 6px; animation: sk-nur 0.9s ease-out; }
+        @keyframes sk-nur { from { background: rgba(250,204,21,0.35); } to { background: transparent; } }
+        .cr-son { font: 800 12.5px 'Manrope', sans-serif; color: ${T.ink}; }
+        .lesson-root .cr-jadval { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+        .cr-jadval li { display: grid; grid-template-columns: 62px 1fr auto; align-items: center; gap: 10px; font-size: 14px; color: ${T.ink}; }
+        .cr-jadval li span { color: ${T.ink2}; }
+        .cr-jadval .qcode { white-space: nowrap; }
+        @media (max-width: 560px) { .cr-jadval li { grid-template-columns: 58px 1fr; } .cr-jadval .qcode { grid-column: 1 / -1; justify-self: start; } }
+        .am-yordam pre.am-masalan { color: ${CODE.text}; }
+        @media (prefers-reduced-motion: reduce) { .sk-nur { animation: none !important; } }

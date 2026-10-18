@@ -41,10 +41,11 @@ Telefon maketi: «O'yinlar» · Shanba · karta «Shanba, 18:00» · Mahalla may
 - Chap: Dars oxirida · kulrang yorliq: metrikali pitch: o'sish grafigi — dalil
   - sahna (matnsiz): telefon va beshta nomsiz bo'lak («1-bo'lak» … «5-bo'lak») birma-bir to'q chiziqqa aylanadi, taymer chizig'i 5:00 gacha to'lib, zal ustida ✓
 - Reja:
-  1. Pitchga sonlar qayerda qo'shilishini bilib olasiz · besh bo'lak
-  2. Sonlarni ustunlarda halol ko'rsatishni o'rganasiz · grafik
-  3. Uzum qanday o'sganini ko'rasiz · voqea
-  4. Pitchni sherigingizga jonli demo bilan aytasiz · jonli demo
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
+  1. Pitchga sonlar qayerda qo'shilishini bilib olasiz
+  2. Sonlarni ustunlarda halol ko'rsatishni o'rganasiz
+  3. Uzum qanday o'sganini ko'rasiz
+  4. Pitchni sherigingizga jonli demo bilan aytasiz
 - Tugmalar: Orqaga · Boshlaymiz
 
 ## 2 · Besh bo'lak
@@ -119,7 +120,7 @@ Telefon maketi: «O'yinlar» · Shanba · karta «Shanba, 18:00» · Mahalla may
 ## 6 · Uzum
 - Eyebrow: Biznes olamidan
 - Sarlavha: Uzum'ning sonlari yonida *nima turadi?* (nom «Uzum» o'z rangida)
-- Yorliq: Uzum · N/3 va uch nuqta
+- Yorliq va nuqtalar yo'q — tugma «Voqea davomi (N/3)» aytadi; bashorat yorlig'i «Avval o'zingiz belgilab ko'ring» *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
 - Sahna: chapda telefon — «Uzum» ilovasi ekrani (narsa kartalari chizmasi); o'ngda vaqt chizig'i uch nuqta bilan.
   1. 2022-yil oktabr · ishga tushdi
      - Mentor: Uzum — internet-magazin, u 2022-yil oktabrida ishga tushgan. Saytdan emas, yetkazib berishdan boshlagan: o'z avtoparki, topshirish punktlari, ertasi kuni yetkazish.
@@ -243,8 +244,8 @@ haftalar.forEach(function (h) {
 - Eyebrow: Mustaqil ish
 - Sarlavha: Pitchingizni *besh bo'lakka yozing.*
 - Mentor: Tuzatilgan pitchingiz va grafigingiz shu yerda: har bo'lakni tekshirib, «Saqlash»ni bosing.
-- Tepada chiziq: Pitchim · n/5 — bo'lak nomlari (Muammo · Yechim · Jonli demo · Raqamlar · Keyingi qadam), saqlangani ✓
-- Bo'lak kartasi (bittadan; oldingi darslarda saqlangan matn bo'lsa — oldindan qo'yilgan, tahrirlanadi):
+- Tepada chiziq: Pitchim (sanoq tugmada «(n/5)» *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*) — bo'lak nomlari (Muammo · Yechim · Jonli demo · Raqamlar · Keyingi qadam), saqlangani ✓
+- Bo'lak kartasi (bittadan, yorlig'ida faqat bo'lak nomi *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*; oldingi darslarda saqlangan matn bo'lsa — oldindan qo'yilgan, tahrirlanadi):
   1. Muammo — Muammo gapi (Kim nimadan qiynaladi?) · Dalil (Son yoki kuzatuv — qayerdan?)
   2. Yechim — Yechim (Mahsulot nima qiladi va odamga nima beradi?); ustida lending foydalari tugmalari — bosilgani yechim gapiga qo'shiladi
   3. Jonli demo — 1-qurilmada (Qaysi tugmani bosasiz?) · 2-qurilmada (Nima o'zi o'zgaradi?)
@@ -367,6 +368,7 @@ Natijalar (podium) — jonli reyting
 - Uyga vazifa · Amaliy topshiriqni bajarish → (ochilganda — uy vazifasi kartasi «Uyda nima qilasiz?»; uning ostida): Keyingi dars — **«Zaxira dars»**
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
 
 ## Nishonlar
 - **Growth Chart!** — O'z sonlaringizdan noldan boshlangan o'sish grafigini chizdingiz (9-ekran, savol birinchi urinishda va «Bajardim»; ro'yxatda o'z sonlaringiz)

@@ -164,7 +164,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2 ≈ 7 · Amaliyot 
 - Xulosa: Mentor ilovasida havoladagi taklif kodi o'rnatilgan APK'ga o'tmaydi — shuning uchun formada maydon bor. (103)
 - Tugadi (199): harakat paneli va sahna tugmalari yopiladi; sahna butun enga, Backend'dagi yangi qator fokusda; vizual ⛶ ichida (q17).
 - Tugma (pastki): Avval taxminingizni belgilang → Harakatlarni navbat bilan bajaring (N/4) → Davom etish
-- Keyingi bosiladigan joy: bashorat variantlari → «Havolani ulashish» (halqada) → «Havolani ochish» → «Android: ilovani o'rnatish» → «Taklif kodini yozish» → «Davom etish» (har safar faqat navbatdagisi faol, qolgani xira).
+- Keyingi bosiladigan joy: bashorat variantlari → «Havolani ulashish» (halqada) → «Havolani ochish» → «Android: ilovani o'rnatish» → «Taklif kodini yozish» → «Davom etish» (har safar faqat navbatdagisi faol, qolgani xira). *(✎ F-1015-164: endi navbatdagi tugmagina ko'rinadi — keyingilari hali chiqmaydi, bosilgani «✓ nom» yozuvi; o'chiq tugma yo'q)*
 - O'qituvchi eslatmasi: iPhone'dagi brauzer ko'rinishida ham Mentor ilovasi taklif kodini qo'lda so'raydi — bitta qoida (TAYANCHGA SAVOL 17). Web-trekda havola va forma bitta brauzerda ochilsa, sayt taklif kodini havoladan formaga o'zi qo'yishi mumkin — bu 2-amaliyotda o'quvchining tanlovi.
 - ✎ Bitta g'oya (P-008): havoladagi taklif kodi APK'ga o'tmaydi — shuning uchun forma (tayanch 1.10, Mentor qarori — halol aytiladi). Atamalar harakatdan keyin (T-011): «taklif havolasi» — 1-harakatdan, «taklif kodi» — 2-harakatdan keyin Mentor gapida.
   Sarlavha va bashoratda yangi atama yo'q (T-011): hook savoli («kim taklif qilgani») davom etadi, «taklif kodi» faqat harakatdan keyin; «kod» yolg'iz ishlatilmaydi (T-015). Joriy qator — 2-amaliyotdagi sanoqqa ko'prik (Umami va Database — ikki birlik). Bashorat — ikki daraja (S-015).
@@ -252,14 +252,14 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2 ≈ 7 · Amaliyot 
 - Bashorat (ballsiz, 181; tanlangach ixcham qator; o'sish tartibida — S-015): **Asosiy harakat qilgan hisoblarning nechtasi uchun mukofot beriladi?** · Yarmidan kami · Ko'pi · Hammasi.
 - Vizual (`TAKLIF_SAHNA` — Backend kengaygan holat):
   - Chap tepada — sanoq qutilari (kulrang, sonsiz; ustida kichik yorliq «Mentor misolida · bir hafta»): «Umami · tashrif» — «Database · taklif kodi bilan ochilgan hisob» — «asosiy harakat qilgan hisob». Qutilar orasida ingichka chiziq (ayirish belgisi yo'q).
-  - Chap pastda — hisob kartasi joyi (bitta katta karta; «Hisob N / 4»); karta ostida tugma «Qoidadan o'tkazish» (halqada, SABOQ 21) — 1-harakatgacha xira.
+  - Chap pastda — hisob kartasi joyi (bitta katta karta; «Hisob N» — jami tugmada «(n/4)» *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*); karta ostida tugma «Qoidadan o'tkazish» (halqada, SABOQ 21) — 1-harakatgacha xira.
   - O'ngda — tekshiruv kartasi «Mukofot qoidasi» (ostida kulrang yorliq «Mentor misolida»): uch bo'sh katak — «Yangi hisob, asosiy harakat qildi» · «Taklif qilgan bilan boshqa qurilmada» · «Namuna hisob emas»;
     ostida qator «Mukofot: 0» va kulrang qoida qatori «Bir hisobga — haftasiga ko'pi bilan 2».
 - Hisob kartalari (shu tartibda; Mentor misoli — tayanch 1.10: 4 hisobdan 1 tasi bir qurilmada; tartib — sahna uchun, TAYANCHGA SAVOL 5):
-  1. «Hisob 1 / 4» — «taklif kodi bilan ochilgan · asosiy harakat: bor · qurilma: taklif qilganniki emas · namuna: yo'q» → ✓ · ✓ · ✓
-  2. «Hisob 2 / 4» — xuddi shunday → ✓ · ✓ · ✓
-  3. «Hisob 3 / 4» — «… qurilma: taklif qilganniki bilan bir xil …» → ✓ · ✗ · ✓ — qizil qator: Bir qurilmada — mukofot yo'q. (29)
-  4. «Hisob 4 / 4» — 1-karta kabi → ✓ · ✓ · ✓
+  1. «Hisob 1» — «taklif kodi bilan ochilgan · asosiy harakat: bor · qurilma: taklif qilganniki emas · namuna: yo'q» → ✓ · ✓ · ✓
+  2. «Hisob 2» — xuddi shunday → ✓ · ✓ · ✓
+  3. «Hisob 3» — «… qurilma: taklif qilganniki bilan bir xil …» → ✓ · ✗ · ✓ — qizil qator: Bir qurilmada — mukofot yo'q. (29)
+  4. «Hisob 4» — 1-karta kabi → ✓ · ✓ · ✓
 - **Harakat → Vizual o'zgarish:**
   - 1) «Sanoqni ochish» → qutilarga son navbat bilan yoziladi (har biri bir lahza kattalashib qaytadi): «18 tashrif» → «7 hisob» → «4 hisob»; qutilar ostida ikki kulrang qator chiqadi:
     «Jami ro'yxatdan o'tgan: 51 (44 + 7)» · «tashrif va hisob — har xil o'lchov, ayirilmaydi». Birinchi hisob kartasi tushadi, «Qoidadan o'tkazish» faol bo'ladi.
@@ -273,7 +273,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2 ≈ 7 · Amaliyot 
 - QIzoh (yashil qutining oxirgi kichik qatori — E 42): Bir hafta va 7 hisob — kichik son: taklif yo'li ishlaganini ko'rsatadi, o'sishni isbotlamaydi. (97)
 - Tugadi (199): harakat paneli yopiladi; sanoq qutilari, ixcham kartalar va qoida kartasi butun enga, «Mukofot: 3 · 2 tashkilotchiga» fokusda; vizual ⛶ ichida.
 - Tugma (pastki): Avval taxminingizni belgilang → Sanoqni oching → Hisoblarni tekshiring (N/4) → Davom etish
-- Keyingi bosiladigan joy: bashorat variantlari → «Sanoqni ochish» → «Qoidadan o'tkazish» (har kartada) → «Davom etish».
+- Keyingi bosiladigan joy: bashorat variantlari → «Sanoqni ochish» → «Qoidadan o'tkazish» (har kartada) → «Davom etish». *(✎ F-1015-164: «Sanoqni ochish» bashoratdan keyin, «Qoidadan o'tkazish» sanoq ochilgach chiqadi; tekshiruv animatsiyasi paytida ko'rinmaydi — o'chiq tugma yo'q)*
 - O'qituvchi eslatmasi: 51 — 50 ga yetganini bayram qilmang: sonda 11 sinfdosh va mukofotga sanalmagan bir qurilmadagi hisob ham bor. «Bir hafta va 7 hisob — kichik son» gapini o'qib bering.
   Haftalik cheklov bu misolda mukofotni to'xtatmadi (uch mukofot — ikki tashkilotchiga); u qanday ishlashi — 3-amaliyotda, kod qatorida.
 - ✎ Sonlar — tayanch 1.10, 1.13 aynan; har qutida birligi (sinf 7); 18 — «tashrif» (TAYANCHGA SAVOL 4); 51 va «44 + 7» — maketda, Mentor matnida yo'q (TAQIQLAR 5 — formula faqat maketda).
@@ -452,12 +452,13 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2 ≈ 7 · Amaliyot 
   - Bu misolda mukofot yangi hisob asosiy harakat qilgach beriladi; bir qurilmadagi va namuna hisob sanalmaydi.
   - Mentor misolidagi bir haftalik 7 hisob taklif yo'li ishlaganini ko'rsatadi, o'sishni isbotlamaydi.
 - Uyga vazifa — yo'q (loyiha kuni; tayanch 4). `uyga: null`. «O'rnatish fayli navbatda» yorlig'i ostida bitta qator: Fayl tayyor bo'lgach, lendingdagi havolani keyingi dars boshida almashtirasiz.
-- Keyingi dars — «Mahsulotingiz hozir qayerda?»: roadmap bilan solishtirish va shaxsiy hisobot.
 - Nishonlaringiz — N/4
-- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Keyingi dars — «Mahsulotingiz hozir qayerda?»: roadmap bilan solishtirish va shaxsiy hisobot.
+- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Nishonlaringiz · Keyingi dars. Ichki skroll qutisi yo'q (SABOQ 18).
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
 - ✎ «tekshirildi» — faqat hamma kartalar «Kutilganidek»da (o'quvchi o'zi ko'rgan natija); «mukofot ishlaydi» deyilmaydi — namuna va cheklov sinalmagan, sarlavha «ikki holati» deydi (F-1007-468). «tayyor» — o'sha blok kartasi «Kutilganidek» bo'lsa. Sarlavhalar trek bo'yicha farq qilmaydi (havola, sanoq, mukofot ikkala trekda bor).
   «Endi siz bilasiz» — bilim, ikkala trekka to'g'ri (2-qator «Mentor ilovasida» bilan chegaralangan). «Keyingi dars» qatori — App.jsx `m11-11` nomi va osti (T-038: boshqa joyda va'da yo'q).
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ---
 
@@ -585,7 +586,7 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari ru'da ham o'sha; R-008): taklif havol
 4. **0-ekran `QKirish`:** maket — 1-telefon («O'yin» ekrani) + ikki chat pufagi (bir xil havola) + Umami qutisi; javobdan keyin pufaklardagi havola yonib ustma-ust tushadi va kulrang qator chiqadi (kirish animatsiyasi, SABOQ 19).
 5. **2-ekran `QTushuncha`:** `QBashorat`/`QTaxmin` (yopilmaydi — ixcham qator; natija yashil qutining birinchi qatori — E 42), to'rt harakat navbat bilan (faol tugma halqada, qolganlari xira), konvert animatsiyalari, lending qatori, Umami qutisi «+1 tashrif»,
    APK konverti va bo'sh maydon («taklif kodi ilovaga o'tmadi» yorlig'i), maydonga harfma-harf yozish, `POST /royxat` konverti, jadvalga yangi qator, joriy qator, `zoom`, `tugadi`. Holat bosishlar ro'yxatidan (P-046).
-6. **5-ekran `QTushuncha`:** `QBashorat`/`QTaxmin`, «Sanoqni ochish» → `MENTOR_SANOQ` qutilari navbat bilan (son bir lahza kattalashadi) va ikki kulrang qator; `HISOBLAR` bittadan («Hisob N / 4»), «Qoidadan o'tkazish» → `QOIDA_KATAKLAR` ga ✓/✗ navbat bilan (60–120 ms),
+6. **5-ekran `QTushuncha`:** `QBashorat`/`QTaxmin`, «Sanoqni ochish» → `MENTOR_SANOQ` qutilari navbat bilan (son bir lahza kattalashadi) va ikki kulrang qator; `HISOBLAR` bittadan («Hisob N»), «Qoidadan o'tkazish» → `QOIDA_KATAKLAR` ga ✓/✗ navbat bilan (60–120 ms),
    yashil/qizil karta, «Mukofot: N», qizil qator (`QXato` ≤60), 4 kartadan keyin «2 tashkilotchiga» va «cheklovdan oshmadi»; o'tgan kartalar ixcham qator bo'lib qoladi (SABOQ 9, 13, 17); joriy qator, QIzoh (yashil qutining oxirgi qatori), `zoom`, `tugadi`.
 7. **4 va 7-ekran `QTest`** — matn yuqoridagidek; to'g'ri izoh ≤60, xato izohlari ≤60.
 8. **Amaliyot bloklari** — `ScreenBlok` + `QBlok` + `QPrompt` (12-Modul 9-darsi naqshi): har blok **4 band**, hammasi o'quvchining o'z repo'sida; 5-band yo'q. Prompt — tayyor talab + `{…}` joylar, yonida kulrang «masalan» (bo'sh qiymat bilan); «Yordam» — Mentor misolidagi to'liq prompt; web gapi — «Yordam» ostida.

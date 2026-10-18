@@ -1,6 +1,9 @@
 # 5-dars «Loyiha kuni: AI bilan bot» — yakuniy matn
 
-Fayl: `src/5-Modull/BotAiProjectLesson.jsx` · 11 ekran (8 ekran + 3 amaliyot bloki A1–A3) · Keyingi dars: «Bot ichida AI»
+> ✎ **F-1015-122 (16.10, 208-qonun 4-band, foydalanuvchi qarori — 2-variant):** dars yuzasidagi bezak emoji kodda olingan — sarlavha, yorliq, karta ikonlari, fayl tablari, test/amaliyot yorliqlari, tugmalar. Qolgan: sxema tugunlari, keys sahnasi, o'yin qatlami (nishon, arena, podium), Yakun, takrorlash oynasi, Mentor paneli, bot/ilova maketidagi mahsulot mazmuni. Bu MD dagi shunday bezak emoji endi ekranda yo'q.
+
+
+Fayl: `src/5-Modull/BotAiProjectLesson.jsx` · 12 ekran (9 ekran + 3 amaliyot bloki A1–A3) · Keyingi dars: «Bot ichida AI»
 Holat: 04.10.2026 — kodga mos
 
 ## 0 · Kirish — ikki prompt
@@ -76,7 +79,7 @@ Holat: 04.10.2026 — kodga mos
   3. Ishga tushirish — terminal o'zi qayta yukladi, xato yo'q.
      - Xato izohi: Xato bo'lsa: «Shu xato chiqdi: {xato}. Tuzat.»
   4. Telegramda tekshirish — botingizga `/start` yuboring: o'z salomingiz va o'z tugmalaringiz chiqadi.
-- Yorliq (o'ngda): kutilgan natija · namuna: AvtoPizza
+- Yorliq (o'ngda): kutilgan natija · namuna: AvtoPizza (yorliq natija ostida ✎ F-1015-166)
 - Chat «AvtoPizza»:
   - Mijoz: /start
   - Bot: AvtoPizza'ga xush kelibsiz! · tugmalar: Menyu · Buyurtma
@@ -149,7 +152,7 @@ this.bot.on('text', (ctx) => ctx.reply('Bu buyruqni bilmayman.'));
   3. Ishga tushirish — terminal xatosiz. AI kodini 4 tekshiruv bilan o'qing: handler bormi, inline'mi, token `.env` da, `on('text')` oxirida.
      - Xato izohi: Xato bo'lsa: «Shu xato chiqdi: {xato}. Tuzat.»
   4. Telegramda tekshirish — `/start` → har tugmani bosing → har biri o'z javobini bersin; matn yuboring → bot kutgan javobni bersin.
-- Yorliq (o'ngda): kutilgan natija · namuna: AvtoPizza
+- Yorliq (o'ngda): kutilgan natija · namuna: AvtoPizza (yorliq natija ostida ✎ F-1015-166)
 - Chat «AvtoPizza»:
   - Mijoz: «Menyu» bosildi
   - Bot: Tanlang: · tugmalar: Margarita · Pepperoni · Pishloqli
@@ -189,7 +192,7 @@ this.bot.on('text', (ctx) => ctx.reply('Bu buyruqni bilmayman.'));
   3. O'zingizniki — bitta yangi narsa: yangi tugma, `/help` buyrug'i yoki boshqacha javob — promptni o'zingiz yozing.
      - Xato izohi: Xato bo'lsa: «Shu xato chiqdi: {xato}. Tuzat.»
   4. Telegramda tekshirish — tuzatilgan joy va yangi narsa ishlaydi. Qo'shningizga botingizni bering: u ham bossin.
-- Yorliq (o'ngda): kutilgan natija · namuna: AvtoPizza
+- Yorliq (o'ngda): kutilgan natija · namuna: AvtoPizza (yorliq natija ostida ✎ F-1015-166)
 - Chat «AvtoPizza»:
   - Mijoz: /help
   - Bot: /start — boshlash · /menu — pitsalar · /buyurtma — buyurtmam
@@ -201,14 +204,10 @@ this.bot.on('text', (ctx) => ctx.reply('Bu buyruqni bilmayman.'));
 
 ## 9 · Natijalar (podium) — jonli reyting
 
-## 10 · Yakun
-- Eyebrow: Tayyor
-- Belgi: ✓ Loyiha kuni tugadi
-- Natija halqasi: N/2 · to'g'ri javob
-- Sarlavha: Botingiz ishlaydi — tartibni ham bilasiz.
-- Arena tugmasi CodeStrike (jonli darsda: Mentorni kuting)
-- Yorliq: Takrorlash — kartochkalar
-- Kartochkalar (12 ta):
+## 10 · Kartochkalar
+10-ekran
+- Eyebrow: Takrorlash
+- Sarlavha: O'zingizni sinab ko'ring.
 
 | Old tomon (savol) | Orqa (javob) | Izoh |
 |---|---|---|
@@ -225,12 +224,27 @@ this.bot.on('text', (ctx) => ctx.reply('Bu buyruqni bilmayman.'));
 | Kodni o'qimay ko'chirgan odam nimada yutqazadi? | Buzilsa, sababini topolmaydi | Tushungan odam qayerdan buzilganini biladi |
 | Terminalda xato chiqdi — Antigravity'ga nima deysiz? | Xato matnini yuboraman | «Shu xato chiqdi: … Tuzat» — taxmin emas, aniq xabar |
 
-- Hisoblagichlar: ↻ O'rganilmoqda · N · ✓ Bildim · N
+- Hisob: ↻ O'rganilmoqda · N · ✓ Bildim · N
 - Tugmalar: ✗ Takrorlash · ✓ Bildim
-- Hammasi bilinganda: Hammasini bilasiz! · N/N atama yodlandi · ↻ Qaytadan takrorlash
-- Keyingi dars — «Bot ichida AI». Bugun AI botingizning kodini yozdi. Keyingi darsda AI botning ichida ishlaydi: mijoz savoliga javobni o'zi yozadi.
+- Hammasi tugagach: Hammasini bilasiz! · N/N atama yodlandi · ↻ Qaytadan takrorlash
+- Tugma: Yakunlash →
+✎ F-1015-112 (15.10): kartochkalar Yakun ichidan alohida ekranga chiqdi (207-qonun; 172.1 «kartochkalar shu ekranda» bekor). Ekranlar: 11 → 12.
+
+## 11 · Yakun
+- Eyebrow: Tayyor
+- Belgi: ✓ Dars tugadi · Testlar: N/N ✎ F-1015-161
+- Natija halqasi: N/2 · to'g'ri javob
+- Sarlavha: Botingiz ishlaydi — tartibni ham bilasiz.
+- Arena tugmasi CodeStrike (jonli darsda: Mentorni kuting)
+- ✓ Endi siz bilasiz (✎ F-1015-161 — darsning takrorlash oynalari va xulosalaridan):
+  - Aniq prompt — aniq bot: hodisa → javob juftlari va tugma turi aytilsa, AI kamroq taxmin qiladi
+  - Nima yozilishini prompt belgilaydi, promptni esa siz yozasiz
+  - Inline tugma bosilganda botga callback keladi, uni `bot.action` ushlaydi
+  - Handler yozilmagan bo'lsa, bot jim qoladi — tuzatish promptida qaysi tugma uchun handler kerakligini aniq yozing
 - Nishonlaringiz — N/3
+- Keyingi dars — «Bot ichida AI». Bugun AI botingizning kodini yozdi. Keyingi darsda AI botning ichida ishlaydi: mijoz savoliga javobni o'zi yozadi.
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - Prompt Smith — Noaniq va aniq promptni farqladingiz (4-ekran, 1-savol)

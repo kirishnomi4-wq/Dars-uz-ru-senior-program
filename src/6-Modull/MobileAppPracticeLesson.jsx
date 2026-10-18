@@ -3,10 +3,10 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 
 // ============================================================
 // 6-MODUL (Tizim arxitekturasi) · P2 (LOYIHA KUNI) — PRAKTIKA: MOBIL ILOVA — PLATFORM STANDARD v18 (AUDIOSIZ)
-// G'oya: web-do'konning MOBIL versiyasini qurish (React Native) — O'SHA backendga ulanadi (bitta tizim).
+// G'oya: AvtoPizza saytining MOBIL versiyasini qurish (React Native) — O'SHA backendga ulanadi (bitta tizim).
 //        Loyiha kuni: 9 va 10-darslarda sintaksisni o'rgandingiz — bugun qurasiz, telefonda sinaysiz, Expo Go bilan ulashasiz.
 // MATN-MANBA: feedback/F-0929-QA-6modul/11-MobileAppPractice-v2.md (MD-birinchi, 2026-09-29) — metafora yo'q.
-// INTERAKTIV BEAT'lar: s2 tayyor backend — yangi kirish yo'li · s3 4 ekran (Ro'yxat/Tafsilot/Savat/Buyurtma) · s5-6 ritm + quruvchi ·
+// INTERAKTIV BEAT'lar: s2 tayyor backend — yangi kirish yo'li · s3 4 ekran (Menyu/Tafsilot/Savat/Buyurtma) · s5-6 ritm + quruvchi ·
 //   s11 xato → tuzatish · s13 Expo Go QR → ulashish (App Store emas) · FINAL: 4 ekranni xarid oqimi tartibida yig'ish (DragDropOrder).
 // JONLI: useLiveSession + INLINE_KEYS + CodeStrike arena + Podium (ball to'g'riligi — ⚡ Jonli roli).
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
@@ -24,7 +24,7 @@ const T = {
 const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', str: '#7DD181', comment: '#6B7585', punct: '#9FB4D8' };
 const G = "Georgia, serif";
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 
 
 
@@ -51,7 +51,7 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 
 // Matn ichidagi `kod` bo'laklarini chip qilib ko'rsatadi (qcode)
 const fmtCode = (s) => (typeof s === 'string' && s.includes('`'))
-  ? s.split('`').map((p, i) => i % 2 ? <code className="qcode" key={i}>{p}</code> : p)
+  ? s.split('`').map((p, i) => i % 2 ? <code className={p.length > 24 && p.includes(' ') ? 'qcode uzun' : 'qcode'} key={i}>{p}</code> : p)
   : s;
 
 // AUDIOSIZ dars — useAudio/getAudioEngine zaglushkasi (QuestionScreen imzosi saqlanadi, TTS yo'q)
@@ -109,9 +109,9 @@ const RECAPS = {
   4: {
     title: { uz: "Tayyor backend — bitta tizim", ru: 'Готовый бэкенд — одна система' },
     cards: [
-      { ic: "🔌", h: { uz: "Yangi server yo'q", ru: 'Нового сервера нет' }, body: { uz: <>Mobil ilova yangi server yozmaydi — backend darslaridagi <b>Node.js + PostgreSQL</b>'ga ulanadi.</>, ru: <>Мобильное приложение не пишет новый сервер — оно подключается к <b>Node.js + PostgreSQL</b> с уроков по бэкенду.</> } },
-      { ic: "📥", h: { uz: "Mahsulot fetch bilan keladi", ru: 'Товары приходят через fetch' }, body: { uz: <>Mahsulotlar <b>GET /products</b> orqali keladi, qo'lda yozilmaydi.</>, ru: <>Товары приходят через <b>GET /products</b>, их не вписывают вручную.</> } },
-      { ic: "🔗", h: { uz: "Bitta Database", ru: 'Одна Database' }, body: { uz: <>Web, bot, mobil — bitta Database'dan foydalanadi.</>, ru: <>Веб, бот, мобильное — все пользуются одной Database.</> }, ask: { uz: "Mobil ilova mahsulotlarni qayerdan oladi?", ru: 'Откуда мобильное приложение берёт товары?' } },
+      { ic: "🔌", h: { uz: "Yangi server yo'q", ru: 'Нового сервера нет' }, body: { uz: <>Mobil ilova yangi server yozmaydi — backend darslaridagi <b>NestJS + PostgreSQL</b>'ga ulanadi.</>, ru: <>Мобильное приложение не пишет новый сервер — оно подключается к <b>NestJS + PostgreSQL</b> с уроков по бэкенду.</> } },
+      { ic: "📥", h: { uz: "Menyu fetch bilan keladi", ru: 'Меню приходит через fetch' }, body: { uz: <>Menyu <b>GET /menyu</b> orqali keladi, qo'lda yozilmaydi.</>, ru: <>Меню приходит через <b>GET /menyu</b>, его не вписывают вручную.</> } },
+      { ic: "🔗", h: { uz: "Bitta Database", ru: 'Одна Database' }, body: { uz: <>Web, bot, mobil — bitta Database'dan foydalanadi.</>, ru: <>Веб, бот, мобильное — все пользуются одной Database.</> }, ask: { uz: "Mobil ilova menyuni qayerdan oladi?", ru: 'Откуда мобильное приложение берёт меню?' } },
     ]
   },
   6: {
@@ -125,9 +125,9 @@ const RECAPS = {
   10: {
     title: { uz: "Buyurtma — o'sha oqim", ru: 'Заказ — тот же путь' },
     cards: [
-      { ic: "🟢", h: { uz: "POST /orders", ru: 'POST /orders' }, body: { uz: <>«Buyurtma qil» bosilganda mobil ilova backend'ga <b>POST /orders</b> yuboradi.</>, ru: <>При нажатии «Заказать» мобильное приложение отправляет на бэкенд <b>POST /orders</b>.</> } },
-      { ic: "🐘", h: { uz: "Database saqlaydi", ru: 'Database сохраняет' }, body: { uz: <>Buyurtma <b>PostgreSQL</b>'ga yoziladi — web bilan bir xil.</>, ru: <>Заказ записывается в <b>PostgreSQL</b> — так же, как из веба.</> } },
-      { ic: "✈️", h: { uz: "Bot xabar beradi", ru: 'Бот сообщает' }, body: { uz: <>Telegram bot adminni xabardor qiladi.</>, ru: <>Telegram-бот сообщает администратору.</> }, ask: { uz: "«Buyurtma qil» bosilganda nima bo'ladi?", ru: 'Что происходит при нажатии «Заказать» в мобильном?' } },
+      { ic: "🟢", h: { uz: "POST /buyurtma", ru: 'POST /buyurtma' }, body: { uz: <>«Yuborish» bosilganda mobil ilova backend'ga <b>POST /buyurtma</b> yuboradi.</>, ru: <>При нажатии «Отправить» мобильное приложение отправляет на бэкенд <b>POST /buyurtma</b>.</> } },
+      { ic: "🐘", h: { uz: "Database saqlaydi", ru: 'Database сохраняет' }, body: { uz: <>Buyurtma <b>PostgreSQL</b>'dagi <b>buyurtmalar</b> jadvaliga yoziladi — web bilan bir xil.</>, ru: <>Заказ записывается в таблицу <b>buyurtmalar</b> в <b>PostgreSQL</b> — так же, как из веба.</> } },
+      { ic: "✈️", h: { uz: "Bot xabar beradi", ru: 'Бот сообщает' }, body: { uz: <>Admin Telegram'da xabar oladi: «Yangi buyurtma (mobil): …».</>, ru: <>Администратор получает в Telegram сообщение: «Новый заказ (mobil): …».</> }, ask: { uz: "«Yuborish» bosilganda nima bo'ladi?", ru: 'Что происходит при нажатии «Отправить» в мобильном?' } },
     ]
   },
   13: {
@@ -155,42 +155,42 @@ const Ico = {
   sparkle: (s = 22) => (<svg viewBox="0 0 24 24" width={s} height={s} {...sv}><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" /></svg>)
 };
 // ===== KONSEPT LEKSIKONI =====
-const PRODUCTS = [
-  { id: 1, name: { uz: 'Olma', ru: 'Яблоко' }, price: 12000 },
-  { id: 2, name: { uz: 'Non', ru: 'Хлеб' }, price: 5000 },
-  { id: 3, name: { uz: 'Sut', ru: 'Молоко' }, price: 9000 }
+const PRODUCTS = [ // F-1015-155: repo menyusi (src/api/menyu.ts → PITSALAR)
+  { id: 1, name: { uz: 'Margarita', ru: 'Margarita' }, price: 45000 },
+  { id: 2, name: { uz: 'Pepperoni', ru: 'Pepperoni' }, price: 55000 },
+  { id: 3, name: { uz: 'Pishloqli', ru: 'Pishloqli' }, price: 50000 }
 ];
 // narx — SON; faqat valyuta so'zi tarjima qilinadi (fmt render-vaqtida chaqiriladi)
 const fmt = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ' + tr({ uz: "so'm", ru: 'сум' });
 
 // Mobil ilova quruvchi qadamlari (s6)
 const BUILD_STEPS = [
-  { id: 'list', label: { uz: "Ro'yxat ekrani", ru: 'Экран Список' }, prompt: { uz: "Mahsulotlarni backend'dan fetch qilib FlatList'da ko'rsat", ru: 'Получи товары с бэкенда через fetch и покажи их во FlatList' }, code: 'fetch(BACKEND + "/products") → <FlatList data={products} />' },
-  { id: 'detail', label: { uz: 'Tafsilot + navigatsiya', ru: 'Детали + навигация' }, prompt: { uz: "Mahsulot bosilganda Tafsilot ekraniga o't", ru: 'По нажатию на товар переходи на экран Детали' }, code: 'navigation.navigate("Detail", { id })' },
-  { id: 'cart', label: { uz: 'Savat', ru: 'Корзина' }, prompt: { uz: "Savatga qo'shish tugmasi + yuqorida savat soni belgisi", ru: 'Кнопка добавления в корзину + счётчик корзины сверху' }, code: 'setCart([...cart, product]) · soni = cart.length' },
-  { id: 'checkout', label: { uz: 'Buyurtma', ru: 'Заказ' }, prompt: { uz: "Buyurtma qil tugmasi → backend'ga POST /orders", ru: 'Кнопка заказа → POST /orders на бэкенд' }, code: 'fetch(BACKEND + "/orders", { method: "POST", body })' }
+  { id: 'list', label: { uz: 'Menyu ekrani', ru: 'Экран Меню' }, prompt: { uz: "Menyuni backend'dan fetch qilib FlatList'da ko'rsat", ru: 'Получи меню с бэкенда через fetch и покажи его во FlatList' }, code: "fetch(BACKEND + '/menyu') → <FlatList data={menyu} />" },
+  { id: 'detail', label: { uz: 'Tafsilot + navigatsiya', ru: 'Детали + навигация' }, prompt: { uz: "Pitsa bosilganda Tafsilot ekraniga o't", ru: 'По нажатию на пиццу переходи на экран Tafsilot' }, code: "navigation.navigate('Tafsilot', { pitsa: item })" },
+  { id: 'cart', label: { uz: 'Savat', ru: 'Корзина' }, prompt: { uz: "Savatga qo'shish tugmasi + yuqorida savat soni belgisi", ru: 'Кнопка добавления в корзину + счётчик корзины сверху' }, code: 'setSavat((savat) => [...savat, pitsa]) · soni = savat.length' },
+  { id: 'checkout', label: { uz: 'Buyurtma', ru: 'Заказ' }, prompt: { uz: "Yuborish tugmasi → har pitsa uchun backend'ga POST /buyurtma", ru: 'Кнопка «Отправить» → POST /buyurtma на бэкенд для каждой пиццы' }, code: "fetch(BACKEND + '/buyurtma', { method: 'POST', body }) · body = { taom, manzil, manba: 'mobil' }" }
 ];
 
 // Checkout oqimi (s8)
 const CHECKOUT_FLOW = [
-  { t: { uz: 'Mobil: «Buyurtma qil» bosildi', ru: 'Мобильное: нажали «Заказать»' } },
-  { t: { uz: 'Backendga POST /orders yuborildi (o\'sha Node.js)', ru: 'На бэкенд ушёл POST /orders (тот же Node.js)' } },
-  { t: { uz: 'PostgreSQL: buyurtma saqlandi', ru: 'PostgreSQL: заказ сохранён' } },
-  { t: { uz: 'Telegram: adminga xabar bordi', ru: 'Telegram: сообщение ушло администратору' } },
-  { t: { uz: 'Mobil: «Rahmat! Buyurtmangiz qabul qilindi»', ru: 'Мобильное: «Спасибо! Ваш заказ принят»' } }
+  { t: { uz: 'Mobil: manzil yozildi, «Yuborish» bosildi', ru: 'Мобильное: адрес введён, нажали «Отправить»' } },
+  { t: { uz: "Backendga POST /buyurtma yuborildi (o'sha NestJS), manba: 'mobil'", ru: "На бэкенд ушёл POST /buyurtma (тот же NestJS), manba: 'mobil'" } },
+  { t: { uz: 'PostgreSQL: buyurtma buyurtmalar jadvaliga yozildi', ru: 'PostgreSQL: заказ записан в таблицу buyurtmalar' } },
+  { t: { uz: 'Telegram: adminga «Yangi buyurtma (mobil): …» xabari bordi', ru: 'Telegram: администратору пришло «Новый заказ (mobil): …»' } },
+  { t: { uz: 'Mobil: «Qabul qilindi», savat tozalandi', ru: 'Мобильное: «Принято», корзина очищена' } }
 ];
 
 // Telefonda test → bug → tuzatish (s11)
 const BUG_STEPS = [
-  { k: 'test', tag: { uz: '1 · TELEFONDA SINOV', ru: '1 · ПРОВЕРКА НА ТЕЛЕФОНЕ' }, color: T.honey, text: { uz: "Savatga 2 mahsulot qo'shasiz… lekin yuqoridagi savat soni hali «1» ko'rsatyapti! 🐞", ru: 'Вы добавляете в корзину 2 товара… а счётчик корзины сверху всё ещё показывает «1»! 🐞' }, note: { uz: "Sinab ko'rmasangiz, bu xatoni ko'rmaysiz.", ru: 'Не проверите — эту ошибку не увидите.' } },
+  { k: 'test', tag: { uz: '1 · TELEFONDA SINOV', ru: '1 · ПРОВЕРКА НА ТЕЛЕФОНЕ' }, color: T.honey, text: { uz: "Savatga 2 pitsa qo'shasiz… lekin yuqoridagi savat soni hali «1» ko'rsatyapti! 🐞", ru: 'Вы добавляете в корзину 2 пиццы… а счётчик корзины сверху всё ещё показывает «1»! 🐞' }, note: { uz: "Sinab ko'rmasangiz, bu xatoni ko'rmaysiz.", ru: 'Не проверите — эту ошибку не увидите.' } },
   { k: 'why', tag: { uz: '2 · SABAB', ru: '2 · ПРИЧИНА' }, color: T.accent, text: { uz: "Savat soni (holat) to'g'ri yangilanmayapti — kod eski qiymatdan foydalanyapti.", ru: 'Счётчик корзины (состояние) обновляется неверно — код берёт старое значение.' }, note: { uz: "Avval kodni o'qib, sabab qayerda ekanini tushunasiz.", ru: 'Сначала читаете код и понимаете, где причина.' } },
-  { k: 'prompt', tag: { uz: "3 · TUZATISH TOPSHIRIG'I", ru: '3 · ЗАДАНИЕ НА ИСПРАВЛЕНИЕ' }, color: T.grape, text: { uz: "«Savat soni belgisini cart.length bilan bog'la — har qo'shilganda yangilansin.»", ru: '«Свяжи счётчик корзины с cart.length — пусть обновляется при каждом добавлении.»' }, note: { uz: 'Aniq tuzatish — butun ilovani qayta yozdirmaysiz.', ru: 'Точечная правка — всё приложение переписывать не заставляете.' } },
+  { k: 'prompt', tag: { uz: "3 · TUZATISH TOPSHIRIG'I", ru: '3 · ЗАДАНИЕ НА ИСПРАВЛЕНИЕ' }, color: T.grape, text: { uz: "«Savat soni belgisini savat.length bilan bog'la — har qo'shilganda yangilansin.»", ru: '«Свяжи счётчик корзины с savat.length — пусть обновляется при каждом добавлении.»' }, note: { uz: 'Aniq tuzatish — butun ilovani qayta yozdirmaysiz.', ru: 'Точечная правка — всё приложение переписывать не заставляете.' } },
   { k: 'done', tag: { uz: '4 · QAYTA SINOV', ru: '4 · ПОВТОРНАЯ ПРОВЕРКА' }, color: T.success, text: { uz: "✅ Endi «2» ko'rsatadi.", ru: '✅ Теперь показывает «2».' }, note: { uz: 'Sikl: sinov → xato → tuzatish → qayta sinov.', ru: 'Цикл: проверка → ошибка → исправление → повторная проверка.' } }
 ];
 
 // To'liq hikoya (s13 takeaway)
 const CASE_AC = [
-  { tag: { uz: 'QURDI', ru: 'СОБРАЛ' }, color: T.accent, text: { uz: "Ro'yxat → Tafsilot → Savat → Buyurtma, har birini AI yordamida", ru: 'Список → Детали → Корзина → Заказ, каждый — с помощью ИИ' }, why: { uz: 'T6/T7 bilimini ishga soldi, AI kod yozdi, u o\'qib bordi.', ru: 'Пустил в дело знания из T6/T7: ИИ писал код, он его читал.' } },
+  { tag: { uz: 'QURDI', ru: 'СОБРАЛ' }, color: T.accent, text: { uz: 'Menyu → Tafsilot → Savat → Buyurtma, har birini AI yordamida', ru: 'Меню → Детали → Корзина → Заказ, каждый — с помощью ИИ' }, why: { uz: 'T6/T7 bilimini ishga soldi, AI kod yozdi, u o\'qib bordi.', ru: 'Пустил в дело знания из T6/T7: ИИ писал код, он его читал.' } },
   { tag: { uz: 'SAYQALLADI', ru: 'ОТПОЛИРОВАЛ' }, color: T.honey, text: { uz: 'StyleSheet bilan', ru: 'Через StyleSheet' }, why: { uz: '«Ishlaydi» yetarli emas — mijoz ko\'radigan narsa chiroyli bo\'lsin.', ru: '«Работает» — мало: то, что видит клиент, должно быть красивым.' } },
   { tag: { uz: 'SINADI', ru: 'ПРОВЕРИЛ' }, color: T.blue, text: { uz: "Expo Go'da telefonda xarid qilib ko'rdi, xato topib tuzatdi", ru: 'В Expo Go на телефоне сделал покупку, нашёл ошибку и исправил её' }, why: { uz: 'Telefonda sinab, savat bug\'ini tutdi va tuzatdi.', ru: 'Проверил на телефоне, поймал баг корзины и починил его.' } },
   { tag: { uz: 'ULASHDI', ru: 'ПОДЕЛИЛСЯ' }, color: T.success, text: { uz: "Expo Go QR bilan, do'sti telefonida ochildi", ru: 'По QR в Expo Go — открылось на телефоне друга' }, why: { uz: 'Tayyor ilova boshqalarning qo\'lida. Bitta backend, ko\'p telefon.', ru: 'Готовое приложение уже в руках у других. Один бэкенд — много телефонов.' } }
@@ -204,6 +204,67 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
+  const [zFloat, setZFloat] = useState(false);
+  const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
+  const [zQator, setZQator] = useState(false); // F-1015-125: joy yo'q — 36px qatorda, vizual o'ng chetida
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof MutationObserver === 'undefined') return;
+    const ink = (n) => {
+      if (!el.contains(n) || n === el || n.classList?.contains('zoom-btn') || n.closest?.('.zoom-btn')) return false;
+      if (/^(IMG|svg|CANVAS|INPUT|TEXTAREA|BUTTON|VIDEO|SELECT|path|rect|circle|line|polygon)$/.test(n.tagName)) return true;
+      if ([...n.childNodes].some(c => c.nodeType === 3 && c.textContent.trim())) return true;
+      const cs = getComputedStyle(n); const bg = cs.backgroundColor.match(/[\d.]+/g);
+      return (bg && (bg.length < 4 || Number(bg[3]) > 0.05)) || parseFloat(cs.borderTopWidth) > 0 || cs.boxShadow !== 'none';
+    };
+    const run = () => {
+      const zb = el.querySelector(':scope > .zoom-btn');
+      if (!zb || el.classList.contains('zoom-on')) { setZFloat(false); return; }
+      // F-1015-125: ⛶ asosiy vizual burchagida (206 dagi qator o'rniga) — eng tashqi chizilgan elementlardan eng kattasi (+ ≥ 50% yuzalilari)
+      const zr0 = el.getBoundingClientRect(); const qol = el.querySelector('[data-zoom-asosiy]'); const tash = [];
+      if (qol) tash.push(qol);
+      else { const q = [...el.children].filter(n => !n.classList.contains('zoom-btn')); while (q.length) { const n = q.shift(); const b = n.getBoundingClientRect(); if (b.width < 2 || b.height < 2) { q.push(...n.children); continue; } if (n.tagName === 'svg' || ink(n)) tash.push(n); else q.push(...n.children); } }
+      const yuza = (n) => { const b = n.getBoundingClientRect(); return b.width * b.height; };
+      const maks = tash.length ? Math.max(...tash.map(yuza)) : 0;
+      const asosiy = tash.filter(n => yuza(n) >= maks * 0.5);
+      if (asosiy.length && zr0.width) {
+        let T = 1e9, R = -1e9; for (const n of asosiy) { const b = n.getBoundingClientRect(); T = Math.min(T, b.top); R = Math.max(R, b.right); }
+        const k = el.offsetWidth / zr0.width; const pt = parseFloat(getComputedStyle(el).paddingTop) || 0; const xs = (R - zr0.left) * k;
+        // ⛶ uchun joy (qator olingan holat koordinatasida): zoomable ichida va o'rnida matn/belgi yo'q bo'lsin (206: ⛶ hech narsani yopmaydi)
+        const band = (dx, dy) => { const s = pt / k, bl = R + (dx - 3) / k, br = bl + 36 / k, bt = T - s + (dy - 3) / k, bb = bt + 36 / k;
+          if (bl < zr0.left - 1 || br > zr0.right + 1) return true;
+          for (const n of el.querySelectorAll('*')) { if (n.closest('.zoom-btn')) continue;
+            const yaprq = /^(IMG|svg|INPUT|BUTTON|TEXTAREA|SELECT|CANVAS|VIDEO)$/.test(n.tagName) || [...n.childNodes].some(c => c.nodeType === 3 && c.textContent.trim());
+            if (!yaprq || (n.closest('svg') && n.tagName !== 'svg')) continue; const b = n.getBoundingClientRect(); if (b.width < 1) continue;
+            if (b.left < br && b.right > bl && b.top - s < bb && b.bottom - s > bt) return true; }
+          // zoomable tashqarisidagi qo'shni matn/belgi (qo'shni ustun, pastki izoh)
+          for (const [px, py] of [[bl, bt], [br, bt], [bl, bb], [br, bb], [(bl + br) / 2, (bt + bb) / 2]]) for (const n of document.elementsFromPoint(px, py)) {
+            if (el.contains(n) || n.contains(el) || n.closest('.zoom-btn')) continue;
+            if (/^(IMG|svg|INPUT|BUTTON|TEXTAREA|SELECT|CANVAS|VIDEO)$/.test(n.tagName) || [...n.childNodes].some(c => c.nodeType === 3 && c.textContent.trim())) return true; }
+          return false; };
+        const j = [[8, 0], [-38, 8]].find(([dx, dy]) => !band(dx, dy)); // 1) yonida · 2) burchak ichida
+        if (j) {
+          el.style.setProperty('--zb-x', (xs + j[0]) + 'px'); el.style.setProperty('--zb-y', Math.max(0, (T - zr0.top) * k - pt + j[1]) + 'px');
+          setZQator(false); setZJoy(true); setZFloat(false); return;
+        }
+        el.style.setProperty('--zb-x', Math.max(0, xs - 30) + 'px'); // 3) 36px qatorda, vizual o'ng chetida
+        setZJoy(false); setZQator(true); setZFloat(false); return;
+      }
+      setZJoy(false); setZQator(false);
+      const r = zb.getBoundingClientRect(), zr = el.getBoundingClientRect(); if (!r.width) return;
+      let hit = false;
+      for (let y = r.top; y < Math.min(r.top + 220, zr.bottom) && !hit; y += 18) for (const x of [r.left - 30, r.left - 140]) {
+        if (x < zr.left) continue; if (document.elementsFromPoint(x, y).some(ink)) { hit = true; break; }
+      }
+      setZFloat(!hit);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(run); };
+    sch(); const t = setTimeout(sch, 700); // fade-kirish tugagach yana bir bor
+    const t2 = setTimeout(sch, 1600); if (document.fonts && document.fonts.ready) document.fonts.ready.then(sch); // F-1015-125: shrift/animatsiyadan keyingi joy
+    const mo = new MutationObserver(sch); mo.observe(el, { childList: true, subtree: true, characterData: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   useLayoutEffect(() => {
     const el = zref.current; if (!el) return;
     const kids = [...el.childNodes].filter(n => !(n.nodeType === 1 && n.classList.contains('zoom-btn')));
@@ -220,7 +281,7 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}`}>
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
         {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
@@ -716,7 +777,7 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange, onWrong }) 
         {pool.map(id => <button key={id} className="dd-chip" onPointerDown={(e) => down(e, id, 'pool')}>{tr(byId[id].label)}</button>)}
       </div>
       {solved && <div className="dd-done">✓ {tr(doneText) || tr({ uz: "To'g'ri tartib!", ru: 'Верный порядок!' })}</div>}
-      {wrong && !solved && <div className="dd-wrong">{tr({ uz: "⚠️ Tartib xato — bo'lakni bosib qaytaring va qayta joylang.", ru: '⚠️ Порядок неверный — нажмите на элемент, чтобы вернуть его, и расставьте заново.' })}</div>}
+      {wrong && !solved && <div className="dd-wrong">{tr({ uz: "Tartib xato — bo'lakni bosib qaytaring va qayta joylang.", ru: 'Порядок неверный — нажмите на элемент, чтобы вернуть его, и расставьте заново.' })}</div>}
     </div>
   );
 }
@@ -734,27 +795,28 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   return (
     <Stage eyebrow={{ uz: 'Kirish', ru: 'Введение' }} screen={screen} navContent={<NavNext disabled={picked === null} label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} />}>
       <div className="screen">
-        <h1 className="title h-title fade-up">{tr({ uz: <>Do'koningiz web'da, mijozlar — <span className="italic" style={{ color: T.accent }}>telefonda</span>. Nima beramiz?</>, ru: <>Ваш магазин в вебе, клиенты — <span className="italic" style={{ color: T.accent }}>в телефоне</span>. Что им дать?</> })}</h1>
-        <Mentor>{tr({ uz: "React va backend darslarida web do'kon qurgansiz. Endi o'sha do'konning mobil ilovasini quramiz. Ikki holatni bosib solishtiring.", ru: 'На уроках React и бэкенда вы собрали веб-магазин. Теперь построим мобильное приложение этого магазина. Нажмите и сравните два варианта.' })}</Mentor>
+        <h1 className="title h-title fade-up">{tr({ uz: <>AvtoPizza web'da, mijozlar — <span className="italic" style={{ color: T.accent }}>telefonda</span>. Nima beramiz?</>, ru: <>AvtoPizza в вебе, клиенты — <span className="italic" style={{ color: T.accent }}>в телефоне</span>. Что им дать?</> })}</h1>
+        <Mentor>{tr({ uz: "8-darsda AvtoPizza saytini qurgansiz. Endi AvtoPizza'ning mobil ilovasini quramiz. Ikki holatni bosib solishtiring.", ru: 'На 8-м уроке вы собрали сайт AvtoPizza. Теперь построим мобильное приложение AvtoPizza. Нажмите и сравните два варианта.' })}</Mentor>
+        {/* F-1015-176: tanlov tugmalari ikki ustun USTIDA — ustunlar bir chiziqdan boshlanadi */}
+        <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
+          <button className={`chip ${isWeb ? 'chip-on' : ''}`} onClick={() => setV('web')}>{tr({ uz: 'Sayt telefonda', ru: 'Сайт в телефоне' })}</button>
+          <button className={`chip ${!isWeb ? 'chip-on' : ''}`} onClick={() => setV('app')}>{tr({ uz: 'Mobil ilova', ru: 'Мобильное приложение' })}</button>
+        </div>
         <Zoomable><Split>
           <Col>
-            <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
-              <button className={`chip ${isWeb ? 'chip-on' : ''}`} onClick={() => setV('web')}>{tr({ uz: 'Sayt telefonda', ru: 'Сайт в телефоне' })}</button>
-              <button className={`chip ${!isWeb ? 'chip-on' : ''}`} onClick={() => setV('app')}>{tr({ uz: 'Mobil ilova', ru: 'Мобильное приложение' })}</button>
-            </div>
             <div key={v} className="demo-swap" style={{ display: 'flex', justifyContent: 'center' }}>
               {isWeb ? (
                 <Phone screenClass="raw">
-                  <div style={{ height: 22, background: '#d8d8d8', display: 'flex', alignItems: 'center', padding: '0 8px', fontSize: 9, color: '#666' }}>🔒 mini-dokon.uz</div>
+                  <div style={{ height: 22, background: '#d8d8d8', display: 'flex', alignItems: 'center', padding: '0 8px', fontSize: 9, color: '#666' }}>🔒 localhost:5173</div>
                   <div style={{ transform: 'scale(0.62)', transformOrigin: 'top center', padding: 8 }}>
-                    <div style={{ fontFamily: 'Manrope', fontWeight: 800, fontSize: 16 }}>{tr({ uz: "Mini-do'kon", ru: 'Мини-магазин' })}</div>
+                    <div style={{ fontFamily: 'Manrope', fontWeight: 800, fontSize: 16 }}>AvtoPizza</div>
                     {PRODUCTS.map(p => <div key={p.id} style={{ fontSize: 12, padding: '6px 0', borderBottom: '1px solid #eee', color: '#444' }}>{tr(p.name)} — {fmt(p.price)}</div>)}
                     <p style={{ fontSize: 10, color: '#b00', marginTop: 6 }}>{tr({ uz: 'matn mayda, tugmalar noqulay, har safar brauzer ochish kerak…', ru: 'текст мелкий, кнопки неудобные, каждый раз надо открывать браузер…' })}</p>
                   </div>
                 </Phone>
               ) : (
                 <Phone>
-                  <AppBar title={{ uz: "Mini-do'kon", ru: 'Мини-магазин' }} badge={0} />
+                  <AppBar title={{ uz: 'AvtoPizza', ru: 'AvtoPizza' }} badge={0} />
                   <div className="rn-body">{PRODUCTS.map(p => <ProductRow key={p.id} p={p} onAdd={() => {}} />)}</div>
                   <button className="rn-cta">{tr({ uz: "Savatga o'tish", ru: 'Перейти в корзину' })}</button>
                 </Phone>
@@ -767,7 +829,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               {OPTS.map(o => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>); })}
             </div>
             {picked !== null && <p className="hook-ack fade-step">{picked === 'b'
-              ? tr({ uz: <><b>Aynan!</b> Bugun mini-do'konning mobil ilovasini quramiz, telefonda sinaymiz va Expo Go bilan ulashamiz.</>, ru: <><b>Именно!</b> Сегодня соберём мобильное приложение мини-магазина, проверим его на телефоне и поделимся им через Expo Go.</> })
+              ? tr({ uz: <><b>Aynan!</b> Bugun AvtoPizza'ning mobil ilovasini quramiz, telefonda sinaymiz va Expo Go bilan ulashamiz.</>, ru: <><b>Именно!</b> Сегодня соберём мобильное приложение AvtoPizza, проверим его на телефоне и поделимся им через Expo Go.</> })
               : picked === 'a'
                 ? tr({ uz: <><b>Qiziq fikr!</b> Sayt ishlaydi, lekin telefonda qulaylikni alohida tekshirish kerak: matn mayda, tugmalar noqulay. Bugun telefon uchun alohida ilova quramiz.</>, ru: <><b>Интересная мысль!</b> Сайт работает, но удобство на телефоне нужно проверять отдельно: текст мелкий, кнопки неудобные. Сегодня соберём отдельное приложение для телефона.</> })
                 : tr({ uz: <><b>Qiziq fikr!</b> Bu vaqtinchalik yechim: harflar kattalashadi, lekin tugmalar va oqim baribir telefon uchun mo'ljallanmagan. Bugun mobil ilovani alohida quramiz.</>, ru: <><b>Интересная мысль!</b> Это временное решение: буквы станут крупнее, но кнопки и весь путь покупки всё равно не рассчитаны на телефон. Сегодня соберём мобильное приложение отдельно.</> })}</p>}
@@ -781,11 +843,11 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // ===== SCREEN 1 — REJA =====
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const STEPS_R = [
-    { text: { uz: "Tayyor backend'ga ulanish (yangi backend qurilmaydi)", ru: 'Подключиться к готовому бэкенду (новый бэкенд не строим)' }, tag: '' },
-    { text: { uz: "Ro'yxat va Tafsilot ekranlari (mahsulotlar, fetch)", ru: 'Экраны Список и Детали (товары, fetch)' }, tag: '' },
-    { text: { uz: 'Savat va jami narx (holat, reduce)', ru: 'Корзина и итоговая цена (состояние, reduce)' }, tag: '' },
-    { text: { uz: "Buyurtma → backend'ga", ru: 'Заказ → на бэкенд' }, tag: '' },
-    { text: { uz: 'Telefonda sinash, sayqal, Expo Go bilan ulashish', ru: 'Проверить на телефоне, отполировать, поделиться через Expo Go' }, tag: '' }
+    { text: { uz: "Tayyor backend'ga ulanish (yangi backend qurilmaydi)", ru: 'Подключиться к готовому бэкенду (новый бэкенд не строим)' } },
+    { text: { uz: 'Menyu va Tafsilot ekranlari (pitsalar, fetch)', ru: 'Экраны Меню и Детали (пиццы, fetch)' } },
+    { text: { uz: 'Savat va jami narx (holat, reduce)', ru: 'Корзина и итоговая цена (состояние, reduce)' } },
+    { text: { uz: "Buyurtma → backend'ga", ru: 'Заказ → на бэкенд' } },
+    { text: { uz: 'Telefonda sinash, sayqal, Expo Go bilan ulashish', ru: 'Проверить на телефоне, отполировать, поделиться через Expo Go' } }
   ];
   const isNarrow = useIsMobile(768);
   const [showSteps, setShowSteps] = useState(false);
@@ -794,18 +856,18 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
       <p className="flow-label">{tr({ uz: 'Bugungi maqsad', ru: 'Цель на сегодня' })}</p>
       <div className="fade-up frame" style={{ padding: 'clamp(16px,2.5vw,22px)', display: 'flex', alignItems: 'center', gap: 14 }}>
         <IcoChip size={50} color={T.grape} soft={T.grapeSoft}>{Ico.phone(26)}</IcoChip>
-        <div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, color: T.ink, margin: 0, fontSize: 'clamp(16px,2.2vw,19px)' }}>{tr({ uz: "mini-do'kon → mobil ilova", ru: 'мини-магазин → мобильное приложение' })}</p><p className="body" style={{ margin: '2px 0 0', color: T.ink2 }}>{tr({ uz: 'Quramiz, telefonda sinaymiz, Expo Go bilan ulashamiz.', ru: 'Соберём, проверим на телефоне, поделимся через Expo Go.' })}</p></div>
+        <div><p style={{ fontFamily: "'Source Serif 4',serif", fontWeight: 600, color: T.ink, margin: 0, fontSize: 'clamp(16px,2.2vw,19px)' }}>{tr({ uz: 'AvtoPizza → mobil ilova', ru: 'AvtoPizza → мобильное приложение' })}</p><p className="body" style={{ margin: '2px 0 0', color: T.ink2 }}>{tr({ uz: 'Quramiz, telefonda sinaymiz, Expo Go bilan ulashamiz.', ru: 'Соберём, проверим на телефоне, поделимся через Expo Go.' })}</p></div>
       </div>
       <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr({ uz: "→ 9 va 10-darslarda sintaksisni o'rgandingiz — bugun qurasiz", ru: '→ Синтаксис вы выучили на 9-м и 10-м уроках — сегодня строите' })}</p>
     </Col>
   );
-  const StepsBlock = (<Col><p className="flow-label">{tr({ uz: '5 qadam', ru: '5 шагов' })}</p><ol className="roadmap">{STEPS_R.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{tr(s.text)}</span>{s.tag && <span className="step-tag">{s.tag}</span>}</span></li>))}</ol></Col>);
+  const StepsBlock = (<Col><p className="flow-label">{tr({ uz: '5 qadam', ru: '5 шагов' })}</p><ol className="roadmap">{STEPS_R.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{tr(s.text)}</span></span></li>))}</ol></Col>);
   return (
     <Stage eyebrow={{ uz: 'Reja', ru: 'План' }} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Boshlaymiz →', ru: 'Начинаем →' }} onClick={onNext} /></>}>
       <div className="screen">
         <div className="head"><h2 className="title h-title fade-up"><span className="italic" style={{ color: T.accent }}>{tr({ uz: 'Loyiha kuni: mobil ilovani quramiz va ulashamiz', ru: 'День проекта: собираем мобильное приложение и делимся им' })}</span></h2></div>
         <Mentor>{tr({ uz: <>Bugun yangi sintaksis yo'q — <b style={{ color: T.ink }}>amaliyot</b>. AI yordamida mobil ilovani qadam-qadam yig'asiz, kodni tekshirasiz va telefonda sinaysiz.</>, ru: <>Сегодня нового синтаксиса нет — <b style={{ color: T.ink }}>практика</b>. С помощью ИИ вы шаг за шагом соберёте мобильное приложение, проверите код и попробуете всё на телефоне.</> })}</Mentor>
-        {!isNarrow ? (<Zoomable><Split>{IdeaBlock}{StepsBlock}</Split></Zoomable>) : !showSteps ? (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{IdeaBlock}<button className="btn" style={{ alignSelf: 'flex-end' }} onClick={() => setShowSteps(true)}>{tr({ uz: "5 qadamni ko'rish", ru: 'Посмотреть 5 шагов' })}</button></div>) : (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-end' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Maqsadni ko'rish", ru: '↩ Посмотреть цель' })}</button>{StepsBlock}</div>)}
+        {!isNarrow ? (<Split>{IdeaBlock}{StepsBlock}</Split>) : !showSteps ? (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{IdeaBlock}<button className="btn" style={{ alignSelf: 'flex-end' }} onClick={() => setShowSteps(true)}>{tr({ uz: "5 qadamni ko'rish", ru: 'Посмотреть 5 шагов' })}</button></div>) : (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-end' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Maqsadni ko'rish", ru: '↩ Посмотреть цель' })}</button>{StepsBlock}</div>)}
       </div>
     </Stage>
   );
@@ -825,7 +887,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={{ uz: 'Bitta tizim', ru: 'Одна система' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Mobil ilovani ulang', ru: 'Подключите мобильное приложение' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Tayyor backend — <span className="italic" style={{ color: T.accent }}>yangi kirish yo'li</span></>, ru: <>Готовый бэкенд — <span className="italic" style={{ color: T.accent }}>новая точка входа</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "Mobil ilova siz backend darslarida qurgan o'sha Node.js + PostgreSQL serverga ulanadi. Uni ulang.", ru: 'Мобильное приложение подключается к тому же серверу Node.js + PostgreSQL, который вы собрали на уроках по бэкенду. Подключите его.' })}</Mentor>
+        <Mentor>{tr({ uz: "Mobil ilova siz backend darslarida qurgan o'sha NestJS + PostgreSQL serverga ulanadi. Uni ulang.", ru: 'Мобильное приложение подключается к тому же серверу NestJS + PostgreSQL, который вы собрали на уроках по бэкенду. Подключите его.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
@@ -849,9 +911,9 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="backend-hub fade-up delay-1">
               <span style={{ fontSize: 30 }}>🟢</span>
               <p style={{ fontFamily: "'Manrope'", fontWeight: 800, fontSize: 15, color: '#fff', margin: '6px 0 2px' }}>{tr({ uz: 'Bitta backend', ru: 'Один бэкенд' })}</p>
-              <p style={{ fontFamily: G, fontSize: 12, color: '#9FB4D8', margin: 0, textAlign: 'center' }}>Node.js + PostgreSQL<br />(GET /products · POST /orders)</p>
+              <p style={{ fontFamily: G, fontSize: 12, color: '#9FB4D8', margin: 0, textAlign: 'center' }}>NestJS + PostgreSQL<br />(GET /menyu · POST /buyurtma)</p>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>1-darsdagi g'oya: <b>ko'p kirish yo'li — bitta tizim</b>. Web, bot, mobil — uchalasi bitta Database'dagi mahsulot va buyurtmalardan foydalanadi.</>, ru: <>Идея с 1-го урока: <b>много точек входа — одна система</b>. Веб, бот, мобильное — все три пользуются товарами и заказами из одной Database.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>1-darsdagi g'oya: <b>ko'p kirish yo'li — bitta tizim</b>. Web, bot, mobil — uchalasi menyuni bitta backend'dan oladi va buyurtmani bitta Database'ga yozadi.</>, ru: <>Идея с 1-го урока: <b>много точек входа — одна система</b>. Веб, бот, мобильное — все три берут меню с одного бэкенда и записывают заказы в одну Database.</> })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -862,10 +924,10 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 3 — ILOVA XARITASI (telefon preview) =====
 const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const TABS = [
-    { id: 'list', label: { uz: "Ro'yxat (List)", ru: 'Список (List)' } },
-    { id: 'detail', label: { uz: 'Tafsilot (Detail)', ru: 'Детали (Detail)' } },
-    { id: 'cart', label: { uz: 'Savat (Cart)', ru: 'Корзина (Cart)' } },
-    { id: 'checkout', label: { uz: 'Buyurtma (Checkout)', ru: 'Заказ (Checkout)' } }
+    { id: 'list', label: { uz: 'Menyu', ru: 'Меню (Menyu)' } },
+    { id: 'detail', label: { uz: 'Tafsilot', ru: 'Детали (Tafsilot)' } },
+    { id: 'cart', label: { uz: 'Savat', ru: 'Корзина (Savat)' } },
+    { id: 'checkout', label: { uz: 'Buyurtma', ru: 'Заказ (Buyurtma)' } }
   ];
   const [tab, setTab] = useState('list');
   const [seen, setSeen] = useState(storedAnswer ? new Set(TABS.map(t => t.id)) : new Set(['list']));
@@ -874,16 +936,16 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const total = PRODUCTS[0].price + PRODUCTS[1].price;
   const renderPhone = () => {
-    if (tab === 'detail') return (<Phone><AppBar title={{ uz: '‹ Olma', ru: '‹ Яблоко' }} /><div className="rn-body" style={{ alignItems: 'center', gap: 10 }}><div style={{ fontSize: 64 }}>🍎</div><p className="rn-name" style={{ fontSize: 16 }}>{tr(PRODUCTS[0].name)}</p><p className="rn-price" style={{ fontSize: 14 }}>{fmt(12000)}</p><p style={{ fontFamily: G, fontSize: 11, color: T.ink2, textAlign: 'center' }}>{tr({ uz: "Yangi, shirin olma. O'sha kuni yetkazib beramiz.", ru: 'Свежие сладкие яблоки. Доставим в тот же день.' })}</p></div><button className="rn-cta">{tr({ uz: "Savatga qo'shish", ru: 'В корзину' })}</button></Phone>);
-    if (tab === 'cart') return (<Phone><AppBar title={{ uz: 'Savat', ru: 'Корзина' }} badge={2} /><div className="rn-body"><ProductRow p={PRODUCTS[0]} /><ProductRow p={PRODUCTS[1]} /><div style={{ marginTop: 'auto', paddingTop: 8, borderTop: `1px dashed ${T.ink3}`, display: 'flex', justifyContent: 'space-between', fontFamily: 'Manrope', fontWeight: 800, fontSize: 13 }}><span>{tr({ uz: 'Jami:', ru: 'Итого:' })}</span><span style={{ color: T.accent }}>{fmt(total)}</span></div></div><button className="rn-cta">{tr({ uz: 'Buyurtma qil', ru: 'Заказать' })}</button></Phone>);
-    if (tab === 'checkout') return (<Phone><AppBar title={{ uz: 'Buyurtma', ru: 'Заказ' }} /><div className="rn-body" style={{ alignItems: 'center', justifyContent: 'center', gap: 10 }}><div style={{ fontSize: 48 }}>✅</div><p className="rn-name" style={{ fontSize: 14, textAlign: 'center' }}>{tr({ uz: <>Rahmat! Buyurtmangiz<br />qabul qilindi</>, ru: <>Спасибо! Ваш заказ<br />принят</> })}</p><p className="rn-price">#1042 · {fmt(total)}</p></div></Phone>);
-    return (<Phone><AppBar title={{ uz: "Mini-do'kon", ru: 'Мини-магазин' }} badge={0} /><div className="rn-body">{PRODUCTS.map(p => <ProductRow key={p.id} p={p} chevron />)}</div></Phone>);
+    if (tab === 'detail') return (<Phone><AppBar title={{ uz: '‹ Margarita', ru: '‹ Margarita' }} /><div className="rn-body" style={{ alignItems: 'center', gap: 10 }}><div style={{ fontSize: 64 }}>🍕</div><p className="rn-name" style={{ fontSize: 16 }}>{tr(PRODUCTS[0].name)}</p><p className="rn-price" style={{ fontSize: 14 }}>{fmt(PRODUCTS[0].price)}</p><p style={{ fontFamily: G, fontSize: 11, color: T.accent, textAlign: 'center' }}>{tr({ uz: 'Menyuga qaytish', ru: 'Вернуться в меню' })}</p></div><button className="rn-cta">{tr({ uz: "Savatga qo'shish", ru: 'В корзину' })}</button></Phone>);
+    if (tab === 'cart') return (<Phone><AppBar title={{ uz: 'Savat', ru: 'Корзина' }} badge={2} /><div className="rn-body"><ProductRow p={PRODUCTS[0]} /><ProductRow p={PRODUCTS[1]} /><div style={{ marginTop: 'auto', paddingTop: 8, borderTop: `1px dashed ${T.ink3}`, display: 'flex', justifyContent: 'space-between', fontFamily: 'Manrope', fontWeight: 800, fontSize: 13 }}><span>{tr({ uz: 'Jami:', ru: 'Итого:' })}</span><span style={{ color: T.accent }}>{fmt(total)}</span></div></div><button className="rn-cta">{tr({ uz: 'Buyurtma berish', ru: 'Оформить заказ' })}</button></Phone>);
+    if (tab === 'checkout') return (<Phone><AppBar title={{ uz: 'Buyurtma', ru: 'Заказ' }} /><div className="rn-body" style={{ alignItems: 'center', justifyContent: 'center', gap: 10 }}><div style={{ fontSize: 48 }}>✅</div><p className="rn-name" style={{ fontSize: 14, textAlign: 'center' }}>{tr({ uz: 'Qabul qilindi', ru: 'Принято' })}</p><p className="rn-price">{tr({ uz: 'Sergeli, 7-uy', ru: 'Сергели, дом 7' })} · {fmt(total)}</p></div></Phone>);
+    return (<Phone><AppBar title={{ uz: 'AvtoPizza', ru: 'AvtoPizza' }} badge={0} /><div className="rn-body">{PRODUCTS.map(p => <ProductRow key={p.id} p={p} chevron />)}</div></Phone>);
   };
   return (
     <Stage eyebrow={{ uz: 'Ilova xaritasi', ru: 'Карта приложения' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Ekranlarni ko'ring (${seen.size}/${TABS.length})`, ru: `Посмотрите экраны (${seen.size}/${TABS.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ilova — <span className="italic" style={{ color: T.accent }}>4 ekran</span></>, ru: <>Приложение — <span className="italic" style={{ color: T.accent }}>4 экрана</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "Mana bugun quradigan ilovamiz. Har ekranning o'zbekcha nomi va kodda ishlatiladigan nomi bor. 4 ekranni bosib, telefonda ko'ring.", ru: 'Вот приложение, которое мы сегодня построим. У каждого экрана есть русское название и название, которое используется в коде. Нажмите на 4 экрана и посмотрите их в телефоне.' })}</Mentor>
+        <Mentor>{tr({ uz: "Mana bugun quradigan ilovamiz. Ekranlar kodda ham xuddi shu nomlar bilan yoziladi. 4 ekranni bosib, telefonda ko'ring.", ru: 'Вот приложение, которое мы сегодня построим. У каждого экрана есть русское название и название, которое используется в коде. Нажмите на 4 экрана и посмотрите их в телефоне.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
@@ -904,11 +966,11 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 4 — TEST 1 =====
 const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 1-savol', ru: 'Упражнение · вопрос 1' }}
-    questionText={{ uz: "Mobil ilova mahsulotlarni qayerdan oladi?", ru: 'Откуда мобильное приложение берёт данные о товарах?' }}
-    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Mobil ilova mahsulotlarni <span className="italic" style={{ color: T.accent }}>qayerdan</span> oladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Откуда</span> мобильное приложение берёт товары?</h2></> })}
-    options={[{ uz: "Tayyor backend'dan — `GET /products` bilan", ru: 'С готового бэкенда — через `GET /products`' }, { uz: "Faqat mobil uchun yozilgan yangi backend'dan", ru: 'С нового бэкенда, написанного только для мобильного' }, { uz: "Ilova ichiga qo'lda yozilgan ro'yxatdan", ru: 'Из списка, вписанного в приложение вручную' }, { uz: 'Hech qayerdan — mobil ilovada Database bo\'lmaydi', ru: 'Ниоткуда — у мобильного приложения Database не бывает' }]} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! Mobil ilova backend darslaridagi Node.js + PostgreSQL serverga ulanadi (`GET /products`). Web, bot, mobil — bitta tizimning kirish yo'llari.", ru: 'Верно! Мобильное приложение подключается к серверу Node.js + PostgreSQL с уроков по бэкенду (`GET /products`). Веб, бот, мобильное — входы в одну систему.' }}
-    explainWrong={{ 1: { uz: "Yangi backend shart emas — bittasi hamma kirish yo'liga xizmat qiladi.", ru: 'Новый бэкенд не нужен — один обслуживает все точки входа.' }, 2: { uz: "Qo'lda yozsangiz — yangilanmaydi. Backend'dan fetch qiling.", ru: 'Впишете вручную — данные не будут обновляться. Получайте их с бэкенда через fetch.' }, 3: { uz: "Ma'lumot backend'da — ilova undan fetch qiladi.", ru: 'Данные лежат на бэкенде — приложение получает их через fetch.' }, default: { uz: 'Tayyor backend, `GET /products` — bitta tizim.', ru: 'Готовый бэкенд, `GET /products` — одна система.' } }} />
+    questionText={{ uz: "Mobil ilova menyuni qayerdan oladi?", ru: 'Откуда мобильное приложение берёт меню?' }}
+    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Mobil ilova menyuni <span className="italic" style={{ color: T.accent }}>qayerdan</span> oladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Откуда</span> мобильное приложение берёт меню?</h2></> })}
+    options={[{ uz: "Tayyor backend'dan — `GET /menyu` bilan", ru: 'С готового бэкенда — через `GET /menyu`' }, { uz: "Faqat mobil uchun yozilgan yangi backend'dan", ru: 'С нового бэкенда, написанного только для мобильного' }, { uz: "Ilova ichiga qo'lda yozilgan ro'yxatdan", ru: 'Из списка, вписанного в приложение вручную' }, { uz: 'Hech qayerdan — mobil ilovada Database bo\'lmaydi', ru: 'Ниоткуда — у мобильного приложения Database не бывает' }]} correctIdx={0}
+    explainCorrect={{ uz: "To'g'ri! Mobil ilova backend darslaridagi NestJS + PostgreSQL serverga ulanadi (`GET /menyu`). Web, bot, mobil — bitta tizimning kirish yo'llari.", ru: 'Верно! Мобильное приложение подключается к серверу NestJS + PostgreSQL с уроков по бэкенду (`GET /menyu`). Веб, бот, мобильное — входы в одну систему.' }}
+    explainWrong={{ 1: { uz: "Yangi backend shart emas — bittasi hamma kirish yo'liga xizmat qiladi.", ru: 'Новый бэкенд не нужен — один обслуживает все точки входа.' }, 2: { uz: "Qo'lda yozsangiz — yangilanmaydi. Backend'dan fetch qiling.", ru: 'Впишете вручную — данные не будут обновляться. Получайте их с бэкенда через fetch.' }, 3: { uz: "Ma'lumot backend'da — ilova undan fetch qiladi.", ru: 'Данные лежат на бэкенде — приложение получает их через fetch.' }, default: { uz: 'Tayyor backend, `GET /menyu` — bitta tizim.', ru: 'Готовый бэкенд, `GET /menyu` — одна система.' } }} />
 );
 
 // ===== SCREEN 5 — VIBECODING LOYIHA KUNI RITMI =====
@@ -977,23 +1039,23 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
               <Phone>
-                <AppBar title={{ uz: "Mini-do'kon", ru: 'Мини-магазин' }} badge={has('cart') ? (ran ? 2 : 0) : null} bump={ran} />
+                <AppBar title={{ uz: 'AvtoPizza', ru: 'AvtoPizza' }} badge={has('cart') ? (ran ? 2 : 0) : null} bump={ran} />
                 {has('list') ? (
                   ran ? (
                     <div className="rn-body ord fade-step">
                       {/* F-1004-30: emoji o'rniga haqiqiy buyurtma ekrani — o'quvchi tanigan narsa */}
-                      <p className="ord-h">{tr({ uz: 'Buyurtma №1042', ru: 'Заказ №1042' })}</p>
+                      <p className="ord-h">{tr({ uz: 'Qabul qilindi', ru: 'Принято' })}</p>
                       {PRODUCTS.slice(0, 2).map(p => <div key={p.id} className="ord-r"><span>{tr(p.name)}</span><b>{fmt(p.price)}</b></div>)}
                       <div className="ord-r ord-t"><span>{tr({ uz: 'Jami', ru: 'Итого' })}</span><b>{fmt(PRODUCTS[0].price + PRODUCTS[1].price)}</b></div>
-                      <span className="ord-s">{tr({ uz: 'Holat: qabul qilindi', ru: 'Статус: принят' })}</span>
+                      <span className="ord-s">{tr({ uz: 'Sergeli, 7-uy', ru: 'Сергели, дом 7' })}</span>
                     </div>
                   ) : (
                     <div className="rn-body">{PRODUCTS.map(p => <ProductRow key={p.id} p={p} chevron={has('detail')} onAdd={has('cart') ? () => {} : undefined} />)}</div>
                   )
                 ) : (
-                  <RnEmpty>{tr({ uz: <>Ilova bo'sh.<br />Ro'yxat ekranini qo'shing →</>, ru: <>Приложение пустое.<br />Добавьте экран Список →</> })}</RnEmpty>
+                  <RnEmpty>{tr({ uz: <>Ilova bo'sh.<br />Menyu ekranini qo'shing →</>, ru: <>Приложение пустое.<br />Добавьте экран Меню →</> })}</RnEmpty>
                 )}
-                {has('checkout') && !ran && <button className="rn-cta">{tr({ uz: 'Buyurtma qil', ru: 'Заказать' })}</button>}
+                {has('checkout') && !ran && <button className="rn-cta">{tr({ uz: 'Buyurtma berish', ru: 'Оформить заказ' })}</button>}
               </Phone>
             </div>
             {allBuilt && !ran && <button className="btn" onClick={() => setRan(true)} style={{ alignSelf: 'center' }}>{tr({ uz: '▶ Xarid qil', ru: '▶ Купить' })}</button>}
@@ -1010,7 +1072,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             {cur && !ran && (<div className="sk-info fade-step" key={active}><p className="flow-label" style={{ margin: 0 }}>{tr(cur.label)} — {tr({ uz: "topshirig'ingiz", ru: 'ваше задание' })}</p><p style={{ fontFamily: G, fontSize: 13.5, color: T.ink, margin: '8px 0 10px', fontStyle: 'italic' }}>«{tr(cur.prompt)}»</p><div className="codepill">{cur.code}</div></div>)}
             {!cur && !ran && <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Qadamni bosing — topshiriqni va AI taklif qilgan kodni ko'rasiz.", ru: 'Нажмите на шаг — увидите задание и код, который предложил ИИ.' })}</p></div>}
-            {ran && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Ro'yxat → savat → buyurtma → backend: asosiy oqim ishladi.", ru: 'Список → корзина → заказ → бэкенд: основной путь заработал.' })}</p></div>}
+            {ran && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Menyu → savat → buyurtma → backend: asosiy oqim ishladi.', ru: 'Меню → корзина → заказ → бэкенд: основной путь заработал.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1028,15 +1090,15 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (cart.length >= 2 && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [cart.length]);
   const total = cart.reduce((sum, p) => sum + p.price, 0);
   return (
-    <Stage eyebrow={{ uz: 'Savat + jami', ru: 'Корзина + итог' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Savatga 2 ta qo'shing (${cart.length}/2)`, ru: `Положите 2 товара в корзину (${cart.length}/2)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Savat + jami', ru: 'Корзина + итог' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Savatga 2 ta qo'shing (${cart.length}/2)`, ru: `Положите 2 пиццы в корзину (${cart.length}/2)` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="mono" style={{ color: T.accent }}>reduce</span> savatni hisoblaydi</>, ru: <><span className="mono" style={{ color: T.accent }}>reduce</span> считает корзину</> })}</h2></div>
-        <Mentor>{tr({ uz: <>«+» bosib mahsulot qo'shing — tepadagi belgi (inglizcha <i>badge</i>) soni o'zgaradi, jami narx qayta hisoblanadi. <span className="mono">reduce</span>ni JavaScript darslarida (funksiyalar) ko'rgansiz.</>, ru: <>Нажимайте «+» и добавляйте товары — счётчик сверху (по-английски <i>badge</i>) меняется, итоговая цена пересчитывается. <span className="mono">reduce</span> вы видели на уроках JavaScript (функции).</> })}</Mentor>
+        <Mentor>{tr({ uz: <>«+» bosib pitsa qo'shing — tepadagi belgi (inglizcha <i>badge</i>) soni o'zgaradi, jami narx qayta hisoblanadi. <span className="mono">reduce</span>ni JavaScript darslarida (funksiyalar) ko'rgansiz.</>, ru: <>Нажимайте «+» и добавляйте пиццы — счётчик сверху (по-английски <i>badge</i>) меняется, итоговая цена пересчитывается. <span className="mono">reduce</span> вы видели на уроках JavaScript (функции).</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
               <Phone>
-                <AppBar title={{ uz: "Mini-do'kon", ru: 'Мини-магазин' }} badge={cart.length} bump={bump} />
+                <AppBar title={{ uz: 'AvtoPizza', ru: 'AvtoPizza' }} badge={cart.length} bump={bump} />
                 <div className="rn-body">{PRODUCTS.map(p => <ProductRow key={p.id} p={p} onAdd={add} />)}</div>
                 <div style={{ padding: '9px 12px', borderTop: `1px dashed ${T.ink3}`, display: 'flex', justifyContent: 'space-between', fontFamily: 'Manrope', fontWeight: 800, fontSize: 13, background: T.paper }}><span>{tr({ uz: 'Jami:', ru: 'Итого:' })}</span><span style={{ color: T.accent }}>{fmt(total)}</span></div>
               </Phone>
@@ -1045,8 +1107,8 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <div className="frame" style={{ padding: 'clamp(14px,2.2vw,20px)' }}>
               <p className="flow-label" style={{ marginBottom: 8 }}>{tr({ uz: 'Jami narx — reduce bilan', ru: 'Итоговая сумма — через reduce' })}</p>
-              <div className="codepill">const jami = cart.reduce(<br />&nbsp;&nbsp;(sum, p) =&gt; sum + p.price, 0<br />);</div>
-              <p className="body" style={{ margin: '10px 0 0', color: T.ink2 }}>{tr({ uz: <><span className="mono">cart.length</span> — savatdagi mahsulotlar <b>soni</b>; <span className="mono">reduce</span> — ularning <b>narxlarini</b> yig'adi. Ikkalasi alohida narsa: savatda <b>{cart.length}</b> ta · jami <b style={{ color: T.accent }}>{fmt(total)}</b>.</>, ru: <><span className="mono">cart.length</span> — <b>количество</b> товаров в корзине; <span className="mono">reduce</span> — складывает их <b>цены</b>. Это разные вещи: в корзине <b>{cart.length}</b> шт. · итого <b style={{ color: T.accent }}>{fmt(total)}</b>.</> })}</p>
+              <div className="codepill">const jami = savat.reduce(<br />&nbsp;&nbsp;(s, p) =&gt; s + p.narx, 0<br />);</div>
+              <p className="body" style={{ margin: '10px 0 0', color: T.ink2 }}>{tr({ uz: <><span className="mono">savat.length</span> — savatdagi pitsalar <b>soni</b>; <span className="mono">reduce</span> — ularning <b>narxlarini</b> yig'adi. Ikkalasi alohida narsa: savatda <b>{cart.length}</b> ta · jami <b style={{ color: T.accent }}>{fmt(total)}</b>.</>, ru: <><span className="mono">savat.length</span> — <b>количество</b> пицц в корзине; <span className="mono">reduce</span> — складывает их <b>цены</b>. Это разные вещи: в корзине <b>{cart.length}</b> шт. · итого <b style={{ color: T.accent }}>{fmt(total)}</b>.</> })}</p>
             </div>
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Savat — holat (state). Holat o'zgarsa, ekran o'zi yangilanadi — React'dagi kabi.</>, ru: <>Корзина — это состояние (state). Меняется состояние — экран обновляется сам, как в React.</> })}</p></div>}
           </Col>
@@ -1064,7 +1126,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: 'Buyurtma → backend', ru: 'Заказ → бэкенд' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Oqimni kuzating (${Math.max(0, step + 1)}/${CHECKOUT_FLOW.length})`, ru: `Проследите путь (${Math.max(0, step + 1)}/${CHECKOUT_FLOW.length})` }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>«Buyurtma qil» — <span className="italic" style={{ color: T.accent }}>o'sha tizimga tushadi</span></>, ru: <>«Заказать» — <span className="italic" style={{ color: T.accent }}>попадает в ту же систему</span></> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>«Yuborish» — <span className="italic" style={{ color: T.accent }}>o'sha tizimga tushadi</span></>, ru: <>«Отправить» — <span className="italic" style={{ color: T.accent }}>попадает в ту же систему</span></> })}</h2></div>
         <Mentor>{tr({ uz: "Mobil buyurtma ham 8-darsdagi buyurtma oqimiga qo'shiladi: backend → Database saqlaydi → bot adminga xabar beradi. Bosib, oqimni kuzating.", ru: 'Мобильный заказ тоже попадает в путь заказа с 8-го урока: бэкенд → Database сохраняет → бот сообщает администратору. Нажимайте и следите за путём.' })}</Mentor>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, maxWidth: 600, width: '100%', margin: '0 auto' }}>
           {CHECKOUT_FLOW.map((s, i) => { const on = step >= i; return (
@@ -1076,7 +1138,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </React.Fragment>
           ); })}
         </div>
-        {!done && <button className="btn" onClick={() => setStep(n => Math.min(n + 1, CHECKOUT_FLOW.length - 1))} style={{ alignSelf: 'center' }}>{step < 0 ? tr({ uz: '▶ Buyurtma qil', ru: '▶ Заказать' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>}
+        {!done && <button className="btn" onClick={() => setStep(n => Math.min(n + 1, CHECKOUT_FLOW.length - 1))} style={{ alignSelf: 'center' }}>{step < 0 ? tr({ uz: '▶ Yuborish', ru: '▶ Отправить' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>}
         {done && <div className="frame-success fade-step" style={{ maxWidth: 600, width: '100%', margin: '0 auto' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Telefondan kelgan buyurtma ham Database'ga tushdi va bot xabar berdi — xuddi web'dagidek.</>, ru: <>Заказ с телефона тоже попал в Database, и бот отправил сообщение — точно как из веба.</> })}</p></div>}
       </div>
     </Stage>
@@ -1086,11 +1148,11 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 9 — TEST 3 =====
 const Screen9 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 3-savol', ru: 'Упражнение · вопрос 3' }}
-    questionText={{ uz: "Mobil ilovada «Buyurtma qil» bosilganda nima bo'ladi?", ru: 'Что происходит при нажатии «Заказать» в мобильном приложении?' }}
-    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Mobil ilovada «Buyurtma qil» bosilganda <span className="italic" style={{ color: T.accent }}>nima</span> bo'ladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Что</span> произойдёт, если в мобильном приложении нажать «Заказать»?</h2></> })}
-    options={[{ uz: 'Buyurtma faqat telefon ichida saqlanadi', ru: 'Заказ сохраняется только внутри телефона' }, { uz: "Backend'ga `POST /orders` so'rovi ketadi", ru: 'На бэкенд уходит запрос `POST /orders`' }, { uz: 'Faqat mobil uchun yangi backend ishga tushadi', ru: 'Запускается новый бэкенд только для мобильного' }, { uz: 'Hech narsa — mobil ilova buyurtma qabul qilolmaydi', ru: 'Ничего — мобильное приложение не может принимать заказы' }]} correctIdx={1}
-    explainCorrect={{ uz: "To'g'ri! Mobil ilova backend'ga `POST /orders` yuboradi. Buyurtma PostgreSQL'ga saqlanadi, Telegram bot adminni xabardor qiladi — web bilan bir xil oqim.", ru: 'Верно! Мобильное приложение отправляет на бэкенд `POST /orders`. Заказ сохраняется в PostgreSQL, Telegram-бот сообщает администратору — тот же путь, что и в вебе.' }}
-    explainWrong={{ 0: { uz: 'Telefonda qolmaydi — backendga yuboriladi, aks holda admin ko\'rmaydi.', ru: 'В телефоне он не остаётся — уходит на бэкенд, иначе администратор его не увидит.' }, 2: { uz: 'Yangi backend yo\'q — o\'sha bitta backend.', ru: 'Никакого нового бэкенда — тот же самый, один.' }, 3: { uz: 'Qabul qiladi — POST /orders orqali.', ru: 'Ещё как принимает — через POST /orders.' }, default: { uz: 'POST /orders → Database + bot. Bitta tizim.', ru: 'POST /orders → Database + бот. Одна система.' } }} />
+    questionText={{ uz: "Buyurtma ekranida «Yuborish» bosilganda nima bo'ladi?", ru: 'Что происходит при нажатии «Отправить» на экране Заказ?' }}
+    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Buyurtma ekranida «Yuborish» bosilganda <span className="italic" style={{ color: T.accent }}>nima</span> bo'ladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Что</span> произойдёт, если на экране Заказ нажать «Отправить»?</h2></> })}
+    options={[{ uz: 'Buyurtma faqat telefon ichida saqlanadi', ru: 'Заказ сохраняется только внутри телефона' }, { uz: "Backend'ga `POST /buyurtma` so'rovi ketadi", ru: 'На бэкенд уходит запрос `POST /buyurtma`' }, { uz: 'Faqat mobil uchun yangi backend ishga tushadi', ru: 'Запускается новый бэкенд только для мобильного' }, { uz: 'Hech narsa — mobil ilova buyurtma qabul qilolmaydi', ru: 'Ничего — мобильное приложение не может принимать заказы' }]} correctIdx={1}
+    explainCorrect={{ uz: "To'g'ri! Mobil ilova backend'ga `POST /buyurtma` yuboradi. Buyurtma PostgreSQL'ga saqlanadi, Telegram bot adminni xabardor qiladi — web bilan bir xil oqim.", ru: 'Верно! Мобильное приложение отправляет на бэкенд `POST /buyurtma`. Заказ сохраняется в PostgreSQL, Telegram-бот сообщает администратору — тот же путь, что и в вебе.' }}
+    explainWrong={{ 0: { uz: 'Telefonda qolmaydi — backendga yuboriladi, aks holda admin ko\'rmaydi.', ru: 'В телефоне он не остаётся — уходит на бэкенд, иначе администратор его не увидит.' }, 2: { uz: 'Yangi backend yo\'q — o\'sha bitta backend.', ru: 'Никакого нового бэкенда — тот же самый, один.' }, 3: { uz: 'Qabul qiladi — POST /buyurtma orqali.', ru: 'Ещё как принимает — через POST /buyurtma.' }, default: { uz: 'POST /buyurtma → Database + bot. Bitta tizim.', ru: 'POST /buyurtma → Database + бот. Одна система.' } }} />
 );
 
 // ===== SCREEN 10 — DOVODKA / SAYQAL =====
@@ -1106,17 +1168,18 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>«Ishlaydi» yetarli emas — <span className="italic" style={{ color: T.accent }}>sayqallang</span></>, ru: <>«Работает» — мало, нужно <span className="italic" style={{ color: T.accent }}>отполировать</span></> })}</h2></div>
         <Mentor>{tr({ uz: "Ilova ishlashi — birinchi qadam. Endi uni chiroyli va qulay qilamiz: StyleSheet bilan rang, bo'shliq, tartib. Ikki holatni solishtiring.", ru: 'Работающее приложение — это первый шаг. Теперь сделаем его красивым и удобным: цвета, отступы и порядок через StyleSheet. Сравните два варианта.' })}</Mentor>
+        {/* F-1015-176: tanlov tugmalari ikki ustun USTIDA — ustunlar bir chiziqdan boshlanadi */}
+        <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
+          <button className={`chip ${isRaw ? 'chip-on' : ''}`} onClick={() => set('raw')}>{tr({ uz: 'Chala (rangsiz)', ru: 'Сырое (без цвета)' })}</button>
+          <button className={`chip ${!isRaw ? 'chip-on' : ''}`} onClick={() => set('styled')}>{tr({ uz: 'Sayqallangan', ru: 'Отполированное' })}</button>
+        </div>
         <Zoomable><div className="split">
           <Col>
-            <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
-              <button className={`chip ${isRaw ? 'chip-on' : ''}`} onClick={() => set('raw')}>{tr({ uz: 'Chala (rangsiz)', ru: 'Сырое (без цвета)' })}</button>
-              <button className={`chip ${!isRaw ? 'chip-on' : ''}`} onClick={() => set('styled')}>{tr({ uz: 'Sayqallangan', ru: 'Отполированное' })}</button>
-            </div>
             <div key={v} className="demo-swap" style={{ display: 'flex', justifyContent: 'center' }}>
               <Phone screenClass={isRaw ? 'raw' : ''}>
-                <AppBar title={{ uz: "Mini-do'kon", ru: 'Мини-магазин' }} badge={2} />
+                <AppBar title={{ uz: 'AvtoPizza', ru: 'AvtoPizza' }} badge={2} />
                 <div className="rn-body">{PRODUCTS.map(p => <ProductRow key={p.id} p={p} onAdd={() => {}} />)}</div>
-                <button className="rn-cta">{tr({ uz: 'Buyurtma qil', ru: 'Заказать' })}</button>
+                <button className="rn-cta">{tr({ uz: 'Buyurtma berish', ru: 'Оформить заказ' })}</button>
               </Phone>
             </div>
           </Col>
@@ -1175,7 +1238,7 @@ const Screen12 = (props) => (
     questionText={{ uz: "Mobil ilovani qanday sinaymiz?", ru: 'Как мы проверяем мобильное приложение?' }}
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Mobil ilovani qanday <span className="italic" style={{ color: T.accent }}>sinaymiz</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Как мы <span className="italic" style={{ color: T.accent }}>проверяем</span> мобильное приложение?</h2></> })}
     options={[{ uz: "Sinamaymiz — AI to'g'ri yozib beradi", ru: 'Не проверяем — ИИ напишет правильно' }, { uz: 'Faqat ranglar to\'g\'ri chiqqanini tekshirib', ru: 'Проверив только, верно ли вышли цвета' }, { uz: 'Faqat kompyuterda kodga qarab, ochmasdan', ru: 'Только глядя в код на компьютере, не открывая приложение' }, { uz: "Kodni tekshirib, telefonda oqimni bosib ko'rib", ru: 'Проверив код и пройдя весь путь на телефоне' }]} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! Avval kodni o'qiysiz, keyin Expo Go bilan telefonda har ekran va oqimni (ro'yxat → savat → buyurtma) bosib sinaysiz. Qurilmada ba'zi xatolar (sekinlik, tugma joyi) shunda ko'rinadi.", ru: 'Верно! Сначала вы читаете код, потом через Expo Go проходите на телефоне каждый экран и весь путь (список → корзина → заказ). Именно так видны некоторые ошибки на устройстве (тормоза, место кнопки).' }}
+    explainCorrect={{ uz: "To'g'ri! Avval kodni o'qiysiz, keyin Expo Go bilan telefonda har ekran va oqimni (menyu → savat → buyurtma) bosib sinaysiz. Qurilmada ba'zi xatolar (sekinlik, tugma joyi) shunda ko'rinadi.", ru: 'Верно! Сначала вы читаете код, потом через Expo Go проходите на телефоне каждый экран и весь путь (меню → корзина → заказ). Именно так видны некоторые ошибки на устройстве (тормоза, место кнопки).' }}
     explainWrong={{ 0: { uz: 'AI xato qiladi — sinov shart.', ru: 'ИИ ошибается — проверка обязательна.' }, 1: { uz: 'Rang — bir qismi xolos. Butun oqimni sinang.', ru: 'Цвета — лишь часть дела. Проверяйте весь путь.' }, 2: { uz: "Kod to'g'ri ko'rinishi mumkin, lekin telefonda boshqacha ishlaydi.", ru: 'Код может выглядеть верным, но на телефоне поведёт себя иначе.' }, default: { uz: "Kodni o'qing, telefonda butun oqimni sinang.", ru: 'Читайте код и проверяйте весь путь на телефоне.' } }} />
 );
 
@@ -1189,7 +1252,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (done && typeof window !== 'undefined' && window.innerWidth < 768 && workRef.current) { const el = workRef.current; setTimeout(() => { if (el) el.scrollIntoView({ behavior: 'smooth', block: 'end' }); }, 360); }
   }, [done]);
   const MiniApp = ({ wake }) => (
-    <Phone wake={wake}><AppBar title={{ uz: "Mini-do'kon", ru: 'Мини-магазин' }} badge={0} /><div className="rn-body">{PRODUCTS.map(p => <ProductRow key={p.id} p={p} chevron />)}</div></Phone>
+    <Phone wake={wake}><AppBar title={{ uz: 'AvtoPizza', ru: 'AvtoPizza' }} badge={0} /><div className="rn-body">{PRODUCTS.map(p => <ProductRow key={p.id} p={p} chevron />)}</div></Phone>
   );
   return (
     <Stage eyebrow={{ uz: 'Expo Go · ulashish', ru: 'Expo Go · поделиться' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Endi navbat sizga →', ru: 'Теперь ваша очередь →' } : { uz: 'Ulashing', ru: 'Поделитесь' }} onClick={onNext} /></>}>
@@ -1256,10 +1319,10 @@ const Screen14 = ({ screen, onNext, onPrev }) => (
 );
 // ===== SCREEN FINAL — 4 EKRANNI XARID OQIMI TARTIBIDA YIG'ISH (DragDropOrder) =====
 const FINAL_SCENES = [
-  { id: 'katalog',  label: { uz: "Ro'yxat (List)", ru: 'Список (List)' } },
-  { id: 'detail',   label: { uz: 'Tafsilot (Detail)', ru: 'Детали (Detail)' } },
-  { id: 'savat',    label: { uz: 'Savat (Cart)', ru: 'Корзина (Cart)' } },
-  { id: 'buyurtma', label: { uz: 'Buyurtma (Checkout)', ru: 'Заказ (Checkout)' } },
+  { id: 'katalog',  label: { uz: 'Menyu', ru: 'Меню (Menyu)' } },
+  { id: 'detail',   label: { uz: 'Tafsilot', ru: 'Детали (Tafsilot)' } },
+  { id: 'savat',    label: { uz: 'Savat', ru: 'Корзина (Savat)' } },
+  { id: 'buyurtma', label: { uz: 'Buyurtma', ru: 'Заказ (Buyurtma)' } },
 ];
 const ScreenFinalDD = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   // Ball — birinchi TO'LIQ urinish (MCQ bilan bir xil o'lchov, 8-A): hamma katak to'lib tartib xato chiqsa — urinish xato
@@ -1283,7 +1346,7 @@ const ScreenFinalDD = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: <span className="italic" style={{ color: T.accent }}>4 ekranni xarid oqimi tartibida</span> yig'ing.</>, ru: <>Последний шаг: соберите <span className="italic" style={{ color: T.accent }}>4 экрана по пути покупки</span>.</> })}</h2></div>
         <Mentor>{tr({ uz: "Mijoz ilovada xarid qiladi. 4 ekranni u bosib o'tadigan tartibda joylang.", ru: 'Клиент делает покупку в приложении. Расставьте 4 экрана в том порядке, в котором он их проходит.' })}</Mentor>
         <Zoomable>
-          <DragDropOrder onWrong={onWrong} items={items} hints={hints} onSolved={solve} doneText={{ uz: <>Xarid oqimi tayyor: <b>Ro'yxat → Tafsilot → Savat → Buyurtma</b>. Mini-do'konning asosiy oqimi shu.</>, ru: <>Путь покупки готов: <b>Список → Детали → Корзина → Заказ</b>. Это и есть основной путь мини-магазина.</> }} />
+          <DragDropOrder onWrong={onWrong} items={items} hints={hints} onSolved={solve} doneText={{ uz: <>Xarid oqimi tayyor: <b>Menyu → Tafsilot → Savat → Buyurtma</b>. AvtoPizza ilovasining asosiy oqimi shu.</>, ru: <>Путь покупки готов: <b>Меню → Детали → Корзина → Заказ</b>. Это и есть основной путь приложения AvtoPizza.</> }} />
         </Zoomable>
       </div>
     </Stage>
@@ -1293,7 +1356,7 @@ const ScreenFinalDD = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const ACHIEVEMENTS = {
   onTour:         { icon: '🔌', name: 'API Connected',   desc: { uz: "Mobil ilova tayyor backend'ga ulanishini bildingiz", ru: 'Вы узнали, что мобильное приложение подключается к готовому бэкенду' } },
   dressRehearsal: { icon: '🧑‍💻', name: 'Project Builder', desc: { uz: "Topshiriq berib, kodni o'qib sinashni bildingiz", ru: 'Вы научились давать задание, читать код и проверять' } },
-  finalPolish:    { icon: '🧾', name: 'Checkout Done',   desc: { uz: "Buyurtma backend'ga POST /orders bilan ketishini bildingiz", ru: 'Вы узнали, что заказ уходит на бэкенд через POST /orders' } },
+  finalPolish:    { icon: '🧾', name: 'Order Sent',      desc: { uz: "Buyurtma backend'ga POST /buyurtma bilan ketishini bildingiz", ru: 'Вы узнали, что заказ уходит на бэкенд через POST /buyurtma' } },
   premiereNight:  { icon: '📱', name: 'Mobile Test',     desc: { uz: "Ilovani kod va telefonda sinashni bildingiz", ru: 'Вы научились проверять приложение в коде и на телефоне' } } };
 // Ekran id → nishon. ❗ FAQAT SCORED test ekranlariga (correct=to'g'ri javob): s4 · s5b · s9 · s12.
 // Exploration/toggle ekranlarga BOG'LANMAYDI (ular har bosishda correct:true beradi — nishon tekin bo'lib qolardi).
@@ -1365,25 +1428,25 @@ const QZ_BG_SHAPES = [
   { ch: '📱',          l: 85, t: 8,  s: 32, d: 23, dl: 1.5 },
   { ch: 'state',       l: 8,  t: 72, s: 26, d: 27, dl: 0.8 },
   { ch: 'Expo Go',     l: 76, t: 68, s: 24, d: 21, dl: 2.2 },
-  { ch: 'POST /orders',l: 45, t: 86, s: 26, d: 25, dl: 1.1 },
+  { ch: 'POST /buyurtma',l: 45, t: 86, s: 26, d: 25, dl: 1.1 },
   { ch: 'reduce',      l: 66, t: 26, s: 24, d: 17, dl: 0.4 },
-  { ch: 'GET /products',l: 26, t: 34, s: 24, d: 20, dl: 1.9 },
+  { ch: 'GET /menyu',  l: 26, t: 34, s: 24, d: 20, dl: 1.9 },
   { ch: 'navigate',    l: 55, t: 5,  s: 22, d: 22, dl: 0.6 },
   { ch: '🛒',          l: 91, t: 42, s: 26, d: 24, dl: 1.3 },
   { ch: '✅',          l: 16, t: 52, s: 26, d: 26, dl: 2.6 },
   { ch: 'fetch',       l: 34, t: 62, s: 22, d: 29, dl: 3.4 },
   { ch: '🔌',          l: 2,  t: 30, s: 26, d: 28, dl: 3.1 },
   { ch: 'StyleSheet',  l: 60, t: 90, s: 22, d: 31, dl: 4.2 },
-  { ch: 'cart.length', l: 20, t: 16, s: 22, d: 18, dl: 2.9 },
+  { ch: 'savat.length', l: 20, t: 16, s: 22, d: 18, dl: 2.9 },
 ];
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3, mexanik ketma-ketlik yo'q).
 // 🎓 Metodist: savol matni va variant uzunliklari sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: "Mobil ilova mahsulot ma'lumotini qayerdan oladi?", ru: 'Откуда мобильное приложение берёт данные о товарах?' }, opts: [{ uz: "Tayyor backend'dan (`GET /products`)", ru: 'С готового бэкенда (`GET /products`)' }, { uz: "Ilova ichiga qo'lda yozilgan ro'yxatdan", ru: 'Из списка, вписанного в приложение вручную' }, { uz: "Faqat mobil uchun yozilgan yangi API serverdan", ru: 'С нового API-сервера только для мобильного' }, { uz: "Hech qayerdan — Database bo'lmaydi", ru: 'Ниоткуда — Database нет' }], correct: 0 },
+  { q: { uz: "Mobil ilova menyuni qayerdan oladi?", ru: 'Откуда мобильное приложение берёт меню?' }, opts: [{ uz: "Tayyor backend'dan (`GET /menyu`)", ru: 'С готового бэкенда (`GET /menyu`)' }, { uz: "Ilova ichiga qo'lda yozilgan ro'yxatdan", ru: 'Из списка, вписанного в приложение вручную' }, { uz: "Faqat mobil uchun yozilgan yangi API serverdan", ru: 'С нового API-сервера только для мобильного' }, { uz: "Hech qayerdan — Database bo'lmaydi", ru: 'Ниоткуда — Database нет' }], correct: 0 },
   { q: { uz: "Loyiha kunida sizning vazifangiz nima?", ru: 'Какая у вас задача в день проекта?' }, opts: [{ uz: "Kodni o'qimasdan shundoq ishlatish", ru: 'Просто использовать код, не читая его' }, { uz: "Topshiriq berish, kodni o'qish, sinash", ru: 'Давать задание, читать код, проверять' }, { uz: "Hamma kodni o'zingiz qo'lda yozish", ru: 'Писать весь код самому вручную' }, { uz: "Faqat ranglar va dizaynni tanlash", ru: 'Выбирать только цвета и дизайн' }], correct: 1 },
   { q: { uz: "React Native'da ro'yxatni ko'rsatish uchun qaysi komponent?", ru: 'Каким компонентом в React Native показывают список?' }, opts: ["<div>", "<table>", "<FlatList>", "<ScrollView>"], correct: 2 },
-  { q: { uz: "«Buyurtma qil» bosilganda nima bo'ladi?", ru: 'Что происходит при нажатии «Заказать»?' }, opts: [{ uz: "Buyurtma faqat telefonda saqlanadi", ru: 'Заказ сохраняется только в телефоне' }, { uz: "Umuman hech narsa bo'lmaydi", ru: 'Вообще ничего не происходит' }, { uz: "Yangi mobil API ishga tushadi", ru: 'Запускается новый мобильный API' }, { uz: "Backend'ga `POST /orders` ketadi", ru: 'На бэкенд уходит `POST /orders`' }], correct: 3 },
-  { q: { uz: "Yuqoridagi savat soni belgisi nima bilan bog'lanadi?", ru: 'С чем связан счётчик корзины сверху?' }, opts: [{ uz: "Backend fayl nomi bilan", ru: 'С именем файла на бэкенде' }, { uz: "`cart.length` (holat) bilan", ru: 'С `cart.length` (состояние)' }, { uz: "Rasm o'lchami (`width`) bilan", ru: 'С размером картинки (`width`)' }, { uz: "Sahifa sarlavhasi bilan", ru: 'С заголовком страницы' }], correct: 1 },
+  { q: { uz: "Buyurtma ekranida «Yuborish» bosilsa nima bo'ladi?", ru: 'Что происходит при нажатии «Отправить» на экране Заказ?' }, opts: [{ uz: "Buyurtma faqat telefonda saqlanadi", ru: 'Заказ сохраняется только в телефоне' }, { uz: "Umuman hech narsa bo'lmaydi", ru: 'Вообще ничего не происходит' }, { uz: "Yangi mobil API ishga tushadi", ru: 'Запускается новый мобильный API' }, { uz: "Backend'ga `POST /buyurtma` ketadi", ru: 'На бэкенд уходит `POST /buyurtma`' }], correct: 3 },
+  { q: { uz: "Yuqoridagi savat soni belgisi nima bilan bog'lanadi?", ru: 'С чем связан счётчик корзины сверху?' }, opts: [{ uz: "Backend fayl nomi bilan", ru: 'С именем файла на бэкенде' }, { uz: "`savat.length` (holat) bilan", ru: 'С `savat.length` (состояние)' }, { uz: "Rasm o'lchami (`width`) bilan", ru: 'С размером картинки (`width`)' }, { uz: "Sahifa sarlavhasi bilan", ru: 'С заголовком страницы' }], correct: 1 },
   { q: { uz: "Jami narxni hisoblash uchun qaysi usul qulay?", ru: 'Каким методом удобно посчитать итоговую цену?' }, opts: ["reduce", "map", "filter", "sort"], correct: 0 },
   { q: { uz: "Expo Go asosan nima uchun kerak?", ru: 'Для чего в основном нужен Expo Go?' }, opts: [{ uz: "Kodni boshqa tilga tarjima qilish uchun", ru: 'Чтобы перевести код на другой язык' }, { uz: "Yangi backend qurish uchun", ru: 'Чтобы построить новый бэкенд' }, { uz: "Ilovaga rasm chizish uchun", ru: 'Чтобы рисовать картинки для приложения' }, { uz: "Ilovani telefonda sinash va ulashish uchun", ru: 'Чтобы проверить приложение на телефоне и поделиться им' }], correct: 3 },
   { q: { uz: "Mobil ilovani qanday sinaymiz?", ru: 'Как мы проверяем мобильное приложение?' }, opts: [{ uz: "Umuman sinamaymiz", ru: 'Вообще не проверяем' }, { uz: "Faqat kompyuterda kodga qarab", ru: 'Только глядя в код на компьютере' }, { uz: "Kodni o'qib, telefonda oqimni bosib", ru: 'Прочитав код и пройдя путь на телефоне' }, { uz: "Faqat ranglarni tekshirib", ru: 'Проверив только цвета' }], correct: 2 },
@@ -1492,7 +1555,7 @@ function QzFX() {
     const size = () => { W = cv.width = Math.max(1, cv.offsetWidth * DPR); H = cv.height = Math.max(1, cv.offsetHeight * DPR); };
     size(); window.addEventListener('resize', size);
     // Arena tokenlari — SHU darsning mavzusidan (mobil ilova): dekorativ suzuvchi kod-bo'laklari
-    const TOK = ['FlatList', '📱', 'Expo Go', 'fetch', 'state', 'reduce', 'POST /orders', '🛒', 'navigate', 'QR'];
+    const TOK = ['FlatList', '📱', 'Expo Go', 'fetch', 'state', 'reduce', 'POST /buyurtma', '🛒', 'navigate', 'QR'];
     const em = [], toks = [];
     for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7, ph: Math.random() * 6.28, sw: .3 + Math.random() * .6 });
     for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: TOK[i % TOK.length], r: (Math.random() - .5) * .5 });
@@ -1808,7 +1871,7 @@ function QuizArena({ live, onClose, startSolo }) {
     </div>
   );
 }
-const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
+const ScreenPodium = ({ screen, answers, achievements, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
   const isLive = !!(live && (live.mode === 'student' || live.mode === 'mentor') && live.pin);
@@ -1845,11 +1908,19 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   return (
     <Stage eyebrow={{ uz: 'Natijalar', ru: 'Результаты' }} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Davom etish', ru: 'Продолжить' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head head-c"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
+        <div className="head head-c"><h2 className="title h-title fade-up">{isLive ? tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> }) : tr({ uz: <>Bugungi <span className="italic" style={{ color: T.accent }}>natijangiz</span></>, ru: <>Ваш сегодняшний <span className="italic" style={{ color: T.accent }}>результат</span></> })}</h2></div>
         {!isLive ? (
-          <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
-            <ScoreRing correct={selfCorrect} total={totalQ} />
-            <div className="frame-soft" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>{tr({ uz: 'Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — 🥇🥈🥉 podium chiqadi.', ru: 'Вы в самостоятельном режиме. На живом уроке здесь появится рейтинг всей группы — 🥇🥈🥉 подиум.' })}</p></div>
+          <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div className="pod-card">
+              <div className="pod-card-ring"><ScoreRing correct={selfCorrect} total={totalQ} /></div><p className="ring-iz">{tr({ uz: "Testlarda birinchi urinishda topilgan to'g'ri javoblar", ru: 'Верные ответы в тестах с первой попытки' })}</p>
+              <div className="pod-card-sec">
+                <span className="pod-card-lbl">{tr({ uz: 'Nishonlar', ru: 'Значки' })} · {Object.keys(ACHIEVEMENTS).filter(id => achievements && achievements.has(id)).length}/{Object.keys(ACHIEVEMENTS).length}</span>
+                <div className="pod-card-badges">
+                  {Object.entries(ACHIEVEMENTS).map(([id, a], k) => { const got = !!(achievements && achievements.has(id)); return <span key={id} className={`pcb ${got ? 'got' : ''}`} style={{ '--k': k }} title={tr(a.desc)}><span className="pcb-ic" aria-hidden="true">{got ? a.icon : '🔒'}</span><span className="pcb-nm">{got ? a.name : '?'}</span></span>; })}
+                </div>
+              </div>
+              <div className="pod-card-note"><span className="pcn-ic" aria-hidden="true">💡</span><p className="body">{tr({ uz: "Bu — shaxsiy natijangiz. Jonli darsda shu yerda butun guruhning natijalar ro'yxati va 🥇🥈🥉 eng yaxshi uchtalik (podium) chiqadi.", ru: 'Это ваш личный результат. На живом уроке здесь появится список результатов всей группы и 🥇🥈🥉 тройка лучших (подиум).' })}</p></div>
+            </div>
           </div>
         ) : !loaded ? (
           <p className="mono small fade-up" style={{ color: T.ink2 }}>{tr({ uz: 'Natijalar yuklanmoqda…', ru: 'Загружаем результаты…' })}</p>
@@ -1968,14 +2039,14 @@ function Flashcards({ cards }) {
 }
 // 🃏 FLASHCARD KARTALARI — mobil ilova atamalari
 const MOBILE_FLASHCARDS = [
-  { front: { uz: "Mobil ilova mahsulotlarni qayerdan oladi?", ru: 'Откуда мобильное приложение берёт товары?' }, back: { uz: "Tayyor backend'dan", ru: 'С готового бэкенда' }, note: { uz: "GET /products so'rovi bilan, qo'lda yozilmaydi", ru: 'Запросом GET /products, а не вручную' } },
+  { front: { uz: "Mobil ilova menyuni qayerdan oladi?", ru: 'Откуда мобильное приложение берёт меню?' }, back: { uz: "Tayyor backend'dan", ru: 'С готового бэкенда' }, note: { uz: "GET /menyu so'rovi bilan, qo'lda yozilmaydi", ru: 'Запросом GET /menyu, а не вручную' } },
   { front: { uz: "Loyiha kunida sizning vazifangiz?", ru: 'Ваша задача в день проекта?' }, back: { uz: "Topshiriq berish, kodni o'qish, sinash", ru: 'Давать задание, читать код, проверять' }, note: { uz: "AI kod taklif qiladi — siz tekshirasiz", ru: 'ИИ предлагает код — вы проверяете' } },
   { front: { uz: "Kod haqiqatan ishlaganini qanday bilasiz?", ru: 'Как вы узнаете, что код и правда работает?' }, back: { uz: "Telefonda sinab ko'rsangiz", ru: 'Проверив на телефоне' }, note: { uz: "Expo Go'da oqimni o'zingiz bosib ko'rasiz", ru: 'Вы сами проходите путь в Expo Go' } },
-  { front: { uz: "Savatdagi mahsulotlar qayerda turadi?", ru: 'Где хранятся товары из корзины?' }, back: { uz: 'Holatda (state)', ru: 'В состоянии (state)' }, note: { uz: "Holat o'zgarsa, ekran o'zi yangilanadi", ru: 'Когда состояние меняется, экран обновляется сам' } },
+  { front: { uz: "Savatdagi pitsalar qayerda turadi?", ru: 'Где хранятся пиццы из корзины?' }, back: { uz: 'Holatda (state)', ru: 'В состоянии (state)' }, note: { uz: "Holat o'zgarsa, ekran o'zi yangilanadi", ru: 'Когда состояние меняется, экран обновляется сам' } },
   { front: { uz: "Savatdagi jami narxni qaysi usul hisoblaydi?", ru: 'Каким методом считается итоговая сумма корзины?' }, back: 'reduce', note: { uz: "Narxlarni bitta songa yig'adi", ru: 'Складывает цены в одно число' } },
-  { front: { uz: "Savatdagi mahsulotlar sonini nima beradi?", ru: 'Откуда берётся количество товаров в корзине?' }, back: 'cart.length', note: { uz: "Yuqoridagi savat soni belgisi shundan olinadi", ru: 'Из него берётся счётчик корзины сверху' } },
+  { front: { uz: "Savatdagi pitsalar sonini nima beradi?", ru: 'Откуда берётся количество пицц в корзине?' }, back: 'savat.length', note: { uz: "Yuqoridagi savat soni belgisi shundan olinadi", ru: 'Из него берётся счётчик корзины сверху' } },
   { front: { uz: "Bir ekrandan ikkinchisiga nima yordamida o'tiladi?", ru: 'С помощью чего переходят с одного экрана на другой?' }, back: 'navigation.navigate', note: { uz: "Ekranlarni Stack Navigator boshqaradi", ru: 'Экранами управляет Stack Navigator' } },
-  { front: { uz: "Buyurtma backend'ga qaysi so'rov bilan yuboriladi?", ru: 'Каким запросом заказ отправляется на бэкенд?' }, back: 'POST /orders', note: { uz: "Database'ga yoziladi, bot adminga xabar beradi", ru: 'Записывается в Database, бот сообщает администратору' } },
+  { front: { uz: "Buyurtma backend'ga qaysi so'rov bilan yuboriladi?", ru: 'Каким запросом заказ отправляется на бэкенд?' }, back: 'POST /buyurtma', note: { uz: "Database'ga yoziladi, bot adminga xabar beradi", ru: 'Записывается в Database, бот сообщает администратору' } },
   { front: { uz: "Ilovaga rang, bo'shliq va tartib nima orqali beriladi?", ru: 'Через что приложению задаются цвет, отступы и порядок?' }, back: 'StyleSheet', note: { uz: "Sayqal bosqichi", ru: 'Этап полировки' } },
   { front: { uz: "Xato topilsa butun ilovani qayta yozasizmi?", ru: 'Нашли ошибку — переписываете всё приложение?' }, back: { uz: "Yo'q — aniq joyi tuzatiladi", ru: 'Нет — исправляют конкретное место' }, note: { uz: "Faqat buzilgan joyga aniq topshiriq", ru: 'Точное задание только на сломанное место' } },
   { front: { uz: "Tayyor ilovani do'stingiz telefonida qanday ochasiz?", ru: 'Как открыть готовое приложение на телефоне друга?' }, back: { uz: 'Expo Go va QR bilan', ru: 'Через Expo Go и QR' }, note: { uz: "Bu ulashish usuli, App Store'ga joylash emas", ru: 'Это способ поделиться, а не выкладка в App Store' } },
@@ -2010,15 +2081,20 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
+    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
     { uz: "Mobil ilova tayyor backend'ga ulanadi — bitta tizim, ko'p kirish yo'li", ru: 'Мобильное приложение подключается к готовому бэкенду — одна система, много точек входа' },
-    { uz: "Ro'yxat → Tafsilot → Savat → Buyurtma — har ekran AI yordamida quriladi, siz tekshirasiz", ru: 'Список → Детали → Корзина → Заказ — каждый экран строится с помощью ИИ, а вы проверяете' },
+    { uz: 'Menyu → Tafsilot → Savat → Buyurtma — har ekran AI yordamida quriladi, siz tekshirasiz', ru: 'Меню → Детали → Корзина → Заказ — каждый экран строится с помощью ИИ, а вы проверяете' },
     { uz: "Savat — holat (state), jami — reduce; holat o'zgarsa ekran yangilanadi", ru: 'Корзина — состояние (state), итог — reduce; меняется состояние — экран обновляется' },
     { uz: "Telefonda sinov xatoni topadi → aniq tuzatish topshirig'i bilan tuzatiladi", ru: 'Проверка на телефоне находит ошибку → её исправляют точным заданием на исправление' },
     { uz: "Expo Go va QR — ilovani boshqa telefonda ochib ko'rish (App Store'ga joylash emas)", ru: 'Expo Go и QR — открыть приложение на другом телефоне (это не выкладка в App Store)' }
+  ];
+  const HW_KARTA = [ // F-1015-123: P-025 maydonlari — qiymatlar shu topshiriq matnidan
+    { k: { uz: 'Kim uchun', ru: 'Для кого' }, v: { uz: 'mobil ilovangiz', ru: 'ваше мобильное приложение' } },
+    { k: { uz: 'Nechta', ru: 'Сколько' }, v: { uz: '1 ilova', ru: '1 приложение' } },
+    { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
   ];
   const HOMEWORK = [
     { b: { uz: "Quring", ru: 'Соберите' }, t: { uz: "— Mentor bergan tayyor loyihada o'z mobil ilovangizni davom ettiring; backend darslaridagi serveringizga ulang", ru: '— продолжайте своё мобильное приложение в готовом проекте от ментора; подключите его к своему серверу с уроков по бэкенду' } },
@@ -2029,13 +2105,13 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
   return (
-    <Stage eyebrow={{ uz: 'Tayyor', ru: 'Готово' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
+    <Stage eyebrow={{ uz: 'Tayyor', ru: 'Готово' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Mobil ilova tayyor', ru: 'Мобильное приложение готово' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Mini-do'kon mobil ilovangizning <span className="italic" style={{ color: T.accent }}>asosiy oqimi ishladi</span>.</>, ru: <>В приложении мини-магазина <span className="italic" style={{ color: T.accent }}>заработал основной путь</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
+        <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}</span><span className={`score-chip fade-up ${total > 0 && correct === total ? 'toliq' : 'neytral'}`}>{tr({ uz: 'Testlar', ru: 'Тесты' })}: {correct}/{total}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>AvtoPizza mobil ilovangizning <span className="italic" style={{ color: T.accent }}>asosiy oqimi ishladi</span>.</>, ru: <>В приложении AvtoPizza <span className="italic" style={{ color: T.accent }}>заработал основной путь</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? { uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' } : undefined} />
         </div>
-        {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+        {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
         <div className="hw-big-wrap fade-up d4">
           <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
@@ -2047,7 +2123,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: <>🚀 Keyingi dars — PM: <b>Bugun qaysi ish boshlanadi?</b> Loyihangizdagi ishlarni uch ufqqa ajratamiz: hozir, uch oydan keyin, olti oydan keyin.</>, ru: <>🚀 Следующий урок — PM: <b>Какую задачу начинаем сегодня?</b> Разделим задачи вашего проекта на три горизонта: сейчас, через три месяца, через шесть месяцев.</> })}</p></div>}
+        {hwOpen && <div className="card hwk fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div><div className="hwk-karta">{HW_KARTA.map((r, i) => <div key={i} className="hwk-q"><span className="hwk-k">{tr(r.k)}</span><span className="hwk-v">{tr(r.v)}</span></div>)}</div><ol className="hwk-qadam">{HOMEWORK.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> {tr(h.t)}</span></li>)}</ol><p className="hwk-keyingi">{tr({ uz: <>Keyingi dars — PM: <b>Bugun qaysi ish boshlanadi?</b> Loyihangizdagi ishlarni uch ufqqa ajratamiz: hozir, uch oydan keyin, olti oydan keyin.</>, ru: <>Следующий урок — PM: <b>Какую задачу начинаем сегодня?</b> Разделим задачи вашего проекта на три горизонта: сейчас, через три месяца, через шесть месяцев.</> })}</p></div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
@@ -2317,11 +2393,31 @@ export default function MobileAppPracticeLesson({ lang: langProp, onFinished, li
         .zoomable { position: relative; }
         .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band, F-0926-01) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
+        .ring-iz { margin: 0; font-size: 13px; line-height: 1.4; color: ${T.ink2}; text-align: center; } /* F-1015-147: hisob qoidasi */
+        /* F-1015-158: natija — bitta karta (m5-08 namunasi): halqa, nishonlar, 💡 izoh; halqa atrofida qo'shimcha chiziq yo'q */
+        .pod-card { position: relative; width: 100%; max-width: 480px; margin-top: 6px; background: ${T.paper}; border-radius: 20px; padding: 0 clamp(14px,2.4vw,20px) clamp(14px,2.4vw,20px); display: flex; flex-direction: column; gap: 12px; box-shadow: 0 16px 34px -20px rgba(${T.shadowBase},0.35); }
+        .pod-card-ring { display: flex; justify-content: center; padding-top: clamp(14px,2.4vw,20px); } .pod-card-ring > * { margin-top: 0 !important; }
+        .screen:has(.pod-card) .head { text-align: center; }
+        .pod-card-sec { background: ${T.bg}; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .pod-card-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: ${T.accent}; }
+        .pod-card-badges { display: flex; justify-content: center; gap: clamp(8px,1.6vw,12px); flex-wrap: wrap; }
+        .pcb { width: 84px; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+        .pcb-ic { width: 50px; height: 50px; border-radius: 14px; display: grid; place-items: center; font-size: 26px; line-height: 1; background: ${T.paper}; box-shadow: inset 0 0 0 1px ${T.line}; }
+        .pcb.got .pcb-ic { background: ${T.accentSoft}; box-shadow: inset 0 0 0 2px ${T.accent}; animation: pcb-pop 0.5s cubic-bezier(.3,1.6,.5,1) both; animation-delay: calc(0.35s + var(--k) * 0.12s); }
+        .pcb:not(.got) .pcb-ic { font-size: 18px; filter: grayscale(1); opacity: 0.55; }
+        .pcb-nm { font-family: 'Manrope'; font-size: 10.5px; line-height: 1.25; text-align: center; color: ${T.ink3}; }
+        .pcb.got .pcb-nm { color: ${T.ink}; font-weight: 700; }
+        @keyframes pcb-pop { from { transform: scale(0.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .pod-card-note { display: flex; gap: 10px; align-items: flex-start; background: ${T.accentSoft}; border-radius: 14px; padding: 11px 13px; }
+        .pcn-ic { width: 32px; height: 32px; flex: none; border-radius: 50%; display: grid; place-items: center; background: ${T.paper}; font-size: 16px; }
+        .pod-card-note .body { margin: 0; font-size: clamp(13px,1.5vw,14.5px); }
+        @media (prefers-reduced-motion: reduce) { .pcb.got .pcb-ic { animation: none; } }
+        .zoomable.z-float > .zoom-btn { visibility: hidden; } /* ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun) */
+        .zoomable.zb-joy:not(.zoom-on) { padding-top: 0 !important; } .zoomable.zb-joy:not(.zoom-on) > .zoom-btn { top: var(--zb-y, 0px) !important; left: var(--zb-x, auto) !important; right: auto !important; visibility: visible !important; } /* F-1015-125 (206.6): ⛶ asosiy vizual burchagida; 36px qator — faqat zaxira */ .zoomable.zb-qator:not(.zoom-on) { padding-top: 0 !important; } /* F-1015-176: ⛶ joy topolmasa — ko'rsatilmaydi, bo'sh qator yo'q */ .zoomable.zb-qator:not(.zoom-on) > .zoom-btn { display: none !important; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
-        /* F-1004-12: ⛶ matn ustiga tushmasin. Keng ekranda tugma kontentdan tashqarida, o'ng chetda turadi;
-           torroq ekranda ichkarida qoladi va o'ng ustunning birinchi yorlig'iga o'ngdan 40 px joy beriladi. */
-        @media (min-width: 1200px) { .zoomable:not(.zoom-on) > .zoom-btn { top: 0; right: -42px; } .zoomable.z-float:not(.zoom-on) > .zoom-btn { visibility: visible; } }
-        @media (max-width: 1199px) { .zoomable:not(.z-float):not(.zoom-on) > .split > :last-child > :is(p, h2, h3, h4, .eyebrow, .flow-label, .note-h):first-child, .zoomable:not(.z-float):not(.zoom-on) > .zoom-btn + :is(p, h2, h3, h4, .eyebrow, .flow-label, .note-h) { padding-right: 40px; } }
+        /* F-1004-12 · F-1015-111 (B): ⛶ hech narsani yopmaydi va kartadan chiqmaydi — vizual tepasida o'ziga ajratilgan
+           36 px qatorda, o'ng chetda; har kenglikda bir xil (7-Modul U2 naqshi). */
+        .zoomable:not(.z-empty):not(.zoom-on) { padding-top: 36px; } .zoomable:not(.zoom-on) > .zoom-btn { top: 0; right: 0; }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
         .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(880px,94vw); max-height: 90vh; overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px,4vw,42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }
         @keyframes zoom-pop { from { opacity: 0; transform: translate(-50%,-50%) scale(0.93); } to { opacity: 1; transform: translate(-50%,-50%) scale(1); } }
@@ -2391,7 +2487,6 @@ export default function MobileAppPracticeLesson({ lang: langProp, onFinished, li
         .step-num { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 13px; color: ${T.accent}; flex-shrink: 0; }
         .step-body { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         .step-text { font-weight: 500; font-size: clamp(14px,1.7vw,16px); color: ${T.ink}; }
-        .step-tag { font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: ${T.ink2}; background: ${T.bg}; padding: 3px 8px; border-radius: 6px; }
 
         /* === SK-INFO === */
         .sk-info { background: ${T.paper}; border-radius: 12px; padding: 16px 18px; box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.16); animation: fade-step 0.34s; }
@@ -2407,6 +2502,7 @@ export default function MobileAppPracticeLesson({ lang: langProp, onFinished, li
         .hero-l { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
         .done-chip { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.success}; background: ${T.successSoft}; padding: 5px 12px; border-radius: 99px; } .done-chip .tick { display: inline-flex; }
         .hero-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; } .score-chip { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; font-variant-numeric: tabular-nums; color: ${T.accent}; background: ${T.accentSoft}; padding: 5px 12px; border-radius: 999px; } /* F-1003-04/05: yakunda halqa o'rniga yorliq */
+        .score-chip.neytral { color: ${T.ink2}; background: ${T.paper}; box-shadow: inset 0 0 0 1px ${T.line}; } .score-chip.toliq { color: ${T.success}; background: ${T.successSoft}; } /* F-1015-146 */
         .ring-wrap { position: relative; width: 128px; height: 128px; flex-shrink: 0; }
         .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .ring-num { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 400; line-height: 1; } .ring-den { color: ${T.ink3}; font-size: 20px; } .ring-lbl { font-size: 10px; color: ${T.ink2}; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
@@ -2431,7 +2527,7 @@ export default function MobileAppPracticeLesson({ lang: langProp, onFinished, li
         @keyframes hw-fire { 0%,100% { box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); } 50% { box-shadow: 0 0 0 1px rgba(120,60,220,.6), 0 0 40px rgba(124,58,237,.72), 0 0 96px rgba(124,58,237,.4), inset 0 0 60px rgba(124,58,237,.44); } }
         @keyframes hw-shine { 0% { left: -60%; } 55%, 100% { left: 130%; } }
         @media (prefers-reduced-motion: reduce) { .hw-big, .hw-big-shine, .hw-big-wrap::before, .hw-tok, .hw-big.charging { animation: none !important; } }
-        .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; } .hw li b { color: ${T.accent}; } .hw .t { color: ${T.ink2}; } .hw-note.hw-note { margin: 11px 0 0; font-size: 12px; color: ${T.accent}; font-weight: 600; }
+        .hwk { display: flex; flex-direction: column; gap: 12px; } .hwk-karta { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; } .hwk-q { display: flex; flex-direction: column; gap: 3px; padding: 9px 11px; border-radius: 10px; background: ${T.bg}; border: 1px solid ${T.line}; } .hwk-k { font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: ${T.ink2}; } .hwk-v { font-size: 13.5px; font-weight: 700; line-height: 1.35; color: ${T.ink}; } ol.hwk-qadam { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; } .hwk-qadam li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: ${T.ink}; } .hwk-qadam li i { flex: 0 0 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-style: normal; font-weight: 800; font-size: 12px; line-height: 1; color: ${T.accent}; background: ${T.accentSoft}; } p.hwk-keyingi { margin: 0; font-size: 13.5px; line-height: 1.5; color: ${T.ink2}; } p.hwk-keyingi b { color: ${T.ink}; }
         .gloss { background: ${T.paper}; border-radius: 12px; box-shadow: 0 6px 16px -7px rgba(${T.shadowBase},0.12); overflow: hidden; }
         .gloss-head { display: flex; align-items: center; justify-content: space-between; padding: 13px 17px; cursor: pointer; } .gloss-head .lbl { font-family: 'Manrope'; font-weight: 700; font-size: 13px; color: ${T.ink}; } .gloss-toggle { font-size: 18px; color: ${T.ink2}; }
         .gloss-body { padding: 0 17px 15px; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink2}; line-height: 1.7; animation: fade-step 0.3s; } .gloss-body b { color: ${T.ink}; }
@@ -2521,6 +2617,7 @@ export default function MobileAppPracticeLesson({ lang: langProp, onFinished, li
 
         /* === 🔤 KOD-ATAMA CHIP (fmtCode) === */
         .qcode { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
+        .qcode.uzun { white-space: normal; overflow-wrap: break-word; } /* F-1015-129: uzun kod (SQL, buyruq) bo'sh joydan bo'linadi, kartadan chiqmaydi */
 
         /* === 🏅 ACHIEVEMENTS — hisoblagich + to'liq-ekran bayram === */
         .ach-cnt-wrap { position: relative; }

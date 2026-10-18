@@ -43,7 +43,7 @@ Holat: 06.10.2026 — kodga mos
 - Mentor: Hozir Backend har so'rovni yozadi — ularni hech kim sanamaydi. Uch yo'lga so'rov yuborib, hisoblagichni kuzating.
 - Avval o'zingiz belgilab ko'ring: Uchala yo'lga bir xil son qo'yilsinmi? · Ha, bitta son yetadi · Yo'q, har yo'lga o'zi (tanlangach: Taxminingiz — savol va tanlov)
 - Chap: telefon (Sayt · React `web/`) — Maydon · ‹ Bugun › · kataklar 16:00 · 17:00 · 18:00 · 19:00 · 20:00 · 21:00
-- Tugmalar (o'rtada): Ega kirishi · Band qilish · Sahifani ochish ×10 · ostida: so'rov — bitta IP manzildan
+- Tugmalar (o'rtada): Ega kirishi · Band qilish · Sahifani ochish ×10 · ostida: so'rov — bitta IP manzildan — bashoratdan keyin chiqadi (oldin joyi bo'sh; xira o'chiq tugma yo'q) *(✎ F-1015-164)*
 - O'ng: belgi «prod ro'yxati ● ○ ○ ○ So'rovlar chegarasi»; Backend · NestJS qutisi, taymer «bir daqiqa»:
   - `POST /kirish` — 0 / 5
   - `POST /bandlar` — 0 / 10
@@ -118,6 +118,7 @@ Holat: 06.10.2026 — kodga mos
   - Backend kechikmoqda (50 soniya)
   - Backend javob bermayapti
   - Juda ko'p urinish (`429`)
+  - holat tugmalari bashoratdan keyin chiqadi (oldin joyi bo'sh) *(✎ F-1015-164)*
 - Holatlar:
   - Backend kechikmoqda → qutida: javob kechikmoqda. Hozir: Yuklanmoqda… (50 soniya). Prod: 5-soniyada «Vaqtlar yuklanmoqda — bu bir daqiqagacha cho'zilishi mumkin.» 50-soniyada qutida: so'rov o'tdi — ikkalasida kataklar.
   - Backend javob bermayapti → qutida: javob yo'q. Hozir: darhol «Vaqtlarni yuklab bo'lmadi. Birozdan keyin urinib ko'ring.» Prod: «Vaqtlar yuklanmoqda — bu bir daqiqagacha cho'zilishi mumkin.», har 5 soniyada so'rov qayta ketadi; bir daqiqadan keyin «Vaqtlarni yuklab bo'lmadi» va «Qayta urinish» tugmasi.
@@ -246,7 +247,7 @@ ORDER BY variant;
 
 ## 11 · Yakun
 - Eyebrow: Yakun
-- Belgi: ✓ Loyiha kuni tugadi · N/2 to'g'ri
+- Belgi: ✓ Dars tugadi · Testlar: N/N ✎ F-1015-161
 - Sarlavha: «Maydon» prod ro'yxati bo'yicha yaxshilandi.
 - Jonli viktorina tugmasi: CODE STRIKE · kutish holatida: Mentorni kuting
 - Endi siz bilasiz — «Yakun» bo'limidagi 4 qator

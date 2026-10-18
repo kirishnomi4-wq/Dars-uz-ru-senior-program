@@ -1,0 +1,139 @@
+<title>Ekran taqqoslash: 0-bosqich</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: bitta ustun hisobot; jadval → yonma-yon suratlar → xomaki chegaralar */
+:root{
+  --bg:#F3F1FA; --paper:#FFFFFF; --ink:#1B1630; --ink2:#5A5470; --line:#E2DDF0;
+  --acc:#5B3FD9; --acc-soft:#ECE7FF; --ok:#1F8A55; --ok-soft:#E3F4EA; --warn:#B4541A; --warn-soft:#FCEBDD; --bar:#C9BFF5;
+  --f-body:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif; --f-mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#14111F; --paper:#1E1A2C; --ink:#EEEAF8; --ink2:#A9A2C0; --line:#332D47; --bar:#4B3F86;
+  --acc:#A08BFF; --acc-soft:#2A2343; --ok:#5FD093; --ok-soft:#173326; --warn:#F2A06B; --warn-soft:#3A2516; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#14111F; --paper:#1E1A2C; --ink:#EEEAF8; --ink2:#A9A2C0; --line:#332D47; --bar:#4B3F86;
+  --acc:#A08BFF; --acc-soft:#2A2343; --ok:#5FD093; --ok-soft:#173326; --warn:#F2A06B; --warn-soft:#3A2516; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55;margin:0}
+.wrap{max-width:1040px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:22px}
+h1{font-size:clamp(26px,4vw,34px);line-height:1.15;margin:0;text-wrap:balance;font-weight:800}
+h2{font-size:20px;margin:0;text-wrap:balance;font-weight:800}
+h3{font-size:15px;margin:0;font-weight:800}
+p{margin:0;max-width:76ch}
+.lead{color:var(--ink2);font-size:16px}
+.mono{font-family:var(--f-mono);font-size:12.5px}
+.box{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13.5px;font-variant-numeric:tabular-nums}
+th,td{padding:7px 9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-size:12px;color:var(--ink2);font-weight:700}
+td.n,th.n{text-align:right}
+.ok{color:var(--ok);font-weight:700}.bad{color:var(--warn);font-weight:700}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.kpi{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.kpi b{font-size:24px;font-variant-numeric:tabular-nums}
+.kpi span{color:var(--ink2);font-size:13px}
+.share{display:flex;flex-direction:column;gap:8px}
+.share-row{display:grid;grid-template-columns:200px 1fr 70px;gap:10px;align-items:center;font-size:14px}
+.share-bar{height:12px;border-radius:6px;background:var(--line);overflow:hidden}
+.share-bar i{display:block;height:100%;background:var(--bar)}
+.share-bar i.hi{background:var(--warn)}
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.fig{display:flex;flex-direction:column;gap:6px;min-width:0}
+.fig img{width:100%;border-radius:10px;border:1px solid var(--line);display:block}
+.fig span{font-size:12.5px;color:var(--ink2)}
+.fig b{color:var(--ink)}
+.pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+.note{background:var(--warn-soft);border-radius:12px;padding:12px 14px;font-size:13.5px}
+@media (max-width:640px){.pair{grid-template-columns:1fr}.share-row{grid-template-columns:120px 1fr 56px}}
+</style>
+
+<div class="wrap">
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <span class="mono" style="color:var(--acc);font-weight:600">F-1015-100…107 · 0-bosqich natijasi · 15.10</span>
+    <h1>Ekran taqqoslash: 0-bosqich</h1>
+    <p class="lead">To'rtta ta'lim platformasi bitta ekranni qanday tuzishi va 7–14-Modulning har bir ekrani hozir qanday ekani. Dars fayllariga tegilmadi: ekranlar lokal saytda ochilib o'lchandi. Oxirida 1-bosqich (standart) uchun xomaki chegaralar bor, ular hali qaror emas.</p>
+  </header>
+
+  <section class="box">
+    <h2>1. Boshqalar qanday qiladi</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Naqsh</th><th>w3schools</th><th>Codecademy</th><th>Brilliant</th><th>Khan</th></tr></thead>
+      <tbody>
+        <tr><td>Ekranda bitta g'oya, qisqa izoh</td><td>1–5 jumla</td><td>≤ 250 so'z, sarlavha ≤ 5 so'z</td><td>«bitta tushuncha», qisqa bloklar</td><td>bitta tushuncha — 3 qadam</td></tr>
+        <tr><td>Izohdan keyin darhol harakat</td><td>«Try it Yourself»</td><td>har mashqda ish maydoni + checkpoint</td><td>har qadamda savol</td><td>kod o'qish → mashq → loyiha</td></tr>
+        <tr><td>Bosilganda nima bo'ladi</td><td>kod ishlaydi</td><td>kod tekshiriladi</td><td>chizma harakatlanib natijani ko'rsatadi</td><td>avtomatik tekshiruv</td></tr>
+        <tr><td>Yordam</td><td>«Show Answer»</td><td>yashirin, yechimni bermaydi</td><td>maslahat, izoh</td><td>qadam-baqadam ko'rsatma</td></tr>
+        <tr><td>Emoji / undov</td><td>yo'q</td><td>undov o'rniga nuqta</td><td>—</td><td>—</td></tr>
+        <tr><td>Dars hajmi</td><td>—</td><td>6 mashq × 3–5 daqiqa</td><td>5–15 daqiqa</td><td>—</td></tr>
+      </tbody>
+    </table></div>
+    <p class="mono" style="color:var(--ink2)">Manbalar: w3schools (o'zim ochib ko'rdim) · Codecademy o'quv dasturi standartlari (curriculum-documentation.codecademy.com) · brilliant.org va beginnersinai.org sharhi · Khan Academy blogi. <b>Brilliant, Codecademy va Khan darslari to'g'ridan-to'g'ri ko'rilmadi</b> (kirishsiz ochilmaydi): ular bo'yicha faqat o'zlari e'lon qilgan qoidalar va sharhlar ishlatildi, «—» katakchalarni tekshirib bo'lmadi. Akkaunt orqali suratlar kelsa, jadval yangilanadi.</p>
+  </section>
+
+  <section class="box">
+    <h2>2. Bizning darslar: 1 553 ekran o'lchandi</h2>
+    <p>102 dars, 1 280×773 ekranda. Quyidagi raqamlar «o'quv» ekranlari bo'yicha (<b id="oquv"></b> ta). Test, podium, kartochka va Yakun ekranlari kirmagan.</p>
+    <div class="kpis" id="kpis"></div>
+    <h3 style="margin-top:6px">Ekranda o'quvchi nima qiladi</h3>
+    <div class="share" id="share"></div>
+    <p style="color:var(--ink2);font-size:13.5px">«Bos → matn»: ekranda nav'dan tashqari 3 tagacha tugma bosildi va natijada faqat matn qo'shildi (8 so'zdan ko'p), input ham, sudrash ham paydo bo'lmadi. Asosan «tushuncha» (172), «kirish» (80) va amaliyot (59) ekranlari.</p>
+    <div class="tw"><table>
+      <thead><tr><th>Modul</th><th class="n">O'quv ekran</th><th class="n">So'z (median)</th><th class="n">Matn bloki</th><th class="n">Mayda yozuv</th><th class="n">Ekranda rang</th><th class="n">Emoji (dars matni)</th><th class="n">Bos → matn</th></tr></thead>
+      <tbody id="mod"></tbody>
+    </table></div>
+    <div class="note">O'lchov chegaralari: «mayda yozuv» — 12.5 px va undan kichik yozuvli element. Kod muharriri bor ekranlarda har kod qatori shunga kiradi, shuning uchun eng og'ir ro'yxatdan kod ekranlari chiqarildi. Emoji ekranning boshlang'ich holatida sanaldi (bosishdan oldin). <b>Tuzatish (15.10):</b> birinchi o'lchov ✓ ⛶ kabi tugma-belgilarni ham emoji deb sanagan edi — endi lint-emoji qoidasi (WHITELIST) bilan qayta o'lchandi: 9–14-Modulda dars matnida emoji 0, faqat o'yin qatlami; 7-Modulda 50, 8-Modulda 95.</div>
+  </section>
+
+  <section class="box">
+    <h2>3. Yonma-yon</h2>
+    <div class="pair">
+      <div class="fig"><img src="img/w3-js-if.jpg" alt="w3schools: JavaScript else sahifasi — sarlavha, bitta jumla izoh, kod"><span><b>w3schools · JavaScript else</b> — sarlavha, bitta jumla, kod qutisi, «Try it». Ikki xil tugma: konturli «Previous», to'liq rangli «Next».</span></div>
+      <div class="fig"><img src="img/m9-06-s2.jpg" alt="m9-06 2-ekran: RICE tartibi"><span><b>m9-06 · 3/16 «PRD dagi oltita ishni RICE qanday tartiblaydi?»</b> — 152 so'z, 17 blok, 74 mayda yozuv.</span></div>
+    </div>
+    <h3>Eng og'ir o'quv ekranlari (har darsdan bittadan)</h3>
+    <div class="figs">
+      <div class="fig"><img src="img/m11-12-s3.jpg" alt="m11-12 3-ekran"><span><b>m11-12 · 4/12</b> — 523 so'z, 43 blok, 56 mayda yozuv (amaliyot)</span></div>
+      <div class="fig"><img src="img/m11-05-s6.jpg" alt="m11-05 6-ekran"><span><b>m11-05 · 7/12</b> — 397 so'z, 36 blok, 63 mayda yozuv</span></div>
+      <div class="fig"><img src="img/m11-03-s16.jpg" alt="m11-03 16-ekran"><span><b>m11-03 · 17/20</b> — 265 so'z, 35 blok, 63 mayda yozuv</span></div>
+      <div class="fig"><img src="img/m9-12-s1.jpg" alt="m9-12 1-ekran"><span><b>m9-12 · 2/12</b> — 118 so'z, 15 blok, 39 mayda yozuv, 10 emoji</span></div>
+      <div class="fig"><img src="img/m9-04-s4.jpg" alt="m9-04 4-ekran"><span><b>m9-04 · 5/16</b> — 155 so'z, 22 blok, 66 mayda yozuv</span></div>
+    </div>
+    <h3>«Bos → matn» namunasi: bosishdan oldin va keyin</h3>
+    <div class="pair">
+      <div class="fig"><img src="img/m10-02-s16.jpg" alt="m10-02 17-ekran, bosishdan oldin"><span><b>m10-02 · 17/20, oldin</b> — 201 so'z</span></div>
+      <div class="fig"><img src="img/m10-02-s16-keyin.jpg" alt="m10-02 17-ekran, bosishdan keyin"><span><b>keyin</b> — 435 so'z: bosish yangi matn bloklarini ochdi</span></div>
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>4. 1-bosqich uchun xomaki chegaralar</h2>
+    <p>Tadqiqotdagi naqshlar va o'lchovdan chiqqan taklif. Qaror 1-bosqichda (standart hujjati bilan) olinadi.</p>
+    <div class="tw"><table>
+      <thead><tr><th>O'lchov (bitta o'quv ekrani)</th><th class="n">Hozir: median</th><th class="n">Hozir: 90%</th><th class="n">Taklif</th><th>Asos</th></tr></thead>
+      <tbody id="chegara"></tbody>
+    </table></div>
+  </section>
+</div>
+
+<script>
+const D = {"jami": 1553, "dars": 102, "oquv": 902, "words": {"med": 67.0, "p90": 129, "max": 523}, "blocks": {"med": 9.0, "p90": 16, "max": 43}, "emoji": {"med": 0.0, "p90": 0, "max": 10}, "small": {"med": 10.0, "p90": 26, "max": 140}, "colors": {"med": 10.0, "p90": 16, "max": 24}, "sizes": {"med": 7.0, "p90": 8, "max": 11}, "emoji_ekran": 80, "cls": {"tanlov / boshqa harakat": 398, "bos → matn": 348, "kiritish (yozish/sudrash)": 137, "faqat o'qish": 19}, "mod": {"7": {"ekran": 202, "oquv": 123, "soz": 43, "blok": 5, "mayda": 2, "emoji": 50, "rang": 9, "bosmatn": 57, "kiritish": 4}, "8": {"ekran": 265, "oquv": 161, "soz": 47, "blok": 6, "mayda": 3, "emoji": 95, "rang": 8, "bosmatn": 85, "kiritish": 9}, "9": {"ekran": 180, "oquv": 104, "soz": 71.0, "blok": 9.0, "mayda": 11.0, "emoji": 0, "rang": 10.0, "bosmatn": 37, "kiritish": 15}, "10": {"ekran": 162, "oquv": 92, "soz": 86.0, "blok": 10.5, "mayda": 17.5, "emoji": 0, "rang": 11.0, "bosmatn": 44, "kiritish": 13}, "11": {"ekran": 242, "oquv": 139, "soz": 76, "blok": 10, "mayda": 16, "emoji": 0, "rang": 10, "bosmatn": 48, "kiritish": 30}, "12": {"ekran": 175, "oquv": 101, "soz": 73, "blok": 10, "mayda": 12, "emoji": 0, "rang": 12, "bosmatn": 30, "kiritish": 24}, "13": {"ekran": 157, "oquv": 88, "soz": 83.0, "blok": 12.5, "mayda": 16.0, "emoji": 0, "rang": 11.0, "bosmatn": 26, "kiritish": 24}, "14": {"ekran": 170, "oquv": 94, "soz": 76.0, "blok": 10.0, "mayda": 10.0, "emoji": 0, "rang": 11.0, "bosmatn": 21, "kiritish": 18}}};
+const fmt = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+document.getElementById('oquv').textContent = fmt(D.oquv);
+const K = [['So\'z ekranda', D.words], ['Matn bloki', D.blocks], ['Mayda yozuv', D.small], ['Ekranda rang', D.colors], ['Shrift o\'lchami', D.sizes]];
+document.getElementById('kpis').innerHTML = K.map(([t, v]) => `<div class="kpi"><b>${v.med}</b><span>${t}: median · 90% ${v.p90} · eng ko'p ${v.max}</span></div>`).join('') + `<div class="kpi"><b>${fmt(D.emoji_ekran)}</b><span>ekranda dars matnida emoji bor (1 553 dan; o'yin qatlami — nishon, podium — hisobga olinmagan)</span></div>`;
+const tot = Object.values(D.cls).reduce((a, b) => a + b, 0);
+document.getElementById('share').innerHTML = Object.entries(D.cls).map(([k, v]) => { const p = 100 * v / tot;
+  return `<div class="share-row"><span>${k}</span><span class="share-bar"><i class="${k.startsWith('bos') ? 'hi' : ''}" style="width:${p.toFixed(1)}%"></i></span><span class="mono" style="text-align:right">${v} · ${p.toFixed(0)}%</span></div>`; }).join('');
+document.getElementById('mod').innerHTML = Object.entries(D.mod).map(([m, v]) => `<tr><td>${m}-Modul</td><td class="n">${v.oquv}</td><td class="n">${v.soz}</td><td class="n">${v.blok}</td><td class="n">${v.mayda}</td><td class="n">${v.rang}</td><td class="n">${v.emoji}</td><td class="n">${v.bosmatn}</td></tr>`).join('');
+const C = [
+  ['So\'z', D.words, '≤ 60 (amaliyot ≤ 120)', 'w3s: 1–5 jumla; Codecademy: ≤ 250 so\'z butun mashqqa'],
+  ['Matn bloki', D.blocks, '≤ 5', 'bitta g\'oya + bitta vazifa (N1, D5)'],
+  ['Mayda yozuv (≤ 12.5 px)', D.small, '≤ 4', 'QA 106: mayda elementlar takrori'],
+  ['Ekranda rang', D.colors, '≤ 6', '3 asosiy + holat (yashil/qizil) + neytral (D3)'],
+  ['Shrift o\'lchami', D.sizes, '≤ 4', 'sarlavha · matn · yorliq · kod'],
+  ['Emoji', D.emoji, '0', 'D2 A: o\'quvchi matnida emoji yo\'q'],
+];
+document.getElementById('chegara').innerHTML = C.map(([t, v, g, a]) => `<tr><td>${t}</td><td class="n">${v.med}</td><td class="n">${v.p90}</td><td class="n ok">${g}</td><td>${a}</td></tr>`).join('') + `<tr><td>«Bos → matn» ekranlari</td><td class="n" colspan="2">${D.cls['bos → matn']} ta</td><td class="n ok">asosiy tushuntirish ochiq</td><td>Asosiy tushuntirishni bosish ortiga yashirish taqiqlanadi. Ruxsat: «Yordam» maslahati, javobni ko'rsatish, test izohi (w3schools «Show Answer», Brilliant maslahati). Bosish imkon bo'lsa natijani o'zgartiradi (N3, D6)</td></tr>`;
+</script>

@@ -41,10 +41,11 @@ Telefon «Maydon Jamoa»: O'yinlar ekrani (O'yinlar · Shanba · «Shanba, 18:00
 - Chap: Dars oxirida: metrika hisoboti va zaxira reja · yorliq: Mentor tekshiruvi
   - Vizual o'zi yoziladi: varaq «Maydon Jamoa» — to'rt qator nomi navbat bilan (Ro'yxatdan o'tgan · Asosiy harakatni qilgan · Bosh raqam · Qaytganlar foizi), pastda ingichka qator «Qadamlar · Lending», tepada bo'sh muhr joyi
 - Reja:
-  1. Hisobotga sonni qanday yozishni bilib olasiz · hisobot
-  2. Sonlarni uch savol bilan tekshirasiz · tekshiruv
-  3. Duolingo odamlarni nima bilan qaytarishini ko'rasiz · voqea
-  4. O'z sonlaringizni Database'dan olib, reja yozasiz · SQL
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
+  1. Hisobotga sonni qanday yozishni bilib olasiz
+  2. Sonlarni uch savol bilan tekshirasiz
+  3. Duolingo odamlarni nima bilan qaytarishini ko'rasiz
+  4. O'z sonlaringizni Database'dan olib, reja yozasiz
 - Tugmalar: Orqaga · Boshlaymiz
 
 ## 2 · Metrika hisoboti
@@ -56,7 +57,7 @@ Telefon «Maydon Jamoa»: O'yinlar ekrani (O'yinlar · Shanba · «Shanba, 18:00
   - Son va manbasi
   - Son, manbasi va sanasi
   - Tanlangach ixcham qator: savol · Taxminingiz: <tanlov>
-- Qadam qatori: 1 Ro'yxatdan o'tgan · 2 Asosiy harakatni qilgan · 3 Bosh raqam · 4 Qaytganlar foizi
+- Qadam qatori yo'q — qator nomlari varaqda, bosiladigan joy ham varaq; hisob tugmada. *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
 - Vizual: chapda uch manba maketi — «Neon · Database» (kichik jadval, `oyinchilar`) · brauzer `lending/sanoq.html` — «sanoq sahifasi», kulrang «kalit bilan» · «Umami» (Tashriflar · «Qo'shilmoqchiman»); o'ngda varaq «Maydon Jamoa» — to'rt qator nomi va yalang'och son (38 · 19 · 1 · 37%), manba va sana joyi uzuq chiziq.
 - Qatorlar tartib bilan bosiladi (joriysi halqada); bosilgach tegishli manba maketi yonadi, manba va sana yorlig'i varaqqa uchadi, son ostida kulrang izoh chiqadi:
   1. Ro'yxatdan o'tgan — 38 / 50 · hisob · Database · 7 kun keyin; 11 tasi — sinfdosh · namuna va tekshiruv akkauntlarisiz; oldin: 27 — 3 kun keyin
@@ -90,7 +91,7 @@ Telefon «Maydon Jamoa»: O'yinlar ekrani (O'yinlar · Shanba · «Shanba, 18:00
   - Bitta tuzatishdan keyin qabul
   - Qabul
   - Tanlangach ixcham qator: savol · Taxminingiz: <tanlov>
-- Qadam qatori: 1 Son qayerdan? · 2 Kimlar sanalgan? · 3 Oldingi son bormi?
+- Qadam qatori yo'q — joriy savol kartada, hisob tugmada. *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
 - Chapda — Mentor varag'i (to'liq); o'ngda — bitta savol kartasi (navbat bilan): yorliq «Mentor tekshiruvi», savol, «Nimaga qarang» qatori, ostida kulrang «Varaqdan bosib toping»; javob — varaqdagi joyni bosish:
   1. Son qayerdan? — Nimaga qarang: har son yonida manba va sana bormi? (manba yoki sana yorlig'i bosiladi — to'rttala qatorning yorliqlari yashil yonadi)
   2. Kimlar sanalgan? — Nimaga qarang: namuna va tekshiruv akkauntlari chiqarilganmi, sinfdoshlar alohida aytilganmi? (1-qator ostidagi «11 tasi — sinfdosh · namuna va tekshiruv akkauntlarisiz»)
@@ -118,12 +119,12 @@ Telefon «Maydon Jamoa»: O'yinlar ekrani (O'yinlar · Shanba · «Shanba, 18:00
 ## 6 · Duolingo
 - Eyebrow: Biznes olamidan
 - Sarlavha: Duolingo odamlarni *qanday qaytaradi?*
-- Nuqtalar: Duolingo · N/3
+- Yorliq va nuqtalar yo'q — tugma «Voqea davomi (N/3)» aytadi; bashorat yorlig'i «Avval o'zingiz belgilab ko'ring» *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
 - Brend: **Duolingo** — til o'rganish ilovasi.
 - Kadrlar (Mentor gapi va sahna har kadrda almashadi):
   1. Ketma-ket kunlar — Mentor: 7-Modulda ko'rgansiz: olov belgisi ketma-ket dars qilingan kunlarni sanaydi. Bu voqeada asosiy qaytarish mexanikasi — shu ketma-ket kunlar.
      - Sahna: telefon «Duolingo», chizilgan olov belgisi (raqamsiz), hafta kataklari Du · Se · Ch · Pa · Ju · Sh · Ya — navbat bilan belgilanadi, oxirgisi bo'sh
-     - Bashorat (yorliq: Duolingo · 1/3): Ketma-ket kunlar odamni qanchalik tez-tez qaytaradi?
+     - Bashorat (Avval o'zingiz belgilab ko'ring): Ketma-ket kunlar odamni qanchalik tez-tez qaytaradi?
        - Haftada bir marta
        - Ikki kunda bir marta
        - Har kuni
@@ -208,9 +209,9 @@ ORDER BY kun;
 - Eyebrow: Mustaqil ish · metrika hisoboti
 - Sarlavha: Metrika hisobotingizni *qatorma-qator yozing.*
 - Mentor: Birinchi qator SQL'dan keldi — qolganini sanoq sahifasi, Database va Umami'dan bittalab yozing. · 9-ekranda jami yozilmagan bo'lsa: Birinchi qatordan boshlang: sonni sanoq sahifasidan yozing.
-- Tepada ixcham qator: Hisobot · n / 4 — Ro'yxatdan o'tgan · Asosiy harakatni qilgan · Bosh raqam · Qaytganlar foizi
+- Tepada ixcham qator yo'q — qatorlar chapdagi varaqda yoziladi, hisob tugmada «Yana N ta qator yozing». *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
 - Chapda — o'quvchi varag'i: nom (yoki kulrang «mahsulot nomi») · metrika hisoboti · to'rt qator (sanalmagani — kulrang «sanalmagan»)
-- O'ngda — bitta katta karta (n / 4), har birida: Son · Manba (Database · sanoq sahifasi · Umami) · Sana · tugmalar: Saqlash · Hali sanalmagan · Yordam
+- O'ngda — bitta katta karta (yorliqsiz; tahrirda «Tahrirlash» *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*), har birida: Son · Manba (Database · sanoq sahifasi · Umami) · Sana · tugmalar: Saqlash · Hali sanalmagan · Yordam
   1. Ro'yxatdan o'tgan — Son « / 50» · shundan sinfdosh (ostida kulrang: ishga tushirish kunidagi son — bilsangiz, yangilang (ixtiyoriy)) · Oldingi son va sanasi + Sana yoki «Birinchi o'lchov»; kulrang: Namuna va tekshiruv akkauntlari sanalmaydi; sinfdoshlar sanaladi, lekin alohida aytiladi.
   2. Asosiy harakatni qilgan — Son · oldingi son yoki «Birinchi o'lchov»; kulrang: Mentor misolida — hozir kamida bitta o'yinda qatnashayotgan yoki o'yin e'lon qilgan; navbatda turgani — qo'shilgan emas.
   3. Bosh raqam — Nimani sanaydi (placeholder: Qaysi bitta raqam mahsulot ishini ko'rsatadi?) · Son
@@ -231,9 +232,9 @@ ORDER BY kun;
 - Eyebrow: Juftlikda ish (jonli darsda) · yakka rejimda: Mustaqil ish
 - Sarlavha: Hisobotingiz tekshiruvdan *o'tadimi?*
 - Mentor: Sherigingiz hisobotingizni o'qib, savollarni birma-bir beradi — javobni birga belgilang. · yakka rejimda: Savollarni o'zingizga bering va javobini hisobotdan toping. · zaxira qismida: Endi zaxira reja: avval sonlaringizga qarab, odam qayerda kam ekanini tanlang.
-- Qadam qatori: 1 Son qayerdan? · 2 Kimlar sanalgan? · 3 Oldingi son bormi? · 4 Zaxira reja (ro'yxatdan o'tganlar 50 dan kam yoki son yo'q bo'lsa)
+- Qadam qatori yo'q — joriy savol kartada, hisob tugmada; zaxira reja (ro'yxatdan o'tganlar 50 dan kam yoki son yo'q bo'lsa) o'z kartasida «Zaxira reja · N / 3». *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
 - Chapda — o'quvchi varag'i; joriy savolga tegishli joy halqada.
-- O'ngda — savol kartasi: Mentor tekshiruvi · n / 3 · savol · Nimaga qarang · tugmalar «Ha» · «Yo'q — tuzataman»; ostida kulrang: 50 ga yetmaslik — tuzatish sababi emas.
+- O'ngda — savol kartasi: Mentor tekshiruvi (sanoqsiz *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*) · savol · Nimaga qarang · tugmalar «Ha» · «Yo'q — tuzataman»; ostida kulrang: 50 ga yetmaslik — tuzatish sababi emas.
   1. Son qayerdan? — Nimaga qarang: har son yonida manba va sana bormi?
   2. Kimlar sanalgan? — Nimaga qarang: namuna va tekshiruv akkauntlari chiqarilganmi, sinfdoshlar alohida aytilganmi?
   3. Oldingi son bormi? — Nimaga qarang: 1 va 2-qator yonida oldingi son va sanasi turibdimi (yoki «birinchi o'lchov» deb yozilganmi)?
@@ -326,6 +327,7 @@ Natijalar (podium) — jonli reyting
   - Keyingi dars — **«Raqamlaringiz pitchni qanday o'zgartiradi?»**
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
 
 ## Nishonlar
 - **Evidence Finder!** — Mentor hisobotida uch savolning dalilini birinchi urinishda topdingiz (4-ekran, uch dalil birinchi urinishda)

@@ -13,7 +13,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2 ≈ 7 · Amaliyot 
 ⛔ 90 daqiqaga sig'ishi — «qur» pilotida taymer bilan o'lchanadi (12–15 o'quvchi bir xonada ovoz yozadi — navbat kerak bo'lishi mumkin; qayta yozish bor); o'lchanmaguncha da'vo emas (tayanch 7.1). Ulgurmagan o'quvchi yo'li — A-bo'lim 10-band.
 ⚠️ **Video qoidasi (TAQIQLAR 1, 3; tayanch 1.9, T12) — har ekranga tegadi:** yuz va ism — **ixtiyoriy** (ekran yozuvi va ovoz yetarli) · video **hamma ko'radigan joyga joylanmaydi** — kompyuterda fayl yoki «faqat havola bilan ko'rinadigan joy» · videoni kimgadir ko'rsatish — **ota-ona roziligi bilan** ·
 ekranda maxfiy kalit, `.env`, login, boshqa odamlarning ma'lumoti va yozishmasi **ko'rinmaydi** · video havolasi hech qayerga yozilmaydi (saqlash kaliti, sinf chati, repo, README) · video repo'ga qo'shilmaydi · sinfda o'quvchi videolari proyektorga chiqarilmaydi, kim yuzi bilan yozgani sanalmaydi.
-Ekran yozish vositasi — umumiy so'z («kompyuteringizdagi ekran yozish vositasi»); aniq dastur, menyu va tugma nomi — **⛔ pilotda tekshiriladi** (tayanch 1.9, 6). «Faqat havola bilan» joy — xizmat nomi aytilmaydi (tekshirilmagan; yosh chegarasi taxmin qilinmaydi — TAQIQLAR 1).
+Ekran yozish dasturi — umumiy so'z («kompyuteringizdagi ekran yozish dasturi»); aniq dastur, menyu va tugma nomi — **⛔ pilotda tekshiriladi** (tayanch 1.9, 6). «Faqat havola bilan» joy — xizmat nomi aytilmaydi (tekshirilmagan; yosh chegarasi taxmin qilinmaydi — TAQIQLAR 1).
 
 ---
 
@@ -46,7 +46,7 @@ Ekran yozish vositasi — umumiy so'z («kompyuteringizdagi ekran yozish vositas
    - **Halol gaplar:** «Yuz va ism — ixtiyoriy: ekran yozuvi va ovoz yetarli.» (0-ekran, kartochka 5) · «Yozuvga tushgan narsa video faylida qoladi.» (5-ekran) · «Video faqat bor narsani ko'rsatadi.» (2-ekran xato izohi) · tekshiruvni o'quvchi o'zi qiladi — videoni boshidan oxirigacha o'zi ko'radi (A3).
 5. **Atamalar (bir ma'no — bir so'z, T-014/T-015; tayanch 2):**
    - **video-portfolio** — tayanch 2: «o'zi va mahsuloti haqida 3 daqiqalik video». Darsdagi ta'rif, so'zma-so'z: «Bu kursda video-portfolio — o'zingiz va mahsulotingiz haqidagi 3 daqiqagacha video.» («3 daqiqagacha» — A3 o'lchoviga mos, «3 daqiqalik» dastur so'zi faqat dars nomida; 09-FILTR 4). Tug'iladi 2-ekranda — harakatdan keyin (`QIzoh`, T-011); yakun 1-qatori, kartochka 1, arena 1 — shu so'zlar. Ishlatilmaydi: rezyume-video, «reels».
-   - **ssenariy** — videoda nima aytilishi va ekranda nima ko'rinishi, uch bo'lakda (App.jsx osti so'zi). **ekran yozuvi** — kompyuter ekranida bo'layotganini ovoz bilan birga videoga yozish (tayanch 1.9; App.jsx osti); vosita — «ekran yozish vositasi».
+   - **ssenariy** — videoda nima aytilishi va ekranda nima ko'rinishi, uch bo'lakda (App.jsx osti so'zi). **ekran yozuvi** — kompyuter ekranida bo'layotganini ovoz bilan birga videoga yozish (tayanch 1.9; App.jsx osti); vosita — «ekran yozish dasturi».
      6-darsdagi demo ssenariysi o'quvchi matnida nomi bilan aytilmaydi (A1 da «6-darsdan olindi» kulrang yorlig'i bilan oldindan yoziladi) — «ssenariy» / «ssenariy» bir darsda yonma-yon turmasin (TAYANCHGA SAVOL 9).
    - **havola** · **faqat havola bilan ko'rinadigan joy** (tayanch 1.9 so'zi) · **hamma ko'radigan joy** — kanal, ochiq sahifa (o'quvchi matnida «ommaviy» o'rniga). **ota-ona roziligi**.
    - **maxfiy kalit** · **`.env`** · **login** (12-Modul) · **boshqa odamlarning ma'lumoti** · **yozishma** · **namuna akkaunt** (6-dars; `namuna = true` — 12-Modul) · **B reja** (6-dars — faqat 60 soniyalik video ma'nosida) · **uyg'otish** (6-dars).
@@ -66,7 +66,7 @@ Ekran yozish vositasi — umumiy so'z («kompyuteringizdagi ekran yozish vositas
    - Mentor ota-ona nomidan rozilik bermaydi; o'quvchi tanlovni o'zi belgilaydi (A3 4-qadam); sinfda o'quvchi videosi proyektorga chiqarilmaydi; kim yuzi bilan yozgani, kim havola qilgani sanalmaydi (KOD 11);
    - `.env` qiymatlari, token va kalitlar agentga yuborilmaydi; xato chiqsa — faqat xato qatori. Mentor misolining videosi va havolasi o'quvchiga berilmaydi (⛔ pilotda — faqat «qur» ichki namunasi).
 10. **Vaqt (≈ 90 daqiqa; ⛔ reja — «qur» pilotida taymer bilan) va ulgurmagan yo'l:** taqsimot tepada. Har blokda «Ulgurmasangiz» qatori. Ovoz yozish — sinfda shovqin: O'qituvchi eslatmasida navbat yo'li (Shubhali 3).
-    Ekran yozish vositasi ishlamasa — telefonning ekran yozuvi (11-Modul zaxirasi), demo yo'li telefon brauzerida. Mahsulot ochilmasa — «Nima qurdim» bo'lagida 6-darsdagi B reja videosi ekranda ochib ko'rsatiladi (P-026: natija bitta tashqi narsaga osilib qolmaydi).
+    Ekran yozish dasturi ishlamasa — telefonning ekran yozuvi (11-Modul zaxirasi), demo yo'li telefon brauzerida. Mahsulot ochilmasa — «Nima qurdim» bo'lagida 6-darsdagi B reja videosi ekranda ochib ko'rsatiladi (P-026: natija bitta tashqi narsaga osilib qolmaydi).
     Yakun sarlavhasi holatga qarab (11-ekran, besh holat). Uyga vazifa yo'q (sinf 14); havola — ota-ona roziligi bo'lgandagina, ixtiyoriy (majburiydek aytilmaydi).
 11. **Toza yuza (D4):** tugma, variant va maketda emoji yo'q; ✓ ✕ › ✎ ↻ — belgilar. «Maydon Jamoa» — brauzer maketida o'z yashil rangida (11-Modul 9.62), logotipsiz. Yozuv belgisi — CSS doira (`err` token) + vaqt; kamera joyi — uzuq doira (bo'sh joy — U-041).
     Rang — faqat holat foni (D3): yopilgan joy — `ok` · ko'rinib qolgan joy — `err` · vaqt chizig'idan oshgan qism — `err` · joriy bo'lak — `accent` · kutish — `ink2`. Sahnada odam yuzi, ism, haqiqiy login va kalit qiymati chizilmaydi (maketda — kulrang chiziq yoki `…`).
@@ -139,18 +139,17 @@ Ekran yozish vositasi — umumiy so'z («kompyuteringizdagi ekran yozish vositas
 - O'qituvchi eslatmasi: Video — o'quvchining shaxsiy ma'lumoti: yuz, ism, ovoz. Yuz va ism — ixtiyoriy; video hamma ko'radigan joyga joylanmaydi; havola — faqat ota-ona roziligi bilan va faqat «faqat havola bilan ko'rinadigan joy»ga; havola hech qayerga yozilmaydi.
   Ota-ona roziligi qanday olinishi — maktab tartibida (TAYANCHGA SAVOL 6); darsda o'quvchi o'zi belgilaydi, Mentor uning yoki ota-onasi nomidan tasdiqlamaydi. Rozilik bo'lmasa ham dars to'liq o'tadi: video kompyuterda fayl bo'lib qoladi.
   Ovoz: 12–15 o'quvchi bir xonada bir vaqtda gapirsa, ovozlar bir-biriga tushadi — imkon bo'lsa Amaliyot 2 ni navbat bilan (3–4 kishidan) qiling, qolganlar shu payt Amaliyot 1 dagi ovoz chiqarib o'qishni tugatadi yoki navbatini kutib, ekranini tayyorlaydi (⛔ pilotda ko'riladi).
-  Ekran yozish vositasining nomi va tugmalari bu darsda yozilmagan (⛔ pilotda — sinf kompyuterlarida tekshiriladi); ishlamasa — telefonning ekran yozuvi (11-Modul zaxirasi). O'quvchi videolarini proyektorga chiqarmang; kim yuzi bilan yozgani sanalmaydi. Uyga vazifa yo'q. Darsdan oldin: har o'quvchida 6-darsdagi namuna akkaunt bor-yo'qligini tekshiring — bu darsda agent bilan ochilmaydi (09-FILTR 16).
+  Ekran yozish dasturining nomi va tugmalari bu darsda yozilmagan (⛔ pilotda — sinf kompyuterlarida tekshiriladi); ishlamasa — telefonning ekran yozuvi (11-Modul zaxirasi). O'quvchi videolarini proyektorga chiqarmang; kim yuzi bilan yozgani sanalmaydi. Uyga vazifa yo'q. Darsdan oldin: har o'quvchida 6-darsdagi namuna akkaunt bor-yo'qligini tekshiring — bu darsda agent bilan ochilmaydi (09-FILTR 16).
 - ✎ Sarlavha — natija va'dasi (P-014); yangi atama yo'q (T-011: «video-portfolio» — 2-ekranda tug'iladi). «mahsulotingiz» — o'quvchida bor (T-039). Uch qator App.jsx ostining uch so'ziga mos (ssenariy · ekran yozuvi · havola); «uch bo'lak» — 2-ekran kashfiyoti, reja aytmaydi (P-015).
 
-## 2 · Videoga nima sig'adi?  ← QTushuncha (bashorat + 6 karta, bittadan — SABOQ 9, E 53)
+## 2 · Videoga nima sig'adi?  ← QTushuncha (6 karta, bittadan — SABOQ 9, E 53)
 - Eyebrow: Tushuncha · uch bo'lak
 - Sarlavha: **3 daqiqalik videoga nima sig'adi?** (33)
 - Mentor (bosqichga qarab, har biri bitta gap):
   - harakat paytida: Har kartani o'qing va «Videoga» yoki «Videoga emas»ni bosing. (61)
-  - tugagach: Natijani taxminingiz bilan solishtiring. (40)
-  (Birinchi harakat — bashorat; yo'rig'i `QBashorat` yorlig'ida, Mentor takrorlamaydi — T-047.)
-- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — o'sish tartibida): **Oltita kartadan nechtasi videoga kiradi?** · Ikkitasi · Uchtasi · To'rttasi — tanlangach yopilmaydi: ixcham qator «Taxminingiz: …» natijagacha turadi; kartalar shundan keyin ochiladi.
-- Vizual (≤ 3 blok: karta · vaqt chizig'i · natija): **tepada** — joriy karta («Karta n / 6»; ichida faqat matn — vaqt soni yo'q, 09-FILTR 5), ostida ikki tugma «Videoga» · «Videoga emas» · **pastda** — vaqt chizig'i 0:00–3:00 (bo'sh, uch bo'lak joyi uzuq chiziqda: kichik · katta · kichik — nisbat, son emas).
+  - tugagach: Pastdagi natijani o'qing. (24) *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*
+- Bashorat yo'q — xatoli saralash topshirig'i ustida turib, kartalarni qulflardi (208/0 e; 13-Modul mezoni) *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*.
+- Vizual (≤ 3 blok: karta · vaqt chizig'i · natija): **tepada** — joriy karta («Karta»; sanoq tugmada *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*; ichida faqat matn — vaqt soni yo'q, 09-FILTR 5), ostida ikki tugma «Videoga» · «Videoga emas» · **pastda** — vaqt chizig'i 0:00–3:00 (bo'sh, uch bo'lak joyi uzuq chiziqda: kichik · katta · kichik — nisbat, son emas).
 - Kartalar (shu tartibda; bitta manba `KARTALAR_UCH`; ✔ — «Videoga»):
   1. Men kimman — bir gap (20) · ✔ Videoga
   2. Ilovadagi hamma funksiyalar ro'yxati (36) · Videoga emas
@@ -171,16 +170,16 @@ Ekran yozish vositasi — umumiy so'z («kompyuteringizdagi ekran yozish vositas
     - 6: Qanday ishlashingizni videoda nima ko'rsatadi? (46)
   - 6/6 dan keyin: kartalar va tugmalar yopiladi; vaqt chizig'idagi uch bo'lakka nomlari yoziladi (navbat bilan, ~1 s yashil): **Kimman** (qisqa) · **Nima qurdim** (eng katta qism) · **Qanday ishlayman** (qisqa) — chiziq 3:00 da to'liq tugaydi; aniq soniyalar yo'q (09-FILTR 5).
   - Holat o'quvchi bosgan tartibdan chiziladi (P-046).
-- Natija (bitta blok — E 42; `tugadi`: harakat paneli yopiladi, vaqt chizig'i va laptop butun enga, ⛶ ichida — q17/q18): yashil xulosa qutisi — birinchi kichik qator: «Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz ✕ — aslida: uchtasi».
+- Natija (bitta blok — E 42; `tugadi`: harakat paneli yopiladi, vaqt chizig'i va laptop butun enga, ⛶ ichida — q17/q18): yashil xulosa qutisi (taxmin qatori yo'q).
 - Xulosa: Bu misolda 3 daqiqaga uch bo'lak sig'di: kimman, nima qurdim va qanday ishlayman. (81)
 - `QIzoh` (qutining oxirgi kichik qatori — E 42): Bu kursda video-portfolio — o'zingiz va mahsulotingiz haqidagi 3 daqiqagacha video. (83) — atama shu yerda tug'iladi (T-011)
-- Tugma (pastki): Avval belgilang → Kartalarni ajrating (N/6) → Davom etish
+- Tugma (pastki): Kartalarni ajrating (N/6) → Davom etish
 - Ipucha (40 s harakatsizlikda; javobni aytmaydi): Bu karta sizni tanimagan odamga nimani ko'rsatadi? (50)
-- Keyingi bosiladigan joy: bashorat variantlari → «Videoga» · «Videoga emas» (navbatma-navbat to'lqin) → «Davom etish».
+- Keyingi bosiladigan joy: «Videoga» · «Videoga emas» (navbatma-navbat to'lqin) → «Davom etish».
 - Nishon: Fits Three (oltita karta birinchi urinishda).
 - O'qituvchi eslatmasi: Bo'laklar vaqti o'quvchi talabi emas — jami 3 daqiqa yagona chegara; Mentorning boshlang'ich rejasi (≈0:20 · ≈1:50 · ≈0:50) faqat Amaliyot 1 «Yordam»ida, o'quvchi o'z balansini taymer bilan topadi (09-FILTR 5). 2-karta — 2-darsdagi qoida (funksiyalar ro'yxati — hikoya emas: odam va lahza yo'q; vaqt — ikkilamchi). 3-karta — maktab nomi, sinf va telefon videoga kerak emas; ism esa ixtiyoriy (0-ekran).
 - ✎ Bitta g'oya (P-008): 3 daqiqaga uch bo'lak sig'adi (tayanch 1.9). Distraktor kartalar uch xil: ro'yxat (2-dars qoidasi) · shaxsiy ma'lumot (TAQIQLAR 3) · va'da (TAQIQLAR 2: «faqat bor narsa»). Kartalarda vaqt soni yo'q (09-FILTR 5 — TAYANCHGA SAVOL 2 RAD); ✔ kartalar tartibi aralash (1, 4, 6), vaqt chizig'iga esa o'z tartibida, nisbiy kenglikda tushadi.
-  «Kimman · Nima qurdim · Qanday ishlayman» — nomlar harakatdan keyin chiziqda paydo bo'ladi (T-011); sarlavhada yangi atama yo'q. Bashorat — bitta o'lchovning uch darajasi (S-015).
+  «Kimman · Nima qurdim · Qanday ishlayman» — nomlar harakatdan keyin chiziqda paydo bo'ladi (T-011); sarlavhada yangi atama yo'q. 
 
 ## 3 · Amaliyot 1 — ssenariy  ← amaliyot bloki (QBlok + `ScreenBlok`, ≈20 daq)
 - Eyebrow: Amaliyot 1 · o'z mahsulotingiz
@@ -246,8 +245,8 @@ Ekran yozish vositasi — umumiy so'z («kompyuteringizdagi ekran yozish vositas
 - Mentor (bosqichga qarab, har biri bitta gap):
   - harakat paytida: Har kadrda videoni ko'rgan odam ko'rmasligi kerak bo'lgan joyni bosing. (71)
   - tugagach: Chapdagi to'rt qator — Amaliyot 2 dagi tayyorlash ro'yxatingiz. (63)
-- Bashorat yo'q (P-064: kuzatuv ekrani emas — har kadrda o'quvchi o'zi topadi; bashorat 2-ekranda).
-- Vizual (≤ 3 blok): **o'ngda** — `VideoSahna` laptopi, joriy **mashq kadri** («Kadr n / 4», ustida kulrang yorliq «mashq kadri · Mentor misoli»); yozuv belgisi «0:00» · **chapda** — «Yozishdan oldin» ro'yxati (bo'sh, to'rt qator joyi uzuq chiziqda) va hisoblagich «Yopiladigan joy: n / 4» (P-040).
+- Bashorat yo'q (P-064: kuzatuv ekrani emas — har kadrda o'quvchi o'zi topadi; 2-ekrandagi bashorat ham olingan — F-1015-119).
+- Vizual (≤ 3 blok): **o'ngda** — `VideoSahna` laptopi, joriy **mashq kadri** (ustida kulrang yorliq «mashq kadri · Mentor misoli»; «Kadr n / 4» olindi *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*); yozuv belgisi «0:00» · **chapda** — «Yozishdan oldin» ro'yxati (bo'sh, to'rt qator joyi uzuq chiziqda) (hisoblagich «Yopiladigan joy: n / 4» olindi — tugma «Joylarni toping (n/4)» aytadi *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*).
 - Kadrlar (bitta manba `MAXFIY_KADRLAR`; har kadrda bitta yopiladigan joy va bitta ko'rsatsa bo'ladigan joy):
   1. Kod oynasi: chapda fayllar ro'yxati (`backend/`, `mobil/`) · ochiq fayl `backend/.env` — ikki qator `DATABASE_URL=…` va `JWT_SECRET=…` (qiymat o'rnida kulrang chiziq).
      Topilsa: `.env` qatorlari xiralashadi, yorliq maxfiy kalit · `.env` (21) · ro'yxatga qator: Kod oynasi va `.env` yopiq (26)
@@ -285,14 +284,14 @@ Ekran yozish vositasi — umumiy so'z («kompyuteringizdagi ekran yozish vositas
      Namuna akkaunt — 6-darsda tayyorlangan (darsdan oldin bor-yo'qligi tekshiriladi — 1-ekran O'qituvchi eslatmasi). Yo'q bo'lsa — bu darsda agent bilan ochilmaydi, login chatga chiqmaydi (09-FILTR 1, 16; 9.58): Mentordan yordam so'rang yoki «Nima qurdim» bo'lagida 6-darsdagi B reja videongizni ekranda ochib ko'rsating.
      Mahsulot ochilmasa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Tuzat, yangi narsa qo'shma.» Vaqt yetmasa — «Nima qurdim» bo'lagida 6-darsdagi B reja videongizni ekranda ochib ko'rsatasiz.
      Ssenariy — qog'ozda yoki telefonda (Amaliyot 1, 4-qadam); dars oynasini yozishdan oldin yoping.
-  2. **Yozish** — kompyuteringizdagi ekran yozish vositasini oching va ovoz (mikrofon) yozilishini yoqing. Kamera — faqat ota-onangiz rozi bo'lsa; bo'lmasa o'chiq qoladi. Ismni aytish — ixtiyoriy.
-     Yozishni boshlang va ssenariy bo'yicha ayting: «Kimman» (ekranda — lending yoki bosh sahifa) → «Nima qurdim» (lahza, keyin demo yo'li) → «Qanday ishlayman». Vaqtni telefoningizdagi taymer yoki vositaning o'z hisoblagichi bilan kuzating.
+  2. **Yozish** — kompyuteringizdagi ekran yozish dasturini oching va ovoz (mikrofon) yozilishini yoqing. Kamera — faqat ota-onangiz rozi bo'lsa; bo'lmasa o'chiq qoladi. Ismni aytish — ixtiyoriy.
+     Yozishni boshlang va ssenariy bo'yicha ayting: «Kimman» (ekranda — lending yoki bosh sahifa) → «Nima qurdim» (lahza, keyin demo yo'li) → «Qanday ishlayman». Vaqtni telefoningizdagi taymer yoki dasturning o'z hisoblagichi bilan kuzating.
      Kichik adashishda davom eting; gap ma'nosi buzilsa va vaqt bo'lsa — boshidan qayta yozing (09-FILTR 26).
      Kompyuterda ekran yozish ishlamasa — telefoningizning ekran yozuvi bilan yozing: demo yo'lini telefon brauzerida oching (11-Modulda ekran videosini shunday yozgansiz). U ham bo'lmasa — Mentordan yordam so'rang (⛔ pilot — 09-FILTR 43).
   3. **Video fayl** — videoni repo papkangizdan tashqaridagi papkaga saqlang va papkani o'zingiz ko'ring. Repo papkasida terminalda `git status` — video fayl ro'yxatda ko'rinsa, joyi noto'g'ri: faylni repo'dan tashqariga ko'chiring va qayta ko'ring (ko'rinmasligi yolg'iz isbot emas — 09-FILTR 14).
      Video hech qayerga yuklanmaydi — hozircha faqat kompyuteringizda. Belgilang: **«Video saqlandi»** · **«Yozolmadim»** → `pm-m12d9-video.bor`.
   4. **Birinchi ko'rish** — video faylni oching va birinchi 20 soniyani ko'ring: ovozingiz eshitiladimi, ekran o'qiladimi? Tanlang: **«Ovoz va ekran bor»** · **«Ovoz yo'q»** → `tekshiruv.ovozBor` (kalitda — qayta yuklanganda ham, 09-FILTR 2).
-     «Ovoz yo'q» bo'lsa — kulrang qator: Vositada mikrofon yoqilganini tekshirib, qayta yozing. (54) To'liq tekshiruv — Amaliyot 3 da.
+     «Ovoz yo'q» bo'lsa — kulrang qator: Dasturda mikrofon yoqilganini tekshirib, qayta yozing. (54) To'liq tekshiruv — Amaliyot 3 da.
 - O'ng tomon — «kutilgan natija · namuna: Maydon Jamoa» (ikki blok; bir marta o'zi yuradi): laptop — yozuv belgisi va vaqt yuradi; kadrlar navbat bilan: lending → «O'yinlar» → «Shanba, 18:00 · Mahalla maydoni · 8 / 10» → «Qo'shilaman» → «9 / 10» → «O'yinlar»; vaqt chizig'ida uch bo'lak yonadi · ostida fayl kartasi «video · fayl · repo papkasidan tashqarida» va terminal kartasi — `git status` natijasida video fayl yo'q.
   Mentor videosining haqiqiy uzunligi va kadrlari — ⛔ pilotda (`{…}`). Web-trekda — o'sha, brauzerda sayt.
 - Hammasi bajarilgach (yashil, holatga qarab — sinf 6):
@@ -301,7 +300,7 @@ Ekran yozish vositasi — umumiy so'z («kompyuteringizdagi ekran yozish vositas
 - Ulgurmasangiz: video bir marta yozilsa yetarli; qayta yozish — faqat Amaliyot 3 tekshiruvidan keyin, kerak bo'lsa. «Davom etish» 3-qadamdan keyin ochiladi. Blok 4-qadam «Bajardim»idan keyin bajarilgan sanaladi.
 - Tugmalar: Orqaga · Avval bajaring → Davom etish
 - ✎ MD izohi: ekranni tayyorlash — 5-ekranning to'rt qatori (P-063). Agent bu darsda faqat xato qatori uchun (sinf 10 — o'quvchi o'zi yozadi va o'zi ko'rib tekshiradi). Namuna akkaunt — 6-dars A2 dan, darsdan oldin tekshiriladi; bu darsda agent bilan ochilmaydi (TAYANCHGA SAVOL 7 — 09-FILTR 16 RAD).
-  Video repo'ga qo'shilmaydi (tayanch 3, 1.6) — `git status` bilan o'quvchi o'zi ko'radi; `.gitignore` ga yozish talab qilinmaydi (repo o'zgarmaydi — `-done` = `-start`). Ekran yozish vositasi nomi yo'q (⛔ — sinf 2). Kamera — ota-ona roziligi bilan (T12).
+  Video repo'ga qo'shilmaydi (tayanch 3, 1.6) — `git status` bilan o'quvchi o'zi ko'radi; `.gitignore` ga yozish talab qilinmaydi (repo o'zgarmaydi — `-done` = `-start`). Ekran yozish dasturi nomi yo'q (⛔ — sinf 2). Kamera — ota-ona roziligi bilan (T12).
 - O'qituvchi eslatmasi: Ovoz — navbat bilan (1-ekran eslatmasi). Ba'zi kompyuterlar ekran yozishdan oldin ruxsat so'raydi — bu ⛔ pilotda ko'riladi; ruxsat oynasi chiqsa, o'quvchiga yordam bering. Video fayl katta bo'lishi mumkin — kompyuterda joy borligini darsdan oldin tekshiring.
 
 ## 7 · 2-savol ✔ (jonli ball)  ← QTest
@@ -384,11 +383,12 @@ Ekran yozish vositasi — umumiy so'z («kompyuteringizdagi ekran yozish vositas
   - Yozishdan oldin `.env`, login, boshqa odamlar ma'lumoti va chat oynalari yopiladi. (82)
   - Video repo'ga qo'shilmaydi; kimga ko'rsatishni ota-onangiz bilan hal qilasiz. (77)
 - Uyga vazifa — yo'q (loyiha kuni; sinf 14). `uyga: null`.
-- Keyingi dars — «Birinchi buyurtmani qayerdan topasiz?»
 - Nishonlaringiz — N/4
-- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18). Artefakt-strip yakunda yo'q (E 50).
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Keyingi dars — «Birinchi buyurtmani qayerdan topasiz?»
+- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Nishonlaringiz · Keyingi dars. Ichki skroll qutisi yo'q (SABOQ 18). Artefakt-strip yakunda yo'q (E 50).
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
 - ✎ «tayyor» — faqat o'quvchi o'zi uch tekshiruvni (ovoz, maxfiylik, vaqt) `true` belgilaganda (sinf 6; qayta yozish hammasini `null` qiladi); havola sarlavhaga kirmaydi — havola ixtiyoriy va kalitda yo'q. «hali tugamagan», «hali yozilmagan» — E 54. «Keyingi dars» qatori — App.jsx `m12-10` nomi so'zma-so'z (T-038: boshqa joyda va'da yo'q; osti — «frilans», «stajirovka» — yozilmadi: 10-darsda tug'iladi, T-011).
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ---
 
@@ -438,7 +438,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 5. Yozishdan oldin qaysi oynalarni yopasiz? (5, 6)
    - ✔ Chat va pochta oynalarini (25)
    - Demo ochiq turgan oynasini (26)
-   - Yozish vositasining oynasini (28)
+   - Yozish dasturining oynasini (28)
    - Lending ochiq turgan oynani (27)
 6. Demoda haqiqiy foydalanuvchilar ko'rinmasligi uchun nima qilasiz? (5, 6)
    - Ular ko'ringan joydan tez o'taman (33)
@@ -506,7 +506,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 ## KOD — kod bosqichida (Quruvchi; skelet `src/skelet/NamunaDars.jsx`, qolip `src/qolip`; pilotdan nusxa yo'q — JR-14)
 1. **Skelet:** yangi fayl `src/12-Modull/VideoPortfolioLesson.jsx` — skeletdan; palitra `qolipRang('tex')`, `qolipCss(T)`. `LESSON_META.lessonId` — `m12-09-v1`, `lessonTitle` — «Video-portfolio: 3 daqiqada o'zingiz va mahsulot». App.jsx `m12-09` ga `comp: VideoPortfolioLesson` + import — «qur» bosqichida (asosiy seans; nom va osti o'zgarmaydi — DE-205 ✓, App.jsx 475-qator). Bu agent App.jsx ga tegmaydi.
 2. `SCREEN_META` 12: hook · plan · concept · practice · test · concept · practice · test · practice · stats · flashcards (`sflash`) · summary. `INLINE_KEYS`: s4 **2 (C)** · s7 **1 (B)**; 2, 5-ekran — ballsiz (`uchBolak: -1`, `maxfiy: -1`), nishon bilan; bloklar (3, 6, 8) — `practice: -1`, signal `PRACTICE_BASE + ekran`. Final tartib-mashqi yo'q (172). `narrow` — 4, 7, 9-ekranlar.
-   Qolip turlari: s0 `QKirish` · s1 `QReja` · s2/s5 `QTushuncha` (`zoom`, `tugadi` — q17/q18; s2 da `QBashorat` + taxmin qatori yashil xulosa qutisi ichida — E 42) · s4/s7 `QTest` (`QuestionScreen` mantig'i, DE-203) · s3/s6/s8 `QBlok` (skeletdagi `ScreenBlok` ulagichi) · s9 podium · `sflash` `QKartochka` · s11 `QYakun`.
+   Qolip turlari: s0 `QKirish` · s1 `QReja` · s2/s5 `QTushuncha` (`zoom`, `tugadi` — q17/q18; s2 da bashorat yo'q — F-1015-119) · s4/s7 `QTest` (`QuestionScreen` mantig'i, DE-203) · s3/s6/s8 `QBlok` (skeletdagi `ScreenBlok` ulagichi) · s9 podium · `sflash` `QKartochka` · s11 `QYakun`.
 3. **`VideoSahna`** — bitta vizual (180; qolipda yo'q, yangi): qismlar `laptop` (brauzer: manzil satri, lending / «O'yinlar» / o'yin e'loni / «Qo'shilaman»; 5-ekran oynalari — kod oynasi, kirish sahifasi, Neon jadvali, chat xabari) · `yozuvBelgisi` (doira + vaqt) · `kamera` (uzuq doira, «yuz — ixtiyoriy») · `ovoz` (to'lqin chizig'i) ·
    `chiziq` (0:00–3:00, uch bo'lak joyi, oshgan qism `err`) · `xira` (xiralashgan joy + yorliq) · `fayl` (video fayl kartasi: «kompyuterda · repo papkasidan tashqarida» | «faqat havola bilan»). Rejimlar: `kirish` · `tayyor` · `bolak` · `maxfiy` · `natija`.
    Bosiladigan qismlar faylda e'lon qilinadi (`// qolip-maket: vs-karta vs-joy vs-chiziq`). `prefers-reduced-motion` da harakat to'xtaydi (DE-200). Odam yuzi, ism, haqiqiy login va kalit qiymati hech bir holatda chizilmaydi; logotip yo'q (D4). 393 da hech narsa kesilmaydi (E 41).
@@ -514,7 +514,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
    `MAXFIY_ROYXAT` (5-ekran natijasi, A2 1-qadam, A3 2-qadam: 4 qator + A3 da ovoz qatori va umumiy «yana shaxsiy narsa?» qatori — 09-FILTR 12) · `MENTOR_SSENARIY` (uch bo'lak matni va ekrandagi joy — A-4); `NAMUNA_PROMPT` yo'q — namuna akkaunt 6-darsdan (09-FILTR 16). Ekranlar, bloklar o'ngi, Yordam, recap va kartochka shulardan o'qiydi.
 5. **s0 `QKirish`:** maket — `VideoSahna` `kirish`; javobdan keyin kamera joyi uzuq doiraga, ovoz chizig'ida to'lqin, yozuv vaqti bir necha soniya yuradi (uchala tanlovda bir xil). Ballsiz (J-026). Jonli darsda — sinf ovozlari chizig'i (faqat soni).
 6. **s2 `QTushuncha`:** `QBashorat` (Ikkitasi · Uchtasi · To'rttasi) → 6 karta bittadan (`KARTALAR_UCH`), ikki tugma; to'g'ri «Videoga» — karta chiziqqa uchadi; xato — chiziqda qizil bo'lak (2 — 3:00 dan oshadi, 3 — qulf chizig'i, 5 — uzuq kulrang) qaytib chiqadi + `QXato`; 6/6 — bo'lak nomlari chiziqda;
-   natijada taxmin qatori + xulosa + `QIzoh` (atama); 40 s ipucha; nishon `fitsThree`. Holat bosishlar ro'yxatidan (P-046).
+   natijada xulosa + `QIzoh` (atama; taxmin qatori yo'q — F-1015-119); 40 s ipucha; nishon `fitsThree`. Holat bosishlar ro'yxatidan (P-046).
 7. **s3 (`QBlok`, 4 qadam):** 1-qadam — kulrang qator (`pm-m12d2-hikoya` bo'lsa) · 2-qadam — uch karta ketma-ket (E 53), oldindan to'ldirish (`hikoya.lahza + ' ' + hikoya.ozgarish`; `pm-m12d6-demo.ssenariy` — bir qatorda, kulrang yorliq «6-darsdan olindi»); tekshiruvlar (bo'sh — bloklaydi; «Kimman»: `/\+998|@|t\.me/i` — bloklaydi, `/\d{7,}/` — yumshoq («maktab» so'zi tekshirilmaydi — 09-FILTR 21); «Nima qurdim»: vergul > 5 — yumshoq; «Qanday ishlayman»: `/chunki|sabab|uchun|:/i` yo'q — yumshoq; ikkinchi bosish o'tkazadi) — **PM-108 tartibida kamida 8 namuna bilan `node` da sinaladi** ·
    3-qadam — dars taymeri, uch bo'lak tugmasi, vaqt chizig'ida o'quvchi vaqti (saqlanmaydi) · 4-qadam — «Saqlash» → `pm-m12d9-video.bolaklar` (`savedAt`), «Nusxalash» (ssenariy matni); «Ortda qoldingizmi» (darsda bir marta) shu blokda; «Davom etish» 2-qadamdan keyin (uchala bo'lak bo'sh emas).
 8. **s6 (`QBlok`, 4 qadam):** 1-qadam — `MAXFIY_ROYXAT` to'rt qatori (bosib ✓), trek bo'yicha bir gap (`pm-m9d8-platforma.trek`; yo'q — ikkalasi), namuna akkaunt yo'q — Mentor / B reja qatori (prompt yo'q) · 2-qadam — matn (vosita nomi yo'q) · 3-qadam — «Video saqlandi» / «Yozolmadim» → `bor` · 4-qadam — «Ovoz va ekran bor» / «Ovoz yo'q» → `tekshiruv.ovozBor` (kalitda — 09-FILTR 2); «Davom etish» 3-qadamdan keyin; yashil xulosa — ikki holat.
@@ -534,11 +534,11 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 1. **Kod o'zgarmaydi.** Video, ssenariy va havola repo'ga yozilmaydi (tayanch 3: «08…13-done = 07-done»). README'ga ham qator qo'shilmaydi (aks holda `-done` va `07-done` bir xil bo'lmay qoladi).
 2. ⛔ **Muhrdan oldin («qur» pilotida, Mentor kompyuterida — repo'da emas):** Mentor misolining videosi `MENTOR_SSENARIY` bo'yicha yoziladi (lending → brauzer ko'rinishi «O'yinlar» → «8 / 10» → «Qo'shilaman» → «9 / 10» → «O'yinlar»), namuna akkaunt bilan; uzunligi, kadrlari va tekshiruv natijasi — haqiqiy videodan (A1–A3 o'ng tomoni, `{…}`).
    Natija qanday chiqsa — shunday yoziladi (3 daqiqadan oshsa — vaqt rejasi tuzatiladi). Mentor videosi o'quvchiga berilmaydi va hech qayerga yuklanmaydi; dars maketi — chizilgan.
-3. ⛔ Sinf kompyuterida: ekran yozish vositasi (nomi, mikrofon, ruxsat so'rovi, faqat bitta oynani yozish imkoni), telefonning ekran yozuvi zaxirasi, video fayl hajmi va 12–15 o'quvchi ovozi — pilotda ko'riladi.
+3. ⛔ Sinf kompyuterida: ekran yozish dasturi (nomi, mikrofon, ruxsat so'rovi, faqat bitta oynani yozish imkoni), telefonning ekran yozuvi zaxirasi, video fayl hajmi va 12–15 o'quvchi ovozi — pilotda ko'riladi.
 4. Shart: teglar kurs boshlanishidan oldin upstream'da (`yechim` tarmog'ida) — `m14-dars-09-done` = `m14-dars-07-done`.
 
 ## Manbalar (08.10.2026; o'quvchiga ko'rinmaydi)
-- Dars mazmuni, uch bo'lak, video qoidasi, ekran yozish vositasi ⛔, `pm-m12d9-video` — `00-MODUL-TAYANCH.md` 1.9, 8 (aynan); teg — 3; ekran soni va shakli — 4 (T9); keyssiz — 5; video qoidasi — `00-TAQIQLAR.md` 1, 3; dastur qatori — `00-MANBA.md` 1 (9-qator: «O'zi va mahsuloti haqida 3 daqiqalik video (frilans/stajirovka uchun)»).
+- Dars mazmuni, uch bo'lak, video qoidasi, ekran yozish dasturi ⛔, `pm-m12d9-video` — `00-MODUL-TAYANCH.md` 1.9, 8 (aynan); teg — 3; ekran soni va shakli — 4 (T9); keyssiz — 5; video qoidasi — `00-TAQIQLAR.md` 1, 3; dastur qatori — `00-MANBA.md` 1 (9-qator: «O'zi va mahsuloti haqida 3 daqiqalik video (frilans/stajirovka uchun)»).
 - Hikoya lahzasi va 2-dars videosi — tayanch 1.2 · demo yo'li, B reja, uyg'otish, namuna akkaunt — tayanch 1.6 · «8 / 10» → «9 / 10» animatsiyasi — 1.4 · boshiga qaytarish — 9.10 · «Demo Day» o'quvchi matnida yo'q — 9.13.
 - Mentor «Qanday ishlayman» qarori — 13-Modul tayanchi 1.11 (roadmap: «maydon pulini bo'lishish — uzoqroqda qoldi (sabab: muammo gapidan kelmaydi)») · muammo gapi — 13-Modul tayanchi 1.0 (11-Modul so'zi) · «Kimman» — 14-Modul tayanchi 1.1 Jamoa bo'lagi.
 - Lending sarlavhasi «Mahalla futboliga jamoani bir joyda yig'ing», login (telefon so'ralmaydi), `namuna` ustuni — 12-Modul tayanchi 1.1, 1.7, 9.5 · Neon SQL Editor, `oyinchilar` (`ism`, `login`) — 12-Modul tayanchi 1.7 (`POST /royxat { ism, login, parol }`).
@@ -570,7 +570,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 
 ## Shubhali joylar (ishonchim komil emas)
 1. ⛔ **90 daqiqa** — Amaliyot 2 ≈ 25 daqiqa ichida: ekranni tayyorlash, Backend'ni uyg'otish, yozish (3 daqiqa + adashsa qayta), fayl va `git status`; navbat bilan yozilsa — vaqt cho'ziladi. «Qur» pilotida 12–15 o'quvchi bilan taymer; sig'masa — havola tushib qoladi; maxfiy narsa ko'ringan video esa baribir o'chiriladi (09-FILTR 41). Auditor bahosi: 120–170 daqiqa (09-FILTR 40) — o'lchovgacha da'vo emas.
-2. ⛔ **Ekran yozish vositasi** — sinf kompyuterlarida bormi, nomi, mikrofonni qanday yoqishi, ruxsat so'rovi, faqat bitta oynani yoza oladimi — pilotda. Matnda faqat umumiy so'z; A1 4-qadamda ssenariy qog'ozga — shu noaniqlik uchun.
+2. ⛔ **Ekran yozish dasturi** — sinf kompyuterlarida bormi, nomi, mikrofonni qanday yoqishi, ruxsat so'rovi, faqat bitta oynani yoza oladimi — pilotda. Matnda faqat umumiy so'z; A1 4-qadamda ssenariy qog'ozga — shu noaniqlik uchun.
 3. ⛔ **Sinf shovqini va ovoz sifati** — bir xonada ko'p o'quvchi ovoz yozadi; quloqchin mikrofoni bo'lishi mumkin; pilotda ko'riladi.
 4. ⛔ **«Faqat havola bilan ko'rinadigan joy»** — qaysi xizmat, uning sozlamasi va yosh chegarasi — tekshirilmagan; darsda nomi aytilmaydi, tanlash — ota-ona bilan. Auditor «qaysi joy?» deb so'rashi mumkin — qaror foydalanuvchida.
 5. ⛔ **Mentor videosi** — uzunligi, kadrlari, tekshiruv natijasi — pilotda (REPO 2); hozir `{…}`.
@@ -582,7 +582,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 
 ## Oldindan tuzatiladigan sinflar — o'z tekshiruvim (tayanch 7: 18 band)
 1. [x] **90 daqiqa — reja, o'lchov emas** — sarlavha bloki va A-10 (taqsimot, ulgurmagan yo'l); har blokda «Ulgurmasangiz» (3, 6, 8-ekran); ⛔ pilotda taymer (Shubhali 1); «sig'adi» deyilmaydi (faqat videoning 3 daqiqasi — o'quvchi o'zi ko'radi).
-2. [x] **Tekshirilmagan tashqi qadam — «qur» darvozasi** — ekran yozish vositasi (umumiy so'z, Shubhali 2), «faqat havola bilan» joy (Shubhali 4), telefonning ekran yozuvi (Shubhali 8), Mentor videosi (REPO 2) — ⛔; tugma va menyu nomi yozilmadi; Render — tayanch 6.
+2. [x] **Tekshirilmagan tashqi qadam — «qur» darvozasi** — ekran yozish dasturi (umumiy so'z, Shubhali 2), «faqat havola bilan» joy (Shubhali 4), telefonning ekran yozuvi (Shubhali 8), Mentor videosi (REPO 2) — ⛔; tugma va menyu nomi yozilmadi; Render — tayanch 6.
 3. [x] **Saqlash kaliti — shartnoma** — A-12: tayanch 8 sxemasi aynan, har maydon, tipi, `bool | null` uch holat, qaysi qadam yozadi; havola, ota-ona javobi, ism, fayl nomi yozilmaydi; «Kimman»ga ism yozilmaydi (kartada qator); boshqa darsning kaliti faqat o'qiladi (TAYANCHGA SAVOL 3, 5).
 4. [x] **Mentor misoli va kurs qolipi — umumiy qoida emas** — «Bu misolda» (2, 5-ekran xulosalari), «bu mashqda» (vaqt rejasi), «Bu kursda yuz va ism — ixtiyoriy» (0-ekran), «mashq kadri» (5-ekran); Mentor ssenariysi faqat «Yordam»da va o'ng tomonda.
 5. [x] **Kafolat va sabab da'vosi yo'q** — «tayyor» faqat o'quvchi o'zi uch tekshiruvni (ovoz, maxfiylik, vaqt) belgilaganda (11-ekran; 09-FILTR 2); video haqida «hech kim ko'rmaydi» deyilmaydi — «tekshiruvdan oldin hech qayerga yuklanmaydi», «faqat havola bilan»; kafolat so'zlari yo'q.
@@ -668,4 +668,4 @@ Jami 35 ta `<!-- TAXMIN Tn -->` belgisi (qavsda — nechta joyda; Tn · bo'lim).
   P-001 · P-002 · P-004 · P-008 · P-012 (testlar 4, 7 ketma-ket emas) · P-013 · P-014/P-015 · P-016 · P-026 (B reja va telefon zaxirasi) · P-028 · P-033 · P-036 · P-040 (5-ekran «n / 4») · P-046 · P-048 · P-052 · P-059 · P-062 · P-063 (`MAXFIY_ROYXAT`) · P-064 · P-067 ·
   S-001 · S-002/S-004/S-010 · S-006 · S-008 · S-015 · S-019 · S-020 · S-026 · S-027 · §106 · §119 · §144/§145 · J-026 (hook ballsiz) · SABOQ 1–39, E 40–55.
 - [x] Video xavfsizligi (TAQIQLAR 1, 3; tayanch 1.9, T12): yuz va ism ixtiyoriy; video hamma ko'radigan joyga joylanmaydi; havola — ota-ona roziligi bilan, hech qayerga yozilmaydi va kalitga tushmaydi; ekranda maxfiy narsa yo'qligini o'quvchi o'zi tekshiradi; video repo'ga qo'shilmaydi.
-- [ ] ⛔ «qur» darvozalari ochiq: ekran yozish vositasi va sinf shovqini (Shubhali 2, 3), «faqat havola bilan» joy (Shubhali 4), Mentor videosi (REPO 2), 90 daqiqa (Shubhali 1) — pilot va foydalanuvchi qarori kerak; TAYANCHGA SAVOL 3 (`bor` ma'nosi), 6 (ota-ona roziligi tartibi), 9 (imlo) — qaror kerak.
+- [ ] ⛔ «qur» darvozalari ochiq: ekran yozish dasturi va sinf shovqini (Shubhali 2, 3), «faqat havola bilan» joy (Shubhali 4), Mentor videosi (REPO 2), 90 daqiqa (Shubhali 1) — pilot va foydalanuvchi qarori kerak; TAYANCHGA SAVOL 3 (`bor` ma'nosi), 6 (ota-ona roziligi tartibi), 9 (imlo) — qaror kerak.

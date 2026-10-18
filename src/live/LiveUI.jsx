@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { tr } from './i18n.js';
 import { livePlayers, fmtPin, nickRead } from './liveClient.js';
+import { isPreview } from './previewMode.js'; // F-1017-225: preview'da «natija yozilmaydi» xabari
 
 export const LT = { bg: '#F6F4EF', ink: '#0E0E10', ink2: '#5A5A60', ink3: '#A7A6A2', paper: '#FFFFFF', accent: '#FF4F28', accentSoft: '#FFE8E1', success: '#1F7A4D' };
 
@@ -151,4 +152,49 @@ export function LiveBadge({ live, total }) {
     return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> {tr({ uz: '👨‍🏫 Mentor:', ru: '👨‍🏫 Ментор:' })} {Math.min(live.mentorScreen + 1, total)} / {total}{live.nickname && <span style={{ color: LT.ink3 }}>· {live.nickname}</span>}</div>;
   }
   return null;
+}
+
+// ============================================================ F-1017-225 · YAKUN EKRANI JIM EMAS
+// Mentor fidbeki (17.10): «Yakunlash ✓» bosilganda hech nima bo'lmaydi. Sabab: dars natijani LMS'ga uzatadi
+// (onFinished) va jim turadi — oynani yopish LMS ishi. O'quvchida LMS yopadi; mentor-sahifa, Bilimlar bazasi
+// (preview) va yakshanbadan keyingi ko'rishda LMS bo'sh funksiya beradi → tugma «o'lik» ko'rinadi.
+// Yechim bitta joyda: tugma bosilgach «Yakunlandi ✓» bo'lib o'chadi (ikki marta yuborilmaydi) + qisqa xabar.
+// Uy vazifalaridagi «✓ Topshirildi» (F-0921-01) bilan bir xil qolip.
+
+let _toastEl = null, _toastT = null;
+// Qisqa xabar — dars kodiga qo'shimcha element kerak emas: body'ga qo'shiladi, `ms` dan keyin xiralashadi.
+// Dars ildizi --lz bilan masshtablanadi, bu element body'da — masshtabdan tashqarida, har darsda bir xil.
+export function liveToast(node, ms = 6000) {
+  if (typeof document === 'undefined') return;
+  const text = tr(node);
+  if (!_toastEl) {
+    _toastEl = document.createElement('div');
+    _toastEl.setAttribute('role', 'status');
+    _toastEl.setAttribute('data-live', 'toast');
+    Object.assign(_toastEl.style, { position: 'fixed', left: '50%', bottom: '28px', transform: 'translateX(-50%)', zIndex: '12000', background: LT.ink, color: '#fff', borderRadius: '14px', padding: '12px 18px', fontFamily: "'Manrope', system-ui, sans-serif", fontSize: '15px', fontWeight: '600', lineHeight: '1.4', textAlign: 'center', maxWidth: 'min(92vw, 560px)', boxShadow: '0 10px 30px -8px rgba(0,0,0,0.45)', opacity: '0', transition: 'opacity .25s', pointerEvents: 'none' });
+    document.body.appendChild(_toastEl);
+  }
+  _toastEl.textContent = typeof text === 'string' ? text : String(text);
+  _toastEl.style.opacity = '1';
+  clearTimeout(_toastT);
+  _toastT = setTimeout(() => { if (_toastEl) _toastEl.style.opacity = '0'; }, ms);
+}
+
+// «Yakunlash ✓» tugmasining o'rnida turadi: className/style/yorliq darsniki (o'zgarmaydi), holat shu yerda.
+// Bosilganda `onClick` (darsning finishLesson) BIR marta chaqiriladi, so'ng tugma «Yakunlandi ✓» bo'lib o'chadi.
+// «Qaytadan» bosilsa yakun ekrani qayta yig'iladi — tugma tabiiy tiklanadi.
+export function FinishBtn({ onClick, children, disabled, ...rest }) {
+  const [done, setDone] = useState(false);
+  const click = (e) => {
+    if (done) return;
+    // Foydalanuvchi qarori (18.10): o'quvchiga «yuborilmadi/qabul qilinmadi» xabari HECH QACHON ko'rsatilmaydi (oldin LMS'ning
+    // qizil xabari sinfni xavotirga solgan). finishLesson yiqilsa — faqat konsolga, tugma bosilaveradi (eski xulq), xabar yo'q.
+    try { if (typeof onClick === 'function') onClick(e); }
+    catch (err) { console.error('[finish]', err); return; }
+    setDone(true);
+    liveToast(isPreview()
+      ? { uz: "Ko'rish rejimi — natija yozilmaydi.", ru: 'Режим просмотра — результат не записывается.' }
+      : { uz: "Dars yakunlandi ✓ Endi bu oynani yopsangiz bo'ladi.", ru: 'Урок завершён ✓ Теперь это окно можно закрыть.' });
+  };
+  return <button {...rest} data-live={done ? 'finish-done' : 'finish'} disabled={disabled || done} onClick={click}>{done ? tr({ uz: 'Yakunlandi ✓', ru: 'Завершено ✓' }) : children}</button>;
 }

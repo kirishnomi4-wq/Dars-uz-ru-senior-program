@@ -40,7 +40,7 @@ const tr = (node) => {
 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // F-0801-01 (102-qonun): ochiq praktika-oynasi ham saqlanadi — Chrome fon-tabni bo'shatib
 // sahifani qayta yuklasa, o'quvchi praktika ICHIGA qaytadi, ortidagi darsga emas.
 const _pracKey = (id) => `ccPractice:${id}`;
@@ -810,7 +810,7 @@ function DragDropOrder({ items, hints, onSolved, onWrong, doneText, side }) {
 const PERN_FLASHCARDS = [
   { front: { uz: "Saytning siz ko'rib, bosib turadigan qismi qanday ataladi?", ru: 'Как называется часть сайта, которую Вы видите и нажимаете?' }, back: 'Frontend', note: { uz: 'restoranda — zal', ru: 'в ресторане — зал' } },
   { front: { uz: "Saytning ko'rinmaydigan, ichkarida ishlaydigan qismi qanday ataladi?", ru: 'Как называется невидимая часть сайта, которая работает внутри?' }, back: 'Backend', note: { uz: 'restoranda — oshxona', ru: 'в ресторане — кухня' } },
-  { front: { uz: "Sayt ko'rinishini tayyor bloklardan yig'ish uchun nima ishlatiladi?", ru: 'С помощью чего собирают вид сайта из готовых блоков?' }, back: 'React', note: { uz: 'frontend vositasi', ru: 'инструмент frontend' } },
+  { front: { uz: "Sayt ko'rinishini tayyor bloklardan yig'ish uchun nima ishlatiladi?", ru: 'С помощью чего собирают вид сайта из готовых блоков?' }, back: 'React', note: { uz: 'frontend uchun', ru: 'для frontend' } },
   { front: { uz: 'JavaScript serverda ham ishlashi uchun nima kerak?', ru: 'Что нужно, чтобы JavaScript работал и на сервере?' }, back: 'Node.js', note: { uz: 'JS endi oshxonada ham ishlaydi', ru: 'JS теперь работает и на кухне' } },
   { front: { uz: "So'rov qaysi manzilga borishini nima hal qiladi?", ru: 'Что решает, по какому адресу пойдёт запрос?' }, back: 'Express', note: { uz: "har manzil uchun alohida yo'l", ru: 'для каждого адреса свой маршрут' } },
   { front: { uz: "Yozilgan ma'lumot yillar davomida qayerda saqlanadi?", ru: 'Где записанные данные хранятся годами?' }, back: 'PostgreSQL', note: { uz: 'baza — restorandagi ombor', ru: 'база — как склад в ресторане' } },
@@ -897,6 +897,12 @@ function Flashcards({ cards }) {
 }
 
 // ===== SCREEN 0 — HOOK (izoh yo'qoldi) =====
+// F-1015-394 (216-qonun): kirish javobi — variantga bitta qisqa gap + «Bugun…» qatori (eski uzun umumiy matn o'qilmasdi)
+const ACK_KIRISH = {
+  a: { uz: 'Internet ishlayapti — izoh saqlanmagan.', ru: 'Интернет работает — комментарий не сохранён.' },
+  b: { uz: 'Aynan!', ru: 'Именно!' },
+  c: { uz: "Sayt buzilmagan — izohni saqlaydigan joy yo'q.", ru: 'Сайт не сломан — комментарий негде хранить.' }
+};
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [comments, setComments] = useState([]);
   const [spinning, setSpinning] = useState(false);
@@ -966,7 +972,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 );
               })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Saytingiz izohni <b>eslab qolishni bilmaydi</b> — unga ko'rinmas jamoa kerak: server va baza. Bugun ana shu jamoa bilan tanishamiz.</>, ru: <>Ваш сайт <b>не умеет запоминать</b> комментарии — ему нужна невидимая команда: сервер и база данных. Сегодня мы с этой командой и познакомимся.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step"><b>{tr(ACK_KIRISH[picked])}</b> {tr({ uz: 'Bugun izohni saqlaydigan server va baza bilan tanishamiz.', ru: 'Сегодня познакомимся с сервером и базой, которые хранят данные.' })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -1228,7 +1234,7 @@ const Screen5b = (props) => (
     explainCorrect={tr({ uz: "Node.js — dvigatel: JS endi brauzersiz, serverda ishlaydi.", ru: 'Node.js — двигатель: JS работает без браузера, на сервере.' })}
     explainWrong={{
       0: tr({ uz: "Bezash — CSS'ning ishi, Node.js bu bilan shug'ullanmaydi.", ru: 'Украшать — работа CSS, Node.js этим не занимается.' }),
-      2: tr({ uz: "Node.js rasmlarni tahrirlamaydi — u bunday vosita emas.", ru: 'Node.js не редактирует картинки — он не для этого.' }),
+      2: tr({ uz: "Node.js rasmlarni tahrirlamaydi — u bunday dastur emas.", ru: 'Node.js не редактирует картинки — он не для этого.' }),
       3: tr({ uz: "Node.js internet tezligiga ta'sir qilmaydi.", ru: 'Node.js не влияет на скорость интернета.' }),
       default: tr({ uz: "Node.js JavaScript'ni qayerga olib kirganini eslang.", ru: 'Вспомните, куда Node.js привёл JavaScript.' })
     }} />
@@ -1802,7 +1808,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
+    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
@@ -1822,7 +1828,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
   return (
-    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className="screen">
         <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок пройден' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Katta saytlarning <span className="italic" style={{ color: T.accent }}>xaritasi</span> endi qo'lingizda.</>, ru: <>Теперь <span className="italic" style={{ color: T.accent }}>карта</span> больших сайтов у Вас в руках.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
@@ -1834,7 +1840,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
             hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : undefined}
           />
         </div>
-        {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+        {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь Вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
         <div className="hw-big-wrap fade-up d4">
           <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
@@ -2564,7 +2570,7 @@ function MentorPracticeOverlay({ entry, live, onClose }) {
   if (view === 'demo') {
     return (
       <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
-        <HtmlCompiler lang={__lang} task={entry.task} starterCode={entry.starter} onContinue={() => setView('watch')} onBack={() => setView('watch')} />
+        <HtmlCompiler lang={__lang} task={entry.task} storageKey={codeKeyOf(LESSON_META.lessonId, `mentor-s${entry.fromScreen}`)} /* F-1017-208: mentor kodi kuzatish↔ko'rsatish almashganda saqlanadi */ starterCode={entry.starter} onContinue={() => setView('watch')} onBack={() => setView('watch')} />
       </div>
     );
   }
@@ -2643,7 +2649,7 @@ const TASK_BAZA = {
   ],
   requirements: [
     { id: 'arr', label: { uz: "ro'yxat yozildi", ru: 'список написан' }, check: C.js(/\[\s*["'][^"']+["']\s*,/, { uz: "`let mahsulotlar = [\"Lavash\", \"Burger\", \"Shashlik\"]` yozing", ru: 'Напишите `let mahsulotlar = [\"Lavash\", \"Burger\", \"Shashlik\"]`' }) },
-    { id: 'log', label: { uz: 'konsolda uchala mahsulot', ru: 'в консоли все три товара' }, check: C.logs('Lavash Burger Shashlik', { uz: "Sikl ichida `console.log(mahsulotlar[i])` yozing", ru: 'Внутри цикла напишите `console.log(mahsulotlar[i])`' }) },
+    { id: 'log', label: { uz: 'konsolda uchala mahsulot', ru: 'в консоли все три товара' }, check: C.logsEach(['Lavash', 'Burger', 'Shashlik'], { /* F-1017-206: tartibsiz */ uz: "Sikl ichida `console.log(mahsulotlar[i])` yozing", ru: 'Внутри цикла напишите `console.log(mahsulotlar[i])`' }) },
   ],
 };
 
@@ -3137,8 +3143,8 @@ export default function PeanStackLesson({ lang: langProp, onFinished, onPractice
         .dd-hint { color: ${T.ink3}; font-style: italic; font-size: 13px; }
         .dd-pool { display: flex; flex-wrap: wrap; gap: 9px; min-height: 48px; padding: 10px; border-radius: 14px; background: ${T.bg}; }
         .dd-pool-empty { color: ${T.ink3}; font-size: 12.5px; font-style: italic; align-self: center; }
-        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: ${T.accent}; background: ${T.paper}; border: 2px solid ${T.accent}; border-radius: 11px; padding: 9px 13px; cursor: grab; touch-action: none; box-shadow: 0 6px 14px -8px rgba(${T.shadowBase},.35); transition: transform .12s; user-select: none; }
-        .dd-chip::before { content: '⠿'; margin-right: 7px; opacity: .55; font-weight: 400; } /* F-0926-06 (159/15): oq fon + 2px accent chegara + ushlagich — 1-Modul bilan bir xil */
+        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 11px; padding: 11px 15px; cursor: grab; touch-action: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: transform .12s; user-select: none; }
+        .dd-chip::before { content: '⠿'; margin-right: 7px; opacity: .75; font-weight: 400; } /* F-1015-352 (F-1002-59): to'ldirilgan gradient chip, ⠿ ushlagich sudralishni aytadi */
         .dd-chip:hover { transform: translateY(-2px); }
         .dd-chip:active { cursor: grabbing; }
         .dd-slots, .dd-pool { position: relative; }

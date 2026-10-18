@@ -168,11 +168,11 @@ to'lov taklifi ekrani maketida «Test rejim: pul yechilmaydi», mashq sahifasi m
   - harakat paytida: Tekshiruvni ko'ring va kutilgani bilan bo'lganini solishtirib belgi qo'ying.
   - tugagach: Besh belgi qo'yildi — natijani taxminingiz bilan solishtiring.
 - Bashorat (ballsiz, 181; yorliq «Avval o'zingiz belgilab ko'ring»; tanlangach ixcham qator): **Besh tekshiruvdan nechtasida Mentor ilovasi buzildi?** · Bittasida · Ikkitasida · Uchtasida (S-015: bir o'lchov, o'sish tartibida)
-- Chap — telefon («Maydon Jamoa»; ekran tekshiruvga qarab), ostida ixcham chiziq «1 · 2 · 3 · 4 · 5» (joriy — accent, tayyori — belgi rangida).
+- Chap — telefon («Maydon Jamoa»; ekran tekshiruvga qarab). Raqamli chiziq «1 · 2 · 3 · 4 · 5» yo'q — joriy yo'l kartada, tayyorlari pastdagi ixcham qatorlarda, hisob tugmada *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*.
 - O'ng — buzish yozuvi kartasi (bittadan, SABOQ 9, E 53): sarlavha «N · {yo'l}» · kulrang qator «Bu yo'lga tekkan darslar: …» · «Nima qildim» · «Nima kutdim» · «Nima bo'ldi» (avval yopiq) · tugma **«Tekshiruvni ko'rish»** (halqada) → keyin ikki tugma **«Buzildi»** · **«Buzilmadi»** (har birining o'z chegarasi, E 40).
   Matn — A-bo'lim 4-band jadvali (`MENTOR_TEKSHIRUV`, aynan).
 - **Harakat → Vizual o'zgarish:** «Tekshiruvni ko'rish» → telefon o'sha yo'lni o'ynaydi (≈3 s) → kartada «Nima qildim» va «Nima kutdim» yoziladi → «Nima bo'ldi» yoziladi → «Buzildi» / «Buzilmadi» faollashadi →
-  - to'g'ri belgi → karta ixcham qatorga yig'ilib pastdagi chiziqqa tushadi («5 · Eslatma yoki Telegram xabari · buzildi»; ~1 s belgi rangida) → keyingi karta kiradi;
+  - to'g'ri belgi → karta ixcham qatorga yig'iladi («5 · Eslatma yoki Telegram xabari · buzildi»; ~1 s belgi rangida) → keyingi karta kiradi;
   - boshqa belgi → karta silkinadi, bir qator (`QXato`, ≤60): Kutilgani va bo'lgani bir xilmi — yana o'qing. (46)
   Telefonda (har yo'l — bir necha qisqa kadr ketma-ket, KOD 4):
   1 — «Ro'yxatdan o'tish» → «O'yinlar» → «Hisobdan chiqish» → «Kirish» → «O'yinlar»; ikkinchi ro'yxatda login maydoni ostida qizil qator «Bu login band» ·
@@ -265,23 +265,22 @@ to'lov taklifi ekrani maketida «Test rejim: pul yechilmaydi», mashq sahifasi m
 - Eyebrow: Tushuncha · faqat tuzatish
 - Sarlavha: **Agentning qaysi taklifi bugun qilinadi?** (39)
 - Mentor (bosqichga qarab, SABOQ 11; har biri bitta gap):
-  - bashoratgacha: Mentor topilmani agentga berdi, agent to'rt taklif yozdi — avval taxminingizni belgilang.
   - harakat paytida: Taklifni chapdagi topilma bilan solishtiring va ro'yxatini tanlang.
-  - tugagach: To'rt taklif joylandi — natijani taxminingiz bilan solishtiring.
-- Bashorat (ballsiz; tanlangach ixcham qator): **To'rt taklifdan nechtasi bugun qilinadi?** · Bittasi · Ikkitasi · Uchtasi
+  - tugagach: To'rt taklif joylandi — pastdagi natijani o'qing. *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
+- Bashorat yo'q — takliflarni ajratishning o'zi topshiriq (208/0 e); tugmalar darhol faol. *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
 - Chap — Mentorning topilma kartasi (ixcham, qizil belgi; `MENTOR_TEKSHIRUV` 5): «5 · Telegram xabari · buzildi — keyingi o'yin ikki marta yaratildi».
   Ostida ikki ro'yxat joyi (uzuq chiziqli): «Bugun — tuzatish» · «Bugun emas — yangi funksiya».
-- O'ng — agent chati (Antigravity, T-008): taklif pufaklari bittadan, ustida «Taklif N / 4»; pufak ostida ikki tugma **«Bugun — tuzatish»** · **«Bugun emas — yangi funksiya»** (har birining o'z chegarasi, E 40).
+- O'ng — agent chati (Antigravity, T-008): taklif pufaklari bittadan, ustida «Taklif» (sanoqsiz — hisob tugmada *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*); pufak ostida ikki tugma **«Bugun — tuzatish»** · **«Bugun emas — yangi funksiya»** (har birining o'z chegarasi, E 40).
   Takliflar (`AGENT_TAKLIF`, aynan; shu tartibda): 1 «O'yinlar ro'yxatiga qidiruv qatori qo'shaman.» · 2 «Ro'yxatdan o'tish ekraniga yangi dizayn beraman.» · 3 «Bir sanaga keyingi o'yin ikki marta yaratilmasligi uchun Database'da cheklov qo'yaman.» · 4 «Pro tugashidan oldin tashkilotchiga Telegram xabari yuboraman.»
 - **Harakat → Vizual o'zgarish:** tugma bosiladi →
   - to'g'ri «Bugun — tuzatish» (3) → pufakdan chapdagi topilma kartasiga chiziq tortiladi, karta yonida yorliq «tuzatadi», taklif «Bugun — tuzatish» ro'yxatiga tushadi;
   - to'g'ri «Bugun emas — yangi funksiya» (1, 2, 4) → pufak kulrang tortib «Bugun emas» ro'yxatiga tushadi, yonida kulrang yorliq «hech bir topilmaga bog'lanmaydi»;
   - boshqa tanlov → pufak silkinadi, bir qator (`QXato`, ≤60): Taklifni chapdagi topilma bilan yana solishtiring. (50)
   → keyingi taklif kiradi. To'rttasidan keyin «Bugun — tuzatish» da bitta, «Bugun emas» da uchta taklif turadi.
-- Xulosa qutisi (E 42): 1-qator — «Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz ✕ — aslida: bittasi» · xulosa · QIzoh.
+- Xulosa qutisi (E 42): xulosa · QIzoh (taxmin qatorisiz *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*).
 - Xulosa: Bu darsda faqat topilmaga bog'langan o'zgarish qilinadi: yangi funksiya yana tekshirilmagan joy qo'shadi. (105)
 - QIzoh: Bugun ulgurmagan topilma ham `XATOLAR.md` ga «qoldi» deb, sababi bilan yoziladi. (78)
-- Tugadi (199): chat yopiladi, topilma kartasi va ikki ro'yxat fokusga; vizual ⛶ ichida. Tugmalar: Orqaga · Avval o'zingiz belgilab ko'ring → Takliflarni joylang (N/4) → Davom etish
+- Tugadi (199): chat yopiladi, topilma kartasi va ikki ro'yxat fokusga; vizual ⛶ ichida. Tugmalar: Orqaga · Takliflarni joylang (N/4) → Davom etish
 - ✎ Yangi funksiya qo'shilmasligi — tayanch 1.12, Qaror-0 19; qoida sanaladigan: taklif yozuvdagi topilmaga bog'lanadimi (sinf 7). Tuzatish — asosiy seans tuzatishi agent tilida; uch yangi funksiya — mening qarorim (TAYANCHGA SAVOL 8; F-1007-470: qidiruv qatori — kichik harf topilmasi o'rnida):
   ikkalasi ham haqiqiy hayotda foydali bo'lishi mumkin — «yomon g'oya» deyilmaydi, faqat «bugun emas» (sinf 8: distraktor yolg'on emas, qoida bo'yicha noto'g'ri). 4-taklif kelajak va'dasi emas — rad etilgan g'oya, hech qayerda «keyin qilamiz» deyilmaydi (sinf 16).
   QIzoh — «qolgan topilma yashirilmaydi» qoidasining birinchi uchrashuvi; to'liq ishi 2 va 3-amaliyotda.
@@ -418,11 +417,12 @@ to'lov taklifi ekrani maketida «Test rejim: pul yechilmaydi», mashq sahifasi m
   - Barqarorlik kunida faqat yozuvdagi topilma tuzatiladi; qolgani `XATOLAR.md` da «qoldi» deb, sababi bilan turadi.
   - Yangi versiya o'zgargan qismga qarab chiqadi: Backend — Render, ilova — yangi o'rnatish fayli, sayt — Netlify.
 - Uyga vazifa — yo'q (loyiha kuni; tayanch 4). `uyga: null`. «O'rnatish fayli navbatda» yorlig'i ostida bitta qator: «Fayl tayyor bo'lgach, lendingdagi havolani keyingi dars boshida almashtirasiz.»
-- Keyingi dars — «Zaxira dars»
 - Nishonlaringiz — N/4
-- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Keyingi dars — «Zaxira dars»
+- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Nishonlaringiz · Keyingi dars. Ichki skroll qutisi yo'q (SABOQ 18).
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
 - ✎ «Tuzatish qilindi va qayta tekshiruvda takrorlanmadi» — ikki fakt, «tuzatildi» emas (sinf 5). Holatlar 8 ta, har biri rost (E 54: «hech narsa» — alohida; qisman — «hali tugamagan»). «Keyingi dars» qatori — App.jsx `m11-13` nomi (T-038: boshqa joyda va'da yo'q); 14-Modul tilga olinmaydi.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ---
 

@@ -50,10 +50,11 @@ Maxfiylik sahifasi (brauzer `…/maxfiylik.html`):
 - Mentor: 6-darsda kanallarni tanlab birinchi postni yubordingiz — bugun o'sha kanallarga ilovaning o'zi boradi. Kodni agent yozadi, qaror va tekshiruv — sizdan.
 - Chap — yorliq «yig'ish rejasi va ishga tushirish»; vizual bir marta o'zi yuradi: 1-bosqich · 2-bosqich · 3-bosqich (sonsiz) → Mahalla futbol guruhi · post → lending · Qo'shilmoqchiman → Maydon Jamoa · Ro'yxatdan o'tish → Maydon Jamoa · O'yinlar
 - Reja:
-  1. 50 foydalanuvchiga uch bosqichli reja tuzasiz · reja
-  2. Ro'yxatdan o'tishda faqat keraklisini so'raysiz · ma'lumot
-  3. Ilovada qadamlar sanashini yoqasiz · o'lchov
-  4. Havolani lendingga qo'yib, post yuborasiz · havola
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
+  1. 50 foydalanuvchiga uch bosqichli reja tuzasiz
+  2. Ro'yxatdan o'tishda faqat keraklisini so'raysiz
+  3. Ilovada qadamlar sanashini yoqasiz
+  4. Havolani lendingga qo'yib, post yuborasiz
 - Pastki qator: repo `maydon-jamoa` · boshlang'ich holat `m12-dars-07-start` · namuna `m12-dars-07-done` — amaliyotlarni o'z mahsulotingizda bajarasiz.
 - Pastki qator 2 (web-trek tanlanmagan bo'lsa): Uyda tayyorlagan o'rnatish faylingiz eski ro'yxatdan o'tish ekrani bilan — uni odamlarga yubormang: yangisi Amaliyot 1 oxirida tayyorlanadi. Hali sozlamagan bo'lsangiz — hozir terminalda: `npm install --global eas-cli` · `eas login` · `eas build:configure` (agentga: «`eas.json` ga `preview` profili: Android uchun `buildType` — `apk`; `env` da `EXPO_PUBLIC_API_URL` — Render manzili»), keyin reja bilan davom eting.
 - Tugmalar: Orqaga · Boshlaymiz
@@ -103,7 +104,7 @@ Maxfiylik sahifasi (brauzer `…/maxfiylik.html`):
   - 3/3: Oxirgisi — lendingdagi «Qo'shilmoqchiman»ni bosing: odam ilovaga qanday yetadi?
 - Bashorat (yorliq: Avval o'zingiz belgilab ko'ring): Mentor ilovasi hoziroq yuborilsa, nechta narsa yetmay qoladi? · Hech narsa · Bitta narsa · Uchta narsa
   - Tanlangach qator: Mentor ilovasi hoziroq yuborilsa, nechta narsa yetmay qoladi? · Taxminingiz: …
-- Bashoratgacha faqat telefon «Ro'yxatdan o'tish» (Ism · Telefon · Parol); tanlangach o'ngda «Yuborishdan oldin» jadvali (N / 3), qatorlari navbat bilan kiradi:
+- Bashoratgacha faqat telefon «Ro'yxatdan o'tish» (Ism · Telefon · Parol); tanlangach o'ngda «Yuborishdan oldin» jadvali (sanoqsiz — hisob tugmada *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*), qatorlari navbat bilan kiradi:
 
 | | Savol | Hozir | Qayerda |
 |---|---|---|---|
@@ -120,7 +121,7 @@ Maxfiylik sahifasi (brauzer `…/maxfiylik.html`):
   3. Brauzer — lending, «Qo'shilmoqchiman» halqada. Bosilsa — sahifa «Qanday qo'shilaman» bo'limiga suriladi, «Hozircha o'rnatish havolasi yo'q.» qizil yonadi, o'rniga ikki havola va ikki kulrang qator kiradi; jadvalga «Havola» qatori.
      - Qator: Mentor misolida Android'ga APK — o'rnatiladigan ilova fayli — boradi; iPhone'da ilovaning brauzer ko'rinishi ochiladi.
 - Xulosa: Taxminingiz to'g'ri chiqdi ✓ (yoki: Taxminingiz ✕ — aslida: uchta narsa — ma'lumot, o'lchov, havola) · Bu misolda uchalasi ham tayyor emas edi: telefon so'ralardi, qadamlar sanalmasdi, havola yo'q edi.
-- Tugadi: maket yig'iladi, «Yuborishdan oldin» jadvali butun enga (3 / 3)
+- Tugadi: maket yig'iladi, «Yuborishdan oldin» jadvali butun enga
 - Tugmalar: Orqaga · Avval belgilang → Yo'lni bosib chiqing (N/3) → Davom etish
 
 ## 5 · O'z rejangiz
@@ -129,8 +130,8 @@ Maxfiylik sahifasi (brauzer `…/maxfiylik.html`):
 - Mentor: Har bosqichga kanal, nima yuborilishi, kutilgan son va vaqtni yozing — kanallar 6-darsdagi tanlovingizdan olindi.
   - (6-darsdagi kanallar saqlanmagan bo'lsa: Har bosqichga kanal, nima yuborilishi, kutilgan son va vaqtni yozing — kanalni o'zingiz yozasiz.)
 - Kirish qatori: Kanal — faqat o'zingiz a'zo bo'lgan joy yoki tanish doira; guruhga — egasidan ruxsat so'rab.
-- Qadamlar: 1-bosqich · 2-bosqich · 3-bosqich (bir vaqtda bitta karta)
-- Karta (yorliq: N-bosqich · N / 3):
+- Qadamlar qatori yo'q — bosqich nomi kartada, hisob tugmada «(n/3)»; bir vaqtda bitta karta. *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
+- Karta (yorliq: N-bosqich *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*):
   - 6-darsdagi kanallaringiz — tugmalar (bosilsa «Kanal»ga yoziladi)
   - Kanal (ipucha: Qayerga yuborasiz?) — ruxsati hali so'ralgan kanal tanlansa, ostida kulrang: avval ruxsat so'rang
   - Nima yuboriladi (ipucha: Post, havola yoki boshqa narsa)
@@ -340,7 +341,8 @@ Natijalar (podium) — jonli reyting
   - ③ (darsda qolgan ish bo'lsa) Darsda qolgan qismni tugating: qadamlar sanog'ini tekshiring · siyosat sahifasini kod bilan solishtiring · brauzer ko'rinishini chiqaring · o'rnatish fayli tayyor bo'lgach, Android havolasini lendingga qo'ying (holatga qarab — faqat qolganlari).
   - Keyingi dars — **«Foydalanuvchilar qaysi qadamda to'xtab qolyapti?»**
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
 
 ## Nishonlar
 - **Estimate Spotter!** — Rejadagi son taxmin ekanini birinchi urinishda topdingiz (3-ekran, birinchi urinishda to'g'ri)

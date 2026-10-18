@@ -233,7 +233,7 @@ const MODULES = [
       { key: 'm1-07', n: 8,  type: 'Kod',     emoji: '📐', title: 'CSS: layout, flexbox, DevTools',                 sub: 'layout, flexbox, DevTools', comp: CssLesson2 },
       { key: 'm1-15', n: 9,  type: 'Kod',     emoji: '💻', title: 'VS Code',    sub: 'o\'rnatish, Emmet, Live Server, jonli card', comp: VsCodeLesson },
       { key: 'm1-08', n: 10, type: 'Proyekt', emoji: '🧱', title: 'HTML Praktika — Portfolio sayt', sub: 'saytni bo\'laklaymiz, HTML shablon', comp: HtmlPractice },
-      { key: 'm1-10', n: 11, type: 'Proyekt', emoji: '💅', title: 'CSS Praktika — Portfolioni bezaymiz',   sub: 'CSS + kontent + AI bilan tugma', comp: CssPractice },
+      { key: 'm1-10', n: 11, type: 'Proyekt', emoji: '💅', title: 'CSS Praktika — Demo Day saytini bezaymiz',   sub: 'bosh sahifa: HTML — Gemini, dizayn — siz', comp: CssPractice },
       { key: 'm1-09', n: 12, type: 'Kod',     emoji: '🔀', title: 'Git va GitHub — kodni internetga chiqaramiz',                   sub: 'commit, push — kod uchun vaqt mashinasi', comp: GitLesson },
       { key: 'm1-11', n: 13, type: 'Kod',     emoji: '🚀', title: 'Netlify va deploy',               sub: 'hosting, maktab poddomeni', comp: DeployLesson },
       { key: 'm1-12', n: 14, type: 'PM',      emoji: '🎤', title: 'Demo Day — 3 daqiqalik nutq', sub: 'Ota-onangiz oldida saytingizni ko\'rsatasiz: ilgak, muammo, jonli demo va keyingi qadam', comp: PmLesson3 },
@@ -376,7 +376,7 @@ const MODULES = [
     id: '9', slug: 'm7', title: 'Loyiham kim uchun va nima uchun', period: 'oy 9–10.5', stage: 2,
     idea: 'Real odamning real muammosi uchun birinchi mini-MVP — jonli va animatsiyali.',
     lessons: [
-      { key: 'm7-01', n: 1, type: 'PM', emoji: '🎯', title: 'Loyihangiz kimga kerak?', sub: 'mahsulot va loyiha farqi, atrofdan 10 muammo', comp: PmProductProblemLesson },
+      { key: 'm7-01', n: 1, type: 'PM', emoji: '🎯', title: 'Loyihangiz kimga kerak?', sub: 'mahsulot va loyiha farqi, atrofdan 5 muammo', comp: PmProductProblemLesson },
       { key: 'm7-02', n: 2, type: 'PM', emoji: '🎙️', title: 'Besh odamdan nimani bilib olasiz?', sub: 'intervyu: bo\'lib o\'tgan ishni so\'rash, 5 yozuv', comp: PmFiveInterviewsLesson },
       { key: 'm7-03', n: 3, type: 'PM', emoji: '✂️', title: 'Besh suhbatdan qaysi muammo chiqdi?', sub: 'sanoq, bitta muammo, qilamiz / keyin / qilmaymiz', comp: PmInterviewMvpLesson },
       { key: 'm7-04', n: 4, type: 'Kod', emoji: '🏛️', title: 'Mini-MVP arxitekturasi', sub: 'qismlar, ma\'lumot, kirish, deploy — chizma', comp: MvpArchitectureLesson },
@@ -414,8 +414,8 @@ const MODULES = [
     id: '11', slug: 'm9', title: 'Final loyiha: g\'oya va rivojlantirish', period: 'oy 12–13.5', stage: 2,
     idea: 'Bitiruvgacha olib boriladigan final mahsulot: g\'oya, intervyu, PRD, prototip va birinchi funksiyalar — web yoki mobil.',
     lessons: [
-      { key: 'm9-01', n: 1, type: 'PM', emoji: '💡', title: 'Oltita g\'oyani qayerdan topasiz?', sub: 'muammo, kim uchun va yechim — 6 yozma g\'oya', comp: PmTenIdeasLesson },
-      { key: 'm9-02', n: 2, type: 'PM', emoji: '⚖️', title: 'Oltita g\'oyadan qaysi uchtasi qoladi?', sub: 'saralash va RICE bahosi', comp: PmIdeaRiceLesson },
+      { key: 'm9-01', n: 1, type: 'PM', emoji: '💡', title: 'Beshta g\'oyani qayerdan topasiz?', sub: 'muammo, kim uchun va yechim — 5 yozma g\'oya', comp: PmTenIdeasLesson },
+      { key: 'm9-02', n: 2, type: 'PM', emoji: '⚖️', title: 'Beshta g\'oyadan qaysi uchtasi qoladi?', sub: 'saralash va RICE bahosi', comp: PmIdeaRiceLesson },
       { key: 'm9-03', n: 3, type: 'PM', emoji: '🎙️', title: 'Ikki g\'oyadan qaysi biri odamlarga kerak?', sub: '10 intervyu, 1-qism: ikki g\'oya, bir xil savollar', comp: PmInterviewsOneLesson },
       { key: 'm9-04', n: 4, type: 'PM', emoji: '🧩', title: 'O\'n intervyudan keyin qaysi g\'oya qoladi?', sub: 'takrorlangan javoblar va final g\'oya', comp: PmFinalIdeaLesson },
       { key: 'm9-05', n: 5, type: 'PM', emoji: '📄', title: 'G\'oyangiz bir sahifaga sig\'adimi?', sub: 'Mentor tekshiruvi va to\'liq PRD', comp: PmPrdLesson },

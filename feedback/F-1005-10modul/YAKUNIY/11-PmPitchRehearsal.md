@@ -30,11 +30,11 @@ Holat: 06.10.2026 — kodga mos
 - Sarlavha: Bugun pitchingizni *5 daqiqaga kengaytirib*, tuzatasiz.
 - Mentor: Bir daqiqalik pitchingiz, OKR'ingiz va A/B testingizning sonlari bugun kerak bo'ladi.
 - Chap: Dars oxirida — pitch repetitsiyasi va qattiq fidbek · Sahna: beshta nomsiz slayd skeleti, ostida taymer chizig'i birma-bir to'q bo'ladi, oxirida zal ustida ✓
-- O'ng (01 · matn · teg):
-  - 01 · Pitchga qaysi slaydlar qo'shilishini bilib olasiz · `5 daqiqa`
-  - 02 · Mashhur taqdimot qanday boshlanganini ko'rasiz · `biznes`
-  - 03 · Raqamni zal ishonadigan qilib yozasiz · `raqamlar`
-  - 04 · Pitchni sinfdoshga aytib, tuzatasiz · `baholash varag'i`
+- O'ng (01 · matn; teg yo'q) *(✎ F-1015-115, 208-qonun 0-band: takror olindi)*:
+  - 01 · Pitchga qaysi slaydlar qo'shilishini bilib olasiz
+  - 02 · Mashhur taqdimot qanday boshlanganini ko'rasiz
+  - 03 · Raqamni zal ishonadigan qilib yozasiz
+  - 04 · Pitchni sinfdoshga aytib, tuzatasiz
 - Tugmalar: Orqaga · Boshlaymiz
 
 ## 2 · Besh slayd
@@ -72,7 +72,7 @@ Holat: 06.10.2026 — kodga mos
 ## 4 · Airbnb
 - Eyebrow: Biznes olamidan
 - Sarlavha: Airbnb investorlarga birinchi *nimani ko'rsatgan?*
-- Nuqtalar: yorliq **Airbnb · N/4** va to'rt nuqta
+- Nuqtalar va yorliq yo'q — tugma «Keyingi bosqich (N/4)» aytadi; bashorat yorlig'i «Avval o'zingiz belgilab ko'ring» *(✎ F-1015-115, 208-qonun 0-band: takror olindi)*
 - Maket: taqdimot oynasi («Airbnb» nomi o'z rangida) — chapda katta joriy slayd, o'ngda o'nta kichik slayd
 - Bosqichlar (Mentor har bosqich gapini aytadi, kartada bosqich nomi):
   - 1/4 **Investorlar uchun taqdimot** — Mentor: Investor — loyihaga pul tikadigan odam. Airbnb investorlarga birinchi taqdimotini tayyorlagan. Unda o'nga yaqin oddiy slayd bo'lgan. · kartada: Airbnb — begonaning uyida ijaraga turish xizmati · maket: slaydlar bo'sh
@@ -133,9 +133,9 @@ Holat: 06.10.2026 — kodga mos
 - Eyebrow: Tushuncha · fidbek
 - Sarlavha: Qaysi gap bilan *pitchni tuzatsa* bo'ladi?
 - Mentor: Sinfdosh «Maydon» pitchini tinglab, besh gap aytdi. Har gapni varaqdagi o'z slaydiga yoki «Yozilmaydi» qutisiga joylang.
-- Bashorat (yorliq: Avval o'zingiz belgilab ko'ring): Besh gapdan nechtasi varaqqa yoziladi? · 1 · 2 · 3
+- Bashorat yo'q — saralashning o'zi topshiriq (208/0 e). *(✎ F-1015-115, 208-qonun 0-band: takror olindi)*
 - Vizual: tepada besh slayd nomi bir qatorda (Muammo · Yechim · Foydalanuvchi · Raqamlar · Keyingi qadam) · ostida varaq — besh qator (slayd nomi va zal savoli, bo'sh izoh, bo'sh ✓/✗ katagi) · yonida «Yozilmaydi» qutisi
-- Gaplar bittadan katta karta bo'lib chiqadi (hisoblagich N / 5), bosish yoki sudrash bilan joylanadi (tartib: 2, 4, 1, 5, 3):
+- Gaplar bittadan katta karta bo'lib chiqadi (hisob faqat tugmada), bosish yoki sudrash bilan joylanadi (tartib: 2, 4, 1, 5, 3):
   1. «Muammo slaydida 4 / 5 va o'yinchining hikoyasi bor — nima bo'lganini tushundim.» — Muammo qatori, ✓
   2. «Yechim slaydida faqat React, NestJS va Neon aytildi — sayt o'yinchiga nima qilishi aytilmadi.» — Yechim qatori, ✗
   3. «Raqamlar slaydida A/B bor, lekin haftada nechta band bo'layotgani aytilmadi.» — Raqamlar qatori, ✗
@@ -149,10 +149,9 @@ Holat: 06.10.2026 — kodga mos
 - Nishon qatori: Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki. / Nishon birinchi urinish uchun edi.
 - 5/5 da varaq sarlavhasi: Baholash varag'i
 - Natija bloki:
-  - Taxminingiz to'g'ri chiqdi (yoki: Taxminingiz: … · haqiqatda: **3**)
   - Fidbek — pitchdagi aniq joy haqidagi fikr yoki taklif. Slayd va kamchilik aytilsa, u qattiq, lekin hurmatli.
   - Har slayd uchun zal savoli yozilgan bu varaq baholash varag'i deyiladi.
-- Tugma: Avval taxminingizni belgilang → Gaplarni joylang (N/5) → Davom etish
+- Tugma: Gaplarni joylang (N/5) → Davom etish
 
 ## 9 · Yakuniy savol
 - Eyebrow: Yakuniy tekshiruv
@@ -178,7 +177,7 @@ Holat: 06.10.2026 — kodga mos
   3. Neon ko'rsatgan sonni pastdagi maydonga yozing.
 - Maydonlar: OKR'dagi «hozir»: `?` · Oxirgi 7 kunda: `Neon ko'rsatgan son`
   - son bo'lmasa: Neon ko'rsatgan sonni shu yerga yozing.
-- Son yozilgach — slayd savoli: OKR'da «hozir 6» edi, SQL bugun 11 ko'rsatdi. Slaydga nima yoziladi?
+- Son yozilgach — slayd savoli: Mentor misolida OKR'da «hozir 6» edi, SQL bugun 11 ko'rsatdi. Slaydga nima yoziladi? ✎ F-1015-168
   - Haftada 11 band — Zal o'sishni ko'rmaydi — boshlanish soni ham kerak.
   - ✔ Haftada 6 dan 11 ga
   - Haftada 5 ta ko'proq band — Farq bor, lekin zal qayerdan boshlanganini bilmaydi.
@@ -187,6 +186,7 @@ Holat: 06.10.2026 — kodga mos
   - Eslatma: bo'sh joyga band qilingan paytni saqlaydigan ustun — `yaratilgan` yoziladi. SQL darslaridan: `SELECT` — ma'lumotni ko'rsatadi · `WHERE` — qaysi qatorlar olinishi · `COUNT(*)` — qatorlarni sanaydi · `NOW() - INTERVAL '7 days'` — hozirdan 7 kun oldin.
   - Database'dan bosh raqamni ola olmasangiz — uni o'ylab topmang: Raqamlar slaydiga sizda bor raqamni va u qayerdan olinganini yozing (dashboard va Umami boshqa narsani sanaydi).
 - Tugma (panelda): Avval Neon ko'rsatgan sonni yozing · Avval slayd savolini yeching · Bajardim — SQL ishladi, son yozildi
+  - «Avval …» qatorlari tugma emas — kulrang matn (`QIzoh`); ikkala shart bajarilgach o'rnida «Bajardim — SQL ishladi, son yozildi» tugmasi chiqadi *(✎ F-1015-164)*
 - O'ngda — Neon maketi: SQL Editor oynasi, «Run» tugmasi, SQL (bo'sh joyni o'quvchi yozadi):
 ```sql
 SELECT COUNT(*)
@@ -229,7 +229,7 @@ WHERE ______ >= NOW() - INTERVAL '7 days';
 - Sarlavha: Pitchingizni *5 daqiqada* aytib bera olasizmi?
 - Mentor (juftlikda): Avval sinfdoshingizga 5 daqiqada ayting. Keyin qurilmangizni unga bering — u baholash varag'ini to'ldiradi.
 - Mentor (mustaqil): Avval ovoz chiqarib 5 daqiqada ayting. Keyin baholash varag'ini o'zingiz to'ldiring.
-- 1-qadam — Pitchni ayting · 1 / 2:
+- 1-qadam — Pitchni ayting (raqamli belgi; «1 / 2» yo'q — F-1015-115):
   - taymer 0:00 · 5 daqiqani boshlash · yurganda: Hozir siz gapirasiz · To'xtatish · to'xtagach: Qaytadan · 5:00 dan keyin qizil «+m:ss»
   - Sahna: o'quvchining besh slaydi, taymer chizig'i; har daqiqada joriy slayd ajralib turadi, zal pufagida o'sha slaydning zal savoli
   - o'quvchi pitch yozmagan bo'lsa — «Maydon» pitchi:
@@ -239,7 +239,7 @@ WHERE ______ >= NOW() - INTERVAL '7 days';
     - Raqamlar — Bosh raqam: haftada 6 dan 11 ga (maqsad — 20) · A/B: «18:00 ni band qilish» tugmasi (B) — vaqtni tanlagan 40 brauzerdan 17 tasi band qildi / «Band qilish» tugmasi (A) — 42 tadan 12 · Halol gap: Farq bor, lekin 82 ta brauzer hali kam — raqamni kuzatib boramiz. Maqsad 20 edi — yetmadi.
     - Keyingi qadam — Jamoa yig'ish — o'yinchi o'yinga sherik topa olsin. Keyingi oyda: haftada band qilingan vaqtlar 20 ga yetsin (hozir 11)
   - juftlikda: Avval A gapiradi, B tinglaydi; keyin almashasiz.
-- 2-qadam — Baholash varag'i · 2 / 2: besh qator (slayd nomi va zal savoli · ✓ · ✗ · izoh `Nima yetishmadi?`) · pastda «Vaqt: m:ss»
+- 2-qadam — Baholash varag'i: besh qator (slayd nomi va zal savoli · ✓ · ✗ · izoh `Nima yetishmadi?`) · pastda «Vaqt: m:ss»
 - Tekshiruv:
   - Har slaydga ✓ yoki ✗ qo'ying.
   - ✗ qo'ydingiz — nima yetishmaganini bir qatorda yozing.
@@ -290,7 +290,6 @@ WHERE ______ >= NOW() - INTERVAL '7 days';
 - Eyebrow: Dars yakuni
 - Belgilar: ✓ Dars tugadi · N/4 to'g'ri
 - Sarlavha: Pitch besh daqiqalik bo'ldi, *eng zaif slayd tuzatildi*.
-- Bugungi asosiy fikr: Har slayd zalning bitta savoliga javob beradi; fidbek qaysi javob yetmaganini ko'rsatadi.
 - Pitchim — n/5 (saqlangan pitch bo'lsa)
 - CODE STRIKE arenasi tugmasi (jonli darsda mentor boshlaguncha: Mentorni kuting) · arena lobbisi: CODE STRIKE · 12 SAVOL · 15 SONIYA · PODIUM · Tezroq to'g'ri bossangiz — ko'proq ball. Ketma-ket to'g'ri javoblar bonus beradi!
 - ✓ Endi siz bilasiz:
@@ -301,6 +300,7 @@ WHERE ______ >= NOW() - INTERVAL '7 days';
 - Uyga vazifa tugmasi: Uyga vazifa · Amaliy topshiriqni bajarish → (karta ochiladi; oxirida:) Keyingi dars — **«Zaxira dars»**: ortda qolgan ishni yetkazasiz va pitchni sayqallaysiz.
 - Nishonlaringiz — N/4 (to'rtta nishon — «Nishonlar» bo'limida)
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Feedback Sorter!** — Besh gapdan varaqqa yoziladiganlarini ajratdingiz (8-ekran, birinchi urinishda)

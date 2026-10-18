@@ -44,10 +44,11 @@ Test ekranlarida (3, 5, 7, 10) javobdan keyingi sarlavha: To'g'ri · Qaytadan ur
 - Mentor: Avval Maydon Jamoa'da uch muammoni topib, sababini ko'rasiz. Keyin xuddi shuni o'z ilovangizda qilasiz.
 - Chap — Dars oxirida: buzish yozuvi kartasi, qatorlar navbat bilan chiqadi — 1 Internetni uzish · 2 Fonga olib qaytarish · 3 Backend'ning yangi versiyasi (har birida bo'sh belgi joyi); ostida `BUZISH.md`
 - O'ng — reja:
-  1. Internet uzilganda nima ko'rinmay qolishini topish · uzilish
-  2. Bitta o'zgarish nega ikki marta chiqishini bilish · takror hodisa
-  3. Qayta ulangan ilova o'yin xonasiga qaytishi · qayta ulanish
-  4. O'z ilovangizni buzish, tuzatish va qayta tekshirish · uchta muammo
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
+  1. Internet uzilganda nima ko'rinmay qolishini topish
+  2. Bitta o'zgarish nega ikki marta chiqishini bilish
+  3. Qayta ulangan ilova o'yin xonasiga qaytishi
+  4. O'z ilovangizni buzish, tuzatish va qayta tekshirish
 - Pastki qator: o'z repo'ngiz — `BUZISH.md` va tuzatishlar · Mentor misoli `maydon-jamoa` · boshlanish `m12-dars-05-start` · namuna `m12-dars-05-done`
 - Kulrang qator: Mentor misolida `m12-dars-05-start` — agent «bajardim» deganidan keyingi kod; muammolar shu darsda topiladi.
 - Tugmalar: Orqaga · Boshlaymiz
@@ -256,7 +257,7 @@ setTimeout(ulan, 500);
   - uch urinishdan keyin: Uch urinish yozildi — pastdagi xulosaga qarang.
 - Bashorat: Uch usuldan nechtasi Mentor ilovasini buzadi? · Bittasi · Ikkitasi · Uchalasi
 - Chap — 1-telefon (belgi «Ulangan», «8 / 10»): urinishga qarab o'zgaradi — 1: samolyot yonadi, belgi «Ulanmoqda…», keyin «Ulangan», son «8 / 10» qoladi · 2: ekranni boshqa ilova (nomsiz kulrang oyna) yopadi, keyin «O'yin» qaytadi, «9 / 10» · 3: belgi «Ulanmoqda…» → «Ulangan», «9 / 10» va tepada ikkita jonli xabar.
-- O'ng — tepada ixcham chiziq 1 · 2 · 3 (joriy usul nomi bilan); ostida buzish yozuvi kartasi (bittadan): usul nomi, «Nima qildim» · «Nima kutdim» · «Nima bo'ldi» (avval «…»), tugma «Urinishni ko'rish».
+- O'ng — tepada faqat bajarilgan urinishlar qatori (raqam · usul · belgi); kutilayotganlar «1 · 2 · 3» bo'lib chiqmaydi — usul nomi kartada, hisob tugmada *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*; ostida buzish yozuvi kartasi (bittadan): usul nomi, «Nima qildim» · «Nima kutdim» · «Nima bo'ldi» (avval «…»), tugma «Urinishni ko'rish».
 - «Urinishni ko'rish» → telefon usulni o'ynaydi → kartada Mentor yozuvining qatorlari yoziladi → tugmalar «Buzildi» · «Buzilmadi».
   - To'g'ri belgi: karta ixcham qatorga yig'iladi («N · usul · belgi»), keyingi urinish ochiladi.
   - Boshqa belgi: karta silkinadi va qator: Kutilgani bilan bo'lganini yana bir solishtiring.
@@ -306,7 +307,7 @@ setTimeout(ulan, 500);
 - Sarlavha: Har usuldan oldin *nima kutishingizni* yozing.
 - Mentor: Talabingizdagi chekka holatlardan boshlang: har usulga bittasini tanlang.
 - Tepada ixcham chiziq: 1 Internetni uzish · 2 Fonga olib qaytarish · 3 Backend'ning yangi versiyasi (tayyori oldida ✓ va «Nima kutaman» ning qisqa boshi).
-- Bir vaqtda bitta karta: «N / 3 · <usul>», uch maydon:
+- Bir vaqtda bitta karta — yorliqsiz (usul nomi tepadagi chiziqda *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*), uch maydon:
   1. Nima qilaman — oldindan yozilgan, tahrirlanadi:
      - Internetni uzish: Uchish rejimini yoqaman; belgi «Ulanmoqda…» bo'lgach boshqa akkaunt o'zgarish qiladi; keyin o'chiraman.
      - Fonga olib qaytarish: Boshqa ilovaga o'taman; shu payt boshqa akkaunt o'zgarish qiladi; bir daqiqadan keyin qaytaman.
@@ -481,7 +482,9 @@ Natijalar (podium) — jonli reyting
   3. **Talab** — bugun topilgan har muammo talabingizdagi chekka holatlar ro'yxatida bormi? Yo'q bo'lsa — README'dagi «Real vaqt» bo'limiga bitta chekka holat qo'shing.
   - Keyingi dars — **«Birinchi foydalanuvchilar sizni qayerdan topadi?»**
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — sarlavha «Uyda nima qilasiz?», maydonlar katta quti (yorliq bosh harfda, «:» siz), qadamlar raqam-doira, «Keyingi dars» karta ichida (13.5px); qadam matni o'zgarmagan.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Lost Event** — Uzilish paytidagi hodisa nega kelmasligini topdingiz (3-ekran, birinchi urinishda to'g'ri)

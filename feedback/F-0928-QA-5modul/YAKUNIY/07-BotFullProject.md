@@ -1,6 +1,9 @@
 # 7-dars «Loyiha kuni: bot + DB + AI» — yakuniy matn
 
-Fayl: `src/5-Modull/BotFullProjectLesson.jsx` · 11 ekran · Keyingi dars: «Botingizni ishlatgan odamdan nimani so'raysiz?»
+> ✎ **F-1015-122 (16.10, 208-qonun 4-band, foydalanuvchi qarori — 2-variant):** dars yuzasidagi bezak emoji kodda olingan — sarlavha, yorliq, karta ikonlari, fayl tablari, test/amaliyot yorliqlari, tugmalar. Qolgan: sxema tugunlari, keys sahnasi, o'yin qatlami (nishon, arena, podium), Yakun, takrorlash oynasi, Mentor paneli, bot/ilova maketidagi mahsulot mazmuni. Bu MD dagi shunday bezak emoji endi ekranda yo'q.
+
+
+Fayl: `src/5-Modull/BotFullProjectLesson.jsx` · 12 ekran · Keyingi dars: «Botingizni ishlatgan odamdan nimani so'raysiz?»
 Holat: 04.10.2026 — kodga mos
 
 ## 0 · Kirish — soat 02:14
@@ -67,7 +70,7 @@ Holat: 04.10.2026 — kodga mos
   3. Ishga tushirish — terminal xatosiz; AI kodini o'qing: entity `@Entity('…')` bilanmi, service `@InjectRepository` bilanmi (4-darsdagi kabi).
      - Xato bo'lsa: «Shu xato chiqdi: {xato}. Tuzat.»
   4. Telegramda tekshirish — buyurtmani oxirigacha bering, keyin `/buyurtmalarim` → oxirgi buyurtma chiqadi.
-- Yorliq (o'ngda): kutilgan natija · namuna: AvtoPizza
+- Yorliq (o'ngda): kutilgan natija · namuna: AvtoPizza (yorliq natija ostida ✎ F-1015-166)
 - Kutilgan natija (chat):
   - mijoz: Chilonzor, 12-uy
   - bot: Buyurtma tasdiqlandi: Pepperoni · Chilonzor, 12-uy
@@ -137,7 +140,7 @@ Holat: 04.10.2026 — kodga mos
      git commit -m "7-dars: serverga tayyor"
      git push
      ```
-- Yorliq (o'ngda): kutilgan natija · terminal
+- Yorliq (o'ngda): kutilgan natija · terminal (yorliq natija ostida ✎ F-1015-166)
 - Kutilgan natija (terminal):
   ```js
   Telegram bot ulandi
@@ -176,7 +179,7 @@ Holat: 04.10.2026 — kodga mos
   3. Deploy — «Deploy Web Service». Loglarda 2–4 daqiqada: «Server …-portda ishlayapti» va «Telegram bot ulandi (webhook)».
      - Xato bo'lsa, log matnini Antigravity'ga: «Render logida shu xato: {xato}. Sabab nima?»
   4. Laptopsiz tekshirish — laptopdagi botni to'xtating (terminalda Ctrl+C — bitta token ikki joyda ishlamaydi). Telefondan `/start`, `/menu`, bitta buyurtma. Birinchi javob 30–60 soniya kechikishi mumkin — server uyg'onyapti.
-- Yorliq (o'ngda): kutilgan natija · AvtoPizza · 03:00 · laptop yopiq
+- Yorliq (o'ngda): kutilgan natija · AvtoPizza · 03:00 · laptop yopiq (yorliq natija ostida ✎ F-1015-166)
 - Kutilgan natija (chat · bot · serverda):
   - mijoz: /start
   - bot: (… 40 s) Yana salom, Aziz! AvtoPizza'ga xush kelibsiz!
@@ -190,15 +193,31 @@ Holat: 04.10.2026 — kodga mos
 
 ## 9 · Natijalar (podium) — jonli reyting
 
-## 10 · Yakun
+## 10 · Kartochkalar
+10-ekran
+- Eyebrow: Takrorlash
+- Sarlavha: O'zingizni sinab ko'ring.
+- Kartochkalar — 12 ta, «Kartochkalar» bo'limida.
+- Hisob: ↻ O'rganilmoqda · N · ✓ Bildim · N
+- Tugmalar: ✗ Takrorlash · ✓ Bildim
+- Hammasi tugagach: Hammasini bilasiz! · 12/12 atama yodlandi · ↻ Qaytadan takrorlash
+- Tugma: Yakunlash →
+✎ F-1015-112 (15.10): kartochkalar Yakun ichidan alohida ekranga chiqdi (207-qonun; 172.1 «kartochkalar shu ekranda» bekor). Ekranlar: 11 → 12.
+
+## 11 · Yakun
 - Eyebrow: Tayyor
-- Belgi: ✓ Bot serverda · N/2 to'g'ri
+- Belgi: ✓ Dars tugadi · Testlar: N/N ✎ F-1015-161
 - Sarlavha: Laptop yopiq — bot javob beradi.
 - Jonli viktorina tugmasi: CODE STRIKE · kutish holatida: Mentorni kuting
-- Yorliq: Takrorlash — kartochkalar (12 ta, "Kartochkalar" bo'limida)
-- Keyingi dars — «Botingizni ishlatgan odamdan nimani so'raysiz?». Botingiz endi tunda ham ishlaydi — keyingi darsda uni sinab ko'rgan odamdan nima qilganini so'rashni o'rganasiz.
+- ✓ Endi siz bilasiz (✎ F-1015-161 — darsning takrorlash oynalari va xulosalaridan):
+  - Server kodni sizning repo'ngizdan GitHub orqali oladi
+  - `.env` `.gitignore` da qoladi — sirlar serverning «Environment» bo'limiga yoziladi
+  - Polling — bot Telegram'dan qayta-qayta so'raydi. Laptopda shunday
+  - Webhook — Telegram xabarni bot manziliga o'zi yuboradi; bepul serverni shu xabar uyg'otadi
 - Nishonlaringiz — N/3 (olingan nishonda nomi va tavsifi, olinmaganida faqat nomi)
+- Keyingi dars — «Botingizni ishlatgan odamdan nimani so'raysiz?». Botingiz endi tunda ham ishlaydi — keyingi darsda uni sinab ko'rgan odamdan nima qilganini so'rashni o'rganasiz.
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Kartochkalar
 Oyna: Takrorlash — kartochkalar. Hisoblagichlar: ↻ O'rganilmoqda · N · ✓ Bildim · N. Tugmalar: ✗ Takrorlash · ✓ Bildim.

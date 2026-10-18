@@ -121,10 +121,11 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` + `10-FILTR.md` · `12-PmGrowthPitch
   Mentor misolidagi uch kanal kartasi navbat bilan kiradi, ostida odam belgilari to'planadi (kanal kartalaridan «tushmaydi» — kim qaysi kanaldan kelgani sanalmagan); o'ngda ikki ustun joyi — yorliqlari «bitta foydalanuvchiga» va «bitta foydalanuvchidan», son o'rnida «?» (kashfiyot ochilmaydi; SABOQ D 33 — haqiqiy nomlar, matnsiz bo'sh chiziq yo'q).
   Vizual ostida bitta kulrang qator: Bu modulda haqiqiy pul to'lanmaydi va so'ralmaydi. (50)
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
-  - 01 · Bitta foydalanuvchini olib kelish qanchaga tushishini sanaysiz · `jalb qilish narxi`
-  - 02 · Foydalanuvchi qancha pul keltirishini hisoblab, solishtirasiz · `keltiradigan pul`
-  - 03 · Ikki sonni o'z mahsulotingiz uchun yozasiz · `taxmin`
-  - 04 · Ikki sonni hisoblaydigan kod yozasiz · `kod oynasi`
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
+  - 01 · Bitta foydalanuvchini olib kelish qanchaga tushishini sanaysiz
+  - 02 · Foydalanuvchi qancha pul keltirishini hisoblab, solishtirasiz
+  - 03 · Ikki sonni o'z mahsulotingiz uchun yozasiz
+  - 04 · Ikki sonni hisoblaydigan kod yozasiz
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz
 - O'qituvchi eslatmasi: Modul boshida bir gap ayting: bu modulda pul haqida gaplashamiz, lekin hech kim haqiqiy pul to'lamaydi — to'lovlar test rejimda, narxlar taxmin. Kanallar va metrika hisoboti 12-Moduldan; topilmasa dars to'xtamaydi — o'quvchi o'zi yozadi.
 - Izoh (MD): sarlavhada yangi atama yo'q (T-011) — «ikki son»; atamalar kulrang yorliqda va teglarda. «sonlar … metrika hisobotingizdan» — o'quvchida 12-Modul hisoboti bor (T-039); yo'q bo'lsa ham yo'l bor (Mentorning ikkinchi gapi). Reja 02 qatori «solishtirasiz» deydi, natijani («zarar») ochmaydi (P-015).
@@ -135,7 +136,7 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` + `10-FILTR.md` · `12-PmGrowthPitch
 - Mentor: Mentor shu davrda kanallarga post yozgan — har kanalni bosib, unga qancha pul ketganini ko'ring.
   (Birinchi harakat — bashorat; uning yo'rig'i `QBashorat` yorlig'ida, Mentor takrorlamaydi — T-047.)
 - Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bitta o'lchov, o'sish tartibida): **Bitta foydalanuvchini olib kelish necha so'mga tushgan?** · 0 so'm · bir necha ming so'm · o'n ming so'mdan ko'p —
-  tanlangach yopilmaydi: ixcham qator natijagacha turadi; kanal kartalari shundan keyin yoqiladi.
+  tanlangach yopilmaydi: ixcham qator natijagacha turadi; kanal kartalari shundan keyin chiqadi; bosilgan kanal — oddiy karta (qayta bosilmaydi) *(✎ F-1015-164)*.
 - Vizual (≤ 3 blok — kanallar va foydalanuvchilar · ustun kartasi · pastki tugma):
   - **chapda — kanallar** (yorliq «Mentor misolida»): uch kanal kartasi — mahalla futbol guruhi · sinf chati · Instagram sahifasi, har birida «? so'm»; ostida umumiy maydon «Shu davrda ro'yxatdan o'tganlar» — odam belgilari uchala kanal bosilgach kiradi, kanal kartalaridan emas (kim qaysi kanaldan kelgani sanalmagan; bo'sh kulrang kontur yo'q, SABOQ D 33);
   - **o'ngda — ustun kartasi «Bitta foydalanuvchiga»**: ikki qator «Kanallarga sarflangan pul: ? so'm» · «Shu davrda yangi foydalanuvchilar: ?» va ostida natija «? so'm».
@@ -186,7 +187,7 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` + `10-FILTR.md` · `12-PmGrowthPitch
 - Eyebrow: Tushuncha · keltiradigan pul
 - Sarlavha: **Bitta foydalanuvchi qancha pul keltiradi?** (41) — 2-ekran savolining davomi (T-064)
 - Mentor: Mentor misolida foydalanuvchilar ilovada har xil ish qiladi — tugmalarni birma-bir bosib, telefonga qarang.
-- Bashorat (ballsiz; S-015 — o'sish tartibida): **44 kishidan nechtasi ilovaga pul to'lashi mumkin?** · ozchiligi · yarmi · hammasi — tanlangach ixcham qator natijagacha turadi; tugmalar shundan keyin yoqiladi.
+- Bashorat (ballsiz; S-015 — o'sish tartibida): **44 kishidan nechtasi ilovaga pul to'lashi mumkin?** · ozchiligi · yarmi · hammasi — tanlangach ixcham qator natijagacha turadi; tugmalar shundan keyin chiqadi: bittadan — joriysi tugma, bosilgani «✓ nom» yozuvi, keyingisi hali ko'rinmaydi *(✎ F-1015-164)*.
 - Vizual (≤ 3 blok): **chapda** — telefon «Maydon Jamoa» («O'yinlar», karta «Shanba, 18:00 · Mahalla maydoni · 8 / 10») · **o'ngda** — ustun kartasi «Bitta foydalanuvchidan» (qator «? so'm») · **pastda** — tugmalar qatori (ixcham, bir qatorda; joriysi accent, bosilgani ✓): 1 O'yinchi · 2 Tashkilotchi · 3 Uch oy
 - Tugmalar (Mentor misoli — tayanch 1.0, 1.1, 1.13):
   1. **O'yinchi** → telefonda o'yinchi ko'rinishi: «Shanba, 18:00» kartasi va «Qo'shilaman» tugmasi bir lahza yonadi; ustun kartasida qator: «O'yinchi: 0 so'm — ilova unga bepul».
@@ -211,7 +212,7 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` + `10-FILTR.md` · `12-PmGrowthPitch
 - Eyebrow: Tushuncha · solishtirish
 - Sarlavha: **Pullik kanal Mentor misolida o'z pulini qoplaydimi?** (51)
 - Mentor: Pullik kanal mashqidagi sonlar qaytdi — tugmalarni birma-bir bosib, ustunlarga qarang.
-- Bashorat (ballsiz; S-015 — o'sish tartibida): **12 kishidan bittasi tashkilotchi bo'lsa, uni jalb qilish necha so'mga tushadi?** · 5 000 so'm · 30 000 so'm · 60 000 so'm — tanlangach ixcham qator natijagacha turadi.
+- Bashorat (ballsiz; S-015 — o'sish tartibida): **12 kishidan bittasi tashkilotchi bo'lsa, uni jalb qilish necha so'mga tushadi?** · 5 000 so'm · 30 000 so'm · 60 000 so'm — tanlangach ixcham qator natijagacha turadi; tugmalar shundan keyin chiqadi (bittadan, bosilgani «✓ nom» yozuvi) *(✎ F-1015-164)*.
 - Vizual (≤ 3 blok): **chapda** — «pullik kanal · 60 000 so'm» kartasi (yorliq «Mentorning taxmini · mashq») va ostida 12 odam belgisi · **o'ngda** — ikki ustun: «Jalb qilish narxi» (bo'sh, «?») va «Keltiradigan pul — bitta tashkilotchidan: 30 000 so'm · taxmin» (4-ekrandan tayyor) · **pastda** — tugmalar: 1 Bitta foydalanuvchiga · 2 Bitta tashkilotchiga
 - Tugmalar:
   1. **Bitta foydalanuvchiga** → 60 000 so'm 12 odam belgisiga teng bo'linadi (har biri ustida kichik «5 000»); «Jalb qilish narxi — bitta foydalanuvchiga: 5 000 so'm» ustuni o'sib chiqadi (30 000 ustunidan past); muhr o'rnida kulrang «?»;
@@ -260,14 +261,14 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` + `10-FILTR.md` · `12-PmGrowthPitch
   - `pm-m10d6-kanallar.kanallar` (`ruxsat: 'bor'`) → 1-kartada kanal qatorlari (nomi);
   - `pm-m10d10-hisobot.royxat` → «Yangi foydalanuvchilar» (`soni`), «Davr» («ishga tushgandan {sana} gacha»), ostida kulrang «metrika hisobotidan · shundan {sinfdosh} tasi — sinfdosh» (`sinfdosh` > 0 bo'lsa);
   - `tekshiruv === 'tuzatish'` va `tuzatishQator === 'royxat'` bo'lsa — son qo'yilmaydi, o'rnida kulrang (12-Modul 9.43 i): Hisobotda bu son «tuzatish» olgan — tuzatilganini yozing. (57)
-- **Tepada — ixcham chiziq «Ikki sonim · n/3»:** karta nomlari (Kanallar · Kim to'laydi · Narx va oy), to'ldirilgani ✓ (bo'sh uzuq qatorlar yo'q).
+- **Tepada — ixcham chiziq «Ikki sonim»** (sanoq tugmada *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*): karta nomlari (bosiladi) (Kanallar · Kim to'laydi · Narx va oy), to'ldirilgani ✓ (bo'sh uzuq qatorlar yo'q); hali ochilmagan karta nomi ko'rinmaydi *(✎ F-1015-164)*.
 - **Markazda — bitta katta karta (joriy):**
   1. **Kanallar** — har kanal qatori: nomi · maydon (raqam belgisi va savol placeholder'da — E 43) `Sarflangan pul, so'm — bermagan bo'lsangiz 0` · «+ Kanal qo'shish».
      Ostida: `Shu davrda nechta kishi ro'yxatdan o'tdi?` (yonida tugma «Hozircha bilmayman») · `Davr: qachondan qachongacha?` · belgi (ixtiyoriy) «Har kanaldan nechta kelganini bilaman» → har qatorga `Yangi` maydoni.
      Jonli qator (karta ostida): «Jalb qilish narxi: {jalbNarxi} so'm» · yangi 0 bo'lsa: Yangi foydalanuvchi 0 — bo'lib bo'lmaydi. (41) · noma'lum bo'lsa: Yangi foydalanuvchilar soni hali noma'lum. (42)
   2. **Kim to'laydi** — maydon `Kim pul to'lashi mumkin? Rolini yozing, ism emas` · ikki tugma: «Hamma foydalanuvchi» · «Hozircha bilmayman».
   3. **Narx va oy** — `Narx taxmini: 30 kunga necha so'm?` · `Necha oy to'laydi? Taxmin` · tugma «Hozircha bilmayman». Jonli qator: «Keltiradigan pul: {keltiradi} so'm · taxmin».
-  O'ngda: «Keyingi» → 3-kartada «Saqlash» (187); ikkinchi tugma (chegarali): «Mentor sonlari bilan mashq» → maydonlarga Mentor misoli yoziladi (A-6), har kartada yorliq «mashq».
+  O'ngda: «Keyingi» → 3-kartada «Saqlash» (187); ikkinchi tugma (chegarali): «Mentor sonlari bilan mashq» → maydonlarga Mentor misoli yoziladi (A-6), har kartada yorliq «mashq»; karta sarlavhasi «N · <karta>» yo'q — nomi tepadagi chiziqda *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*.
 - **Yakuniy karta «Ikki sonim»** (3/3 dan keyin; butun enga — `BirlikSahna` ikki ustuni o'quvchi sonlari bilan): «Jalb qilish narxi — {…} so'm» · «Keltiradigan pul — {…} so'm · taxmin»; muhr: «qoplanadi» / «zarar» / «teng» / «noma'lum» / «pul sarflanmagan» (KOD 8 qoidasi); ostida doimiy kulrang qator «Bu hisobda faqat kanallarga sarflangan pul bor — mahsulotni ushlab turish puli kirmagan.»; har qatorda ✎.
   Muhr ostida bitta kulrang qator (holatga qarab; KOD 8 qoidasi):
   - sarflangan pul 0 (muhr «pul sarflanmagan»; tayanch 1.1 halol gapining o'quvchiga moslangani): Kanallarga pul sarflanmagan — vaqt sarflangan, u bu songa kirmaydi. (67)
@@ -291,7 +292,7 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` + `10-FILTR.md` · `12-PmGrowthPitch
 - Xulosa (o'quvchi ma'lumotidan, P-046): «Jalb qilish narxi — {jalbNarxi} so'm, keltiradigan pul — {keltiradi} so'm (taxmin).» · biri noma'lum bo'lsa: «Jalb qilish narxi — {jalbNarxi}; keltiradigan pul hali noma'lum.» (≈80)
 - Tugma (pastki): Kartalarni to'ldiring (n/3) → Saqlang → Davom etish (jonli darsda mentor o'tkazishi mumkin — `optionalLive`).
 - Keyingi bosiladigan joy: joriy kartaning birinchi bo'sh maydoni (accent, to'lqin) → «Keyingi» → «Saqlash».
-- Artefakt-strip (U-042): shu ekrandan — «Ikki sonim · n/3» (ixcham); 8, 9-ekranlarda ko'rinadi; test, arena, podium va yakunda yo'q (E 50).
+- Artefakt-strip «Ikki sonim · n/3» 8, 9-ekranlarda yo'q — u 7-ekran sanog'i edi, u yerda vazifasi yo'q (8-ekranda kartaning o'zi turadi) *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*.
 - Nishon: Two Numbers! (saqlanganda — bonus, ish bajarilgan; P-048).
 - Mentor rejimi: forma o'rniga Mentor misoli (ochiq; A-6). Mentor statistikasi: «Ikki sonni saqlaganlar».
 - O'qituvchi eslatmasi: 12-Modulda kanallarga pul to'lash talab qilinmagan — sarflangan pul 0 bo'lishi kutiladi: bu yaxshi ham, yomon ham emas, holat. Kim to'laydi — rol bilan («ota-ona», «o'qituvchi», «tashkilotchi»), ism yozilmaydi.
@@ -303,7 +304,7 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` + `10-FILTR.md` · `12-PmGrowthPitch
 - Sarlavha: **Ikki soningiz qayerdan — sherigingizga ayta olasizmi?** (53) · yakka rejimda: **Ikki soningiz qayerdanligini ayta olasizmi?** (43)
 - Mentor: Avval «1 daqiqani boshlash»ni bosib gapiring — keyin qurilmangizni uzating, u har savolga belgi qo'yadi.
   Yakka rejimda: Savollarni o'zingizga bering va har biriga halol belgi qo'ying.
-- Tugmalar (ixcham, tepada): 1 Ayting · 2 Belgilang · 3 Tuzating
+- Tugmalar (ixcham, tepada): 1 Ayting · 2 Belgilang · 3 Tuzating *(✎ F-1015-164: «Belgilang» — gapirilgach yoki yakka rejimda, «Tuzating» — ✕ bo'lsa chiqadi; undan oldin ko'rinmaydi)*
 - 1-tugma: «Ikki sonim» kartasi (7-ekrandan, ixcham) butun enga; taymer «1 daqiqani boshlash» · «To'xtatish» (1:00 dan keyin to'xtamaydi — kulrang «+m:ss»). Juftlik yo'rig'i (bir qator): Avval A aytadi, B tinglaydi; keyin almashasiz. (46)
 - 2-tugma — uch savolli varaq (sherik to'ldiradi, gapiruvchining qurilmasida; bitta manba `SHERIK_SAVOL`): har qator — savol · ✓ / ✕ · izoh (placeholder: `Nima yetishmadi?`):
   1) «Yangi foydalanuvchilar soni qayerdan olingan?» 
@@ -470,8 +471,10 @@ qator(meniki.yorliq + " · keltiradi, taxmin: " + pulMatn);
 - Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
 - Tartib: chip va ball · sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
 - Izoh (MD): ① — real odam bilan, lekin suhbat emas: o'quvchi o'z sonini tushuntiradi, narx so'ramaydi va pul haqida kelishmaydi (pul suhbati — 6-dars ishi, bu yerda va'da qilinmaydi). ② — asosiy fikrning shaxsiy qo'llanishi (javob — o'z keltiradigan puli; TAYANCHGA SAVOL 16).
   «Kim bilan» — HwCard yorlig'i (12-Modul darslari bilan bir). Muddat «keyingi darsgacha» — keyingi dars nomi faqat «Keyingi dars» qatorida (T-038).
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ---
 

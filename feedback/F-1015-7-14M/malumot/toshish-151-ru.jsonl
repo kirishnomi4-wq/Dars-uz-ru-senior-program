@@ -1,0 +1,63 @@
+{"key":"m5-07","lid":"bot-full-project-05-07-v18","s":6,"total":12,"z":[{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"npm run start:dev"}]}
+{"key":"m5-10","lid":"bot-ai-agent-05-10-v18","s":3,"total":20,"z":[{"el":"span.ag-cyc-node","quti":"ag-cyc-node","tash":-1,"ichki":-5,"txt":"Восприятие"}]}
+{"key":"m6-05","lid":"claude-skills-06-05-v18","s":1,"total":20,"z":[{"el":"span.","quti":"editor-body","tash":-8,"ichki":-6,"txt":"Писать короткое продающее описание для т"}]}
+{"key":"m6-02","lid":"pm-m6d2-v1","s":15,"total":16,"z":[{"el":"span.hw-tok","quti":"hw-big","tash":-26,"ichki":-18,"txt":"измерение"}]}
+{"key":"m6-05","lid":"claude-skills-06-05-v18","s":3,"total":20,"z":[{"el":"span.","quti":"editor-body","tash":-8,"ichki":-6,"txt":"Писать короткое продающее описание для т"}]}
+{"key":"m6-05","lid":"claude-skills-06-05-v18","s":12,"total":20,"z":[{"el":"span.","quti":"editor-body","tash":-8,"ichki":-6,"txt":"Писать короткое продающее описание для т"}]}
+{"key":"m6-06","lid":"pm-m6d6-v1","s":15,"total":16,"z":[{"el":"span.hw-tok","quti":"hw-big","tash":-38,"ichki":-6,"txt":"человек"}]}
+{"key":"m6-10","lid":"rn-app-06-10-v18","s":9,"total":20,"z":[{"el":"span.","quti":"editor-body","tash":-8,"ichki":-6,"txt":"// BACKEND — адрес сервера из уроков по "}]}
+{"key":"m6-09","lid":"rn-basics-06-09-v18","s":16,"total":20,"z":[{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"import { View, Text } from 'react-native"}]}
+{"key":"m6-09","lid":"rn-basics-06-09-v18","s":19,"total":20,"z":[{"el":"span.cs-tok","quti":"cs-cap","tash":-35,"ichki":-5,"txt":"Pressable"}]}
+{"key":"m6-10","lid":"rn-app-06-10-v18","s":16,"total":20,"z":[{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"onPress={() => navigation.navigate('Deta"}]}
+{"key":"m6-12","lid":"pm-m6d12-v1","s":15,"total":16,"z":[{"el":"span.hw-tok","quti":"hw-big","tash":-20,"ichki":-24,"txt":"начинается"}]}
+{"key":"m7-01","lid":"pm-m7d1-v1","s":2,"total":17,"z":[{"el":"span.pp-pm-qator","quti":"pp-pm-qator","tash":-3,"ichki":-1,"txt":"+Пополнить баланс"}]}
+{"key":"m7-01","lid":"pm-m7d1-v1","s":9,"total":17,"z":[{"el":"span.ak-matn","quti":"ak","tash":-4,"ichki":-5,"txt":"На перемене не найти свободную розетку, "}]}
+{"key":"m7-03","lid":"pm-m7d3-v1","s":11,"total":17,"z":[{"el":"span.im-kd-iz","quti":"im-vsc","tash":87,"ichki":-87,"txt":"// sanoq.js — интервью «Maydon»: в сколь"},{"el":"span.im-kd-iz","quti":"im-vsc","tash":74,"ichki":-74,"txt":"// s — жалоба, которую считаем в этом пр"},{"el":"span.im-kd-iz","quti":"im-vsc","tash":5,"ichki":-5,"txt":"// если в записи есть s — прибавьте к so"}]}
+{"key":"m7-06","lid":"m7-06-v1","s":0,"total":12,"z":[{"el":"span.ad-ustun-n","quti":"ad-ustun","tash":10,"ichki":-16,"txt":"Забронировал"}]}
+{"key":"m7-06","lid":"m7-06-v1","s":1,"total":12,"z":[{"el":"span.ad-ustun-n","quti":"ad-ustun","tash":10,"ichki":-16,"txt":"Забронировал"}]}
+{"key":"m7-05","lid":"m7-05-v1","s":5,"total":20,"z":[{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"transition: transform 0.15s;"}]}
+{"key":"m7-05","lid":"m7-05-v1","s":8,"total":20,"z":[{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"background-color: lightgray;"}]}
+{"key":"m7-12","lid":"m7-12-v1","s":1,"total":16,"z":[{"el":"b.ps-slayd-nom","quti":"ps-slayd","tash":-7,"ichki":-5,"txt":"Пользователь"}]}
+{"key":"m8-01","lid":"pm-m8d1-okr-v1","s":2,"total":15,"z":[{"el":"span.okr-u-t","quti":"okr-ustun","tash":5,"ichki":-10,"txt":"Забронировали"}]}
+{"key":"m7-12","lid":"m7-12-v1","s":10,"total":16,"z":[{"el":"span.","quti":"ps-kod","tash":-9,"ichki":-5,"txt":"{ matn: \"Не нашёл кнопку «Band qilish»\","}]}
+{"key":"m8-01","lid":"pm-m8d1-okr-v1","s":8,"total":15,"z":[{"el":"span.okr-u-t","quti":"okr-ustun","tash":5,"ichki":-10,"txt":"Забронировали"}]}
+{"key":"m8-06","lid":"m8-06-v1","s":0,"total":12,"z":[{"el":"div.ta-tel-manzil","quti":"ta-tel-manzil","tash":-6,"ichki":-2,"txt":"maydon-….netlify.app"}]}
+{"key":"m8-06","lid":"m8-06-v1","s":1,"total":12,"z":[{"el":"div.ta-tel-manzil","quti":"ta-tel-manzil","tash":-6,"ichki":-2,"txt":"maydon-….netlify.app"},{"el":"div.ta-tel-manzil","quti":"ta-tel-manzil","tash":56,"ichki":-63,"txt":"maydon-….netlify.app/maxfiylik"}]}
+{"key":"m8-02","lid":"m8-02-event-tracking-v1","s":9,"total":18,"z":[{"el":"i.","quti":"hc-uch-k","tash":12,"ichki":-26,"txt":"→"},{"el":"i.","quti":"hc-uch-k","tash":12,"ichki":-26,"txt":"→"}]}
+{"key":"m8-06","lid":"m8-06-v1","s":2,"total":12,"z":[{"el":"div.ta-tel-manzil","quti":"ta-tel-manzil","tash":-6,"ichki":-2,"txt":"maydon-….netlify.app"}]}
+{"key":"m8-04","lid":"m8-04-v1","s":7,"total":12,"z":[{"el":"span.","quti":"","tash":-2,"ichki":-6,"txt":"выбрал время"},{"el":"span.","quti":"","tash":0,"ichki":-8,"txt":"забронировал"}]}
+{"key":"m8-05","lid":"m8-05-security-basics-v1","s":8,"total":18,"z":[{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"find({ where: { telefon } })"}]}
+{"key":"m8-06","lid":"m8-06-v1","s":7,"total":12,"z":[{"el":"div.ta-tel-manzil","quti":"ta-tel-manzil","tash":-6,"ichki":-2,"txt":"maydon-….netlify.app"}]}
+{"key":"m8-05","lid":"m8-05-security-basics-v1","s":11,"total":18,"z":[{"el":"span.xr-belgi-t","quti":"xr-belgi","tash":1050,"ichki":-1050,"txt":"В запросе поиска текст не вставлен (пара"},{"el":"span.xr-belgi-t","quti":"xr-belgi","tash":835,"ichki":-835,"txt":"Имя выводится обычным текстом"},{"el":"span.xr-belgi-t","quti":"xr-belgi","tash":906,"ichki":-906,"txt":"JWT_SECRET только из .env"}]}
+{"key":"m8-08","lid":"m8-08-v1","s":8,"total":12,"z":[{"el":"span.pu-sql-kod","quti":"pu-sql","tash":185,"ichki":-185,"txt":"SELECT variant,\n       COUNT(DISTINCT br"}]}
+{"key":"m8-09","lid":"m8-09-v1","s":6,"total":12,"z":[{"el":"p.pr-pt","quti":"pr-suhbat-t","tash":51,"ichki":-61,"txt":"Почему важно: если лимит на сайте, лишни"},{"el":"p.pr-pt","quti":"pr-suhbat-t","tash":246,"ichki":-256,"txt":"Почему важно: если Backend задержится, м"},{"el":"p.pr-pt","quti":"pr-suhbat-t","tash":30,"ichki":-40,"txt":"Предложение: добавьте сюда состояние заг"}]}
+{"key":"m8-09","lid":"m8-09-v1","s":8,"total":12,"z":[{"el":"span.pr-rv-iz","quti":"pr-rv-q","tash":23,"ichki":-22,"txt":"Почему остался B? Разница кажется неболь"},{"el":"span.pr-rv-s","quti":"pr-rv-q","tash":114,"ichki":-114,"txt":"A — 12 из 42, B — 17 из 40; 82 браузера "},{"el":"span.pr-rv-iz","quti":"pr-rv-q","tash":8,"ichki":-8,"txt":"А если на сайте отключать кнопку на мину"},{"el":"span.pr-rv-s","quti":"pr-rv-q","tash":236,"ichki":-236,"txt":"Запрос можно отправить и без сайта; лими"},{"el":"span.pr-rv-iz","quti":"pr-rv-q","tash":135,"ichki":-135,"txt":"Если Backend задержится, список пуст — н"},{"el":"span.pr-rv-s","quti":"pr-rv-q","tash":121,"ichki":-121,"txt":"Проверил, так и есть: состояние было тол"}]}
+{"key":"m9-01","lid":"pm-m9d1-v1","s":0,"total":15,"z":[{"el":"i.","quti":"","tash":207,"ichki":-214,"txt":"На перемене не найти свободную розетку д"},{"el":"i.","quti":"","tash":341,"ichki":-348,"txt":"Если колесо велосипеда проколется, масте"},{"el":"i.","quti":"","tash":376,"ichki":-383,"txt":"Приходите на поле — занято; чтобы узнать"},{"el":"i.","quti":"","tash":206,"ichki":-213,"txt":"Чтобы узнать, что сегодня в столовой, вс"}]}
+{"key":"m9-03","lid":"pm-m9d3-v1","s":1,"total":16,"z":[{"el":"span.io-yk-k","quti":"io-rj-y","tash":41,"ichki":-49,"txt":"игрок, 16 лет, часто сам собирает игру"}]}
+{"key":"m9-05","lid":"pm-m9d5-v1","s":0,"total":16,"z":[{"el":"span.pr-elon-b","quti":"pr-elon-b","tash":-4,"ichki":-4,"txt":"Присоединяюсь"}]}
+{"key":"m9-05","lid":"pm-m9d5-v1","s":2,"total":16,"z":[{"el":"span.pr-elon-b","quti":"pr-elon-b","tash":-4,"ichki":-4,"txt":"Присоединяюсь"}]}
+{"key":"m9-07","lid":"m9-07-v1","s":0,"total":20,"z":[{"el":"span.jt-maydon","quti":"jt-maydon","tash":21,"ichki":-26,"txt":"Сколько человек"}]}
+{"key":"m9-05","lid":"pm-m9d5-v1","s":8,"total":16,"z":[{"el":"span.pr-elon-b","quti":"pr-elon-b","tash":-4,"ichki":-4,"txt":"Присоединяюсь"}]}
+{"key":"m9-04","lid":"pm-m9d4-v1","s":15,"total":16,"z":[{"el":"span.hw-tok","quti":"hw-big","tash":-27,"ichki":-17,"txt":"формулировка проблемы"}]}
+{"key":"m9-09","lid":"m9-09-v1","s":1,"total":19,"z":[{"el":"span.ep-k-son","quti":"ep-karta","tash":0,"ichki":-6,"txt":"4 / 8"},{"el":"span.ep-k-son","quti":"ep-karta","tash":5,"ichki":-11,"txt":"9 / 10"}]}
+{"key":"m9-09","lid":"m9-09-v1","s":5,"total":19,"z":[{"el":"span.ep-k-son","quti":"ep-karta-btn","tash":0,"ichki":-6,"txt":"4 / 8"},{"el":"span.ep-k-son","quti":"ep-karta-btn","tash":5,"ichki":-11,"txt":"9 / 10"}]}
+{"key":"m9-07","lid":"m9-07-v1","s":15,"total":20,"z":[{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"cd {repo}"}]}
+{"key":"m9-08","lid":"m9-08-v1","s":15,"total":20,"z":[{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"git clone https://github.com/{login}/{re"}]}
+{"key":"m9-09","lid":"m9-09-v1","s":14,"total":19,"z":[{"el":"span.ep-k-son","quti":"ep-karta","tash":0,"ichki":-6,"txt":"4 / 8"},{"el":"span.ep-k-son","quti":"ep-karta","tash":5,"ichki":-11,"txt":"9 / 10"}]}
+{"key":"m9-09","lid":"m9-09-v1","s":15,"total":19,"z":[{"el":"span.ep-k-son","quti":"ep-karta","tash":0,"ichki":-6,"txt":"4 / 8"},{"el":"span.ep-k-son","quti":"ep-karta","tash":5,"ichki":-11,"txt":"9 / 10"}]}
+{"key":"m9-14","lid":"m9-14-v1","s":3,"total":12,"z":[{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"npm run start:dev"}]}
+{"key":"m10-02","lid":"m10-02-v1","s":9,"total":20,"z":[{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"ulanish.on('oyin-ozgardi', …)"}]}
+{"key":"m10-06","lid":"pm-m10d6-v1","s":4,"total":16,"z":[{"el":"b.","quti":"ct-tel","tash":12,"ichki":-21,"txt":"Футбольная группа махалли · 60 человек"}]}
+{"key":"m10-08","lid":"pm-m10d8-v1","s":4,"total":12,"z":[{"el":"span.qs-url-t","quti":"qs-url","tash":17,"ichki":-27,"txt":"maydon-jamoa-….netlify.app/sanoq.html"},{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"SELECT nom, COUNT(DISTINCT qurilma_id) F"}]}
+{"key":"m10-05","lid":"m10-05-v1","s":14,"total":19,"z":[{"el":"span.bf-belgi","quti":"bf-belgi","tash":-6,"ichki":-2,"txt":"Подключено"}]}
+{"key":"m10-05","lid":"m10-05-v1","s":18,"total":19,"z":[{"el":"span.hw-tok","quti":"hw-big","tash":-37,"ichki":-7,"txt":"не повторилось"}]}
+{"key":"m10-10","lid":"pm-m10d10-v1","s":9,"total":16,"z":[{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"SELECT COUNT(*) FROM {jadval} WHERE namu"}]}
+{"key":"m10-12","lid":"pm-m10d12-v1","s":11,"total":16,"z":[{"el":"span.gp-bolak-q","quti":"gp-bolak","tash":373,"ichki":-383,"txt":"Организатор объявляет игру, игроки присо"}]}
+{"key":"m11-07","lid":"pm-m11d7-v1","s":1,"total":12,"z":[{"el":"code.","quti":"st-br-bar","tash":49,"ichki":-58,"txt":"maydon-jamoa-….netlify.app/oferta.html"}]}
+{"key":"m11-03","lid":"m11-03-v1","s":15,"total":20,"z":[{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"node -e \"console.log(require('crypto').r"}]}
+{"key":"m11-03","lid":"m11-03-v1","s":16,"total":20,"z":[{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"SELECT id FROM oyinchilar WHERE login = "}]}
+{"key":"m11-03","lid":"m11-03-v1","s":19,"total":20,"z":[{"el":"span.hw-tok","quti":"hw-big","tash":-15,"ichki":-29,"txt":"тестовый режим"}]}
+{"key":"m11-08","lid":"m11-08-v1","s":3,"total":12,"z":[{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"git ls-files backend/.env"}]}
+{"key":"m11-10","lid":"m11-10-v1","s":6,"total":12,"z":[{"el":"em.","quti":"rf-maydon","tash":12,"ichki":-18,"txt":"Код приглашения (если есть)"}]}
+{"key":"m12-06","lid":"m12-06-v1","s":3,"total":12,"z":[{"el":"span.dp-tel-url","quti":"dp-tel-bar","tash":-6,"ichki":-4,"txt":"maydon-jamoa-….netlify.app"}]}
+{"key":"m12-06","lid":"m12-06-v1","s":8,"total":12,"z":[{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"npx expo export -p web"}]}

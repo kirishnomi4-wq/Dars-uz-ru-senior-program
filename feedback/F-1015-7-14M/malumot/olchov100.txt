@@ -1,0 +1,8 @@
+7 -M | dars 11 | emoji (uz matnda) 409 | emoji (izohsiz kod) 1438 | noyob hex 126 | ekran 184 | tugma klasslari 4 | {'test': 43, 'exploration': 40, 'practice': 20, 'case': 15, 'hook': 11, 'rule': 11}
+8 -M | dars 14 | emoji (uz matnda) 677 | emoji (izohsiz kod) 2479 | noyob hex 147 | ekran 265 | tugma klasslari 4 | {'exploration': 84, 'test': 66, 'rule': 17, 'case': 16, 'practice': 16, 'hook': 14}
+9 -M | dars 12 | emoji (uz matnda) 208 | emoji (izohsiz kod) 874 | noyob hex 166 | ekran 180 | tugma klasslari 2 | {'test': 40, 'exploration': 36, 'practice': 27, 'hook': 12, 'stats': 12, 'flashcards': 12}
+10 -M | dars 11 | emoji (uz matnda) 197 | emoji (izohsiz kod) 879 | noyob hex 87 | ekran 162 | tugma klasslari 2 | {'test': 37, 'exploration': 36, 'practice': 29, 'hook': 11, 'rule': 11, 'stats': 11}
+11 -M | dars 16 | emoji (uz matnda) 309 | emoji (izohsiz kod) 1313 | noyob hex 332 | ekran 242 | tugma klasslari 3 | {'test': 55, 'exploration': 47, 'practice': 46, 'hook': 16, 'rule': 16, 'stats': 16}
+12 -M | dars 12 | emoji (uz matnda) 224 | emoji (izohsiz kod) 991 | noyob hex 114 | ekran 175 | tugma klasslari 2 | {'test': 38, 'practice': 38, 'exploration': 34, 'hook': 12, 'rule': 12, 'stats': 12}
+13 -M | dars 12 | emoji (uz matnda) 252 | emoji (izohsiz kod) 1036 | noyob hex 104 | ekran 157 | tugma klasslari 2 | {'practice': 33, 'test': 33, 'exploration': 29, 'hook': 12, 'rule': 12, 'stats': 12}
+14 -M | dars 13 | emoji (uz matnda) 278 | emoji (izohsiz kod) 1177 | noyob hex 80 | ekran 170 | tugma klasslari 2 | {'test': 37, 'exploration': 33, 'practice': 33, 'hook': 13, 'rule': 13, 'stats': 13}

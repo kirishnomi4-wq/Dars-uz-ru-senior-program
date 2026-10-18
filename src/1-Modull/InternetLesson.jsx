@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo, createContext, useContext } from 'react';
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, setLiveLang, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, setLiveLang, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 
 // ===== Mentor avatari — oddiy emoji icon (rasmga bog'liq emas) =====
 
@@ -2613,7 +2613,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await live.quizControl('lobby', -1); } catch { return; } }
+    if (isMentorL && quizSt === 'off') { try { await live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); // uydagi o'quvchi — mashq rejimida
     setArena(true);
   };
@@ -2674,11 +2674,11 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <div className="fin-emoji">🎉</div>
             <h3 className="fin-h">{tr({ uz: 'Tabriklaymiz!', ru: 'Поздравляем!' })}</h3>
             <p className="fin-sub">{tr({ uz: 'Internet darsini muvaffaqiyatli tugatdingiz. Endi sayt sizgacha qanday yetib kelishini bilasiz.', ru: 'Вы успешно завершили урок об интернете. Теперь вы знаете, как сайт доходит до вас.' })}</p>
-            <button className="btn-white-accent" onClick={onFinish} style={{ padding: '12px 32px', fontSize: 15 }}>{tr({ uz: 'Tamom', ru: 'Готово' })}</button>
+            <FinishBtn className="btn-white-accent" onClick={onFinish} style={{ padding: '12px 32px', fontSize: 15 }}>{tr({ uz: 'Tamom', ru: 'Готово' })}</FinishBtn>
           </div>
         </div>
       )}
-      {arena && <QuizArena live={live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+      {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
     </Stage>
   );
 };
@@ -4326,8 +4326,8 @@ export default function HtmlLesson({ lang: langProp, onFinished, liveToken }) {
         .dd-pool { display: flex; flex-wrap: wrap; gap: 9px; min-height: 48px; padding: 10px; border-radius: 14px; background: ${T.bg}; position: relative; z-index: 1; }
         .dd-slots { position: relative; }
         .dd-pool-empty { color: ${T.ink3}; font-size: 12.5px; font-style: italic; align-self: center; }
-        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: ${T.accent}; background: ${T.paper}; border: 2px solid ${T.accent}; border-radius: 11px; padding: 9px 13px; cursor: grab; touch-action: none; box-shadow: 0 6px 14px -8px rgba(${T.shadowBase},.35); transition: transform .12s; user-select: none; }
-        .dd-chip::before { content: '⠿'; margin-right: 7px; opacity: .55; font-weight: 400; } /* F-0926-06 (159/15): oq fon + 2px accent chegara + ushlagich */
+        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 11px; padding: 11px 15px; cursor: grab; touch-action: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: transform .12s; user-select: none; }
+        .dd-chip::before { content: '⠿'; margin-right: 7px; opacity: .75; font-weight: 400; } /* F-1015-352 (F-1002-59): to'ldirilgan gradient chip, ⠿ ushlagich sudralishni aytadi */
         .dd-chip:hover { transform: translateY(-2px); }
         .dd-chip:active { cursor: grabbing; }
         .dd-done { font-weight: 700; color: ${T.success}; font-size: 14.5px; }

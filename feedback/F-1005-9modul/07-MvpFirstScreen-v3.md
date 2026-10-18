@@ -204,6 +204,7 @@ kartochkalar alohida ekran (88, SABOQ 12 — P-058 dan farq, foydalanuvchi qaror
   1. Qayerda: saytdagi vaqt kataklari
   2. Nima qilsin: kun almashtirilsa, kataklar shu kun uchun Backend'dan kelsin
   3. Nima buzilmasin: katak animatsiyasi va `vaqt-tanladi` hodisasi
+  Bashoratgacha qatorlar oddiy ro'yxat (ramkasiz, bosilmaydi); taxmin belgilangach bosiladigan kartaga aylanadi, birinchisida halqa. *(✎ F-1015-164)*
 - O'ngda «Maydon» maketi — agent ishidan keyin: kun almashtirgichi bor, «‹ Bugun ›», olti katak bo'sh, holat qatori `GET /vaqtlar · Backend`, hodisa sanog'i `vaqt-tanladi · 0`.
 - **Harakat → Vizual o'zgarish:** o'quvchi talab qatorini bosadi → maket o'sha qatorni o'zi bajarib ko'rsatadi:
   - 1-qator → kataklar joyi yoritiladi, ikkinchi ro'yxat yo'q → qator ✓, bir qator: «Kataklar o'z joyida, ikkinchi ro'yxat yo'q.» (43)
@@ -315,11 +316,12 @@ kartochkalar alohida ekran (88, SABOQ 12 — P-058 dan farq, foydalanuvchi qaror
   - Agent «Tayyor» desa ham, talabning har qatorini tekshirasiz
   - Mos kelmagan joyni aniq yozib, tuzatishni so'raysiz
 - Uyga vazifa — yo'q (172.4: ish repo'da, keyingi dars shu repo ustida).
-- Keyingi dars — «Yaxshi interfeysdan nimani olasiz?»: bitta yaxshi namuna tanlab, animatsiyalarni agent orqali qo'shasiz.
 - Nishonlaringiz — N/3
-- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q; kirishda CODE STRIKE to'liq ko'rinadi.
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Keyingi dars — «Yaxshi interfeysdan nimani olasiz?»: bitta yaxshi namuna tanlab, animatsiyalarni agent orqali qo'shasiz.
+- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Nishonlaringiz · Keyingi dars. Ichki skroll qutisi yo'q; kirishda CODE STRIKE to'liq ko'rinadi.
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
 ✎ F-1005-88: kartochkalar yakundan alohida ekranga o'tdi.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ---
 

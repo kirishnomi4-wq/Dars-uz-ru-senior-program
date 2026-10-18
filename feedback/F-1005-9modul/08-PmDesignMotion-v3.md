@@ -84,11 +84,11 @@ Tashqi audit (ChatGPT) Filtri: `08-FILTR.md` — 05.10.2026 (atama «namuna» �
 - Sarlavha: **Dars oxirida Maydon jonli ko'rinadi.** (36)
 - Mentor: Kodni agent — Antigravity — yozadi, siz unga talab berasiz. Talab o'tgan darsdagidek: qayerda, nima qilsin, nima buzilmasin.
 - Chap — «Dars oxirida»: Maydon *jonli* holatda, bir marta o'zi yuradi (DE-200): kataklar uch ustunda birin-ketin kiradi → › bosiladi → Yakshanba o'ngdan kiradi.
-- O'ng (01 · matn · teg; bosilmaydi, P-015):
-  - 01 · Dizayner ekranidan nimani olish kerakligini ajratasiz · `tanlash`
-  - 02 · Bitta usul ilovadan ilovaga qanday o'tganini ko'rasiz · `voqea`
-  - 03 · O'z g'oyangiz uchun Dribbble'dan usul topasiz · `izlash`
-  - 04 · Maydon'ga usul va animatsiyalarni agent orqali qo'shasiz · `amaliyot`
+- O'ng (01 · matn; bosilmaydi, P-015; teg yo'q) *(✎ F-1015-114, 208-qonun 0-band: takror olindi)*:
+  - 01 · Dizayner ekranidan nimani olish kerakligini ajratasiz
+  - 02 · Bitta usul ilovadan ilovaga qanday o'tganini ko'rasiz
+  - 03 · O'z g'oyangiz uchun Dribbble'dan usul topasiz
+  - 04 · Maydon'ga usul va animatsiyalarni agent orqali qo'shasiz
 - Pastki qator (mono, kichik): repo `maydon` · boshlanish `dars-07-done` · tayyor `dars-08-done`
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz
 - Izoh (MD): 02–04 dagi «usul» — menyu ostidagi yozuv bilan bir xil («bitta usul va animatsiyalar», P-015); atama ta'rifi 2-ekranda.
@@ -143,7 +143,7 @@ Tashqi audit (ChatGPT) Filtri: `08-FILTR.md` — 05.10.2026 (atama «namuna» �
 - Sarlavha: **Ro'yxatni pastga tortib yangilash qayerdan chiqqan?** (50)
 - Mentor: Tweetie — iPhone uchun Twitter ilovasi edi, uni dasturchi Loren Brichter yasagan. Twitter — bugungi X ijtimoiy tarmog'i.
   ✎ (quruvchi) SABOQ 8 va 2: bu gap kodda 1/5 sahnasida brend tanishuvi bo'lib turadi (ikki qator: «Tweetie — …», «Twitter — …», nom o'z rangida); Mentor har bosqichda bosqich gapini aytadi, bashorat bosqichida — oldingi gapda qoladi.
-- Nuqtalar (5) · yorliq **Tweetie · N/5** (bashorat kartasida ham) · maket `TortishMaket` (telefon ramkasi, postlar — kulrang chiziqlar, logotip yo'q; strelka va aylanuvchi belgi — chizilgan misol).
+- Nuqtalar qatori yo'q — tugma «Keyingi bosqich (N/5)» aytadi; bashorat yorlig'i «Avval o'zingiz belgilab ko'ring» *(✎ F-1015-114, 208-qonun 0-band: takror olindi)* · maket `TortishMaket` (telefon ramkasi, postlar — kulrang chiziqlar, logotip yo'q; strelka va aylanuvchi belgi — chizilgan misol).
 - Bosqichlar (karta matni qisqa, karta cho'zilmaydi):
   - 1/5 **Yangilash tugmasi tepada** — O'sha paytdagi Twitter ilovalarida yangi postni ko'rish uchun ro'yxat tepasiga chiqib, yangilash tugmasini bosish kerak edi. ·
     maket: barmoq ro'yxatni tepaga suradi, tepada tugma bosiladi, kutish belgisi.
@@ -155,7 +155,7 @@ Tashqi audit (ChatGPT) Filtri: `08-FILTR.md` — 05.10.2026 (atama «namuna» �
     maket: uch telefon, har biri o'z rangida (logotipsiz), uchalasida bir xil tortish harakati.
 - Bashorat natijasi (`QTaxmin`): «Taxminingiz: … · haqiqatda: …» yoki «Taxminingiz to'g'ri chiqdi».
 - **Harakat → Vizual o'zgarish:** «Keyingi bosqich» yoki bashorat varianti → `TortishMaket` holati o'zgaradi: tugma (tepaga surish + bosish) → tortish (ro'yxat pastga, strelka,
-  aylanuvchi belgi, yangi post) → uch telefon (ko'rinishi har xil, harakat bir xil). Bashoratda tanlangan variant ✓/✗ va `QTaxmin` qatori.
+  aylanuvchi belgi, yangi post) → uch telefon (ko'rinishi har xil, harakat bir xil). Bashoratdan keyin `QTaxmin` qatori (variantda ✓/✗ yo'q).
 - Xulosa (5/5 dan keyin, hisoblagichsiz): Bitta usul turli ko'rinishdagi ilovalarda ishladi: u «Yangi post bormi?» savoliga javob berardi. (96)
 - Tugma (pastki): Keyingi bosqich (N/5) → Davom etish
 - O'qituvchi eslatmasi: Tortib turgandagi belgi — animatsiya: u foydalanuvchiga nima bo'layotganini aytadi. Amaliyotda Maydon'ga ham animatsiyalarni shu maqsadda qo'shamiz.

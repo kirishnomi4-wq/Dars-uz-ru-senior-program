@@ -56,11 +56,11 @@ const kontrast = (p) => p.evaluate(() => {
   const { p, ctx, errs } = await och(self);
   const K = []; const kk = async (e) => K.push(...(await kontrast(p)).map(x => ({ ...x, e })));
   await p.click('.hook-option >> nth=1'); await p.waitForTimeout(400);
-  ok('s0: javob — «davom ettirasiz»', (await p.innerText('.stage-content')).includes('Bugun saytingizni davom ettirasiz'));
+  ok('s0: javob qisqa — «Bugun saytni internetga chiqarib, havola olasiz.» (216-qonun, F-1015-393)', (await p.innerText('.hook-ack')).includes('Bugun saytni internetga chiqarib, havola olasiz.') && (await p.innerText('.hook-ack')).length <= 120);
   await surat(p, '1280-00-s0'); await nx(p); await p.waitForTimeout(600);
   ok('s0 → reja', (await raqam(p)) === '02/11');
   const rj = await p.innerText('.stage-content');
-  ok('reja: «Saytingizni davom ettirasiz» + «Avval tayyorlaning» (3)', rj.includes('Saytingizni davom ettirasiz') && !rj.includes('yasaysiz') && await p.evaluate(() => document.querySelectorAll('.am-tayyor-l li').length === 3));
+  ok('reja: «Saytingizni davom ettirasiz» + «Avval tayyorlaning» (3)', rj.includes('Saytingizni davom ettirasiz') && !rj.includes('yasaysiz') && await (async () => { await p.click('.am-tt-btn'); await p.waitForTimeout(400); const _tt = await p.evaluate(() => document.querySelectorAll('.am-tt-oyna .am-tayyor-l li').length); await p.keyboard.press('Escape'); await p.waitForTimeout(250); return _tt === 3; })()); // F-1015-370: oynada
   await kk('reja'); await surat(p, '1280-01-reja'); await nx(p); await p.waitForTimeout(700);
   // a1
   ok('a1 ochildi, «Davom etish» faol', (await raqam(p)) === '03/11' && !(await nxT(p)).d, await raqam(p));
@@ -101,7 +101,7 @@ const kontrast = (p) => p.evaluate(() => {
   ok("a2: prompt — tanlangan animatsiya, faqat style.css, reduced-motion", pm2.includes("faqat style.css'ni o'zgartir") && pm2.includes("Sichqoncha kartaga kelganda") && pm2.includes('prefers-reduced-motion'));
   ok("a2: qadamlar yopiq tugmada, o'ngda namuna ostida (F-1015-330)", await p.evaluate(() => { const t = document.querySelector('.am-qt'); const col = t && t.closest('.col'); return !!t && !t.querySelector('.am-qadam') && !!col && !!col.querySelector('.ds') && (col.querySelector('.ds').compareDocumentPosition(t) & 4) > 0; }));
   await p.click('.am-qt-btn'); await p.waitForTimeout(400);
-  ok('a2: tugma bosilsa 3 qadam ochiladi', await p.evaluate(() => document.querySelectorAll('.am-qt .am-qadam li').length === 3));
+  ok('a2: tugma bosilsa 3 qadam ochiladi', await p.evaluate(() => document.querySelectorAll('.am-tt-oyna .am-qadam li').length === 3)); await p.keyboard.press('Escape'); await p.waitForTimeout(250); // F-1015-372: «Qadamlar» oynada
   await kk('a2'); await surat(p, '1280-03-a2');
   await nx(p); await p.waitForTimeout(700);
   // a3 scroll (F-1015-329)
@@ -115,7 +115,7 @@ const kontrast = (p) => p.evaluate(() => {
     if (id === 'chiziq') await surat(p, '1280-04-a3-chiziq');
   }
   await p.click('.am-qt-btn'); await p.waitForTimeout(400);
-  ok('a3: qadamlar tugmasi — 3 qadam ochiladi', await p.evaluate(() => document.querySelectorAll('.am-qt .am-qadam li').length === 3));
+  ok('a3: qadamlar tugmasi — 3 qadam ochiladi', await p.evaluate(() => document.querySelectorAll('.am-tt-oyna .am-qadam li').length === 3)); await p.keyboard.press('Escape'); await p.waitForTimeout(250); // F-1015-372: «Qadamlar» oynada
   const pm3 = await p.innerText('.am-masalan');
   ok('a3: prompt — sof CSS (animation-timeline), JavaScript ishlatma', pm3.includes('animation-timeline') && pm3.includes('JavaScript ishlatma') && pm3.includes('Parallaks') === false && pm3.includes('sekinroq siljisin'));
   await kk('a3'); await surat(p, '1280-04-a3');

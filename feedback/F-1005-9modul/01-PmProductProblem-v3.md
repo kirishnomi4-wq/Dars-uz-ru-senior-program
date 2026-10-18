@@ -5,7 +5,7 @@ Fidbek: qator yoniga `>> …` yozing. Tasdiqlangach (GATE M) dars shu holatda qu
 Tashqi audit (ChatGPT) Filtri: `01-FILTR.md` — 05.10.2026 qo'llandi (ta'rif — GATE M 01-q0 A, kod mashqi — 01-q1 A).
 Pilot fidbeki F-1005-75…83 (qarorlar 76 A · 78 A · 79 A · 81 A · 83 A) va F-1005-85 (bashorat yopilmaydi, keyingi bosiladigan joy ko'rinadi) — 05.10.2026 kodga va shu MD ga qo'llandi (`QURUVCHI_SABOQ.md`).
 Testlar va to'g'ri javob o'rni: s3 = 3-variant (`correctIdx 2`) · s5 = 2 (`1`) · s7 = 4 (`3`) · s12 = 1 (`0`) — `INLINE_KEYS` shu bilan; arena 3/3/3/3.
-Dars turi: PM 2-tur (sof PM, PM-005) — artefakt yozma: uch mahsulot kartasi + o'nta muammo ro'yxati. USTAXONA — s8 va s10 (bittalab yozish).
+Dars turi: PM 2-tur (sof PM, PM-005) — artefakt yozma: uch mahsulot kartasi + beshta muammo ro'yxati. USTAXONA — s8 va s10 (bittalab yozish).
 Oldingi dars: 8-Modul «Raqamingiz nimani isbotlaydi?» (`m6-14`, 1-bosqich yakuni) · keyingi: «Besh odamdan nimani bilib olasiz?» (`m7-02`).
 
 ---
@@ -13,7 +13,7 @@ Oldingi dars: 8-Modul «Raqamingiz nimani isbotlaydi?» (`m6-14`, 1-bosqich yaku
 ## A. Darsning tayanchi
 
 1. **Dars nima beradi.** 2-bosqichning birinchi darsi: o'quvchi birinchi marta o'zi uchun emas, boshqa odam uchun quradigan narsani qidiradi.
-   Natija (dastur): uch ishlaydigan mahsulot tahlili + atrofdan o'nta muammo ro'yxati.
+   Natija (dastur): uch ishlaydigan mahsulot tahlili + atrofdan beshta muammo ro'yxati.
 2. **Ikki atama — misoldan KEYIN, bir marta (PM-030, T-011).** 2-ekranda o'quvchi «Sizsiz bir kun» tajribasini ko'radi, shundan keyin ikki tomon nom oladi.
    Ta'rif dars bo'yi so'zma-so'z shu (T-042) — xulosa, kartochka, recap, yakun:
    - **Loyiha** — boshlanishi va oxiri bor qurish ishi. Qisqa yorliq: «qurish ishi».
@@ -39,7 +39,7 @@ Oldingi dars: 8-Modul «Raqamingiz nimani isbotlaydi?» (`m6-14`, 1-bosqich yaku
 ## Darsning ipi va bitta vizual
 
 - **Ip:** «Kimga kerak?» savoli. Hook — portfolio saytingizni kim ochgan (nima uchun — ishingizni ko'rish uchun) → loyiha va mahsulot → uch ishlaydigan mahsulot → Dropbox: boshqalarga ham
-  kerakligi qanday bilindi → Mentorning muammo ro'yxati: **«Maydon» muammosi shu yerda birinchi bor topiladi** (o'nta muammodan biri, modul ipi shu yerdan) →
+  kerakligi qanday bilindi → Mentorning muammo ro'yxati: **«Maydon» muammosi shu yerda birinchi bor topiladi** (beshta muammodan biri, modul ipi shu yerdan) →
   o'quvchi sinfdoshi bilan o'z ro'yxatini yig'adi → bittasini tanlab, «yana kimlarda bor?» deb KIM qatorini yozadi.
 - **Maydon (tayanch, aynan):** KIM — o'yinchilar (maydonda o'ynaydigan o'smirlar) · MUAMMO — «Maydonga kelasiz — band; bo'sh vaqtni bilish uchun egasiga qo'ng'iroq qilish kerak.» ·
   YECHIM — bo'sh («hali yo'q»). Intervyu natijalari (5 kishidan 4 tasi…) bu darsda YO'Q — ular 3-darsda.
@@ -79,15 +79,15 @@ Oldingi dars: 8-Modul «Raqamingiz nimani isbotlaydi?» (`m6-14`, 1-bosqich yaku
 
 ## 1 · Reja  ← QReja
 - Eyebrow: Maqsad
-- Sarlavha: **Bugun atrofingizdan o'nta muammo yig'asiz.** (42)
+- Sarlavha: **Bugun atrofingizdan beshta muammo yig'asiz.** (42)
 - Mentor: Bu modulda quradigan narsangiz shunday ro'yxatdagi bitta muammodan boshlanadi.
-- Chap: «Dars oxirida — atrofingizdan muammolar ro'yxati» + vizual: o'nta qator-karta skeleti (matnsiz kulrang chiziqlar) 0.4 s oraliqda yashil ✓ oladi;
-  oxirida bittasi kattalashib to'liq auditoriya-karta bo'ladi: KIM va MUAMMO — skelet chiziq, YECHIM — uzuq chiziq «hali yo'q».
-- O'ng (01 · matn · teg):
-  - 01 · Mahsulot va loyiha farqini ajratasiz · `farq`
-  - 02 · Uchta ishlaydigan mahsulotni tahlil qilasiz · `tahlil`
-  - 03 · Dropbox boshqalarga kerakligi qanday bilinganini ko'rasiz · `voqea`
-  - 04 · Sinfdoshingiz bilan atrofdan muammo yig'asiz · `juftlik`
+- Chap: «Dars oxirida — atrofingizdan muammolar ro'yxati» + vizual: beshta qator-karta skeleti (bitta ustunda) (matnsiz kulrang chiziqlar) 0.4 s oraliqda yashil ✓ oladi.
+  Bo'sh auditoriya-karta yo'q — karta 13-ekranda o'z o'rnida chiqadi. *(✎ F-1015-113, 208-qonun 0-band: takror olindi)*
+- O'ng (01 · matn; teg-chip yo'q — matnni takrorlardi):
+  - 01 · Mahsulot va loyiha farqini ajratasiz
+  - 02 · Uchta ishlaydigan mahsulotni tahlil qilasiz
+  - 03 · Dropbox boshqalarga kerakligi qanday bilinganini ko'rasiz
+  - 04 · Sinfdoshingiz bilan atrofdan muammo yig'asiz
 - Harakat yo'q (reja ekrani) — vizual o'zi yoziladi. Skelet matnsiz: 9-ekran kashfiyoti (maydon) va 4-ekran javoblari ochilmaydi (P-015).
 
 ## 2 · Qurish tugasa  ← QTushuncha
@@ -106,7 +106,7 @@ Oldingi dars: 8-Modul «Raqamingiz nimani isbotlaydi?» (`m6-14`, 1-bosqich yaku
   Shu vaqtda Yandex Go va Payme ekraniga odamlar (siluetlar) birin-ketin oqib keladi; to'qib chiqarilgan son yo'q — oqimni siluetlar ko'rsatadi.
   Portfolio va bot ekrani kulrang bo'lib qoladi, ustida «bugun hech kim ochmadi» chiqadi; ularning KIM qatoridagi siluetlar so'nadi, o'rniga kulrang yozuv «bugun hech kim ishlatmadi».
   Kun tugagach juftliklar ustida nom paydo bo'ladi (atama — misoldan keyin, bir marta): chap juftlik ustida **Loyiha tugadi** — «qurish ishi», o'ng juftlik ustida **Mahsulot** — «odamlar ishlatadi»;
-  kartalarda yorliq «loyiha» / «mahsulot». O'ng nom oldida ingichka strelka chapga: Yandex Go va Payme ham bir vaqtlar loyiha bo'lgan (yorliq: «avval — qurish ishi»).
+  Kartalarda alohida «loyiha» / «mahsulot» yorlig'i va «avval — qurish ishi» strelkasi yo'q — guruh nomi aytadi. *(✎ F-1015-113, 208-qonun 0-band: takror olindi)*
   Natija qatori (`QTaxmin`): «Taxminingiz: 3 · haqiqatda: 2» yoki «Taxminingiz to'g'ri chiqdi».
 - Xulosa: Saytni qurish — loyiha. Tayyor saytni odamlar o'z ishi uchun ishlatsa, u mahsulot bo'lib ishlaydi. (98)
 - Tugma (pastki): Sizsiz bir kun → Davom etish · `tugadi`: bashorat qatori yopiladi, to'rt maket-karta va ikki nom butun enga (199).
@@ -122,14 +122,13 @@ Oldingi dars: 8-Modul «Raqamingiz nimani isbotlaydi?» (`m6-14`, 1-bosqich yaku
 - To'g'ri izohi: Sinfdoshlar botni o'z muammosi uchun ishlatadi.
 - Xato izohlari: 1 — Bot qurildi, lekin uni hech kim ishlatmayapti. (46) · 2 — Do'stlar ko'rib qo'ydi — o'z ishi uchun emas. (45) ·
   4 — Ota-onalar botni ko'rdi, lekin o'zi ishlatmaydi. (48) · (umumiy) Kim ishlatadi va nima uchun — shuni qarang. (43)
-- Ekranga kirganda savol ustida karta yo'q. To'g'ri javob topilgach savol ostida kichik ixcham karta chiqadi va to'g'ri javobni ko'rsatadi: **Telegram bot** · yorliq «mahsulot» ·
-  KIM — sinfdoshlar (3 siluet) · «o'z ishi uchun» (yashil). Jonli darsda karta natija ochilgandan keyin chiqadi (F-1005-77).
+- Karta yo'q — na savol ustida, na javobdan keyin: izoh aytadi; test ekrani 7- va 12-ekrandagidek. *(✎ F-1015-113, 208-qonun 0-band: takror olindi)*
 
 ## 4 · Uch mahsulot  ← QTushuncha (markaziy; «yechimdan muammoga»)
 - Eyebrow: Tajriba · uch ishlaydigan mahsulot
 - Sarlavha: **Bu mahsulot kimning qaysi muammosini yechadi?** (45)
-- Mentor: KIM, MUAMMO, YECHIM — «Kim mening foydalanuvchim?» darsidagi auditoriya-karta. Ilovada odatda avval YECHIM ko'rinadi — kimga va qaysi muammoga kerakligini siz topasiz.
-- Chap — ixcham qadam-qatori (`QQadamlar`, 163.8): 1 Yandex Go · 2 Payme · 3 Google Translate (joriy — accent, o'tgani ✓) va ostida brend rangidagi telefon maketi (F-1005-78, qaror A):
+- Mentor: Ilovani ochsangiz, avval u nima qilishini ko'rasiz. Endi teskarisini qiling: u odamni nimadan qutqarganini toping. *(✎ F-1015-113, 208-qonun 0-band: takror olindi)*
+- Chap — brend rangidagi telefon maketi (F-1005-78, qaror A); qadam-qatori yo'q (karta nomi va tugmadagi «(0/3)» aytadi):
   telefonda YECHIM ko'rinadi — Yandex Go: sariq ekran, xaritada mashina va manzil belgisi, «Qayerga?», narx yorlig'i «narx: oldindan» (summa yozilmaydi) ·
   Payme: Payme rangidagi ekran, «Hisobni to'ldirish», raqam qatori, «To'ldirish» · Google Translate: ko'k ekran, «Inglizcha» → «O'zbekcha» oynalari.
   Logotip yo'q — faqat nom o'z rangida (PM-029). Telefonda (393) tartib: karta va tanlovlar tepada, qadamlar va telefon pastda.
@@ -175,14 +174,14 @@ Oldingi dars: 8-Modul «Raqamingiz nimani isbotlaydi?» (`m6-14`, 1-bosqich yaku
 - To'g'ri izohi: Odam nimadan qiynalgani ko'rinadi — ilova aynan shuni yengillashtiradi.
 - Xato izohlari: 1 — Bu xohish — odam nimadan qiynalgani ko'rinmaydi. (48) · 3 — Bu rost gap, lekin unda hech kim qiynalmagan. (45) ·
   4 — Bu yechimni takrorlaydi — qiyinchilik yo'q. (43) · (umumiy) Ilovasiz odam nimadan qiynalardi — shuni toping. (48)
-- To'g'ri javob topilgach savol ostida kichik auditoriya-karta chiqadi: **Uzum Market** (nom o'z rangida) · yorliq «mahsulot» · KIM — xaridorlar ·
-  MUAMMO — Kerakli narsani do'konma-do'kon qidirardi (yashil) · YECHIM — Narsani telefonda topadi va yetkazib beradi. Jonli darsda — natija ochilgandan keyin.
+- Javobdan keyin karta yo'q — izoh aytadi; test ekrani 7- va 12-ekrandagidek. *(✎ F-1015-113, 208-qonun 0-band: takror olindi)*
 
 ## 6 · Dropbox  ← QVoqea
 - Eyebrow: Biznes olamidan (PM-028)
 - Sarlavha: **Dropbox boshqalarga ham kerakligi qanday bilindi?** (49)
 - Mentor — bosqich gapini aytadi, har bosqichda almashadi (≤2 gap; F-1005-81, qaror A). Sahnada faqat bosqich nomi va jonli maket; slayd ichida takror matn yo'q.
-- Nuqtalar (5) · yorliq **Dropbox · N/5** (bashorat kartasida ham) · sahna `DropboxSahna` (chapda) + Dropbox auditoriya-kartasi (o'ngda, nom o'z ko'kida). Logotip yo'q.
+- Bosqich hisobi faqat tugmada «Keyingi bosqich (N/5)» — nuqtalar qatori yo'q; bashorat yorlig'i 2-ekrandagidek «Avval o'zingiz belgilab ko'ring», variantlarda ✓/✗ yo'q (natija qatori aytadi). *(✎ F-1015-113, 208-qonun 0-band: takror olindi)*
+- Sahna `DropboxSahna` (chapda) + Dropbox auditoriya-kartasi (o'ngda, nom o'z ko'kida). Logotip yo'q.
 - Sahna (F-1005-80): chizilgan CSS/SVG maket — stol yuzasi, noutbuk, monitor, fikr pufagi; har bosqichda o'zgaradi. 2/5 dan boshlab sahna burchagida nom-yorliq «Dropbox» o'z ko'kida.
   Sahnaga MD va manbada yo'q narsa qo'shilmaydi: avtobus, asoschi ismi va yil chizilmaydi.
 - Bosqichlar (nom · Mentor · sahna):
@@ -231,7 +230,7 @@ Oldingi dars: 8-Modul «Raqamingiz nimani isbotlaydi?» (`m6-14`, 1-bosqich yaku
 - Eyebrow: Mustaqil ish
 - Sarlavha: **Telefoningizdagi ilovalar kimga kerak?** (38)
 - Mentor: Har kuni ishlatadigan ilovalaringizni oling: avval ilova nima qilishini, keyin u kimning qaysi muammosini yechishini yozing.
-- Bitta ustun: tepada 1/2/3 doiralar (joriy — accent) → to'liq auditoriya-karta forma bo'lib (4 qator: nom · YECHIM · MUAMMO · KIM; joriy qator accent) → Yordam · «Saqlash» o'ngda (187).
+- Bitta ustun (1/2/3 doiralar yo'q — tugma «Uch kartani yozing (N/3)» aytadi) *(✎ F-1015-113, 208-qonun 0-band: takror olindi)* → to'liq auditoriya-karta forma bo'lib (4 qator: nom · YECHIM · MUAMMO · KIM; joriy qator accent) → Yordam · «Saqlash» o'ngda (187).
 - Qator ipuchalari: nom — Ilova nomi · YECHIM — Ilova nima qiladi? · MUAMMO — Ilovasiz odam nimadan qiynalardi? · KIM — Bu qanday odamlar?
 - Tekshiruv (`QXato`, ≤60; yumshoq — ikkinchi «Saqlash» bilan o'tadi, m2-16 dagidek):
   - qator bo'sh: To'rt qatorni ham to'ldiring. (29)
@@ -253,16 +252,12 @@ Oldingi dars: 8-Modul «Raqamingiz nimani isbotlaydi?» (`m6-14`, 1-bosqich yaku
 - Eyebrow: Tushuncha · muammo yig'ish
 - Sarlavha: **Qaysi yozuv Mentor ro'yxatiga tushadi?** (38)
 - Mentor: Kecha maktab, yo'l va mahallada ko'rganlarimni yozib chiqdim. Har yozuvni ro'yxatga qo'shing yoki chiqarib tashlang.
-- Bashorat (ballsiz): **Olti yozuvdan nechtasi muammo?** · 3 · 4 · 5 — tanlov saqlanadi. Tanlangach ixcham qator «Taxminingiz: N» natija chiqquncha turadi (F-1005-85).
-- Chapda — joriy yozuv bitta katta karta: manba yorlig'i (MAKTAB / YO'L / MAHALLA), «N / 6», gap; ostida uch belgi yorlig'i: **uch belgi** · qayta-qayta bo'ladi · o'zicha yo'l topgan · voz kechgan
-  («Muammoni qanday topamiz» darsidan; alohida eslatma qatori yo'q). Karta ostida ikki tugma: **Chiqarib tashlash** · **Ro'yxatga** (bashoratdan keyin yoqiladi, halqada).
-- O'ngda — Mentor ro'yxati, ixcham: sarlavha «Mentor ro'yxati» + hisoblagich «6 / 10» va faqat yozilgan qatorlar (bo'sh uzuq qator yo'q):
+- Bashorat yo'q — saralashning o'zi topshiriq; darsda taxmin faqat 2- va 6-ekranda (181). *(✎ F-1015-113, 208-qonun 0-band: takror olindi)*
+- Chapda — joriy yozuv bitta katta karta: manba yorlig'i (MAKTAB / YO'L / MAHALLA), gap («N / 6» yo'q — tugma aytadi); ostida uch belgi yorlig'i: **uch belgi** · qayta-qayta bo'ladi · o'zicha yo'l topgan · voz kechgan
+  («Muammoni qanday topamiz» darsidan; alohida eslatma qatori yo'q). Karta ostida ikki tugma: **Chiqarib tashlash** · **Ro'yxatga** (darrov yoqiladi, halqada).
+- O'ngda — Mentor ro'yxati, ixcham: sarlavha «Mentor ro'yxati» + hisoblagich «1 / 5» va faqat yozilgan qatorlar (bo'sh uzuq qator yo'q):
   1. maktab — Tanaffusda telefonni quvvatlash uchun bo'sh rozetka topilmaydi.
-  2. maktab — To'garak qaysi xonada ekanini bilmay, o'quvchilar xonama-xona yurishadi.
-  3. yo'l — Maktab oldida velosiped qo'yadigan joy yo'q — daraxtga bog'lab ketishadi.
-  4. yo'l — Kechqurun ko'cha chirog'i yonmaydi — o'smirlar telefon chirog'ini yoqib yurishadi.
-  5. mahalla — Suv qachon o'chirilishini qo'shnilar kech bilishadi — idish to'ldirishga ulgurishmaydi.
-  6. mahalla — Lift buzilganini odamlar uzoq kutib turgandan keyin bilishadi.
+  ✎ F-1015-109/110 (15.10, QA): ro'yxat 10 → 5 — tayyor qatorlardan faqat 1-si qoldi; saralashdan 4 muammo qo'shilib 5 / 5 bo'ladi. Kodda bitta son: `MUAMMO_SONI = 5`.
   Yozuvlar (bittadan, shu tartibda):
   - yo'l — Velosiped g'ildiragi teshilsa, ustaxonani topolmay uyga yetaklab ketishadi. — *muammo*
   - mahalla — Mahallaga yana bitta maydon qurish kerak. — *yechim*
@@ -277,7 +272,7 @@ Oldingi dars: 8-Modul «Raqamingiz nimani isbotlaydi?» (`m6-14`, 1-bosqich yaku
   - fikrni ro'yxatga qo'shsa: Bu fikr — hech kim qiynalgani ko'rinmaydi. (42)
   - muammoni chiqarsa: Bu yerda odam qiynalgan — belgisini toping. (43)
   42 soniya harakatsizlikda bitta ipucha: Har yozuvda odam qiynalganmi — shuni qarang.
-- 2-bosqich (6/6 dan keyin, shu ekranda, harakatsiz): ro'yxat bitta ixcham qatorga yig'iladi — «Mentor ro'yxati · muammolar yig'ildi · 10 / 10 ✓» (F-1005-90 B: kulrang chiziqlar yo'q)
+- 2-bosqich (6/6 dan keyin, shu ekranda, harakatsiz): ro'yxat bitta ixcham qatorga yig'iladi — «Mentor ro'yxati · muammolar yig'ildi · 5 / 5 ✓» (F-1005-90 B: kulrang chiziqlar yo'q)
   → ostida maydon yozuvi to'liq auditoriya-kartaga aylanadi:
   **Maydon** · KIM — o'yinchilar (maydonda o'ynaydigan o'smirlar) · MUAMMO — Maydonga kelasiz — band; bo'sh vaqtni bilish uchun egasiga qo'ng'iroq qilish kerak. · YECHIM — uzuq chiziq «hali yo'q».
   Natija qatori (`QTaxmin`) — bashorat bo'yicha. Yakun holati 1280×773 da pastki panel ostiga kirmaydi.
@@ -286,7 +281,7 @@ Oldingi dars: 8-Modul «Raqamingiz nimani isbotlaydi?» (`m6-14`, 1-bosqich yaku
 - Nishon: Clean List! (oltitasi birinchi urinishda).
 - O'qituvchi eslatmasi: Maydon — modul bo'yi misolimiz. Bugun yechim aytmang: «sayt qilamiz» deyish erta, avval o'yinchilarning o'zidan eshitiladi.
 
-## 10 · Juftlikda ish  ← QMustaqil (USTAXONA 2 — o'nta muammo, sinfdosh bilan)
+## 10 · Juftlikda ish  ← QMustaqil (USTAXONA 2 — beshta muammo, sinfdosh bilan)
 - Eyebrow: Juftlikda ish · yakka rejimda: Mustaqil ish
 - Sarlavha: **Sinfdoshingiz kecha qayerda qiynaldi?** (37) · yakka rejimda: **Kecha kim qayerda qiynaldi?** (27)
 - Mentor: Sherigingizga pastdagi savollarni bering, keyin o'rin almashing. Eshitganingiz va o'zingiz ko'rganingizni bittadan yozing.
@@ -297,7 +292,8 @@ Oldingi dars: 8-Modul «Raqamingiz nimani isbotlaydi?» (`m6-14`, 1-bosqich yaku
   3. Nimadan voz kechib, qaytib ketdingiz?
 - Qadamlar 1/2/3: 1 Sherigingizdan so'rang (taymer 3 daqiqa) · 2 O'rin almashing (taymer 3 daqiqa) · 3 O'zingiz ko'rganlarni qo'shing.
   Yakka rejimda (sherik yo'q) 1–2-qadam o'rniga bitta: Kecha ko'rgan odamlaringizni eslang.
-- Bitta ustun: tepada o'nta nuqta (yozilgani ✓, joriysi accent) + hisoblagich n / 10 → bitta yozish qatori → Yordam · «Saqlash» o'ngda.
+- Bitta ustun: bitta yozish qatori (beshta nuqta va «n / 5» yo'q — tugma «Yana N ta muammo yozing» aytadi; yakka rejimda qadam-qatori ham yo'q — Mentor gapi aytadi) *(✎ F-1015-113, 208-qonun 0-band: takror olindi)*
+  → Yordam · «Saqlash» o'ngda.
 - Qator ipuchasi: Kim, qayerda, nimadan qiynaldi?
 - Keyingi bosiladigan joy (F-1005-85): juftlikda birinchi muammogacha «3 daqiqani boshlash» halqada; taymer boshlangach (yoki yakka rejimda) bo'sh yozish qatori halqada; gap yozilgach «Saqlash» halqada.
 - Har yozilgan muammoga manba yorlig'i o'zi qo'yiladi: 1-qadamda «sinfdoshdan», 3-qadamda «o'zim ko'rdim».
@@ -310,11 +306,11 @@ Oldingi dars: 8-Modul «Raqamingiz nimani isbotlaydi?» (`m6-14`, 1-bosqich yaku
 - Yordam: Kecha uydan chiqqaningizdan qaytguningizcha borgan joylaringizni sanang: bekat, maktab, do'kon, maydon. Qayerda kutdingiz yoki kimdandir so'radingiz?
 - **Harakat → Vizual o'zgarish:** gapni yozib «Saqlash» → ro'yxatga yangi qator-karta kiradi (gap + manba yorlig'i), nuqta yashil ✓, hisoblagich oshadi;
   tekshiruvdan o'tmagan gap qatorda `err` fonda, ostida bitta `QXato`. 10/10 da yozish qatori yopiladi, ro'yxat butun enga, har qatorda ✎ Tahrirlash.
-- Xulosa (o'quvchi sonidan yig'iladi, P-046): O'nta muammo yig'dingiz: {n} tasini sinfdoshingizdan eshitdingiz. (≈65)
+- Xulosa (o'quvchi sonidan yig'iladi, P-046): Beshta muammo yig'dingiz: {n} tasini sinfdoshingizdan eshitdingiz. (≈65)
 - Tugma (pastki): Yana N ta muammo yozing → Davom etish (jonli darsda mentor o'tkazishi mumkin — `optionalLive`).
-- Nishon: Street Scout! (o'nta muammo).
-- Mentor statistikasi: «O'nta muammoni yozganlar» · «sinfdoshdan yozilganlar».
-- O'qituvchi eslatmasi: Taymerni siz boshqaring — 3 daqiqadan keyin «O'rin almashing» deng. 10 taga ulgurmagan o'quvchi uyda to'ldiradi.
+- Nishon: Street Scout! (beshta muammo).
+- Mentor statistikasi: «Beshta muammoni yozganlar» · «sinfdoshdan yozilganlar».
+- O'qituvchi eslatmasi: Taymerni siz boshqaring — 3 daqiqadan keyin «O'rin almashing» deng. 5 taga ulgurmagan o'quvchi uyda to'ldiradi.
 
 ## 11 · Kod yozish  ← QKod (2–3 daqiqa; yangi qoida yo'q — 9-ekran va uch belgining takrori, audit 5)
 - Eyebrow: Kod yozish
@@ -369,7 +365,7 @@ console.log(muammolar([yozuvlar[1], yozuvlar[3]]));
 - Eyebrow: O'zingiz o'ylab ko'ring
 - Sarlavha: **Qaysi muammongiz boshqalarda ham bor?** (37)
 - Mentor: Ro'yxatdan bitta muammoni tanlang va {sherigingizga | ovoz chiqarib o'zingizga} ayting: u yana kimlarda bor? Keyin KIM qatoriga yozing.
-- Qadamlar 1/2: 1 Sherigingizga ayting | Ovoz chiqarib ayting (taymer 1 daqiqa | 30 soniya) · 2 KIM qatorini yozing
+- Qadam-qatori yo'q (Mentor gapi va tugma aytadi); faqat taymer 1 daqiqa | 30 soniya. *(✎ F-1015-113, 208-qonun 0-band: takror olindi)*
 - Vizual: 10-ekrandagi ro'yxat (qator-kartalar, halqada). Bittasini bosish → ro'yxat yig'iladi va tanlangan muammo to'liq auditoriya-karta bo'ladi: MUAMMO — tanlangan gap ·
   KIM — bo'sh qator (joriy, accent) · YECHIM — uzuq chiziq «hali yo'q»; karta ostida «Boshqa muammoni tanlash» (ro'yxatni qayta ochadi). Karta va xulosa
   1280×773 da pastki panel ostiga kirmaydi. 10-ekran yozilmagan bo'lsa (mentor rejimi) — Mentorning maydon kartasi, KIM yozilgan.
@@ -429,7 +425,7 @@ console.log(muammolar([yozuvlar[1], yozuvlar[3]]));
 - **Product Spotter!** (4-ekran, uchalasida birinchi urinishda) — Uch mahsulotning muammosini birinchi urinishda topdingiz
 - **App Analyst!** (8-ekran) — Uchta ilova uchun auditoriya-karta yozdingiz
 - **Clean List!** (9-ekran, birinchi urinishda) — Mentor yozuvlaridan muammoni yechim va fikrdan ajratdingiz
-- **Street Scout!** (10-ekran) — Atrofingizdan o'nta muammo yig'dingiz
+- **Street Scout!** (10-ekran) — Atrofingizdan beshta muammo yig'dingiz
 - Yozuvlar (platforma): Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki. · Nishon birinchi urinish uchun edi. · Nishonlar — n/4
 
 ## Qisqa takrorlash oynalari (har ballik test — 3 karta; S-026: PM darsida raqam 1/2/3)
@@ -535,13 +531,13 @@ Jonli darsda mentor «Qayta tushuntirishni ochish» bosganda chiqadi (platforma 
 5. **`ROYXAT_MENTOR`** (s9): 6 tayyor + 6 yozuv `{ joy, t, tur: 'muammo' | 'yechim' | 'fikr', maydon? }`; 2-bosqichda `maydon: true` qator → `AudKarta toliq`. s11 `yozuvlar` — shu ro'yxatdan 4 ta `{ joy, matn, tur }` (matn qisqartirilgan).
 6. s0: `QKirish` sof so'rovnoma — hammaga `correct: false`, maqtov yo'q (J-026); javob 120 belgi; kartalar tanlovdan keyin (`.pp-juftlik` stretch — bir balandlik), KIM siluet + «ko'rsatish uchun», ikkinchi ixcham karta (Yandex Go, «o'z ishi uchun»).
 7. s2: `S2Maket` (brauzer · Telegram chat · Yandex Go · Payme), bashorat (1/2/3) → ixcham qator + «Sizsiz bir kun» yonida · `S2_KUN` 3,6 s kun chizig'i · odamlar oqimi (siluet, son yo'q) ·
-   loyiha ekrani kulrang + «bugun hech kim ochmadi» · nomlar «Loyiha tugadi — «qurish ishi»» / «Mahsulot — «odamlar ishlatadi»» + strelka «avval — qurish ishi» · `QTaxmin`.
-8. s4: `QQadamlar` 3 qadam (ixcham, bir qator); `S4Ekran` brend telefoni: `yechim` → `oldin` (1,3 s) → `keyin` (1,7 s) → keyingi mahsulot; tanlov tartibi aralash (to'g'ri o'rni har qadamda boshqa);
+   loyiha ekrani kulrang + «bugun hech kim ochmadi» · nomlar «Loyiha tugadi — «qurish ishi»» / «Mahsulot — «odamlar ishlatadi»» (strelka va karta yorlig'i yo'q, F-1015-113) · `QTaxmin`.
+8. s4: (`QQadamlar` olindi, F-1015-113); `S4Ekran` brend telefoni: `yechim` → `oldin` (1,3 s) → `keyin` (1,7 s) → keyingi mahsulot; tanlov tartibi aralash (to'g'ri o'rni har qadamda boshqa);
    `QXato` bitta matn; 42 s ipucha; nishon `productSpotter`. Telefonda (393) karta va tanlovlar tepada.
 9. s6: `DROPBOX_BOSQICH` 5 × { h — bosqich nomi, m — Mentor gapi } (F-1005-81); `DbTanishuv` (1/5 brend qatori) + `DropboxSahna` (noutbuk/USB/fikr pufagi · fayl bulut orqali uchadi ·
    video pleer + «Kutish ro'yxati» formasi · ro'yxat oqimi + hisoblagich 0 → 75 000 · olomon) + `AudKarta`; bashorat 3/5 (zinapoya, ballsiz); 5/5 da karta yorlig'i almashmaydi; manba izohi faylda.
 10. s8 artefakt: `localStorage` `pm-m7d1-ilovalar` = `[{ nom, yechim, muammo, kim } × 3]`; tekshiruv yumshoq (ikkinchi «Saqlash» bilan o'tadi); mentor rejimida namuna karta.
-11. s9: ketma-ket karta (`UCH_BELGI` yorliqlari, `Ro'yxatga` / `Chiqarib tashlash`, uchish `S9_UCH` 430 ms), ixcham ro'yxat «n / 10» (bo'sh qator yo'q), 3 `QXato`, bashorat 3/4/5 (ixcham qator),
+11. s9: ketma-ket karta (`UCH_BELGI` yorliqlari, `Ro'yxatga` / `Chiqarib tashlash`, uchish `S9_UCH` 430 ms), ixcham ro'yxat «n / 5» (bo'sh qator yo'q), 3 `QXato` (bashorat olindi, F-1015-113),
     2-bosqich: ro'yxat yig'iladi → maydon kartasi ajralib chiqadi; nishon `cleanList` (birinchi urinish, yozuvlar to'plami o'zgarmagan).
 12. s10 artefakt: `pm-m7d1-muammolar` = `{ muammolar: [{ matn, manba: 'sinfdosh' | 'ozim' } × 10], savedAt }`; `PairTimer` 3 + 3 daqiqa; manba yorlig'i qadamdan.
     `saveHint` — m2-16 xabarlari, LEKIN m2-16 dagi `RE_YECHIM` (`kerak\b`) bu yerda ishlatilmaydi: maydon muammosining o'zi «…qo'ng'iroq qilish kerak» bilan tugaydi.

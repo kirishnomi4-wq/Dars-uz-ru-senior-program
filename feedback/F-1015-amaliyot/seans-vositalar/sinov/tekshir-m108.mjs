@@ -71,7 +71,7 @@ const surat = (p, nom) => p.screenshot({ path: `${OUT}/shots/${nom}.png`, fullPa
   ok('s0: to\'g\'ri javob — «Aynan!»', (await p.innerText('.stage-content')).includes('Aynan!'));
   await nx(p); await p.waitForTimeout(600); ok('s0 → s1', (await raqam(p)) === '02/09');
   await kk('s1'); await surat(p, '1280-1-s1');
-  ok('s1: «Avval tayyorlaning» (3 qadam) + 3 blok', await p.evaluate(() => document.querySelectorAll('.am-tayyor-l li').length === 3 && document.querySelectorAll('.q-reja-k').length === 3));
+  { await p.click('.am-tt-btn'); await p.waitForTimeout(400); const _tt = await p.evaluate(() => document.querySelectorAll('.am-tt-oyna .am-tayyor-l li').length); await p.keyboard.press('Escape'); await p.waitForTimeout(250); ok('s1: «Avval tayyorlaning» oynada (3 qadam) + 3 blok (F-1015-370)', _tt === 3 && await p.evaluate(() => document.querySelectorAll('.q-reja-k').length === 3)); }
   ok('s1: «Avval tayyorlaning» — reja ustida', await p.evaluate(() => document.querySelector('.am-tayyor').getBoundingClientRect().top < document.querySelector('.q-split').getBoundingClientRect().top));
   await nx(p); await p.waitForTimeout(600);
   // a1

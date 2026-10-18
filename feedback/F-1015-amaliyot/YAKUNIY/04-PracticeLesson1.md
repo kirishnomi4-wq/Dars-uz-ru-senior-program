@@ -9,7 +9,7 @@ Holat: 2026-10-16 — kodga mos (F-1015-332…334 dan keyin). `lessonId` = `prac
 - Mentor: Mana siz qurgan sayt — chiroyli ko'rinadi. Like tugmasini kamida 3 marta bosing va diqqat qiling: nima o'zgaryapti? Hech narsa! Hozircha bu sayt jonsiz — bosasiz, lekin u javob bermaydi, xuddi devordagi rasmdek qotib turadi.
 - Chapda «Sizning saytingiz»: Salom! Bu mening birinchi saytim. Yoqsa, like bosing. · «Like · 0» → «{N}-marta bosildi, son hali 0. Hech nima bo'lmadi.»
 - 3 marta bosilgach «Nega tugma ishlamayapti?» (ballsiz): ✔ JavaScript yo'q — sayt reaksiya qila olmaydi · Internet sekin, shuning uchun ishlamayapti · Tugma chiroyli emas, shuning uchun bosilmaydi
-- Javob: «To'g'ri. / Aslida, HTML/CSS — saytning tashqi ko'rinishi, lekin u jonsiz. Uni jonlantiradigan narsa — JavaScript. Bugun saytimizni jonlantiramiz.»
+- Javob (216-qonun, F-1015-394): JavaScript yo'q → «Aynan!» · internet → «Internet emas — saytda JavaScript yo'q.» · tugma chiroyli emas → «Tugma chiroyli — lekin unga JavaScript kerak.» + «Bugun saytga JavaScript qo'shamiz — tugma bosilganda ishlaydi.»
 
 ## 1 · Reja
 - Eyebrow: Reja · Sarlavha: Bugun saytingizga JavaScript qo'shasiz.

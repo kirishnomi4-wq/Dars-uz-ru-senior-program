@@ -1,7 +1,7 @@
 # 13-dars «Uch foydalanuvchidan keyin nimani tuzatasiz?» — yakuniy matn
 
 Fayl: `src/9-Modull/PmAudienceTestLesson.jsx` · 12 ekran · Keyingi dars: «Loyiha kuni: 3-asosiy funksiya»
-Holat: 07.10.2026 — kodga mos
+Holat: 18.10.2026 — kodga mos (v4, F-1015-244…246 avtopilot: 2-ekran bashorat yolg'iz (213.7), nishon eslatmasi olindi)
 
 Darsning bitta vizuali — «Maydon Jamoa» telefoni («O'yinlar» ro'yxati) va sanoq jadvali. Mentor misoli (dars bo'yi bir xil):
 
@@ -54,10 +54,11 @@ Sanoq jadvali (ustunlar: To'xtash · Nechta kishida · Navbat; ostida «Vazifani
 - Mentor: Kodni Antigravity agenti o'zgartiradi: siz talab yozasiz va natijani yangi odam bilan qayta sinaysiz.
 - Chap: Dars oxirida: auditoriya bilan sinov va shu darsda tuzatish — telefon o'zi o'ynaydi: ro'yxat ustida uchta qizil nuqta bitta joyga yig'iladi → kartalar o'z joyiga uchadi (kun sarlavhalari o'rnida matnsiz chiziq) → ostida yashil qator «✓ Qayta sinov: vazifa bajarildi»
 - Reja:
-  1. Har to'xtash nechta kishida takrorlanganini sanaysiz · sanoq
-  2. Kim vazifani bajara olmaganini ko'rib, birinchisini tanlaysiz · birinchi
-  3. Tanlangan to'xtashni o'z ilovangizda tuzatasiz · tuzatish
-  4. Tuzatishni yangi odam bilan qayta sinaysiz · qayta sinov
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*
+  1. Har to'xtash nechta kishida takrorlanganini sanaysiz
+  2. Kim vazifani bajara olmaganini ko'rib, birinchisini tanlaysiz
+  3. Tanlangan to'xtashni o'z ilovangizda tuzatasiz
+  4. Tuzatishni yangi odam bilan qayta sinaysiz
 - Pastki qator: repo `maydon-jamoa` · boshlang'ich holat `m11-dars-13-start` · namuna `m11-dars-13-done` — amaliyotlarni o'z mahsulotingizda bajarasiz.
 - Pastki qator 2: Yozuvingiz yo'qmi? Hozir sinfdoshingiz bilan sinang: «Hisobdan chiqish» — u namuna ism va telefon bilan ro'yxatdan o'tadi.
 - Tugmalar: Orqaga · Boshlaymiz
@@ -73,7 +74,7 @@ Sanoq jadvali (ustunlar: To'xtash · Nechta kishida · Navbat; ostida «Vazifani
   - tanlangach: Birinchisi tanlandi — «Davom etish»ni bosing.
 - Bashorat (yorliq: Avval o'zingiz belgilab ko'ring): Uch o'yinchining hammasida bir xil to'xtash bormi? · Yo'q, hammasi har xil · Bitta bor · Ikkita bor
   - Tanlangach qator: Taxminingiz · Uch o'yinchining hammasida bir xil to'xtash bormi? · …
-- Chap — telefon «Maydon Jamoa» (sinovdagi tartib). O'rtada tugma «Sanash» va navbatdagi o'yinchilar (1-o'yinchi · 2-o'yinchi · 3-o'yinchi). O'ngda sanoq jadvali — bo'sh, ostida «Vazifani bajardi: ? / 3».
+- Chap — telefon «Maydon Jamoa» (sinovdagi tartib). O'rtada tugma «Sanash» (bashoratdan keyin chiqadi *(✎ F-1015-164)*) va navbatdagi o'yinchilar (1-o'yinchi · 2-o'yinchi · 3-o'yinchi). O'ngda sanoq jadvali — bo'sh, ostida «Vazifani bajardi: ? / 3».
 - «Sanash» bosilganda: o'yinchining yozuv kartasi ochiladi (yuqoridagi jadval), to'xtash qatorlari «to'xtadi» yorlig'i bilan sanoq jadvaliga uchadi (yangi to'xtash — yangi qator, bor to'xtash — son o'sadi); telefonda to'xtash joyida qizil nuqta (ro'yxat tepasi · «8 / 10» yonida · «Qo'shilaman» ostida — «O'yin» ekrani bir lahza ochiladi); karta ixcham qatorga yig'iladi: 1-o'yinchi · 2 to'xtash · 2-o'yinchi · 1 to'xtash · 3-o'yinchi · 2 to'xtash
 - 3/3 dan keyin izoh: Har to'xtash nechta kishida takrorlangani — sanoq; har yozuvda alohida — kishi vazifani bajara oldimi.
 - «Vazifa natijasi» bosilganda: ixcham qatorlarga belgi — 1-o'yinchi bajardi ✓ · 2-o'yinchi bajarmadi ✕ · 3-o'yinchi bajardi ✓; jadval ostida «Vazifani bajardi: 2 / 3»; «bajarmadi ✕» dan birinchi qatorga chiziq
@@ -101,13 +102,13 @@ Sanoq jadvali (ustunlar: To'xtash · Nechta kishida · Navbat; ostida «Vazifani
 ## 4 · Cyberpunk 2077
 - Eyebrow: Biznes olamidan
 - Sarlavha: Cyberpunk 2077 chiqqach *nima bo'ldi?*
-- Yorliq: Cyberpunk 2077 · N/3 (uch nuqta)
+- Yorliq va nuqtalar yo'q — tugma «Keyingi bosqich (N/3)» aytadi; bashorat yorlig'i «Avval o'zingiz belgilab ko'ring» *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*
 - 1/3 tepada: Cyberpunk 2077 — kompyuter va konsol uchun o'yin; konsol — o'yin uchun alohida qurilma (masalan, PlayStation).
 - Bosqichlar (bosqich nomi sahna ustida, gapi — Mentorda):
   1. **Xatolar bilan chiqdi** — Mentor: 2020-yil dekabrida Cyberpunk 2077 konsollarda ko'p xato bilan chiqdi. · sahna: televizor va konsol, o'yin kadri qotib, ustidan chiziqlar o'tadi
   2. **Pulni qaytarish** — Mentor: O'yin chiqqach, ko'p xaridor pulini qaytarishni so'radi. · sahna: xaridorlar, har biridan «Pulni qaytaring» kartochkasi
      - Bashorat ustida: Sony — PlayStation konsolini chiqaradigan kompaniya, PlayStation Store — shu konsolning o'yin do'koni.
-     - Bashorat (yorliq: Cyberpunk 2077 · 2/3): Sony o'yinni o'z do'konidan qancha muddatga olib qo'ydi? · Bir haftaga · Bir oyga · ✔ Qariyb yarim yilga
+     - Bashorat (Avval o'zingiz belgilab ko'ring): Sony o'yinni o'z do'konidan qancha muddatga olib qo'ydi? · Bir haftaga · Bir oyga · ✔ Qariyb yarim yilga
      - Tanlangach qator: Taxminingiz · Sony o'yinni o'z do'konidan qancha muddatga olib qo'ydi? · …
   3. **Do'kondan olib qo'yildi** — Mentor: Sony o'yinni PlayStation Store'dan qariyb yarim yilga olib qo'ydi. · sahna: PlayStation Store oynasi, o'yin kartasi qatordan chiqadi; vaqt qatori «dekabr 2020» — «qariyb yarim yil»
 - Xulosa: Taxminingiz to'g'ri chiqdi ✓ (yoki: Taxminingiz: … ✕ · haqiqatda: qariyb yarim yilga) · Bu voqeada o'yin ko'p xato bilan chiqdi. Sinov xatoni ko'pchilikka berishdan oldin ko'rishga yordam beradi.
@@ -267,7 +268,6 @@ Natijalar (podium) — jonli reyting
   - qayta sinovda yana to'xtadi: Tuzatish tayyor — *qayta sinov uyda davom etadi*.
   - tuzatildi, qayta sinov yo'q: Tuzatish tayyor — *qayta sinov qoldi*.
   - tuzatish yo'q: Birinchi to'xtash tanlandi — *tuzatish qoldi*.
-- Bugungi asosiy fikr: Bu darsda ko'p kishida takrorlangan va vazifaga to'sqinlik qilgan to'xtash birinchi tuzatiladi, keyin yangi odam bilan qayta sinaladi.
 - CODE STRIKE arenasi: 12 SAVOL · 15 SONIYA · PODIUM (jonli darsda mentor boshlaguncha: Mentorni kuting)
 - ✓ Endi siz bilasiz:
   - Uch kishi yozuvida har to'xtash nechta kishida takrorlanganini sanaysiz.
@@ -283,7 +283,9 @@ Natijalar (podium) — jonli reyting
   - ③ Yana to'xtasa — ko'rganingizni agentga bitta gap bilan yozing va o'zingiz tekshiring.
   - Keyingi dars — **«Loyiha kuni: 3-asosiy funksiya»**
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Repeat Spotter!** — Uchala yozuvda takrorlangan to'xtashni birinchi urinishda tanladingiz (2-ekran)

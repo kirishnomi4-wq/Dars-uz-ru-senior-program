@@ -14,6 +14,7 @@ const page = OUT + '/sinov-m208.html';
 writeFileSync(page, `<!doctype html><html><head><meta charset="utf-8"></head><body><div id="root"></div><script>${res.outputFiles[0].text}<\/script></body></html>`);
 const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome', headless: true });
 const natija = [];
+const promptMatn = async (p) => { if (await p.$('.pk-kor')) { await p.click('.pk-kor'); await p.waitForTimeout(350); const t = await p.innerText('.am-tt-oyna .am-masalan'); await p.keyboard.press('Escape'); await p.waitForTimeout(250); return t; } return p.innerText('.am-masalan'); }; // F-1015-385: doimiy prompt — oynada
 const ok = (nom, shart, izoh = '') => { natija.push(`${shart ? '✅' : '❌'} ${nom}${izoh ? ' — ' + izoh : ''}`); };
 async function och(seed, w = 1280, h = 820) {
   const ctx = await b.newContext({ viewport: { width: w, height: h }, permissions: ['clipboard-read', 'clipboard-write'] });
@@ -61,19 +62,19 @@ const kontrast = (p) => p.evaluate(() => {
   const rj = await p.innerText('.stage-content');
   ok("reja: «Avval tayyorlaning» yopiq tugma, nafas oladi (F-1015-334)", await p.evaluate(() => !!document.querySelector('.am-tt.am-tt-nafas') && !document.querySelector('.am-tayyor-l') && getComputedStyle(document.querySelector('.am-tt')).opacity === '1'));
   await p.click('.am-tt-btn'); await p.waitForTimeout(400);
-  const rj2 = await p.innerText('.stage-content');
-  ok('reja: bosilsa 3 qadam (Copilot o\'rnatish bilan), nafas to\'xtaydi · 3 blok', rj.includes('JavaScript') && rj2.includes('GitHub Copilot') && await p.evaluate(() => document.querySelectorAll('.am-tayyor-l li').length === 3 && !document.querySelector('.am-tt-nafas') && document.querySelectorAll('.am-blok-ro li').length === 3));
+  const rj2 = await p.innerText('.am-tt-oyna'); // F-1015-370: qadamlar oynada
+  ok('reja: bosilsa 3 qadam (Copilot o\'rnatish bilan), nafas to\'xtaydi · 3 blok', rj.includes('JavaScript') && rj2.includes('GitHub Copilot') && await p.evaluate(() => document.querySelectorAll('.am-tt-oyna .am-tayyor-l li').length === 3 && !document.querySelector('.am-tt-nafas') && document.querySelectorAll('.am-blok-ro li').length === 3)); await p.keyboard.press('Escape'); await p.waitForTimeout(250);
   await kk('reja'); await surat(p, '1280-01-reja'); await nx(p); await p.waitForTimeout(700);
   // a1
   ok('a1 ochildi (03/09)', (await raqam(p)) === '03/09', await raqam(p));
-  const pm1 = await p.innerText('.am-masalan');
+  const pm1 = await promptMatn(p);
   ok('a1: prompt — tungi rejim, script.js, .tungi', pm1.includes('tungi rejim tugmasini') && pm1.includes('script.js') && pm1.includes('.tungi'));
   const c0 = await dsCls(p); await p.click('.js-sayt .js-btn:has-text("Tungi rejim")'); await p.waitForTimeout(300); const c1 = await dsCls(p);
   await p.click('.js-sayt .js-btn:has-text("Kunduzgi rejim")'); await p.waitForTimeout(300); const c2 = await dsCls(p);
   ok('a1: namunada tungi rejim ishlaydi (yorqin → qorongi → yorqin)', c0.includes('ds-yorqin') && c1.includes('ds-qorongi') && c2.includes('ds-yorqin'), `${c0} | ${c1} | ${c2}`);
   ok('a1: qadamlar tugmada yopiq', await p.evaluate(() => !!document.querySelector('.am-qt') && !document.querySelector('.am-qt .am-qadam')));
   await p.click('.am-qt-btn'); await p.waitForTimeout(300);
-  ok('a1: tugma bosilsa 3 qadam', await p.evaluate(() => document.querySelectorAll('.am-qt .am-qadam li').length === 3));
+  ok('a1: tugma bosilsa 3 qadam', await p.evaluate(() => document.querySelectorAll('.am-tt-oyna .am-qadam li').length === 3)); await p.keyboard.press('Escape'); await p.waitForTimeout(250); // F-1015-372: «Qadamlar» oynada
   await kk('a1'); await surat(p, '1280-02-a1'); await nx(p); await bayram(p);
   // a2
   ok('a2 ochildi (04/09) · mentor — Copilot', (await raqam(p)) === '04/09' && (await p.innerText('.stage-content')).includes("Copilot'ga yozasiz"), await raqam(p));
@@ -114,7 +115,7 @@ const kontrast = (p) => p.evaluate(() => {
   const x1 = await p.$('.js-xato');
   await p.fill('.js-sayt .js-input', 'ali@mail.uz'); await p.click('.js-sayt button[type=submit]'); await p.waitForTimeout(200);
   ok('a4: forma — bo\'sh → xato, to\'liq → rahmat', !!x1 && (await p.innerText('.js-ok')).includes('Rahmat'));
-  const pm4 = await p.innerText('.am-masalan');
+  const pm4 = await promptMatn(p);
   ok('a4: prompt — tanlangan vosita (forma), script.js', pm4.includes('Pochtani yozing') && pm4.includes("script.js ga qo'sh"));
   await kk('a4'); await surat(p, '1280-06-a4'); await nx(p); await p.waitForTimeout(800);
   ok('podium (08/09)', (await raqam(p)) === '08/09'); await nx(p); await p.waitForTimeout(1500); await bayram(p);

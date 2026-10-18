@@ -117,12 +117,14 @@ Holat: 04.10.2026 — kodga mos
 - Handlerlar (bot.js) — 5 qator, har qatorda: hodisa → javob
 - hodisalar: /start · «Menyu» tugmasi · /help · Boshqa har qanday xabar · /settings · Rasm yuborildi
 - javoblar: Salom va menyu yuboradi · Taomlar ro'yxatini yuboradi · Yordam matnini yuboradi · «Uzr, tushunmadim. /help ni bosing» · «Buyurtmangiz qabul qilindi» deydi · Botni butunlay o'chiradi
-- To'ldirilgan qator: /start → Salom va menyu yuboradi ✓ (↻ — o'zgartirish)
+- To'ldirilgan qator: /start → Salom va menyu yuboradi (↻ — o'zgartirish); sinovdan keyin: to'g'ri — ✓, xato — ✗ mos emas ✎ F-1015-156
 - Tugma: ▶ Botni ishga tushirish (03:00) → ↻ Qayta sinash
 - Mijozlar: Aziza · /start · Bek · «Menyu» tugmasi · Dilnoza · /help · Sardor · «Pitsa bormi?»
 - Mijoz natijasi: Javob oldi · Javobsiz qoldi — ketib qoldi · «Nima? Men hali hech narsa buyurtma qilmadim» · <javob> (mos emas)
 - Sanoq: Javob oldi N/4 · Ketib qoldi N
-- Xato bo'lsa: Bir javob noto'g'ri hodisaga ulangan — qayta tekshiring.
+- Natija (tugma ostida, mijozlardan oldin) ✎ F-1015-156:
+  - xato qator bo'lsa: N ta qator mos emas — ✗ qatorni ↻ bilan almashtiring.
+  - xato yo'q, mijoz javobsiz: N ta mijoz javobsiz ketdi — unga qator qo'shing.
 - Muvaffaqiyat: 4/4 — Sardor ham javob oldi: unga fallback handler javob berdi. Javob faqat siz yozgan handlerdan keladi.
 - Nishon sharti: Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki. (birinchi urinish xato bo'lsa: Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.)
 - Tugma: Sinovni yakunlang → Davom etish
@@ -325,7 +327,7 @@ Holat: 04.10.2026 — kodga mos
 ## 19 · Yakun
 19-ekran
 - Eyebrow: Tayyor
-- Belgi: ✓ Bot qanday ishlashini bilasiz
+- Belgi: ✓ Dars tugadi · Testlar: N/N ✎ F-1015-161
 - Sarlavha: Endi bot qanday ishlashini bilasiz.
 - Natija: N/5 to'g'ri javob
 - Arena tugmasi: CODE STRIKE (jonli darsda: Mentorni kuting)
@@ -336,13 +338,15 @@ Holat: 04.10.2026 — kodga mos
   - Mos handler bo'lmasa, bot jim qoladi — shuning uchun fallback handler yoziladi
   - Bot sikli: kutadi → hodisa → handler → javob → yana kutadi
 - Uyga vazifa tugmasi: Uyga vazifa · Amaliy topshiriqni bajarish →
-- Uyga vazifa:
+- Uyda nima qilasiz? (Uyga vazifa bosilgach)
+  - Kim uchun — o'z botingiz · Nechta — 3 g'oya · Muddat — keyingi darsgacha
   - O'ylang — kundalik hayotda qaysi ishni bot bajarishi mumkin? 3 ta g'oya yozing
   - Yozing — har g'oya uchun kamida bitta «hodisa → javob» juftini yozing (masalan: /start → salom va menyu)
   - Saqlang — @BotFather bergan tokenni xavfsiz joyda saqlang: u 3-darsda kerak bo'ladi
 - Keyingi dars — «Botingizni birinchi kim ochadi?» Botingizni birinchi bo'lib ishlatadigan yigirma kishini qayerdan topishni rejalashtiramiz.
 - Nishonlaringiz — N/4
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10, S1-A): uy vazifasi kartasi P-025 — sarlavha «Uyda nima qilasiz?» (bannerdagi «Uyga vazifa» bilan takror emas); maydonlar: Kim uchun — o'z botingiz · Nechta — 3 g'oya · Muddat — keyingi darsgacha (qiymatlar topshiriq matnidan); qadamlar raqam-doira; «Keyingi dars» karta ichida; bezak emoji olindi.
 
 ## Nishonlar
 - Token Keeper — Tokenni .env fayliga joyladingiz

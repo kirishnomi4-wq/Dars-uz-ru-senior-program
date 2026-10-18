@@ -1,0 +1,116 @@
+{"key":"m5-03","lid":"bot-api-buttons-05-02-v18","s":5,"total":20,"juft":[{"a":"bot.start\n›","c":"ctx\n›","gap":7,"bosh":1,"ota":"fade-up delay-1"},{"a":"ctx\n›","c":"ctx.reply\n›","gap":7,"bosh":1,"ota":"fade-up delay-1"}],"fc":[],"fcw":[]}
+{"key":"m5-04","lid":"bot-stateful-memory-05-03-v18","s":11,"total":20,"juft":[{"a":"telegram_id\n›","c":"ism\n›","gap":7,"bosh":1,"ota":"fade-up delay-1"},{"a":"ism\n›","c":"holat\n›","gap":7,"bosh":1,"ota":"fade-up delay-1"},{"a":"holat\n›","c":"tanlov\n›","gap":7,"bosh":1,"ota":"fade-up delay-1"}],"fc":[],"fcw":[]}
+{"key":"m5-02","lid":"pm-m5d2-v1","s":14,"total":16,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m5-04","lid":"bot-stateful-memory-05-03-v18","s":18,"total":20,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m5-03","lid":"bot-api-buttons-05-02-v18","s":18,"total":20,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m5-01","lid":"bot-intro-05-01-v18","s":18,"total":20,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m5-05","lid":"bot-ai-project-05-05-v18","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m5-07","lid":"bot-full-project-05-07-v18","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m5-08","lid":"pm-m5d8-v1","s":14,"total":16,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m5-10","lid":"bot-ai-agent-05-10-v18","s":2,"total":20,"juft":[{"a":"Necha qadam?\n›","c":"Nima bilan ishlaydi?\n›","gap":7,"bosh":1,"ota":"fade-up delay-1"},{"a":"Nima bilan ishlaydi?\n›","c":"Siz nima berasiz?\n›","gap":7,"bosh":1,"ota":"fade-up delay-1"}],"fc":[],"fcw":[]}
+{"key":"m5-09","lid":"bot-feedback-05-06-v18","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m5-06","lid":"bot-ai-brain-05-04-v18","s":18,"total":20,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m5-10","lid":"bot-ai-agent-05-10-v18","s":6,"total":20,"juft":[{"a":"checkOrder()\n›","c":"saveOrder()\n›","gap":7,"bosh":1,"ota":"fade-up delay-1"},{"a":"saveOrder()\n›","c":"arrangeDelivery()\n›","gap":7,"bosh":1,"ota":"fade-up delay-1"},{"a":"chargeCard()\n›","c":"cancelOrder()\n›","gap":7,"bosh":1,"ota":"fade-up delay-1"}],"fc":[],"fcw":[]}
+{"key":"m5-10","lid":"bot-ai-agent-05-10-v18","s":13,"total":20,"juft":[{"a":"Cheklangan asboblar\n›","c":"Tasdiq so'rash\n›","gap":7,"bosh":1,"ota":"fade-up delay-1"},{"a":"Tasdiq so'rash\n›","c":"Odam nazorati\n›","gap":7,"bosh":1,"ota":"fade-up delay-1"}],"fc":[],"fcw":[]}
+{"key":"m5-10","lid":"bot-ai-agent-05-10-v18","s":18,"total":20,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m5-14","lid":"pm-m5d11-metrika-v1","s":16,"total":18,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m5-11","lid":"pm-m5d11-v1","s":14,"total":16,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m6-01","lid":"sys-arch-06-01-v18","s":17,"total":19,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m6-02","lid":"pm-m6d2-v1","s":14,"total":16,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m6-03","lid":"arch-patterns-06-03-v18","s":18,"total":20,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m6-04","lid":"agent-arch-06-04-v18","s":18,"total":20,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m6-05","lid":"claude-skills-06-05-v18","s":18,"total":20,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m6-06","lid":"pm-m6d6-v1","s":14,"total":16,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m6-07","lid":"write-skill-06-07-v18","s":18,"total":20,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m6-08","lid":"pipeline-project-06-08-v18","s":19,"total":21,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m6-09","lid":"rn-basics-06-09-v18","s":18,"total":20,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m6-10","lid":"rn-app-06-10-v18","s":18,"total":20,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m6-11","lid":"mobile-practice-06-11-v18","s":18,"total":20,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m6-12","lid":"pm-m6d12-v1","s":14,"total":16,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m6-13","lid":"full-system-06-13-v18","s":19,"total":21,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m6-14","lid":"pm-m6d14-v1","s":14,"total":16,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m7-03","lid":"pm-m7d3-v1","s":2,"total":17,"juft":[{"a":"Bittasida","c":"Ikki-uchtasida","gap":8,"bosh":0,"ota":"q-variantlar"},{"a":"Ikki-uchtasida","c":"To'rt-beshtasida","gap":8,"bosh":0,"ota":"q-variantlar"}],"fc":[],"fcw":[]}
+{"key":"m7-02","lid":"m7-02-v1","s":14,"total":16,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m7-01","lid":"pm-m7d1-v1","s":15,"total":17,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m7-03","lid":"pm-m7d3-v1","s":9,"total":17,"juft":[{"a":"Qilamiz","c":"Keyin","gap":8,"bosh":0,"ota":"im-s9-tug im-kut"},{"a":"Keyin","c":"Qilmaymiz","gap":8,"bosh":0,"ota":"im-s9-tug im-kut"}],"fc":[],"fcw":[]}
+{"key":"m7-03","lid":"pm-m7d3-v1","s":15,"total":17,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m7-04","lid":"m7-04-v1","s":16,"total":18,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m7-06","lid":"m7-06-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m7-07","lid":"m7-07-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m7-05","lid":"m7-05-v1","s":18,"total":20,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m7-08","lid":"m7-08-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m7-09","lid":"m7-09-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m7-12","lid":"m7-12-v1","s":4,"total":16,"juft":[{"a":"Bo'lib o'tgan ish","c":"Fikr yoki va'da","gap":10,"bosh":0,"ota":"ps-amal ikki"}],"fc":[],"fcw":[]}
+{"key":"m7-11","lid":"m7-11-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m7-12","lid":"m7-12-v1","s":8,"total":16,"juft":[{"a":"Muammo","c":"Yechim","gap":10,"bosh":0,"ota":"ps-amal uch"},{"a":"Yechim","c":"Foydalanuvchi","gap":10,"bosh":0,"ota":"ps-amal uch"}],"fc":[],"fcw":[]}
+{"key":"m7-10","lid":"m7-10-v1","s":14,"total":16,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m7-12","lid":"m7-12-v1","s":14,"total":16,"juft":[],"fc":[{"w":259,"h":209}],"fcw":[259]}
+{"key":"m8-01","lid":"pm-m8d1-okr-v1","s":13,"total":15,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m8-03","lid":"m8-03-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m8-02","lid":"m8-02-event-tracking-v1","s":16,"total":18,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m8-04","lid":"m8-04-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m8-05","lid":"m8-05-security-basics-v1","s":16,"total":18,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m8-06","lid":"m8-06-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m8-08","lid":"m8-08-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m8-07","lid":"m8-07-production-deploy-v1","s":16,"total":18,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m8-09","lid":"m8-09-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m8-10","lid":"pm-m8d10-yol-v1","s":14,"total":16,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m8-11","lid":"pm-m8d11-pitch-v1","s":15,"total":17,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m9-01","lid":"pm-m9d1-v1","s":13,"total":15,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m9-02","lid":"pm-m9d2-v1","s":14,"total":16,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m9-03","lid":"pm-m9d3-v1","s":14,"total":16,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m9-04","lid":"pm-m9d4-v1","s":14,"total":16,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m9-05","lid":"pm-m9d5-v1","s":14,"total":16,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m9-06","lid":"pm-m9d6-v1","s":14,"total":16,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m9-09","lid":"m9-09-v1","s":2,"total":19,"juft":[{"a":"div","c":"className=\"oyinlar\"","gap":8,"bosh":3,"ota":"ep-kod-t"}],"fc":[],"fcw":[]}
+{"key":"m9-08","lid":"m9-08-v1","s":12,"total":20,"juft":[{"a":"mobil trek","c":"web-trek","gap":8,"bosh":4,"ota":"pc-trek-tug"}],"fc":[],"fcw":[]}
+{"key":"m9-07","lid":"m9-07-v1","s":18,"total":20,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m9-10","lid":"m9-10-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m9-08","lid":"m9-08-v1","s":18,"total":20,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m9-09","lid":"m9-09-v1","s":17,"total":19,"juft":[],"fc":[{"w":259,"h":209}],"fcw":[259]}
+{"key":"m9-11","lid":"m9-11-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m9-12","lid":"m9-12-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m9-13","lid":"pm-m9d13-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m9-14","lid":"m9-14-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m9-15","lid":"pm-m9d15-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m10-01","lid":"pm-m10d1-v1","s":14,"total":16,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m9-16","lid":"pm-m9d16-v1","s":14,"total":16,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m10-03","lid":"pm-m10d3-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m10-02","lid":"m10-02-v1","s":18,"total":20,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m10-04","lid":"m10-04-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m10-07","lid":"pm-m10d7-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m10-05","lid":"m10-05-v1","s":17,"total":19,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m10-06","lid":"pm-m10d6-v1","s":14,"total":16,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m10-08","lid":"pm-m10d8-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m10-09","lid":"m10-09-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m10-11","lid":"pm-m10d11-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m10-10","lid":"pm-m10d10-v1","s":14,"total":16,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m11-01","lid":"pm-m11d1-v1","s":7,"total":14,"juft":[{"a":"Keyingi","c":"Mentor sonlari bilan mas","gap":8,"bosh":4,"ota":"bs-katta-tug"}],"fc":[],"fcw":[]}
+{"key":"m10-12","lid":"pm-m10d12-v1","s":14,"total":16,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m11-02","lid":"pm-m11d2-v1","s":8,"total":15,"juft":[{"a":"Keyingi","c":"Yordam","gap":8,"bosh":4,"ota":"ms-karta-tug"}],"fc":[],"fcw":[]}
+{"key":"m11-01","lid":"pm-m11d1-v1","s":12,"total":14,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m11-02","lid":"pm-m11d2-v1","s":13,"total":15,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m11-04","lid":"pm-m11d4-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m11-03","lid":"m11-03-v1","s":18,"total":20,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m11-06","lid":"pm-m11d6-v1","s":6,"total":12,"juft":[{"a":"Saqlash","c":"Yordam","gap":8,"bosh":4,"ota":"mt-karta-tug"}],"fc":[],"fcw":[]}
+{"key":"m11-05","lid":"m11-05-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m11-06","lid":"pm-m11d6-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m11-07","lid":"pm-m11d7-v1","s":10,"total":12,"juft":[],"fc":[{"w":259,"h":209}],"fcw":[259]}
+{"key":"m11-08","lid":"m11-08-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m11-09","lid":"pm-m11d9-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m11-10","lid":"m11-10-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m11-11","lid":"pm-m11d11-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m11-12","lid":"m11-12-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m12-01","lid":"pm-m12d1-v1","s":14,"total":16,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m12-02","lid":"pm-m12d2-v1","s":13,"total":15,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m12-04","lid":"m12-04-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m12-03","lid":"m12-03-v1","s":17,"total":19,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m12-05","lid":"pm-m12d5-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m12-06","lid":"m12-06-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m12-07","lid":"pm-m12d7-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m12-08","lid":"pm-m12d8-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m12-09","lid":"m12-09-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m12-10","lid":"pm-m12d10-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m12-11","lid":"pm-m12d11-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m12-12","lid":"pm-m12d12-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}
+{"key":"m12-13","lid":"pm-m12d13-v1","s":10,"total":12,"juft":[],"fc":[{"w":520,"h":209}],"fcw":[520]}

@@ -130,7 +130,7 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 — boshlanish nuqtasi · 1.2 — hodisa, sxem
   **Qayerda:** `backend/` — 2-darsdagi gateway va o'yin o'zgaradigan besh yo'l; `mobil/` — ulanish fayli, «O'yinlar» va «O'yin» ekranlari. ·
   **Nima buzilmasin:** Kirish, e'lon berish, qo'shilish, tasdiq, chiqish va navbat avvalgidek ishlasin; pastga tortib yangilash qolsin. (tayanch 1.3, so'zma-so'z)
   O'rtada **Nima qilsin:** — uch bo'sh bo'lim uyasi (uzuq chiziq, raqam bilan: 1 · 2 · 3). Ekranda uch blok: sahna · varaq · harakat tugmasi (SABOQ 26).
-- **Harakat → Vizual o'zgarish** («Keyingi bo'lim» — varaq ostida, halqada; N/3):
+- **Harakat → Vizual o'zgarish** («Keyingi bo'lim» — varaq ostida, halqada; bashoratdan keyin va har qadam tugagach chiqadi *(✎ F-1015-164)*; N/3):
   1. **1 · Hodisalar** → Backend'da «Database: 8» → «9», konvert `oyin-ozgardi · qoshildi` telefonga uchadi, telefondan «so'rov» konverti borib-keladi, kartada «8 / 10» → «9 / 10». Varaqda birinchi bo'lim sirg'alib kiradi (~1 s yashil):
      «o'yinchi «Qo'shilaman» ni bosadi · `oyin-ozgardi` · sabab `qoshildi` · hamma ulangan ilova · «8 / 10» → «9 / 10»» va ostida kichik kulrang qator «+ yana 4 qator — 2-darsdagi sxemadan».
   2. **2 · Ulanish holatlari** → telefon belgisi ketma-ket almashadi: «Ulangan» → «Ulanmoqda…» (chiziq uzuq, ro'yxat joyida) → «Ulanmagan» (chiziq yo'q; telefonda «↓» — pastga tortish ishlaydi) → yana «Ulangan»; har almashganda varaqda mos qator yonadi (tayanch 1.3, so'zma-so'z):
@@ -167,6 +167,7 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 — boshlanish nuqtasi · 1.2 — hodisa, sxem
 ## 4 · Kam uchraydigan vaziyatlar  ← QTushuncha
 - Eyebrow: Tushuncha · vaziyat
 - Sarlavha: **Ekran qachon kutilganidek yangilanmaydi?** (40)
+- ✎ F-1015-168: taxmindan oldin telefondagi tugma bosilsa — «Avval taxminingizni belgilang.» (tugma o'chiq turmaydi).
 - Mentor (bosqichga qarab, bitta gap):
   - bashoratgacha: Avval javobingizni belgilang, keyin uch vaziyatni birma-bir ko'ring.
   - 1/3: Birinchi telefonda uchish rejimini yoqing — shu payt boshqa o'yinchi qo'shiladi.
@@ -201,7 +202,7 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 — boshlanish nuqtasi · 1.2 — hodisa, sxem
 - Tepada ixcham chiziq: «1 · Hodisalar · 2 · Ulanish holatlari · 3 · Chekka holatlar» (joriysi accent, tayyori ✓). Bitta ustun; bir vaqtda bitta katta karta, yozilgani yuqoridagi ixcham qatorga uchadi (SABOQ 29).
   - **Karta 1 · Hodisalar** — yo'riq: Bugun qaysi qatorlarni qurasiz? Belgilang.
     `pm-m10d2-sxema.qatorlar` har biri bitta qator (nuqta · hodisa · ekranda — uzun matn qisqartiriladi) va belgilash katagi; sukutda hammasi belgilangan.
-    Kalit yo'q bo'lsa — «Qator qo'shish»: to'rt maydon — Kim nima qiladi · Hodisa · Kim oladi · Ekranda nima o'zgaradi (ipucha: Hodisa nomi va sababi); kamida bitta, ko'pi bilan beshta.
+    Kalit yo'q bo'lsa — «Qator qo'shish»: to'rt maydon — Kim nima qiladi · Hodisa · Kim oladi · Ekranda nima o'zgaradi (ipucha: Hodisa nomi va sababi); kamida bitta, ko'pi bilan beshta. «Qator tayyor» doim bosiladi; bo'sh katak bo'lsa tugma ostida: N ta katak bo'sh. (fokus birinchi bo'sh katakka) *(✎ F-1015-164)*
   - **Karta 2 · Ulanish holatlari** — yo'riq: Har holatda foydalanuvchi nimani ko'radi? Uch maydon, yorliqlari ekrandagi belgi yozuvi bilan: «Ulangan» · «Ulanmoqda…» · «Ulanmagan» (ipucha har birida: Belgi va ekranda nima turadi?).
   - **Karta 3 · Chekka holatlar** — yo'riq: Vaziyatni va unda nima bo'lishini yozing. Ikki maydon ochiq, «Yana qator» bilan uchinchisi (ko'pi bilan uchta; ipucha: Vaziyat — nima bo'lsin).
   «Keyingi bo'lim» → karta ixcham qatorga uchadi («1 · Hodisalar · 5 qator ✓»), keyingi karta ochiladi. 3-kartadan keyin «Saqlash».

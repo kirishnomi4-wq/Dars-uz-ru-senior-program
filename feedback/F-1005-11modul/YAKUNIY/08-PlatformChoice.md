@@ -1,7 +1,7 @@
 # 8-dars «Arxitektura va platforma: web yoki mobil ilova» — yakuniy matn
 
 Fayl: `src/9-Modull/PlatformChoiceLesson.jsx` · 20 ekran · Keyingi dars: «React Native va Expo: prototip telefonda»
-Holat: 07.10.2026 — kodga mos
+Holat: 18.10.2026 — kodga mos (v4, F-1015-257…259 avtopilot: 3, 7, 11-ekran bashorat yolg'iz (213.7); 1-ekran «Sizningcha» yorlig'i variantlar bilan; reja-satri, 13-ekran trek tugmalari, 14-ekran qadam-tasma — karta)
 
 Darsning bitta vizuali — «Maydon Jamoa chizmasi»: chapda telefon (yoki brauzer oynasi), o'rtada Backend tuguni, o'ngda Database tuguni (uch jadval kartasi).
 Telefon ekranlari: O'yinlar (o'yin kartalari) · O'yin («‹ O'yinlar» · kun va soat · maydon · «8 / 10» · qo'shilganlar doiralari · «Qo'shilaman») · E'lon berish (Kun · Soat · Maydon · Nechta odam · «Yuborish»).
@@ -19,7 +19,7 @@ Namuna o'yinlar (dars bo'yi bir xil):
 - Mentor (sayt yangilangach): Endi javoblardan birini tanlang.
 - Maket (ikki maket yonma-yon):
   - telefon, ustida yorliq «ilova» — Maydon Jamoa, O'yin ekrani: ‹ O'yinlar · Shanba, 18:00 · Mahalla maydoni · 8 / 10 · qo'shilganlar doiralari · Qo'shilaman
-  - brauzer oynasi, ustida yorliq «sayt» — o'sha O'yin sahifasi, «8 / 10»; manzil qatorida ↻ Yangilash (telefonda «Qo'shilaman» bosilgach faollashadi)
+  - brauzer oynasi, ustida yorliq «sayt» — o'sha O'yin sahifasi, «8 / 10»; manzil qatorida ↻ Yangilash (telefonda «Qo'shilaman» bosilgach chiqadi; bungacha faqat manzil) *(✎ F-1015-164)*
   - «Qo'shilaman» bosilgach: telefonda son 8 → 9, tugma «Qo'shildingiz»; brauzerda «8 / 10» qoladi. «Yangilash» bosilgach brauzerda ham «9 / 10».
 - Sizningcha, qaysi biri? (variantlar sayt yangilangach ochiladi)
   - Ilova saytga xabar yubordi
@@ -29,7 +29,7 @@ Namuna o'yinlar (dars bo'yi bir xil):
   - «Ikkalasi bitta joydan so'radi» tanlansa: **Aynan!** Bu misolda o'yinlar bitta Backend va Database'da turadi — ilova ham, sayt ham shu yerdan so'raydi.
   - «Ilova saytga xabar yubordi» tanlansa: **Qiziq fikr!** Ilova saytni tanimaydi: ikkalasi ham o'yinlarni bitta Backend'dan so'raydi.
   - «Sayt telefondan o'qib oldi» tanlansa: **Qiziq fikr!** Telefon o'chiq bo'lsa ham, sayt shu sonni Backend'dan olishi mumkin — demak, u boshqa joydan oladi.
-- Javobdan keyin: ikki maket ostida chizma chiqadi — ikkalasidan chiziq bitta Backend tuguniga, undan Database tuguniga; yorliqlar «ilova · ?» va «sayt · ?».
+- Javobdan keyin: kichik karta yo'q ✎ F-1015-175 (oldin: ikki maket ostida chizma chiqadi — ikkalasidan chiziq bitta Backend tuguniga, undan Database tuguniga; yorliqlar «ilova · ?» va «sayt · ?».)
 - Tugma: Davom etish
 
 ## 1 · Reja
@@ -38,10 +38,11 @@ Namuna o'yinlar (dars bo'yi bir xil):
 - Mentor: Har qadamni avval Maydon Jamoa misolida ko'rasiz, keyin o'z mahsulotingiz uchun README'ga yozdirasiz.
 - Chap — Dars oxirida: Maydon Jamoa chizmasi tayyor holatda — telefon «ilova · Expo» → «Backend · NestJS» → «Database · Neon» (uch jadval); telefonda uchta real vaqt nuqtasi; ostida: mobil — o'yinchi maydonda, qo'lida telefon
 - Bugungi 4 qadam:
-  1. Qismlarni chizish · qismlar
-  2. Jadvallar va ustunlar · oyinlar
-  3. Real vaqt nuqtalarini topish · real vaqt nuqtalari
-  4. Platforma va stekni tanlash · stek — asoslangan tanlov
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*
+  1. Qismlarni chizish
+  2. Jadvallar va ustunlar
+  3. Real vaqt nuqtalarini topish
+  4. Platforma va stekni tanlash
 - Pastki qator: o'z repo'ngiz — `README.md` «Arxitektura» · Mentor misoli `maydon-jamoa` · tayyor holat `m11-dars-08-done`
 - Tugmalar: Orqaga · Boshlaymiz
 
@@ -67,10 +68,10 @@ Namuna o'yinlar (dars bo'yi bir xil):
 - Eyebrow: Tushuncha · jadvallar
 - Sarlavha: Maydon Jamoa ma'lumotlari *qaysi jadvallarda* turadi?
 - Mentor: Har bo'lak uchun uni saqlaydigan jadvalni bosing.
-- Bashorat (Avval o'zingiz belgilab ko'ring): Maydon Jamoa'ga nechta jadval kerak? · Bitta · Uchta · Oltita
+- Bashorat yo'q — saralashning o'zi topshiriq (208/0 e). *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*
 - Chap — telefon: joriy bo'lakka mos joy belgilanadi (E'lon berish · Ro'yxatdan o'tish: Ism · Telefon · Parol · O'yin ekranidagi qo'shilganlar).
 - O'ng — Database: uch jadval kartasi `oyinchilar` · `oyinlar` · `ishtirokchilar`; `id` va `yaratilgan` ustunlari yonida: Database o'zi to'ldiradi
-- Bo'laklar (bittadan chiqadi; hisoblagich «Joylandi: N / 6»):
+- Bo'laklar (bittadan chiqadi; hisob faqat pastki tugmada):
   1. Kun, soat va maydon → `oyinlar`: `kun` · `soat` · `maydon`
   2. Nechta odam kerak → `oyinlar`: `kerak`
   3. Ism, telefon va parol → `oyinchilar`: `ism` · `telefon` · `parol_hash`
@@ -86,9 +87,9 @@ Namuna o'yinlar (dars bo'yi bir xil):
   6. Holat har o'yinda boshqacha — u qo'shilishniki.
 - `parol_hash` yonida: hash — paroldan yasalgan satr: undan parolni qaytarib bo'lmaydi
 - Joriy qator: Boshqa jadvaldagi qatorni ko'rsatadigan ustun bog'lovchi ustun deyiladi; bu darsda ularning nomi `_id` bilan tugaydi.
-- Natija: «Taxminingiz to'g'ri chiqdi» yoki «Taxminingiz: … · haqiqatda: Uchta»
+- Natija:
   - Bu misolda uch jadval: kim — `oyinchilar`, qaysi o'yin — `oyinlar`, kim qaysi o'yinda — `ishtirokchilar`.
-- Tugmalar: Orqaga · Avval o'zingiz belgilab ko'ring → Bo'laklarni joylang (N/6) → Davom etish
+- Tugmalar: Orqaga · Bo'laklarni joylang (N/6) → Davom etish
 
 ## 4 · 1-savol
 - Eyebrow: Mashq · 1-savol
@@ -110,7 +111,7 @@ Namuna o'yinlar (dars bo'yi bir xil):
 - Sarlavha: Boshqa odam sabab *qaysi ma'lumot* o'zgaradi?
 - Mentor: Ekran ochiq turibdi — har bo'lak uchun tanlang: «Ma'lumoti o'zgaradi» yoki «O'zgarmaydi».
 - Chap — telefon «1-telefon · siz», O'yin ekrani: Shanba, 18:00 · Mahalla maydoni · 8 / 10 · qo'shilganlar doiralari · Qo'shilaman (joriy bo'lak belgilanadi; 4-bo'lakda — o'yin kuni, doiralarda «Kelaman» belgilari)
-- Bo'laklar (bittadan; hisoblagich «Topildi: N / 3»), har birida ikki tugma — Ma'lumoti o'zgaradi · O'zgarmaydi:
+- Bo'laklar (bittadan; hisob faqat pastki tugmada), har birida ikki tugma — Ma'lumoti o'zgaradi · O'zgarmaydi:
   1. «8 / 10»
   2. «Shanba, 18:00 · Mahalla maydoni»
   3. Qo'shilganlar doiralari
@@ -158,9 +159,9 @@ Namuna o'yinlar (dars bo'yi bir xil):
   2. `yangila` tugmasi bosilganda `korsat` ishlasin: `addEventListener('click', …)`.
   3. Natija oynasida «Yangilash» ni ikki marta bosing — son 8 dan oshib borsin.
 - Yordam (tugma): Son «…» bo'lib qolsa, `korsat();` qatori oxirida qavslar borligini tekshiring. Tugma ishlamasa — `addEventListener` ga `korsat` qavssiz beriladi.
-- Tugma: Bajardim (ikki shart bajarilgach ochiladi)
+- Tugma: Bajardim (ikki shart bajarilgach chiqadi; bungacha ko'rinmaydi) *(✎ F-1015-164)*
 - O'ng: Kompilyatorni ochish — Kod oynasi ochiladi — kodni yozasiz va natijasini shu yerda ko'rasiz.
-  - Natija oynasi: Shanba, 18:00 · Mahalla maydoni · «… / 10» · Yangilash (shartlar bajarilgach: 8 → 9 → 10)
+  - Natija oynasi: Shanba, 18:00 · Mahalla maydoni · «… / 10» · Yangilash (shartlar bajarilgach chiqadi: 8 → 9 → 10; bungacha tugma yo'q — uni o'quvchining kodi qo'shadi) *(✎ F-1015-164)*
 - Kod oynasi: app.js — ochilganda va «Yangilash» da so'rang
 ```html
 <div class="oyin">
@@ -243,7 +244,7 @@ function korsat() {
 - Eyebrow: Tushuncha · stek
 - Sarlavha: Web yoki mobil: *qaysi qism* boshqa texnologiyada?
 - Mentor: Tanlangan platformadagi yo'lingiz trek deyiladi — mobil trek yoki web-trek; ikkalasini almashtirib ko'ring.
-- Tugmalar: mobil trek · web-trek · hisoblagich «Ko'rildi: N / 2»
+- Tugmalar: mobil trek · web-trek (hisob faqat pastki tugmada) *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*
 - Chizma: telefon (O'yinlar ro'yxati), Backend, Database
   - mobil trek: yorliq «ilova · Expo (React Native)», ostida «telefonda — Expo Go orqali»; Backend — NestJS · Render; Database — Neon (PostgreSQL)
   - web-trek: ramka brauzer oynasiga aylanadi, yorliq «sayt · React (Vite)», ostida «Netlify»; Backend va Database yonida: o'zgarmadi ✓
@@ -257,10 +258,10 @@ function korsat() {
 - Sarlavha: Mahsulotingiz uchun *platformani tanlang*
 - Mentor: To'rt savolga o'z mahsulotingiz uchun javob bering, keyin trekni tanlab, asosini bir gapda yozing.
 - Tepada qadamlar: 1 · 2 · 3 · 4 · Hal qiluvchi · Trek · Asos. Bir vaqtda bitta karta; o'ngda kichik ustunlar web · teng · mobil.
-  1. Foydalanuvchi signali · 1 / 4 — Foydalanuvchingiz mahsulotni qayerda ochadi? · Yo'lda yoki ko'chada, telefonda · Uyda yoki darsda, kompyuterda · Ikkalasida ham
-  2. Foydalanuvchi signali · 2 / 4 — Telefonning o'z imkoniyati kerakmi — kamera, joylashuv yoki eslatma? · Ha, kerak · Yo'q, kerak emas
-  3. Foydalanuvchi signali · 3 / 4 — Odamlar uni hech narsa o'rnatmasdan havoladan ochishi muhimmi? · Ha, muhim · Unchalik emas
-  4. Qurish sharti · 4 / 4 — Qaysi stekni yaxshiroq bilasiz? · React — sayt · React Native — ilova · Ikkalasini
+  1. Foydalanuvchi signali — Foydalanuvchingiz mahsulotni qayerda ochadi? · Yo'lda yoki ko'chada, telefonda · Uyda yoki darsda, kompyuterda · Ikkalasida ham
+  2. Foydalanuvchi signali — Telefonning o'z imkoniyati kerakmi — kamera, joylashuv yoki eslatma? · Ha, kerak · Yo'q, kerak emas
+  3. Foydalanuvchi signali — Odamlar uni hech narsa o'rnatmasdan havoladan ochishi muhimmi? · Ha, muhim · Unchalik emas
+  4. Qurish sharti — Qaysi stekni yaxshiroq bilasiz? · React — sayt · React Native — ilova · Ikkalasini
   5. Hal qiluvchi — Qaysi signal qaroringizga eng ko'p ta'sir qiladi? (to'rt javobingizdan bir yoki ikkitasini bosasiz)
   6. Trek — Web-trek · Mobil trek
   7. Asos — Nega shu platforma? Bir gapda (masalan: o'yinchi maydonda, qo'lida telefon; eslatma telefonga kelishi kerak)
@@ -389,7 +390,6 @@ Natijalar (podium) — jonli reyting
 - Eyebrow: Yakun
 - Belgi (holatga qarab): ✓ Arxitektura tayyor (Amaliyot 2 bajarilgan) · ✓ Chizma tayyor (faqat Amaliyot 1) · belgisiz (Amaliyot 1 bajarilmagan) · N/5 to'g'ri
 - Sarlavha (holatga qarab): Chizma tayyor, platforma asos bilan tanlandi. · Chizma tayyor — README ning qolgani uyda. · Platforma tanlandi — README uyda yoziladi.
-- Bugungi asosiy fikr: Chizma qismlar, jadvallar va real vaqt nuqtalarini ko'rsatadi; bu modulda platforma faqat foydalanuvchi ochadigan qismni tanlaydi — Backend va Database ikkala trekda bir xil.
 - CODE STRIKE arenasi: 12 SAVOL · 15 SONIYA · PODIUM (jonli darsda mentor boshlaguncha: Mentorni kuting)
 - ✓ Endi siz bilasiz:
   - Bu misolda uch qism: ilova ko'rsatadi, Backend tekshiradi, Database saqlaydi.
@@ -403,7 +403,9 @@ Natijalar (podium) — jonli reyting
   - **Asos** — mahsulotingiz foydalanuvchisidan bitta odamga birinchi savolni bering: u mahsulotni qayerda ochardi? Javobi asosingizga zid bo'lsa — to'rt savolni qayta ko'ring; trek yoki asos o'zgarsa, darsdagi platforma kartasida ham, README'da ham yangilang.
 - Keyingi dars — **«React Native va Expo: prototip telefonda»**: platforma tanlandi, endi prototipni shu platformada telefonda ochish navbati.
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10, S1-A): uy vazifasi kartasi P-025 — sarlavha «Uyda nima qilasiz?» (bannerdagi «Uyga vazifa» bilan takror emas); maydonlar: Kim uchun — o'z mahsulotingiz · Nechta — 3 funksiya · Muddat — keyingi darsgacha (qiymatlar topshiriq matnidan); qadamlar raqam-doira; «Keyingi dars» karta ichida; bezak emoji olindi.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Count Rows** — «8» qatorlardan sanalishini bildingiz (4-ekran, 1-savol)

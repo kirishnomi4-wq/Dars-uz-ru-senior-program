@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo, createContext, useContext } from 'react';
 // Kod kompilyatori — UMUMIY modul (F-0809-05). Tugma bilan ochiladigan to'liq-ekran
-// asbob, shuning uchun CodeStrike brendida (PM_DARS_ETALON 1-bo'lim, palitra-istisnosi).
+// oyna, shuning uchun CodeStrike brendida (PM_DARS_ETALON 1-bo'lim, palitra-istisnosi).
 import HtmlCompiler, { checks as C } from '../compilator/HtmlCompiler.jsx';
 
 // ============================================================
@@ -28,7 +28,7 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 
 
 
@@ -1119,6 +1119,12 @@ function StageTimer({ onDone }) {
 }
 
 // ===== SCREEN 0 — ILGAK: zalda ota-onangiz =====
+// F-1015-394 (216-qonun): kirish javobi — variantga bitta qisqa gap + «Bugun…» qatori (eski uzun umumiy matn o'qilmasdi)
+const ACK_KIRISH = {
+  a: { uz: 'Sayt bir xil — farq qanday aytilganida.', ru: 'Сайт тот же — разница в том, как сказано.' },
+  b: { uz: "Aynan! Zal o'z qiyinchiligini taniydi.", ru: 'Именно! Зал узнаёт свою трудность.' },
+  c: { uz: 'Uzunlik emas — boshlanish farq qiladi.', ru: 'Не длина — отличается начало.' }
+};
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const audio = useAudio([{ id: 's0', text: `Tasavvur qiling: zalda ota-onangiz o'tiribdi, siz sahnadasiz. Bitta kitob do'koni sayti — ikki xil aytilgan. Ikkala variantni bosib o'qing, keyin qaysi biri ushlashini tanlang.`, trigger: 'on_mount', waits_for: { type: 'option_picked' } }]);
   const [v, setV] = useState('quruq');
@@ -1158,7 +1164,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map((o, oi) => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}${voteHint ? ` turn-ring turn-wave w${oi + 1}` : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>); })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Sayt ikkalasida ham bir xil — lekin <b>qanday aytish</b> hammasini hal qiladi. Bugun ota-onangiz oldida aytadigan <b>3 daqiqalik nutq</b>ingizni tayyorlaymiz.</>, ru: <>Сайт в обоих случаях один и тот же — но всё решает <b>то, как вы о нём говорите</b>. Сегодня подготовим вашу <b>трёхминутную речь</b> для родителей.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step"><b>{tr(ACK_KIRISH[picked])}</b> {tr({ uz: 'Bugun ota-onangiz oldida aytadigan 3 daqiqalik nutqni tayyorlaymiz.', ru: 'Сегодня готовим 3-минутную речь для родителей.' })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -1756,8 +1762,8 @@ const structOf = (html) => {
 };
 const KOD_TASK = {
   eyebrow: { uz: 'Koding · yakuniy ish', ru: 'Кодинг · итоговая работа' },
-  title: { uz: '«OLX» sahifasining tuzilishini yozing', ru: 'Напишите структуру страницы «OLX»' },
-  brief: { uz: <>Uchta teg: <span className="mono">header</span> (sayt nomi) · <span className="mono">main</span> (asosiy qism) · <span className="mono">footer</span> (havolalar va aloqa). <span className="mono">main</span> ichida 4 bo'lim — har biri <span className="mono">h2</span> sarlavha + <span className="mono">p</span> izoh. Bo'limlar: <b>Isbot</b> · <b>Harakat</b> · <b>Muammo</b> · <b>Qanday ishlaydi</b> — <b>to'g'ri tartibda</b> joylang.</>, ru: <>Три тега: <span className="mono">header</span> (название сайта) · <span className="mono">main</span> (основная часть) · <span className="mono">footer</span> (ссылки и контакты). Внутри <span className="mono">main</span> — 4 раздела, у каждого заголовок <span className="mono">h2</span> + пояснение <span className="mono">p</span>. Разделы: <b>Доказательство</b> · <b>Действие</b> · <b>Проблема</b> · <b>Как это работает</b> — расставьте <b>в правильном порядке</b>.</> },
+  title: { uz: 'Yechim jumlangizni sahifa tepasiga chiqaring', ru: 'Выведите вашу фразу-решение наверх страницы' },
+  brief: { uz: <><span className="mono">header</span> ichida ikkita narsa: <span className="mono">h1</span> — saytingiz nomi, <span className="mono">p</span> — nutqingizdagi yechim jumlasi (sayt nima qilishini aytadigan to'liq gap). Undan keyin <span className="mono">main</span> ichida bitta bo'lim: <span className="mono">h2</span> sarlavha + <span className="mono">p</span> izoh.</>, ru: <>Внутри <span className="mono">header</span> две вещи: <span className="mono">h1</span> — название сайта, <span className="mono">p</span> — фраза-решение из вашей речи (полная фраза о том, что делает сайт). После него внутри <span className="mono">main</span> один раздел: заголовок <span className="mono">h2</span> + пояснение <span className="mono">p</span>.</> }, // F-1017-205: avval PmLesson2 dagi «OLX, 4 bo'lim» matni turardi — shartlar (checkStructure) bilan mos emas edi
   previewUrl: 'olx.uz',
   previewCss: KOD_PREVIEW_CSS,
   placeholder: KOD_PLACEHOLDER,
@@ -1953,7 +1959,7 @@ const Screen14 = ({ screen, answers, onReset, onPrev, onFinish }) => {
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   const [d] = usePitch3();
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (_e) { return; } }
+    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
   const audio = useAudio([{ id: 's14', text: "Tabriklaymiz! Nutqingiz tayyor: oltita bo'lak va savollarga tayyor javoblar. Matningiz brauzeringizda saqlandi — Demo Day kuni shu darsni ochsangiz, joyida turadi. Omad!", trigger: 'on_mount', waits_for: null }]);
@@ -1983,13 +1989,13 @@ const Screen14 = ({ screen, answers, onReset, onPrev, onFinish }) => {
   const achTotal = Object.keys(ACHIEVEMENTS).length;
   const achGot = earned ? earned.size : 0;
   return (
-    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash', ru: 'Завершить' })}</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash', ru: 'Завершить' })}</FinishBtn></>}>
       <div className="screen">
         <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">{Ico.check(11)}</span> {tr({ uz: 'Demo Day tayyorgarligi tugadi', ru: 'Подготовка к Демо-дню завершена' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi siz sahnada <span className="italic" style={{ color: T.accent }}>3 daqiqa</span> gapira olasiz.</>, ru: <>Теперь вы можете говорить на сцене <span className="italic" style={{ color: T.accent }}>3 минуты</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} disabled={studentWait} liveOn={studentLive} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : undefined} />
         </div>
-        {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+        {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         {d.ilgak && (
           <div className="dd-card fade-up d2">
             <div className="dd-card-h">{tr({ uz: '🎤 Demo Day nutqingiz', ru: '🎤 Ваша речь на Демо-день' })}{d.link ? <span className="mono dd-link"> · {d.link}</span> : null}</div>

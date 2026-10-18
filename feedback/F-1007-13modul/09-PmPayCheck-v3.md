@@ -142,10 +142,11 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` + `10-FILTR.md` (Mentor tekshiruvi �
   Vizual: `TasdiqVaraq` varaq o'zi yuradi (DE-200) — sarlavha «Mentor misoli · Maydon Jamoa», ustun nomlari «kim · holat · narx · nima uchun · gap», olti qator nomi «1-tashkilotchi … 6-tashkilotchi» navbat bilan yoziladi, qolgan kataklar uzuq (2-ekranda o'quvchi to'ldiradi — U-041); tepada bo'sh muhr joyi.
   Javoblar va sonlar yo'q — 2-ekran kashfiyotini ochmaydi (P-036); ustun va qator nomlari — haqiqiy mazmun (SABOQ 33).
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
-  - 01 · Odamning o'zi yozgan javobini suhbatdagi gapdan ajratasiz · `yozma tasdiq`
-  - 02 · Yozuvlarni uch savol bilan tekshirasiz · `Mentor tekshiruvi`
-  - 03 · Tanishlaringizga bosimsiz xabar yozasiz · `xabar`
-  - 04 · Sherigingiz bilan yozuvlaringizni tekshirasiz · `qabul · tuzatish`
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
+  - 01 · Odamning o'zi yozgan javobini suhbatdagi gapdan ajratasiz
+  - 02 · Yozuvlarni uch savol bilan tekshirasiz
+  - 03 · Tanishlaringizga bosimsiz xabar yozasiz
+  - 04 · Sherigingiz bilan yozuvlaringizni tekshirasiz
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz
 - O'qituvchi eslatmasi: Menyu ostidagi «uchta yozma tasdiq» — dastur natijasi. Darsda — xabar va kelgan javoblar; ko'p o'quvchida darsda yozma tasdiq 0–1 bo'ladi, qolgani uyda. Uchtaga yetmaslik — baho emas. Darsda hech kim pul olmaydi va hech narsa sotmaydi.
 - Izoh (MD): sarlavhada yangi atama yo'q (T-011) — «yozma tasdiq» faqat chap yorliqda (App.jsx osti so'zma-so'z) va kulrang tegda; ta'rif — 2-ekranda (P-014). Chap kulrang qator menyu ostini darsdagi haqiqatga chegaralaydi (11-Modul 03-FILTR 1 sinfi).
@@ -154,8 +155,7 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` + `10-FILTR.md` (Mentor tekshiruvi �
 - Eyebrow: Tushuncha · yozma tasdiq
 - Sarlavha: **Kim narxini va nimaga to'lashini yozdi?** (39)
 - Mentor: Mentor tashkilotchilarga bir xil xabar yubordi — har javobga mos tugmani bosing.
-  (Birinchi harakat — bashorat; uning yo'rig'i `QBashorat` yorlig'ida, Mentor takrorlamaydi — T-047. «Olti» soni — faqat bashoratda va hisoblagichda, P-062.)
-- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 zinapoya): **Oltitadan nechtasi narx va nima uchunini yozadi?** · 1 · 3 · 5 — tanlangach yopilmaydi: ixcham qator «Taxminingiz: N» natijagacha turadi; tugmalar shundan keyin yoqiladi.
+- Bashorat yo'q — javoblarni ajratishning o'zi topshiriq (208/0 e); «6 javob» katakchalari ham yo'q — hisob tugmada «(N/6)». *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
 - Vizual (≤ 3 blok: telefon · varaq · tugmalar qatori): **chapda** — telefon: chat sarlavhasi «{N}-tashkilotchi», birinchi pufak — Mentor xabari (`MENTOR_XABAR`, to'liq; olti chatda bir xil), ikkinchi — javob (6-chatda javob pufagi yo'q) ·
   **o'ngda** — varaq «Mentor misoli · Maydon Jamoa»: kulrang `PRO_QATOR` · jadval (olti qator, «kim» to'la, qolgani uzuq) · hisoblagichlar «narx va nima uchun yozdi · 0 · hozir yo'q · 0 · javob yo'q · 0» · **varaq ostida** — uch tugma: «Narx va nima uchun yozdi» · «Hozir yo'q» · «Javob yo'q».
 - Javoblar (navbat bilan; A-6 jadvali so'zma-so'z):
@@ -176,10 +176,10 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` + `10-FILTR.md` (Mentor tekshiruvi �
   - 6-javob, «Narx va nima uchun yozdi» yoki «Hozir yo'q»: Chatda uning xabari bormi? (26)
 - Natija (bitta blok — E 42; `tugadi`: tugmalar yopiladi, telefon yig'iladi, varaq butun enga, ⛶ ichida — q17/q18): «holat» ustunidagi «narx va nima uchun yozdi» yozuvlari **«yozma tasdiq»** bo'ladi (harflar almashadi);
   hisoblagichlar: «so'ralgan · 6» · «yozma tasdiq · 3» · «hozir yo'q · 2» · «javob yo'q · 1». Varaq ostida kulrang Mentor yozuvi (T-008 — olam ichidagi matn; tayanch 1.9 so'zma-so'z): Uchta yozma tasdiq — ikkitasi 15 000 da, bittasi 10 000 da: narx haqida dalil, isbot emas.
-  Yashil xulosa qutisi — birinchi kichik qator taxmin: «Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz ✕ — aslida: 3».
+  Yashil xulosa qutisi — taxmin qatorisiz. *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
 - Xulosa: Bu darsda yozma tasdiq — odamning o'zi yozgan javobi: narx va nima uchun to'lashi bilan. (88) — atama shu yerda tug'iladi (T-011)
 - `QIzoh` (qutining oxirgi kichik qatori — E 42): Yozma tasdiq — odamning hozirgi niyati, to'lov emas: Mentor hech kimdan pul so'ramadi. (86)
-- Tugma (pastki): Avval belgilang → Javoblarni ajrating (N/6) → Davom etish
+- Tugma (pastki): Javoblarni ajrating (N/6) → Davom etish
 - Ipucha (40 s harakatsizlikda; javobni aytmaydi): Xabarda narx bormi, «hozir yo'q» bormi yoki xabar umuman yo'qmi — qarang. (73)
 - Keyingi bosiladigan joy: bashorat variantlari → uch tugma (navbatma-navbat to'lqin) → «Davom etish».
 - Nishon: In Writing! (olti javob birinchi urinishda).
@@ -216,8 +216,8 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` + `10-FILTR.md` (Mentor tekshiruvi �
   (Birinchi harakat — bashorat; yo'rig'i `QBashorat` yorlig'ida.)
 - Bashorat (ballsiz; S-015 — bitta o'lchov: varaq qanchalik o'tadi, kam → ko'p): **6 dan 3 yozma tasdiq — Mentor tekshiruvi nima deydi?** ·
   Tuzatish: oltidan uchtasi kam (29) · Bitta tuzatishdan keyin qabul (29) · Qabul (5) — tanlangach ixcham qator «Taxminingiz: …» natijagacha turadi.
-- Qadam qatori (`QQadamlar`, bitta manba `TEKSHIRUV_SAVOLLAR` — 7-ekran ham shundan): 1 Kim tasdiqladi? · 2 Narx va nima uchun yozilganmi? · 3 So'zma-so'z va bosimsiz olinganmi?
-- **Chapda — `TasdiqVaraq` to'liq** (2-ekrandan; tepada xabar qatori «Xabar: «…»» — `MENTOR_XABAR` to'liq) · **o'ngda — bitta savol kartasi** (navbat bilan): savol · «Nimaga qarang» bir qatori · ostida kulrang «Varaqdan bosib toping». Tugma yo'q — javob varaqdagi bosish.
+- Qadam qatori yo'q — joriy savol kartada, kartada «n / 3» ham yo'q; hisob tugmada *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*.
+- **Chapda — `TasdiqVaraq` to'liq** (2-ekrandan; tepada xabar qatori «Xabar: «…»» — `MENTOR_XABAR` to'liq) · **o'ngda — bitta savol kartasi** (navbat bilan): savol · «Nimaga qarang» bir qatori · ostida kulrang «Varaqdan bosib toping». Tugma yo'q — javob varaqdagi bosish. Varaq kataklari bashoratdan keyin bosiladi; undan oldin — oddiy matn (o'chiq tugma emas) *(✎ F-1015-164)*.
   1. **Kim tasdiqladi?** — Nimaga qarang: har yozma tasdiqda rol bormi — u to'lovchimi? → dalil: «kim» ustunidagi uch katak (1, 3, 4-tashkilotchi) yoki `PRO_QATOR`; bosilgach ikkalasi yashil yonadi.
   2. **Narx va nima uchun yozilganmi?** — Nimaga qarang: har yozma tasdiqda narx va nima uchun to'lashi turibdimi? → dalil: «narx» (15 000 · 10 000 · 15 000) yoki «nima uchun» («Doimiy o'yin» ×3) ustuni; bosilgach ikkala ustun yashil.
   3. **So'zma-so'z va bosimsiz olinganmi?** — Nimaga qarang: gap odam yozganidek qo'shtirnoqda turibdimi; Mentor xabarida bosim yo'qmi? → dalil: «gap» ustuni yoki xabar qatoridagi «Yozmasangiz ham bo'ladi»; og'zaki bosim yo'qligi va bir marta yozilgani varaqdan ko'rinmaydi — buni o'quvchi o'zi aytadi (F-1007-467);
@@ -234,7 +234,7 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` + `10-FILTR.md` (Mentor tekshiruvi �
   Natija qatori (`QTaxmin`, xulosa qutisining birinchi qatori): «Taxminingiz: … · haqiqatda: qabul» yoki «Taxminingiz to'g'ri chiqdi».
 - Xulosa: Bu misolda 6 dan 3 yozma tasdiq — qabul: tekshiruv halollikni ko'radi, sonni emas. (82)
 - Ipucha (40 s): O'ngdagi savolni o'qing va javobini chapdagi varaqdan bosing. (61)
-- Natija (`tugadi`): savol kartasi va qadam qatori yo'qoladi; varaq butun enga, tepada «Qabul».
+- Natija (`tugadi`): savol kartasi yo'qoladi; varaq butun enga, tepada «Qabul».
 - Tugma (pastki): Savollarni bering (N/3) → Davom etish · vizual ⛶ ichida.
 - Keyingi bosiladigan joy: bashorat variantlari → varaqdagi dalil joylari (joriy savolga tegishlisi yengil accent chegarada, to'lqin 2 marta) → «Davom etish».
 - Nishon: Fair Check! (uch dalilni birinchi urinishda).
@@ -269,7 +269,7 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` + `10-FILTR.md` (Mentor tekshiruvi �
   - 1-qism: Uyda gaplashgan bo'lsangiz — qog'ozdagi yozuvni shu yerga ko'chiring.
   - 2-qism: Mentor xabaridagi bo'sh joylarni o'z mahsulotingiz bilan to'ldiring.
   - 3-qism: Javob kelganlarini belgilang — yozma tasdiqni so'zma-so'z ko'chiring.
-- Qism yorliqlari (ot-shakl, T-073): 1 Suhbatlar · 2 Xabar · 3 Javoblar
+- Qism yorliqlari qatori yo'q — har qismni Mentor aytadi, hisob tugmada «(n/3)» *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
 - Joylashuv (≤ 3 blok): **chapda** — 1-qismda «Yozuvlarim» ro'yxati, 2–3-qismda telefon (chat) · **o'ngda — bitta katta karta (joriy qism)** · ostida ixcham chiziq «Yozma tasdiqlarim · so'ralgan n · yozma tasdiq n».
 - **1-qism · Suhbatlar** (tayanch 9.10 — uy suhbatlari shu darsda kiritiladi):
   - Chapda «Yozuvlarim» (`pm-m11d6-suhbat.suhbatlar`): har qator «{kim} · «{gap}» · {belgi} · {narx}», o'ngida yorliq «real» (yashil) yoki «mashq» (kulrang). Kalit yo'q bo'lsa — kulrang qator: 6-darsdan yozuv yo'q.
@@ -347,7 +347,7 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` + `10-FILTR.md` (Mentor tekshiruvi �
 - Mentor (juftlikda): Sherigingiz yozuvlaringizni o'qib, savollarni birma-bir beradi — javobni birga belgilang.
   Yakka rejimda: Savollarni o'zingizga bering va javobini yozuvlaringizdan toping.
   Keyingi qadam qismida (Mentor gapi almashadi): Yozma tasdiq uchtaga yetmagan bo'lsa — bitta keyingi qadamni yozing.
-- Qadam qatori (`QQadamlar`, `TEKSHIRUV_SAVOLLAR`): 1 Kim tasdiqladi? · 2 Narx va nima uchun yozilganmi? · 3 So'zma-so'z va bosimsiz olinganmi? · 4 Keyingi qadam (faqat yozma tasdiq uchtadan kam bo'lsa)
+- Qadam qatori yo'q — joriy savol kartada (kartada «n / 3» ham yo'q); «Keyingi qadam» qismi kerak bo'lsa — uni Mentor gapi va maydon yozuvi aytadi *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*.
 - **Chapda — o'quvchining varag'i «Yozma tasdiqlarim»** (6-ekrandan): xabar qatori · «To'lovchi: {kim}» (`pm-m11d2-model.kim` bo'lsa) · jadval «kim · narx · nima uchun · gap · qayerda» · hisoblagichlar. Joriy savolga tegishli joy yengil accent chegarada (1 → «kim» ustuni · 2 → «narx» va «nima uchun» · 3 → «gap» va xabar qatori).
 - **O'ngda — savol kartasi:** savol · «Nimaga qarang» bir qatori · ikki tugma «Ha» · «Yo'q — tuzataman»:
   1. Kim tasdiqladi? — Nimaga qarang: har yozuvdagi rol mahsulotingizda to'lovchimi — o'zingiz yoki to'lamaydigan odam emasmi?
@@ -443,8 +443,10 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` + `10-FILTR.md` (Mentor tekshiruvi �
 - Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
 - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18). Artefakt-strip yakunda yo'q (E 50).
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
 - Izoh (MD): uyga vazifada kech kelgan javoblar qayerga kiritilishi aytilmaydi (T-038; TAYANCHGA SAVOL 9) — qog'ozga, 6-darsdagi uy suhbatlari kabi. «Uchtagacha» — dastur maqsadi, kam bo'lsa ham halol natija (sinf 14 — uyga vazifa yengil va aniq).
   «Kim bilan» — HwCard yorlig'i (6-dars bilan bir). Birinchi sarlavhadagi `{n}` — `tasdiqlar.length` (bir xonali); n = 1 da ham shu shakl («1 ta yozma tasdiq …»).
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ---
 

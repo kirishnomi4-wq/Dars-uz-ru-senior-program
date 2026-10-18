@@ -89,11 +89,11 @@ Tashqi audit (ChatGPT) Filtri: `10-FILTR.md` — 05.10.2026 qo'llandi.
 - Mentor: Saytni o'zingiz qurgansiz — qayerni bosishni bilasiz. Uni birinchi marta ochgan odam bilmaydi.
 - Chap: «Dars oxirida — shunday yozuv: odam nima qildi va qayerda to'xtadi» + yozuv qatorlari 0.9 s oraliqda o'zi yoziladi (javob ochilmaydi — matn kulrang chiziq):
   `0:00 · ━━━━━━` · `0:14 · ━━━━━━━━  to'xtadi` · `0:31 · ━━━━━` · `0:58 · ━━━━━━━  to'xtadi`; oxirida bitta qator yonida «Birinchi».
-- O'ng (01 · matn · teg):
-  - 01 · Odam qayerda to'xtashini kuzatib, yozasiz · `kuzatish`
-  - 02 · Yordam bersangiz, yozuvda nima qolishini ko'rasiz · `yordam`
-  - 03 · Odamga beriladigan vazifani yozasiz · `vazifa`
-  - 04 · Sinfdoshingiz bilan bir-biringizni kuzatasiz · `juftlik`
+- O'ng (01 · matn; teg yo'q — keyingi ekranlar eyebrow'ini takrorlardi) *(✎ F-1015-114, 208-qonun 0-band: takror olindi)*:
+  - 01 · Odam qayerda to'xtashini kuzatib, yozasiz
+  - 02 · Yordam bersangiz, yozuvda nima qolishini ko'rasiz
+  - 03 · Odamga beriladigan vazifani yozasiz
+  - 04 · Sinfdoshingiz bilan bir-biringizni kuzatasiz
 - Harakat yo'q (reja ekrani) — vizual o'zi yoziladi.
 - Reja = dars ta'rifi (App.jsx `sub` «sinov: tushuntirmang, kuzating») — «sinov» so'zi reja yuzasida yo'q, u 2-ekranda misoldan keyin tug'iladi (T-011, P-014).
 
@@ -160,7 +160,7 @@ Tashqi audit (ChatGPT) Filtri: `10-FILTR.md` — 05.10.2026 qo'llandi.
 - Eyebrow: Biznes olamidan (PM-028)
 - Sarlavha: **Internet-magazin xaridorlari qayerda to'xtab qolgan?** (52)
 - Mentor: Jared Spool — odamlar saytni qanday ishlatishini o'rganadigan tadqiqotchi. Bu voqeani u 2009-yilda yozgan, magazin nomini aytmagan.
-- Nuqtalar (6) · yorliq **Internet-magazin · N/6** (bashorat kartasida ham) · maket `FormaMaket` (chizilgan forma: ikki qator, ikki tugma, bitta havola; logotip yo'q).
+- Nuqtalar qatori yo'q — tugma «Keyingi bosqich (N/6)» aytadi; bashorat yorlig'i «Avval o'zingiz belgilab ko'ring» *(✎ F-1015-114, 208-qonun 0-band: takror olindi)* · maket `FormaMaket` (chizilgan forma: ikki qator, ikki tugma, bitta havola; logotip yo'q).
 - Bosqichlar (karta matni qisqa; karta cho'zilmaydi):
   - 1/6 **Xarid oxirida — oddiy forma** — Savatni to'ldirib, xaridga o'tgan odam forma ko'rardi: email, parol, «Kirish», «Ro'yxatdan o'tish» va «Parolni unutdingizmi?». · maket: forma chiziladi
   - 2/6 **Sinov: ro'yxat va pul** — Tadqiqotchilar odamlarga xarid ro'yxati va pul berishdi. Vazifa bitta edi: xaridni oxiriga yetkazish. · maket: forma yonida ro'yxat-karta va barmoq halqasi
@@ -170,7 +170,7 @@ Tashqi audit (ChatGPT) Filtri: `10-FILTR.md` — 05.10.2026 qo'llandi.
   - 6/6 **Bitta tugma** — «Ro'yxatdan o'tish» o'rniga «Davom etish» qo'yildi va bitta gap: xarid uchun ro'yxatdan o'tish shart emas. Xarid qilgan mijozlar soni 45% oshdi, birinchi yilda magazin qo'shimcha 300 million dollar oldi. · maket: tugma yozuvi almashadi, yonida ustun-belgi o'sadi «+45%»
 - Bashorat natijasi (`QTaxmin`): «Taxminingiz: … · haqiqatda: …» yoki «Taxminingiz to'g'ri chiqdi».
 - **Harakat → Vizual o'zgarish:** «Keyingi bosqich» yoki bashorat varianti → `FormaMaket` holati o'zgaradi: forma chiziladi → ro'yxat-karta va halqa → halqa forma ustida aylanadi
-  (to'xtash — s2 dagidek belgi) → pufaklar → «Ro'yxatdan o'tish» yozuvi «Davom etish» ga almashadi, ustun-belgi o'sadi. Bashoratda tanlangan variant ✓/✗ va `QTaxmin` qatori.
+  (to'xtash — s2 dagidek belgi) → pufaklar → «Ro'yxatdan o'tish» yozuvi «Davom etish» ga almashadi, ustun-belgi o'sadi. Bashoratdan keyin `QTaxmin` qatori (variantda ✓/✗ yo'q).
 - Xulosa (6/6 dan keyin, hisoblagichsiz): Vazifada qaysi tugmani bosish aytilmagan — shuning uchun formadagi to'xtash ko'rindi. (85)
 - Tugma (pastki): Keyingi bosqich (N/6) → Davom etish
 - O'qituvchi eslatmasi: Raqamlar maqoladan (45% — xarid qilgan mijozlar soni, maqolada «The number of customers purchasing went up by 45%»; 15 mln $ — birinchi oy; 300 mln $ — birinchi yil). Magazin nomini taxmin qilmang — maqolada yo'q.
@@ -429,7 +429,7 @@ console.log(toxtashlar([], 15));
 5. s2 — ×5 ijro (`requestAnimationFrame` yoki `setInterval`, reduced-motion da qadam-baqadam «Keyingi»); «To'xtashni yozish» to'xtash oynasida bosilsa qator, tashqarida — `QXato`;
    o'tkazib yuborilgan to'xtashda pauza; «Yozildi: N» (jami yo'q); 3/3 da «Kuzatuv yozuvi» / «Sinov» yorliqlari; `QBashorat` + `QTaxmin`.
 6. s4 — o'sha ijro, har to'xtashda pauza + «Ko'rsatish» (N/3); yonma-yon ikki yozuv (s2 natijasi — saqlangan holatdan; s2 o'tilmagan bo'lsa `SINOV` dan to'liq yozuv).
-7. s6 — `FormaMaket` (CSS chizilgan forma: 2 qator, «Kirish» / «Ro'yxatdan o'tish», havola; ro'yxat-karta; ustun-belgi «+45%»); `K_SLIDES` 6 bosqich, 2 bashorat, yorliq «Internet-magazin · N/6».
+7. s6 — `FormaMaket` (CSS chizilgan forma: 2 qator, «Kirish» / «Ro'yxatdan o'tish», havola; ro'yxat-karta; ustun-belgi «+45%»); `K_SLIDES` 6 bosqich, 2 bashorat; nuqtalar/yorliq yo'q (F-1015-114).
 8. s8 — vazifa tekshiruvi (regex, PM-032: ≥8 namuna uz+ru sinovi; «tanlab», «bosib o'tib» kabi to'g'ri gaplar bloklanmasin); saqlangan vazifa s12 va uyga vazifa banneriga o'tadi.
 9. s9 — kartalar akkordeon emas: bosish → telefon holati o'zgaradi (DE-184); 2-bosqich — uya «Birinchi» (sig'im 1), «Tanlovni almashtirish»; **tanlov saqlanadi — 11-dars o'qiydi**
    (kalit nomi — TAYANCHGA SAVOL 4); nishon `firstFix` — birinchi tanlov `tugma`.
@@ -486,7 +486,7 @@ console.log(toxtashlar([], 15));
 
 - ✎ s0: yozuv kartasi tepasida sinov vazifasi qatori turadi (MD: «yozuv bo'sh») — bo'sh karta ma'nosiz ko'rinmasin (SABOQ 4); qatorlar bo'sh qoladi.
 - ✎ s6: SABOQ 8 bo'yicha bosqich gapi Mentorda, har bosqichda almashadi; MD dagi Mentor gapi (Jared Spool izohi) 1/6 da sahnada tanishtiruv qatori bo'lib turadi (S-018).
-  Bashorat bosqichlarida (3/6, 5/6) Mentor: «Avval o'zingiz belgilab ko'ring.» — MD ga qo'shilsin. Sahnadagi ikkinchi pufak — «••••• ?» (parol), birinchisi iqtibos bo'lagi.
+  Bashorat bosqichlarida (3/6, 5/6) Mentor oldingi bosqich gapini aytib turadi (✎ F-1015-114: «Avval o'zingiz belgilab ko'ring.» bashorat yorlig'ini takrorlardi). Sahnadagi ikkinchi pufak — «••••• ?» (parol), birinchisi iqtibos bo'lagi.
 - ✎ s8, s12: maslahat-tekshiruvdan keyin ikkinchi qator «Shunday qoldirsangiz — yana «Saqlash»ni bosing.» (1-dars naqshi) — MD ga qo'shilsin.
 - ✎ s12: 2→3-qadam o'tish tugmasi «Birinchisini belgilang →»; «Birinchi» tanlanmay saqlansa — «Bitta qatorni bosib, «Birinchi» qiling.» — MD ga qo'shilsin.
 - ✎ Arena 2 va 3-savol to'g'ri varianti: tire faqat to'g'ri variantda edi (lint-tell) — «Sinovda so'ramaysiz, odamni kuzatasiz» · «To'xtash: yozuvga vaqti bilan tushadi».

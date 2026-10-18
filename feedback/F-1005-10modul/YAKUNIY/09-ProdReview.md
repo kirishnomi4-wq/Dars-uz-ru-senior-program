@@ -50,7 +50,7 @@ Holat: 06.10.2026 — kodga mos
   - Tanlangach ixcham qator: Taxminingiz · savol · tanlov
 - Chap — telefon (ega sahifasi): `maydon-….netlify.app/ega` · Maydon · ega · ‹ Shanba › · Shanba · bandlar · ro'yxat: 17:00 · 20:00
 - O'ng — tarmoq chizmasi: `prod` (uch nuqta) · laptopda ishlayapti · `main` · Render · Netlify
-- Ikki yo'l tugmasi:
+- Ikki yo'l tugmasi (bashoratdan keyin chiqadi — oldin joyi bo'sh; bajarilgan yo'l tugma emas, natija yozuvi bo'lib qoladi — *✎ F-1015-164*):
   - ▶ To'g'ridan `main` ga push → nuqtalar `main` ga o'tadi, Render · Netlify yonadi, ega sahifasidagi ro'yxat joyi bo'sh qoladi (qizil) → natija: ✗ Hech kim o'qimadi — kamchilik internetga chiqdi.
   - ▶ PR orqali birlashtirish → PR kartasi (Pull Request · Files changed · `web/src/App.jsx` `+{kechikdi && (…)}`), sinfdosh izohi «`/ega` da-chi?», `prod` da yangi nuqta «tuzatish», «Merge pull request» bosiladi → ega sahifasi: Bandlar yuklanmoqda — bu bir daqiqagacha cho'zilishi mumkin. → ro'yxat (yashil) → natija: ✓ Sinfdosh o'qidi — kamchilik birlashtirishdan oldin tuzatildi.
 - Natija bloki: ✓ Taxminingiz to'g'ri chiqdi (yoki: Taxminingiz: … · haqiqatda: faqat laptopda — `prod` hali birlashtirilmagan)
@@ -271,7 +271,7 @@ Holat: 06.10.2026 — kodga mos
 
 ## 11 · Yakun — keyingi dars
 - Eyebrow: Yakun
-- Belgi: ✓ Loyiha kuni tugadi · N/2 to'g'ri
+- Belgi: ✓ Dars tugadi · Testlar: N/N ✎ F-1015-161
 - Sarlavha: PR birlashtirildi — har qaror sababi bilan yozilgan.
 - Jonli viktorina tugmasi: CODE STRIKE · kutish holatida: Mentorni kuting
 - Endi siz bilasiz:

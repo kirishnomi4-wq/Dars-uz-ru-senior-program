@@ -1,7 +1,7 @@
 # 5-dars «G'oyangiz bir sahifaga sig'adimi?» — yakuniy matn
 
 Fayl: `src/9-Modull/PmPrdLesson.jsx` · 16 ekran · Keyingi dars: «Bitiruvgacha nimani qachon qurasiz?»
-Holat: 07.10.2026 — kodga mos
+Holat: 18.10.2026 — kodga mos (v4, F-1015-229…236 avtopilot: Mentor misoli 6 yozuv; 0-ekran chipsiz; reja 3; 2 va 8-ekran bashorat yolg'iz; 4-ekran tugmalar kartada; 9/10-ekran bitta karta)
 
 Darsning bitta vizuali — PRD sahifasi. Oq sahifa, tepada nom (Mentor misolida **Maydon Jamoa**, o'quvchida — o'z final g'oyasi nomi yoki «Mening PRD sahifam»), ostida yorliq «1 sahifa».
 Sahifa uch ko'rinishda keladi: to'rt katak (8-Modul varag'i) · to'liq (yetti bo'lim, raqam bilan) · ixcham («PRD · n / 7» va yetti bo'lim nomi). Sahifa tepasida muhr: «Qabul» yoki «Tuzatish: {bo'lim}».
@@ -17,8 +17,8 @@ Yetti bo'lim (bo'lim nomi · ustidagi kulrang savol):
 
 Mentor misoli — «Maydon Jamoa» PRD si (dars bo'yi bir xil):
 - Muammo: O'yinchilar o'yindan oldin jamoaga yetarli odam yig'ishda va kim aniq kelishini bilishda qiynaladi.
-- Dalil: 10 intervyu. Jamoa yig'ish bo'yicha 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan; 5 tadan 4 tasi birinchi versiyani sinab ko'rishga kun belgilagan (harakat belgisi).
-  - kulrang qator: 10 intervyu — kichik son; bu tanlov uchun dalil, isbot emas.
+- Dalil: Olti intervyu. Jamoa yig'ish bo'yicha 3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan; 3 tadan 3 tasi birinchi versiyani sinab ko'rishga kun belgilagan (harakat belgisi).
+  - kulrang qator: Olti intervyu — kichik son; bu tanlov uchun dalil, isbot emas.
 - Kim uchun: Mahalladagi mini-futbol o'yinchilari: tashkilotchi — o'yinni e'lon qiladi, o'yinchi — o'yinga qo'shiladi.
 - Yechim: Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.
 - Uchta asosiy funksiya: O'yin e'loni va qo'shilish · O'yin kuni tasdiq · Chiqish va navbat (tekshiruvdan oldingi qoralamada uchinchisi — Maydon pulini bo'lishish)
@@ -29,14 +29,14 @@ Mentor misoli — «Maydon Jamoa» PRD si (dars bo'yi bir xil):
 - Eyebrow: Kirish
 - Sarlavha: G'oyangiz bir sahifaga *sig'adimi?*
 - Mentor: Final g'oya tanlandi, nomi — Maydon Jamoa. Endi uni quradigan odam o'qiydigan qilib yozish kerak: o'zingizga yaqin javobni belgilang.
-- Maket: telefon «Maydon Jamoa» (e'lon holati) va yonida bo'sh sahifa; sahifa tepasida o'tgan darslardan uchta yopiq karta: g'oya · 10 yozuv · muammo gapi
+- Maket: telefon «Maydon Jamoa» (e'lon holati) va yonida bo'sh sahifa; sahifa ichida uch kulrang qator: g'oya · 6 yozuv · muammo gapi (F-1015-230: chiplar yo'q)
 - Variantlar:
   - Ha, bitta gapga ham sig'adi
   - Ha, bir sahifaga sig'adi
   - Yo'q, bir necha sahifa kerak
-- Tanlangandan keyin: uchta karta navbat bilan sahifaga uchib kiradi va qatorlarga aylanadi:
+- Tanlangandan keyin: uch qator navbat bilan matnga aylanadi:
   - Jamoa yig'ish: o'yinga odam yetmaydi, kim kelishi noma'lum
-  - 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan
+  - 3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan
   - O'yinchilar o'yindan oldin jamoaga yetarli odam yig'ishda va kim aniq kelishini bilishda qiynaladi.
 - Javob (uchala variantda bir xil): Uchalasi ham bor: yechim bir gapda aytiladi, katta jamoada hujjat bir necha sahifa. Bugun — bir sahifa.
 - Jonli darsda: variantlar yonida sinf ovozlari chizig'i
@@ -49,17 +49,17 @@ Mentor misoli — «Maydon Jamoa» PRD si (dars bo'yi bir xil):
 - Chap: Dars oxirida: Mentor tekshiruvi va to'liq PRD
   - Sahifa «Maydon Jamoa»: to'rt qator navbat bilan yoziladi (muammo, kim uchun, yechim va bosh raqam matnlari — Mentor misolidan), oxirida tepaga yashil muhr «Qabul» tushadi
 - Reja:
-  1. To'rt katakli varaqdan to'liq PRD ga o'tasiz · PRD
-  2. Nimani qurmaslikni ham yozishni bilib olasiz · qilmaymiz
-  3. Amazon hujjatni qachon yozishini ko'rasiz · voqea
-  4. PRD yozib, uni uch savol bilan tekshirasiz · tekshiruv
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*
+  1. To'rt katakli varaqdan to'liq PRD ga o'tasiz
+  2. Nimani qurmaslikni ham yozishni bilib olasiz
+  3. PRD yozib, uni uch savol bilan tekshirasiz (F-1015-231: Amazon bandi olindi)
 - Tugmalar: Orqaga · Boshlaymiz
 
 ## 2 · To'rt katakdan yetti bo'limga
 - Eyebrow: Tushuncha · to'liq PRD
 - Sarlavha: To'rt katakka yana *qaysi bo'limlar* qo'shiladi?
 - Mentor: Varaqni o'qib, qurishni boshlagan odam beradigan savollarni birma-bir bosing.
-- Bashorat (Avval o'zingiz belgilab ko'ring): To'rt katakka yana nechta bo'lim kerak? · 1 · 2 · 3
+- Bashorat (Avval o'zingiz belgilab ko'ring; F-1015-232 — bir o'zi, sahifa tanlangach keladi): To'rt katakka yana nechta bo'lim kerak? · 1 · 2 · 3
   - Tanlangach ixcham qator: savol · Taxminingiz: N
 - Chapda — telefon «Maydon Jamoa» (e'lon holati)
 - O'ngda — sahifa «Maydon Jamoa», to'rt katak (har katak ustida kulrang savoli):
@@ -67,8 +67,8 @@ Mentor misoli — «Maydon Jamoa» PRD si (dars bo'yi bir xil):
   - Kim (Aynan kim qiynalyapti?) — tashkilotchi va o'yinchilar
   - Yechim (Nima quriladi?) — Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.
   - O'lchov (Natijani qaysi sondan bilamiz?) — haftada to'lgan o'yinlar
-- Sahifa ostida uch savol-tugma (bashoratdan keyin, navbat bilan yoqiladi; bosilgani ✓):
-  1. «Bu muammo kimda bo'lgan?» — sahifa bir ustunga yoyiladi, Muammo ostiga **Dalil** bo'limi kiradi (Mentor misoli matni, «4 tasida», «4 tasi» bir lahza ajraladi; ostida kulrang qator «10 intervyu — kichik son; bu tanlov uchun dalil, isbot emas.»). Telefon «Telegram guruhi» holatiga o'tadi: «Kim keladi?» va «+» javoblar boshqa xabarlar orasida.
+- Sahifa ichida (pastki qator) uch savol (bashoratdan keyin faqat joriysi tugma; berilgani — yashil ✓ yozuv, navbati kelmagani — oddiy kulrang matn *(✎ F-1015-164)*):
+  1. «Bu muammo kimda bo'lgan?» — sahifa bir ustunga yoyiladi, Muammo ostiga **Dalil** bo'limi kiradi (Mentor misoli matni, «3 tasida», «3 tasi» bir lahza ajraladi; ostida kulrang qator «Olti intervyu — kichik son; bu tanlov uchun dalil, isbot emas.»). Telefon «Telegram guruhi» holatiga o'tadi: «Kim keladi?» va «+» javoblar boshqa xabarlar orasida.
   2. «Birinchi nimani quramiz?» — Yechim ostiga **Uchta asosiy funksiya** kiradi: O'yin e'loni va qo'shilish · O'yin kuni tasdiq · Maydon pulini bo'lishish. Telefon e'lon holatiga qaytadi, «Qo'shilaman» bir marta bosiladi: «8 / 10» → «9 / 10».
   3. «Nimani qurmaymiz?» — funksiyalar ostiga **Qilmaymiz / Keyin** kiradi: ikki bo'sh quti «Qilmaymiz» · «Keyin». Telefon ostida kulrang qator: chat yo'q — Telegram bor
 - Uchinchi savoldan keyin: «Kim» → **Kim uchun** (Mahalladagi mini-futbol o'yinchilari: tashkilotchi — o'yinni e'lon qiladi, o'yinchi — o'yinga qo'shiladi.), «O'lchov» → **Bosh raqam** (Haftada to'lgan o'yinlar — kerakli odam soniga yetgan e'lonlar soni.); bo'limlar 1–7 raqam oladi, sahifa ostida yorliq «to'liq PRD»
@@ -82,7 +82,7 @@ Mentor misoli — «Maydon Jamoa» PRD si (dars bo'yi bir xil):
 - Eyebrow: Tekshiruv · dalil
 - Savol: To'garaklar PRD sida *Dalil bo'limiga* qaysi qator yoziladi?
   - Mahallada yaqinda 2 ta yangi to'garak ochildi
-  - ✔ 5 kishidan 3 tasi to'garak topishda qiynalgan
+  - ✔ 3 kishidan 2 tasi to'garak topishda qiynalgan
   - O'smirlar xaritani ishlatsa kerak, deb o'ylayman
   - To'garaklar xaritasi va jadvalini ko'rsatadi
 - Javob izohlari:
@@ -91,7 +91,7 @@ Mentor misoli — «Maydon Jamoa» PRD si (dars bo'yi bir xil):
   - C: Bu taxmin — intervyuda bo'lib o'tgan ish emas.
   - D: Bu — yechim bo'limining qatori.
   - Umumiy: Dalil intervyudan keladi: unda nima sanalgan?
-- Javob topilgach (savol ostida): kichik sahifa «Mahalla to'garaklari» — 1 Muammo: qaysi to'garak qayerda va qachon — bilinmaydi · 2 Dalil: 5 kishidan 3 tasi to'garak topishda qiynalgan
+- Javob topilgach (savol ostida): kichik sahifa «Mahalla to'garaklari» — 1 Muammo: qaysi to'garak qayerda va qachon — bilinmaydi · 2 Dalil: 3 kishidan 2 tasi to'garak topishda qiynalgan
 - Barcha testlarda umumiy yozuvlar: Javob tanlang → Davom etish · javobdan keyin «To'g'ri» yoki «Qaytadan urinib ko'ring» (xatodan keyin tugma: To'g'ri javobni toping) · xato qilgan o'quvchiga: «Qisqa takrorlash — mavzuni yana bir ko'rish» · jonli darsda: «Jonli dars — bitta urinish, o'ylab bosing!» · «Javobingiz qabul qilindi» · «Hozir to'g'ri javobni bilib olasiz.» · xato qolsa: «To'g'ri javob: B — 5 kishidan 3 tasi to'garak topishda qiynalgan»
 
 ## 4 · Qilmaymiz va Keyin
@@ -101,17 +101,16 @@ Mentor misoli — «Maydon Jamoa» PRD si (dars bo'yi bir xil):
 - Chapda — sahifa «Maydon Jamoa»: 1–4 bo'limlar bir qatorda (Muammo · Dalil · Kim uchun · Yechim); 5 Uchta asosiy funksiya — O'yin e'loni va qo'shilish · O'yin kuni tasdiq · Maydon pulini bo'lishish; 6 Qilmaymiz / Keyin — ikki quti «Qilmaymiz 0 ta» · «Keyin 0 ta»; 7 Bosh raqam
 - O'ngda:
   - Qadamlar: 1 Chat · 2 Eslatma · 3 Reyting · 4 Ro'yxat
-  - Karta: Qo'shimcha ish · N/4 — ish nomi
-  - Tugmalar: Qilmaymiz · Keyin
-  - Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki. (xatodan keyin: Nishon birinchi urinish uchun edi.)
+  - Karta: Qo'shimcha ish — ish nomi («N/4» yo'q — qadam-qatori aytadi, F-1015-116)
+  - Tugmalar karta ichida: Qilmaymiz · Keyin (F-1015-233; nishon eslatmasi yo'q)
 - Ishlar (to'g'ri joyi · joylangandan keyin karta ostidagi sabab qatori):
   1. Chat → Qilmaymiz · Telegram allaqachon bor: qiyinchilik chat yo'qligida emas, kim kelishi bilinmasligida.
   2. O'yindan oldin eslatma → Keyin · 2-yozuv: «ikki kishi oxirgi daqiqada kelmadi».
-  3. Reyting va baho → Qilmaymiz · O'n yozuvda baho haqida gap yo'q.
-  4. Ro'yxat o'zi yangilanadi → Keyin · 5-yozuv: «kim kelishini bilmadi» — ro'yxat ochiq turganda ham yangi qo'shilganlar ko'rinsin.
+  3. Reyting va baho → Qilmaymiz · Olti yozuvda baho haqida gap yo'q.
+  4. Ro'yxat o'zi yangilanadi → Keyin · 2-yozuv: «kim aniq kelishini bilmadi» — ro'yxat ochiq turganda ham yangi qo'shilganlar ko'rinsin.
 - To'g'ri tugma: karta tanlangan qutiga uchadi, quti hisoblagichi «N ta» o'sadi
 - Xato izohlari (karta silkinadi):
-  - «Keyin» tanlansa, kerak «Qilmaymiz»: O'n yozuvda bunga sabab topilmadi.
+  - «Keyin» tanlansa, kerak «Qilmaymiz»: Olti yozuvda bunga sabab topilmadi.
   - «Qilmaymiz» tanlansa, kerak «Keyin»: Yozuvlarda bunga sabab bor — o'chirmang, navbatini suring.
 - Birinchi xatodan keyin izoh: «Keyin» — o'chirilmaydi, navbati suriladi: yozuvlarda sababi bor. «Qilmaymiz» — yozuvlarda sababi topilmagan ish.
 - 4/4 dan keyin 5-bo'lim ostida izoh: Uchta asosiy funksiya — 9-Moduldagi «Qilamiz» qutisi: busiz muammo hal bo'lmaydi.
@@ -137,12 +136,12 @@ Mentor misoli — «Maydon Jamoa» PRD si (dars bo'yi bir xil):
 ## 6 · Amazon
 - Eyebrow: Biznes olamidan
 - Sarlavha: Amazon yangi mahsulotni *nimadan boshlaydi?*
-- Mentor — har bosqichda almashadi; uning ostida yorliq «Amazon · N/3» va uch nuqta
+- Mentor — har bosqichda almashadi; ostida yorliq va nuqtalar yo'q — tugma «Keyingi bosqich (N/3)» aytadi *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*
 - 1/3 bosqichda sahna ustida: Amazon — juda katta internet-magazin.
 - Bosqichlar (bosqich nomi · Mentor · sahna):
   1. Press-reliz · Mentor: Amazon'da yangi mahsulot uchun bitta matn yoziladi — press-reliz. Press-reliz — kompaniya yangi mahsulot chiqqani haqida yozadigan xabar.
      - Sahna: brauzer oynasi «Amazon», sahifada kulrang joy «mahsulot hali yo'q»; yonida varaq «Press-reliz» — qatorlar yozila boshlaydi; pastda yopiq kod oynasi
-     - Bashorat (yorliq «Amazon · 1/3»): Bu press-reliz qachon yoziladi? · Kod tugagach · Kod bilan birga · ✔ Koddan oldin
+     - Bashorat (yorliq «Avval o'zingiz belgilab ko'ring»): Bu press-reliz qachon yoziladi? · Kod tugagach · Kod bilan birga · ✔ Koddan oldin
      - Tanlangach ixcham qator: savol · Taxminingiz: …
   2. Go'yo chiqqandek · Mentor: Press-reliz go'yo mahsulot allaqachon chiqqandek yoziladi, kod esa hali yo'q. Press-reliz hech kimni qiziqtirmasa, mahsulot qilinmaydi.
      - Sahna: varaq «Press-reliz» yozilib bo'ladi, yonida yashil belgi «chiqdi»; oldida bir guruh odam o'qiydi; kod oynasida «0 qator», ustiga yorliq «qilinmaydi» tushadi
@@ -170,10 +169,10 @@ Mentor misoli — «Maydon Jamoa» PRD si (dars bo'yi bir xil):
 - Eyebrow: Tushuncha · Mentor tekshiruvi
 - Sarlavha: PRD ni qurishdan oldin *qanday tekshirasiz?*
 - Mentor: Mentor misolidagi PRD ni uchta savol bilan birma-bir tekshiring.
-- Bashorat (Avval o'zingiz belgilab ko'ring): Mentor PRD si uch savoldan qanday o'tadi? · Tuzatishsiz · ✔ Bitta tuzatish bilan · Uch tuzatish bilan
+- Bashorat (Avval o'zingiz belgilab ko'ring; F-1015-234 — bir o'zi, qadamlar va sahifa tanlangach keladi; telefon faqat 3-savolda): Mentor PRD si uch savoldan qanday o'tadi? · Tuzatishsiz · ✔ Bitta tuzatish bilan · Uch tuzatish bilan
   - Tanlangach ixcham qator: savol · Taxminingiz: …
 - Qadamlar: 1 Dalil bormi? · 2 Bajariladimi? · 3 Bosh raqam sanaladimi?
-- Chapda — telefon «Maydon Jamoa» (e'lon holati) · o'rtada — sahifa «Maydon Jamoa» (to'liq, qoralama: 5-bo'limda uchinchi funksiya — Maydon pulini bo'lishish; joriy savolga tegishli bo'lim halqada, qolganlari bir qatorga yig'ilgan) · o'ngda — savol kartasi: savol · «Nimaga qarang: …» · Ha · Yo'q
+- Chapda — telefon «Maydon Jamoa» (e'lon holati) · o'rtada — sahifa «Maydon Jamoa» (to'liq, qoralama: 5-bo'limda uchinchi funksiya — Maydon pulini bo'lishish; joriy savolga tegishli bo'lim halqada, qolganlari bir qatorga yig'ilgan) · o'ngda — savol kartasi: savol · «Nimaga qarang: …» · Ha · Yo'q (tugmalar bashoratdan keyin chiqadi) *(✎ F-1015-164)*
   1. **Dalil bormi?** — Nimaga qarang: Dalil yozuvlardanmi va unda sanoq bormi — nechta odamdan nechtasi? (Dalil bo'limida sonlar ajraladi) · to'g'ri — «Ha»
   2. **Bajariladimi?** — Nimaga qarang: har funksiya muammo gapiga xizmat qiladimi va uchalasi shu modulda quriladimi? Bu qadamda tugmalar o'rniga «←»: funksiya qatorlari bosiladi, har biri yonida kulrang qayerdan kelgani:
      - O'yin e'loni va qo'shilish — muammo gapidan: yetarli odam
@@ -197,7 +196,7 @@ Mentor misoli — «Maydon Jamoa» PRD si (dars bo'yi bir xil):
 - Mentor: Muammo va dalil o'tgan darsdan keldi — ularni o'qib chiqing va qolgan beshta bo'limni bittalab yozing.
   - O'tgan darsdan muammo va dalil topilmasa: Yetti bo'limni bittalab yozing: avval muammo, so'ng dalil.
 - Tepada — ixcham sahifa: nom (final g'oyangiz nomi yoki «Mening PRD sahifam»; tanlov vaqtincha bo'lsa yonida «vaqtincha tanlov») · PRD · n / 7 · yetti bo'lim nomi (yozilgani ✓) · ostida «1 sahifa»
-- Markazda — bitta bo'lim kartasi: raqam · bo'lim nomi · kulrang savoli · maydon · hisoblagich (n / chegara) · tugmalar: Yordam · Saqlash
+- Sahifa kartasining ichida (F-1015-235) — bitta bo'lim kartasi: raqam · bo'lim nomi · kulrang savoli · maydon · hisoblagich (n / chegara) · tugmalar: Yordam · Saqlash (doim bosiladi; bo'lim to'lmagan bo'lsa tekshiruv yozuvi chiqadi, fokus birinchi bo'sh maydonga) *(✎ F-1015-164)*
   1. Muammo — Nima qiynayapti? · maydon: Kim nimadan qiynaladi? · 160 (o'tgan darsdagi muammo gapingiz oldindan yozilgan)
   2. Dalil — Bu muammo kimda bo'lgan? · maydon: Nechta odamdan nechtasida? · 200 (o'tgan darsdan oldindan: «N intervyu. Muammo takrorlandi: … Harakat belgisi: …»)
   3. Kim uchun — Aynan kim qiynalyapti? · maydon: Aynan qanday odamlar? · 140
@@ -228,7 +227,7 @@ Mentor misoli — «Maydon Jamoa» PRD si (dars bo'yi bir xil):
   - Yakka rejimda: Uch savolni o'zingizga bering va javobini PRD dan toping.
 - Qadamlar: 1 Dalil bormi? · 2 Bajariladimi? · 3 Bosh raqam sanaladimi?
 - Chapda — o'quvchining sahifasi (to'liq; Muammo, Dalil, Uchta asosiy funksiya va Bosh raqam ochiq, qolganlari bir qatorda); joriy savolga tegishli bo'lim halqada, «Ha» olgan bo'lim yonida ✓
-- O'ngda — savol kartasi: savol · «Nimaga qarang: …» · tugmalar: Ha · Yo'q — tuzataman
+- Sahifa kartasining ichida, pastda (F-1015-236) — savol kartasi: savol · «Nimaga qarang: …» · tugmalar: Ha · Yo'q — tuzataman
   1. Dalil bormi? — Nimaga qarang: Dalil yozuvlardanmi va unda sanoq bormi — nechta odamdan nechtasi?
   2. Bajariladimi? — Nimaga qarang: har funksiya muammo gapiga xizmat qiladimi va uchalasi shu modulda quriladimi?
   3. Bosh raqam sanaladimi? — Nimaga qarang: bu raqamni muntazam — har hafta yoki har oy — sanab bera olasizmi?
@@ -266,7 +265,7 @@ Mentor tekshiruvi: qabul
 O'yinchilar o'yindan oldin jamoaga yetarli odam yig'ishda va kim aniq kelishini bilishda qiynaladi.
 
 ## Dalil
-10 intervyu. Jamoa yig'ish bo'yicha 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan; 5 tadan 4 tasi birinchi versiyani sinab ko'rishga kun belgilagan (harakat belgisi).
+Olti intervyu. Jamoa yig'ish bo'yicha 3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan; 3 tadan 3 tasi birinchi versiyani sinab ko'rishga kun belgilagan (harakat belgisi).
 
 ## Kim uchun
 Mahalladagi mini-futbol o'yinchilari: tashkilotchi — o'yinni e'lon qiladi, o'yinchi — o'yinga qo'shiladi.
@@ -286,7 +285,7 @@ Keyin: o'yindan oldin eslatma, ro'yxat o'zi yangilanadi, maydon pulini bo'lishis
 ## Bosh raqam
 Haftada to'lgan o'yinlar — kerakli odam soniga yetgan e'lonlar soni.
 ```
-- Tugma: ✓ PRD.md yozildi — yetti sarlavha ko'rindi (qulf: Avval savolni yeching)
+- Tugma: ✓ PRD.md yozildi — yetti sarlavha ko'rindi (savol yechilmaguncha tugma o'rnida oddiy matn: Avval savolni yeching) *(✎ F-1015-164)*
 - Bajarilgach: PRD ingiz fayl bo'ldi: yetti bo'lim — kod yozilishidan oldin.
 - Tugma (pastki): Avval savolni yeching → PRD.md ni yozing → Davom etish
 
@@ -336,7 +335,6 @@ Natijalar (podium) — jonli reyting
 - Eyebrow: Dars yakuni
 - Belgi: ✓ Dars tugadi · N/4 to'g'ri
 - Sarlavha: PRD ingiz yozildi va *tekshirildi*. · 10-ekranda «Uyda tuzataman» bosilgan bo'lsa: PRD ingiz yozildi — *bitta bo'lim tuzatiladi*.
-- Bugungi asosiy fikr: G'oya bir sahifaga yetti bo'lim bo'lib yoziladi va qurishdan oldin uch savol bilan tekshiriladi.
 - PRD · n / 7
 - CODE STRIKE arenasi: 12 SAVOL · 15 SONIYA · PODIUM (jonli darsda mentor boshlaguncha: Mentorni kuting)
 - ✓ Endi siz bilasiz:
@@ -348,6 +346,8 @@ Natijalar (podium) — jonli reyting
 - Uyga vazifa tugmasi: Uyga vazifa · Amaliy topshiriqni bajarish → (ochilganda — uy vazifasi kartasi; uning ostida): Keyingi dars — **«Bitiruvgacha nimani qachon qurasiz?»**
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Clear Limits!** — To'rt ishni birinchi urinishda «Qilmaymiz» yoki «Keyin»ga to'g'ri joyladingiz (4-ekran, birinchi urinishda xatosiz)

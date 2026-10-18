@@ -62,7 +62,7 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
 7. **Metafora yo'q. Keyssiz** (tayanch 5). Qahramon yo'q — vazifani Mentor beradi; odamlar roli bilan: hakam (ismsiz, gapsiz), o'yinchi, tashkilotchi. Ikkinchi misol faqat 1-savolda — uy vazifalari ilovasi (P-002; 13-Modul TAQIQLAR 4 ro'yxatidan).
 8. **Amaliyot bloki (tayanch 1.4; 13-Modul 8-dars naqshi):** to'rt qadamning hammasi o'quvchining **o'z repo'sida, o'z mahsuloti va trekida** (Ochish → Prompt → Ishga tushirish → Tekshirish). Mentor misoli — namuna (o'ngda «kutilgan natija · namuna: Maydon Jamoa», `{…}` yonida kulrang «masalan: …», «Yordam»da to'liq talab).
    **Talab zinapoyasi:** A1 — tayyor talab + 4 joy (`{ilova papkasi}` oldindan, `{asosiy tugma}`, `{kutish yozuvi}`, `{avvalgidek ishlashi kerak bo'lgan ishlar}`) · A2 — + 3 joy (`{ilova papkasi}` oldindan, `{ro'yxat ekrani}`, `{kartada nima bor}`) · A3 — + 3 joy (`{ilova papkasi}` oldindan, `{muvaffaqiyat joyi}`, `{qanday harakat}`); reduced-motion qismi — tayyor.
-   Prompt — agentga buyruq shaklida (T-002); oxirida «Boshqa joyga tegma, o'zgargan fayllarni ayt.» Har blokda: «Backend kodiga tegma» va «Animatsiya uchun yangi kutubxona qo'shma — loyihada bor vosita bilan qil» (3-darsda yuklanadigan kod hajmi o'lchangan; yangi kutubxona uni oshirishi mumkin).
+   Prompt — agentga buyruq shaklida (T-002); oxirida «Boshqa joyga tegma, o'zgargan fayllarni ayt.» Har blokda: «Backend kodiga tegma» va «Animatsiya uchun yangi kutubxona qo'shma — loyihada bor kutubxona bilan qil» (3-darsda yuklanadigan kod hajmi o'lchangan; yangi kutubxona uni oshirishi mumkin).
    Xato yo'li (har blok 3-qadamida, bitta gap): «Xato chiqsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»» Push odati — `git add <fayl>` (`git add .` emas).
    **Trek:** `pm-m9d8-platforma.trek` (yo'q bo'lsa — 1-amaliyot tepasida ikki tanlov tugmasi «Mobil trek» · «Web-trek»; tanlov dars holatida (`ccProgress`), boshqa darsning kalitiga yozilmaydi — sinf 3). `{ilova papkasi}` trekdan: `mobil/` | `prototip/`.
    Brauzerda ko'rish: mobil trek — `mobil/` da `npx expo start`, keyin terminalda `w` (ilova kompyuter brauzerida ochiladi; Manbalar 5) · web-trek — `prototip/` da `npm run dev` (03 pilot TS 14). Telefonda: mobil — Expo Go (`npx expo start`, odatda o'zi qayta yuklanadi; bo'lmasa terminalda `r`); web — telefon brauzerida sayt.
@@ -189,7 +189,7 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
      > Qayerda: `{ilova papkasi}` — {asosiy tugma} turgan ekran. Backend kodiga tegma.
      > Nima qilsin: {asosiy tugma} bosilishi bilan, javob kelishini kutmasdan, tugma yozuvi «{kutish yozuvi}» ga almashsin, yonida kichik kutish belgisi chiqsin va tugma o'chiq bo'lsin — javob kelguncha qayta bosilmasin, ikkinchi so'rov yuborilmasin.
      > Javob kelgach — tugma avvalgi yakuniy holatiga o'tsin (ilovada qanday bo'lsa, shunday). Xato kelsa — tugma yana bosiladigan bo'lsin va ilovadagi xato xabari avvalgidek chiqsin.
-     > Nima buzilmasin: {avvalgidek ishlashi kerak bo'lgan ishlar} avvalgidek ishlasin. Yangi ekran, yangi tugma yoki yangi funksiya qo'shma. Animatsiya uchun yangi kutubxona qo'shma — loyihada bor vosita bilan qil. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
+     > Nima buzilmasin: {avvalgidek ishlashi kerak bo'lgan ishlar} avvalgidek ishlasin. Yangi ekran, yangi tugma yoki yangi funksiya qo'shma. Animatsiya uchun yangi kutubxona qo'shma — loyihada bor kutubxona bilan qil. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Qavslar yonida kulrang namuna (Mentor misolidan):
      - {ilova papkasi} — oldindan, trekdan: `mobil/` yoki `prototip/`
      - {asosiy tugma} — «masalan: «O'yin» ekranidagi «Qo'shilaman»»
@@ -200,7 +200,7 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
      > Qayerda: `mobil/` — «O'yin» ekrani, «Qo'shilaman» tugmasi. Backend kodiga tegma.
      > Nima qilsin: «Qo'shilaman» bosilishi bilan, javob kelishini kutmasdan, tugma yozuvi «Qo'shilmoqda…» ga almashsin, yonida kichik kutish belgisi chiqsin va tugma o'chiq bo'lsin — javob kelguncha qayta bosilmasin, ikkinchi qo'shilish so'rovi yuborilmasin.
      > Javob kelgach — tugma «Qo'shildingiz» bo'lsin (avvalgidek). Xato kelsa — tugma yana «Qo'shilaman» bo'lsin va ilovadagi xato xabari avvalgidek chiqsin.
-     > Nima buzilmasin: kirish, «O'yinlar» ro'yxati, «O'yindan chiqish», jonli son va «Hozir ko'ryapti» avvalgidek ishlasin. Yangi ekran, yangi tugma yoki yangi funksiya qo'shma. Animatsiya uchun yangi kutubxona qo'shma — loyihada bor vosita bilan qil. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
+     > Nima buzilmasin: kirish, «O'yinlar» ro'yxati, «O'yindan chiqish», jonli son va «Hozir ko'ryapti» avvalgidek ishlasin. Yangi ekran, yangi tugma yoki yangi funksiya qo'shma. Animatsiya uchun yangi kutubxona qo'shma — loyihada bor kutubxona bilan qil. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Web-trekda (Yordam ostida, bir gap): «Qayerda» qatorida `mobil/` o'rnida `prototip/` va saytingizdagi asosiy tugma turadi; qolgani o'sha.
   3. **Ishga tushirish** — agent tugatgach brauzerda oching: mobil trek — `mobil/` da `npx expo start`, keyin terminalda `w` (ilova kompyuter brauzerida ochiladi); web-trek — `prototip/` da `npm run dev`. `git status` — o'zgargan fayllar agent aytgani bilan bir xil, `.env` ro'yxatda yo'q, `backend/` o'zgarmagan. **Push hali yo'q** — avval 4-qadam tekshiruvi, push uning oxirida (04-FILTR 1).
      Kutayotganda agentga («Nusxalash» bilan; SABOQ 52):
@@ -290,7 +290,7 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
      > Qayerda: `{ilova papkasi}` — {ro'yxat ekrani}. Backend kodiga tegma.
      > Nima qilsin: ro'yxat yuklanayotganda bo'sh joy o'rnida joy egallovchi chiqsin: ekranda birinchi ko'rinadigan ro'yxat joyini taxminan to'ldiradigan kulrang shakllar — haqiqiy kontentga yaqin shakl va o'lchamda (soni ekraningizga qarab), ichida {kartada nima bor} o'rnida kulrang chiziqlar (harakatsiz).
      > Ro'yxat kelganda haqiqiy kontent joy egallovchi o'rniga, o'sha joyga chiqsin — ekrandagi boshqa narsalar iloji boricha siljimasin. Kutish yozuvi bo'lsa — joy egallovchi ostida qolsin. Ro'yxat bo'sh kelsa yoki xato bo'lsa — ilovadagi avvalgi xabar chiqsin, kulrang kartalar qolib ketmasin.
-     > Nima buzilmasin: 1-amaliyotdagi tugma, ro'yxatni yangilash va kartani bosib o'yinni ochish avvalgidek ishlasin. Yangi ekran yoki yangi funksiya qo'shma. Animatsiya uchun yangi kutubxona qo'shma — loyihada bor vosita bilan qil. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
+     > Nima buzilmasin: 1-amaliyotdagi tugma, ro'yxatni yangilash va kartani bosib o'yinni ochish avvalgidek ishlasin. Yangi ekran yoki yangi funksiya qo'shma. Animatsiya uchun yangi kutubxona qo'shma — loyihada bor kutubxona bilan qil. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Qavslar yonida kulrang namuna (Mentor misolidan):
      - {ilova papkasi} — oldindan, trekdan: `mobil/` yoki `prototip/`
      - {ro'yxat ekrani} — «masalan: «O'yinlar» ekrani, o'yinlar ro'yxati»
@@ -299,7 +299,7 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
      > Qayerda: `mobil/` — «O'yinlar» ekrani (`mobil/src/app/index.tsx`), o'yinlar ro'yxati. Backend kodiga tegma.
      > Nima qilsin: ro'yxat yuklanayotganda bo'sh joy o'rnida joy egallovchi chiqsin: ikkita kulrang karta — o'yin kartasi o'lchamida va shaklida, ichida kun va soat, maydon va son o'rnida kulrang chiziqlar (harakatsiz).
      > Ro'yxat kelganda o'yin kartalari kulrang kartalar o'rniga, o'sha joyga chiqsin — ekrandagi boshqa narsalar siljimasin. «O'yinlar yuklanmoqda — bu bir daqiqagacha cho'zilishi mumkin.» yozuvi joy egallovchi ostida qolsin. Ro'yxat bo'sh kelsa yoki xato bo'lsa — ilovadagi avvalgi xabar chiqsin, kulrang kartalar qolib ketmasin.
-     > Nima buzilmasin: «Qo'shilaman» tugmasi (1-amaliyot), pastga tortib yangilash va kartani bosib o'yinni ochish avvalgidek ishlasin. Yangi ekran yoki yangi funksiya qo'shma. Animatsiya uchun yangi kutubxona qo'shma — loyihada bor vosita bilan qil. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
+     > Nima buzilmasin: «Qo'shilaman» tugmasi (1-amaliyot), pastga tortib yangilash va kartani bosib o'yinni ochish avvalgidek ishlasin. Yangi ekran yoki yangi funksiya qo'shma. Animatsiya uchun yangi kutubxona qo'shma — loyihada bor kutubxona bilan qil. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Web-trekda (Yordam ostida, bir gap): «Qayerda» qatorida `prototip/` va saytingizdagi ro'yxat sahifasi; qolgani o'sha.
   3. **Ishga tushirish** — brauzerda yangilang (mobil — `npx expo start` ishlab turgan bo'lsa, odatda o'zi qayta yuklanadi; bo'lmasa terminalda `r`; web — `npm run dev`) va ro'yxat ekrani ochilishini ko'ring; `git status` — o'zgargan fayllar agent aytgani bilan bir xil. Push — 4-qadam oxirida (04-FILTR 1).
      Kutayotganda agentga («Nusxalash» bilan):
@@ -353,7 +353,7 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
      > Qayerda: `{ilova papkasi}` — {muvaffaqiyat joyi}; 1–2-amaliyotdagi tugma va kulrang kartalar. Backend kodiga tegma.
      > Nima qilsin: 1) Ish bajarilganda {muvaffaqiyat joyi} da kichik animatsiya bo'lsin: {qanday harakat}. Animatsiya qisqa bo'lsin va bir marta o'ynasin.
      > 2) Qurilmada harakatni kamaytirish yoqilgan bo'lsa — bu animatsiya bo'lmasin va kutish belgisi aylanmasin (uni yashir — kutish yozuvi yetadi); yangi holat harakatsiz almashsin: yozuv, kulrang kartalar va yangi qiymat ko'rinib tursin. Sozlamani qanday o'qiganingni ayt.
-     > Nima buzilmasin: 1–2-amaliyotdagi tugma va kulrang kartalar avvalgidek ishlasin. Yangi ekran yoki yangi funksiya qo'shma. Animatsiya uchun yangi kutubxona qo'shma — loyihada bor vosita bilan qil. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
+     > Nima buzilmasin: 1–2-amaliyotdagi tugma va kulrang kartalar avvalgidek ishlasin. Yangi ekran yoki yangi funksiya qo'shma. Animatsiya uchun yangi kutubxona qo'shma — loyihada bor kutubxona bilan qil. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Qavslar yonida kulrang namuna (Mentor misolidan):
      - {ilova papkasi} — oldindan, trekdan: `mobil/` yoki `prototip/`
      - {muvaffaqiyat joyi} — «masalan: «O'yin» ekranidagi son «8 / 10»»
@@ -362,7 +362,7 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
      > Qayerda: `mobil/` — «O'yin» ekranidagi son; 1–2-amaliyotdagi «Qo'shilaman» tugmasi va «O'yinlar» ekranidagi kulrang kartalar. Backend kodiga tegma.
      > Nima qilsin: 1) Qo'shilish muvaffaqiyatli bo'lganda son («8 / 10» → «9 / 10») bir lahza biroz kattalashib, o'z o'lchamiga qaytsin (davomi — loyihada bor animatsiya vaqti). Animatsiya bir marta o'ynasin; son boshqa sabab bilan o'zgarsa (jonli son) — animatsiya bo'lmasin.
      > 2) Telefonda harakatni kamaytirish yoqilgan bo'lsa — React Native `AccessibilityInfo` orqali bil (brauzer ko'rinishida u `prefers-reduced-motion` ni o'qiydi) — son kattalashmasin, kutish belgisi yashirinsin (aylanuvchi belgi harakatsiz qolmasin); yangi holat harakatsiz almashsin: «Qo'shilmoqda…» yozuvi, kulrang kartalar va yangi son ko'rinib tursin.
-     > Nima buzilmasin: «Qo'shilaman» tugmasi va kulrang kartalar avvalgidek ishlasin. Yangi ekran yoki yangi funksiya qo'shma. Animatsiya uchun yangi kutubxona qo'shma — loyihada bor vosita bilan qil. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
+     > Nima buzilmasin: «Qo'shilaman» tugmasi va kulrang kartalar avvalgidek ishlasin. Yangi ekran yoki yangi funksiya qo'shma. Animatsiya uchun yangi kutubxona qo'shma — loyihada bor kutubxona bilan qil. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.
      Web-trekda (Yordam ostida, bir gap): `prototip/` da sozlama `prefers-reduced-motion` orqali o'qiladi (9-Modul: `@media (prefers-reduced-motion: reduce)`); qolgani o'sha.
   3. **Ishga tushirish** — lokal ko'ring (mobil — `npx expo start`, web — `npm run dev`: asosiy tugma bosilganda kichik animatsiya chiqadimi); `git status` — o'zgargan fayllar agent aytgani bilan bir xil. Push va yangi versiya — 4-qadam oxirida (04-FILTR 1).
      Agent ishlayotganda agentga («Nusxalash» bilan):
@@ -419,12 +419,13 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
   - Bu darsdagi muvaffaqiyat animatsiyasi qisqa va bir martalik — ish bajarilganini ko'rsatadi.
   - Bu demo yo'lida harakat kamaytirilsa, harakat o'chadi; yozuv, kulrang kartalar va yangi son qoladi.
 - Uyga vazifa — yo'q (loyiha kuni; sinf 14). `uyga: null`.
-- Keyingi dars — «Guruh pitchingizda nimani tuzatishni aytadi?»
 - Nishonlaringiz — N/4
-- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Keyingi dars — «Guruh pitchingizda nimani tuzatishni aytadi?»
+- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Nishonlaringiz · Keyingi dars. Ichki skroll qutisi yo'q (SABOQ 18).
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
 - ✎ «o'zgardi va tekshirildi» — o'quvchi uchala blokda sekin tarmoq va harakat kamaytirilgan holatni o'zi ko'rgan va «Kutilganidek»ni tanlagan («Bajardim» — ish fakti, natija emas — 13-Modul F-1007-466); «demo tayyor», «demo buzilmaydi» deyilmaydi (sinf 5, 16).
   «hali tugamagan» — qisman bajarilgan, tartibsiz holat (E 54); «hech narsa» — alohida sarlavha, «uyda» yo'q (loyiha kuni, sinf 14). Sarlavhalar ikkala trekka to'g'ri. «Keyingi dars» qatori — App.jsx `m12-05` nomi (T-038: boshqa joyda va'da yo'q).
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ---
 
@@ -465,7 +466,7 @@ Oyna yorlig'i: Qayta tushuntirish · tugmalar: ← Oldingi · Keyingisi → · �
 | Bu darsda harakat kamaytirilsa nima o'chadi? | Harakat: aylanish va kattalashish | Holat qoladi: yozuv, kulrang kartalar, yangi son |
 | Saytda harakat kamaytirilganini nima ko'rsatadi? | `prefers-reduced-motion` | Telefondagi ilova buni telefon sozlamasidan o'qiydi |
 | Javobni sekin qilib qanday tekshirasiz? | DevTools'da Network bo'limida «Slow 4G» bilan | Keyin «No throttling» ga qaytaring |
-| Animatsiya uchun nega yangi kutubxona qo'shilmaydi? | Yuklanadigan kod hajmi oshishi mumkin | Loyihada bor vosita bilan qilinadi |
+| Animatsiya uchun nega yangi kutubxona qo'shilmaydi? | Yuklanadigan kod hajmi oshishi mumkin | Loyihada bor kutubxona bilan qilinadi |
 
 ## Jonli viktorina (arena, 12 savol) — ✔ o'rni: A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12 (har biri 3 marta); ekran savollarining nusxasi emas (§144)
 1. Bu darsda demo yo'lidagi qaysi uch joy o'zgaradi? (1, 2)
@@ -565,7 +566,7 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari ru'da ham o'sha; R-008): sayqal · bo
 ## REPO — `maydon-jamoa` («qur» bosqichida yoziladi, push — buyruq bilan; `m14-dars-04-start` = `m14-dars-03-done` → `m14-dars-04-done`, tayanch 3)
 1. **Bosish javobi** (`mobil/` — «O'yin» ekrani): «Qo'shilaman» bosilishi bilan «Qo'shilmoqda…» + kichik kutish belgisi, tugma o'chiq; javob kelgach «Qo'shildingiz»; xatoda — yana «Qo'shilaman» va avvalgi xato xabari. Ikkinchi qo'shilish so'rovi yuborilmaydi (ilova tomonida). Backend o'zgarmaydi.
 2. **Joy egallovchi** (`mobil/src/app/index.tsx` — «O'yinlar»): ro'yxat yuklanayotganda ikkita kulrang karta (o'yin kartasi o'lchamida, kulrang chiziqlar harakatsiz), ostida kutish yozuvi (11-Modul 9.95, o'zgarmaydi); ro'yxat kelganda kartalar o'sha joyga; bo'sh ro'yxat va xatoda — avvalgi xabar.
-3. **Muvaffaqiyat animatsiyasi** (`mobil/` — «O'yin»): qo'shilish muvaffaqiyatli bo'lganda son bir lahza biroz kattalashib qaytadi (bir marta; soniya aytilmaydi); jonli son o'zgarganda — animatsiyasiz. Yangi kutubxona yo'q (loyihadagi vosita bilan).
+3. **Muvaffaqiyat animatsiyasi** (`mobil/` — «O'yin»): qo'shilish muvaffaqiyatli bo'lganda son bir lahza biroz kattalashib qaytadi (bir marta; soniya aytilmaydi); jonli son o'zgarganda — animatsiyasiz. Yangi kutubxona yo'q (loyihadagi kutubxona bilan).
 4. **Harakatni kamaytirish:** `AccessibilityInfo.isReduceMotionEnabled()` va `reduceMotionChanged` (brauzer ko'rinishida — `prefers-reduced-motion`) — son kattalashmaydi, kutish belgisi yashirinadi (yozuv qoladi); holatlar harakatsiz almashadi.
 5. **Yangi versiya:** brauzer ko'rinishi — `npx expo export -p web` → `netlify deploy --prod --dir dist`; APK bu tegda qayta tayyorlanmaydi (demo — brauzerda, tayanch 9.6; TAYANCHGA SAVOL 8). `README.md` — «Darslar va teglar» jadvaliga `m14-dars-04-done`.
 6. ⛔ **Muhrdan oldin («qur» darvozasi):** Mentor brauzer ko'rinishida «Slow 4G» bilan uch joy · Rendering `prefers-reduced-motion: reduce` bilan uch joy (React Native Web o'qishi) · Expo Go'da (Android va iPhone) telefon sozlamasi bilan · kulrang kartalar soni va ko'rinishi Mentor ro'yxatiga mos ·

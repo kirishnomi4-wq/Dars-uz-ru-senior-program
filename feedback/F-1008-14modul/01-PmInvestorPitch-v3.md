@@ -91,7 +91,7 @@ namunalar: 12-Modul `12-PmGrowthPitch-v3.md` + `12-FILTR.md` · 10-Modul `11-PmP
 - **Modul ipi (tayanch 1.0):** «Maydon Jamoa» 13-Modul oxirida — 51 foydalanuvchi, 6 tashkilotchi, test rejimdagi Pro va 3 yozma tasdiq; 12-Modulda besh bo'lakli pitch zalga aytilgan → **bugun: o'sha pitch investor uchun qayta quriladi** (yangi funksiya yo'q).
 - **12-Modul ko'prigi (takrorlanmaydi):** u yerda 5 daqiqa, besh bo'lak, Raqamlar bo'lagi, o'sish grafigi, ikki qurilmali jonli demo va juftlikda baholash o'rgatilgan. Bugun — ikki yangi bo'lak (Bozor, Jamoa), jonli demo Yechim ichiga, pitchdan keyin savol-javob, Keyingi qadamda aniq so'rov.
 - **Dars ipi:** 0 — besh bo'lakli pitch qaysi savolga javob topolmaydi → 2 — hakam ikki savol beradi, ikki yangi bo'lak qo'shiladi, jonli demo Yechim ichiga kiradi, 5:00 dan keyin savol-javob (atamalar «hakam», «Bozor», «Jamoa», «savol-javob») →
-  3 — Airbnb: investorlar uchun taqdimotda bozor va jamoa slaydi → 4 — test → 5 — Bozorga qaysi son: manbasi bori, qolgani «hali tekshirilmagan» → 6 — test → 7 — Jamoa: bitta odam, agent — asbob, sinab ko'rganlar alohida → 8 — test →
+  3 — Airbnb: investorlar uchun taqdimotda bozor va jamoa slaydi → 4 — test → 5 — Bozorga qaysi son: manbasi bori, qolgani «hali tekshirilmagan» → 6 — test → 7 — Jamoa: bitta odam, agent — dastur, sinab ko'rganlar alohida → 8 — test →
   9 — Keyingi qadam: sonli qadam 51 ga yetdi, yangi ish va bitta aniq so'rov, pul emas → 10 — Mentor qoralamasini tartiblaydi → 11 — o'z qoralamasini olti kartaga yozadi → 12 — yakuniy savol → podium → kartochkalar → yakun.
 - **Bitta vizual — `OltiBolakSahna` (dars bo'yi, 163/180; bitta manba `JAMOA_PITCH` + `JAMOA_PITCH_12` + `HAKAM_SAVOL` + o'quvchi qoralamasi `pm-m12d1-pitch`; 12-Modul `BeshDaqiqaSahna` naqshi, dars ichida yoziladi — K-020):**
   - **chapda — telefon** (≈170×272, barqaror): «Maydon Jamoa» (nom o'z rangida, 11-Modul yashili; logotip yo'q) — «O'yin» ekrani: «Shanba, 18:00» · «Mahalla maydoni» · «8 / 10» · «Qo'shilaman». Yechim joriy bo'lganda «8 / 10» → «9 / 10» (son bir lahza kattalashib, silliq qaytadi).
@@ -130,24 +130,25 @@ namunalar: 12-Modul `12-PmGrowthPitch-v3.md` + `12-FILTR.md` · 10-Modul `11-PmP
 - Eyebrow: Reja
 - Sarlavha: **Bugun investor uchun pitch qoralamasini yozasiz.** (48)
 - Mentor: 12-Moduldagi pitchingiz saqlangan bo'lsa, uning bo'laklari qoralamaga o'zi qo'yiladi.
-- Chap — «Dars oxirida» + kulrang yorliq **olti bo'lak: muammo, bozor, yechim, raqamlar, jamoa, keyingi qadam** (App.jsx osti — TAYANCHGA SAVOL 1 taklifi; hozirgi App.jsx yozuvi «… metrikalar, jamoa, keyin» — KOD 12)
+- Chap — «Dars oxirida» (olti bo'lak nomi ostidagi qatorlarda; ustidagi kulrang yorliq o'sha nomlarni takrorlardi — olindi) *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*
   + vizual: Sahna skeleti — oltita nomsiz bo'lak (kulrang chiziqlar) va taymer chizig'i; chiziqlar 0.6 s oraliqda birma-bir to'q bo'ladi, oxirida taymer 5:00 gacha yuradi va yonida kichik uzuq bo'lak yonadi. Matnsiz, telefonsiz — 2-ekran kashfiyotini ochmaydi (P-015).
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
-  - 01 · Investor uchun pitch qanday tuzilishini bilib olasiz · `olti bo'lak`
-  - 02 · Mahsulot kimga kerakligini va uni kim qilayotganini aytishni o'rganasiz · `bozor · jamoa`
-  - 03 · Pitch oxirida nima so'rashni bilib olasiz · `keyingi qadam`
-  - 04 · O'z mahsulotingiz uchun pitch qoralamasini yozasiz · `qoralama`
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*
+  - 01 · Investor uchun pitch qanday tuzilishini bilib olasiz
+  - 02 · Mahsulot kimga kerakligini va uni kim qilayotganini aytishni o'rganasiz
+  - 03 · Pitch oxirida nima so'rashni bilib olasiz
+  - 04 · O'z mahsulotingiz uchun pitch qoralamasini yozasiz
 - Harakat yo'q (reja ekrani) — vizual o'zi yoziladi. Tugmalar: Orqaga · Boshlaymiz · Keyingi bosiladigan joy: «Boshlaymiz» (vizual tugagach halqada).
-- Izoh (MD): sarlavhada yangi atama yo'q (T-011) — «bozor», «jamoa», «hakam» qadam matnida emas, faqat kulrang tegda. «pitchingiz» — 12-Moduldagi pitch o'quvchida bor (T-039); bo'lmasa ham dars yo'li bor (11-ekran bo'sh kartalar). Kulrang yorliq olti nomni aytadi — App.jsx bilan so'zma-so'z (P-015; 12-Modul naqshi).
+- Izoh (MD): sarlavhada yangi atama yo'q (T-011) — «bozor», «jamoa», «hakam» qadam matnida emas, faqat kulrang tegda. «pitchingiz» — 12-Moduldagi pitch o'quvchida bor (T-039); bo'lmasa ham dars yo'li bor (11-ekran bo'sh kartalar). Olti nom skelet qatorlarida turadi.
 
 ## 2 · Olti bo'lak  ← QTushuncha (markaziy, ketma-ket 3 tugma)
 - Eyebrow: Tushuncha · olti bo'lak
 - Sarlavha: **Investor uchun pitchga nima qo'shiladi?** (39) — 0-ekran savoliga javob beradigan ekran (T-064)
 - Mentor: Tugmalarni birma-bir bosing va pitch qanday o'zgarishiga qarang.
   (Birinchi harakat — bashorat; uning yo'rig'i `QBashorat` yorlig'ida, Mentor takrorlamaydi — T-047.)
-- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bitta o'lchov, o'sish tartibida): **Mentor pitchiga nechta yangi bo'lak qo'shiladi?** · Bitta · Ikkita · Uchta — tanlangach ixcham qator; tugmalar shundan keyin yoqiladi.
+- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bitta o'lchov, o'sish tartibida): **Mentor pitchiga nechta yangi bo'lak qo'shiladi?** · Bitta · Ikkita · Uchta — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*.
 - Vizual (`OltiBolakSahna`, besh bo'lak holati): **chapda** telefon («O'yin» ekrani) · **o'ngda** besh bo'lak — Muammo · Yechim · Jonli demo · Raqamlar · Keyingi qadam (`JAMOA_PITCH_12`, bir qatordan), ostida taymer chizig'i 0–5:00 (besh bo'lakli) · **ustida** uchta hakam qiyofasi, pufakda «?».
-- Tugmalar (ixcham, bir qatorda; joriysi accent, bosilgani ✓): 1 Investor savollari · 2 Yangi bo'laklar · 3 Besh daqiqa va savol-javob
+- Tugmalar (ixcham, bir qatorda; joriysi accent, bosilgani ✓): 1 Investor savollari · 2 Yangi bo'laklar · 3 Besh daqiqa va savol-javob *(✎ F-1015-164: tugmalar bashoratdan keyin chiqadi; bosiladigani faqat joriysi, bosilgani — «✓ nom» yozuvi, keyingisi hali ko'rinmaydi)*
 - **Harakat → Vizual o'zgarish:**
   1. «Investor savollari» → Investor kartasida ikki savol paydo bo'ladi: «Bu mahsulot yana qancha odamga kerak?» · «Buni kim qilyapti?»; besh bo'lakning hech biri yashil bo'lmaydi — pufaklar ostida kulrang «?» qoladi.
      `QIzoh`: Pitchni baholaydigan odam — investor yoki tadbirkor — hakam deyiladi.
@@ -168,7 +169,7 @@ namunalar: 12-Modul `12-PmGrowthPitch-v3.md` + `12-FILTR.md` · 10-Modul `11-PmP
 ## 3 · Airbnb  ← QVoqea (PM keys K12; SABOQ 2, 3, 8, 26)
 - Eyebrow: Biznes olamidan
 - Sarlavha: **Airbnb investorlarga qanday taqdimot ko'rsatgan?** (48)
-- Nuqtalar (3) · yorliq **Airbnb · N/3** (bashorat kartasida ham). Ekranda uch blok: sahna · nuqtalar qatori · bashorat (SABOQ 26).
+- Nuqtalar qatori yo'q — kadrni tugma «Voqea davomi (N/3)» aytadi; bashorat kartasi yorlig'i — **Airbnb** *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*. Ekranda uch blok: Mentor · sahna · bashorat (SABOQ 26).
 - Brend tanishtiruvi (1/3 Mentor gapida, S-018): «Airbnb — begonaning uyida ijaraga turish xizmati». Nom «Airbnb» o'z rangida (#FF5A5F), logotip yo'q.
 - Mentor — kadr gapini aytadi, har kadrda almashadi (≤ 2 gap; SABOQ 8). Sahnada faqat kadr nomi va jonli maket.
 - Sahna (`AirbnbTasma`, chizilgan CSS/SVG; 10-Modul `PitchSahna` Airbnb holati naqshi, dars ichida): tanish taqdimot ko'rinishi — o'nga yaqin oddiy oq slayd-karta tasmasi (son yozilmaydi), tepada «Airbnb» nom-yorlig'i; zal, taymer, telefon yo'q. Bankda yo'q narsa chizilmaydi.
@@ -207,7 +208,7 @@ namunalar: 12-Modul `12-PmGrowthPitch-v3.md` + `12-FILTR.md` · 10-Modul `11-PmP
 - Eyebrow: Tushuncha · Bozor bo'lagi
 - Sarlavha: **Bozor bo'lagiga qaysi sonlar yoziladi?** (38)
 - Mentor: Son kartalarini birma-bir bosing: qaysi biri Bozor bo'lagiga tushishini ko'ring.
-- Bashorat (ballsiz; S-015 — bitta o'lchov: qamrov, kichikdan kattaga): **Mentor misolida Bozorga qaysi sonlar yoziladi?** · Faqat ilovadagi sonlar · Ilova va guruhdagi sonlar · Butun shahar sonlari — tanlangach ixcham qator; kartalar shundan keyin yoqiladi.
+- Bashorat (ballsiz; S-015 — bitta o'lchov: qamrov, kichikdan kattaga): **Mentor misolida Bozorga qaysi sonlar yoziladi?** · Faqat ilovadagi sonlar · Ilova va guruhdagi sonlar · Butun shahar sonlari — tanlangach ixcham qator; kartalar shundan keyin chiqadi *(✎ F-1015-164)*.
 - Vizual (keng, ≤ 3 blok; telefon bu ekranda yo'q — SABOQ 24): `OltiBolakSahna` — Bozor bo'lagi joriy (bo'sh, accent chegara), qolgan bo'laklar ixcham; ustida Investor kartasi — savol «Bu mahsulot yana qancha odamga kerak?».
   O'ngda uchta son kartasi (har birida: son · kimlar · kulrang manba yorlig'i):
   1 «60 kishi» · mahalla futbol guruhi · manba: Telegram guruhi
@@ -248,13 +249,13 @@ namunalar: 12-Modul `12-PmGrowthPitch-v3.md` + `12-FILTR.md` · 10-Modul `11-PmP
 - Eyebrow: Tushuncha · Jamoa bo'lagi
 - Sarlavha: **Mahsulotni kim qilayotganini qanday aytasiz?** (44)
 - Mentor: Tugmalarni birma-bir bosing va Jamoa bo'lagi qanday yozilishini ko'ring.
-- Bashorat (ballsiz; S-015 — bitta o'lchov: son, o'sish tartibida): **Mentor misolida mahsulotni nechta odam qilyapti?** · Bitta · Uchta · Beshta — tanlangach ixcham qator; tugmalar shundan keyin yoqiladi.
+- Bashorat (ballsiz; S-015 — bitta o'lchov: son, o'sish tartibida): **Mentor misolida mahsulotni nechta odam qilyapti?** · Bitta · Uchta · Beshta — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*.
 - Vizual (keng; telefonsiz): `OltiBolakSahna` — Jamoa bo'lagi joriy (bo'sh), ustida Investor kartasi — savol «Buni kim qilyapti?»; Jamoa bo'lagi yonida bitta odam qiyofasi (rol yorlig'i hali yo'q).
-- Tugmalar (ixcham, bir qatorda): 1 Kim nima qildi · 2 Agent · 3 Sinab ko'rganlar
+- Tugmalar (ixcham, bir qatorda): 1 Kim nima qildi · 2 Agent · 3 Sinab ko'rganlar *(✎ F-1015-164: tugmalar bashoratdan keyin chiqadi; bosiladigani faqat joriysi, bosilgani — «✓ nom» yozuvi, keyingisi hali ko'rinmaydi)*
 - **Harakat → Vizual o'zgarish:**
   1. «Kim nima qildi» → Jamoa bo'lagiga yoziladi: «Men — g'oya, mahsulot va kod»; odam qiyofasi ostida uchta kichik yorliq birma-bir paydo bo'ladi: g'oya · mahsulot · kod — hammasi bitta odamda.
-  2. «Agent» → gapga « (agent bilan)» qo'shiladi; qiyofa yonida kichik asbob belgisi (kulrang, odam emas) paydo bo'ladi, «kod» yorlig'iga ingichka chiziq bilan ulanadi.
-     `QIzoh`: Agent — asbob, jamoa a'zosi emas: talabni Mentor yozdi, natijani o'zi tekshirdi.
+  2. «Agent» → gapga « (agent bilan)» qo'shiladi; qiyofa yonida kichik dastur belgisi (kulrang, odam emas) paydo bo'ladi, «kod» yorlig'iga ingichka chiziq bilan ulanadi.
+     `QIzoh`: Agent — dastur, jamoa a'zosi emas: talabni Mentor yozdi, natijani o'zi tekshirdi.
   3. «Sinab ko'rganlar» → «Sinab ko'rganlar — 6 tashkilotchi va o'yinchilar.» qo'shiladi; ular Jamoa bo'lagidan tashqarida, alohida kulrang qatorda chiziladi (6 ta kichik doiracha); Investor kartasidagi savol oldida yashil ✓.
      `QIzoh`: Sinab ko'rgan real odamlar ham aytiladi, lekin ular jamoa a'zosi deb aytilmaydi.
   Natija (yashil xulosa qutisining birinchi kichik qatori): «Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz ✕ — aslida: bitta».
@@ -263,7 +264,7 @@ namunalar: 12-Modul `12-PmGrowthPitch-v3.md` + `12-FILTR.md` · 10-Modul `11-PmP
 - Tugma (pastki): Tugmalarni bosing (N/3) → Davom etish · `tugadi`: tugmalar yo'qoladi, Jamoa bo'lagi fokusga.
 - Keyingi bosiladigan joy: bashorat → joriy tugma → «Davom etish».
 - O'qituvchi eslatmasi: Jamoa bo'lagida ism shart emas — «Men» yetadi. Sinfdosh yoki ota-ona yordam bergan bo'lsa — roli bilan («sinfdoshim — matnlar»), ismsiz. Yolg'iz qurgan bo'lsangiz — shuni ayting: yo'q odamlar va lavozimlar yozilmaydi.
-  «Sinab ko'rganlar» — real odamlar (sinov — real odam bilan); ular jamoa a'zosi emas. Agent — asbob: talabni o'quvchi yozadi, natijani o'quvchi tekshiradi (11–13-Modul).
+  «Sinab ko'rganlar» — real odamlar (sinov — real odam bilan); ular jamoa a'zosi emas. Agent — dastur: talabni o'quvchi yozadi, natijani o'quvchi tekshiradi (11–13-Modul).
 
 ## 8 · 3-savol  ← QTest (✔ A, `correctIdx 0`; o'quvchining o'z holati)
 - Eyebrow: Tekshiruv · Jamoa bo'lagi
@@ -273,18 +274,18 @@ namunalar: 12-Modul `12-PmGrowthPitch-v3.md` + `12-FILTR.md` · 10-Modul `11-PmP
   - C — «Agent — jamoamizning ikkinchi a'zosi»
   - D — «Jamoamiz kichik, lekin juda kuchli»
 - To'g'ri izohi: Jamoa bo'lagida kim nima qilgani rost aytiladi.
-- Xato izohlari: B — Bu odamlar yo'q — Jamoa bo'lagida faqat bor odamlar. · C — Agent — asbob, jamoa a'zosi emas. · D — Bu maqtov — kim nima qilganini ayting. ·
+- Xato izohlari: B — Bu odamlar yo'q — Jamoa bo'lagida faqat bor odamlar. · C — Agent — dastur, jamoa a'zosi emas. · D — Bu maqtov — kim nima qilganini ayting. ·
   (umumiy) Mentor Jamoa bo'lagida o'zini qanday aytgan edi?
 - Javob topilgach (kichik, savol ostida): Mentorning Jamoa bo'lagi ixcham — «Men — g'oya, mahsulot va kod (agent bilan). Sinab ko'rganlar — 6 tashkilotchi va o'yinchilar.»
-- Izoh (MD): uch distraktor uch turkumda: B — yo'q odamlar (yolg'on rol), C — asbobni a'zo qilish, D — mavhum maqtov (kim nima qilgani yo'q). Tire A va C da, «agent» A va C da — kalit so'z faqat to'g'rida emas; to'rttasi qo'shtirnoqda.
+- Izoh (MD): uch distraktor uch turkumda: B — yo'q odamlar (yolg'on rol), C — dasturni a'zo qilish, D — mavhum maqtov (kim nima qilgani yo'q). Tire A va C da, «agent» A va C da — kalit so'z faqat to'g'rida emas; to'rttasi qo'shtirnoqda.
 
 ## 9 · Keyingi qadam  ← QTushuncha (ketma-ket, 3 tugma)
 - Eyebrow: Tushuncha · Keyingi qadam
 - Sarlavha: **Pitch oxirida hakamdan nima so'raysiz?** (38)
 - Mentor: Tugmalarni birma-bir bosing va Keyingi qadam bo'lagi qanday o'zgarishini ko'ring.
-- Bashorat (ballsiz; S-015 — bitta o'lchov: son): **Mentor hakamdan nechta narsa so'raydi?** · Bitta · Ikkita · Uchta — tanlangach ixcham qator; tugmalar shundan keyin yoqiladi.
+- Bashorat (ballsiz; S-015 — bitta o'lchov: son): **Mentor hakamdan nechta narsa so'raydi?** · Bitta · Ikkita · Uchta — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*.
 - Vizual (keng; telefonsiz): `OltiBolakSahna` — Keyingi qadam bo'lagi joriy, ichida 12-Moduldagi gap: «E'lon berilgach «Havolani ulashish» tugmasi bilan tashkilotchi havolani o'z jamoasiga yuboradi — maqsad 50.»; ustida Investor kartasi — savol «Endi nima qilasiz?».
-- Tugmalar (ixcham, bir qatorda): 1 Maqsad 50 · 2 Keyingi ish · 3 Aniq so'rov
+- Tugmalar (ixcham, bir qatorda): 1 Maqsad 50 · 2 Keyingi ish · 3 Aniq so'rov *(✎ F-1015-164: tugmalar bashoratdan keyin chiqadi; bosiladigani faqat joriysi, bosilgani — «✓ nom» yozuvi, keyingisi hali ko'rinmaydi)*
 - **Harakat → Vizual o'zgarish:**
   1. «Maqsad 50» → gap yonida hisoblagich «Foydalanuvchilar» 44 dan 51 gacha sanab o'sadi va 50 belgisidan o'tadi (kichik belgi — bayram, yashil ✓ yo'q: o'sish qadami, mahsulot bahosi emas); eski gap kulrang bo'lib kichrayadi va bo'lak tepasiga suriladi.
      `QIzoh`: 12-Moduldagi sonli qadam 51 ga yetdi — endi Keyingi qadam yangilanadi.
@@ -305,7 +306,7 @@ namunalar: 12-Modul `12-PmGrowthPitch-v3.md` + `12-FILTR.md` · 10-Modul `11-PmP
 - Sarlavha: **Mentor qoralamasini to'g'ri tartibga qo'ying.** (45)
 - Mentor: Gapni o'qing va chapdagi o'z joyini bosing. (F-1008-577: «avval gapni tanlang» bosqichi olindi — karta doim tanlangan)
 - Uyalar (chapda, to'liq kenglikning chap qismi — P-068): 1 · 2 · 3 · 4 · 5 · 6 — har birida kulrang «bu yerga qo'ying» (tartibni ochmaydi).
-- ✎ (F-1008-577, foydalanuvchi ko'rigi 08.10): PM karta dastasi — 10-Modul «Besh daqiqada nimani ko'rsatasiz?» 8-ekrani naqshi: o'ngda bittadan karta (oq fon, 2px accent chegara, «n / 6», qo'shtirnoqda gap, orqasida dasta soyasi); o'quvchi faqat uyani bosadi yoki kartani sudraydi; xato — uya qizil, karta silkinadi, `QXato`. Yechilgach olti bo'lak 15 px, uzun gap ikki qatorda (F-1008-578).
+- ✎ (F-1008-577, foydalanuvchi ko'rigi 08.10): PM karta dastasi — 10-Modul «Besh daqiqada nimani ko'rsatasiz?» 8-ekrani naqshi: o'ngda bittadan karta (oq fon, 2px accent chegara, qo'shtirnoqda gap — sanoq faqat tugmada *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*, orqasida dasta soyasi); o'quvchi faqat uyani bosadi yoki kartani sudraydi; xato — uya qizil, karta silkinadi, `QXato`. Yechilgach olti bo'lak 15 px, uzun gap ikki qatorda (F-1008-578).
 - Bo'laklar (o'ngda; oq fon, 2px accent chegara, Manrope — E 44; aralash tartib qat'iy, dastada shu tartibda bittadan, har bo'lakning birinchi gapi):
   - «Men — g'oya, mahsulot va kod (agent bilan).»
   - «O'yinchilar jamoaga odam yig'ishda qiynaladi.»
@@ -334,13 +335,13 @@ namunalar: 12-Modul `12-PmGrowthPitch-v3.md` + `12-FILTR.md` · 10-Modul `11-PmP
   - `pm-m10d10-hisobot.royxat` (`soni`, `sana`) → Raqamlar kartasida tugma «+ {soni} kishi ro'yxatdan o'tgan ({sana})»; `tuzatishQator === 'royxat'` bo'lsa — tugma yo'q (12-Modul 9.43 i naqshi).
   - `pm-m11d9-tasdiq` → **shartnoma:** 13-Modul 9-darsining tasdiqlangan sxemasidan faqat **hisobga olinadigan yozma tasdiqlar soni** n olinadi (hozirgi 13-Modul tayanchi 8: `tekshiruv === 'qabul'` va `tasdiqlar[].hisobga === true`; maydon nomi «qur»da 13-Modul kodidan grep bilan moslanadi — qattiq bog'lanmaydi, 01-FILTR 5); n > 0 bo'lsa — Raqamlar kartasida tugma «+ {n} yozma tasdiq — bu hali to'lov emas»; boshqa holatda tugma yo'q.
   - Kalit yo'q yoki bo'sh — o'sha karta bo'sh. Har bo'lakning o'z manbasi — `manba[id]`: `'12-modul'` (oldindan qo'yilgan, o'zgartirilmay saqlangan) · `'tahrir'` (oldindan qo'yilgan, o'zgartirib saqlangan) · `'yangi'` (o'quvchi yozgan; Bozor va Jamoa doim shu) · `null` (saqlanmagan) — 01-FILTR 4.
-- **Tepada — ixcham chiziq «Pitchim · n/6»:** bo'lak nomlari, saqlangani ✓ (bo'sh uzuq qatorlar yo'q, SABOQ 17).
-- **Markazda — bitta katta karta (joriy; bo'lak tugmalari 1–6: Muammo · Bozor · Yechim · Raqamlar · Jamoa · Keyingi qadam — joriysi accent, saqlangani ✓):** karta sarlavhasi — bo'lak nomi; maydon (yorliq input ichida — E 43: raqam belgisi + placeholder — hakam savoli); belgi sanog'i «n / 160»; ostida bitta kulrang qator; tugmalar bir qatorda: «Saqlash» · (bo'lakka qarab) ikkinchi tugma · o'ngda «Yordam».
+- **Tepada — ixcham chiziq «Pitchim»** (sanoq tugmada *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*): bo'lak nomlari, saqlangani ✓ (bo'sh uzuq qatorlar yo'q, SABOQ 17).
+- **Markazda — bitta katta karta (joriy; bo'lak tugmalari 1–6: Muammo · Bozor · Yechim · Raqamlar · Jamoa · Keyingi qadam — joriysi accent, saqlangani ✓):** karta sarlavhasi — faqat bo'lak nomi (raqami tugmada) *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*; maydon (yorliq input ichida — E 43: raqam belgisi + placeholder — hakam savoli); belgi sanog'i «n / 160»; ostida bitta kulrang qator; tugmalar bir qatorda: «Saqlash» · (bo'lakka qarab) ikkinchi tugma · o'ngda «Yordam».
   1. **Muammo** — placeholder `Bu muammo borligini qayerdan bilasiz?` · kulrang: Muammo gapi va bitta dalil: son yoki kuzatuv.
   2. **Bozor** — placeholder `Bu mahsulot yana qancha odamga kerak?` · ikkinchi tugma «Hali tekshirilmagan» → maydon oxiriga « Qolganini hali tekshirmaganman.» qo'shiladi (maydon bo'sh bo'lsa — «Sonini hali tekshirmaganman.») · kulrang: Har son manbasi bilan: guruh, chat yoki Database.
   3. **Yechim** — placeholder `Mahsulot nima qiladi?` · kulrang: Jonli demo shu bo'lak ichida — 12-Moduldagidek ikki qurilmada.
   4. **Raqamlar** — placeholder `Bu son qayerdan va nimani sanaydi?` · ikkinchi tugmalar (bor bo'lsa): hisobot soni · yozma tasdiq · kulrang: Eng yangi sonni sanoq sahifasidan oling va sanasini yozing.
-  5. **Jamoa** — placeholder `Buni kim qilyapti?` · kulrang: Rol bilan yozing, ismsiz: men, sinfdoshim; agent — asbob sifatida.
+  5. **Jamoa** — placeholder `Buni kim qilyapti?` · kulrang: Rol bilan yozing, ismsiz: men, sinfdoshim; agent — dastur sifatida.
   6. **Keyingi qadam** — placeholder `Endi nima qilasiz?` · ikkinchi tugma «So'rov qo'shish» → maydon oxiriga « Sizdan bitta so'rov: {…}» qo'shiladi, `{…}` accent bilan ajralgan · kulrang: Keyingi ish va bitta aniq so'rov: tanishtirish, maslahat yoki sinash joyi.
   «Saqlash» o'ngda (187).
 - Tekshiruv (`QXato`, ≤60; javob maydon ostida; «yo'naltiradi» — ikkinchi «Saqlash» bilan o'tadi, «bloklaydi» — o'tmaydi):
@@ -351,7 +352,7 @@ namunalar: 12-Modul `12-PmGrowthPitch-v3.md` + `12-FILTR.md` · 10-Modul `11-PmP
   - Bozor: «minglab», «millionlab», «hamma odam», «butun shahar», «butun dunyo» (yo'naltiradi): Son qayerdan? Manbasini yozing yoki «hali tekshirilmagan».
   - Yechim: «React», «Expo», «NestJS», «Neon», «Render», «Netlify», «socket.io» (yo'naltiradi; 12-Modul `TEXNO_RE`): Bu texnologiya — mahsulot odamga nima beradi?
   - Raqamlar: «tasdiq» bor, «to'lov emas» yo'q (yo'naltiradi): Tasdiq hali to'lov emas — buni gapda ayting.
-  - Jamoa: «agent» va «a'zo» birga (yo'naltiradi): Agent — asbob, jamoa a'zosi emas.
+  - Jamoa: «agent» va «a'zo» birga (yo'naltiradi): Agent — dastur, jamoa a'zosi emas.
   - Keyingi qadam: «investitsiya», «pul» (alohida so'z — «pullik» emas), «so'm», «dollar», «ulush», «summa», «million», «mln» (yo'naltiradi): Bu kursda pul so'ralmaydi — bitta aniq so'rov yozing.
   - Keyingi qadam: «tez orada», «albatta», «yetamiz», «aniq bo'ladi» (yo'naltiradi; 12-Modul `VADA_RE`): Bu va'da — keyingi haftada aynan nima qilasiz?
   - Yorliq (yo'naltiruvchi xatodan keyin): Shunday qoldirsangiz — yana «Saqlash»ni bosing.
@@ -410,7 +411,7 @@ namunalar: 12-Modul `12-PmGrowthPitch-v3.md` + `12-FILTR.md` · 10-Modul `11-PmP
 | Mentor misolida Bozor bo'lagida nima yozilgan? | Mahalla futbol guruhida — 60 kishi; ilovada — 6 tashkilotchi; boshqa mahallalar hali tekshirilmagan |
 | Nega 60 kishi va 6 tashkilotchi qo'shilmaydi? | Biri guruhdagi odamlar, biri ilovadagi tashkilotchilar: o'lchovi har xil |
 | Airbnb investorlarga qanday taqdimot ko'rsatgan? | O'nga yaqin oddiy slayd: muammo, yechim, bozor, mahsulot, jamoa |
-| Jamoa bo'lagida nima aytiladi? | Kim nima qilgani — rost, rol bilan; agent — asbob, jamoa a'zosi emas |
+| Jamoa bo'lagida nima aytiladi? | Kim nima qilgani — rost, rol bilan; agent — dastur, jamoa a'zosi emas |
 | Keyingi qadamda hakamdan nima so'raladi? | Bitta aniq so'rov: tanishtirish, maslahat yoki sinash joyi — pul emas |
 | Yozma tasdiq pitchda qanday aytiladi? | Dalil sifatida, «bu hali to'lov emas» gapi bilan |
 
@@ -429,7 +430,7 @@ namunalar: 12-Modul `12-PmGrowthPitch-v3.md` + `12-FILTR.md` · 10-Modul `11-PmP
 - Endi siz bilasiz (asosiy fikr bu yerda yo'q — E 50, T-048):
   - Bizda investor pitchi olti bo'lakdan iborat: Muammo, Bozor, Yechim, Raqamlar, Jamoa va Keyingi qadam.
   - Bozorda manbasi bor son aytiladi, qolgani — «hali tekshirilmagan».
-  - Jamoa bo'lagida kim nima qilgani rost aytiladi: agent — asbob.
+  - Jamoa bo'lagida kim nima qilgani rost aytiladi: agent — dastur.
   - Keyingi qadamda pul emas — keyingi ish va bitta aniq so'rov aytiladi.
 - Uyga vazifa (`HwCard` — P-025 karta shaklida; yakunda aynan shu qadamlar): sarlavha **Uyda nima qilasiz?**
   - Kim uchun: o'z mahsulotingiz pitchi · Nechta: 3 ish · Muddat: keyingi darsgacha
@@ -441,6 +442,7 @@ namunalar: 12-Modul `12-PmGrowthPitch-v3.md` + `12-FILTR.md` · 10-Modul `11-PmP
 - Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
 - Tartib (E 50): belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. «Bugungi asosiy fikr» qutisi, holat chiplari, artefakt-strip — yakunda yo'q. Ichki skroll qutisi yo'q (SABOQ 18).
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
 - Izoh (MD): «Kim uchun» — HwCard yorlig'i. Muddat «keyingi darsgacha» — keyingi dars nomi faqat «Keyingi dars» qatorida (T-038; 2-dars mazmuni va'da qilinmaydi). ① — 6/6 yozgan o'quvchiga ish yo'q (shartli). ② — tashqi son qidirish majburiy emas: «hali tekshirilmagan» — to'liq javob (sinf 14).
   Uyda qoralama hech kimga yuborilmaydi va internetga qo'yilmaydi (vazifada aytilmagan — kerak emas).
 
@@ -460,7 +462,7 @@ Jonli darsda mentor «Qayta tushuntirishni ochish» bosganda chiqadi (qolip yozu
   — Sinfga savol: Pitchingizdagi qaysi ikki bo'lak yangi?
 - **6 · Bozorda qaysi son** — 1 Bozor — mahsulotga muhtoj odamlar va biz bilgan ularning soni. · 2 Mentor misolida: guruhda 60 kishi, ilovada 6 tashkilotchi. · 3 Manbasi yo'q son o'rniga — «hali tekshirilmagan».
   — Sinfga savol: Bozoringizdagi son qayerdan olingan?
-- **8 · Jamoa bo'lagi** — 1 Jamoa bo'lagida kim nima qilgani rost aytiladi. · 2 Agent — asbob, jamoa a'zosi emas. · 3 Sinab ko'rgan real odamlar ham aytiladi, lekin a'zo deb emas.
+- **8 · Jamoa bo'lagi** — 1 Jamoa bo'lagida kim nima qilgani rost aytiladi. · 2 Agent — dastur, jamoa a'zosi emas. · 3 Sinab ko'rgan real odamlar ham aytiladi, lekin a'zo deb emas.
   — Sinfga savol: Mahsulotingizda kim nima qildi?
 - **12 · Keyingi qadam** — 1 Keyingi qadamda — keyingi ish va bitta aniq so'rov. · 2 Mentor misolida pul so'ralmaydi — bitta aniq so'rov: tanishtirish. · 3 Va'da emas — aniq ish aytiladi.
   — Sinfga savol: Hakamdan qanday aniq so'rov qilasiz?
@@ -547,7 +549,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 6. s3: `AIRBNB_KADR` 3 × `{ h — kadr nomi, m — Mentor gapi }` (SABOQ 8); `AirbnbTasma` (o'nga yaqin oq slayd, son yozilmaydi; nomlar 2/3 da ikkitasi, 3/3 da beshtasi; «Bozor» va «Jamoa» accent); nom «Airbnb» — `Brend` komponenti, #FF5A5F, logotip yo'q;
    bashorat 2/3 da (ballsiz, ixcham qator); tugma «Voqea davomi (N/3)»; manba izohi faylda (bank K12, 228–231).
 7. s5: `BOZOR_SON` kartalari tugma sifatida (har birining o'z chegarasi — E 40); 3-karta bo'lakka uchmaydi — silkinish + gap yoziladi; `QBashorat` (qamrov); `QIzoh` uch marta (har kartadan keyin).
-8. s7: Jamoa bo'lagi + odam qiyofasi (rol yorliqlari g'oya · mahsulot · kod) + asbob belgisi (agent) + «sinab ko'rganlar» qatori (6 kichik qiyofa, bo'lakdan tashqarida). s9: hisoblagich 44 → 51 (sanab o'sadi) · yangi gap · so'rov · «Investitsiya summasi» kartasi chizilib chiqib ketadi (son yo'q).
+8. s7: Jamoa bo'lagi + odam qiyofasi (rol yorliqlari g'oya · mahsulot · kod) + dastur belgisi (agent) + «sinab ko'rganlar» qatori (6 kichik qiyofa, bo'lakdan tashqarida). s9: hisoblagich 44 → 51 (sanab o'sadi) · yangi gap · so'rov · «Investitsiya summasi» kartasi chizilib chiqib ketadi (son yo'q).
 9. s10: `QTartib` — 6 uya (izoh «bu yerga qo'ying»), aralash tartib qat'iy `['jamoa', 'muammo', 'keyingi', 'bozor', 'raqamlar', 'yechim']`; bosib joylash (avval bo'lak, so'ng uya; sudrash ham); noto'g'ri — silkinish + `QXato`; 6/6 da uyalar yonida nomlar, Sahnada to'liq qoralama va taymer;
    nishon `rightOrder` — birinchi urinishda (xato joylash 0). Ballsiz (`tartib: -1`), `optionalLive`. ⛔ Olti uzun bo'lak 1280×800 da sig'ishi — vizual bosqichda (U-006); sig'masa — bo'laklar 2 ustun; shrift kichraytirib sig'dirish — yo'q (E 41, 01-FILTR 11).
 10. s11: 6 bosqichli forma (ketma-ket karta, E 53); o'qiydi `pm-m10d12-pitch` (`bolaklar.muammo.gap`, `.muammo.dalil`, `.yechim`, `.raqamlar.halolGap`, `.keyingi`), `pm-m10d10-hisobot` (`royxat.soni`, `royxat.sana`, `tuzatishQator`), `pm-m11d9-tasdiq` (hisobga olinadigan tasdiqlar soni — 11-ekran Kirish shartnomasi; maydon nomi 13-Modul kodidan); yo'q bo'lsa — bo'sh maydon.
@@ -626,9 +628,9 @@ Amaliy blok yo'q (PM darsi, kod ekrani yo'q) — o'quvchi repo'siga ham, `maydon
 5. [x] **Kafolat va sabab da'vosi yo'q** — «investor pul beradi», «hakam albatta so'raydi» yo'q; hakam savollari — kurs savollari (A-6); «51 ga yetdi» — faqat 51 ≥ 50 fakti, bayramsiz (9); «tasdiq — hali to'lov emas» (10, 11, arena 11).
 6. [x] **Yakun, nishon — faqat rost holatda** — 15-ekran 4 holat (hech narsa yozilmagan holati bilan — E 54); ✓ va nishon faqat birinchisida; Clear Ask! va 2-holat — Keyingi qadam matnidan; Fresh Numbers! — matn o'zgarganda.
 7. [x] **Ta'rif sanaladigan** — Bozor ta'rifi «biz bilgan soni» (sanaladigan, manbali); birliklar A-7 (kishi · tashkilotchi · foydalanuvchi · tasdiq); 60 va 6 qo'shilmaydi (5 `QIzoh`, kartochka 8).
-8. [x] **Test: bitta himoyalanadigan javob** — s4 (tuzilma · hajm · tartib), s6 (manbasiz son · va'da · bo'lakni tashlash), s8 (yo'q odamlar · asbob-a'zo · mavhum maqtov), s12 (pul · va'da · bo'sh qadam); har testda uch turkum; s12 «Bu kursda» — hayotdagi rost holat yopildi.
+8. [x] **Test: bitta himoyalanadigan javob** — s4 (tuzilma · hajm · tartib), s6 (manbasiz son · va'da · bo'lakni tashlash), s8 (yo'q odamlar · dastur-a'zo · mavhum maqtov), s12 (pul · va'da · bo'sh qadam); har testda uch turkum; s12 «Bu kursda» — hayotdagi rost holat yopildi.
 9. [x] **Real odamlar xavfsizligi** — Jamoa: rol bilan, ismsiz (7, 11); hakamlar ismsiz, gapi to'qilmagan (A-6); podium — faqat test ballari (13); o'quvchi qoralamani hech kimga yubormaydi (11 eslatma); Mentor nomidan tasdiq yo'q.
-10. [—] **Tekshiruv — o'quvchining o'z yo'li, agent — zaxira** — bu darsda agent ishlamaydi va tekshiruv akkaunti yo'q; agent faqat Jamoa bo'lagidagi «asbob» sifatida tilga olinadi (7).
+10. [—] **Tekshiruv — o'quvchining o'z yo'li, agent — zaxira** — bu darsda agent ishlamaydi va tekshiruv akkaunti yo'q; agent faqat Jamoa bo'lagidagi «dastur» sifatida tilga olinadi (7).
 11. [x] **Web-trek teng yo'l** — hakam savollari va kartalar «mahsulot» so'zi bilan (A-5, A-11); Yechim kulrang qatori «12-Moduldagidek ikki qurilmada» (web — ikki brauzer oynasi); testlar ikkala trekka to'g'ri.
 12. [x] **Mentor misoli ichki izchil** — Muammo va 12-Modul Keyingi qadam gaplari 12-Modul pitchi bilan bir (A-6); 14-Modul gaplari tayanch 1.1 aynan; 2, 3-dars natijasi oldindan ochilmaydi (hikoya, tezlik — tilga olinmaydi).
 13. [x] **O'quvchi talabida Mentorning qarori yo'q** — 11-ekran: Bozor va Jamoa bo'sh, `{…}` — o'quvchi to'ldiradi; Mentor gaplari faqat Yordam'da («Mentor misolida»); oldindan qo'yilgan — o'quvchining o'z 12-Modul matni.

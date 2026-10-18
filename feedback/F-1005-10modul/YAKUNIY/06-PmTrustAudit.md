@@ -24,11 +24,11 @@ Holat: 06.10.2026 — kodga mos
 - Mentor: O'tgan darsda ega sahifasidagi uch zaiflik yopildi, bugun — o'yinchi ma'lumoti. «Maydon» — namuna: har amaliyot oxirida shu ishni o'z MVP'ingizda qilasiz.
 - Chap yorliq: ma'lumot sizib chiqsa — audit va maxfiylik siyosati
 - Chap maket (o'zi bir marta yuradi): o'yinchi telefoni tayyor holatda — forma ostida havola «Maxfiylik siyosati» → havola bosiladi → yonida ikkinchi telefon `/maxfiylik` (to'rtta sarlavha chizig'i, matnsiz) → pastda fayl belgisi `AUDIT.md`
-- Reja (o'ng):
-  - 01 · Ism va telefon qayerga borishini topasiz · shaxsiy ma'lumot
-  - 02 · Begona qo'lga o'tsa, nima ko'rinishini ko'rasiz · sizib chiqish
-  - 03 · «Maydon»ni olti savol bo'yicha tekshirasiz · audit
-  - 04 · O'yinchi o'qiydigan sahifani saytga qo'shasiz · maxfiylik siyosati
+- Reja (o'ng; teg yo'q — keyingi ekranlar eyebrow'ini takrorlardi) *(✎ F-1015-115, 208-qonun 0-band)*:
+  - 01 · Ism va telefon qayerga borishini topasiz
+  - 02 · Begona qo'lga o'tsa, nima ko'rinishini ko'rasiz
+  - 03 · «Maydon»ni olti savol bo'yicha tekshirasiz
+  - 04 · O'yinchi o'qiydigan sahifani saytga qo'shasiz
 - Pastki qator: repo `maydon` · boshlang'ich holat `m10-dars-06-start` · namuna `m10-dars-06-done`
 - Tugmalar: Orqaga · Boshlaymiz
 
@@ -82,6 +82,7 @@ Holat: 06.10.2026 — kodga mos
 - Chap — ega sahifasi (brauzer `maydon-….netlify.app/ega`): Maydon · ega · belgi «begona» · ‹ Bugun › (keyin kun nomi — Dushanba, Seshanba, Chorshanba, Payshanba, Juma, Shanba, Yakshanba — va «N kun oldin») · ro'yxat «16:00 · ▒ · ▒», «19:00 · ▒ · ▒» · band bo'lmasa: «Bu kunda band yo'q.»
 - O'ng — kunlar chizig'i (surgich, yorliq «Kunlarni orqaga suring»): 60 kun oldin · bugun
   - ostida: Sahifada ‹ har bosilganda bir kun orqaga — surgich shuni tezlashtiradi.
+  - ‹ › strelkalar bashoratdan keyin chiqadi (oldin joyi bo'sh — bosib bo'lmaydigan xira strelka yo'q); tugagach yana yashiriladi. *(✎ F-1015-164)*
   - `bandlar` jadvali — kun · soat · ism · telefon: 2026-10-10 · 19:00 · 2026-09-28 · 17:00 · 2026-09-05 · 18:00 · 2026-08-13 · 20:00 (ism va telefon xira)
 - Surgich chap uchiga yetgach — kalit: O'yin kunidan 30 kun o'tgan bandlar o'chirilsin → chiziqda «30 kun» belgisi va «o'chirildi» qismi; `bandlar` da 30 kundan eski qatorlar so'nadi; eski kunlarda — «Bu kunda band yo'q.»
 - Natija: ✓ Taxminingiz to'g'ri chiqdi — yoki — Taxminingiz: <tanlov> · haqiqatda: **hammasini — eski bandlar o'chirilmaydi**
@@ -95,7 +96,7 @@ Holat: 06.10.2026 — kodga mos
 - Eyebrow: Tushuncha · audit varag'i
 - Sarlavha: «Maydon»ning qaysi joyini *tuzatish kerak*?
 - Mentor: Har savolga «Maydon» kodidan dalil ochiladi — unga qarab «Joyida» yoki «Tuzatish kerak»ni bosing.
-- Chap: raqamli chiziq 1 · 2 · 3 · 4 · 5 · 6 · joriy savol kartasi: «N / 6» + yorliq · savol · dalil (kichik chizma + «dalil» + matn; javobdan keyin ✓ yoki ✗ muhri) · tugmalar Joyida · Tuzatish kerak · xato bosilsa — izoh
+- Chap: joriy savol kartasi: yorliq · (raqamli chiziq va «N / 6» yo'q — tugma «(N/6)» va o'ngdagi AUDIT jadvalining Holat ustuni aytadi; ✎ F-1015-115) · savol · dalil (kichik chizma + «dalil» + matn; javobdan keyin ✓ yoki ✗ muhri) · tugmalar Joyida · Tuzatish kerak · xato bosilsa — izoh
 - O'ng: fayl kartasi «AUDIT.md · Maydon» — № · Savol · Holat (holat ustuni bo'sh, javobdan keyin yozuv tushadi: joyida / tuzatish kerak)
 - Savollar:
   1. So'raladigan har shaxsiy ma'lumot kerakmi? · kerakli minimum · dalil: bu MVP'da ism — egaga kim kelishini, telefon — kerak bo'lsa bog'lanishni beradi; boshqa ma'lumot so'ralmaydi · ✔ Joyida · xato izohi: Bu MVP'da ikkalasi ham ishlatiladi — dalilga qarang.
@@ -235,9 +236,8 @@ Holat: 06.10.2026 — kodga mos
 
 ## 11 · Yakun
 - Eyebrow: Tayyor
-- Belgi: ✓ Dars tugadi (yonida: n/2 to'g'ri)
+- Belgi: ✓ Dars tugadi · Testlar: N/N ✎ F-1015-161
 - Sarlavha: Audit o'tdi, *maxfiylik siyosati saytda*.
-- Asosiy fikr: Odam ma'lumotini ishonib berishi uchun kerakli minimumni yig'asiz, maqsad tugagach o'chirasiz va buni saytda ochiq aytasiz; audit siyosatda yozilganni kod bilan solishtiradi.
 - Arena tugmasi: CODE STRIKE · (jonli darsda mentor boshlamaguncha) Mentorni kuting
 - ✓ Endi siz bilasiz:
   - Shaxsiy ma'lumot — odamni aniqlashga imkon beradigan ma'lumot: «Maydon»da ism va telefon.
@@ -254,7 +254,9 @@ Holat: 06.10.2026 — kodga mos
   - Audit varag'ingiz (Amaliyot 1 da belgilangan bo'lsa): olti savol va har birining holati (joyida / tuzatish kerak)
   - Keyingi dars — **«Production deploy: domen, SSL, monitoring»**: sayt yiqilsa, ogohlantirish sizga keladi.
 - Nishonlaringiz — n/4
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — sarlavha «Uyda nima qilasiz?», maydonlar katta quti (yorliq bosh harfda, «:» siz), qadamlar raqam-doira, «Keyingi dars» karta ichida (13.5px); qadam matni o'zgarmagan.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - Data Detective! — Shaxsiy ma'lumotni birinchi urinishda topdingiz (3-ekran, 1-savol)

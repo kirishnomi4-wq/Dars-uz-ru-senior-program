@@ -1,7 +1,7 @@
 # 14-dars «Loyiha kuni: 3-asosiy funksiya» — yakuniy matn
 
 Fayl: `src/9-Modull/FeatureThreeLesson.jsx` · 12 ekran · Keyingi dars: «Roadmap bo'yicha qayerdasiz?»
-Holat: 07.10.2026 — kodga mos
+Holat: 18.10.2026 — kodga mos (v4, F-1015-272…274 avtopilot: 3, 6-ekran bashorat yolg'iz (213.7); reja-satri karta)
 
 Darsning bitta vizuali — «O'yin sahnasi»: chapda telefon(lar) «Maydon Jamoa», o'ngda Backend qutisi va «Database · `ishtirokchilar`» jadvali.
 Telefonda «O'yin» ekrani: «‹ O'yinlar» · «Yakshanba, 17:00» · «Mahalla maydoni» · katta son «N / 10» · ismsiz doiralar · «Navbatda: N» · holat yozuvi «Navbatdasiz» · pastda tugmalar:
@@ -141,7 +141,7 @@ Jadval ustunlari: o'yinchi · holat · yozilgan vaqti. So'rov — uchadigan konv
   - Tanlangach ixcham qator natijagacha turadi: Taxminingiz · savol · tanlov
 - Chap: ikki telefon — «1-telefon · yangi o'yinchi» va «2-telefon · yangi o'yinchi»; ikkalasida «9 / 10» va «Qo'shilaman».
 - O'ng: Backend — `POST …/qoshilish`; Database · `ishtirokchilar` (o'yinchi · holat): 9 ta · `qoshildi`.
-- Ostida — talab kartasi (yorliq «talab — bu qatorsiz»): Qayerda: `…/qoshilish` · Nima qilsin: to'lmagan o'yinga qo'shsin · Nima buzilmasin: «8 / 10» hisobi; yonida harakat tugmasi (bittadan, halqada).
+- Ostida — talab kartasi (yorliq «talab — bu qatorsiz»): Qayerda: `…/qoshilish` · Nima qilsin: to'lmagan o'yinga qo'shsin · Nima buzilmasin: «8 / 10» hisobi; yonida harakat tugmasi (bittadan, halqada; bashoratdan keyin va har animatsiya tugagach chiqadi — o'chiq holda turmaydi *(✎ F-1015-164)*).
 - Harakatlar:
   - «Bir vaqtda bosish» → ikki telefondan ikki konvert `POST …/qoshilish` → Backend'da ikki so'rov kartasi «joy bormi? · 9 / 10 — bor» (ikkalasida ✓) →
     jadvalga ikki qator «1-telefon o'yinchisi · `qoshildi`», «2-telefon o'yinchisi · `qoshildi`» → javob `201` → ikkala telefonda «Qo'shildingiz» va qizil «11 / 10». Backend ostida: Ikki so'rov ham «joy bor» deb ko'rdi.
@@ -284,9 +284,10 @@ Natijalar (podium) — jonli reyting
   - Navbatdagi o'yinchi qo'shilganini ekranni yangilaganda ko'radi.
   - Oxirgi joy bitta odamga tegishi uchun Backend tekshirish va yozishni bitta ish qiladi.
   - Uchinchi funksiyaning «Nima buzilmasin» qatorida oldingi ikki funksiya turadi.
-- Keyingi dars — **«Roadmap bo'yicha qayerdasiz?»**: Mentor bilan yakkama-yakka: risklar va tuzatilgan reja.
 - Nishonlaringiz — N/3 (uchta nishon nomi va tavsifi — «Nishonlar» bo'limida)
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Keyingi dars — **«Roadmap bo'yicha qayerdasiz?»**: Mentor bilan yakkama-yakka: risklar va tuzatilgan reja.
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Queue Keeper** — Bo'shagan joyni navbatdagi olishini topdingiz (4-ekran, 1-savol, birinchi urinishda to'g'ri)

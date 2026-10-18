@@ -132,10 +132,11 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
 - Chap — «Dars oxirida» + kulrang yorliq **frilans va stajirovka: reja va ikki xat** (App.jsx 476 osti so'zma-so'z — P-015)
   + vizual: `IshVaraq` skeleti o'zi yuradi (DE-200) — varaq sarlavhasi «Buyurtma va xatlar», uch qism nomi birma-bir yoziladi: Yo'llar · Buyurtma · Xatlar; kataklar va konvertlar uzuq (bo'sh), chapda telefon. Matnli javob yo'q — 2-ekran kashfiyotini ochmaydi (P-036).
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
-  - 01 · Birinchi buyurtma qayerdan chiqishi mumkinligini bilib olasiz · `uch yo'l`
-  - 02 · Buyurtma rejasini tuzishni o'rganasiz · `kim · nima · qachon`
-  - 03 · Kompaniyaga hurmatli xat yozishni o'rganasiz · `xat`
-  - 04 · O'zingiz uchun reja va ikki xat yozasiz · `buyurtma va xatlar`
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*
+  - 01 · Birinchi buyurtma qayerdan chiqishi mumkinligini bilib olasiz
+  - 02 · Buyurtma rejasini tuzishni o'rganasiz
+  - 03 · Kompaniyaga hurmatli xat yozishni o'rganasiz
+  - 04 · O'zingiz uchun reja va ikki xat yozasiz
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz · Keyingi bosiladigan joy: «Boshlaymiz» (vizual tugagach halqada).
 - O'qituvchi eslatmasi: Bugun darsda hech kimga yozilmaydi va hech qayerda ro'yxatdan o'tilmaydi: reja va xatlar yoziladi, yuborish — uyda, ixtiyoriy, ota-ona bilan. Kim nechta xat yozgani so'ralmaydi.
 - Izoh (MD): sarlavhada yangi atama yo'q (T-011) — «frilans», «stajirovka» faqat kulrang yorliqda (App.jsx osti so'zma-so'z) va 2-ekranda ta'rif bilan tug'iladi. Mentor gapi — natija chegarasi (darsda yozish, uyda yuborish), sarlavhani takrorlamaydi.
@@ -145,9 +146,9 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
 - Sarlavha: **Birinchi buyurtma qayerdan chiqishi mumkin?** (43) — 0-ekran savoliga javob beradigan ekran (T-064)
 - Mentor: Tugmalarni birma-bir bosing va har yo'lning shartiga qarang.
   (Birinchi harakat — bashorat; uning yo'rig'i `QBashorat` yorlig'ida «Avval o'zingiz belgilab ko'ring», Mentor takrorlamaydi — T-047.)
-- Bashorat (ballsiz, 181; S-015 — bitta o'lchov: son, o'sish tartibida): **Mentor bugun nechta yo'lni rejalaydi?** · Bitta · Ikkita · Uchta — tanlangach ixcham qator; tugmalar shundan keyin yoqiladi.
+- Bashorat (ballsiz, 181; S-015 — bitta o'lchov: son, o'sish tartibida): **Mentor bugun nechta yo'lni rejalaydi?** · Bitta · Ikkita · Uchta — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*.
 - Vizual (≤ 3 blok: telefon · varaq · tugmalar qatori): **chapda** telefon «Maydon Jamoa» · **o'ngda** varaq «Mentor misoli · Buyurtma va xatlar» — **Yo'llar** qismi joriy: uchta bo'sh karta (nomsiz, uzuq chegara); Buyurtma va Xatlar — ixcham kulrang qator.
-- Tugmalar (ixcham, bir qatorda; joriysi accent, bosilgani ✓): 1 Xalqaro sayt · 2 Tanish doira · 3 Kompaniya
+- Tugmalar (ixcham, bir qatorda; joriysi accent, bosilgani ✓): 1 Xalqaro sayt · 2 Tanish doira · 3 Kompaniya *(✎ F-1015-164: tugmalar bashoratdan keyin chiqadi; bosiladigani faqat joriysi, bosilgani — «✓ nom» yozuvi, keyingisi hali ko'rinmaydi)*
 - **Harakat → Vizual o'zgarish:**
   1. «Xalqaro sayt» → 1-karta ochiladi: kichik brauzer maketi — manzil qatorida «upwork.com», sahifada nom «Upwork» (o'z rangida, logotipsiz) va kulrang chiziqlar; brauzer ustiga qulf belgisi tushadi, yorliq «yosh sharti»;
      karta ostida kulrang qator: Bu kursda qoida: boshqa odam nomidan profil ochmang — faqat o'z nomingizdan. (76) (kurs qoidasi, sayt siyosati emas — 10-FILTR 21) · karta holati — kulrang yorliq «uyda, ota-ona bilan».
@@ -190,9 +191,9 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
 - Eyebrow: Tushuncha · buyurtma rejasi
 - Sarlavha: **Birinchi buyurtma rejasida nima yoziladi?** (41)
 - Mentor: Tugmalarni birma-bir bosing va Mentor rejasi qanday to'lishini ko'ring.
-- Bashorat (ballsiz; S-015 — bitta o'lchov: ish qanchalik tanish, tanishdan notanishga): **Mentor buyurtmaga qanday ish tanlaydi?** · Kursda qurgan ishiga o'xshash · Qisman o'rgangan boshqa ish · Hali umuman qilmagan ish — tanlangach ixcham qator; tugmalar shundan keyin yoqiladi.
+- Bashorat (ballsiz; S-015 — bitta o'lchov: ish qanchalik tanish, tanishdan notanishga): **Mentor buyurtmaga qanday ish tanlaydi?** · Kursda qurgan ishiga o'xshash · Qisman o'rgangan boshqa ish · Hali umuman qilmagan ish — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*.
 - Vizual (≤ 3 blok): **chapda** telefon «Maydon Jamoa» · **o'ngda** varaq — **Buyurtma** qismi joriy: uch bo'sh katak «Kim · Nima · Qachon»; Yo'llar — ixcham qator («Tanish doira» kartasi accent), Xatlar — ixcham kulrang.
-- Tugmalar (ixcham, bir qatorda): 1 Kim · 2 Nima · 3 Qachon
+- Tugmalar (ixcham, bir qatorda): 1 Kim · 2 Nima · 3 Qachon *(✎ F-1015-164: tugmalar bashoratdan keyin chiqadi; bosiladigani faqat joriysi, bosilgani — «✓ nom» yozuvi, keyingisi hali ko'rinmaydi)*
 - **Harakat → Vizual o'zgarish:**
   1. «Kim» → «Kim» katagiga sirg'alib yoziladi: «maktabdagi futbol to'garagining murabbiyi»; katak yonida real ko'rinishdagi qiyofa (rol yorlig'i, ismsiz), ustida kulrang belgi «tanish».
      `QIzoh`: Rejada ism emas, rol yoziladi: tanish do'kon, maktab yoki to'garak. (67)
@@ -232,9 +233,9 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
 - Eyebrow: Tushuncha · kompaniyaga xat
 - Sarlavha: **Kompaniyaga xatda nimani aytasiz?** (33)
 - Mentor: Tugmalarni birma-bir bosing va Mentor xati qanday yig'ilishini ko'ring.
-- Bashorat (ballsiz; S-015 — bitta o'lchov: son, o'sish tartibida): **Mentor bitta xatni nechta kompaniyaga yuboradi?** · Bittaga · Beshtaga · O'ntaga — tanlangach ixcham qator; tugmalar shundan keyin yoqiladi.
+- Bashorat (ballsiz; S-015 — bitta o'lchov: son, o'sish tartibida): **Mentor bitta xatni nechta kompaniyaga yuboradi?** · Bittaga · Beshtaga · O'ntaga — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*.
 - Vizual (≤ 3 blok): **chapda** telefon «Maydon Jamoa» · **o'ngda** varaq — **Xatlar** qismi joriy: ochiq konvert-karta «1-xat · mobil ilova qiladigan kompaniya» — ichida «Assalomu alaykum!», uch bo'sh qator (uzuq), «Hurmat bilan,»; Yo'llar va Buyurtma — ixcham kulrang.
-- Tugmalar (ixcham, bir qatorda): 1 Kimman · 2 Nima qurdim · 3 Nima so'rayman
+- Tugmalar (ixcham, bir qatorda): 1 Kimman · 2 Nima qurdim · 3 Nima so'rayman *(✎ F-1015-164: tugmalar bashoratdan keyin chiqadi; bosiladigani faqat joriysi, bosilgani — «✓ nom» yozuvi, keyingisi hali ko'rinmaydi)*
 - **Harakat → Vizual o'zgarish:**
   1. «Kimman» → birinchi qator yoziladi: «Men maktab o'quvchisiman, dasturlashni o'rganyapman.»; qator ostida kulrang: Ism — ixtiyoriy; telefon, manzil va maktab raqami yozilmaydi. (61)
      `QIzoh`: Kimman — bitta gap: kim ekaningiz va nimani o'rganayotganingiz. (63)
@@ -264,7 +265,7 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
     2-qism (yo'q): Kompaniya turini yozing, so'rovni tanlang va xatning qolgan qismlarini to'ldiring.
   - 3-qism: Ikkinchi xat boshqa turdagi kompaniya uchun: turini yozing va so'rovni tanlang.
 - Qism yorliqlari (ot-shakl, T-073): 1 Buyurtma · 2 1-xat · 3 2-xat
-- Joylashuv (≤ 3 blok): **chapda** — varaq «Buyurtma va xatlarim» (Yo'llar ixcham · Buyurtma · Xatlar) · **o'ngda — bitta katta karta (joriy)** · tepada ixcham chiziq «Buyurtma va xatlarim · n/5» (3 qator + 2 xat; saqlangani ✓, SABOQ 17).
+- Joylashuv (≤ 3 blok): **chapda** — varaq «Buyurtma va xatlarim» (Yo'llar ixcham · Buyurtma · Xatlar) · **o'ngda — bitta katta karta (joriy)** · tepada ixcham chiziq «Buyurtma va xatlarim» (qism tugmalari, saqlangani ✓, SABOQ 17; «· n/5» sanog'i olindi *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*; «2-xat» tugmasi 1-xat saqlangach chiqadi — undan oldin ko'rinmaydi *(✎ F-1015-164)*).
 - Kirish (P-046; saqlangan narsa bo'lsa — o'zi qo'yiladi, tahrirlash mumkin; yo'q bo'lsa — bo'sh):
   - `pm-m12d9-video.bolaklar.kimman` → 1-xat «Kimman» maydoni · `.nimaQurdim` → «Nima qurdim» · `bor === true` va `tekshiruv` uchalasi `true` → xat kartasi ostida kulrang qator: Ota-onangiz rozi bo'lsa, video havolasini uyda qo'shasiz. (57) (havola bo'lmasa ham xat to'liq)
   - 2-xat «Kimman» va «Nima qurdim» — 1-xatdan qo'yiladi (tahrirlanadi); kompaniya turi va so'rov — yangi. Kartada kulrang qator: «Kimman» va «Nima qurdim» o'sha bo'lishi mumkin; kompaniya turi va so'rovni moslang — har kompaniya uchun alohida nusxa. (10-FILTR 8, 9)
@@ -314,7 +315,7 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
 - Saqlash: `pm-m12d10-ish` — har «Saqlash»da o'z maydoni: `buyurtma.kim` / `.nima` / `.qachon` · `xatlar[0]`, `xatlar[1]` = `{ kompaniyaTuri, soroq, matn }` · `savedAt` (A-14 shartnomasi). Xat matni `matn` da saqlanadi — ✎ bilan qayta ochilganda to'ldirilgan chiqadi (GATE M M-q4 A).
 - Tugma (pastki): Qismlarni bajaring (N/3) → Davom etish (jonli darsda ham majburiy — darsning markaziy artefakti, `optionalLive` yo'q; kamida reja va 1-xat darsda, 2-xat uyga ① — 10-FILTR 51; qism o'tkazilsa — yakun holati «hali tugamagan»).
 - Keyingi bosiladigan joy: joriy maydon (accent, to'lqin) → (2-kartada) «Lending» / «Telegram bot» → «Saqlash» (maydon yozilgach halqada) → xat kartasida kompaniya turi → so'rov tugmalari → «Saqlash» → «Davom etish».
-- Artefakt-strip (U-042): shu ekrandan — «Buyurtma va xatlarim · n/5» (ixcham); test, arena, podium va yakunda yo'q (E 50).
+- Artefakt-strip (U-042): shu ekrandan — «Buyurtma va xatlarim» (ixcham, sanoqsiz — F-1015-119); test, arena, podium va yakunda yo'q (E 50).
 - Nishonlar: Order Plan! (reja 3/3 saqlanganda) · Two Letters! (ikki xat saqlanganda, kompaniya turi har xil) · One Ask! (ikkala xat saqlangan, har birida bitta so'rov tanlangan — strukturali; «xat yaxshi» demaydi, 10-FILTR 49).
 - Mentor rejimi: forma o'rniga Mentor misoli (A-6: reja va ikki xat, ochiq). Mentor statistikasi: «Reja yozdi» · «Xat yozdi» — matn, kompaniya turi va son yo'q (TAQIQLAR 3).
 - O'qituvchi eslatmasi: ≈ 32 daqiqa: reja ≈ 10 · 1-xat ≈ 12 · 2-xat ≈ 10. Darsda hech kimga yuborilmaydi — «Nusxalash» faqat uyda yuborish uchun. Kompaniya nomini sinfda qidirib o'tirmang: bugun — turi, kompaniyaning o'zi — uyda, ota-ona bilan.
@@ -377,6 +378,7 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
 - Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
 - Tartib (E 50): belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. «Bugungi asosiy fikr» qutisi, holat chiplari, artefakt-strip — yakunda yo'q. Ichki skroll qutisi yo'q (SABOQ 18).
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
 - Izoh (MD): ① — hammasini yozgan o'quvchiga ish yo'q (shartli). ② — yengil va aniq: ko'rsatish va kun kelishish (sinf 14). ③ — ixtiyoriy, majburiydek aytilmaydi (tayanch 1.10: «yuborish — uyda, ixtiyoriy»; sinf 14).
   Muddat «keyingi darsgacha» — keyingi dars mazmuni va'da qilinmaydi (T-038); nomi faqat «Keyingi dars» qatorida. Upwork'da profil ochish uyga vazifada yo'q (TAQIQLAR 1).
 
@@ -506,7 +508,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
    «Lending» / «Telegram bot» — maydon boshiga so'z qo'shadi; «Stajirovka» / «Maslahat» — `SOROV_GAP` gapini qo'yadi (tahrirlanadi); 2-xat «Kimman», «Nima qurdim» — 1-xatdan.
    Tekshiruv funksiyasi (bo'sh · telefon/akkaunt `@`, `t.me/`, `+998` — bloklaydi, 7+ raqam — yumshoq · havola · uzunlik 420 · `upwork|xalqaro|notanish` · pul so'zlari (alohida so'z — «pullik» emas) · `qachondir|bir kun|keyinroq|bilmayman` · shoshiltirish so'zlari · `funksiya` yoki 3+ vergul · 2-xat kompaniya turi = 1-xat) —
    PM-108 tartibida kamida 12 namuna bilan `node` da sinaladi (apostrof `normT` bilan — 12-Modul naqshi). «Nusxalash» — `navigator.clipboard` (⛔ LMS iframe ichida ishlashi «qur»da sinaladi; ishlamasa — matn tanlanadigan qutida).
-   Artefakt-strip «Buyurtma va xatlarim · n/5» (U-042); nishonlar `orderPlan`, `twoLetters`, `oneAsk`.
+   Artefakt-strip «Buyurtma va xatlarim» (U-042; sanoqsiz — F-1015-119); nishonlar `orderPlan`, `twoLetters`, `oneAsk`.
 7. **Saqlash** `localStorage` `pm-m12d10-ish` = `{ buyurtma: { kim, nima, qachon }, xatlar: [{ kompaniyaTuri, soroq, matn }], savedAt }` (A-14; `yuborildi` yo'q — 10-FILTR 17) — har «Saqlash»da o'z maydoni yoziladi (birlashtiriladi), `savedAt` yangilanadi;
    saqlanmagan qator — `null`; `xatlar` — saqlangan xatlar (0–2), `soroq` — `'stajirovka'` | `'maslahat'`. Ism, telefon, kompaniya nomi, havola — hech qaysi maydonga yozilmaydi (sinf 3). Boshqa darsning kalitiga yozmaydi.
    Xat matni `xatlar[].matn` da saqlanadi — sahifa yopilsa ham qoladi (GATE M M-q4 A).

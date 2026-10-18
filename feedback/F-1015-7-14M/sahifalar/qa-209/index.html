@@ -1,0 +1,196 @@
+<title>Intervyu darsi ikkinchi ko'rik</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: bitta ustun; har band = sizning so'zingiz → hozirgi surat → tashxis → taklif-namuna (dars palitrasida) → tanlov */
+:root {
+  --bg: #f4f3f8; --card: #ffffff; --ink: #1d1b2b; --ink2: #5d5a72; --line: #e2e0ec; --accent: #5b3fd6; --accent-soft: #ece8fd; --warn: #b4540f; --warn-soft: #fbeedd;
+  --f-body: 'Manrope', system-ui, sans-serif; --f-mono: 'JetBrains Mono', ui-monospace, monospace;
+  /* dars palitrasi — namuna oynasi ikki mavzuda ham dars qanday ko'rinsa shunday */
+  --d-bg: #F2F0FA; --d-paper: #FFFFFF; --d-line: #E7E3F4; --d-ink: #1B1630; --d-ink2: #565073; --d-accent: #5B3DE6; --d-asoft: #EBE5FD; --d-ok: #1F7A4D; --d-okfon: #E3F0E8; --d-err: #C2362B; --d-errfon: #FAE3E0; --d-mute: #F6F4FC;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #15141c; --card: #1f1d29; --ink: #ecebf4; --ink2: #a7a4ba; --line: #34314a; --accent: #a593ff; --accent-soft: #2c2650; --warn: #f0a35a; --warn-soft: #3a2a18; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #15141c; --card: #1f1d29; --ink: #ecebf4; --ink2: #a7a4ba; --line: #34314a; --accent: #a593ff; --accent-soft: #2c2650; --warn: #f0a35a; --warn-soft: #3a2a18; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 80px; }
+.wrap { max-width: 1060px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+h1 { font-size: clamp(22px, 3vw, 30px); margin: 0; text-wrap: balance; } h2 { font-size: 19px; margin: 0; text-wrap: balance; } h3 { font-size: 14px; margin: 0; color: var(--ink2); text-transform: uppercase; letter-spacing: .06em; }
+p { margin: 0; max-width: 78ch; } .lead { color: var(--ink2); }
+.band { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+.id { font-family: var(--f-mono); font-size: 12px; color: var(--accent); letter-spacing: .04em; }
+.soz { border-left: 3px solid var(--accent); padding: 4px 12px; color: var(--ink2); font-style: italic; }
+.ikki { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 16px; align-items: start; }
+@media (max-width: 860px) { .ikki { grid-template-columns: 1fr; } }
+figure { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+figure img { width: 100%; border-radius: 8px; border: 1px solid var(--line); display: block; }
+figcaption { font-size: 12.5px; color: var(--ink2); }
+.tanlov { display: flex; flex-direction: column; gap: 8px; }
+.tanlov .v { display: flex; gap: 10px; align-items: baseline; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; }
+.tanlov .v b { font-family: var(--f-mono); color: var(--accent); flex-shrink: 0; }
+.tanlov .v.tavsiya { border-color: var(--accent); background: var(--accent-soft); }
+.ogoh { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-weight: 600; }
+ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+/* ---- dars namunasi (mock) ---- */
+.dars { background: var(--d-bg); color: var(--d-ink); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+.dars .t { font-size: 20px; font-weight: 800; letter-spacing: -.01em; } .dars .t i { font-style: normal; color: var(--d-accent); }
+.dars .hol { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--d-ink2); }
+.k { background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.k .y { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--d-ink2); }
+.q { display: flex; align-items: center; gap: 10px; background: var(--d-mute); border-radius: 10px; padding: 9px 12px; }
+.q .n { width: 20px; color: var(--d-ink2); font-family: var(--f-mono); font-size: 12px; } .q b { flex: 1; font-weight: 700; } .q .s { color: var(--d-ink2); font-size: 12.5px; }
+.q.chet { color: var(--d-ink2); } .q.chet b { font-weight: 600; }
+.chip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--d-line); background: var(--d-paper); border-radius: 999px; padding: 6px 12px; font-weight: 700; font-size: 13px; }
+.chip.on { border-color: var(--d-accent); color: var(--d-accent); background: var(--d-asoft); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.ok { color: var(--d-ok); background: var(--d-okfon); border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 800; }
+.yoq { color: var(--d-err); background: var(--d-errfon); border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 800; }
+.mute { color: var(--d-ink2); font-size: 13px; }
+.form { display: flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--f-mono); font-size: 14px; flex-wrap: wrap; }
+.form .b { background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 8px; padding: 4px 10px; min-width: 38px; text-align: center; } .form .b.bosh { color: var(--d-ink2); }
+.form .r { background: var(--d-accent); color: #fff; border-radius: 8px; padding: 4px 10px; font-weight: 700; }
+.bar { display: grid; grid-template-columns: 20px minmax(0, 1fr) minmax(90px, 1.2fr) 42px; align-items: center; gap: 10px; background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 10px; padding: 8px 12px; }
+.bar.top { border-color: var(--d-accent); } .bar .n { color: var(--d-ink2); font-family: var(--f-mono); font-size: 12px; } .bar .f { font-family: var(--f-mono); font-size: 11px; color: var(--d-ink2); }
+.bar .tr { height: 8px; border-radius: 999px; background: var(--d-line); overflow: hidden; } .bar .tr i { display: block; height: 100%; background: var(--d-accent); border-radius: 999px; }
+.bar .v { font-family: var(--f-mono); font-weight: 700; color: var(--d-accent); text-align: right; }
+.bar.chet { opacity: .6; } .bar.chet .tr i { background: var(--d-ink2); } .bar.chet .v { color: var(--d-ink2); }
+.ok-qator { background: var(--d-okfon); color: var(--d-ok); border-radius: 10px; padding: 9px 12px; font-weight: 700; }
+.qadam { display: flex; gap: 8px; align-items: center; } .qadam .d { width: 22px; height: 22px; border-radius: 50%; background: var(--d-accent); color: #fff; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.uch { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; align-items: start; }
+.tug { display: inline-flex; align-items: center; border-radius: 10px; padding: 7px 14px; font-weight: 800; font-size: 13px; background: var(--d-accent); color: #fff; }
+.tug.ik { background: var(--d-paper); color: var(--d-accent); border: 1px solid var(--d-accent); }
+.voronka { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.voronka .s { background: var(--d-asoft); border-radius: 10px; padding: 8px 14px; font-weight: 700; display: flex; gap: 8px; align-items: baseline; } .voronka .s b { font-size: 20px; color: var(--d-accent); font-family: var(--f-mono); }
+.voronka .s.fin { background: var(--d-accent); color: #fff; } .voronka .s.fin b { color: #fff; }
+</style>
+<style>
+.row { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1.6fr) 110px; gap: 10px; align-items: center; padding: 8px 12px; background: var(--d-mute); border-radius: 10px; font-size: 13.5px; }
+.row b { font-weight: 700; } .row i { color: var(--d-ink2); font-style: italic; }
+.row .ok { justify-self: end; } .row .yoq { justify-self: end; }
+.inp { display: inline-block; min-width: 200px; border: 1.5px solid var(--d-accent); border-radius: 8px; padding: 4px 10px; color: var(--d-ink2); background: var(--d-paper); font-style: normal; }
+.ikkiv { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.ikkiv .v { background: var(--d-mute); border-radius: 10px; padding: 8px 12px; font-size: 13px; } .ikkiv .v b { display: block; font-size: 13.5px; }
+.bol { background: var(--d-asoft); color: var(--d-accent); border-radius: 6px; padding: 1px 6px; font-weight: 700; font-style: normal; }
+.sav { display: flex; flex-direction: column; gap: 4px; font-size: 13.5px; font-style: italic; color: var(--d-ink); }
+.sav span::before { content: counter(s) ". "; counter-increment: s; font-style: normal; color: var(--d-ink2); font-family: var(--f-mono); font-size: 12px; }
+.sav { counter-reset: s 1; }
+.steps { display: flex; gap: 18px; font-size: 13px; color: var(--d-ink2); } .steps b { color: var(--d-ink); } .steps i { display: inline-flex; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--d-line); align-items: center; justify-content: center; font-style: normal; font-size: 11px; margin-right: 6px; } .steps b i { border-color: var(--d-accent); color: var(--d-accent); }
+.gchip { display: inline-flex; flex-direction: column; gap: 1px; border: 1px solid var(--d-line); border-radius: 12px; padding: 7px 12px; background: var(--d-paper); } .gchip b { font-size: 13.5px; } .gchip small { font-size: 11.5px; color: var(--d-ink2); }
+</style>
+<div class="wrap">
+  <header class="band">
+    <span class="id">F-1015-209 … 212 · 3-dars m9-03 · ikkinchi ko'rik 18.10</span>
+    <h1>To'rt joy: nima tushunarsiz, qanday bo'ladi</h1>
+    <p class="lead">Har bandda sizning surat, tashxis, taklif-namuna. «Hammasi A» yoki raqam bilan.</p>
+  </header>
+
+  <section class="band">
+    <span class="id">F-1015-209 · 6-ekran natijasi (harakat belgisi)</span>
+    <h2>Chiplar uyumi: kim nima dedi, belgi nima — o'qib bo'lmaydi</h2>
+    <p class="soz">«TUSHUNARSIZ»</p>
+    <div class="ikki">
+      <figure><img src="r/14.png" alt="Hozirgi 6-ekran natijasi"><figcaption>Hozir: 5 odam chipda (ism · kun), ostida sanoq chiplari, ostida bitta gap.</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p><b>Tashxis.</b> Natija uch xil chipga sochilgan: odamlar, kunlar sanog'i, gap. Nima «so'z», nima «ish» ekani ko'rinmaydi. Har odam bitta qator bo'lishi kerak: kim, nima dedi, belgi.</p>
+        <div class="dars">
+          <span class="hol">Taklif A — besh qator, har qatorda gap va belgi; ostida bitta xulosa qatori</span>
+          <div class="k">
+            <span class="y">Besh odam · 5-savol</span>
+            <div class="row"><b>o'yinchi, 15 yosh</b><i>«Shanba bo'ladi — kelaman.»</i><span class="ok">ha · Shanba</span></div>
+            <div class="row"><b>o'yinchi, 14 yosh</b><i>«Yakshanba kuni, o'yindan keyin.»</i><span class="ok">ha · Yakshanba</span></div>
+            <div class="row"><b>o'yinchi, 16 yosh</b><i>«Shanba. Guruhga o'zim tashlayman.»</i><span class="ok">ha · Shanba</span></div>
+            <div class="row"><b>o'smir, 14 yosh</b><i>«Zo'r g'oya, albatta ishlatardim!»</i><span class="yoq">yo'q — so'z</span></div>
+            <div class="row"><b>ota-ona</b><i>«Yakshanba — o'g'lim bilan ko'ramiz.»</i><span class="ok">ha · Yakshanba</span></div>
+            <div class="ok-qator">4 tasi kun belgiladi — bu ish. 1 tasi maqtadi — bu so'z. Harakat belgisi: ish.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tanlov">
+      <div class="v tavsiya"><b>A</b><span>Jarayonda ham shu qatorlar to'lib boradi (belgilangani qatorga tushadi, joriy odam kartasi ostida), oxirida sanoq chiplari o'rniga bitta yashil qator. Kun sanog'i chiplari olinadi.</span></div>
+      <div class="v"><b>B</b><span>Chiplar qoladi, lekin faqat bitta qator (odamlar), sanoq chiplari olinadi.</span></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <span class="id">F-1015-210 · 9-ekran kartasi (bo'lak yozish)</span>
+    <h2>«Bo'lak» nimaligi aytilmagan, ikki bo'sh sarlavha pastda osilib turibdi</h2>
+    <p class="soz">«tushunarsiz»</p>
+    <div class="ikki">
+      <figure><img src="r/15.png" alt="Hozirgi 9-ekran kartasi"><figcaption>Hozir: «1-g'oya · 2-darsda tanlangan», g'oya, Muammo, Kimdan + O'zgartirish, «BO'LAK» qatori, pastda ikki bo'sh ustun sarlavhasi.</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p><b>Tashxis.</b> «Bo'lak» ichki so'z, o'quvchi nima yozishini bilmaydi. Karta sarlavhasi va g'oya nomi ikki qator bo'lib ketgan. Pastdagi ikki bo'sh sarlavha shablonning qoldig'i.</p>
+        <div class="dars">
+          <span class="hol">Taklif A — savolning o'zi ko'rinadi, bo'sh joy to'ldiriladi; pastda hech narsa yo'q</span>
+          <div class="k">
+            <span class="y">1-g'oya · oshxona menyusi boti</span>
+            <p class="mute" style="margin:0">Kimdan so'raysiz: <b style="color:var(--d-ink)">sinfdoshlar</b> <span class="chip" style="font-size:11px;padding:2px 8px">O'zgartirish</span></p>
+            <div class="q" style="flex-direction:column;align-items:flex-start;gap:6px">
+              <span class="y">1-savol — bo'sh joyni to'ldiring</span>
+              <i style="font-size:15px">Oxirgi marta <span class="inp">oshxonada navbatda turganingiz</span> qachon bo'ldi?</i>
+              <span class="mute">Odam nima qilganda qiynalgan? «-ganingiz» bilan yozing.</span>
+            </div>
+            <div class="chips"><span class="tug ik">Yordam</span><span class="tug">Shablonga yozish</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tanlov">
+      <div class="v tavsiya"><b>A</b><span>Karta sarlavhasi «1-g'oya · <g'oya nomi>» bitta qator (Muammo qatori olinadi — g'oya nomi yetadi). «Bo'lak» so'zi ekranda yo'q: «1-savol — bo'sh joyni to'ldiring» va ostida yo'riq. Pastdagi bo'sh sarlavhalar yo'q: 1-g'oya yozilgach uning varaqasi paydo bo'ladi (211 dagi ko'rinishda).</span></div>
+      <div class="v"><b>B</b><span>Faqat «BO'LAK» yorlig'i «1-savol» ga almashadi, qolgani hozirgidek.</span></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <span class="id">F-1015-211 · 9-ekran natijasi (ikki ustunli shablon)</span>
+    <h2>Bir xil to'rt savol ikki marta yozilgan — 12 katak</h2>
+    <p class="soz">«juda ko'pligimi, tushunarsiz»</p>
+    <div class="ikki">
+      <figure><img src="r/16.png" alt="Hozirgi shablon"><figcaption>Hozir: 2 ustun × 6 qator, har katakda savol matni, to'rtta «O'zgartirish».</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p><b>Tashxis.</b> Darsning fikri «savollar bir xil, faqat 1-savolda bo'lak boshqa». Ikki ustun esa teskarisini ko'rsatadi: 12 ta alohida katak. Faqat farq qiladigan joy ikki ustunda bo'lishi kerak, bir xil joy bir marta.</p>
+        <div class="dars">
+          <span class="hol">Taklif A — bitta varaqa: farq qiladigan ikki qator ikki ustunda, qolgan to'rt savol bir marta</span>
+          <div class="k">
+            <span class="y">Savol varaqam · ikki g'oya</span>
+            <div class="ikkiv">
+              <div class="v"><b>oshxona menyusi boti</b>Kimdan: sinfdoshlar<br><i>Oxirgi marta <span class="bol">oshxonada navbatda turganingiz</span> qachon bo'ldi?</i></div>
+              <div class="v"><b>maydon navbati jadvali</b>Kimdan: sinfdoshlar<br><i>Oxirgi marta <span class="bol">maydon izlaganingiz</span> qachon bo'ldi?</i></div>
+            </div>
+            <span class="y">2–5-savollar · ikkalasiga bir xil</span>
+            <div class="sav"><span>O'shanda qanday qildingiz?</span><span>Eng qiyini nima bo'ldi?</span><span>Hozir buni nima bilan hal qilyapsiz?</span><span>Birinchi versiya tayyor bo'lganda, uni sinab ko'rishga 10 daqiqa vaqt berasizmi? Qaysi kunni belgilaysiz?</span></div>
+            <div class="chips"><span class="chip" style="font-size:11.5px">O'zgartirish</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tanlov">
+      <div class="v tavsiya"><b>A</b><span>Bitta karta «Savol varaqam»: tepada ikki g'oya yonma-yon (Kimdan + 1-savol, bo'lak ajratilgan), ostida 2–5-savollar bir marta. Bitta «O'zgartirish» (bosilsa 1-g'oya kartasi qaytadi). Saqlash formati o'zgarmaydi.</span></div>
+      <div class="v"><b>B</b><span>Ikki ustun qoladi, lekin 2–5 qatorlar faqat nomi bilan (savol matnisiz).</span></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <span class="id">F-1015-212 · 10-ekran, 1-qadam (Kim)</span>
+    <h2>Qadamlar, shablon tasmasi va forma uch alohida narsa</h2>
+    <p class="soz">«manashuni bitta kartaga olsakchi, elementchalar sochilib turmasin»</p>
+    <div class="ikki">
+      <figure><img src="r/17.png" alt="Hozirgi 10-ekran 1-qadami"><figcaption>Hozir: qadamlar qatori, «Shablonim · 2 g'oya» tasmasi, savol kartasi; tanlov ostida «Kim uchun» yozuvlari alohida.</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p><b>Tashxis.</b> Uchta element bitta ishni aytadi. Tasma g'oyalarni takrorlaydi (ular tanlov tugmalarida bor). «Kim uchun» tugmadan ajralgan.</p>
+        <div class="dars">
+          <span class="hol">Taklif A — bitta karta: qadamlar tepada, tanlov tugmasida «Kim uchun» ichida</span>
+          <div class="k">
+            <div class="steps"><b><i>1</i>Kim</b><span><i>2</i>Savollar</span><span><i>3</i>Harakat belgisi</span></div>
+            <b style="font-size:15px">Sherigingiz qaysi g'oyangizning «Kim uchun» qatoriga mos keladi?</b>
+            <div class="chips"><span class="gchip"><b>oshxona menyusi boti</b><small>Kim uchun: sinfdoshlar</small></span><span class="gchip"><b>maydon navbati jadvali</b><small>Kim uchun: sinfdoshlar</small></span><span class="gchip"><b>Hech biri</b><small>mashq yozuvi</small></span></div>
+            <div class="chips"><span class="tug ik">Yordam</span><span class="tug">Yozuvga qo'shish</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tanlov">
+      <div class="v tavsiya"><b>A</b><span>Qadamlar qatori kartaning ichida (tepada), «Shablonim» tasmasi olinadi, g'oya tugmasi ikki qatorli (nom + Kim uchun), «Hech biri» ostida «mashq yozuvi». 2–3-qadamlarda ham qadamlar karta ichida qoladi. Yakka yo'riq gapi yo'q (213).</span></div>
+      <div class="v"><b>B</b><span>Faqat tasma olinadi, qolgani hozirgidek.</span></div>
+    </div>
+  </section>
+</div>

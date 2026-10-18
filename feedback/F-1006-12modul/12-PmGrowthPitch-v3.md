@@ -384,14 +384,14 @@ haftalar.forEach(function (h) {
   - 9-ekran grafigi → Raqamlar «Grafik» (ixcham, sarlavhasi bilan; ✎ — har qatorda sana va son tahrirlanadi). «Grafikka nuqta yetmaydi» bo'lsa — grafik o'rnida maydon «Bor soningiz» va kulrang qator: Grafik yo'q — bor soningizni, sanasini va u qayerdan olinganini yozing.
   - `pm-m10d10-hisobot.bosh` → «Bosh raqam»: «{nima}: {soni} ({sana})» · `royxat` → «Halol gap» ustida kulrang qator: Hisobotingizda: {soni} kishidan {sinfdosh} tasi — sinfdosh.
   - `pm-m10d10-hisobot.zaxira.ish` → Keyingi qadam ustida tugma (zaxira rejangizdagi ish); `pm-m10d11-pitch` dagi keyingi qadam da'vosi — ikkinchi tugma.
-- **Tepada — ixcham chiziq «Pitchim · n/5»:** bo'lak nomlari, yozilgani ✓ (bo'sh uzuq qatorlar yo'q, SABOQ 17).
+- **Tepada — ixcham chiziq «Pitchim · n/5»:** bo'lak nomlari, yozilgani ✓ (bo'sh uzuq qatorlar yo'q, SABOQ 17). Joriy bo'lak — holat yozuvi, saqlangani — tahrir tugmasi, navbati kelmagani ko'rinmaydi *(✎ F-1015-164)*.
 - **Markazda — bitta katta bo'lak kartasi (joriy; bo'lak tugmalari 1–5: Muammo · Yechim · Jonli demo · Raqamlar · Keyingi qadam — joriysi accent, yozilgani ✓):**
   1. **Muammo** — «Muammo gapi» (placeholder: `Kim nimadan qiynaladi?`) · «Dalil» (placeholder: `Son yoki kuzatuv — qayerdan?`)
   2. **Yechim** — «Yechim» (placeholder: `Mahsulot nima qiladi va odamga nima beradi?`) — ustida lending foydalari tugmalari
   3. **Jonli demo** — «1-qurilmada» (placeholder: `Qaysi tugmani bosasiz?`) · «2-qurilmada» (placeholder: `Nima o'zi o'zgaradi?`)
   4. **Raqamlar** — «Grafik» (9-ekrandan) · «Bosh raqam» (placeholder: `Nima sanaladi va qancha?`) · «Halol gap» (placeholder: `Qanday sanaldi, xulosaga yetadimi?`)
   5. **Keyingi qadam** — maydon (placeholder: `Keyingi haftada nima qilasiz?`) · ustida tugmalar (zaxira reja va tuzatilgan pitchdan)
-  «Saqlash» o'ngda (187).
+  «Saqlash» o'ngda (187). «Saqlash» doim bosiladi; bo'lak to'lmagan bo'lsa ostida: «<maydon nomi>» qatorini yozing. · Raqamlarda: Kamida bitta qatorni yozing. (fokus maydonga) *(✎ F-1015-164)*
 - Tekshiruv (`QXato`, ≤60; javob maydon ostida; yo'naltiruvchilari ikkinchi «Saqlash» bilan o'tadi):
   - Dalil bo'sh (yo'naltiradi): Muammo borligini nima ko'rsatadi? Son yoki kuzatuv yozing. (58) — dalilda raqam talab qilinmaydi: intervyu yoki sinovdagi kuzatuv ham dalil (11-darsdagi model; 12-FILTR 1)
   - Yechimda texnologiya nomlari — «React», «Expo», «NestJS», «Neon», «Render», «Netlify», «socket.io» (yo'naltiradi): Bu texnologiya — mahsulot odamga nima beradi?
@@ -427,7 +427,7 @@ haftalar.forEach(function (h) {
 - Sarlavha: **Pitchingizni sherigingizga 5 daqiqada ayta olasizmi?** (52) · yakka rejimda: **Pitchingizni 5 daqiqada ayta olasizmi?** (38)
 - Mentor: Ikki qurilmada ilovani ochib qo'ying, keyin «5 daqiqani boshlash»ni bosib, sherigingizga ayting.
   Yakka rejimda: Ikki qurilmada ilovani ochib qo'ying, keyin «5 daqiqani boshlash»ni bosib, pitchni ovoz chiqarib ayting.
-- Tugmalar (ixcham, tepada): 1 Ayting · 2 Baholang · 3 Tuzating (varaqda beshta ✓ bo'lsa — «3 Aniqlashtiring»)
+- Tugmalar (ixcham, tepada): 1 Ayting · 2 Baholang · 3 Tuzating (varaqda beshta ✓ bo'lsa — «3 Aniqlashtiring»); faqat yetib kelingan qadam tugmalari ko'rinadi *(✎ F-1015-164)*
 - 1-tugma:
   - «Pitchdan oldin» — bitta kulrang blok, to'rt qator (bosilmaydi, katakchasiz — korpus §19):
     Ikki qurilmada ilova ochiq, ikkinchisida — boshqa akkaunt; «O'yinlar» ekranida belgi «Ulangan». · Demo uchun real odamlar qo'shilmagan o'yinni tanlang; demodan keyin «O'yindan chiqish». · Web-trekda: ikkinchi oyna — boshqa brauzer yoki telefon brauzeri. · Laptopda Neon, sanoq sahifasi va `.env` yopiq — ekran zalga ko'rinadi.

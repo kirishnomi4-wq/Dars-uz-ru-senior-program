@@ -27,11 +27,11 @@ Barcha ekranlarda: telefonda Mentor yig'iladi — «Mentor · ko'rsatmani ochish
 - Mentor: Bugungi misol — «Maydon» OKR'idagi tajriba: tugmada tanlangan soat. Kodni Antigravity yozadi, raqamlarni dashboard ko'rsatadi.
 - Chap yorliq: Dars oxirida: gipoteza va A/B test — B varianti bugun ishga tushadi
 - Chap maket (o'zi bir marta o'ynaydi): kulrang doiralar tepadan kirib, ikki telefon tomoniga bo'linadi; chap telefonda «Band qilish», o'ngda «18:00 ni band qilish»; ostida mini uch qadam (ochdi · vaqtni tanladi · band qildi) — raqamsiz, kulrang chiziq
-- O'ng (raqam · matn · teg):
-  - 01 · Tajribani tekshirsa bo'ladigan gapga aylantirasiz · `gipoteza`
-  - 02 · Odamlarni ikki guruhga bo'lishni o'rganasiz · `A/B test`
-  - 03 · «Maydon»da tugmaning yangi matnini ishga tushirasiz · `variant`
-  - 04 · Ikki guruh foizini dashboard'da solishtirasiz · `foiz`
+- O'ng (raqam · matn; teg yo'q — atama rejada misoldan oldin chiqardi va keyingi ekranlarda takrorlanardi) *(✎ F-1015-115, 208-qonun 0-band: takror olindi)*:
+  - 01 · Tajribani tekshirsa bo'ladigan gapga aylantirasiz
+  - 02 · Odamlarni ikki guruhga bo'lishni o'rganasiz
+  - 03 · «Maydon»da tugmaning yangi matnini ishga tushirasiz
+  - 04 · Ikki guruh foizini dashboard'da solishtirasiz
 - Pastki qator: repo `maydon` · boshlang'ich holat `m10-dars-04-start` · tayyor namuna `m10-dars-04-done`
 - Tugmalar: Orqaga · Boshlaymiz
 
@@ -83,10 +83,10 @@ Barcha ekranlarda: telefonda Mentor yig'iladi — «Mentor · ko'rsatmani ochish
 ## 4 · Booking.com
 - Eyebrow: Biznes olamidan
 - Sarlavha: **Booking.com bir vaqtda nechta tekshiruv o'tkazgan?** («Booking.com» — o'z rangida, to'q ko'k)
-- Yorliq va nuqtalar: Booking.com · N/5 — besh nuqta
+- Yorliq va nuqtalar yo'q — tugma «Keyingi bosqich (N/5)» aytadi *(✎ F-1015-115, 208-qonun 0-band: takror olindi)*
 - Mentor (har bosqichda almashadi):
   - 1/5: Booking.com — mehmonxonada yoki ijara uyda oldindan joy band qilinadigan sayt. «Maydon» kabi, u ham band qilish uchun qurilgan. Kompaniyaning o'zi aytishicha, saytdagi deyarli har o'zgarish (tugma rangi, matn, bo'limlar tartibi) avval foydalanuvchilarning bir qismida tekshiriladi.
-  - 2/5 va 4/5 (belgilanguncha): Avval o'zingiz belgilab ko'ring. · belgilangach — oldingi bosqich gapi
+  - 2/5 va 4/5: oldingi bosqich gapi (✎ F-1015-115: «Avval o'zingiz belgilab ko'ring.» bashorat yorlig'ini takrorlardi)
   - 3/5: Odamlarning bir qismi A ni, qolgani B ni ko'radi, keyin raqamlar solishtiriladi. A — hozirgi variant, B — yangi. Bunday tekshiruv **A/B test** deyiladi.
   - 5/5: Kompaniyaning 2017-yildagi chiqishlariga ko'ra, saytda bir vaqtda 1000 dan ortiq A/B test o'tkazilgan. «Maydon»da hozircha bitta: tugma matni.
 - Bosqichlar (karta: bosqich nomi + sahna — `booking.com` brauzer oynasi, chizilgan, logotipsiz):
@@ -103,7 +103,7 @@ Barcha ekranlarda: telefonda Mentor yig'iladi — «Mentor · ko'rsatmani ochish
      - ✔ 1000 dan ortiq
   5. **Bir vaqtda — 1000 dan ortiq** — ko'p kichik A/B juftliklari to'ri, son «1000+» gacha sanaydi (ostida: A/B test bir vaqtda · 2017); keyin ikki telefon «A · Maydon» va «B · Maydon» (A — «Band qilish», B — «18:00 ni band qilish»)
 - Xulosa (5/5 dan keyin): Taxminingiz: … · haqiqatda: **1000 dan ortiq** (to'g'ri bo'lsa: Taxminingiz to'g'ri chiqdi: **1000 dan ortiq**) · Booking.com'da yangi o'zgarish avval foydalanuvchilarning bir qismida tekshiriladi, keyin ikki guruh solishtiriladi.
-- Bashorat oynasi yorlig'i: Booking.com · N/5 · belgilangach ixcham qator: Taxminingiz · savol · javob
+- Bashorat oynasi yorlig'i: Avval o'zingiz belgilab ko'ring · belgilangach ixcham qator: Taxminingiz · savol · javob
 - Tugmalar: Orqaga · Avval belgilang → Keyingi bosqich (N/5) → Davom etish
 
 ## 5 · Ikki guruh
@@ -247,7 +247,6 @@ Natijalar (podium) — jonli reyting
 - Eyebrow: Tayyor
 - Yorliqlar: Dars tugadi · N/2 to'g'ri
 - Sarlavha: **Gipoteza endi raqam bilan tekshirilmoqda.**
-- Bugungi asosiy fikr: Gipoteza qaysi raqamga qarashni oldindan aytadi, A/B test shu raqamni ikki guruhda bir vaqtda solishtiradi.
 - Gipoteza saqlangan bo'lsa: Gipotezam · Agar … · Raqam: …
 - Jonli viktorina tugmasi: CODE STRIKE · 12 SAVOL · 15 SONIYA · PODIUM · kutish holatida: Mentorni kuting
 - Endi siz bilasiz
@@ -260,6 +259,8 @@ Natijalar (podium) — jonli reyting
 - Keyingi dars (uy vazifasi kartasida) — **«Kiberxavfsizlik: zaiflikni topib yopamiz»**.
 - Nishonlaringiz — N/4 (olingan nishonda nomi va tavsifi, olinmaganida faqat nomi)
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - Yuqoridagi hisoblagich: N/4

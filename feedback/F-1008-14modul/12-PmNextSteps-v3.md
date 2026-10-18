@@ -125,7 +125,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `11-PmReflection-v3.m
     1-oy ustunining chap chetida — accent **«Bugun»** chizig'i; birinchi qadam — 1-oy katagi ichida chizilgan **bayroqcha**, ostida sana (kun.oy; Mentor misolida — kun nomi va sana), joyi 1-oyning kunlariga mos. Rangli yon chiziq yo'q; holat ranglari — D3 tokenlari (saqlangan — `ok` ✓, joriy — `accent`).
   - **telefon «Maydon Jamoa»** (faqat 2-ekranda, chapda, ≈170×272 — SABOQ 22; nom 11-Modul yashilida, logotipsiz): «O'yin» ekrani — «Shanba, 18:00 · Mahalla maydoni · 8 / 10» · «Qo'shilaman». O'quvchi mahsuloti chizilmaydi (darsda uning ekranlari yo'q).
   - **13-Modul varag'i** (faqat 4-ekranda, bir marta): kichik varaq «13-Modul · shaxsiy hisobot» — uch raqamli qator, 3-qator yonib, 1-oy katagiga uchadi.
-  - Ko'rinishlar: **to'liq** (2, 4, 6, 7) · **kichik** (0, 1; testlarda javobdan keyin — ikkinchi misolning kichik taxtasi) · **ixcham chiziq** (6, 7-ekran tepasi: «Rejam · n/3»).
+  - Ko'rinishlar: **to'liq** (2, 4, 6, 7) · **kichik** (0, 1; testlarda javobdan keyin — ikkinchi misolning kichik taxtasi) · **ixcham chiziq** (6, 7-ekran tepasi: «Rejam», sanoqsiz — F-1015-119).
   - `prefers-reduced-motion` da uchish va to'lqin yo'q — yakuniy holat birdan qo'yiladi. 393 kenglikda: har yo'nalish alohida blok, oylar 3 × 2 katak; telefon taxta ustida, o'lchami kichraymaydi; hech narsa kesilmaydi (E 41). Vizual ⛶ ichida (q17, E 48).
 - **Keyingi bosiladigan joy (E 40, qat'iy):** har bosiladigan variant va tugmaning o'z yengil accent chegarasi, yengil to'lqin navbatma-navbat 2 marta, kattalashishsiz; bitta navbatdagi tugma — halqa, to'lqin 3 marta, `scale` yo'q. `prefers-reduced-motion` da to'lqin yo'q, chegara qoladi.
 - **Jonli ekran (SABOQ 19):** kirishda elementlar navbat bilan (60–120 ms) · bosish → karta taxtadagi o'z qatoriga uchadi · bayroqcha 1-oy katagiga tushadi · yangi katak ~1 s yashil yonadi · hisoblagich sanab o'sadi. Bezak-harakat yo'q.
@@ -160,10 +160,11 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `11-PmReflection-v3.m
 - Chap — kulrang yorliq «Dars oxirida — Mentor bilan yakkama-yakka: olti oylik reja» (App.jsx osti so'zma-so'z, P-015) + vizual `OltiOyReja` (kichik; o'zi yuradi — DE-200): uch qator nomi (Mahsulot · Ko'nikma · Ish) va olti oy ustuni navbat bilan chiziladi;
   kataklar bo'sh (uzuq); «Bugun» chizig'i yonida bayroqcha o'rni — uzuq doira (birinchi qadam keyin qo'yiladi). Mentor gaplari va sanalar ko'rinmaydi (2, 4-ekran kashfiyoti; SABOQ 33 — qator nomlari haqiqiy).
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
-  - 01 · Mentor rejasidagi uch gapni joyiga qo'yasiz · `yo'nalish`
-  - 02 · Birinchi oyga boshlanish kunini tanlaysiz · `birinchi qadam`
-  - 03 · Mahsulot, ko'nikma va ish uchun o'z rejangizni yozasiz · `olti oylik reja`
-  - 04 · Rejangizni Mentor bilan yakkama-yakka ko'rasiz · `yakkama-yakka`
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*
+  - 01 · Mentor rejasidagi uch gapni joyiga qo'yasiz
+  - 02 · Birinchi oyga boshlanish kunini tanlaysiz
+  - 03 · Mahsulot, ko'nikma va ish uchun o'z rejangizni yozasiz
+  - 04 · Rejangizni Mentor bilan yakkama-yakka ko'rasiz
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz
 - O'qituvchi eslatmasi: Bu darsda yakkama-yakka — 10 daqiqa, navbat bilan (A-14): navbatni siz belgilaysiz (stol tartibi yoki tasodifiy) — tez saqlaganlar ustunlik olmaydi; darsda ulgurmaganlar bilan vaqtni alohida belgilaysiz (12-FILTR 4). Farq: 11-Modul 15-darsida — roadmap, risklar va qadamlar; 12-Modul 11-darsida — pitch da'volari; 13-Modul 11-darsida — ortga qarash (shaxsiy hisobot); bugun — oldinga qarash.
 - Izoh (MD): sarlavhada yangi atama yo'q (T-011; «olti oylik reja», «yo'nalish», «birinchi qadam» — faqat kulrang teglarda va App.jsx ostida «olti oylik reja» — TAYANCHGA SAVOL 10, GATE M M-q11 A). Sarlavha — natija va'dasi (P-014). Mentorning birinchi gapi — sinf 4 va 13 (reja o'quvchiniki), ikkinchisi — navbat (A-14).
@@ -172,9 +173,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `11-PmReflection-v3.m
 - Eyebrow: Tushuncha · yo'nalish
 - Sarlavha: **Mentor rejasidagi uch gap qayerga tushadi?** (42)
 - Mentor: Har kartani o'qing va tugmalardan mosini bosing: Mahsulot, Ko'nikma yoki Ish. (77)
-  (Birinchi harakat — bashorat; uning yo'rig'i `QBashorat` yorlig'ida, Mentor takrorlamaydi — T-047.)
-- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 zinapoya): **Mentor rejasidagi uch gapdan nechtasi mahsulot haqida?** · Bittasi · Ikkitasi · Uchalasi —
-  tanlangach yopilmaydi: ixcham qator «Taxminingiz: …» natijagacha turadi; uch tugma shundan keyin yoqiladi.
+- Bashorat yo'q — xatoli joylash topshirig'i ustida turib, tugmalarni qulflardi (208/0 e; 13-Modul mezoni) *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*. Gap kartasida «n / 3» ham yo'q (sanoq tugmada).
 - Vizual (≤ 3 blok: telefon · taxta va joriy karta · tugmalar qatori): **chapda** — telefon «Maydon Jamoa» (A-6) · **o'ngda** — `OltiOyReja` (Mentor misoli, to'liq; uch qator nomi, kataklar bo'sh) va uning ustida joriy gap kartasi (accent halqa) · **taxta ostida** — uch tugma: Mahsulot · Ko'nikma · Ish.
 - Kartalar (navbat bilan; `MENTOR_GAPLAR` — tayanch 1.12 aynan, boshidagi yo'nalish nomisiz; to'liq gap natijada taxtada qaytadi):
   1. «Davom ettiraman: uch tashkilotchi bilan "Doimiy o'yin"ni sinayman.» ✔ Mahsulot → karta Mahsulot qatoriga uchadi: qator nomi ostida chip «Davom ettiraman», 1-oy katagiga «Uch tashkilotchi bilan "Doimiy o'yin"ni test rejimda sinash», 3-oy va 6-oy kataklariga Mentorning keyingi maqsadlari (A-6) navbat bilan tushadi; chip ostida kulrang sabab qatori: Sabab: uch tashkilotchi yozma tasdiq berdi — bu hali to'lov emas. (65)
@@ -188,16 +187,16 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `11-PmReflection-v3.m
   - 2-karta, «Ish»: Bu buyurtma ham, dastur ham emas — o'rganiladigan narsa. (56)
   - 3-karta, «Mahsulot»: Bu ilovaning o'zi emas — dasturga ariza. (40)
   - 3-karta, «Ko'nikma»: Bu o'qish emas — xalqaro dasturga ariza. (40)
-- Natija (bitta blok — E 42; `tugadi`: tugmalar yopiladi, telefon yig'iladi, taxta butun enga, ⛶ ichida — q17/q18): yashil xulosa qutisi — birinchi kichik qator taxmin: «Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz ✕ — aslida: bittasi»; taxtada uch qator — Mentor gaplari to'liq, chip va kataklar bilan.
+- Natija (bitta blok — E 42; `tugadi`: tugmalar yopiladi, telefon yig'iladi, taxta butun enga, ⛶ ichida — q17/q18): yashil xulosa qutisi (taxmin qatori yo'q); taxtada uch qator — Mentor gaplari to'liq, chip va kataklar bilan.
 - Xulosa: Bizda olti oylik reja uch yo'nalishdan iborat: mahsulot, ko'nikma va ish. (73) — atamalar shu yerda (T-011)
 - `QIzoh` (qutining oxirgi kichik qatori — E 42): Mentor misolida hamma oy to'lmagan: 1-oy va 6-oy bor, oraliq oylar keyin aniqlashadi. (85)
-- Tugma (pastki): Avval belgilang → Gapni joylang (N/3) → Davom etish
+- Tugma (pastki): Gapni joylang (N/3) → Davom etish
 - Ipucha (40 s harakatsizlikda; javobni aytmaydi): Gap ilova, o'rganish yoki ariza haqidami — qaysi biri? (54)
-- Keyingi bosiladigan joy: bashorat variantlari → uch tugma (navbatma-navbat to'lqin) → «Davom etish».
+- Keyingi bosiladigan joy: uch tugma (navbatma-navbat to'lqin) → «Davom etish».
 - Nishon: Three Lines! (uch karta birinchi urinishda).
 - O'qituvchi eslatmasi: Eng ko'p adashish — «Backend testlari»ni Mahsulotga qo'yish: Backend mahsulotniki, lekin bu gap — Mentor nimani o'rganishi haqida. Diamond Challenge konsepti ham mahsulotdan o'sadi, lekin u — dasturga ariza, ya'ni Ish yo'nalishi.
   Mentor misolida hamma oy to'lmagan: 1-oy va 6-oy bor (olti oyning oxiri), oraliq oylar — keyin aniqlashadi; 18 katakni to'ldirish talab qilinmaydi (12-FILTR 25). Mentor gaplari — tayanch 1.12 aynan; sabab, oylar va kunlar — A-6 (TAYANCHGA SAVOL 5). Sinfga savol: «Sizning rejangizda mahsulotdan tashqari nima bor?»
-✎ Sarlavha 0-ekran savoliga javob beradi: vaqt bitta narsaga emas — uch joyga (T-064). Bashorat zinapoyasi bitta o'lchovda (1 · 2 · 3); javob («bittasi») mahsulotni rejaning hammasi deb o'ylash xatosini ochadi.
+✎ Sarlavha 0-ekran savoliga javob beradi: vaqt bitta narsaga emas — uch joyga (T-064). 
 
 ## 3 · 1-savol  ← QTest (✔ B, `correctIdx 1`; ikkinchi misol — uy vazifalari ilovasi, P-002)
 - Eyebrow: 1-savol (savol ustida yorliq yo'q — SABOQ 6)
@@ -270,8 +269,8 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `11-PmReflection-v3.m
 - Eyebrow: Mustaqil ish · olti oylik reja
 - Sarlavha: **Olti oylik rejangizni uch yo'nalishda yozing.** (45)
 - Mentor: Har kartani yuqoridan pastga to'ldirib, «Saqlash»ni bosing — Mentor misoli «Yordam»da. (86)
-- Tepada — ixcham chiziq «Rejam · n/3» (yo'nalish nomlari, saqlangani ✓; bo'sh uzuq qatorlar yo'q — SABOQ 17).
-- **Chapda — `OltiOyReja`** (o'quvchi rejasi, to'liq; joriy qator accent halqada) · **o'ngda — bitta katta karta** (joriy yo'nalish; tugmalar 1–3: Mahsulot · Ko'nikma · Ish — joriysi accent, saqlangani ✓). Maydonlar — yorliq input ichida (E 43: raqam belgisi + qisqa savol).
+- Tepada — ixcham chiziq «Rejam» (sanoq tugmada *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*; yo'nalish nomlari, saqlangani ✓; bo'sh uzuq qatorlar yo'q — SABOQ 17).
+- **Chapda — `OltiOyReja`** (o'quvchi rejasi, to'liq; joriy qator accent halqada) · **o'ngda — bitta katta karta** (joriy yo'nalish, sarlavhasi — faqat nom *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*; tugmalar 1–3: Mahsulot · Ko'nikma · Ish — joriysi accent, saqlangani ✓). Maydonlar — yorliq input ichida (E 43: raqam belgisi + qisqa savol).
   1. **Mahsulot**
      - qaror tugmalari: «Davom ettiraman» · «To'xtataman»
      - ① sabab — placeholder Nega? Qaysi son yoki yozuv? (27) (≤ 120) · maydon ostida kulrang: Mahsulot haqida — son yoki yozuv; vaqtingiz va ustuvorligingiz ham sabab. (68) (12-FILTR 11)
@@ -327,7 +326,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `11-PmReflection-v3.m
 - Saqlash: `pm-m12d12-reja.yonalishlar` — har karta «Saqlash»ida o'z yozuvi (A-11 shartnomasi; `nishonlar[0]` — 1-oy, `nishonlar[5]` — 6-oy, qolgani `null`); birinchi saqlashda `boshlanganSana` (keyin o'zgarmaydi — 12-FILTR 7), `savedAt`.
 - Tugma (pastki): Uch yo'nalishni yozing (n/3) → Davom etish (jonli darsda ham majburiy — darsning asosiy artefakti, `optionalLive` yo'q — 12-FILTR 38).
 - Keyingi bosiladigan joy: qaror yoki yo'l tugmalari (navbatma-navbat to'lqin) → joriy maydon (accent chegara) → «Saqlash» (maydonlar to'lgach halqada) → keyingi karta.
-- Artefakt-strip (U-042): shu ekrandan — «Rejam · n/3» (ixcham); 7-ekranda ko'rinadi; test, arena, podium va yakunda yo'q (E 50).
+- Artefakt-strip (U-042): shu ekrandan — «Rejam» (ixcham, sanoqsiz — F-1015-119); 7-ekranda ko'rinadi; test, arena, podium va yakunda yo'q (E 50).
 - Nishon: Six Months! (uch yo'nalish saqlanganda — bonus, ish bajarilgan ekranda — P-048).
 - Mentor rejimi: forma o'rniga Mentor misolining to'liq taxtasi (A-6). Mentor statistikasi: «Reja saqlandi» (son); o'quvchilar ro'yxatida saqlash vaqti ko'rsatilmaydi (navbat belgisi emas — 12-FILTR 31). Reja matni Mentorga ham, proyektorga ham uzatilmaydi.
 - O'qituvchi eslatmasi: ≈ 25 daqiqa. **Yakkama-yakka shu ekran paytida boshlanishi mumkin:** o'quvchilarni siz belgilagan tartibda chaqiring (7-ekran) — kim tez saqlagani emas (12-FILTR 4). Eng ko'p xato: maqsad o'rniga va'da («mashhur bo'ladi») · birinchi qadam katta («ilovani tugataman») · sababda dalil yo'q.
@@ -340,7 +339,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `11-PmReflection-v3.m
 - Sarlavha: **Mentor bilan rejangizni 10 daqiqa muhokama qiling.** (50) («ko'ring» noaniq edi — 12-FILTR S)
 - Mentor: Navbatingiz kelguncha bo'sh oylarni to'ldiring, chaqirganimda esa rejangizni ekraningizda ko'rsatasiz. (102)
 - Tepada (kulrang, bitta qator): Reja matni Mentor ekraniga va proyektorga chiqmaydi. (52)
-- **Chapda — `OltiOyReja`** (o'quvchi rejasi, to'liq; bo'sh kataklar bosiladi; tepada ixcham chiziq «Rejam · 3 yo'nalish») · **o'ngda — «Suhbat» kartasi**.
+- **Chapda — `OltiOyReja`** (o'quvchi rejasi, to'liq; bo'sh kataklar bosiladi; tepada ixcham chiziq «Rejam» — sanoq olindi, jadval o'zi ko'rsatadi *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*) · **o'ngda — «Suhbat» kartasi**.
 - **1-qism · Bo'sh oylar** (2–5-oy; ixtiyoriy, kutayotganda):
   - taxta ustida kulrang qatorlar (bor bo'lsa, ko'pi bilan ikkita): 13-Modulda «uzoqroqda qoldi» deganlaringiz: {nomlar} (52) (`pm-m11d11-refleksiya.ishlar`, ko'pi bilan uchta nom, «…» bilan) · Diamond Challenge muddati qatori (6-ekrandagidek; Ish yo'li «Xalqaro dastur» va `dastur === 'diamond'` bo'lsa).
   - bo'sh katak bosiladi → katak kattalashib maydon ochiladi (yorliq ichida «{n}-oy maqsadi», ≤ 100) · «✓» bilan saqlanadi · bo'sh qoldirish ham mumkin.
@@ -427,6 +426,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `11-PmReflection-v3.m
 - Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
 - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18). Artefakt-strip yakunda yo'q (E 50).
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
 - Izoh (MD): yakun sarlavhalari kalitdan yig'iladi: `yonalishlar.length` (P-046); `suhbat` — faqat alohida belgi (navbat natijasi tugallikni belgilamaydi — 12-FILTR 3, 39). «Suhbat bo'ldi», lekin reja tugamagan — 2-holat (sarlavha suhbat haqida aytmaydi, rost qoladi). Uyga vazifada keyingi darslar va natijalar aytilmaydi (T-038).
   ① — faqat Ish yo'nalishidagi tashqi qadamlar (real odam, pul, xat, ariza) ota-ona bilan (TAQIQLAR 1, 3); butun shaxsiy reja (ko'nikma, to'xtatish, ustuvorlik) majburan ko'rsatilmaydi (12-FILTR 32; TS17 RAD); ② — yengil, telefonsiz o'quvchi ham (12-FILTR 33); ③ — faqat qolgan ish bo'lsa (sinf 14). «Kim bilan» — HwCard yorlig'i (13-Modul 11-dars bilan bir).
   «Demo Day'ga tayyormisiz?» — keyingi darsning nomi aynan (`00-NOMLAR.md`, DE-205); tayanch 9.13 bilan munosabati — TAYANCHGA SAVOL 9.
@@ -526,7 +526,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
     - Buyurtmachining o'zi bilan, yolg'iz (35)
     - Sinfdoshingiz orqali, yashirin holda (36)
     - ✔ Ota-onangiz orqali, ular bilan birga (36)
-    - Internetdagi notanish vositachi orqali (38)
+    - Internetdagi notanish odam orqali (38)
 12. Qaysi gap olti oylik rejaga to'g'ri yozilgan? (45) (4, 6)
     - 6-oy: ilovam hamma joyda mashhur bo'ladi (40)
     - 1-oy: hamma narsani o'rganib bo'laman (37)
@@ -547,7 +547,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 1. Yangi fayl `src/12-Modull/PmNextStepsLesson.jsx` — skeletdan; palitra `qolipRang('pm')`, `qolipCss(T)`; `LESSON_META.lessonId` `pm-m12d12-v1` (14-Modul naqshi `pm-m12dN-v1`), `lessonTitle` — «Keyingi olti oyda nima qilasiz?».
 2. `SCREEN_META` 12: hook · plan · concept · test · concept · test · practice · practice · test · stats · flashcards (`sflash`) · summary. `INLINE_KEYS` { 3: 1, 5: 3, 8: 2 }; `yonalish: -1`, `qadam: -1` (2, 4-ekran — ballsiz; 2-ekranda nishon);
    6, 7 `practice: -1`, signal `PRACTICE_BASE + ekran`. `narrow` — 3, 5, 8, 9-ekranlar.
-   Qolip turlari: s0 `QKirish` · s1 `QReja` · s2/s4 `QTushuncha` (`zoom`, `tugadi` — q17/q18; s2 da `QBashorat` + taxmin qatori yashil xulosa qutisi ichida — E 42) · s3/s5/s8 `QTest` (`QuestionScreen` mantig'i, DE-203) · s6/s7 `QMustaqil` · s9 `QNatija` · `sflash` `QKartochka` · s11 `QYakun`.
+   Qolip turlari: s0 `QKirish` · s1 `QReja` · s2/s4 `QTushuncha` (`zoom`, `tugadi` — q17/q18; s2 da bashorat yo'q — F-1015-119) · s3/s5/s8 `QTest` (`QuestionScreen` mantig'i, DE-203) · s6/s7 `QMustaqil` · s9 `QNatija` · `sflash` `QKartochka` · s11 `QYakun`.
 3. **`OltiOyReja`** — bitta vizual (180; qolipda yo'q, yangi): qismlar `taxta` (3 qator × 6 ustun; qator nomi, chip — qaror yoki yo'l, kulrang qator — sabab yoki nima; katak — maqsad, bo'sh — uzuq; «Bugun» chizig'i; `bayroq` — sana kunining 1-oy ichidagi joyida) ·
    `telefon` («Maydon Jamoa», ≈170×272; «O'yin» ekrani — faqat s2) · `varaq` («13-Modul · shaxsiy hisobot», uch qator — faqat s4) · `muddat` (kulrang bayroq — `DC_MUDDAT` oyini kod `boshlanganSana` dan aniqlaydi (Mentor misolida — dars kuni); olti oydan uzoq bo'lsa — o'ng chetda «›»; `DC_MUDDAT` o'tgan bo'lsa — ko'rinmaydi, 12-FILTR 9, 21).
    Rejimlar: `bosh` (s0) · `skelet` (s1) · `mentor` (s2, s4, s8 javobi, Mentor rejimi) · `oquvchi` (s6, s7) · `kichik` (s3, s5 javobi — ikkinchi misol) · `chiziq` (s6/s7 tepasi). Bosiladigan qismlar faylda e'lon qilinadi (`// qolip-maket: oor-katak oor-qator oor-bayroq`).
@@ -555,8 +555,8 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 4. **Bitta manbalar (A-6 aynan):** `MENTOR_REJA` (3 × `{ tur, tanlov, gap (tayanch 1.12 aynan), sabab | nima, oylar: [6], birinchiQadam, kun: 'shanba' | 'yakshanba' | 'dushanba' }`) · `MENTOR_GAPLAR` (3 — tayanch 1.12, yo'nalish nomisiz; to'g'ri tugma) ·
    `MENTOR_13_JAVOB` (13-Modul tayanchi 1.11 — 3-javob aynan) · `QADAM_KARTALAR` (3 × `{ matn, qachon, tur: 'togri' | 'mavhum' | 'vada' }`) · `SUHBAT_SAVOL` (3) · `DC_MUDDAT` (`'2027-01-14'`, rasmiy — tayanch 1.11, 6).
    Mentor kunlari sanasi — `keyingiKun(kunNomi)` (dars kunidan keyingi shu nomli kun; kun.oy shaklida). Mentor rejimi, s0 (kalit bo'lsa), s2, s4, s6 (Yordam), s8 (javob vizuali) shulardan o'qiydi.
-5. **s2** — `QBashorat` (Bittasi · Ikkitasi · Uchalasi; to'g'ri — bittasi) → 3 karta, uch tugma (Mahsulot · Ko'nikma · Ish), kalit `['mahsulot', 'konikma', 'ish']`; to'g'ri → karta qatorga uchadi, chip, kulrang qator, oylar (`MENTOR_REJA.oylar`), 3-kartada `muddat` bayrog'i;
-   `QIzoh` 1-kartadan keyin (~3 s); `QXato` jadvali (2-ekran); natijada taxmin qatori + xulosa + oxirgi `QIzoh`; 40 s ipucha; nishon `threeLines`.
+5. **s2** — (bashorat olindi — F-1015-119) 3 karta, uch tugma (Mahsulot · Ko'nikma · Ish), kalit `['mahsulot', 'konikma', 'ish']`; to'g'ri → karta qatorga uchadi, chip, kulrang qator, oylar (`MENTOR_REJA.oylar`), 3-kartada `muddat` bayrog'i;
+   `QIzoh` 1-kartadan keyin (~3 s); `QXato` jadvali (2-ekran); natijada xulosa + oxirgi `QIzoh`; 40 s ipucha; nishon `threeLines`.
 6. **s4** — `varaq` animatsiyasi (bir marta; `MENTOR_13_JAVOB` → Mahsulot 1-oy katagi) → `QADAM_KARTALAR` (3 ta bir vaqtda), to'g'ri → `bayroq` (`keyingiKun('shanba')`); `QXato` 2 turi (`tur` bo'yicha); xulosa + `QIzoh`; 40 s ipucha.
 7. **s6** — o'qiydi `pm-m11d11-refleksiya.javoblar.keyingi`, `pm-m12d10-ish` (`buyurtma.kim`, `buyurtma.nima`, `buyurtma.qachon` — matn, `xatlar.length`, `xatlar[].soroq`), `pm-m12d11-dastur` (`dastur` — `'boshqa'` faqat eslatma, `maslahatchi`); uch karta ketma-ket; qaror va yo'l tugmalari; taklif tugmalari (takror bosish qo'shmaydi);
    maydonlar (yorliq ichida), kun tanlagich (`<input type="date">`, `min` — bugun; ⛔ telefon va laptop brauzerlarida sinaladi); tekshiruvlar (6-ekran ro'yxati: bloklaydigan va yumshoq; yumshoq — ikkinchi «Saqlash» o'tkazadi) —

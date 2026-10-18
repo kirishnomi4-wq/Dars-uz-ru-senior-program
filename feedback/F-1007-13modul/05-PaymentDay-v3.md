@@ -172,7 +172,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–2 ≈ 13 · 1-amaliyot ≈ 25 �
   - tugagach: Natijani taxminingiz bilan solishtiring.
 - Bashorat (ballsiz, yorliq «Avval o'zingiz belgilab ko'ring»; tanlangach ixcham qator): **To'rt usuldan nechtasi Mentor misolida to'lovni buzadi?** · Hech biri · Ikkitasi · To'rttalasi (S-015: bir o'lchov, o'sish tartibida)
 - Sahna (`TOLOV_SAHNA`): telefon — brauzer, «Mashq to'lov» sahifasi (tekshiruv tugmalari faol, joriysi halqada) · Backend — «Mashq to'lov» va `POST /tolov/webhook` qismlari, `tolovlar`, «Pro muddati: —».
-  Tepada qadam chiplari (tayyori ✓, joriysi accent): 1 Ikki marta · 2 Kechiktirib · 3 Rad · 4 Noto'g'ri imzo. Har urinish oldidan sahna o'zi boshlang'ich holatga qaytadi: kichik kulrang qator «Pro yo'q — yangi to'lov raqami».
+  Qadam chiplari yo'q — har qadamni Mentor aytadi, hisob tugmada *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*. Har urinish oldidan sahna o'zi boshlang'ich holatga qaytadi: kichik kulrang qator «Pro yo'q — yangi to'lov raqami».
 - **Harakat → Vizual o'zgarish:**
   1. «Ikki marta yuborish» → Backend ichida ikki konvert `m-9b07…` ketma-ket uchadi. Birinchisi: «imzo ✓» → «Pro +30 kun» → «raqam: yangi» → «yozuv» → javob `200 { ok: true }`, «Pro muddati: 30 kun».
      Ikkinchisi: «imzo ✓» → «Pro +30 kun» (qizil yonadi) → «raqam: bor» → yozilmadi → javob `200 { takror: true }`; `tolovlar` · «1 qator», lekin «Pro muddati: 60 kun» (qizil, kattalashib qaytadi). Chip ostida: «buzildi — qator bitta, Pro ikki marta uzaydi».
@@ -275,7 +275,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–2 ≈ 13 · 1-amaliyot ≈ 25 �
   - tugagach: Natijani taxminingiz bilan solishtiring.
 - Bashorat (ballsiz; tanlangach ixcham qator): **Kech kelgan xabarda Pro oxiri yoqildi. Bu urinish buzildimi?** · Yo'q — Pro oxiri yoqildi, demak to'lov ishladi · Ha — foydalanuvchiga noto'g'ri holat ko'rsatildi
 - Chap — telefon (ilova, «Javob kutilmoqda»). O'ng — buzish yozuvi kartasi (bittadan; `MENTOR_YOZUV` 2-qatori): «Kechiktirib yuborish» · uch qator yorlig'i «Nima qildim» · «Nima kutdim» · «Nima bo'ldi» (matni — A-bo'lim 4 jadvali) · belgi joyi bo'sh; ostida tugma «Solishtirish» (halqada);
-  karta ustida kichik qator — boshqa uch urinish ixcham: «1 · Ikki marta yuborish · buzildi» · «3 · Rad etish · buzilmadi» · «4 · Noto'g'ri imzo · buzilmadi». Qadam belgilari: 1 Solishtiring · 2 Agentga bering · 3 Qayta: kechiktirib · 4 Qayta: ikki marta.
+  karta ustida kichik qator — boshqa uch urinish ixcham: «1 · Ikki marta yuborish · buzildi» · «3 · Rad etish · buzilmadi» · «4 · Noto'g'ri imzo · buzilmadi». Qadam belgilari yo'q — har qadamni Mentor aytadi *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*.
 - **Harakat → Vizual o'zgarish:**
   1. «Solishtirish» → «Nima kutdim» va «Nima bo'ldi» qatorlaridagi mos kelmagan ikki joy navbat bilan qizil ostiga chiziladi: «Sahifa natijani kutadi» ↔ «10 soniyadan keyin «To'lov o'tmadi» dedi» · «ilovada Pro ko'rinadi» ↔ «ilovada esa «Javob kutilmoqda» qoldi» →
      belgi joyiga qizil «buzildi» tushadi; karta ixcham qatorga yig'iladi («2 · Kechiktirib yuborish · buzildi»).
@@ -430,7 +430,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–2 ≈ 13 · 1-amaliyot ≈ 25 �
   - 2-amaliyot boshlangan, bajarilmagan — **To'lovni buzish hali tugamagan.** (31)
   - 2-amaliyot boshlanmagan, 1-amaliyot bajarilgan — **Qolgan holatlar tekshirildi — buzish qoldi.** (43)
   - hech biri — **To'lov yo'li bugun hali tekshirilmagan.** (39)
-- Arena tugmasi (o'yin qatlami, darsdan): CODE STRIKE · 12 SAVOL · 15 SONIYA · PODIUM · (jonli darsda) Mentorni kuting
+- Arena tugmasi (o'yin qatlami, darsdan): CODE STRIKE · (jonli darsda) Mentorni kuting
 - «Bugungi asosiy fikr» qutisi yakunda yo'q (SABOQ E 50) — fikr A-bo'lim 2-bandida, darsning ichki o'qi.
 - Endi siz bilasiz (5; asosiy fikr bu yerda takrorlanmaydi — T-048):
   - Agentning «to'lov ishlaydi» degani — da'vo: to'lovni o'zingiz to'rt usul bilan buzib ko'rasiz.
@@ -439,12 +439,13 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–2 ≈ 13 · 1-amaliyot ≈ 25 �
   - Rad etish va noto'g'ri imzo ham tekshiriladi — «buzilmadi» ham natija.
   - «Tuzatish qilindi» — kod o'zgargani; yashil belgi — o'sha usul bilan qayta buzilmagani.
 - Uyga vazifa — yo'q (tayanch 4: loyiha kuni; ish repo'da — uch blok o'z mahsulotingizda).
-- Keyingi dars — «Pul haqida qanday gaplashasiz?»
 - Nishonlaringiz — N/4 (pastda; mentor rejimida yo'q)
-- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Keyingi dars — «Pul haqida qanday gaplashasiz?»
+- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Nishonlaringiz · Keyingi dars. Ichki skroll qutisi yo'q (SABOQ 18).
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
 - Izoh (MD): sarlavha o'quvchi ishini aytadi, Mentor natijasini emas; blok bajarilgani — faqat 4-qadam «Bajardim»idan (ccProgress), urinish holati — `pm-m11d5-buzish` dan. Birinchi holat faqat kamida bitta «Tuzatish qilindi» bo'lsa (aks holda — ikkinchi holat).
   «Keyingi dars» qatori — `00-NOMLAR.md` 6-qator, so'zma-so'z, quyruqsiz (T-038; tayanch 7 «RAD etilganlar»).
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ---
 

@@ -69,11 +69,11 @@ Tashqi audit (ChatGPT) Filtri: `12-FILTR.md` — 05.10.2026 qo'llandi.
 - Mentor: Intervyu va kuzatuv yozuvlaringizni yoningizga oling — bugun ular kerak bo'ladi.
 - Chap: «Dars oxirida — pitch: muammo, yechim va real foydalanuvchi» + Sahna: uch slayd skeleti (nomlari Muammo · Yechim · Foydalanuvchi),
   kulrang chiziqlar 0.9 s oraliqda birma-bir to'q chiziqqa aylanadi (matnsiz — keyingi ekranlar javobini ochmaydi, P-015), oxirida zal ustida ✓.
-- O'ng (01 · matn · teg; bosilmaydi):
-  - 01 · Raqam yonida yana nima turishini ko'rasiz · `raqam`
-  - 02 · Pitchga qaysi gap chiqishini ajratasiz · `yozuv`
-  - 03 · Mashhur sayt muammoni qanday ko'rsatganini bilib olasiz · `biznes`
-  - 04 · Loyihangiz pitchini yozib, sinfdoshga aytasiz · `repetitsiya`
+- O'ng (01 · matn; bosilmaydi; teg yo'q) *(✎ F-1015-114, 208-qonun 0-band: takror olindi)*:
+  - 01 · Raqam yonida yana nima turishini ko'rasiz
+  - 02 · Pitchga qaysi gap chiqishini ajratasiz
+  - 03 · Mashhur sayt muammoni qanday ko'rsatganini bilib olasiz
+  - 04 · Loyihangiz pitchini yozib, sinfdoshga aytasiz
 - Harakat yo'q (reja ekrani) — vizual o'zi yoziladi.
 - Tugmalar: Orqaga · Boshlaymiz →
 
@@ -110,7 +110,7 @@ Tashqi audit (ChatGPT) Filtri: `12-FILTR.md` — 05.10.2026 qo'llandi.
 - Eyebrow: Tushuncha · yozuvdan olingan gap
 - Sarlavha: **Qaysi gap haqiqatan bo'lib o'tgan?** (34)
 - Mentor: Pitch uchun oltita gap yozildi. Yozuvni tekshirib, har birini o'z tomoniga joylang.
-- Bashorat (ballsiz): **Olti gapdan nechtasi bo'lib o'tgan ish?** · 2 · 3 · 4
+- Bashorat yo'q — saralashning o'zi topshiriq; kartada «N / 6» yo'q — tugma aytadi. *(✎ F-1015-114, 208-qonun 0-band: takror olindi)*
 - Vizual (ikki tomon, bir balandlikda):
   - chap **Bo'lib o'tgan ish** — ostida ikki yozuv kartasi (tekshirish uchun):
     «Intervyu yozuvlari · 5» — 4 qator, yonida son: «oxirgi marta kelganimizda maydon band edi» 4 · «egasi telefonni ko'tarmadi» 3 · «jamoaga odam yetmadi» 2 · «pulni bo'lishish qiyin» 1;
@@ -150,7 +150,7 @@ Tashqi audit (ChatGPT) Filtri: `12-FILTR.md` — 05.10.2026 qo'llandi.
 - Eyebrow: Biznes olamidan (PM-028)
 - Sarlavha: **Canva muammosi qayerdan chiqqan?** (32)
 - Mentor: Canva — taqdimot va rasm yasaydigan sayt. Uni boshlagan Melanie Perkins avval universitetda o'qigan.
-- Nuqtalar: 6 ta · yorliq **Canva · N/6** (bashorat kartasida ham) · maket `CanvaMock`: chizilgan dastur oynasi va taqdimot slaydlari; «Canva» nom-yorlig'i o'z rangida (182-qonun), logotip yo'q, son yo'q.
+- Nuqtalar qatori yo'q — tugma «Keyingi bosqich (N/6)» aytadi; bashorat yorlig'i «Avval o'zingiz belgilab ko'ring» *(✎ F-1015-114, 208-qonun 0-band: takror olindi)* · maket `CanvaMock`: chizilgan dastur oynasi va taqdimot slaydlari; «Canva» nom-yorlig'i o'z rangida (182-qonun), logotip yo'q, son yo'q.
 - Bosqichlar (karta matni qisqa; karta cho'zilmaydi):
   - 1/6 **Talabalarga dars bergan talaba** — Melanie universitetda o'qib yurib, boshqa talabalarga dizayn dasturlarini o'rgatgan. · maket: tugmalari ko'p dastur oynasi, oldida uchta talaba-siluet
   - 2/6 bashorat — **Talabalar nimaga qiynalgan?** · Chiroyli rang tanlashga · ✔ Tugmalar qayerdaligini o'rganishga · Ishni vaqtida topshirishga
@@ -162,7 +162,7 @@ Tashqi audit (ChatGPT) Filtri: `12-FILTR.md` — 05.10.2026 qo'llandi.
   - 6/6 **Muammo ko'rinadigan bo'ldi** — Yangi slayd hozirgi dizayn ishi qanday bo'lishini va qanchalik murakkabligini ko'rsatgan. · maket: taqdimotga yangi slayd kiradi — ichida ko'p qadamli chigal chiziq
 - Bashorat natijasi (`QTaxmin`): «Taxminingiz: … · haqiqatda: …» yoki «Taxminingiz to'g'ri chiqdi».
 - **Harakat → Vizual o'zgarish:** «Keyingi bosqich» yoki bashorat varianti → `CanvaMock` holati o'zgaradi: kirish (dastur oynasi + talabalar) → qidiruv (kursor adashadi) →
-  pitch (rad belgilari, slaydlar qayta tartiblanadi) → yangi slayd (chigal chiziq). Bashoratda tanlangan variant ✓/✗ va `QTaxmin` qatori.
+  pitch (rad belgilari, slaydlar qayta tartiblanadi) → yangi slayd (chigal chiziq). Bashoratdan keyin `QTaxmin` qatori (variantda ✓/✗ yo'q).
 - Xulosa (6/6 dan keyin, hisoblagichsiz): Canva muammosi o'ylab topilmagan — Melanie uni talabalarda ko'rgan va pitchda ko'rinadigan qilgan. (98)
 - Tugma (pastki): Keyingi bosqich (N/6) → Davom etish
 - O'qituvchi eslatmasi: Melanie gaplari — Guy Kawasaki bilan suhbatdan (manba pastda). «Rad javobi» — investor pul tikmaslikka qaror qilgani.
@@ -188,7 +188,7 @@ Tashqi audit (ChatGPT) Filtri: `12-FILTR.md` — 05.10.2026 qo'llandi.
 - Sarlavha: **Qaysi hikoya qaysi slaydga chiqadi?** (35)
 - Mentor: Beshta bo'lak «Maydon» yozuvlaridan va saytidan — har birini o'z slaydiga joylang.
 - Qator (`QIzoh`, uch slayd ustida; audit 6): Foydalanuvchi slaydida kimligi emas, saytni ishlatganda nima bo'lgani ko'rinadi. (80)
-- Bashorat (ballsiz): **Sinovdagi o'yinchining hikoyasi qaysi slaydga chiqadi?** · Muammo · Yechim · Foydalanuvchi
+- Bashorat yo'q — saralashning o'zi topshiriq; kartada «N / 5» yo'q — tugma aytadi. *(✎ F-1015-114, 208-qonun 0-band: takror olindi)*
 - Vizual: Sahna — uch slaydli tasma: 1 **Muammo** · 2 **Yechim** · 3 **Foydalanuvchi** (har birida bo'sh qatorlar); ostida zal.
 - Bo'laklar (5, aralash tartibda — kodda `BOLAKLAR`):
   1. `4 / 5` · intervyuda «maydon band edi» deganlar → Muammo
@@ -225,6 +225,7 @@ Tashqi audit (ChatGPT) Filtri: `12-FILTR.md` — 05.10.2026 qo'llandi.
   - 2/4-qadamda «hamma», «ko'pchilik», «har kim»: Hikoya bitta odam haqida — u kim edi? (37)
   - 2/4-qadamda «albatta», «kerak», «yoqadi», «qulay», «zo'r»: Fikrga o'xshaydi — yozuvda aynan shunday gap bormi? (51)
   - o'tgan qator (ikki tomonlama javob, 106d-a): qator slayd ichida yashil chiziq oladi — alohida maqtov-matni yo'q.
+  - qator bo'sh bo'lsa: «Slaydga chiqarish» o'chiq emas — bosilganda tugma ostida `QXato`, kursor qatorga: Avval raqamni yozing. · Avval muammo hikoyasini yozing. · Avval yechimni yozing. · Avval sinov hikoyasini yozing. *(✎ F-1015-164)*
 - Doimiy qator (forma ostida): Hikoyani o'ylab topmaysiz — yozuvingizdan olasiz.
 - Yordam: Real odam bilan hali gaplashmagan bo'lsangiz — sinfdosh bilan mashqdagi yozuvni oling. Sinovdan keyin hali tuzatmagan bo'lsangiz — topilgan muammoni yozing.
 - **Harakat → Vizual o'zgarish:** qatorni yozib «Slaydga chiqarish» → qator o'z slaydiga kiradi, joriy belgi keyingi qatorga o'tadi; tekshiruvdan o'tgan qator yashil chiziq oladi,
@@ -289,7 +290,7 @@ console.log(hikoyalar([gaplar[1], gaplar[0]]));
 - Eyebrow: Mashq · sinfdosh oldida
 - Sarlavha: **Pitchingizni 1 daqiqada tushuntira olasizmi?** (44)
 - Mentor: Sahnadan oldin pitchni ovoz chiqarib aytib ko'rish repetitsiya deyiladi. Avval {sinfdoshingizga | o'zingizga} 1 daqiqada ayting, keyin bir qator yozing.
-- Qadamlar 1/2: 1 Sinfdoshingizga ayting | Ovoz chiqarib ayting · 2 Endi bir qator yozing
+- Qadam-qatori yo'q (Mentor aytadi); faqat taymer. *(✎ F-1015-114, 208-qonun 0-band: takror olindi)*
   - Jonli taymer (juftlik, 2 daqiqa): Har biringizga 1 daqiqadan — avval A, keyin B. · 2 daqiqani boshlash · Hozir A gapiradi · Hozir B gapiradi · To'xtatish · Yana 2 daqiqa
   - Mustaqil taymer (1 daqiqa): 1 daqiqani boshlash · Hozir ovoz chiqarib ayting · To'xtatish · Yana 1 daqiqa
 - Maydon maslahati: (juftlikda) Sinfdoshingiz qaysi odamni va uning qaysi muammosini eslab qoldi? | (mustaqil) Qaysi odamning hikoyasini va muammosini aytdingiz?
@@ -345,6 +346,7 @@ console.log(hikoyalar([gaplar[1], gaplar[0]]));
 - Keyingi dars — Zaxira dars: ortda qolgan ishni yetkazasiz va pitchni sayqallaysiz.
 - Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — sarlavha «Uyda nima qilasiz?», maydonlar katta quti (yorliq bosh harfda, «:» siz), qadamlar raqam-doira, «Keyingi dars» karta ichida (13.5px); qadam matni o'zgarmagan.
 
 ---
 
@@ -460,7 +462,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144 va uning qo'shimcha bandi): b
 ✎ Qurishda koddagi chetlashishlar (quruvchi, 05.10.2026; o'quvchi matni o'zgarmagan):
 - ✎ Slayd to'liq — «chap chetda yashil chiziq» o'rniga yashil halqa va nom yonida ✓ (SABOQ 7, lint-dizayn D1 — rangli yon chiziq taqiq). s9 o'tgan qatori — qator ostida yashil chiziq.
 - ✎ s4 va s8: gaplar va bo'laklar bittadan katta karta bo'lib chiqadi, tomon yoki slayd tugma bilan tanlanadi (SABOQ 9); sudrash yo'q.
-- ✎ s6: 1/6 da Mentor pufagida MD Mentor gapi va 1/6 bosqich gapi birga (3 gap, SABOQ 8); 2/6 va 5/6 da bashorat savolini Mentor aytadi, kartada yorliq «Canva · N/6» va variantlar.
+- ✎ s6: 1/6 da Mentor pufagida MD Mentor gapi va 1/6 bosqich gapi birga (3 gap, SABOQ 8); 2/6 va 5/6 da bashorat savolini Mentor aytadi, kartada variantlar (yorliq umumiy, F-1015-114).
 - ✎ s2: joriy qadam tugmasi matni — qadam nomining o'zi (MD da tugma yozuvi yo'q).
 - ✎ s12: slaydlar ochilgach zal ustida ✓. Taymer tugmalarida ↻ belgisi yo'q (MD yozuvi aynan).
 - ✎ `INLINE_KEYS` dagi `saralash` va `slaydlar` — s4/s8 tugaganda mentor paneliga mashq signali (500+ zonasi) yuboriladi (jsx-lint talabi).

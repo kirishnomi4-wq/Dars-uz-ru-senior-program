@@ -23,10 +23,11 @@ Holat: 06.10.2026 — kodga mos
 - Chap yorliq: Dars oxirida — yillik yo'l: loyihalar vaqt chizig'ida va keyingi qadam
 - Chap vizual: vaqt chizig'i — 1 … 10 raqamli nuqtalarga matnsiz kartalar navbat bilan tushadi, oxirida «Keyin» nuqtasi yonadi
 - Bugungi 4 qadam:
-  1. Loyihalaringizni qurilgan tartibida bitta chiziqqa qo'yasiz · vaqt chizig'i
-  2. Har loyihada nimani o'rganganingizni yozasiz · o'rgandim
-  3. Uzum'ning ikki sanasini chiziqda ko'rasiz · voqea
-  4. Bitta keyingi qadamni tanlaysiz · keyingi qadam
+  1. Loyihalaringizni qurilgan tartibida bitta chiziqqa qo'yasiz
+  2. Har loyihada nimani o'rganganingizni yozasiz
+  3. Uzum'ning ikki sanasini chiziqda ko'rasiz
+  4. Bitta keyingi qadamni tanlaysiz
+  (teg yo'q — keyingi ekranlar eyebrow'ini takrorlardi) *(✎ F-1015-115, 208-qonun 0-band: takror olindi)*
 - Tugmalar: Orqaga · Boshlaymiz
 
 ## 2 · Vaqt chizig'i
@@ -101,7 +102,7 @@ Holat: 06.10.2026 — kodga mos
 ## 6 · Uzum
 - Eyebrow: Biznes olamidan
 - Sarlavha: Uzum'ning *ikki sanasi* nimani ko'rsatadi?
-- Bosqich yorlig'i: Uzum · N/4
+- Bosqich yorlig'i va nuqtalar yo'q — tugma «Keyingi bosqich (N/4)» aytadi; bashorat yorlig'i «Avval o'zingiz belgilab ko'ring» *(✎ F-1015-115, 208-qonun 0-band: takror olindi)*
 - 1/4 — Bungacha
   - Mentor: Bu voqeani eshitgansiz — endi uni vaqt chizig'ida ko'ring. Uzum'gacha odamlar narsani ko'pincha Telegram va Instagram guruhlaridan olardi — yetkazib berishsiz.
   - Sahna: Uzum — narsani telefonda tanlasangiz, yetkazib beradigan internet-magazin · telefonda guruh-chat · yorliq: yetkazib berishsiz
@@ -183,7 +184,7 @@ Holat: 06.10.2026 — kodga mos
 - Sarlavha: Sherigingiz *«Keyin nima?»* desa, nima deysiz?
 - Mentor: Chizig'ingizni sherigingizga birinchi loyihadan boshlab aytib bering, keyin o'rin almashing. Javobingizni «Keyin»ga yozing.
 - Vaqt chizig'i: o'quvchining 9-ekrandagi chizig'i (o'tkazilgani — o'tkazildi) · Keyin
-- 1 / 2 — Sherigingizga aytib bering (yakka rejimda: Chizig'ingizni ovoz chiqarib aytib bering (30 soniya))
+- 1 — Sherigingizga aytib bering («1 / 2» yo'q — raqamli belgi aytadi, F-1015-115) (yakka rejimda: Chizig'ingizni ovoz chiqarib aytib bering (30 soniya))
   - Taymer: 1 daqiqani boshlash · To'xtatish · ↻ Yana 1 daqiqa (yakka rejimda: 30 soniyani boshlash · ↻ Yana 30 soniya)
 - 2 / 2 — «Keyin»ni yozing
   - Keyin (yorliqlar: bitta · aniq · chiziqdan o'sadi) — placeholder: Bitta aniq ish: nima qilasiz?
@@ -296,7 +297,6 @@ console.log(vaqtChizigi([{ modul: 7, nom: "Telegram bot", nima: "" }], "qidiruv 
 - Eyebrow: Dars yakuni
 - Belgilar: ✓ Dars tugadi · N/4 to'g'ri
 - Sarlavha: Yillik yo'l tayyor: *vaqt chizig'i va keyingi qadam*.
-- Bugungi asosiy fikr — Vaqt chizig'i bir yilda nima bo'lganini ko'rsatadi, keyingi qadam esa shu chiziqdan o'sadi.
 - Chizig'im — n / N (9-ekranda saqlangan chiziq bo'lsa)
 - CODE STRIKE arenasi: 12 SAVOL · 15 SONIYA · PODIUM (jonli darsda mentor boshlaguncha: Mentorni kuting)
 - ✓ Endi siz bilasiz:
@@ -307,6 +307,7 @@ console.log(vaqtChizigi([{ modul: 7, nom: "Telegram bot", nima: "" }], "qidiruv 
 - Keyingi dars — **«Besh daqiqada nimani ko'rsatasiz?»**.
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Time Keeper!** — Loyihalarni qurilgan tartibida joyladingiz (2-ekran)

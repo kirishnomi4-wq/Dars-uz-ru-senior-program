@@ -21,7 +21,7 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 
 
 
@@ -785,7 +785,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA =====
 const Screen1 = ({ screen, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's1', text: `Kod yozishni boshlashdan oldin yaxshi dasturchilar muammoni qanday hal qilishni o'ylaydi. Buning uchun ular ikkita kuchli vositadan foydalanadi: sistema va algoritm. Bugun shu ikki g'oyani oddiy misollar orqali o'rganamiz, keyingi darslarda esa ularni JavaScript'da ishlatamiz.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's1', text: `Kod yozishni boshlashdan oldin yaxshi dasturchilar muammoni qanday hal qilishni o'ylaydi. Buning uchun ular ikkita kuchli usuldan foydalanadi: sistema va algoritm. Bugun shu ikki g'oyani oddiy misollar orqali o'rganamiz, keyingi darslarda esa ularni JavaScript'da ishlatamiz.`, trigger: 'on_mount', waits_for: null }]);
   const STEPS = [
     { text: tr({ uz: 'Sistema nima? — komponentlar', ru: 'Что такое система? — компоненты' }), tag: '' },
     { text: tr({ uz: "Bog'lanishlar — qismlar qanday ulanadi", ru: 'Связи — как части соединяются' }), tag: '' },
@@ -825,7 +825,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
         <div className="head">
           <h2 className="title h-title fade-up"><span className="italic" style={{ color: T.accent }}>{tr({ uz: "Bugun dasturchidek fikrlashni o'rganamiz!", ru: 'Сегодня учимся думать как программист!' })}</span></h2>
         </div>
-        <Mentor>{tr({ uz: <>Kod yozishni boshlashdan oldin yaxshi dasturchilar muammoni qanday <b style={{ color: T.ink }}>hal qilishni</b> o'ylaydi. Buning uchun ular ikkita kuchli vositadan foydalanadi: <b style={{ color: T.ink }}>sistema</b> va <b style={{ color: T.ink }}>algoritm</b>. Bugun shu ikki g'oyani oddiy misollar orqali o'rganamiz, keyingi darslarda esa ularni <b style={{ color: T.ink }}>JavaScript</b>'da ishlatamiz.</>, ru: <>Прежде чем начать писать код, хорошие программисты думают, как <b style={{ color: T.ink }}>решить задачу</b>. Для этого у них есть два сильных инструмента: <b style={{ color: T.ink }}>система</b> и <b style={{ color: T.ink }}>алгоритм</b>. Сегодня разберём эти две идеи на простых примерах, а на следующих уроках применим их в <b style={{ color: T.ink }}>JavaScript</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Kod yozishni boshlashdan oldin yaxshi dasturchilar muammoni qanday <b style={{ color: T.ink }}>hal qilishni</b> o'ylaydi. Buning uchun ular ikkita kuchli usuldan foydalanadi: <b style={{ color: T.ink }}>sistema</b> va <b style={{ color: T.ink }}>algoritm</b>. Bugun shu ikki g'oyani oddiy misollar orqali o'rganamiz, keyingi darslarda esa ularni <b style={{ color: T.ink }}>JavaScript</b>'da ishlatamiz.</>, ru: <>Прежде чем начать писать код, хорошие программисты думают, как <b style={{ color: T.ink }}>решить задачу</b>. Для этого у них есть два сильных инструмента: <b style={{ color: T.ink }}>система</b> и <b style={{ color: T.ink }}>алгоритм</b>. Сегодня разберём эти две идеи на простых примерах, а на следующих уроках применим их в <b style={{ color: T.ink }}>JavaScript</b>.</> })}</Mentor>
         {!isNarrow ? (
           <Zoomable><Split>{PreviewBlock}{StepsBlock}</Split></Zoomable>
         ) : !showSteps ? (
@@ -1245,7 +1245,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <p className="eyebrow" style={{ color: T.accent, margin: '0 0 6px' }}>{tr({ uz: 'Sikl nimaga kerak?', ru: 'Зачем нужен цикл?' })}</p>
               <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Tasavvur qiling — 100 marta takrorlash kerak. Sikl bo'lmasa, 100 qator yozardingiz! Sikl bilan — <b>bitta qoida, 100 marta bajariladi.</b></>, ru: <>Представьте: нужно повторить 100 раз. Без цикла вы бы написали 100 строк! А с циклом — <b>одно правило, и оно выполнится 100 раз.</b></> })}</p>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ <b>Sikl</b> — bir amalni belgilangan marta (yoki shart bajarilguncha) takrorlaydi. Dasturchining eng kuchli vositasi.</>, ru: <>✓ <b>Цикл</b> повторяет действие заданное число раз (или пока выполняется условие). Самый мощный инструмент программиста.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ <b>Sikl</b> — bir amalni belgilangan marta (yoki shart bajarilguncha) takrorlaydi. Dasturchining eng kuchli usuli.</>, ru: <>✓ <b>Цикл</b> повторяет действие заданное число раз (или пока выполняется условие). Самый мощный инструмент программиста.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1726,7 +1726,7 @@ const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await live.quizControl('lobby', -1); } catch { return; } }
+    if (isMentorL && quizSt === 'off') { try { await live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo);
     setArena(true);
   };
@@ -1737,7 +1737,7 @@ const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
   const PASSED = (total ? correct / total : 0) >= 0.6;
   const earned = useContext(AchCtx);
   return (
-    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className="screen">
         <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок завершён' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi <span className="italic" style={{ color: T.accent }}>dasturchidek</span> fikrlaysiz.</>, ru: <>Теперь вы думаете <span className="italic" style={{ color: T.accent }}>как программист</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         {/* F-0807-02: «Bugungi asosiy fikr» qatori olib tashlandi — pastdagi «Endi siz bilasiz»
@@ -1772,7 +1772,7 @@ const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
         {/* F-0807-02: «Kalit so'zlar» akkordeoni olib tashlandi — flashcard ekrani (sflash)
             o'sha atamalarni faolroq takrorlaydi; yakunda ikkinchi lug'at ortiqcha edi. */}
       </div>
-      {arena && <QuizArena live={live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+      {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
     </Stage>
   );
 };

@@ -1,0 +1,10 @@
+import { chromium } from '/home/kali/Desktop/internetLesson/node_modules/playwright-core/index.mjs';
+const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome' });
+const ctx = await b.newContext({ viewport: { width: 1280, height: 773 } }); const p = await ctx.newPage();
+await p.addInitScript(() => { localStorage.setItem('cc_lang', 'uz'); localStorage.setItem('ccProgress:pm-m9d2-v1', JSON.stringify({ screen: 13, answers: {}, earned: [], total: 16, savedAt: Date.now() })); });
+await p.goto('http://localhost:5300/#/lesson/m9-02', { waitUntil: 'domcontentloaded' }); await p.waitForSelector('.lesson-root');
+const kir = p.getByText(/Kodsiz/); if (await kir.count()) await kir.first().click({ timeout: 1500 }).catch(() => {});
+await p.waitForTimeout(1500);
+console.log((await p.locator('.lesson-root').evaluate(r => r.innerText)).slice(0, 500).replace(/\n+/g, ' | '));
+await p.screenshot({ path: '/home/kali/Desktop/internetLesson/feedback/F-1015-7-14M/suratlar/F-1015-191-keyin/s13-natijalar.jpg', type: 'jpeg', quality: 70 });
+await b.close();

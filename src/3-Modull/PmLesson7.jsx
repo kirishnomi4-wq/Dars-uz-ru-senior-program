@@ -386,6 +386,12 @@ const Zoomable = ({ children }) => {
 };
 
 // ===== SCREEN 0 — HOOK =====
+// F-1015-394 (216-qonun): kirish javobi — variantga bitta qisqa gap + «Bugun…» qatori (eski uzun umumiy matn o'qilmasdi)
+const ACK_KIRISH = {
+  a: { uz: 'Qisqalik emas — aniqlik farq qiladi.', ru: 'Не краткость — отличается точность.' },
+  b: { uz: 'Aynan!', ru: 'Именно!' },
+  c: { uz: "Farq bor: noaniq buyruq — noto'g'ri natija.", ru: 'Разница есть: неясная просьба — неверный результат.' }
+};
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [mode, setMode] = useState('vague');
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
@@ -434,7 +440,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             <div className="fade-up delay-3" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
               {OPTS.map(o => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>); })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Noaniq buyruq → noto'g'ri narsa. <b>Kim · nima · nima uchun</b> aytilsa — aynan kerakli narsa qilinadi. Buni <b>User Story</b> deyiladi.</>, ru: <>Размытая задача → не то, что нужно. Если сказать <b>кто · что · зачем</b> — сделают именно нужное. Это называется <b>User Story</b>.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step"><b>{tr(ACK_KIRISH[picked])}</b> {tr({ uz: "Bugun shunday aniq so'rov — User Story yozishni o'rganamiz.", ru: 'Сегодня учимся писать такую точную просьбу — User Story.' })}</p>}
           </Col>
         </Split>
         </Zoomable>

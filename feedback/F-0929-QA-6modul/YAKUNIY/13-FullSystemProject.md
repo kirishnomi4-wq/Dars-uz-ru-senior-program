@@ -1,12 +1,17 @@
 # 13-dars «Loyiha kuni: to'liq tizim» — yakuniy matn
 
+> ✎ **F-1015-122 (16.10, 208-qonun 4-band, foydalanuvchi qarori — 2-variant):** dars yuzasidagi bezak emoji kodda olingan — sarlavha, yorliq, karta ikonlari, fayl tablari, test/amaliyot yorliqlari, tugmalar. Qolgan: sxema tugunlari, keys sahnasi, o'yin qatlami (nishon, arena, podium), Yakun, takrorlash oynasi, Mentor paneli, bot/ilova maketidagi mahsulot mazmuni. Bu MD dagi shunday bezak emoji endi ekranda yo'q.
+
+> ✎ **F-1015-155 (17.10, repo'ga moslash):** misol-ip TelegramBotNest `dars-6-13-*` ga keltirildi — AvtoPizza, NestJS, `buyurtmalar` jadvali va `manba` ustuni; test jadvali `TEST.md` ustunlari (Yuborildi · Database'da · Admin xabari · Mijozga tasdiq); qizil katak Bot × Admin xabari, tuzatish — xabar `BuyurtmaService.yoz` ichiga. Tuzilma, kalitlar, `correctIdx` o'zgarmagan.
+
+
 Fayl: `src/6-Modull/FullSystemProjectLesson.jsx` · 21 ekran · Keyingi dars: «Raqamingiz nimani isbotlaydi?»
 Holat: 05.10.2026 — kodga mos
 
 ## 0 · Kirish — yakuniy loyiha
 - Eyebrow: Kirish · yakuniy loyiha
 - Sarlavha: Ishga tushirishdan oldingi oxirgi qadam nima?
-- Mentor: Kurs davomida web, mobil ilova, bot, backend, Database va AI bilan ishladingiz. Bugun ularni bitta tizimga yig'amiz va ishga tushiramiz. Lekin avval bitta narsa shart.
+- Mentor: Kurs davomida web, mobil ilova, bot, backend, Database va AI bilan ishladingiz. Bugun ularni bitta tizimga — AvtoPizza'ga — yig'amiz va ishga tushiramiz. Lekin avval bitta narsa shart.
 - Karta «Sizda tayyor turgan qismlar»: Web · Mobil · Bot · Backend · Database · AI
   - Olti qism — lekin ular birga, xatosiz ishlashini hali hech kim tekshirmadi.
 - Savol: Birinchi nima qilamiz?
@@ -28,8 +33,9 @@ Holat: 05.10.2026 — kodga mos
   - → Siz — tizim arxitektori: butun tizimni yig'asiz va sinaysiz.
 - Yorliq: 5 qadam
   1. Hamma qismni bitta tizimga yig'ish (web + mobil + bot)
-  2. Ko'p kanal — bitta backend (buyurtma yo'li) · jonli
-  3. End-to-end test — butun oqimni sinash · jonli
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-121, 208-qonun 0-band: takror olindi)*
+  2. Ko'p kanal — bitta backend (buyurtma yo'li)
+  3. End-to-end test — butun oqimni sinash
   4. Ulanish joyidagi xatoni topish va tuzatish
   5. Ishga tushirish
 - Tugmalar (telefonda): 5 qadamni ko'rish · ↩ Maqsadni ko'rish
@@ -41,12 +47,12 @@ Holat: 05.10.2026 — kodga mos
 - Mentor: Mana to'liq tizim: yuqorida 3 ta kanal (kirish yo'li), pastda yadro. Har birini bosing — nima qiladi.
 - Tugmalar (bosilgani ✓ bilan belgilanadi, o'ngda nomi va vazifasi chiqadi):
   - Kanal (kirish):
-    - Web (React) · Web sahifa — Brauzerda mahsulotlar va «Buyurtma» tugmasi.
-    - Mobil (React Native) · Mobil ilova — Telefonda o'sha do'kon, Expo Go bilan.
+    - Web (React) · Web sahifa — Brauzerda AvtoPizza menyusi va «Buyurtma» tugmasi.
+    - Mobil (React Native) · Mobil ilova — Telefonda o'sha menyu, Expo Go bilan.
     - Telegram bot · Bot kanal — Buyurtma va xabarlar Telegram orqali.
   - Yadro:
-    - Node.js · Backend — Barcha kanaldan so'rovni qabul qilib boshqaradi.
-    - PostgreSQL · Database — Mahsulot va buyurtmalarni saqlaydi, bitta joyda.
+    - NestJS · Backend — Barcha kanaldan so'rovni qabul qilib boshqaradi.
+    - PostgreSQL · Database — Buyurtmalarni bitta joyda saqlaydi — `buyurtmalar` jadvali.
     - AI (Gemini) · Yordamchi xizmat — Backend chaqirganda mijoz savoliga javob yozadi, tavsif tayyorlaydi.
 - Hammasi ko'rilgach: 6 qism — kurs davomida o'rgangan bilimlaringiz. Endi ularni birga ishlatamiz.
 - Tugmalar: Orqaga · N/6 komponentni ko'ring → Davom etish
@@ -57,7 +63,7 @@ Holat: 05.10.2026 — kodga mos
 - Mentor: Mijoz web, mobil yoki bot orqali keladi — lekin uchalasi ham o'sha backend va Database'dan foydalanadi. Har kanalni bosing.
 - Tugmalar: Web · Mobil · Bot (ko'rilgani ✓ bilan; boshida Web ochiq)
 - Chizma: Web · Mobil · Bot → Backend + Database (tanlangan kanal chizig'i yonadi)
-- Karta «<kanal> kanali» (Web kanali · Mobil kanali · Bot kanali): Bu kanal ham **o'sha** Node.js backend'ga so'rov yuboradi va **o'sha** Database'dan (PostgreSQL) o'qiydi. Mavjud backend'dan qayta foydalanamiz; kerak bo'lsa unga yangi so'rov yo'li (endpoint) qo'shamiz.
+- Karta «<kanal> kanali» (Web kanali · Mobil kanali · Bot kanali): Bu kanal ham **o'sha** NestJS backend'ga so'rov yuboradi. Buyurtma **o'sha** Database'dagi `buyurtmalar` jadvaliga yoziladi, `manba` ustunida — `sayt` · `mobil` · `bot` (tanlangan kanalniki). Mavjud backend'dan qayta foydalanamiz; kerak bo'lsa unga yangi so'rov yo'li (endpoint) qo'shamiz.
 - Uchalasi ko'rilgach: 1-darsdagi g'oya to'liq ko'rinishda: **ko'p kirish yo'li, bitta tizim**. Ma'lumot bitta joyda — shuning uchun hamma kanal bir xil holatni ko'radi.
 - Tugmalar: Orqaga · Kanallarni ko'ring (N/3) → Davom etish
 
@@ -117,7 +123,7 @@ Holat: 05.10.2026 — kodga mos
 - Chizma: <kanal> → Backend → Database · Bot (buyurtma yuborilgach yonadi)
 - Tugma: ▶ Webdan buyurtma yuboring · ▶ Mobildan buyurtma yuboring · ▶ Botdan buyurtma yuboring → (yuborilgach) Yana yuboring →
 - Yuborilayotganda: Buyurtma oqyapti…
-- Natija kartasi: Webdan keldi — tizim ishladi (Mobildan… · Botdan…) — Database'ga saqlandi · admin xabardor. Boshqa kanal ham xuddi shunday.
+- Natija kartasi: Webdan keldi — tizim ishladi (Mobildan… · Botdan…) — `buyurtmalar` jadvaliga yozildi (`manba`: `sayt` · `mobil` · `bot`) · admin xabardor. Boshqa kanal ham xuddi shunday.
 - Izoh: **Eslatma:** AI buyurtma yo'lida emas — u alohida ishlaydi: mijoz savol yozsa, backend uni AI'ga yuboradi va javob qaytaradi.
 - Uchalasi sinalgach: Uchala kanal — bitta natija. **Kirish yo'li ko'p, yadro bitta.**
 - Tugmalar: Orqaga · Uch kanalni sinang (N/3) → Davom etish
@@ -139,10 +145,10 @@ Holat: 05.10.2026 — kodga mos
 - Eyebrow: Test matritsasi · jonli
 - Sarlavha: End-to-end test: har kanal × har qadam
 - Mentor: Jadvalda 12 katak — har biri bitta sinov. «Testni ishga tushiring» tugmasini bosing — kataklar yashil bo'lib boradi. Bittasiga e'tibor bering!
-- Jadval (ustunlar: Buyurtma · Database'da · Bot xabar · Tasdiq; qatorlar: Web · Mobil · Bot) — kataklar birma-bir ✓ bo'ladi, Mobil × Bot xabar — ✗
+- Jadval (ustunlar: Yuborildi · Database'da · Admin xabari · Mijozga tasdiq; qatorlar: Web · Mobil · Bot — repo `TEST.md` bilan bir xil) — kataklar birma-bir ✓ bo'ladi, Bot × Admin xabari — ✗
 - Tugma: ▶ Testni ishga tushiring → Sinalyapti…
 - Izoh (test tugaguncha): Har katak = bitta kanaldan bitta qadam. Yashil — ishladi, qizil — xato.
-- Karta «XATO TOPILDI»: **Mobil × «Bot xabar»** qizil: mobildan buyurtma berilganda admin Telegram xabarini olmadi. Web va bot kanallari ishlaydi — demak xato mobil tomondagi ulanish joyida.
+- Karta «XATO TOPILDI»: **Bot × «Admin xabari»** qizil: botdan buyurtma berilganda admin Telegram xabarini olmadi. Web va mobil kanallari ishlaydi — demak xato bot tomondagi ulanish joyida.
 - Oxirida: Mana end-to-end testning kuchi: 11 katak yashil, 1 qizil — ulanish joyidagi yashirin xato ko'rindi. Endi tuzatamiz.
 - Tugmalar: Orqaga · Testni ishga tushiring → Davom etish
 
@@ -156,7 +162,7 @@ Holat: 05.10.2026 — kodga mos
   - ✔ Har kanaldan butun oqimni sinab
 - Javob izohlari:
   - To'g'ri: To'g'ri! Har kanaldan butun oqimni sinaymiz (end-to-end). Jadval ko'rsatadi: qaysi kanal × qaysi qadam buzilgan. Shunday qilib xato qaysi ulanish joyida ekanini aniq topamiz.
-  - 1-variant: Bitta kanal kam — xato boshqa kanalda bo'lishi mumkin (mobildagidek).
+  - 1-variant: Bitta kanal kam — xato boshqa kanalda bo'lishi mumkin (botdagidek).
   - 2-variant: Faqat o'qish kam — amalda sinash kerak.
   - 3-variant: Test qilmaslik — xatoni mijoz topadi.
 - Umumiy yozuvlar — 4-ekrandagidek.
@@ -167,17 +173,17 @@ Holat: 05.10.2026 — kodga mos
 - Mentor: Qizil katakni topdik. Endi tizim arxitektori sifatida sababni aniqlaymiz, aniq tuzatish beramiz va qayta sinaymiz. Bosing.
 - Chap — 4 bosqich (o'tilgani ✓): 1 · XATO · 2 · SABAB (tekshiruv) · 3 · TUZATISH · 4 · QAYTA SINOV
 - O'ng — joriy bosqich kartasi:
-  1. 1 · XATO — Jadvalda bitta qizil katak: Mobil × «Bot xabar». Mobildan buyurtma berilganda admin Telegram xabarini olmadi.
-     - Web ishlaydi, mobil yo'q — demak xato mobil↔backend ulanish joyida.
+  1. 1 · XATO — Jadvalda bitta qizil katak: Bot × «Admin xabari». Botdan buyurtma berilganda admin Telegram xabarini olmadi.
+     - Web va mobil ishlaydi, bot yo'q — demak xato bot↔backend ulanish joyida.
   2. 2 · SABAB (tekshiruv) — Uch ehtimol bor:
-     - (a) mobil so'rovda ma'lumot to'liq emas;
-     - (b) backend bu so'rovni tekshiruvdan o'tkazmayapti;
-     - (c) bot chaqiruvi mobil uchun ishlamayapti.
-     - **Tekshirdik:** mobil `POST /orders` so'rovida bitta maydon yetishmayapti — backend shuning uchun bot xabari qadamini o'tkazib yubordi.
+     - (a) bot buyurtmani Database'ga yozmayapti;
+     - (b) `ADMIN_CHAT_ID` bo'sh — xabar hech kimga ketmayapti;
+     - (c) admin xabari bot buyurtmasi o'tadigan yo'lda yo'q.
+     - **Tekshirdik:** bot buyurtmasi jadvalda bor (`manba`: `bot`), web va mobil xabari keladi. Admin xabari faqat `POST /buyurtma` ichida ekan — bot esa buyurtmani bu yo'ldan o'tmay yozadi.
      - Avval ehtimollarni sanab, keyin tekshirib topasiz.
-  3. 3 · TUZATISH — «Mobil buyurtma ekrani barcha maydonlarni yuborsin; backend har buyurtmada, kanal qaysi bo'lishidan qat'i nazar, bot xabarini yuborsin.»
+  3. 3 · TUZATISH — «Admin xabari `BuyurtmaService.yoz` ichiga ko'chsin: sayt, mobil va bot buyurtmasi hammasi shu yerdan o'tadi.»
      - Aniq, kichik tuzatish — butun tizimni qayta yozmaysiz.
-  4. 4 · QAYTA SINOV — Jadval endi to'liq yashil — uchala kanaldan ham bot xabari keladi.
+  4. 4 · QAYTA SINOV — Jadval endi to'liq yashil — uchala kanaldan ham admin xabari keladi.
 - Tugma: ▶ Tuzatishni boshlash → Keyingi qadam →
 - Oxirida: Xatoni topish → sababini tekshirish → kichik tuzatish → qayta sinash. Bitta ulanish joyi tuzatildi, butun tizim yana yashil.
 - Tugmalar: Orqaga · Siklni kuzating (N/4) → Davom etish
@@ -187,7 +193,7 @@ Holat: 05.10.2026 — kodga mos
 - Sarlavha: Ishga tushirishdan oldin — tekshiruv ro'yxati
 - Mentor: Har bandni belgilang. Hammasi tayyor bo'lsa — tizimni ishga tushiramiz!
 - Karta «Ishga tushirish ro'yxati» (bosib belgilanadi):
-  - Sozlamalar to'g'ri: backend manzili, `DATABASE_URL`, `BOT_TOKEN`, AI kaliti — maxfiylari `.env`da, frontend kodida emas va GitHub'ga yuborilmagan
+  - Sozlamalar to'g'ri: `BACKEND` manzili, `DATABASE_URL`, `BOT_TOKEN`, `ADMIN_CHAT_ID`, `GEMINI_API_KEY` — maxfiylari `.env`da, frontend kodida emas va GitHub'ga yuborilmagan
   - End-to-end test o'tdi — jadval to'liq yashil
   - Mobil ilova Expo Go'da telefonda sinaldi
   - Backend serverga joylashtirildi (deploy) va ishlayotgani tekshirildi
@@ -238,13 +244,13 @@ Holat: 05.10.2026 — kodga mos
 - Eyebrow: Amaliyot · VS Code
 - Sarlavha: Endi navbat sizga — tizimni yig'ing va sinang
 - Mentor: Bu topshiriqni **o'z kompyuteringizda (VS Code)** bajaring. Har bosqichni bajarib, belgilab boring. Tugagach **«Bajardim»** tugmasini bosing — ustoz kuzatib turadi.
-- TOPSHIRIQ: O'z loyihangizda barcha kanalni (web / mobil / bot) bitta backend'ga ulang, keyin har kanaldan bitta buyurtma berib, butun oqimni (Database + bot xabari) end-to-end sinab ko'ring.
-- Yorliq: Bosqichlar — belgilab boring (har biri bosib belgilanadi, belgilangani ✓):
-  1. Loyihani VS Code'da oching, backend'ni ishga tushiring (`npm run dev`); `.env` sozlamalari to'liqligini tekshiring
+- TOPSHIRIQ: AvtoPizza loyihangizda uchala kanalni (sayt / mobil / bot) bitta backend'ga ulang, keyin har kanaldan bitta buyurtma berib, butun oqimni (Database + admin xabari) end-to-end sinab ko'ring.
+- Bosqichlar, yorliqsiz ✎ F-1015-166 (har biri bosib belgilanadi, belgilangani ✓):
+  1. Loyihani VS Code'da oching, backend'ni ishga tushiring (`npm run start:dev`); `.env` sozlamalari to'liqligini tekshiring
   2. Web (yoki mobil) kanaldan bitta buyurtma bering
-  3. Buyurtma Database'ga tushganini tekshiring
-  4. Bot admin xabarini yuborganini tekshiring
-  5. Bitta qadam ishlamasa — jadvalda qaysi kanal × qadam qizil ekanini yozing va sababini toping
+  3. Buyurtma Database'ga tushganini tekshiring: `SELECT manba, pitsa FROM buyurtmalar ORDER BY created_at DESC`
+  4. Admin chatiga «Yangi buyurtma (…)» xabari kelganini tekshiring
+  5. Bitta qadam ishlamasa — `TEST.md` jadvalida qaysi kanal × qadam ✗ ekanini yozing va sababini toping
   6. Tugagach «Bajardim» tugmasini bosing
 - Tugma: Yana N qadam → Bajardim → ✓ Bajarildi — ustozni kuting
 - Bajarilgach: Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.
@@ -293,6 +299,7 @@ Holat: 05.10.2026 — kodga mos
   - Keyingi dars — PM: **Raqamingiz nimani isbotlaydi?** Loyihangiz haqida bitta raqam va bitta slayd bilan gapirishni o'rganasiz.
 - Nishonlaringiz — N/4 (olingan nishonda nomi va tavsifi, olinmaganida faqat nomi)
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10, S1-A): uy vazifasi kartasi P-025 — sarlavha «Uyda nima qilasiz?» (bannerdagi «Uyga vazifa» bilan takror emas); maydonlar: Kim uchun — o'z loyihangiz · Nechta — 1 backend · Muddat — keyingi darsgacha (qiymatlar topshiriq matnidan); qadamlar raqam-doira; «Keyingi dars» karta ichida; bezak emoji olindi.
 
 ## Kartochkalar
 Oyna: Takrorlash — kartochkalar. Hisoblagichlar: ↻ O'rganilmoqda · N · ✓ Bildim · N. Tugmalar: ✗ Takrorlash · ✓ Bildim.
@@ -300,7 +307,7 @@ Oyna: Takrorlash — kartochkalar. Hisoblagichlar: ↻ O'rganilmoqda · N · ✓
 | Old tomon (savol) | Orqa (javob) | Izoh |
 |---|---|---|
 | Web, mobil va bot qaysi umumiy qismga ulanadi? | Bitta backend'ga | Kirish yo'li uchta, tizim bitta |
-| Nega web va bot bir xil buyurtmani ko'radi? | Database bitta | Bu loyihada hamma buyurtma bitta Database'da (PostgreSQL) |
+| Nega web va bot bir xil buyurtmani ko'radi? | Database bitta | AvtoPizza'da hamma buyurtma bitta jadvalda — buyurtmalar (PostgreSQL) |
 | Bitta amalni boshidan oxirigacha sinaydigan test? | End-to-end | Mijozdan boshlanib, tasdiq bilan tugaydi |
 | Qismlar alohida ishlab, birga ishlamasa — bu qanday xato? | Integratsiya xatosi — ulanish joyida | Qismlar ulangan joyda yashiringan |
 | Qaysi kanal qaysi qadamda buzilganini nima ko'rsatadi? | Test jadvali (matritsa) | Har kanal × har qadam — katak; qizili — xato joyi |
@@ -308,7 +315,7 @@ Oyna: Takrorlash — kartochkalar. Hisoblagichlar: ↻ O'rganilmoqda · N · ✓
 | Ishga tushirishdan oldin test jadvali qanday bo'lishi shart? | To'liq yashil | Bitta qizil katak qolsa — ishga tushirilmaydi |
 | BOT_TOKEN kabi maxfiy sozlamalar qayerda turadi? | .env faylida | Frontend kodiga yozilmaydi, GitHub'ga yuborilmaydi |
 | Buyurtmalar doimiy saqlanadigan joy? | Database (PostgreSQL) | Backend unga yozadi va o'qiydi |
-| Barcha kanaldan so'rovni qabul qilib boshqaradigan qism? | Backend (Node.js) | Database, bot va AI bilan ham u ishlaydi |
+| Barcha kanaldan so'rovni qabul qilib boshqaradigan qism? | Backend (NestJS) | Database, bot va AI bilan ham u ishlaydi |
 | AI buyurtma oqimida ishtirok etadimi? | Yo'q | U alohida: mijoz savoli → backend → AI → javob |
 | To'liq tizimni yetkazish jarayoni? | Yig'ish → sinash → xatoni topish → tuzatish → ishga tushirish | Bugungi darsning bosh formulasi |
 

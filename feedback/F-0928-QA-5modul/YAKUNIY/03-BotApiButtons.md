@@ -173,13 +173,14 @@ ctx.reply('Tugmani bosing:', Markup.keyboard([['Pitsa', 'Ichimlik']]).resize())
 - Sarlavha: Uch xil hodisa — uch handler. Ularni o'zingiz ulang.
 - Mentor: Har qadamda avval hodisani yuboring: handler yo'q bo'lsa, bot jim turadi. Keyin handler qo'shing va qayta yuboring.
 - Chat (AvtoPizza bot · bot · onlayn): Buyruq yuboring yoki tugmani bosing.
-- Qadamlar qatori: 1 · /menu · 2 · Pitsa · 3 · Biz haqimizda (bajarilgani ✓ bilan)
+- Qadamlar qatori yo'q — bosilmas edi; sanoq tugmada «Uchala handlerni ulang (N/3)», nomlar kod qatorida va bot tugmalarida *(✎ F-1015-120, 208-qonun 0-band: takror olindi)*
 - Handlerlar paneli: bot.js — handlerlar
 - Holat qatori (har qadamda bitta ko'rsatma): Hodisani yuboring. · Bot jim — bu hodisaga handler yo'q. Handler qo'shing. · Handler ulandi. Hodisani qayta yuboring.
 - Chatda handler yo'q bo'lsa (kulrang belgi, bir marta): bot javob bermadi — handler yo'q
 - **1-qadam · Buyruq**
   - Tugma: ▶ /menu yuborish → (handler ulangach) ▶ Qayta yuborish
   - Handler qatori: `bot.command('menu', ...)` · handler yo'q → + handler qo'shish → ✓
+  - Handler qatori hodisa yuborilib, bot jim qolgach chiqadi (ungacha bosib bo'lmaydigan «handler yo'q» qatori yo'q); «+ handler qo'shish» paytida yuborish tugmasi turmaydi ✎ F-1015-164
   - Qayta yuborilgach — bot: Menyu. Tanlang: · inline tugmalar: Pitsa · Ichimlik
   - Yig'ilgan qator: /menu → `bot.command('menu')`
 - **2-qadam · Inline tugma**
@@ -321,7 +322,7 @@ bot.action('pizza', (ctx) => ctx.reply('Pitsa tanlandi'))
 bot.on('text', (ctx) => ctx.reply('Tushunmadim'))
 bot.launch()
 ```
-- Joylar: 1-qadam · 2-qadam · 3-qadam · 4-qadam · 5-qadam · 6-qadam
+- Joylar: 1 · 2 · 3 · 4 · 5 · 6 (bo'sh joyda: bu yerga joylang; «N-qadam» yozuvi raqamni takrorlardi) *(✎ F-1015-120, 208-qonun 0-band: takror olindi)*
 - Fallback handler /start dan oldin bo'lsa: Fallback /start dan oldin turibdi: u /start ni ham ushlaydi.
 - bot.launch() oxirida bo'lmasa: bot.launch() handlerlardan keyin, faylning oxirida turadi.
 - Boshqa xato: Tartib xato — bo'lakni bosib qaytaring va qayta joylang.
@@ -335,7 +336,7 @@ bot.launch()
 - Sarlavha: Repo'ni oling, botingizga menyu qo'shing.
 - Mentor: Shu papka modul oxirigacha sizniki — avval o'z nusxangizni yuklab olasiz, keyin unga /menu qo'shasiz; **«1 · Ochish»**dan boshlang.
 - Qadamlar (bittadan ochiladi, har birida «Bajardim»; bajarilgani ✓ bilan yig'iladi, ↻ bilan qaytariladi):
-  1. **Ochish** — GitHub'da `github.com/Azizbekcrypto/TelegramBotNest` → «Fork» (o'z nusxangiz). Terminalda:
+  1. **Ochish** — GitHub'da `github.com/Azizbekcrypto/TelegramBotNest` → «Fork» (o'z nusxangiz). Unda faqat skelet bor — bot /start ga javob beradi; qolganini shu darsdan o'zingiz qo'shasiz (tayyor namuna — `yechim` tarmog'ida). Terminalda:
      ```
      $ git clone https://github.com/{sizning login}/TelegramBotNest.git
      $ cd TelegramBotNest
@@ -349,7 +350,7 @@ bot.launch()
   4. **Telegramda tekshirish** — `/menu` → ikki tugma; bosganda javob keladi; boshqa matn → fallback.
      - Xato izohi: Xato bo'lsa: «Shu xato chiqdi: {xato}. Tuzat.»
 - Oxirgi qadam bajarilgach — muvaffaqiyat: Repo sizniki, bot javob beradi. 4-darsdan shu papka ustida davom etasiz.
-- O'ng ustun — yozuv: kutilgan natija · namuna: AvtoPizza
+- O'ng ustun — yozuv: kutilgan natija · namuna: AvtoPizza (yorliq natija ostida ✎ F-1015-166)
 - Kutilgan natija chati (AvtoPizza bot · bot · onlayn):
   - Foydalanuvchi: /start
   - Bot: Salom! Bot ishlayapti. Menyu uchun /menu ni bosing.
@@ -389,7 +390,7 @@ Natijalar (podium) — jonli reyting
 
 ## 19 · Yakun
 - Eyebrow: Tayyor
-- Belgi: ✓ Handlerlar yozildi
+- Belgi: ✓ Dars tugadi · Testlar: N/N ✎ F-1015-161
 - Sarlavha: Botingiz endi buyruqlarga va tugmalarga javob beradi.
 - Ball halqasi: N/5 · to'g'ri javob
 - Jonli viktorina tugmasi (CODE STRIKE) · o'quvchida: Mentorni kuting
@@ -400,14 +401,17 @@ Natijalar (podium) — jonli reyting
   - Inline tugma bosilsa — botga callback keladi; reply klaviatura bosilsa — oddiy matn
   - Fallback handler boshqa handlerlardan keyin yoziladi, bot.launch() — eng oxirida
 - Tugma: Uyga vazifa · Amaliy topshiriqni bajarish →
-- Uyga vazifa:
+- Uyda nima qilasiz? (Uyga vazifa bosilgach)
+  - Kim uchun — amaliyotdagi bot · Nechta — 3 hodisa, 1 buyruq · Muddat — keyingi darsgacha
   - **Sinang** — amaliyotdagi botni ishga tushirib, uch hodisani tekshiring: /menu buyrug'i, inline tugma, reply klaviatura
   - **Qo'shing** — /help buyrug'ini qo'shing: u 13-ekrandagi buyruqlar ro'yxatini yuborsin
   - **Tekshiring** — kodda token yo'qligini, .env esa .gitignore'da ekanini tekshiring
 - Keyingi dars — **«Bot eslab qoladi — holat va PostgreSQL»**. Bot mijoz tanlagan pitsani eslab qoladi: suhbat holatini PostgreSQL bazasida saqlaymiz.
 - Nishonlaringiz — N/4
-- Kalit so'zlar (takrorlash): **token** — botning maxfiy kaliti (.env faylida) · **Telegraf** — Node.js uchun bot kutubxonasi · **ctx** — hodisa haqidagi ma'lumot (context) · **bot.start** — /start buyrug'i uchun handler · **bot.command** — /menu kabi buyruq uchun handler · **inline tugma** — xabar tagidagi tugma, bosilsa callback keladi · **reply klaviatura** — klaviatura o'rnidagi tugmalar, bosilsa matn ketadi · **bot.action** — callback uchun handler · **bot.hears** — aniq matn uchun handler · **fallback handler** — mos handler topilmagan matnga javob beradi · **bot.launch** — botni ishga tushiradi (polling bilan)
+✎ F-1015-112 (15.10): «Kalit so'zlar (takrorlash)» bloki Yakundan olindi — DE:193 va 207.2 (kartochkalar alohida ekranda bor).
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10, S1-A): uy vazifasi kartasi P-025 — sarlavha «Uyda nima qilasiz?» (bannerdagi «Uyga vazifa» bilan takror emas); maydonlar: Kim uchun — amaliyotdagi bot · Nechta — 3 hodisa, 1 buyruq · Muddat — keyingi darsgacha (qiymatlar topshiriq matnidan); qadamlar raqam-doira; «Keyingi dars» karta ichida; bezak emoji olindi.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Callback Catcher** — Inline tugma bosilishini qaysi handler ushlashini birinchi urinishda topdingiz (10-ekran)

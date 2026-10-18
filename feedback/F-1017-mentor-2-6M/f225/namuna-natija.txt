@@ -1,0 +1,489 @@
+### src/1-Modull/InternetLesson.jsx
+{
+ "nom": "InternetLesson",
+ "id": "internet-01-v18",
+ "IDX": 21,
+ "TOTAL": 22,
+ "solo0": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "solo1": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "mentor0": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "mentor1": {
+  "finBtn": null,
+  "finState": null,
+  "toast": "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.",
+  "arena": true,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "student0": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ },
+ "student1": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ }
+}
+### src/1-Modull/CssLesson1.jsx
+{
+ "nom": "CssLesson1",
+ "id": "css-01-v17",
+ "IDX": 21,
+ "TOTAL": 22,
+ "solo0": {
+  "finBtn": "Keyingi dars →",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "solo1": {
+  "finBtn": "Yakunlandi ✓ [o'chiq]",
+  "finState": "finish-done",
+  "toast": "Dars yakunlandi ✓ Endi bu oynani yopsangiz bo'ladi.",
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 1
+ },
+ "mentor0": {
+  "finBtn": "Keyingi dars →",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "mentor1": {
+  "finBtn": "Keyingi dars →",
+  "finState": "finish",
+  "toast": "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.",
+  "arena": true,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "student0": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ },
+ "student1": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ }
+}
+### src/1-Modull/Htmllesson2.jsx
+{
+ "nom": "Htmllesson2",
+ "id": "html-02-v16",
+ "IDX": 18,
+ "TOTAL": 19,
+ "solo0": {
+  "finBtn": "Modulni yakunlash →",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "solo1": {
+  "finBtn": "Yakunlandi ✓ [o'chiq]",
+  "finState": "finish-done",
+  "toast": "Dars yakunlandi ✓ Endi bu oynani yopsangiz bo'ladi.",
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 1
+ },
+ "mentor0": {
+  "finBtn": "Modulni yakunlash →",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "mentor1": {
+  "finBtn": "Modulni yakunlash →",
+  "finState": "finish",
+  "toast": "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.",
+  "arena": true,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "student0": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ },
+ "student1": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ }
+}
+### src/1-Modull/CssPractice.jsx
+{
+ "nom": "CssPractice",
+ "id": "css-practice-portfolio-v3",
+ "IDX": 8,
+ "TOTAL": 9,
+ "solo0": {
+  "finBtn": "Tugatish ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "solo1": {
+  "finBtn": "Yakunlandi ✓ [o'chiq]",
+  "finState": "finish-done",
+  "toast": "Dars yakunlandi ✓ Endi bu oynani yopsangiz bo'ladi.",
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 1
+ },
+ "mentor0": {
+  "finBtn": "Tugatish ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "mentor1": {
+  "finBtn": "Tugatish ✓",
+  "finState": "finish",
+  "toast": "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.",
+  "arena": true,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "student0": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ },
+ "student1": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ }
+}
+### src/1-Modull/PmLesson3.jsx
+{
+ "nom": "PmLesson3",
+ "id": "pm-pitch-03-v19",
+ "IDX": 16,
+ "TOTAL": 17,
+ "solo0": {
+  "finBtn": "Yakunlash",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "solo1": {
+  "finBtn": "Yakunlandi ✓ [o'chiq]",
+  "finState": "finish-done",
+  "toast": "Dars yakunlandi ✓ Endi bu oynani yopsangiz bo'ladi.",
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 1
+ },
+ "mentor0": {
+  "finBtn": "Yakunlash",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "mentor1": {
+  "finBtn": "Yakunlash",
+  "finState": "finish",
+  "toast": "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.",
+  "arena": true,
+  "arenaTitle": "Mustahkamlash Testi",
+  "csDisabled": false,
+  "fin": 0
+ },
+ "student0": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ },
+ "student1": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ }
+}
+### src/3-Modull/ReactRouterPracticeLesson.jsx
+{
+ "nom": "ReactRouterPracticeLesson",
+ "id": "react-router-practice-p2-v18",
+ "IDX": 7,
+ "TOTAL": 8,
+ "solo0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "solo1": {
+  "finBtn": "Yakunlandi ✓ [o'chiq]",
+  "finState": "finish-done",
+  "toast": "Dars yakunlandi ✓ Endi bu oynani yopsangiz bo'ladi.",
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 1
+ },
+ "mentor0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "mentor1": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": true,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "student0": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ },
+ "student1": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ }
+}
+### src/pm/PmUserStoryLesson.jsx
+{
+ "nom": "PmUserStoryLesson",
+ "id": "pm-m3d2-v3",
+ "IDX": 15,
+ "TOTAL": 16,
+ "solo0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "solo1": {
+  "finBtn": "Yakunlandi ✓ [o'chiq]",
+  "finState": "finish-done",
+  "toast": "Dars yakunlandi ✓ Endi bu oynani yopsangiz bo'ladi.",
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 1
+ },
+ "mentor0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "mentor1": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.",
+  "arena": true,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "student0": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ },
+ "student1": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ }
+}
+### src/2-Modull/PracticeLesson1.jsx
+{
+ "nom": "PracticeLesson1",
+ "id": "practice-01-jonlantirish-v18",
+ "IDX": 8,
+ "TOTAL": 9,
+ "solo0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "solo1": {
+  "finBtn": "Yakunlandi ✓ [o'chiq]",
+  "finState": "finish-done",
+  "toast": "Dars yakunlandi ✓ Endi bu oynani yopsangiz bo'ladi.",
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 1
+ },
+ "mentor0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "mentor1": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.",
+  "arena": true,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "student0": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ },
+ "student1": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ }
+}
+DONE

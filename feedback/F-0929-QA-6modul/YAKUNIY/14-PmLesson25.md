@@ -1,5 +1,8 @@
 # 14-dars «Raqamingiz nimani isbotlaydi?» — yakuniy matn
 
+> ✎ **F-1015-122 (16.10, 208-qonun 4-band, foydalanuvchi qarori — 2-variant):** dars yuzasidagi bezak emoji kodda olingan — sarlavha, yorliq, karta ikonlari, fayl tablari, test/amaliyot yorliqlari, tugmalar. Qolgan: sxema tugunlari, keys sahnasi, o'yin qatlami (nishon, arena, podium), Yakun, takrorlash oynasi, Mentor paneli, bot/ilova maketidagi mahsulot mazmuni. Bu MD dagi shunday bezak emoji endi ekranda yo'q.
+
+
 Fayl: `src/6-Modull/PmLesson25.jsx` · 16 ekran · Keyingi dars: «Zaxira dars»
 Holat: 05.10.2026 — kodga mos
 
@@ -56,7 +59,7 @@ Holat: 05.10.2026 — kodga mos
 - Eyebrow: Amaliyot · slaydning uch qatori
 - Sarlavha: **Slaydning qatorlarini birma-bir oching.**
 - Mentor: Har qatordan keyin pastdagi javob-qatorini o'qing: slayd shu payt nima aytdi?
-- Chapda qator tugmalari (navbat bilan bittadan; ochilgani ✓, joriysi yonida «bosing»): 1 raqam · 2 nimani sanadi · 3 nimani ko'rsatadi
+- Chapda qator tugmalari (navbat bilan bittadan; ochilgani ✓, joriysi yonida «bosing»; keyingi qator oldingisi ochilgach chiqadi ✎ F-1015-164): 1 raqam · 2 nimani sanadi · 3 nimani ko'rsatadi
 - Javob-qatori:
   - boshida: Birinchi qatorni oching — javob shu yerda yoziladi.
   - 1-qatordan keyin: Slayd bitta narsa aytdi: 41. Nimaning 41 tasi ekani noma'lum.
@@ -89,7 +92,7 @@ Holat: 05.10.2026 — kodga mos
 - Eyebrow: Haqiqiy voqea
 - Sarlavha: **Bizning olamdan mashhur voqea**
 - Tepada bosqich-doiralari (6 ta; ochilmagani ustida: Avval shu bosqichni tugating)
-- Karta yorlig'i: «Airbnb · n / 6»; bashoratda javobgacha: «Avval o'zingiz belgilab ko'ring · n / 6»
+- Karta yorlig'i: «Airbnb»; bashoratda javobgacha: «Avval o'zingiz belgilab ko'ring» (sanoq tugmada) *(✎ F-1015-121, 208-qonun 0-band: takror olindi)*
 - Rasm (1-, 3-, 6-bosqichda): «AirBed & Breakfast» yorlig'i ostida bir qator oddiy varaqlar; 3-bosqichda uchinchi varaq ajralib, ustida ustunli diagramma; 6-bosqichda tepada: taqdimot · internetda ochiq
 - Bosqichlar:
   1. **Airbnb — odam boshqa birovning uyida ijaraga turadigan sayt** — O'z ishini birinchi marta investorlarga tushuntirganda qo'lida **o'ndan ortiq oddiy varaq** bor edi.
@@ -142,6 +145,7 @@ Holat: 05.10.2026 — kodga mos
   - (3-qator 2-qatorni takrorlasa) Uchinchi qator yangi narsa aytsin: shu raqam tizim haqida nimani ko'rsatadi?
   - (3-qator «men» bilan boshlansa) Uchinchi qator tizim haqida gapirsin: shu raqam tizim haqida nimani ko'rsatadi?
 - Tugma: Slaydga chiqarish → / ✓ Yangilash
+- «Slaydga chiqarish →» doim bosiladi; qator bo'sh yoki juda qisqa bo'lsa yonida (qadamga qarab): Sahnaga chiqadigan raqamni yozing · Bu raqam nimani sanaganini yozing · Bu raqam nimani ko'rsatishini yozing; kursor maydonga ✎ F-1015-164
 - Maydon ostida doim: Yo'q raqamni o'ylab topmaysiz — bor raqamga izoh berasiz.
 - Saqlagach: «raqam» qatori slaydga chiqdi. (qator nomi qadamga qarab: raqam · nimani sanadi · nimani ko'rsatadi)
 - O'ngda slayd (yorliq: Sahnaga chiqadigan slaydingiz): yozilgan qatorlar; uchalasi tayyor bo'lgach har qator yonida tahrirlash tugmasi (sichqoncha ustida: Tahrirlash)
@@ -156,7 +160,7 @@ Holat: 05.10.2026 — kodga mos
 - Eyebrow: Tekshiruv · uch juftlik
 - Sarlavha: **Har juftlikdan slaydga chiqadigan raqamni tanlang.**
 - Mentor: Slaydingiz tayyor — endi shu qoidani uch juftlikda qo'llaymiz. Har juftlikda slaydda bitta joy bor: qaysi raqam foydalanuvchi uchun natijani ko'proq ko'rsatadi?
-- Hisoblagich: n / 3
+- Hisoblagich yo'q — tugma «Yana N juftlikda raqam tanlang» aytadi *(✎ F-1015-121, 208-qonun 0-band: takror olindi)*
 - Juftliklar (tanlangach har kartada izoh chiqadi):
   1. 312 ta kod satri yozildi — 312 — mehnat raqami · ✔ 41 odam tizimni ochdi — 41 — tizimdan foydalanish boshlanganini ko'rsatadi
   2. ✔ 9 odam telefondan ochdi — 9 — tizim telefonda ham ishlaganini ko'rsatadi · 7 ta sahifa qilindi — 7 — mehnat raqami
@@ -276,18 +280,20 @@ Holat: 05.10.2026 — kodga mos
 
 ## 15 · Yakun
 - Eyebrow: Dars yakuni
-- Belgi: ✓ Dars tugadi (yonida: n/4 to'g'ri)
+- Belgi: ✓ Dars tugadi · Testlar: N/N ✎ F-1015-161
 - Sarlavha: **Sahnaga chiqadigan slaydingiz yozildi.**
-- Arena tugmasi: CODE STRIKE · 12 SAVOL · 15 SONIYA · PODIUM · (jonli darsda mentor boshlamaguncha) Mentorni kuting
+- Arena tugmasi: CODE STRIKE · (jonli darsda mentor boshlamaguncha) Mentorni kuting
 - ✓ Endi siz bilasiz:
   - Foydalanuvchiga qanday natija berganingizni ko'rsatadigan raqam — kuchli dalil.
   - Mehnat raqami (satr, hafta) jarayonni ko'rsatadi — u Demo Day'da natija o'rnini bosmaydi.
   - Gapiradigan slaydda uch qator bor: raqam, u nimani sanadi, u nimani ko'rsatadi.
   - Yo'q raqamni o'ylab topmaysiz — bor raqamga izoh berasiz.
+- Uyga vazifa · Amaliy topshiriqni bajarish →
 - Nishonlaringiz — n/4
 - Keyingi: zaxira dars, so'ng **Demo Day 3** — IT-hamjamiyat oldida 3 daqiqalik pitch. Slaydingiz o'sha kuni sahnaga chiqadi.
-- Uyga vazifa · Amaliy topshiriqni bajarish →
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10, S2-A): «To'liq / Qisqa» tanlovi qoladi; karta banner ostida JOYIDA ochiladi (popup/varaq yo'q — PM 77/58 dagi qatlam yechimi bekor), «Topshiriq kartasi · TO'LIQ» sarlavha-qatori olindi (tanlangan chip bilan takror), maydonlar quti, qadamlar raqam-doira, bitta ustun; «Keyingi dars» karta ichida; HW ochilganda Yakun siqilmaydi (:has(.hw-chips) qoidalari olindi), banner 138px.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Slide Talker!** (4-ekran, ikki raqamdan biri tanlangach) — Slaydning uch qatorini ochib, ikki raqamdan bittasini tanladingiz

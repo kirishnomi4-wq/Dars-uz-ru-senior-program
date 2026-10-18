@@ -1,0 +1,178 @@
+<title>7–14-Modul sifat rejasi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: bitta ustun; avval o'lchov, keyin bosqichlar (ketma-ketlik = haqiqiy tartib), oxirida qaror kartalari */
+:root{
+  --bg:#F3F1FA; --paper:#FFFFFF; --ink:#1B1630; --ink2:#5A5470; --line:#E2DDF0;
+  --acc:#5B3FD9; --acc-soft:#ECE7FF; --ok:#1F8A55; --ok-soft:#E3F4EA; --warn:#B4541A; --warn-soft:#FCEBDD;
+  --f-body:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif; --f-mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#14111F; --paper:#1E1A2C; --ink:#EEEAF8; --ink2:#A9A2C0; --line:#332D47;
+  --acc:#A08BFF; --acc-soft:#2A2343; --ok:#5FD093; --ok-soft:#173326; --warn:#F2A06B; --warn-soft:#3A2516; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#14111F; --paper:#1E1A2C; --ink:#EEEAF8; --ink2:#A9A2C0; --line:#332D47;
+  --acc:#A08BFF; --acc-soft:#2A2343; --ok:#5FD093; --ok-soft:#173326; --warn:#F2A06B; --warn-soft:#3A2516; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55;margin:0}
+.wrap{max-width:1000px;margin:0 auto;padding-block:28px 80px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:22px}
+h1{font-size:clamp(26px,4vw,34px);line-height:1.15;margin:0;text-wrap:balance;font-weight:800}
+h2{font-size:20px;margin:0;text-wrap:balance;font-weight:800}
+h3{font-size:15.5px;margin:0;font-weight:800}
+p{margin:0;max-width:74ch}
+.lead{color:var(--ink2);font-size:16px}
+.mono{font-family:var(--f-mono);font-size:12.5px}
+.box{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.note{background:var(--warn-soft);border:1px solid color-mix(in srgb,var(--warn) 35%,transparent);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.note b{color:var(--warn)}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13.5px;font-variant-numeric:tabular-nums}
+th,td{padding:7px 9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-size:12px;color:var(--ink2);font-weight:700;letter-spacing:.02em}
+td.n{text-align:right}
+.fid{font-family:var(--f-mono);font-size:12px;color:var(--acc);white-space:nowrap}
+.steps{display:flex;flex-direction:column;gap:12px}
+.step{display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:start}
+.step-n{width:42px;height:42px;border-radius:12px;background:var(--acc-soft);color:var(--acc);font-weight:800;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono)}
+.step-b{display:flex;flex-direction:column;gap:6px;min-width:0}
+.step-b ul{margin:0;padding-left:18px;color:var(--ink2)}
+.meta{font-size:12.5px;color:var(--ink2)}
+.meta b{color:var(--ink)}
+.q{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.q-h{display:flex;gap:12px;align-items:baseline}
+.q-n{font-family:var(--f-mono);font-weight:600;color:var(--acc);font-size:14px;flex:0 0 auto}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer}
+.opt:has(input:checked){border-color:var(--acc);background:var(--acc-soft)}
+.opt input{margin-top:4px;accent-color:var(--acc)}
+.opt-t{font-weight:700}
+.opt-d{color:var(--ink2);font-size:13.5px;display:block;margin-top:2px}
+.rec{font-size:11px;font-weight:800;color:var(--ok);background:var(--ok-soft);padding:1px 7px;border-radius:6px;margin-left:6px;white-space:nowrap}
+input[type=text]{width:100%;font:inherit;font-size:14px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 11px}
+input:focus,button:focus-visible,.opt:focus-within{outline:2px solid var(--acc);outline-offset:2px}
+.out{position:sticky;bottom:0;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;box-shadow:0 -8px 24px -16px rgba(0,0,0,.3);margin-bottom:env(safe-area-inset-bottom,0px)}
+.out-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.btn{font:inherit;font-weight:800;font-size:14px;border:0;border-radius:10px;padding:10px 18px;background:var(--acc);color:#fff;cursor:pointer}
+.prog{color:var(--ink2);font-size:13px;font-variant-numeric:tabular-nums}
+pre#ans{margin:0;white-space:pre-wrap;font-family:var(--f-mono);font-size:12px;color:var(--ink2);max-height:140px;overflow:auto}
+@media (max-width:520px){.step{grid-template-columns:34px 1fr}.step-n{width:34px;height:34px}.q{padding:16px}}
+</style>
+
+<div class="wrap">
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <span class="mono" style="color:var(--acc);font-weight:600">F-1015-100…107 · 7–14-Modul · 101 dars · 15.10</span>
+    <h1>7–14-Modul sifat rejasi</h1>
+    <p class="lead">QA ning umumiy fidbekiga ish rejasi. Avval kodda nima o'lchangani, keyin bosqichlar tartibi, oxirida 8 ta qaror savoli. Bu sahifa faqat reja: javobingizdan keyin 0-bosqich (tadqiqot) boshlanadi, darslarga hali tegilmaydi.</p>
+  </header>
+
+  <section class="box">
+    <h2>QA nima dedi va kodda nima topildi</h2>
+    <div class="tw"><table>
+      <thead><tr><th>F-ID</th><th>QA</th><th>Kodda o'lchandi (15.10)</th></tr></thead>
+      <tbody>
+        <tr><td class="fid">100</td><td>AI yozgandek ma'nosiz matn, diqqat tarqaladi</td><td>Bir ekranda bitta fikr bir necha joyda takrorlanadi: mentor gapi, izoh, yorliq, xulosa. Aniq son uchun ekran bo'yicha o'lchov kerak (0-bosqich).</td></tr>
+        <tr><td class="fid">101</td><td>Bir xil ekran har darsda boshqacha; 2 tur tugma; ~4 xil qolip</td><td>9–14-Modul (76 dars) umumiy qolipda, 7–8-Modul (25 dars) qolipsiz. Platformada tugma allaqachon 2 xil (asosiy va matn), lekin dars ichidagi tugma-chiplar o'zicha.</td></tr>
+        <tr><td class="fid">102</td><td>Emoji ko'p, AI-slop ko'rinadi</td><td><b>Tuzatilgan (15.10):</b> kodda o'zbekcha matnda 1 752 emoji, lekin 9–14-Modulda ular faqat o'yin qatlamida (nishon, podium). Ekranda dars matnidagi emoji: 7-Modul 50, 8-Modul 95, 9–14-Modul 0. Muammo — qolipsiz 7–8-Modul va o'yin qatlami. (Birinchi o'lchov ✓ ⛶ belgilarini ham sanagan edi.)</td></tr>
+        <tr><td class="fid">103</td><td>3 ta asosiy rang, izchil palitra</td><td>Har modulda 80–332 xil rang kodi (11-Modulda 332). Tokenlar bor, lekin dars CSS ida to'g'ridan-to'g'ri yozilgan ranglar ko'p.</td></tr>
+        <tr><td class="fid">104</td><td>Funksionallik — muammo yo'q</td><td>Ish yo'q.</td></tr>
+        <tr><td class="fid">105</td><td>«Bos → matn chiqadi → o'qi → keyingi»</td><td>1 535 ekranning <b>339 tasi (22%)</b> «tushuncha» turida: ko'pida bosish faqat matn ochadi.</td></tr>
+        <tr><td class="fid">106</td><td>Mayda elementlar ko'p, vazifasi takror</td><td>100 va 101 bilan bog'liq (yorliq, chip, izoh takrori). Ekran o'lchovi 0-bosqichda.</td></tr>
+        <tr><td class="fid">107</td><td>To'g'ridan-to'g'ri, aniq ma'lumot va kod; «uch ufq» o'rniga; w3schools / brilliant.org tadqiqoti</td><td>«ufq» so'zi PmLesson24 da 148, PmOneOnOne da 83, PmRoadmap da 70, PmReflection da 57 marta uchraydi. Tadqiqot hali qilinmagan.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="tw"><table>
+      <thead><tr><th>Modul</th><th class="n">Dars</th><th class="n">Ekran</th><th class="n">Emoji (kodda, o'yin qatlami bilan)</th><th class="n">Rang kodlari</th><th class="n">«Tushuncha» ekranlari</th></tr></thead>
+      <tbody id="olchov"></tbody>
+    </table></div>
+  </section>
+
+  <div class="note">
+    <b>Chegaralar</b>
+    <p>Bu ishning ko'p qismi umumiy qolipda (<span class="mono">src/qolip</span>) bo'ladi. Nazorat «reliz yig'ildi» demaguncha qolipga tegilmaydi. Shuning uchun relizgacha faqat tadqiqot, standart hujjati va pilot dars qilinadi. 101 darsga tegadigan ish <span class="mono">KATTA_TOZALASH.md</span> ga yoziladi.</p>
+  </div>
+
+  <section class="box">
+    <h2>Bosqichlar</h2>
+    <div class="steps">
+      <div class="step"><div class="step-n">0</div><div class="step-b"><h3>Tadqiqot va aniq o'lchov</h3>
+        <ul><li>w3schools, brilliant.org, Khan Academy, Codecademy: bitta mavzu ekranlarga qanday bo'linadi, bitta ekranda nechta fikr va bitta harakat bor, kod qanday ko'rsatiladi, fidbek qanday beriladi. Har biridan 2–3 dars ko'rib chiqiladi, natija bitta jadval.</li>
+        <li>Bizning darslarda ekran bo'yicha o'lchov: matn bloklari soni, takror fikr, emoji, mayda elementlar, «bos → faqat matn» ekranlari.</li></ul>
+        <span class="meta">Natija: <b>tadqiqot hujjati + taqqoslash sahifasi</b> (ularning ekrani va bizning ekran yonma-yon). Tegiladigan fayl: yo'q.</span></div></div>
+      <div class="step"><div class="step-n">1</div><div class="step-b"><h3>Standart: 4–5 ta ekran qolipi</h3>
+        <ul><li>Masalan: kirish · tushuncha (o'quvchi harakat qiladi) · mashq/kod · test · yakun. Har biri uchun aniq tartib: sarlavha, bitta asosiy gap, bitta vazifa.</li>
+        <li>Matn qoidasi, emoji siyosati (D2), 3 rang (D3), 2 tugma (D4) — yangi qonun raqamlari bilan.</li>
+        <li>Darvozalar: emoji chegarasi qattiqlashadi, rang-lint (tokendan tashqari rang = xato), matn uzunligi.</li></ul>
+        <span class="meta">Natija: <b>DARS_ETALON ga qonun + qolip loyihasi</b>. Qolipga kod — relizdan keyin.</span></div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-b"><h3>Pilot: bitta dars</h3>
+        <ul><li>Bitta dars yangi standartda MD dan boshlab qayta yoziladi (konveyer: MD v3 → GATE M → qurish).</li>
+        <li>QA ko'radi; «oldin / keyin» o'lchovi: emoji, ranglar, matn, harakat.</li></ul>
+        <span class="meta">Natija: <b>QA tasdig'i</b> — standart ishlaydimi.</span></div></div>
+      <div class="step"><div class="step-n">3</div><div class="step-b"><h3>Yoyish: modul-modul</h3>
+        <ul><li>Avval mexanik qism (emoji, ranglar, tugmalar) — skript va darvoza bilan, hamma darsda bir yo'la.</li>
+        <li>Keyin mazmun (matn takrori, «bos → matn» ekranlari, «ufq» kabi mavhum bloklar) — modul bo'yicha, MD orqali.</li>
+        <li>7–8-Modul qolipga o'tkaziladi (Yakun bilan bir vaqtda, F-1015-112).</li></ul>
+        <span class="meta">Natija: <b>har modul yopilishi</b> (gates + layout-lint + QA sayti).</span></div></div>
+    </div>
+  </section>
+
+  <h2 style="margin-top:8px">Qarorlar</h2>
+  <div id="qs" style="display:flex;flex-direction:column;gap:16px"></div>
+
+  <div class="out">
+    <div class="out-row"><button class="btn" id="copy" type="button">Javobni nusxalash</button><span class="prog" id="prog"></span></div>
+    <pre id="ans" aria-live="polite"></pre>
+  </div>
+</div>
+
+<script>
+const OL = {"7": {"darslar": 11, "emoji_uz": 288, "emoji_jami": 1438, "hex_noyob": 126, "ekran": 184, "turlar": {"test": 43, "exploration": 40, "practice": 20, "case": 15, "hook": 11, "rule": 11, "stats": 11, "summary": 11, "flashcards": 8, "builder": 5, "koding": 3, "reflection": 3, "flashcard": 3}, "tugma_klass": 4}, "8": {"darslar": 14, "emoji_uz": 554, "emoji_jami": 2479, "hex_noyob": 147, "ekran": 265, "turlar": {"exploration": 84, "test": 66, "rule": 17, "case": 16, "practice": 16, "hook": 14, "stats": 14, "summary": 14, "flashcards": 10, "koding": 4, "reflection": 4, "flashcard": 4, "builder": 2}, "tugma_klass": 4}, "9": {"darslar": 12, "emoji_uz": 144, "emoji_jami": 874, "hex_noyob": 166, "ekran": 180, "turlar": {"test": 40, "exploration": 36, "practice": 27, "hook": 12, "stats": 12, "flashcards": 12, "summary": 12, "rule": 11, "case": 5, "koding": 5, "reflection": 4, "concept": 2, "plan": 1, "keys": 1}, "tugma_klass": 2}, "10": {"darslar": 11, "emoji_uz": 132, "emoji_jami": 879, "hex_noyob": 87, "ekran": 162, "turlar": {"test": 37, "exploration": 36, "practice": 29, "hook": 11, "rule": 11, "stats": 11, "flashcards": 11, "summary": 11, "keys": 3, "koding": 2}, "tugma_klass": 2}, "11": {"darslar": 16, "emoji_uz": 192, "emoji_jami": 1313, "hex_noyob": 332, "ekran": 242, "turlar": {"test": 55, "exploration": 47, "practice": 46, "hook": 16, "rule": 16, "stats": 16, "flashcards": 16, "summary": 16, "keys": 8, "koding": 6}, "tugma_klass": 3}, "12": {"darslar": 12, "emoji_uz": 144, "emoji_jami": 991, "hex_noyob": 114, "ekran": 175, "turlar": {"test": 38, "practice": 38, "exploration": 34, "hook": 12, "rule": 12, "stats": 12, "flashcards": 12, "summary": 12, "keys": 5}, "tugma_klass": 2}, "13": {"darslar": 12, "emoji_uz": 144, "emoji_jami": 1036, "hex_noyob": 104, "ekran": 157, "turlar": {"practice": 33, "test": 33, "exploration": 29, "hook": 12, "rule": 12, "stats": 12, "flashcards": 12, "summary": 12, "case": 1, "koding": 1}, "tugma_klass": 2}, "14": {"darslar": 13, "emoji_uz": 154, "emoji_jami": 1177, "hex_noyob": 80, "ekran": 170, "turlar": {"test": 37, "exploration": 33, "practice": 33, "hook": 13, "rule": 13, "stats": 13, "flashcards": 13, "summary": 13, "case": 2}, "tugma_klass": 2}};
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+document.getElementById('olchov').innerHTML = Object.entries(OL).map(([m, v]) => { const ex = v.turlar.exploration || 0;
+  return `<tr><td>${m}-Modul${+m <= 8 ? ' <span class="meta">(qolipsiz)</span>' : ''}</td><td class="n">${v.darslar}</td><td class="n">${v.ekran}</td><td class="n">${v.emoji_uz}</td><td class="n">${v.hex_noyob}</td><td class="n">${ex} (${Math.round(100 * ex / v.ekran)}%)</td></tr>`; }).join('');
+
+const Q = [
+  { id:'D1', t:'Ish tartibi', o:[
+    ['A','Tadqiqot → standart → pilot → yoyish (yuqoridagi 0–3)', 'Avval nima to\'g\'ri ekanini aniqlaymiz, keyin 101 darsga bir marta tegamiz. Tez natija ko\'rinmaydi, lekin ish ikki marta qilinmaydi.', true],
+    ['B','Mexanik tozalash hozir (emoji, ranglar), tadqiqot parallel', 'QA tezda farqni ko\'radi. Lekin standart chiqqach ranglar va emoji qoidasi yana o\'zgarishi mumkin.'] ] },
+  { id:'D2', t:'Emoji siyosati (102)', o:[
+    ['A','O\'quvchi matnida emoji yo\'q; faqat nishon va bayram (o\'yin qatlami)', 'Eng toza ko\'rinish. 161-qonun shunga qattiqlashadi. Keys-sahnalardagi illustratsiya emoji o\'rniga chizma kerak bo\'ladi.', true],
+    ['B','Ekran sarlavhasida ko\'pi bilan 1 ta, qolgan joyda yo\'q', 'Biroz jonli qoladi, emoji ~10 baravar kamayadi.'],
+    ['C','161-qonun qoladi (4 tagacha), faqat takrorlar olinadi', 'Eng kam ish, lekin QA fidbeki to\'liq bajarilmaydi.'] ] },
+  { id:'D3', t:'Rang (103)', o:[
+    ['A','3 asosiy rang: PM darsga binafsha, texnik darsga to\'q sariq, neytral fon; holat ranglari (yashil/qizil) alohida', 'Hozirgi brend saqlanadi, tokendan tashqari rang darvozada xato bo\'ladi.', true],
+    ['B','Hamma darsga bitta aksent rang', 'Eng izchil, lekin PM va texnik dars bir-biridan farq qilmaydi.'] ] },
+  { id:'D4', t:'Tugmalar (101)', o:[
+    ['A','Faqat 2 tur: asosiy (platforma uslubi) va ikkinchi daraja (matn); dars ichidagi chip-tugmalar shu ikkiga keltiriladi', 'QA so\'ragani. Yakunda allaqachon shunday.', true],
+    ['B','2 tur + tanlov chipi (variant tanlash uchun) alohida tur', 'Tanlov va harakat farq qiladi, lekin 3 tur bo\'ladi.'] ] },
+  { id:'D5', t:'Matn (100, 106)', o:[
+    ['A','Har ekranda: sarlavha + mentor gapi (1–2 gap) + bitta vazifa; takror izoh, yorliq va xulosa olinadi', 'Diqqat bitta joyda. Matn MATN_KORPUS orqali qayta yoziladi (MD dan).', true],
+    ['B','Faqat aniq takrorlarni olish, tuzilma qoladi', 'Kamroq ish, lekin «nimaga qarash kerak» muammosi qisman qoladi.'] ] },
+  { id:'D6', t:'Interaktivlik (105)', o:[
+    ['A','«Tushuncha» ekranida o\'quvchi biror narsani o\'zgartiradi va natijani ko\'radi (brilliant uslubi); faqat «bos → matn» taqiqlanadi', 'Tadqiqotdan keyin aniq naqshlar tanlanadi. 339 ekran qayta ko\'riladi.', true],
+    ['B','Har darsda 2–3 asosiy tushuncha ekrani interaktiv, qolgani qoladi', 'Ish kamroq, ta\'sir ham kamroq.'] ] },
+  { id:'D7', t:'Pilot dars', o:[
+    ['A','m7-01 «Loyihangiz kimga kerak?» (9-Modul, 1-dars)', 'QA uni allaqachon batafsil ko\'rgan (108–110). Oldin/keyin solishtirish oson.', true],
+    ['B','Bitta texnik dars (masalan, m8-01)', 'Kod ko\'rsatish va mashq qismini ham sinaydi.'],
+    ['C','Ikkalasi: bitta PM, bitta texnik', 'To\'liqroq, lekin 2 baravar vaqt.'] ] },
+  { id:'D8', t:'Mavhum mazmun: «uch ufq» va shunga o\'xshash (107)', o:[
+    ['A','Pilotdan keyin modul bo\'yicha MD orqali qayta yoziladi: aniq misol va kod birinchi, atama keyin', 'Konveyer tartibi buzilmaydi.', true],
+    ['B','Hozir alohida: eng ko\'p uchragan 4 darsni (PmLesson24, PmOneOnOne, PmRoadmap, PmReflection) MD dan qayta ko\'rish', 'QA aytgan aniq joy tez tuzaladi, standartdan oldin.'] ] }
+];
+document.getElementById('qs').innerHTML = Q.map(q => `<section class="q" id="${q.id}">
+  <div class="q-h"><span class="q-n">${q.id}</span><h2>${esc(q.t)}</h2></div>
+  <div class="opts" role="radiogroup" aria-label="${esc(q.t)}">
+    ${q.o.map(([v, t, d, rec]) => `<label class="opt"><input type="radio" name="${q.id}" id="${q.id}-${v}" value="${v}"><span><span class="opt-t">${v}. ${esc(t)}</span>${rec ? '<span class="rec">Tavsiya</span>' : ''}<span class="opt-d">${esc(d)}</span></span></label>`).join('')}
+    <label class="opt"><input type="radio" name="${q.id}" id="${q.id}-X" value="Boshqa"><span><span class="opt-t">Boshqa</span><span class="opt-d">Izohga yozing</span></span></label>
+  </div>
+  <input type="text" id="${q.id}-izoh" placeholder="Izoh (ixtiyoriy)" aria-label="${q.id} izoh">
+</section>`).join('');
+const KEY = 'reja-1015-100';
+const text = () => 'F-1015-100…107 reja qarori:\n' + Q.map(q => { const c = document.querySelector(`input[name=${q.id}]:checked`); const iz = document.getElementById(q.id + '-izoh').value.trim(); return `${q.id}: ${c ? c.value : '—'}${iz ? ' — ' + iz : ''}`; }).join('\n');
+const save = () => { try { const s = {}; Q.forEach(q => { const c = document.querySelector(`input[name=${q.id}]:checked`); s[q.id] = [c ? c.value : '', document.getElementById(q.id + '-izoh').value]; }); localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {} };
+const load = () => { try { const s = JSON.parse(localStorage.getItem(KEY) || '{}'); Object.entries(s).forEach(([id, [v, iz]]) => { const el = document.querySelector(`input[name=${id}][value="${v}"]`); if (el) el.checked = true; const t = document.getElementById(id + '-izoh'); if (t) t.value = iz || ''; }); } catch (e) {} };
+const upd = () => { const n = Q.filter(q => document.querySelector(`input[name=${q.id}]:checked`)).length; document.getElementById('prog').textContent = `${n} / ${Q.length} javob`; document.getElementById('ans').textContent = text(); save(); };
+document.addEventListener('change', upd); document.addEventListener('input', e => { if (e.target.matches('input[type=text]')) upd(); });
+document.getElementById('copy').addEventListener('click', async () => { const b = document.getElementById('copy'); try { await navigator.clipboard.writeText(text()); b.textContent = 'Nusxalandi'; } catch (e) { const r = document.createRange(); r.selectNodeContents(document.getElementById('ans')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Belgilandi — Ctrl+C bosing'; } setTimeout(() => b.textContent = 'Javobni nusxalash', 2200); });
+load(); upd();
+</script>

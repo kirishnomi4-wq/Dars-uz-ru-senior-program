@@ -1,0 +1,41 @@
+import { chromium } from '/home/kali/Desktop/internetLesson/node_modules/playwright-core/index.mjs';
+const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome' });
+const LID = 'pm-m9d1-v1';
+const MUAMMO = { muammolar: ["Avtobusda o'rindiq topilmaydi, ertalab tik turib boramiz.", "Sport zalda kiyinish xonasi doim band bo'ladi.", "Kutubxonadan kitob olish uchun qog'ozga yozish kerak."].map(matn => ({ matn })) };
+const GOYA = (n) => ({ goyalar: Array.from({ length: n }, (_, i) => ({ muammo: `muammo ${i + 1}: navbatda uzoq kutishadi va darsga kechikishadi`, kim: "sinfdoshlar", yechim: `yechim ${i + 1}`, manba: 'kuzatuv' })), savedAt: 1 });
+const err = [];
+async function och(sc, ls = {}) {
+  const ctx = await b.newContext({ viewport: { width: 1280, height: 773 }, reducedMotion: 'reduce' }); const p = await ctx.newPage();
+  p.on('pageerror', e => err.push(sc + ': ' + e.message));
+  await p.addInitScript(([lid, sc, ls]) => { localStorage.setItem('cc_lang', 'uz'); localStorage.setItem('ccProgress:' + lid, JSON.stringify({ screen: sc, answers: {}, earned: [], total: 16, savedAt: Date.now() })); for (const [k, v] of Object.entries(ls)) localStorage.setItem(k, JSON.stringify(v)); }, [LID, sc, ls]);
+  await p.goto('http://localhost:5300/#/lesson/m9-01', { waitUntil: 'domcontentloaded' }); await p.waitForSelector('.lesson-root');
+  const kir = p.getByText(/Kodsiz/); if (await kir.count()) await kir.first().click({ timeout: 1500 }).catch(() => {});
+  await p.waitForTimeout(900); return { p, ctx };
+}
+const sh = (p, n) => p.screenshot({ path: `j177/${n}.jpg`, type: 'jpeg', quality: 70 });
+let o;
+o = await och(0); await o.p.locator('.q-variant').nth(2).click(); await o.p.waitForTimeout(900); await sh(o.p, 's0'); await o.ctx.close();
+o = await och(2); await o.p.locator('.q-bashorat .q-chip').nth(2).click(); await o.p.waitForTimeout(400); await o.p.locator('.ti-qsavol').click(); await o.p.waitForTimeout(500); await sh(o.p, 's2a');
+await o.p.locator('.ti-qsavol').click(); await o.p.waitForTimeout(400); await o.p.locator('.ti-qsavol').click(); await o.p.waitForTimeout(3200); await sh(o.p, 's2b'); await o.ctx.close();
+o = await och(4); await o.p.locator('.ti-my-tug .q-chip').nth(1).click(); await o.p.waitForTimeout(500); await sh(o.p, 's4a');
+await o.p.getByText('Keyingi gap').click(); await o.p.waitForTimeout(400); await o.p.locator('.ti-my-tug .q-chip').nth(1).click(); await o.p.waitForTimeout(400); await sh(o.p, 's4b');
+for (let i = 0; i < 2; i++) { await o.p.locator('.ti-my-amal button').click(); await o.p.waitForTimeout(300); await o.p.locator('.ti-my-tug .q-chip').nth(i === 0 ? 1 : 0).click(); await o.p.waitForTimeout(300); }
+await o.p.locator('.ti-my-amal button').click(); await o.p.waitForTimeout(1500); await sh(o.p, 's4c'); await o.ctx.close();
+o = await och(6, { 'pm-m7d1-muammolar': MUAMMO }); await o.p.locator('.ti-s6-ro button').nth(1).click(); await o.p.waitForTimeout(400); await sh(o.p, 's6a');
+await o.p.getByText('Keyingi manba').click(); await o.p.waitForTimeout(400); await o.p.locator('.ti-tanlovlar .q-chip').nth(2).click(); await o.p.waitForTimeout(400); await sh(o.p, 's6b');
+await o.p.locator('.ti-tanlovlar .q-chip').nth(1).click(); await o.p.waitForTimeout(400); await o.p.getByText('Keyingi manba').click(); await o.p.waitForTimeout(400);
+await o.p.locator('.ti-s6-k input').fill("Maktabda bot yo'q"); await o.p.locator('.ti-s6-amal button').nth(1).click(); await o.p.waitForTimeout(400); await sh(o.p, 's6c');
+await o.p.locator('.ti-s6-k input').fill("Tanaffusda oshxonada navbat uzun, ovqatga ulgurmaymiz"); await o.p.locator('.ti-s6-amal button').nth(1).click(); await o.p.waitForTimeout(1500); await sh(o.p, 's6d'); await o.ctx.close();
+o = await och(7); await o.p.locator('.q-bashorat .q-chip').nth(1).click(); await o.p.waitForTimeout(300); await sh(o.p, 's7a'); await o.p.locator('.nav-next, button:has-text("Keyingi bosqich")').last().click(); await o.p.waitForTimeout(500); await sh(o.p, 's7b');
+await o.p.locator('button:has-text("Keyingi bosqich")').last().click(); await o.p.waitForTimeout(2500); await sh(o.p, 's7c'); await o.ctx.close();
+o = await och(9, { 'pm-m7d1-muammolar': MUAMMO, 'pm-m9d1-manba': { royxat: MUAMMO.muammolar[1].matn }, 'pm-m9d1-goyalar': GOYA(2) }); await o.p.locator('.ti-src-ro .q-chip').nth(0).click(); await o.p.waitForTimeout(400); await sh(o.p, 's9a');
+await o.p.locator('.ti-kimlar .q-chip').nth(0).click(); await o.p.locator('.ti-s8-k input').last().fill("kiyinish xonasi navbati ilovada"); await o.p.waitForTimeout(200); await sh(o.p, 's9b');
+await o.p.locator('.ti-s8-k button:has-text("Saqlash")').click(); await o.p.waitForTimeout(900); await sh(o.p, 's9c');
+await o.p.locator('.ti-src-ro .q-chip').nth(2).click(); await o.p.waitForTimeout(300); await o.p.locator('.ti-s8-k input').first().fill("maktabda bot yo'q"); await o.p.locator('.ti-kimlar .q-chip').nth(0).click(); await o.p.locator('.ti-s8-k input').last().fill('vazifalar boti'); await o.p.locator('.ti-s8-k button:has-text("Saqlash")').click(); await o.p.waitForTimeout(500); await sh(o.p, 's9d');
+await o.p.locator('.ti-s8-k button:has-text("Yordam")').click(); await o.p.waitForTimeout(600); await sh(o.p, 's9e'); await o.ctx.close();
+o = await och(11, { 'pm-m9d1-goyalar': GOYA(6) }); await o.p.locator('.ti-darvoza .q-chip').nth(1).click(); await o.p.waitForTimeout(700); await sh(o.p, 's11a'); await o.ctx.close();
+o = await och(12); await o.p.locator('.q-test .q-variant, .q-variant').nth(1).click().catch(() => {}); await o.p.waitForTimeout(600); await sh(o.p, 's12'); await o.ctx.close();
+o = await och(10); await o.p.locator('.ti-s9-yoz input').fill("to'garak qayerdaligini bilmaymiz"); await o.p.locator('.ti-s9-yoz button').click(); await o.p.waitForTimeout(400); await sh(o.p, 's10a'); await o.p.getByText('Ochish').click(); await o.p.waitForTimeout(400); await sh(o.p, 's10b'); await o.p.getByText('Boshqacha').click(); await o.p.waitForTimeout(1500); await sh(o.p, 's10c'); await o.ctx.close();
+o = await och(9, { 'pm-m9d1-goyalar': GOYA(1) }); await o.p.locator('.ti-src-ro .q-chip').nth(0).click(); await o.p.waitForTimeout(500); await sh(o.p, 's9f'); await o.ctx.close();
+console.log('xato', err);
+await b.close();

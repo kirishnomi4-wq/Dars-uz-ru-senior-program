@@ -157,7 +157,7 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
 - Bashorat (ballsiz, 181; yorliq «Avval o'zingiz belgilab ko'ring»; kirishda karta yengil ko'tariladi, variantlar navbat bilan): **Bot o'yinchiga birinchi bo'lib yoza oladimi?** · Ha — Backend bilsa, bot yozadi · Yo'q — o'yinchi botni o'zi boshlashi kerak
   Tanlangach yopilmaydi: ixcham qator «TAXMININGIZ · savol · tanlangan variant» natija chiqquncha turadi.
 - Sahna (`TG_SAHNA`): chapda «1-telefon · o'yinchi» — **qulf ekrani** (ilova yopiq), ustida kichik yorliq «Maydon Jamoa ilovasi yopiq» · o'rtada Backend: qatorlar «Shanba, 18:00 · Mahalla maydoni · doimiy» va «Telegram: ulanmagan» ·
-  o'ngda «Telegram» tuguni. Backend ↔ Telegram chizig'i uzuq va xira. Sahna tugmalari (chegarali, ramkadan tashqarida): Backend ostida «Shanba o'tdi» (halqada); telefon ostida — 2-harakatdan oldin xira.
+  o'ngda «Telegram» tuguni. Backend ↔ Telegram chizig'i uzuq va xira. Sahna tugmalari (chegarali, ramkadan tashqarida): Backend ostida «Shanba o'tdi» (halqada; faqat bashoratdan keyin va 1-, 4-harakatda chiqadi — o'chiq turmaydi *(✎ F-1015-164)*); telefon ostida — 2-harakatdan oldin xira.
 - **Harakat → Vizual o'zgarish:**
   1. «Shanba o'tdi» → Backend chetiga kichik konvert `GET /oyinlar` (yorliq: «kimdir ilovani ochdi») → o'yin qatori ostida yangi qator sirg'alib kiradi va ~1 s yashil yonadi: «keyingi Shanba, 18:00 · 0 / 10 · yana e'lon qilindi» →
      Backend → Telegram chizig'i uzuqligicha qoladi, konvert chiqmaydi; Backend chetida kulrang yorliq «chat raqami yo'q — bot birinchi yozolmaydi»; telefon qulf ekrani o'zgarmaydi, yonida kulrang yorliq «ilova yopiq — yangi o'yinni bilmaydi».
@@ -277,7 +277,7 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
   - tugagach: Natijani taxminingiz bilan solishtiring.
 - Bashorat (ballsiz, 181; tanlangach ixcham qator): **To'rt o'yinchidan nechtasiga Telegram xabari ketadi?** · Bittasiga · Ikkitasiga · Uchtasiga
 - Chap: Backend kartasi (tepada, ixcham): «Shanba, 18:00 o'yini yana e'lon qilindi · Mahalla maydoni» · ostida o'yinchi kartasi **bittadan** (SABOQ 9, 13; ustida «O'yinchi N / 4»), ichida uch qator:
-  «O'tgan Shanba o'yinida: qatnashgan / qatnashmagan» · «Telegram: ulangan / ulanmagan» · «Bu hafta Telegram xabari: N / 2». Harakat tugmasi «Tekshirish» — karta ostida, halqada (SABOQ 21). Odam chizilmaydi — faqat «1-o'yinchi» yorlig'i.
+  «O'tgan Shanba o'yinida: qatnashgan / qatnashmagan» · «Telegram: ulangan / ulanmagan» · «Bu hafta Telegram xabari: N / 2». Harakat tugmasi «Tekshirish» — karta ostida, halqada (SABOQ 21); bashoratdan keyin chiqadi, tekshiruv animatsiyasi paytida ko'rinmaydi *(✎ F-1015-164)*. Odam chizilmaydi — faqat «1-o'yinchi» yorlig'i.
 - O'ng: tekshiruv kartasi «Backend tekshiradi» (ostida kichik kulrang yorliq «bu kursda · Mentor misolida») — uch bo'sh katak: «O'tgan hafta shu o'yinda qatnashgan» · «Botni o'zi ulagan» · «Bu hafta ikkitadan kam xabar olgan».
 - O'yinchilar (shu tartibda; `KIMGA_OYINCHILAR`, TAYANCHGA SAVOL 10):
   1. 1-o'yinchi — qatnashgan · ulangan · 0 / 2 → ✓ · ✓ · ✓ → yashil «yuboriladi»; kartaning ostida kichik Telegram pufagi (xabar matni, `TG_XABAR`).
@@ -455,12 +455,13 @@ Pul (TAQIQLAR 1): bu darsda to'lov yo'q; «Doimiy o'yin» — Mentorning Pro qul
   - Bu kursda Telegram xabari faqat odamning o'z o'yini haqida va haftasiga ko'pi bilan ikkita.
   - O'chirish bir bosishda; sanoq havola bilan ochilganini ko'rsatadi, xabar qaytardimi — buni emas.
 - Uyga vazifa — yo'q (loyiha kuni; tayanch 4). `uyga: null`.
-- Keyingi dars — «Kim haqiqatan to'lashga tayyor?»: Mentor tekshiruvi: uchta yozma tasdiq.
 - Nishonlaringiz — N/4
-- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Keyingi dars — «Kim haqiqatan to'lashga tayyor?»: Mentor tekshiruvi: uchta yozma tasdiq.
+- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Nishonlaringiz · Keyingi dars. Ichki skroll qutisi yo'q (SABOQ 18).
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
 - ✎ «ishlaydi» — o'quvchi o'z Telegram'ida xabarni ko'rgan va «Kutilganidek» ni tanlagan (2-amaliyot 4-qadami; «Bajardim» — ish fakti, natija emas — F-1007-466); «sanaladi» — o'lchov tayyor, «foydalanuvchi qaytdi» deyilmaydi (sinf 5, 6). «Boshqa holat» — hech biri yoki tartibsiz holat: har holatda rost («hali tugamagan»).
   Sarlavhalar ikkala trekka to'g'ri (bot trekka bog'liq emas). «Keyingi dars» qatori — App.jsx `m11-09` nomi va osti (T-038: boshqa joyda va'da yo'q).
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ---
 

@@ -1,5 +1,8 @@
 # 7-dars «O'z Skill'ingizni yozing» — yakuniy matn
 
+> ✎ **F-1015-122 (16.10, 208-qonun 4-band, foydalanuvchi qarori — 2-variant):** dars yuzasidagi bezak emoji kodda olingan — sarlavha, yorliq, karta ikonlari, fayl tablari, test/amaliyot yorliqlari, tugmalar. Qolgan: sxema tugunlari, keys sahnasi, o'yin qatlami (nishon, arena, podium), Yakun, takrorlash oynasi, Mentor paneli, bot/ilova maketidagi mahsulot mazmuni. Bu MD dagi shunday bezak emoji endi ekranda yo'q.
+
+
 Fayl: `src/6-Modull/WriteSkillLesson.jsx` · 20 ekran · Keyingi dars: «Loyiha kuni: to'liq pipeline»
 Holat: 05.10.2026 — kodga mos
 
@@ -41,10 +44,11 @@ description: Mijoz shikoyat qilganda unga g'amxo'r javob yozadi.
 Misol: "Uzr! Bepul almashtiramiz, 1 kun ichida"
 ```
 - O'ng — Bugungi 4 qadam:
-  1. name va description yozish · yozish
-  2. Qadamlar va misol qo'shish · qadamlar
-  3. Skill'ni sinab ko'rish · sinov
-  4. Kamchilikni topib, aniq tuzatish · yaxshilash
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-121, 208-qonun 0-band: takror olindi)*
+  1. name va description yozish
+  2. Qadamlar va misol qo'shish
+  3. Skill'ni sinab ko'rish
+  4. Kamchilikni topib, aniq tuzatish
 - Tugmalar (telefonda): 4 qadamni ko'rish · ↩ Faylni ko'rish
 - Tugmalar: Orqaga · Boshlaymiz →
 
@@ -282,7 +286,7 @@ ____
 - Sarlavha: O'z Skill'ingizni yozing
 - Mentor: Bu topshiriqni **o'z kompyuteringizda** bajaring. Har bosqichni bajarib, belgilab boring. Tugagach **«Bajardim»** tugmasini bosing — ustoz kuzatib turadi.
 - TOPSHIRIQ: O'zingiz tez-tez AI'ga beradigan bitta vazifani tanlang va unga SKILL.md yozing: aniq name, description, qadamlar va misol. Keyin sinab ko'rib, kamchilikni tuzating.
-- Bosqichlar — belgilab boring (bosilgani ✓ bilan belgilanadi):
+- Bosqichlar (yorliqsiz — Mentor «belgilab boring» deydi ✎ F-1015-166; bosilgani ✓ bilan belgilanadi):
   1. Tez-tez beradigan bitta vazifani tanlang — bitta Skill, bitta vazifa (masalan: mijozga javob)
   2. `name:` — kichik harflar va defis bilan nom bering
   3. `description:` — nima qilishi va qachon ishlatilishini yozing
@@ -336,6 +340,7 @@ Natijalar (podium) — jonli reyting
   - Keyingi dars — **Loyiha kuni: to'liq pipeline.** React, Node, PostgreSQL, Telegram va AI'ni bitta ishlaydigan tizimga ulaysiz.
 - Nishonlaringiz — N/4 (olingan nishonda nomi va tavsifi, olinmaganida faqat nomi)
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10, S1-A): uy vazifasi kartasi P-025 — sarlavha «Uyda nima qilasiz?» (bannerdagi «Uyga vazifa» bilan takror emas); maydonlar: Kim uchun — o'z loyihangiz · Nechta — 1 Skill, 2–3 sinov · Muddat — keyingi darsgacha (qiymatlar topshiriq matnidan); qadamlar raqam-doira; «Keyingi dars» karta ichida; bezak emoji olindi.
 
 ## Nishonlar
 - Yuqoridagi hisoblagich: N/4 · bosilganda: Badges — N/4 (har nishon nomi; olinmagani qulf bilan)

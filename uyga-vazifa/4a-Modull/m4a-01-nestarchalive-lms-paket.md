@@ -22,7 +22,7 @@ Siz 13 yoshli o'quvchining Nest-arxitektura uy vazifasini tekshiryapsiz. 3 topsh
 Qabul mezonlari:
 1) src/ dagi papkalar to'g'ri sanalgan (core, api, infrastructure, common);
 2) barcha beshta moslash to'g'ri: Guard → eshik qo'riqchisi, Controller → ofitsiant, DTO+ValidationPipe → anketa va nazoratchi, Service → oshpaz, Repository → omborchi (so'zma-so'z shart emas, ma'no bo'lsa yetadi);
-3) yo'lda kamida 5 bekat to'g'ri tartibda: qo'riqchi → ofitsiant → anketa-tekshiruv → oshpaz → ombor → javob (bir xil lagan).
+3) yo'lda kamida 5 bekat to'g'ri tartibda: qo'riqchi → anketa-tekshiruv → ofitsiant → oshpaz → ombor → javob (bir xil lagan).
 
 Fidbek qoidalari:
 - O'quvchiga «siz» deb murojaat qiling, 3–4 gapdan oshirmang.
@@ -52,7 +52,7 @@ Fidbek qoidalari:
 Критерии приёма:
 1) папки src/ названы верно (core, api, infrastructure, common);
 2) все пять соответствий верны: Guard → охранник у двери, Controller → официант, DTO+ValidationPipe → анкета и контролёр, Service → повар, Repository → кладовщик (не дословно — достаточно смысла);
-3) в пути минимум 5 остановок в верном порядке: охранник → официант → проверка анкеты → повар → склад → ответ (одинаковый поднос).
+3) в пути минимум 5 остановок в верном порядке: охранник → проверка анкеты → официант → повар → склад → ответ (одинаковый поднос).
 
 Правила фидбека:
 - Обращайтесь на «вы», не больше 3–4 предложений.

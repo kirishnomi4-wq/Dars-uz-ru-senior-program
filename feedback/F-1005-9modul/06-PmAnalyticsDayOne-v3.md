@@ -84,11 +84,11 @@ Tashqi audit (ChatGPT) Filtri: `06-FILTR.md` — 05.10.2026 qo'llandi.
 - Mentor: Umami — saytda odamlar nima qilganini yozib boradigan xizmat. Kodni Antigravity yozadi, siz har qadamni Umami'da tekshirasiz.
 - Chap — «Dars oxirida — o'z kompyuteringizda shunday»: Maydon paneli o'zi o'ynaydi (DE-200) — odam-belgisi saytni ochadi → «Saytni ochdi 1»;
   `18:00` tanlanadi → «Vaqtni tanladi 1»; 3-ustun kulrang «?».
-- O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015):
-  - 01 · Qaysi qadamdan keyin son keskin kamayishini topasiz · `uch qadam`
-  - 02 · Kech ulansa nima yo'qolishini ko'rasiz · `birinchi kun`
-  - 03 · «Maydon»ga Umami'ni ulaysiz · `Umami`
-  - 04 · Vaqt tanlashni ham yozdirasiz · `hodisa`
+- O'ng (01 · matn; tex-karta, bosilmaydi — P-015) *(✎ F-1015-114, 208-qonun 0-band: teg ekran eyebrow'larini takrorlardi — olindi)*:
+  - 01 · Qaysi qadamdan keyin son keskin kamayishini topasiz
+  - 02 · Kech ulansa nima yo'qolishini ko'rasiz
+  - 03 · «Maydon»ga Umami'ni ulaysiz
+  - 04 · Vaqt tanlashni ham yozdirasiz
 - Pastki qator (mono, kichik): repo `maydon` · boshlang'ich holat `dars-05-done` · tayyor namuna `dars-06-done`
 - Harakat yo'q (reja ekrani) — vizual o'zi o'ynaydi. Tugmalar: Orqaga · Boshlaymiz
 
@@ -161,7 +161,7 @@ Tashqi audit (ChatGPT) Filtri: `06-FILTR.md` — 05.10.2026 qo'llandi.
 - 3/3 da joriy qator (atama — saralashdan keyin, bir marta): Analitikaga yoziladigan bitta harakat **hodisa** deyiladi. (54)
 - Xulosa: Sahifa ochilishini Umami avtomatik yozadi. Vaqt tanlash hodisasiga esa nomni siz berasiz. (76)
 - Tugadi (199): kartalar yopiladi, panel uch yorlig'i bilan butun enga.
-- Tugma (pastki): Uch qadamni joylang (N/3) → Davom etish
+- Tugma (pastki): Uch qadamni joylang (N/3) → Davom etish (kartada «N / 3» yo'q — F-1015-114)
 - O'qituvchi eslatmasi: `band-qildi` bugun ulanmaydi — band qilish «Loyiha kuni: MVP tayyor» darsida quriladi, hodisa o'sha kuni qo'shiladi (tayanch). Bugun bitta hodisa.
 
 ## A1 · Amaliyot 1 — Umami'ni ulash  ← amaliyot bloki (≈22 daq; `screens[6]`)
@@ -259,7 +259,6 @@ Tashqi audit (ChatGPT) Filtri: `06-FILTR.md` — 05.10.2026 qo'llandi.
   - Analitika ulangan kundan boshlab yozadi — bizning MVP da u birinchi odamdan oldin ulanadi.
   - Qadamlar sonini solishtirib, qayerda katta pasayish borligini ko'rasiz — bu belgi, sabab emas.
   - Sahifa ochilishini Umami avtomatik yozadi; boshqa harakat — siz nom bergan hodisa.
-- Bugungi asosiy fikr (ScoreRing ostida, `small`, kartochkaga qo'shilmaydi — P-013): Bizning MVP da analitika birinchi odamdan oldin ulanadi — shunda qaysi qadamdan keyin son keskin kamayganini ko'rasiz. (96)
 - Uyga vazifa (`HwCard` yakun ekranida — alohida `.homework.jsx` yo'q, GATE M M-q9) · sarlavha: **Uyda nima qilasiz?**
   - Kim uchun: o'z loyihangiz · Nechta: 1 hodisa · Muddat: keyingi darsgacha
   - 1 · Loyihangiz sahifasiga Umami skriptini ulang — Amaliyot 1 da saqlagan prompt bilan.
@@ -285,7 +284,8 @@ Tashqi audit (ChatGPT) Filtri: `06-FILTR.md` — 05.10.2026 qo'llandi.
 | Analitika odam nega to'xtaganini aytadimi? | Yo'q — qaysi qadamda to'xtaganini aytadi | Sababni odamning o'zini ko'rib topasiz |
 
 - Nishonlar — pastda (mentor rejimida yo'q).
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ---
 
@@ -395,7 +395,7 @@ Oyna yorlig'i: Qayta tushuntirish · tugmalar: ← Oldingi · Keyingisi → · �
    `RECAPS` { 4, 8 } (`ask` + 3 karta; 8-ekran kartalarida kod qatori); `Q_LABELS` { 4, 8 }.
 10. `ACHIEVEMENTS` 4 + `ACH_TRIGGERS`: s2 → Drop Spotter · s4 birinchi urinish → Day One · A1 oxirgi «Bajardim» → Tracker On · A2 oxirgi «Bajardim» → First Event.
 11. `QUIZ_BANK` 12 (✔ A·B·C·D ×3) + fon so'zlari `{uz, ru}`, emoji yo'q (R-008). `FLASHCARDS` 12 ({front, back, note}).
-12. s11 `QYakun`: `recap` 4 qator, «Bugungi asosiy fikr» `small`; kartochkalar — s10 alohida ekranda (`FLASHCARDS` 12); `uyga` — `HwCard` yakun ekranida (alohida `.homework.jsx` yo'q — GATE M M-q9), `keyingi` matni.
+12. s11 `QYakun`: `recap` 4 qator; kartochkalar — s10 alohida ekranda (`FLASHCARDS` 12); `uyga` — `HwCard` yakun ekranida (alohida `.homework.jsx` yo'q — GATE M M-q9), `keyingi` matni.
 13. App.jsx `m7-06` qatoriga `comp` ulash — asosiy seans (nom o'zgarmaydi, DE-205 ✓). `narrow` — test ekranlari (4, 8).
 - Darvozalar: `npm run gates` 12/12 · `lint:olchov` 0 · `lint:emoji` qolip 0 · `lint:til` · `lint:jsx` · surat 1280 + 393.
 

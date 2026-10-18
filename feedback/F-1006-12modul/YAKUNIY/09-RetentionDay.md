@@ -133,7 +133,7 @@ Jonli xabar — ilova ichida, ekran tepasida: «Maydon Jamoa» + «Shanba, 18:00
   - to'rttasidan keyin: Endi telefon ostidagi «Eslatmalar» o'chirgichini bosing.
   - tugagach: Natijani taxminingiz bilan solishtiring.
 - Bashorat (ballsiz, yorliq «Avval o'zingiz belgilab ko'ring»): To'rt matndan nechtasi qoidadan o'tadi? · Bittasi · Ikkitasi · Uchtasi
-- Chap: telefon, ustida yorliq «o'yinchi · ilova yopiq» va hisoblagich «Bu hafta: 0 / 2»; qulf ekraniga matn kartasi bittadan tushadi, ustida «Matn N / 4» (2-kartada: «Matn 2 / 4 · 4-darsdagi o'yin eslatmasi»). Telefon ostida tugma «Qoidadan o'tkazish» va o'chirgich «Eslatmalar» (yoqiq; to'rt matngacha xira).
+- Chap: telefon, ustida yorliq «o'yinchi · ilova yopiq» va hisoblagich «Bu hafta: 0 / 2»; qulf ekraniga matn kartasi bittadan tushadi, «Matn N / 4» sanog'i yo'q — hisob tugmada (2-kartada ustida: «4-darsdagi o'yin eslatmasi»). *(✎ F-1015-117, 208-qonun 0-band: takror olindi)* Telefon ostida tugma «Qoidadan o'tkazish» va o'chirgich «Eslatmalar» (yoqiq; to'rt matngacha xira).
 - O'ng: tekshiruv kartasi «Foydali eslatma», ostida «bu kursda · rejalashtirilgan eslatma uchun» — uch katak:
   - O'z ishiga tegishli, foydasi aniq
   - Rost: ilova buni oldindan biladi
@@ -318,9 +318,10 @@ Natijalar (podium) — jonli reyting
   - Rejalashtirilgan eslatmani ilovaning o'zi qo'yadi — u faqat oldindan bilgan narsani aytadi.
   - Bu kursda eslatma o'z ishiga tegishli, rost va bosimsiz; hafta ikkitaga to'lsa, ilova o'zidan yangisini qo'shmaydi; o'chirgich foydalanuvchida.
   - Sanoq eslatma bosilib ilova ochilganini ko'rsatadi; eslatma bo'lmasa ham ochgan bo'larmidi — buni aytmaydi.
-- Keyingi dars — **«50 foydalanuvchiga yetdingizmi?»**: Mentor tekshiruvi: metrika hisoboti va zaxira reja.
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Keyingi dars — **«50 foydalanuvchiga yetdingizmi?»**: Mentor tekshiruvi: metrika hisoboti va zaxira reja.
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Open Line** — Jonli xabar faqat ochiq ilovada chiqishini topdingiz (4-ekran, birinchi urinishda to'g'ri)

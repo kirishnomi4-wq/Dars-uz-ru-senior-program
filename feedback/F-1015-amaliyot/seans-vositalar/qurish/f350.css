@@ -1,0 +1,19 @@
+        /* ===== F-1015-350 · m4-13: forma (izohda backtick yo'q) ===== */
+        .sk-izoh { color: #94a3b8; }
+        .sk-nur { border-radius: 6px; animation: sk-nur 0.9s ease-out; }
+        @keyframes sk-nur { from { background: rgba(250,204,21,0.35); } to { background: transparent; } }
+        .cr-son { font: 800 12.5px 'Manrope', sans-serif; color: ${T.ink}; }
+        .lesson-root .cr-jadval { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+        .cr-jadval li { display: grid; grid-template-columns: minmax(62px, auto) 1fr auto; align-items: center; gap: 10px; font-size: 14px; color: ${T.ink}; }
+        .cr-jadval li span { color: ${T.ink2}; }
+        .cr-jadval .qcode { white-space: nowrap; }
+        @media (max-width: 560px) { .cr-jadval li { grid-template-columns: 58px 1fr; } .cr-jadval .qcode { grid-column: 1 / -1; justify-self: start; } }
+        .am-yordam pre.am-masalan { color: ${CODE.text}; }
+        .sk-mos { background: rgba(74,222,128,0.16); border-radius: 6px; box-shadow: inset 3px 0 0 #4ade80; }
+        .rt-oyin { display: flex; flex-direction: column; gap: 6px; }
+        .rt-rasm { border-radius: 12px; height: 70px; display: flex; align-items: center; justify-content: center; font-size: 34px; }
+        .rt-nom.rt-nom { margin: 0; font-family: "Source Serif 4", serif; font-weight: 600; font-size: 18px; color: ${T.ink}; }
+        .rt-forma { display: flex; flex-direction: column; gap: 10px; }
+        .fs-forma { flex-direction: row; flex-wrap: wrap; align-items: flex-end; gap: 10px; }
+        .fs-forma .am-maydon { flex: 1 1 140px; }
+        @media (prefers-reduced-motion: reduce) { .sk-nur { animation: none !important; } }

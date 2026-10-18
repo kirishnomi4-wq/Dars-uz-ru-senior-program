@@ -1,15 +1,21 @@
 # 8-dars «Loyiha kuni: to'liq pipeline» — yakuniy matn
 
+> ✎ **F-1015-122 (16.10, 208-qonun 4-band, foydalanuvchi qarori — 2-variant):** dars yuzasidagi bezak emoji kodda olingan — sarlavha, yorliq, karta ikonlari, fayl tablari, test/amaliyot yorliqlari, tugmalar. Qolgan: sxema tugunlari, keys sahnasi, o'yin qatlami (nishon, arena, podium), Yakun, takrorlash oynasi, Mentor paneli, bot/ilova maketidagi mahsulot mazmuni. Bu MD dagi shunday bezak emoji endi ekranda yo'q.
+
+
+> ✎ **F-1015-155 (17.10, repo-moslash, qaror «A»):** misol-ip TelegramBotNest (`dars-6-08-*`) ga keltirildi — AvtoPizza, NestJS (Backend), `GET /menyu`, `POST /buyurtma` (`taom`, `manzil`, `manba: 'sayt'`), `buyurtmalar` jadvali, `POST /savol`, AI — Gemini, papkalar `web/` · `src/`. Tuzilish, ball, `correctIdx` o'zgarmadi.
+
+
 Fayl: `src/6-Modull/PipelineProjectLesson.jsx` · 21 ekran · Keyingi dars: «React Native — asoslari»
 Holat: 05.10.2026 — kodga mos
 
 ## 0 · Kirish
 - Eyebrow: Kirish
 - Sarlavha: 5 qism tayyor — lekin ulanmagan. Nima yetishmayapti?
-- Mentor: Oldingi modullarda React, Node.js, PostgreSQL, Telegram bot va AI bilan ishladingiz. Endi ularni bitta tizimga ulaymiz. Ikki holatni bosing.
+- Mentor: Oldingi modullarda React, NestJS, PostgreSQL, Telegram bot va AI bilan ishladingiz. Endi ularni AvtoPizza uchun bitta tizimga ulaymiz. Ikki holatni bosing.
 - Tugmalar (almashtirgich): Alohida · Ulangan
 - Karta (tanlangan holatga qarab):
-  - Alohida — 5 alohida qism: "React bor, Node bor, Database bor, bot bor, AI bor — lekin har biri alohida ishlaydi, bir-biriga ulanmagan."
+  - Alohida — 5 alohida qism: "React bor, NestJS bor, Database bor, bot bor, AI bor — lekin har biri alohida ishlaydi, bir-biriga ulanmagan."
   - Ulangan — Bitta tizim: "Ular ulanganda: «Buyurtma» bosiladi → backend qabul qiladi → Database saqlaydi → bot adminga xabar yuboradi. Mijoz savol bersa — AI javob beradi."
 - Savol (o'ng ustun, yorliq): Nima yetishmayapti?
   - Hech narsa — har biri alohida yaxshi ishlaydi
@@ -28,11 +34,12 @@ Holat: 05.10.2026 — kodga mos
 - Yorliq: Bugungi maqsad
   - Karta: 5 qism → bitta tizim · Ulanishlarni AI yordamida yozamiz va har birini tekshiramiz.
 - Yorliq: 5 qadam
-  - 01 · 5 qism: React, Node.js, PostgreSQL, Telegram, AI
+  - 01 · 5 qism: React, NestJS, PostgreSQL, Telegram, AI
   - 02 · Ma'lumot qanday o'tadi (pipeline)
   - 03 · AI bilan kod yozish: aniq prompt → kod → test → tuzat
-  - 04 · Ulanishlarni qurish va sinash · jonli
-  - 05 · O'z loyihangizda ulanishlarni qurasiz · amaliyot
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-121, 208-qonun 0-band: takror olindi)*
+  - 04 · Ulanishlarni qurish va sinash
+  - 05 · O'z loyihangizda ulanishlarni qurasiz
 - Tugmalar (telefonda): 5 qadamni ko'rish · ↩ Maqsadni ko'rish
 - Tugmalar: Orqaga · Boshlaymiz →
 
@@ -40,14 +47,14 @@ Holat: 05.10.2026 — kodga mos
 - Eyebrow: 5 qism
 - Sarlavha: Tizimning 5 qismi
 - Mentor: Hammasini avval o'rgangansiz — endi ular birga ishlaydi. Har birini bosing: nima qiladi.
-- Qismlar ro'yxati (bosilgani ✓ bilan): React Frontend · Node.js Backend · PostgreSQL Database · Telegram Bot · AI (Claude) Yordamchi xizmat
+- Qismlar ro'yxati (bosilgani ✓ bilan): React Frontend · NestJS Backend · PostgreSQL Database · Telegram Bot · AI (Gemini) Yordamchi xizmat
 - Bosilganda o'ng ustunda (yorliq «<nom> · <vazifa>» va izoh):
-  - React · Frontend — Mijoz ko'radigan sahifa: mahsulotlar va «Buyurtma» tugmasi.
-  - Node.js · Backend — So'rovlarni qabul qiladi va boshqaradi: `GET /products`, `POST /orders`.
-  - PostgreSQL · Database — Ma'lumotni saqlaydi: `products` va `orders` jadvallari.
+  - React · Frontend — Mijoz ko'radigan AvtoPizza sayti: pitsalar menyusi va «Buyurtma» tugmasi.
+  - NestJS · Backend — So'rovlarni qabul qiladi va boshqaradi: `GET /menyu`, `POST /buyurtma`.
+  - PostgreSQL · Database — Ma'lumotni saqlaydi: buyurtmalar `buyurtmalar` jadvaliga yoziladi.
   - Telegram · Bot — Yangi buyurtma kelganda adminga xabar yuboradi.
-  - AI (Claude) · Yordamchi xizmat — Node.js uni kerak bo'lganda chaqiradi: mijoz savoliga javob yozadi, mahsulot tavsifini tayyorlaydi.
-- Xulosa (5/5): Bu loyihada Node.js — asosiy boshqaruv qismi: frontend'dan kelgan so'rovlar u orqali o'tadi, Database, bot va AI bilan ham u ishlaydi.
+  - AI (Gemini) · Yordamchi xizmat — NestJS uni kerak bo'lganda chaqiradi: saytdagi savolga (`POST /savol`) javob yozadi.
+- Xulosa (5/5): Bu loyihada NestJS — asosiy boshqaruv qismi: frontend'dan kelgan so'rovlar u orqali o'tadi, Database, bot va AI bilan ham u ishlaydi.
 - Tugmalar: Orqaga · N/5 qismni ko'ring → Davom etish
 
 ## 3 · Pipeline
@@ -57,14 +64,14 @@ Holat: 05.10.2026 — kodga mos
 - Qadamlar (xira turadi, bosilgach bittadan ochiladi):
   - Yorliq: Buyurtma oqimi
     1. Mijoz saytda «Buyurtma» bosadi (React)
-    2. React Node.js'ga `POST /orders` so'rovini yuboradi
-    3. Node.js buyurtmani PostgreSQL'ga saqlaydi
-    4. Node.js Telegram orqali adminga xabar yuboradi
+    2. React NestJS'ga `POST /buyurtma` so'rovini yuboradi
+    3. NestJS buyurtmani PostgreSQL'ga saqlaydi
+    4. NestJS Telegram orqali adminga xabar yuboradi
   - Yorliq: Savol oqimi (alohida)
-    5. Mijoz savol yozsa — Node.js uni AI'ga yuboradi, AI javobi mijozga qaytadi
+    5. Mijoz savol yozsa — NestJS uni AI'ga yuboradi, AI javobi mijozga qaytadi
 - Tugma: ▶ Buyurtmani boshlash → Keyingi qadam →
-- Yorliq: Sxema — React ↓ Node.js, undan uch yo'l: PostgreSQL · Telegram · AI (ochilgan qadamning qismi yonadi)
-- Xulosa (5 qadamdan keyin): Hamma narsa bitta uzun zanjir emas: Node.js'dan bir nechta yo'l chiqadi. Qaysi yo'l ishlashi — qanday so'rov kelganiga bog'liq.
+- Yorliq: Sxema — React ↓ NestJS, undan uch yo'l: PostgreSQL · Telegram · AI (ochilgan qadamning qismi yonadi)
+- Xulosa (5 qadamdan keyin): Hamma narsa bitta uzun zanjir emas: NestJS'dan bir nechta yo'l chiqadi. Qaysi yo'l ishlashi — qanday so'rov kelganiga bog'liq.
 - Tugmalar: Orqaga · Oqimni kuzating (N/5) → Davom etish
 
 ## 4 · 1-savol
@@ -76,7 +83,7 @@ Holat: 05.10.2026 — kodga mos
   - Bir-biriga ulanmagan mustaqil dasturlar
   - ✔ Ma'lumotning qismdan qismga o'tish oqimi
 - Javob izohlari:
-  - To'g'ri: To'g'ri! Pipeline — ma'lumot yoki ishning bir qismdan keyingisiga o'tish oqimi. Masalan, buyurtma React'dan Node.js'ga, undan PostgreSQL'ga o'tadi.
+  - To'g'ri: To'g'ri! Pipeline — ma'lumot yoki ishning bir qismdan keyingisiga o'tish oqimi. Masalan, buyurtma React'dan NestJS'ga, undan PostgreSQL'ga o'tadi.
   - 1-variant: Bitta fayl emas — bir-biriga ma'lumot uzatadigan qismlar.
   - 2-variant: Faqat frontend emas — ma'lumot bir necha qism orqali o'tadi.
   - 3-variant: Aksincha — pipeline aynan qismlar bir-biriga ulanganda paydo bo'ladi.
@@ -121,25 +128,25 @@ Holat: 05.10.2026 — kodga mos
 - Eyebrow: Ulanishlar · jonli
 - Sarlavha: Ulanishlarni prompt bilan quring
 - Mentor: Har ulanish uchun AI'ga prompt yuborasiz — AI kod yozadi, ulanish yonadi. To'rttalasini ulang, keyin «Buyurtma yuborish»ni bosing.
-- Doska: React · Node.js · PostgreSQL · Telegram · AI (ulangan qism yonadi)
-- Ulanish tugmalari (har birida: prompt yuborish → ulandi): React → Node · Node → PostgreSQL · Node → Telegram · Node → AI
+- Doska: React · NestJS · PostgreSQL · Telegram · AI (ulangan qism yonadi)
+- Ulanish tugmalari (har birida: prompt yuborish → ulandi): React → NestJS · NestJS → PostgreSQL · NestJS → Telegram · NestJS → AI
 - O'ng ustun (hech biri bosilmaganda): Ulanishni bosing — promptni va AI yozgan kodni ko'rasiz.
 - Bosilganda — yorliq «<ulanish> — promptingiz», qo'shtirnoqdagi prompt va AI kodi:
-  - React → Node — "Buyurtma" tugmasi POST /orders so'rov yuborsin
+  - React → NestJS — "Buyurtma" tugmasi POST /buyurtma so'rovini yuborsin — taom va manzil bilan
     ```js
-    fetch(API + "/orders", { method: "POST", body })
+    fetch(BACKEND + '/buyurtma', { method: 'POST', body })
     ```
-  - Node → PostgreSQL — Buyurtmani orders jadvaliga INSERT qil
+  - NestJS → PostgreSQL — Buyurtmani buyurtmalar jadvaliga yoz, manba — sayt
     ```js
-    INSERT INTO orders(mahsulot, soni, narx) VALUES(...)
+    this.buyurtmalar.yoz(null, pitsa.nom, manzil, 'sayt')
     ```
-  - Node → Telegram — Adminga "Yangi buyurtma" xabar yubor
+  - NestJS → Telegram — Adminga "Yangi buyurtma" xabar yubor
     ```js
-    bot.sendMessage(ADMIN_ID, "Yangi buyurtma...")
+    this.telegram.sendMessage(config.ADMIN_CHAT_ID, matn)
     ```
-  - Node → AI — Mijoz savolini Claude'ga yuborib javob ol
+  - NestJS → AI — POST /savol: mijoz savolini Gemini'ga yuborib javob ol
     ```js
-    claude.messages.create({ messages: [...] })
+    const javob = await this.ai.javob(body.savol)
     ```
 - Tugma (4 ta ulangach): ▶ Buyurtma yuborish
 - Natija: Tizim ishladi! — Buyurtma Database'ga saqlandi → admin Telegram'da xabar oldi. Mijoz savol yozsa — AI javob beradi.
@@ -153,9 +160,9 @@ Holat: 05.10.2026 — kodga mos
 - Karta «PROMPT:»
   - Noaniq: «buyurtma qismini yoz»
     - O'ngda: AI taxmin qiladi — Qaysi manzil? Qaysi jadval? Javob qanday? AI o'zicha taxmin qiladi — natija ko'pincha chala yoki noto'g'ri.
-  - Aniq: «Express POST /orders: req.body'dan {mahsulot, soni} ol, orders jadvaliga INSERT qil, 201 qaytar»
+  - Aniq: «NestJS POST /buyurtma: body'dan {taom, manzil} ol, buyurtmalar jadvaliga yoz, { ok: true, id } qaytar»
     - O'ngda: AI aniqroq yozadi — Manzil, jadval va javob aniq aytilgan — AI kerakli kodni yozishi ancha osonlashadi. Baribir sinab ko'rasiz.
-    - Izoh: `req.body` — mijoz yuborgan ma'lumot · `201` — «yangi yozuv yaratildi» degan server javobi
+    - Izoh: `body` — mijoz yuborgan ma'lumot · `{ ok: true, id }` — «buyurtma yozildi» degan server javobi
 - Ikkalasi ko'rilgach: Yaxshi prompt: nima, qayerda, qanday natija — aniq ayting.
 - Tugmalar: Orqaga · Ikkalasini ko'ring → Davom etish
 
@@ -166,14 +173,14 @@ Holat: 05.10.2026 — kodga mos
 - Chap ustun — 5 qadam yo'lagi (o'tgani ✓): 1 · PROMPT · 2 · AI KOD · 3 · TEST · 4 · TUZATISH · 5 · QAYTA TEST
 - Tugma: ▶ Siklni boshlash → Keyingi qadam →
 - O'ng ustun — joriy qadam kartasi (yorliq, matn, izoh):
-  1. 1 · PROMPT — «Express POST /orders yoz: req.body'dan mahsulot va soni ol, orders jadvaliga INSERT qil, 201 qaytar.» — Aniq topshiriq berasiz.
+  1. 1 · PROMPT — «NestJS'da POST /buyurtma yoz: body'dan taom va manzil ol, buyurtmalar jadvaliga yoz, { ok: true, id } qaytar.» — Aniq topshiriq berasiz.
   2. 2 · AI KOD — AI kod yozadi. Siz o'qiysiz va tushunasiz.
      ```js
-     app.post("/orders", async (req, res) => { await db.query("INSERT ..."); res.status(201).json(ok); })
+     @Post() async yarat(@Body() body) { const b = await this.buyurtmalar.yoz(null, body.taom, body.manzil); return { ok: true, id: b.id } }
      ```
-  3. 3 · TEST — Buyurtma yuborib ko'rasiz… Xato: narx (price) bo'sh (NULL) saqlanyapti! — Sinab ko'rmasangiz, xatoni bilmaysiz.
-  4. 4 · TUZATISH — «INSERT so'roviga narx (price) ustunini ham qo'sh.» — Aniq tuzatish — butun kodni qayta yozdirmaysiz.
-  5. 5 · QAYTA TEST — Ishladi! Narx ham saqlandi. — Bitta ulanish tayyor — keyingisiga o'tamiz.
+  3. 3 · TEST — Saytdan buyurtma yuborasiz… Xato: manba ustunida «bot» turibdi — sayt buyurtmasi bot buyurtmasi deb yozilyapti! — Sinab ko'rmasangiz, xatoni bilmaysiz.
+  4. 4 · TUZATISH — «Yozishda manba ustuniga 'sayt' ni ham ber.» — Aniq tuzatish — butun kodni qayta yozdirmaysiz.
+  5. 5 · QAYTA TEST — Ishladi! Endi manba ustunida — sayt. — Bitta ulanish tayyor — keyingisiga o'tamiz.
 - Xulosa (5-qadamda): **Prompt → AI kod → Test → Xato → Tuzatish → Qayta test.** Har ulanish shunday quriladi.
 - Tugmalar: Orqaga · Siklni kuzating (N/5) → Davom etish
 
@@ -183,10 +190,10 @@ Holat: 05.10.2026 — kodga mos
 - Savol: Qaysi prompt yaxshiroq natija beradi?
   - «Menga yaxshi ishlaydigan buyurtma sahifasi qilib ber»
   - «Buyurtma bilan bog'liq kerakli kodlarni o'zing yoz»
-  - ✔ «POST /orders yoz: body'dan mahsulot va soni ol, Database'ga saqla»
+  - ✔ «POST /buyurtma yoz: body'dan taom va manzil ol, Database'ga saqla»
   - «Buyurtmalarni o'zing bilganingcha qilib hal qilaver»
 - Javob izohlari:
-  - To'g'ri: To'g'ri! Bu promptda nima (POST /orders), kirish (body) va amal (Database'ga saqlash) aniq aytilgan. AI kerakli kodni yozishi ancha osonlashadi.
+  - To'g'ri: To'g'ri! Bu promptda nima (POST /buyurtma), kirish (body) va amal (Database'ga saqlash) aniq aytilgan. AI kerakli kodni yozishi ancha osonlashadi.
   - 1-variant: Juda umumiy — AI nimani, qanday qilishni bilmaydi.
   - 2-variant: Noaniq — qaysi kod, nima uchun?
   - 4-variant: «O'zing bilganingcha» — nazoratni yo'qotasiz.
@@ -212,7 +219,7 @@ Holat: 05.10.2026 — kodga mos
 - Mentor: Qismlarni ulaganda eng ko'p uchraydigan xatolardan biri — ulanish manzili. Belgini o'qing, sababini toping.
 - Karta «BELGI»: Mijoz «Buyurtma» bosadi — lekin hech narsa bo'lmaydi. Konsolda: `Failed to fetch`. Backend ishlayapti, Database ham.
 - Yorliq: Sababni tanlang
-  - Mahsulot rasmining rangi noto'g'ri
+  - Pitsa rasmining rangi noto'g'ri
   - ✔ Frontend'dagi backend manzili (URL) noto'g'ri
   - Sahifadagi logotip juda kichik
 - Noto'g'ri sabab bosilsa — u ✗ bilan silkinadi, matn chiqmaydi.
@@ -242,7 +249,7 @@ Holat: 05.10.2026 — kodga mos
 - Sarlavha: To'liq hikoya: 5 qism → bitta tizim
 - Mentor: Bir o'quvchi tizimni qanday ulagani — 4 qadam. Har qatorni bosing.
 - Karta «Tizimni ulash — 4 qadam» (4 qator, bosilgani ✓ bilan):
-  - BO'LDI · Tizimni 4 ta ulanishga bo'ldi: React→Node, Node→Database, Node→bot, Node→AI
+  - BO'LDI · Tizimni 4 ta ulanishga bo'ldi: React→NestJS, NestJS→Database, NestJS→bot, NestJS→AI
   - PROMPT · Har ulanish uchun aniq prompt yozdi
   - TEST · Har qadamda sinab, xato topib tuzatdi
   - ISHLADI · Bitta buyurtma Database'ga yozildi, admin xabar oldi
@@ -270,26 +277,26 @@ Holat: 05.10.2026 — kodga mos
 - Mentor: Mijoz «Buyurtma» bosdi. Bosqichlarni to'g'ri tartibda joylang — buyurtma qayerdan qayerga o'tadi?
 - Sudrab joylash: 5 ta raqamli katak (har birida «bu yerga qo'ying»), ostida aralash bo'laklar. To'g'ri tartib:
   1. React — mijoz «Buyurtma» bosadi
-  2. React — POST /orders so'rovini yuboradi
-  3. Node.js — so'rovni qabul qiladi
+  2. React — POST /buyurtma so'rovini yuboradi
+  3. NestJS — so'rovni qabul qiladi
   4. PostgreSQL — buyurtmani saqlaydi
   5. Telegram — adminga xabar boradi
 - Hamma katak to'lib, tartib xato bo'lsa: Tartib xato — bo'lakni bosib qaytaring va qayta joylang.
-- To'g'ri bo'lsa: ✓ Buyurtma yo'li tayyor: **Bosish → So'rov → Node.js → PostgreSQL → Telegram**. AI esa alohida yo'lda — mijoz savol berganda ishlaydi.
+- To'g'ri bo'lsa: ✓ Buyurtma yo'li tayyor: **Bosish → So'rov → NestJS → PostgreSQL → Telegram**. AI esa alohida yo'lda — mijoz savol berganda ishlaydi.
 - Tugmalar: Orqaga · Buyurtma yo'lini yig'ing → Davom etish
 
 ## 17 · Amaliyot · VS Code
 - Eyebrow: Amaliyot · VS Code
 - Sarlavha: Tizimingizni AI bilan ulang
 - Mentor: Bu topshiriqni **o'z kompyuteringizda** bajaring. Har bosqichni bajarib, belgilab boring. Tugagach **«Bajardim»** tugmasini bosing — ustoz kuzatib turadi.
-- Karta «TOPSHIRIQ»: O'z mini-tizimingizni qadamma-qadam ulang: har ulanish uchun aniq prompt yozing, AI kodini o'qing, sinab ko'ring. Bugun asosiy ikki ulanishni quramiz; Telegram va AI ulanishi — qo'shimcha qadam.
-- Yorliq: Bosqichlar — belgilab boring (bosilgani ✓ bilan)
-  1. Loyihani oching: `frontend` (React) va `backend` (Node.js) papkalari
-  2. 1-ulanish: React → Node.js — «`POST /orders` yuboradigan tugma yoz» deb prompt bering
-  3. AI kodini o'qing: `fetch` to'g'ri backend manziliga ketyaptimi?
-  4. 2-ulanish: Node.js → PostgreSQL — «buyurtmani `orders` jadvaliga `INSERT` qil» prompti
-  5. Boshidan oxirigacha sinang: bitta «Buyurtma» bosing — buyurtma Database'da paydo bo'ldimi?
-- Izoh: Qo'shimcha: Node.js → Telegram (adminga xabar) yoki Node.js → AI (savolga javob) ulanishini ham quring.
+- Karta «TOPSHIRIQ»: AvtoPizza tizimingizni qadamma-qadam ulang: har ulanish uchun aniq prompt yozing, AI kodini o'qing, sinab ko'ring. Bugun asosiy ikki ulanishni quramiz; Telegram va AI ulanishi — qo'shimcha qadam.
+- Bosqichlar, yorliqsiz ✎ F-1015-166 (bosilgani ✓ bilan)
+  1. Loyihani oching: `web/` (React sayt) va `src/` (NestJS Backend) papkalari
+  2. 1-ulanish: React → NestJS — «Buyurtma tugmasi `POST /buyurtma` so'rovini `taom` va `manzil` bilan yuborsin» deb prompt bering
+  3. AI kodini o'qing: `fetch` to'g'ri backend manziliga (`BACKEND`) ketyaptimi?
+  4. 2-ulanish: NestJS → PostgreSQL — «`POST /buyurtma` buyurtmani `buyurtmalar` jadvaliga `manba: 'sayt'` bilan yozsin» prompti
+  5. Boshidan oxirigacha sinang: bitta «Buyurtma» bosing — buyurtma `buyurtmalar` jadvalida paydo bo'ldimi?
+- Izoh: Qo'shimcha: NestJS → Telegram (adminga xabar) yoki NestJS → AI (`POST /savol` — savolga javob) ulanishini ham quring.
 - Tugma: Yana N qadam → Bajardim → ✓ Bajarildi — ustozni kuting
 - Bajarilgach: Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.
 - Tugmalar: Orqaga · Avval bajaring → Davom etish
@@ -310,7 +317,7 @@ Holat: 05.10.2026 — kodga mos
 - Jonli viktorina tugmasi: CODE STRIKE · kutish holatida: Mentorni kuting
 - Karta «Endi siz bilasiz»:
   - Qismlar bir-biriga ma'lumot uzatsa, ular bitta tizim bo'lib ishlaydi
-  - Pipeline — ma'lumotning qismdan qismga o'tish oqimi; u Node.js'dan tarmoqlanadi
+  - Pipeline — ma'lumotning qismdan qismga o'tish oqimi; u NestJS'dan tarmoqlanadi
   - AI bilan kod yozish sikli: prompt → kod → test → tuzatish → qayta test
   - Aniq prompt aniqroq kod olishga yordam beradi; AI kodini doim o'qing
   - Ulanish xatolari boshidan oxirigacha (end-to-end) test bilan topiladi
@@ -322,22 +329,23 @@ Holat: 05.10.2026 — kodga mos
   - Izoh: Keyingi dars — React Native: tizimingizga mobil ilova qo'shamiz!
 - Nishonlaringiz — N/4 (olingan nishonda nomi va tavsifi, olinmaganida faqat nomi)
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10, S1-A): uy vazifasi kartasi P-025 — sarlavha «Uyda nima qilasiz?» (bannerdagi «Uyga vazifa» bilan takror emas); maydonlar: Kim uchun — o'z loyihangiz · Nechta — 1 to'liq oqim · Muddat — keyingi darsgacha (qiymatlar topshiriq matnidan); qadamlar raqam-doira; «Keyingi dars» karta ichida; bezak emoji olindi.
 
 ## Kartochkalar
 Oyna: Takrorlash — kartochkalar. Hisoblagichlar: ↻ O'rganilmoqda · N · ✓ Bildim · N. Tugmalar: ✗ Takrorlash · ✓ Bildim.
 
 | Old tomon (savol) | Orqa (javob) | Izoh |
 |---|---|---|
-| Pipeline nima degani? | Ma'lumotning qismdan qismga o'tish oqimi | Masalan: React → Node.js → PostgreSQL |
+| Pipeline nima degani? | Ma'lumotning qismdan qismga o'tish oqimi | Masalan: React → NestJS → PostgreSQL |
 | Tizim bilan pipeline bir narsami? | Yo'q | Tizim — hamma qismlar; pipeline — ular orasidagi oqim |
-| Mijoz ko'radigan sahifani nima chizadi? | React | Frontend: mahsulotlar va «Buyurtma» tugmasi |
-| Bu loyihada so'rovlarni qabul qiladigan qism qaysi? | Node.js | Backend: Database, bot va AI bilan ham u ishlaydi |
-| Buyurtmalar qayerda saqlanadi? | PostgreSQL | Database: products va orders jadvallari |
-| Yangi buyurtmada adminga kim xabar yuboradi? | Telegram bot | Xabarni unga Node.js yuboradi |
-| AI tizimda qachon ishlaydi? | Node.js uni chaqirganda | Masalan, mijoz savol yozganda |
+| Mijoz ko'radigan sahifani nima chizadi? | React | Frontend: pitsalar menyusi va «Buyurtma» tugmasi |
+| Bu loyihada so'rovlarni qabul qiladigan qism qaysi? | NestJS | Backend: Database, bot va AI bilan ham u ishlaydi |
+| Buyurtmalar qayerda saqlanadi? | PostgreSQL | Database: buyurtmalar jadvali |
+| Yangi buyurtmada adminga kim xabar yuboradi? | Telegram bot | Xabarni unga NestJS yuboradi |
+| AI tizimda qachon ishlaydi? | NestJS uni chaqirganda | Masalan, mijoz savol yozganda |
 | AI bilan kod yozish sikli qanday? | Prompt → kod → test → tuzatish → qayta test | Har ulanish shunday quriladi |
 | AI yozgan kodni nima qilish kerak? | O'qib tushunish | Ko'r-ko'rona ishonsangiz, AI xatosi sizniki bo'ladi |
-| Aniq prompt nimalarni aytadi? | Nima, qayerda, qanday natija | «Sayt qil» emas, «POST /orders yoz» |
+| Aniq prompt nimalarni aytadi? | Nima, qayerda, qanday natija | «Sayt qil» emas, «POST /buyurtma yoz» |
 | Konsolda «Failed to fetch» chiqsa, avval nimani tekshirasiz? | Frontend so'rov yuborayotgan backend manzilini | Server ishlayaptimi va CORS ruxsat beryaptimi — ham tekshiriladi |
 | Kodni yozgandagi xato inglizcha qanday ataladi? | Bug | Topib tuzatish — debugging |
 
@@ -356,9 +364,9 @@ Oyna: Takrorlash — kartochkalar. Hisoblagichlar: ↻ O'rganilmoqda · N · ✓
 Oyna yorlig'i: Qayta tushuntirish · tugmalar: ← Oldingi · Keyingisi → · oxirgi kartada: ✓ Tushunarli — davom etamiz
 
 1. 1-savol (4-ekran) — «Pipeline — ma'lumot oqimi»
-   - Qismlar ulanadi — React, Node.js, Database, bot, AI.
-   - Ma'lumot qismdan qismga o'tadi — Masalan, buyurtma React'dan Node.js'ga, undan **Database'ga**.
-   - Node.js'dan bir nechta yo'l chiqadi — Database, bot, AI.
+   - Qismlar ulanadi — React, NestJS, Database, bot, AI.
+   - Ma'lumot qismdan qismga o'tadi — Masalan, buyurtma React'dan NestJS'ga, undan **Database'ga**.
+   - NestJS'dan bir nechta yo'l chiqadi — Database, bot, AI.
    - Sinfga savol: Tizim bilan pipeline'ning farqi nima?
 2. 2-savol (6-ekran) — «AI bilan kod — natijani siz tekshirasiz»
    - Topshiriq berasiz — **Aniq topshiriq** berasiz.
@@ -369,7 +377,7 @@ Oyna yorlig'i: Qayta tushuntirish · tugmalar: ← Oldingi · Keyingisi → · o
    - Nima, qayerda, qanday natija — **Nima** qilish, **qayerda**, qanday **natija** — aniq aytiladi.
    - Noaniq — taxmin — Noaniq prompt bilan AI **taxmin qiladi**.
    - Baribir sinaysiz — Aniq prompt yordam beradi, lekin **baribir sinaysiz**.
-   - Sinfga savol: Qaysi prompt aniqroq: «sayt qil» yoki «POST /orders yoz»?
+   - Sinfga savol: Qaysi prompt aniqroq: «sayt qil» yoki «POST /buyurtma yoz»?
 4. 4-savol (13-ekran) — «Ulanish xatosi»
    - Ko'p uchraydigan sabab — Frontend **noto'g'ri manzilga** so'rov yuboradi.
    - Boshqa sabablar — Server ishlamayapti, CORS ruxsat bermayapti.
@@ -395,7 +403,7 @@ Savol vaqti 15 soniya. Reytingdagi savol yorliqlari (dars testlari): 1 — Pipel
    - To'g'ridan-to'g'ri Telegram'ga
 4. «Failed to fetch» xatosining ko'p uchraydigan sababi?
    - Logotip juda kichik bo'lgani
-   - Mahsulot rasmining rangi
+   - Pitsa rasmining rangi
    - Sahifa sarlavhasi noto'g'riligi
    - ✔ Backend manzili noto'g'riligi
 5. Aniq prompt qanday bo'ladi?
@@ -418,15 +426,15 @@ Savol vaqti 15 soniya. Reytingdagi savol yorliqlari (dars testlari): 1 — Pipel
    - Telegram (bot)
    - AI (yordamchi xizmat)
    - ✔ React (frontend)
-9. Bu loyihada Node.js qanday vazifani bajaradi?
+9. Bu loyihada NestJS qanday vazifani bajaradi?
    - ✔ So'rovlarni qabul qilib, boshqaradi
    - Faqat rasm va chizmalar chizadi
    - Ma'lumotni ko'rmay o'tkazib yuboradi
    - Foydalanuvchi parolini ko'rsatadi
 10. Buyurtma ma'lumoti qayerda saqlanadi?
-   - Telegram bot xabarida
-   - ✔ Database'dagi orders jadvalida
-   - Brauzer tarixida
+   - Adminga borgan Telegram xabarida
+   - ✔ Database'dagi buyurtmalar jadvalida
+   - Mijoz brauzerining tarixida
    - Hech qayerda saqlanmaydi
 11. AI bilan kod yozish sikli qanday?
    - Prompt → kod → darhol ishlatish

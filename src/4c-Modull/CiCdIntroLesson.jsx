@@ -39,7 +39,7 @@ const tr = (node) => {
 };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 
 
 
@@ -1113,7 +1113,7 @@ const Screen8 = (props) => (
   <QuestionScreen {...props} idx={8} scope="module-mikro" tip={{ uz: "💡 CI va CD ekranlarini eslang — har harf lentaning qaysi qismini bajarardi?", ru: '💡 Вспомните экраны про CI и CD — какую часть ленты выполняла каждая буква?' }} eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Практика · вопрос 2' })}
     questionText="CI va CD orasidagi farq nima?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>CI</span> va <span className="mono" style={{ color: T.accent }}>CD</span> orasidagi <span className="italic" style={{ color: T.accent }}>farq</span> nima?</>, ru: <>В чём <span className="italic" style={{ color: T.accent }}>разница</span> между <span className="mono" style={{ color: T.accent }}>CI</span> и <span className="mono" style={{ color: T.accent }}>CD</span>?</> })}</h2></>}
-    options={[{ uz: "CI — har o'zgarishni tekshiradi; CD — tekshirilgan yukni uchiradi", ru: 'CI проверяет каждое изменение; CD отправляет проверенный груз в полёт' }, { uz: "CI va CD — ikkalasi ham bir xil narsaning boshqa nomi, xolos", ru: 'CI и CD — просто два названия одного и того же' }, { uz: "CI uchirish ishini qiladi, CD esa faqat tekshirib qo'ya qoladi", ru: 'CI занимается отправкой, а CD только проверяет' }, { uz: "Ikkalasi ham faqat sayt dizayni bilan shug'ullanadigan vositalar", ru: 'Оба — инструменты только для дизайна сайта' }]} correctIdx={0}
+    options={[{ uz: "CI — har o'zgarishni tekshiradi; CD — tekshirilgan yukni uchiradi", ru: 'CI проверяет каждое изменение; CD отправляет проверенный груз в полёт' }, { uz: "CI va CD — ikkalasi ham bir xil narsaning boshqa nomi, xolos", ru: 'CI и CD — просто два названия одного и того же' }, { uz: "CI uchirish ishini qiladi, CD esa faqat tekshirib qo'ya qoladi", ru: 'CI занимается отправкой, а CD только проверяет' }, { uz: "Ikkalasi ham faqat sayt dizayni bilan shug'ullanadigan dasturlar", ru: 'Оба — инструменты только для дизайна сайта' }]} correctIdx={0}
     explainCorrect={{ uz: "Integration — tekshirish, Deployment — uchirish.", ru: 'Integration — объединить и проверить, Deployment — отправить.' }}
     explainWrong={{
       1: { uz: "Bir xil emas — ular lentaning ikki xil qismi.", ru: 'Не одно и то же — это две разные части ленты.' },
@@ -1166,7 +1166,6 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     }
     const tick = (i) => {
       if (i >= POINTS.length) {
-        pushLog(tr({ uz: "▸ ✈️ Uchirish — samolyot ko'tarildi ✓", ru: '▸ ✈️ Взлёт — самолёт поднялся ✓' }), 'ok');
         setResult('success'); setEverSucceeded(true); setRunning(false); runningRef.current = false; setSc(n => n + 1);
         return;
       }
@@ -1584,7 +1583,7 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3, mexanik ketma-ketlik yo'q).
 // 🎓 Metodist: savol matni va variant uzunliklari sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: "Pipeline (lenta) nima?", ru: 'Что такое pipeline (лента)?' }, opts: [{ uz: "Kodni chiroyli qilib formatlaydigan alohida dastur", ru: 'Отдельная программа, которая красиво форматирует код' }, { uz: "Faqat testlarni yozib beradigan yordamchi vosita", ru: 'Вспомогательный инструмент, который только пишет тесты' }, { uz: "Push qilingan kodni avtomatik tekshiradigan ketma-ket nuqtalar", ru: 'Цепочка точек, автоматически проверяющая запушенный код' }, { uz: "Serverni qo'lda qayta ishga tushiruvchi maxsus buyruq, hech narsani tekshirmaydi", ru: 'Специальная команда ручного перезапуска сервера, ничего не проверяет' }], correct: 2 },
+  { q: { uz: "Pipeline (lenta) nima?", ru: 'Что такое pipeline (лента)?' }, opts: [{ uz: "Kodni chiroyli qilib formatlaydigan alohida dastur", ru: 'Отдельная программа, которая красиво форматирует код' }, { uz: "Faqat testlarni yozib beradigan yordamchi dastur", ru: 'Вспомогательный инструмент, который только пишет тесты' }, { uz: "Push qilingan kodni avtomatik tekshiradigan ketma-ket nuqtalar", ru: 'Цепочка точек, автоматически проверяющая запушенный код' }, { uz: "Serverni qo'lda qayta ishga tushiruvchi maxsus buyruq, hech narsani tekshirmaydi", ru: 'Специальная команда ручного перезапуска сервера, ничего не проверяет' }], correct: 2 },
   { q: { uz: "`npm install` qaysi nuqtada ishlaydi?", ru: 'На какой точке работает `npm install`?' }, opts: [{ uz: "Yig'ish (install) — birinchi nuqtada ishlaydi", ru: 'Сборка (install) — работает на первой точке' }, { uz: "Uchirish (deploy) nuqtasida, eng oxirida ishga tushadi", ru: 'На точке Взлёт (deploy), запускается в самом конце' }, { uz: "O'lcham ramkasi (lint) nuqtasida ishlaydi", ru: 'На точке рамки (lint)' }, { uz: "O'rash (build) nuqtasida bajariladi", ru: 'Выполняется на точке Упаковка (build)' }], correct: 0 },
   { q: { uz: "Test qizil (FAIL) bo'lsa nima bo'ladi?", ru: 'Что будет, если тест красный (FAIL)?' }, opts: [{ uz: "Lenta baribir davom etadi va uchirishni to'liq bajaraveradi", ru: 'Лента всё равно продолжит и полностью выполнит взлёт' }, { uz: "Lenta shu nuqtada to'xtaydi, keyingisi o'tkazib yuboriladi", ru: 'Лента остановится на этой точке, следующие будут пропущены' }, { uz: "Server butunlay o'chib, ishlamay qoladi", ru: 'Сервер полностью выключится и перестанет работать' }, { uz: "Kod xatosi avtomatik ravishda o'zi tuzatiladi", ru: 'Ошибка в коде исправится сама, автоматически' }], correct: 1 },
   { q: { uz: "CI (Continuous Integration) nimani anglatadi?", ru: 'Что означает CI (Continuous Integration)?' }, opts: [{ uz: "Sayt dizaynini doimiy yangilab turish jarayoni", ru: 'Процесс постоянного обновления дизайна сайта' }, { uz: "Serverni uzluksiz kuzatib turadigan monitoring", ru: 'Мониторинг, который непрерывно следит за сервером' }, { uz: "Kodni qo'lda birlashtiradigan eski usul", ru: 'Старый способ объединять код вручную' }, { uz: "Har push'ni birlashtirib avtomatik tekshirish", ru: 'Объединять каждый push и автоматически проверять' }], correct: 3 },
@@ -2354,7 +2353,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
+    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
@@ -2373,13 +2372,13 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
   return (
-    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className="screen">
         <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'CI/CD lentasini tushundingiz', ru: 'Вы разобрались в ленте CI/CD' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi kod o'zgarishini <span className="italic" style={{ color: T.accent }}>lenta</span> chiqaradi.</>, ru: <>Теперь изменения кода выкатывает <span className="italic" style={{ color: T.accent }}>лента</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : undefined} />
         </div>
-        {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+        {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
         <div className="hw-big-wrap fade-up d4">
           <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
@@ -3302,8 +3301,8 @@ export default function CiCdIntroLesson({ lang: langProp, onFinished, liveToken 
         .dd-slot .dd-chip { min-width: 168px; text-align: left; }
         .dd-pool { display: flex; flex-wrap: wrap; gap: 9px; min-height: 48px; padding: 10px; border-radius: 14px; background: ${T.bg}; position: relative; z-index: 1; }
         .dd-pool-empty { color: ${T.ink3}; font-size: 12.5px; font-style: italic; align-self: center; }
-        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: ${T.accent}; background: ${T.paper}; border: 2px solid ${T.accent}; border-radius: 11px; padding: 9px 13px; cursor: grab; touch-action: none; box-shadow: 0 6px 14px -8px rgba(${T.shadowBase},.35); transition: transform .12s; user-select: none; } /* F-0926-06: sudraladigan chip — oq fon + accent chegara (159/15) */
-        .dd-chip::before { content: '⠿'; margin-right: 7px; opacity: .55; font-weight: 400; } /* F-0926-06 (159/15): ushlagich */
+        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 11px; padding: 11px 15px; cursor: grab; touch-action: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: transform .12s; user-select: none; }
+        .dd-chip::before { content: '⠿'; margin-right: 7px; opacity: .75; font-weight: 400; } /* F-1015-352 (F-1002-59): to'ldirilgan gradient chip, ⠿ ushlagich sudralishni aytadi */
         .dd-chip:hover { transform: translateY(-2px); }
         .dd-chip:active { cursor: grabbing; }
         .dd-done { font-weight: 700; color: ${T.success}; font-size: 14.5px; }

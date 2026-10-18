@@ -1,0 +1,38 @@
+{"key":"m5-07","lid":"bot-full-project-05-07-v18","s":6,"total":12,"z":[{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"npm run start:dev"}]}
+{"key":"m6-02","lid":"pm-m6d2-v1","s":15,"total":16,"z":[{"el":"span.hw-tok","quti":"hw-big","tash":-38,"ichki":-6,"txt":"o'lchov"}]}
+{"key":"m6-09","lid":"rn-basics-06-09-v18","s":19,"total":20,"z":[{"el":"span.cs-tok","quti":"cs-cap","tash":-35,"ichki":-5,"txt":"Pressable"}]}
+{"key":"m6-12","lid":"pm-m6d12-v1","s":15,"total":16,"z":[{"el":"span.hw-tok","quti":"hw-big","tash":-20,"ichki":-24,"txt":"boshlanadi"}]}
+{"key":"m7-01","lid":"pm-m7d1-v1","s":11,"total":17,"z":[{"el":"span.","quti":"pp-kod","tash":-9,"ichki":-5,"txt":"{ joy: \"yo'l\", matn: \"Velosiped teshilsa"}]}
+{"key":"m7-03","lid":"pm-m7d3-v1","s":11,"total":17,"z":[{"el":"span.im-kd-iz","quti":"im-vsc","tash":46,"ichki":-46,"txt":"// sanoq.js — «Maydon» intervyulari: har"},{"el":"span.im-kd-iz","quti":"im-vsc","tash":67,"ichki":-67,"txt":"// Kodda shikoyatlarni bitta so'z bilan "},{"el":"span.im-kd-iz","quti":"im-vsc","tash":60,"ichki":-60,"txt":"// s — shu aylanishda sanalayotgan shiko"}]}
+{"key":"m7-05","lid":"m7-05-v1","s":5,"total":20,"z":[{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"transition: transform 0.15s;"}]}
+{"key":"m7-05","lid":"m7-05-v1","s":8,"total":20,"z":[{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"background-color: lightgray;"}]}
+{"key":"m7-12","lid":"m7-12-v1","s":1,"total":16,"z":[{"el":"b.ps-slayd-nom","quti":"ps-slayd","tash":-8,"ichki":-4,"txt":"Foydalanuvchi"}]}
+{"key":"m7-12","lid":"m7-12-v1","s":10,"total":16,"z":[{"el":"span.","quti":"ps-kod","tash":-9,"ichki":-5,"txt":"{ matn: \"O'tgan juma keldik — maydon ban"}]}
+{"key":"m8-06","lid":"m8-06-v1","s":0,"total":12,"z":[{"el":"div.ta-tel-manzil","quti":"ta-tel-manzil","tash":-6,"ichki":-2,"txt":"maydon-….netlify.app"}]}
+{"key":"m8-02","lid":"m8-02-event-tracking-v1","s":9,"total":18,"z":[{"el":"i.","quti":"hc-uch-k","tash":12,"ichki":-26,"txt":"→"},{"el":"i.","quti":"hc-uch-k","tash":12,"ichki":-26,"txt":"→"}]}
+{"key":"m8-06","lid":"m8-06-v1","s":1,"total":12,"z":[{"el":"div.ta-tel-manzil","quti":"ta-tel-manzil","tash":-6,"ichki":-2,"txt":"maydon-….netlify.app"},{"el":"div.ta-tel-manzil","quti":"ta-tel-manzil","tash":56,"ichki":-63,"txt":"maydon-….netlify.app/maxfiylik"}]}
+{"key":"m8-06","lid":"m8-06-v1","s":2,"total":12,"z":[{"el":"div.ta-tel-manzil","quti":"ta-tel-manzil","tash":-6,"ichki":-2,"txt":"maydon-….netlify.app"}]}
+{"key":"m8-05","lid":"m8-05-security-basics-v1","s":8,"total":18,"z":[{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"find({ where: { telefon } })"},{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"db('... WHERE telefon = $1', [telefon])"}]}
+{"key":"m8-06","lid":"m8-06-v1","s":7,"total":12,"z":[{"el":"div.ta-tel-manzil","quti":"ta-tel-manzil","tash":-6,"ichki":-2,"txt":"maydon-….netlify.app"}]}
+{"key":"m8-05","lid":"m8-05-security-basics-v1","s":11,"total":18,"z":[{"el":"span.xr-belgi-t","quti":"xr-belgi","tash":978,"ichki":-978,"txt":"Qidiruv so'rovida matn qo'shilmagan (par"},{"el":"span.xr-belgi-t","quti":"xr-belgi","tash":801,"ichki":-801,"txt":"Ism oddiy matn bo'lib chiqadi"},{"el":"span.xr-belgi-t","quti":"xr-belgi","tash":902,"ichki":-902,"txt":"JWT_SECRET faqat .env dan"}]}
+{"key":"m8-08","lid":"m8-08-v1","s":8,"total":12,"z":[{"el":"span.pu-sql-kod","quti":"pu-sql","tash":185,"ichki":-185,"txt":"SELECT variant,\n       COUNT(DISTINCT br"}]}
+{"key":"m8-09","lid":"m8-09-v1","s":6,"total":12,"z":[{"el":"p.pr-pt","quti":"pr-suhbat-t","tash":27,"ichki":-37,"txt":"Nega muhim: chegara saytda bo'lsa, Backe"},{"el":"p.pr-pt","quti":"pr-suhbat-t","tash":151,"ichki":-161,"txt":"Nega muhim: Backend kechiksa, ro'yxat jo"},{"el":"p.pr-pt","quti":"pr-suhbat-t","tash":28,"ichki":-38,"txt":"Taklif: o'yinchi sahifasidagi «yuklanmoq"}]}
+{"key":"m8-09","lid":"m8-09-v1","s":8,"total":12,"z":[{"el":"span.pr-rv-s","quti":"pr-rv-q","tash":181,"ichki":-181,"txt":"A — 42 tadan 12, B — 40 tadan 17; 82 ta "},{"el":"span.pr-rv-s","quti":"pr-rv-q","tash":215,"ichki":-215,"txt":"So'rovni saytsiz ham yuborsa bo'ladi; ch"},{"el":"span.pr-rv-iz","quti":"pr-rv-q","tash":87,"ichki":-87,"txt":"Backend kechiksa, ro'yxat bo'sh — «yukla"},{"el":"span.pr-rv-s","quti":"pr-rv-q","tash":50,"ichki":-49,"txt":"Tekshirdim, shunday: holat faqat o'yinch"}]}
+{"key":"m9-01","lid":"pm-m9d1-v1","s":0,"total":15,"z":[{"el":"i.","quti":"","tash":232,"ichki":-239,"txt":"Tanaffusda telefonni quvvatlash uchun bo"},{"el":"i.","quti":"","tash":285,"ichki":-292,"txt":"Velosiped g'ildiragi teshilsa, ustaxonan"},{"el":"i.","quti":"","tash":330,"ichki":-337,"txt":"Maydonga kelasiz — band; bo'sh vaqtni bi"},{"el":"i.","quti":"","tash":266,"ichki":-273,"txt":"Oshxonada bugun nima borligini bilish uc"}]}
+{"key":"m9-03","lid":"pm-m9d3-v1","s":1,"total":16,"z":[{"el":"span.io-yk-k","quti":"io-rj-y","tash":70,"ichki":-78,"txt":"o'yinchi, 16 yosh, o'yinni ko'pincha o'z"}]}
+{"key":"m9-04","lid":"pm-m9d4-v1","s":4,"total":16,"z":[{"el":"span.fi-yc-k","quti":"fi-yc","tash":6,"ichki":-13,"txt":"o'yinchi, 16 yosh, o'yinni ko'pincha o'z"}]}
+{"key":"m9-07","lid":"m9-07-v1","s":0,"total":20,"z":[{"el":"span.jt-maydon","quti":"jt-maydon","tash":0,"ichki":-5,"txt":"Nechta odam"}]}
+{"key":"m9-07","lid":"m9-07-v1","s":1,"total":20,"z":[{"el":"small.","quti":"bor","tash":1,"ichki":-1,"txt":"Siz"}]}
+{"key":"m9-07","lid":"m9-07-v1","s":15,"total":20,"z":[{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"cd {repo}"}]}
+{"key":"m9-08","lid":"m9-08-v1","s":15,"total":20,"z":[{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"git clone https://github.com/{login}/{re"}]}
+{"key":"m9-07","lid":"m9-07-v1","s":16,"total":20,"z":[{"el":"small.","quti":"bor","tash":1,"ichki":-1,"txt":"Siz"}]}
+{"key":"m10-08","lid":"pm-m10d8-v1","s":4,"total":12,"z":[{"el":"span.qs-url-t","quti":"qs-url","tash":17,"ichki":-27,"txt":"maydon-jamoa-….netlify.app/sanoq.html"},{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"SELECT nom, COUNT(DISTINCT qurilma_id) F"}]}
+{"key":"m10-05","lid":"m10-05-v1","s":14,"total":19,"z":[{"el":"span.bf-belgi","quti":"bf-belgi","tash":-6,"ichki":-2,"txt":"Ulangan"}]}
+{"key":"m10-10","lid":"pm-m10d10-v1","s":9,"total":16,"z":[{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"SELECT COUNT(*) FROM {jadval} WHERE namu"}]}
+{"key":"m10-12","lid":"pm-m10d12-v1","s":11,"total":16,"z":[{"el":"span.gp-bolak-q","quti":"gp-bolak","tash":180,"ichki":-190,"txt":"Tashkilotchi o'yinni e'lon qiladi, o'yin"}]}
+{"key":"m11-07","lid":"pm-m11d7-v1","s":1,"total":12,"z":[{"el":"code.","quti":"st-br-bar","tash":49,"ichki":-58,"txt":"maydon-jamoa-….netlify.app/oferta.html"}]}
+{"key":"m11-03","lid":"m11-03-v1","s":15,"total":20,"z":[{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"node -e \"console.log(require('crypto').r"}]}
+{"key":"m11-03","lid":"m11-03-v1","s":16,"total":20,"z":[{"el":"code.qcode","quti":"qcode","tash":0,"ichki":-6,"txt":"SELECT id FROM oyinchilar WHERE login = "}]}
+{"key":"m11-12","lid":"m11-12-v1","s":11,"total":12,"z":[{"el":"pre.sb-ai-sorov","quti":"sb-ai-sorov","tash":-11,"ichki":-1,"txt":"Sen tekshiruvchisan. Mahsulot: Maydon Ja"}]}
+{"key":"m12-04","lid":"m12-04-v1","s":3,"total":12,"z":[{"el":"span.q-joy","quti":"q-joy","tash":0,"ichki":-6,"txt":"{namuna yozuv}"}]}
+{"key":"m12-06","lid":"m12-06-v1","s":3,"total":12,"z":[{"el":"span.dp-tel-url","quti":"dp-tel-bar","tash":-6,"ichki":-4,"txt":"maydon-jamoa-….netlify.app"}]}

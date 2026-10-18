@@ -458,3 +458,31 @@ Statik qismi: `gates:qolip` q13–q16 (qolip-dars), `lint:emoji` qolip-rejim, `l
     «Keyingi dars — «…»» qatori, `LiveGate` sarlavhasi va YAKUNIY MD (DE-205) — `grep -rn "<eski nom>"` bo'sh chiqmaguncha.
 19. **Ikki zamonli so'z tekshiruvda.** Matn-tekshiruvi regex'ida `keyin`/`потом` kabi ikki zamonda keladigan so'z belgi bo'lmaydi; o'zgarganda ≥8 namuna
     (uz + ru, ikkala zamon) `node` bilan (PM-108).
+
+## 🔴 F-1015-359 OV-BANDLARI — PRAKTIKALARNI QISQARTIRISH (2026-10-17, 12 praktika 19–25 → 7–9 ekran)
+
+20. **`NavNext label` ga `{ uz, ru }` obyekti — oq ekran.** Ba'zi darslarning `NavNext` i `label` ni `tr()` qilmaydi; obyekt React bolasi bo'lib
+    tushadi va ekran oq qoladi (m4c-04 reja ekrani). Esbuild ham, `lint:jsx` ham ko'rmaydi. Ovlash: `grep -n "label={{" <fayl>` → o'sha darsning `NavNext`
+    ta'rifini oching: `tr(label)` yoki `nextLabel`/`_label` orqali tarjima qilinmasa — chaqiriqda `label={tr({…})}`. Isbot — ekranni brauzerda ochish (pageerror 0).
+21. **Ekranlar qisqarganda RECAPS boshqa savolga «Eslatma» chiqaradi** (16-bandning praktika ko'rinishi). Kalit eski raqamda qolsa ikki xil xato bo'ladi:
+    yangi raqamdagi boshqa savolga eski ekranning eslatmasi chiqadi (m4c-04, m3-13), yoki to'g'ri eslatma bor-u ko'rinmaydi (m4a-04, m4-10, m4-13).
+    Ovlash: har RECAPS kaliti ↔ `screens[kalit]` ballik savolmi va eslatma o'sha savol mavzusidami. Bir ballik savol qolgan darsda — bitta kalit, yangi raqam bilan.
+22. **Sudraladigan chip — faqat to'ldirilgan gradient (DE-159.15, F-1002-59).** Oq fon + kulrang chegara + qora matn (eski 26.09 varianti) — xato,
+    komponent nomi qanday bo'lishidan qat'i nazar (`.dd-chip`, `.ql-chip`, …). Ovlash: `cursor: grab` bor qoidalarni grep qiling, fonini tekshiring;
+    namuna-qator `src/6-Modull/SystemArchitectureLesson.jsx` `.dd-chip`. Oq matnli gradient chip kontrast-ro'yxatiga kiritilmaydi (foydalanuvchi qarori 17.10).
+23. **Yozma javobda harf (DE-211, F-1015-369).** Har `vsc-input`/kod maydoni validatorini o'qing: harf ahamiyatsiz joy (router manzili, fetch metodi, SQL so'zi,
+    o'quvchi ma'lumoti, `'`/`"`) qat'iy yozilgan bo'lsa — nuqson. JS farqlaydigan joyda «faqat harf farqi» izohi (`caseOnly`) yo'q bo'lsa — nuqson.
+    Brauzerda 3 yozuv bilan sinang: to'g'ri · harf farqi · boshqa xato (namuna `sinov/f369-harf.mjs`).
+
+24. **Yakun ekranida jim tugma (DE-220, F-1017-225).** `grep -n "catch { return; }\|catch (_e) { return; }" <fayl>` — foydalanuvchi bosadigan tugma ichida bo'lsa nuqson:
+    xato ko'rinadigan xabarga (`liveToast`) aylanadi, yo'l davom etadi (arena self-rejimda). «Yakunlash» tugmasi `<button … onClick={onFinish}>` bo'lsa — `FinishBtn` emas, nuqson
+    (bosilgach «Yakunlandi ✓» + xabar bo'lishi shart). Isbot — `vositalar/yakun-sinov-225.mjs` (solo · mentor tarmoqsiz · o'quvchi), `onFinished` aynan 1 marta.
+
+25. **Kesilgan ekranga tayangan matn/kod qoladi (F-1015-397 · 401, m4-14 · m4a-04).** Ekran olib tashlanganda keyingi ekranlar unga tayanadi: «yuqoridagi ro'yxatdan», «oldingi
+    qadamdagi kod», bir so'zli variant kartasi, yakun bandida yo'q ekranning natijasi. O'quvchi uchun topshiriq taxminga aylanadi. Ovlash: qisqartirilgan darsda har ekranning
+    matnini oching — «oldingi», «yuqorida», «bu kodni», «ro'yxatdan» so'zlari nimaga ishora qiladi, u ekran hali bormi; yakun/«Endi siz bilasiz» bandlari qolgan ekranlarga mosmi.
+    Isbot — RECAPS/yakun matni ↔ `screens` ro'yxati qo'lda solishtiriladi (21-band bilan birga).
+26. **O'lik ekran va o'lik kalit (F-1015-408…416, 9 dars, ≈2 900 qator).** Qisqartirishdan keyin faylda `screens` ga kirmagan `ScreenN` komponentlari, ularning CSS klasslari,
+    `INLINE_KEYS.practice` kabi ishlatilmagan kalitlar, flashcard/jonli-praktika qatlami qoladi. Ko'rinmaydi, lekin `lint:tell`/`emoji`/kontrast darvozalari o'sha o'lik kodga
+    yiqiladi va ekranlar soni bilan `SCREEN_META` mos kelmaydi. Ovlash: `python3 feedback/F-1015-amaliyot/seans-vositalar/qurish/olik_ekran_tahlil.py <jsx>` — ishlatilmagan
+    komponent/klass/kalit ro'yxati; 0 bo'lmasa — quruvchiga qaytariladi (tozalash `olik_tozalash.py`, sinov `olik_sinov.sh`, zaxira papkasi shart).

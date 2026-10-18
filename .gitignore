@@ -65,3 +65,8 @@ dist-internet
 dist-kompilyator
 # LMS yuklash paketlari (30 MB har biri, qo'lda yuklanadi)
 yuklash-*/
+dist-taqdimot
+dist-m7
+dist-m8
+dist-m9
+dist-m12

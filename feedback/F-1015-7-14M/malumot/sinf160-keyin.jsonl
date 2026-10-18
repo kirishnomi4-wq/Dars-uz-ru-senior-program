@@ -1,0 +1,1553 @@
+{"k":"m5-01","s":0,"tot":20,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m5-05","s":0,"tot":12,"eb":"LOYIHA KUNI · KIRISH","dis":[],"siljish":[]}
+{"k":"m5-04","s":0,"tot":20,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m5-03","s":0,"tot":20,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m5-02","s":0,"tot":16,"eb":"KIRISH · BOTLAR","dis":[],"siljish":[]}
+{"k":"m5-01","s":1,"tot":20,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m5-05","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[{"diff":-56,"chap":"DARS OXIRIDA — NAMUNA: AVTOPIZZA","ong":"BUGUNGI 3 QADAM"}]}
+{"k":"m5-04","s":1,"tot":20,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m5-03","s":1,"tot":20,"eb":"REJA","dis":[],"siljish":[{"diff":-56,"chap":"DARS OXIRIDA BU MENYUNING HAR QISMINI TU","ong":"BUGUNGI 4 QADAM"}]}
+{"k":"m5-02","s":1,"tot":16,"eb":"MAQSAD","dis":[],"siljish":[]}
+{"k":"m5-01","s":2,"tot":20,"eb":"TUSHUNCHA · UCH ASOS","dis":[],"siljish":[]}
+{"k":"m5-05","s":2,"tot":12,"eb":"TUSHUNCHA · REJA","dis":[],"siljish":[]}
+{"k":"m5-04","s":2,"tot":20,"eb":"TAJRIBA · HOLATSIZ BOT","dis":[],"siljish":[]}
+{"k":"m5-03","s":2,"tot":20,"eb":"TUSHUNCHA · TOKEN","dis":[],"siljish":[]}
+{"k":"m5-02","s":2,"tot":16,"eb":"MUHOKAMA · IKKI HOLAT","dis":[],"siljish":[]}
+{"k":"m5-01","s":3,"tot":20,"eb":"TUSHUNCHA · SKRIPT VA BOT","dis":[],"siljish":[]}
+{"k":"m5-05","s":3,"tot":12,"eb":"AMALIYOT 1 · REJA VA /START","dis":[],"siljish":[{"diff":-30,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: AVTOPIZZA"}]}
+{"k":"m5-02","s":3,"tot":16,"eb":"TEKSHIRUV · BOT VA ODAM","dis":[],"siljish":[]}
+{"k":"m5-03","s":3,"tot":20,"eb":"TUSHUNCHA · XABAR YO'LI","dis":[],"siljish":[]}
+{"k":"m5-04","s":3,"tot":20,"eb":"MARKAZIY · HOLAT","dis":[],"siljish":[]}
+{"k":"m5-01","s":4,"tot":20,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-05","s":4,"tot":12,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-04","s":4,"tot":20,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-03","s":4,"tot":20,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-02","s":4,"tot":16,"eb":"SINOV · ODAMLAR XARITASI","dis":[],"siljish":[]}
+{"k":"m5-01","s":5,"tot":20,"eb":"TUSHUNCHA · BOT API","dis":[],"siljish":[]}
+{"k":"m5-05","s":5,"tot":12,"eb":"TUSHUNCHA · AI KODI","dis":[],"siljish":[]}
+{"k":"m5-04","s":5,"tot":20,"eb":"KOD · DASTUR XOTIRASI","dis":[],"siljish":[]}
+{"k":"m5-02","s":5,"tot":16,"eb":"TEKSHIRUV · TANISH VA NOTANISH","dis":[],"siljish":[]}
+{"k":"m5-03","s":5,"tot":20,"eb":"KOD · /START","dis":[],"siljish":[]}
+{"k":"m5-01","s":6,"tot":20,"eb":"MARKAZIY · TOKEN","dis":[],"siljish":[]}
+{"k":"m5-05","s":6,"tot":12,"eb":"AMALIYOT 2 · JUFTLAR","dis":[],"siljish":[{"diff":-30,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: AVTOPIZZA"}]}
+{"k":"m5-04","s":6,"tot":20,"eb":"MARKAZIY · QAYTA ISHGA TUSHIRISH","dis":[],"siljish":[]}
+{"k":"m5-02","s":6,"tot":16,"eb":"BIZNES OLAMIDAN","dis":["2-bosqich","3-bosqich","4-bosqich","5-bosqich"],"siljish":[]}
+{"k":"m5-03","s":6,"tot":20,"eb":"KOD · CTX","dis":[],"siljish":[]}
+{"k":"m5-01","s":7,"tot":20,"eb":"MARKAZIY · HANDLERLAR","dis":[],"siljish":[]}
+{"k":"m5-05","s":7,"tot":12,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-04","s":7,"tot":20,"eb":"MUAMMO · IKKI MIJOZ","dis":[],"siljish":[]}
+{"k":"m5-02","s":7,"tot":16,"eb":"TEKSHIRUV · BITTA UNIVERSITET","dis":[],"siljish":[]}
+{"k":"m5-03","s":7,"tot":20,"eb":"TUSHUNCHA · IKKI XIL TUGMA","dis":[],"siljish":[{"diff":36,"chap":"Inline tugma — xabarning tagida, unga yo","ong":"bot.js"}]}
+{"k":"m5-01","s":8,"tot":20,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-05","s":8,"tot":12,"eb":"AMALIYOT 3 · SINASH","dis":[],"siljish":[{"diff":-30,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: AVTOPIZZA"}]}
+{"k":"m5-04","s":8,"tot":20,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-03","s":8,"tot":20,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-02","s":8,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m5-05","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m5-01","s":9,"tot":20,"eb":"HAYOTIY · BIR VAQTDA","dis":[],"siljish":[]}
+{"k":"m5-04","s":9,"tot":20,"eb":"TUZATISH · SESSIYA","dis":[],"siljish":[]}
+{"k":"m5-03","s":9,"tot":20,"eb":"MARKAZIY · UCH HODISA","dis":[],"siljish":[]}
+{"k":"m5-02","s":9,"tot":16,"eb":"SINOV · TO'RT GURUH","dis":[],"siljish":[]}
+{"k":"m5-05","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m5-01","s":10,"tot":20,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-04","s":10,"tot":20,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-03","s":10,"tot":20,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-02","s":10,"tot":16,"eb":"KODING · KOD OYNASI","dis":[],"siljish":[]}
+{"k":"m5-01","s":11,"tot":20,"eb":"TUSHUNCHA · POLLING VA WEBHOOK","dis":[],"siljish":[]}
+{"k":"m5-05","s":11,"tot":12,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m5-04","s":11,"tot":20,"eb":"POSTGRESQL · USERS JADVALI","dis":[],"siljish":[]}
+{"k":"m5-03","s":11,"tot":20,"eb":"HAYOTIY · XATO CHAT","dis":[],"siljish":[]}
+{"k":"m5-02","s":11,"tot":16,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m5-01","s":12,"tot":20,"eb":"HAYOTIY · TO'LIQ SUHBAT","dis":[],"siljish":[]}
+{"k":"m5-04","s":12,"tot":20,"eb":"HAYOTIY · BUYURTMA","dis":[],"siljish":[]}
+{"k":"m5-03","s":12,"tot":20,"eb":"HAYOTIY · FALLBACK HANDLER","dis":[],"siljish":[]}
+{"k":"m5-02","s":12,"tot":16,"eb":"MUSTAHKAMLASH · 2 QADAM","dis":[],"siljish":[]}
+{"k":"m5-06","s":0,"tot":20,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m5-01","s":13,"tot":20,"eb":"AMALIYOT · KOD","dis":[],"siljish":[]}
+{"k":"m5-04","s":13,"tot":20,"eb":"AMALIYOT · SQL","dis":[],"siljish":[]}
+{"k":"m5-03","s":13,"tot":20,"eb":"AMALIYOT · BUYRUQLAR","dis":[],"siljish":[]}
+{"k":"m5-02","s":13,"tot":16,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m5-06","s":1,"tot":20,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m5-01","s":14,"tot":20,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-04","s":14,"tot":20,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-03","s":14,"tot":20,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-02","s":14,"tot":16,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m5-06","s":2,"tot":20,"eb":"TUSHUNCHA · AI","dis":[],"siljish":[]}
+{"k":"m5-01","s":15,"tot":20,"eb":"YAKUNIY · AMALIY","dis":[],"siljish":[]}
+{"k":"m5-04","s":15,"tot":20,"eb":"YAKUNIY · AMALIY","dis":[],"siljish":[]}
+{"k":"m5-03","s":15,"tot":20,"eb":"YAKUNIY · AMALIY","dis":[],"siljish":[]}
+{"k":"m5-02","s":15,"tot":16,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m5-06","s":3,"tot":20,"eb":"TUSHUNCHA · PROMPT","dis":[],"siljish":[]}
+{"k":"m5-01","s":16,"tot":20,"eb":"AMALIYOT · TELEGRAM","dis":[],"siljish":[]}
+{"k":"m5-04","s":16,"tot":20,"eb":"AMALIYOT · USERS JADVALI","dis":[],"siljish":[{"diff":-30,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: AVTOPIZZA"}]}
+{"k":"m5-03","s":16,"tot":20,"eb":"AMALIYOT · TELEGRAMBOTNEST","dis":[],"siljish":[{"diff":-30,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: AVTOPIZZA"}]}
+{"k":"m5-06","s":4,"tot":20,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-01","s":17,"tot":20,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m5-07","s":0,"tot":12,"eb":"LOYIHA KUNI · KIRISH","dis":[],"siljish":[]}
+{"k":"m5-04","s":17,"tot":20,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m5-03","s":17,"tot":20,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m5-06","s":5,"tot":20,"eb":"MARKAZIY · SYSTEM PROMPT","dis":[],"siljish":[]}
+{"k":"m5-01","s":18,"tot":20,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m5-04","s":18,"tot":20,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m5-07","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[{"diff":-56,"chap":"DARS OXIRIDA — NAMUNA: AVTOPIZZA · 03:00","ong":"BUGUNGI 3 QADAM"}]}
+{"k":"m5-03","s":18,"tot":20,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m5-06","s":6,"tot":20,"eb":"SINOV · XOTIRA","dis":[],"siljish":[]}
+{"k":"m5-01","s":19,"tot":20,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m5-04","s":19,"tot":20,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m5-07","s":2,"tot":12,"eb":"TUSHUNCHA · SERVER","dis":[],"siljish":[]}
+{"k":"m5-03","s":19,"tot":20,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m5-06","s":7,"tot":20,"eb":"MARKAZIY · KONTEKST OYNASI","dis":[],"siljish":[]}
+{"k":"m5-07","s":3,"tot":12,"eb":"AMALIYOT 1 · BAZA","dis":[],"siljish":[{"diff":-30,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: AVTOPIZZA"}]}
+{"k":"m5-08","s":0,"tot":16,"eb":"KIRISH · BOTINGIZ","dis":[],"siljish":[]}
+{"k":"m5-06","s":8,"tot":20,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-09","s":0,"tot":12,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m5-07","s":4,"tot":12,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-10","s":0,"tot":20,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m5-08","s":1,"tot":16,"eb":"MAQSAD","dis":[],"siljish":[]}
+{"k":"m5-06","s":9,"tot":20,"eb":"MARKAZIY · TEMPERATURE","dis":[],"siljish":[]}
+{"k":"m5-09","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m5-07","s":5,"tot":12,"eb":"TUSHUNCHA · XABAR YO'LI","dis":[],"siljish":[]}
+{"k":"m5-10","s":1,"tot":20,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m5-08","s":2,"tot":16,"eb":"MUHOKAMA · IKKI YO'L","dis":[],"siljish":[]}
+{"k":"m5-06","s":10,"tot":20,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-09","s":2,"tot":12,"eb":"TUSHUNCHA · FIKR TURI","dis":[],"siljish":[]}
+{"k":"m5-07","s":6,"tot":12,"eb":"AMALIYOT 2 · GITHUB","dis":[],"siljish":[{"diff":-30,"chap":"1","ong":"KUTILGAN NATIJA · TERMINAL"}]}
+{"k":"m5-10","s":2,"tot":20,"eb":"TUSHUNCHA · FARQ","dis":[],"siljish":[]}
+{"k":"m5-08","s":3,"tot":16,"eb":"TEKSHIRUV · MAQTOV GAPI","dis":[],"siljish":[]}
+{"k":"m5-09","s":3,"tot":12,"eb":"AMALIYOT 1 · FIKRLAR.MD","dis":[],"siljish":[{"diff":-30,"chap":"1","ong":"KUTILGAN NATIJA · FIKRLAR.MD (NAMUNA: AV"}]}
+{"k":"m5-06","s":11,"tot":20,"eb":"MARKAZIY · FAKTNI TEKSHIRISH","dis":[],"siljish":[]}
+{"k":"m5-07","s":7,"tot":12,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-10","s":3,"tot":20,"eb":"TUSHUNCHA · SIKL","dis":[],"siljish":[]}
+{"k":"m5-08","s":4,"tot":16,"eb":"SUHBAT","dis":[],"siljish":[]}
+{"k":"m5-09","s":4,"tot":12,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-07","s":8,"tot":12,"eb":"AMALIYOT 3 · RENDER","dis":[],"siljish":[{"diff":-30,"chap":"1","ong":"KUTILGAN NATIJA · AVTOPIZZA · 03:00 · LA"}]}
+{"k":"m5-06","s":12,"tot":20,"eb":"HAYOTIY · AVTOPIZZA","dis":[],"siljish":[]}
+{"k":"m5-10","s":4,"tot":20,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-08","s":5,"tot":16,"eb":"TEKSHIRUV · JAVOB TURI","dis":[],"siljish":[]}
+{"k":"m5-09","s":5,"tot":12,"eb":"TUSHUNCHA · TANLOV","dis":[],"siljish":[]}
+{"k":"m5-07","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m5-06","s":13,"tot":20,"eb":"AMALDA · AI API","dis":[],"siljish":[]}
+{"k":"m5-10","s":5,"tot":20,"eb":"MARKAZIY · QURISH","dis":[],"siljish":[]}
+{"k":"m5-08","s":6,"tot":16,"eb":"BIZNES OLAMIDAN","dis":["2-bosqich","3-bosqich","4-bosqich","5-bosqich"],"siljish":[]}
+{"k":"m5-09","s":6,"tot":12,"eb":"AMALIYOT 2 · V2","dis":[],"siljish":[{"diff":-30,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: AVTOPIZZA V2"}]}
+{"k":"m5-07","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m5-06","s":14,"tot":20,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-10","s":6,"tot":20,"eb":"TUSHUNCHA · TOOL","dis":[],"siljish":[]}
+{"k":"m5-08","s":7,"tot":16,"eb":"TEKSHIRUV · UY EGALARINING OLDIDA","dis":[],"siljish":[]}
+{"k":"m5-09","s":7,"tot":12,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-07","s":11,"tot":12,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m5-06","s":15,"tot":20,"eb":"YAKUNIY · AMALIY","dis":[],"siljish":[]}
+{"k":"m5-10","s":7,"tot":20,"eb":"QAROR · TOOL TANLASH","dis":[],"siljish":[]}
+{"k":"m5-08","s":8,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m5-09","s":8,"tot":12,"eb":"AMALIYOT 3 · RENDER","dis":[],"siljish":[{"diff":-30,"chap":"1","ong":"KUTILGAN NATIJA · TERMINAL + RENDER LOG"}]}
+{"k":"m5-06","s":16,"tot":20,"eb":"AMALIYOT · GEMINI","dis":[],"siljish":[{"diff":-30,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: AVTOPIZZA"}]}
+{"k":"m5-10","s":8,"tot":20,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-08","s":9,"tot":16,"eb":"TEKSHIRUV · TO'RT SAVOL","dis":[],"siljish":[]}
+{"k":"m5-14","s":0,"tot":18,"eb":"KIRISH · BOTINGIZ","dis":[],"siljish":[]}
+{"k":"m5-09","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m5-06","s":17,"tot":20,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m5-10","s":9,"tot":20,"eb":"XAVFSIZLIK · TASDIQ","dis":[],"siljish":[]}
+{"k":"m5-08","s":10,"tot":16,"eb":"KODING · VS CODE","dis":[],"siljish":[]}
+{"k":"m5-14","s":1,"tot":18,"eb":"MAQSAD","dis":[],"siljish":[]}
+{"k":"m5-09","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m5-06","s":18,"tot":20,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m5-10","s":10,"tot":20,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-08","s":11,"tot":16,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m5-14","s":2,"tot":18,"eb":"MUHOKAMA · IKKI GAP","dis":[],"siljish":[]}
+{"k":"m5-09","s":11,"tot":12,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m5-06","s":19,"tot":20,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m5-10","s":11,"tot":20,"eb":"MARKAZIY · XAVFSIZLIK","dis":[],"siljish":[]}
+{"k":"m5-08","s":12,"tot":16,"eb":"MUSTAHKAMLASH · 2 QADAM","dis":[],"siljish":[]}
+{"k":"m5-14","s":3,"tot":18,"eb":"TEKSHIRUV · SANAB BO'LADIGAN RAQAM","dis":[],"siljish":[]}
+{"k":"m5-10","s":12,"tot":20,"eb":"HAYOTIY · AGENT ISHDA","dis":[],"siljish":[]}
+{"k":"m5-11","s":0,"tot":16,"eb":"KIRISH · BOTINGIZ","dis":[],"siljish":[]}
+{"k":"m5-08","s":13,"tot":16,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m6-01","s":0,"tot":19,"eb":"MODUL · KIRISH","dis":["Savat 0","Telefon 2 500 000","Savatga"],"siljish":[]}
+{"k":"m5-14","s":4,"tot":18,"eb":"AMALIYOT · IKKI DUSHANBA","dis":[],"siljish":[]}
+{"k":"m5-10","s":13,"tot":20,"eb":"XAVFSIZLIK · CHEGARA","dis":[],"siljish":[]}
+{"k":"m5-11","s":1,"tot":16,"eb":"MAQSAD","dis":[],"siljish":[]}
+{"k":"m5-08","s":14,"tot":16,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m6-01","s":1,"tot":19,"eb":"REJA","dis":["Foydalanuvchi bosadi","Frontend ko'rsatadi","Backend hisoblaydi, tekshiradi","Database eslab qoladi"],"siljish":[]}
+{"k":"m5-14","s":5,"tot":18,"eb":"MUHOKAMA · UCH NOM","dis":[],"siljish":[]}
+{"k":"m5-10","s":14,"tot":20,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-11","s":2,"tot":16,"eb":"TUSHUNCHA · IKKI SON","dis":[],"siljish":[]}
+{"k":"m5-08","s":15,"tot":16,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m6-01","s":2,"tot":19,"eb":"TUSHUNCHA · 5 QISM","dis":["Foydalanuvchi bosadi","Hali ochilmagan qism","Hali ochilmagan qism","Hali ochilmagan qism","Hali ochilmagan qism","Hali ochilmagan qism"],"siljish":[{"diff":-36,"chap":"onlayn-xarid.uz","ong":"⛶"}]}
+{"k":"m5-14","s":6,"tot":18,"eb":"TEKSHIRUV · QAYSI RAQAM","dis":[],"siljish":[]}
+{"k":"m5-10","s":15,"tot":20,"eb":"YAKUNIY · AMALIY","dis":[],"siljish":[]}
+{"k":"m5-11","s":3,"tot":16,"eb":"TEKSHIRUV · KIM QAYTGAN","dis":[],"siljish":[]}
+{"k":"m6-01","s":3,"tot":19,"eb":"TAJRIBA · SO'ROV YO'LI","dis":["Foydalanuvchi savat: 0"],"siljish":[{"diff":-36,"chap":"QADAMLAR","ong":"⛶"}]}
+{"k":"m5-14","s":7,"tot":18,"eb":"AMALIYOT · FOIZ","dis":[],"siljish":[]}
+{"k":"m5-10","s":16,"tot":20,"eb":"AMALIYOT · AGENT","dis":[],"siljish":[{"diff":-30,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: AVTOPIZZA"}]}
+{"k":"m6-02","s":0,"tot":16,"eb":"KIRISH · BASSEYN","dis":[],"siljish":[]}
+{"k":"m5-11","s":4,"tot":16,"eb":"AMALIYOT · BESH KUN","dis":[],"siljish":[]}
+{"k":"m6-01","s":4,"tot":19,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-14","s":8,"tot":18,"eb":"TEKSHIRUV · FOIZ","dis":[],"siljish":[]}
+{"k":"m5-10","s":17,"tot":20,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m6-02","s":1,"tot":16,"eb":"MAQSAD","dis":[],"siljish":[]}
+{"k":"m5-11","s":5,"tot":16,"eb":"TEKSHIRUV · IKKI SON","dis":[],"siljish":[]}
+{"k":"m6-01","s":5,"tot":19,"eb":"CHEGARA · FRONTEND VA BACKEND","dis":[],"siljish":[{"diff":-36,"chap":"ISHLAR","ong":"⛶"}]}
+{"k":"m5-14","s":9,"tot":18,"eb":"BIZNES OLAMIDAN","dis":["2-bosqich","3-bosqich","4-bosqich","5-bosqich"],"siljish":[]}
+{"k":"m5-10","s":18,"tot":20,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m6-02","s":2,"tot":16,"eb":"MUHOKAMA · BITTA GAP","dis":[],"siljish":[]}
+{"k":"m5-11","s":6,"tot":16,"eb":"BIZNES OLAMIDAN","dis":["2-bosqich","3-bosqich","4-bosqich","5-bosqich"],"siljish":[]}
+{"k":"m6-01","s":6,"tot":19,"eb":"TAJRIBA · DATABASE","dis":[],"siljish":[]}
+{"k":"m5-14","s":10,"tot":18,"eb":"MUSTAQIL ISH · TO'RT RAQAM","dis":[],"siljish":[]}
+{"k":"m5-10","s":19,"tot":20,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m6-02","s":3,"tot":16,"eb":"TEKSHIRUV · YOZILGAN QATOR","dis":[],"siljish":[]}
+{"k":"m5-11","s":7,"tot":16,"eb":"TEKSHIRUV · RAQAM QACHON O'SADI","dis":[],"siljish":[]}
+{"k":"m6-01","s":7,"tot":19,"eb":"QO'SHIMCHA QISMLAR · AI VA BOT","dis":["Foydalanuvchi","Frontend","Backend","Database","Savat 1","Telefon 2 500 000","Savatga"],"siljish":[]}
+{"k":"m5-14","s":11,"tot":18,"eb":"TEKSHIRUV · BOT YOZUVI","dis":[],"siljish":[]}
+{"k":"m6-02","s":4,"tot":16,"eb":"SINOV · BITTA VARAQ","dis":[],"siljish":[]}
+{"k":"m5-11","s":8,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m6-03","s":0,"tot":20,"eb":"DARS · KIRISH","dis":[],"siljish":[]}
+{"k":"m6-01","s":8,"tot":19,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-14","s":12,"tot":18,"eb":"KODING · VS CODE","dis":[],"siljish":[]}
+{"k":"m6-02","s":5,"tot":16,"eb":"TEKSHIRUV · O'LCHOV KATAGI","dis":[],"siljish":[]}
+{"k":"m5-11","s":9,"tot":16,"eb":"TEKSHIRUV · BESH KUN","dis":[],"siljish":[]}
+{"k":"m6-03","s":1,"tot":20,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m6-01","s":9,"tot":19,"eb":"TAJRIBA · QISMNI O'CHIRISH","dis":["Foydalanuvchi","Frontend","Backend","Database","Savat 2","Telefon 2 500 000","Savatga"],"siljish":[{"diff":-36,"chap":"O'CHIRISH KALITI","ong":"⛶"}]}
+{"k":"m5-14","s":13,"tot":18,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m6-02","s":6,"tot":16,"eb":"HAQIQIY VOQEA","dis":["2-bosqich","3-bosqich","4-bosqich","5-bosqich","6-bosqich","7-bosqich"],"siljish":[]}
+{"k":"m5-11","s":10,"tot":16,"eb":"KODING · KOD OYNASI","dis":[],"siljish":[]}
+{"k":"m6-03","s":2,"tot":20,"eb":"TUSHUNCHA · PATTERN","dis":[],"siljish":[]}
+{"k":"m6-01","s":10,"tot":19,"eb":"TIZIM · KO'P KIRISH YO'LI","dis":[],"siljish":[]}
+{"k":"m5-14","s":14,"tot":18,"eb":"MUSTAHKAMLASH · 2 QADAM","dis":[],"siljish":[]}
+{"k":"m6-02","s":7,"tot":16,"eb":"TEKSHIRUV · KO'RSATUV KUNI","dis":[],"siljish":[]}
+{"k":"m5-11","s":11,"tot":16,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m6-03","s":3,"tot":20,"eb":"PATTERN · MVC","dis":[],"siljish":[]}
+{"k":"m6-01","s":11,"tot":19,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m5-14","s":15,"tot":18,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m6-02","s":8,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m5-11","s":12,"tot":16,"eb":"MUSTAHKAMLASH · 2 QADAM","dis":[],"siljish":[]}
+{"k":"m6-03","s":4,"tot":20,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-01","s":12,"tot":19,"eb":"HAYOTIY · TO'LIQ TIZIM","dis":[],"siljish":[]}
+{"k":"m5-14","s":16,"tot":18,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m6-02","s":9,"tot":16,"eb":"TEKSHIRUV · UCH VARAQ","dis":[],"siljish":[]}
+{"k":"m5-11","s":13,"tot":16,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m6-03","s":5,"tot":20,"eb":"ANIMATSIYA · SO'ROV YO'LI","dis":[],"siljish":[]}
+{"k":"m6-01","s":13,"tot":19,"eb":"AMALDA · CHIZMA","dis":[],"siljish":[]}
+{"k":"m5-14","s":17,"tot":18,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m6-02","s":10,"tot":16,"eb":"KOD YOZISH · VS CODE","dis":[],"siljish":[]}
+{"k":"m5-11","s":14,"tot":16,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m6-03","s":6,"tot":20,"eb":"MOSLASH · MINI-DO'KON","dis":[],"siljish":[]}
+{"k":"m6-01","s":14,"tot":19,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-02","s":11,"tot":16,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m5-11","s":15,"tot":16,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m6-04","s":0,"tot":20,"eb":"DARS · KIRISH","dis":[],"siljish":[]}
+{"k":"m6-03","s":7,"tot":20,"eb":"FOYDA · NEGA PATTERN","dis":[],"siljish":[]}
+{"k":"m6-01","s":15,"tot":19,"eb":"YAKUNIY · AMALIY","dis":[],"siljish":[]}
+{"k":"m6-02","s":12,"tot":16,"eb":"O'ZINGIZ O'YLAB KO'RING · 2 QADAM","dis":[],"siljish":[]}
+{"k":"m6-04","s":1,"tot":20,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m6-03","s":8,"tot":20,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-01","s":16,"tot":19,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m6-05","s":0,"tot":20,"eb":"DARS · KIRISH","dis":[],"siljish":[]}
+{"k":"m6-02","s":13,"tot":16,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m6-04","s":2,"tot":20,"eb":"TUSHUNCHA · FARQ","dis":[],"siljish":[]}
+{"k":"m6-03","s":9,"tot":20,"eb":"TIZIMNI BO'LISH · MONOLIT","dis":[],"siljish":[]}
+{"k":"m6-01","s":17,"tot":19,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m6-05","s":1,"tot":20,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m6-02","s":14,"tot":16,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m6-04","s":3,"tot":20,"eb":"ANIMATSIYA · BIR VAZIFA, IKKI YO'L","dis":[],"siljish":[]}
+{"k":"m6-03","s":10,"tot":20,"eb":"TIZIMNI BO'LISH · MIKROSERVIS","dis":[],"siljish":[]}
+{"k":"m6-01","s":18,"tot":19,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m6-05","s":2,"tot":20,"eb":"TUSHUNCHA · SKILL","dis":[],"siljish":[]}
+{"k":"m6-02","s":15,"tot":16,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m6-04","s":4,"tot":20,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-03","s":11,"tot":20,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-05","s":3,"tot":20,"eb":"TUZILISH · SKILL.MD","dis":[],"siljish":[]}
+{"k":"m6-06","s":0,"tot":16,"eb":"KIRISH · SO'RAMAY QILINGAN ISH","dis":[],"siljish":[]}
+{"k":"m6-04","s":5,"tot":20,"eb":"ICHKI SIKL","dis":[],"siljish":[]}
+{"k":"m6-03","s":12,"tot":20,"eb":"HAYOTIY · TIZIMNI AJRATING","dis":[],"siljish":[]}
+{"k":"m6-07","s":0,"tot":20,"eb":"DARS · KIRISH","dis":[],"siljish":[]}
+{"k":"m6-05","s":4,"tot":20,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-06","s":1,"tot":16,"eb":"MAQSAD","dis":[],"siljish":[]}
+{"k":"m6-04","s":6,"tot":20,"eb":"ULANISH · TOOL","dis":[],"siljish":[]}
+{"k":"m6-03","s":13,"tot":20,"eb":"BIR JUMLADA","dis":[],"siljish":[]}
+{"k":"m6-07","s":1,"tot":20,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m6-05","s":5,"tot":20,"eb":"FRONTMATTER · DESCRIPTION","dis":[],"siljish":[]}
+{"k":"m6-06","s":2,"tot":16,"eb":"MUHOKAMA · IKKI KARTA","dis":[],"siljish":[]}
+{"k":"m6-04","s":7,"tot":20,"eb":"ARXITEKTURA · AGENT O'RNI","dis":[],"siljish":[]}
+{"k":"m6-03","s":14,"tot":20,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-07","s":2,"tot":20,"eb":"TUSHUNCHA · ASOSIY QISMLAR","dis":[],"siljish":[]}
+{"k":"m6-05","s":6,"tot":20,"eb":"BODY · YO'RIQNOMA","dis":[],"siljish":[]}
+{"k":"m6-06","s":3,"tot":16,"eb":"TEKSHIRUV · QAYSI DO'KONDA","dis":[],"siljish":[]}
+{"k":"m6-04","s":8,"tot":20,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-03","s":15,"tot":20,"eb":"YAKUNIY · AMALIY","dis":[],"siljish":[]}
+{"k":"m6-07","s":3,"tot":20,"eb":"YOZISH · DESCRIPTION","dis":[],"siljish":[]}
+{"k":"m6-05","s":7,"tot":20,"eb":"MARKAZIY · SKILL'NI TANLASH","dis":["mahsulot-tavsifi mahsulot uchun qisqa sotuvchi tavsif yozish","mijoz-xati mijozga rasmiy xat yozish","hisobot-sql sotuv hisoboti uchun SQL yozish"],"siljish":[{"diff":-30,"chap":"Skill'siz — umumiy javob","ong":"VAZIFAGA MOS SKILL'NI TANLANG"}]}
+{"k":"m6-06","s":4,"tot":16,"eb":"SINOV · QAROR VA ODAM","dis":[],"siljish":[]}
+{"k":"m6-04","s":9,"tot":20,"eb":"QAROR · QACHON AGENT","dis":[],"siljish":[]}
+{"k":"m6-03","s":16,"tot":20,"eb":"AMALIYOT · LOYIHA","dis":[],"siljish":[{"diff":-30,"chap":"TOPSHIRIQ","ong":"BOSQICHLAR — BELGILAB BORING"}]}
+{"k":"m6-07","s":4,"tot":20,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-05","s":8,"tot":20,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-06","s":5,"tot":16,"eb":"TEKSHIRUV · CHEGARA QAYERGA","dis":[],"siljish":[]}
+{"k":"m6-04","s":10,"tot":20,"eb":"MASHQ · QAYSI BIRI","dis":[],"siljish":[]}
+{"k":"m6-03","s":17,"tot":20,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m6-07","s":5,"tot":20,"eb":"YOZISH · BODY","dis":[],"siljish":[]}
+{"k":"m6-05","s":9,"tot":20,"eb":"FARQ · SKILL VA SYSTEM PROMPT","dis":[],"siljish":[]}
+{"k":"m6-06","s":6,"tot":16,"eb":"HAQIQIY HOLAT","dis":["2-bosqich","3-bosqich","4-bosqich","5-bosqich"],"siljish":[]}
+{"k":"m6-04","s":11,"tot":20,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-03","s":18,"tot":20,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m6-05","s":10,"tot":20,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-07","s":6,"tot":20,"eb":"QURAMIZ · SKILL YIG'UVCHI","dis":[],"siljish":[]}
+{"k":"m6-06","s":7,"tot":16,"eb":"TEKSHIRUV · CHEGARA QAYSI ORALIQDA","dis":[],"siljish":[]}
+{"k":"m6-04","s":12,"tot":20,"eb":"HAYOTIY · AGENT ISHDA","dis":[],"siljish":[]}
+{"k":"m6-03","s":19,"tot":20,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m6-07","s":7,"tot":20,"eb":"SINOV · SKILL'NI SINASH","dis":[],"siljish":[]}
+{"k":"m6-05","s":11,"tot":20,"eb":"TUSHUNCHA · SKILL'NING OCHILISHI","dis":[],"siljish":[]}
+{"k":"m6-06","s":8,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m6-04","s":13,"tot":20,"eb":"EHTIYOT · CHEGARA","dis":[],"siljish":[]}
+{"k":"m6-07","s":8,"tot":20,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-05","s":12,"tot":20,"eb":"TAHLIL · TAYYOR SKILL","dis":[],"siljish":[]}
+{"k":"m6-08","s":0,"tot":21,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m6-06","s":9,"tot":16,"eb":"TEKSHIRUV · DO'KONNING BOTI","dis":[],"siljish":[]}
+{"k":"m6-04","s":14,"tot":20,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-07","s":9,"tot":20,"eb":"TUSHUNCHA · ANIQ TUZATISH","dis":[],"siljish":[]}
+{"k":"m6-05","s":13,"tot":20,"eb":"AMALIY · QAYSI VAZIFADA","dis":[],"siljish":[]}
+{"k":"m6-08","s":1,"tot":21,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m6-06","s":10,"tot":16,"eb":"KOD YOZISH · KOD OYNASI","dis":[],"siljish":[]}
+{"k":"m6-04","s":15,"tot":20,"eb":"YAKUNIY · AMALIY","dis":[],"siljish":[]}
+{"k":"m6-07","s":10,"tot":20,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-05","s":14,"tot":20,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-08","s":2,"tot":21,"eb":"5 QISM","dis":[],"siljish":[]}
+{"k":"m6-06","s":11,"tot":16,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m6-04","s":16,"tot":20,"eb":"AMALIYOT · REJA","dis":[],"siljish":[{"diff":-30,"chap":"TOPSHIRIQ","ong":"BOSQICHLAR — BELGILAB BORING"}]}
+{"k":"m6-07","s":11,"tot":20,"eb":"JARAYON · YAXSHILASH SIKLI","dis":[],"siljish":[]}
+{"k":"m6-05","s":15,"tot":20,"eb":"YAKUNIY · AMALIY","dis":[],"siljish":[]}
+{"k":"m6-06","s":12,"tot":16,"eb":"O'ZINGIZ O'YLAB KO'RING · 2 QADAM","dis":[],"siljish":[]}
+{"k":"m6-04","s":17,"tot":20,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m6-08","s":3,"tot":21,"eb":"PIPELINE","dis":[],"siljish":[]}
+{"k":"m6-05","s":16,"tot":20,"eb":"AMALIYOT · REJA","dis":[],"siljish":[{"diff":-30,"chap":"TOPSHIRIQ","ong":"BOSQICHLAR — BELGILAB BORING"}]}
+{"k":"m6-07","s":12,"tot":20,"eb":"HAYOTIY · SKILL YOZISH","dis":[],"siljish":[]}
+{"k":"m6-06","s":13,"tot":16,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m6-04","s":18,"tot":20,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m6-08","s":4,"tot":21,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-05","s":17,"tot":20,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m6-07","s":13,"tot":20,"eb":"AMALIYOT · SKILL.MD","dis":[],"siljish":[]}
+{"k":"m6-06","s":14,"tot":16,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m6-04","s":19,"tot":20,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m6-08","s":5,"tot":21,"eb":"AI BILAN KOD YOZISH","dis":[],"siljish":[]}
+{"k":"m6-05","s":18,"tot":20,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m6-07","s":14,"tot":20,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-06","s":15,"tot":16,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m6-08","s":6,"tot":21,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-05","s":19,"tot":20,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m6-07","s":15,"tot":20,"eb":"YAKUNIY · AMALIY","dis":[],"siljish":[]}
+{"k":"m6-09","s":0,"tot":20,"eb":"DARS · KIRISH","dis":[],"siljish":[]}
+{"k":"m6-08","s":7,"tot":21,"eb":"ULANISHLAR · JONLI","dis":[],"siljish":[]}
+{"k":"m6-07","s":16,"tot":20,"eb":"AMALIYOT · SKILL.MD","dis":[],"siljish":[{"diff":-30,"chap":"TOPSHIRIQ","ong":"BOSQICHLAR — BELGILAB BORING"}]}
+{"k":"m6-10","s":0,"tot":20,"eb":"DARS · KIRISH","dis":[],"siljish":[]}
+{"k":"m6-09","s":1,"tot":20,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m6-08","s":8,"tot":21,"eb":"PROMPT SIFATI","dis":[],"siljish":[{"diff":55,"chap":"Noaniq","ong":"AI taxmin qiladi"}]}
+{"k":"m6-11","s":0,"tot":20,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m6-09","s":2,"tot":20,"eb":"TUSHUNCHA · RN","dis":[],"siljish":[]}
+{"k":"m6-07","s":17,"tot":20,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m6-10","s":1,"tot":20,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m6-08","s":9,"tot":21,"eb":"SIKL · JONLI","dis":[],"siljish":[]}
+{"k":"m6-11","s":1,"tot":20,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m6-09","s":3,"tot":20,"eb":"FARQ · WEB VA MOBIL","dis":[],"siljish":[]}
+{"k":"m6-07","s":18,"tot":20,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m6-10","s":2,"tot":20,"eb":"KOMPONENTLAR","dis":[],"siljish":[]}
+{"k":"m6-08","s":10,"tot":21,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-11","s":2,"tot":20,"eb":"BITTA TIZIM","dis":[],"siljish":[]}
+{"k":"m6-09","s":4,"tot":20,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-07","s":19,"tot":20,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m6-08","s":11,"tot":21,"eb":"AI KODINI O'QISH","dis":[],"siljish":[]}
+{"k":"m6-10","s":3,"tot":20,"eb":"RO'YXAT · FLATLIST","dis":[],"siljish":[]}
+{"k":"m6-11","s":3,"tot":20,"eb":"ILOVA XARITASI","dis":[],"siljish":[]}
+{"k":"m6-09","s":5,"tot":20,"eb":"KOMPONENT · VIEW/TEXT","dis":[],"siljish":[]}
+{"k":"m6-08","s":12,"tot":21,"eb":"ULANISH XATOSI","dis":[],"siljish":[]}
+{"k":"m6-10","s":4,"tot":20,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-11","s":4,"tot":20,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-12","s":0,"tot":16,"eb":"KIRISH · OLTITA YANGI ISH","dis":[],"siljish":[]}
+{"k":"m6-09","s":6,"tot":20,"eb":"BEZASH · STYLESHEET","dis":[],"siljish":[]}
+{"k":"m6-08","s":13,"tot":21,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-10","s":5,"tot":20,"eb":"NAVIGATSIYA · STACK","dis":[],"siljish":[]}
+{"k":"m6-11","s":5,"tot":20,"eb":"LOYIHA KUNI RITMI","dis":[],"siljish":[]}
+{"k":"m6-12","s":1,"tot":16,"eb":"MAQSAD","dis":[],"siljish":[]}
+{"k":"m6-09","s":7,"tot":20,"eb":"EKRAN · YIG'ISH","dis":[],"siljish":[]}
+{"k":"m6-08","s":14,"tot":21,"eb":"NAMUNA","dis":[],"siljish":[]}
+{"k":"m6-10","s":6,"tot":20,"eb":"SINOV · NAVIGATSIYA","dis":[],"siljish":[]}
+{"k":"m6-11","s":6,"tot":20,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-12","s":2,"tot":16,"eb":"MUHOKAMA · IKKI XIL REJA","dis":[],"siljish":[]}
+{"k":"m6-09","s":8,"tot":20,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-08","s":15,"tot":21,"eb":"QOIDA","dis":[],"siljish":[]}
+{"k":"m6-10","s":7,"tot":20,"eb":"KOD · NAVIGATE","dis":[],"siljish":[]}
+{"k":"m6-11","s":7,"tot":20,"eb":"ILOVA QURUVCHI · JONLI","dis":[],"siljish":[]}
+{"k":"m6-12","s":3,"tot":16,"eb":"TEKSHIRUV · UFQ NIMANI AYTADI","dis":[],"siljish":[]}
+{"k":"m6-09","s":9,"tot":20,"eb":"VOSITA · EXPO","dis":[],"siljish":[]}
+{"k":"m6-08","s":16,"tot":21,"eb":"YAKUNIY ISH","dis":[],"siljish":[]}
+{"k":"m6-10","s":8,"tot":20,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-11","s":8,"tot":20,"eb":"SAVAT + JAMI","dis":[],"siljish":[]}
+{"k":"m6-12","s":4,"tot":16,"eb":"SINOV · UCH UFQLI REJA","dis":[],"siljish":[]}
+{"k":"m6-09","s":10,"tot":20,"eb":"TELEFONDA · EXPO GO","dis":[],"siljish":[]}
+{"k":"m6-08","s":17,"tot":21,"eb":"AMALIYOT · VS CODE","dis":[],"siljish":[{"diff":-30,"chap":"TOPSHIRIQ","ong":"BOSQICHLAR — BELGILAB BORING"}]}
+{"k":"m6-10","s":9,"tot":20,"eb":"API · FETCH","dis":[],"siljish":[]}
+{"k":"m6-11","s":9,"tot":20,"eb":"BUYURTMA → BACKEND","dis":[],"siljish":[]}
+{"k":"m6-12","s":5,"tot":16,"eb":"TEKSHIRUV · ISH NIMANI KUTADI","dis":[],"siljish":[]}
+{"k":"m6-09","s":11,"tot":20,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-08","s":18,"tot":21,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m6-10","s":10,"tot":20,"eb":"SINOV · FETCH","dis":[],"siljish":[]}
+{"k":"m6-11","s":10,"tot":20,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-12","s":6,"tot":16,"eb":"HAQIQIY VOQEA","dis":["2-bosqich","3-bosqich","4-bosqich","5-bosqich","6-bosqich"],"siljish":[]}
+{"k":"m6-09","s":12,"tot":20,"eb":"HAYOTIY · TO'LIQ EKRAN","dis":[],"siljish":[]}
+{"k":"m6-08","s":19,"tot":21,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m6-10","s":11,"tot":20,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-11","s":11,"tot":20,"eb":"SAYQAL","dis":[],"siljish":[{"diff":53,"chap":"Chala (rangsiz)","ong":"Chala ko'rinish"}]}
+{"k":"m6-12","s":7,"tot":16,"eb":"TEKSHIRUV · UZOQ REJA","dis":[],"siljish":[]}
+{"k":"m6-09","s":13,"tot":20,"eb":"TANISH · O'SHA REACT","dis":[],"siljish":[]}
+{"k":"m6-08","s":20,"tot":21,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m6-10","s":12,"tot":20,"eb":"HAYOTIY · ASOSIY OQIM","dis":[],"siljish":[]}
+{"k":"m6-11","s":12,"tot":20,"eb":"TELEFONDA SINOV · XATO","dis":[],"siljish":[]}
+{"k":"m6-12","s":8,"tot":16,"eb":"MUSTAQIL ISH · UCH UFQ","dis":[],"siljish":[]}
+{"k":"m6-09","s":14,"tot":20,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-10","s":13,"tot":20,"eb":"QO'SHIMCHA · ASYNCSTORAGE","dis":[],"siljish":[]}
+{"k":"m6-11","s":13,"tot":20,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-13","s":0,"tot":21,"eb":"KIRISH · YAKUNIY LOYIHA","dis":[],"siljish":[]}
+{"k":"m6-09","s":15,"tot":20,"eb":"YAKUNIY · AMALIY","dis":[],"siljish":[]}
+{"k":"m6-12","s":9,"tot":16,"eb":"TEKSHIRUV · YANA OLTITA ISH","dis":[],"siljish":[]}
+{"k":"m6-10","s":14,"tot":20,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-11","s":14,"tot":20,"eb":"EXPO GO · ULASHISH","dis":[],"siljish":[]}
+{"k":"m6-13","s":1,"tot":21,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m6-09","s":16,"tot":20,"eb":"AMALIYOT · EXPO SNACK","dis":[],"siljish":[{"diff":-30,"chap":"TOPSHIRIQ","ong":"BOSQICHLAR — BELGILAB BORING"}]}
+{"k":"m6-12","s":10,"tot":16,"eb":"KOD YOZISH · VS CODE","dis":[],"siljish":[]}
+{"k":"m6-10","s":15,"tot":20,"eb":"YAKUNIY · AMALIY","dis":[],"siljish":[]}
+{"k":"m6-11","s":15,"tot":20,"eb":"QOIDA","dis":[],"siljish":[]}
+{"k":"m6-13","s":2,"tot":21,"eb":"TO'LIQ TIZIM XARITASI","dis":[],"siljish":[]}
+{"k":"m6-09","s":17,"tot":20,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m6-12","s":11,"tot":16,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m6-10","s":16,"tot":20,"eb":"AMALIYOT · VS CODE","dis":[],"siljish":[{"diff":-30,"chap":"TOPSHIRIQ","ong":"BOSQICHLAR — BELGILAB BORING"}]}
+{"k":"m6-11","s":16,"tot":20,"eb":"YAKUNIY · XARID OQIMI","dis":[],"siljish":[]}
+{"k":"m6-13","s":3,"tot":21,"eb":"KO'P KANAL, BITTA TIZIM","dis":[],"siljish":[{"diff":53,"chap":"Web","ong":"Web kanali"}]}
+{"k":"m6-09","s":18,"tot":20,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m6-12","s":12,"tot":16,"eb":"O'ZINGIZ O'YLAB KO'RING · 2 QADAM","dis":[],"siljish":[]}
+{"k":"m6-10","s":17,"tot":20,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m6-11","s":17,"tot":20,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m6-13","s":4,"tot":21,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-09","s":19,"tot":20,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m6-12","s":13,"tot":16,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m6-10","s":18,"tot":20,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m6-11","s":18,"tot":20,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m6-13","s":5,"tot":21,"eb":"END-TO-END","dis":[],"siljish":[]}
+{"k":"m6-12","s":14,"tot":16,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m6-10","s":19,"tot":20,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m6-14","s":0,"tot":16,"eb":"KIRISH · DEMO DAY SAHNASI","dis":[],"siljish":[]}
+{"k":"m6-13","s":6,"tot":21,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m6-11","s":19,"tot":20,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m6-12","s":15,"tot":16,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m6-14","s":1,"tot":16,"eb":"MAQSAD","dis":[],"siljish":[]}
+{"k":"m6-13","s":7,"tot":21,"eb":"BUYURTMA YO'LI · JONLI","dis":[],"siljish":[{"diff":53,"chap":"Web","ong":"Eslatma: AI buyurtma yo'lida emas — u al"}]}
+{"k":"m7-01","s":0,"tot":17,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m7-02","s":0,"tot":16,"eb":"KIRISH · BITTA SAVOL","dis":[],"siljish":[]}
+{"k":"m6-14","s":2,"tot":16,"eb":"MUHOKAMA · IKKI KARTA","dis":[],"siljish":[]}
+{"k":"m7-03","s":0,"tot":17,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m6-13","s":8,"tot":21,"eb":"ULANISH JOYLARI","dis":[],"siljish":[]}
+{"k":"m7-01","s":1,"tot":17,"eb":"MAQSAD","dis":[],"siljish":[]}
+{"k":"m7-02","s":1,"tot":16,"eb":"MAQSAD","dis":[],"siljish":[]}
+{"k":"m6-14","s":3,"tot":16,"eb":"TEKSHIRUV · QAYSI RAQAM NATIJANI KO'RSATADI","dis":[],"siljish":[]}
+{"k":"m7-03","s":1,"tot":17,"eb":"MAQSAD","dis":[],"siljish":[]}
+{"k":"m6-13","s":9,"tot":21,"eb":"TEST MATRITSASI · JONLI","dis":[],"siljish":[]}
+{"k":"m7-01","s":2,"tot":17,"eb":"TUSHUNCHA · LOYIHA VA MAHSULOT","dis":[],"siljish":[]}
+{"k":"m7-02","s":2,"tot":16,"eb":"TAKROR · IKKI XIL SAVOL","dis":[],"siljish":[]}
+{"k":"m6-14","s":4,"tot":16,"eb":"AMALIYOT · SLAYDNING UCH QATORI","dis":[],"siljish":[{"diff":47,"chap":"1","ong":"SAHNA EKRANI"}]}
+{"k":"m7-03","s":2,"tot":17,"eb":"TUSHUNCHA · SANOQ","dis":[],"siljish":[]}
+{"k":"m6-13","s":10,"tot":21,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m7-01","s":3,"tot":17,"eb":"TEKSHIRUV · LOYIHA VA MAHSULOT","dis":[],"siljish":[]}
+{"k":"m7-02","s":3,"tot":16,"eb":"TEKSHIRUV · MAYDON EGASI","dis":[],"siljish":[]}
+{"k":"m6-14","s":5,"tot":16,"eb":"TEKSHIRUV · UCHINCHI QATOR","dis":[],"siljish":[]}
+{"k":"m7-03","s":3,"tot":17,"eb":"TEKSHIRUV · BITTA YOZUV","dis":[],"siljish":[]}
+{"k":"m6-13","s":11,"tot":21,"eb":"XATONI TUZATISH · JONLI","dis":[],"siljish":[]}
+{"k":"m7-01","s":4,"tot":17,"eb":"TAJRIBA · UCH ISHLAYDIGAN MAHSULOT","dis":[],"siljish":[]}
+{"k":"m6-14","s":6,"tot":16,"eb":"HAQIQIY VOQEA","dis":["2-bosqich","3-bosqich","4-bosqich","5-bosqich","6-bosqich"],"siljish":[]}
+{"k":"m7-02","s":4,"tot":16,"eb":"TAJRIBA · BITTA SUHBAT","dis":[],"siljish":[]}
+{"k":"m7-03","s":4,"tot":17,"eb":"TUSHUNCHA · MUAMMO GAPI","dis":[],"siljish":[]}
+{"k":"m6-13","s":12,"tot":21,"eb":"ISHGA TUSHIRISH","dis":[],"siljish":[]}
+{"k":"m7-01","s":5,"tot":17,"eb":"TEKSHIRUV · MUAMMO QATORI","dis":[],"siljish":[]}
+{"k":"m6-14","s":7,"tot":16,"eb":"TEKSHIRUV · AIRBNB VARAG'I","dis":[],"siljish":[]}
+{"k":"m7-02","s":5,"tot":16,"eb":"TEKSHIRUV · KEYINGI SAVOL","dis":[],"siljish":[]}
+{"k":"m7-03","s":5,"tot":17,"eb":"TEKSHIRUV · MUAMMO GAPI","dis":[],"siljish":[]}
+{"k":"m6-13","s":13,"tot":21,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m7-01","s":6,"tot":17,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m7-02","s":6,"tot":16,"eb":"KITOBDAN","dis":[],"siljish":[]}
+{"k":"m6-14","s":8,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m7-03","s":6,"tot":17,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m6-13","s":14,"tot":21,"eb":"ISHGA TUSHDI","dis":[],"siljish":[]}
+{"k":"m7-01","s":7,"tot":17,"eb":"TEKSHIRUV · DROPBOX'DAGIDEK","dis":[],"siljish":[]}
+{"k":"m7-02","s":7,"tot":16,"eb":"TEKSHIRUV · KITOBDAGIDEK","dis":[],"siljish":[]}
+{"k":"m6-14","s":9,"tot":16,"eb":"TEKSHIRUV · UCH JUFTLIK","dis":[],"siljish":[]}
+{"k":"m7-03","s":7,"tot":17,"eb":"TEKSHIRUV · BURBN QARORI","dis":[],"siljish":[]}
+{"k":"m6-13","s":15,"tot":21,"eb":"QOIDA","dis":[],"siljish":[]}
+{"k":"m7-01","s":8,"tot":17,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m6-14","s":10,"tot":16,"eb":"KOD YOZISH · KOD OYNASI","dis":[],"siljish":[]}
+{"k":"m7-02","s":8,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m7-03","s":8,"tot":17,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m6-13","s":16,"tot":21,"eb":"AMALIYOT · VS CODE","dis":[],"siljish":[{"diff":-30,"chap":"TOPSHIRIQ","ong":"BOSQICHLAR — BELGILAB BORING"}]}
+{"k":"m7-01","s":9,"tot":17,"eb":"TUSHUNCHA · MUAMMO YIG'ISH","dis":[],"siljish":[]}
+{"k":"m6-14","s":11,"tot":16,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m7-02","s":9,"tot":16,"eb":"JUFTLIKDA · MASHQ INTERVYU","dis":[],"siljish":[]}
+{"k":"m7-03","s":9,"tot":17,"eb":"MASHQ · MVP CHEGARASI","dis":[],"siljish":[{"diff":24,"chap":"1","ong":"⛶"}]}
+{"k":"m6-13","s":17,"tot":21,"eb":"YAKUNIY · JARAYON","dis":[],"siljish":[]}
+{"k":"m7-01","s":10,"tot":17,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m6-14","s":12,"tot":16,"eb":"O'ZINGIZ O'YLAB KO'RING · 2 QADAM","dis":[],"siljish":[]}
+{"k":"m7-02","s":10,"tot":16,"eb":"KOD YOZISH","dis":[],"siljish":[]}
+{"k":"m7-03","s":10,"tot":17,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m6-13","s":18,"tot":21,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m7-01","s":11,"tot":17,"eb":"KOD YOZISH","dis":[],"siljish":[]}
+{"k":"m6-14","s":13,"tot":16,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m7-02","s":11,"tot":16,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m7-03","s":11,"tot":17,"eb":"KOD YOZISH · VS CODE","dis":[],"siljish":[]}
+{"k":"m6-13","s":19,"tot":21,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m7-01","s":12,"tot":17,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m6-14","s":14,"tot":16,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m7-02","s":12,"tot":16,"eb":"O'ZINGIZ O'YLAB KO'RING","dis":[],"siljish":[]}
+{"k":"m7-03","s":12,"tot":17,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m6-13","s":20,"tot":21,"eb":"1-BOSQICH YAKUNIY LOYIHASI","dis":[],"siljish":[]}
+{"k":"m7-01","s":13,"tot":17,"eb":"O'ZINGIZ O'YLAB KO'RING","dis":[],"siljish":[]}
+{"k":"m6-14","s":15,"tot":16,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m7-02","s":13,"tot":16,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m7-03","s":13,"tot":17,"eb":"O'ZINGIZ O'YLAB KO'RING","dis":[],"siljish":[]}
+{"k":"m7-01","s":14,"tot":17,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m7-04","s":0,"tot":18,"eb":"DARS · KIRISH","dis":["16:00","17:00","19:00","20:00","21:00"],"siljish":[]}
+{"k":"m7-03","s":14,"tot":17,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m7-02","s":14,"tot":16,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m7-01","s":15,"tot":17,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m7-05","s":0,"tot":20,"eb":"DARS · KIRISH","dis":["17:00–18:00 band","20:00–21:00 band"],"siljish":[]}
+{"k":"m7-03","s":15,"tot":17,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m7-04","s":1,"tot":18,"eb":"REJA","dis":["16:00","17:00","18:00 band","19:00","20:00","21:00"],"siljish":[]}
+{"k":"m7-02","s":15,"tot":16,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m7-01","s":16,"tot":17,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m7-05","s":1,"tot":20,"eb":"REJA","dis":["16:00–17:00","17:00–18:00 band","18:00–19:00 band","19:00–20:00","20:00–21:00 band","21:00–22:00"],"siljish":[]}
+{"k":"m7-03","s":16,"tot":17,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m7-04","s":2,"tot":18,"eb":"TUSHUNCHA · QISMLAR","dis":[],"siljish":[{"diff":-36,"chap":"MVP","ong":"⛶"}]}
+{"k":"m7-05","s":2,"tot":20,"eb":"TUSHUNCHA · TRANSFORM","dis":["16:00–17:00","17:00–18:00 band","18:00–19:00","19:00–20:00","20:00–21:00 band","21:00–22:00"],"siljish":[]}
+{"k":"m7-06","s":0,"tot":12,"eb":"KIRISH · «MAYDON» ISHGA TUSHDI","dis":["17:00 band","20:00 band","×"],"siljish":[]}
+{"k":"m7-07","s":0,"tot":12,"eb":"LOYIHA KUNI · KIRISH","dis":["17:00 band","20:00 band"],"siljish":[]}
+{"k":"m7-04","s":3,"tot":18,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m7-05","s":3,"tot":20,"eb":"TUSHUNCHA · TRANSITION","dis":["16:00–17:00","17:00–18:00 band","18:00–19:00","19:00–20:00","20:00–21:00 band","21:00–22:00"],"siljish":[{"diff":-44,"chap":"App.css","ong":"⛶"}]}
+{"k":"m7-08","s":0,"tot":12,"eb":"KIRISH · DIZAYNER EKRANI","dis":["‹","›","17:00 band"],"siljish":[{"diff":42,"chap":"Dribbble","ong":"Ko'rinishini — fon rangi, rasm va shrift"}]}
+{"k":"m7-07","s":1,"tot":12,"eb":"REJA","dis":["‹"],"siljish":[]}
+{"k":"m7-06","s":1,"tot":12,"eb":"MAQSAD","dis":["16:00","17:00 band","18:00","19:00","20:00 band","21:00"],"siljish":[]}
+{"k":"m7-04","s":4,"tot":18,"eb":"TUSHUNCHA · MA'LUMOT","dis":["16:00","17:00","18:00","19:00","20:00","21:00"],"siljish":[]}
+{"k":"m7-05","s":4,"tot":20,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m7-08","s":1,"tot":12,"eb":"REJA","dis":["‹","17:00 band","20:00 band"],"siljish":[]}
+{"k":"m7-06","s":2,"tot":12,"eb":"TUSHUNCHA · UCH QADAM","dis":["16:00","17:00 band","18:00","19:00","20:00 band","21:00"],"siljish":[]}
+{"k":"m7-07","s":2,"tot":12,"eb":"TUSHUNCHA · TALAB","dis":["17:00 band","20:00 band"],"siljish":[{"diff":-36,"chap":"PROMPT","ong":"⛶"}]}
+{"k":"m7-04","s":5,"tot":18,"eb":"TAJRIBA · O'YINCHI YO'LLARI","dis":[],"siljish":[]}
+{"k":"m7-05","s":5,"tot":20,"eb":"KOD YOZISH · 1-ELEMENT","dis":[],"siljish":[]}
+{"k":"m7-08","s":2,"tot":12,"eb":"TUSHUNCHA · BEZAK VA USUL","dis":["‹","›","17:00 band"],"siljish":[]}
+{"k":"m7-06","s":3,"tot":12,"eb":"TUSHUNCHA · BIRINCHI KUN","dis":["16:00","17:00 band","18:00","19:00"],"siljish":[]}
+{"k":"m7-07","s":3,"tot":12,"eb":"AMALIYOT 1 · BACKEND → DATABASE","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m7-04","s":6,"tot":18,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m7-05","s":6,"tot":20,"eb":"TUSHUNCHA · RANG","dis":["16:00–17:00","17:00–18:00 band","18:00–19:00","19:00–20:00","20:00–21:00 band","21:00–22:00"],"siljish":[{"diff":-44,"chap":"App.css","ong":"⛶"}]}
+{"k":"m7-08","s":3,"tot":12,"eb":"TEKSHIRUV · USUL","dis":[],"siljish":[]}
+{"k":"m7-06","s":4,"tot":12,"eb":"TEKSHIRUV · QACHON ULANADI","dis":[],"siljish":[]}
+{"k":"m7-07","s":4,"tot":12,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m7-04","s":7,"tot":18,"eb":"TUSHUNCHA · EGA KIRISHI","dis":[],"siljish":[]}
+{"k":"m7-05","s":7,"tot":20,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m7-08","s":4,"tot":12,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m7-06","s":5,"tot":12,"eb":"TUSHUNCHA · HODISA","dis":["16:00","17:00 band","18:00","19:00","20:00 band","21:00"],"siljish":[]}
+{"k":"m7-07","s":5,"tot":12,"eb":"TUSHUNCHA · TEKSHIRISH","dis":["‹"],"siljish":[]}
+{"k":"m7-04","s":8,"tot":18,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m7-05","s":8,"tot":20,"eb":"KOD YOZISH · 2-ELEMENT","dis":[],"siljish":[]}
+{"k":"m7-08","s":5,"tot":12,"eb":"TUSHUNCHA · ANIMATSIYA TALABI","dis":["‹","›","17:00 band","20:00 band"],"siljish":[{"diff":-42,"chap":"TALAB","ong":"⛶"}]}
+{"k":"m7-06","s":6,"tot":12,"eb":"AMALIYOT 1 · UMAMI","dis":[],"siljish":[{"diff":-25,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m7-07","s":6,"tot":12,"eb":"AMALIYOT 2 · SAYT → BACKEND","dis":["›","17:00 band","20:00 band"],"siljish":[{"diff":-25,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m7-04","s":9,"tot":18,"eb":"TUSHUNCHA · STACK","dis":[],"siljish":[]}
+{"k":"m7-05","s":9,"tot":20,"eb":"TUSHUNCHA · MOTION","dis":["18:00–19:00","18:00–19:00"],"siljish":[]}
+{"k":"m7-08","s":6,"tot":12,"eb":"AMALIYOT 1 · USUL","dis":["‹","›","17:00 band","20:00 band"],"siljish":[{"diff":-31,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m7-06","s":7,"tot":12,"eb":"AMALIYOT 2 · HODISA","dis":[],"siljish":[{"diff":-25,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m7-04","s":10,"tot":18,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m7-07","s":7,"tot":12,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m7-05","s":10,"tot":20,"eb":"KOD · MOTION","dis":["17:00–18:00 band","20:00–21:00 band"],"siljish":[]}
+{"k":"m7-08","s":7,"tot":12,"eb":"AMALIYOT 2 · ANIMATSIYA","dis":["‹","›","17:00 band","20:00 band"],"siljish":[{"diff":-31,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m7-06","s":8,"tot":12,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m7-04","s":11,"tot":18,"eb":"TAJRIBA · DEPLOY","dis":["Ochish"],"siljish":[]}
+{"k":"m7-07","s":8,"tot":12,"eb":"AMALIYOT 3 · XATO HOLATI, TEKSHIRISH","dis":["‹","›"],"siljish":[{"diff":-25,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m7-05","s":11,"tot":20,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m7-08","s":8,"tot":12,"eb":"TEKSHIRUV · ANIMATSIYA TALABI","dis":[],"siljish":[]}
+{"k":"m7-06","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m7-07","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m7-04","s":12,"tot":18,"eb":"YAKUNIY · AMALIY","dis":[],"siljish":[]}
+{"k":"m7-05","s":12,"tot":20,"eb":"TUSHUNCHA · ORTIQCHA HARAKAT","dis":["17:00–18:00 band","20:00–21:00 band"],"siljish":[]}
+{"k":"m7-08","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m7-06","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m7-07","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m7-04","s":13,"tot":18,"eb":"AMALIYOT 1 · BACKEND → DATABASE","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA"}]}
+{"k":"m7-05","s":13,"tot":20,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m7-08","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m7-06","s":11,"tot":12,"eb":"YAKUN","dis":[],"siljish":[]}
+{"k":"m7-07","s":11,"tot":12,"eb":"YAKUN","dis":[],"siljish":[]}
+{"k":"m7-04","s":14,"tot":18,"eb":"AMALIYOT 2 · SAYT","dis":["16:00","17:00 band","18:00","19:00","20:00 band","21:00"],"siljish":[{"diff":-25,"chap":"1","ong":"KUTILGAN NATIJA"}]}
+{"k":"m7-05","s":14,"tot":20,"eb":"XATONI TOPISH","dis":["17:00–18:00 band","20:00–21:00 band"],"siljish":[{"diff":88,"chap":"1","ong":"⛶"}]}
+{"k":"m7-08","s":11,"tot":12,"eb":"YAKUN","dis":[],"siljish":[]}
+{"k":"m7-04","s":15,"tot":18,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m7-05","s":15,"tot":20,"eb":"YAKUNIY · TARTIB","dis":[],"siljish":[]}
+{"k":"m7-09","s":0,"tot":12,"eb":"LOYIHA KUNI · KIRISH","dis":["Band qilish"],"siljish":[]}
+{"k":"m7-10","s":0,"tot":16,"eb":"KIRISH · BIRINCHI ODAM","dis":[],"siljish":[]}
+{"k":"m7-04","s":16,"tot":18,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m7-11","s":0,"tot":12,"eb":"LOYIHA KUNI · KIRISH","dis":[],"siljish":[]}
+{"k":"m7-05","s":16,"tot":20,"eb":"AMALIYOT · MAYDON REPO'SI","dis":["16:00–17:00","17:00–18:00 band","18:00–19:00 band","19:00–20:00","20:00–21:00 band","21:00–22:00"],"siljish":[{"diff":-25,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m7-10","s":1,"tot":16,"eb":"MAQSAD","dis":[],"siljish":[]}
+{"k":"m7-09","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[{"diff":100,"chap":"DARS OXIRIDA","ong":"BUGUNGI 3 QADAM"}]}
+{"k":"m7-04","s":17,"tot":18,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m7-11","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m7-05","s":17,"tot":20,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m7-10","s":2,"tot":16,"eb":"TUSHUNCHA · KUZATISH","dis":[],"siljish":[]}
+{"k":"m7-09","s":2,"tot":12,"eb":"TUSHUNCHA · BAND QILISH","dis":["Band qilish","Band qilish"],"siljish":[]}
+{"k":"m7-11","s":2,"tot":12,"eb":"TUSHUNCHA · ENG MUHIM MUAMMO","dis":[],"siljish":[]}
+{"k":"m7-05","s":18,"tot":20,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m7-10","s":3,"tot":16,"eb":"TEKSHIRUV · KUZATUV YOZUVI","dis":[],"siljish":[]}
+{"k":"m7-12","s":0,"tot":16,"eb":"KIRISH · «MAYDON» PITCHI","dis":[],"siljish":[]}
+{"k":"m7-09","s":3,"tot":12,"eb":"AMALIYOT 1 · BAND QILISH","dis":[],"siljish":[{"diff":-81,"chap":"1","ong":"KUTILGAN NATIJA (NAMUNA: «MAYDON»)"}]}
+{"k":"m7-11","s":3,"tot":12,"eb":"AMALIYOT 1 · SINOV.MD","dis":[],"siljish":[{"diff":-25,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m7-05","s":19,"tot":20,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m7-10","s":4,"tot":16,"eb":"TAJRIBA · YORDAM","dis":[],"siljish":[]}
+{"k":"m7-09","s":4,"tot":12,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m7-12","s":1,"tot":16,"eb":"MAQSAD","dis":[],"siljish":[{"diff":-87,"chap":"DARS OXIRIDA — PITCH: MUAMMO, YECHIM VA ","ong":"01"}]}
+{"k":"m7-11","s":4,"tot":12,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m7-10","s":5,"tot":16,"eb":"TEKSHIRUV · YECHIMNI KO'RSATMAYSIZ","dis":[],"siljish":[]}
+{"k":"m7-12","s":2,"tot":16,"eb":"TUSHUNCHA · RAQAM YONIDA","dis":[],"siljish":[]}
+{"k":"m7-09","s":5,"tot":12,"eb":"TUSHUNCHA · EGA SAHIFASI","dis":[],"siljish":[]}
+{"k":"m8-01","s":0,"tot":15,"eb":"KIRISH · «MAYDON» O'TGAN HAFTA","dis":[],"siljish":[]}
+{"k":"m7-11","s":5,"tot":12,"eb":"TUSHUNCHA · KUZATUVDAN TALAB","dis":[],"siljish":[]}
+{"k":"m7-10","s":6,"tot":16,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m7-12","s":3,"tot":16,"eb":"TEKSHIRUV · RAQAM YONIDA","dis":[],"siljish":[]}
+{"k":"m7-09","s":6,"tot":12,"eb":"AMALIYOT 2 · EGA SAHIFASI","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA (NAMUNA: «MAYDON»)"}]}
+{"k":"m8-01","s":1,"tot":15,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m7-11","s":6,"tot":12,"eb":"AMALIYOT 2 · TALAB → TUZATISH","dis":[],"siljish":[{"diff":-25,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m7-10","s":7,"tot":16,"eb":"TEKSHIRUV · INTERNET-MAGAZINDAGIDEK","dis":[],"siljish":[]}
+{"k":"m7-12","s":4,"tot":16,"eb":"TUSHUNCHA · YOZUVDAN OLINGAN GAP","dis":[],"siljish":[]}
+{"k":"m7-09","s":7,"tot":12,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m8-01","s":2,"tot":15,"eb":"TUSHUNCHA · OY OXIRI","dis":[],"siljish":[{"diff":34,"chap":"O'TGAN HAFTA · MENTOR MISOLI","ong":"Nimani sanaysiz?"}]}
+{"k":"m7-11","s":7,"tot":12,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m7-10","s":8,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m7-09","s":8,"tot":12,"eb":"AMALIYOT 3 · DEPLOY","dis":[],"siljish":[{"diff":-25,"chap":"1","ong":"KUTILGAN NATIJA (NAMUNA: «MAYDON»)"}]}
+{"k":"m7-12","s":5,"tot":16,"eb":"TEKSHIRUV · HIKOYA","dis":[],"siljish":[]}
+{"k":"m8-01","s":3,"tot":15,"eb":"TEKSHIRUV · ASOSIY NATIJA","dis":[],"siljish":[]}
+{"k":"m7-11","s":8,"tot":12,"eb":"AMALIYOT 3 · QAYTA SINOV","dis":[],"siljish":[{"diff":-25,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m7-10","s":9,"tot":16,"eb":"MASHQ · BIRINCHI TUZATILADIGAN","dis":[],"siljish":[]}
+{"k":"m7-09","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m7-12","s":6,"tot":16,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m8-01","s":4,"tot":15,"eb":"TUSHUNCHA · KIM NIMA QILDI","dis":[],"siljish":[]}
+{"k":"m7-11","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m7-10","s":10,"tot":16,"eb":"KOD YOZISH","dis":[],"siljish":[]}
+{"k":"m7-09","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m7-12","s":7,"tot":16,"eb":"TEKSHIRUV · CANVA'DAGIDEK","dis":[],"siljish":[]}
+{"k":"m8-01","s":5,"tot":15,"eb":"TEKSHIRUV · KIM NIMA QILDI","dis":[],"siljish":[]}
+{"k":"m7-11","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m7-10","s":11,"tot":16,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m7-09","s":11,"tot":12,"eb":"LOYIHA KUNI · YAKUN","dis":[],"siljish":[]}
+{"k":"m7-12","s":8,"tot":16,"eb":"TUSHUNCHA · UCH SLAYD","dis":[],"siljish":[]}
+{"k":"m8-01","s":6,"tot":15,"eb":"TUSHUNCHA · FOIZ","dis":[],"siljish":[{"diff":69,"chap":"O'TGAN HAFTA · MENTOR MISOLI","ong":"OKR · KEYINGI OY"}]}
+{"k":"m7-11","s":11,"tot":12,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m7-10","s":12,"tot":16,"eb":"JUFTLIKDA SINOV","dis":[],"siljish":[]}
+{"k":"m7-12","s":9,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m8-01","s":7,"tot":15,"eb":"TEKSHIRUV · FOIZ","dis":[],"siljish":[]}
+{"k":"m8-02","s":0,"tot":18,"eb":"DARS · KIRISH","dis":[],"siljish":[]}
+{"k":"m7-10","s":13,"tot":16,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m7-12","s":10,"tot":16,"eb":"KOD YOZISH","dis":[],"siljish":[]}
+{"k":"m8-01","s":8,"tot":15,"eb":"TUSHUNCHA · BITTA O'ZGARISH","dis":[],"siljish":[{"diff":34,"chap":"O'TGAN HAFTA · MENTOR MISOLI","ong":"OKR · KEYINGI OY"}]}
+{"k":"m8-03","s":0,"tot":12,"eb":"LOYIHA KUNI · KIRISH","dis":[],"siljish":[{"diff":-88,"chap":"maydon-….netlify.app/dashboard","ong":"SIZNINGCHA, QAYSI BIRI?"}]}
+{"k":"m8-02","s":1,"tot":18,"eb":"REJA","dis":["16:00","17:00","18:00","19:00","20:00","21:00","✓ Band qilish"],"siljish":[{"diff":58,"chap":"DARS OXIRIDA — «MAYDON» SHUNDAY YOZADI","ong":"01"}]}
+{"k":"m7-10","s":14,"tot":16,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m7-12","s":11,"tot":16,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m8-01","s":9,"tot":15,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m8-03","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m8-02","s":2,"tot":18,"eb":"TUSHUNCHA · HODISA","dis":["Maydon"],"siljish":[]}
+{"k":"m7-10","s":15,"tot":16,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m7-12","s":12,"tot":16,"eb":"MASHQ · SINFDOSH OLDIDA","dis":[],"siljish":[]}
+{"k":"m8-01","s":10,"tot":15,"eb":"KOD YOZISH · NEON","dis":[],"siljish":[]}
+{"k":"m8-03","s":2,"tot":12,"eb":"TUSHUNCHA · SANOQ","dis":["16:00","17:00","18:00","19:00","20:00","21:00"],"siljish":[]}
+{"k":"m8-02","s":3,"tot":18,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m7-12","s":13,"tot":16,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m8-01","s":11,"tot":15,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m8-03","s":3,"tot":12,"eb":"AMALIYOT 1 · BACKEND → DASHBOARD","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m8-04","s":0,"tot":12,"eb":"«MAYDON» TUGMASI","dis":[],"siljish":[]}
+{"k":"m8-02","s":4,"tot":18,"eb":"TUSHUNCHA · BACKEND TEKSHIRUVI","dis":[],"siljish":[]}
+{"k":"m7-12","s":14,"tot":16,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m8-01","s":12,"tot":15,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m8-03","s":4,"tot":12,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m8-04","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m8-02","s":5,"tot":18,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m7-12","s":15,"tot":16,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m8-01","s":13,"tot":15,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m8-03","s":5,"tot":12,"eb":"TUSHUNCHA · YANGILANISH","dis":[],"siljish":[]}
+{"k":"m8-04","s":2,"tot":12,"eb":"TUSHUNCHA · TAXMIN","dis":[],"siljish":[{"diff":-86,"chap":"Maydon","ong":"TAJRIBA"}]}
+{"k":"m8-02","s":6,"tot":18,"eb":"TUSHUNCHA · BRAUZER ID","dis":["Maydon","Maydon"],"siljish":[]}
+{"k":"m8-01","s":14,"tot":15,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m8-03","s":6,"tot":12,"eb":"AMALIYOT 2 · HAR 5 SONIYADA SO'ROV","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m8-04","s":3,"tot":12,"eb":"TEKSHIRUV · QAYSI RAQAM","dis":[],"siljish":[]}
+{"k":"m8-02","s":7,"tot":18,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m8-05","s":0,"tot":18,"eb":"DARS · KIRISH","dis":[],"siljish":[]}
+{"k":"m8-03","s":7,"tot":12,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m8-04","s":4,"tot":12,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m8-02","s":8,"tot":18,"eb":"KOD YOZISH · UCH HODISA","dis":["16:00","17:00","18:00","19:00","20:00","21:00","✓ Band qilish"],"siljish":[]}
+{"k":"m8-05","s":1,"tot":18,"eb":"REJA","dis":["Qidirish"],"siljish":[]}
+{"k":"m8-06","s":0,"tot":12,"eb":"KIRISH · ISHONCH","dis":["Band qilish"],"siljish":[]}
+{"k":"m8-03","s":8,"tot":12,"eb":"AMALIYOT 3 · INTERNETDA TEKSHIRISH","dis":["16:00","17:00","18:00","19:00","20:00","21:00"],"siljish":[{"diff":-88,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m8-04","s":5,"tot":12,"eb":"TUSHUNCHA · IKKI GURUH","dis":[],"siljish":[]}
+{"k":"m8-02","s":9,"tot":18,"eb":"TUSHUNCHA · SANOQ","dis":[],"siljish":[]}
+{"k":"m8-05","s":2,"tot":18,"eb":"TUSHUNCHA · SQL INJECTION","dis":["Qidirish"],"siljish":[]}
+{"k":"m8-06","s":1,"tot":12,"eb":"REJA","dis":["Band qilish"],"siljish":[]}
+{"k":"m8-03","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m8-04","s":6,"tot":12,"eb":"AMALIYOT 1 · VARIANT","dis":[],"siljish":[{"diff":-93,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m8-02","s":10,"tot":18,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m8-05","s":3,"tot":18,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m8-06","s":2,"tot":12,"eb":"TUSHUNCHA · ISM VA TELEFON YO'LI","dis":[],"siljish":[]}
+{"k":"m8-03","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m8-04","s":7,"tot":12,"eb":"AMALIYOT 2 · DASHBOARD VA SINFDOSHLAR","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m8-02","s":11,"tot":18,"eb":"TAJRIBA · IKKI TIZIM","dis":[],"siljish":[]}
+{"k":"m8-05","s":4,"tot":18,"eb":"TUSHUNCHA · XSS","dis":["Qidirish"],"siljish":[]}
+{"k":"m8-06","s":3,"tot":12,"eb":"TEKSHIRUV · SHAXSIY MA'LUMOT","dis":[],"siljish":[]}
+{"k":"m8-03","s":11,"tot":12,"eb":"YAKUN","dis":[],"siljish":[]}
+{"k":"m8-04","s":8,"tot":12,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m8-02","s":12,"tot":18,"eb":"YAKUNIY · TARTIB","dis":[],"siljish":[]}
+{"k":"m8-05","s":5,"tot":18,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m8-06","s":4,"tot":12,"eb":"TUSHUNCHA · SIZIB CHIQISH","dis":[],"siljish":[]}
+{"k":"m8-04","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m8-02","s":13,"tot":18,"eb":"AMALIYOT 1 · BACKEND → DATABASE","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m8-05","s":6,"tot":18,"eb":"TUSHUNCHA · MAXFIY KALIT","dis":[],"siljish":[]}
+{"k":"m8-06","s":5,"tot":12,"eb":"TUSHUNCHA · AUDIT VARAG'I","dis":[],"siljish":[]}
+{"k":"m8-07","s":0,"tot":18,"eb":"DARS · KIRISH","dis":[],"siljish":[]}
+{"k":"m8-04","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m8-02","s":14,"tot":18,"eb":"AMALIYOT 2 · SAYT → HODISALAR","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m8-05","s":7,"tot":18,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m8-06","s":6,"tot":12,"eb":"AMALIYOT 1 · AUDIT VA O'CHIRISH","dis":[],"siljish":[{"diff":-25,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m8-07","s":1,"tot":18,"eb":"REJA","dis":[],"siljish":[{"diff":55,"chap":"DARS OXIRIDA — «MAYDON» SHUNDAY ISHLAYDI","ong":"01"}]}
+{"k":"m8-02","s":15,"tot":18,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m8-04","s":11,"tot":12,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m8-05","s":8,"tot":18,"eb":"KOD YOZISH · PARAMETRLI SO'ROV","dis":["Qidirish"],"siljish":[]}
+{"k":"m8-06","s":7,"tot":12,"eb":"AMALIYOT 2 · MAXFIYLIK SIYOSATI","dis":["Band qilish"],"siljish":[{"diff":-94,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m8-07","s":2,"tot":18,"eb":"TUSHUNCHA · SAYT NOMI","dis":[],"siljish":[]}
+{"k":"m8-02","s":16,"tot":18,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m8-05","s":9,"tot":18,"eb":"TUSHUNCHA · 2FA","dis":[],"siljish":[]}
+{"k":"m8-06","s":8,"tot":12,"eb":"TEKSHIRUV · SIYOSAT VA KOD","dis":[],"siljish":[]}
+{"k":"m8-07","s":3,"tot":18,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m8-08","s":0,"tot":12,"eb":"LOYIHA KUNI · KIRISH","dis":[],"siljish":[]}
+{"k":"m8-02","s":17,"tot":18,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m8-05","s":10,"tot":18,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m8-06","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m8-07","s":4,"tot":18,"eb":"TUSHUNCHA · HTTPS","dis":[],"siljish":[]}
+{"k":"m8-08","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m8-05","s":11,"tot":18,"eb":"TAJRIBA · TEKSHIRUV","dis":["Qidirish"],"siljish":[]}
+{"k":"m8-06","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m8-07","s":5,"tot":18,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m8-08","s":2,"tot":12,"eb":"TUSHUNCHA · SO'ROVLAR CHEGARASI","dis":[],"siljish":[]}
+{"k":"m8-09","s":0,"tot":12,"eb":"LOYIHA KUNI · KIRISH","dis":[],"siljish":[{"diff":-25,"chap":"github.com/…/maydon/pull/1","ong":"SIZNINGCHA, QAYSI BIRI?"}]}
+{"k":"m8-05","s":12,"tot":18,"eb":"YAKUNIY · TARTIB","dis":[],"siljish":[]}
+{"k":"m8-07","s":6,"tot":18,"eb":"TUSHUNCHA · BACKEND HOLATI","dis":[],"siljish":[]}
+{"k":"m8-06","s":11,"tot":12,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m8-08","s":3,"tot":12,"eb":"AMALIYOT 1 · SO'ROVLAR CHEGARASI","dis":[],"siljish":[{"diff":-97,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m8-09","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[{"diff":25,"chap":"DARS OXIRIDA","ong":"01"}]}
+{"k":"m8-05","s":13,"tot":18,"eb":"AMALIYOT 1 · BACKEND","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m8-07","s":7,"tot":18,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m8-08","s":4,"tot":12,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m8-09","s":2,"tot":12,"eb":"TUSHUNCHA · PULL REQUEST","dis":[],"siljish":[]}
+{"k":"m8-05","s":14,"tot":18,"eb":"AMALIYOT 2 · SAYT → PUSH","dis":["Qidirish"],"siljish":[{"diff":-94,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m8-10","s":0,"tot":16,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m8-07","s":8,"tot":18,"eb":"TAJRIBA · MONITORING","dis":[],"siljish":[]}
+{"k":"m8-08","s":5,"tot":12,"eb":"TUSHUNCHA · XATO HOLATLARI","dis":[],"siljish":[]}
+{"k":"m8-09","s":3,"tot":12,"eb":"AMALIYOT 1 · PULL REQUEST","dis":[],"siljish":[{"diff":-25,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m8-05","s":15,"tot":18,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m8-10","s":1,"tot":16,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m8-07","s":9,"tot":18,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m8-08","s":6,"tot":12,"eb":"AMALIYOT 2 · XATO HOLATLARI","dis":[],"siljish":[{"diff":-93,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m8-09","s":4,"tot":12,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m8-10","s":2,"tot":16,"eb":"TUSHUNCHA · VAQT CHIZIG'I","dis":[],"siljish":[]}
+{"k":"m8-05","s":16,"tot":18,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m8-07","s":10,"tot":18,"eb":"MENTOR MISOLI · O'Z DOMENI","dis":[],"siljish":[]}
+{"k":"m8-08","s":7,"tot":12,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m8-09","s":5,"tot":12,"eb":"TUSHUNCHA · IZOH VA JAVOB","dis":[],"siljish":[]}
+{"k":"m8-10","s":3,"tot":16,"eb":"TEKSHIRUV · VAQT CHIZIG'I","dis":[],"siljish":[]}
+{"k":"m8-05","s":17,"tot":18,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m8-07","s":11,"tot":18,"eb":"YAKUNIY · TARTIB","dis":[],"siljish":[]}
+{"k":"m8-08","s":8,"tot":12,"eb":"AMALIYOT 3 · A/B YAKUNI VA README","dis":[],"siljish":[{"diff":-101,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m8-09","s":6,"tot":12,"eb":"AMALIYOT 2 · CODE REVIEW","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m8-10","s":4,"tot":16,"eb":"TUSHUNCHA · QURDIM VA O'RGANDIM","dis":[],"siljish":[]}
+{"k":"m8-07","s":12,"tot":18,"eb":"AMALIYOT 1 · SAYT NOMI","dis":[],"siljish":[{"diff":-55,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"},{"diff":30,"chap":"Sayt · Netlify","ong":"render.com · Environment"}]}
+{"k":"m8-08","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m8-09","s":7,"tot":12,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m8-11","s":0,"tot":17,"eb":"KIRISH · «MAYDON» PITCHI","dis":[],"siljish":[]}
+{"k":"m8-10","s":5,"tot":16,"eb":"TEKSHIRUV · O'RGANDIM","dis":[],"siljish":[]}
+{"k":"m8-07","s":13,"tot":18,"eb":"AMALIYOT 2 · BACKEND HOLATI","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m8-08","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m8-09","s":8,"tot":12,"eb":"AMALIYOT 3 · TUZATISH VA «MERGE»","dis":[],"siljish":[{"diff":-25,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m8-11","s":1,"tot":17,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m8-10","s":6,"tot":16,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m8-07","s":14,"tot":18,"eb":"AMALIYOT 3 · MONITORING","dis":[],"siljish":[{"diff":-55,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON"}]}
+{"k":"m8-08","s":11,"tot":12,"eb":"YAKUN","dis":[],"siljish":[]}
+{"k":"m8-09","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m8-11","s":2,"tot":17,"eb":"TUSHUNCHA · BESH SLAYD","dis":[],"siljish":[]}
+{"k":"m8-10","s":7,"tot":16,"eb":"TUSHUNCHA · KEYINGI QADAM","dis":["Keyin"],"siljish":[]}
+{"k":"m8-07","s":15,"tot":18,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m8-09","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m8-11","s":3,"tot":17,"eb":"TEKSHIRUV · RAQAMLAR YOKI KEYINGI QADAM","dis":[],"siljish":[]}
+{"k":"m8-10","s":8,"tot":16,"eb":"TEKSHIRUV · KEYINGI QADAM","dis":[],"siljish":[]}
+{"k":"m8-07","s":16,"tot":18,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m9-01","s":0,"tot":15,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m8-11","s":4,"tot":17,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m8-09","s":11,"tot":12,"eb":"YAKUN","dis":[],"siljish":[]}
+{"k":"m8-10","s":9,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m8-07","s":17,"tot":18,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m9-01","s":1,"tot":15,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m8-11","s":5,"tot":17,"eb":"TEKSHIRUV · AIRBNB'DAGIDEK","dis":[],"siljish":[]}
+{"k":"m8-10","s":10,"tot":16,"eb":"JUFTLIKDA ISH","dis":[],"siljish":[]}
+{"k":"m9-01","s":2,"tot":15,"eb":"TUSHUNCHA · G'OYA","dis":[],"siljish":[]}
+{"k":"m9-02","s":0,"tot":16,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m9-03","s":0,"tot":16,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m8-11","s":6,"tot":17,"eb":"TUSHUNCHA · RAQAMLAR","dis":[],"siljish":[]}
+{"k":"m8-10","s":11,"tot":16,"eb":"KOD YOZISH","dis":[],"siljish":[]}
+{"k":"m9-01","s":3,"tot":15,"eb":"TEKSHIRUV · G'OYANING UCH QISMI","dis":[],"siljish":[]}
+{"k":"m9-02","s":1,"tot":16,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m9-03","s":1,"tot":16,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m8-11","s":7,"tot":17,"eb":"TEKSHIRUV · RAQAM YONIDA","dis":[],"siljish":[]}
+{"k":"m8-10","s":12,"tot":16,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m9-01","s":4,"tot":15,"eb":"TUSHUNCHA · MANBA","dis":[],"siljish":[]}
+{"k":"m9-02","s":2,"tot":16,"eb":"TUSHUNCHA · SARALASH","dis":[],"siljish":[]}
+{"k":"m9-03","s":2,"tot":16,"eb":"TAKROR · 9-MODUL QOIDASI","dis":[],"siljish":[]}
+{"k":"m8-11","s":8,"tot":17,"eb":"TUSHUNCHA · FIDBEK","dis":[],"siljish":[]}
+{"k":"m8-10","s":13,"tot":16,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m9-01","s":5,"tot":15,"eb":"TEKSHIRUV · YECHIM VA MUAMMO","dis":[],"siljish":[]}
+{"k":"m9-02","s":3,"tot":16,"eb":"TEKSHIRUV · REAL AUDITORIYA","dis":[],"siljish":[]}
+{"k":"m9-03","s":3,"tot":16,"eb":"TEKSHIRUV · BIR XIL SAVOLLAR","dis":[],"siljish":[]}
+{"k":"m8-11","s":9,"tot":17,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m8-10","s":14,"tot":16,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m9-01","s":6,"tot":15,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m9-02","s":4,"tot":16,"eb":"TUSHUNCHA · TO'RT SON","dis":[],"siljish":[]}
+{"k":"m9-03","s":4,"tot":16,"eb":"TUSHUNCHA · TO'RTINCHI SAVOL","dis":[],"siljish":[]}
+{"k":"m8-11","s":10,"tot":17,"eb":"KOD YOZISH · NEON","dis":[],"siljish":[]}
+{"k":"m8-10","s":15,"tot":16,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m9-01","s":7,"tot":15,"eb":"TEKSHIRUV · STARBUCKS'DAGIDEK","dis":[],"siljish":[]}
+{"k":"m9-02","s":5,"tot":16,"eb":"TEKSHIRUV · RICE HISOBI","dis":[],"siljish":[]}
+{"k":"m9-03","s":5,"tot":16,"eb":"TEKSHIRUV · TO'RTINCHI SAVOL","dis":[],"siljish":[]}
+{"k":"m8-11","s":11,"tot":17,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m9-01","s":8,"tot":15,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m9-02","s":6,"tot":16,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m9-04","s":0,"tot":16,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m9-03","s":6,"tot":16,"eb":"TUSHUNCHA · SO'Z VA ISH","dis":[],"siljish":[]}
+{"k":"m8-11","s":12,"tot":17,"eb":"MASHQ · SINFDOSH OLDIDA","dis":[],"siljish":[]}
+{"k":"m9-01","s":9,"tot":15,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m9-02","s":7,"tot":16,"eb":"TEKSHIRUV · STORIES VA RICE","dis":[],"siljish":[]}
+{"k":"m9-04","s":1,"tot":16,"eb":"REJA","dis":[],"siljish":[{"diff":-95,"chap":"DARS OXIRIDA: TAKRORLANGAN JAVOBLAR VA F","ong":"01"}]}
+{"k":"m9-03","s":7,"tot":16,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m8-11","s":13,"tot":17,"eb":"MASHQ · TUZATISH","dis":[],"siljish":[]}
+{"k":"m9-01","s":10,"tot":15,"eb":"KOD YOZISH","dis":[],"siljish":[]}
+{"k":"m9-02","s":8,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m9-04","s":2,"tot":16,"eb":"TUSHUNCHA · TAKRORLANGAN JAVOB","dis":[],"siljish":[]}
+{"k":"m9-03","s":8,"tot":16,"eb":"TEKSHIRUV · AIRBNB'DAGIDEK","dis":[],"siljish":[]}
+{"k":"m8-11","s":14,"tot":17,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m9-01","s":11,"tot":15,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m9-02","s":9,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m9-04","s":3,"tot":16,"eb":"TEKSHIRUV · TAKRORLANGAN JAVOB","dis":[],"siljish":[]}
+{"k":"m9-03","s":9,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m8-11","s":15,"tot":17,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m9-01","s":12,"tot":15,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m9-02","s":10,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m9-04","s":4,"tot":16,"eb":"TUSHUNCHA · HARAKAT BELGISI","dis":[],"siljish":[]}
+{"k":"m9-03","s":10,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m8-11","s":16,"tot":17,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m9-01","s":13,"tot":15,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m9-02","s":11,"tot":16,"eb":"KOD YOZISH · VS CODE","dis":[],"siljish":[]}
+{"k":"m9-04","s":5,"tot":16,"eb":"TEKSHIRUV · HARAKAT BELGISI","dis":[],"siljish":[]}
+{"k":"m9-03","s":11,"tot":16,"eb":"KOD YOZISH","dis":[],"siljish":[]}
+{"k":"m9-01","s":14,"tot":15,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m9-02","s":12,"tot":16,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m9-05","s":0,"tot":16,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m9-04","s":6,"tot":16,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m9-03","s":12,"tot":16,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m9-02","s":13,"tot":16,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m9-04","s":7,"tot":16,"eb":"TEKSHIRUV · YOUTUBE","dis":[],"siljish":[]}
+{"k":"m9-05","s":1,"tot":16,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m9-03","s":13,"tot":16,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m9-06","s":0,"tot":16,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m9-02","s":14,"tot":16,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m9-04","s":8,"tot":16,"eb":"TUSHUNCHA · FINAL G'OYA","dis":[],"siljish":[{"diff":-51,"chap":"JAMOA YIG'ISH","ong":"Jamoa yig'ish"}]}
+{"k":"m9-05","s":2,"tot":16,"eb":"TUSHUNCHA · TO'LIQ PRD","dis":[],"siljish":[]}
+{"k":"m9-03","s":14,"tot":16,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m9-06","s":1,"tot":16,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m9-02","s":15,"tot":16,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m9-04","s":9,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[{"diff":-63,"chap":"NECHTA YOZUV?","ong":"ENG QIYINI"}]}
+{"k":"m9-05","s":3,"tot":16,"eb":"TEKSHIRUV · DALIL","dis":[],"siljish":[]}
+{"k":"m9-03","s":15,"tot":16,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m9-06","s":2,"tot":16,"eb":"TUSHUNCHA · RICE TARTIBI","dis":[],"siljish":[]}
+{"k":"m9-04","s":10,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m9-05","s":4,"tot":16,"eb":"TUSHUNCHA · QILMAYMIZ / KEYIN","dis":[],"siljish":[]}
+{"k":"m9-06","s":3,"tot":16,"eb":"TEKSHIRUV · RICE TARTIBI","dis":[],"siljish":[]}
+{"k":"m9-07","s":0,"tot":20,"eb":"DARS · KIRISH","dis":[],"siljish":[]}
+{"k":"m9-08","s":0,"tot":20,"eb":"DARS · KIRISH","dis":[],"siljish":[]}
+{"k":"m9-04","s":11,"tot":16,"eb":"KOD YOZISH · VS CODE","dis":[],"siljish":[]}
+{"k":"m9-05","s":5,"tot":16,"eb":"TEKSHIRUV · QILMAYMIZ YOKI KEYIN","dis":[],"siljish":[]}
+{"k":"m9-06","s":4,"tot":16,"eb":"TUSHUNCHA · UFQ","dis":[],"siljish":[]}
+{"k":"m9-07","s":1,"tot":20,"eb":"REJA","dis":["Qo'shildingiz"],"siljish":[]}
+{"k":"m9-08","s":1,"tot":20,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m9-04","s":12,"tot":16,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m9-05","s":6,"tot":16,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m9-06","s":5,"tot":16,"eb":"TEKSHIRUV · KUTADIGAN ISH","dis":[],"siljish":[]}
+{"k":"m9-07","s":2,"tot":20,"eb":"TUSHUNCHA · EKRANLAR","dis":[],"siljish":[]}
+{"k":"m9-08","s":2,"tot":20,"eb":"TUSHUNCHA · QISMLAR","dis":["Yuborish","O'yinlar"],"siljish":[]}
+{"k":"m9-04","s":13,"tot":16,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m9-05","s":7,"tot":16,"eb":"TEKSHIRUV · AMAZON'DAGIDEK","dis":[],"siljish":[]}
+{"k":"m9-06","s":6,"tot":16,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m9-07","s":3,"tot":20,"eb":"TUSHUNCHA · WIREFRAME","dis":[],"siljish":[]}
+{"k":"m9-08","s":3,"tot":20,"eb":"TUSHUNCHA · JADVALLAR","dis":[],"siljish":[]}
+{"k":"m9-04","s":14,"tot":16,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m9-05","s":8,"tot":16,"eb":"TUSHUNCHA · MENTOR TEKSHIRUVI","dis":[],"siljish":[]}
+{"k":"m9-07","s":4,"tot":20,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m9-06","s":7,"tot":16,"eb":"TEKSHIRUV · UZUM VA ROADMAP","dis":[],"siljish":[]}
+{"k":"m9-08","s":4,"tot":20,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m9-04","s":15,"tot":16,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m9-05","s":9,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m9-07","s":5,"tot":20,"eb":"MUSTAQIL ISH · QOG'OZDA","dis":[],"siljish":[]}
+{"k":"m9-06","s":8,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m9-08","s":5,"tot":20,"eb":"TUSHUNCHA · REAL VAQT","dis":[],"siljish":[]}
+{"k":"m9-05","s":10,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m9-09","s":0,"tot":19,"eb":"DARS · KIRISH","dis":[],"siljish":[]}
+{"k":"m9-07","s":6,"tot":20,"eb":"TUSHUNCHA · PROTOTIP","dis":[],"siljish":[]}
+{"k":"m9-06","s":9,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m9-08","s":6,"tot":20,"eb":"TAJRIBA · SO'ROV","dis":["Qo'shilaman"],"siljish":[]}
+{"k":"m9-05","s":11,"tot":16,"eb":"VS CODE · PRD.MD","dis":[],"siljish":[]}
+{"k":"m9-09","s":1,"tot":19,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m9-07","s":7,"tot":20,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m9-06","s":10,"tot":16,"eb":"MUSTAQIL ISH · ROADMAP","dis":[],"siljish":[]}
+{"k":"m9-08","s":7,"tot":20,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m9-05","s":12,"tot":16,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m9-09","s":2,"tot":19,"eb":"TAKROR · REACT NATIVE","dis":[],"siljish":[]}
+{"k":"m9-06","s":11,"tot":16,"eb":"KOD YOZISH","dis":[],"siljish":[]}
+{"k":"m9-07","s":8,"tot":20,"eb":"TUSHUNCHA · TALAB","dis":[],"siljish":[]}
+{"k":"m9-08","s":8,"tot":20,"eb":"KOD YOZISH · SO'ROV","dis":[],"siljish":[{"diff":-75,"chap":"1","ong":"Kompilyatorni ochish"}]}
+{"k":"m9-05","s":13,"tot":16,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m9-09","s":3,"tot":19,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m9-06","s":12,"tot":16,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m9-07","s":9,"tot":20,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m9-08","s":9,"tot":20,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m9-05","s":14,"tot":16,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m9-09","s":4,"tot":19,"eb":"TUSHUNCHA · NAVIGATSIYA","dis":[],"siljish":[]}
+{"k":"m9-06","s":13,"tot":16,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m9-07","s":10,"tot":20,"eb":"TEKSHIRISH","dis":[],"siljish":[]}
+{"k":"m9-08","s":10,"tot":20,"eb":"TUSHUNCHA · PLATFORMA","dis":[],"siljish":[]}
+{"k":"m9-05","s":15,"tot":16,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m9-09","s":5,"tot":19,"eb":"TUSHUNCHA · [ID]","dis":["Shanba, 18:00 8 / 10 Mahalla maydoni","Shanba, 20:00 6 / 10 Maktab maydoni","Yakshanba, 10:00 4 / 8 Park maydoni","Yakshanba, 17:00 9 / 10 Mahalla maydoni"],"siljish":[]}
+{"k":"m9-06","s":14,"tot":16,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m9-07","s":11,"tot":20,"eb":"TUSHUNCHA · JONLI PROTOTIP","dis":[],"siljish":[]}
+{"k":"m9-08","s":11,"tot":20,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m9-09","s":6,"tot":19,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m9-10","s":0,"tot":12,"eb":"LOYIHA KUNI · KIRISH","dis":[],"siljish":[]}
+{"k":"m9-06","s":15,"tot":16,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m9-07","s":12,"tot":20,"eb":"KOD YOZISH · SON","dis":[],"siljish":[]}
+{"k":"m9-08","s":12,"tot":20,"eb":"TUSHUNCHA · STEK","dis":[],"siljish":[]}
+{"k":"m9-09","s":7,"tot":19,"eb":"TUSHUNCHA · EXPO GO","dis":[],"siljish":[]}
+{"k":"m9-10","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m9-07","s":13,"tot":20,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m9-08","s":13,"tot":20,"eb":"MUSTAQIL ISH · PLATFORMA","dis":[],"siljish":[]}
+{"k":"m9-09","s":8,"tot":19,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m9-11","s":0,"tot":12,"eb":"LOYIHA KUNI · KIRISH","dis":[],"siljish":[]}
+{"k":"m9-10","s":2,"tot":12,"eb":"TUSHUNCHA · KIRISH","dis":[],"siljish":[]}
+{"k":"m9-07","s":14,"tot":20,"eb":"YAKUNIY · TARTIB","dis":[],"siljish":[]}
+{"k":"m9-08","s":14,"tot":20,"eb":"YAKUNIY · TARTIB","dis":[],"siljish":[]}
+{"k":"m9-09","s":9,"tot":19,"eb":"TUSHUNCHA · WEB-TREK","dis":[],"siljish":[]}
+{"k":"m9-11","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m9-10","s":3,"tot":12,"eb":"AMALIYOT 1 · DATABASE VA KIRISH","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m9-07","s":15,"tot":20,"eb":"AMALIYOT 1 · O'Z REPO'NGIZ","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m9-08","s":15,"tot":20,"eb":"AMALIYOT 1 · O'Z REPO'NGIZ","dis":[],"siljish":[{"diff":-25,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m9-09","s":10,"tot":19,"eb":"KOD YOZISH · ADAPTIV SAYT","dis":[],"siljish":[]}
+{"k":"m9-11","s":2,"tot":12,"eb":"TUSHUNCHA · E'LON","dis":[],"siljish":[]}
+{"k":"m9-10","s":4,"tot":12,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m9-08","s":16,"tot":20,"eb":"AMALIYOT 2 · O'Z REPO'NGIZ","dis":[],"siljish":[{"diff":-25,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m9-07","s":16,"tot":20,"eb":"AMALIYOT 2 · JONLI PROTOTIP","dis":[],"siljish":[{"diff":-25,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m9-09","s":11,"tot":19,"eb":"TUSHUNCHA · PWA","dis":[],"siljish":[{"diff":30,"chap":"","ong":"manifest.webmanifest"}]}
+{"k":"m9-11","s":3,"tot":12,"eb":"AMALIYOT 1 · E'LON BERISH","dis":[],"siljish":[{"diff":-91,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m9-10","s":5,"tot":12,"eb":"TUSHUNCHA · ILOVA MANZILI","dis":[],"siljish":[]}
+{"k":"m9-07","s":17,"tot":20,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m9-08","s":17,"tot":20,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m9-11","s":4,"tot":12,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m9-09","s":12,"tot":19,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m9-10","s":6,"tot":12,"eb":"AMALIYOT 2 · DEPLOY","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m9-07","s":18,"tot":20,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m9-08","s":18,"tot":20,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m9-09","s":13,"tot":19,"eb":"YAKUNIY · TARTIB","dis":[],"siljish":[]}
+{"k":"m9-11","s":5,"tot":12,"eb":"TUSHUNCHA · TO'LGAN O'YIN","dis":[],"siljish":[{"diff":30,"chap":"1-telefon · o'yinchi","ong":"Backend"}]}
+{"k":"m9-10","s":7,"tot":12,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m9-07","s":19,"tot":20,"eb":"YAKUN","dis":[],"siljish":[]}
+{"k":"m9-08","s":19,"tot":20,"eb":"YAKUN","dis":[],"siljish":[]}
+{"k":"m9-11","s":6,"tot":12,"eb":"AMALIYOT 2 · QO'SHILISH","dis":[],"siljish":[{"diff":-91,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m9-09","s":14,"tot":19,"eb":"AMALIYOT 1 · O'Z TREKINGIZ","dis":[],"siljish":[{"diff":-55,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m9-10","s":8,"tot":12,"eb":"AMALIYOT 3 · ILOVA → BACKEND","dis":[],"siljish":[{"diff":-91,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m9-11","s":7,"tot":12,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m9-12","s":0,"tot":12,"eb":"LOYIHA KUNI · KIRISH","dis":[],"siljish":[]}
+{"k":"m9-09","s":15,"tot":19,"eb":"AMALIYOT 2 · O'Z TREKINGIZ","dis":[],"siljish":[{"diff":-55,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m9-13","s":0,"tot":12,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m9-10","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m9-11","s":8,"tot":12,"eb":"AMALIYOT 3 · YANGILASH","dis":[],"siljish":[{"diff":-91,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m9-12","s":1,"tot":12,"eb":"REJA","dis":["↓ torting"],"siljish":[{"diff":29,"chap":"DARS OXIRIDA","ong":"BUGUNGI 3 QADAM"}]}
+{"k":"m9-09","s":16,"tot":19,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m9-13","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m9-10","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m9-11","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m9-12","s":2,"tot":12,"eb":"TUSHUNCHA · RUXSAT","dis":["Kelaman"],"siljish":[]}
+{"k":"m9-09","s":17,"tot":19,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m9-13","s":2,"tot":12,"eb":"TUSHUNCHA · SANOQ","dis":[],"siljish":[]}
+{"k":"m9-10","s":11,"tot":12,"eb":"YAKUN","dis":[],"siljish":[]}
+{"k":"m9-11","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m9-12","s":3,"tot":12,"eb":"AMALIYOT 1 · HARAKAT VA RUXSAT","dis":["Kelaman"],"siljish":[{"diff":-90,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m9-09","s":18,"tot":19,"eb":"YAKUN","dis":[],"siljish":[]}
+{"k":"m9-13","s":3,"tot":12,"eb":"TEKSHIRUV · BIRINCHI QAYSI","dis":[],"siljish":[]}
+{"k":"m9-11","s":11,"tot":12,"eb":"YAKUN","dis":[],"siljish":[]}
+{"k":"m9-14","s":0,"tot":12,"eb":"LOYIHA KUNI · KIRISH","dis":[],"siljish":[]}
+{"k":"m9-12","s":4,"tot":12,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m9-13","s":4,"tot":12,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m9-15","s":0,"tot":12,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m9-12","s":5,"tot":12,"eb":"TUSHUNCHA · TASHKILOTCHI EKRANI","dis":["Kelaman","↓ torting"],"siljish":[]}
+{"k":"m9-14","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m9-13","s":5,"tot":12,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m9-16","s":0,"tot":16,"eb":"KIRISH · «MAYDON JAMOA» PITCHI","dis":[],"siljish":[]}
+{"k":"m9-15","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m9-12","s":6,"tot":12,"eb":"AMALIYOT 2 · BOSHQA ODAM KO'RADI","dis":["↓ torting"],"siljish":[{"diff":-54,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m9-14","s":2,"tot":12,"eb":"TUSHUNCHA · CHIQISH VA NAVBAT","dis":[],"siljish":[]}
+{"k":"m9-13","s":6,"tot":12,"eb":"AMALIYOT 1 · TUZATISH","dis":[],"siljish":[{"diff":-31,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m9-16","s":1,"tot":16,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m9-15","s":2,"tot":12,"eb":"TUSHUNCHA · HOLAT","dis":[],"siljish":[]}
+{"k":"m9-12","s":7,"tot":12,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m9-14","s":3,"tot":12,"eb":"AMALIYOT 1 · BACKEND","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m9-13","s":7,"tot":12,"eb":"AMALIYOT 2 · QAYTA SINOV","dis":[],"siljish":[{"diff":-25,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m9-16","s":2,"tot":16,"eb":"TUSHUNCHA · TO'RT BO'LAK","dis":[],"siljish":[]}
+{"k":"m9-15","s":3,"tot":12,"eb":"TUSHUNCHA · RISK","dis":[],"siljish":[{"diff":41,"chap":"Render · bepul xizmat","ong":"Mentor misoli"}]}
+{"k":"m9-12","s":8,"tot":12,"eb":"AMALIYOT 3 · TUGMA FAQAT KERAK JOYDA","dis":[],"siljish":[{"diff":-90,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m9-14","s":4,"tot":12,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m9-13","s":8,"tot":12,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m9-16","s":3,"tot":16,"eb":"TEKSHIRUV · TO'RT BO'LAK","dis":[],"siljish":[]}
+{"k":"m9-15","s":4,"tot":12,"eb":"TEKSHIRUV · RISK","dis":[],"siljish":[]}
+{"k":"m9-12","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m9-13","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m9-14","s":5,"tot":12,"eb":"TUSHUNCHA · BIR VAQTDA BOSISH","dis":[],"siljish":[]}
+{"k":"m9-16","s":4,"tot":16,"eb":"TUSHUNCHA · DALIL","dis":[],"siljish":[{"diff":18,"chap":"?","ong":"⛶"}]}
+{"k":"m9-15","s":5,"tot":12,"eb":"MUSTAQIL ISH · HOLAT","dis":[],"siljish":[]}
+{"k":"m9-12","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m9-13","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m9-14","s":6,"tot":12,"eb":"AMALIYOT 2 · BIR VAQTDA BOSISH","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m9-16","s":5,"tot":16,"eb":"TEKSHIRUV · DALIL","dis":[],"siljish":[]}
+{"k":"m9-15","s":6,"tot":12,"eb":"MUSTAQIL ISH · RISK","dis":[],"siljish":[]}
+{"k":"m9-12","s":11,"tot":12,"eb":"YAKUN","dis":[],"siljish":[]}
+{"k":"m9-14","s":7,"tot":12,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m9-13","s":11,"tot":12,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m9-15","s":7,"tot":12,"eb":"MUSTAQIL ISH · REJA","dis":[],"siljish":[]}
+{"k":"m9-16","s":6,"tot":16,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m9-14","s":8,"tot":12,"eb":"AMALIYOT 3 · ILOVA","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m9-15","s":8,"tot":12,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m9-16","s":7,"tot":16,"eb":"TEKSHIRUV · BIR GAPDA","dis":[],"siljish":[]}
+{"k":"m10-01","s":0,"tot":16,"eb":"KIRISH","dis":["›"],"siljish":[]}
+{"k":"m10-02","s":0,"tot":20,"eb":"DARS · KIRISH","dis":["Qo'shilaman"],"siljish":[]}
+{"k":"m9-14","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m9-15","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m9-16","s":8,"tot":16,"eb":"TUSHUNCHA · JONLI DEMO","dis":[],"siljish":[]}
+{"k":"m10-01","s":1,"tot":16,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m10-02","s":1,"tot":20,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m9-14","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m9-15","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m9-16","s":9,"tot":16,"eb":"KOD YOZISH · NEON","dis":[],"siljish":[{"diff":-36,"chap":"1","ong":"⛶"}]}
+{"k":"m10-01","s":2,"tot":16,"eb":"TUSHUNCHA · SARLAVHA","dis":["›"],"siljish":[]}
+{"k":"m10-02","s":2,"tot":20,"eb":"TUSHUNCHA · SO'ROV","dis":["Qo'shilaman","Qo'shildingiz"],"siljish":[]}
+{"k":"m9-14","s":11,"tot":12,"eb":"YAKUN","dis":[],"siljish":[]}
+{"k":"m9-16","s":10,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m9-15","s":11,"tot":12,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m10-01","s":3,"tot":16,"eb":"TEKSHIRUV · SARLAVHA","dis":[],"siljish":[]}
+{"k":"m10-02","s":3,"tot":20,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m9-16","s":11,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m10-03","s":0,"tot":12,"eb":"KIRISH","dis":["Bosh ekran","Bosh ekran"],"siljish":[]}
+{"k":"m10-01","s":4,"tot":16,"eb":"TUSHUNCHA · FOYDA","dis":[],"siljish":[]}
+{"k":"m10-02","s":4,"tot":20,"eb":"TUSHUNCHA · ULANISH","dis":["Maydon Jamoa","Qo'shilaman"],"siljish":[]}
+{"k":"m10-04","s":0,"tot":12,"eb":"LOYIHA KUNI · KIRISH","dis":[],"siljish":[]}
+{"k":"m9-16","s":12,"tot":16,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m10-03","s":1,"tot":12,"eb":"REJA","dis":["Bosh ekran"],"siljish":[]}
+{"k":"m10-01","s":5,"tot":16,"eb":"TEKSHIRUV · FUNKSIYA VA FOYDA","dis":[],"siljish":[]}
+{"k":"m10-02","s":5,"tot":20,"eb":"TUSHUNCHA · HODISA","dis":["ochilmagan","Qo'shildingiz"],"siljish":[]}
+{"k":"m10-04","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m9-16","s":13,"tot":16,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m10-03","s":2,"tot":12,"eb":"TUSHUNCHA · TALAB","dis":[],"siljish":[{"diff":30,"chap":"1-telefon · siz","ong":"MENTOR TALABI · MAYDON JAMOA"}]}
+{"k":"m10-02","s":6,"tot":20,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m10-01","s":6,"tot":16,"eb":"TUSHUNCHA · TUGMA","dis":["Qo'shilmoqchiman"],"siljish":[]}
+{"k":"m10-04","s":2,"tot":12,"eb":"TUSHUNCHA · XONA","dis":["‹ O'yinlar","Qo'shildingiz","Shanba, 18:00 Mahalla maydoni 8 / 10"],"siljish":[]}
+{"k":"m9-16","s":14,"tot":16,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m10-03","s":3,"tot":12,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m10-01","s":7,"tot":16,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m10-02","s":7,"tot":20,"eb":"TUSHUNCHA · TOKEN","dis":[],"siljish":[]}
+{"k":"m10-04","s":3,"tot":12,"eb":"AMALIYOT 1 · HOZIR KO'RYAPTI","dis":["‹ O'yinlar"],"siljish":[{"diff":-58,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m9-16","s":15,"tot":16,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m10-03","s":4,"tot":12,"eb":"TUSHUNCHA · VAZIYAT","dis":["Uchish rejimi"],"siljish":[{"diff":55,"chap":"Shunday bo'lishi mumkin","ong":"MENTOR TALABI · MAYDON JAMOA"}]}
+{"k":"m10-01","s":8,"tot":16,"eb":"TEKSHIRUV · INSTAGRAM'DAGIDEK","dis":[],"siljish":[]}
+{"k":"m10-02","s":8,"tot":20,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m10-04","s":4,"tot":12,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m10-03","s":5,"tot":12,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m10-01","s":9,"tot":16,"eb":"MUSTAQIL ISH · SAHIFA MATNI","dis":["›"],"siljish":[]}
+{"k":"m10-02","s":9,"tot":20,"eb":"KOD YOZISH · TINGLOVCHI","dis":[],"siljish":[{"diff":-75,"chap":"1","ong":"Kompilyatorni ochish"}]}
+{"k":"m10-04","s":5,"tot":12,"eb":"TUSHUNCHA · OCHIQ VA YOPIQ","dis":["Shanba, 18:00 Mahalla maydoni 8 / 10","‹ O'yinlar","Qo'shilaman"],"siljish":[]}
+{"k":"m10-05","s":0,"tot":19,"eb":"DARS · KIRISH","dis":["Qo'shildingiz"],"siljish":[]}
+{"k":"m10-03","s":6,"tot":12,"eb":"AMALIYOT 1 · HODISALAR","dis":["Bosh ekran"],"siljish":[{"diff":-54,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m10-01","s":10,"tot":16,"eb":"MUSTAQIL ISH","dis":["›"],"siljish":[]}
+{"k":"m10-02","s":10,"tot":20,"eb":"TUSHUNCHA · ULANISH HOLATI","dis":["Uchish rejimi","Qo'shilaman"],"siljish":[]}
+{"k":"m10-04","s":6,"tot":12,"eb":"AMALIYOT 2 · JONLI XABAR","dis":["Shanba, 18:00 Mahalla maydoni 9 / 10"],"siljish":[{"diff":-58,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m10-05","s":1,"tot":19,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m10-03","s":7,"tot":12,"eb":"AMALIYOT 2 · HOLATLAR VA README","dis":["Uchish rejimi","Bosh ekran"],"siljish":[{"diff":-54,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m10-02","s":11,"tot":20,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m10-01","s":11,"tot":16,"eb":"AMALIYOT · LENDING","dis":["Qo'shilmoqchiman"],"siljish":[{"diff":-25,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m10-04","s":7,"tot":12,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m10-05","s":2,"tot":19,"eb":"TUSHUNCHA · UZILISH","dis":["Uchish rejimi","Qo'shildingiz","Qo'shilaman"],"siljish":[]}
+{"k":"m10-03","s":8,"tot":12,"eb":"YAKUNIY SAVOL","dis":[],"siljish":[]}
+{"k":"m10-02","s":12,"tot":20,"eb":"TUSHUNCHA · SXEMA","dis":[],"siljish":[]}
+{"k":"m10-01","s":12,"tot":16,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m10-04","s":8,"tot":12,"eb":"AMALIYOT 3 · ESLATMA","dis":[],"siljish":[{"diff":-58,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m10-05","s":3,"tot":19,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m10-03","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m10-02","s":13,"tot":20,"eb":"MUSTAQIL ISH · SXEMA","dis":[],"siljish":[]}
+{"k":"m10-01","s":13,"tot":16,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m10-04","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m10-05","s":4,"tot":19,"eb":"TUSHUNCHA · QAYTA ULANISH","dis":["Qo'shilaman"],"siljish":[]}
+{"k":"m10-03","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m10-02","s":14,"tot":20,"eb":"YAKUNIY · TARTIB","dis":[],"siljish":[]}
+{"k":"m10-01","s":14,"tot":16,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m10-04","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m10-05","s":5,"tot":19,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m10-03","s":11,"tot":12,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m10-02","s":15,"tot":20,"eb":"AMALIYOT 1 · O'Z REPO'NGIZ","dis":["Uchish rejimi"],"siljish":[{"diff":-54,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m10-01","s":15,"tot":16,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m10-04","s":11,"tot":12,"eb":"YAKUN","dis":[],"siljish":[]}
+{"k":"m10-05","s":6,"tot":19,"eb":"TUSHUNCHA · XONA","dis":["Qo'shildingiz","Shanba, 18:00 Mahalla maydoni 8 / 10"],"siljish":[]}
+{"k":"m10-02","s":16,"tot":20,"eb":"AMALIYOT 2 · O'Z REPO'NGIZ","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m10-06","s":0,"tot":16,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m10-02","s":17,"tot":20,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m10-05","s":7,"tot":19,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m10-07","s":0,"tot":12,"eb":"KIRISH","dis":["Qo'shilmoqchiman"],"siljish":[]}
+{"k":"m10-08","s":0,"tot":12,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m10-06","s":1,"tot":16,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m10-02","s":18,"tot":20,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m10-05","s":8,"tot":19,"eb":"KOD YOZISH · TINGLOVCHI","dis":[],"siljish":[{"diff":-75,"chap":"1","ong":"Kompilyatorni ochish"}]}
+{"k":"m10-07","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m10-08","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m10-06","s":2,"tot":16,"eb":"TUSHUNCHA · KANAL","dis":[],"siljish":[]}
+{"k":"m10-02","s":19,"tot":20,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m10-07","s":2,"tot":12,"eb":"TUSHUNCHA · REJA","dis":[],"siljish":[]}
+{"k":"m10-05","s":9,"tot":19,"eb":"TUSHUNCHA · BUZISH YOZUVI","dis":["Qo'shildingiz"],"siljish":[]}
+{"k":"m10-08","s":2,"tot":12,"eb":"TUSHUNCHA · QADAMLAR","dis":[],"siljish":[{"diff":-35,"chap":"Maydon Jamoa","ong":"Mentor misolida · 3 kun · har qadamda tu"}]}
+{"k":"m10-06","s":3,"tot":16,"eb":"TEKSHIRUV · UCH SAVOL","dis":[],"siljish":[]}
+{"k":"m10-07","s":3,"tot":12,"eb":"TEKSHIRUV · KUTILGAN SON","dis":[],"siljish":[]}
+{"k":"m10-05","s":10,"tot":19,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m10-08","s":3,"tot":12,"eb":"TEKSHIRUV · TO'XTAB QOLISH QADAMI","dis":[],"siljish":[]}
+{"k":"m10-06","s":4,"tot":16,"eb":"TUSHUNCHA · POST","dis":[],"siljish":[]}
+{"k":"m10-09","s":0,"tot":12,"eb":"LOYIHA KUNI · KIRISH","dis":[],"siljish":[]}
+{"k":"m10-07","s":4,"tot":12,"eb":"TUSHUNCHA · YUBORISHDAN OLDIN","dis":["Telefon"],"siljish":[]}
+{"k":"m10-08","s":4,"tot":12,"eb":"AMALIYOT 1 · SANOQ SAHIFASI","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m10-06","s":5,"tot":16,"eb":"TEKSHIRUV · TO'RT QATOR","dis":[],"siljish":[]}
+{"k":"m10-05","s":11,"tot":19,"eb":"TUSHUNCHA · QAYTA TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m10-09","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m10-07","s":5,"tot":12,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m10-08","s":5,"tot":12,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m10-06","s":6,"tot":16,"eb":"TUSHUNCHA · XAVFSIZLIK","dis":[],"siljish":[]}
+{"k":"m10-05","s":12,"tot":19,"eb":"MUSTAQIL ISH · KUTISH","dis":[],"siljish":[]}
+{"k":"m10-09","s":2,"tot":12,"eb":"TUSHUNCHA · OCHIQ VA YOPIQ ILOVA","dis":["Qo'shilaman"],"siljish":[]}
+{"k":"m10-07","s":6,"tot":12,"eb":"AMALIYOT 1 · MA'LUMOT VA O'LCHOV","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m10-08","s":6,"tot":12,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m10-06","s":7,"tot":16,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m10-05","s":13,"tot":19,"eb":"YAKUNIY · TARTIB","dis":[],"siljish":[]}
+{"k":"m10-09","s":3,"tot":12,"eb":"AMALIYOT 1 · ILOVA OCHIQ","dis":[],"siljish":[{"diff":-58,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m10-07","s":7,"tot":12,"eb":"AMALIYOT 2 · SIYOSAT VA HAVOLA","dis":["Qo'shilmoqchiman"],"siljish":[{"diff":-25,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m10-08","s":7,"tot":12,"eb":"AMALIYOT 2 · TUZATISH","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m10-06","s":8,"tot":16,"eb":"TEKSHIRUV · FACEBOOK'DAGIDEK","dis":[],"siljish":[]}
+{"k":"m10-05","s":14,"tot":19,"eb":"AMALIYOT 1 · O'Z MAHSULOTINGIZ","dis":["Qo'shildingiz"],"siljish":[{"diff":-82,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m10-09","s":4,"tot":12,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m10-07","s":8,"tot":12,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m10-08","s":8,"tot":12,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m10-06","s":9,"tot":16,"eb":"MUSTAQIL ISH · KANALLAR","dis":[],"siljish":[]}
+{"k":"m10-05","s":15,"tot":19,"eb":"AMALIYOT 2 · O'Z REPO'NGIZ","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m10-09","s":5,"tot":12,"eb":"TUSHUNCHA · FOYDALI ESLATMA","dis":[],"siljish":[]}
+{"k":"m10-07","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m10-08","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m10-06","s":10,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m10-05","s":16,"tot":19,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m10-09","s":6,"tot":12,"eb":"AMALIYOT 2 · ILOVA YOPIQ","dis":[],"siljish":[{"diff":-58,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m10-07","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m10-08","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m10-06","s":11,"tot":16,"eb":"KOD YOZISH","dis":[],"siljish":[]}
+{"k":"m10-05","s":17,"tot":19,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m10-09","s":7,"tot":12,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m10-07","s":11,"tot":12,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m10-08","s":11,"tot":12,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m10-06","s":12,"tot":16,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m10-05","s":18,"tot":19,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m10-09","s":8,"tot":12,"eb":"AMALIYOT 3 · O'LCHOV VA NAZORAT","dis":[],"siljish":[{"diff":-58,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m10-06","s":13,"tot":16,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m10-09","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m10-10","s":0,"tot":16,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m10-11","s":0,"tot":12,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m10-12","s":0,"tot":16,"eb":"KIRISH · «MAYDON JAMOA» PITCHI","dis":[],"siljish":[]}
+{"k":"m10-06","s":14,"tot":16,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m10-09","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m10-10","s":1,"tot":16,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m10-11","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m10-12","s":1,"tot":16,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m10-06","s":15,"tot":16,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m10-09","s":11,"tot":12,"eb":"YAKUN","dis":[],"siljish":[]}
+{"k":"m10-10","s":2,"tot":16,"eb":"TUSHUNCHA · HISOBOT","dis":[],"siljish":[]}
+{"k":"m10-11","s":2,"tot":12,"eb":"TUSHUNCHA · DA'VO VA DALIL","dis":[],"siljish":[]}
+{"k":"m10-12","s":2,"tot":16,"eb":"TUSHUNCHA · BESH BO'LAK","dis":[],"siljish":[]}
+{"k":"m10-10","s":3,"tot":16,"eb":"TEKSHIRUV · O'LCHOV","dis":[],"siljish":[]}
+{"k":"m10-11","s":3,"tot":12,"eb":"TUSHUNCHA · DALIL","dis":[],"siljish":[{"diff":-58,"chap":"Manba","ong":"?"}]}
+{"k":"m11-01","s":0,"tot":14,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m10-12","s":3,"tot":16,"eb":"TEKSHIRUV · BESH BO'LAK","dis":[],"siljish":[]}
+{"k":"m11-02","s":0,"tot":15,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m10-10","s":4,"tot":16,"eb":"TUSHUNCHA · MENTOR TEKSHIRUVI","dis":[],"siljish":[]}
+{"k":"m10-11","s":4,"tot":12,"eb":"TEKSHIRUV · DALIL","dis":[],"siljish":[]}
+{"k":"m11-01","s":1,"tot":14,"eb":"REJA","dis":[],"siljish":[{"diff":27,"chap":"DARS OXIRIDA jalb qilish narxi va foydal","ong":"01"}]}
+{"k":"m10-12","s":4,"tot":16,"eb":"TUSHUNCHA · GRAFIK","dis":[],"siljish":[]}
+{"k":"m11-02","s":1,"tot":15,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m10-10","s":5,"tot":16,"eb":"TEKSHIRUV · MENTOR TEKSHIRUVI","dis":[],"siljish":[]}
+{"k":"m10-11","s":5,"tot":12,"eb":"MUSTAQIL ISH · DA'VO","dis":[],"siljish":[]}
+{"k":"m11-01","s":2,"tot":14,"eb":"TUSHUNCHA · JALB QILISH NARXI","dis":[],"siljish":[]}
+{"k":"m10-12","s":5,"tot":16,"eb":"TEKSHIRUV · GRAFIK","dis":[],"siljish":[]}
+{"k":"m11-02","s":2,"tot":15,"eb":"TUSHUNCHA · KIM TO'LAYDI","dis":[],"siljish":[]}
+{"k":"m10-10","s":6,"tot":16,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m10-11","s":6,"tot":12,"eb":"MUSTAQIL ISH · DALIL","dis":[],"siljish":[]}
+{"k":"m11-01","s":3,"tot":14,"eb":"TEKSHIRUV · JALB QILISH NARXI","dis":[],"siljish":[]}
+{"k":"m10-12","s":6,"tot":16,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m11-02","s":3,"tot":15,"eb":"TEKSHIRUV · KIM TO'LAYDI","dis":[],"siljish":[]}
+{"k":"m10-10","s":7,"tot":16,"eb":"TEKSHIRUV · QAYTGANLAR FOIZI","dis":[],"siljish":[]}
+{"k":"m10-11","s":7,"tot":12,"eb":"MUSTAQIL ISH · TUZATILGAN PITCH","dis":[],"siljish":[]}
+{"k":"m11-01","s":4,"tot":14,"eb":"TUSHUNCHA · KELTIRADIGAN PUL","dis":[],"siljish":[]}
+{"k":"m10-12","s":7,"tot":16,"eb":"TEKSHIRUV · UZUM'DAGIDEK","dis":[],"siljish":[]}
+{"k":"m11-02","s":4,"tot":15,"eb":"TUSHUNCHA · PUL TOPISH YO'LLARI","dis":[],"siljish":[]}
+{"k":"m10-10","s":8,"tot":16,"eb":"TUSHUNCHA · ZAXIRA REJA","dis":[],"siljish":[]}
+{"k":"m10-11","s":8,"tot":12,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m11-01","s":5,"tot":14,"eb":"TUSHUNCHA · SOLISHTIRISH","dis":[],"siljish":[]}
+{"k":"m10-12","s":8,"tot":16,"eb":"TUSHUNCHA · JONLI DEMO","dis":[],"siljish":[]}
+{"k":"m11-02","s":5,"tot":15,"eb":"TEKSHIRUV · MODEL","dis":[],"siljish":[]}
+{"k":"m10-10","s":9,"tot":16,"eb":"KOD YOZISH · NEON","dis":[],"siljish":[{"diff":-36,"chap":"Hisobot · 0 / 4","ong":"⛶"}]}
+{"k":"m11-01","s":6,"tot":14,"eb":"TEKSHIRUV · SOLISHTIRISH","dis":[],"siljish":[]}
+{"k":"m10-11","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m10-12","s":9,"tot":16,"eb":"KOD YOZISH · GRAFIK","dis":[],"siljish":[]}
+{"k":"m11-02","s":6,"tot":15,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m10-10","s":10,"tot":16,"eb":"MUSTAQIL ISH · METRIKA HISOBOTI","dis":[],"siljish":[]}
+{"k":"m11-01","s":7,"tot":14,"eb":"MUSTAQIL ISH · IKKI SON","dis":[],"siljish":[]}
+{"k":"m10-11","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m10-12","s":10,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m11-02","s":7,"tot":15,"eb":"TEKSHIRUV · TELEGRAM PREMIUM","dis":[],"siljish":[]}
+{"k":"m10-10","s":11,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m11-01","s":8,"tot":14,"eb":"JUFTLIKDA ISH","dis":[],"siljish":[]}
+{"k":"m10-11","s":11,"tot":12,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m10-12","s":11,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m11-02","s":8,"tot":15,"eb":"MUSTAQIL ISH · MODEL","dis":[],"siljish":[]}
+{"k":"m10-10","s":12,"tot":16,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m11-01","s":9,"tot":14,"eb":"KOD YOZISH · IKKI SON","dis":[],"siljish":[]}
+{"k":"m10-12","s":12,"tot":16,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m11-02","s":9,"tot":15,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m10-10","s":13,"tot":16,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m11-03","s":0,"tot":20,"eb":"DARS · KIRISH","dis":["Rad etish (mashq)"],"siljish":[]}
+{"k":"m11-01","s":10,"tot":14,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m10-12","s":13,"tot":16,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m11-02","s":10,"tot":15,"eb":"KOD YOZISH · NEON","dis":[],"siljish":[{"diff":-36,"chap":"Modelim · to'lashi mumkin: ?","ong":"⛶"}]}
+{"k":"m10-10","s":14,"tot":16,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m11-03","s":1,"tot":20,"eb":"REJA","dis":["To'lash (mashq)","Rad etish (mashq)"],"siljish":[]}
+{"k":"m11-01","s":11,"tot":14,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m10-12","s":14,"tot":16,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m11-02","s":11,"tot":15,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m10-10","s":15,"tot":16,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m11-03","s":2,"tot":20,"eb":"TUSHUNCHA · TO'LOV XABARI","dis":[],"siljish":[]}
+{"k":"m11-01","s":12,"tot":14,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m10-12","s":15,"tot":16,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m11-02","s":12,"tot":15,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m11-03","s":3,"tot":20,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m11-01","s":13,"tot":14,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m11-02","s":13,"tot":15,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m11-04","s":0,"tot":12,"eb":"KIRISH","dis":["To'lovga o'tish"],"siljish":[]}
+{"k":"m11-03","s":4,"tot":20,"eb":"TUSHUNCHA · IMZO","dis":["To'lash (mashq)"],"siljish":[]}
+{"k":"m11-02","s":14,"tot":15,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m11-05","s":0,"tot":12,"eb":"LOYIHA KUNI · KIRISH","dis":[],"siljish":[]}
+{"k":"m11-06","s":0,"tot":12,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m11-04","s":1,"tot":12,"eb":"REJA","dis":["Har hafta takrorlansin"],"siljish":[]}
+{"k":"m11-03","s":5,"tot":20,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m11-05","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m11-06","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m11-04","s":2,"tot":12,"eb":"TUSHUNCHA · NARX","dis":[],"siljish":[{"diff":-36,"chap":"Backend","ong":"⛶"}]}
+{"k":"m11-03","s":6,"tot":20,"eb":"TUSHUNCHA · TAKROR XABAR","dis":["To'lash (mashq)","Rad etish (mashq)"],"siljish":[]}
+{"k":"m11-07","s":0,"tot":12,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m11-05","s":2,"tot":12,"eb":"TUSHUNCHA · TO'RT USUL","dis":["To'lash (mashq)","Rad etish (mashq)","Ikki marta yuborish","Imzosiz yuborish","Kechiktirib yuborish","Noto'g'ri imzo"],"siljish":[]}
+{"k":"m11-04","s":3,"tot":12,"eb":"TEKSHIRUV · NARX VARAG'I","dis":[],"siljish":[]}
+{"k":"m11-06","s":2,"tot":12,"eb":"TUSHUNCHA · SUHBAT","dis":[],"siljish":[]}
+{"k":"m11-03","s":7,"tot":20,"eb":"KOD YOZISH · TAKROR XABAR","dis":[],"siljish":[{"diff":-49,"chap":"1","ong":"Kompilyatorni ochish"}]}
+{"k":"m11-07","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m11-05","s":3,"tot":12,"eb":"AMALIYOT 1 · O'Z REPO'NGIZ","dis":["To'lash (mashq)","Rad etish (mashq)","Ikki marta yuborish","Imzosiz yuborish","Kechiktirib yuborish","Noto'g'ri imzo"],"siljish":[{"diff":-44,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m11-06","s":3,"tot":12,"eb":"TEKSHIRUV · SUHBAT","dis":[],"siljish":[]}
+{"k":"m11-04","s":4,"tot":12,"eb":"TUSHUNCHA · PULLIK QULAYLIK","dis":["Har hafta takrorlansin"],"siljish":[]}
+{"k":"m11-03","s":8,"tot":20,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m11-07","s":2,"tot":12,"eb":"TUSHUNCHA · SHARTLAR","dis":[],"siljish":[]}
+{"k":"m11-05","s":4,"tot":12,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m11-06","s":4,"tot":12,"eb":"TUSHUNCHA · JAVOB","dis":[],"siljish":[{"diff":29,"chap":"\"Doimiy o'yin\" 30 kunga 15 000 so'm bo'l","ong":"Mentor misoli · Maydon Jamoa"}]}
+{"k":"m11-04","s":5,"tot":12,"eb":"MUSTAQIL ISH","dis":["To'lovga o'tish"],"siljish":[]}
+{"k":"m11-03","s":9,"tot":20,"eb":"TUSHUNCHA · RAD ETILGAN TO'LOV","dis":["To'lash (mashq)","Rad etish (mashq)"],"siljish":[]}
+{"k":"m11-07","s":3,"tot":12,"eb":"TEKSHIRUV · OFERTA","dis":[],"siljish":[]}
+{"k":"m11-05","s":5,"tot":12,"eb":"TUSHUNCHA · BUZISH YOZUVI","dis":[],"siljish":[{"diff":-95,"chap":"telefon","ong":"1"}]}
+{"k":"m11-06","s":5,"tot":12,"eb":"TEKSHIRUV · YOZUV","dis":[],"siljish":[]}
+{"k":"m11-04","s":6,"tot":12,"eb":"AMALIYOT 1 · PRO HOLATI VA TO'LOV TAKLIFI EKRANI","dis":["Har hafta takrorlansin"],"siljish":[{"diff":-81,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m11-03","s":10,"tot":20,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m11-07","s":4,"tot":12,"eb":"TUSHUNCHA · OFERTA BANDLARI","dis":[],"siljish":[{"diff":-36,"chap":"Band","ong":"⛶"}]}
+{"k":"m11-05","s":6,"tot":12,"eb":"AMALIYOT 2 · O'Z MAHSULOTINGIZ","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m11-06","s":6,"tot":12,"eb":"MUSTAQIL ISH · SUHBAT SAVOLLARI","dis":[],"siljish":[]}
+{"k":"m11-04","s":7,"tot":12,"eb":"AMALIYOT 2 · TO'LOV YO'LI","dis":["Har hafta takrorlansin"],"siljish":[{"diff":-81,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"},{"diff":20,"chap":"Maydon Jamoa","ong":"BACKEND"}]}
+{"k":"m11-03","s":11,"tot":20,"eb":"TUSHUNCHA · TEST REJIM","dis":["To'lash (mashq)","Rad etish (mashq)"],"siljish":[]}
+{"k":"m11-07","s":5,"tot":12,"eb":"MUSTAQIL ISH · OFERTA","dis":[],"siljish":[]}
+{"k":"m11-05","s":7,"tot":12,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m11-06","s":7,"tot":12,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m11-04","s":8,"tot":12,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m11-03","s":12,"tot":20,"eb":"TUSHUNCHA · SXEMA","dis":[],"siljish":[{"diff":23,"chap":"telefon · brauzer","ong":"Mentor sxemasi — reja"}]}
+{"k":"m11-07","s":6,"tot":12,"eb":"AMALIYOT 1 · O'Z REPO'NGIZ","dis":[],"siljish":[{"diff":-25,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m11-05","s":8,"tot":12,"eb":"AMALIYOT 3 · O'Z REPO'NGIZ","dis":[],"siljish":[]}
+{"k":"m11-06","s":8,"tot":12,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m11-04","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m11-03","s":13,"tot":20,"eb":"MUSTAQIL ISH · SXEMA","dis":[],"siljish":[]}
+{"k":"m11-07","s":7,"tot":12,"eb":"AMALIYOT 2 · O'Z REPO'NGIZ","dis":[],"siljish":[{"diff":-81,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m11-05","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m11-06","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m11-04","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m11-03","s":14,"tot":20,"eb":"YAKUNIY · TARTIB","dis":[],"siljish":[]}
+{"k":"m11-07","s":8,"tot":12,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m11-05","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m11-06","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m11-04","s":11,"tot":12,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m11-03","s":15,"tot":20,"eb":"AMALIYOT 1 · O'Z REPO'NGIZ","dis":[],"siljish":[{"diff":-25,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m11-07","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m11-05","s":11,"tot":12,"eb":"YAKUN","dis":[],"siljish":[]}
+{"k":"m11-06","s":11,"tot":12,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m11-03","s":16,"tot":20,"eb":"AMALIYOT 2 · O'Z REPO'NGIZ","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m11-07","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m11-08","s":0,"tot":12,"eb":"LOYIHA KUNI · KIRISH","dis":[],"siljish":[]}
+{"k":"m11-09","s":0,"tot":12,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m11-03","s":17,"tot":20,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m11-07","s":11,"tot":12,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m11-08","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m11-10","s":0,"tot":12,"eb":"LOYIHA KUNI · KIRISH","dis":["Havolani ulashish"],"siljish":[]}
+{"k":"m11-09","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[{"diff":71,"chap":"MENTOR TEKSHIRUVI: UCHTA YOZMA TASDIQ","ong":"01"}]}
+{"k":"m11-03","s":18,"tot":20,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m11-08","s":2,"tot":12,"eb":"TUSHUNCHA · BACKEND VA BOT","dis":[],"siljish":[]}
+{"k":"m11-10","s":1,"tot":12,"eb":"REJA","dis":["Havolani ulashish","Android: ilovani o'rnatish"],"siljish":[]}
+{"k":"m11-11","s":0,"tot":12,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m11-09","s":2,"tot":12,"eb":"TUSHUNCHA · YOZMA TASDIQ","dis":[],"siljish":[]}
+{"k":"m11-03","s":19,"tot":20,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m11-08","s":3,"tot":12,"eb":"AMALIYOT 1 · O'Z REPO'NGIZ","dis":[],"siljish":[{"diff":-44,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m11-10","s":2,"tot":12,"eb":"TUSHUNCHA · HAVOLA YO'LI","dis":[],"siljish":[]}
+{"k":"m11-11","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m11-09","s":3,"tot":12,"eb":"TEKSHIRUV · YOZMA TASDIQ","dis":[],"siljish":[]}
+{"k":"m11-08","s":4,"tot":12,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m11-10","s":3,"tot":12,"eb":"AMALIYOT 1 · O'Z REPO'NGIZ","dis":["Havolani ulashish","Android: ilovani o'rnatish"],"siljish":[{"diff":-80,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m11-12","s":0,"tot":12,"eb":"LOYIHA KUNI · KIRISH","dis":[],"siljish":[]}
+{"k":"m11-11","s":2,"tot":12,"eb":"TUSHUNCHA · HOLAT","dis":[],"siljish":[]}
+{"k":"m11-09","s":4,"tot":12,"eb":"TUSHUNCHA · MENTOR TEKSHIRUVI","dis":[],"siljish":[]}
+{"k":"m11-08","s":5,"tot":12,"eb":"TUSHUNCHA · KIMGA XABAR KETADI","dis":[],"siljish":[{"diff":60,"chap":"Backend","ong":"Backend tekshiradi"}]}
+{"k":"m11-10","s":4,"tot":12,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m11-12","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m11-11","s":3,"tot":12,"eb":"TEKSHIRUV · HOLAT","dis":[],"siljish":[]}
+{"k":"m11-09","s":5,"tot":12,"eb":"TEKSHIRUV · MENTOR TEKSHIRUVI","dis":[],"siljish":[]}
+{"k":"m11-08","s":6,"tot":12,"eb":"AMALIYOT 2 · O'Z REPO'NGIZ","dis":[],"siljish":[{"diff":-44,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m11-10","s":5,"tot":12,"eb":"TUSHUNCHA · MUKOFOT QOIDASI","dis":[],"siljish":[]}
+{"k":"m11-12","s":2,"tot":12,"eb":"TUSHUNCHA · BESH YO'L","dis":[],"siljish":[]}
+{"k":"m11-11","s":4,"tot":12,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m11-09","s":6,"tot":12,"eb":"MUSTAQIL ISH · YOZMA TASDIQ","dis":[],"siljish":[]}
+{"k":"m11-08","s":7,"tot":12,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m11-10","s":6,"tot":12,"eb":"AMALIYOT 2 · O'Z REPO'NGIZ","dis":[],"siljish":[{"diff":-44,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m11-12","s":3,"tot":12,"eb":"AMALIYOT 1 · O'Z MAHSULOTINGIZ","dis":[],"siljish":[{"diff":-103,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m11-11","s":5,"tot":12,"eb":"TEKSHIRUV · ROADMAP","dis":[],"siljish":[]}
+{"k":"m11-09","s":7,"tot":12,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m11-10","s":7,"tot":12,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m11-08","s":8,"tot":12,"eb":"AMALIYOT 3 · O'LCHOV VA NAZORAT","dis":["Telegram'da xabar olish"],"siljish":[{"diff":-80,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m11-12","s":4,"tot":12,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m11-09","s":8,"tot":12,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m11-11","s":6,"tot":12,"eb":"MUSTAQIL ISH · HOLAT","dis":[],"siljish":[]}
+{"k":"m11-08","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m11-10","s":8,"tot":12,"eb":"AMALIYOT 3 · O'Z REPO'NGIZ","dis":["Havolani ulashish"],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m11-12","s":5,"tot":12,"eb":"TUSHUNCHA · FAQAT TUZATISH","dis":[],"siljish":[]}
+{"k":"m11-09","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m11-11","s":7,"tot":12,"eb":"MUSTAQIL ISH · SHAXSIY HISOBOT","dis":[],"siljish":[{"diff":-72,"chap":"Mentor misolida · Maydon Jamoa","ong":"QARORIM"}]}
+{"k":"m11-08","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m11-10","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m11-12","s":6,"tot":12,"eb":"AMALIYOT 2 · O'Z REPO'NGIZ","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m11-11","s":8,"tot":12,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m11-09","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m11-08","s":11,"tot":12,"eb":"YAKUN","dis":[],"siljish":[]}
+{"k":"m11-10","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m11-12","s":7,"tot":12,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m11-11","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m11-09","s":11,"tot":12,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m11-10","s":11,"tot":12,"eb":"YAKUN","dis":[],"siljish":[]}
+{"k":"m11-12","s":8,"tot":12,"eb":"AMALIYOT 3 · QAYTA TEKSHIRUV VA YANGI VERSIYA","dis":[],"siljish":[]}
+{"k":"m11-11","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m12-01","s":0,"tot":16,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m12-02","s":0,"tot":15,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m11-12","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m11-11","s":11,"tot":12,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m12-01","s":1,"tot":16,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m12-03","s":0,"tot":19,"eb":"DARS · KIRISH","dis":[],"siljish":[]}
+{"k":"m12-02","s":1,"tot":15,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m11-12","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m12-01","s":2,"tot":16,"eb":"TUSHUNCHA · OLTI BO'LAK","dis":[],"siljish":[]}
+{"k":"m12-03","s":1,"tot":19,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m12-02","s":2,"tot":15,"eb":"TUSHUNCHA · RO'YXAT VA HIKOYA","dis":[],"siljish":[]}
+{"k":"m12-04","s":0,"tot":12,"eb":"LOYIHA KUNI · KIRISH","dis":[],"siljish":[]}
+{"k":"m11-12","s":11,"tot":12,"eb":"YAKUN","dis":[],"siljish":[]}
+{"k":"m12-01","s":3,"tot":16,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m12-03","s":2,"tot":19,"eb":"TUSHUNCHA · LIGHTHOUSE BAHOSI","dis":[],"siljish":[]}
+{"k":"m12-02","s":3,"tot":15,"eb":"TEKSHIRUV · LAHZA","dis":[],"siljish":[]}
+{"k":"m12-04","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m12-01","s":4,"tot":16,"eb":"TEKSHIRUV · AIRBNB'DAGIDEK","dis":[],"siljish":[]}
+{"k":"m12-05","s":0,"tot":12,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m12-03","s":3,"tot":19,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m12-02","s":4,"tot":15,"eb":"BIZNES OLAMIDAN","dis":[],"siljish":[]}
+{"k":"m12-04","s":2,"tot":12,"eb":"TUSHUNCHA · DEMO YO'LIDAGI UCH JOY","dis":[],"siljish":[{"diff":45,"chap":"Oldin","ong":"AVVAL O'ZINGIZ BELGILAB KO'RING"}]}
+{"k":"m12-01","s":5,"tot":16,"eb":"TUSHUNCHA · BOZOR BO'LAGI","dis":[],"siljish":[]}
+{"k":"m12-05","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m12-03","s":4,"tot":19,"eb":"TUSHUNCHA · LCP","dis":[],"siljish":[]}
+{"k":"m12-02","s":5,"tot":15,"eb":"TEKSHIRUV · IPHONE VOQEASI","dis":[],"siljish":[]}
+{"k":"m12-04","s":3,"tot":12,"eb":"AMALIYOT 1 · O'Z REPO'NGIZ","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m12-01","s":6,"tot":16,"eb":"TEKSHIRUV · BOZOR BO'LAGI","dis":[],"siljish":[]}
+{"k":"m12-03","s":5,"tot":19,"eb":"TUSHUNCHA · CLS","dis":[],"siljish":[]}
+{"k":"m12-05","s":2,"tot":12,"eb":"TUSHUNCHA · BAHOLASH VARAG'I","dis":[],"siljish":[{"diff":110,"chap":"Mentor misoli · Maydon Jamoa","ong":"Baholash varag'i · 0 / 6"}]}
+{"k":"m12-02","s":6,"tot":15,"eb":"TUSHUNCHA · HIKOYA VA BO'LAKLAR","dis":[],"siljish":[]}
+{"k":"m12-04","s":4,"tot":12,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m12-01","s":7,"tot":16,"eb":"TUSHUNCHA · JAMOA BO'LAGI","dis":[],"siljish":[]}
+{"k":"m12-05","s":3,"tot":12,"eb":"TEKSHIRUV · IZOH","dis":[],"siljish":[]}
+{"k":"m12-03","s":6,"tot":19,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m12-02","s":7,"tot":15,"eb":"TEKSHIRUV · HIKOYA VA BO'LAKLAR","dis":[],"siljish":[]}
+{"k":"m12-04","s":5,"tot":12,"eb":"TUSHUNCHA · HARAKATNI KAMAYTIRISH","dis":[],"siljish":[{"diff":24,"chap":"laptop · proyektorga","ong":"AVVAL O'ZINGIZ BELGILAB KO'RING"}]}
+{"k":"m12-01","s":8,"tot":16,"eb":"TEKSHIRUV · JAMOA BO'LAGI","dis":[],"siljish":[]}
+{"k":"m12-05","s":4,"tot":12,"eb":"TUSHUNCHA · TUZATISHLAR RO'YXATI","dis":[],"siljish":[]}
+{"k":"m12-03","s":7,"tot":19,"eb":"TUSHUNCHA · KEYIN YUKLASH","dis":[],"siljish":[]}
+{"k":"m12-02","s":8,"tot":15,"eb":"MUSTAQIL ISH · HIKOYA","dis":[],"siljish":[]}
+{"k":"m12-04","s":6,"tot":12,"eb":"AMALIYOT 2 · O'Z REPO'NGIZ","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m12-01","s":9,"tot":16,"eb":"TUSHUNCHA · KEYINGI QADAM","dis":[],"siljish":[]}
+{"k":"m12-05","s":5,"tot":12,"eb":"TEKSHIRUV · TUZATISH","dis":[],"siljish":[]}
+{"k":"m12-03","s":8,"tot":19,"eb":"MASHQ · 3-SAVOL","dis":[],"siljish":[]}
+{"k":"m12-04","s":7,"tot":12,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m12-02","s":9,"tot":15,"eb":"MUSTAQIL ISH · VIDEO","dis":[],"siljish":[{"diff":-74,"chap":"Mentor misoli","ong":"Video yozishdan oldin tanlang:"}]}
+{"k":"m12-01","s":10,"tot":16,"eb":"MASHQ · MENTOR QORALAMASI","dis":[],"siljish":[]}
+{"k":"m12-05","s":6,"tot":12,"eb":"MUSTAQIL ISH","dis":[],"siljish":[{"diff":59,"chap":"⛶","ong":"Pitchdan oldin"}]}
+{"k":"m12-03","s":9,"tot":19,"eb":"TUSHUNCHA · YUKLANADIGAN KOD HAJMI","dis":[],"siljish":[]}
+{"k":"m12-04","s":8,"tot":12,"eb":"AMALIYOT 3 · O'Z REPO'NGIZ","dis":[],"siljish":[{"diff":-49,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m12-02","s":10,"tot":15,"eb":"MUSTAQIL ISH · TEKSHIRISH","dis":[],"siljish":[]}
+{"k":"m12-01","s":11,"tot":16,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m12-05","s":7,"tot":12,"eb":"MUSTAQIL ISH · TUZATISHLAR RO'YXATI","dis":[],"siljish":[]}
+{"k":"m12-03","s":10,"tot":19,"eb":"MASHQ · 4-SAVOL","dis":[],"siljish":[]}
+{"k":"m12-04","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m12-02","s":11,"tot":15,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m12-01","s":12,"tot":16,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m12-05","s":8,"tot":12,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m12-03","s":11,"tot":19,"eb":"MASHQ · HAQIQIY HISOBOT","dis":[],"siljish":[]}
+{"k":"m12-04","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m12-02","s":12,"tot":15,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m12-01","s":13,"tot":16,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m12-05","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m12-03","s":12,"tot":19,"eb":"YAKUNIY · TARTIB","dis":[],"siljish":[]}
+{"k":"m12-04","s":11,"tot":12,"eb":"YAKUN","dis":[],"siljish":[]}
+{"k":"m12-02","s":13,"tot":15,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m12-01","s":14,"tot":16,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m12-05","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m12-03","s":13,"tot":19,"eb":"AMALIYOT 1 · O'Z MAHSULOTINGIZ","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA"}]}
+{"k":"m12-02","s":14,"tot":15,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m12-01","s":15,"tot":16,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m12-06","s":0,"tot":12,"eb":"LOYIHA KUNI · KIRISH","dis":[],"siljish":[]}
+{"k":"m12-05","s":11,"tot":12,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m12-03","s":14,"tot":19,"eb":"AMALIYOT 2 · O'Z REPO'NGIZ","dis":[],"siljish":[]}
+{"k":"m12-07","s":0,"tot":12,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m12-06","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[{"diff":-87,"chap":"DARS OXIRIDA","ong":"01"}]}
+{"k":"m12-03","s":15,"tot":19,"eb":"AMALIYOT 3 · O'Z MAHSULOTINGIZ","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA"}]}
+{"k":"m12-08","s":0,"tot":12,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m12-09","s":0,"tot":12,"eb":"LOYIHA KUNI · KIRISH","dis":[],"siljish":[]}
+{"k":"m12-07","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m12-06","s":2,"tot":12,"eb":"TUSHUNCHA · DEMO SSENARIYSI","dis":[],"siljish":[]}
+{"k":"m12-03","s":16,"tot":19,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m12-09","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m12-08","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m12-07","s":2,"tot":12,"eb":"TUSHUNCHA · UCH SAVOL","dis":[],"siljish":[]}
+{"k":"m12-03","s":17,"tot":19,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m12-06","s":3,"tot":12,"eb":"AMALIYOT 1 · O'Z REPO'NGIZ","dis":[],"siljish":[{"diff":-75,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m12-09","s":2,"tot":12,"eb":"TUSHUNCHA · UCH BO'LAK","dis":[],"siljish":[]}
+{"k":"m12-08","s":2,"tot":12,"eb":"TUSHUNCHA · SAVOL-JAVOB","dis":[],"siljish":[]}
+{"k":"m12-07","s":3,"tot":12,"eb":"1-SAVOL","dis":[],"siljish":[]}
+{"k":"m12-06","s":4,"tot":12,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m12-03","s":18,"tot":19,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m12-09","s":3,"tot":12,"eb":"AMALIYOT 1 · O'Z MAHSULOTINGIZ","dis":[],"siljish":[{"diff":-25,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m12-08","s":3,"tot":12,"eb":"TUSHUNCHA · TUZATISH VA TAYMER","dis":[],"siljish":[]}
+{"k":"m12-07","s":4,"tot":12,"eb":"TUSHUNCHA · UCH RISK","dis":[],"siljish":[{"diff":-29,"chap":"RISK 1 / 3","ong":"⛶"}]}
+{"k":"m12-06","s":5,"tot":12,"eb":"TUSHUNCHA · B REJA","dis":[],"siljish":[]}
+{"k":"m12-09","s":4,"tot":12,"eb":"MASHQ · 1-SAVOL","dis":[],"siljish":[]}
+{"k":"m12-10","s":0,"tot":12,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m12-08","s":4,"tot":12,"eb":"TEKSHIRUV · TUZATISH","dis":[],"siljish":[]}
+{"k":"m12-07","s":5,"tot":12,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m12-06","s":6,"tot":12,"eb":"AMALIYOT 2 · O'Z DEMONGIZ","dis":[],"siljish":[{"diff":-92,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m12-09","s":5,"tot":12,"eb":"TUSHUNCHA · EKRANNI TAYYORLASH","dis":[],"siljish":[]}
+{"k":"m12-10","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[{"diff":67,"chap":"DARS OXIRIDA","ong":"01"}]}
+{"k":"m12-08","s":5,"tot":12,"eb":"MUSTAQIL ISH · TUZATISHLAR","dis":[],"siljish":[]}
+{"k":"m12-06","s":7,"tot":12,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m12-07","s":6,"tot":12,"eb":"AMALIYOT 1 · O'Z MAHSULOTINGIZ","dis":[],"siljish":[{"diff":-54,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m12-09","s":6,"tot":12,"eb":"AMALIYOT 2 · O'Z VIDEONGIZ","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m12-10","s":2,"tot":12,"eb":"TUSHUNCHA · UCH YO'L","dis":[],"siljish":[]}
+{"k":"m12-08","s":6,"tot":12,"eb":"JUFTLIKDA ISH · TAYMER","dis":[],"siljish":[]}
+{"k":"m12-06","s":8,"tot":12,"eb":"AMALIYOT 3 · O'Z REPO'NGIZ","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m12-07","s":7,"tot":12,"eb":"AMALIYOT 2 · O'Z DEMONGIZ","dis":[],"siljish":[]}
+{"k":"m12-09","s":7,"tot":12,"eb":"MASHQ · 2-SAVOL","dis":[],"siljish":[]}
+{"k":"m12-10","s":3,"tot":12,"eb":"TEKSHIRUV · XALQARO SAYT","dis":[],"siljish":[]}
+{"k":"m12-08","s":7,"tot":12,"eb":"JUFTLIKDA ISH · SAVOL-JAVOB","dis":[],"siljish":[{"diff":-66,"chap":"SAVOLNI SHERIGINGIZ TANLAYDI","ong":"⛶"}]}
+{"k":"m12-06","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m12-07","s":8,"tot":12,"eb":"YAKUNIY SAVOL","dis":[],"siljish":[]}
+{"k":"m12-09","s":8,"tot":12,"eb":"AMALIYOT 3 · O'Z TEKSHIRUVINGIZ","dis":[],"siljish":[{"diff":-61,"chap":"1","ong":"KUTILGAN NATIJA · NAMUNA: MAYDON JAMOA"}]}
+{"k":"m12-10","s":4,"tot":12,"eb":"TUSHUNCHA · BUYURTMA REJASI","dis":[],"siljish":[]}
+{"k":"m12-08","s":8,"tot":12,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m12-06","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m12-07","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m12-10","s":5,"tot":12,"eb":"TEKSHIRUV · BUYURTMA REJASI","dis":[],"siljish":[]}
+{"k":"m12-09","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m12-08","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m12-07","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m12-06","s":11,"tot":12,"eb":"YAKUN","dis":[],"siljish":[]}
+{"k":"m12-09","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m12-10","s":6,"tot":12,"eb":"TUSHUNCHA · KOMPANIYAGA XAT","dis":[],"siljish":[]}
+{"k":"m12-08","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m12-07","s":11,"tot":12,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m12-09","s":11,"tot":12,"eb":"TAYYOR","dis":[],"siljish":[]}
+{"k":"m12-10","s":7,"tot":12,"eb":"MUSTAQIL ISH","dis":[],"siljish":[]}
+{"k":"m12-11","s":0,"tot":12,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m12-08","s":11,"tot":12,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m12-10","s":8,"tot":12,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m12-11","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m12-12","s":0,"tot":12,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m12-13","s":0,"tot":12,"eb":"KIRISH","dis":[],"siljish":[]}
+{"k":"m12-10","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m12-11","s":2,"tot":12,"eb":"TUSHUNCHA · RASMIY SHARTLAR","dis":[],"siljish":[]}
+{"k":"m12-12","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m12-13","s":1,"tot":12,"eb":"REJA","dis":[],"siljish":[]}
+{"k":"m12-10","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m12-11","s":3,"tot":12,"eb":"TEKSHIRUV · JAMOA SHARTI","dis":[],"siljish":[]}
+{"k":"m12-12","s":2,"tot":12,"eb":"TUSHUNCHA · YO'NALISH","dis":[],"siljish":[]}
+{"k":"m12-13","s":2,"tot":12,"eb":"TUSHUNCHA · BUTUN CHIQISH","dis":[],"siljish":[]}
+{"k":"m12-10","s":11,"tot":12,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m12-11","s":4,"tot":12,"eb":"TUSHUNCHA · IKKI DASTUR","dis":[],"siljish":[]}
+{"k":"m12-12","s":3,"tot":12,"eb":"1-SAVOL","dis":[],"siljish":[]}
+{"k":"m12-13","s":3,"tot":12,"eb":"TUSHUNCHA · HAKAM BELGILARI","dis":[],"siljish":[{"diff":-36,"chap":"mashq vaziyati","ong":"⛶"}]}
+{"k":"m12-11","s":5,"tot":12,"eb":"TEKSHIRUV · RASMIY SHARTLAR","dis":[],"siljish":[]}
+{"k":"m12-12","s":4,"tot":12,"eb":"TUSHUNCHA · BIRINCHI QADAM","dis":[],"siljish":[]}
+{"k":"m12-13","s":4,"tot":12,"eb":"1-SAVOL","dis":[],"siljish":[]}
+{"k":"m12-11","s":6,"tot":12,"eb":"TUSHUNCHA · KONSEPT","dis":[],"siljish":[]}
+{"k":"m12-12","s":5,"tot":12,"eb":"2-SAVOL","dis":[],"siljish":[]}
+{"k":"m12-13","s":5,"tot":12,"eb":"MUSTAQIL ISH · CHIQISHDAN OLDIN","dis":[],"siljish":[]}
+{"k":"m12-11","s":7,"tot":12,"eb":"MUSTAQIL ISH","dis":[],"siljish":[{"diff":36,"chap":"⛶","ong":"Dastur"}]}
+{"k":"m12-12","s":6,"tot":12,"eb":"MUSTAQIL ISH · OLTI OYLIK REJA","dis":[],"siljish":[]}
+{"k":"m12-13","s":6,"tot":12,"eb":"MUSTAQIL ISH · TO'LIQ REPETITSIYA","dis":[],"siljish":[]}
+{"k":"m12-11","s":8,"tot":12,"eb":"YAKUNIY TEKSHIRUV","dis":[],"siljish":[]}
+{"k":"m12-12","s":7,"tot":12,"eb":"MUSTAQIL ISH · YAKKAMA-YAKKA","dis":[],"siljish":[]}
+{"k":"m12-13","s":7,"tot":12,"eb":"MUSTAQIL ISH · HAKAM VARAG'I","dis":[],"siljish":[]}
+{"k":"m12-11","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m12-12","s":8,"tot":12,"eb":"YAKUNIY SAVOL","dis":[],"siljish":[]}
+{"k":"m12-13","s":8,"tot":12,"eb":"YAKUNIY SAVOL","dis":[],"siljish":[]}
+{"k":"m12-11","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m12-12","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m12-13","s":9,"tot":12,"eb":"NATIJALAR","dis":[],"siljish":[]}
+{"k":"m12-11","s":11,"tot":12,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m12-12","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m12-13","s":10,"tot":12,"eb":"TAKRORLASH","dis":[],"siljish":[]}
+{"k":"m12-12","s":11,"tot":12,"eb":"DARS YAKUNI","dis":[],"siljish":[]}
+{"k":"m12-13","s":11,"tot":12,"eb":"DARS YAKUNI","dis":[],"siljish":[]}

@@ -3,9 +3,9 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 
 // ============================================================
 // BACKEND MODULI (4-MODUL) · 6-DARS — API va POSTMAN — PLATFORM STANDARD v16 (AUDIOSIZ)
-// Mavzu: API nima (ikki dastur o'zaro gaplashadigan vosita) · so'rov (request) va javob (response) ·
+// Mavzu: API nima (ikki dastur o'zaro gaplashadigan qoidalar) · so'rov (request) va javob (response) ·
 //        HTTP method'lar GET/POST/PUT/DELETE = front backend bilan qanday gaplashadi ·
-//        Postman = "postachi" — frontend yozmasdan API'ni sinab ko'radigan asbob · o'z API'ingizni Postman'da chaqirish.
+//        Postman = "postachi" — frontend yozmasdan API'ni sinab ko'radigan dastur · o'z API'ingizni Postman'da chaqirish.
 // ANALOGIYA (user): POCHTA — API=pochta tizimi; so'rov=xat (konvert: manzil URL + niyat METHOD + ichi BODY);
 //        javob=qaytgan xat (shtamp=status kodi 200/201/404 + ichi=JSON ma'lumot); Postman=POSTACHI (xatni eltadi, javobni keltiradi).
 // KO'PRIK: id31 (routing, METHOD+PATH, Nest) + id32 (bazada CRUD: SQL) — endi o'sha 4 amalni INTERNET orqali API bilan so'raymiz:
@@ -30,7 +30,7 @@ const METHODS = { GET: T.success, POST: T.accent, PUT: T.blue, DELETE: T.danger 
 const STAT = { 200: ['200 OK', T.success], 201: ['201 Created', T.success], 404: ['404 Not Found', T.danger], 400: ['400 Bad Request', '#7C5CBF'] }; // B1: to'q sariq (amber) taqiq → binafsha (m4-14 ikkinchi rangi)
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 
 
 
@@ -647,6 +647,12 @@ function useStuckValve(done, progress = 0) {
 }
 
 // ===== SCREEN 0 — HOOK (sayt ma'lumotni qayerdan oladi?) =====
+// F-1015-394 (216-qonun): kirish javobi — variantga bitta qisqa gap + «Bugun…» qatori (eski uzun umumiy matn o'qilmasdi)
+const ACK_KIRISH = {
+  a: { uz: "Kod ichida emas — sayt serverdan so'raydi.", ru: 'Не в коде — сайт спрашивает у сервера.' },
+  b: { uz: 'Aynan!', ru: 'Именно!' },
+  c: { uz: "Sayt bazaga o'zi kira olmaydi — server orqali.", ru: 'Сайт не ходит в базу сам — только через сервер.' }
+};
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [phase, setPhase] = useState(storedAnswer ? 'done' : 'idle'); // idle | flying | done
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
@@ -697,7 +703,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 );
               })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{picked === correct ? tr({ uz: <>To'g'ri! Bugun sayt va server orasidagi shu <b>so'rov–javob</b> suhbatini o'rganamiz.</>, ru: <>Верно! Сегодня изучим этот разговор <b>запрос–ответ</b> между сайтом и сервером.</> }) /* F-0926-06 (159/11): izoh variantni qaytarmaydi */ : tr({ uz: <>Aslida sayt serverga <b>so'rov (API)</b> yuboradi va javob oladi — bazaga o'zi kira olmaydi. Mana shu suhbatni bugun o'rganamiz.</>, ru: <>На самом деле сайт отправляет серверу <b>запрос (API)</b> и получает ответ — сам в базу он попасть не может. Этот разговор мы сегодня и изучим.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step"><b>{tr(ACK_KIRISH[picked])}</b> {tr({ uz: "Bugun sayt va server orasidagi so'rov–javobni o'rganamiz.", ru: 'Сегодня изучим запрос и ответ между сайтом и сервером.' })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -712,7 +718,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     { text: { uz: "API nima — ikki dastur tili", ru: 'Что такое API — язык двух программ' }, tag: { uz: 'pochta', ru: 'почта' } },
     { text: { uz: "So'rov va javob (konvert)", ru: 'Запрос и ответ (конверт)' }, tag: 'request · response' },
     { text: { uz: "4 method — GET/POST/PUT/DELETE", ru: '4 метода — GET/POST/PUT/DELETE' }, tag: 'CRUD' },
-    { text: { uz: "Postman — postachi asbob", ru: 'Postman — инструмент-почтальон' }, tag: { uz: "sinab ko'rish", ru: 'проверка' } },
+    { text: { uz: "Postman — postachi dastur", ru: 'Postman — инструмент-почтальон' }, tag: { uz: "sinab ko'rish", ru: 'проверка' } },
     { text: { uz: "O'z API'ingizni chaqirasiz", ru: 'Вызовете свой собственный API' }, tag: '/api/products' }
   ];
   const isNarrow = useIsMobile(768);
@@ -739,7 +745,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive label={tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' })} onClick={onNext} /></>}>
       <div className="screen">
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Front backend bilan <span className="italic" style={{ color: T.accent }}>qanday gaplashadi?</span></>, ru: <>Как фронт <span className="italic" style={{ color: T.accent }}>говорит с бэком?</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Ishonasizmi — dars oxirida siz <b style={{ color: T.ink }}>Postman</b> degan asbob bilan o'z serveringizga so'rov yuborib, javobini o'z ko'zingiz bilan ko'rasiz. Buning uchun sayt yozish ham shart emas. Bularning bari bitta narsa ustida quriladi: <b style={{ color: T.ink }}>API</b>. 3-Modulda <b style={{ color: T.ink }}>ofitsiant</b> taom olib kelardi (GET), siz <b style={{ color: T.ink }}>jo'natma</b> yuborardingiz (POST). Bugun ikkalasini bitta rasmga yig'amiz — <b style={{ color: T.accent }}>pochta</b>: har so'rov konvert, har javob shtampli qaytgan xat. Ikki yo'nalish, bitta tizim.</>, ru: <>Поверите ли — в конце урока вы через инструмент <b style={{ color: T.ink }}>Postman</b> отправите запрос своему серверу и своими глазами увидите ответ. И для этого даже не нужно писать сайт. Всё это строится на одной вещи: <b style={{ color: T.ink }}>API</b>. В 3-м модуле <b style={{ color: T.ink }}>официант</b> приносил блюдо (GET), а вы отправляли <b style={{ color: T.ink }}>посылку</b> (POST). Сегодня соберём оба в одну картину — <b style={{ color: T.accent }}>почта</b>: каждый запрос — конверт, каждый ответ — вернувшееся письмо со штампом. Два направления, одна система.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Ishonasizmi — dars oxirida siz <b style={{ color: T.ink }}>Postman</b> degan dastur bilan o'z serveringizga so'rov yuborib, javobini o'z ko'zingiz bilan ko'rasiz. Buning uchun sayt yozish ham shart emas. Bularning bari bitta narsa ustida quriladi: <b style={{ color: T.ink }}>API</b>. 3-Modulda <b style={{ color: T.ink }}>ofitsiant</b> taom olib kelardi (GET), siz <b style={{ color: T.ink }}>jo'natma</b> yuborardingiz (POST). Bugun ikkalasini bitta rasmga yig'amiz — <b style={{ color: T.accent }}>pochta</b>: har so'rov konvert, har javob shtampli qaytgan xat. Ikki yo'nalish, bitta tizim.</>, ru: <>Поверите ли — в конце урока вы через инструмент <b style={{ color: T.ink }}>Postman</b> отправите запрос своему серверу и своими глазами увидите ответ. И для этого даже не нужно писать сайт. Всё это строится на одной вещи: <b style={{ color: T.ink }}>API</b>. В 3-м модуле <b style={{ color: T.ink }}>официант</b> приносил блюдо (GET), а вы отправляли <b style={{ color: T.ink }}>посылку</b> (POST). Сегодня соберём оба в одну картину — <b style={{ color: T.accent }}>почта</b>: каждый запрос — конверт, каждый ответ — вернувшееся письмо со штампом. Два направления, одна система.</> })}</Mentor>
         {!isNarrow ? (
           <Zoomable><Split>{PreviewBlock}{StepsBlock}</Split></Zoomable>
         ) : !showSteps ? (
@@ -955,7 +961,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Postman + GET" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Send bosing', ru: 'Нажмите Send' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Frontend yozmasdan API'ni <span className="italic" style={{ color: T.accent }}>qanday sinaymiz?</span></>, ru: <>Как протестировать API <span className="italic" style={{ color: T.accent }}>без фронтенда?</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <><b style={{ color: T.ink }}>Postman</b> — bu "postachi" asbob: siz so'rovni yozasiz, u serverga eltadi va javobni keltiradi. Birinchi so'rov — <b style={{ color: METHODS.GET }}>GET /api/products</b>: "menga mahsulotlar ro'yxatini ber". Bu bazadagi <span className="mono">SELECT</span> bilan bir xil. Send'ni bosing.</>, ru: <><b style={{ color: T.ink }}>Postman</b> — инструмент-«почтальон»: вы пишете запрос, он относит его серверу и приносит ответ. Первый запрос — <b style={{ color: METHODS.GET }}>GET /api/products</b>: «дай мне список товаров». Это то же самое, что <span className="mono">SELECT</span> в базе. Нажмите Send.</> })}</Mentor>
+        <Mentor>{tr({ uz: <><b style={{ color: T.ink }}>Postman</b> — bu "postachi" dastur: siz so'rovni yozasiz, u serverga eltadi va javobni keltiradi. Birinchi so'rov — <b style={{ color: METHODS.GET }}>GET /api/products</b>: "menga mahsulotlar ro'yxatini ber". Bu bazadagi <span className="mono">SELECT</span> bilan bir xil. Send'ni bosing.</>, ru: <><b style={{ color: T.ink }}>Postman</b> — инструмент-«почтальон»: вы пишете запрос, он относит его серверу и приносит ответ. Первый запрос — <b style={{ color: METHODS.GET }}>GET /api/products</b>: «дай мне список товаров». Это то же самое, что <span className="mono">SELECT</span> в базе. Нажмите Send.</> })}</Mentor>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Postman'dagi «Send» tugmasini bosing — konvert serverga ketadi.", ru: '💡 Нажмите «Send» в Postman — конверт уйдёт на сервер.' })}</p>}
         {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
         <Zoomable>
@@ -1639,10 +1645,10 @@ const QZ_BG_SHAPES = [
 // ⚔️ Mustahkamlash-jang savollari — API/Postman. To'g'ri javoblar 4 pozitsiyaga TENG (12: 3/3/3/3).
 const QUIZ_BANK = [
   { q: { uz: "`GET` so'rovi nima qiladi?", ru: 'Что делает запрос `GET`?' }, opts: [ { uz: "Ma'lumotni bazadan butunlay o'chiradi", ru: 'Полностью удаляет данные из базы' }, { uz: "Serverga butunlay yangi ma'lumot qo'shib yozadi", ru: 'Записывает на сервер совершенно новые данные' }, { uz: "Serverni butunlay o'chirib qo'yadi", ru: 'Полностью выключает сервер' }, { uz: "Ma'lumotni o'qib oladi (o'zgartirmaydi)", ru: 'Читает данные (не меняет их)' }], correct: 3 },
-  { q: { uz: "API nima?", ru: 'Что такое API?' }, opts: [{ uz: "Ikki dastur gaplashadigan til va qoidalar", ru: 'Язык и правила, на которых общаются две программы' }, { uz: "Server rasmlari saqlanadigan katta papka", ru: 'Большая папка, где хранятся картинки сервера' }, { uz: "Sayt sahifasini bezaydigan chizish vositasi", ru: 'Инструмент для рисования дизайна сайта' }, { uz: "Internet tezligini oshiradigan maxsus asbob", ru: 'Специальный прибор для ускорения интернета' }], correct: 0 },
+  { q: { uz: "API nima?", ru: 'Что такое API?' }, opts: [{ uz: "Ikki dastur gaplashadigan til va qoidalar", ru: 'Язык и правила, на которых общаются две программы' }, { uz: "Server rasmlari saqlanadigan katta papka", ru: 'Большая папка, где хранятся картинки сервера' }, { uz: "Sayt sahifasini bezaydigan chizish dasturi", ru: 'Инструмент для рисования дизайна сайта' }, { uz: "Internet tezligini oshiradigan maxsus qurilma", ru: 'Специальный прибор для ускорения интернета' }], correct: 0 },
   { q: { uz: "`201 Created` statusi nimani bildiradi?", ru: 'Что означает статус `201 Created`?' }, opts: [ { uz: "Server javob bermay o'chib qoldi", ru: 'Сервер выключился, не ответив' }, { uz: "Yangi ma'lumot muvaffaqiyatli yaratildi", ru: 'Новые данные успешно созданы' }, { uz: "So'rovda tuzatib bo'lmaydigan xatolik bor", ru: 'В запросе неисправимая ошибка' }, { uz: "So'ralgan manzil serverda topilmadi", ru: 'Запрошенный адрес не найден на сервере' }], correct: 1 },
   { q: { uz: "`POST` so'rovida BODY nima uchun kerak?", ru: 'Зачем нужен BODY в запросе `POST`?' }, opts: [{ uz: "Sahifani chiroyli ko'rsatib turishi uchun", ru: 'Чтобы страница красиво выглядела' }, { uz: "Server javobini tezlashtirish uchun", ru: 'Чтобы ускорить ответ сервера' }, { uz: "Qo'shiladigan yangi ma'lumotni tashish uchun", ru: 'Чтобы передать добавляемые новые данные' }, { uz: "So'rov manzilini yashirib qo'yish uchun", ru: 'Чтобы спрятать адрес запроса' }], correct: 2 },
-  { q: { uz: "Postman qanday asbob?", ru: 'Что за инструмент Postman?' }, opts: [{ uz: "Sayt dizaynini chizadigan grafik dastur", ru: 'Графическая программа для рисования дизайна' }, { uz: "Serverga faqat rasm yuklab beradi", ru: 'Только загружает картинки на сервер' }, { uz: "Frontend yozmasdan API'ni sinaydi", ru: 'Тестирует API без написания фронтенда' }, { uz: "Bazadagi ma'lumotni o'chirib tashlaydi", ru: 'Стирает данные из базы' }], correct: 2 },
+  { q: { uz: "Postman qanday dastur?", ru: 'Что за инструмент Postman?' }, opts: [{ uz: "Sayt dizaynini chizadigan grafik dastur", ru: 'Графическая программа для рисования дизайна' }, { uz: "Serverga faqat rasm yuklab beradi", ru: 'Только загружает картинки на сервер' }, { uz: "Frontend yozmasdan API'ni sinaydi", ru: 'Тестирует API без написания фронтенда' }, { uz: "Bazadagi ma'lumotni o'chirib tashlaydi", ru: 'Стирает данные из базы' }], correct: 2 },
   { q: { uz: "`404 Not Found` nima demoqchi?", ru: 'О чём говорит `404 Not Found`?' }, opts: [{ uz: "Ma'lumot muvaffaqiyatli qaytib keldi", ru: 'Данные успешно вернулись' }, { uz: "So'ralgan manzil topilmadi", ru: 'Запрошенный адрес не найден' }, { uz: "Yangi yozuv muvaffaqiyatli yaratildi", ru: 'Новая запись успешно создана' }, { uz: "Serverga kirish taqiqlab qo'yilgan", ru: 'Доступ к серверу запрещён' }], correct: 1 },
   { q: { uz: "Mahsulot narxini yangilash uchun qaysi method?", ru: 'Каким методом обновить цену товара?' }, opts: [ "POST", "DELETE","GET", "PUT"], correct: 3 },
   { q: { uz: "So'rov (request) qismlari qaysilar?", ru: 'Из чего состоит запрос (request)?' }, opts: [ "METHOD + URL (+ BODY)", { uz: "Faqat rang, shrift va bezaklar", ru: 'Только цвета, шрифты и украшения' }, { uz: "Faqat rasm va videolar", ru: 'Только картинки и видео' }, { uz: "Faqat login va parol", ru: 'Только логин и пароль' }], correct: 0 },
@@ -2297,14 +2303,14 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
+    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
     { uz: "API — sayt va server gaplashadigan til/qoidalar", ru: 'API — язык/правила, на которых общаются сайт и сервер' },
     { uz: "So'rov = METHOD + URL (+ BODY); javob = STATUS + DATA", ru: 'Запрос = METHOD + URL (+ BODY); ответ = STATUS + DATA' },
     "GET·POST·PUT·DELETE = SELECT·INSERT·UPDATE·DELETE",
-    { uz: "Postman — frontend yozmasdan API'ni sinash asbobi", ru: 'Postman — инструмент для проверки API без фронтенда' },
+    { uz: "Postman — frontend yozmasdan API'ni sinash dasturi", ru: 'Postman — инструмент для проверки API без фронтенда' },
     { uz: "Status: 200 OK · 201 Created · 404 Not Found", ru: 'Статусы: 200 OK · 201 Created · 404 Not Found' }
   ];
   const HOMEWORK = [
@@ -2316,13 +2322,13 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
   return (
-    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className="screen">
         <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi siz <span className="italic" style={{ color: T.accent }}>API bilan</span> gaplasha olasiz.</>, ru: <>Теперь вы умеете <span className="italic" style={{ color: T.accent }}>говорить с API</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : undefined} />
         </div>
-        {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+        {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
         <div className="hw-big-wrap fade-up d4">
           <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>

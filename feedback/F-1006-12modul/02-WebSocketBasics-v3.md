@@ -140,7 +140,7 @@ Vaqt: ≈ 90 daqiqa — 0–3 ≈ 10 · 4–8 ≈ 14 · 9 (kod oynasi) ≈ 8 · 
 - Sarlavha: **So'rov bo'lmasa, Backend nima qila oladi?** (41)
 - Mentor: Backend tugunidagi «1-telefonga yuborish» ni bosib ko'ring, keyin birinchi telefonni pastga torting.
 - Bashorat (ballsiz, yorliq «Avval o'zingiz belgilab ko'ring»; tanlangach ixcham qator): **Backend yangi sonni birinchi telefonga o'zi yubora oladimi?** · Ha, istagan payt · Yo'q, faqat so'rovga javoban
-- Sahna (0-ekran oxiridagi holat): 1-telefon «8 / 10» (yorliq «eski») · Backend («Database: 9»; ichida tugma «1-telefonga yuborish» — halqada) · 2-telefon «9 / 10», «Qo'shildingiz». Qadam belgilari tugma yonida (SABOQ 21): 1 Yuborib ko'ring · 2 Pastga torting.
+- Sahna (0-ekran oxiridagi holat): 1-telefon «8 / 10» (yorliq «eski») · Backend («Database: 9»; ichida tugma «1-telefonga yuborish» — bashoratdan keyin chiqadi, halqada *(✎ F-1015-164)*) · 2-telefon «9 / 10», «Qo'shildingiz». Qadam belgilari tugma yonida (SABOQ 21): 1 Yuborib ko'ring · 2 Pastga torting.
 - **Harakat → Vizual o'zgarish:**
   1. «1-telefonga yuborish» → konvert Backend'dan chiqadi, lekin 1-telefonga yo'l yo'q: uzuq chiziq boshida to'xtab, silkinib orqaga qaytadi; Backend ichida bir qator «so'rov yo'q — yo'l yopiq». 1-telefon tepasida «↓ Pastga torting» halqaga o'tadi.
   2. 1-telefonni pastga tortish (sudrash; klaviaturada — «Yangilash» tugmasi) → konvert «so'rov» 1-telefondan Backend'ga, chiziq so'rov davomida yonadi → konvert «javob» qaytadi → «8» → «9» (kattalashib qaytadi), «eski» yorlig'i yo'qoladi → chiziq yana so'nadi.
@@ -187,7 +187,7 @@ Vaqt: ≈ 90 daqiqa — 0–3 ≈ 10 · 4–8 ≈ 14 · 9 (kod oynasi) ≈ 8 · 
 - Sarlavha: **Backend yuborgan xabarda nima bor?** (34)
 - Mentor (bosqichga qarab): boshida — Birinchi telefon chetidagi konvertni bosib oching. · ochilgach — Ichida son yo'q: «Qayta so'rash» ni bosing.
 - Bashorat (ballsiz; tanlangach ixcham qator): **Konvert ichida nima bor?** · Faqat qaysi o'yin o'zgargani · O'yinning yangi soni · O'yinlarning to'liq ro'yxati (S-015: kamdan ko'pga)
-- Sahna (4-ekran oxiri): 1-telefon «8 / 10», chetida yopiq konvert (halqada) · Backend («Database: 9») · 2-telefon «9 / 10». Telefon ostida tugma «Qayta so'rash» (xira — konvert ochilgach halqaga o'tadi).
+- Sahna (4-ekran oxiri): 1-telefon «8 / 10», chetida yopiq konvert (halqada) · Backend («Database: 9») · 2-telefon «9 / 10». Telefon ostida tugma «Qayta so'rash» (konvert ochilgach chiqadi, halqada; bungacha ko'rinmaydi *(✎ F-1015-164)*).
 - **Harakat → Vizual o'zgarish:**
   1. Konvert → ochiladi, ichida ikki qator: `oyin-ozgardi` (yorliq «nomi») · `{ oyinId: 1, sabab: 'qoshildi' }` (yorliq «ma'lumoti»). Son yo'q — «8 / 10» o'zgarmaydi.
      Nom qatori (bitta): Ulanish orqali yuboriladigan nomli xabar — hodisa: nomi va ma'lumoti bor.
@@ -227,7 +227,7 @@ Vaqt: ≈ 90 daqiqa — 0–3 ≈ 10 · 4–8 ≈ 14 · 9 (kod oynasi) ≈ 8 · 
   });
   ```
   Karta ostida kulrang bir qator: `BACKEND_MANZILI` — `.env` dagi `EXPO_PUBLIC_API_URL` (web-trekda `VITE_API_URL`); `token` — kirishda saqlangan token.
-  Telefon ostida ikki tugma: «Tokensiz ulanish» (halqada) · «Token bilan ulanish».
+  Telefon ostida ikki tugma: «Tokensiz ulanish» (bashoratdan keyin chiqadi, halqada) · «Token bilan ulanish» (1-qadamdan keyin chiqadi); bajarilgani — yashil «✓ Tokensiz ulanish» yozuvi *(✎ F-1015-164)*.
 - O'ng — Backend tuguni; **ostida** kod kartasi (o'qish uchun, qisqartirilgan), yorlig'i `backend` · gateway — Backend'da ulanishlarni qabul qiladigan klass:
   ```ts
   @WebSocketGateway()
@@ -275,7 +275,8 @@ Vaqt: ≈ 90 daqiqa — 0–3 ≈ 10 · 4–8 ≈ 14 · 9 (kod oynasi) ≈ 8 · 
   2. Tinglovchi ichida `korsat()` ni chaqiring — son qayta so'ralsin.
   3. Natija oynasida «Boshqa o'yinchi qo'shildi» ni bosing: «Yangilash» ni bosmasdan son 8 dan 9 ga o'tsin.
 - Yordam: Shakli 11-Moduldagi `yangila.addEventListener('click', korsat)` kabi: avval hodisa nomi qo'shtirnoqda, keyin ishlaydigan funksiya. Son o'zgarmasa — nom `oyin-ozgardi` deb, chiziqcha bilan yozilganini tekshiring.
-- Tugma (o'ngda): Bajardim — shartlar ✓ bo'lgach ochiladi (§19 halol tugma).
+- Tugma (o'ngda): Bajardim — shartlar ✓ bo'lgach chiqadi; bungacha ko'rinmaydi (§19 halol tugma) *(✎ F-1015-164)*.
+- Dars ichidagi natija oynasida «Boshqa o'yinchi qo'shildi» kod tekshiruvdan o'tgach chiqadi va «10 / 10» da yo'qoladi *(✎ F-1015-164)*.
 - O'ng — platforma tugmasi «Kompilyatorni ochish» (nomi tegilmaydi; ostida bir qator: «Kod oynasi ochiladi — kodni yozasiz va natijasini shu yerda ko'rasiz.») → `HtmlCompiler`, fayllar:
   - `index.html` — tayyor, o'zgarmaydi:
     ```html
@@ -342,6 +343,7 @@ Vaqt: ≈ 90 daqiqa — 0–3 ≈ 10 · 4–8 ≈ 14 · 9 (kod oynasi) ≈ 8 · 
 ## 10 · Ulanish belgisi  ← QTushuncha (bashorat + 4 qadam)
 - Eyebrow: Tushuncha · ulanish holati
 - Sarlavha: **Ulanish uzilsa, o'yinchi buni qayerdan biladi?** (46)
+- ✎ F-1015-168: taxmindan oldin telefondagi tugma bosilsa — «Avval taxminingizni belgilang.» (tugma o'chiq turmaydi).
 - Mentor: Doimiy ulanish ham uziladi — birinchi telefonda uchish rejimini yoqing va tepadagi belgiga qarang.
 - Bashorat (ballsiz; tanlangach ixcham qator): **Uchish rejimida belgi nimani ko'rsatadi?** · «Ulangan» · «Ulanmoqda…» · «Ulanmagan»
 - Sahna: 1-telefon — «O'yinlar» ekrani, tepasida belgi «Ulangan» (yashil nuqta); kartalar: Shanba, 18:00 · Mahalla maydoni · 8 / 10 (boshqa namuna kartalar yo'q — matnsiz xira karta bo'lmaydi, SABOQ 33; agent taklifi 4, 07.10); holat qatorida samolyot belgisi (halqada) · Backend («Database: 8»; ostida kalit «Token: yaroqli») · 2-telefon — O'yin, «Qo'shilaman».
@@ -349,7 +351,7 @@ Vaqt: ≈ 90 daqiqa — 0–3 ≈ 10 · 4–8 ≈ 14 · 9 (kod oynasi) ≈ 8 · 
 - **Harakat → Vizual o'zgarish:**
   1. Samolyot → chiziq uziladi (uzuq, kulrang), belgi «Ulanmoqda…» (accent nuqta, yengil pulsatsiya); uzilgan chiziq boshida kichik ↻ — ilova o'zi urinmoqda. 2-telefondagi «Qo'shilaman» halqaga o'tadi.
   2. «Qo'shilaman» (2-telefon) → 2-telefonda «9 / 10», «Database: 9»; Backend'dan konvert `oyin-ozgardi` uzuq chiziqqa chiqadi va uzilgan joyda so'nadi — yonida yorliq «kelmadi». 1-telefonda «8 / 10». Samolyot yana halqada.
-  3. Samolyot (o'chirish) → ↻ chiziqni qayta tiklaydi (odatda bir necha soniya — sahnada ≈2 s) → belgi «Ulangan»; «8 / 10» qoladi, yonida kulrang «eski bo'lishi mumkin». Backend ostidagi kalit halqaga o'tadi.
+  3. Samolyot (o'chirish) → ↻ chiziqni qayta tiklaydi (odatda bir necha soniya — sahnada ≈2 s) → belgi «Ulangan»; «8 / 10» qoladi, yonida kulrang «eski bo'lishi mumkin». Backend ostidagi kalit halqaga o'tadi (shu paytgacha «Token: yaroqli» — uzuq chegarali holat yozuvi, tugma emas *(✎ F-1015-164)*).
   4. «Token: yaroqli» → «yaroqsiz» → Backend ulanishni yopadi: chiziq yo'qoladi, ↻ yo'q → belgi «Ulanmagan» (kulrang).
 - Nom qatori (4/4 dan keyin, bitta): Uch belgi — uch ulanish holati: ulangan, ulanmoqda, ulanmagan.
 - Natija qatori: «Taxminingiz: … · haqiqatda: «Ulanmoqda…»» (yoki «Taxminingiz to'g'ri chiqdi»).
@@ -404,7 +406,7 @@ Vaqt: ≈ 90 daqiqa — 0–3 ≈ 10 · 4–8 ≈ 14 · 9 (kod oynasi) ≈ 8 · 
 - Mentor: 11-Modulda README'ga yozgan real vaqt nuqtalaringizdan boshlang: har nuqtaga bitta qator.
 - Tepada ixcham chiziq (birinchi qator tayyor bo'lgach): ✓ qatorlar, joriysi accent. Bir vaqtda bitta katta karta — besh maydon, **yorliq input ichida**: doimiy raqam + qisqa savol (159/2, 8-Modul «bitta varaq» naqshi — F-1006-383):
   1 · Qaysi joy boshqa odam tufayli o'zgaradi? · 2 · Kim nima qiladi? · 3 · Qaysi hodisa? Nomi · sababi · 4 · Hodisani kim oladi? · 5 · Ekranda nima o'zgaradi?
-  Karta ostida bir qatorda: «Qator tayyor» (asosiy — qatorni yopadi) · «Bekor qilish» (ikkinchi; faqat qator bor bo'lsa) · o'ngda «Yordam». Karta yopilgach: «Saqlash» (asosiy) · «+ Yana qator» (ikkinchi; ko'pi bilan 5) · o'ngda «Yordam». Kamida 1 qator (02-FILTR 19).
+  Karta ostida bir qatorda: «Qator tayyor» (asosiy — qatorni yopadi) · «Bekor qilish» (ikkinchi; faqat qator bor bo'lsa) · o'ngda «Yordam». Karta yopilgach: «Saqlash» (asosiy) · «+ Yana qator» (ikkinchi; ko'pi bilan 5) · o'ngda «Yordam». Kamida 1 qator (02-FILTR 19). «Qator tayyor» doim bosiladi; bo'sh katak bo'lsa tugma ostida: N ta katak bo'sh. (fokus birinchi bo'sh katakka) *(✎ F-1015-164)*
 - Yordam (ochiladigan): **Mentor misoli** — 1 · «8 / 10» va qo'shilganlar ro'yxati · 2 · o'yinchi «Qo'shilaman» ni bosadi · 3 · oyin-ozgardi · sabab qoshildi · 4 · hamma ulangan ilova · 5 · «8 / 10» o'rniga «9 / 10» (oldingi «masalan» ipuchalari shu yerga ko'chdi);
   Bu kursda hodisa nomi kichik harf va chiziqcha bilan, bo'lib o'tgan ish ma'nosida yoziladi: `oyin-ozgardi`. Bitta nom va bir necha sabab ham, har o'zgarishga alohida nom ham bo'ladi — qaror sizniki.
   Mahsulotingizda boshqa odam o'zgartiradigan joy bo'lmasa — o'zingiz ikkinchi qurilmada o'zgartiradigan ma'lumotni oling: telefonda qo'shdingiz, kompyuterda ko'rinsin.

@@ -239,7 +239,7 @@ namunalar: 11-Modul `15-PmOneOnOne-v3.md` + `15-FILTR.md` (12 ekranli yakkama-ya
   - Muammo — `muammo.gap` (bosiladi) · `muammo.dalil` (kulrang, yorliq «dalil», bosilmaydi — 6-ekranda shu bo'lak da'vosiga dalil bo'lib taklif qilinadi)
   - Jonli demo — `demo.harakat` (kulrang, «jonli demoda ko'rinadi») · `demo.tuzatish` · `demo.son` (bosiladi)
   - Keyingi qadam — `keyingi` (bosiladi)
-  - Har kartada pastda: «+ Yangi gap» (placeholder: `Bugun shu bo'lakda nima demoqchisiz?`) → gap kartaga oddiy gap bo'lib qo'shiladi; tekshirsa bo'ladigan gap bo'lsa, o'quvchi uni boshqa gaplar kabi bosib da'vo deb belgilaydi (har yangi gap o'zidan da'vo bo'lib qolmaydi — 11-FILTR 8).
+  - Har kartada pastda: «+ Yangi gap» (placeholder: `Bugun shu bo'lakda nima demoqchisiz?`) → gap kartaga oddiy gap bo'lib qo'shiladi; tekshirsa bo'ladigan gap bo'lsa, o'quvchi uni boshqa gaplar kabi bosib da'vo deb belgilaydi (har yangi gap o'zidan da'vo bo'lib qolmaydi — 11-FILTR 8). «+ Yangi gap» doim bosiladi; qator bo'sh bo'lsa ostida: Avval gapni yozing. (fokus qatorga) *(✎ F-1015-164)*
   - O'ngda: «Keyingi bo'lak» → 3-kartada «Saqlash» (187).
 - **Pitch topilmasa** (M-q5): kulrang qator «11-Modul pitchingiz topilmadi — har bo'lakdan asosiy gapni yozing.» + to'rt bo'lakka bittadan maydon (placeholder — bo'lak nomi; Yechim ham yoziladi, lekin belgilanmaydi); keyin belgilash yuqoridagidek.
 - Tekshiruv (`QXato`, ≤60; «Saqlash» bosilganda; yumshoqlari ikkinchi «Saqlash» bilan o'tadi):

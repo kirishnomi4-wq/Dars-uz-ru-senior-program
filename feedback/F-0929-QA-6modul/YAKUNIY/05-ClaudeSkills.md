@@ -1,12 +1,15 @@
 # 5-dars «Claude Skills — nima» — yakuniy matn
 
+> ✎ **F-1015-122 (16.10, 208-qonun 4-band, foydalanuvchi qarori — 2-variant):** dars yuzasidagi bezak emoji kodda olingan — sarlavha, yorliq, karta ikonlari, fayl tablari, test/amaliyot yorliqlari, tugmalar. Qolgan: sxema tugunlari, keys sahnasi, o'yin qatlami (nishon, arena, podium), Yakun, takrorlash oynasi, Mentor paneli, bot/ilova maketidagi mahsulot mazmuni. Bu MD dagi shunday bezak emoji endi ekranda yo'q.
+
+
 Fayl: `src/6-Modull/ClaudeSkillsLesson.jsx` · 20 ekran · Keyingi dars: «Ilova o'zi qaror qilsa, kimga tegadi?»
 Holat: 05.10.2026 — kodga mos
 
 ## 0 · Kirish — har safar boshqacha
 - Eyebrow: Dars · kirish
 - Sarlavha: AI mahsulot tavsifini har safar boshqacha yozadi. Nega?
-- Mentor: O'tgan darsda agentga maqsad va asboblar berdik. Lekin AI'ga ishni **qanday** bajarishni ham tushuntirish kerak. Tugmani bosing — muammoni ko'ring.
+- Mentor: O'tgan darsda agentga maqsad va tool'lar berdik. Lekin AI'ga ishni **qanday** bajarishni ham tushuntirish kerak. Tugmani bosing — muammoni ko'ring.
 - Karta — Yo'riqnomasiz — har safar har xil:
   - tugma bosilguncha: …
   - tugma bosilgach:
@@ -44,10 +47,11 @@ Misol: "Yengil charm hamyon Kundalik uchun ideal.
 Atigi 120 000 so'm — Savatga qo'shing!"
 ```
 - O'ng — Bugungi 4 qadam
-  1. Skill nima — AI uchun yozma yo'riqnoma · tushuncha
-  2. SKILL.md tuzilishi: frontmatter + body · tuzilish
-  3. Claude Skill'ni qanday tanlaydi va ochadi · ishlash
-  4. Tayyor Skill'ni tahlil qilish · tahlil
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-121, 208-qonun 0-band: takror olindi)*
+  1. Skill nima — AI uchun yozma yo'riqnoma
+  2. SKILL.md tuzilishi: frontmatter + body
+  3. Claude Skill'ni qanday tanlaydi va ochadi
+  4. Tayyor Skill'ni tahlil qilish
 - Tugmalar (telefonda): 4 qadamni ko'rish · ↩ Skill'ni ko'rish
 - Tugmalar: Orqaga · Boshlaymiz →
 
@@ -128,6 +132,7 @@ Atigi 120 000 so'm — Savatga qo'shing!"
 - Tugmalar: Orqaga · Qadamlarni o'qing → Davom etish
 
 ## 7 · Claude o'rnida — Skill tanlash
+- ✎ F-1015-164: Skill variantlari «▶ Skill'siz sinab ko'rish» bosilgach chiqadi; bosilgan tugma o'rnida «✓ Sinadingiz» yozuvi.
 - Eyebrow: Markaziy · Skill'ni tanlash
 - Sarlavha: Claude o'rnida bo'ling
 - Mentor: Avval Skill'siz javobni ko'ring — u umumiy chiqadi. Keyin uchta Skill'ning description'iga qarab, vazifaga mosini tanlang.
@@ -265,13 +270,13 @@ Atigi 120 000 so'm — Savatga qo'shing!"
 - Sarlavha: O'z SKILL.md faylingiz rejasini tuzing
 - Mentor: Bu topshiriqni **qog'ozda yoki kompyuteringizda** bajaring. Har bosqichni bajarib, belgilab boring. Tugagach **«Bajardim»** tugmasini bosing — ustoz kuzatib turadi.
 - TOPSHIRIQ: Kundalik takrorlanadigan bitta vazifangizni tanlang va unga SKILL.md rejasini yozing. Hali faylni yaratmaysiz — faqat uning qismlarini rejalashtirasiz.
-- Bosqichlar — belgilab boring (bosilgani ✓ bilan belgilanadi):
+- Bosqichlar (yorliqsiz — Mentor «belgilab boring» deydi ✎ F-1015-166; bosilgani ✓ bilan belgilanadi):
   1. Takrorlanadigan bitta vazifani tanlang (masalan: qisqa mahsulot tavsifi yozish)
   2. `name` bering — kichik harflar va defis bilan (masalan: `mahsulot-tavsifi`)
   3. `description` yozing — Skill nima qiladi va qachon ishlatiladi
   4. Body: 3–5 ta aniq qadam yozing
   5. Oxiriga bitta tayyor misol qo'shing — kutilgan natija qanday ko'rinishini ko'rsatsin
-- Tugma: Yana N qadam → Bajardim → ✓ Bajarildi — ustozni kuting
+- Tugma: Yana N qadam (oddiy yozuv) → Bajardim (hamma qadam belgilangach chiqadi) → ✓ Bajarildi — ustozni kuting (holat-yozuvi) ✎ F-1015-164
 - Bajarilgach (yashil): Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.
 - Tugmalar: Orqaga · Avval bajaring → Davom etish
 
@@ -313,13 +318,15 @@ Natijalar (podium) — jonli reyting
   - description aniq bo'lsa, Skill kerakli paytda ishlaydi
   - Yaxshi Skill = aniq description + aniq qadamlar + yaxshi misol
 - Tugma: Uyga vazifa · Amaliy topshiriqni bajarish → (fonda: amaliyot · loyiha · mashq · natija)
-- Uyga vazifa (bosilgach):
+- Uyda nima qilasiz? (Uyga vazifa bosilgach)
+  - Kim uchun — o'z loyihangiz · Nechta — 1 SKILL.md · Muddat — keyingi darsgacha
   - **O'qing** — shu darsdagi yoki internetdagi bitta SKILL.md'ni o'qing
   - **Tahlil** — description aniqmi? qadamlar aniqmi? misol bormi?
   - **Rejalashtiring** — loyihangizda qaysi takrorlanadigan vazifaga Skill kerak?
   - Keyingi dars — «Ilova o'zi qaror qilsa, kimga tegadi?». Mini-do'koningizda ilova o'zi qilmaydigan ishlarni va ular kimga tegishini yozasiz.
 - Nishonlaringiz — N/4 (olingan nishonda nomi va tavsifi, olinmaganida faqat nomi)
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10, S1-A): uy vazifasi kartasi P-025 — sarlavha «Uyda nima qilasiz?» (bannerdagi «Uyga vazifa» bilan takror emas); maydonlar: Kim uchun — o'z loyihangiz · Nechta — 1 SKILL.md · Muddat — keyingi darsgacha (qiymatlar topshiriq matnidan); qadamlar raqam-doira; «Keyingi dars» karta ichida; bezak emoji olindi.
 
 ## Nishonlar
 - Yuqoridagi hisoblagich: N/4 · bosilganda: Badges — N/4 (har nishon nomi; olinmagani qulf bilan)

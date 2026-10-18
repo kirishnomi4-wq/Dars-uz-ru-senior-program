@@ -1,7 +1,7 @@
 # 15-dars «Roadmap bo'yicha qayerdasiz?» — yakuniy matn
 
 Fayl: `src/9-Modull/PmOneOnOneLesson.jsx` · 12 ekran · Keyingi dars: «G'oyangiz va ilovangiz guruhni ishontiradimi?»
-Holat: 07.10.2026 — kodga mos
+Holat: 18.10.2026 — kodga mos (v4, F-1015-247…249 avtopilot: 2-ekran doska va holat tugmalari bitta kartada; nishon eslatmalari olindi)
 
 Darsning bitta vizuali — uch ustunli roadmap doskasi: ustunlar **Hozir · 11-Modul** · **Keyinroq · 12–13-Modul** · **Uzoqroq · bitiruvdan keyin**. Ish kartasida: nom · dars yorlig'i · holat chipi (bo'sh bo'lsa — «?»).
 Hozir ustunida «Bugun · 15-dars» chizig'i. Qadam kartasi: yorliq «qadam» (birinchisida «Avval»), qadam matni, ostida «Risk: …».
@@ -23,7 +23,7 @@ Mentorning uch riski va qadami:
 |---|---|---|
 | Render bepul xizmati uxlaydi — birinchi ochilish bir daqiqagacha. | Ilovaga kutish yozuvi qo'shish | hozir |
 | 12-Modulda 50 foydalanuvchi kerak, hozir 3 sinovchi. | Mahalla futbol guruhidan 10 kishini sinovga chaqirish | hozir |
-| Expo Go — sinash vositasi, hamma o'yinchida yo'q. | 12-Modulda APK: Android'ga o'rnatiladigan fayl | keyinroq |
+| Expo Go — sinash ilovasi, hamma o'yinchida yo'q. | 12-Modulda APK: Android'ga o'rnatiladigan fayl | keyinroq |
 
 ## 0 · Kirish
 - Eyebrow: Kirish
@@ -47,10 +47,11 @@ Mentorning uch riski va qadami:
 - Chap: Dars oxirida — Mentor bilan yakkama-yakka: risklar va tuzatilgan reja
   - Doska «Mentor misoli · Maydon Jamoa» (kichik): kartalardagi «?» kulrang to'lqin bilan o'tadi; hozir ustuniga ikkita, keyinroq ustuniga bitta bo'sh kichik karta (yorliq «qadam») sirg'alib kiradi.
 - Reja:
-  1. Roadmap'dagi har ish o'z vaqtida tugaganini belgilaysiz · holat
-  2. Oldinda rejaga nima xalaqit berishi mumkinligini topasiz · risk
-  3. Har biriga bitta aniq qadam yozasiz · qadam
-  4. Qadamlarni roadmap'ga qo'yib, Mentor bilan ko'rasiz · tuzatilgan reja
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*
+  1. Roadmap'dagi har ish o'z vaqtida tugaganini belgilaysiz
+  2. Oldinda rejaga nima xalaqit berishi mumkinligini topasiz
+  3. Har biriga bitta aniq qadam yozasiz
+  4. Qadamlarni roadmap'ga qo'yib, Mentor bilan ko'rasiz
 - Tugmalar: Orqaga · Boshlaymiz
 
 ## 2 · Holatlar
@@ -58,8 +59,7 @@ Mentorning uch riski va qadami:
 - Sarlavha: Mentor roadmap'idagi ishlar *o'z vaqtida* tugadimi?
 - Mentor: Telefondagi dalilni ko'ring va kartaga mos tugmani bosing.
   - Beshta karta belgilangach: Doskadagi holatlarni ko'ring va «Davom etish»ni bosing.
-- Bashorat (yorliq: Avval o'zingiz belgilab ko'ring): Hozir ufqidagi to'rt ishdan nechtasi o'z darsida tugagan? · 2 · 3 · 4
-  - Tanlangach qator: Hozir ufqidagi to'rt ishdan nechtasi o'z darsida tugagan? · Taxminingiz: N
+- Bashorat yo'q — belgilashning o'zi topshiriq (208/0 e). *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*
 - Chap — telefon maketi «Maydon Jamoa» (har kartada almashadi; ostida yoki ustida kulrang yorliq). O'ng — doska «Mentor misoli · Maydon Jamoa» (to'liq), joriy karta halqada; doska ostida uch tugma: Bajarildi · Kechikdi · Boshlanmadi
 - Kartalar (navbat bilan):
   1. O'yin e'loni va qo'shilish · 11-dars — telefon: O'yinlar · Shanba, 18:00 · Mahalla maydoni · 8 / 10 · tugma «Qo'shilaman» bosiladi → 9 / 10 · Qo'shildingiz; yorliq: 11-darsda shunday ishladi. ✔ Bajarildi
@@ -77,7 +77,7 @@ Mentorning uch riski va qadami:
   - 5-karta, «Bajarildi» yoki «Kechikdi»: Bu ishlarning vaqti hali kelmagan.
 - Ipucha (harakatsizlikda): Telefondagi kulrang yorliqni o'qing — ish qachon ishladi?
 - Nishon qatori: Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki. (xatodan keyin: Nishon birinchi urinish uchun edi.)
-- Xulosa: Taxminingiz to'g'ri chiqdi (yoki: Taxminingiz: N · haqiqatda: 3) · Holat ishning rejadagi vaqtiga nisbatan qayerda ekanini ko'rsatadi: bajarildi, kechikdi yoki boshlanmadi.
+- Xulosa (taxmin qatorisiz *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*): Holat ishning rejadagi vaqtiga nisbatan qayerda ekanini ko'rsatadi: bajarildi, kechikdi yoki boshlanmadi.
   - Telefon va tugmalar yopiladi, doska butun enga: hozir ustunida uch ✓ bajarildi va bitta kechikdi, qolgan uchtasi boshlanmadi.
 - Tugmalar: Orqaga · Kartalarni belgilang (N/5) → Davom etish
 
@@ -87,7 +87,7 @@ Mentorning uch riski va qadami:
 - Mentor: Holat o'tganini ko'rsatdi, endi oldinga qaraymiz: har sahnada mos tanlovni bosing.
   - Qadam yozilgach (1 va 2-risk): Kartadagi qatorni o'qing va «Keyingi risk ›»ni bosing.
   - Uchala risk ochilgach: Uch riskni o'qing va «Davom etish»ni bosing.
-- Bosqichlar qatori: 1 Backend · 2 Foydalanuvchilar · 3 Telefon
+- Bosqichlar qatori yo'q — hisob tugmada «(N/3)», har sahnaning o'z yorlig'i bor. *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*
 - Nishon qatori: Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki. (xatodan keyin: Nishon birinchi urinish uchun edi.)
 - Chap — sahna (telefon maketi «Maydon Jamoa»); o'ng — risk kartasi: yorliq «Mentor misoli» · Risk — {risk matni} · Qadam — ?; ostida uch tanlov.
 - Bosqichlar:
@@ -108,9 +108,9 @@ Mentorning uch riski va qadami:
      - To'g'ri tanlovdan keyin chiziqqa yangi bo'lak qo'shiladi, yorliq: 3 + 10 · taklif qilinadi.
      - Karta: Qadam — Mahalla futbol guruhidan 10 kishini sinovga chaqirish · hozir; ostida: Hali 50 emas: qadam riskni kamaytiradi, yo'qotmaydi.
      - Tugma: Keyingi risk ›
-  3. **Telefon** — ustida yorliq: Expo Go — sinash vositasi; ikki telefon: birinchisida Expo Go ichida «Maydon Jamoa» (O'yinlar · 8 / 10), ikkinchisining bosh ekranida ilova o'rnida «?».
-     Risk: Expo Go — sinash vositasi, hamma o'yinchida yo'q.
-     - Har o'yinchiga Expo Go o'rnatishni aytish → Expo Go — sinash vositasi, o'yinchilar uchun emas.
+  3. **Telefon** — ustida yorliq: Expo Go — sinash ilovasi; ikki telefon: birinchisida Expo Go ichida «Maydon Jamoa» (O'yinlar · 8 / 10), ikkinchisining bosh ekranida ilova o'rnida «?».
+     Risk: Expo Go — sinash ilovasi, hamma o'yinchida yo'q.
+     - Har o'yinchiga Expo Go o'rnatishni aytish → Expo Go — sinash ilovasi, o'yinchilar uchun emas.
      - Ilovani faqat o'z telefoningizda ko'rsatish → Unda o'yinchilarning o'zi ilovani ocholmaydi.
      - ✔ 12-Modulda APK: Android'ga o'rnatiladigan fayl
      - To'g'ri tanlovdan keyin ikkinchi telefonda «?» o'rnida ilova belgisi va yorliq: APK · 12-Modul.
@@ -119,7 +119,7 @@ Mentorning uch riski va qadami:
 - Yig'ilgan qatorlar (o'ngda, keyin butun enga): risk → qadam · ufq
   1. Render bepul xizmati uxlaydi — birinchi ochilish bir daqiqagacha. → Ilovaga kutish yozuvi qo'shish · hozir
   2. 12-Modulda 50 foydalanuvchi kerak, hozir 3 sinovchi. → Mahalla futbol guruhidan 10 kishini sinovga chaqirish · hozir
-  3. Expo Go — sinash vositasi, hamma o'yinchida yo'q. → 12-Modulda APK: Android'ga o'rnatiladigan fayl · keyinroq
+  3. Expo Go — sinash ilovasi, hamma o'yinchida yo'q. → 12-Modulda APK: Android'ga o'rnatiladigan fayl · keyinroq
 - Xulosa: Risk — rejaga xalaqit berishi mumkin bo'lgan narsa. Har riskka bitta qadam yoziladi.
 - Tugmalar: Orqaga · Risklarni oching (N/3) → Davom etish
 
@@ -136,7 +136,7 @@ Mentorning uch riski va qadami:
   - B: Bu roadmap'ingizga yordam beradi — xalaqit emas.
   - D: Ularning vaqti hali kelmagan — bu holat, risk emas.
   - Umumiy: Qaysi biri oldinda rejaga xalaqit berishi mumkin?
-- Javob topilgach: kichik risk kartasi — Risk: Imtihon haftasida vaqt qolmasligi mumkin · Qadam: ?
+- Javobdan keyin kichik karta yo'q — u to'g'ri variant matnini qaytarardi (208/0 c). *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*
 - Yozuvlar: To'g'ri · Qaytadan urinib ko'ring
 - Jonli darsda: «Jonli dars — bitta urinish, o'ylab bosing!» · javobdan keyin: Javobingiz qabul qilindi · xato bo'lsa, natija ochilgach: To'g'ri javob: C — Imtihon haftasida vaqt qolmasligi mumkin
 - Tugmalar: Orqaga · To'g'ri javobni toping (jonli darsda: Javob tanlang) → Davom etish
@@ -148,13 +148,14 @@ Mentorning uch riski va qadami:
   - Roadmap topilmasa (ish yozilayotganda): Ishni yozing, ufqini tanlang va «Qo'shish»ni bosing.
   - Hammasiga holat qo'yilgach: Holatlarni ko'ring: o'zgarsa — ✎, keyin «Davom etish»ni bosing.
 - Jonli darsda tepada kulrang qator: Yakkama-yakkada roadmap'ingizni Mentorga o'z ekraningizda ko'rsatasiz.
-- Doska «Roadmap'im» (to'liq; sarlavha yonida hisoblagich n / N): o'quvchining roadmap'idagi ishlar o'z ufqida; hozir ustunida yorliqlar «1-asosiy funksiya · 11-dars» · «2-asosiy funksiya · 12-dars» · «3-asosiy funksiya · 14-dars»
+- Doska «Roadmap'im» (to'liq; sanoq faqat tugmada *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*): o'quvchining roadmap'idagi ishlar o'z ufqida; hozir ustunida yorliqlar «1-asosiy funksiya · 11-dars» · «2-asosiy funksiya · 12-dars» · «3-asosiy funksiya · 14-dars»
   va 13-dars kartasi (sinovdagi to'xtash matni yoki kulrang «13-dars: sinovdan keyingi ish»; mashq sinovi bo'lsa yorliq «13-dars · mashq sinovi»). Hamma kartada «?».
 - Joriy karta (katta, doska ustida): ish nomi · ufq · dars yorlig'i · uch tugma: Bajarildi · Kechikdi · Boshlanmadi (keyinroq va uzoqroq ufqdagi kartada «Boshlanmadi» halqada)
   - 13-dars kartasida (qayta sinov bo'lgan bo'lsa): 13-darsda: qayta sinovda takrorlanmadi · yoki: 13-darsda: qayta sinovda yana to'xtadi
 - Roadmap topilmasa: Roadmap topilmadi — ishlaringizni yozing.
   - Forma: maydon «Ish nomi» · Hozir · 11-Modul · Keyinroq · 12–13-Modul · Uzoqroq · bitiruvdan keyin · Qo'shish (kamida 3 ish, hozir ufqida kamida bittasi; ko'pi bilan 8)
   - Bo'sh nom: Ish nomini yozing.
+  - Ufq tanlanmagan: Ufqni tanlang. («Qo'shish» doim bosiladi; fokus birinchi ufq tugmasiga) *(✎ F-1015-164)*
 - Izoh (hozir ufqidagi darsi o'tgan ishga «Boshlanmadi» bosilsa): Darsi o'tgan, lekin boshlanmagan ish — Mentorga shuni ayting.
 - Hammasiga holat qo'yilgach: katta karta yopiladi, doska butun enga, har kartada ✎.
 - Xulosa (o'quvchi ma'lumotidan): Roadmap'ingizda: {a} ta ish bajarildi, {b} tasi kechikdi, {c} tasi boshlanmadi. (0 bo'lgan bo'lak chiqmaydi)
@@ -165,8 +166,8 @@ Mentorning uch riski va qadami:
 - Sarlavha: Roadmap'ingiz uchun *uchta risk* yozing.
 - Mentor: Avval riskni, keyin unga bitta aniq qadamni yozing.
   - Uch risk yozilgach: Eng katta riskni ★ bilan belgilang, keyin «Davom etish»ni bosing.
-- Tepada ixcham chiziq: Roadmap'im · holatlar n/N — har ustunda holat chiplari soni (Hozir · 11-Modul · Keyinroq · 12–13-Modul · Uzoqroq · bitiruvdan keyin).
-- Qator «Risklarim · n / 3»: yozilgan risklar (risk → qadam · ✎).
+- Tepada ixcham chiziq: Roadmap'im (sanoqsiz *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*) — har ustunda holat chiplari soni (Hozir · 11-Modul · Keyinroq · 12–13-Modul · Uzoqroq · bitiruvdan keyin).
+- Qator «Risklarim» (sanoq tugmada «Yana N ta» *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*): yozilgan risklar (risk → qadam · ✎).
   - Uch risk yozilgach: Qaysi risk eng katta? — bitta qatorni bosing. (★)
 - Katta karta «Risk {n}»:
   - Kulrang qatorlar (bor bo'lsa): Kechikkan ish: {ish}. Shu sabab yana takrorlanishi mumkinmi? · Sinovda {n} kishi qatnashdi. (mashq sinovi bo'lsa: Mashq sinovida {n} kishi qatnashdi.)
@@ -191,7 +192,7 @@ Mentorning uch riski va qadami:
   - Uch qadam joylangach: Boshlaydigan qadamingizni bosing, keyin «Saqlash»ni bosing.
   - Saqlangach: Reja saqlandi — «Davom etish»ni bosing.
 - Doska «Roadmap'im» (to'liq, 5-ekrandagi holatlar bilan) → uch qadam joylangach sarlavha «Tuzatilgan reja».
-- Katta karta: Qadam n / 3 · qadam matni · Risk: {risk} · uch tugma: Hozir · 11-Modul · Keyinroq · 12–13-Modul · Uzoqroq · bitiruvdan keyin
+- Katta karta (sanoq tugmada *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*): qadam matni · Risk: {risk} · uch tugma: Hozir · 11-Modul · Keyinroq · 12–13-Modul · Uzoqroq · bitiruvdan keyin
   - Bosilganda qadam kartasi (yorliq «qadam», ostida «Risk: …») tanlangan ustunga uchib tushadi; har qadam kartasida ✎.
 - Uch risk yozilmagan bo'lsa: Avval uchta risk yozing — «Orqaga»ni bosing.
 - Uch qadam joylangach: Holatlar va risklarga qarshi qadamlar qo'shilgan roadmap — tuzatilgan reja.
@@ -236,7 +237,7 @@ Natijalar (podium) — jonli reyting
 | Mentor misolida Render bilan bog'liq risk qaysi? | Bepul xizmat uxlaydi: birinchi ochilish bir daqiqagacha | Qadam: ilovaga kutish yozuvi |
 | Ilovani har kuni o'zingiz ochib tursangiz, Backend uxlamaydimi? | Uxlaydi: 15 daqiqa so'rovsiz qolsa | Shuning uchun qadam — kutish yozuvi |
 | Mentor misolida foydalanuvchilar bilan bog'liq risk qaysi? | 12-Modulda 50 foydalanuvchi kerak, hozir 3 sinovchi | Qadam: mahalla futbol guruhidan 10 kishini sinovga chaqirish |
-| Nega Expo Go Mentor roadmap'iga risk bo'ldi? | U sinash vositasi, hamma o'yinchida yo'q | Qadam: 12-Modulda APK |
+| Nega Expo Go Mentor roadmap'iga risk bo'ldi? | U sinash ilovasi, hamma o'yinchida yo'q | Qadam: 12-Modulda APK |
 | APK nima? | Android telefonga o'rnatiladigan ilova fayli | Mentor misolida — keyinroq ufqida, 12-Modulda |
 | Qadam roadmap'ning qaysi ufqiga qo'yiladi? | U qachon boshlana olsa — o'sha ufqqa | Hozir · keyinroq · uzoqroq |
 | Tuzatilgan reja nima? | Holatlar va risklarga qarshi qadamlar qo'shilgan roadmap | Mentor bilan ko'rgach, uni yana yangilashingiz mumkin |
@@ -249,7 +250,6 @@ Natijalar (podium) — jonli reyting
 - Eyebrow: Dars yakuni
 - Belgi: ✓ Dars tugadi · N/2 to'g'ri
 - Sarlavha: Roadmap'ingiz tuzatildi: *uch risk, uchta qadam*. (7-ekranda saqlanmagan bo'lsa: Roadmap'ingizning qolganini *uyda yozing*.)
-- Bugungi asosiy fikr: Holat bo'lib o'tganni ko'rsatadi, qadam esa oldindagi riskni kamaytiradi.
 - Qator «Roadmap'im · holatlar n/N» (saqlangan reja bo'lsa — yana «qadamlar 3/3»)
 - CODE STRIKE arenasi: 12 SAVOL · 15 SONIYA · PODIUM (jonli darsda mentor boshlaguncha: Mentorni kuting)
 - ✓ Endi siz bilasiz:
@@ -267,6 +267,8 @@ Natijalar (podium) — jonli reyting
   - Keyingi dars — **«G'oyangiz va ilovangiz guruhni ishontiradimi?»**
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Status Check!** — Mentor roadmap'idagi ishlarga holatni birinchi urinishda to'g'ri qo'ydingiz (2-ekran)
@@ -332,7 +334,7 @@ Arena: CODE STRIKE · 12 SAVOL · 15 SONIYA · PODIUM · «Tezroq to'g'ri bossan
     - U ilovani juda sekin ochgani uchun
     - Unda Backend'ga ulanmagani uchun
     - U faqat iPhone'da ishlagani uchun
-    - ✔ U sinash vositasi, hammada yo'q
+    - ✔ U sinash ilovasi, hammada yo'q
 9. APK nima?
     - ✔ Android'ga o'rnatiladigan ilova fayli
     - iPhone'dagi ilovalar do'konining nomi

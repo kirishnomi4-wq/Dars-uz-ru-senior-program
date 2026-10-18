@@ -40,7 +40,7 @@ const LangContext = createContext('uz');
 const MentorCtx = createContext(null); // mobil: yig'iladigan Mentor
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 
 
 
@@ -254,7 +254,7 @@ const RECAPS = {
   6: {
     title: { uz: "npm — tayyor paketlar to'plami", ru: 'npm — набор готовых пакетов' },
     cards: [
-      { ic: "🛒", h: { uz: "Asboblar do'koni", ru: 'Магазин инструментов' }, body: { uz: <><b>npm</b> — millionlab tayyor paketlar do'koni, hammasini noldan yozish shart emas.</>, ru: <><b>npm</b> — магазин миллионов готовых пакетов, писать всё с нуля не нужно.</> } },
+      { ic: "🛒", h: { uz: "Paketlar do'koni", ru: 'Магазин пакетов' }, body: { uz: <><b>npm</b> — millionlab tayyor paketlar do'koni, hammasini noldan yozish shart emas.</>, ru: <><b>npm</b> — магазин миллионов готовых пакетов, писать всё с нуля не нужно.</> } },
       { ic: "⬇️", h: "npm install express", body: { uz: <>Bitta buyruq — <span className="mono">npm install express</span> — kerakli paketni loyihangizga qo'shadi.</>, ru: <>Одна команда — <span className="mono">npm install express</span> — добавляет нужный пакет в Ваш проект.</> } },
       { ic: "📄", h: { uz: "package.json'ga yoziladi", ru: 'Записывается в package.json' }, body: { uz: <>O'rnatilgan har paket <span className="mono">package.json</span> ro'yxatiga yoziladi.</>, ru: <>Каждый установленный пакет записывается в список <span className="mono">package.json</span>.</> }, ask: { uz: "express'ni qaysi buyruq bilan o'rnatamiz?", ru: 'Какой командой устанавливаем express?' } },
     ]
@@ -576,6 +576,12 @@ const TLine = ({ cmd, out, dim }) => (
 );
 
 // ===== SCREEN 0 — HOOK (server yoq/yon: fetch'ga kim javob beradi?) =====
+// F-1015-394 (216-qonun): kirish javobi — variantga bitta qisqa gap + «Bugun…» qatori (eski uzun umumiy matn o'qilmasdi)
+const ACK_KIRISH = {
+  a: { uz: "Brauzer faqat so'raydi — javob bermaydi.", ru: 'Браузер только спрашивает — не отвечает.' },
+  b: { uz: 'Internet faqat yetkazadi — javobni server beradi.', ru: 'Интернет только доставляет — отвечает сервер.' },
+  c: { uz: 'Aynan!', ru: 'Именно!' }
+};
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [on, setOn] = useState(false);
   const [seen, setSeen] = useState(() => new Set(storedAnswer ? ['on', 'off'] : ['off']));
@@ -622,9 +628,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 );
               })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{picked === 'c'
-              ? tr({ uz: <>Aynan! fetch'ga <b>server dasturi</b> javob beradi — o'sha o'chsa, hech kim javob bermaydi (ECONNREFUSED). Bugun shu serverni Node.js bilan o'zingiz yozasiz va yoqasiz.</>, ru: <>Именно! На fetch отвечает <b>программа-сервер</b> — если она выключится, никто не ответит (ECONNREFUSED). Сегодня Вы сами напишете этот сервер на Node.js и запустите его.</> })
-              : tr({ uz: <>Aslida brauzer faqat <b>so'raydi</b> — javobni narigi tomondagi <b>server dasturi</b> beradi. Tugmani eslang: u o'chganda ECONNREFUSED chiqdi. O'sha javob beruvchini bugun o'zingiz qurasiz.</>, ru: <>На самом деле браузер только <b>спрашивает</b> — отвечает <b>программа-сервер</b> на той стороне. Вспомните кнопку: когда она была выключена, появился ECONNREFUSED. Этого отвечающего Вы сегодня построите сами.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step"><b>{tr(ACK_KIRISH[picked])}</b> {tr({ uz: "Bugun shu serverni Node.js bilan o'zingiz yozasiz.", ru: 'Сегодня сами напишете этот сервер на Node.js.' })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -638,7 +642,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   // F-0824-05: reja dars OXIRIning lug'atida yozilgan edi — beshta qadamdan to'rttasi
   // atama bilan boshlanardi (Node.js · npm · Express · Endpoint), 01-qadam esa 2-ekranning
   // kashfiyotini («server — bu dastur») oldindan aytib qo'yardi, 04-qadam esa darsning o'zi
-  // bilan ziddiyatda edi (Express — server emas, server yozish asbobi).
+  // bilan ziddiyatda edi (Express — server emas, server yozish paketi).
   // Endi har qadam ISHNI aytadi; atama yorliqqa, ikkinchi darajaga tushadi — nom
   // ko'rinadi (backend kursi ekani sezilib turadi), lekin unga hech narsa bog'lanmaydi.
   const STEPS = [
@@ -814,7 +818,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => () => clearTimeout(timer.current), []);
   const install = () => { setPhase('installing'); timer.current = setTimeout(() => setPhase('done'), 1100); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  const audio = useAudio([{ id: 's5', text: `Har narsani noldan yozish shartmi? Yo'q — npm tayyor asboblar do'koni, millionlab paketlar. Bitta buyruq bilan kerakli asbobni javonga buyurtma qilasiz: npm install express. Tugmani bosing — express o'rnatilib, package.json ro'yxatiga yozilishini ko'ring.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's5', text: `Har narsani noldan yozish shartmi? Yo'q — npm tayyor paketlar do'koni, ularning soni millionlab. Bitta buyruq bilan kerakli paketni javonga buyurtma qilasiz: npm install express. Tugmani bosing — express o'rnatilib, package.json ro'yxatiga yozilishini ko'ring.`, trigger: 'on_mount', waits_for: null }]);
   return (
     <Stage eyebrow="npm" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "express'ni o'rnating", ru: 'Установите express' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
@@ -849,9 +853,9 @@ const Screen5b = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Tekshiruv', ru: 'Проверка' })}
     questionText="npm nima qiladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>npm</span> nima qiladi?</>, ru: <>Что делает <span className="mono" style={{ color: T.accent }}>npm</span>?</> })}</h2></>}
-    audioText="npm nima qiladi? Asboblar do'konini eslang. To'g'ri javobni tanlang."
-    options={[tr({ uz: "Ishlab turgan serverni butunlay o'chirib qo'yadi", ru: 'Полностью выключает работающий сервер' }), tr({ uz: "Tayyor asboblarni (paketlarni) o'rnatadi, masalan express", ru: 'Устанавливает готовые инструменты (пакеты), например express' }), tr({ uz: "Yozib qo'ygan barcha kodingizni o'chirib tashlaydi", ru: 'Удаляет весь написанный Вами код' }), tr({ uz: "Kompyuterni internetga ulab, aloqa o'rnatadi", ru: 'Подключает компьютер к интернету' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "npm — tayyor paketlarni o'rnatadigan vosita.", ru: 'npm — инструмент, который устанавливает готовые пакеты.' })}
+    audioText="npm nima qiladi? Paketlar do'konini eslang. To'g'ri javobni tanlang."
+    options={[tr({ uz: "Ishlab turgan serverni butunlay o'chirib qo'yadi", ru: 'Полностью выключает работающий сервер' }), tr({ uz: "Tayyor paketlarni o'rnatadi, masalan express", ru: 'Устанавливает готовые пакеты, например express' }), tr({ uz: "Yozib qo'ygan barcha kodingizni o'chirib tashlaydi", ru: 'Удаляет весь написанный Вами код' }), tr({ uz: "Kompyuterni internetga ulab, aloqa o'rnatadi", ru: 'Подключает компьютер к интернету' })]} correctIdx={1}
+    explainCorrect={tr({ uz: "npm — tayyor paketlarni o'rnatadigan dastur.", ru: 'npm — инструмент, который устанавливает готовые пакеты.' })}
     explainWrong={{
       0: tr({ uz: "npm o'chirish buyrug'i emas — uni loyiha boshida ishlatamiz.", ru: 'npm — не команда выключения, им пользуются в начале проекта.' }),
       2: tr({ uz: "npm kodni o'chirmaydi — aksincha, loyihaga nimadir qo'shadi.", ru: 'npm не удаляет код — наоборот, что-то добавляет в проект.' }),
@@ -863,7 +867,7 @@ const Screen5b = (props) => (
 // ===== SCREEN 6 — EXPRESS (mashhur 5 qatorli server) =====
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const PARTS = {
-    req: { word: "require('express')", info: { uz: <>O'rnatgan Express asbobini kodga <b>chaqirib olamiz</b>. Endi undan foydalansa bo'ladi.</>, ru: <>Установленный инструмент Express <b>подключаем в код</b>. Теперь им можно пользоваться.</> } },
+    req: { word: "require('express')", info: { uz: <>O'rnatgan Express paketini kodga <b>chaqirib olamiz</b>. Endi undan foydalansa bo'ladi.</>, ru: <>Установленный пакет Express <b>подключаем в код</b>. Теперь им можно пользоваться.</> } },
     app: { word: 'const app = express()', info: { uz: <>Serverimizning <b>o'zini yaratamiz</b> — nomi <span className="mono">app</span>. Hamma narsa shu <span className="mono">app</span> orqali bo'ladi.</>, ru: <>Создаём <b>сам сервер</b> — его зовут <span className="mono">app</span>. Всё будет происходить через этот <span className="mono">app</span>.</> } },
     get: { word: "app.get('/salom', ...)", info: { uz: <>Bitta <b>endpoint</b> (eshik) ochamiz: kimdir <span className="mono">/salom</span> manziliga so'rov yuborsa — javob beramiz.</>, ru: <>Открываем один <b>endpoint</b> (дверь): если кто-то пошлёт запрос на адрес <span className="mono">/salom</span> — ответим.</> } },
     send: { word: 'res.send(...)', info: { uz: <>So'rovga <b>javob qaytarish</b>: <span className="mono">res.send('Salom, dunyo!')</span> — mijozga shu matn boradi.</>, ru: <><b>Возврат ответа</b> на запрос: <span className="mono">res.send('Salom, dunyo!')</span> — клиенту уйдёт этот текст.</> } },
@@ -875,7 +879,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const tap = (k) => { setActive(k); setSeen(p => { const s = new Set(p); s.add(k); return s; }); };
   const hl = (k) => ({ cursor: 'pointer', borderRadius: 5, padding: '1px 3px', background: active === k ? 'rgba(255,79,40,0.2)' : (seen.has(k) ? 'rgba(31,122,77,0.14)' : 'transparent'), transition: 'all 0.15s' });
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  const audio = useAudio([{ id: 's6', text: `Butun serverni besh qatorda yozsa bo'ladimi? Express bilan — ha. Mana mashhur "Salom, dunyo" serveri: bor-yo'g'i bir necha qator. Har rangli qismni bosib, nima qilishini o'rganing: asbobni chaqir, peshtaxtani (app) yarat, eshik och, javob ber, tabloni yoq.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's6', text: `Butun serverni besh qatorda yozsa bo'ladimi? Express bilan — ha. Mana mashhur "Salom, dunyo" serveri: bor-yo'g'i bir necha qator. Har rangli qismni bosib, nima qilishini o'rganing: paketni chaqir, peshtaxtani (app) yarat, eshik och, javob ber, tabloni yoq.`, trigger: 'on_mount', waits_for: null }]);
   return (
     <Stage eyebrow="Express" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${seen.size}/5 ${tr({ uz: "qism o'rganildi", ru: '— изучите части' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
@@ -897,7 +901,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {/* F-0926-06 (159/1, H2): «Qismni bosing» yorlig'i va «0 / 5 ko'rildi» sanog'i olindi — chorlov mentorda, sanoq tugmada */}
             {active ? <div className="sk-info" key={active}><span className="sk-tagbig"><span className="sk-wordbadge mono">{PARTS[active].word}</span></span><p className="body" style={{ color: T.ink, margin: '11px 0 0' }}>{tr(PARTS[active].info)}</p></div>
               : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Mana butun server! Asbobni chaqirish → app yaratish → endpoint ochish → javob berish → yoqish. Endi <b>endpoint</b>ni chuqurroq ko'ramiz.</>, ru: <>Вот и весь сервер! Подключение инструмента → создание app → открытие endpoint → ответ → включение. Теперь разберём <b>endpoint</b> поглубже.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Mana butun server! Paketni chaqirish → app yaratish → endpoint ochish → javob berish → yoqish. Endi <b>endpoint</b>ni chuqurroq ko'ramiz.</>, ru: <>Вот и весь сервер! Подключение пакета → создание app → открытие endpoint → ответ → включение. Теперь разберём <b>endpoint</b> поглубже.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1110,7 +1114,7 @@ const Screen12 = (props) => (
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext(AchMissCtx);
   const ORDER = [
-    { id: 'req', label: "require('express')", hint: { uz: 'asbobni chaqir', ru: 'подключи инструмент' } },
+    { id: 'req', label: "require('express')", hint: { uz: 'paketni chaqir', ru: 'подключи пакет' } },
     { id: 'app', label: 'const app = express()', hint: { uz: 'serverni yarat', ru: 'создай сервер' } },
     { id: 'get', label: "app.get('/salom', ...)", hint: { uz: 'endpoint och', ru: 'открой endpoint' } },
     { id: 'listen', label: 'app.listen(3000)', hint: { uz: 'serverni yoq', ru: 'включи сервер' } }
@@ -1127,7 +1131,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     else { if (achMiss) achMiss.miss(screen); setMissedOnce(true); setShake(id); setTimeout(() => setShake(null), 400); } // 🏅 151-qonun: navbatdan tashqari bo'lak — bitta xato urinish
   };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  const audio = useAudio([{ id: 's13', text: `Server qismlarini to'g'ri tartibda yig'a olasizmi? Do'kon xuddi shunday quriladi: avval asbobni chaqir, keyin peshtaxtani yarat, so'ng eshik och, oxirida OCHIQ tabloni yoq. Pastdagi bo'laklarni to'g'ri ketma-ketlikda bosing — peshtaxta bosqichma-bosqich jonlanadi.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's13', text: `Server qismlarini to'g'ri tartibda yig'a olasizmi? Do'kon xuddi shunday quriladi: avval paketni chaqir, keyin peshtaxtani yarat, so'ng eshik och, oxirida OCHIQ tabloni yoq. Pastdagi bo'laklarni to'g'ri ketma-ketlikda bosing — peshtaxta bosqichma-bosqich jonlanadi.`, trigger: 'on_mount', waits_for: null }]);
   return (
     <Stage eyebrow={tr({ uz: 'Amaliyot · tartiblash', ru: 'Практика · порядок' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${placed.length}/4 ${tr({ uz: 'joylandi', ru: 'на месте' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
@@ -1307,14 +1311,14 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
+    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
     { uz: "Server — doim ishlaydigan dastur: so'rov → javob", ru: 'Сервер — программа, работающая всегда: запрос → ответ' },
     { uz: "Node.js — JavaScript serverda ham ishlaydi", ru: 'Node.js — JavaScript работает и на сервере' },
     { uz: "npm — tayyor paketlar to'plami (npm install)", ru: 'npm — набор готовых пакетов (npm install)' },
-    { uz: "Express — serverni osonlashtiruvchi asbob; endpoint = app.get('/manzil')", ru: "Express — инструмент, упрощающий сервер; endpoint = app.get('/адрес')" },
+    { uz: "Express — serverni osonlashtiruvchi paket; endpoint = app.get('/manzil')", ru: "Express — пакет, упрощающий сервер; endpoint = app.get('/адрес')" },
     { uz: "node server.js → localhost:3000 da yoqiladi", ru: 'node server.js → включается на localhost:3000' }
   ];
   const HOMEWORK = [
@@ -1325,13 +1329,13 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
   return (
-    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className="screen">
         <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок завершён' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Birinchi serveringiz <span className="italic" style={{ color: T.accent }}>javob berdi</span>.</>, ru: <>Ваш первый сервер <span className="italic" style={{ color: T.accent }}>ответил</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : undefined} />
         </div>
-        {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+        {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь Вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
         <div className="hw-big-wrap fade-up d4">
           <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
@@ -1571,7 +1575,7 @@ const NODE_FLASHCARDS = [
   { front: { uz: "express paketini qaysi buyruq bilan o'rnatasiz?", ru: 'Какой командой Вы устанавливаете пакет express?' }, back: "npm install express", note: { uz: "npm — tayyor paketlar to'plami", ru: 'npm — набор готовых пакетов' } },
   { front: { uz: "O'rnatgan paketlaringiz ro'yxati qaysi faylda turadi?", ru: 'В каком файле лежит список установленных пакетов?' }, back: "package.json", note: { uz: "nima ishlatganingiz shu yerda ko'rinadi", ru: 'здесь видно, чем Вы пользуетесь' } },
   { front: { uz: "Serverni bir necha qatorda yozishga qaysi paket yordam beradi?", ru: 'Какой пакет помогает написать сервер в несколько строк?' }, back: "Express", note: { uz: "boshlash uchun eng oson yo'l", ru: 'самый простой способ начать' } },
-  { front: { uz: "Yirik loyihalarda Express o'rniga qaysi asbob ishlatiladi?", ru: 'Какой инструмент берут вместо Express в крупных проектах?' }, back: "NestJS", note: { uz: "Express ustiga qurilgan, tartibliroq", ru: 'построен поверх Express, более организован' } },
+  { front: { uz: "Yirik loyihalarda Express o'rniga qaysi paket ishlatiladi?", ru: 'Какой пакет берут вместо Express в крупных проектах?' }, back: "NestJS", note: { uz: "Express ustiga qurilgan, tartibliroq", ru: 'построен поверх Express, более организован' } },
   { front: { uz: "Serverning /salom kabi aniq manzili qanday ataladi?", ru: 'Как называется точный адрес сервера, например /salom?' }, back: "Endpoint", note: { uz: "har eshik bitta ishni qiladi", ru: 'каждая дверь делает одно дело' } },
   { front: { uz: "Kodda yangi eshikni (endpoint) qaysi qator ochadi?", ru: 'Какая строка в коде открывает новую дверь (endpoint)?' }, back: "app.get('/salom', ...)", note: { uz: "manzil + javob beruvchi funksiya", ru: 'адрес + функция, которая отвечает' } },
   { front: { uz: "Mijozga javob matnini qaysi buyruq yuboradi?", ru: 'Какая команда отправляет клиенту текст ответа?' }, back: "res.send('Salom')", note: { uz: "res — javob, send — yubor", ru: 'res — ответ, send — отправь' } },
@@ -1693,7 +1697,7 @@ const QUIZ_BANK = [
   { q: { uz: "Server nima?", ru: 'Что такое сервер?' }, opts: [ { uz: "Internetni tezlashtiradigan qurilma", ru: 'Устройство, ускоряющее интернет' }, { uz: "Rasmlarni saqlab turadigan oddiy papka", ru: 'Обычная папка для хранения картинок' }, { uz: "Brauzerda ochiladigan bitta oyna", ru: 'Одно окно, открытое в браузере' }, { uz: "So'rovga javob beradigan doimiy dastur", ru: 'Постоянная программа, отвечающая на запросы' }], correct: 3 },
   { q: { uz: "`Node.js` nima imkon beradi?", ru: 'Что даёт `Node.js`?' }, opts: [{ uz: "Faqat HTML sahifalarni yasaydi", ru: 'Делает только HTML-страницы' }, { uz: "Rasmlarni tahrirlab beradi", ru: 'Редактирует картинки' }, { uz: "JavaScript'ni serverda ishlatadi", ru: 'Запускает JavaScript на сервере' }, { uz: "Internetni kompyuterga ulab beradi", ru: 'Подключает компьютер к интернету' }], correct: 2 },
   { q: { uz: "`npm` nima qiladi?", ru: 'Что делает `npm`?' }, opts: [ { uz: "Tayyor paketlarni o'rnatib beradi", ru: 'Устанавливает готовые пакеты' }, { uz: "Kodni o'zi o'chirib tashlaydi", ru: 'Сам удаляет код' }, { uz: "Serverni butunlay o'chirib tashlaydi", ru: 'Полностью выключает сервер' }, { uz: "Brauzer oynasini ochib beradi", ru: 'Открывает окно браузера' }], correct: 0 },
-  { q: { uz: "`Express` nima?", ru: 'Что такое `Express`?' }, opts: [{ uz: "Ma'lumotni saqlovchi katta baza", ru: 'Большая база для хранения данных' }, { uz: "Serverni osonlashtiruvchi asbob", ru: 'Инструмент, упрощающий сервер' }, { uz: "Rasm uchun maxsus format", ru: 'Особый формат для картинок' }, { uz: "Brauzerning yangi bir turi", ru: 'Новый вид браузера' }], correct: 1 },
+  { q: { uz: "`Express` nima?", ru: 'Что такое `Express`?' }, opts: [{ uz: "Ma'lumotni saqlovchi katta baza", ru: 'Большая база для хранения данных' }, { uz: "Serverni osonlashtiruvchi paket", ru: 'Пакет, упрощающий сервер' }, { uz: "Rasm uchun maxsus format", ru: 'Особый формат для картинок' }, { uz: "Brauzerning yangi bir turi", ru: 'Новый вид браузера' }], correct: 1 },
   { q: { uz: "`Endpoint` nima?", ru: 'Что такое `endpoint`?' }, opts: [ { uz: "Serverni o'chiradigan tugmacha", ru: 'Кнопка выключения сервера' }, { uz: "Serverning aniq manzil-eshigi", ru: 'Точный адрес-дверь сервера' }, { uz: "Internet ulanish tezligi", ru: 'Скорость интернет-соединения' }, { uz: "Saqlangan faylning nomi", ru: 'Имя сохранённого файла' }], correct: 1 },
   { q: { uz: "`res.send` nima qiladi?", ru: 'Что делает `res.send`?' }, opts: [{ uz: "Serverni ishga tushiradi", ru: 'Запускает сервер' }, { uz: "Yangi paket o'rnatadi", ru: 'Устанавливает новый пакет' }, { uz: "Yangi bitta endpoint yaratadi", ru: 'Создаёт один новый endpoint' }, { uz: "So'rovga javob (tovar) beradi", ru: 'Отдаёт ответ (товар) на запрос' }], correct: 3 },
   { q: { uz: "`app.listen(3000)` nima qiladi?", ru: 'Что делает `app.listen(3000)`?' }, opts: [ { uz: "Serverni yoqib, so'rov kutadi", ru: 'Включает сервер и ждёт запросы' }, { uz: "Yangi bo'sh fayl yaratadi", ru: 'Создаёт новый пустой файл' }, { uz: "Barcha ma'lumotni o'chiradi", ru: 'Удаляет все данные' }, { uz: "Brauzer oynasini yopib qo'yadi", ru: 'Закрывает окно браузера' }], correct: 0 },

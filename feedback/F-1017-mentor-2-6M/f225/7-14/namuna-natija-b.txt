@@ -1,0 +1,611 @@
+### src/5-Modull/BotAiAgentLesson.jsx
+{
+ "nom": "BotAiAgentLesson",
+ "id": "bot-ai-agent-05-10-v18",
+ "IDX": 19,
+ "TOTAL": 20,
+ "solo0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "solo1": {
+  "finBtn": "Yakunlandi ✓ [o'chiq]",
+  "finState": "finish-done",
+  "toast": "Dars yakunlandi ✓ Endi bu oynani yopsangiz bo'ladi.",
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 1
+ },
+ "mentor0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "mentor1": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.",
+  "arena": true,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "student0": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ },
+ "student1": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ }
+}
+### src/6-Modull/ArchPatternsLesson.jsx
+{
+ "nom": "ArchPatternsLesson",
+ "id": "arch-patterns-06-03-v18",
+ "IDX": 19,
+ "TOTAL": 20,
+ "solo0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "solo1": {
+  "finBtn": "Yakunlandi ✓ [o'chiq]",
+  "finState": "finish-done",
+  "toast": "Dars yakunlandi ✓ Endi bu oynani yopsangiz bo'ladi.",
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 1
+ },
+ "mentor0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "mentor1": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.",
+  "arena": true,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "student0": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ },
+ "student1": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ }
+}
+### src/7-Modull/PmUsabilityTestLesson.jsx
+{
+ "nom": "PmUsabilityTestLesson",
+ "id": "m7-10-v1",
+ "IDX": 15,
+ "TOTAL": 16,
+ "solo0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "solo1": {
+  "finBtn": "Yakunlandi ✓ [o'chiq]",
+  "finState": "finish-done",
+  "toast": "Dars yakunlandi ✓ Endi bu oynani yopsangiz bo'ladi.",
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 1
+ },
+ "mentor0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "mentor1": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.",
+  "arena": true,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "student0": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ },
+ "student1": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ }
+}
+### src/8-Modull/ProdUpgradeLesson.jsx
+{
+ "nom": "ProdUpgradeLesson",
+ "id": "m8-08-v1",
+ "IDX": 11,
+ "TOTAL": 12,
+ "solo0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "solo1": {
+  "finBtn": "Yakunlandi ✓ [o'chiq]",
+  "finState": "finish-done",
+  "toast": "Dars yakunlandi ✓ Endi bu oynani yopsangiz bo'ladi.",
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 1
+ },
+ "mentor0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "mentor1": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.",
+  "arena": true,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "student0": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ },
+ "student1": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ }
+}
+### src/9-Modull/PmOneOnOneLesson.jsx
+{
+ "nom": "PmOneOnOneLesson",
+ "id": "pm-m9d15-v1",
+ "IDX": 11,
+ "TOTAL": 12,
+ "solo0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "solo1": {
+  "finBtn": "Yakunlandi ✓ [o'chiq]",
+  "finState": "finish-done",
+  "toast": "Dars yakunlandi ✓ Endi bu oynani yopsangiz bo'ladi.",
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 1
+ },
+ "mentor0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "mentor1": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.",
+  "arena": true,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "student0": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ },
+ "student1": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ }
+}
+### src/10-Modull/LiveNotifyDayLesson.jsx
+{
+ "nom": "LiveNotifyDayLesson",
+ "id": "m10-04-v1",
+ "IDX": 11,
+ "TOTAL": 12,
+ "solo0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "solo1": {
+  "finBtn": "Yakunlandi ✓ [o'chiq]",
+  "finState": "finish-done",
+  "toast": "Dars yakunlandi ✓ Endi bu oynani yopsangiz bo'ladi.",
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 1
+ },
+ "mentor0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "mentor1": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.",
+  "arena": true,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "student0": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ },
+ "student1": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ }
+}
+### src/11-Modull/PmReflectionLesson.jsx
+{
+ "nom": "PmReflectionLesson",
+ "id": "pm-m11d11-v1",
+ "IDX": 11,
+ "TOTAL": 12,
+ "solo0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "solo1": {
+  "finBtn": "Yakunlandi ✓ [o'chiq]",
+  "finState": "finish-done",
+  "toast": "Dars yakunlandi ✓ Endi bu oynani yopsangiz bo'ladi.",
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 1
+ },
+ "mentor0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "mentor1": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.",
+  "arena": true,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "student0": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ },
+ "student1": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ }
+}
+### src/12-Modull/PmNextStepsLesson.jsx
+{
+ "nom": "PmNextStepsLesson",
+ "id": "pm-m12d12-v1",
+ "IDX": 11,
+ "TOTAL": 12,
+ "solo0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "solo1": {
+  "finBtn": "Yakunlandi ✓ [o'chiq]",
+  "finState": "finish-done",
+  "toast": "Dars yakunlandi ✓ Endi bu oynani yopsangiz bo'ladi.",
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 1
+ },
+ "mentor0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "mentor1": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.",
+  "arena": true,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "student0": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ },
+ "student1": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ }
+}
+### src/pm/PmJtbdLesson.jsx
+{
+ "nom": "PmJtbdLesson",
+ "id": "pm-m3d3-v1",
+ "IDX": 16,
+ "TOTAL": 17,
+ "solo0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "solo1": {
+  "finBtn": "Yakunlandi ✓ [o'chiq]",
+  "finState": "finish-done",
+  "toast": "Dars yakunlandi ✓ Endi bu oynani yopsangiz bo'ladi.",
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 1
+ },
+ "mentor0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "mentor1": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.",
+  "arena": true,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "student0": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ },
+ "student1": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ }
+}
+### src/pm/PmMetricsLesson.jsx
+{
+ "nom": "PmMetricsLesson",
+ "id": "pm-m5d11-metrika-v1",
+ "IDX": 17,
+ "TOTAL": 18,
+ "solo0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "solo1": {
+  "finBtn": "Yakunlandi ✓ [o'chiq]",
+  "finState": "finish-done",
+  "toast": "Dars yakunlandi ✓ Endi bu oynani yopsangiz bo'ladi.",
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 1
+ },
+ "mentor0": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "mentor1": {
+  "finBtn": "Yakunlash ✓",
+  "finState": "finish",
+  "toast": "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.",
+  "arena": true,
+  "arenaTitle": null,
+  "csDisabled": false,
+  "fin": 0
+ },
+ "student0": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ },
+ "student1": {
+  "finBtn": null,
+  "finState": null,
+  "toast": null,
+  "arena": false,
+  "arenaTitle": null,
+  "csDisabled": null,
+  "fin": 0
+ }
+}
+DONE

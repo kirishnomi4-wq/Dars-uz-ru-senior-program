@@ -1,0 +1,10 @@
+import { chromium } from 'playwright-core';
+const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome', headless: true });
+const ctx = await b.newContext({ viewport: { width: 1280, height: 820 } }); await ctx.route(/^https?:\/\//, (r) => r.abort());
+const ID = process.argv[3];
+await ctx.addInitScript((id) => { localStorage.clear(); localStorage.setItem('liveSession:' + id, JSON.stringify({ mode: 'self' })); for (const r of ['mentor','learner','student','self']) { localStorage.setItem('inetOnboarded_'+r,'1'); localStorage.setItem('hcOnboarded_'+r,'1'); } }, ID);
+const p = await ctx.newPage(); await p.goto('file://' + process.argv[2]); await p.waitForTimeout(1200);
+await p.click('.k0-och'); await p.waitForTimeout(1200);
+console.log(await p.evaluate(() => { const c = [...document.querySelectorAll('.k0-iki .split > .col')]; return c.map(x => Math.round(x.firstElementChild.getBoundingClientRect().top)); }));
+await p.click('button.chip:has-text("Yangil")'); await p.waitForTimeout(1400);
+await p.screenshot({ path: process.argv[4] }); await b.close();

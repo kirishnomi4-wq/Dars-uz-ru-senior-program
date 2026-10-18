@@ -1,0 +1,2396 @@
+[
+ {
+  "f": "Htmllesson1",
+  "t": "TASK_HEADINGS",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "<h1> — bosh sarlavha",
+   "<h2> — kichik sarlavha",
+   "<h6> — eng kichik sarlavha"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "Htmllesson1",
+  "t": "TASK_HEADINGS",
+  "case": "to'liq skelet ichida",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "<h1> — bosh sarlavha",
+   "<h2> — kichik sarlavha",
+   "<h6> — eng kichik sarlavha"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "Htmllesson1",
+  "t": "TASK_HEADINGS",
+  "case": "h6 yo'q",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   true,
+   true,
+   false
+  ],
+  "labels": [
+   "<h1> — bosh sarlavha",
+   "<h2> — kichik sarlavha",
+   "<h6> — eng kichik sarlavha"
+  ],
+  "hints": [
+   "",
+   "",
+   "`<h6>` ichiga eng kichik sarlavha yozing — farqni solishtiring"
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "Htmllesson1",
+  "t": "TASK_LINK",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "<a> — href manzil bilan",
+   "<a> — ko'rinadigan matn"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "Htmllesson1",
+  "t": "TASK_LINK",
+  "case": "bitta tirnoq href='…'",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "<a> — href manzil bilan",
+   "<a> — ko'rinadigan matn"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "Htmllesson1",
+  "t": "TASK_LINK",
+  "case": "href yo'q",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   false,
+   true
+  ],
+  "labels": [
+   "<a> — href manzil bilan",
+   "<a> — ko'rinadigan matn"
+  ],
+  "hints": [
+   "`<a>` da `href=\"https://...\"` manzilni to'ldiring",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "Htmllesson1",
+  "t": "TASK_FINAL",
+  "case": "kanonik ul",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "<h1> sarlavha (matn bilan)",
+   "<p> — matn (paragraf)",
+   "ro'yxatda kamida 2 ta <li>",
+   "<a> havola — href bilan"
+  ],
+  "hints": [
+   "",
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "Htmllesson1",
+  "t": "TASK_FINAL",
+  "case": "ol bilan",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "<h1> sarlavha (matn bilan)",
+   "<p> — matn (paragraf)",
+   "ro'yxatda kamida 2 ta <li>",
+   "<a> havola — href bilan"
+  ],
+  "hints": [
+   "",
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "Htmllesson1",
+  "t": "TASK_FINAL",
+  "case": "bitta li",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   true,
+   true,
+   false,
+   true
+  ],
+  "labels": [
+   "<h1> sarlavha (matn bilan)",
+   "<p> — matn (paragraf)",
+   "ro'yxatda kamida 2 ta <li>",
+   "<a> havola — href bilan"
+  ],
+  "hints": [
+   "",
+   "",
+   "`<ul>`/`<ol>` ichida kamida 2 ta `<li>` band yozing",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "Htmllesson2",
+  "t": "TASK_IMG",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "src — rasm manzili",
+   "alt — rasm tavsifi"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "Htmllesson2",
+  "t": "TASK_IMG",
+  "case": "o'zi yopiladigan <img … />",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "src — rasm manzili",
+   "alt — rasm tavsifi"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "Htmllesson2",
+  "t": "TASK_IMG",
+  "case": "alt yo'q",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   true,
+   false
+  ],
+  "labels": [
+   "src — rasm manzili",
+   "alt — rasm tavsifi"
+  ],
+  "hints": [
+   "",
+   "`<img>` da `alt=\"...\"` yozing — rasm tavsifi"
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "Htmllesson2",
+  "t": "TASK_FORM",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "<form> — forma qobig'i",
+   "<input> — form ichida",
+   "<button> — form ichida, matn bilan"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "Htmllesson2",
+  "t": "TASK_FORM",
+  "case": "label + placeholder + type=submit",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "<form> — forma qobig'i",
+   "<input> — form ichida",
+   "<button> — form ichida, matn bilan"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "Htmllesson2",
+  "t": "TASK_FORM",
+  "case": "button formadan tashqarida",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   true,
+   true,
+   false
+  ],
+  "labels": [
+   "<form> — forma qobig'i",
+   "<input> — form ichida",
+   "<button> — form ichida, matn bilan"
+  ],
+  "hints": [
+   "",
+   "",
+   "`<form>` ichiga `<button>` qo'shing va matn yozing"
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "Htmllesson2",
+  "t": "TASK_FINAL",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "<header> bo'limi (matn bilan)",
+   "<img> rasm — src va alt bilan",
+   "<form> ichida <input> maydoni"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "Htmllesson2",
+  "t": "TASK_FINAL",
+  "case": "header bo'sh",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   false,
+   true,
+   true
+  ],
+  "labels": [
+   "<header> bo'limi (matn bilan)",
+   "<img> rasm — src va alt bilan",
+   "<form> ichida <input> maydoni"
+  ],
+  "hints": [
+   "`<header>` ichiga sarlavha/logo matnini yozing",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "HtmlTakrorlashLesson",
+  "t": "TASK_S1",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "<h1> — jamoa nomi",
+   "<p> — jamoa haqida gap"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "HtmlTakrorlashLesson",
+  "t": "TASK_S2",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "<ul> — ro'yxat qobig'i",
+   "kamida 3 ta <li> band",
+   "<strong> — sardor ismi qalin"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "HtmlTakrorlashLesson",
+  "t": "TASK_S2",
+  "case": "strong yo'q",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   true,
+   true,
+   false
+  ],
+  "labels": [
+   "<ul> — ro'yxat qobig'i",
+   "kamida 3 ta <li> band",
+   "<strong> — sardor ismi qalin"
+  ],
+  "hints": [
+   "",
+   "",
+   "Sardor ismini `<strong>` ichiga oling: `<li><strong>Aziz</strong></li>`"
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "HtmlTakrorlashLesson",
+  "t": "TASK_S3",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "<a> — href manzil bilan",
+   "<a> — bosiladigan matn"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "HtmlTakrorlashLesson",
+  "t": "TASK_S4",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "<img> — src manzil bilan",
+   "<img> — alt tavsif bilan"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "HtmlTakrorlashLesson",
+  "t": "TASK_FINAL",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "<h1> — jamoa nomi",
+   "<p> — tanishuv gapi",
+   "ro'yxatda 3 ta <li>",
+   "<a> — kanal havolasi",
+   "<img> — jamoa surati"
+  ],
+  "hints": [
+   "",
+   "",
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "CssLesson1",
+  "t": "TASK_COLOR",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "h1 — color (matn rangi)",
+   "h1 — background-color (fon)"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "CssLesson1",
+  "t": "TASK_COLOR",
+  "case": "hex ranglar",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "h1 — color (matn rangi)",
+   "h1 — background-color (fon)"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "CssLesson1",
+  "t": "TASK_COLOR",
+  "case": "background: qisqa yozuv",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "h1 — color (matn rangi)",
+   "h1 — background-color (fon)"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "CssLesson1",
+  "t": "TASK_COLOR",
+  "case": "faqat color",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   true,
+   false
+  ],
+  "labels": [
+   "h1 — color (matn rangi)",
+   "h1 — background-color (fon)"
+  ],
+  "hints": [
+   "",
+   "`h1 { background-color: ...; }` qo'shing — fon rangi"
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "CssLesson1",
+  "t": "TASK_TEXT",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "h1 — font-size",
+   "h1 — text-align: center"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "CssLesson1",
+  "t": "TASK_TEXT",
+  "case": "text-align: left",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   true,
+   false
+  ],
+  "labels": [
+   "h1 — font-size",
+   "h1 — text-align: center"
+  ],
+  "hints": [
+   "",
+   "`h1 { text-align: center; }` yozing — markazga"
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "CssLesson1",
+  "t": "TASK_BOX",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   ".box — padding (ichki)",
+   ".box — margin (tashqi)"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "CssLesson1",
+  "t": "TASK_BOX",
+  "case": "ikki qiymatli padding/margin",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   ".box — padding (ichki)",
+   ".box — margin (tashqi)"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "CssLesson1",
+  "t": "TASK_BOX",
+  "case": "faqat margin-top",
+  "want": "pass",
+  "next": false,
+  "ok": [
+   true,
+   false
+  ],
+  "labels": [
+   ".box — padding (ichki)",
+   ".box — margin (tashqi)"
+  ],
+  "hints": [
+   "",
+   "`.box { margin: 20px; }` — tashqi bo'shliq"
+  ],
+  "verdict": "QATTIQ"
+ },
+ {
+  "f": "CssLesson1",
+  "t": "TASK_BOX",
+  "case": "margin yo'q",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   true,
+   false
+  ],
+  "labels": [
+   ".box — padding (ichki)",
+   ".box — margin (tashqi)"
+  ],
+  "hints": [
+   "",
+   "`.box { margin: 20px; }` — tashqi bo'shliq"
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "CssLesson2",
+  "t": "TASK_FLEX",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   ".row — display: flex",
+   ".row — gap (oralari)"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "CssLesson2",
+  "t": "TASK_FLEX",
+  "case": "gap yo'q",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   true,
+   false
+  ],
+  "labels": [
+   ".row — display: flex",
+   ".row — gap (oralari)"
+  ],
+  "hints": [
+   "",
+   "`.row { gap: 12px; }` qo'shing — elementlar orasi"
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "CssLesson2",
+  "t": "TASK_CENTER",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   ".box — display: flex",
+   ".box — justify-content: center",
+   ".box — align-items: center"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "CssLesson2",
+  "t": "TASK_CENTER",
+  "case": "display yo'q",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   false,
+   true,
+   true
+  ],
+  "labels": [
+   ".box — display: flex",
+   ".box — justify-content: center",
+   ".box — align-items: center"
+  ],
+  "hints": [
+   "`.box { display: flex; }` yozing — `display: flex` bo'lmasa, `justify-content` va `align-items` umuman ishlamaydi",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "CssLesson2",
+  "t": "TASK_COLUMN",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   ".menu — display: flex",
+   ".menu — flex-direction: column"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "VsCodeLesson",
+  "t": "TASK_CARD",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "<div class=\"card\"> — quti",
+   "quti ichida <div class=\"logo\">",
+   "quti ichida <h2> — ism",
+   "quti ichida <p> — orzu-kasb"
+  ],
+  "hints": [
+   "",
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "VsCodeLesson",
+  "t": "TASK_CARD",
+  "case": "logo ichida oddiy matn",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "<div class=\"card\"> — quti",
+   "quti ichida <div class=\"logo\">",
+   "quti ichida <h2> — ism",
+   "quti ichida <p> — orzu-kasb"
+  ],
+  "hints": [
+   "",
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "VsCodeLesson",
+  "t": "TASK_CARD",
+  "case": "p qutidan tashqarida",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   true,
+   true,
+   true,
+   false
+  ],
+  "labels": [
+   "<div class=\"card\"> — quti",
+   "quti ichida <div class=\"logo\">",
+   "quti ichida <h2> — ism",
+   "quti ichida <p> — orzu-kasb"
+  ],
+  "hints": [
+   "",
+   "",
+   "",
+   "`.card` ichiga `<p>` bilan kim bo'lmoqchi ekaningizni yozing (masalan: Frontend developer)"
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "VsCodeLesson",
+  "t": "TASK_STYLE",
+  "case": "kanonik (ekrandagi 4 qator)",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   ".card — yashil fon (background)",
+   ".card — yumaloq burchak (border-radius)",
+   ".card — markazda (width + margin auto)",
+   ".card — soya (box-shadow)"
+  ],
+  "hints": [
+   "",
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "VsCodeLesson",
+  "t": "TASK_STYLE",
+  "case": "background-color: green, margin: 0 auto",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   ".card — yashil fon (background)",
+   ".card — yumaloq burchak (border-radius)",
+   ".card — markazda (width + margin auto)",
+   ".card — soya (box-shadow)"
+  ],
+  "hints": [
+   "",
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "VsCodeLesson",
+  "t": "TASK_STYLE",
+  "case": "lime nomi",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   ".card — yashil fon (background)",
+   ".card — yumaloq burchak (border-radius)",
+   ".card — markazda (width + margin auto)",
+   ".card — soya (box-shadow)"
+  ],
+  "hints": [
+   "",
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "VsCodeLesson",
+  "t": "TASK_STYLE",
+  "case": "blue nomi",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   false,
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   ".card — yashil fon (background)",
+   ".card — yumaloq burchak (border-radius)",
+   ".card — markazda (width + margin auto)",
+   ".card — soya (box-shadow)"
+  ],
+  "hints": [
+   "Rang yashil oilasidan bo'lsin — masalan `#3FAE2A`",
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "VsCodeLesson",
+  "t": "TASK_STYLE",
+  "case": "qizil fon",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   false,
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   ".card — yashil fon (background)",
+   ".card — yumaloq burchak (border-radius)",
+   ".card — markazda (width + margin auto)",
+   ".card — soya (box-shadow)"
+  ],
+  "hints": [
+   "Rang yashil oilasidan bo'lsin — masalan `#3FAE2A`",
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsVarsLesson",
+  "t": "TASK_BALL",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "let score = 0",
+   "score = 25 — qiymat o'zgartirildi",
+   "konsolda 25 chiqdi"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsVarsLesson",
+  "t": "TASK_BALL",
+  "case": "nuqtali vergul bilan",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "let score = 0",
+   "score = 25 — qiymat o'zgartirildi",
+   "konsolda 25 chiqdi"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsVarsLesson",
+  "t": "TASK_BALL",
+  "case": "bir qatorda nuqtali vergul bilan",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "let score = 0",
+   "score = 25 — qiymat o'zgartirildi",
+   "konsolda 25 chiqdi"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsVarsLesson",
+  "t": "TASK_BALL",
+  "case": "o'zgartirmasdan darhol 25",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   true,
+   false,
+   true
+  ],
+  "labels": [
+   "let score = 0",
+   "score = 25 — qiymat o'zgartirildi",
+   "konsolda 25 chiqdi"
+  ],
+  "hints": [
+   "",
+   "Ikkinchi qatorda `let`siz yozing: `score = 25` — quti bor, faqat ichini almashtiramiz",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsVarsLesson",
+  "t": "TASK_QUOTES",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "sonlar qo'shildi → 10",
+   "matnlar yopishdi → 55"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsVarsLesson",
+  "t": "TASK_QUOTES",
+  "case": "bitta tirnoq '5'",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "sonlar qo'shildi → 10",
+   "matnlar yopishdi → 55"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsVarsLesson",
+  "t": "TASK_QUTILAR",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "let name = \"...\"",
+   "let age = 14",
+   "const birth_year = 2011"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsVarsLesson",
+  "t": "TASK_QUTILAR",
+  "case": "ismda apostrof, nuqtali vergul",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "let name = \"...\"",
+   "let age = 14",
+   "const birth_year = 2011"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsVarsLesson",
+  "t": "TASK_QUTILAR",
+  "case": "birth_year let bilan",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   true,
+   true,
+   false
+  ],
+  "labels": [
+   "let name = \"...\"",
+   "let age = 14",
+   "const birth_year = 2011"
+  ],
+  "hints": [
+   "",
+   "",
+   "O'zgarmas qiymat uchun `const birth_year = 2011`"
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsConditionsLesson",
+  "t": "TASK_RADAR",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "if sharti yozildi",
+   "else qismi yozildi",
+   "konsolda: Siz jarimaga tushdingiz"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsConditionsLesson",
+  "t": "TASK_RADAR",
+  "case": "undov belgisi bilan",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "if sharti yozildi",
+   "else qismi yozildi",
+   "konsolda: Siz jarimaga tushdingiz"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsConditionsLesson",
+  "t": "TASK_RADAR",
+  "case": "else yo'q",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   true,
+   false,
+   true
+  ],
+  "labels": [
+   "if sharti yozildi",
+   "else qismi yozildi",
+   "konsolda: Siz jarimaga tushdingiz"
+  ],
+  "hints": [
+   "",
+   "Shartdan keyin `} else {` qo'shing",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsConditionsLesson",
+  "t": "TASK_TRANSLATE",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "== bilan tekshirildi",
+   "else qismi yozildi",
+   "konsolda Hello"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsConditionsLesson",
+  "t": "TASK_TRANSLATE",
+  "case": "=== bilan",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "== bilan tekshirildi",
+   "else qismi yozildi",
+   "konsolda Hello"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsConditionsLesson",
+  "t": "TASK_RADAR_LEVELS",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "else if ishlatildi",
+   "konsolda Katta jarima"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsConditionsLesson",
+  "t": "TASK_RADAR_LEVELS",
+  "case": "else if yo'q",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   false,
+   true
+  ],
+  "labels": [
+   "else if ishlatildi",
+   "konsolda Katta jarima"
+  ],
+  "hints": [
+   "Ikkinchi yo'l uchun `} else if (speed <= 80) {` yozing",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsLoopsLesson",
+  "t": "TASK_SANOQ",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "for sikli yozildi",
+   "konsolda 1 2 3 4 5"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsLoopsLesson",
+  "t": "TASK_SANOQ",
+  "case": "i < 6 va i = i + 1",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "for sikli yozildi",
+   "konsolda 1 2 3 4 5"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsLoopsLesson",
+  "t": "TASK_SANOQ",
+  "case": "while bilan",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   false,
+   true
+  ],
+  "labels": [
+   "for sikli yozildi",
+   "konsolda 1 2 3 4 5"
+  ],
+  "hints": [
+   "`for (let i = 1; i <= 5; i++) {` deb boshlang",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsLoopsLesson",
+  "t": "TASK_MEVA",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "massiv yozildi",
+   "konsolda uchala meva"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsLoopsLesson",
+  "t": "TASK_MEVA",
+  "case": "i < 3",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "massiv yozildi",
+   "konsolda uchala meva"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsFunctionsLesson",
+  "t": "TASK_SALOM",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "funksiya yozildi",
+   "chaqirildi — konsolda Salom"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsFunctionsLesson",
+  "t": "TASK_SALOM",
+  "case": "chaqirilmagan",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   true,
+   false
+  ],
+  "labels": [
+   "funksiya yozildi",
+   "chaqirildi — konsolda Salom"
+  ],
+  "hints": [
+   "",
+   "Funksiyani chaqirishni unutmang: pastda `salom()` yozing"
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsFunctionsLesson",
+  "t": "TASK_KVADRAT",
+  "case": "yangi matn: let natija",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "return ishlatildi",
+   "konsolda 15"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsFunctionsLesson",
+  "t": "TASK_KVADRAT",
+  "case": "eski: console.log(zarar(5))",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "return ishlatildi",
+   "konsolda 15"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsFunctionsLesson",
+  "t": "TASK_QAYTA",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "parametrli funksiya",
+   "konsolda: Salom, Aziza",
+   "konsolda: Salom, Bobur"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsFunctionsLesson",
+  "t": "TASK_QAYTA",
+  "case": "oxirida undov \"!\"",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "parametrli funksiya",
+   "konsolda: Salom, Aziza",
+   "konsolda: Salom, Bobur"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsFunctionsLesson",
+  "t": "TASK_QAYTA",
+  "case": "bitta chaqiruv",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   true,
+   true,
+   false
+  ],
+  "labels": [
+   "parametrli funksiya",
+   "konsolda: Salom, Aziza",
+   "konsolda: Salom, Bobur"
+  ],
+  "hints": [
+   "",
+   "",
+   "Yana bir marta chaqiring: `salomla(\"Bobur\")`"
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "PeanStackLesson",
+  "t": "TASK_HISOB",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "funksiya javob qaytaradi",
+   "konsolda 75000"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "PeanStackLesson",
+  "t": "TASK_HISOB",
+  "case": "let bilan saqlab",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "funksiya javob qaytaradi",
+   "konsolda 75000"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "PeanStackLesson",
+  "t": "TASK_BAZA",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "ro'yxat yozildi",
+   "konsolda uchala mahsulot"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "PmLesson1",
+  "t": "KOD_TASK",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "[KIM] almashtirildi",
+   "[MUAMMO] almashtirildi",
+   "[YECHIM] almashtirildi"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "PmLesson1",
+  "t": "KOD_TASK",
+  "case": "[KIM] qolgan",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   false,
+   true,
+   true
+  ],
+  "labels": [
+   "[KIM] almashtirildi",
+   "[MUAMMO] almashtirildi",
+   "[YECHIM] almashtirildi"
+  ],
+  "hints": [
+   "Kodda «Kimga:» qatoridagi [KIM] so'zini o'chirib, saytingiz kim uchun ekanini yozing.",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "PmLesson2",
+  "t": "KOD_TASK",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "Uchala teg bor: header · main · footer",
+   "main ichida 4 bo'lim: h2 + p",
+   "Qavatlar tartibi: tepa, asosiy, past",
+   "Bo'limlar tartibi — hikoya bo'yicha"
+  ],
+  "hints": [
+   "",
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "PmLesson3",
+  "t": "KOD_TASK",
+  "case": "kanonik (header h1+p, main h2)",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "Tepada <header> bor",
+   "Ichida <h1> — saytingiz nomi",
+   "Ichida <p> — yechim jumlangiz",
+   "Pastda <main> va <h2> bo'lim sarlavhasi"
+  ],
+  "hints": [
+   "",
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "PmLesson3",
+  "t": "KOD_TASK",
+  "case": "yechim jumlasi juda qisqa",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   true,
+   true,
+   false,
+   true
+  ],
+  "labels": [
+   "Tepada <header> bor",
+   "Ichida <h1> — saytingiz nomi",
+   "Ichida <p> — yechim jumlangiz",
+   "Pastda <main> va <h2> bo'lim sarlavhasi"
+  ],
+  "hints": [
+   "",
+   "",
+   "Bu jumla juda qisqa. Nutqingizdagi yechim jumlasini to'liq yozing — sayt nima qilishini aytadigan gap.",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "PmLesson4",
+  "t": "KOD_TASK",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "Ro'yxatda 3 ta band",
+   "Har bandda qalin nom",
+   "Tiredan keyin muammo"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "PmLesson4",
+  "t": "KOD_TASK",
+  "case": "oddiy tire \"-\"",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "Ro'yxatda 3 ta band",
+   "Har bandda qalin nom",
+   "Tiredan keyin muammo"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "PmMuammoIzlash",
+  "t": "KOD_TASK",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "Ro'yxatda 3 ta muammo",
+   "Kattasi yuqorida turadi",
+   "Birinchisi ajralib turadi"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "PmLesson5",
+  "t": "mkKodTask",
+  "case": "kanonik ===",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "Sikl ichida shart bor",
+   "\"v1\" tekshirilyapti",
+   "Uchta nom chiqdi"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "PmLesson5",
+  "t": "mkKodTask",
+  "case": "== bilan (darsda o'tilgani)",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "Sikl ichida shart bor",
+   "\"v1\" tekshirilyapti",
+   "Uchta nom chiqdi"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "PmLesson6",
+  "t": "mkKodTask",
+  "case": "kanonik (massivlar)",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "Uch qatlam to'ldirilgan",
+   "Funksiya gap qaytaradi",
+   "Uch qator chiqdi",
+   "Kasbiy so'z yo'q"
+  ],
+  "hints": [
+   "",
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "PmLesson9",
+  "t": "KOD_TASK",
+  "case": "kanonik if-lar",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "Uchta shart tekshirilgan",
+   "To'g'ri buyurtmada true qaytadi",
+   "To'rt sinov to'g'ri chiqdi"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "PmLesson9",
+  "t": "KOD_TASK",
+  "case": "&& bilan",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "Uchta shart tekshirilgan",
+   "To'g'ri buyurtmada true qaytadi",
+   "To'rt sinov to'g'ri chiqdi"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "PmLesson9",
+  "t": "KOD_TASK",
+  "case": "faqat 2 shart",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   false,
+   true,
+   false
+  ],
+  "labels": [
+   "Uchta shart tekshirilgan",
+   "To'g'ri buyurtmada true qaytadi",
+   "To'rt sinov to'g'ri chiqdi"
+  ],
+  "hints": [
+   "Boshqa buyurtmalarda ham sinaymiz: hot-dog 5 ta — true; taom tanlanmagan, soni 0 va soni 10 — false",
+   "",
+   "Birinchi sinov true, qolgan uchtasi false bo'lishi kerak"
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "PmLesson11",
+  "t": "KOD_TASK",
+  "case": "kanonik for+push",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "Funksiya ro'yxat qaytaradi",
+   "Faqat oxirigacha tinglanganlar qoladi",
+   "Natijada uch nom chiqadi"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "PmLesson11",
+  "t": "KOD_TASK",
+  "case": "filter+map",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "Funksiya ro'yxat qaytaradi",
+   "Faqat oxirigacha tinglanganlar qoladi",
+   "Natijada uch nom chiqadi"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "PmLesson13",
+  "t": "KOD_TASK",
+  "case": "kanonik",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "To'rtala ustun yozuvda bor",
+   "Ikkala savol javob chiqardi",
+   "Maydon nomlari pastdagi qatorlardek"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "PmLesson15",
+  "t": "KOD_TASK",
+  "case": "kanonik 3 ta if",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "Funksiya ro'yxat (massiv) qaytaradi",
+   "Sig'imdan oshgan qism ro'yxatga tushadi",
+   "To'rt natija to'g'ri chiqdi"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "PmLesson17",
+  "t": "KOD_TASK",
+  "case": "skelet + shart",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "Funksiya haftalar ro'yxatini (massiv ichida massivlar) qaytaradi",
+   "Har haftadagi kunlar 5 dan oshmaydi",
+   "Uch hafta chiqdi va tartib saqlangan"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "PmLesson17",
+  "t": "KOD_TASK",
+  "case": "skelet o'zgarmagan (false)",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   true,
+   false,
+   false
+  ],
+  "labels": [
+   "Funksiya haftalar ro'yxatini (massiv ichida massivlar) qaytaradi",
+   "Har haftadagi kunlar 5 dan oshmaydi",
+   "Uch hafta chiqdi va tartib saqlangan"
+  ],
+  "hints": [
+   "",
+   "Har haftada kunlar yig'indisi 5 dan oshmasin va bitta ish ham tushib qolmasin",
+   "Uch hafta chiqsin va ishlar boshlang'ich tartibda qolsin"
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsConditionsLesson",
+  "t": "TASK_TRANSLATE",
+  "case": "206: kichik harf \"hello\"",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "== bilan tekshirildi",
+   "else qismi yozildi",
+   "konsolda Hello"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsConditionsLesson",
+  "t": "TASK_RADAR_LEVELS",
+  "case": "206: KATTA HARF",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "else if ishlatildi",
+   "konsolda Katta jarima"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsConditionsLesson",
+  "t": "TASK_RADAR_LEVELS",
+  "case": "206: ikki probel",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "else if ishlatildi",
+   "konsolda Katta jarima"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsConditionsLesson",
+  "t": "TASK_RADAR_LEVELS",
+  "case": "206: boshqa so'z \"Jarima katta\"",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   true,
+   false
+  ],
+  "labels": [
+   "else if ishlatildi",
+   "konsolda Katta jarima"
+  ],
+  "hints": [
+   "",
+   "Oxirgi `else` ichida `console.log(\"Katta jarima\")` yozing"
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsLoopsLesson",
+  "t": "TASK_MEVA",
+  "case": "206: teskari tartib",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "massiv yozildi",
+   "konsolda uchala meva"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsLoopsLesson",
+  "t": "TASK_MEVA",
+  "case": "206: Katta harf bilan",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "massiv yozildi",
+   "konsolda uchala meva"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsLoopsLesson",
+  "t": "TASK_MEVA",
+  "case": "206: faqat ikkita meva",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   true,
+   false
+  ],
+  "labels": [
+   "massiv yozildi",
+   "konsolda uchala meva"
+  ],
+  "hints": [
+   "",
+   "Sikl ichida `console.log(mevalar[i])` yozing"
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsLoopsLesson",
+  "t": "TASK_SANOQ",
+  "case": "206: teskari sanoq 5..1 (tartib ma'noli)",
+  "want": "fail",
+  "next": false,
+  "ok": [
+   true,
+   false
+  ],
+  "labels": [
+   "for sikli yozildi",
+   "konsolda 1 2 3 4 5"
+  ],
+  "hints": [
+   "",
+   "Sikl ichida `console.log(i)` yozing — har qadamda bitta son chiqadi"
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "PeanStackLesson",
+  "t": "TASK_BAZA",
+  "case": "206: teskari + kichik harf",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "ro'yxat yozildi",
+   "konsolda uchala mahsulot"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsFunctionsLesson",
+  "t": "TASK_SALOM",
+  "case": "206: kichik harf \"salom\"",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true
+  ],
+  "labels": [
+   "funksiya yozildi",
+   "chaqirildi — konsolda Salom"
+  ],
+  "hints": [
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ },
+ {
+  "f": "JsFunctionsLesson",
+  "t": "TASK_QAYTA",
+  "case": "206: teskari tartib Bobur, Aziza",
+  "want": "pass",
+  "next": true,
+  "ok": [
+   true,
+   true,
+   true
+  ],
+  "labels": [
+   "parametrli funksiya",
+   "konsolda: Salom, Aziza",
+   "konsolda: Salom, Bobur"
+  ],
+  "hints": [
+   "",
+   "",
+   ""
+  ],
+  "verdict": "OK"
+ }
+]

@@ -1,7 +1,7 @@
-# 3-dars «Ikki g'oyadan qaysi biri odamlarga kerak?» — yakuniy matn
+# 3-dars «Ikki g'oyadan qaysi biri odamlarga kerak?» — yakuniy matn (MD v4, F-1015-200…208)
 
 Fayl: `src/9-Modull/PmInterviewsOneLesson.jsx` · 16 ekran · Keyingi dars: «O'n intervyudan keyin qaysi g'oya qoladi?»
-Holat: 07.10.2026 — kodga mos
+Holat: 18.10.2026 — kodga mos (v4: 1, 2, 4, 6, 7, 9, 10, 15-ekranlar qayta; 0, 3, 5, 8, 11–14 v3 dagidek)
 
 Darsning bitta vizuali — ikki ustunli shablon. Chapda **Jamoa yig'ish**, o'ngda **Mahalla to'garaklari** (9–11-ekranlarda — o'quvchining ikki g'oyasi).
 Qatorlar ikki ustunda bir xil, ekrandan ekranga qo'shiladi: Kim · Oxirgi marta · Qanday qildi · Eng qiyini → Hozir nima bilan → Harakat belgisi.
@@ -42,41 +42,22 @@ Mentor misolining birinchi beshta yozuvi (4, 6-ekranlar):
 - Tugma: Bittasini tanlang → Davom etish
 
 ## 1 · Reja
-- Eyebrow: Reja
-- Sarlavha: Bugun *ikki g'oya* bo'yicha intervyuni boshlaysiz.
+- Eyebrow: Reja · Sarlavha: Bugun *ikki g'oya* bo'yicha intervyuni boshlaysiz.
 - Mentor: RICE baholari hali taxmin. Endi ularni odamlarning o'z voqeasi bilan tekshirasiz.
-- Chap: Dars oxirida: 10 intervyu, 1-qism: ikki g'oya, bir xil savollar
-  - Ikki ustunli shablon skeleti (Jamoa yig'ish · Mahalla to'garaklari): Kim · Oxirgi marta · Qanday qildi · Eng qiyini; ostida chapda uchta, o'ngda ikkita yozuv navbat bilan ✓ oladi (o'yinchi, 15 yosh · o'yinchi, 14 yosh · o'yinchi, 16 yosh, o'yinni ko'pincha o'zi yig'adi | o'smir, 14 yosh · ota-ona (o'g'li 13 yoshda)), qolgan joylar bo'sh
-- Reja:
-  1. Ikki g'oyaga bir xil savollar tuzasiz · shablon
-  2. Odamning so'zi va ishini ajratishni bilib olasiz · belgi
-  3. Airbnb asoschilari muammoni qayerda topganini ko'rasiz · voqea
-  4. Sinfdoshingizdan birinchi yozuvni olasiz · juftlik
-- Tugmalar: Orqaga · Boshlaymiz
+- Chap (yorliq «Dars oxirida» — F-1015-201 A, ichki «10 intervyu, 1-qism» yo'q): ikki ustunli shablon skeleti (Kim · Oxirgi marta · Qanday qildi · Eng qiyini), ustun ostida Mentor yozuvlarining «Kim»i ✓ bilan. Ostida yashil qator: «Qo'lingizda: ikki g'oyangizga bitta savol varaqasi va birinchi haqiqiy yozuv. Qolgan to'qqiz yozuv — uyda, keyingi darsgacha.»
+- Reja: 1. Ikki g'oyaga bir xil savollar tuzasiz · 2. Odamning so'zi va ishini ajratishni bilib olasiz · 3. Airbnb asoschilari uy egalari bilan qanday gaplashganini ko'rasiz · 4. Sinfdoshingizdan birinchi yozuvni olasiz
+- Tugma: Boshlaymiz
 
 ## 2 · Ikkinchi g'oyaga savollar
-- Eyebrow: Takror · 9-Modul qoidasi
-- Sarlavha: Ikkinchi g'oyaga *qaysi savollarni* berasiz?
-- Mentor: Jamoa yig'ish uchun beshta savol yozdim — har birini o'z tomoniga joylang.
-- Chapda: bitta katta savol kartasi (n / 5), yonida suhbatdosh — yorliq «o'yinchi», pufagi bo'sh («…»); ostida ikki tomon tugmasi: **Bo'lib o'tgan ishni so'raydi** · **So'ramaydi**
-- O'ngda: ikki ustunli shablon — Jamoa yig'ish · Mahalla to'garaklari, hozircha faqat «Kim» qatori
-- Savollar (bittadan):
-  1. «Jamoa yig'adigan ilova bo'lsa, ishlatarmidingiz?» → So'ramaydi · pufakda «Ha, ishlatardim.» · yorliq «va'da»
-  2. «Oxirgi marta o'yinga odam yig'ganingiz qachon bo'ldi?» → So'raydi → «Oxirgi marta» qatoriga
-  3. «Odam yig'ish qiyin, shundaymi?» → So'ramaydi · pufakda «Ha, qiyin.» · yorliq «javob savolda»
-  4. «O'shanda qanday qildingiz?» → So'raydi → «Qanday qildi» qatoriga
-  5. «Eng qiyini nima bo'ldi?» → So'raydi → «Eng qiyini» qatoriga
-- Bo'sh savollar «So'ramaydi» tugmasi ostida yorlig'i bilan yig'iladi
-- Xato yozuvlari:
-  - voqea savoli «So'ramaydi»ga: Bu savol bo'lib o'tgan kunni so'rayapti.
-  - 1-savol «So'raydi»ga: Ilova hali yo'q — javobi va'da bo'ladi.
-  - 3-savol «So'raydi»ga: Javobni savolning o'zi aytib qo'ydi.
-- Harakatsiz turganda: Bu savolning javobida kun yoki qilingan ish bo'ladimi?
-- 5/5 da tomonlar ustida nomlar: **voqea savoli** · **bo'sh savol**; shablon ostida tugma **To'garakka moslash**
-- «To'garakka moslash»dan keyin: uch savol Mahalla to'garaklari ustuniga o'tadi; 1-savolda bo'lak «o'yinga odam yig'ganingiz» → «to'garak izlaganingiz», ustida yorliq «bo'lak — g'oyaga qarab almashadi»; qolgan ikkitasi yonida «✓ o'zgarmadi»; bir xil qatorlar orasida chiziq
+- Eyebrow: Takror · 9-Modul qoidasi · Sarlavha: Ikkinchi g'oyaga *qaysi savollarni* berasiz?
+- Mentor: Jamoa yig'ish uchun beshta savol yozdim — har biri bo'lib o'tgan ishni so'raydimi, ayting.
+- Bitta karta (F-1015-202 A, 213-qonun): tepada qoida qatori «9-Modul qoidasi: bo'lib o'tgan ishni so'rang. «Ishlatarmidingiz?» — taxmin, javob emas.» · ajratilganlar ikki chipda («✓ o'tgan ishni so'raydi · n» / «✕ so'ramaydi · n») · joriy savol kartasi (matn + «n / 5») · ikki tugma: Bo'lib o'tgan ishni so'raydi · So'ramaydi. Avatar yo'q.
+  - Savollar: 1 «Jamoa yig'adigan ilova bo'lsa, ishlatarmidingiz?» (so'ramaydi — javob «Ha, ishlatardim.» — va'da) · 2 «Oxirgi marta o'yinga odam yig'ganingiz qachon bo'ldi?» (o'tgan ish) · 3 «Odam yig'ish qiyin, shundaymi?» (so'ramaydi — javob savolda) · 4 «O'shanda qanday qildingiz?» · 5 «Eng qiyini nima bo'ldi?»
+  - «So'ramaydi» to'g'ri tanlansa kartada bir qator: «O'yinchi javobi: «Ha, ishlatardim.» — va'da», karta pastga tushadi.
+  - Xato: «Bu savol bo'lib o'tgan kunni so'rayapti.» / savolning o'z izohi (nishon birinchi urinish uchun — Same Questions!).
+- 5 tadan keyin: kartada bo'sh savollar ro'yxati (sababi bilan) + tugma «To'garakka moslash»; o'ngda ikki ustunli shablon paydo bo'ladi (Jamoa yig'ish — uch savol o'z joyida; Mahalla to'garaklari — «Kim»). Tugma bosilgach savollar o'ng ustunga ko'chadi, 1-savolda bo'lak almashadi («to'garak izlaganingiz», yorliq «bo'lak — g'oyaga qarab almashadi»), qolganlarida «✓ o'zgarmadi».
 - Xulosa: Savollar ikkala g'oyaga bir xil — shunda javoblarni qatorma-qator solishtirasiz.
-- Nishon yozuvi: Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki. (xatodan keyin: Nishon birinchi urinish uchun edi.)
-- Tugma: Savollarni joylang (N/5) → To'garakka moslang → Davom etish
+- Tugma: Savollarni ajrating (n/5) → To'garakka moslang → Davom etish
 
 ## 3 · 1-savol
 - Eyebrow: Tekshiruv · bir xil savollar
@@ -91,25 +72,17 @@ Mentor misolining birinchi beshta yozuvi (4, 6-ekranlar):
   - B: Bo'lak jamoa yig'ish g'oyasidan qolib ketgan.
   - D: Javobni savolning o'zi aytib qo'ydi.
   - Umumiy: Savol o'tgan ishni so'rasin, bo'lagi to'garakka mos bo'lsin.
-- Javobdan keyin: shablonning «Oxirgi marta» qatori ikki ustunda, bo'laklar ajralgan
+- Javobdan keyin: kichik karta yo'q ✎ F-1015-175 (oldin: shablonning «Oxirgi marta» qatori ikki ustunda, bo'laklar ajralgan)
 - Barcha testlarda umumiy yozuvlar: Javob tanlang → Davom etish · javobdan keyin «To'g'ri» yoki «Qaytadan urinib ko'ring» (xatodan keyin tugma: To'g'ri javobni toping) · xato qilgan o'quvchiga: «Qisqa takrorlash — mavzuni yana bir ko'rish» · jonli darsda: «Jonli dars — bitta urinish, o'ylab bosing!» · «Javobingiz qabul qilindi» · «Hozir to'g'ri javobni bilib olasiz.» · xato qotsa: «To'g'ri javob: C — «Oxirgi marta to'garak izlaganingiz qachon bo'ldi?»»
 
 ## 4 · Hozir nima bilan
-- Eyebrow: Tushuncha · to'rtinchi savol
-- Sarlavha: Odamlar bu muammoni *hozir nima bilan* hal qilyapti?
+- Eyebrow: Tushuncha · to'rtinchi savol · Sarlavha: Odamlar bu muammoni *hozir nima bilan* hal qilyapti?
 - Mentor: Birinchi beshta intervyuda shu savolni ham berdim — har odamga «Savolni berish»ni bosing.
-- O'ngda: shablonga yangi qator **Hozir nima bilan** — «Hozir buni nima bilan hal qilyapsiz?» ikkala ustunga kiradi; ustunlar ostida «Yozuvlar»: Jamoa yig'ish — o'yinchi, 15 yosh · o'yinchi, 14 yosh · o'yinchi, 16 yosh, o'yinni ko'pincha o'zi yig'adi; Mahalla to'garaklari — o'smir, 14 yosh · ota-ona (o'g'li 13 yoshda)
-- Joriy yozuvda tugma: **Savolni berish**; bosilgach yozuvga qo'shiladi «Hozir nima bilan: …» (javoblar — jadvaldagi «Hozir nima bilan» ustuni)
-- Chapda — telefon maketi (Telegram), javobga qarab almashadi:
-  - boshida: chatlar ro'yxati — Futbol · Mahalla
-  - 1 (Telegram guruhi): «Futbol» guruhi — «Shanba o'yin. Kim keladi?», ostida uchta «+»; keyin stiker, «uy vazifasi nima edi?», ovozli xabar kirib, «+» lar yuqoriga surilib ketadi
-  - 2 (Telegram guruhi va qo'ng'iroq): chat ustida «Qo'ng'iroqlar» ro'yxati — to'rt qator «o'yinchi →»
-  - 3 (Telegram guruhi): «Kim keladi?» uch marta, har biri boshqa xabarlar ostida qoladi
-  - 4 (ota-onaning tanishlari): ona va uchta tanish, har birida «?»
-  - 5 (tanishlar): «Mahalla» guruhi — «Suzish to'garagi qayerda bor?», ostida tanishlar va «?»
-- Natija: telefon ikki kichik holatga yig'iladi — Telegram chati | tanishlar
+- Bitta karta (F-1015-203 A; telefon maketi va shablon yo'q): yorliq «Savol · hammaga bir xil» · savol «Hozir buni nima bilan hal qilyapsiz?» · berilgan javoblar chipda («o'yinchi, 15 yosh · Telegram guruhi» …) · joriy odam qatori (g'oya nomi + Kim) va tugma «Savolni berish».
+  - Javoblar: o'yinchi 15 — Telegram guruhi · o'yinchi 14 — Telegram guruhi va qo'ng'iroq · o'yinchi 16 — Telegram guruhi · o'smir 14 — ota-onaning tanishlari · ota-ona — tanishlar
+- 5 tadan keyin kartada yashil qator: «Jamoa yig'ish: uchtadan uchtasi — Telegram guruhi. To'garak: ikkitadan ikkitasi — tanishlar orqali.»
 - Xulosa: Bu savol odam muammoni hozir nima bilan hal qilayotganini ochadi — yangi yechimni shu bilan solishtirasiz.
-- Tugma: Savolni bering (N/5) → Davom etish
+- Tugma: Savolni bering (n/5) → Davom etish
 
 ## 5 · 2-savol
 - Eyebrow: Tekshiruv · to'rtinchi savol
@@ -125,41 +98,27 @@ Mentor misolining birinchi beshta yozuvi (4, 6-ekranlar):
   - C: U ilova haqida gapirmadi — bu sizning taxminingiz.
   - D: Javob hozirgi ishini aytdi, ilova qanday bo'lishini emas.
   - Umumiy: U hozir nima bilan hal qilyapti — shuni toping.
-- Javobdan keyin: o'quvchi · Hozir nima bilan: sinf chati
+- Javobdan keyin: kichik karta yo'q ✎ F-1015-175 (oldin: o'quvchi · Hozir nima bilan: sinf chati)
 
 ## 6 · Harakat belgisi
-- Eyebrow: Tushuncha · so'z va ish
-- Sarlavha: Odam rostdan *qiziqqanini* qanday bilasiz?
-- Mentor: Oxirgi savolni muammo haqidagi savollardan keyin berdim — beshta yozuvni birma-bir yakunlang.
-- Bashorat (Avval o'zingiz belgilab ko'ring): Qaysi javob qiziqishni eng aniq ko'rsatadi? · G'oyani maqtaydi · «Ishlatardim» deydi · Sinab ko'rishga kun belgilaydi
-  - Tanlangach ixcham qator: savol · Taxminingiz: …
-- Chapda — telefon maketi «Sinov kunlari»: Shanba · Yakshanba · Dushanba, har kun yonida ikki bo'sh joy
-- O'ngda — bitta katta yozuv kartasi (navbat bilan beshta yozuv): Kim · Oxirgi marta · Qanday qildi · Eng qiyini · Hozir nima bilan to'ldirilgan (jadvaldagi matn), **Harakat belgisi** qatorida tugma **Oxirgi savolni berish** (bashoratdan keyin yoqiladi); karta ostida ikki ustun — Jamoa yig'ish · Mahalla to'garaklari, har birida «Yozuvlar · n / 5»
-- «Oxirgi savolni berish»dan keyin: qatorda 5-savol «Birinchi versiya tayyor bo'lganda, uni sinab ko'rishga 10 daqiqa vaqt berasizmi? Qaysi kunni belgilaysiz?» va belgi:
-  - «ha ✓» — telefonda tanlangan kun yoniga yozuvning Kim yorlig'i tushadi, ostida «Belgilandi ✓»
-  - «yo'q» — ostida «Kun belgilanmadi»
-  - Keyin karta o'z ustuni ostidagi joyga uchadi, keyingi yozuv kiradi
-- 5/5 da: shablonga **Harakat belgisi** qatori qo'shiladi, yozuvlar ustida yorliq «harakat belgisi»; ixcham yozuv (Kim · ha ✓ / yo'q) bosilsa, to'liq yozuv ochiladi
-- Natija qatori: «Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz: … ✕ · haqiqatda: sinab ko'rishga kun belgilaydi»
-- Xulosa: Intervyu oxirida odam so'z bilan emas, ish bilan ko'rsatgan qiziqish — harakat belgisi.
-- Tugma: Yozuvlarni yakunlang (N/5) → Davom etish
+- Eyebrow: Tushuncha · so'z va ish · Sarlavha: Odam rostdan *qiziqqanini* qanday bilasiz?
+- Mentor: Oxirgi savolni muammo haqidagi savollardan keyin berdim. Har javobga qarang: bu so'zmi, ishmi?
+- Uch holat (F-1015-204 A, 213.7): 1) faqat bashorat kartasi — «Qaysi javob qiziqishni eng aniq ko'rsatadi?» · G'oyani maqtaydi · «Ishlatardim» deydi · Sinab ko'rishga kun belgilaydi (tugma: «Avval taxminingizni belgilang.») · 2) taxmin ixcham qatorga yig'iladi, karta keladi: har odam bittadan — yorliq «Kim · 5-savol · n / 5», savol «Birinchi versiya tayyor bo'lganda, uni sinab ko'rishga 10 daqiqa vaqt berasizmi? Qaysi kunni belgilaysiz?», odamning gapi, ikki tugma **Ha — kun belgiladi** · **Yo'q — belgilamadi** — o'quvchi o'zi belgilaydi.
+  - Gaplar: o'yinchi 15 «Shanba bo'ladi — kelaman.» (ha) · o'yinchi 14 «Yakshanba kuni, o'yindan keyin.» (ha) · o'yinchi 16 «Shanba. Guruhga o'zim tashlayman.» (ha) · o'smir 14 «Zo'r g'oya, albatta ishlatardim!» (yo'q) · ota-ona «Yakshanba — o'g'lim bilan ko'ramiz.» (ha)
+  - To'g'ri: «To'g'ri: kun aytdi — bu ish.» / «To'g'ri: kun yo'q — bu so'z, ish emas.» · Xato: «Gapiga emas, kun aytdi-yo'qligiga qarang.» (qayta tanlanadi)
+  - Belgilangani qatorga tushadi (F-1015-209 A): kim · «gapi» · belgi («ha · Shanba» yashil / «yo'q — so'z» kulrang).
+- 3) 5 tadan keyin kartada besh qator + bitta xulosa: «To'rttasi kun belgiladi — bu ish. Bittasi maqtadi — bu so'z. Harakat belgisi: ish.»
+- Xulosa: «Taxminingiz to'g'ri chiqdi ✓» yoki «… · haqiqatda: sinab ko'rishga kun belgilaydi» · Intervyu oxirida odam so'z bilan emas, ish bilan ko'rsatgan qiziqish — harakat belgisi.
+- Tugma: Avval taxminingizni belgilang. → Belgini qo'ying (n/5) → Davom etish
 
-## 7 · Airbnb
-- Eyebrow: Biznes olamidan
-- Sarlavha: Airbnb asoschilari muammoni *qayerda bilgan?*
-- Bosqich yorlig'i: Airbnb · N/3 (uch nuqta) · bashorat tanlanmaguncha: Avval shu bosqichni tugating
-- 1/3 ustida: Airbnb — begona odamning uyida ijaraga turish xizmati.
-- Bosqichlar (Mentor gapi har bosqichda almashadi):
-  1. **San-Fransisko · 2007** — Mentor: 2007-yilda San-Fransiskoda katta konferensiya bo'lib, mehmonxonalar to'lgan. Asoschilar o'z uyida uchta havo to'shagini ijaraga bergan.
-     - Sahna: mehmonxona eshigida «Joy yo'q» → uy ichida uchta havo to'shagi, mehmonlar kiradi
-     - Bashorat (Airbnb · 1/3): Saytga yangi odamlar qo'shilmay qolganda, asoschilar nima qilgan? · Saytni qaytadan chizgan · Uy egalariga xat yozgan · Kvartiralarga o'zlari borgan
-     - Tanlangach ixcham qator: savol · Taxminingiz: …
-  2. **Nyu-York** — Mentor: Saytga yangi odamlar qo'shilmay qolganda, asoschilar Nyu-Yorkka borgan. Kvartiralarni o'zlari aylanib, suratga olgan.
-     - Sahna: uylar qatori, asoschilar kamera bilan eshikdan eshikka yuradi, kvartira ichida kamera chaqnaydi
-  3. **Yomon suratlar** — Mentor: Shunda ular yomon suratlar uylar band qilinishiga xalaqit berayotganini bilgan. Buni saytga qarab emas, kvartiralarga borib ko'rishgan.
-     - Sahna: brauzer oynasi (airbnb.com, nom Airbnb) — e'lonlar «Nyu-York · kvartira», «Nyu-York · xona», suratlari xira, yorliq «suratlar xira»; kamera chaqnaydi, yonida yorug' kadr
-- Xulosa: natija qatori («Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz: … ✕ · haqiqatda: kvartiralarga o'zlari borgan») · Airbnb asoschilari muammoni saytga qarab emas, kvartiralarga o'zlari borib bilgan.
-- Tugma: Keyingi bosqich (N/3) → Davom etish
+## 7 · Airbnb (K4 — keyingi bob; F-1015-205 A: 1-dars 2007-voqeasi takrorlanmaydi)
+- Eyebrow: Biznes olamidan · Sarlavha: Airbnb asoschilari muammoni *qanday bilgan?*
+- Bosqichlar (Mentor gapi + sahna):
+  1. «Sayt o'smay qoldi» — Mentor: 1-darsda ko'rgansiz: Airbnb asoschilari muammoni o'z uyida topgan. Keyin saytga yangi odamlar qo'shilmay qoldi. · Sahna: airbnb.com oynasi, ikki e'lon (Nyu-York · kvartira / xona), yorliqsiz. · Bashorat: Saytga yangi odamlar qo'shilmay qolganda, asoschilar nima qilgan? · Saytni qaytadan chizgan · Uy egalariga xat yozgan · Kvartiralarga o'zlari borgan
+  2. «Nyu-York» — Mentor: Asoschilar Nyu-Yorkka borgan. Kvartiralarni o'zlari aylanib, uy egalari bilan gaplashgan va suratga olgan. · Sahna: ko'cha va kvartira, kamerali asoschi.
+  3. «Yomon suratlar» — Mentor: Shunda ular yomon suratlar uylar band qilinishiga xalaqit berayotganini bilgan. Buni saytga qarab emas, odamlarning oldiga borib bilishgan. · Sahna: sayt («suratlar xira») + yangi kadr.
+- Xulosa: «Taxminingiz to'g'ri chiqdi ✓» yoki «… · haqiqatda: kvartiralarga o'zlari borgan» · Airbnb asoschilari muammoni saytga qarab emas, uy egalarining oldiga o'zlari borib bilgan.
+- Tugma: Keyingi bosqich (n/3) → Davom etish
 
 ## 8 · 3-savol
 - Eyebrow: Tekshiruv · Airbnb'dagidek
@@ -174,31 +133,18 @@ Mentor misolining birinchi beshta yozuvi (4, 6-ekranlar):
   - B: Bu savolga va'da yoki baho keladi, voqea emas.
   - C: Xaritani ko'rsatsangiz, g'oyangizga baho eshitasiz.
   - Umumiy: Asoschilar muammoni qayerda bilganini eslang.
-- Javobdan keyin: 7-ekran 3/3 sahnasining kichik nusxasi
+- Javobdan keyin: kichik karta yo'q ✎ F-1015-175 (oldin: 7-ekran 3/3 sahnasining kichik nusxasi)
 
 ## 9 · Ikki g'oyangizga shablon
-- Eyebrow: Mustaqil ish
-- Sarlavha: Ikki g'oyangiz bo'yicha *kimdan nimani* so'raysiz?
-- Mentor: Har g'oya uchun kimdan so'rashni va 1-savoldagi bo'lakni yozing: qolgan to'rt savol ikkalasiga bir xil.
-- Kirish qatori: 2-darsda tanlangan ikki g'oyangiz: «{1-g'oya}» va «{2-g'oya}». (topilmasa: Ikki g'oyangizning muammosini yozing — har biriga bitta qator.)
-- Qadam belgilari: 1 · 1-g'oya · 2 · 2-g'oya · 3 · Qolgan savollar
-- 1 va 2-qadam kartasi (sarlavha: 1-g'oya / 2-g'oya · g'oya matni):
-  - Muammo — «Odamlar nimadan qiynaladi?» (g'oya topilmaganda)
-  - Kimdan so'raysiz — «Bu muammoga kim duch keladi?»
-  - Bo'lak — Oxirgi marta [masalan: to'garak izlaganingiz] qachon bo'ldi?
-  - Tugmalar: Yordam · Shablonga yozish
-- 3-qadam kartasi: 3 · Qolgan savollar — 2 O'shanda qanday qildingiz? · 3 Eng qiyini nima bo'ldi? · 4 Hozir buni nima bilan hal qilyapsiz? · 5 Birinchi versiya tayyor bo'lganda, uni sinab ko'rishga 10 daqiqa vaqt berasizmi? Qaysi kunni belgilaysiz? · tugma **Ikkala g'oyaga qo'shish**
-- Ostida: ikki ustunli shablon (ustun nomi — g'oya, yo'q bo'lsa «1-g'oya» / «2-g'oya»): Kimdan · Oxirgi marta, 3-qadamdan keyin qolgan to'rt savol
-- Tekshiruv yozuvlari:
-  - "Hamma" — juda keng. Aynan kim duch keladi?
-  - Bu ish hali bo'lmagan — o'tgan kunni so'rang.
-  - Savolda g'oyangiz bor — odamning o'zi haqida so'rang.
-  - Bo'lakni yozing: odam nima qilganda qiynalgan?
-  - O'tsa: Savol o'tgan voqeani so'rayapti — shablonga yozildi.
+- Eyebrow: Mustaqil ish · Sarlavha: Ikki g'oyangiz bo'yicha *kimdan nimani* so'raysiz?
+- Mentor: Har g'oyaga 1-savoldagi bo'lakni yozing: qolgan to'rt savol ikkalasiga bir xil, o'zi qo'shiladi.
+- Ma'lumot bor bo'lsa (2-dars `ikkita` + 1-dars g'oyalari — F-1015-206/210 A): karta sarlavhasi «1-g'oya · <g'oya>» bitta qator · «Kimdan so'raysiz: <Kim uchun>» tayyor, yonida «O'zgartirish» (bosilsa maydon ochiladi) · bitta maydon: yorliq «1-savol — bo'sh joyni to'ldiring», «Oxirgi marta [masalan: to'garak izlaganingiz] qachon bo'ldi?», ostida yo'riq «Odam nima qilganda qiynalgan? «-ganingiz» bilan yozing.» («Bo'lak» so'zi ekranda yo'q, Yordam tugmasi yo'q) · Tugma: Shablonga yozish. G'oyalar bittadan (1-g'oya → 2-g'oya); pastda bo'sh ustun sarlavhalari yo'q.
+- Ma'lumot bo'lmasa: to'liq forma — Muammo («Odamlar nimadan qiynaladi?»), Kimdan so'raysiz («Bu muammoga kim duch keladi?»), Bo'lak; kirish qatori «Ikki g'oyangizning muammosini yozing — har biriga bitta qator.»
+- Tekshiruv yozuvlari: "Hamma" — juda keng. Aynan kim duch keladi? · Bu ish hali bo'lmagan — o'tgan kunni so'rang. · Savolda g'oyangiz bor — odamning o'zi haqida so'rang. · Bo'lakni yozing: odam nima qilganda qiynalgan? · Muammoni yozing. · Kimdan so'rashingizni yozing. · O'tsa: Savol o'tgan voqeani so'rayapti — shablonga yozildi.
 - Yordam: Bo'lakni «-ganingiz» bilan yozing, masalan: «to'garak izlaganingiz». Kimdan — g'oyaning «Kim uchun» qatoridagi odamlar.
-- 3/3 dan keyin: forma yopiladi, «Kimdan» va «Oxirgi marta» qatorlarida ✎ (Tahrirlash)
+- 1-g'oya yozilgach uning «Savol varaqam» kartasi paydo bo'ladi (F-1015-211 A); ikkala bo'lak yozilgach qolgan to'rt savol o'zi qo'shiladi: «Savol varaqam · 2 g'oya» — ikki g'oya yonma-yon (nom · Kimdan · 1-savol, bo'lak ajratilgan · «O'zgartirish»), ostida «2–5-savollar · ikkalasiga bir xil» ro'yxati bir marta. Ikki ustunli 12 katakli shablon yo'q.
 - Xulosa: Shablon tayyor: ikki g'oyaga besh savol, faqat birinchisida bo'lak har xil.
-- Tugma: Uch qadamni bajaring (N/3) → Davom etish
+- Tugma: Ikki bo'lakni yozing (n/2) → Davom etish
 
 ## 10 · Sinfdosh bilan intervyu
 - Eyebrow: Juftlikda · intervyu (yakka rejimda: Mustaqil ish)
@@ -206,20 +152,21 @@ Mentor misolining birinchi beshta yozuvi (4, 6-ekranlar):
 - Mentor (jonli darsda): Avval siz so'raysiz, keyin sherigingiz: javobni o'sha zahoti, u aytganidek yozing.
 - Mentor (yakka rejimda): Yoningizdagi bir odamga savollaringizni bering: javobni o'sha zahoti, u aytganidek yozing.
 - Shablonim · 2 g'oya (9-ekranda yozilgan bo'lsa)
-- Qadam belgilari: 1 · Kim · 2 · Savollar · 3 · Harakat belgisi
-- 1 · Kim — Sherigingiz qaysi g'oyangizning «Kim uchun» qatoriga mos keladi? · «{1-g'oya}» · «{2-g'oya}» (ostida «Kim uchun: …») · Hech biri
+- Bitta karta (F-1015-212 A): qadam belgilari 1 · Kim · 2 · Savollar · 3 · Harakat belgisi kartaning tepasida; «Shablonim · 2 g'oya» tasmasi yo'q
+- 1 · Kim — Sherigingiz qaysi g'oyangizning «Kim uchun» qatoriga mos keladi? · tugmalar ikki qatorli: «{1-g'oya}» / «Kim uchun: …» · «{2-g'oya}» / «Kim uchun: …» · «Hech biri» / «mashq yozuvi»
   - g'oya tanlansa — yorliq **haqiqiy yozuv** · Haqiqiy yozuv — «Kim uchun» qatoriga mos odamdan olingan yozuv: u o'ntaga kiradi.
   - «Hech biri» — yorliq **mashq yozuvi**, ikki g'oya tugmasi (qaysi g'oya savollari bilan) · Mashq yozuvi o'ntaga kirmaydi — u savol berishni sinash uchun.
   - Qator «Kim» — oldindan «sinfdosh», tahrirlanadi
 - 2 · Savollar — n / 4, savol (1-savolda o'z bo'lagingiz bilan), qator «U nima dedi?»
 - 3 · Harakat belgisi — 5-savol va ikki tugma: **Ha — kun belgiladi** · **Yo'q — belgilamadi** · Yozuvga faqat «ha» yoki «yo'q» tushadi.
 - Tugmalar: Yordam · Yozuvga qo'shish
+- «Yozuvga qo'shish» doim bosiladi; g'oya tanlanmagan bo'lsa: Avval g'oyani tanlang. (fokus birinchi tanlov tugmasiga) *(✎ F-1015-164)*
 - Tekshiruv yozuvlari:
   - Bu xulosaga o'xshaydi — u aytganidek yozing. · Shunday qoldirsangiz — yana bosing.
   - Sherigingiz nima dedi — shuni yozing.
 - Yordam: Sherigingizda bu voqea bo'lmagan bo'lsa — shuni yozing: bu ham javob. Kamroq gapiring, ko'proq tinglang.
-- Yakka rejimda (forma ichida): Yoningizda odam bo'lmasa, uydagilardan biriga qo'ng'iroq qilib so'rang yoki bu qadamni uyda bajaring.
-- Ostida: ikki ustunli shablon, ustunlar ostida «Yozuvlar · n / 5»; mashq yozuvi — alohida «Mashq» qatorida
+- Yakka rejimda alohida yo'riq yo'q (F-1015-213: «Yoningizda odam bo'lmasa…» gaplar ishlatilmaydi).
+- Forma ochiqligida pastda shablon yo'q (F-1015-207 A): joriy yozuv kartaning o'zida qator-qator to'lib boradi (teg «haqiqiy yozuv» / «mashq yozuvi»). Yozuv tushgach — «Savol varaqam» (ikki g'oya yonma-yon), har g'oya ostida «Yozuvlar · n / 5»; mashq yozuvi — alohida «Mashq» qatorida
 - 3/3 dan keyin: yozuv o'z joyiga uchadi, forma yopiladi; tugma **Yana bitta yozuv** (darsda ko'pi bilan 2 yozuv)
 - Xulosa:
   - haqiqiy: Haqiqiy yozuv tayyor: u shu g'oya ustunidagi beshtaning birinchisi.
@@ -312,7 +259,7 @@ goyalar.forEach(function (goya) {
   - C: Maqtov — g'oyaga baho, ish emas.
   - D: Javob bor: u kun belgilamadi.
   - Umumiy: Odam so'z aytdimi yoki ish qildimi — shuni qarang.
-- Javobdan keyin: Harakat belgisi · yo'q
+- Javobdan keyin: kichik karta yo'q ✎ F-1015-175 (oldin: Harakat belgisi · yo'q)
 
 ## 13 · Natijalar (podium) — jonli reyting
 Natijalar (podium) — jonli reyting
@@ -344,7 +291,6 @@ Natijalar (podium) — jonli reyting
 - Eyebrow: Dars yakuni
 - Belgi: ✓ Dars tugadi · N/4 to'g'ri
 - Sarlavha: Shablon va *birinchi yozuvingiz* tayyor. (yozuv bo'lmasa: Shablon tayyor — *yozuvlar uyda*.)
-- Bugungi asosiy fikr: Ikki g'oyani bir xil savollar bilan tekshirasiz; odamning qiziqishini so'zidan ko'ra ishi aniqroq ko'rsatadi.
 - Shablonim · 2 g'oya (9-ekranda yozilgan bo'lsa)
 - CODE STRIKE arenasi: 12 SAVOL · 15 SONIYA · PODIUM (jonli darsda mentor boshlaguncha: Mentorni kuting)
 - ✓ Endi siz bilasiz:
@@ -352,10 +298,12 @@ Natijalar (podium) — jonli reyting
   - «Hozir buni nima bilan hal qilyapsiz?» savoli yangi yechim nima bilan solishtirilishini ochadi.
   - Harakat belgisi — intervyu oxirida odam so'z bilan emas, ish bilan ko'rsatgan qiziqish.
   - Sherik g'oya auditoriyasidan bo'lmasa, yozuv mashq bo'lib qoladi.
-  - Airbnb asoschilari muammoni kvartiralarga o'zlari borib bilgan.
+  - Airbnb asoschilari muammoni uy egalarining oldiga o'zlari borib bilgan.
 - Uyga vazifa tugmasi — Amaliy topshiriqni bajarish → (ochilganda — uy vazifasi kartasi «Uyda nima qilasiz?»; uning ostida): Keyingi dars — **«O'n intervyudan keyin qaysi g'oya qoladi?»**
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Same Questions!** — Savollarni birinchi urinishda ajratib, ikkinchi g'oyaga moslab berdingiz (2-ekran, beshala savol birinchi urinishda)
@@ -459,3 +407,8 @@ Arena: CODE STRIKE · 12 SAVOL · 15 SONIYA · PODIUM · «Tezroq to'g'ri bossan
 ## Yakun
 - Endi siz bilasiz — 15-ekrandagi 5 qator.
 - Keyingi dars — «O'n intervyudan keyin qaysi g'oya qoladi?».
+
+## Qurilishda aniqlangan (18.10, v4)
+- Nishon «Same Questions!» 2-ekranda qoladi (birinchi urinishda 5/5); 6-ekranda xato tanlov qayta tanlanadi, nishonsiz.
+- 2-ekranda «So'ramaydi» javobi kartada bir qator (avatar va pufak yo'q); 4-ekran chiplari va 6-ekran chiplari bitta uslub (`io-s2-chip`).
+- 9-ekranda `pm-m9d3-intervyu` formati o'zgarmadi: goyalar×2 {matn, kim, bolak}, savollar[5], yozuvlar.

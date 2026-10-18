@@ -29,7 +29,7 @@ const T = {
 };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 
 
 
@@ -282,7 +282,7 @@ const RECAPS = {
   3: {
     title: { uz: "O'lchagich — chiqqandan keyin", ru: 'Измеритель — после выпуска' },
     cards: [
-      { ic: '📏', h: { uz: "O'lchagich nima", ru: 'Что такое измеритель' }, body: { uz: <>Sayt chiqqandan keyin uni <b>to'xtovsiz o'lchab turadigan asbob</b> — o'lchagich.</>, ru: <>Прибор, который <b>непрерывно измеряет</b> сайт после выпуска, — это измеритель.</> } },
+      { ic: '📏', h: { uz: "O'lchagich nima", ru: 'Что такое измеритель' }, body: { uz: <>Sayt chiqqandan keyin uni <b>to'xtovsiz o'lchab turadigan dastur</b> — o'lchagich.</>, ru: <>Прибор, который <b>непрерывно измеряет</b> сайт после выпуска, — это измеритель.</> } },
       { ic: '✈️', h: { uz: 'Ikki xil tekshiruv', ru: 'Две разные проверки' }, body: { uz: <>Chiqarishgacha kodni <b>lenta</b>, chiqqandan keyin saytni o'lchagich tekshiradi.</>, ru: <>До выпуска код проверяет <b>конвейер</b>, после выпуска сайт измеряет измеритель.</> } },
       { ic: '🙋', h: { uz: "O'lchagich bo'lmasa", ru: 'Если измерителя нет' }, body: { uz: <>Sayt ochilmay qolsa, buni birinchi bo'lib <b>kirgan odam</b> ko'radi — dasturchi emas.</>, ru: <>Если сайт перестанет открываться, первым это увидит <b>зашедший человек</b>, а не программист.</> }, ask: { uz: 'Sayt kechasi ochilmay qolsa, buni ertalab kim bilib qoladi?', ru: 'Если сайт перестанет открываться ночью, кто узнает об этом утром?' } }
     ]
@@ -832,7 +832,7 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
         </div>
         {allSeen && (
           <div className="xul fade-step" ref={xulRef}>
-            <span className="xul-h">{tr({ uz: "Sayt chiqqandan keyin uni to'xtovsiz o'lchab turadigan asbob — o'lchagich deyiladi.", ru: 'Прибор, который непрерывно измеряет сайт после выпуска, называется измерителем.' })}</span>
+            <span className="xul-h">{tr({ uz: "Sayt chiqqandan keyin uni to'xtovsiz o'lchab turadigan dastur — o'lchagich deyiladi.", ru: 'Прибор, который непрерывно измеряет сайт после выпуска, называется измерителем.' })}</span>
             <p className="xul-b">{tr({ uz: "Uchta o'lchagich bor: sayt ochiladimi · javob necha soniyada keladi · 100 kirishdan nechtasi xato.", ru: 'Измерителей три: открывается ли сайт · за сколько секунд приходит ответ · сколько из 100 заходов с ошибкой.' })}</p>
           </div>
         )}
@@ -1814,7 +1814,7 @@ function Flashcards({ cards }) {
   );
 }
 const FLASHCARDS = [
-  { front: { uz: "O'lchagich nima?", ru: 'Что такое измеритель?' }, back: { uz: "Sayt chiqqandan keyin uni to'xtovsiz o'lchab turadigan asbob", ru: 'Прибор, который непрерывно измеряет сайт после выпуска' } },
+  { front: { uz: "O'lchagich nima?", ru: 'Что такое измеритель?' }, back: { uz: "Sayt chiqqandan keyin uni to'xtovsiz o'lchab turadigan dastur", ru: 'Прибор, который непрерывно измеряет сайт после выпуска' } },
   { front: { uz: "Uch o'lchagich nimani ko'rsatadi?", ru: 'Что показывают три измерителя?' }, back: { uz: "Sayt ochiladimi · javob necha soniyada · 100 kirishdan nechtasi xato", ru: 'Открывается ли сайт · за сколько секунд ответ · сколько из 100 заходов с ошибкой' } },
   { front: { uz: 'Signal nima?', ru: 'Что такое сигнал?' }, back: { uz: "O'lchagich chegaradan o'tganda keladigan xabar", ru: 'Сообщение, которое приходит, когда измеритель перешёл границу' } },
   { front: { uz: 'Qaysi signal chin?', ru: 'Какой сигнал настоящий?' }, back: { uz: 'Odam sezgan signal', ru: 'Тот, который заметил человек' } },
@@ -1999,7 +1999,7 @@ const QZ_BG_SHAPES = [
 // ⚔️ CodeStrike — 12 savol · 3/3/3/3 · to'g'ri indekslar 0,3,2,1 · 1,0,2,3 · 0,2,1,3.
 // darslik-jonli TASDIQLAYDI. Har savol darsda AYTILGAN ekranga bog'langan (65-qonun).
 const QUIZ_BANK = [
-  { q: { uz: "O'lchagich nima?", ru: 'Что такое измеритель?' }, opts: [{ uz: "Chiqqandan keyin saytni o'lchab turadigan asbob", ru: 'Прибор, который измеряет сайт после выпуска' }, { uz: 'Sayt kodini chiqarishdan oldin tekshiradigan asbob', ru: 'Прибор, который проверяет код сайта перед выпуском' }, { uz: 'Sayt sahifalarini yozib beradigan dastur', ru: 'Программа, которая пишет страницы сайта' }, { uz: "Sayt havolasini saqlab qo'yadigan ro'yxat", ru: 'Список, где хранится ссылка на сайт' }], correct: 0 },
+  { q: { uz: "O'lchagich nima?", ru: 'Что такое измеритель?' }, opts: [{ uz: "Chiqqandan keyin saytni o'lchab turadigan dastur", ru: 'Прибор, который измеряет сайт после выпуска' }, { uz: 'Sayt kodini chiqarishdan oldin tekshiradigan dastur', ru: 'Прибор, который проверяет код сайта перед выпуском' }, { uz: 'Sayt sahifalarini yozib beradigan dastur', ru: 'Программа, которая пишет страницы сайта' }, { uz: "Sayt havolasini saqlab qo'yadigan ro'yxat", ru: 'Список, где хранится ссылка на сайт' }], correct: 0 },
   // §107: ikki variantlik olam — 2/2 yoziladi, farq SABABda qoladi.
   { q: { uz: "O'lchagich qachon ishlaydi?", ru: 'Когда работает измеритель?' }, opts: [{ uz: 'Chiqarishgacha — kodni tekshirib beradi', ru: 'До выпуска — проверяет код' }, { uz: 'Chiqarishgacha — xatoni oldin topadi', ru: 'До выпуска — находит ошибку раньше' }, { uz: 'Chiqqandan keyin — sayt tez ochilsin uchun', ru: 'После выпуска — чтобы сайт открывался быстрее' }, { uz: "Chiqqandan keyin — sayt odamlar qo'lida", ru: 'После выпуска — сайт в руках у людей' }], correct: 3 },
   { q: { uz: "«Javob vaqti» nimani ko'rsatadi?", ru: 'Что показывает «время ответа»?' }, opts: [{ uz: '100 kirishdan nechtasi xato bilan tugaganini', ru: 'Сколько из 100 заходов закончились ошибкой' }, { uz: 'Sahifada nechta rasm borligini', ru: 'Сколько на странице картинок' }, { uz: 'Sahifa necha soniyada kelganini', ru: 'За сколько секунд пришла страница' }, { uz: 'Sayt bir kunda necha marta ochilganini', ru: 'Сколько раз за день открыли сайт' }], correct: 2 },
@@ -2529,7 +2529,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const RECAP = [
-    tr({ uz: "Sayt chiqqandan keyin uni to'xtovsiz o'lchab turadigan asbob — o'lchagich.", ru: 'Прибор, который непрерывно измеряет сайт после выпуска, — это измеритель.' }),
+    tr({ uz: "Sayt chiqqandan keyin uni to'xtovsiz o'lchab turadigan dastur — o'lchagich.", ru: 'Прибор, который непрерывно измеряет сайт после выпуска, — это измеритель.' }),
     tr({ uz: 'Odam sezgan signal — chin; hech kim sezmagan signal — quruq.', ru: 'Сигнал, который заметил человек, — настоящий; который не заметил никто — пустой.' }),
     tr({ uz: "Chegara odam seza boshlaydigan joyga qo'yiladi.", ru: 'Границу ставят туда, где человек начинает замечать.' }),
     tr({ uz: "Saytni chiqarish — ishning yarmi; chiqqandan keyin o'lchab turish — ikkinchi yarmi.", ru: 'Выпустить сайт — половина работы; измерять его после выпуска — вторая половина.' }),
@@ -2544,7 +2544,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await live.quizControl('lobby', -1); } catch { return; } }
+    if (isMentorL && quizSt === 'off') { try { await live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
   // Uy-vazifa — alohida ekran emas, kapsula bosilganda shu yerda ochiladi
@@ -2569,7 +2569,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
     </div>
   );
   return (
-    <Stage eyebrow={tr({ uz: 'Dars yakuni', ru: 'Итог урока' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
+    <Stage eyebrow={tr({ uz: 'Dars yakuni', ru: 'Итог урока' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="hero">
           <div className="hero-l">
@@ -2583,7 +2583,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Дождитесь ментора' }) : undefined} />
         </div>
-        {arena && <QuizArena live={live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+        {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         {/* «Endi siz bilasiz» va nishonlar yonma-yon (58-qonun) */}
         {isMentorL ? recapCard : (
           <div className="split sum2">
@@ -3003,7 +3003,7 @@ const CSS_LESSON = `
   .pair-start.calm { animation: none; }
   @media (prefers-reduced-motion: reduce) { .pair-start { animation: none; } }
 
-  /* Brauzer/dastur yuzasidagi nomlar (Network, Status, Time) — asbob-yuzasi chipi:
+  /* Brauzer/dastur yuzasidagi nomlar (Network, Status, Time) — dastur-yuzasi chipi:
      s10 dagi VS Code maketi bilan bitta oila, bola ularni «dastur so'zi» deb o'qiydi. */
   .uic { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 0.86em; color: #E6EDF3; background: #2D2D2D; border-radius: 6px; padding: 2px 7px; white-space: nowrap; }
   /* Holat raqami MA'NO rangida: 200 — sahifa keldi (yashil) · 404 — xato (qizil: haqiqiy xato). */

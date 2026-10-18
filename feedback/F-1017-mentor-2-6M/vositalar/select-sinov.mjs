@@ -1,0 +1,11 @@
+import { build } from 'esbuild'; import { chromium } from 'playwright-core'; import { writeFileSync, readFileSync } from 'node:fs';
+const ROOT='/home/kali/Desktop/internetLesson', OUT=process.argv[2];
+const plug={name:'x',setup(b){b.onLoad({filter:/CssLesson1\.jsx$/},(a)=>({contents:readFileSync(a.path,'utf8')+'\nexport const __T = { TASK_COLOR };\n',loader:'jsx'}))}};
+const entry=`import React from 'react'; import { createRoot } from 'react-dom/client'; import HtmlCompiler from ${JSON.stringify(ROOT+'/src/compilator/HtmlCompiler.jsx')}; import { __T } from ${JSON.stringify(ROOT+'/src/1-Modull/CssLesson1.jsx')};
+createRoot(document.getElementById('root')).render(React.createElement(HtmlCompiler,{task:__T.TASK_COLOR,lang:'uz',onContinue:()=>{},onBack:()=>{}}));`;
+const res=await build({stdin:{contents:entry,resolveDir:ROOT,loader:'jsx'},bundle:true,format:'iife',jsx:'automatic',plugins:[plug],nodePaths:[ROOT+'/node_modules'],loader:{'.png':'dataurl','.jpg':'dataurl','.jpeg':'dataurl','.svg':'dataurl','.mp3':'dataurl','.webp':'dataurl','.gif':'dataurl','.mp4':'dataurl'},charset:'utf8',write:false,logLevel:'error'});
+const page=OUT+'/sel.html'; writeFileSync(page,`<!doctype html><html><head><meta charset="utf-8"></head><body><div id="root"></div><script>${res.outputFiles[0].text}<\/script></body></html>`);
+const br=await chromium.launch({executablePath:'/usr/bin/google-chrome',headless:true}); const p=await (await br.newContext()).newPage(); await p.goto('file://'+page); await p.waitForTimeout(600);
+const r=await p.evaluate(()=>{const q=s=>document.querySelector(s); const sel=s=>{const el=q(s); if(!el) return 'YO‘Q'; const g=getSelection(); g.removeAllRanges(); g.selectAllChildren(el); const txt=g.toString(); g.removeAllRanges(); return {us:getComputedStyle(el).userSelect, selected:txt.length};};
+  return {brief:sel('.hc-brief'),chip:sel('.hc-chip'),hint:sel('.hc-hint'),textarea:(()=>{const el=q('textarea'); return el?getComputedStyle(el).userSelect:'YO‘Q'})()};});
+console.log(JSON.stringify(r)); await br.close();

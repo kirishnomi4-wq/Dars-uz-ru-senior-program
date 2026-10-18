@@ -86,7 +86,7 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` (6-ekran — K5 keys, 9-ekran — Ne
   - **odamlar** — telefon ostida odam belgilari (bosh, soch, rangli kiyim — D 36): 8 ta o'yinchi va 1 tashkilotchi (kichik «E'lon» belgisi bilan); kerak bo'lganda tashqarida **bino belgisi** (kompaniya) va **maydon egasi** (odam belgisi, maydon chizig'i yonida).
   - **tanga chizig'i** — to'lovchidan «Maydon Jamoa»ga oqadigan chizilgan tanga belgilari (emoji emas): kim to'layotgani shu chiziqdan ko'rinadi; to'lamaydiganlar ustida yashil kichik yorliq «bepul».
   - **Pro kartasi** (telefon yonida, kulrang ramka; yorliq «Mentorning rejasi»): «Pro — 30 kunlik pullik obuna» · «Doimiy o'yin: har hafta shu kun va soatda o'yin o'zi e'lon qilinadi».
-  - **yo'l kartasi** (o'ngda, 4-ekran): bitta katta karta «n / 5», ostida muhr — «hozir tanlanmadi» (kulrang) yoki «tanlandi» (yashil); qizil ishlatilmaydi (yo'l yomon emas — Mentor misolida hozir olinmadi; F-1007-460).
+  - **yo'l kartasi** (o'ngda, 4-ekran): bitta katta karta (sanoqsiz *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*), ostida muhr — «hozir tanlanmadi» (kulrang) yoki «tanlandi» (yashil); qizil ishlatilmaydi (yo'l yomon emas — Mentor misolida hozir olinmadi; F-1007-460).
   - **o'quvchi rejimi** (0, 8–10-ekranlar): telefon o'rnida mahsulot kartasi «{nom}» (`pm-m10d1-lending.nom`; yo'q bo'lsa «Mahsulotim»), to'lovchi belgisi va tanga chizig'i o'quvchi yozganidan (P-046).
   - Ishlatiladi: 0 (kichik) · 1 (o'zi yuradi) · 2 (telefon + odamlar + Pro kartasi) · 3, 5 (javobdan keyin kichik) · 4 (to'liq + yo'l kartasi) · 8 (o'quvchi rejimi) · 9 (ixcham) · 11 (javobdan keyin). 6-ekranda — `PremiumSahna` (keys maketi sahna o'rnini oladi, P-053), 10-ekranda — `NeonMaket`.
     Bir ekranda ko'pi bilan uch blok. `prefers-reduced-motion` da tanga oqimi va kirish to'lqini yo'q — yakuniy holat birdan qo'yiladi. Telefon kengligida (393) yo'l kartasi sahna ostiga tushadi; odam belgilari 9 ta — bir qator, kesilmaydi (E 41).
@@ -128,10 +128,11 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` (6-ekran — K5 keys, 9-ekran — Ne
   telefon «Maydon Jamoa», ostida odam belgilari; tanga chizig'i navbat bilan uch xil yonib o'chadi (hamma odamdan · bitta odamdan · tashqaridagi bino belgisidan) — yo'l nomlari va muhr yo'q (kashfiyot ochilmaydi; SABOQ D 33 — haqiqiy maket, matnsiz bo'sh chiziq yo'q).
   Vizual ostida bitta kulrang qator: Bu modulda haqiqiy pul to'lanmaydi va so'ralmaydi. (50)
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
-  - 01 · Mentor misolida pulni kim to'lashi mumkinligini ko'rasiz · `to'lovchi`
-  - 02 · Pul topish yo'llarini «Maydon Jamoa»ga qo'yib solishtirasiz · `model`
-  - 03 · O'z mahsulotingiz uchun bittasini tanlab, sababini yozasiz · `tanlov`
-  - 04 · To'lashi mumkin bo'lganlarni Neon'da sanaysiz · `SQL`
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
+  - 01 · Mentor misolida pulni kim to'lashi mumkinligini ko'rasiz
+  - 02 · Pul topish yo'llarini «Maydon Jamoa»ga qo'yib solishtirasiz
+  - 03 · O'z mahsulotingiz uchun bittasini tanlab, sababini yozasiz
+  - 04 · To'lashi mumkin bo'lganlarni Neon'da sanaysiz
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz
 - O'qituvchi eslatmasi: Bir gap ayting: bu modulda pul haqida gaplashamiz, lekin hech kim haqiqiy pul to'lamaydi. O'tgan darsning «kim to'lashi mumkin» javobi bo'lmasa — dars to'xtamaydi, o'quvchi 8-ekranda o'zi yozadi.
 - Izoh (MD): sarlavhada yangi atama yo'q (T-011) — «pul topish yo'li»; «model» — kulrang yorliqda va tegda. Reja 02 «solishtirasiz» deydi, natijani (qaysi biri tanlanishini) ochmaydi (P-015). Mentor reja qadamlarini takrorlamaydi (KORPUS §216). «B2B» yorliqda ochilmagan (App.jsx osti so'zma-so'z) — qisqartma 4-ekran 3-kartasida ochiladi (T-036).
@@ -142,7 +143,7 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` (6-ekran — K5 keys, 9-ekran — Ne
 - Mentor: O'tgan darsda Pro tashkilotchi uchun reja edi — ikkala rolni birma-bir bosib, nega shunday ekanini ko'ring.
   (Birinchi harakat — bashorat; uning yo'rig'i `QBashorat` yorlig'ida, Mentor takrorlamaydi — T-047.)
 - Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bitta o'lchov, o'sish tartibida): **Tashkilotchi bir xil o'yin e'lonini qanchalik tez-tez qayta yozadi?** · Oyda bir marta (14) · Ikki haftada bir (16) · Har hafta (9) —
-  tanlangach yopilmaydi: ixcham qator natijagacha turadi; rol tugmalari shundan keyin yoqiladi.
+  tanlangach yopilmaydi: ixcham qator natijagacha turadi; rol tugmalari shundan keyin chiqadi *(✎ F-1015-164)*.
 - Vizual (≤ 3 blok — telefon va odamlar · rol kartasi va Pro kartasi · pastki tugmalar):
   - **chapda** — telefon «Maydon Jamoa» («O'yinlar», karta «Shanba, 18:00 · Mahalla maydoni · 8 / 10»), ostida 8 o'yinchi va 1 tashkilotchi belgisi;
   - **o'ngda** — rol kartasi (bosilgan rolning uch qatori: kim · nima qiladi · pul) va uning ostida Pro kartasi (kulrang ramka, yorliq «Mentorning rejasi»; 2-tugmagacha yopiq — faqat sarlavhasi «Pro»);
@@ -191,7 +192,7 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` (6-ekran — K5 keys, 9-ekran — Ne
 - Sarlavha: **Maydon Jamoa'ga qaysi yo'l mos keladi?** (38) — 2-ekran savolining davomi (T-064)
 - Mentor: Har kartada «Maydon Jamoa'ga qo'yish»ni bosing — telefonda nima o'zgarishini kuzating.
 - Bashorat (ballsiz; S-015 — bitta o'lchov: nechtasi, o'sish tartibida): **Bu yo'llardan nechtasi Maydon Jamoa'ga hozir mos keladi?** · Bittasi (7) · Ikki-uchtasi (12) · Hammasi (7) — tanlangach ixcham qator natijagacha turadi; birinchi karta shundan keyin ochiladi.
-- Vizual (≤ 3 blok): **chapda** — `ModelSahna` (telefon, odamlar, tanga chizig'i) · **o'ngda** — bitta katta yo'l kartasi (tepasida ixcham besh nuqta — o'tilgani ✓, joriysi accent; karta ichida «n / 5») · **pastda** — kartadagi tugma «Maydon Jamoa'ga qo'yish», keyin «Keyingi yo'l».
+- Vizual (≤ 3 blok): **chapda** — `ModelSahna` (telefon, odamlar, tanga chizig'i) · **o'ngda** — bitta katta yo'l kartasi (nuqtalar va «n / 5» yo'q — hisob tugmada «Kartalarni oching (n/5)» *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*) · **pastda** — kartadagi tugma «Maydon Jamoa'ga qo'yish», keyin «Keyingi yo'l».
 - Har karta bir xil tartibda (T-011 — avval hodisa, keyin nom): ① hodisa gapi (karta tepasida) → ② «Maydon Jamoa'ga qo'yish» → sahna o'zgaradi → ③ nom yorlig'i kirib keladi «Bu — {nom}» → ④ yorliq «Mentorning taxmini» ostida bir qator sabab → ⑤ muhr. Keyingi kartaga o'tganda oldingisi ixcham qatorga yig'iladi (nom + muhr).
   1. **Hodisa:** «Har bir foydalanuvchi ma'lum muddatga pul to'laydi.» → nom **pullik obuna — hamma to'laydi** →
      sahna: har odam belgisidan tanga chiqadi; keyin uch o'yinchi belgisi xiralashib, ustida «?», o'yin kartasidagi son «? / 10» bo'ladi. Qator: Telegram guruhi bepul — o'yinchilar ketsa, o'yin to'lmaydi. (59) Muhr: **hozir tanlanmadi**.
@@ -244,7 +245,7 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` (6-ekran — K5 keys, 9-ekran — Ne
 ## 6 · Telegram Premium  ← QVoqea (PM keys K2; SABOQ 2, 3, 8, 26)
 - Eyebrow: Biznes olamidan
 - Sarlavha: **Telegram pul topish uchun nimani qo'shdi?** (41) — 0-ekran «pul topadi» so'zi bilan; javobni Mentor 1/3 da aytadi (sarlavhani takrorlamaydi — T-072)
-- Nuqtalar (3) · yorliq **Telegram Premium · N/3** (bashorat kartasida ham). Ekranda uch blok: sahna · nuqtalar qatori · bashorat (SABOQ 26).
+- Nuqtalar va yorliq «Telegram Premium · N/3» yo'q — tugma «Voqea davomi (N/3)» aytadi; kadr sanasi («2022-yil iyun») qoldi; bashorat yorlig'i «Avval o'zingiz belgilab ko'ring» *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*.
 - Brend tanishtiruvi (1/3 sahna ustidagi bitta qator, S-018): **Telegram** (o'z rangida) — xabar almashish ilovasi · **Telegram Premium** — Telegram'ning pullik obunasi. Logotip yo'q.
 - Mentor — bosqich gapini aytadi, har kadrda almashadi (≤2 gap; SABOQ 8). Sahnada faqat kadr nomi va jonli maket; takror matn yo'q.
 - Sahna (`PremiumSahna`, chizilgan CSS/SVG telefon maketi; bankda yo'q narsa chizilmaydi — Premium'dagi qulaylik nomlari, narx, interfeys tugmalari yo'q):
@@ -297,7 +298,7 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` (6-ekran — K5 keys, 9-ekran — Ne
   - `pm-m9d5-prd.kim` → 1-kartada kulrang qator «PRD da kim uchun: {kim}» · `pm-m9d5-prd.funksiyalar` (3) → 2-kartada uch funksiya qatori.
   - `pm-m10d1-lending.nom` → sahna kartasidagi mahsulot nomi; yo'q bo'lsa «Mahsulotim».
   - `pm-m11d2-model` avval saqlangan bo'lsa — hamma kartalar shundan to'ldiriladi («Yangilash» rejimi).
-- **Tepada — ixcham chiziq «Modelim · n/3»:** karta nomlari (Kim to'laydi · Nima bepul · Model), to'ldirilgani ✓ (bo'sh uzuq qatorlar yo'q).
+- Tepada ixcham chiziq yo'q — karta nomi kartaning yorlig'ida (sanoqsiz), hisob tugmada «Kartalarni to'ldiring (n/3)» *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*.
 - **Markazda — bitta katta karta (joriy):**
   1. **Kim to'laydi** — maydon (yorliq input ichida — E 43) `Kim to'laydi? Rolini yozing, ism emas` · tugma «Hamma foydalanuvchi» · maydon `Nima uchun to'laydi? Pullik qism unga nima beradi`.
      Jonli qator (karta ostida): sahnada to'lovchi belgisi accent bo'ladi va undan tanga chizig'i chiziladi; «hamma foydalanuvchi» — har belgidan.
@@ -331,7 +332,7 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` (6-ekran — K5 keys, 9-ekran — Ne
 - Xulosa (o'quvchi ma'lumotidan, P-046): «{model nomi}: {kim} to'laydi — {nima}. Bepul qoladi: {bepul}.» (≈80; `bepul` bo'sh bo'lsa ikkinchi gap yo'q)
 - Tugma (pastki): Kartalarni to'ldiring (n/3) → Saqlang → Davom etish (jonli darsda mentor o'tkazishi mumkin — `optionalLive`).
 - Keyingi bosiladigan joy: joriy kartaning birinchi bo'sh maydoni (accent, to'lqin) → «Keyingi» → «Saqlash».
-- Artefakt-strip (U-042): shu ekrandan — «Modelim · n/3» (ixcham); 9, 10-ekranlarda ko'rinadi; test, arena, podium va yakunda yo'q (E 50).
+- Artefakt-strip «Modelim · n/3» yo'q; 10-ekranda «Modelim · to'lashi mumkin: ?» qatori qoldi (SQL natijasi shu yerga yoziladi) *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*.
 - Nishon: My Model! (saqlanganda — bonus, ish bajarilgan; P-048).
 - Mentor rejimi: forma o'rniga Mentor misolining «Modelim» kartasi (Yordamdagi qatorlar). Mentor statistikasi: «Modelni saqlaganlar».
 - O'qituvchi eslatmasi: Tanlovni baholamang — bugun u taxmin: hali hech kim to'lamagan. Mentor modelini ko'chirish shart emas; reklama yoki B2B tanlagan o'quvchi to'lovchi sifatida kompaniya rolini yozadi (masalan, «o'quv markazi») — bugun hech kimga yozilmaydi va hech kimdan pul so'ralmaydi.
@@ -342,7 +343,7 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` (6-ekran — K5 keys, 9-ekran — Ne
 - Sarlavha: **Modelingizni sherigingizga tushuntira olasizmi?** (47) · yakka rejimda: **Modelingizni o'zingiz tekshira olasizmi?** (40)
 - Mentor: Avval «1 daqiqani boshlash»ni bosib gapiring — keyin qurilmangizni uzating, u har savolga belgi qo'yadi.
   Yakka rejimda: Savollarni o'zingizga bering va har biriga halol belgi qo'ying.
-- Tugmalar (ixcham, tepada): 1 Ayting · 2 Belgilang · 3 Tuzating
+- Tepadagi «1 Ayting · 2 Belgilang · 3 Tuzating» qatori yo'q — bosqichni Mentor va pastki tugma «N-qadam: …» aytadi *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
 - 1-tugma: «Modelim» kartasi (8-ekrandan, ixcham) butun enga; taymer «1 daqiqani boshlash» · «To'xtatish» (1:00 dan keyin to'xtamaydi — kulrang «+m:ss»). Juftlik yo'rig'i (bir qator): Avval A aytadi, B tinglaydi; keyin almashasiz. (46)
 - 2-tugma — tekshiruv varag'i (sherik to'ldiradi, gapiruvchining qurilmasida; bitta manba `SHERIK_SAVOL`): har qator — savol · ✓ / ✕ · izoh (placeholder: `Nima yetishmadi?`):
   1) «Kim to'laydi va nima uchun to'laydi — aniq aytildimi?»
@@ -394,10 +395,10 @@ WHERE o.namuna = false;
 - Yordam (bosilsa ochiladi): Eslatma: `COUNT(DISTINCT …)` — takrorlanmagan qiymatlarni sanaydi (10-Modulda brauzer ID lar shunday sanalgan) · `JOIN … ON` — ikki jadvalni `id` orqali bog'laydi · `WHERE o.namuna = false` — namuna va tekshiruv akkauntlari sanalmaydi (12-Modul).
   Jadval nomini bilmasangiz — agentga yozing: «Database'da {to'lovchi roli} qaysi jadval va ustunda ko'rinadi? Faqat nomlarini ayt, hech narsani o'zgartirma.» `SELECT *` yozmang: jadvalda ism va login bor — sizga faqat son kerak. Faqat `SELECT` — `DELETE`, `UPDATE` yo'q.
   Masalan (Mentor misoli): to'lovchi — tashkilotchi; u `oyinlar` jadvalida `tashkilotchi_id` ustunida ko'rinadi.
-- O'ng — Neon maketi (`NeonMaket`, chizilgan; logotip yo'q; 12-Modul 10-dars bilan bitta naqsh): tepada «SQL Editor» oynasi — SQL matni (bo'sh joy bilan), o'ng burchakda «Run»; ostida jadval: bitta ustun `count`, bitta kulrang qator «?».
+- O'ng — Neon maketi (`NeonMaket`, chizilgan; logotip yo'q; 12-Modul 10-dars bilan bitta naqsh): tepada «SQL Editor» oynasi — SQL matni (bo'sh joy bilan), o'ng burchakda «Run» (darvoza yechilgach chiqadi, bosilgach «✓ Run» yozuvi *(✎ F-1015-164)*); ostida jadval: bitta ustun `count`, bitta kulrang qator «?».
 - **Harakat → Vizual o'zgarish:** darvozada `DISTINCT` tanlanadi → SQL dagi bo'sh joyda `DISTINCT` bir lahza ajralib turadi (maketda ham); maketdagi «Run» halqada → bosilganda `count` qatorida **6** chiqadi (~1 s yashil) va ostida `QIzoh`:
   Mentor misolida — 6 tashkilotchi: o'tgan darsdagi son shu SQL'dan. (66) O'quvchi son yozsa (yoki taxmin) → son artefakt-stripdagi «Modelim» ga uchadi: «to'lashi mumkin: {n}» (taxmin bo'lsa — yonida «taxmin»).
-- Tugma: **Bajardim — son yozildi** (qulf: darvoza yechilmagan bo'lsa — «Avval qator savolini yeching»; son, taxmin yoki «Hozircha bilmayman» yo'q bo'lsa — «Avval sonni yozing yoki tugmani bosing»). Bitta halol tugma (korpus §19).
+- Tugma: **Bajardim — son yozildi** (qulf: darvoza yechilmagan bo'lsa — «Avval qator savolini yeching»; son, taxmin yoki «Hozircha bilmayman» yo'q bo'lsa — «Avval sonni yozing yoki tugmani bosing»; qulf paytida tugma o'rnida faqat shu kulrang yozuv, shart bajarilgach tugma chiqadi *(✎ F-1015-164)*). Bitta halol tugma (korpus §19).
 - Hammasi bajarilgach (yashil; holatga qarab):
   - Neon soni: To'lashi mumkin bo'lganlar sanaldi: bu rolingizdagi hisoblar, to'lashga tayyorlar emas. (87)
   - taxmin: To'lashi mumkin bo'lganlar taxmin va uning asosi bilan yozildi. (63)
@@ -468,8 +469,10 @@ WHERE o.namuna = false;
 - Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
 - Tartib: chip va ball · sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
 - Izoh (MD): ① — real odam bilan, lekin pul suhbati emas: o'quvchi modelini tushuntiradi, narx so'ramaydi va pul haqida kelishmaydi (pul suhbati — 6-dars ishi, bu yerda va'da qilinmaydi). ② — taqqoslashni o'z mahsulotida takrorlash (8-ekran «Rad etgan modelingiz»ga qo'shilishi mumkin — `rad` ko'pi bilan to'rtta).
   «Kim bilan» — HwCard yorlig'i (12-Modul va 1-dars bilan bir). Muddat «keyingi darsgacha» — keyingi dars nomi faqat «Keyingi dars» qatorida (T-038).
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ---
 

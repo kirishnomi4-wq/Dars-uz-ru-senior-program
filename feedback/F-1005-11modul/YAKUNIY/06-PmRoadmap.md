@@ -1,7 +1,7 @@
 # 6-dars «Bitiruvgacha nimani qachon qurasiz?» — yakuniy matn
 
 Fayl: `src/9-Modull/PmRoadmapLesson.jsx` · 16 ekran · Keyingi dars: «Jonli prototip: qog'ozdan bosiladigan ekrangacha»
-Holat: 07.10.2026 — kodga mos
+Holat: 18.10.2026 — kodga mos (v4, F-1015-237…243 avtopilot: reja 3 band; 2 va 4-ekran bashorat yolg'iz (213.7); 9-ekran belgilash bloki ish kartasida; 10-ekran doska va ish kartasi bitta kartada)
 
 Darsning bitta vizuali — uch ufqli roadmap doskasi va ish kartalari. Mentor misoli (dars bo'yi bir xil, «Maydon Jamoa» PRD sidan oltita ish):
 
@@ -40,17 +40,17 @@ Darsning bitta vizuali — uch ufqli roadmap doskasi va ish kartalari. Mentor mi
 - Mentor: O'tgan darsda PRD yozildi. Bugun undagi har ish qachon qurilishini belgilaysiz.
 - Chap: Dars oxirida: RICE bo'yicha roadmap — uch ustun-skelet, kulrang kartalar 3 · 2 · 1 bo'lib tushadi (matnsiz)
 - Reja:
-  1. PRD dagi ishlarni RICE bilan tartiblaysiz · RICE
-  2. Har ishni uch ufqdan biriga joylaysiz · ufq
-  3. Uzum ishni nimadan boshlaganini ko'rasiz · voqea
-  4. O'z ishlaringizdan bitiruvgacha reja tuzasiz · roadmap
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*
+  1. PRD dagi ishlarni RICE bilan tartiblaysiz
+  2. Har ishni uch ufqdan biriga joylaysiz
+  3. O'z ishlaringizdan bitiruvgacha reja tuzasiz (F-1015-238: Uzum bandi olindi)
 - Tugmalar: Orqaga · Boshlaymiz
 
 ## 2 · Funksiyalarga RICE
 - Eyebrow: Tushuncha · RICE tartibi
 - Sarlavha: PRD dagi oltita ishni *RICE qanday tartiblaydi?*
 - Mentor: 2-darsda g'oyalarni RICE bilan baholagansiz — endi PRD dagi har ish kartasini bosing.
-- Bashorat (yorliq: Avval o'zingiz belgilab ko'ring): Qaysi ish RICE bo'yicha birinchi turadi? · O'yin e'loni va qo'shilish · O'yin kuni tasdiq · Ro'yxat o'zi yangilanadi
+- Bashorat (yorliq: Avval o'zingiz belgilab ko'ring; F-1015-239 — bir o'zi, telefon va kartalar tanlangach keladi): Qaysi ish RICE bo'yicha birinchi turadi? · O'yin e'loni va qo'shilish · O'yin kuni tasdiq · Ro'yxat o'zi yangilanadi
   - Tanlangach qator: Qaysi ish RICE bo'yicha birinchi turadi? · Taxminingiz: …
 - Chap — telefon maketi «Maydon Jamoa» (ostida yorliq: chizma — hali qurilmagan). Boshida: O'yinlar · Shanba, 18:00 · Mahalla maydoni · 8 / 10 · Shanba, 20:00 · Maktab maydoni · 6 / 10
 - O'ng — formula kartasi (yorliq: Mentorning taxmini) va oltita ish kartasi (yuqoridagi jadval sonlari, RICE katagi bo'sh). Ish kartasi bosilganda sonlar formulaga kiradi, RICE sanab chiqadi, karta «RICE bo'yicha tartib» ro'yxatiga o'z o'rniga tushadi, telefon ekrani almashadi:
@@ -85,7 +85,7 @@ Darsning bitta vizuali — uch ufqli roadmap doskasi va ish kartalari. Mentor mi
 - Eyebrow: Tushuncha · ufq
 - Sarlavha: Tartibdagi oltita ish *qaysi ufqqa tushadi?*
 - Mentor: Tartibdagi eng yuqori ishni bosing — u o'z ufqiga tushadi va sababi ochiladi.
-- Bashorat (yorliq: Avval o'zingiz belgilab ko'ring): To'rtinchi ish — «O'yindan oldin eslatma» — qaysi ufqqa tushadi? · «Hozir» · «Keyinroq» · «Uzoqroq»
+- Bashorat (yorliq: Avval o'zingiz belgilab ko'ring; F-1015-240 — bir o'zi, tartib va doska tanlangach keladi): To'rtinchi ish — «O'yindan oldin eslatma» — qaysi ufqqa tushadi? · «Hozir» · «Keyinroq» · «Uzoqroq»
 - Chap: RICE bo'yicha tartib — olti qator (raqam · nom · RICE)
 - O'ng: **8-Moduldan:** Ufq — ishlar qachon boshlanishiga qarab ajratilgan vaqt bo'lagi. Ostida uch ufqli doska.
 - Ish bosilganda doskaga tushadi, ostida sabab:
@@ -119,11 +119,11 @@ Darsning bitta vizuali — uch ufqli roadmap doskasi va ish kartalari. Mentor mi
 ## 6 · Uzum
 - Eyebrow: Biznes olamidan
 - Sarlavha: Uzum ishni telefon ekranidan *boshlaganmi?*
-- Yorliq: Uzum · N/3 (nuqtalar)
+- Yorliq va nuqtalar yo'q — tugma «Keyingi bosqich (N/3)» aytadi; bashorat yorlig'i «Avval o'zingiz belgilab ko'ring» *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*
 - 1/3 **Bungacha**
   - Mentor: Uzum — narsani telefonda tanlasangiz, yetkazib beradigan internet-magazin. Bungacha odamlar ko'pincha Instagram va Telegram guruhlari orqali xarid qilgan.
   - Sahna: telefonda guruh-chat, yorliq «guruh orqali xarid»
-  - Bashorat (yorliq: Uzum · 1/3): Uzum boshida buyurtmani qachon yetkazgan? · ✔ Ertasi kuni · Uch kunda · Bir haftada
+  - Bashorat (Avval o'zingiz belgilab ko'ring): Uzum boshida buyurtmani qachon yetkazgan? · ✔ Ertasi kuni · Uch kunda · Bir haftada
 - 2/3 **2022-yil oktabr · ishga tushdi**
   - Mentor: Uzum 2022-yil oktabrda ishga tushgan. U saytdan emas, yetkazib berishdan boshlagan: o'z mashinalari, topshirish punktlari va ertasi kuni yetkazish.
   - Sahna: Uzum ilovasi, mashina topshirish punktiga boradi; chiziq «bugun → ertaga»
@@ -163,6 +163,7 @@ Darsning bitta vizuali — uch ufqli roadmap doskasi va ish kartalari. Mentor mi
   - Formula kartasi: qamrov × ta'sir × ishonch ÷ mehnat = RICE
   - Tugmalar: Yordam · + Yana ish qo'shish · Saqlash
 - Tekshiruv xabarlari:
+  - Ish nomini yozing. («Saqlash» doim bosiladi; nom bo'sh bo'lsa shu xabar, fokus nom maydoniga) *(✎ F-1015-164)*
   - Qamrov va mehnatni son bilan yozing.
   - Ta'sir va ishonchni tanlang.
   - Bu kursda 100% — o'lchangan raqam uchun. Dalilingiz bormi?
@@ -186,7 +187,8 @@ Darsning bitta vizuali — uch ufqli roadmap doskasi va ish kartalari. Mentor mi
 - Juftlikda: Ishlarim ro'yxatidan bitta ish tanlanadi → katta karta: nom, qamrov, mehnat; uch katak «yopiq»
   - Ishni sherigingizga bir gap bilan tushuntiring.
 - Yakka rejimda: karta «O'yin kuni tasdiq» · Mentor misoli — qamrov 60 · mehnat 1 · uch katak «yopiq»
-- Tanlov (yorliq: Sherigingiz, yakkada: Siz): Ta'sir — 3 · 2 · 1 · 0,5 · 0,25 (juda katta · katta · o'rta · kichik · juda kichik) · Ishonch — 100% · 80% · 50% · Saqlash → Ochish
+- Tanlov — ish kartasining ichida, chiziq ostida (F-1015-242; yorliq: Sherigingiz, yakkada: Siz): Ta'sir — 3 · 2 · 1 · 0,5 · 0,25 (juda katta · katta · o'rta · kichik · juda kichik) · Ishonch — 100% · 80% · 50% · Saqlash → Ochish
+  - «Saqlash» doim bosiladi; tanlanmagan bo'lsa tugma ostida: Ta'sir va ishonchni tanlang. · Ta'sirni tanlang. · Ishonchni tanlang. (fokus o'sha qatorga) *(✎ F-1015-164)*
 - Solishtirish: Siz — ta'sir · ishonch · RICE | Sherigingiz (yakkada: Mentor) — ta'sir · ishonch · RICE; farq qilgan katak ajraladi
   - Xulosa: Baholaringiz bir xil chiqdi; baribir RICE — taxmin. (yoki) Bir ishga ikki xil RICE chiqdi: qaysi bo'lakda farq bor — dalilga qayting.
   - Tugma: ✎ Raqamni tuzatish (ochilganda: Ta'sir · Ishonch · Saqlash)
@@ -198,7 +200,7 @@ Darsning bitta vizuali — uch ufqli roadmap doskasi va ish kartalari. Mentor mi
 - Mentor: RICE bo'yicha yuqoridagi ishdan boshlang va har biriga savol bering: u nimani kutadi?
 - 8-ekranda ish bo'lmasa: Avval 9-ekranda ishlaringizga RICE ni hisoblang. (doska bo'sh)
 - Tepada — uch ufqli doska (Poydevor · RICE ga kirmaydi; 1-, 2-, 3-asosiy funksiya kataklari; «Hozir»dagi kartalar yonida ↑ ↓)
-- Joriy ish kartasi: raqam · nom · RICE · uch tugma: Hozir · 11-Modul · Keyinroq · 12–13-Modul · Uzoqroq · bitiruvdan keyin
+- Joriy ish kartasi — doska bilan bitta kartada, doska ostida (F-1015-243): raqam · nom · RICE · uch tugma: Hozir · 11-Modul · Keyinroq · 12–13-Modul · Uzoqroq · bitiruvdan keyin
 - Tekshiruv xabarlari:
   - Bu modulda «Hozir»da uchta ish — har loyiha kuniga bitta.
   - Tartibda yuqoriroq ish uzoqroqda qoldi — u nimani kutadi?
@@ -342,7 +344,6 @@ Natijalar (podium) — jonli reyting
 - Eyebrow: Dars yakuni
 - Belgi: ✓ Dars tugadi · N/4 to'g'ri
 - Sarlavha: Roadmap'ingiz *tayyor*. (10-ekranda saqlanmagan bo'lsa: Roadmap boshlandi — *qolgani uyda*.)
-- Bugungi asosiy fikr: RICE ishlar tartibini ko'rsatadi, ish esa unga kerak narsa tayyor bo'lgan ufqda boshlanadi.
 - Qator «Roadmap'im» (saqlangan bo'lsa)
 - CODE STRIKE arenasi: 12 SAVOL · 15 SONIYA · PODIUM (jonli darsda mentor boshlaguncha: Mentorni kuting)
 - ✓ Endi siz bilasiz:
@@ -360,6 +361,8 @@ Natijalar (podium) — jonli reyting
   - Keyingi dars — **«Jonli prototip: qog'ozdan bosiladigan ekrangacha»**
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **RICE Ranker!** — Ishlaringizni RICE bo'yicha tartibladingiz (8-ekran)

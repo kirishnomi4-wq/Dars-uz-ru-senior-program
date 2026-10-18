@@ -97,7 +97,7 @@ Tashqi audit (ChatGPT) Filtri: `05-FILTR.md` — 05.10.2026 (atamalar ta'rifi �
 - Sarlavha: **Bosilgan katak qanchaga kichraysin?** (35)
 - Mentor: Ko'p ilovalarda tugma barmoq ostida biroz cho'kadi — odam shundan bosilganini sezadi. Qiymatni tanlang va 18:00–19:00 ni bosib turing.
 - Bashorat (ballsiz, 181): **Katak kichraysa, qo'shni kataklar nima bo'ladi?** · Ular ham suriladi · Joyida qoladi · Ular ham kichrayadi — tanlov saqlanadi.
-- Chap — kod (`App.css` parchasi), qiymat tugmalari pulsatsiya halqasi bilan (168): `1` · `0.95` · `0.8`
+- Chap — kod (`App.css` parchasi), qiymat tugmalari pulsatsiya halqasi bilan (168): `1` · `0.95` · `0.8` — bashorat tanlangach chiqadi *(✎ F-1015-164: oldin xira o'chiq edi)*
   ```css
   .katak:active {
     transform: scale(1);
@@ -119,7 +119,7 @@ Tashqi audit (ChatGPT) Filtri: `05-FILTR.md` — 05.10.2026 (atamalar ta'rifi �
 - Sarlavha: **Kichrayish qancha vaqt davom etsin?** (35)
 - Mentor: Hozir katak bir zumda cho'kib, bir zumda qaytadi — ko'z buni sakrash deb ko'radi. Vaqtni tanlang va katakni bosing.
 - Bashorat (ballsiz): **0.15 soniya ko'zga qanday ko'rinadi?** · Sezilmaydi · Silliq · Sekin (bitta o'lchovning uch darajasi, o'sish tartibida — §43).
-- Chap — kod, vaqt tugmalari pulsatsiyada: `0s` · `0.15s` · `1s`; izoh: `s` — soniya.
+- Chap — kod, vaqt tugmalari pulsatsiyada: `0s` · `0.15s` · `1s` (bashorat tanlangach chiqadi — *✎ F-1015-164*); izoh: `s` — soniya.
   ```css
   .katak {
     transition: transform 0s;
@@ -161,7 +161,7 @@ Tashqi audit (ChatGPT) Filtri: `05-FILTR.md` — 05.10.2026 (atamalar ta'rifi �
   2. `.katak` qoidasiga qo'shing: `transition: transform 0.15s;`
   3. Natija oynasida katakni bosing — u silliq kichrayib qaytsin.
 - Yordam: Natija o'zgarmasa, `:active` oldida bo'sh joy yo'qligini va `0.15s` da «s» harfi borligini tekshiring.
-- Tugma (o'ngda): Bajardim — shartlar ✓ bo'lgach ochiladi.
+- Tugma (o'ngda): Bajardim — shartlar ✓ bo'lgach chiqadi (oldin yo'q); bosilgach tugma emas, yashil yozuv «✓ Bajardim». *(✎ F-1015-164)*
 - O'ng — platforma tugmasi «Kompilyatorni ochish» (nomi tegilmaydi; Mentor: kod oynasi ochiladi — kodni yozasiz va natijasini shu yerda ko'rasiz) → `HtmlCompiler`, fayllar:
   - `index.html` — tayyor, o'zgarmaydi:
     ```html
@@ -194,7 +194,7 @@ Tashqi audit (ChatGPT) Filtri: `05-FILTR.md` — 05.10.2026 (atamalar ta'rifi �
 ## 6 · Rang ham silliq o'zgaradimi?  ← QTushuncha
 - Eyebrow: Tushuncha · rang
 - Sarlavha: **Band bo'lgan katak rangi qanday o'zgaradi?** (42)
-- Mentor: Katak band bo'lsa, unga `band` klassi qo'shiladi va fon kulrang bo'ladi. `transition` ga nima qo'shishni tanlang va bo'sh katakni bosing.
+- Mentor: Band katakka `band` klassi qo'shiladi, fon kulrang bo'ladi. Avval bo'sh katakni bosing, keyin `transition` ga rangni qo'shib, yana bittasini bosing. ✎ F-1015-168 (tartib ekranga moslandi)
 - Bashorat (ballsiz): **`transition: transform 0.15s` turibdi. Rang ham silliq o'zgaradimi?** · Ha, silliq · Yo'q, sakraydi
 - Chap — kod:
   ```css
@@ -206,7 +206,7 @@ Tashqi audit (ChatGPT) Filtri: `05-FILTR.md` — 05.10.2026 (atamalar ta'rifi �
   }
   ```
   Izoh (kulrang): `.katak.band` — `katak` va `band` klassi ikkalasi bor element.
-  Ostida bitta tugma (pulsatsiya): `, background-color 0.3s` ni qo'shish.
+  Ostida bitta tugma (pulsatsiya): `, background-color 0.3s` ni qo'shish — birinchi band (rang sakragan) dan keyin chiqadi; bosilgach o'rnida yashil yozuv «✓ `, background-color 0.3s` qo'shildi». *(✎ F-1015-164)*
 - O'ng — maket + «Sekin ko'rsatish» kaliti.
 - **Harakat → Vizual o'zgarish:** 18:00–19:00 ni bosish → katakka `band` qo'shiladi (kodda `.katak.band` qatori yonadi), rang **sakrab** kulrang bo'ladi.
   Shu tugmani bosish → `transition` qatori `transform 0.15s, background-color 0.3s` bo'ladi; 19:00–20:00 ni bosish → rang 0.3 soniyada silliq kulranglashadi.
@@ -240,7 +240,7 @@ Tashqi audit (ChatGPT) Filtri: `05-FILTR.md` — 05.10.2026 (atamalar ta'rifi �
   2. `transition` ga vergul bilan qo'shing: `background-color 0.3s`
   3. Bo'sh katakni bosing — rangi 0.3 soniyada kulranglashsin.
 - Yordam: Ikki klass orasida bo'sh joy yo'q: `.katak.band`. Rang sakrasa, `transition` da vergul turganini tekshiring.
-- Tugma (o'ngda): Bajardim
+- Tugma (o'ngda): Bajardim — 5-ekrandagidek: shartlar ✓ bo'lgach chiqadi, bosilgach «✓ Bajardim» yozuvi. *(✎ F-1015-164)*
 - O'ng — `HtmlCompiler`, fayllar:
   - `index.html` — tayyor: 4 katak, 17:00–18:00 oldindan `class="katak band"`;
   - `app.js` — tayyor, o'zgarmaydi:
@@ -440,7 +440,8 @@ Tashqi audit (ChatGPT) Filtri: `05-FILTR.md` — 05.10.2026 (atamalar ta'rifi �
   3. **Kuzating** — telefoningizdagi bitta ilovada «bosildi», «o'zgardi», «tayyor» javoblarini toping va har birini bir gapda yozing
 - Keyingi dars — «Birinchi odam kirganda nimani ko'rasiz?»: Maydon bosishga javob beradi, endi odamlar unda nima qilayotganini ko'rish navbati.
 - Nishonlaringiz — N/5
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10, S1-A): uy vazifasi kartasi P-025 — sarlavha «Uyda nima qilasiz?» (bannerdagi «Uyga vazifa» bilan takror emas); maydonlar: Kim uchun — o'z loyihangiz · Nechta — 3 element · Muddat — keyingi darsgacha (qiymatlar topshiriq matnidan); qadamlar raqam-doira; «Keyingi dars» karta ichida; bezak emoji olindi.
 
 ---
 

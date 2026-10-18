@@ -278,7 +278,7 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 · **1.10 — hisobot, tekshiruv, zaxira reja 
 - Qadam qatori (`QQadamlar`): 1 Bo'g'inlar · 2 Tanlov · 3 Gipoteza · 4 Ish
 - Vizual:
   - **chapda — bo'g'in kartalari** (`BoginKartalar`, to'rt karta ustma-ust, orasida ingichka chiziq — strelka emas): «Kanal» · «Lending» · «O'rnatish va ro'yxat» · «Asosiy harakat»; kartalar tepasida kulrang izoh: Bu darsda bo'g'in — odam postdan asosiy harakatgacha o'tadigan yo'lning alohida joyi. (85)
-    Kartalar yopiq (faqat nomi), joriysi halqada.
+    Kartalar yopiq (faqat nomi), joriysi halqada — faqat u bosiladi; navbati kelmaganlari uzuq chegarali, nomi kulrang matn (tugma emas) *(✎ F-1015-164)*.
   - **o'ngda — reja kartasi:** uch bo'sh uzuq qator (yorliqsiz — P-036); ostida «Maydon Jamoa» telefon bo'lagi hali yo'q.
 - **Harakat → Vizual o'zgarish:**
   1. Bo'g'in kartasini bosish → karta ochiladi, Mentor sonlari sanab chiqadi, birligi kulrang yorliqda (A-6): Kanal — «post 2 joyga yetdi: 60 kishilik guruh va sinf chati» · Lending — «tashrif 74 · «Qo'shilmoqchiman» 41 · Umami» ·
@@ -323,7 +323,7 @@ GROUP BY kun
 ORDER BY kun;
 ```
   ostida kulrang: `oyinchilar` — Mentor misolidagi jadval. Sizda — ishga tushirishdan oldin `namuna` ustuni qo'shilgan jadval.
-- Maydon (vazifa ostida): kichik jadval-forma — «Kun» (sana) · «Son» · tugma «+ Qator»; ostida **Jami: N** (o'zi sanaladi). Tekshiruv (`QXato`, bloklaydi):
+- Maydon (vazifa ostida): kichik jadval-forma — «Kun» (sana) · «Son» · tugma «+ Qator» (forma ustun savoli yechilgach chiqadi; «Yordam» doim bor *(✎ F-1015-164)*); ostida **Jami: N** (o'zi sanaladi). Tekshiruv (`QXato`, bloklaydi):
   - son bo'sh yoki son emas: Neon ko'rsatgan sonni shu yerga yozing. (39) · kun bo'sh: Qaysi kun? Neon'dagi `kun` ustunidan oling. (41) · takror kun: Bu kun yuqorida bor — sonini o'sha qatorga yozing. (50)
 - Yordam (bosilsa ochiladi): Eslatma (SQL darslaridan): `date(…)` — vaqtdan faqat kunni oladi · `AS kun` — ustunga nom beradi · `COUNT(*)` — qatorlarni sanaydi · `WHERE` — qaysi qatorlar olinadi · `GROUP BY kun` — har kun uchun alohida sanaydi · `ORDER BY kun` — kunlar tartibida chiqaradi.
   Jadval nomini bilmasangiz — agentga yozing: «Ro'yxatdan o'tganlar qaysi jadvalda? Faqat nomini ayt, hech narsani o'zgartirma.» `SELECT *` yozmang: jadvalda ism va login bor — hisobotga faqat son kerak.
@@ -331,7 +331,7 @@ ORDER BY kun;
   Maket ostida (`QIzoh`): Sizning qatorlaringiz shu yerda chiqadi. Mentor misolida bir haftada jami — 38. (79)
 - **Harakat → Vizual o'zgarish:** darvozada `namuna` tanlanadi → SQL dagi bo'sh joyda `namuna` bir lahza ajralib turadi (maketda ham); har kiritilgan qator maketdagi «?» o'rniga chiqadi (~1 s yashil), «Jami» sanab o'sadi;
   jami yozilgach u artefakt-stripdagi «Hisobot · 1 / 4» ga uchadi. Ostida kulrang qator: Sanoq sahifasidagi «ro'yxatdan o'tgan» bilan solishtiring — odatda bir xil; farq bo'lsa, qaysi biri qachon sanalganini qarang.
-- Tugma: **Bajardim — SQL ishladi, qatorlar yozildi** (qulf: darvoza yechilmagan bo'lsa — «Avval ustun savolini yeching»; qator yo'q bo'lsa — «Avval Neon ko'rsatgan qatorlarni yozing»). Bitta halol tugma (korpus §19).
+- Tugma: **Bajardim — SQL ishladi, qatorlar yozildi** (shart bajarilmaguncha tugma o'rnida oddiy kulrang matn: darvoza yechilmagan bo'lsa — «Avval ustun savolini yeching»; qator yo'q bo'lsa — «Avval Neon ko'rsatgan qatorlarni yozing» *(✎ F-1015-164)*). Bitta halol tugma (korpus §19).
 - Hammasi bajarilgach (yashil): Birinchi qator Database'dan olindi — namuna va tekshiruv akkauntlarisiz. (72)
 - Pastki qator (kichik, kulrang): Vaqt tugasa — keyingi mashqda 1-qatorga sanoq sahifasidagi sonni yozing va manbani «sanoq sahifasi» deb belgilang; kunlar — uyda.
 - Saqlanadi («Bajardim» bosilganda): `pm-m10d10-hisobot.kunlar = [{ sana, soni }]` (`sana` — `YYYY-MM-DD`; `soni` — **shu kuni** yangi ro'yxatdan o'tganlar, jami emas; namuna va tekshiruv akkauntlarisiz — 12-dars grafigi haftalik jamini shundan hisoblaydi, tayanch 9.44 b), `royxat.soni` (jami; 10-ekranda tahrirlanadi) va `royxat.manba = 'Database'`. «Vaqt tugasa» yo'lida bu ekran hech narsa yozmaydi —

@@ -1,0 +1,114 @@
+{"key":"m6-09","s":0,"t":[{"i":0,"cls":"phone","w":140,"h":258,"rad":26,"bw":0,"pad":"6px","bg":"rgb(17, 22, 31)","bc":"rgb(14, 14, 16)","notch":true,"shadow":true}]}
+{"key":"m6-09","s":1,"t":[{"i":0,"cls":"phone","w":176,"h":328,"rad":32,"bw":0,"pad":"8px","bg":"rgb(17, 22, 31)","bc":"rgb(14, 14, 16)","notch":true,"shadow":true}]}
+{"key":"m6-10","s":0,"t":[{"i":0,"cls":"phone","w":176,"h":328,"rad":32,"bw":0,"pad":"8px","bg":"rgb(17, 22, 31)","bc":"rgb(14, 14, 16)","notch":true,"shadow":true}]}
+{"key":"m6-10","s":1,"t":[{"i":0,"cls":"phone","w":176,"h":328,"rad":32,"bw":0,"pad":"8px","bg":"rgb(17, 22, 31)","bc":"rgb(14, 14, 16)","notch":true,"shadow":true}]}
+{"key":"m6-09","s":7,"t":[{"i":0,"cls":"phone","w":176,"h":328,"rad":32,"bw":0,"pad":"8px","bg":"rgb(17, 22, 31)","bc":"rgb(14, 14, 16)","notch":true,"shadow":true}]}
+{"key":"m6-10","s":3,"t":[{"i":0,"cls":"phone","w":176,"h":328,"rad":32,"bw":0,"pad":"8px","bg":"rgb(17, 22, 31)","bc":"rgb(14, 14, 16)","notch":true,"shadow":true}]}
+{"key":"m6-09","s":10,"t":[{"i":0,"cls":"phone","w":176,"h":328,"rad":32,"bw":0,"pad":"8px","bg":"rgb(17, 22, 31)","bc":"rgb(14, 14, 16)","notch":true,"shadow":true}]}
+{"key":"m6-10","s":6,"t":[{"i":0,"cls":"phone","w":176,"h":328,"rad":32,"bw":0,"pad":"8px","bg":"rgb(17, 22, 31)","bc":"rgb(14, 14, 16)","notch":true,"shadow":true}]}
+{"key":"m6-09","s":12,"t":[{"i":0,"cls":"phone","w":176,"h":328,"rad":32,"bw":0,"pad":"8px","bg":"rgb(17, 22, 31)","bc":"rgb(14, 14, 16)","notch":true,"shadow":true}]}
+{"key":"m6-11","s":0,"t":[{"i":0,"cls":"phone ","w":196,"h":364,"rad":32,"bw":0,"pad":"8px","bg":"rgb(17, 22, 31)","bc":"rgb(14, 14, 16)","notch":true,"shadow":true}]}
+{"key":"m6-10","s":10,"t":[{"i":0,"cls":"phone","w":176,"h":328,"rad":32,"bw":0,"pad":"8px","bg":"rgb(17, 22, 31)","bc":"rgb(14, 14, 16)","notch":true,"shadow":true}]}
+{"key":"m6-11","s":3,"t":[{"i":0,"cls":"phone ","w":196,"h":364,"rad":32,"bw":0,"pad":"8px","bg":"rgb(17, 22, 31)","bc":"rgb(14, 14, 16)","notch":true,"shadow":true}]}
+{"key":"m6-10","s":12,"t":[{"i":0,"cls":"phone","w":176,"h":328,"rad":32,"bw":0,"pad":"8px","bg":"rgb(17, 22, 31)","bc":"rgb(14, 14, 16)","notch":true,"shadow":true}]}
+{"key":"m6-11","s":7,"t":[{"i":0,"cls":"phone ","w":196,"h":364,"rad":32,"bw":0,"pad":"8px","bg":"rgb(17, 22, 31)","bc":"rgb(14, 14, 16)","notch":true,"shadow":true}]}
+{"key":"m6-11","s":8,"t":[{"i":0,"cls":"phone ","w":196,"h":364,"rad":32,"bw":0,"pad":"8px","bg":"rgb(17, 22, 31)","bc":"rgb(14, 14, 16)","notch":true,"shadow":true}]}
+{"key":"m6-11","s":11,"t":[{"i":0,"cls":"phone ","w":196,"h":364,"rad":32,"bw":0,"pad":"8px","bg":"rgb(17, 22, 31)","bc":"rgb(14, 14, 16)","notch":true,"shadow":true}]}
+{"key":"m6-11","s":14,"t":[{"i":0,"cls":"phone ","w":196,"h":364,"rad":32,"bw":0,"pad":"8px","bg":"rgb(17, 22, 31)","bc":"rgb(14, 14, 16)","notch":true,"shadow":true}]}
+{"key":"m7-08","s":0,"t":[{"i":0,"cls":"dm-tel dm-diz","w":196,"h":324,"rad":30,"bw":0,"pad":"7px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":true,"shadow":true},{"i":1,"cls":"dm-tel dm-maydon","w":196,"h":324,"rad":30,"bw":0,"pad":"7px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":true,"shadow":true}]}
+{"key":"m7-08","s":1,"t":[{"i":0,"cls":"dm-tel dm-maydon","w":196,"h":324,"rad":30,"bw":0,"pad":"7px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":true,"shadow":true}]}
+{"key":"m7-08","s":2,"t":[{"i":0,"cls":"dm-tel dm-diz","w":196,"h":324,"rad":30,"bw":0,"pad":"7px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":true,"shadow":true},{"i":1,"cls":"dm-tel dm-maydon","w":196,"h":324,"rad":30,"bw":0,"pad":"7px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":true,"shadow":true}]}
+{"key":"m7-08","s":4,"t":[{"i":0,"cls":"dm-tel dm-tw-tel","w":176,"h":314,"rad":30,"bw":0,"pad":"7px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":true,"shadow":true}]}
+{"key":"m7-08","s":5,"t":[{"i":0,"cls":"dm-tel dm-maydon","w":196,"h":324,"rad":30,"bw":0,"pad":"7px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":true,"shadow":true}]}
+{"key":"m7-08","s":6,"t":[{"i":0,"cls":"dm-tel dm-maydon","w":196,"h":324,"rad":30,"bw":0,"pad":"7px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":true,"shadow":true}]}
+{"key":"m7-08","s":7,"t":[{"i":0,"cls":"dm-tel dm-maydon","w":196,"h":324,"rad":30,"bw":0,"pad":"7px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":true,"shadow":true}]}
+{"key":"m7-10","s":0,"t":[{"i":0,"cls":"ut-tel","w":176,"h":316,"rad":28,"bw":0,"pad":"10px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":true,"shadow":true}]}
+{"key":"m7-10","s":2,"t":[{"i":0,"cls":"ut-tel","w":176,"h":316,"rad":28,"bw":0,"pad":"10px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":true,"shadow":true}]}
+{"key":"m7-10","s":4,"t":[{"i":0,"cls":"ut-tel","w":176,"h":316,"rad":28,"bw":0,"pad":"10px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":true,"shadow":true}]}
+{"key":"m7-10","s":8,"t":[{"i":0,"cls":"ut-tel kichik","w":112,"h":196,"rad":22,"bw":0,"pad":"7px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":true,"shadow":true}]}
+{"key":"m7-10","s":9,"t":[{"i":0,"cls":"ut-tel uzun","w":176,"h":348,"rad":28,"bw":0,"pad":"10px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":true,"shadow":true}]}
+{"key":"m9-03","s":4,"t":[{"i":0,"cls":"io-tel io-s4-tel","w":170,"h":294,"rad":30,"bw":0,"pad":"9px","bg":"rgb(34, 29, 51)","bc":"rgb(27, 22, 48)","notch":true,"shadow":true}]}
+{"key":"m9-03","s":6,"t":[{"i":0,"cls":"io-tel io-s6-tel","w":170,"h":294,"rad":30,"bw":0,"pad":"9px","bg":"rgb(34, 29, 51)","bc":"rgb(27, 22, 48)","notch":true,"shadow":true}]}
+{"key":"m9-05","s":0,"t":[{"i":0,"cls":"pr-tel","w":170,"h":272,"rad":30,"bw":0,"pad":"9px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":true,"shadow":true}]}
+{"key":"m9-05","s":2,"t":[{"i":0,"cls":"pr-tel","w":170,"h":272,"rad":30,"bw":0,"pad":"9px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":true,"shadow":true}]}
+{"key":"m9-06","s":2,"t":[{"i":0,"cls":"rm-tel","w":170,"h":290,"rad":26,"bw":0,"pad":"9px","bg":"rgb(31, 27, 46)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m9-05","s":8,"t":[{"i":0,"cls":"pr-tel","w":170,"h":272,"rad":30,"bw":0,"pad":"9px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":true,"shadow":true}]}
+{"key":"m9-15","s":2,"t":[{"i":0,"cls":"oo-tel","w":168,"h":292,"rad":30,"bw":0,"pad":"7px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m9-15","s":3,"t":[{"i":0,"cls":"oo-tel","w":168,"h":292,"rad":30,"bw":0,"pad":"7px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m10-04","s":0,"t":[{"i":0,"cls":"jx-telefon yopiq","w":172,"h":272,"rad":24,"bw":2,"pad":"8px","bg":"rgba(14, 14, 16, 0.86)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m10-04","s":1,"t":[{"i":0,"cls":"jx-telefon yopiq","w":172,"h":272,"rad":24,"bw":2,"pad":"8px","bg":"rgba(14, 14, 16, 0.86)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m10-04","s":8,"t":[{"i":0,"cls":"jx-telefon yopiq","w":172,"h":272,"rad":24,"bw":2,"pad":"8px","bg":"rgba(14, 14, 16, 0.86)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m10-09","s":0,"t":[{"i":0,"cls":"qs-telefon qulf","w":172,"h":272,"rad":24,"bw":2,"pad":"8px","bg":"rgba(14, 14, 16, 0.88)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m10-08","s":5,"t":[{"i":0,"cls":"do-nf-tel","w":132,"h":222,"rad":20,"bw":2,"pad":"8px","bg":"rgb(20, 20, 20)","bc":"rgb(42, 39, 48)","notch":true,"shadow":true},{"i":1,"cls":"do-nf-tel","w":132,"h":222,"rad":20,"bw":2,"pad":"8px","bg":"rgb(20, 20, 20)","bc":"rgb(42, 39, 48)","notch":true,"shadow":true}]}
+{"key":"m10-09","s":5,"t":[{"i":0,"cls":"qs-telefon qulf","w":172,"h":272,"rad":24,"bw":2,"pad":"8px","bg":"rgba(14, 14, 16, 0.88)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m10-09","s":6,"t":[{"i":0,"cls":"qs-telefon qulf","w":172,"h":272,"rad":24,"bw":2,"pad":"8px","bg":"rgba(14, 14, 16, 0.88)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m10-12","s":1,"t":[{"i":0,"cls":"gp-tel","w":170,"h":290,"rad":26,"bw":0,"pad":"9px","bg":"rgb(30, 27, 38)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m10-12","s":2,"t":[{"i":0,"cls":"gp-tel","w":170,"h":290,"rad":26,"bw":0,"pad":"9px","bg":"rgb(30, 27, 38)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m11-01","s":0,"t":[{"i":0,"cls":"bs-tel","w":170,"h":290,"rad":26,"bw":0,"pad":"9px","bg":"rgb(31, 32, 39)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m10-12","s":6,"t":[{"i":0,"cls":"gp-uz-tel","w":150,"h":260,"rad":24,"bw":0,"pad":"8px","bg":"rgb(30, 27, 38)","bc":"rgb(27, 22, 48)","notch":false,"shadow":false}]}
+{"key":"m11-02","s":0,"t":[{"i":0,"cls":"ms-tel","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(35, 34, 43)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m10-12","s":8,"t":[{"i":0,"cls":"gp-tel","w":170,"h":290,"rad":26,"bw":0,"pad":"9px","bg":"rgb(30, 27, 38)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m11-02","s":2,"t":[{"i":0,"cls":"ms-tel","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(35, 34, 43)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m11-01","s":4,"t":[{"i":0,"cls":"bs-tel","w":170,"h":290,"rad":26,"bw":0,"pad":"9px","bg":"rgb(31, 32, 39)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m11-03","s":0,"t":[{"i":0,"cls":"pw-telefon","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-02","s":4,"t":[{"i":0,"cls":"ms-tel","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(35, 34, 43)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m11-03","s":1,"t":[{"i":0,"cls":"pw-telefon","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-03","s":2,"t":[{"i":0,"cls":"pw-telefon","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-02","s":6,"t":[{"i":0,"cls":"ms-tg","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(35, 34, 43)","bc":"rgb(27, 22, 48)","notch":false,"shadow":false}]}
+{"key":"m11-03","s":4,"t":[{"i":0,"cls":"pw-telefon","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-03","s":6,"t":[{"i":0,"cls":"pw-telefon","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-02","s":9,"t":[{"i":0,"cls":"ms-tel","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(35, 34, 43)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m11-04","s":0,"t":[{"i":0,"cls":"pz-tel","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m11-04","s":1,"t":[{"i":0,"cls":"pz-tel","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m11-03","s":9,"t":[{"i":0,"cls":"pw-telefon","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-05","s":0,"t":[{"i":0,"cls":"pd-telefon","w":170,"h":298,"rad":24,"bw":0,"pad":"5px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-03","s":11,"t":[{"i":0,"cls":"pw-telefon","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-04","s":4,"t":[{"i":0,"cls":"pz-tel","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m11-05","s":1,"t":[{"i":0,"cls":"pd-telefon","w":170,"h":298,"rad":24,"bw":0,"pad":"5px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-03","s":12,"t":[{"i":0,"cls":"pw-telefon","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-04","s":5,"t":[{"i":0,"cls":"pz-tel","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m11-05","s":2,"t":[{"i":0,"cls":"pd-telefon","w":170,"h":298,"rad":24,"bw":0,"pad":"5px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-04","s":6,"t":[{"i":0,"cls":"pz-tel","w":170,"h":340,"rad":24,"bw":0,"pad":"7px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m11-05","s":3,"t":[{"i":0,"cls":"pd-telefon","w":170,"h":298,"rad":24,"bw":0,"pad":"5px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-04","s":7,"t":[{"i":0,"cls":"pz-tel","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m11-05","s":5,"t":[{"i":0,"cls":"pd-telefon","w":170,"h":298,"rad":24,"bw":0,"pad":"5px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-05","s":8,"t":[{"i":0,"cls":"pd-telefon","w":170,"h":298,"rad":24,"bw":0,"pad":"5px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-07","s":0,"t":[{"i":0,"cls":"st-tel","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m11-08","s":0,"t":[{"i":0,"cls":"wb-telefon","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-07","s":1,"t":[{"i":0,"cls":"st-tel","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m11-08","s":1,"t":[{"i":0,"cls":"wb-telefon","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-07","s":2,"t":[{"i":0,"cls":"st-tel","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m11-08","s":2,"t":[{"i":0,"cls":"wb-telefon","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-08","s":3,"t":[{"i":0,"cls":"wb-telefon","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-10","s":0,"t":[{"i":0,"cls":"rf-telefon","w":170,"h":298,"rad":24,"bw":0,"pad":"5px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-08","s":6,"t":[{"i":0,"cls":"wb-telefon","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-10","s":1,"t":[{"i":0,"cls":"rf-telefon","w":170,"h":298,"rad":24,"bw":0,"pad":"5px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-07","s":7,"t":[{"i":0,"cls":"st-tel","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m11-10","s":2,"t":[{"i":0,"cls":"rf-telefon","w":170,"h":298,"rad":24,"bw":0,"pad":"5px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true},{"i":1,"cls":"rf-telefon","w":170,"h":298,"rad":24,"bw":0,"pad":"5px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-08","s":8,"t":[{"i":0,"cls":"wb-telefon","w":170,"h":294,"rad":24,"bw":0,"pad":"7px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-10","s":3,"t":[{"i":0,"cls":"rf-telefon","w":170,"h":298,"rad":24,"bw":0,"pad":"5px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-10","s":6,"t":[{"i":0,"cls":"rf-telefon","w":170,"h":298,"rad":24,"bw":0,"pad":"5px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-10","s":8,"t":[{"i":0,"cls":"rf-telefon","w":170,"h":298,"rad":24,"bw":0,"pad":"5px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m11-12","s":2,"t":[{"i":0,"cls":"sb-telefon","w":170,"h":298,"rad":24,"bw":0,"pad":"5px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m12-01","s":2,"t":[{"i":0,"cls":"ip-tel","w":170,"h":290,"rad":26,"bw":0,"pad":"9px","bg":"rgb(30, 27, 38)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m12-02","s":0,"t":[{"i":0,"cls":"sp-tel","w":170,"h":290,"rad":26,"bw":0,"pad":"9px","bg":"rgb(30, 27, 38)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m12-02","s":2,"t":[{"i":0,"cls":"sp-tel","w":170,"h":290,"rad":26,"bw":0,"pad":"9px","bg":"rgb(30, 27, 38)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m12-03","s":2,"t":[{"i":0,"cls":"tz-tel","w":260,"h":470,"rad":36,"bw":0,"pad":"8px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":true,"shadow":true}]}
+{"key":"m12-03","s":4,"t":[{"i":0,"cls":"tz-tel","w":260,"h":470,"rad":36,"bw":0,"pad":"8px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":true,"shadow":true}]}
+{"key":"m12-03","s":5,"t":[{"i":0,"cls":"tz-tel","w":260,"h":470,"rad":36,"bw":0,"pad":"8px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":true,"shadow":true}]}
+{"key":"m12-03","s":7,"t":[{"i":0,"cls":"tz-tel","w":260,"h":470,"rad":36,"bw":0,"pad":"8px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":true,"shadow":true}]}
+{"key":"m12-06","s":0,"t":[{"i":0,"cls":"dp-tel kulrang","w":170,"h":290,"rad":26,"bw":0,"pad":"9px","bg":"rgb(30, 27, 38)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m12-03","s":9,"t":[{"i":0,"cls":"tz-tel","w":260,"h":470,"rad":36,"bw":0,"pad":"8px","bg":"rgb(14, 14, 16)","bc":"rgb(14, 14, 16)","notch":true,"shadow":true}]}
+{"key":"m12-06","s":2,"t":[{"i":0,"cls":"dp-tel","w":170,"h":290,"rad":26,"bw":0,"pad":"9px","bg":"rgb(30, 27, 38)","bc":"rgb(14, 14, 16)","notch":false,"shadow":true}]}
+{"key":"m12-07","s":0,"t":[{"i":0,"cls":"dt-tel","w":170,"h":290,"rad":26,"bw":0,"pad":"9px","bg":"rgb(30, 27, 38)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m12-07","s":2,"t":[{"i":0,"cls":"dt-tel","w":170,"h":290,"rad":26,"bw":0,"pad":"9px","bg":"rgb(30, 27, 38)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m12-07","s":4,"t":[{"i":0,"cls":"dt-tel","w":170,"h":290,"rad":26,"bw":0,"pad":"9px","bg":"rgb(30, 27, 38)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m12-07","s":6,"t":[{"i":0,"cls":"dt-tel","w":170,"h":290,"rad":26,"bw":0,"pad":"9px","bg":"rgb(30, 27, 38)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m12-10","s":0,"t":[{"i":0,"cls":"fr-tel","w":170,"h":290,"rad":26,"bw":0,"pad":"9px","bg":"rgb(30, 27, 38)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m12-10","s":1,"t":[{"i":0,"cls":"fr-tel","w":170,"h":290,"rad":26,"bw":0,"pad":"9px","bg":"rgb(30, 27, 38)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m12-08","s":3,"t":[{"i":0,"cls":"fp-tel","w":170,"h":290,"rad":26,"bw":0,"pad":"9px","bg":"rgb(30, 27, 38)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m12-10","s":2,"t":[{"i":0,"cls":"fr-tel","w":170,"h":290,"rad":26,"bw":0,"pad":"9px","bg":"rgb(30, 27, 38)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m12-10","s":4,"t":[{"i":0,"cls":"fr-tel","w":170,"h":290,"rad":26,"bw":0,"pad":"9px","bg":"rgb(30, 27, 38)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m12-10","s":6,"t":[{"i":0,"cls":"fr-tel","w":170,"h":290,"rad":26,"bw":0,"pad":"9px","bg":"rgb(30, 27, 38)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m12-12","s":2,"t":[{"i":0,"cls":"nx-tel","w":170,"h":290,"rad":26,"bw":0,"pad":"9px","bg":"rgb(27, 22, 48)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}
+{"key":"m12-13","s":2,"t":[{"i":0,"cls":"cs-tel","w":166,"h":290,"rad":30,"bw":0,"pad":"7px","bg":"rgb(30, 27, 38)","bc":"rgb(27, 22, 48)","notch":false,"shadow":true}]}

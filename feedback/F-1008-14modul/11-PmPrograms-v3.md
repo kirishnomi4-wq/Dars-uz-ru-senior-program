@@ -143,10 +143,11 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `07-PmTerms-v3.md` + 
 - Chap — «Dars oxirida» + kulrang yorliq **Diamond Challenge, Y Combinator: shartlar va ariza** (App.jsx osti so'zma-so'z, P-015)
   + vizual (`ArizaSahna`, tayyor holat, bir marta o'zi yuradi — DE-200): brauzerda nomsiz sahifa qatorlari birma-bir yonadi → varaqqa kulrang chiziqlar tushadi → tasmadagi ikki bo'lak (nomsiz) varaqning pastki qismiga uchadi. Matnsiz — 2, 6-ekran kashfiyotlarini ochmaydi (P-015).
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
-  - 01 · Dastur shartini rasmiy sahifadan o'qishni bilib olasiz · `rasmiy sahifa`
-  - 02 · Ikki dasturning shartlari sizga qanday mos kelishini solishtirasiz · `Diamond Challenge · Y Combinator` (11-FILTR 20)
-  - 03 · Pitchdan ariza uchun qisqa qoralama olishni o'rganasiz · `konsept`
-  - 04 · Ariza qoralamasini olti kartaga yozasiz · `jamoa · maslahatchi`
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*
+  - 01 · Dastur shartini rasmiy sahifadan o'qishni bilib olasiz
+  - 02 · Ikki dasturning shartlari sizga qanday mos kelishini solishtirasiz (11-FILTR 20)
+  - 03 · Pitchdan ariza uchun qisqa qoralama olishni o'rganasiz
+  - 04 · Ariza qoralamasini olti kartaga yozasiz
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz · Keyingi bosiladigan joy: «Boshlaymiz» (vizual tugagach halqada).
 - O'qituvchi eslatmasi: Menyu ostidagi «ariza» — bugun boshlanadigan qoralama: dars natijasi — bitta dastur va ariza qoralamasi. Ro'yxatdan o'tish va topshirish — uyda, maslahatchi va ota-ona bilan, xohlasa. Hech kim qabul qilinishga va'da bermaydi.
 - Izoh (MD): sarlavhada yangi atama yo'q (T-011) — «konsept», «maslahatchi» faqat kulrang tegda (P-015; 01 pilot naqshi). Chap yorliq App.jsx ostini so'zma-so'z beradi; dastur nomlari menyuda bor — bu yerda nom-yorliq, izoh 2, 4-ekranlarda (S-018).
@@ -155,13 +156,12 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `07-PmTerms-v3.md` + 
 - Eyebrow: Tushuncha · rasmiy shartlar
 - Sarlavha: **Diamond Challenge'ga kim ariza bera oladi?** (42) — 0-ekran savoliga javob beradigan ekran (T-064)
 - Mentor: Har gapni rasmiy sahifa bilan solishtiring: u yerda shunday yozilganmi?
-  (Birinchi harakat — bashorat; uning yo'rig'i `QBashorat` yorlig'ida, Mentor takrorlamaydi — T-047.)
-- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bitta o'lchov, o'sish tartibida): **Olti gapdan nechtasi rasmiy sahifada yozilgan?** · 2 · 4 · 6 — tanlangach ixcham qator natijagacha turadi; tugmalar shundan keyin yoqiladi.
+- Bashorat yo'q — xatoli solishtirish topshirig'i ustida turib, tugmalarni qulflardi (208/0 e; 13-Modul mezoni) *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*.
 - Vizual (≤ 3 blok: brauzer · gap kartasi va tugmalar · varaq): **chapda** — brauzer `diamondchallenge.org/competition`: nom «Diamond Challenge» (o'z rangida, logotipsiz), ostida kulrang izoh «maktab o'quvchilari g'oyasi uchun xalqaro tanlov» (48) (S-018);
   tepada kulrang yorliq «Sahifa ingliz tilida — mazmuni o'zbekcha»; sahifa qatorlari (A-6; kulrang, hali yonmagan):
   1 Jamoa — 2–4 maktab o'quvchisi, topshirish kuni 14–18 yosh · 2 Jamoaga yordam beradigan, 21 yoshdan katta bitta odam · 3 Hamma narsa ingliz tilida topshiriladi ·
   4 Istalgan mamlakatdan qatnashish mumkin, onlayn ham · 5 Topshirish muddati — 14-yanvar, 2027 · 6 Finalistlar e'lon qilinadi — 9-mart, 2027.
-  **o'rtada** — joriy gap kartasi («Eshitilgan gap · n / 6») va ostida ikki tugma «Sahifada bor» · «Sahifada yo'q» · **o'ngda** — varaq «Shartlar jadvali» (bo'sh, uzuq qatorlar) va ostida kulrang qator «Taxmin · n».
+  **o'rtada** — joriy gap kartasi («Eshitilgan gap»; sanoq tugmada *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*) va ostida ikki tugma «Sahifada bor» · «Sahifada yo'q» · **o'ngda** — varaq «Shartlar jadvali» (bo'sh, uzuq qatorlar) va ostida kulrang qator «Taxmin · n».
 - Kartalar (navbat bilan; eshitilgan gap — olam matni, T-008):
   1. «Jamoada 2–4 o'quvchi bo'ladi.» ✔ Sahifada bor → 1-qator yonadi; varaqqa «Jamoa — 2–4 o'quvchi»
   2. «Topshirish kuni yoshingiz 14–18 bo'lishi kerak.» ✔ Sahifada bor → 1-qator yana yonadi; varaqqa «Yosh — 14–18, topshirish kuni»
@@ -176,12 +176,12 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `07-PmTerms-v3.md` + 
   - 5-gap, «Sahifada bor»: Sahifada mamlakat haqida nima yozilgan? (39)
   - 6-gap, «Sahifada bor»: Sahifada «finalistlar» qatorini toping. (39)
   6/6 dan keyin: tugmalar va karta yopiladi; varaqqa sahifadan 5-qator bir lahza ajralib kiradi — «Muddat — 14-yanvar, 2027» (ostida kulrang «2027-yil tanlovi; sana saytda o'zgarishi mumkin»). Varaq to'liq: olti shart.
-- Natija (bitta blok — E 42; `tugadi`: harakat paneli yopiladi, brauzer va varaq butun enga, ⛶ ichida — q17/q18): yashil xulosa qutisi — birinchi kichik qator taxmin: «Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz ✕ — aslida: 4».
+- Natija (bitta blok — E 42; `tugadi`: harakat paneli yopiladi, brauzer va varaq butun enga, ⛶ ichida — q17/q18): yashil xulosa qutisi (taxmin qatori yo'q).
 - Xulosa: Ariza rasmiy sahifadagi shartlarni o'qishdan boshlanadi: sahifada yo'q gap — taxmin. (84)
 - `QIzoh` (qutining oxirgi kichik qatori — E 42): Bu darsda xalqaro dastur — ariza topshiriladigan va qatnashchilar tanlanadigan xalqaro tanlov yoki dastur. (106) («bu darsda» — universal ta'rif emas, 11-FILTR 12)
-- Tugma (pastki): Avval belgilang → Gaplarni solishtiring (N/6) → Davom etish
+- Tugma (pastki): Gaplarni solishtiring (N/6) → Davom etish
 - Ipucha (40 s harakatsizlikda; javobni aytmaydi): Sahifadagi qatorlardan biri shu gapni aytadimi? (47)
-- Keyingi bosiladigan joy: bashorat variantlari → ikki tugma (navbatma-navbat to'lqin) → «Davom etish».
+- Keyingi bosiladigan joy: ikki tugma (navbatma-navbat to'lqin) → «Davom etish».
 - Nishon: Source Reader! (olti gap birinchi urinishda).
 - O'qituvchi eslatmasi: Rasmiy sahifa — `diamondchallenge.org/competition` (08.10.2026 tekshirilgan); vaqt bo'lsa, proyektorda bir marta ochib ko'rsating — sahifa ingliz tilida. Sanalar 2027-yil tanlovi uchun; topshirish muddati — AQSh sharqiy vaqti bilan 17:00, Toshkentda bu 15-yanvar, 03:00 — oxirgi kunga qoldirmang.
   Yosh topshirish kuniga qarab olinadi: hozir 13 yoshli o'quvchi o'sha kunga 14 ga to'lsa, shartga mos keladi. Sovrin va qatnashish puli haqida gapirmang: bu darsning maqsadi — shartni o'qish va ariza qoralamasi. Finalistlarni dastur tanlaydi — ariza berish qabul qilinish degani emas.
@@ -212,11 +212,11 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `07-PmTerms-v3.md` + 
 - Eyebrow: Tushuncha · ikki dastur
 - Sarlavha: **Y Combinator bugun sizga mos yo'lmi?** (36) (huquqiy «bera olasizmi» emas — kurs tavsiyasi, 11-FILTR 6)
 - Mentor: Tugmalarni birma-bir bosing: ikki dastur sahifasi bir xil savolga nima deydi?
-- Bashorat (ballsiz; S-015 — bitta o'lchov: yosh): **Y Combinator sahifasida yosh chegarasi qanday yozilgan?** · 14 yoshdan · 16 yoshdan · Yozilmagan — tanlangach ixcham qator; tugmalar shundan keyin yoqiladi.
+- Bashorat (ballsiz; S-015 — bitta o'lchov: yosh): **Y Combinator sahifasida yosh chegarasi qanday yozilgan?** · 14 yoshdan · 16 yoshdan · Yozilmagan — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*.
 - Vizual (≤ 3 blok: brauzer · varaq «Solishtirish» · tugmalar): **chapda** — brauzer `ycombinator.com/faq`: nom «Y Combinator» (o'z rangida, logotipsiz), ostida kulrang izoh «Amerikadagi, yangi kompaniya asoschilari uchun dastur» (53) (S-018);
   sahifa qatorlari (A-6; kulrang): 1 Sahifa: o'qiyotgan yoki ishlayotgan odam ham ariza berishi mumkin · 2 Asoschilar dastur davomida va keyin o'z kompaniyasida to'liq vaqt ishlaydi · 3 Dastur San-Fransiskoda, yuzma-yuz o'tadi.
   **o'ngda** — varaq «Solishtirish»: ikki ustun **Diamond Challenge** | **Y Combinator**; uch qator (bo'sh, uzuq): Kim uchun · Nima kutiladi · Qayerda.
-- Tugmalar (ixcham, bir qatorda; joriysi accent, bosilgani ✓): 1 Kim uchun · 2 Nima kutiladi · 3 Qayerda
+- Tugmalar (ixcham, bir qatorda; joriysi accent, bosilgani ✓): 1 Kim uchun · 2 Nima kutiladi · 3 Qayerda *(✎ F-1015-164: tugmalar bashoratdan keyin chiqadi; bosiladigani faqat joriysi, bosilgani — «✓ nom» yozuvi, keyingisi hali ko'rinmaydi)*
 - **Harakat → Vizual o'zgarish:**
   1. «Kim uchun» → brauzerda 1-qator yonadi; varaqqa: Diamond Challenge — «14–18 yoshli 2–4 o'quvchi» · Y Combinator — «yosh yozilmagan; sahifa: o'qiyotgan odam ham ariza berishi mumkin». Y Combinator katagi bir lahza yashil (hali to'sqinlik yo'qdek).
   2. «Nima kutiladi» → 2-qator yonadi; varaqqa: Diamond Challenge — «ingliz tilida 3–5 betlik yozma g'oya va 60 soniyalik video» · Y Combinator — «dastur davomida va keyin — to'liq vaqt o'z kompaniyasida»; Y Combinator katagi accent chegarali bo'ladi.
@@ -257,10 +257,10 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `07-PmTerms-v3.md` + 
 - Eyebrow: Tushuncha · konsept
 - Sarlavha: **Konsept qoralamasini pitchdan qanday boshlaysiz?** (48) («arizaga ko'chadi» — rasmiy forma xaritasidek edi, 11-FILTR 9)
 - Mentor: Tugmalarni birma-bir bosing: Mentor qoralamasi pitchdan qanday boshlanishini ko'ring.
-- Bashorat (ballsiz; S-015 — bitta o'lchov: son, o'sish tartibida): **Qoralamaga nechta pitch bo'lagidan boshlang'ich gap olasiz?** · Bitta · Ikkita · Uchta — tanlangach ixcham qator; tugmalar shundan keyin yoqiladi.
+- Bashorat (ballsiz; S-015 — bitta o'lchov: son, o'sish tartibida): **Qoralamaga nechta pitch bo'lagidan boshlang'ich gap olasiz?** · Bitta · Ikkita · Uchta — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*.
 - Vizual (≤ 3 blok: tasma · varaq · tugmalar; brauzer bu ekranda yo'q): **pastda** — Mentor pitchi tasmasi (olti bo'lak, bir qatordan; yorliq «Mentor misoli · Maydon Jamoa»; A-7) ·
   **o'ngda** — varaq «Ariza qoralamasi · Maydon Jamoa», pastki qismi «Konsept»: uch bo'sh qator (uzuq) — Muammo · Kim uchun · Yechim.
-- Tugmalar (ixcham, bir qatorda): 1 Muammo · 2 Kim uchun · 3 Yechim
+- Tugmalar (ixcham, bir qatorda): 1 Muammo · 2 Kim uchun · 3 Yechim *(✎ F-1015-164: tugmalar bashoratdan keyin chiqadi; bosiladigani faqat joriysi, bosilgani — «✓ nom» yozuvi, keyingisi hali ko'rinmaydi)*
 - **Harakat → Vizual o'zgarish:**
   1. «Muammo» → tasmadagi Muammo bo'lagi accent bilan yonadi, matni varaqdagi «Muammo» qatoriga boshlang'ich gap sifatida uchadi (keyin moslashtiriladi — 11-FILTR 10): «O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.»
   2. «Kim uchun» → tasmadagi Bozor bo'lagi yonadi; undagi «60 kishi» va «6 tashkilotchi» kulrang bo'lib tasmada qoladi (uchmaydi); varaqdagi «Kim uchun» qatoriga yangi gap yoziladi: «Mahallada mini-futbol o'ynaydigan o'yinchilar va o'yin e'lon qiladigan tashkilotchilar.»
@@ -285,9 +285,9 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `07-PmTerms-v3.md` + 
 - Kirish (P-046; saqlangan narsa bo'lsa — o'zi qo'yiladi, tahrirlash mumkin; yo'q bo'lsa — bo'sh):
   - `pm-m12d1-pitch.bolaklar.muammo` → 4-karta · `.yechim` → 6-karta · `.bozor` → 5-kartada kulrang qator · `.jamoa` → 2-kartada kulrang qator. Kalit yo'q yoki `null` — karta bo'sh, kulrang qator ko'rinmaydi.
   - `pm-m12d11-dastur` (oldin saqlangan bo'lsa — darsga qaytganda) → hamma karta o'z qiymati bilan.
-- **Tepada — ixcham chiziq «Arizam · n/6»:** karta nomlari, saqlangani ✓ (bo'sh uzuq qatorlar yo'q, SABOQ 17).
+- **Tepada — ixcham chiziq «Arizam»** (sanoq tugmada *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*): karta nomlari, saqlangani ✓ (bo'sh uzuq qatorlar yo'q, SABOQ 17).
 - **Chapda — varaq «Ariza qoralamasi»** (`ArizaSahna`; o'quvchi ma'lumoti): tepada «Dastur: …», ostida shartlar (Jamoa · Maslahatchi · Ro'yxat — ✓ / ✕ / ?), pastda «Konsept» (Muammo · Kim uchun · Yechim). Ostida o'quvchi pitchi tasmasi (ixcham).
-  **O'ngda — bitta katta karta (joriy; karta tugmalari 1–6: Dastur · Jamoa · Maslahatchi · Muammo · Kim uchun · Yechim — joriysi accent, saqlangani ✓)**: karta sarlavhasi — karta nomi; maydon yoki tanlov variantlari (yorliq input ichida — E 43); ostida bitta kulrang qator; tugmalar bir qatorda: «Saqlash» · o'ngda «Yordam».
+  **O'ngda — bitta katta karta (joriy; karta tugmalari 1–6: Dastur · Jamoa · Maslahatchi · Muammo · Kim uchun · Yechim — joriysi accent, saqlangani ✓)**: karta sarlavhasi — faqat karta nomi (raqami tugmada) *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*; maydon yoki tanlov variantlari (yorliq input ichida — E 43); ostida bitta kulrang qator; tugmalar bir qatorda: «Saqlash» · o'ngda «Yordam».
   1. **Dastur** — savol: Qaysi dasturga ariza tayyorlaysiz? · variantlar «Diamond Challenge» · «Boshqa dastur — shartini tekshiraman» (`'boshqa'`: hali tanlanmagan yo'l, dastur nomi yo'q — 11-FILTR 21)
      · kulrang (Diamond Challenge): «Shart: 14-yanvar, 2027 kuni yoshingiz 14–18 bo'lsin — o'zingiz tekshiring.» (74)
      · kulrang (Boshqa dastur): «O'zbekistondagi tanlovlar nomini aytmaymiz — shartini tekshirmadik. Mentordan so'rang.» (86)
@@ -329,7 +329,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `07-PmTerms-v3.md` + 
   - Boshqa dastur: Konsept tayyor — dastur shartini Mentordan so'rab, varaqqa yozing. (66)
 - Tugma (pastki): Olti kartani yozing (N/6) → Davom etish (jonli darsda ham majburiy — darsning asosiy artefakti, `optionalLive` yo'q — 11-FILTR 40; vaqt yetmasa arena va kartochkalar uyga).
 - Keyingi bosiladigan joy: joriy variant yoki maydon (accent, to'lqin) → «Saqlash» (yozilgach halqada) → keyingi karta.
-- Artefakt-strip (U-042): shu ekrandan — «Arizam · n/6» (ixcham); test, arena, podium va yakunda yo'q (E 50).
+- Artefakt-strip (U-042): shu ekrandan — «Arizam» (ixcham, sanoqsiz — F-1015-119); test, arena, podium va yakunda yo'q (E 50).
 - Nishonlar: Program Picked! (1–3-kartalar saqlanganda; «dastur tanlandi» emas — yo'l belgilandi, 11-FILTR 3) · Concept Draft! (4–6-kartalar saqlanganda).
 - Mentor rejimi: forma o'rniga Mentor misolining varag'i (A-7, ochiq); o'quvchilar o'z ekranida yozadi. Mentor statistikasi: «Olti kartani yozganlar».
 - Saqlash: `pm-m12d11-dastur` (A-13 shartnomasi) — har «Saqlash»da o'sha karta maydoni.
@@ -397,6 +397,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `07-PmTerms-v3.md` + 
 - Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
 - Tartib (E 50): belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. «Bugungi asosiy fikr» qutisi, holat belgilari, artefakt-strip — yakunda yo'q. Ichki skroll qutisi yo'q (SABOQ 18).
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
 - Izoh (MD): uyga vazifada keyingi dars mazmuni aytilmaydi (T-038; «Keyingi dars» qatori — RAD etilgan band, qoladi). ② — tanish doira (ota-ona), rasmiy sahifa; ③ — «ariza bermoqchi bo'lsangiz» (ixtiyoriy narsa majburiydek aytilmaydi — sinf 14); ism yozilmaydi (sinf 9).
   Yakun sarlavhalari kalitdan yig'iladi: saqlangan kartalar soni · `dastur` · `jamoa` · `maslahatchi` (P-046). ✓ va nishon — faqat 1-holatda.
 
@@ -515,7 +516,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 3. **Bitta manbalar:** `DASTUR_SHART` (A-6: `diamond` — 6 qator + `yonalish`, `bosqich1`; `yc` — 3 qator + `early`; har qatorda `uz` va `asl` (inglizcha iqtibos — faqat kod izohida, o'quvchiga chiqmaydi)) · `JAMOA_PITCH` (1-dars, tayanch 1.1 aynan) · `MENTOR_KONSEPT` · `MENTOR_ARIZA` (A-7) ·
    `GAP_KARTA` (2-ekran: 6 × `{ matn, javob: 'bor' | 'yoq', qator }`). s0, s2, s4, s6, s7 (Yordam, mentor rejimi) shundan o'qiydi. **Sanalar — bitta konstanta** `DASTUR_SHART.diamond.sanalar` (`{ yil: 2027, muddat, finalistlar }`): 2-ekran qatorlari, 7-ekran 1-karta, kartochka 7 va O'qituvchi eslatmasi shundan — yangi tanlovda bitta joy o'zgaradi (11-FILTR 22); ⛔ «qur» kuni rasmiy sahifa qayta ochiladi.
 4. s0: `QKirish` — javoblar «Aynan!» / «Qiziq fikr!», ballsiz (`correct: false` hammaga — J-026); maket `pm-m12d1-pitch.bolaklar` dan (yo'q bo'lsa `JAMOA_PITCH` + yorliq); tanlovga qarab brauzer qatori yonadi, «?» qoladi.
-5. s2: `QBashorat` (2 · 4 · 6) → 6 karta ketma-ket (E 53), tugmalar «Sahifada bor» · «Sahifada yo'q»; to'g'ri — qator yonadi va karta varaqqa uchadi / «Taxmin» qatoriga tushadi; xato — silkinish + `QXato`; 3-kartadan keyin `QIzoh` (maslahatchi); 6/6 da muddat qatori, `tugadi`; nishon `sourceReader` (xato 0).
+5. s2: (bashorat olindi — F-1015-119) 6 karta ketma-ket (E 53), tugmalar «Sahifada bor» · «Sahifada yo'q»; to'g'ri — qator yonadi va karta varaqqa uchadi / «Taxmin» qatoriga tushadi; xato — silkinish + `QXato`; 3-kartadan keyin `QIzoh` (maslahatchi); 6/6 da muddat qatori, `tugadi`; nishon `sourceReader` (xato 0).
 6. s4: `QBashorat` (14 · 16 · yozilmagan) → 3 tugma; varaq `solishtirish` rejimi; 2-tugmadan keyin `QIzoh`; 3/3 da «Bugun maktab o'quvchisi uchun» qatori; yashil quti — taxmin · xulosa · `QIzoh` (Early Decision).
 7. s6: `QBashorat` (bitta · ikkita · uchta) → 3 tugma; `PitchTasma` Mentor misoli; 2-tugmada Bozor bo'lagidagi sonlar uchmaydi (kulrang qoladi), yangi gap yoziladi; 3/3 da kulrang qator (3–5 betlik yozma g'oya); `QIzoh` (konsept).
 8. s7: 6 bosqichli forma (ketma-ket karta, E 53): 1 — variantlar `diamond` / `boshqa` (+ Diamond Challenge'da ro'yxat variantlari) · 2 — variantlar 1–4 / «Hali bilmayman» (`'hali'`) · 3 — variantlar «Bor» / «Hali yo'q» · 4–6 — `textarea` ≤160 (belgi sanog'i); varaq belgilari `dastur` ga qarab: `diamond` — ✓/✕/?, `boshqa` — faqat «?» (11-FILTR 2).

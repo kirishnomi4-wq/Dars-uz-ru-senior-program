@@ -139,10 +139,11 @@ namunalar: 12-Modul `07-PmFiftyUsers-v3.md` + `07-FILTR.md` (PM+PRAKT shakli) ·
 - Chap — «Dars oxirida» + kulrang yorliq (App.jsx osti so'zma-so'z — P-015): «xarajat, raqobat, qiymat → narx va to'lov taklifi ekrani»; ostida vizual bir marta o'zi yuradi (DE-200): narx varag'i — to'rt qator nomlari bilan, sonsiz (sonlar — 2-ekran kashfiyoti) →
   telefon: «E'lon berish» → to'lov ekrani (narx qatori «? so'm») → brauzer «Mashq to'lov» → yana ilova. Yo'l chizig'i chapdan o'ngga chiziladi.
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
-  - 01 · Narxga bir necha tomondan qarashni bilib olasiz · `narx varag'i`
-  - 02 · O'z mahsulotingiz narxini asoslab yozasiz · `narx`
-  - 03 · Pullik qulaylik bosilganda to'lov ekrani chiqadi · `Amaliyot 1`
-  - 04 · Mashq to'lovdan keyin qulaylik ochilishini tekshirasiz · `Amaliyot 2`
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
+  - 01 · Narxga bir necha tomondan qarashni bilib olasiz
+  - 02 · O'z mahsulotingiz narxini asoslab yozasiz
+  - 03 · Pullik qulaylik bosilganda to'lov ekrani chiqadi
+  - 04 · Mashq to'lovdan keyin qulaylik ochilishini tekshirasiz
 - Pastki qator (mono, kichik): repo `maydon-jamoa` · boshlang'ich holat `m13-dars-04-start` · namuna `m13-dars-04-done` — amaliyotlarni o'z mahsulotingizda bajarasiz.
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz
 - O'qituvchi eslatmasi: 3-darsdagi Amaliyot 1 va 2 (webhook, mashq sahifasi) tugamagan o'quvchi bugun avval o'shani tugatadi: bu darsning Amaliyot 2 si 3-darsdagi sahifaga tayanadi; ulgurmasa A2 uyga qoladi — yakun shuni aytadi.
@@ -161,7 +162,7 @@ namunalar: 12-Modul `07-PmFiftyUsers-v3.md` + `07-FILTR.md` (PM+PRAKT shakli) ·
   — tanlangach yopilmaydi: ixcham qator «Taxminingiz: …» natijagacha turadi.
 - Vizual (≤ 3 blok: sahna · varaq · harakat tugmasi): chapda telefon yoki xizmat kartalari (qadamga qarab) · o'ngda **«Narx varag'i»** — to'rt qator, nomlari «?», qiymatlari bo'sh · varaq ostida hisob qatori bo'sh.
 - **Harakat → Vizual o'zgarish** (qadamlar tartibda, bittasi halqada; N/3):
-  1. **Xarajat** — chapda to'rt xizmat kartasi: Backend (Render) · Database (Neon) · lending (Netlify) · o'rnatish fayli — har biri «0 so'm · bepul reja»; Backend kartasida kulrang belgi «uxlaydi» halqada.
+  1. **Xarajat** — chapda to'rt xizmat kartasi: Backend (Render) · Database (Neon) · lending (Netlify) · o'rnatish fayli — har biri «0 so'm · bepul reja»; Backend kartasida kulrang belgi «uxlaydi» halqada (bashoratdan oldin — oddiy kulrang yozuv, keyin tugma *(✎ F-1015-164)*).
      Bosilganda Backend kartasi ag'dariladi: «Bepul: 15 daqiqa so'rovsiz qolsa uxlaydi» → «Uxlamaydigan: oyiga 7 dollar · taxminan 83 000 so'm» (ostida kichik kulrang «render.com · 7-oktabr kursi»); karta ostida kulrang qator:
      «Bu kursda Backend bepul qoladi — 83 000 faqat narx hisobi uchun.» (64)
      Son kartadan varaqning 1-qatoriga uchadi: **Xarajat · bugun 0 so'm · uxlamasa — oyiga taxminan 83 000 so'm**. Varaq ostida hisob qatori chiziladi: «Agar 6 tashkilotchining hammasi olsa: 6 × 10 000 = 60 000 so'm» — qizil, yonida muhr «Backend xarajatini qoplamaydi».
@@ -237,7 +238,7 @@ namunalar: 12-Modul `07-PmFiftyUsers-v3.md` + `07-FILTR.md` (PM+PRAKT shakli) ·
 - Sarlavha: **Mahsulotingiz narxi nimaga qarab chiqadi?** (41)
 - Mentor: Kartalarni bittadan to'ldiring — xarajatdan boshlang, ekran matnini oxirida yozasiz.
 - Kirish qatori (kulrang, tepada, bir marta): Xarajat — oyiga, xizmat sahifasidan, sanasi bilan; qolgani — sizning taxminingiz. (81)
-- Qadamlar 1/5 (`QQadamlar` tugmalari «Xarajat · Raqobat · Qiymat · Narx · Ekran»); bitta ustun; bir vaqtda bitta katta karta; yozilgani yuqoridagi ixcham qatorga uchadi (SABOQ 29, E 53). Yorliq input ichida (E 43): doimiy raqam belgisi + qisqa savol placeholder'da; «masalan» namunalari — «Yordam» ichida.
+- Qadamlar 1/5 (`QQadamlar` tugmalari «Xarajat · Raqobat · Qiymat · Narx · Ekran»); bitta ustun; bir vaqtda bitta katta karta (sarlavhasiz — karta nomi qadam-qatorida, hisob tugmada *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*); yozilgani yuqoridagi ixcham qatorga uchadi (SABOQ 29, E 53). Yorliq input ichida (E 43): doimiy raqam belgisi + qisqa savol placeholder'da; «masalan» namunalari — «Yordam» ichida.
   Chapda telefon — o'quvchining to'lov taklifi ekrani, kartalar to'lgani sari jonli yoziladi (P-046): sarlavha · matn · narx qatori «{davrKun} kun — {narx} so'm» · tugma · pastda o'zgarmas kulrang «Test rejim: pul yechilmaydi» (tahrirlanmaydi — TAQIQLAR 1).
   1. **Xarajat** — placeholder «Mahsulotni ushlab turishga oyiga qancha ketadi?»; uch tugma: «Bugun — 0 so'm (bepul rejalar)» · «O'zim yozaman» → son maydoni (so'm) + manba maydoni (placeholder «Qayerdan bildingiz? Sahifa va sana») · uchinchisi kulrang, kichik: «Mentor misoli: Render — taxminan 83 000 so'm» (F-1007-462: Mentor soni sukut yoki birinchi tanlov emas).
      Uchinchi tugma ostida kichik kulrang: «Render, oyiga 7 dollar · 7-oktabr kursi».
@@ -446,6 +447,7 @@ namunalar: 12-Modul `07-PmFiftyUsers-v3.md` + `07-FILTR.md` (PM+PRAKT shakli) ·
 - Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
 - Tartib: chip va ball · sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — sarlavha «Uyda nima qilasiz?», maydonlar katta quti (yorliq bosh harfda, «:» siz), qadamlar raqam-doira, «Keyingi dars» karta ichida (13.5px); qadam matni o'zgarmagan.
 - Izoh (MD): ① — real odam bilan, lekin suhbat emas: o'quvchi o'z narxini tushuntiradi, narx so'ramaydi va pul haqida kelishmaydi (pul suhbati — 6-dars ishi, bu yerda va'da qilinmaydi). ② bandi blok bayroqlari va `pm-m11d4-narx` dan yig'iladi (P-046).
   «Keyingi dars» qatori — App.jsx `m11-05` nomi, so'zma-so'z (`00-NOMLAR.md`; P-023, T-075 — va'da emas). Yakun sarlavhalarida «uyda» — faqat oxirgi holatda (PM+PRAKT darsida uyga vazifa bor).
 

@@ -1,6 +1,9 @@
 # 9-dars «Foydalanuvchi fikri va iteratsiya» — yakuniy matn
 
-Fayl: `src/5-Modull/BotFeedbackIterationLesson.jsx` · 11 ekran (8 ekran + 3 amaliyot bloki A1–A3) · Keyingi dars: «AI-agent yaratish»
+> ✎ **F-1015-122 (16.10, 208-qonun 4-band, foydalanuvchi qarori — 2-variant):** dars yuzasidagi bezak emoji kodda olingan — sarlavha, yorliq, karta ikonlari, fayl tablari, test/amaliyot yorliqlari, tugmalar. Qolgan: sxema tugunlari, keys sahnasi, o'yin qatlami (nishon, arena, podium), Yakun, takrorlash oynasi, Mentor paneli, bot/ilova maketidagi mahsulot mazmuni. Bu MD dagi shunday bezak emoji endi ekranda yo'q.
+
+
+Fayl: `src/5-Modull/BotFeedbackIterationLesson.jsx` · 12 ekran (9 ekran + 3 amaliyot bloki A1–A3) · Keyingi dars: «AI-agent yaratish»
 Holat: 04.10.2026 — kodga mos
 
 ## 0 · Kirish
@@ -72,7 +75,7 @@ Holat: 04.10.2026 — kodga mos
        ## Aniq o'zgarish (v2)
        {qayerda} da {nima o'zgarsin}. {nima buzilmasin}.
        ```
-- Kutilgan natija · FIKRLAR.md (namuna: AvtoPizza) — fayl `FIKRLAR.md`:
+- Kutilgan natija · FIKRLAR.md (namuna: AvtoPizza) — fayl `FIKRLAR.md`: (yorliq natija ostida ✎ F-1015-166)
   ```
   # FIKRLAR — AvtoPizza
   | № | Fikr                       | Tur    | Aniqmi | Nechta |
@@ -133,7 +136,7 @@ Holat: 04.10.2026 — kodga mos
   3. Ishga tushirish — terminal xatosiz. Antigravity aytgan qatorlarni o'qing: faqat kerakli joy o'zgarganmi (4 tekshiruv — 5-dars).
      - Xato izohi: Xato bo'lsa: «Shu xato chiqdi: {xato}. Tuzat.»
   4. Telegramda tekshirish — avval tuzatilgan joy; keyin eski uch narsa: `/start`, menyu tugmalari, bitta buyurtma oxirigacha. Hammasi ishlasa — v2 tayyor.
-- Kutilgan natija · namuna: AvtoPizza v2 (chat):
+- Kutilgan natija · namuna: AvtoPizza v2 (chat): (yorliq natija ostida ✎ F-1015-166)
   - mijoz: «Margarita» bosildi
   - bot: Margarita — 45 000 so'm. Buyurtma qabul qilindi. Manzilingizni yozing.
   - mijoz: Chilonzor 5
@@ -178,7 +181,7 @@ Holat: 04.10.2026 — kodga mos
        ## v2 dan keyin
        {odam nima dedi} — {shikoyat qoldimi / yo'qoldimi}. Keyingi: {ro'yxatdagi navbatdagi fikr}.
        ```
-- Kutilgan natija · terminal + Render log:
+- Kutilgan natija · terminal + Render log: (yorliq natija ostida ✎ F-1015-166)
   ```
   $ git push
   To https://github.com/{siz}/TelegramBotNest.git
@@ -192,12 +195,11 @@ Holat: 04.10.2026 — kodga mos
 
 ## 9 · Natijalar (podium) — jonli reyting
 
-## 10 · Yakun
-- Eyebrow: Tayyor
-- Belgi: ✓ v2 serverda · N/2 to'g'ri
-- Sarlavha: Bot fikr bilan o'sadi — siz buni bir marta qildingiz.
-- Jonli viktorina tugmasi: CODE STRIKE · kutish holatida: Mentorni kuting
-- Takrorlash — kartochkalar (12; old tomonida savol, ochilganda javob va izoh):
+## 10 · Kartochkalar
+10-ekran
+- Eyebrow: Takrorlash
+- Sarlavha: O'zingizni sinab ko'ring.
+- Kartochkalar (12; old tomonida savol, ochilganda javob va izoh):
 
 | Old tomon (savol) | Orqa (javob) | Izoh |
 |---|---|---|
@@ -216,9 +218,23 @@ Holat: 04.10.2026 — kodga mos
 
 - Yozuvlar: ↻ O'rganilmoqda · N · ✓ Bildim · N · tugmalar (karta ochilgach): ✗ Takrorlash · ✓ Bildim
 - Oxirida: Hammasini bilasiz! · 12/12 atama yodlandi · ↻ Qaytadan takrorlash
-- Keyingi dars — **«AI-agent yaratish»**. Botga maqsad berasiz — keyingi qadamni u o'zi tanlab, asbob chaqiradi: masalan, buyurtmani bazaga saqlaydi.
+- Tugma: Yakunlash →
+✎ F-1015-112 (15.10): kartochkalar Yakun ichidan alohida ekranga chiqdi (207-qonun; 172.1 «kartochkalar shu ekranda» bekor). Ekranlar: 11 → 12.
+
+## 11 · Yakun
+- Eyebrow: Tayyor
+- Belgi: ✓ Dars tugadi · Testlar: N/N ✎ F-1015-161
+- Sarlavha: Bot fikr bilan o'sadi — siz buni bir marta qildingiz.
+- Jonli viktorina tugmasi: CODE STRIKE · kutish holatida: Mentorni kuting
+- ✓ Endi siz bilasiz (✎ F-1015-161 — darsning takrorlash oynalari va xulosalaridan):
+  - Fikr uch turda: bug — tuzatiladi, taklif — o'ylab ko'riladi, maqtov — buzilmasin
+  - Aniq fikrda joy va muammo bor. Noaniqni avval aniqlashtirasiz: «aynan qayerda?»
+  - Ko'p odam aytgan va qattiq qiynagan — birinchi
+  - Qolganiga «hozir emas» deyish ham qaror
 - Nishonlaringiz — N/3 (olingan nishonda nomi va tavsifi, olinmaganida faqat nomi)
+- Keyingi dars — **«AI-agent yaratish»**. Botga maqsad berasiz — keyingi qadamni u o'zi tanlab, tool chaqiradi: masalan, buyurtmani bazaga saqlaydi.
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - Yuqoridagi hisoblagich: Nishonlaringiz — N/3

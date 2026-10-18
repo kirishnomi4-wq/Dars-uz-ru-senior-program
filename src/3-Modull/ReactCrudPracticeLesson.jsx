@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, createContext, useContext, useCallback, useMemo } from 'react';
+import { createPortal } from 'react-dom'; // F-1015-362: «Avval tayyorlaning» oynasi .lesson-root ga (fade-up transform ichida fixed ishlamaydi)
 const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c92bef604c7ad68380dd.png';
 
 // ============================================================
@@ -13,6 +14,9 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // Klassik xato (s13): games.push(yangi) — mutatsiya, React ko'rmaydi → setGames([...games, yangi]). State darsidagi bug'ning ukasi.
 // MUHIM: kelgusi darslar ro'yxati AYTILMAYDI — faqat yakunda teaser. AUDIOSIZ. "sehr"/"g'isht" yo'q.
 // Yakuniy ekran (s14): VS Code — setGames([...games, yangi]) ni qo'lda yozish.
+// F-1015-344 (17.10, tungi avtopilot): 22 → 8 ekran. Ip — robo-games (GameCard + games). a1 qo'shish — o'zingiz VS Code'da (kod oynasi),
+//        a2 TOP (map + {...g}) va o'chirish (filter + confirm) — Gemini prompti, a3 — AI xatosi (push, eski s13), s14 yakuniy. Antigravity olindi.
+//        Oldingi 22 ekranli: arxiv/F-1015-reactcrud-oldin/.
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
 // ============================================================
 
@@ -26,7 +30,7 @@ const T = {
 const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', str: '#7DD181', comment: '#6B7585', punct: '#9FB4D8' };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 
 
 
@@ -81,25 +85,11 @@ const HW_TOKENS = [
 const SCREEN_META = [
   { id: 's0',  type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },
   { id: 's1',  type: 'rule',        template: 'custom',   scored: false, scope: null },
-  { id: 's2',  type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's3',  type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's4',  type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
-  { id: 's5',  type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 'sp1', type: 'practice',    template: 'custom',   scored: false, scope: null },
-  { id: 's5b', type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
-  { id: 's6',  type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 'sp2', type: 'practice',    template: 'custom',   scored: false, scope: null },
-  { id: 's7',  type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 'sp3', type: 'practice',    template: 'custom',   scored: false, scope: null },
-  { id: 's8',  type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
-  { id: 's9',  type: 'case',        template: 'custom',   scored: false, scope: null },
-  { id: 's10', type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's11', type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's12', type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
-  { id: 's13', type: 'debug',       template: 'custom',   scored: false, scope: null },
+  { id: 'a1',  type: 'exploration', template: 'custom',   scored: false, scope: null }, // F-1015-344: qo'shish (AI'siz)
+  { id: 'a2',  type: 'exploration', template: 'custom',   scored: false, scope: null }, // TOP + o'chirish (Gemini)
+  { id: 's13', type: 'debug',       template: 'custom',   scored: false, scope: null }, // a3 — AI xatosi (push)
   { id: 's14', type: 'test',        template: 'custom',   scored: true,  scope: 'final' },
   { id: 's15b',type: 'stats',       template: 'custom',   scored: false, scope: null },
-  { id: 'sflash', type: 'flashcards', template: 'custom', scored: false, scope: null },
   { id: 's15', type: 'summary',     template: 'custom',   scored: false, scope: null }
 ];
 const TOTAL_SCREENS = SCREEN_META.length;
@@ -167,10 +157,10 @@ function AchCounter() {
   );
 }
 
-const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navContent, narrow, mentorStatic, scrollSignal }) => {
+const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navContent, narrow, mentorStatic, mentorYigil, scrollSignal }) => {
   const isMobile = useIsMobile();
   const isNarrow = useIsMobile(768); // mobil: Mentor yig'ilish rejimi
-  const collapseOn = isNarrow && !mentorStatic; // F-0914-08 (foydalanuvchi): kompyuterda Mentor doim ochiq, faqat tor ekranda yig'iladi
+  const collapseOn = (isNarrow || mentorYigil) && !mentorStatic; // F-0914-08 (foydalanuvchi): kompyuterda Mentor doim ochiq, faqat tor ekranda yig'iladi; istisno mentorYigil (F-1015-364) — bosishda kompyuterda ham
   const padH = isMobile ? 12 : 60; // InternetLesson layout standarti: 1100px + 60px
   const [mCollapsed, setMCollapsed] = useState(false);
   const contentRef = useRef(null);
@@ -193,7 +183,7 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
     setMCollapsed(true);
   };
   const onContentScroll = () => {
-    if (!collapseOn || mCollapsed) return;
+    if (!collapseOn || mCollapsed || !isNarrow) return; // kompyuterda (mentorYigil) — faqat bosishda, aylantirishda emas
     const el = contentRef.current;
     if (el && el.scrollTop > 6) setMCollapsed(true);
   };
@@ -217,11 +207,13 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
   );
 };
 const NavBack = ({ onPrev }) => <button className="btn-ghost" onClick={onPrev} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Orqaga', ru: 'Назад' })}</button>;
-const NavNext = ({ disabled, label = { uz: 'Davom etish', ru: 'Продолжить' }, onClick, optionalLive }) => {
+const NavNext = ({ disabled, label = { uz: 'Davom etish', ru: 'Продолжить' }, onClick, optionalLive, mentorLock }) => {
   const gate = useContext(LiveGateCtx);
   const locked = !!(gate && gate.locked);
   const live = gate && gate.live;
-  const freeRide = !!(optionalLive && live && live.mode === 'student' && live.status !== 'ended' && live.mentorAlive);
+  // F-1012: mentor (jonli dars va LMS preview) topshiriqqa qulflanmaydi; o'quvchi allaqachon o'tgan ekranga qaytsa ham qulf yo'q
+  // F-1013-02: test ekrani (mentorLock) — mentor avval «Natijani ochish» bosadi, keyin o'tadi (odatiy tartib saqlanadi)
+  const freeRide = !!((optionalLive && live && live.mode === 'student' && live.status !== 'ended' && live.mentorAlive) || (live && live.mode === 'mentor' && !mentorLock) || (gate && gate.passed));
   return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? tr({ uz: "Mentor hali bu sahifaga o'tmadi", ru: 'Ментор ещё не перешёл на эту страницу' }) : undefined} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)', marginLeft: 'auto' }}>{locked ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : (freeRide && disabled ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr(label))}</button>;
 };
 
@@ -464,7 +456,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
   const revealed = !oneShot || !!(live && (live.revealScreen === screen || (live.mentorMax ?? live.mentorScreen) > screen || live.status === 'ended' || !live.mentorAlive));
   const waiting = oneShot && solved && !revealed; // javob qotdi — natija mentordan kutilmoqda
   return (
-    <Stage eyebrow={eyebrow} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' })) : solved ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (oneShot ? tr({ uz: 'Javob tanlang', ru: 'Выберите ответ' }) : tr({ uz: "To'g'ri javobni toping", ru: 'Найдите правильный ответ' }))} onClick={onNext} /></>}>
+    <Stage eyebrow={eyebrow} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext mentorLock disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? (mReveal ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' })) : solved ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (oneShot ? tr({ uz: 'Javob tanlang', ru: 'Выберите ответ' }) : tr({ uz: "To'g'ri javobni toping", ru: 'Найдите правильный ответ' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ justifyContent: 'flex-start', gap: 'clamp(16px,2.5vw,24px)' }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: '-8px 0 0', color: T.accent, fontWeight: 600 }}>{tr({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: '⚡ Живой урок — одна попытка, подумайте перед нажатием!' })}</p>}
@@ -598,7 +590,7 @@ const MyCard = ({ game, onLike, onTop, onDelete, dim, flash }) => (
       {(onLike || onTop) && (
         <div className="cardacts">
           {onLike && <button className="cardbtn" onClick={onLike}>❤️ like</button>}
-          {onTop && <button className="cardbtn" onClick={onTop} style={game.top ? { background: T.accentSoft, color: T.accent } : undefined}>🔥 TOP</button>}
+          {onTop && <button className="cardbtn" onClick={onTop} style={game.top ? { background: T.accentSoft, color: '#B3361A' } : undefined}>🔥 TOP</button>}
         </div>
       )}
     </div>
@@ -628,6 +620,12 @@ const OPS = [
 ];
 
 // ===== SCREEN 0 — HOOK (faqat ko'rsatadigan ro'yxat — tugmalar ishlamaydi) =====
+// F-1015-393: kirish javobi — variantga bitta qisqa gap + «Bugun…» qatori (eski uzun umumiy matn o'qilmasdi)
+const ACK_KIRISH = {
+  a: { uz: "Hozir ilova faqat ko'rsatadi — bu yetmaydi.", ru: 'Сейчас приложение только показывает — этого мало.' },
+  b: { uz: 'Aynan!', ru: 'Именно!' },
+  c: { uz: 'Rang emas — amallar yetishmaydi.', ru: 'Не цвет — не хватает действий.' }
+};
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [tried, setTried] = useState(!!storedAnswer);
   const [shakeId, setShakeId] = useState(null);
@@ -679,9 +677,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               })}
             </div>
             {/* F-0926-06: noto'g'ri variantga «Aynan!» emas — «Aslida» (I2, KORPUS §215); to'g'risiga variant matni qaytarilmaydi (159/11) */}
-            {picked !== null && <p className="hook-ack fade-step">{picked === 'b'
-              ? tr({ uz: <>Aynan! Hozircha ilova faqat <b>ko'rsata</b> oladi (Read) — qolgan uchtasini bugun o'rganamiz.</>, ru: <>Именно! Пока приложение умеет только <b>показывать</b> (Read) — остальные три изучим сегодня.</> })
-              : tr({ uz: <>Aslida hozircha ilova faqat <b>ko'rsata</b> oladi (Read). Yana uchtasi kerak: <b>qo'shish, o'zgartirish, o'chirish</b> — bugun shularni o'rganamiz.</>, ru: <>На самом деле пока приложение умеет только <b>показывать</b> (Read). Нужны ещё три: <b>добавить, изменить, удалить</b> — сегодня их и изучим.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step"><b>{tr(ACK_KIRISH[picked])}</b> {tr({ uz: "Bugun qo'shish, o'zgartirish va o'chirishni qo'shamiz.", ru: 'Сегодня добавим создание, изменение и удаление.' })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -690,558 +686,300 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   );
 };
 
-// ===== SCREEN 1 — REJA =====
-const Screen1 = ({ screen, onNext, onPrev }) => {
-  const STEPS = [
-    { text: tr({ uz: 'CRUD — ilovaning 4 amali', ru: 'CRUD — 4 действия приложения' }), tag: 'Create · Read · Update · Delete' },
-    { text: tr({ uz: "Create — qo'shish", ru: 'Create — добавление' }), tag: '[...games, yangi]' },
-    { text: tr({ uz: "Update — o'zgartirish", ru: 'Update — изменение' }), tag: 'games.map(...)' },
-    { text: tr({ uz: "Delete — o'chirish", ru: 'Delete — удаление' }), tag: 'games.filter(...)' },
-    { text: tr({ uz: 'AI bilan loyihani bitirish', ru: 'Завершение проекта с AI' }), tag: 'vibecoding' }
-  ];
-  const isNarrow = useIsMobile(768);
-  const [showSteps, setShowSteps] = useState(false);
-  const PreviewBlock = (
-    <Col>
-      <p className="flow-label">{tr({ uz: 'Natija', ru: 'Результат' }) /* F-0926-06: «Dars oxirida — sizning to'liq ilovangiz» mentor gapini takrorlardi (159/7) */}</p>
-      <Win title={tr({ uz: "Mening o'yinlarim — localhost:5173", ru: 'Мои игры — localhost:5173' })} minH={120}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-          <span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 800, fontSize: 12.5, color: T.ink }}>{tr({ uz: "3 ta o'yin", ru: '3 игры' })}</span>
-          <AddBtn mock small />
-        </div>
-        <CardGrid cols={3}><MyCard game={{ ...GAMES[0], top: true }} /><MyCard game={GAMES[1]} /><MyCard game={GAMES[3]} /></CardGrid>
-      </Win>
-      <pre className="code-box" style={{ padding: '10px 14px' }}>{'setGames('}<span style={{ background: 'rgba(255,79,40,0.18)', borderRadius: 5, padding: '1px 5px' }}>{'[...games, yangi]'}</span>{')'}</pre>
-      {/* F-0926-06: «→ qo'shish · o'zgartirish · o'chirish — hammasi sizda» olindi — mentor aytadi (159/7) */}
-    </Col>
-  );
-  const StepsBlock = (
-    <Col>
-      <p className="flow-label">{tr({ uz: 'Bugungi 5 qadam', ru: '5 шагов на сегодня' })}</p>
-      <ol className="roadmap">
-        {STEPS.map((s, i) => (<li key={i} className="step-card fade-up" style={{ animationDelay: `${0.08 + i * 0.05}s` }}><span className="step-num">{String(i + 1).padStart(2, '0')}</span><span className="step-body"><span className="step-text">{s.text}</span>{s.tag && <span className="step-tag">{s.tag}</span>}</span></li>))}
-      </ol>
-    </Col>
+// ===== F-1015-344: 22 → 8 ekran. Ip — robo-games (m3-03…m3-06): GameCard + games ro'yxati. Qo'shish — o'zingiz (VS Code), TOP va o'chirish — Gemini =====
+const PromptBlok = ({ matn, yigil = false, onYigil }) => {
+  const [ok, setOk] = useState(false);
+  const [yig, setYig] = useState(false); // F-1015-363: nusxalangach prompt bitta qatorga yig'iladi, joyiga kod oynasi ko'tariladi
+  const nusxa = async () => { try { await navigator.clipboard.writeText(matn); setOk(true); setTimeout(() => setOk(false), 1600); if (yigil) setTimeout(() => { setYig(true); onYigil && onYigil(); }, 650); } catch { /* clipboard yopiq — ustoz ko'rsatadi */ } };
+  if (yig) return (
+    <button type="button" className="am-karta am-yig fade-step" aria-expanded="false" onClick={() => setYig(false)}>
+      <span className="am-yig-ok">✓ {tr({ uz: 'Prompt nusxalandi', ru: 'Промпт скопирован' })}</span>
+      <span className="am-yig-k">{tr({ uz: "Ko'rish", ru: 'Показать' })} <span className="am-qt-ic" aria-hidden="true">▾</span></span>
+    </button>
   );
   return (
-    <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' })} onClick={onNext} /></>}>
-      <div className="screen">
-        <div className="head">
-          <h2 className="title h-title fade-up">{tr({ uz: <>Bugun <span className="italic" style={{ color: T.accent }}>bitta to'liq ilovani</span> AI bilan bitirasiz.</>, ru: <>Сегодня вы завершите <span className="italic" style={{ color: T.accent }}>одно полное приложение</span> вместе с AI.</> })}</h2>
+    <div className="am-karta fade-up delay-2">
+      <div className="am-prompt-h"><p className="flow-label">{tr({ uz: 'Prompt', ru: 'Промпт' })}</p><button type="button" className="am-nusxa" onClick={nusxa}>{ok ? tr({ uz: '✓ Nusxalandi', ru: '✓ Скопировано' }) : tr({ uz: 'Promptni nusxalash', ru: 'Скопировать промпт' })}</button></div>
+      <pre className="am-masalan">{matn}</pre>
+    </div>
+  );
+};
+// Prompt yig'iq karta: «Ko'rish» — oynada to'liq matn, «Promptni nusxalash» — nusxa (Qadamlar kabi; sahifa uzaymaydi)
+const PromptKarta = ({ matn }) => {
+  const [ok, setOk] = useState(false);
+  const [ochiq, setOchiq] = useState(false);
+  const btnRef = useRef(null);
+  const yopRef = useRef(null);
+  const nusxa = async () => { try { await navigator.clipboard.writeText(matn); setOk(true); setTimeout(() => setOk(false), 1600); } catch { /* clipboard yopiq — ustoz ko'rsatadi */ } };
+  const yop = () => { setOchiq(false); setTimeout(() => btnRef.current && btnRef.current.focus(), 0); };
+  useEffect(() => {
+    if (!ochiq) return;
+    const onKey = (e) => { if (e.key === 'Escape') yop(); };
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKey);
+    yopRef.current && yopRef.current.focus();
+    return () => { document.body.style.overflow = ''; window.removeEventListener('keydown', onKey); };
+  }, [ochiq]);
+  const birinchi = matn.split('\n')[0];
+  return (
+    <div className="am-karta pk-karta">
+      <div className="am-prompt-h">
+        <p className="flow-label">{tr({ uz: 'Prompt', ru: 'Промпт' })}</p>
+        <span className="pk-tg">
+          <button ref={btnRef} type="button" className="pk-kor" aria-haspopup="dialog" onClick={() => setOchiq(true)}>{tr({ uz: "Ko'rish", ru: 'Показать' })}</button>
+          <button type="button" className="am-nusxa" onClick={nusxa}>{ok ? tr({ uz: '✓ Nusxalandi', ru: '✓ Скопировано' }) : tr({ uz: 'Promptni nusxalash', ru: 'Скопировать промпт' })}</button>
+        </span>
+      </div>
+      <p className="pk-bosh">{birinchi}</p>
+      {ochiq && createPortal(<>
+        <div className="zoom-backdrop" onClick={yop} />
+        <div className="am-tt-oyna pk-oyna" role="dialog" aria-modal="true" aria-label={tr({ uz: 'Prompt', ru: 'Промпт' })}>
+          <div className="am-tt-oyna-h"><span className="am-tayyor-h">{tr({ uz: 'Prompt', ru: 'Промпт' })}</span><button ref={yopRef} type="button" className="am-tt-yop" onClick={yop} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button></div>
+          <pre className="am-masalan">{matn}</pre>
+          <button type="button" className="am-nusxa pk-ich" onClick={nusxa}>{ok ? tr({ uz: '✓ Nusxalandi', ru: '✓ Скопировано' }) : tr({ uz: 'Promptni nusxalash', ru: 'Скопировать промпт' })}</button>
         </div>
-        <Mentor>{tr({ uz: <>Ishonasizmi — dars oxirida o'yinlarni <b style={{ color: T.ink }}>qo'sha, o'zgartira va o'chira</b> oladigan ilovangiz bo'ladi. Avval har amalni o'zingiz tushunasiz, keyin AI bilan birga loyihani <b style={{ color: T.ink }}>to'liq bitirasiz</b>.</>, ru: <>Представляете — к концу урока у вас будет приложение, где игры можно <b style={{ color: T.ink }}>добавлять, изменять и удалять</b>. Сначала вы сами разберёте каждое действие, потом вместе с AI <b style={{ color: T.ink }}>полностью завершите</b> проект.</> })}</Mentor>
-        {!isNarrow ? (
-          <Zoomable><Split>{PreviewBlock}{StepsBlock}</Split></Zoomable>
-        ) : !showSteps ? (
-          <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>
-            {PreviewBlock}
-            <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "Bugungi 5 qadamni ko'rish", ru: 'Показать 5 шагов на сегодня' })}</button>
+      </>, (btnRef.current && btnRef.current.closest('.lesson-root')) || document.body)}
+    </div>
+  );
+};
+// F-1015-372: «Qadamlar» pastga ochilmaydi — o'rtada oyna («Avval tayyorlaning» kabi); ✕, Esc yoki fon bilan yopiladi, fokus tugmaga qaytadi
+const QadamTugma = ({ b }) => {
+  const [ochiq, setOchiq] = useState(false);
+  const btnRef = useRef(null);
+  const yopRef = useRef(null);
+  const yop = () => { setOchiq(false); setTimeout(() => btnRef.current && btnRef.current.focus(), 0); };
+  useEffect(() => {
+    if (!ochiq) return;
+    const onKey = (e) => { if (e.key === 'Escape') yop(); };
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKey);
+    yopRef.current && yopRef.current.focus();
+    return () => { document.body.style.overflow = ''; window.removeEventListener('keydown', onKey); };
+  }, [ochiq]);
+  const sarlavha = <>{tr({ uz: 'Qadamlar', ru: 'Шаги' })} · {b.length}</>;
+  return (
+    <div className={`am-karta am-qt`}>
+      <button ref={btnRef} type="button" className="am-qt-btn" aria-haspopup="dialog" aria-expanded={ochiq} onClick={() => setOchiq(true)}>
+        <span>{sarlavha}</span><span className="am-qt-ic" aria-hidden="true">▾</span>
+      </button>
+      {ochiq && createPortal(<>
+        <div className="zoom-backdrop" onClick={yop} />
+        <div className="am-tt-oyna" role="dialog" aria-modal="true" aria-label={tr({ uz: 'Qadamlar', ru: 'Шаги' })}>
+          <div className="am-tt-oyna-h"><span className="am-tayyor-h">{sarlavha}</span><button ref={yopRef} type="button" className="am-tt-yop" onClick={yop} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button></div>
+          <ol className="am-qadam">{b.map((x, i) => <li key={i}><span className="am-qn">{i + 1}</span><span>{fmtCode(tr(x))}</span></li>)}</ol>
+        </div>
+      </>, (btnRef.current && btnRef.current.closest('.lesson-root')) || document.body)}
+    </div>
+  );
+};
+const TAYYOR = [
+  { uz: "VS Code'da `robo-games` papkasini oching, terminalda `npm run dev` — localhost:5173 da o'yin kartochkalari chiqadimi?", ru: 'Откройте в VS Code папку `robo-games`, в терминале `npm run dev` — на localhost:5173 видны карточки игр?' },
+  { uz: "`App.jsx` va `GameCard.jsx` fayllarini oching — bugun shu ikkalasida ishlaysiz.", ru: 'Откройте файлы `App.jsx` и `GameCard.jsx` — сегодня работаете в них.' },
+  { uz: "Boshqa oynada gemini.google.com'ni oching.", ru: 'В другом окне откройте gemini.google.com.' }
+];
+// F-1015-362: pastga ochilmaydi — o'rtada oyna (⛶ kabi); ✕, Esc yoki fon bilan yopiladi, fokus tugmaga qaytadi; portal — .lesson-root (zoom va CSS shu yerda)
+const TayyorTugma = () => {
+  const [ochiq, setOchiq] = useState(false);
+  const [korgan, setKorgan] = useState(false);
+  const btnRef = useRef(null);
+  const yopRef = useRef(null);
+  const yop = () => { setOchiq(false); setTimeout(() => btnRef.current && btnRef.current.focus(), 0); };
+  useEffect(() => {
+    if (!ochiq) return;
+    const onKey = (e) => { if (e.key === 'Escape') yop(); };
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKey);
+    yopRef.current && yopRef.current.focus();
+    return () => { document.body.style.overflow = ''; window.removeEventListener('keydown', onKey); };
+  }, [ochiq]);
+  const sarlavha = <>{tr({ uz: 'Avval tayyorlaning', ru: 'Сначала подготовьтесь' })} · {tr({ uz: `${TAYYOR.length} qadam`, ru: `${TAYYOR.length} шага` })}</>;
+  return (
+    <div className="fade-up delay-1"><div className={`am-tayyor am-tt ${korgan ? '' : 'am-tt-nafas'}`}>
+      <button ref={btnRef} type="button" className="am-tt-btn" aria-haspopup="dialog" aria-expanded={ochiq} onClick={() => { setOchiq(true); setKorgan(true); }}>
+        <span className="am-tayyor-h">{sarlavha}</span>
+        <span className="am-qt-ic" aria-hidden="true">▾</span>
+      </button>
+      {ochiq && createPortal(<>
+        <div className="zoom-backdrop" onClick={yop} />
+        <div className="am-tt-oyna" role="dialog" aria-modal="true" aria-label={tr({ uz: 'Avval tayyorlaning', ru: 'Сначала подготовьтесь' })}>
+          <div className="am-tt-oyna-h"><span className="am-tayyor-h">{sarlavha}</span><button ref={yopRef} type="button" className="am-tt-yop" onClick={yop} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button></div>
+          <ol className="am-tayyor-l">{TAYYOR.map((x, i) => <li key={i}><span className="am-tayyor-n">{i + 1}</span><span>{fmtCode(tr(x))}</span></li>)}</ol>
+          <p className="am-tayyor-s">{tr({ uz: "Tayyor bo'lsa — «Boshlaymiz».", ru: 'Готово — «Начинаем».' })}</p>
+        </div>
+      </>, (btnRef.current && btnRef.current.closest('.lesson-root')) || document.body)}
+    </div></div>
+  );
+};
+// Kod oynasi: oxirgi amal (setGames…) va ro'yxatning hozirgi holati
+const KodOyna = ({ oxirgi, qatorlar, nur = 0 }) => (
+  <div className="rj-oyna">
+    <div key={'b' + nur} className={`rj-bar ${nur ? 'sk-bar-nur' : ''}`}><span className="bb-dots"><i /><i /><i /></span><span className="rj-fayl">App.jsx · {tr({ uz: 'qiymatlar hozir', ru: 'значения сейчас' })}</span></div>
+    <div className="rj-body">
+      <div className="sk-izoh">// {tr({ uz: 'oxirgi amal', ru: 'последнее действие' })}</div>
+      <div key={'o' + nur} className={`rj-li ${nur ? 'sk-nur' : ''}`}>{oxirgi || '—'}</div>
+      <div className="sk-izoh">// {tr({ uz: 'hozir', ru: 'сейчас' })}</div>
+      {qatorlar.map((q, i) => <div key={i + '-' + nur} className={`rj-li ${nur ? 'sk-nur' : ''}`}>{q}</div>)}
+    </div>
+  </div>
+);
+const nomlar = (list) => `games = [${list.map(g => `"${g.name}"`).join(', ')}];`;
+// Uchala amal ishlaydigan ilova (reja ekranidagi namuna)
+const CrudNamuna = () => {
+  const [list, setList] = useState(() => GAMES.slice(0, 3));
+  const qolgan = POOL.filter(p => !list.some(g => g.id === p.id));
+  return (
+    <Win title={tr({ uz: 'robo-games — localhost:5173', ru: 'robo-games — localhost:5173' })} minH={120}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+        <span className="cr-son">{tr({ uz: `${list.length} ta o'yin`, ru: `Игр: ${list.length}` })}</span>
+        <AddBtn small disabled={!qolgan.length} onClick={() => qolgan.length && setList(l => [...l, qolgan[0]])} />
+      </div>
+      <CardGrid cols={3}>{list.map(g => <MyCard key={g.id} game={g} onTop={() => setList(l => l.map(x => (x.id === g.id ? { ...x, top: !x.top } : x)))} onDelete={() => setList(l => l.filter(x => x.id !== g.id))} />)}</CardGrid>
+      {!list.length && <p className="small" style={{ margin: '8px 0 0', color: T.ink2 }}>{tr({ uz: "Ro'yxat bo'sh", ru: 'Список пуст' })}</p>}
+    </Win>
+  );
+};
+const CRUD4 = [
+  { en: 'Create', uz: "qo'shish", ru: 'добавить', kod: '[...games, yangi]' },
+  { en: 'Read', uz: "ko'rsatish", ru: 'показать', kod: 'games.map(...)' },
+  { en: 'Update', uz: "o'zgartirish", ru: 'изменить', kod: '{ ...g, top: !g.top }' },
+  { en: 'Delete', uz: "o'chirish", ru: 'удалить', kod: 'games.filter(...)' }
+];
+const BLOK3 = [
+  { t: { uz: "Qo'shish", ru: 'Добавление' }, tag: { uz: "o'zingiz · VS Code", ru: 'сами · VS Code' } },
+  { t: { uz: "TOP va o'chirish", ru: 'TOP и удаление' }, tag: 'Gemini' },
+  { t: { uz: 'AI xatosini topish', ru: 'Поиск ошибки AI' }, tag: { uz: 'siz', ru: 'Вы' } }
+];
+const Screen1 = ({ screen, onNext, onPrev }) => (
+  <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz', ru: 'Начинаем' })} onClick={onNext} /></>}>
+    <div className="screen" style={{ gap: 'clamp(14px,2.4vw,20px)' }}>
+      <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bugun ro'yxat <span className="italic" style={{ color: T.accent }}>jonlanadi</span>.</>, ru: <>Сегодня список <span className="italic" style={{ color: T.accent }}>оживает</span>.</> })}</h2></div>
+      <Mentor>{tr({ uz: <>O'tgan darslarda <span className="mono">robo-games</span>'da o'yin kartochkalarini chizdingiz. Bugun ularni <b style={{ color: T.ink }}>qo'shasiz, TOP qilasiz va o'chirasiz</b> — bu CRUD amallari. Qo'shishni o'zingiz yozasiz, qolganini Gemini bilan.</>, ru: <>На прошлых уроках Вы нарисовали карточки игр в <span className="mono">robo-games</span>. Сегодня будете их <b style={{ color: T.ink }}>добавлять, отмечать TOP и удалять</b> — это действия CRUD. Добавление напишете сами, остальное — с Gemini.</> })}</Mentor>
+      <TayyorTugma />
+      <Split>
+        <Col>
+          <p className="flow-label">{tr({ uz: "Dars oxirida · bosib ko'ring", ru: 'К концу урока · попробуйте' })}</p>
+          <CrudNamuna />
+        </Col>
+        <Col>
+          <p className="flow-label am-yorliq-joy" aria-hidden="true">{tr({ uz: "Dars oxirida · bosib ko'ring", ru: 'К концу урока · попробуйте' })}</p>
+          <div className="am-karta am-reja-k fade-up delay-1">
+            <p className="flow-label">{tr({ uz: 'CRUD — ilovaning 4 amali', ru: 'CRUD — 4 действия приложения' })}</p>
+            <ul className="cr-jadval">{CRUD4.map(c => <li key={c.en}><b>{c.en}</b><span>{tr(c)}</span><code className="qcode">{c.kod}</code></li>)}</ul>
+            <hr className="am-chiziq" />
+            <p className="flow-label">{tr({ uz: `Bugungi ${BLOK3.length} blok`, ru: `${BLOK3.length} блока сегодня` })}</p>
+            <ol className="am-blok-qator">{BLOK3.map((b, i) => <li key={i}><span className="am-blok-n">{String(i + 1).padStart(2, '0')}</span><b>{tr(b.t)}</b><span className="am-blok-teg">{tr(b.tag)}</span></li>)}</ol>
           </div>
-        ) : (
-          <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>
-            <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Natijani ko'rish", ru: '↩ Показать результат' })}</button>
-            {StepsBlock}
-          </div>
-        )}
-      </div>
-    </Stage>
-  );
-};
-
-// ===== SCREEN 2 — CRUD = 4 AMAL (har birini bosib, ro'yxatga ta'sirini ko'rish) =====
-const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const BASE = GAMES.slice(0, 3);
-  const [active, setActive] = useState(null);
-  const [seen, setSeen] = useState(storedAnswer ? new Set(OPS.map(o => o.key)) : new Set());
-  const done = seen.size >= 4;
-  const tap = (k) => { setActive(k); setSeen(prev => { const s = new Set(prev); s.add(k); return s; }); };
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  // har amalning ro'yxatga ta'siri (vizual)
-  const list = (() => {
-    if (active === 'C') return [...BASE, POOL[0]];
-    if (active === 'D') return BASE.slice(0, 2);
-    if (active === 'U') return BASE.map((g, i) => i === 0 ? { ...g, top: true } : g);
-    return BASE;
-  })();
-  return (
-    <Stage eyebrow={tr({ uz: 'CRUD · 4 amal', ru: 'CRUD · 4 действия' })} screen={screen} scrollSignal={done} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `${seen.size}/4 amalni sinang`, ru: `Попробуйте ${seen.size}/4 действия` })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(8px,1.2vw,12px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har ilova <span className="italic" style={{ color: T.accent }}>4 ta amal</span> ustida turadi.</>, ru: <>Каждое приложение стоит на <span className="italic" style={{ color: T.accent }}>4 действиях</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Instagram, Roblox, do'kon — hammasi shu 4 amalni bajaradi: <b style={{ color: T.ink }}>qo'shish, ko'rsatish, o'zgartirish, o'chirish</b>. Ularning nomi — <b style={{ color: T.ink }}>CRUD</b>. To'rttasini bosib, ro'yxatga nima bo'lishini kuzating.</>, ru: <>Instagram, Roblox, магазин — все выполняют эти 4 действия: <b style={{ color: T.ink }}>добавить, показать, изменить, удалить</b>. Их общее имя — <b style={{ color: T.ink }}>CRUD</b>. Нажмите все четыре и наблюдайте, что происходит со списком.</> })}</Mentor>
-        <Zoomable>
-        <div className="split">
-          <Col>
-            <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
-              {OPS.map(o => {
-                const on = active === o.key;
-                return (
-                  <button key={o.key} className="vcard" onClick={() => tap(o.key)} style={{ boxShadow: on ? `inset 0 0 0 1.5px ${T.accent}, 0 8px 20px -6px rgba(${T.shadowBase},0.2)` : undefined }}>
-                    <span className="vbadge" style={{ background: o.key === 'D' ? T.danger : (o.key === 'C' ? T.success : (o.key === 'U' ? '#B45309' : T.blue)) }}>{o.en}</span>
-                    <span className="vlbl">{tr(o.amal)}</span>
-                    <span className="vseen" style={{ color: seen.has(o.key) ? T.success : T.ink3 }}>{seen.has(o.key) ? '✓' : ''}</span>
-                  </button>
-                );
-              })}
-            </div>
-            {active && <div className="sk-info" key={active}><p className="body zb-notch" style={{ margin: 0, color: T.ink }}><b style={{ color: T.accent }}>{tr(OPS.find(o => o.key === active).amal)}</b> — {tr(OPS.find(o => o.key === active).eff)}.</p></div>}
-          </Col>
-          <Col>
-            <p className="flow-label">{tr({ uz: "Tirik akvarium — suv = ma'lumot (state), oyna = ekran", ru: 'Живой аквариум — вода = данные (state), стекло = экран' })}</p>
-            <Aquarium
-              fish={list}
-              minH={130}
-              addId={active === 'C' ? POOL[0].id : null}
-              feedId={active === 'U' ? list[0]?.id : null}
-              netName={active === 'D' ? BASE[BASE.length - 1]?.name : null}
-            />
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{/* F-0926-06: CRUD harflar ro'yxati olindi — mentor va tugmalar aytadi (159/7) */}{tr({ uz: <>Baliqlar suvda yashaganidek, o'yinlar ham xotirada turadi — buni <b>state</b> deymiz, kod tilida u <span className="mono">games</span> ro'yxati. Bugun hammasini shu state bilan quramiz.</>, ru: <>Как рыбки живут в воде, так и игры живут в памяти — это называется <b>state</b>, на языке кода это список <span className="mono">games</span>. Сегодня всё построим на этом state.</> })}</p></div>}
-          </Col>
-        </div>
-        </Zoomable>
-      </div>
-    </Stage>
-  );
-};
-
-// ===== SCREEN 3 — LOYIHALASH: HAR AMAL STATE'NI QANDAY O'ZGARTIRADI (qo'lda) =====
-const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const EFFECTS = [
-    { id: 'add', label: tr({ uz: "+1 element qo'shiladi", ru: '+1 элемент добавляется' }) },
-    { id: 'map', label: tr({ uz: 'map bilan chiziladi', ru: 'рисуется через map' }) },
-    { id: 'change', label: tr({ uz: "1 element o'zgaradi", ru: '1 элемент меняется' }) },
-    { id: 'remove', label: tr({ uz: '1 element olib tashlanadi', ru: '1 элемент убирается' }) }
-  ];
-  const [taskIdx, setTaskIdx] = useState(storedAnswer ? OPS.length : 0);
-  const [shakeId, setShakeId] = useState(null);
-  const timer = useRef(null);
-  const done = taskIdx >= OPS.length;
-  useEffect(() => () => clearTimeout(timer.current), []);
-  const cur = OPS[Math.min(taskIdx, OPS.length - 1)];
-  const tap = (effId) => {
-    if (done) return;
-    if (effId === cur.effId) { setTaskIdx(t => t + 1); }
-    else { clearTimeout(timer.current); setShakeId(effId); timer.current = setTimeout(() => setShakeId(null), 450); }
-  };
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  return (
-    <Stage eyebrow={tr({ uz: '1-qadam · loyihalash', ru: 'Шаг 1 · проектирование' })} screen={screen} scrollSignal={done} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Rejani tuzing (${Math.min(taskIdx, OPS.length)}/4)`, ru: `Составьте план (${Math.min(taskIdx, OPS.length)}/4)` })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har amal <span className="italic" style={{ color: T.accent }}>o'yinlarni</span> qanday o'zgartiradi?</>, ru: <>Как каждое действие меняет <span className="italic" style={{ color: T.accent }}>игры</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>AI kod yozishidan oldin <b style={{ color: T.ink }}>siz</b> rejani tuzasiz: ro'yxat (massiv) <span className="mono">games</span> — har amal unga nima qiladi? Har bir amal uchun to'g'ri natijani tanlang.</>, ru: <>Прежде чем AI напишет код, план составляете <b style={{ color: T.ink }}>вы</b>: список (массив) <span className="mono">games</span> — что каждое действие с ним делает? Выберите правильный результат для каждого действия.</> })}</Mentor>
-        <Zoomable>
-        <div className="split">
-          <Col>
-            <p className="flow-label">{tr({ uz: 'CRUD amallari', ru: 'Действия CRUD' })}</p>
-            <div className="opcol fade-up delay-1">
-              {OPS.map((o, i) => {
-                const matched = i < taskIdx;
-                const activeRow = !done && i === taskIdx;
-                const badge = o.key === 'D' ? T.danger : (o.key === 'C' ? T.success : (o.key === 'U' ? '#B45309' : T.blue));
-                return (
-                  <div key={o.key} className={`opcard ${activeRow ? 'active' : ''} ${matched ? 'matched' : ''}`}>
-                    <div className="opcard-top">
-                      <span className="opcard-badge" style={{ background: badge }}>{o.en}</span>
-                      <span className="opcard-amal">{tr(o.amal)}</span>
-                      {matched && <span className="opcard-tick">✓</span>}
-                      {activeRow && <span className="opcard-now">{tr({ uz: 'hozir', ru: 'сейчас' })}</span>}
-                    </div>
-                    <div className="opcard-eff">
-                      {matched
-                        ? <span className="opcard-effdone el-in">{EFFECTS.find(e => e.id === o.effId).label}</span>
-                        : activeRow ? null /* F-0926-06: «natijasini o'ngdan tanlang ↓» olindi — mentor aytadi, joy so'zi telefonda noto'g'ri (159/11) */
-                          : <span className="opcard-wait">{tr({ uz: 'kutilmoqda…', ru: 'ожидает…' })}</span>}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-            {/* F-0926-06: izoh-karta amallar ostiga ko'chdi — o'ngda tugmalar orqasiga tushardi (159/12, layout 73px) */}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{/* F-0926-06: matn qisqardi — pastki chiziqdan 9–14px tushardi (159/12) */}{tr({ uz: <>Reja tayyor! Endi uch amalni birma-bir quramiz.</>, ru: <>План готов! Теперь построим три действия по очереди.</> })}</p></div>}
-          </Col>
-          <Col>
-            {!done ? (
-              <>
-                <div className="sk-info" key={taskIdx}><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b style={{ color: T.accent }}>{tr(cur.amal)}</b> ({cur.en}) bosilganda <span className="mono">games</span> ro'yxatiga nima bo'ladi?</>, ru: <>Что произойдёт со списком <span className="mono">games</span> при нажатии <b style={{ color: T.accent }}>{tr(cur.amal)}</b> ({cur.en})?</> })}</p></div>
-                {/* F-0926-06: «Natijani tanlang» yorlig'i olindi — mentor «tanlang» deydi (G1) */}
-                <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  {EFFECTS.map(e => {
-                    const used = OPS.slice(0, taskIdx).some(o => o.effId === e.id);
-                    return <button key={e.id} className={`effbtn ${shakeId === e.id ? 'shake' : ''} ${used ? 'used' : ''}`} disabled={used} onClick={() => tap(e.id)}>{used && <span className="effbtn-tick">✓</span>}{e.label}</button>;
-                  })}
-                </div>
-              </>
-            ) : (
-              <>
-                <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Tayyor reja — kod tilida', ru: 'Готовый план — на языке кода' })}</p>
-                <pre className="code-box fade-step" style={{ lineHeight: 1.6 /* F-0926-06: ixchamlash — pastki chiziqdan tushardi (159/12) */ }}>
-                  {OPS.map((o, i) => <React.Fragment key={o.key}><Cm>{`// ${tr(o.amal)}`}</Cm>{`\n${o.code}${i < OPS.length - 1 ? '\n\n' : ''}`}</React.Fragment>)}
-                </pre>
-              </>
-            )}
-          </Col>
-        </div>
-        </Zoomable>
-      </div>
-    </Stage>
-  );
-};
-
-// ===== SCREEN 4 — TEST 1 (CRUD nima?) =====
-const Screen4 = (props) => (
-  <QuestionScreen {...props} idx={4} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Упражнение · вопрос 1' })}
-    questionText="CRUD nima?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>CRUD</span> — bu <span className="italic" style={{ color: T.accent }}>nima</span>?</>, ru: <><span className="mono" style={{ color: T.accent }}>CRUD</span> — это <span className="italic" style={{ color: T.accent }}>что</span>?</> })}</h2></>}
-    options={[tr({ uz: 'Internet tezligini oshiruvchi dastur', ru: 'Программа для ускорения интернета' }), tr({ uz: "Ilovaning 4 amali (qo'shish, o'chirish...)", ru: '4 действия приложения (добавить, удалить...)' }), tr({ uz: "CSS'dagi maxsus rang nomi", ru: 'Название специального цвета в CSS' }), tr({ uz: 'Yangi dasturlash tilining nomi', ru: 'Название нового языка программирования' })]} correctIdx={1}
-    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi olindi — natija yorlig'i aytadi (159/11) */ tr({ uz: "CRUD — Create, Read, Update, Delete: ilovaning 4 amali.", ru: 'CRUD — Create, Read, Update, Delete: четыре действия приложения.' })}
-    explainWrong={{
-      0: tr({ uz: "CRUD tezlik haqida emas, ma'lumot bilan ishlash haqida.", ru: 'CRUD не про скорость, а про работу с данными.' }),
-      2: tr({ uz: "CRUD rang nomi emas — u to'rt so'zning bosh harflari.", ru: 'CRUD — не цвет, а первые буквы четырёх слов.' }),
-      3: tr({ uz: "CRUD'da kod yozilmaydi — u to'rt so'zning qisqartmasi.", ru: 'На CRUD не пишут код — это сокращение четырёх слов.' }),
-      default: tr({ uz: "CRUD'ning har bir harfi bitta amalni bildiradi.", ru: 'Каждая буква CRUD обозначает одно действие.' })
-    }} />
+        </Col>
+      </Split>
+    </div>
+  </Stage>
 );
 
-// ===== SCREEN 5 — CREATE (qo'shish: [...games, yangi]) =====
-const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const START = GAMES.slice(0, 2);
-  const [list, setList] = useState(storedAnswer ? [...START, POOL[0], POOL[1]] : START);
-  const added = list.length - START.length;
-  const done = added >= 2;
-  const remaining = POOL.filter(p => !list.some(g => g.id === p.id));
-  const add = (g) => setList(prev => (prev.some(x => x.id === g.id) ? prev : [...prev, g]));
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
+// ===== a1 — qo'shish (AI'siz): shu yerda sinab ko'rish + VS Code'da o'zingiz yozasiz =====
+const A1_QADAM = [
+  { uz: "`App.jsx` da o'yinlar state'da tursin: `const [games, setGames] = useState([...])` — o'tgan darsdagi ro'yxatingiz.", ru: 'В `App.jsx` игры пусть лежат в state: `const [games, setGames] = useState([...])` — Ваш список с прошлого урока.' },
+  { uz: "Ro'yxat tepasiga input va «+ O'yin qo'shish» tugmasini qo'ying; yozilgan nom `nom` state'ida tursin.", ru: 'Над списком поставьте input и кнопку «+ Добавить игру»; введённое название пусть лежит в state `nom`.' },
+  { uz: "Tugma bosilganda yangi o'yin yasang: `const yangi = { id: Date.now(), name: nom }`.", ru: 'По нажатию кнопки создайте новую игру: `const yangi = { id: Date.now(), name: nom }`.' },
+  { uz: "Ro'yxatga qo'shing: `setGames([...games, yangi])` — push emas.", ru: 'Добавьте в список: `setGames([...games, yangi])` — не push.' },
+  { uz: "Saqlang — localhost:5173 da yangi kartochka chiqdimi?", ru: 'Сохраните — на localhost:5173 появилась новая карточка?' }
+];
+const A1_KOD = `const [nom, setNom] = useState('');
+
+function qoshish() {
+  const yangi = { id: Date.now(), name: nom };
+  setGames([...games, yangi]);
+  setNom('');
+}
+
+<input value={nom} onChange={e => setNom(e.target.value)} />
+<button onClick={qoshish}>+ O'yin qo'shish</button>`;
+const ScreenQoshish = ({ screen, onNext, onPrev }) => {
+  const [list, setList] = useState(() => GAMES.slice(0, 2));
+  const [oxirgi, setOxirgi] = useState('');
+  const qolgan = POOL.filter(p => !list.some(g => g.id === p.id));
+  const [nur, setNur] = useState(0); // F-1015-366: har bosishda kod oynasi yonadi
+  const qosh = (p) => { setList(l => [...l, p]); setOxirgi(`setGames([...games, { id: ${p.id}, name: "${p.name}" }]);`); setNur(n => n + 1); };
+  const qaytar = () => { setList(GAMES.slice(0, 2)); setOxirgi(''); setNur(n => n + 1); };
   return (
-    <Stage eyebrow={tr({ uz: "Create · qo'shish", ru: 'Create · добавление' })} screen={screen} scrollSignal={done} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Kamida 2 ta qo'shing (${added}/2)`, ru: `Добавьте минимум 2 (${added}/2)` })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Yangi o'yin ro'yxatga <span className="italic" style={{ color: T.accent }}>qanday</span> qo'shiladi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Как</span> новая игра добавляется в список?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Akvariumdagi o'sha 4 amal — endi <b style={{ color: T.ink }}>«Mening o'yinlarim»</b> ro'yxatida. Qo'shishning kaliti uch nuqtada: <span className="mono">[...games, yangi]</span>. Uch nuqta (<b style={{ color: T.ink }}>spread</b>) "eski ro'yxatning <b style={{ color: T.ink }}>hammasini ko'chir</b>" degani, keyin oxiriga <b style={{ color: T.ink }}>yangisini</b> qo'shamiz. O'yin tanlab, qo'shib ko'ring.</>, ru: <>Те же 4 действия из аквариума — теперь в списке <b style={{ color: T.ink }}>«Мои игры»</b>. Ключ к добавлению — в трёх точках: <span className="mono">[...games, yangi]</span>. Три точки (<b style={{ color: T.ink }}>spread</b>) значат «<b style={{ color: T.ink }}>скопируй всё</b> из старого списка», потом в конец добавляем <b style={{ color: T.ink }}>новую</b>. Выберите игру и попробуйте добавить.</> })}</Mentor>
-        <Zoomable>
-        <div className="split">
+    <Stage mentorYigil eyebrow={tr({ uz: "Amaliyot 1 · AI'siz", ru: 'Практика 1 · без AI' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Yangi o'yinni ro'yxatga <span className="italic" style={{ color: T.accent }}>qo'shing</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Добавьте</span> новую игру в список.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Qo'shishning kaliti — uch nuqta: <span className="mono">[...games, yangi]</span> — «eski ro'yxatning hammasi, oxiriga yangisi». Avval shu yerda sinab ko'ring, keyin VS Code'da o'zingiz yozasiz.</>, ru: <>Ключ добавления — три точки: <span className="mono">[...games, yangi]</span> — «весь старый список, а в конец новый». Сначала попробуйте здесь, потом напишете сами в VS Code.</> })}</Mentor>
+        <Split>
           <Col>
-            <p className="flow-label">{tr({ uz: "Qo'shish uchun tanlang", ru: 'Выберите, что добавить' })}</p>
-            <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-              {remaining.length ? remaining.map(g => <button key={g.id} className="gchip" onClick={() => add(g)}>+ {g.emoji} {g.name}</button>) : <span className="small" style={{ color: T.ink3, fontStyle: 'italic' }}>{tr({ uz: "Hammasi qo'shildi ✓", ru: 'Всё добавлено ✓' })}</span>}
-            </div>
-            <pre className="code-box fade-up delay-2" style={{ lineHeight: 1.95 }}>
-              <Jx>{'const'}</Jx>{' yangi = { name: '}<St>"…"</St>{' };'}{'\n\n'}
-              {'setGames('}<span style={{ background: 'rgba(255,79,40,0.18)', borderRadius: 5, padding: '1px 5px', boxShadow: `inset 0 0 0 1px ${T.accent}` }}>{'['}<At>...games</At>{', yangi]'}</span>{');'}{'\n'}
-              <Cm>{tr({ uz: '//      ↑ eski hammasi   ↑ yangisi', ru: '//      ↑ всё старое   ↑ новая' })}</Cm>
-            </pre>
-            {/* F-0926-06: izoh-karta kod ostiga ko'chdi — o'ngda tugmalar orqasiga tushardi (159/12, SCROLL 41) */}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ro'yxat o'sdi! <span className="mono">[...games, yangi]</span> har safar yangi ro'yxat yasaydi: eskisi + yangisi. React buni ko'radi va kartochkani chizadi.</>, ru: <>Список вырос! <span className="mono">[...games, yangi]</span> каждый раз создаёт новый список: старое + новая. React это видит и рисует карточку.</> })}</p></div>}
-          </Col>
-          <Col>
-            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', paddingRight: 40 }}>
-              <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: "Mening o'yinlarim", ru: 'Мои игры' })}</p>
-              <span className="mono small" style={{ color: T.ink3 }}>{tr({ uz: `${list.length} ta`, ru: `${list.length} шт.` })}</span>
-            </div>
-            <Win title="localhost:5173" minH={110}>
-              <CardGrid cols={3}>{list.map(g => <MyCard key={g.id} game={g} flash={added > 0 && g.id === list[list.length - 1].id} />)}</CardGrid>
+            <p className="flow-label">{tr({ uz: "Ilova · bosib qo'shing", ru: 'Приложение · нажмите, чтобы добавить' })}</p>
+            <Win title="robo-games — localhost:5173" minH={110}>
+              <div className="am-chips cr-qosh">{qolgan.map(p => <button key={p.id} type="button" className="am-chip" onClick={() => qosh(p)}>+ {p.emoji} {p.name}</button>)}{!qolgan.length && <button type="button" className="am-chip" onClick={qaytar}>{tr({ uz: '↺ Boshidan', ru: '↺ Сначала' })}</button>}</div> {/* F-1015-367: tanlash qatori ilova ichida — ro'yxat tepasidagi «+ qo'shish» (2-qadam) kabi; ustunlar bir xil boshlanadi */}
+              <CardGrid cols={3}>{list.map(g => <MyCard key={g.id} game={g} flash={oxirgi.includes(`id: ${g.id},`)} />)}</CardGrid>
             </Win>
+            <KodOyna oxirgi={oxirgi} nur={nur} qatorlar={[<>{nomlar(list)}  <span className="sk-izoh">// games.length = {list.length}</span></>]} />
           </Col>
-        </div>
-        </Zoomable>
+          <Col>
+            <div className="am-karta">
+              <p className="flow-label">{tr({ uz: "VS Code'da · robo-games", ru: 'В VS Code · robo-games' })}</p>
+              <ol className="am-qadam">{A1_QADAM.map((x, i) => <li key={i}><span className="am-qn">{i + 1}</span><span>{fmtCode(tr(x))}</span></li>)}</ol>
+            </div>
+            <details className="am-yordam"><summary>{tr({ uz: "Qotib qoldingizmi? Kodni ko'rish", ru: 'Застряли? Посмотреть код' })}</summary><pre className="am-masalan">{A1_KOD}</pre></details>
+          </Col>
+        </Split>
       </div>
     </Stage>
   );
 };
 
-// ===== SCREEN 5b — TEST 2 (qo'shish) =====
-const Screen5b = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Tekshiruv', ru: 'Проверка' })}
-    questionText="Ro'yxatga yangi o'yin qo'shish uchun to'g'ri kod qaysi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Ro'yxatga <span className="italic" style={{ color: T.accent }}>yangi o'yin qo'shish</span> uchun qaysi kod?</>, ru: <>Какой код <span className="italic" style={{ color: T.accent }}>добавит новую игру</span> в список?</> })}</h2></>}
-    options={[tr({ uz: "games = yangi — ro'yxatni almashtiradi", ru: 'games = yangi — заменяет список' }), tr({ uz: 'games.length + 1 — sonini oshiradi', ru: 'games.length + 1 — увеличивает число' }), tr({ uz: 'setGames(yangi) — faqat bittasi qoladi', ru: 'setGames(yangi) — останется только одна' }), tr({ uz: 'setGames([...games, yangi]) — eski + yangisi', ru: 'setGames([...games, yangi]) — старое + новая' })]} correctIdx={3}
-    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi olindi — natija yorlig'i aytadi (159/11) */ tr({ uz: "`...games` eskisini ko'chiradi, yangisi oxiriga qo'shiladi.", ru: '`...games` копирует старые игры, а новая встаёт в конец.' })}
-    explainWrong={{
-      0: tr({ uz: "Bunda eski o'yinlar yo'qoladi, React esa buni sezmaydi.", ru: 'Так старые игры пропадут, а React этого даже не заметит.' }),
-      1: tr({ uz: "Bu shunchaki son — ro'yxatga hech narsa qo'shilmaydi.", ru: 'Это просто число — в список ничего не добавится.' }),
-      2: tr({ uz: "`setGames(yangi)` bilan ro'yxatda faqat bitta o'yin qoladi.", ru: 'С `setGames(yangi)` в списке останется только одна игра.' }),
-      default: tr({ uz: "Eski o'yinlar ham saqlanib, yangisi qo'shilishi kerak.", ru: 'Старые игры должны остаться, а новая — добавиться.' })
-    }} />
-);
-
-// ===== SCREEN 6 — UPDATE (o'zgartirish: games.map(... ? {...g} : g)) =====
-const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [list, setList] = useState(storedAnswer ? GAMES.slice(0, 3).map((g, i) => i < 2 ? { ...g, top: true } : g) : GAMES.slice(0, 3));
-  const [lastId, setLastId] = useState(null);
-  const changed = list.filter(g => g.top).length;
-  const done = changed >= 2;
-  const toggleTop = (id) => { setLastId(id); setList(prev => prev.map(g => g.id === id ? { ...g, top: !g.top } : g)); };
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
+// ===== a2 — Gemini: TOP (map + {...g}) va o'chirish (filter + confirm) =====
+const A2_QADAM = [
+  { uz: "Chapdagi ilovada «🔥 TOP» va «✕»ni bosing — kod oynasida map va filter qanday ishlashini ko'ring.", ru: 'В приложении слева нажмите «🔥 TOP» и «✕» — в окне кода видно, как работают map и filter.' },
+  { uz: "«Promptni nusxalash» → gemini.google.com'ga qo'ying, oxiriga `App.jsx` va `GameCard.jsx` kodini qo'shing va yuboring.", ru: '«Скопировать промпт» → вставьте в gemini.google.com, в конце добавьте код `App.jsx` и `GameCard.jsx` и отправьте.' },
+  { uz: "Javobdagi fayllarni almashtiring, `Ctrl+S`.", ru: 'Замените файлы на файлы из ответа, `Ctrl+S`.' },
+  { uz: "Brauzerda va kodda «Tekshiring» ro'yxatini o'ting.", ru: 'Пройдите список «Проверьте» в браузере и в коде.' }
+];
+const A2_TEKSHIR = [
+  { uz: "TOP bosilganda faqat o'sha kartochka o'zgaradimi, qolganlari joyidami?", ru: 'При нажатии TOP меняется только эта карточка, остальные на месте?' },
+  { uz: "«✕» dan keyin «Rostdan o'chirilsinmi?» so'raladimi?", ru: 'После «✕» спрашивается «Точно удалить?»?' },
+  { uz: "Kodda `map` va `filter` bormi, `push` yoki `splice` yo'qmi?", ru: 'В коде есть `map` и `filter`, нет `push` или `splice`?' }
+];
+const a2Prompt = () => tr({
+  uz: `React loyihamga (robo-games) ikkita amal qo'sh. games ro'yxati App.jsx da useState'da turibdi.\n1. Har kartochkada «🔥 TOP» tugmasi: bosilganda faqat shu o'yinning top qiymati almashsin — games.map bilan: g.id === id ? { ...g, top: !g.top } : g.\n2. Har kartochkada «✕» tugmasi: avval confirm("Rostdan o'chirilsinmi?") bilan so'rasin, keyin games.filter(g => g.id !== id) bilan o'chirsin.\nState'ni to'g'ridan o'zgartirma (push, splice yo'q) — har safar setGames'ga yangi ro'yxat ber. Funksiyalarni GameCard'ga props bilan uzat.\nHar bo'limga qisqa izoh yoz. O'zgargan fayllarni to'liq qaytar.\nMana kodim:\n{App.jsx va GameCard.jsx kodini shu yerga qo'ying}`,
+  ru: `Добавь в мой React-проект (robo-games) два действия. Список games лежит в useState в App.jsx.\n1. На каждой карточке кнопка «🔥 TOP»: по нажатию меняется значение top только у этой игры — через games.map: g.id === id ? { ...g, top: !g.top } : g.\n2. На каждой карточке кнопка «✕»: сначала спрашивает confirm("Точно удалить?"), потом удаляет через games.filter(g => g.id !== id).\nНе меняй state напрямую (без push и splice) — каждый раз передавай в setGames новый список. Функции передай в GameCard через props.\nК каждому разделу — короткий комментарий. Измененные файлы верни целиком.\nВот мой код:\n{вставьте сюда код App.jsx и GameCard.jsx}`
+});
+const ScreenTopOchir = ({ screen, onNext, onPrev }) => {
+  const [list, setList] = useState(() => GAMES.slice());
+  const [oxirgi, setOxirgi] = useState('');
+  const [nur, setNur] = useState(0); // F-1015-366: har bosishda kod oynasi yonadi
+  const [yig, setYig] = useState(0);
+  const kodRef = useRef(null);
+  const korsat = () => setTimeout(() => { const el = kodRef.current; if (!el) return; const b = el.getBoundingClientRect(); if (b.top < 0 || b.bottom > window.innerHeight) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 420); // Mentor yig'ilib bo'lgach — kerak bo'lsagina suriladi
+  const top = (g) => { setList(l => l.map(x => (x.id === g.id ? { ...x, top: !x.top } : x))); setOxirgi(`setGames(games.map(g => g.id === ${g.id} ? { ...g, top: !g.top } : g));`); setNur(n => n + 1); korsat(); };
+  const ochir = (g) => { setList(l => l.filter(x => x.id !== g.id)); setOxirgi(`setGames(games.filter(g => g.id !== ${g.id}));`); setNur(n => n + 1); korsat(); };
+  const toplar = list.filter(g => g.top).map(g => `"${g.name}"`);
   return (
-    <Stage eyebrow={tr({ uz: "Update · o'zgartirish", ru: 'Update · изменение' })} screen={screen} scrollSignal={done} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `2 ta o'yinni TOP qiling (${changed}/2)`, ru: `Сделайте TOP 2 играм (${changed}/2)` })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta o'yin o'zgaradi — <span className="italic" style={{ color: T.accent }}>qolganlari joyida qoladimi</span>?</>, ru: <>Одна игра меняется — <span className="italic" style={{ color: T.accent }}>останутся ли остальные на месте</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Bu yerda <span className="mono">map</span> yana yordam beradi! U <b style={{ color: T.ink }}>har bir o'yindan o'tadi</b>: kerakligini topsa — o'zgartiradi, qolganini <b style={{ color: T.ink }}>o'sha holicha</b> qoldiradi. <span className="mono">{'{...g, top: !g.top}'}</span> — "o'yinni ko'chir, faqat top'ini o'zgartir". Kartochkalardagi 🔥 TOP ni bosing.</>, ru: <>Здесь снова помогает <span className="mono">map</span>! Он <b style={{ color: T.ink }}>проходит по каждой игре</b>: найдя нужную — меняет её, остальные оставляет <b style={{ color: T.ink }}>как есть</b>. <span className="mono">{'{...g, top: !g.top}'}</span> — «скопируй игру, поменяй только top». Нажмите 🔥 TOP на карточках.</> })}</Mentor>
-        <Zoomable>
-        <div className="split">
+    <Stage mentorYigil eyebrow={tr({ uz: 'Amaliyot 2 · Gemini', ru: 'Практика 2 · Gemini' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive onClick={onNext} /></>}>
+      <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>TOP va o'chirishni <span className="italic" style={{ color: T.accent }}>Gemini</span> bilan qo'shing.</>, ru: <>Добавьте TOP и удаление вместе с <span className="italic" style={{ color: T.accent }}>Gemini</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>O'zgartirish — <b style={{ color: T.ink }}>map</b>: kerakli o'yinni topib, nusxasini o'zgartiradi, qolganiga tegmaydi. O'chirish — <b style={{ color: T.ink }}>filter</b>: shu o'yindan boshqa hammasini qoldiradi. Sinab ko'ring, keyin promptni Gemini'ga bering.</>, ru: <>Изменение — <b style={{ color: T.ink }}>map</b>: находит нужную игру и меняет её копию, остальные не трогает. Удаление — <b style={{ color: T.ink }}>filter</b>: оставляет все, кроме этой игры. Попробуйте, потом отдайте промпт Gemini.</> })}</Mentor>
+        <Split>
           <Col>
-            <pre className="code-box fade-up delay-1" style={{ lineHeight: 1.95 }}>
-              {'setGames(games.map(g =>'}{'\n'}
-              {'  g.id === id'}{'\n'}
-              {'    ? '}<span style={{ background: 'rgba(255,79,40,0.16)', borderRadius: 5, padding: '1px 5px' }}>{'{ '}<At>...g</At>{', top: !g.top }'}</span>{'  '}<Cm>{tr({ uz: "// o'zgartir", ru: '// изменить' })}</Cm>{'\n'}
-              {'    : g'}{'             '}<Cm>{tr({ uz: "// o'sha holicha", ru: '// как есть' })}</Cm>{'\n'}
-              {'));'}
-            </pre>
-            {/* F-0926-06: bo'sh terminaldagi «kartochkadan 🔥 TOP ni bosing…» olindi — mentor aytadi (159/3, 159/6) */}
-            {lastId && <div className="code-box" style={{ padding: '9px 13px', minHeight: 38 }}>
-              <TLine out={<span className="el-in" style={{ display: 'inline-block', color: CODE.str }}>{tr({ uz: <>✓ "{list.find(g => g.id === lastId)?.name}" yangilandi — qolganlari o'zgarmadi</>, ru: <>✓ «{list.find(g => g.id === lastId)?.name}» обновлена — остальные не изменились</> })}</span>} />
-            </div>}
-          </Col>
-          <Col>
-            <p className="flow-label">{tr({ uz: "Mening o'yinlarim", ru: 'Мои игры' })}</p>
-            <Win title="localhost:5173" minH={120}>
-              <CardGrid cols={3}>{list.map(g => <MyCard key={g.id} game={g} onTop={() => toggleTop(g.id)} flash={g.id === lastId && g.top} /* F-0927: yashil ramka faqat TOP qo'yilganda — olib tashlash «bajarildi» emas */ />)}</CardGrid>
+            <p className="flow-label">{tr({ uz: "Ilova · bosib ko'ring", ru: 'Приложение · попробуйте' })}</p>
+            <Win title="robo-games — localhost:5173" minH={110}>
+              <CardGrid cols={3}>{list.map(g => <MyCard key={g.id} game={g} onTop={() => top(g)} onDelete={() => ochir(g)} />)}</CardGrid>
+              {!list.length && <button type="button" className="am-chip" onClick={() => { setList(GAMES.slice()); setOxirgi(''); }}>{tr({ uz: '↺ Boshidan', ru: '↺ Сначала' })}</button>}
             </Win>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{/* F-0926-06: «faqat siz bosgan o'yin o'zgardi» olindi — terminal qatori aytadi (I3) */}{tr({ uz: <><span className="mono">map</span> shuning uchun ishonchli: u har birini ko'rib chiqadi, lekin faqat keraklisini almashtiradi.</>, ru: <>Поэтому <span className="mono">map</span> надёжен: он просматривает каждую, но заменяет только нужную.</> })}</p></div>}
-          </Col>
-        </div>
-        </Zoomable>
-      </div>
-    </Stage>
-  );
-};
-
-// ===== SCREEN 7 — DELETE (o'chirish: games.filter(...)) =====
-const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const START = GAMES.slice(0, 4);
-  const [list, setList] = useState(storedAnswer ? START.slice(0, 2) : START);
-  const [lastName, setLastName] = useState(null);
-  const removed = START.length - list.length;
-  const done = removed >= 1;
-  const del = (g) => { setLastName(g.name); setList(prev => prev.filter(x => x.id !== g.id)); };
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  return (
-    <Stage eyebrow={tr({ uz: "Delete · o'chirish", ru: 'Delete · удаление' })} screen={screen} scrollSignal={done} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Bitta o'yinni o'chiring", ru: 'Удалите одну игру' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Keraksiz o'yinni ro'yxatdan <span className="italic" style={{ color: T.accent }}>qanday</span> olib tashlaymiz?</>, ru: <><span className="italic" style={{ color: T.accent }}>Как</span> убрать ненужную игру из списка?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Bunga <span className="mono">filter</span> bor — "elak" kabi. U <b style={{ color: T.ink }}>shartga mos kelganlarni</b> o'tkazadi, qolganini tashlab yuboradi. <span className="mono">{'g.id !== id'}</span> = "o'chirilayotganidan <b style={{ color: T.ink }}>boshqa</b> hammasini saqla". Kartochkadagi ✕ ni bosing.</>, ru: <>Для этого есть <span className="mono">filter</span> — как «сито». Он <b style={{ color: T.ink }}>пропускает подходящие под условие</b>, остальное отбрасывает. <span className="mono">{'g.id !== id'}</span> = «сохрани все, <b style={{ color: T.ink }}>кроме</b> удаляемой». Нажмите ✕ на карточке.</> })}</Mentor>
-        <Zoomable>
-        <div className="split">
-          <Col>
-            <pre className="code-box fade-up delay-1" style={{ lineHeight: 1.95 }}>
-              {'setGames(games.'}<span style={{ background: 'rgba(255,79,40,0.16)', borderRadius: 5, padding: '1px 5px' }}><At>filter</At>{'(g => g.id !== id)'}</span>{');'}{'\n'}
-              <Cm>{tr({ uz: '// "shu id\'dan boshqa hammasini saqla"', ru: '// «сохрани все, кроме этого id»' })}</Cm>
-            </pre>
-            {/* F-0926-06: bo'sh terminaldagi «kartochkadagi ✕ ni bosing…» olindi — mentor aytadi (159/3, 159/6) */}
-            {lastName && <div className="code-box" style={{ padding: '9px 13px', minHeight: 38 }}>
-              <TLine out={<span className="el-in" style={{ display: 'inline-block', color: CODE.str }}>{tr({ uz: <>✓ "{lastName}" o'chirildi — ro'yxatda {list.length} ta qoldi</>, ru: <>✓ «{lastName}» удалена — в списке осталось {list.length}</> })}</span>} />
-            </div>}
-            {/* F-0926-06: izoh-karta terminal ostiga ko'chdi — o'ngda tugmalar orqasiga tushardi (159/12, layout 10–16px) */}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">filter</span> o'chirilgan o'yinsiz yangi ro'yxat yasadi. E'tibor bering: hech narsani "buzib" tashlamaydik — har safar <b>yangi ro'yxat</b> yasaymiz.</>, ru: <><span className="mono">filter</span> создал новый список без удалённой игры. Обратите внимание: мы ничего не «ломали» — каждый раз создаём <b>новый список</b>.</> })}</p></div>}
-          </Col>
-          <Col>
-            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', paddingRight: 40 }}>
-              <p className="flow-label" style={{ margin: 0 }}>{tr({ uz: "Mening o'yinlarim", ru: 'Мои игры' })}</p>
-              <span className="mono small" style={{ color: T.ink3 }}>{tr({ uz: `${list.length} ta`, ru: `${list.length} шт.` })}</span>
-            </div>
-            <Win title="localhost:5173" minH={120}>
-              {list.length ? <CardGrid cols={2}>{list.map(g => <MyCard key={g.id} game={g} onDelete={() => del(g)} />)}</CardGrid>
-                : <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: "Ro'yxat bo'sh qoldi…", ru: 'Список опустел…' })}</p>}
-            </Win>
-          </Col>
-        </div>
-        </Zoomable>
-      </div>
-    </Stage>
-  );
-};
-
-// ===== SCREEN 8 — TEST 3 (qaysi amal?) =====
-const Screen8 = (props) => (
-  <QuestionScreen {...props} idx={8} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Упражнение · вопрос 3' })}
-    questionText="Bitta o'yinni ro'yxatdan o'chirish uchun qaysi kod?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Bitta o'yinni <span className="italic" style={{ color: T.accent }}>o'chirish</span> uchun qaysi kod?</>, ru: <>Какой код <span className="italic" style={{ color: T.accent }}>удалит</span> одну игру?</> })}</h2></>}
-    options={[tr({ uz: "games.map(...) — bittasini o'zgartiradi", ru: 'games.map(...) — изменяет одну' }), tr({ uz: "[...games, yangi] — bittasini qo'shadi", ru: '[...games, yangi] — добавляет одну' }), tr({ uz: 'games.filter(g => g.id !== id) — boshqasini saqlaydi', ru: 'games.filter(g => g.id !== id) — сохраняет остальные' }), tr({ uz: 'games.length — faqat sonini sanaydi', ru: 'games.length — просто считает количество' })]} correctIdx={2}
-    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi olindi — natija yorlig'i aytadi (159/11) */ tr({ uz: "`filter` o'chirilayotganidan boshqa hammasini olib qoladi.", ru: '`filter` оставляет всё, кроме удаляемой игры.' })}
-    explainWrong={{
-      0: tr({ uz: "`map` o'chirmaydi — u bor narsani o'zgartiradi.", ru: '`map` не удаляет — он изменяет то, что есть.' }),
-      1: tr({ uz: "Bu qo'shish (Create), o'chirish emas.", ru: 'Это добавление (Create), а не удаление.' }),
-      3: tr({ uz: "`games.length` faqat sanaydi, ro'yxatni o'zgartirmaydi.", ru: '`games.length` только считает и список не меняет.' }),
-      default: tr({ uz: "Bittasini o'chirish uchun qolganlarini saqlab qolish kerak.", ru: 'Чтобы удалить одну, нужно оставить все остальные.' })
-    }} />
-);
-
-// ===== SCREEN 9 — VIBECODING (AI loyihani quradi, natija ishlaydi) =====
-const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const TASKS = [
-    { id: 't1', label: tr({ uz: "Qo'shish tugmasi yasa — bosilganda ro'yxatga yangi o'yin qo'shilsin", ru: 'Сделай кнопку добавления — при нажатии в список добавляется новая игра' }), plan: [tr({ uz: "Tugmaga onClick qo'shaman", ru: 'Добавлю кнопке onClick' }), tr({ uz: 'setGames([...games, yangi]) chaqiraman', ru: 'Вызову setGames([...games, yangi])' })], code: <>{'setGames('}<At>{'[...games, yangi]'}</At>{')'}</> },
-    { id: 't2', label: tr({ uz: 'Har kartochkaga ❤️ tugma — bosilganda like soni oshsin', ru: 'На каждую карточку кнопку ❤️ — при нажатии число лайков растёт' }), plan: [tr({ uz: "map ichida o'sha o'yinni topaman", ru: 'Найду эту игру внутри map' }), tr({ uz: '{...g, likes: g.likes + 1} bilan yangilayman', ru: 'Обновлю через {...g, likes: g.likes + 1}' })], code: <>{'games.map(g => g.id === id ? { '}<At>...g</At>{', likes: g.likes + 1 } : g)'}</> },
-    { id: 't3', label: tr({ uz: "Har kartochkaga ✕ tugma — bosilganda o'chsin", ru: 'На каждую карточку кнопку ✕ — при нажатии она удаляется' }), plan: [tr({ uz: "filter bilan o'sha o'yinni chiqarib tashlayman", ru: 'Уберу эту игру через filter' })], code: <>{'games.'}<At>filter</At>{'(g => g.id !== id)'}</> }
-  ];
-  const [task, setTask] = useState(null);
-  const [phase, setPhase] = useState(storedAnswer ? 'done' : 'idle');
-  const [demo, setDemo] = useState(GAMES.slice(0, 3));
-  const timer = useRef(null);
-  const done = phase === 'done';
-  useEffect(() => () => clearTimeout(timer.current), []);
-  const choose = (id) => { clearTimeout(timer.current); setTask(id); setPhase('planned'); setDemo(GAMES.slice(0, 3)); };
-  const approve = () => { clearTimeout(timer.current); setPhase('building'); timer.current = setTimeout(() => setPhase('done'), 1300); };
-  const cur = TASKS.find(t => t.id === task) || (storedAnswer ? TASKS[0] : null);
-  // natija demosi
-  const addDemo = () => setDemo(prev => (prev.length >= 4 ? prev : [...prev, POOL[prev.length - 3] || POOL[0]]));
-  const likeDemo = (id) => setDemo(prev => prev.map(g => g.id === id ? { ...g, likes: g.likes + 1 } : g));
-  const delDemo = (id) => setDemo(prev => prev.filter(g => g.id !== id));
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  return (
-    <Stage eyebrow={tr({ uz: 'AI bilan qurish', ru: 'Строим с AI' })} screen={screen} scrollSignal={done} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Agent bilan quring', ru: 'Постройте с агентом' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Reja tayyor — endi loyihani <span className="italic" style={{ color: T.accent }}>AI bilan</span> quramiz.</>, ru: <>План готов — теперь строим проект <span className="italic" style={{ color: T.accent }}>вместе с AI</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Siz har amal state'ni qanday o'zgartirishini bilasiz, demak agent kodini <b style={{ color: T.ink }}>tekshira olasiz</b>: qo'shishda <span className="mono">[...games]</span> bormi, o'chirishda <span className="mono">filter</span>mi. Buyruq bering, rejani <b style={{ color: T.ink }}>tasdiqlang</b>, natijani <b style={{ color: T.ink }}>o'zingiz sinang</b>.</>, ru: <>Вы знаете, как каждое действие меняет state, а значит можете <b style={{ color: T.ink }}>проверить</b> код агента: есть ли <span className="mono">[...games]</span> при добавлении, <span className="mono">filter</span> ли при удалении. Дайте команду, <b style={{ color: T.ink }}>утвердите</b> план, <b style={{ color: T.ink }}>сами испытайте</b> результат.</> })}</Mentor>
-        <Zoomable>
-        <div className="split">
-          <Col>
-            <p className="flow-label">{tr({ uz: "1. Agentga so'z bilan ayting", ru: '1. Скажите агенту словами' })}</p>
-            <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {TASKS.map(t => <button key={t.id} className={`chip ${task === t.id ? 'chip-on' : ''}`} onClick={() => choose(t.id)} style={{ justifyContent: 'flex-start', textAlign: 'left' }}>"{t.label}"</button>)}
-            </div>
-            {cur && (
-              <div className="ai-card fade-step" key={task || 'stored'}>
-                <div className="ai-row"><span className="ai-badge">Agent</span><span className="ai-bubble">{phase === 'planned' ? tr({ uz: 'Mana rejam — tasdiqlaysizmi?', ru: 'Вот мой план — утверждаете?' }) : (phase === 'building' ? tr({ uz: 'Yozyapman…', ru: 'Пишу…' }) : tr({ uz: 'Bajardim — natijani sinang', ru: 'Готово — испытайте результат' }))}</span></div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                  {cur.plan.map((p, i) => <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'center', fontSize: 13 }}><span style={{ color: phase === 'planned' ? T.ink3 : T.success }}>{phase === 'planned' ? '○' : '✓'}</span><span style={{ color: T.ink }}>{p}</span></div>)}
-                </div>
-                {phase === 'planned' && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={approve}>{tr({ uz: 'Rejani tasdiqlash', ru: 'Утвердить план' })}</button>}
-                {phase === 'building' && <p className="ai-prompt" style={{ color: T.accent }}>{tr({ uz: 'Kod yozilyapti…', ru: 'Код пишется…' })}</p>}
-                {phase === 'done' && <div className="ai-code fade-step"><div className="ai-line ok" style={{ cursor: 'default', whiteSpace: 'pre-wrap' }}>{cur.code}</div></div>}
-              </div>
-            )}
-          </Col>
-          <Col>
-            <p className="flow-label">{tr({ uz: "2. Natija — o'zingiz sinab ko'ring", ru: '2. Результат — испытайте сами' })}</p>
-            <Win title={tr({ uz: "Mening o'yinlarim — localhost:5173", ru: 'Мои игры — localhost:5173' })} minH={150}>
-              {done && cur ? (
-                <div className="fade-step">
-                  {cur.id === 't1' && <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 8 }}><AddBtn small onClick={addDemo} /></div>}
-                  <CardGrid cols={3}>
-                    {demo.map(g => <MyCard key={g.id} game={g} onLike={cur.id === 't2' ? () => likeDemo(g.id) : undefined} onDelete={cur.id === 't3' ? () => delDemo(g.id) : undefined} />)}
-                  </CardGrid>
-                  {cur.id === 't1' && <p className="small" style={{ color: T.accent, fontStyle: 'italic', margin: '8px 0 0' }}>{tr({ uz: '"+ O\'yin qo\'shish"ni bosing — ro\'yxat o\'sadi.', ru: 'Нажмите «+ Добавить игру» — список вырастет.' })}</p>}
-                </div>
-              ) : null /* F-0926-06: bo'sh oynadagi «Buyruq bering…» yo'rig'i olindi — mentor aytadi (P1) */}
-            </Win>
-            {done
-              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ishladi! Kodni o'qing: amal to'g'ri (qo'shish/o'zgartirish/o'chirish), state ko'chirilgan (<span className="mono">...games</span> yoki <span className="mono">filter</span>). Agent ishini <b>sinab</b> qabul qildingiz.</>, ru: <>Работает! Прочитайте код: действие верное (добавить/изменить/удалить), state скопирован (<span className="mono">...games</span> или <span className="mono">filter</span>). Вы приняли работу агента, <b>испытав</b> её.</> })}</p></div>
-              : null /* F-0926-06: «Natija shu yerda jonlanadi…» olindi — mentor «natijani sinang» deydi (159/7) */}
-          </Col>
-        </div>
-        </Zoomable>
-      </div>
-    </Stage>
-  );
-};
-
-// ===== SCREEN 10 — O'CHIRISHDAN OLDIN TASDIQ =====
-const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [list, setList] = useState(GAMES.slice(0, 3));
-  const [asking, setAsking] = useState(null); // o'chirilayotgan o'yin
-  const [done, setDone] = useState(!!storedAnswer);
-  const [cancelled, setCancelled] = useState(false);
-  const confirmDel = () => { setList(prev => prev.filter(g => g.id !== asking.id)); setAsking(null); setDone(true); };
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  return (
-    <Stage eyebrow={tr({ uz: 'Xavfsizlik · tasdiq', ru: 'Безопасность · подтверждение' })} screen={screen} scrollSignal={done || !!asking} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Bitta o'yinni o'chiring", ru: 'Удалите одну игру' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Nega o'chirishdan oldin <span className="italic" style={{ color: T.accent }}>"Rostdan?"</span> deb so'raladi?</>, ru: <>Почему перед удалением спрашивают <span className="italic" style={{ color: T.accent }}>«Точно?»</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>O'chirishni <b style={{ color: T.ink }}>qaytarib bo'lmaydi</b> — bitta noto'g'ri bosish, o'yin yo'q. Shuning uchun yaxshi ilovalar avval <b style={{ color: T.ink }}>tasdiq</b> so'raydi. Kartochkadagi ✕ ni bosing — nima bo'lishini ko'ring.</>, ru: <>Удаление <b style={{ color: T.ink }}>нельзя отменить</b> — одно неверное нажатие, и игры нет. Поэтому хорошие приложения сначала просят <b style={{ color: T.ink }}>подтверждение</b>. Нажмите ✕ на карточке — посмотрите, что будет.</> })}</Mentor>
-        <Zoomable off={!asking && !done && !cancelled /* F-0926-06: o'ng ustun bo'sh — ⛶ yolg'iz osilmasin (159/3) */}>
-        <div className="split">
-          <Col>
-            <p className="flow-label">{tr({ uz: "Mening o'yinlarim", ru: 'Мои игры' })}</p>
-            <Win title="localhost:5173" minH={120}>
-              {list.length ? <CardGrid cols={3}>{list.map(g => <MyCard key={g.id} game={g} onDelete={() => { setAsking(g); setCancelled(false); }} />)}</CardGrid>
-                : <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: "Bo'sh…", ru: 'Пусто…' })}</p>}
-            </Win>
-            <pre className="code-box fade-up delay-1" style={{ lineHeight: 1.9, padding: '10px 14px' }}>
-              <Jx>{'if'}</Jx>{' (confirm('}<St>{tr({ uz: '"Rostdan o\'chirilsinmi?"', ru: '"Точно удалить?"' })}</St>{')) {'}{'\n'}
-              {'  setGames(games.filter(...));'}{'\n'}
-              {'}'}
-            </pre>
-          </Col>
-          <Col>
-            {asking && (
-              <div className="frame fade-step" style={{ boxShadow: `inset 0 0 0 1.5px ${T.danger}, 0 8px 22px -6px rgba(${T.shadowBase},0.2)` }}>
-                <p className="note-h" style={{ color: T.danger }}>{tr({ uz: "Rostdan o'chirilsinmi?", ru: 'Точно удалить?' })}</p>
-                <p className="body" style={{ margin: '0 0 12px', color: T.ink }}>{tr({ uz: <>"{asking.name}" ro'yxatdan butunlay olib tashlanadi. Buni qaytarib bo'lmaydi.</>, ru: <>«{asking.name}» будет полностью убрана из списка. Это нельзя отменить.</> })}</p>
-                <div style={{ display: 'flex', gap: 9 }}>
-                  <button className="btn-soft" onClick={() => { setAsking(null); setCancelled(true); }}>{tr({ uz: 'Bekor qilish', ru: 'Отмена' })}</button>
-                  <button className="btn" style={{ background: T.danger }} onClick={confirmDel}>{tr({ uz: "Ha, o'chirilsin", ru: 'Да, удалить' })}</button>
-                </div>
-              </div>
-            )}
-            {cancelled && !asking && !done && <div className="hint fade-step"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Bekor qildingiz — hech narsa o'zgarmadi. Bu ham muhim: tasdiq sizni xatodan saqladi. Tayyor bo'lsangiz, yana ✕ ni bosing.", ru: 'Вы отменили — ничего не изменилось. Это тоже важно: подтверждение спасло вас от ошибки. Когда будете готовы, нажмите ✕ снова.' })}</p></div>}
-            {/* F-0926-06: «Maslahat: … doim so'rang» uzuq-chiziqli qutisi olindi — mentor «avval tasdiq so'raydi» deydi (159/7, 159/11) */}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Mana yaxshi ilova: avval <b>so'radi</b>, keyin <b>o'chirdi</b>. Bitta bosishda muhim narsa yo'qolmasin. Siz ham o'z ilovangizda shunday qilasiz.</>, ru: <>Вот хорошее приложение: сначала <b>спросило</b>, потом <b>удалило</b>. Пусть важное не пропадает от одного нажатия. Вы в своём приложении сделаете так же.</> })}</p></div>}
-          </Col>
-        </div>
-        </Zoomable>
-      </div>
-    </Stage>
-  );
-};
-
-// ===== SCREEN 11 — AMALIYOT: O'Z LOYIHANGIZNI BITIRING (to'liq CRUD) =====
-const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [list, setList] = useState(storedAnswer ? [...GAMES.slice(0, 2), POOL[0]] : GAMES.slice(0, 2));
-  const [didAdd, setDidAdd] = useState(!!storedAnswer);
-  const [didTop, setDidTop] = useState(!!storedAnswer);
-  const [didDel, setDidDel] = useState(!!storedAnswer);
-  const done = didAdd && didTop && didDel;
-  const remaining = POOL.filter(p => !list.some(g => g.id === p.id));
-  const add = (g) => { setList(prev => [...prev, g]); setDidAdd(true); };
-  const top = (id) => { setList(prev => prev.map(g => g.id === id ? { ...g, top: !g.top } : g)); setDidTop(true); };
-  const del = (id) => { setList(prev => prev.filter(g => g.id !== id)); setDidDel(true); };
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  const Tick = ({ ok, label }) => (
-    <span className="tagpill" style={{ color: ok ? T.success : T.ink3, boxShadow: ok ? `0 3px 10px -5px rgba(31,122,77,0.3)` : undefined }}>{ok ? '✓' : '○'} {label}</span>
-  );
-  return (
-    <Stage eyebrow={tr({ uz: 'Amaliyot · loyihani bitirish', ru: 'Практика · завершение проекта' })} screen={screen} scrollSignal={done} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: '3 amalni ham bajaring', ru: 'Выполните все 3 действия' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(8px,1.2vw,12px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Endi o'zingiz — loyihani <span className="italic" style={{ color: T.accent }}>to'liq boshqaring</span>.</>, ru: <>Теперь сами — <span className="italic" style={{ color: T.accent }}>полностью управляйте</span> проектом.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Mana sizning ilovangiz. Uchala amalni ham sinang: bitta o'yin <b style={{ color: T.ink }}>qo'shing</b>, bittasini <b style={{ color: T.ink }}>🔥 TOP</b> qiling, bittasini <b style={{ color: T.ink }}>✕ o'chiring</b>. Uchalasi bajarilsa — loyihangiz tayyor!</>, ru: <>Вот ваше приложение. Испытайте все три действия: <b style={{ color: T.ink }}>добавьте</b> одну игру, сделайте одну <b style={{ color: T.ink }}>🔥 TOP</b>, одну <b style={{ color: T.ink }}>✕ удалите</b>. Выполните все три — и проект готов!</> })}</Mentor>
-        <Zoomable>
-        <div className="split">
-          <Col>
-            <p className="flow-label">{tr({ uz: "Qo'shish uchun", ru: 'Для добавления' })}</p>
-            <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-              {remaining.length ? remaining.map(g => <button key={g.id} className="gchip" onClick={() => add(g)}>+ {g.emoji} {g.name}</button>) : <span className="small" style={{ color: T.ink3, fontStyle: 'italic' }}>{tr({ uz: "Hammasi qo'shildi", ru: 'Всё добавлено' })}</span>}
-            </div>
-            <p className="flow-label" style={{ margin: '4px 0 0' }}>{tr({ uz: 'Bajarildi', ru: 'Выполнено' })}</p>
-            <div className="fade-up delay-2" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-              <Tick ok={didAdd} label={tr({ uz: "Qo'shdim", ru: 'Добавлено' })} /><Tick ok={didTop} label={tr({ uz: 'TOP qildim', ru: 'TOP сделан' })} /><Tick ok={didDel} label={tr({ uz: "O'chirdim", ru: 'Удалено' })} />
+            <div className="am-karta"> {/* F-1015-368: «Tekshiring» ilova ostida — u ilovani tekshirish haqida; ustunlar tenglashadi */}
+              <p className="flow-label">{tr({ uz: 'Tekshiring', ru: 'Проверьте' })}</p>
+              <ul className="am-band">{A2_TEKSHIR.map((x, i) => <li key={i}>{fmtCode(tr(x))}</li>)}</ul>
             </div>
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: "Mening o'yinlarim", ru: 'Мои игры' })}</p>
-            <Win title="localhost:5173" minH={130}>
-              {list.length ? <CardGrid cols={3 /* F-0926-06: 2→3 ustun — 5 kartada oyna tugmalar orqasiga tushardi (159/12, layout 69px) */}>{list.map(g => <MyCard key={g.id} game={g} onTop={() => top(g.id)} onDelete={() => del(g.id)} />)}</CardGrid>
-                : <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: "Bo'sh — o'yin qo'shing…", ru: 'Пусто — добавьте игру…' })}</p>}
-            </Win>
-            {/* F-0926-06: «🎉 Loyihangiz tayyor! … qo'shdingiz, o'zgartirdingiz, o'chirdingiz» olindi — ✓ qatorlar va bayram oynasi aytadi (G2, 159/14) */}
+            <PromptKarta matn={a2Prompt()} /> {/* F-1015-385: yig'iq prompt */}
+            <div ref={kodRef} key={'k' + yig} className={yig ? 'sk-kotar' : ''}><KodOyna oxirgi={oxirgi} nur={nur} qatorlar={[<>{nomlar(list)}</>, <>top: [{toplar.join(', ')}];  <span className="sk-izoh">// games.length = {list.length}</span></>]} /></div>
+            <QadamTugma b={A2_QADAM} />
           </Col>
-        </div>
-        </Zoomable>
+        </Split>
       </div>
     </Stage>
   );
 };
-
-// ===== SCREEN 12 — TEST 4 (stsenariy → amal) =====
-const Screen12 = (props) => (
-  <QuestionScreen {...props} idx={12} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 4-savol', ru: 'Упражнение · вопрос 4' })}
-    questionText="O'yinning like sonini oshirish — bu CRUD'ning qaysi amali?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>O'yinning <span className="italic" style={{ color: T.accent }}>like sonini oshirish</span> — qaysi amal?</>, ru: <>Увеличить <span className="italic" style={{ color: T.accent }}>число лайков</span> игры — какое это действие?</> })}</h2></>}
-    options={[tr({ uz: "Update — mavjud o'yinni o'zgartirish", ru: 'Update — изменить существующую игру' }), tr({ uz: "Create — yangi o'yin qo'shish", ru: 'Create — добавить новую игру' }), tr({ uz: "Delete — o'yinni ro'yxatdan o'chirish", ru: 'Delete — удалить игру из списка' }), tr({ uz: "Read — ro'yxatni ekranga ko'rsatish", ru: 'Read — показать список на экране' })]} correctIdx={0}
-    explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi olindi — natija yorlig'i aytadi (159/11) */ tr({ uz: "Like soni o'zgaradi, o'yin esa o'sha o'yinligicha qoladi.", ru: 'Число лайков меняется, а игра остаётся той же.' })}
-    explainWrong={{
-      1: tr({ uz: "Yangi o'yin qo'shilmaydi — like ro'yxatdagi o'yinga bosildi.", ru: 'Новая игра не появляется — лайк ставят игре из списка.' }),
-      2: tr({ uz: "O'yin ro'yxatda qoladi, faqat like soni oshadi.", ru: 'Игра остаётся в списке, растёт только число лайков.' }),
-      3: tr({ uz: "Read faqat ko'rsatadi, bu yerda esa son o'zgaradi.", ru: 'Read только показывает, а здесь число меняется.' }),
-      default: tr({ uz: "O'yin qoladi, faqat like soni o'zgaradi — bu qaysi harf?", ru: 'Игра остаётся, меняется только число лайков — какая это буква?' })
-    }} />
-);
 
 // ===== SCREEN 13 — DEBUGGING (mutatsiya: games.push → setGames([...games])) =====
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1256,7 +994,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const shown = fixed ? [...base, ...Array.from({ length: clicks }, (_, i) => POOL[i] || POOL[0])] : base;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow="Debugging" screen={screen} scrollSignal={found || fixed} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (found ? tr({ uz: 'Endi tuzating', ru: 'Теперь исправьте' }) : tr({ uz: 'Xatoni toping', ru: 'Найдите ошибку' }))} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Amaliyot 3 · AI xatosi', ru: 'Практика 3 · ошибка AI' })} screen={screen} scrollSignal={found || fixed} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (found ? tr({ uz: 'Endi tuzating', ru: 'Теперь исправьте' }) : tr({ uz: 'Xatoni toping', ru: 'Найдите ошибку' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI yordam beradi — siz esa <span className="italic" style={{ color: T.accent }}>tekshirasiz</span>.</>, ru: <>AI помогает — а <span className="italic" style={{ color: T.accent }}>проверяете</span> вы.</> })}</h2></div>
         <Mentor>{tr({ uz: <>AI "Qo'shish"ni yozdi — lekin tugmani bosganda <b style={{ color: T.ink }}>hech narsa bo'lmayapti</b>! O'yin qo'shilmaydi. <b style={{ color: T.ink }}>State darsini</b> eslang. Qaysi qatorda xato? O'sha qatorni bosing.</>, ru: <>AI написал «Добавить» — но при нажатии кнопки <b style={{ color: T.ink }}>ничего не происходит</b>! Игра не добавляется. Вспомните <b style={{ color: T.ink }}>урок про state</b>. В какой строке ошибка? Нажмите на неё.</> })}</Mentor>
@@ -1303,28 +1041,31 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 14 — YAKUNIY (VS Code: setGames([...games, yangi])) =====
 const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [value, setValue] = useState(typeof storedAnswer?.picked === 'string' ? storedAnswer.picked : ''); // F-0914-10: saqlangan javob matn bo'lmasa — bo'sh (oq ekran himoyasi)
+  // F-1015-352 (foydalanuvchi): a1 da qo'shish (spread) yoziladi — yakuniy endi o'chirish (filter) qatorini so'raydi
+  const [value, setValue] = useState(typeof storedAnswer?.picked === 'string' ? storedAnswer.picked : '');
   const [passed, setPassed] = useState(!!storedAnswer?.correct);
   const norm = value.replace(/\s+/g, ' ').trim();
-  const valid = /^setGames\(\s*\[\s*\.\.\.\s*games\s*,\s*yangi\s*\]\s*\)\s*;?$/.test(norm);
+  const RE = /^setGames\(\s*games\s*\.\s*filter\(\s*\(?\s*([A-Za-z_]\w*)\s*\)?\s*=>\s*\1\s*\.\s*id\s*!==?\s*id\s*\)\s*\)\s*;?$/;
+  const valid = RE.test(norm);
+  const caseOnly = !valid && new RegExp(RE.source, 'i').test(norm); // F-1015-369: faqat harf farqi — JS farqlaydi, qabul yo'q, aniq izoh
   const hasSet = /setGames\s*\(/.test(value);
-  const hasSpread = /\[\s*\.\.\.\s*games/.test(value);
-  const hasNew = /,\s*yangi\s*\]/.test(value);
-  const pushBug = /\bgames\s*\.\s*push\b/.test(value);
+  const hasFilter = /games\s*\.\s*filter\s*\(/.test(value);
+  const hasCond = /\.\s*id\s*!==?\s*id\b/.test(value);
+  const spliceBug = /\.\s*splice\b/.test(value);
   useEffect(() => {
     if (valid && !passed) {
       setPassed(true);
-      onAnswer(screen, { stage: 'final', screenIdx: screen, question: 'VS Code: setGames([...games, yangi]) ni yozing', studentAnswer: value, correct: true, firstAttemptCorrect: true, solved: true, picked: value });
+      onAnswer(screen, { stage: 'final', screenIdx: screen, question: 'VS Code: setGames(games.filter(g => g.id !== id)) ni yozing', studentAnswer: value, correct: true, firstAttemptCorrect: true, solved: true, picked: value });
     }
   }, [valid]);
   const Ln = ({ n, children }) => (
     <div className="vsc-line"><span className="vsc-ln">{n}</span><span style={{ whiteSpace: 'pre' }}>{children}</span></div>
   );
   return (
-    <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} scrollSignal={passed} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Qo'shish qatorini yozing", ru: 'Напишите строку добавления' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} scrollSignal={passed} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Kodni yozing', ru: 'Напишите код' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: <span className="italic" style={{ color: T.accent }}>qo'shish</span> kodini o'zingiz yozing.</>, ru: <>Последний шаг: сами напишите код <span className="italic" style={{ color: T.accent }}>добавления</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>VS Code'da <span className="mono">App.jsx</span> ochiq: forma tayyor, yangi o'yin <span className="mono">yangi</span>'da turibdi — faqat <b style={{ color: T.ink }}>3-qator bo'sh</b>. Uni ro'yxatga qo'shing.{/* F-0926-06: qadamlarni chiplar sanaydi — mentor qisqardi (H1) */}{/* F-0927 (S6 namunasi): baholanadigan yakuniy testda mentor javobni aynan aytardi (159/17) */}</>, ru: <>В VS Code открыт <span className="mono">App.jsx</span>: форма готова, новая игра лежит в <span className="mono">yangi</span> — пуста только <b style={{ color: T.ink }}>строка 3</b>. Добавьте её в список.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: <span className="italic" style={{ color: T.accent }}>o'chirish</span> kodini o'zingiz yozing.</>, ru: <>Последний шаг: сами напишите код <span className="italic" style={{ color: T.accent }}>удаления</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>VS Code'da <span className="mono">App.jsx</span> ochiq: <span className="mono">ochirish(id)</span> funksiyasi tayyor — faqat <b style={{ color: T.ink }}>2-qator bo'sh</b>. Bosilgan o'yindan boshqa hammasi ro'yxatda qolsin.</>, ru: <>В VS Code открыт <span className="mono">App.jsx</span>: функция <span className="mono">ochirish(id)</span> готова — пуста только <b style={{ color: T.ink }}>2-я строка</b>. Пусть в списке останутся все игры, кроме нажатой.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1334,31 +1075,28 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <span className="vsc-tab">GameCard.jsx</span>
               </div>
               <div className="vsc-body">
-                <Ln n={1}><Jx>{'function'}</Jx><span style={{ color: '#DCDCAA' }}> qoshish</span>{'() {'}</Ln>
-                <Ln n={2}>{'  '}<Jx>{'const'}</Jx>{' yangi = { name: '}<St>'Piggy'</St>{' };'}</Ln>
+                <Ln n={1}><Jx>{'function'}</Jx><span style={{ color: '#DCDCAA' }}> ochirish</span>{'(id) {'}</Ln>
                 <div className="vsc-line">
-                  <span className="vsc-ln">3</span>
+                  <span className="vsc-ln">2</span>
                   <span style={{ whiteSpace: 'pre' }}>{'  '}</span>
-                  <input className={`vsc-input ${valid ? 'ok' : ''}`} value={value} onChange={e => setValue(e.target.value)} placeholder='…' /* F-0927 (S6 namunasi): placeholder javobni aynan aytardi (159/17) */ spellCheck={false} autoCapitalize="off" autoCorrect="off" />
+                  <input className={`vsc-input ${valid ? 'ok' : ''}`} value={value} onChange={e => setValue(e.target.value)} placeholder='…' spellCheck={false} autoCapitalize="off" autoComplete="off" aria-label={tr({ uz: "2-qator — o'chirish kodi", ru: 'Строка 2 — код удаления' })} />
                 </div>
-                <Ln n={4}>{'}'}</Ln>
+                <Ln n={3}>{'}'}</Ln>
               </div>
             </div>
             <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              {/* F-0927 (S6 namunasi): qadam-chiplari kod bo'laklarini (javobni) aytardi — endi faqat nima yozish kerakligi */}
               <span className="tagpill" style={{ opacity: hasSet ? 1 : 0.4 }}>{hasSet ? '✓' : '1'} {tr({ uz: "state'ni yangilash", ru: 'обновить state' })}</span>
-              <span className="tagpill" style={{ opacity: hasSpread ? 1 : 0.4 }}>{hasSpread ? '✓' : '2'} {tr({ uz: 'eski hammasi', ru: 'всё старое' })}</span>
-              <span className="tagpill" style={{ opacity: hasNew ? 1 : 0.4 }}>{hasNew ? '✓' : '3'} {tr({ uz: 'yangisi', ru: 'новая' })}</span>
+              <span className="tagpill" style={{ opacity: hasFilter ? 1 : 0.4 }}>{hasFilter ? '✓' : '2'} {tr({ uz: 'elak', ru: 'фильтр' })}</span>
+              <span className="tagpill" style={{ opacity: hasCond ? 1 : 0.4 }}>{hasCond ? '✓' : '3'} {tr({ uz: 'shu id dan boshqasi', ru: 'кроме этого id' })}</span>
             </div>
-            {pushBug && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Esingizdami? <span className="mono">games.push</span> ishlamaydi — React ko'rmaydi. Yangi ro'yxat kerak: eski hammasi + yangisi.{/* F-0927 (S6 namunasi): javob aynan aytilmaydi (159/17) */}</>, ru: <>Помните? <span className="mono">games.push</span> не работает — React не видит. Нужен новый список: всё старое + новая.</> })}</p></div>}
-            {passed && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ Mukammal! Qo'shish ishladi — eski hammasi + yangisi. To'liq CRUD ilovasi sizning qo'lingizda.", ru: '✓ Отлично! Добавление сработало — всё старое + новая. Полное CRUD-приложение в ваших руках.' })}</p></div>}
+            {spliceBug && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">splice</span> ham <span className="mono">push</span> kabi eski ro'yxatni buzadi — React ko'rmaydi. Yangi ro'yxat kerak: <span className="mono">filter</span>.</>, ru: <><span className="mono">splice</span>, как и <span className="mono">push</span>, портит старый список — React не увидит. Нужен новый список: <span className="mono">filter</span>.</> })}</p></div>}
+{caseOnly && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Deyarli to'g'ri! JavaScript <b>katta-kichik harfni farqlaydi</b>: <span className="mono">setGames</span>, <span className="mono">filter</span>, <span className="mono">id</span> — aynan shunday yozing.</>, ru: <>Почти верно! JavaScript <b>различает заглавные и строчные буквы</b>: пишите именно <span className="mono">setGames</span>, <span className="mono">filter</span>, <span className="mono">id</span>.</> })}</p></div>}
+            {passed && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ Mukammal! O'chirish ishladi — shu o'yindan boshqa hammasi qoldi. To'liq CRUD ilovasi sizning qo'lingizda.", ru: '✓ Отлично! Удаление сработало — остались все, кроме этой игры. Полное CRUD-приложение в Ваших руках.' })}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'natija', ru: 'результат' }) /* F-0926-06: «— localhost:5173» oyna sarlavhasida bor (159/7) */}</p>
+            <p className="flow-label">{tr({ uz: 'natija · ochirish(2)', ru: 'результат · ochirish(2)' })}</p>
             <Win title={tr({ uz: "Mening o'yinlarim — localhost:5173", ru: 'Мои игры — localhost:5173' })} minH={130}>
-              {valid
-                ? <div className="fade-step"><CardGrid cols={3}><MyCard game={GAMES[0]} /><MyCard game={GAMES[1]} /><MyCard game={{ ...POOL[0] }} flash /></CardGrid>{/* F-0926-06: «✓ Piggy qo'shildi!» olindi — natija kod ostidagi kartada (I3) */}</div>
-                : null /* F-0927 (S6 namunasi): bo'sh oynadagi yo'riq javobni aynan aytardi — olindi (159/17, P1) */}
+              <div className="fade-step"><CardGrid cols={3}>{GAMES.slice(0, 3).filter(g => !(valid && g.id === 2)).map(g => <MyCard key={g.id} game={g} dim={!valid && g.id === 2} />)}</CardGrid></div>
             </Win>
           </Col>
         </div>
@@ -1396,271 +1134,17 @@ const Aquarium = ({ fish = [], frozen = false, feedId = null, addId = null, netN
   </div>
 );
 
-// ===== 🛠️ JONLI PRAKTIKA (reusable checkpoint) — o'quvchi VS Code'da bajaradi, ustoz kuzatadi =====
-// signal zonasi: <100 test · 100+ arena · 500+ praktika (to'qnashmaydi).
-const PRACTICE_BASE = 500;
-const MentorPracticeStats = ({ live, screen, label }) => {
-  const [data, setData] = useState({ players: null, doneIds: new Set() });
-  const isMentor = !!(live && live.mode === 'mentor' && live.pin);
-  useEffect(() => {
-    if (!isMentor) return;
-    let on = true, t = null;
-    const tick = async () => {
-      try {
-        const [players, rows] = await Promise.all([livePlayers(live.pin), liveAnswers(live.pin, PRACTICE_BASE + screen)]);
-        if (on) setData({ players, doneIds: new Set(rows.map(r => r.player_id)) }); // JONLI: bajarganlar = screen_idx==500+screen javob yozganlar
-      } catch {}
-      if (on) t = setTimeout(tick, 3000);
-    };
-    tick();
-    return () => { on = false; clearTimeout(t); };
-  }, [isMentor, live && live.pin, screen]);
-  if (!isMentor) return null;
-  // Bo'sh apparat ko'rsatilmaydi: yuklanish va «0/0 — hech kim qo'shilmagan» holatlari joy
-  // egallaydi, lekin hech narsa o'rgatmaydi. Birinchi o'quvchi qo'shilgach panel o'zi paydo
-  // bo'ladi (har 3 s da yangilanadi) — F-0819-57, PmLesson8:836 dan ko'chirildi.
-  if (data.players === null || data.players.length === 0) return null;
-  const players = data.players;
-  const doers = players.filter(p => data.doneIds.has(p.id));
-  const waiting = players.filter(p => !data.doneIds.has(p.id));
-  return (
-    <div className="lp-mstats fade-up">
-      <div className="card-lbl" style={{ color: T.blue }}>{tr(label || { uz: '👀 Kim bajardi', ru: '👀 Кто выполнил' })} — <b>{doers.length}</b>/{players.length}</div>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-        {doers.map(p => <span key={p.id} className="lp-doer done">✓ {p.nickname}</span>)}
-        {waiting.slice(0, 10).map(p => <span key={p.id} className="lp-doer">⏳ {p.nickname}</span>)}
-        {waiting.length > 10 && <span className="lp-doer">+{waiting.length - 10}</span>}
-      </div>
-    </div>
-  );
-};
-
-// O'QUVCHI ko'radigan sinf-holati (45-qonun) — sof O'QISH, ball-relsga yozmaydi.
-// PmLesson8:871 dan ko'chirildi; bu dars UZ+RU bo'lgani uchun yorliqlar tr() ga o'raldi.
-const StudentPracticePulse = ({ live, screen }) => {
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    if (!live || live.mode !== 'student' || !live.pin) return;
-    let on = true, t = null;
-    const tick = async () => {
-      try {
-        const [players, rows] = await Promise.all([livePlayers(live.pin), liveAnswers(live.pin, PRACTICE_BASE + screen)]);
-        if (on) setData({ total: players.length, done: new Set(rows.map(r => r.player_id)).size });
-      } catch {}
-      if (on) t = setTimeout(tick, 3000);
-    };
-    tick();
-    return () => { on = false; clearTimeout(t); };
-  }, [live && live.pin, screen]);
-  if (!live || live.mode !== 'student' || !data || data.total === 0) return null;
-  const doing = Math.max(0, data.total - data.done);
-  return (
-    <div className="done-mini fade-up">
-      👥 {tr({ uz: 'Sinfda:', ru: 'В классе:' })} <b>{data.done}</b> {tr({ uz: 'bajardi', ru: 'выполнили' })}
-      {doing > 0 && <span className="dm-sub">· ✏️ {doing} {tr({ uz: 'hali bajarmoqda', ru: 'ещё выполняют' })}</span>}
-    </div>
-  );
-};
-function ScreenLivePractice({ title, task, checklist, statsLabel, screen, storedAnswer, onAnswer, onNext, onPrev, live }) {
-  const _gate = useContext(LiveGateCtx) || {};
-  const _live = live || _gate.live;
-  const isMentor = !!(_live && _live.mode === 'mentor'); // mentor topshiriqni BAJARMAYDI — kuzatadi (F-0819-41)
-  const [checked, setChecked] = useState(() => new Set());
-  const [done, setDone] = useState(!!(storedAnswer && storedAnswer.solved));
-  const toggle = (i) => setChecked(prev => { const s = new Set(prev); if (s.has(i)) s.delete(i); else s.add(i); return s; });
-  const complete = () => {
-    if (done || checked.size < checklist.length) return; // F-1003-12: hamma qadam belgilanmaguncha yopiq
-    setDone(true);
-    onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: title, solved: true, correct: true, picked: true });
-    // JONLI: o'quvchi «Bajardim» bosganda serverga yoziladi (500+ zonasi) — mentor MentorPracticeStats'da ko'radi
-    if (_live && _live.mode === 'student') _live.submitAnswer(PRACTICE_BASE + screen, 'practice', 0, true, 0);
-  };
-  return (
-    <Stage eyebrow={tr({ uz: 'Amaliyot · VS Code', ru: 'Практика · VS Code' })} screen={screen} scrollSignal={done} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={(done || isMentor) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr(title)}</h2></div>
-        <Mentor>{isMentor ? tr({ uz: <>O'quvchilar topshiriqni <b style={{ color: T.ink }}>VS Code'da</b> bajarmoqda. Nechtasi tugatgani pastda ko'rinadi — hamma tayyor bo'lgach davom eting.</>, ru: <>Ученики выполняют задание <b style={{ color: T.ink }}>в VS Code</b>. Сколько закончили — видно ниже; продолжайте, когда будут готовы все.</> }) : tr({ uz: <>Bu topshiriqni <b style={{ color: T.ink }}>o'z kompyuteringizda</b> — VS Code'da bajaring. Har bosqichni bajarib, belgilab boring. Tugagach <b style={{ color: T.ink }}>«Bajardim»</b> tugmasini bosing — ustoz kuzatib turadi.</>, ru: <>Выполните это задание <b style={{ color: T.ink }}>на своём компьютере</b> — в VS Code. Отмечайте каждый шаг по мере выполнения. Закончив, нажмите <b style={{ color: T.ink }}>«Выполнил»</b> — наставник наблюдает.</> })}</Mentor>
-        <div className="split">
-          <Col>
-            <div className="lp-task fade-up delay-1">
-              <div className="lp-task-h"><span className="lp-task-badge">{tr({ uz: 'TOPSHIRIQ', ru: 'ЗАДАНИЕ' })}</span></div>
-              <p className="body" style={{ margin: 0, color: T.ink }}>{tr(task)}</p>
-            </div>
-            <MentorPracticeStats live={_live} screen={screen} label={statsLabel} />
-            <StudentPracticePulse live={_live} screen={screen} />
-          </Col>
-          <Col>
-            <p className="flow-label">{tr({ uz: 'Bosqichlar — belgilab boring', ru: 'Шаги — отмечайте по ходу' })}</p>
-            <div className="lp-steps fade-up delay-2">
-              {checklist.map((c, i) => {
-                const on = checked.has(i);
-                return (
-                  <button key={i} className={`lp-step ${on ? 'on' : ''}`} onClick={() => toggle(i)}>
-                    <span className="lp-check">{on ? '✓' : i + 1}</span>
-                    <span className="lp-step-t">{fmtCode(tr(c))}</span>
-                  </button>
-                );
-              })}
-            </div>
-            {!isMentor && <button className={`lp-done-btn ${done ? 'is-done' : ''}`} disabled={done || checked.size < checklist.length} onClick={complete}>
-              {done ? tr({ uz: '✓ Bajarildi — ustozni kuting', ru: '✓ Выполнено — ждите наставника' }) : checked.size < checklist.length ? tr({ uz: `Yana ${checklist.length - checked.size} qadam`, ru: `Ещё шагов: ${checklist.length - checked.size}` }) : tr({ uz: '✅ Bajardim', ru: '✅ Выполнил' })}
-            </button>}
-            {done && !isMentor && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Juda yaxshi! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.", ru: 'Отлично! Вы выполнили задание. Наставник проверит и переведёт на следующий шаг.' })}</p></div>}
-          </Col>
-        </div>
-      </div>
-    </Stage>
-  );
-}
-const ScreenPractice1 = (props) => (
-  <ScreenLivePractice {...props}
-    title={{ uz: "Checkpoint 1 — Create: o'yin qo'shish", ru: 'Checkpoint 1 — Create: добавление игры' }}
-    statsLabel={{ uz: "✅ Qo'shganlar", ru: '✅ Добавили' }}
-    task={{ uz: "VS Code'dagi «Mening o'yinlarim» loyihangizda forma orqali yangi o'yin qo'shing. Tugma bosilganda ro'yxat o'ssin — spread bilan.", ru: 'В своём проекте «Мои игры» в VS Code добавьте новую игру через форму. При нажатии кнопки список должен вырасти — через spread.' }}
-    checklist={[
-      { uz: "Formadagi tugmaga `onClick` qo'shing", ru: 'Добавьте кнопке формы `onClick`' },
-      { uz: "Yangi o'yin obyektini yozing: `const yangi = { id, name }`", ru: 'Напишите объект новой игры: `const yangi = { id, name }`' },
-      { uz: "`setGames([...games, yangi])` bilan ro'yxatga qo'shing", ru: 'Добавьте в список через `setGames([...games, yangi])`' },
-      { uz: "Saqlang — localhost:5173 da yangi kartochka chiqdimi?", ru: 'Сохраните — появилась ли новая карточка на localhost:5173?' },
-    ]} />
-);
-const ScreenPractice2 = (props) => (
-  <ScreenLivePractice {...props}
-    title={{ uz: 'Checkpoint 2 — Update: 🔥 TOP toggle', ru: 'Checkpoint 2 — Update: переключатель 🔥 TOP' }}
-    statsLabel={{ uz: '🔥 TOP qilganlar', ru: '🔥 Сделали TOP' }}
-    task={{ uz: "Har kartochkaga «🔥 TOP» tugmasini qo'shing. Bosilganda faqat o'sha o'yinning top holati o'zgarsin, qolganlari joyida qolsin.", ru: 'Добавьте на каждую карточку кнопку «🔥 TOP». При нажатии должно меняться top-состояние только этой игры, остальные — на месте.' }}
-    checklist={[
-      { uz: "Kartochka tugmasiga `onClick={() => toggleTop(g.id)}` bering", ru: 'Дайте кнопке карточки `onClick={() => toggleTop(g.id)}`' },
-      { uz: "`games.map(g => g.id === id ? { ...g, top: !g.top } : g)` yozing", ru: 'Напишите `games.map(g => g.id === id ? { ...g, top: !g.top } : g)`' },
-      { uz: "`setGames(...)` bilan yangi ro'yxatni qo'ying", ru: 'Подставьте новый список через `setGames(...)`' },
-      { uz: "Saqlang — faqat bosilgan kartochka o'zgardimi?", ru: 'Сохраните — изменилась только нажатая карточка?' },
-    ]} />
-);
-const ScreenPractice3 = (props) => (
-  <ScreenLivePractice {...props}
-    title={{ uz: "Checkpoint 3 — Delete: ✕ o'chirish (tasdiq bilan)", ru: 'Checkpoint 3 — Delete: удаление ✕ (с подтверждением)' }}
-    statsLabel={{ uz: "✕ O'chirganlar", ru: '✕ Удалили' }}
-    task={{ uz: "Har kartochkaga «✕» tugmasini qo'shing. Bosilganda avval tasdiq so'rang, keyin filter bilan o'sha o'yinni ro'yxatdan chiqaring.", ru: 'Добавьте на каждую карточку кнопку «✕». При нажатии сначала спросите подтверждение, потом уберите эту игру из списка через filter.' }}
-    checklist={[
-      { uz: "`if (confirm(\"Rostdan?\")) { ... }` bilan tasdiq so'rang", ru: 'Спросите подтверждение: `if (confirm("Rostdan?")) { ... }`' },
-      { uz: "`games.filter(g => g.id !== id)` yozing", ru: 'Напишите `games.filter(g => g.id !== id)`' },
-      { uz: "`setGames(...)` bilan yangi ro'yxatni qo'ying", ru: 'Подставьте новый список через `setGames(...)`' },
-      { uz: "Saqlang — o'sha o'yin ro'yxatdan tushdimi?", ru: 'Сохраните — игра исчезла из списка?' },
-    ]} />
-);
-
-// 🃏 FLASHCARD KARTALARI (front=savol, back=qisqa javob)
-const REACT_FLASHCARDS = [
-  { front: { uz: "CRUD — qaysi 4 amalning qisqartmasi?", ru: 'Сокращением каких 4 действий является CRUD?' }, back: "Create · Read · Update · Delete", note: { uz: "qo'shish · ko'rsatish · o'zgartirish · o'chirish", ru: 'добавить · показать · изменить · удалить' } },
-  { front: { uz: "Ro'yxatga yangi o'yin qo'shish qaysi amal?", ru: 'Какое это действие — добавить новую игру в список?' }, back: "Create", note: "setGames([...games, yangi])" },
-  { front: { uz: "Ro'yxatni ekranga chiqarish qaysi amal?", ru: 'Какое это действие — вывести список на экран?' }, back: "Read", note: "games.map(g => <GameCard game={g} />)" },
-  { front: { uz: "Like sonini oshirish qaysi amal?", ru: 'Какое это действие — увеличить число лайков?' }, back: "Update", note: { uz: "o'yin o'sha o'yin, faqat bir xossasi o'zgardi", ru: 'игра та же, изменилось лишь одно свойство' } },
-  { front: { uz: "O'yinni ro'yxatdan olib tashlash qaysi amal?", ru: 'Какое это действие — убрать игру из списка?' }, back: "Delete", note: "games.filter(g => g.id !== id)" },
-  { front: { uz: "Uch nuqta (...) nimani anglatadi?", ru: 'Что означают три точки (...)?' }, back: { uz: "Hammasini ko'chir", ru: 'Скопируй всё' }, note: { uz: "spread: eski ro'yxat butunlay ko'chiriladi", ru: 'spread: старый список копируется целиком' } },
-  { front: { uz: "Yangi o'yinni qo'shish kodi qanday yoziladi?", ru: 'Как пишется код добавления новой игры?' }, back: "setGames([...games, yangi])", note: { uz: "eski hammasi + yangisi", ru: 'всё старое + новая' } },
-  { front: { uz: "games = yangi desangiz nima bo'ladi?", ru: 'Что будет, если написать games = yangi?' }, back: { uz: "Eski o'yinlar yo'qoladi", ru: 'Старые игры пропадут' }, note: { uz: "shuning uchun [...games, yangi] yoziladi", ru: 'поэтому пишут [...games, yangi]' } },
-  { front: { uz: "O'chirish uchun qaysi buyruq ishlatiladi?", ru: 'Какая команда используется для удаления?' }, back: "filter", note: { uz: "o'chiriladiganidan boshqa hammasini saqlaydi", ru: 'сохраняет все, кроме удаляемой' } },
-  { front: { uz: "Bitta o'yinni o'zgartirish uchun qaysi buyruq ishlatiladi?", ru: 'Какая команда используется, чтобы изменить одну игру?' }, back: "map", note: "g.id === id ? { ...g, likes: g.likes + 1 } : g" },
-  { front: { uz: "«O'yinni ko'chir, faqat top'ini almashtir» kodi qanday?", ru: 'Как выглядит код «скопируй игру, поменяй только top»?' }, back: "{ ...g, top: !g.top }", note: { uz: "spread + bitta o'zgarish", ru: 'spread + одно изменение' } },
-  { front: { uz: "games.push(yangi) nega ishlamaydi?", ru: 'Почему games.push(yangi) не работает?' }, back: { uz: "React o'zgarishni ko'rmaydi", ru: 'React не видит изменение' }, note: { uz: "mutatsiya: ro'yxat o'sha — yangisi yasalmaydi", ru: 'мутация: список тот же — нового не создаётся' } },
-];
-
-// ===== 🃏 FLASHCARDS (reusable, 3D flip) — HARAKAT ✨ Animatsiya, KONTENT 🎓 Metodist =====
-// F-0803-13/14: KARTA JAVOBI UZUNLIKKA MOSLASHADI.
-// Muammo edi: `.fc-tag` hamma javobga bir xil katta monoshrift berardi — u bir so'zlik javob
-// (`let`, `=`, `string`) uchun tanlangan o'lcham. Uzun javob 2-3 qatorga bo'linib, qat'iy
-// balandlikdagi kartaga sig'masdi va izoh pastki chetga yopishib qolardi.
-// Yechim: (1) uzunlik bo'yicha 4 pog'onali o'lcham · (2) bitta kod-tokeni — mono,
-// gap — Manrope (o'qishga qulay, ~25% tor) · (3) gap ichidagi kod so'zlari mono qoladi.
-const FC_CODE_WORDS = /\b(let|const|var|string|number|boolean|true|false|null|undefined|function|return|for|while|if|else)\b/g;
-const FC_VOCAB = new Set(['let', 'const', 'var', 'string', 'number', 'boolean', 'true', 'false', 'null', 'undefined', 'function', 'return', 'for', 'while', 'if', 'else']);
-// Kodmi yoki so'zmi? Monoshrift FAQAT kodga: lug'atdagi kalit so'z yoki kod-belgisi bo'lgan
-// token. «o'zgaruvchi» kabi o'zbekcha atama — gap, u Manrope bilan chiroyliroq va tor chiqadi.
-// F-0803-23: defis-li ODDIY so'z («Promo-landing», «follow-up», «AI-agent») kod EMAS — ilgari u
-// dasturchi shriftida, `let`/`const` kabi kod-token bo'lib ko'rinardi. Haqiqiy defis-li kod
-// tokeni (`background-color`, `runs-on`) FC_VOCAB oq ro'yxati orqali mono bo'lib qoladi.
-const fcIsCode = (s) => {
-  if (FC_VOCAB.has(s.toLowerCase())) return true;
-  if (/^[\p{L}'\u02BB\u2019]+(-[\p{L}'\u02BB\u2019]+)+$/u.test(s)) return false;
-  return /[=(){};.[\]<>+*/%!&|-]/.test(s);
-};
-const fcTier = (s) => (s.length <= 8 ? 't1' : s.length <= 16 ? 't2' : s.length <= 32 ? 't3' : 't4');
-const fcAnswer = (raw) => {
-  const s = String(raw ?? '');
-  const oneToken = !/\s/.test(s) && fcIsCode(s);        // `let`, `const`, `=`, `string` — kod tokeni
-  const cls = `fc-tag ${fcTier(s)} ${oneToken ? 'mono-all' : 'prose'}`;
-  if (oneToken) return <span className={cls}>{s}</span>;
-  const parts = s.split(FC_CODE_WORDS);                 // gap: kod so'zlari mono bo'lakda qoladi
-  return (
-    <span className={cls}>
-      {parts.map((p, i) => (i % 2 === 1 ? <span key={i} className="fc-kw">{p}</span> : p))}
-    </span>
-  );
-};
-
-function Flashcards({ cards }) {
-  const [queue, setQueue] = useState(() => cards.map((_, i) => i));
-  const [flipped, setFlipped] = useState(false);
-  const [known, setKnown] = useState(0);
-  const [exiting, setExiting] = useState(null);
-  const swapRef = useRef(0);
-  const total = cards.length;
-  const cur = queue[0];
-  const card = cur != null ? cards[cur] : null;
-  const advance = (removed) => {
-    if (exiting) return;
-    setExiting(removed ? 'knew' : 'again');
-    setTimeout(() => {
-      setExiting(null); setFlipped(false); swapRef.current++;
-      if (removed) setKnown(k => k + 1);
-      setQueue(q => { const [first, ...rest] = q; return removed ? rest : [...rest, first]; });
-    }, 420);
-  };
-  const knew = () => advance(true);
-  const again = () => advance(false);
-  const restart = () => { setQueue(cards.map((_, i) => i)); setKnown(0); setFlipped(false); };
-  if (!card) return (
-    <div className="fc-done fade-up"><span className="fc-done-emoji">🎉</span><p className="fc-done-h">{tr({ uz: 'Hammasini bilasiz!', ru: 'Вы знаете всё!' })}</p><p className="fc-done-s">{tr({ uz: `${total}/${total} atama yodlandi`, ru: `${total}/${total} терминов выучено` })}</p><button className="fc-btn ghost" onClick={restart}>{tr({ uz: '↻ Qaytadan takrorlash', ru: '↻ Повторить заново' })}</button></div>
-  );
-  return (
-    <div className="fc fade-up">
-      <div className="fc-top"><span className="fc-pill learn" key={`l-${queue.length}-${swapRef.current}`}>{tr({ uz: "↻ O'rganilmoqda · ", ru: '↻ Учим · ' })}<b>{queue.length}</b></span><span className="fc-pill knew" key={`k-${known}`}>{tr({ uz: '✓ Bildim · ', ru: '✓ Знаю · ' })}<b>{known}</b></span></div>
-      <div className="fc-bar"><span className="fc-bar-fill" style={{ width: `${(known / total) * 100}%` }} /></div>
-      <div className="fc-cardwrap">
-        <div className={`fc-fly ${exiting === 'knew' ? 'out-knew' : ''} ${exiting === 'again' ? 'out-again' : ''}`} key={swapRef.current}>
-        <div className={`fc-card ${flipped ? 'flip' : ''}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr(card.front)}</span></div>
-          <div className="fc-face fc-back">{fcAnswer(tr(card.back))}{card.note && <span className="fc-note">{tr(card.note)}</span>}</div>
-        </div>
-        </div>
-      </div>
-      {flipped
-        ? (<div className="fc-actions"><button className="fc-btn again" disabled={!!exiting} onClick={again}>{tr({ uz: '✗ Takrorlash', ru: '✗ Повторить' })}</button><button className="fc-btn knew" disabled={!!exiting} onClick={knew}>{tr({ uz: '✓ Bildim', ru: '✓ Знаю' })}</button></div>)
-        : (<p className="fc-hint" />)}
-    </div>
-  );
-}
-const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
-  return (
-    <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'zingizni <span className="italic" style={{ color: T.accent }}>sinab ko'ring</span>.</>, ru: <>Проверьте <span className="italic" style={{ color: T.accent }}>себя</span>.</> })}</h2></div>
-        <div className="fc-center"><Flashcards cards={REACT_FLASHCARDS} /></div>
-      </div>
-    </Stage>
-  );
-};
-
 // ===== 🏅 ACHIEVEMENTS (nishonlar) — dars davomidagi REAL bosqichlar uchun (tekin emas) =====
 const ACHIEVEMENTS = {
   builder:  { icon: '🧱', name: 'Full CRUD!',  desc: { uz: "Qo'shdingiz, o'zgartirdingiz, o'chirdingiz", ru: "Вы добавили, изменили и удалили" } },
   debugger: { icon: '🐞', name: 'Nice Catch!', desc: { uz: "push mutatsiya xatosini topib, spread'ga tuzatdingiz", ru: 'Нашли ошибку-мутацию push и исправили её на spread' } },
-  finisher: { icon: '⚡', name: 'Ship It!',     desc: { uz: "Qo'shish kodini VS Code'da o'zingiz yozdingiz", ru: 'Сами написали код добавления в VS Code' } },
+  finisher: { icon: '⚡', name: 'Ship It!',     desc: { uz: "O'chirish kodini (filter) o'zingiz yozdingiz", ru: 'Сами написали код удаления (filter)' } },
   graduate: { icon: '🏆', name: 'Level Up!',   desc: { uz: "CRUD praktikasini to'liq yakunladingiz", ru: 'Полностью завершили практику CRUD' } },
 };
 // Ekran id → nishon (recordAnswer'da, faqat REAL solve bilan: challenge / final)
-const ACH_TRIGGERS = { s11: 'builder', s13: 'debugger', s14: 'finisher' };
+const ACH_TRIGGERS = { s13: 'debugger', s14: 'finisher' };
+// F-1015-344: blok nishoni «Davom etish»da (bonus; ustoz ko'rib turadi)
+const BLOK_ACH = { a2: 'builder' };
 
 // 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
 // xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
@@ -1731,11 +1215,11 @@ const Confetti = () => {
 };
 
 // Podium savol yorliqlari (SCORED_IDX indekslariga mos)
-const Q_LABELS = { 4: { uz: "1 — CRUD nima", ru: '1 — что такое CRUD' }, 7: "2 — Create", 12: "3 — Delete", 16: "4 — Update", 18: { uz: "5 — Yakuniy", ru: '5 — Финал' } };
+const Q_LABELS = { 5: { uz: '1 — Yakuniy', ru: '1 — Финал' } }; // F-1015-344: yagona ballik — s14
 
 // Server-baholash javob kaliti (mentor darsni ochganda avto-yuklanadi). SCORED_IDX=[4,7,12,16,18] ekranlari
 // correctIdx'laridan 1:1 (ekran id kaliti bilan). s14 = -1 (yozma yakuniy), practice = -1 (jonli praktika sentinel).
-const INLINE_KEYS = { s4: 1, s5b: 3, s8: 2, s12: 0, s14: -1, practice: -1 };
+const INLINE_KEYS = { s14: -1 }; // F-1015-344: MCQ s4, s5b, s8, s12 olindi
 
 // ===== ⚡ CODE STRIKE — CTA kapsulasi + ARENA =====
 const QUIZ_MS = 15000;
@@ -2289,7 +1773,7 @@ const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   // JONLI: CTA bosilganda mentor lobbyni ochadi (quizControl), o'quvchi jonli/solo arenaga kiradi.
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
+    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
@@ -2300,21 +1784,21 @@ const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     tr({ uz: "Ro'yxatni buzma — har safar YANGI ro'yxat yasa (React shuni ko'radi)", ru: 'Не ломай список — каждый раз создавай НОВЫЙ (именно его видит React)' })
   ];
   const HOMEWORK = [
-    { b: tr({ uz: "To'liq CRUD", ru: 'Полный CRUD' }), t: tr({ uz: "— Antigravity bilan o'z ro'yxatingizga qo'shish, o'zgartirish, o'chirishni qo'shing", ru: '— вместе с Antigravity добавьте в свой список добавление, изменение и удаление' }) },
-    { b: tr({ uz: 'Tasdiq', ru: 'Подтверждение' }), t: tr({ uz: "— o'chirishdan oldin 'Rostdan?' deb so'rang", ru: '— перед удалением спросите «Точно?»' }) },
+    { b: tr({ uz: '❤️ like', ru: '❤️ лайк' }), t: tr({ uz: "— har kartochkaga like tugmasi: bosilsa faqat o'sha o'yinning likes soni +1 (map bilan)", ru: '— на каждую карточку кнопку лайка: по нажатию likes только этой игры +1 (через map)' }) },
+    { b: tr({ uz: "Bo'sh nom", ru: 'Пустое название' }), t: tr({ uz: "— input bo'sh bo'lsa, o'yin qo'shilmasin", ru: '— если input пустой, игра не добавляется' }) },
     { b: tr({ uz: 'Tekshiring', ru: 'Проверяйте' }), t: tr({ uz: "— qo'shishda [...games] bormi, o'chirishda filter'mi — o'zingiz nazorat qiling", ru: '— есть ли [...games] при добавлении и filter при удалении — контролируйте сами' }) }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
   return (
-    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className="screen">
         <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Birinchi loyihangiz bitdi', ru: 'Ваш первый проект завершён' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>To'liq ilovani <span className="italic" style={{ color: T.accent }}>o'zingiz bitirdingiz</span>.</>, ru: <>Вы <span className="italic" style={{ color: T.accent }}>сами завершили</span> полное приложение.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : undefined} />
         </div>
-        {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+        {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
         <div className="hw-big-wrap fade-up d4">
           <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
@@ -2326,7 +1810,7 @@ const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Antigravity bilan o'z loyihangizda sinang:", ru: 'Попробуйте в своём проекте с Antigravity:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "⚠️ Lekin sahifani yangilang — ro'yxatingiz YO'QOLADI! Chunki hammasi faqat xotirada. Keyingi darsda buni hal qilamiz: server — ma'lumot abadiy saqlanadigan joy. 🚀", ru: '⚠️ Но обновите страницу — и ваш список ПРОПАДЁТ! Ведь всё живёт только в памяти. На следующем уроке решим это: сервер — место, где данные хранятся вечно. 🚀' })}</p></div>}
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "VS Code'da, robo-games loyihangizda:", ru: 'В VS Code, в проекте robo-games:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "⚠️ Lekin sahifani yangilang — ro'yxatingiz YO'QOLADI! Chunki hammasi faqat xotirada. Keyingi darsda buni hal qilamiz: server — ma'lumot abadiy saqlanadigan joy. 🚀", ru: '⚠️ Но обновите страницу — и ваш список ПРОПАДЁТ! Ведь всё живёт только в памяти. На следующем уроке решим это: сервер — место, где данные хранятся вечно. 🚀' })}</p></div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz — ', ru: '🏅 Ваши значки — ' })}{(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
@@ -2363,6 +1847,7 @@ export default function ReactCrudPracticeLesson({ lang: langProp, onFinished, li
   }
   const saved = savedRef.current;
   const [screen, setScreen] = useState(() => saved ? Math.min(Math.max(saved.screen || 0, 0), TOTAL_SCREENS - 1) : 0);
+  const [maxReached, setMaxReached] = useState(() => (saved ? Math.max(saved.maxReached || 0, saved.screen || 0) : 0)); // F-1012-03
   const [answers, setAnswers] = useState(() => (saved && saved.answers) || {});
   const startTimeRef = useRef(saved?.startedAt || Date.now());
   // 🏅 Nishonlar
@@ -2398,7 +1883,11 @@ export default function ReactCrudPracticeLesson({ lang: langProp, onFinished, li
   // 🃏 Flashcard ekrani jonli darsda (mentor boshqaruvida) o'quvchida ko'rsatilmaydi — o'tkazib yuboriladi
   const FLASH_IDX = SCREEN_META.findIndex(m => m.id === 'sflash');
   const flashHidden = () => live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
-  const next = () => setScreen(s => { let n = Math.min(s + 1, TOTAL_SCREENS - 1); if (n === FLASH_IDX && flashHidden()) n = Math.min(n + 1, TOTAL_SCREENS - 1); return n; });
+  const next = () => {
+    const blokAch = BLOK_ACH[SCREEN_META[screen] && SCREEN_META[screen].id]; // F-1015-344: blok «Davom etish»da nishon
+    if (blokAch && live.mode !== 'mentor') earn(blokAch);
+    setScreen(s => { let n = Math.min(s + 1, TOTAL_SCREENS - 1); if (n === FLASH_IDX && flashHidden()) n = Math.min(n + 1, TOTAL_SCREENS - 1); return n; });
+  };
   const prev = () => setScreen(s => { let n = Math.max(s - 1, 0); if (n === FLASH_IDX && flashHidden()) n = Math.max(n - 1, 0); return n; });
   const recordAnswer = (idx, data) => {
     setAnswers(a => ({ ...a, [idx]: data }));
@@ -2419,13 +1908,15 @@ export default function ReactCrudPracticeLesson({ lang: langProp, onFinished, li
   const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken }); // liveToken — LMS'dan (avval null, keyin keladi)
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
+  // F-1012-03: eng uzoq yetilgan ekran (qayta boshlashda 0) — undan oldingi ekranlarda «Davom etish» qulflanmaydi
+  useEffect(() => { setMaxReached(m => (screen === 0 && !Object.keys(answers || {}).length) ? 0 : Math.max(m, screen)); }, [screen, answers]);
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);
   useEffect(() => { live.reportScreen(screen); }, [screen, live.mode, live.pin]); // eslint-disable-line
   useEffect(() => { if (screen === TOTAL_SCREENS - 1) earn('graduate'); }, [screen, earn]); // 🏅 yakuniy nishon
   const reset = () => { if (!firstPassRef.current) { firstPassRef.current = { answers, durationSec: Math.floor((Date.now() - startTimeRef.current) / 1000) }; setFpPractice(true); } progClear(LESSON_META.lessonId); setAnswers({}); setScreen(0); startTimeRef.current = Date.now(); };
   // F-0730-01: har o'zgarishda progress saqlanadi (screen + javoblar + nishonlar + boshlangan vaqt)
   useEffect(() => {
-    progWrite(LESSON_META.lessonId, { screen, answers, earned: [...earnedRef.current], missed: [...missedRef.current], firstPass: firstPassRef.current, startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
+    progWrite(LESSON_META.lessonId, { screen, maxReached, answers, earned: [...earnedRef.current], missed: [...missedRef.current], firstPass: firstPassRef.current, startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
   }, [screen, answers, earned, missed, fpPractice]);
 
   const finishLesson = () => {
@@ -2441,6 +1932,7 @@ export default function ReactCrudPracticeLesson({ lang: langProp, onFinished, li
     const finalCorrect = finalAnswers.filter(a => a.correct).length;
     const payload = {
       lessonId: LESSON_META.lessonId, lessonTitle: LESSON_META.lessonTitle,
+      nickname: live.nickname || null, livePin: live.pin || null, liveMode: live.mode, // F-1012-05: jonli/mustaqil belgisi (1–2-Modul naqshi)
       durationSec: fp ? fp.durationSec : Math.floor((Date.now() - startTimeRef.current) / 1000),
       totalQuestions: scoredMeta.length, correctAnswers,
       scorePercent: scoredMeta.length ? Math.round((correctAnswers / scoredMeta.length) * 100) : 0,
@@ -2452,7 +1944,7 @@ export default function ReactCrudPracticeLesson({ lang: langProp, onFinished, li
     if (typeof onFinished === 'function') onFinished(sealPayload(LESSON_META.lessonId, payload));
   };
 
-  const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, ScreenPractice1, Screen5b, Screen6, ScreenPractice2, Screen7, ScreenPractice3, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, ScreenPodium, ScreenFlashcards, Screen15];
+  const screens = [Screen0, Screen1, ScreenQoshish, ScreenTopOchir, Screen13, Screen14, ScreenPodium, Screen15];
   const Current = screens[screen];
   return (
     <LangContext.Provider value={lang}>
@@ -2529,6 +2021,7 @@ export default function ReactCrudPracticeLesson({ lang: langProp, onFinished, li
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
         .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(880px,94vw); max-height: calc(90vh / var(--lz, 1)); overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px,4vw,42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }
+        .zoom-on .bp-body { max-height: none !important; overflow: visible !important; } /* F-1015-381 (214-qonun): kattalashtirilganda sayt aylantirishsiz to'liq */
         @keyframes zoom-pop { from { opacity: 0; transform: translate(-50%,-50%) scale(0.93); } to { opacity: 1; transform: translate(-50%,-50%) scale(1); } }
         .mentor-ava { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: ${T.accentSoft}; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.28); }
         .mentor-ava img { display: block; width: 100%; height: 100%; object-fit: cover; }
@@ -2571,6 +2064,7 @@ export default function ReactCrudPracticeLesson({ lang: langProp, onFinished, li
         .frame { background: ${T.paper}; border-radius: 16px; padding: clamp(16px,3vw,24px); border: none; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
         .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
         .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
+        .cr-qosh { margin-bottom: 10px; } /* F-1015-367 */
         .frame-warn { background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
 
         /* === LAYOUT === */
@@ -2584,6 +2078,7 @@ export default function ReactCrudPracticeLesson({ lang: langProp, onFinished, li
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
         @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: clamp(14px,3vw,20px); } }
         .flow-label { font-family: 'Manrope'; font-weight: 700; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: ${T.ink2}; }
+        @media (min-width: 761px) { .split:has(> .col > .flow-label:first-child) > .col:not(:has(> .flow-label:first-child))::before { content: "."; visibility: hidden; font-family: 'Manrope'; font-weight: 700; font-size: 10px; letter-spacing: 0.14em; } } /* F-1015-371: ikki ustun bloklari bir chiziqdan boshlanadi */
 
         /* === ROADMAP === */
         .roadmap { display: flex; flex-direction: column; gap: 8px; list-style: none; }
@@ -2740,17 +2235,6 @@ export default function ReactCrudPracticeLesson({ lang: langProp, onFinished, li
         }
 
         /* === 🛠️ JONLI PRAKTIKA (VS Code-uslub, self-report) === */
-        .lp-task { background: ${T.paper}; border-radius: 14px; padding: 15px 17px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 9px; }
-        .lp-task-h { display: flex; align-items: center; gap: 8px; }
-        .lp-task-badge { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 10.5px; letter-spacing: 0.12em; color: #fff; background: ${T.accent}; padding: 3px 9px; border-radius: 6px; }
-        .lp-steps { display: flex; flex-direction: column; gap: 8px; }
-        .lp-step { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 11px; padding: 11px 13px; font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; cursor: pointer; transition: all 0.16s; box-shadow: 0 5px 14px -7px rgba(${T.shadowBase},0.16); }
-        .lp-step:hover:not(.on) { box-shadow: 0 8px 18px -7px rgba(${T.shadowBase},0.24); }
-        .lp-step.on { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}55; }
-        .lp-check { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; background: ${T.bg}; color: ${T.ink3}; box-shadow: inset 0 0 0 1.5px ${T.ink3}55; transition: all 0.16s; }
-        .lp-step.on .lp-check { background: ${T.success}; color: #fff; box-shadow: none; animation: lp-check-pop 0.34s cubic-bezier(.3,1.5,.5,1); }
-        @keyframes lp-check-pop { 0% { transform: scale(0.7); } 45% { transform: scale(1.3); } 100% { transform: scale(1); } }
-        .lp-step-t { flex: 1; min-width: 0; }
         /* 144-qonun (F-0824-06 naqshi, NodeServerLesson dan): ko'chirib yoziladigan kod.
            Umumiy qcode sinfida white-space nowrap turadi — qisqa chip uchun to'g'ri,
            lekin uzun chip kartadan tashqariga chiqib ketadi (bu darsda 1-bosqich 70 belgi).
@@ -2758,74 +2242,10 @@ export default function ReactCrudPracticeLesson({ lang: langProp, onFinished, li
            break-word — bitta uzluksiz so'z qatordan uzun bo'lsa, himoya to'ri;
            liga 0 va calt 0 — ligatura o'chadi, aks holda ikki-uch belgi bitta glifga
            qo'shilib chiziladi va o'quvchi uni klaviaturadan qidiradi. */
-        .lp-step .qcode { white-space: pre-wrap; overflow-wrap: break-word; font-feature-settings: "liga" 0, "calt" 0; }
-        .lp-done-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.8vw,16px); cursor: pointer; border: none; border-radius: 13px; padding: 14px 20px; background: ${T.accent}; color: #fff; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.34); transition: all 0.18s; margin-top: 2px; }
-        .lp-done-btn:hover:not(:disabled) { background: #E03E1B; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.5); }
-        .lp-done-btn.is-done { background: ${T.successSoft}; color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; cursor: default; animation: lp-done-pop 0.44s cubic-bezier(.3,1.35,.5,1); }
-        .lp-done-btn:disabled:not(.is-done) { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
-        @keyframes lp-done-pop { 0% { transform: scale(1); } 32% { transform: scale(1.05) translateY(-2px); } 60% { transform: scale(0.98); } 100% { transform: scale(1); } }
         @media (prefers-reduced-motion: reduce) { .lp-step.on .lp-check, .lp-done-btn.is-done { animation: none !important; } }
-        .lp-mstats { background: ${T.blueSoft}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 6px; }
-        .done-mini { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; background: ${T.successSoft}; color: ${T.success}; font-family: 'Manrope'; font-weight: 800; font-size: clamp(12.5px,1.5vw,14px); border-radius: 99px; padding: 8px 16px; box-shadow: inset 0 0 0 1.5px ${T.success}44; }
-        .done-mini .dm-sub { font-weight: 600; color: ${T.ink2}; }
 
         /* === 🃏 FLASHCARDS (reusable, 3D flip) === */
-        .fc-center { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding-top: 4px; }
-        .fc { display: flex; flex-direction: column; gap: 11px; max-width: 520px; width: 100%; }
-        .fc-top { display: flex; justify-content: space-between; align-items: center; }
-        .fc-pill { display: inline-flex; align-items: center; gap: 5px; font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; border-radius: 99px; padding: 5px 13px; animation: fc-pill-pop 0.35s cubic-bezier(.34,1.5,.4,1); }
-        .fc-pill b { font-size: 1.15em; font-variant-numeric: tabular-nums; }
-        .fc-pill.learn { background: ${T.accentSoft}; color: ${T.accent}; border: 1.5px solid ${T.accent}44; }
-        .fc-pill.knew { background: ${T.successSoft}; color: ${T.success}; border: 1.5px solid ${T.success}44; }
-        @keyframes fc-pill-pop { 40% { transform: scale(1.16); } }
-        .fc-bar { height: 7px; background: ${T.line}; border-radius: 99px; overflow: hidden; }
-        .fc-bar-fill { display: block; height: 100%; background: linear-gradient(90deg, #FF8A3D, ${T.accent}); border-radius: 99px; transition: width .4s cubic-bezier(.34,1.2,.4,1); }
-        .fc-cardwrap { perspective: 1200px; position: relative; }
-        .fc-cardwrap::before, .fc-cardwrap::after { content: ""; position: absolute; left: 0; right: 0; top: 0; bottom: 0; border-radius: 20px; background: ${T.paper}; border: 2px solid ${T.line}; z-index: -1; }
-        .fc-cardwrap::before { transform: translateY(7px) scale(0.965); opacity: 0.7; }
-        .fc-cardwrap::after { transform: translateY(15px) scale(0.93); opacity: 0.4; }
-        .fc-fly { position: relative; animation: fc-in 0.3s ease; }
-        @keyframes fc-in { from { opacity: 0; transform: translateY(10px) scale(0.97); } }
-        .fc-fly.out-knew { animation: fc-out-knew 0.42s ease forwards; }
-        .fc-fly.out-again { animation: fc-out-again 0.42s ease forwards; }
-        @keyframes fc-out-knew { 30% { transform: translateX(0) rotate(0); opacity: 1; } 100% { transform: translateX(70%) rotate(5deg); opacity: 0; } }
-        @keyframes fc-out-again { 30% { transform: translateX(0) rotate(0); opacity: 1; } 100% { transform: translateX(-70%) rotate(-5deg); opacity: 0; } }
-        .fc-fly.out-knew::after, .fc-fly.out-again::after { position: absolute; top: 50%; left: 50%; z-index: 6; width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 800; color: #fff; pointer-events: none; animation: fc-stamp 0.3s cubic-bezier(.34,1.6,.4,1); transform: translate(-50%, -50%); }
-        .fc-fly.out-knew::after { content: '✓'; background: ${T.success}; box-shadow: 0 10px 26px -8px ${T.success}; }
-        .fc-fly.out-again::after { content: '✗'; background: ${T.accent}; box-shadow: 0 10px 26px -8px ${T.accent}; }
-        @keyframes fc-stamp { from { transform: translate(-50%, -50%) scale(0); } }
-        .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
-        .fc-card.flip { transform: rotateY(180deg); }
-        .fc-card:not(.flip):hover { transform: translateY(-3px); }
-        .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }
-        .fc-front { background: ${T.paper}; border: 2px solid ${T.line}; box-shadow: 0 14px 34px -18px rgba(${T.shadowBase},0.4); }
-        .fc-back { background: linear-gradient(160deg, #FF8A3D, ${T.accent}); color: #fff; transform: rotateY(180deg); box-shadow: 0 16px 36px -16px rgba(255,79,40,0.6); }
-        .fc-q { font-family: 'Manrope'; font-weight: 800; font-size: clamp(18px,2.8vw,23px); color: ${T.ink}; line-height: 1.3; text-wrap: balance; }
-        .fc-cue { font-family: 'Manrope'; font-size: 13px; color: ${T.ink3}; }
-        .fc-tap { color: ${T.accent}; font-weight: 700; }
         /* F-0803-13/14: javob uzunlikka moslashadi — 4 pog'ona + kod/gap shrift ajrimi */
-        .fc-tag { font-weight: 800; letter-spacing: -0.02em; line-height: 1.16; max-width: 100%; text-wrap: balance; overflow-wrap: anywhere; }
-        .fc-tag.mono-all { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; }
-        .fc-tag.prose { font-family: 'Manrope', sans-serif; letter-spacing: -0.005em; }
-        .fc-tag .fc-kw { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; }
-        .fc-tag.t1 { font-size: clamp(30px,6vw,46px); }
-        .fc-tag.t2 { font-size: clamp(24px,4.4vw,34px); }
-        .fc-tag.t3 { font-size: clamp(20px,3.4vw,26px); }
-        .fc-tag.t4 { font-size: clamp(17px,2.6vw,22px); line-height: 1.3; }
-        .fc-note { font-family: 'Manrope'; font-size: 14px; opacity: 0.92; }
-        .fc-actions { display: flex; gap: 10px; min-height: 48px; }
-        .fc-btn { flex: 1; padding: 13px; border-radius: 13px; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; border: none; transition: transform .15s; }
-        .fc-btn:hover { transform: translateY(-2px); }
-        .fc-btn.knew { background: ${T.success}; color: #fff; box-shadow: 0 10px 22px -10px ${T.success}; }
-        .fc-btn.again { background: ${T.paper}; border: 2px solid ${T.accent}66; color: ${T.accent}; }
-        .fc-btn.again:hover { border-color: ${T.accent}; background: ${T.accentSoft}; }
-        .fc-btn:disabled { opacity: 0.55; cursor: default; transform: none; }
-        .fc-btn.ghost { background: ${T.paper}; border: 1.5px solid ${T.line}; color: ${T.ink}; flex: none; align-self: center; padding: 11px 22px; }
-        .fc-hint { margin: 0; min-height: 48px; display: flex; align-items: center; justify-content: center; text-align: center; color: ${T.ink3}; font-style: italic; font-size: 13px; }
-        .fc-done { display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center; background: ${T.successSoft}; border-radius: 18px; padding: 22px; max-width: 480px; }
-        .fc-done-emoji { font-size: 40px; }
-        .fc-done-h { font-family: 'Manrope'; font-weight: 800; font-size: 20px; color: ${T.success}; margin: 0; }
-        .fc-done-s { font-family: 'Manrope'; color: ${T.ink2}; margin: 0 0 8px; font-size: 14px; }
 
         /* === 🏅 ACHIEVEMENTS — hisoblagich + to'liq-ekran bayram === */
         .ach-cnt-wrap { position: relative; }
@@ -3181,14 +2601,216 @@ export default function ReactCrudPracticeLesson({ lang: langProp, onFinished, li
         .qz-fx { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
 
         /* === 🛠️ JONLI PRAKTIKA — mentor «kim bajardi» chiplari === */
-        .lp-doer { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12px; color: ${T.ink2}; background: rgba(58,53,48,0.07); border-radius: 99px; padding: 4px 11px; white-space: nowrap; }
-        .lp-doer.done { color: ${T.success}; background: ${T.successSoft}; }
         .ach-rule { margin: 8px 0 0; text-align: center; font-size: 13px; line-height: 1.4; color: ${T.ink2}; }
         .ach-rule.lost { font-style: italic; }
+        /* ===== F-1015-303/309 · praktika qolipi: amaliyot bloklari va DemoSahifa (izohda backtick yo'q) ===== */
+        .am-karta { background: ${T.paper}; border-radius: 14px; padding: clamp(12px,1.8vw,16px) clamp(14px,2vw,18px); display: flex; flex-direction: column; gap: 8px; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); }
+        .lesson-root .am-band { margin: 0; padding-left: 20px; list-style: disc outside; display: flex; flex-direction: column; gap: 5px; font-size: clamp(13px,1.55vw,15px); color: ${T.ink}; line-height: 1.5; }
+        .am-masalan { margin: 0; background: ${CODE.bg}; color: ${CODE.text}; font-family: 'JetBrains Mono', monospace; font-size: clamp(11.5px,1.35vw,13px); line-height: 1.6; border-radius: 10px; padding: 12px 14px; white-space: pre-wrap; word-break: break-word; }
+        .am-qadam { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .am-qadam li { display: flex; gap: 10px; align-items: flex-start; font-size: clamp(13px,1.55vw,15px); color: ${T.ink}; line-height: 1.5; }
+        .am-qn { flex: none; width: 22px; height: 22px; border-radius: 50%; background: ${T.accentSoft}; color: ${T.ink}; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; display: inline-flex; align-items: center; justify-content: center; }
+        .am-osti { margin: 0; color: ${T.ink2}; line-height: 1.5; }
+        .lesson-root .am-hw { margin: 0 0 6px; padding-left: 22px; list-style: decimal outside; display: flex; flex-direction: column; gap: 6px; color: ${T.ink}; }
+        .am-uslub { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; }
+        .am-uslub-btn { display: flex; flex-direction: column; gap: 2px; text-align: left; background: ${T.bg}; border: 1.5px solid ${T.line}; border-radius: 10px; padding: 10px 12px; font-family: 'Manrope', sans-serif; font-size: 14px; color: ${T.ink}; cursor: pointer; }
+        .am-uslub-btn span { font-size: 12.5px; color: ${T.ink2}; }
+        .am-uslub-btn.on { border-color: ${T.ink}; background: ${T.paper}; box-shadow: 0 0 0 2px ${T.ink}; }
+        .am-javob-joy { min-height: 104px; }
+        .am-nusxa { align-self: flex-start; background: ${T.paper}; color: ${T.ink}; border: 1.5px solid ${T.accent}; border-radius: 10px; padding: 9px 16px; font: 700 13px 'Manrope', sans-serif; cursor: pointer; }
+        .am-nusxa:hover { background: ${T.accentSoft}; }
+        .am-prompt-h { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+        .am-tayyor { background: ${T.paper}; border: 1.5px solid rgba(255,79,40,0.35); border-radius: 16px; padding: clamp(14px,2vw,18px); display: flex; flex-direction: column; gap: 10px; box-shadow: 0 10px 24px -10px rgba(255,79,40,0.35); }
+        .am-tayyor-h { margin: 0; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(16px,2vw,19px); color: ${T.ink}; }
+        .lesson-root .am-tayyor-l { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .am-tayyor-l li { display: flex; gap: 12px; align-items: flex-start; font-size: clamp(14px,1.6vw,15.5px); color: ${T.ink}; line-height: 1.5; }
+        .am-tayyor-n { flex: none; width: 28px; height: 28px; border-radius: 50%; background: ${T.accent}; color: #fff; font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; }
+        .am-tayyor-s { margin: 0; font-size: 13px; color: ${T.ink2}; }
+        .am-maydon { display: flex; flex-direction: column; gap: 5px; font-size: 13px; font-weight: 600; color: ${T.ink}; }
+        .am-input { width: 100%; font: 500 14px 'Manrope', sans-serif; color: ${T.ink}; background: ${T.paper}; border: 1.5px solid ${T.line}; border-radius: 10px; padding: 10px 12px; outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
+        .am-input::placeholder { color: ${T.ink2}; opacity: 0.85; }
+        .am-input:hover { border-color: #cfcabe; }
+        .am-input:focus { border-color: ${T.accent}; box-shadow: 0 0 0 4px ${T.accentSoft}; }
+        .am-saqla { align-self: flex-start; background: ${T.paper}; color: ${T.ink}; border: 1.5px solid ${T.accent}; border-radius: 10px; padding: 9px 18px; font: 700 13px 'Manrope', sans-serif; cursor: pointer; }
+        .am-saqla:hover:not(:disabled) { background: ${T.accentSoft}; }
+        .am-saqla:disabled { border-color: ${T.line}; color: ${T.ink2}; cursor: default; }
+        .am-loyiha-nom { margin: 0; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 18px; color: ${T.ink}; }
+        .am-soni { font: 700 12px 'Manrope', sans-serif; color: ${T.success}; background: ${T.successSoft}; border-radius: 999px; padding: 3px 10px; }
+        .am-tayyor-ok { margin: 0; font-weight: 700; color: ${T.success}; font-size: 14px; }
+        .am-ochil { animation: am-ochil 0.45s cubic-bezier(.2,.7,.3,1) both; }
+        @keyframes am-ochil { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .am-ochil { animation: none; } }
+        /* ===== F-1015-330 · qadamlar tugmasi (a2, a3) ===== */
+        .am-qt { padding: 0; overflow: hidden; }
+        .am-qt-btn { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 10px; background: none; border: none; cursor: pointer; padding: 14px 18px; font: 700 14px 'Manrope', sans-serif; color: ${T.ink}; text-align: left; }
+        .am-qt-btn:hover { background: ${T.accentSoft}; }
+        .am-qt-btn:focus-visible { outline: 2px solid ${T.accent}; outline-offset: -2px; }
+        .am-qt-ic { color: ${T.accent}; font-size: 16px; transition: transform 0.2s; }
+        .am-qt.on .am-qt-ic { transform: rotate(180deg); }
+        .am-qt > .am-qadam { padding: 0 18px 16px; }
+        .am-tt { padding: 0; gap: 0; }
+        .am-tt-btn { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: none; border: none; cursor: pointer; text-align: left; padding: clamp(14px,2vw,18px); border-radius: 14px; font: inherit; }
+        .am-tt-btn:hover { background: ${T.accentSoft}; }
+        .am-tt-btn:focus-visible { outline: 2px solid ${T.accent}; outline-offset: -2px; }
+        .am-tt.on .am-qt-ic { transform: rotate(180deg); }
+        .am-tt-ich { display: flex; flex-direction: column; gap: 10px; padding: 0 clamp(14px,2vw,18px) clamp(14px,2vw,18px); }
+        .am-tt-nafas { animation: am-nafas 2.4s ease-in-out infinite; }
+        .am-tayyor.am-tt { box-shadow: none; } /* F-1015-362: yordamchi blok — yumshoq ramka, soyasiz */
+        @keyframes am-nafas { 0%, 100% { box-shadow: 0 0 0 0 rgba(255,79,40,0.18); } 50% { box-shadow: 0 0 0 6px rgba(255,79,40,0); } }
+        .am-tt-oyna { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(560px,92vw); max-height: calc(88vh / var(--lz, 1)); overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(18px,3vw,28px); display: flex; flex-direction: column; gap: 14px; box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }
+        .pk-tg { display: inline-flex; gap: 8px; flex-wrap: wrap; } /* F-1015-384/385: yig'iq prompt — Ko'rish + Nusxalash */
+        .pk-kor { font: 700 13px 'Manrope', sans-serif; color: ${T.ink}; background: ${T.paper}; border: 1.5px solid ${T.line}; border-radius: 10px; padding: 8px 14px; cursor: pointer; }
+        .pk-kor:hover { border-color: ${T.accent}; color: ${T.accent}; }
+        .pk-kor:focus-visible { outline: 2px solid ${T.accent}; outline-offset: 2px; }
+        .pk-bosh { margin: 0; font: 500 13px 'JetBrains Mono', monospace; color: ${T.ink2}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .am-tt-oyna.pk-oyna { width: min(680px,94vw); }
+        .pk-oyna .am-masalan { margin: 0; }
+        .pk-ich { align-self: flex-end; }
+        .am-tt-oyna-h { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+        .am-tt-yop { flex: none; width: 34px; height: 34px; border-radius: 10px; border: 1.5px solid ${T.line}; background: ${T.paper}; color: ${T.ink2}; font-size: 15px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+        .am-tt-yop:hover { color: ${T.accent}; border-color: ${T.accent}; }
+        .am-tt-yop:focus-visible { outline: 2px solid ${T.accent}; outline-offset: 2px; }
+        .am-yig { width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; border: none; cursor: pointer; text-align: left; font: inherit; padding: 14px 18px; }
+        .am-yig-ok { font-weight: 700; color: ${T.success}; font-size: 14.5px; }
+        .am-yig-k { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 13.5px; color: ${T.ink2}; }
+        .am-yig:hover .am-yig-k { color: ${T.accent}; }
+        .am-yig:focus-visible { outline: 2px solid ${T.accent}; outline-offset: 2px; }
+        .sk-kotar { animation: sk-kotar 0.5s cubic-bezier(.2,.7,.3,1) both; } /* F-1015-363: prompt yig'ilgach kod oynasi yuqoriga ko'tariladi */
+        @keyframes sk-kotar { from { opacity: 0.4; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+        .sk-bar-nur { animation: sk-bar-nur 1.1s ease-out; }
+        @keyframes sk-bar-nur { from { box-shadow: inset 0 -2px 0 rgba(250,204,21,0.9); background: rgba(250,204,21,0.22); } to { box-shadow: inset 0 -2px 0 rgba(250,204,21,0); } }
+        @media (prefers-reduced-motion: reduce) { .sk-kotar, .sk-bar-nur, .am-tt-oyna { animation: none !important; } }
+        @media (prefers-reduced-motion: reduce) { .am-tt-nafas { animation: none; } }
+        .screen > .head + .split { margin-top: clamp(6px,1vw,10px); } /* F-1015-333: mentorsiz ekranda sarlavha bloklarga yopishmasin */
+        .am-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+        .am-chip { display: inline-flex; align-items: center; gap: 6px; font: 600 12.5px 'Manrope', sans-serif; color: ${T.ink}; background: ${T.bg}; border: 1.5px solid ${T.line}; border-radius: 999px; padding: 6px 12px; cursor: pointer; }
+        .am-chip:hover { border-color: ${T.ink2}; }
+        .am-chip.on { border-color: ${T.ink}; background: ${T.paper}; box-shadow: 0 0 0 1.5px ${T.ink}; }
+        .am-chip:focus-visible { outline: 2px solid ${T.accent}; outline-offset: 2px; }
+        .am-reja-k { gap: 10px; }
+        .am-yorliq-joy { visibility: hidden; } /* F-1015-338: o'ng karta chapdagi namuna-sayt bilan bir balandlikdan boshlansin */
+        @media (max-width: 760px) { .am-yorliq-joy { display: none; } }
+        .am-chiziq { border: none; border-top: 1px solid ${T.line}; margin: 4px 0; }
+        .lesson-root .am-blok-qator { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .am-blok-qator li { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 15px; color: ${T.ink}; }
+        .am-kod { display: flex; flex-direction: column; gap: 6px; }
+        .am-kod + .am-kod { margin-top: 6px; }
+        .am-yordam { background: ${T.paper}; border-radius: 12px; padding: 10px 14px; box-shadow: 0 6px 16px -6px rgba(${T.shadowBase},0.14); }
+        .am-yordam summary { cursor: pointer; font-weight: 700; font-size: 13.5px; color: ${T.ink}; }
+        .am-yordam p, .am-yordam pre { margin: 8px 0 0; font-size: 13.5px; line-height: 1.5; color: ${T.ink2}; }
+        .lesson-root .am-blok-ro { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .am-blok-ro li { flex-direction: row; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .am-blok-n { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 13px; color: ${T.accent}; }
+        .am-blok-teg { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: ${T.ink2}; background: ${T.bg}; padding: 3px 8px; border-radius: 6px; }
+        /* ===== F-1015-340 · REJA.md maketi, do'kon maketi va reja formasi (izohda backtick yo'q) ===== */
+        .bb-dots { display: flex; gap: 5px; } .bb-dots i { width: 9px; height: 9px; border-radius: 50%; }
+        .bb-dots i:first-child { background: #ff5f57; } .bb-dots i:nth-child(2) { background: #febc2e; } .bb-dots i:nth-child(3) { background: #28c840; }
+        .am-qoida-m { margin: 0; font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(18px,2.4vw,22px); line-height: 1.3; color: ${T.ink}; }
+        .am-satr { margin: 0; font-size: 14px; color: ${T.ink2}; }
+        .rj-qator { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .rj-qator .am-input { flex: 1 1 150px; width: auto; min-width: 0; padding: 8px 10px; }
+        .rj-qator .dk-narx-in { flex: 0 0 104px; }
+        .rj-qator .dk-toifa-in { flex: 0 0 118px; padding: 8px 8px; }
+        .rj-oyna { border-radius: 12px; overflow: hidden; background: ${CODE.bg}; box-shadow: 0 10px 26px -10px rgba(${T.shadowBase},0.3); }
+        .rj-bar { display: flex; align-items: center; gap: 10px; background: #111827; padding: 7px 12px; }
+        .rj-fayl { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #cbd5e1; }
+        .rj-body { padding: 12px 16px 14px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.75; color: ${CODE.text}; }
+        .rj-h1 { color: ${CODE.tag}; font-weight: 700; }
+        .rj-h2 { color: ${CODE.attr}; font-weight: 700; margin-top: 6px; }
+        .rj-li { white-space: pre-wrap; overflow-wrap: anywhere; }
+        .rj-yoq { color: #94a3b8; font-style: italic; }
+        .dk-sayt { border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 10px 26px -10px rgba(${T.shadowBase},0.3); font-family: 'Manrope', Arial, sans-serif; }
+        .dk-bar { display: flex; align-items: center; gap: 10px; background: #ECE9E1; padding: 7px 12px; }
+        .dk-url { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: ${T.ink2}; }
+        .dk-body { display: flex; flex-direction: column; gap: 10px; padding: 14px; background: #f8fafc; }
+        .lesson-root .dk-h1 { margin: 0; font-size: 18px; font-weight: 800; line-height: 1.2; color: #0f172a; }
+        .dk-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; }
+        .dk-6 .dk-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+        .dk-karta { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 3px; background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px; font-size: 12.5px; color: #0f172a; overflow-wrap: anywhere; }
+        .dk-karta b { font-weight: 800; }
+        .dk-rasm { align-self: stretch; height: 34px; border-radius: 7px; background: linear-gradient(135deg, #dbeafe, #e0e7ff); margin-bottom: 4px; }
+        .dk-narx { font-weight: 700; color: #1d4ed8; }
+        .dk-yoq { display: inline-flex; border: 1.5px dashed #94a3b8; border-radius: 7px; padding: 1px 8px; color: #475569; font-weight: 700; font-size: 12px; font-style: normal; }
+        .dk-teg { position: absolute; top: 6px; right: 6px; font: 700 9.5px 'JetBrains Mono', monospace; background: ${T.success}; color: #fff; padding: 1px 6px; border-radius: 5px; }
+        /* F-1015-341/342: a1 «Do'konni yig'ing» — qismlar qatori + Shart (4 ta joy) / Keyin ustunlari */
+        .ql-taxta { gap: 10px; }
+        .ql-zona { border: 1.5px solid ${T.line}; background: ${T.paper}; border-radius: 12px; padding: 10px; display: flex; flex-direction: column; gap: 8px; min-height: 64px; transition: border-color 0.2s, background 0.2s; }
+        .ql-zona-pool { background: ${T.bg}; border-color: transparent; }
+        .ql-zona-shart { border-color: #9cc9b0; }
+        .ql-zona-shart .ql-zona-h { color: ${T.success}; }
+        .ql-zona.ql-kut { border-color: ${T.ink2}; cursor: pointer; }
+        .ql-zona.ql-kut:focus-visible { outline: 2px solid ${T.accent}; outline-offset: 2px; }
+        .ql-zona.ql-ust { border-color: ${T.accent}; background: ${T.accentSoft}; }
+        .ql-zona-shart.ql-ust { border-color: ${T.success}; background: ${T.successSoft}; }
+        .ql-zona-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; font: 800 11px 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: ${T.ink2}; }
+        .ql-izoh { font: 600 11px 'Manrope', sans-serif; letter-spacing: 0; text-transform: none; color: ${T.ink2}; }
+        .ql-ikki { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        @media (max-width: 560px) { .ql-ikki { grid-template-columns: 1fr; } }
+        .ql-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+        .ql-ustun { flex-direction: column; align-items: stretch; }
+        .ql-chip { display: inline-flex; align-items: center; gap: 7px; font: 700 13px 'Manrope', sans-serif; color: ${T.ink}; background: ${T.paper}; border: 1.5px solid ${T.line}; border-radius: 10px; padding: 7px 10px; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; box-shadow: 0 2px 6px -3px rgba(${T.shadowBase},0.25); transition: box-shadow 0.15s, border-color 0.15s; text-align: left; }
+        .ql-chip b { font-weight: 700; }
+        .ql-chip:hover { border-color: ${T.ink2}; }
+        .ql-chip:focus-visible { outline: 2px solid ${T.accent}; outline-offset: 2px; }
+        .ql-chip.ql-tan { border-color: ${T.accent}; box-shadow: 0 0 0 2px ${T.accent}, 0 10px 18px -8px rgba(${T.shadowBase},0.4); }
+        .ql-chip.ql-sudr { cursor: grabbing; position: relative; z-index: 30; pointer-events: none; box-shadow: 0 18px 30px -10px rgba(${T.shadowBase},0.5); }
+        .ql-zona-shart .ql-chip { border-color: #9cc9b0; }
+        .ql-n { flex: none; width: 18px; height: 18px; border-radius: 50%; background: ${T.success}; color: #fff; font: 800 10.5px 'JetBrains Mono', monospace; display: inline-flex; align-items: center; justify-content: center; }
+        .ql-joy { display: flex; align-items: center; gap: 7px; min-height: 37px; padding: 0 10px; border: 1.5px dashed #c9d9cf; border-radius: 10px; }
+        .ql-joy .ql-n { background: transparent; color: ${T.success}; box-shadow: inset 0 0 0 1.5px #9cc9b0; }
+        .ql-sanoq { font: 700 12px 'JetBrains Mono', monospace; letter-spacing: 0; color: ${T.success}; }
+        .ql-bosh { font-size: 12.5px; color: ${T.ink2}; font-style: italic; }
+        .ql-silk { animation: ql-silk 0.45s; }
+        @keyframes ql-silk { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(3px); } }
+        .ql-xabar.ql-xabar { margin: 0; font-size: 13.5px; font-weight: 600; line-height: 1.45; padding: 8px 12px; border-radius: 10px; animation: ql-kir 0.3s ease-out; }
+        .ql-xabar.xato { color: #b42318; background: #fdecea; }
+        .ql-xabar.info { color: ${T.success}; background: ${T.successSoft}; }
+        @keyframes ql-kir { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+        /* Jonli do'kon maketi — qismlar paydo bo'lganda sirg'alib kiradi, kartochkalar «pop» */
+        .dk-bosh { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+        .dk-ong { display: flex; gap: 6px; flex-wrap: wrap; }
+        .dk-pill { display: inline-flex; align-items: center; gap: 4px; font: 700 11px 'Manrope', sans-serif; color: #0f172a; background: #fff; border: 1px solid #cbd5e1; border-radius: 999px; padding: 4px 10px; }
+        .dk-savat { background: #1d4ed8; color: #fff; border-color: #1d4ed8; }
+        .dk-tolov { background: #15803d; color: #fff; border-color: #15803d; }
+        .dk-rel { position: relative; }
+        .dk-qidir { width: 100%; font: 500 13px 'Manrope', sans-serif; color: #0f172a; background: #fff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 7px 10px; outline: none; }
+        .dk-qidir::placeholder { color: #64748b; }
+        .dk-qidir:focus { border-color: #1d4ed8; box-shadow: 0 0 0 3px #dbeafe; }
+        .dk-filtr { display: flex; gap: 6px; flex-wrap: wrap; }
+        .dk-tf { font: 700 11.5px 'Manrope', sans-serif; color: #334155; background: #fff; border: 1px solid #cbd5e1; border-radius: 999px; padding: 5px 11px; cursor: pointer; transition: background 0.15s, color 0.15s; }
+        .dk-tf:hover { border-color: #64748b; }
+        .dk-tf.on { background: #dbeafe; color: #1e40af; border-color: #1d4ed8; }
+        .dk-tf:focus-visible, .dk-sev:focus-visible, .dk-savatga:focus-visible { outline: 2px solid #1d4ed8; outline-offset: 2px; }
+        .lesson-root .dk-royxat { margin: 0; padding-left: 18px; font: 500 12.5px 'JetBrains Mono', monospace; color: #0f172a; line-height: 1.7; }
+        .dk-bosh-sahifa { border: 1.5px dashed #cbd5e1; border-radius: 10px; padding: 28px 12px; text-align: center; font-size: 12.5px; color: #475569; }
+        .dk-toifa { font: 700 10px 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.04em; }
+        .dk-amal { display: flex; align-items: center; gap: 6px; margin-top: 4px; align-self: stretch; }
+        .dk-sev { flex: none; border: 1px solid #cbd5e1; background: #fff; border-radius: 7px; width: 28px; height: 26px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; }
+        .dk-savatga { flex: 1; font: 700 11px 'Manrope', sans-serif; color: #1e40af; background: #eff6ff; border: 1px solid #93c5fd; border-radius: 7px; padding: 6px; cursor: pointer; }
+        .dk-yoq-t.dk-yoq-t { margin: 0; font-size: 12.5px; color: #475569; text-align: center; padding: 14px 0; }
+        .dk-kir { animation: dk-kir 0.45s cubic-bezier(.2,.8,.2,1) both; }
+        @keyframes dk-kir { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+        .dk-pop { animation: dk-pop 0.4s cubic-bezier(.2,.9,.3,1.3) both; }
+        @keyframes dk-pop { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: none; } }
+        .dk-yangi-q { border-radius: 10px; animation: dk-kir 0.45s cubic-bezier(.2,.8,.2,1) both, dk-nur 1.1s 0.35s 2; }
+        @keyframes dk-nur { 0% { box-shadow: 0 0 0 0 rgba(31,122,77,0.55); } 100% { box-shadow: 0 0 0 10px rgba(31,122,77,0); } }
+        @media (prefers-reduced-motion: reduce) { .ql-silk, .ql-xabar, .dk-kir, .dk-pop, .dk-yangi-q { animation: none !important; } }
+        /* ===== F-1015-344 · m3-07: kod oynasi (qiymatlar), CRUD jadvali (izohda backtick yo'q) ===== */
+        .sk-izoh { color: #94a3b8; }
+        .sk-nur { border-radius: 6px; animation: sk-nur 1.2s ease-out; }
+        @keyframes sk-nur { 0%, 35% { background: rgba(250,204,21,0.38); } 100% { background: transparent; } }
+        .cr-son { font: 800 12.5px 'Manrope', sans-serif; color: ${T.ink}; }
+        .lesson-root .cr-jadval { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+        .cr-jadval li { display: grid; grid-template-columns: 62px 1fr auto; align-items: center; gap: 10px; font-size: 14px; color: ${T.ink}; }
+        .cr-jadval li span { color: ${T.ink2}; }
+        .cr-jadval .qcode { white-space: nowrap; }
+        @media (max-width: 560px) { .cr-jadval li { grid-template-columns: 58px 1fr; } .cr-jadval .qcode { grid-column: 1 / -1; justify-self: start; } }
+        .am-yordam pre.am-masalan { color: ${CODE.text}; }
+        @media (prefers-reduced-motion: reduce) { .sk-nur { animation: none !important; } }
       `}</style>
       <AchCtx.Provider value={earned}>
       <AchMissCtx.Provider value={achMissVal}>
-      <LiveGateCtx.Provider value={{ locked, live }}>
+      <LiveGateCtx.Provider value={{ locked, live, passed: screen < maxReached }}>
         <div className="lesson-root">
           {live.mode === 'choosing' ? (
             <LiveGate live={live} title={{ uz: 'React praktikasi', ru: 'Практика React' }} />

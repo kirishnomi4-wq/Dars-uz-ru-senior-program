@@ -82,7 +82,7 @@ const kontrast = (p) => p.evaluate(() => {
   ok('a1: tahrirlashda prompt jonli yangilanadi', (await p.innerText('.am-masalan')).includes("«Ro'yxatdan o'tish» tugmasi"));
   await p.click('.am-saqla'); await p.waitForTimeout(300);
   await p.click('.am-qt-btn'); await p.waitForTimeout(300);
-  ok('a1: qadamlar tugmada (4)', await p.evaluate(() => document.querySelectorAll('.am-qt .am-qadam li').length === 4));
+  ok('a1: qadamlar tugmada (4)', await p.evaluate(() => document.querySelectorAll('.am-tt-oyna .am-qadam li').length === 4)); await p.keyboard.press('Escape'); await p.waitForTimeout(250); // F-1015-372: «Qadamlar» oynada
   await kk('a1'); await surat(p, '1280-02-a1'); await nx(p); await bayram(p);
   // a2
   ok('a2 (04/09) — iteratsiya, prompt yopiq', (await raqam(p)) === '04/09' && !(await p.$('.am-masalan')));

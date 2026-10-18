@@ -308,7 +308,7 @@ ____ INTO users (telegram_id, holat) VALUES ($1, $2)
      - Xato izohi: Xato bo'lsa: «Shu xato chiqdi: {xato}. Tuzat.»
   4. **Telegramda tekshirish** — `/start` → «Ismingiz nima?» → ismingiz → «Xush kelibsiz, …!» → botni qayta ishga tushiring → `/start` → «Yana salom, …!» — holat bazada qoldi.
 - Hammasi bajarilgach: Holat endi bazada. Bot qayta ishga tushsa ham, ismingizni biladi.
-- kutilgan natija · namuna: AvtoPizza (chat «AvtoPizza bot»):
+- kutilgan natija · namuna: AvtoPizza (chat «AvtoPizza bot»): (yorliq natija ostida ✎ F-1015-166)
   - mijoz: /start
   - bot: Salom! Ismingiz nima?
   - mijoz: Aziz
@@ -344,7 +344,7 @@ Tugmalar: ✓ Bildim · ✗ Takrorlash · ↻ O'rganilmoqda · Hammasini bilasiz
 
 ## 19 · Yakun
 - Eyebrow: Tayyor
-- Belgi: ✓ Holatni saqlashni bilasiz
+- Belgi: ✓ Dars tugadi · Testlar: N/N ✎ F-1015-161
 - Sarlavha: Endi botingiz suhbatni eslab qoladi. (yonida ball halqasi: N/5 to'g'ri javob)
 - Arena tugmasi: CODE STRIKE (jonli darsda kutish: Mentorni kuting)
 - Endi siz bilasiz:
@@ -360,6 +360,7 @@ Tugmalar: ✓ Bildim · ✗ Takrorlash · ↻ O'rganilmoqda · Hammasini bilasiz
 - Keyingi dars — **«Loyiha kuni: AI bilan bot».** Aniq topshiriq yozib, botni AI yordamida qurasiz, uning kodini o'qiysiz va sinab ko'rasiz.
 - Nishonlaringiz — N/4 (qarang: «Nishonlar»)
 - Tugmalar (pastda): Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10, S1-A): uy vazifasi kartasi P-025 — sarlavha «Uyda nima qilasiz?» (bannerdagi «Uyga vazifa» bilan takror emas); maydonlar: Kim uchun — o'z botingiz · Nechta — 2 mijoz uchun kod · Muddat — keyingi darsgacha (qiymatlar topshiriq matnidan); qadamlar raqam-doira; «Keyingi dars» karta ichida; bezak emoji olindi.
 
 ## Nishonlar
 - **Safe Storage** (8-ekran) — Bot qayta ishga tushsa ham yo'qolmaydigan joyni tanladingiz

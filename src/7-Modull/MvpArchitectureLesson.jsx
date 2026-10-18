@@ -31,7 +31,7 @@ const tr = (node) => {
 const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.uz ?? '') : o;
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QKarta, QChip, QBashorat, QTaxmin, QQadamlar, QXato, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
 
@@ -48,7 +48,7 @@ const AchMissCtx = createContext(null); //  151-qonun: { missed:Set<ekran id>, m
 
 // Matn ichidagi `kod` bo'laklarini chip qilib ko'rsatadi (qcode)
 const fmtCode = (s) => (typeof s === 'string' && s.includes('`'))
-  ? s.split('`').map((p, i) => i % 2 ? <code className="qcode" key={i}>{p}</code> : p)
+  ? s.split('`').map((p, i) => i % 2 ? <code className={p.length > 24 && p.includes(' ') ? 'qcode uzun' : 'qcode'} key={i}>{p}</code> : p)
   : s;
 
 // AUDIOSIZ dars — useAudio/getAudioEngine zaglushkasi (QuestionScreen imzosi saqlanadi, TTS yo'q)
@@ -107,6 +107,8 @@ const Zoomable = ({ children }) => {
   const [hasContent, setHasContent] = useState(true);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
+  const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
+  const [zQator, setZQator] = useState(false); // F-1015-125: joy yo'q — 36px qatorda, vizual o'ng chetida
   useEffect(() => {
     const el = zref.current; if (!el || typeof MutationObserver === 'undefined') return;
     const ink = (n) => {
@@ -119,6 +121,37 @@ const Zoomable = ({ children }) => {
     const run = () => {
       const zb = el.querySelector(':scope > .zoom-btn');
       if (!zb || el.classList.contains('zoom-on')) { setZFloat(false); return; }
+      // F-1015-125: ⛶ asosiy vizual burchagida (206 dagi qator o'rniga) — eng tashqi chizilgan elementlardan eng kattasi (+ ≥ 50% yuzalilari)
+      const zr0 = el.getBoundingClientRect(); const qol = el.querySelector('[data-zoom-asosiy]'); const tash = [];
+      if (qol) tash.push(qol);
+      else { const q = [...el.children].filter(n => !n.classList.contains('zoom-btn')); while (q.length) { const n = q.shift(); const b = n.getBoundingClientRect(); if (b.width < 2 || b.height < 2) { q.push(...n.children); continue; } if (n.tagName === 'svg' || ink(n)) tash.push(n); else q.push(...n.children); } }
+      const yuza = (n) => { const b = n.getBoundingClientRect(); return b.width * b.height; };
+      const maks = tash.length ? Math.max(...tash.map(yuza)) : 0;
+      const asosiy = tash.filter(n => yuza(n) >= maks * 0.5);
+      if (asosiy.length && zr0.width) {
+        let T = 1e9, R = -1e9; for (const n of asosiy) { const b = n.getBoundingClientRect(); T = Math.min(T, b.top); R = Math.max(R, b.right); }
+        const k = el.offsetWidth / zr0.width; const pt = parseFloat(getComputedStyle(el).paddingTop) || 0; const xs = (R - zr0.left) * k;
+        // ⛶ uchun joy (qator olingan holat koordinatasida): zoomable ichida va o'rnida matn/belgi yo'q bo'lsin (206: ⛶ hech narsani yopmaydi)
+        const band = (dx, dy) => { const s = pt / k, bl = R + (dx - 3) / k, br = bl + 36 / k, bt = T - s + (dy - 3) / k, bb = bt + 36 / k;
+          if (bl < zr0.left - 1 || br > zr0.right + 1) return true;
+          for (const n of el.querySelectorAll('*')) { if (n.closest('.zoom-btn')) continue;
+            const yaprq = /^(IMG|svg|INPUT|BUTTON|TEXTAREA|SELECT|CANVAS|VIDEO)$/.test(n.tagName) || [...n.childNodes].some(c => c.nodeType === 3 && c.textContent.trim());
+            if (!yaprq || (n.closest('svg') && n.tagName !== 'svg')) continue; const b = n.getBoundingClientRect(); if (b.width < 1) continue;
+            if (b.left < br && b.right > bl && b.top - s < bb && b.bottom - s > bt) return true; }
+          // zoomable tashqarisidagi qo'shni matn/belgi (qo'shni ustun, pastki izoh)
+          for (const [px, py] of [[bl, bt], [br, bt], [bl, bb], [br, bb], [(bl + br) / 2, (bt + bb) / 2]]) for (const n of document.elementsFromPoint(px, py)) {
+            if (el.contains(n) || n.contains(el) || n.closest('.zoom-btn')) continue;
+            if (/^(IMG|svg|INPUT|BUTTON|TEXTAREA|SELECT|CANVAS|VIDEO)$/.test(n.tagName) || [...n.childNodes].some(c => c.nodeType === 3 && c.textContent.trim())) return true; }
+          return false; };
+        const j = [[8, 0], [-38, 8]].find(([dx, dy]) => !band(dx, dy)); // 1) yonida · 2) burchak ichida
+        if (j) {
+          el.style.setProperty('--zb-x', (xs + j[0]) + 'px'); el.style.setProperty('--zb-y', Math.max(0, (T - zr0.top) * k - pt + j[1]) + 'px');
+          setZQator(false); setZJoy(true); setZFloat(false); return;
+        }
+        el.style.setProperty('--zb-x', Math.max(0, xs - 30) + 'px'); // 3) 36px qatorda, vizual o'ng chetida
+        setZJoy(false); setZQator(true); setZFloat(false); return;
+      }
+      setZJoy(false); setZQator(false);
       const r = zb.getBoundingClientRect(), zr = el.getBoundingClientRect(); if (!r.width) return;
       let hit = false;
       for (let y = r.top; y < Math.min(r.top + 220, zr.bottom) && !hit; y += 18) for (const x of [r.left - 30, r.left - 140]) {
@@ -128,9 +161,10 @@ const Zoomable = ({ children }) => {
     };
     let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(run); };
     sch(); const t = setTimeout(sch, 700); // fade-kirish tugagach yana bir bor
+    const t2 = setTimeout(sch, 1600); if (document.fonts && document.fonts.ready) document.fonts.ready.then(sch); // F-1015-125: shrift/animatsiyadan keyingi joy
     const mo = new MutationObserver(sch); mo.observe(el, { childList: true, subtree: true, characterData: true });
     window.addEventListener('resize', sch);
-    return () => { cancelAnimationFrame(raf); clearTimeout(t); mo.disconnect(); window.removeEventListener('resize', sch); };
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); mo.disconnect(); window.removeEventListener('resize', sch); };
   }, []);
   useLayoutEffect(() => {
     const el = zref.current; if (!el) return;
@@ -148,7 +182,7 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}`}>
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
         {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
@@ -624,7 +658,7 @@ const useOqim = () => {
 
 // --- Sayt maketi (chizmadagi Sayt tuguni ichida va telefonlarda bir xil) ---
 // kunNavbat: 'nom' (kun nomini bosish — kunni ochish) | 'keyingi' («›») · katakNavbat: bosiladigan soat · yon: 4-ekranda bir lahza yonadigan joy
-const SaytMock = ({ kun = 'shanba', onKun, kunNavbat, kataklar = true, band = [], tanlangan, onKatak, katakNavbat, yon, forma, onBand, bandNavbat, bandXira, xabar, holat }) => (
+const SaytMock = ({ kun = 'shanba', onKun, kunNavbat, kataklar = true, band = [], tanlangan, onKatak, katakNavbat, yon, forma, onBand, bandNavbat, bandYoq, xabar, holat }) => (
   <div className="mz-sayt">
     <b className="mz-sayt-nom">Maydon</b>
     <div className={`mz-kun ${yon === 'kun' ? 'yon' : ''}`}>
@@ -652,14 +686,16 @@ const SaytMock = ({ kun = 'shanba', onKun, kunNavbat, kataklar = true, band = []
       <div className="mz-forma fade-step">
         <span className={`mz-input ${yon === 'ism' ? 'yon' : ''}`}><i>{tr({ uz: 'Ism', ru: 'Имя' })}</i>{forma.ism}</span>
         <span className={`mz-input ${yon === 'telefon' ? 'yon' : ''}`}><i>{tr({ uz: 'Telefon', ru: 'Телефон' })}</i>{forma.telefon}</span>
-        <button type="button" className={`mz-sayt-btn ${bandNavbat ? 'mz-navbat' : ''}`} disabled={!onBand} style={bandXira ? { opacity: 0.45 } : undefined} onClick={onBand}>{tr({ uz: 'Band qilish', ru: 'Забронировать' })}</button>
+        {/* F-1015-164: bandYoq — 4-ekranda ustunlar tanlanmaguncha va band qilingach tugma yo'q (xira o'chiq tugma ko'rsatilmaydi) */}
+        {!bandYoq && <button type="button" className={`mz-sayt-btn ${bandNavbat ? 'mz-navbat' : ''} ${bandYoq === false ? 'fade-step' : ''}`} disabled={!onBand} onClick={onBand}>{tr({ uz: 'Band qilish', ru: 'Забронировать' })}</button>}
       </div>
     )}
     {xabar && <span className="mz-sayt-ok fade-step">{xabar}</span>}
   </div>
 );
 // --- Ega sahifasi: «Bandlar» tugmasi · parol katagi · «Kirish» · javob joyi (bosh — 0-ekrandagi bo'sh ro'yxat) ---
-const EgaMock = ({ bosh, onBandlar, bandlarNavbat, parol, onKirish, kirishNavbat, token, xabar, royxat }) => bosh ? (
+// F-1015-164: bandlarKor / kirishKor — tugma faqat o'z navbatida ko'rinadi (bashoratdan oldin va boshqa qadamda bosib bo'lmaydigan tugma qolmaydi)
+const EgaMock = ({ bosh, onBandlar, bandlarNavbat, bandlarKor = true, parol, onKirish, kirishNavbat, kirishKor = true, token, xabar, royxat }) => bosh ? (
   <div className="mz-sayt mz-ega">
     <b className="mz-sayt-nom">{tr({ uz: 'Bandlar', ru: 'Брони' })}</b>
     <span className="mz-sayt-x">{tr({ uz: "Hali band yo'q", ru: 'Броней пока нет' })}</span>
@@ -667,10 +703,10 @@ const EgaMock = ({ bosh, onBandlar, bandlarNavbat, parol, onKirish, kirishNavbat
 ) : (
   <div className="mz-sayt mz-ega">
     <b className="mz-sayt-nom">Maydon</b>
-    <button type="button" className={`mz-sayt-btn ikki ${bandlarNavbat ? 'mz-navbat' : ''}`} disabled={!onBandlar} onClick={onBandlar}>{tr({ uz: 'Bandlar', ru: 'Брони' })}</button>
+    {bandlarKor && <button type="button" className={`mz-sayt-btn ikki fade-step ${bandlarNavbat ? 'mz-navbat' : ''}`} disabled={!onBandlar} onClick={onBandlar}>{tr({ uz: 'Bandlar', ru: 'Брони' })}</button>}
     <div className="mz-forma">
       <span className="mz-input"><i>{tr({ uz: 'Parol', ru: 'Пароль' })}</i>{parol ? '••••••' : ''}</span>
-      <button type="button" className={`mz-sayt-btn ${kirishNavbat ? 'mz-navbat' : ''}`} disabled={!onKirish} onClick={onKirish}>{tr({ uz: 'Kirish', ru: 'Войти' })}</button>
+      {kirishKor && <button type="button" className={`mz-sayt-btn fade-step ${kirishNavbat ? 'mz-navbat' : ''}`} disabled={!onKirish} onClick={onKirish}>{tr({ uz: 'Kirish', ru: 'Войти' })}</button>}
     </div>
     {token && <code className="mz-token fade-step">token: eyJhbGci…</code>}
     {xabar && <span className="mz-sayt-x err fade-step">{xabar}</span>}
@@ -868,15 +904,8 @@ const ISHLAR = [
   { id: 'rang', t: { uz: 'Band katakni boshqa rangda chizadi', ru: 'Рисует занятую ячейку другим цветом' }, qism: 'sayt', xato: { uz: "Rang ekranda o'zgaradi — bu saytning ishi.", ru: 'Цвет меняется на экране — это работа сайта.' } },
   { id: 'parol', t: { uz: 'Ega parolini tekshiradi', ru: 'Проверяет пароль владельца' }, qism: 'backend', xato: { uz: 'Parolni brauzerda tekshirish xavfli — bu Backend ishi.', ru: 'Проверять пароль в браузере опасно — это работа Backend.' } }
 ];
-const S2_SAVOL = { uz: '«Maydon» MVP siga nechta qism kerak?', ru: 'Сколько частей нужно MVP «Maydon»?' };
-const S2_TAXMIN = [
-  { k: '1', t: { uz: 'Bitta', ru: 'Одна' }, q: { uz: 'bitta', ru: 'одна' } },
-  { k: '3', t: { uz: 'Uchta', ru: 'Три' }, q: { uz: 'uchta', ru: 'три' } },
-  { k: '5', t: { uz: 'Beshta', ru: 'Пять' }, q: { uz: 'beshta', ru: 'пять' } }
-];
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const avval = !!storedAnswer?.picked;
-  const [taxmin, setTaxmin] = useState(storedAnswer?.taxmin ?? null);
   const [n, setN] = useState(avval ? ISHLAR.length : 0);
   const [xato, setXato] = useState(null);
   const [silk, setSilk] = useState(false);
@@ -885,30 +914,29 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = n >= ISHLAR.length;
   const tugadi = useTugadi(done, 700, avval);
   useXulosaSkroll(tugadi, avval);
-  useEffect(() => { if (done && !avval) onAnswer(screen, { correct: true, picked: true, taxmin }); }, [done]); // eslint-disable-line
+  useEffect(() => { if (done && !avval) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const ish = ISHLAR[n];
   const joyla = (qism) => {
-    if (!taxmin || done || uch) return;
+    if (done || uch) return;
     if (qism !== ish.qism) { setXato(ish.xato); setSilk(true); oqim([[340, () => setSilk(false)]]); return; }
     setXato(null); setUch(qism); oqim([[420, () => { setUch(null); setN(k => k + 1); }]]);
   };
   const bor = (id) => ISHLAR.slice(0, n).some(i => i.id === id);
   const qatorlar = (q) => ISHLAR.slice(0, n).filter(i => i.qism === q).map(i => <span key={i.id} className="mz-ish fade-step">{tr(i.t)}</span>);
   const holat = (q) => (uch === q ? 'joriy' : qatorlar(q).length ? 'oq' : 'kul');
-  const faol = taxmin && !done;
-  const navLabel = done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !taxmin ? tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' }) : tr({ uz: `6 ishni joylang (${n}/6)`, ru: `Разместите 6 задач (${n}/6)` });
+  const faol = !done;
+  const navLabel = done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `6 ishni joylang (${n}/6)`, ru: `Разместите 6 задач (${n}/6)` });
   return (
     <Stage eyebrow={tr({ uz: 'Tushuncha · qismlar', ru: 'Понятие · части' })} screen={screen} scrollSignal={n} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={navLabel} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} vizualAvval={false}
         sarlavha={tr({ uz: <>Har ishni <Acc>qaysi qism</Acc> bajaradi?</>, ru: <>Какая <Acc>часть</Acc> выполняет каждую задачу?</> })}
         mentor={<Mentor>{tr({ uz: 'Har ish bitta qismda bajariladi — shunda agentga qayerga yozishni aniq aytasiz. Kartadagi ish qaysi qismda bajarilsa, o\'sha qismni bosing.', ru: 'Каждая задача выполняется в одной части — так вы точно скажете агенту, куда писать. Нажмите ту часть, где выполняется задача с карточки.' })}</Mentor>}
-        bashorat={<Bashorat savol={S2_SAVOL} variantlar={S2_TAXMIN} taxmin={taxmin} onTanla={setTaxmin} done={done} />}
         harakat={(
           <div className="q-col">
             <QKarta yorliq="MVP" className="mz-mvp">{MVP_ROYXAT.map((m, i) => <span key={i} className="mz-mvp-q">{tr(m)}</span>)}</QKarta>
             {faol && ish && (
               <div key={n} className={`mz-ish-k ${silk ? 'mz-silk' : ''} ${uch ? 'uch' : ''}`}>
-                <QKarta yorliq={`${n + 1} / ${ISHLAR.length}`}><b className="mz-ish-t">{tr(ish.t)}</b></QKarta>
+                <QKarta><b className="mz-ish-t">{tr(ish.t)}</b></QKarta>
               </div>
             )}
             {faol && xato && <QXato>{tr(xato)}</QXato>}
@@ -928,7 +956,6 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 : <div className="mz-keyin"><b>{tr({ uz: 'Keyin', ru: 'Потом' })}</b>{bor('eslatma') && <span className="mz-ish">{tr(ISHLAR[3].t)}</span>}</div>
             )} />
         )}
-        natija={done && <TaxminNatija variantlar={S2_TAXMIN} taxmin={taxmin} togri="3" haqiqat={{ uz: 'uchta', ru: 'три' }} />}
         xulosa={done && tr({ uz: "Bu MVP da uch qism yetadi: sayt ko'rsatadi, Backend qoidani tekshiradi, Database bandlarni saqlaydi.", ru: 'Этому MVP хватает трёх частей: сайт показывает, Backend проверяет правило, Database хранит брони.' })}
       />
     </Stage>
@@ -989,7 +1016,8 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         vizual={(
           <div className="mz-s4">
             <SaytMock kun="shanba" tanlangan="18:00" band={bandQ ? ['18:00'] : []} yon={yon}
-              forma={{ ism: 'Ali', telefon: '+998 90 000 00 01' }} onBand={tola && !bandQ ? () => setBandQ(true) : undefined} bandNavbat={tola && !bandQ} bandXira={!tola} />
+              forma={{ ism: 'Ali', telefon: '+998 90 000 00 01' }} onBand={tola && !bandQ ? () => setBandQ(true) : undefined} bandNavbat={tola && !bandQ} bandYoq={!tola || bandQ}
+              xabar={bandQ && tr({ uz: 'Band qilindi', ru: 'Забронировано' })} />
             <div className="q-col">
               <Tugun id="database" texno><JadvalMock ochiq={['id', ...tanlandi, 'yaratilgan']} avto qatorlar={bandQ ? [QATOR_ALI] : []} yangi={bandQ ? 1 : null} /></Tugun>
               {!bandQ && <span className="mz-izoh">{tr({ uz: "Database o'zi to'ldiradi", ru: 'Database заполняет сама' })}: <code>id</code> · <code>yaratilgan</code> · {tanlandi.length}/4</span>}
@@ -1210,8 +1238,8 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             tugun={{ backend: bHolat }}
             ichi={{
               sayt: <EgaMock parol={q >= 1} token={token} xabar={xabar} royxat={royxat}
-                onBandlar={faol && q !== 1 ? bandlar : undefined} bandlarNavbat={faol && q !== 1}
-                onKirish={faol && q === 1 ? kirish : undefined} kirishNavbat={faol && q === 1} />,
+                onBandlar={faol && q !== 1 ? bandlar : undefined} bandlarNavbat={faol && q !== 1} bandlarKor={!!taxmin && (q === 0 || q === 2)}
+                onKirish={faol && q === 1 ? kirish : undefined} kirishNavbat={faol && q === 1} kirishKor={!!taxmin && q === 1} />,
               backend: <><EnvBelgi yon={env} />{tokenOk && <code className="mz-mono-q fade-step">token ✓</code>}</>,
               database: <JadvalMock ixcham qatorlar={[QATOR_ALI, QATOR_BEK]} yonik={yonik} />
             }} />
@@ -1974,7 +2002,7 @@ function QuizArena({ live, onClose, startSolo }) {
 }
 
 // ===== 🏆 PODIUM / STATISTIKA — jonli reyting (jonli-ulanishni ⚡ Jonli qiladi; self-mode fallback tayyor) =====
-const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
+const ScreenPodium = ({ screen, answers, achievements, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
   const isLive = !!(live && (live.mode === 'student' || live.mode === 'mentor') && live.pin);
@@ -2011,11 +2039,19 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head head-c"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
+        <div className="head head-c"><h2 className="title h-title fade-up">{isLive ? tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> }) : tr({ uz: <>Bugungi <span className="italic" style={{ color: T.accent }}>natijangiz</span></>, ru: <>Ваш сегодняшний <span className="italic" style={{ color: T.accent }}>результат</span></> })}</h2></div>
         {!isLive ? (
-          <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
-            <ScoreRing correct={selfCorrect} total={totalQ} />
-            <div className="frame-soft" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>{tr({ uz: 'Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — 🥇🥈🥉 podium chiqadi.', ru: 'Вы в самостоятельном режиме. На живом уроке здесь появится рейтинг всей группы — подиум 🥇🥈🥉.' })}</p></div>
+          <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div className="pod-card">
+              <div className="pod-card-ring"><ScoreRing correct={selfCorrect} total={totalQ} /></div><p className="ring-iz">{tr({ uz: "Testlarda birinchi urinishda topilgan to'g'ri javoblar", ru: 'Верные ответы в тестах с первой попытки' })}</p>
+              <div className="pod-card-sec">
+                <span className="pod-card-lbl">{tr({ uz: 'Nishonlar', ru: 'Значки' })} · {Object.keys(ACHIEVEMENTS).filter(id => achievements && achievements.has(id)).length}/{Object.keys(ACHIEVEMENTS).length}</span>
+                <div className="pod-card-badges">
+                  {Object.entries(ACHIEVEMENTS).map(([id, a], k) => { const got = !!(achievements && achievements.has(id)); return <span key={id} className={`pcb ${got ? 'got' : ''}`} style={{ '--k': k }} title={tr(a.desc)}><span className="pcb-ic" aria-hidden="true">{got ? a.icon : '🔒'}</span><span className="pcb-nm">{got ? a.name : '?'}</span></span>; })}
+                </div>
+              </div>
+              <div className="pod-card-note"><span className="pcn-ic" aria-hidden="true">💡</span><p className="body">{tr({ uz: "Bu — shaxsiy natijangiz. Jonli darsda shu yerda butun guruhning natijalar ro'yxati va 🥇🥈🥉 eng yaxshi uchtalik (podium) chiqadi.", ru: 'Это ваш личный результат. На живом уроке здесь появится список результатов всей группы и 🥇🥈🥉 тройка лучших (подиум).' })}</p></div>
+            </div>
           </div>
         ) : !loaded ? (
           <p className="mono small fade-up" style={{ color: T.ink2 }}>{tr({ uz: 'Natijalar yuklanmoqda…', ru: 'Результаты загружаются…' })}</p>
@@ -2143,7 +2179,7 @@ const ScreenA1 = (props) => (
     title={{ uz: <>«Maydon» Backend'ini oching va <Acc>Database'ga ulang.</Acc></>, ru: <>Откройте Backend «Maydon» и <Acc>подключите к Database.</Acc></> }}
     mentor={{ uz: <>Chizmadagi ikki qism bugun <code className="qcode">maydon</code> papkasida paydo bo'ladi — <b style={{ color: T.ink }}>«1 · Ochish»</b>dan boshlang.</>, ru: <>Две части схемы сегодня появятся в папке <code className="qcode">maydon</code> — начните с <b style={{ color: T.ink }}>«1 · Открыть»</b>.</> }}
     steps={[
-      { h: { uz: 'Ochish', ru: 'Открыть' }, t: { uz: "GitHub'da `github.com/Azizbekcrypto/maydon` → «Fork» (o'z nusxangiz). Terminalda: `git clone https://github.com/{sizning login}/maydon.git` · `cd maydon`, papkani Antigravity'da oching. neon.tech da New project oching (nom: `maydon`) va «Connection string» ni nusxalang.", ru: 'На GitHub `github.com/Azizbekcrypto/maydon` → «Fork» (ваша копия). В терминале: `git clone https://github.com/{ваш логин}/maydon.git` · `cd maydon`, откройте папку в Antigravity. На neon.tech создайте New project (имя: `maydon`) и скопируйте «Connection string».' } },
+      { h: { uz: 'Ochish', ru: 'Открыть' }, t: { uz: "GitHub'da `github.com/Azizbekcrypto/maydon` → «Fork» (o'z nusxangiz). Unda faqat README bor — sayt va Backend'ni shu darsdan o'zingiz qurasiz (tayyor namuna — `yechim` tarmog'ida). Terminalda: `git clone https://github.com/{sizning login}/maydon.git` · `cd maydon`, papkani Antigravity'da oching. neon.tech da New project oching (nom: `maydon`) va «Connection string» ni nusxalang.", ru: 'На GitHub `github.com/Azizbekcrypto/maydon` → «Fork» (ваша копия). В нём только README — сайт и Backend вы строите сами с этого урока (готовый пример — в ветке `yechim`). В терминале: `git clone https://github.com/{ваш логин}/maydon.git` · `cd maydon`, откройте папку в Antigravity. На neon.tech создайте New project (имя: `maydon`) и скопируйте «Connection string».' } },
       { h: { uz: 'Prompt', ru: 'Промпт' }, t: { uz: "«Nusxalash»ni bosing va Antigravity'ga yuboring:", ru: 'нажмите «Скопировать» и отправьте в Antigravity:' }, prompt: [
         { uz: "maydon papkasida backend/ yarat — README.md dagi stack bo'yicha, port 3000.", ru: 'В папке maydon создай backend/ — по стеку из README.md, порт 3000.' },
         { uz: "backend/.env dagi DATABASE_URL bilan PostgreSQL'ga ulan. .env ni .gitignore ga qo'sh.", ru: 'Подключись к PostgreSQL через DATABASE_URL из backend/.env. Добавь .env в .gitignore.' },
@@ -2169,7 +2205,6 @@ const ScreenA1 = (props) => (
         </div>
       </div>
     )}
-    ortda={[ORTDA_FETCH, 'git checkout -f dars-04-done', tr({ uz: 'keyin backend/.env ga DATABASE_URL', ru: 'затем DATABASE_URL в backend/.env' })]}
     doneText={{ uz: <>Backend ishlayapti va Database'ga ulandi: <code className="qcode">bandlar</code> jadvali tayyor.</>, ru: <>Backend работает и подключён к Database: таблица <code className="qcode">bandlar</code> готова.</> }} />
 );
 const ScreenA2 = (props) => (
@@ -2193,7 +2228,6 @@ const ScreenA2 = (props) => (
       ] }
     ]}
     natija={<MzBrauzer manzil="localhost:5173"><SaytMock kun="shanba" band={['17:00', '20:00']} /></MzBrauzer>}
-    ortda={[ORTDA_FETCH, 'git checkout -f dars-04-done']}
     doneText={{ uz: "Skelet tayyor: sayt, Backend va Database ishga tushdi.", ru: 'Каркас готов: сайт, Backend и Database запущены.' }} />
 );
 
@@ -2242,7 +2276,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
+    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
@@ -2252,6 +2286,11 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     { uz: "Tanish stack'da agent yozgan kodni o'zingiz tekshirasiz.", ru: 'На знакомом стеке вы сами проверяете код агента.' },
     { uz: "Do'stingiz to'liq ishlatishi uchun sayt ham, Backend ham internetdan ochiladigan manzilda ishlashi kerak.", ru: 'Чтобы друг пользовался полностью, и сайт, и Backend должны работать по адресу, открытому из интернета.' }
   ];
+  const HW_KARTA = [ // F-1015-123: P-025 maydonlari — qiymatlar shu topshiriq matnidan
+    { k: { uz: 'Kim uchun', ru: 'Для кого' }, v: { uz: "o'z MVP'ingiz", ru: 'ваш MVP' } },
+    { k: { uz: 'Nechta', ru: 'Сколько' }, v: { uz: '2 prompt', ru: '2 промпта' } },
+    { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
+  ];
   const HOMEWORK = [
     { b: { uz: 'Chizma', ru: 'Схема' }, t: { uz: "— o'z MVP ingiz chizmasini chizing: qismlar, jadval ustunlari va yo'llar.", ru: '— нарисуйте схему своего MVP: части, столбцы таблицы и маршруты.' } },
     { b: { uz: 'Skelet', ru: 'Каркас' }, t: { uz: '— bloklarda yozgan ikki promptingizni o\'z loyihangiz papkasida yuboring.', ru: '— отправьте два промпта из блоков в папке своего проекта.' } },
@@ -2260,20 +2299,19 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   return (
-    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <QYakun til={__lang}
-        chip={tr({ uz: 'Chizma va skelet tayyor', ru: 'Схема и каркас готовы' })}
+        chip={tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}
         togri={correct} jami={total}
         sarlavha={tr({ uz: <>Chizma va loyiha skeleti <Acc>tayyor.</Acc></>, ru: <>Схема и каркас проекта <Acc>готовы.</Acc></> })}
         cta={<>
           <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
             <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: 'Mentorni kuting', ru: 'Дождитесь наставника' }) : undefined} />
           </div>
-          {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+          {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         </>}
         recap={RECAP.map(tr)}
-        uyga={HOMEWORK.map(h => ({ b: tr(h.b), t: fmtCode(tr(h.t)) }))}
-        keyingi={tr({ uz: <>Keyingi dars — <b>«Animatsiya: interfeys javob beradi»</b>. Bugungi statik kataklar bosilganda javob beradigan bo'ladi.</>, ru: <>Следующий урок — <b>«Анимация: интерфейс отвечает»</b>. Сегодняшние статичные ячейки начнут отвечать на нажатие.</> })}
+        uyga={<div className="card hwk fade-up d4"><div className="card-lbl acc">{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div><div className="hwk-karta">{HW_KARTA.map((r, i) => <div key={i} className="hwk-q"><span className="hwk-k">{tr(r.k)}</span><span className="hwk-v">{tr(r.v)}</span></div>)}</div><ol className="hwk-qadam">{HOMEWORK.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> {fmtCode(tr(h.t))}</span></li>)}</ol><p className="hwk-keyingi">{tr({ uz: <>Keyingi dars — <b>«Animatsiya: interfeys javob beradi»</b>. Bugungi statik kataklar bosilganda javob beradigan bo'ladi.</>, ru: <>Следующий урок — <b>«Анимация: интерфейс отвечает»</b>. Сегодняшние статичные ячейки начнут отвечать на нажатие.</> })}</p></div>}
         hwTokens={HW_TOKENS.map(k => ({ ...k, t: tr(k.t) }))}
         nishonlar={isMentorL ? null : Object.entries(ACHIEVEMENTS).map(([id, a]) => ({ id, icon: a.icon, name: a.name, desc: tr(a.desc), got: !!(achievements && achievements.has(id)) }))}
       />
@@ -2428,7 +2466,7 @@ export default function MvpArchitectureLesson({ lang: langProp, onFinished, live
         .mz-telefonlar { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); gap: 8px; align-items: stretch; }
         .mz-telefonlar .mz-tel-r { flex: 1; }
         .mz-telefonlar > .mz-tel:last-child { grid-column: 3; }
-        .mz-bosh-joy { grid-column: 2; grid-row: 1; align-self: stretch; width: clamp(22px,4vw,44px); min-height: 120px; margin-top: 22px; border: 2px dashed ${T.accent}; border-radius: 10px; background: ${fon(T.accent, 0.05)}; }
+        .mz-bosh-joy { grid-column: 2; grid-row: 1; align-self: stretch; width: clamp(22px,4vw,44px); min-height: 120px; margin-top: 22px; border: 2px solid ${T.accent}; border-radius: 10px; background: ${fon(T.accent, 0.05)}; }
         /* Telefon ramkasi */
         .mz-tel { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
         .mz-tel-l { font-size: 11.5px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: ${T.ink2}; }
@@ -2469,7 +2507,7 @@ export default function MvpArchitectureLesson({ lang: langProp, onFinished, live
         .mz-jt-w { overflow-x: auto; }
         table.mz-jt { border-collapse: separate; border-spacing: 3px; width: 100%; font-family: 'JetBrains Mono', monospace; font-size: 11px; }
         table.mz-jt th { padding: 5px 6px; text-align: left; font-weight: 700; color: ${T.ink}; background: ${T.bg}; border: 1px solid ${T.line}; border-radius: 6px; white-space: nowrap; }
-        table.mz-jt th.bosh { min-width: 46px; background: transparent; border: 1.5px dashed ${T.line}; }
+        table.mz-jt th.bosh { min-width: 46px; background: ${T.bg}; border: 1.5px solid transparent; }
         table.mz-jt th.ochiq { animation: mz-ust 0.45s cubic-bezier(.3,1.4,.5,1); }
         table.mz-jt th.avto { color: ${T.ink2}; }
         @keyframes mz-ust { from { transform: translateY(-8px) scale(0.9); opacity: 0; background: ${T.accentSoft}; } to { transform: none; opacity: 1; } }
@@ -2492,14 +2530,14 @@ export default function MvpArchitectureLesson({ lang: langProp, onFinished, live
         .mz-joy-sayt { grid-area: sayt; display: flex; align-items: flex-start; min-width: 0; }
         .mz-ong > .mz-tugun { flex: 0 0 auto; }
         .mz-ong { align-self: start; }
-        .mz-chizma.tanlash button.mz-tugun, .mz-chizma.tanlash button.mz-keyin { border: 1.5px dashed ${T.accent}; }
+        .mz-chizma.tanlash button.mz-tugun, .mz-chizma.tanlash button.mz-keyin { border: 1.5px solid ${T.accent}; }
         .mz-ong { grid-area: ong; display: flex; flex-direction: column; align-items: stretch; min-width: 0; }
         .mz-joy-keyin { grid-area: keyin; }
         .mz-tugun { position: relative; display: flex; flex-direction: column; align-items: stretch; gap: 6px; flex: 1; min-width: 0; padding: 9px 10px; text-align: left; font-family: 'Manrope', sans-serif; color: ${T.ink}; background: ${T.paper}; border: 1.5px solid ${T.line}; border-radius: 12px; transition: background 0.35s, border-color 0.35s, box-shadow 0.35s, opacity 0.35s; }
         button.mz-tugun { cursor: pointer; }
         button.mz-tugun:hover { border-color: ${T.accent}; }
         .mz-tugun-h { font-size: 12.5px; font-weight: 800; color: ${T.ink}; letter-spacing: 0.01em; }
-        .mz-tugun.kul { background: ${T.bg}; border-style: dashed; }
+        .mz-tugun.kul { background: ${T.bg}; border-style: solid; }
         .mz-tugun.kul .mz-tugun-h { color: ${T.ink2}; }
         .mz-tugun.joriy { border-color: ${T.accent}; box-shadow: 0 0 0 2px ${T.accent}, 0 8px 18px -8px ${fon(T.accent, 0.5)}; }
         .mz-tugun.ok { border-color: ${T.ok}; background: ${T.okFon}; }
@@ -2520,7 +2558,7 @@ export default function MvpArchitectureLesson({ lang: langProp, onFinished, live
         /* Yo'llar va konvert */
         .mz-yollar { grid-area: yol; position: relative; display: flex; flex-direction: column; justify-content: center; gap: 8px; min-width: 0; }
         .mz-yol { display: flex; flex-direction: column; gap: 2px; min-height: 22px; justify-content: flex-end; }
-        .mz-yol-ch { display: block; height: 0; border-top: 2px dashed ${T.line}; }
+        .mz-yol-ch { display: block; height: 0; border-top: 2px solid ${T.line}; }
         .mz-yol-ch.bitta { border-top: 2px solid ${T.ink2}; }
         .mz-yol-t { display: inline-flex; align-items: center; gap: 4px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: ${T.ink}; overflow-wrap: anywhere; }
         .mz-yol-t b { font-weight: 800; color: ${T.accent}; white-space: nowrap; }
@@ -2539,7 +2577,7 @@ export default function MvpArchitectureLesson({ lang: langProp, onFinished, live
         @keyframes mz-bor { from { left: 0; transform: translate(-30%, -50%); } to { left: 100%; transform: translate(-70%, -50%); } }
         @keyframes mz-qayt { from { left: 100%; transform: translate(-70%, -50%); } to { left: 0; transform: translate(-30%, -50%); } }
         /* «Keyin» qutisi (2-ekran) */
-        .mz-keyin { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; width: 100%; padding: 8px 12px; text-align: left; font-family: 'Manrope', sans-serif; font-size: 12.5px; color: ${T.ink2}; background: transparent; border: 1.5px dashed ${T.line}; border-radius: 12px; transition: border-color 0.3s, box-shadow 0.3s; }
+        .mz-keyin { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; width: 100%; padding: 8px 12px; text-align: left; font-family: 'Manrope', sans-serif; font-size: 12.5px; color: ${T.ink2}; background: ${T.bg}; border: 1.5px solid transparent; border-radius: 12px; transition: border-color 0.3s, box-shadow 0.3s; }
         button.mz-keyin { cursor: pointer; }
         button.mz-keyin:hover { border-color: ${T.accent}; }
         .mz-keyin.joriy { border-color: ${T.accent}; box-shadow: 0 0 0 2px ${T.accent}; }
@@ -2567,7 +2605,7 @@ export default function MvpArchitectureLesson({ lang: langProp, onFinished, live
         /* 11-ekran: ikki zona + do'st telefoni */
         .mz-zchizma { display: grid; grid-template-columns: minmax(0,1fr) minmax(150px,0.5fr); gap: 12px; align-items: start; }
         .mz-zonalar { display: flex; flex-direction: column; gap: 10px; }
-        .mz-zona { display: flex; flex-direction: column; gap: 7px; padding: 10px; border: 1.5px dashed ${T.line}; border-radius: 14px; background: ${T.bg}; min-height: 74px; }
+        .mz-zona { display: flex; flex-direction: column; gap: 7px; padding: 10px; border: 1.5px solid transparent; border-radius: 14px; background: ${T.bg}; min-height: 74px; }
         .mz-zona.net { border-style: solid; background: ${T.paper}; }
         .mz-zona.net.ulandi { border-color: ${T.ok}; }
         .mz-zona-t { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -2627,11 +2665,30 @@ export default function MvpArchitectureLesson({ lang: langProp, onFinished, live
         .zoomable.z-float > .zoom-btn { visibility: hidden; } /* ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun) */
         .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band, F-0926-01) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
+        .ring-iz { margin: 0; font-size: 13px; line-height: 1.4; color: ${T.ink2}; text-align: center; } /* F-1015-147: hisob qoidasi */
+        /* F-1015-158: natija — bitta karta (m5-08 namunasi): halqa, nishonlar, 💡 izoh; halqa atrofida qo'shimcha chiziq yo'q */
+        .pod-card { position: relative; width: 100%; max-width: 480px; margin-top: 6px; background: ${T.paper}; border-radius: 20px; padding: 0 clamp(14px,2.4vw,20px) clamp(14px,2.4vw,20px); display: flex; flex-direction: column; gap: 12px; box-shadow: 0 16px 34px -20px rgba(${T.shadowBase},0.35); }
+        .pod-card-ring { display: flex; justify-content: center; padding-top: clamp(14px,2.4vw,20px); } .pod-card-ring > * { margin-top: 0 !important; }
+        .screen:has(.pod-card) .head { text-align: center; }
+        .pod-card-sec { background: ${T.bg}; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .pod-card-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: ${T.accent}; }
+        .pod-card-badges { display: flex; justify-content: center; gap: clamp(8px,1.6vw,12px); flex-wrap: wrap; }
+        .pcb { width: 84px; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+        .pcb-ic { width: 50px; height: 50px; border-radius: 14px; display: grid; place-items: center; font-size: 26px; line-height: 1; background: ${T.paper}; box-shadow: inset 0 0 0 1px ${T.line}; }
+        .pcb.got .pcb-ic { background: ${T.accentSoft}; box-shadow: inset 0 0 0 2px ${T.accent}; animation: pcb-pop 0.5s cubic-bezier(.3,1.6,.5,1) both; animation-delay: calc(0.35s + var(--k) * 0.12s); }
+        .pcb:not(.got) .pcb-ic { font-size: 18px; filter: grayscale(1); opacity: 0.55; }
+        .pcb-nm { font-family: 'Manrope'; font-size: 10.5px; line-height: 1.25; text-align: center; color: ${T.ink2}; }
+        .pcb.got .pcb-nm { color: ${T.ink}; font-weight: 700; }
+        @keyframes pcb-pop { from { transform: scale(0.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .pod-card-note { display: flex; gap: 10px; align-items: flex-start; background: ${T.accentSoft}; border-radius: 14px; padding: 11px 13px; }
+        .pcn-ic { width: 32px; height: 32px; flex: none; border-radius: 50%; display: grid; place-items: center; background: ${T.paper}; font-size: 16px; }
+        .pod-card-note .body { margin: 0; font-size: clamp(13px,1.5vw,14.5px); }
+        @media (prefers-reduced-motion: reduce) { .pcb.got .pcb-ic { animation: none; } }
+        .zoomable.zb-joy:not(.zoom-on) { padding-top: 0 !important; } .zoomable.zb-joy:not(.zoom-on) > .zoom-btn { top: var(--zb-y, 0px) !important; left: var(--zb-x, auto) !important; right: auto !important; visibility: visible !important; } /* F-1015-125 (206.6): ⛶ asosiy vizual burchagida; 36px qator — faqat zaxira */ .zoomable.zb-qator:not(.zoom-on) { padding-top: 0 !important; } /* F-1015-176: ⛶ joy topolmasa — ko'rsatilmaydi, bo'sh qator yo'q */ .zoomable.zb-qator:not(.zoom-on) > .zoom-btn { display: none !important; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
-        /* F-1004-12: ⛶ matn ustiga tushmasin. Keng ekranda tugma kontentdan tashqarida, o'ng chetda turadi;
-           torroq ekranda ichkarida qoladi va o'ng ustunning birinchi yorlig'iga o'ngdan 40 px joy beriladi. */
-        @media (min-width: 1200px) { .zoomable:not(.zoom-on) > .zoom-btn { top: 0; right: -42px; } .zoomable.z-float:not(.zoom-on) > .zoom-btn { visibility: visible; } }
-        @media (max-width: 1199px) { .zoomable:not(.z-float):not(.zoom-on) > .split > :last-child > :is(p, h2, h3, h4, .eyebrow, .flow-label, .note-h):first-child, .zoomable:not(.z-float):not(.zoom-on) > .zoom-btn + :is(p, h2, h3, h4, .eyebrow, .flow-label, .note-h) { padding-right: 40px; } }
+        /* F-1004-12 · F-1015-111 (B): ⛶ hech narsani yopmaydi va kartadan chiqmaydi — vizual tepasida o'ziga ajratilgan
+           36 px qatorda, o'ng chetda; har kenglikda bir xil (7-Modul U2 naqshi). */
+        .zoomable:not(.z-empty):not(.zoom-on) { padding-top: 36px; } .zoomable:not(.zoom-on) > .zoom-btn { top: 0; right: 0; }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
         .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(880px,94vw); max-height: 90vh; overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px,4vw,42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); } /* skeletda yo'q edi — ⛶ ishlamasdi (11-Modul seansi, F-1007-290; MEXANIZM-TAKLIF 10) */
         .q-fokus:has(.zoom-on) { animation: none; transform: none; } /* qolip .q-fokus (fill both) transform qoldiradi — yakuniy holatda ⛶ oynasi siljiydi (F-1007-290; MEXANIZM-TAKLIF 12) */
@@ -2716,6 +2773,7 @@ export default function MvpArchitectureLesson({ lang: langProp, onFinished, live
 
         /* === 🔤 KOD-ATAMA CHIP (fmtCode) === */
         .qcode { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
+        .qcode.uzun { white-space: normal; overflow-wrap: break-word; } /* F-1015-129: uzun kod (SQL, buyruq) bo'sh joydan bo'linadi, kartadan chiqmaydi */
 
         /* === 🏅 ACHIEVEMENTS — hisoblagich + to'liq-ekran bayram === */
         .ach-cnt-wrap { position: relative; }
@@ -2805,6 +2863,7 @@ export default function MvpArchitectureLesson({ lang: langProp, onFinished, live
 
         /* === ⚡ CODE STRIKE — CTA neon-kapsula (arena STRUKTURASI ⚡ Jonliniki) === */
         .qz-cta { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; border-radius: 18px; }
+        .hwk { display: flex; flex-direction: column; gap: 12px; } .hwk-karta { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; } .hwk-q { display: flex; flex-direction: column; gap: 3px; padding: 9px 11px; border-radius: 10px; background: ${T.bg}; border: 1px solid ${T.line}; } .hwk-k { font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: ${T.ink2}; } .hwk-v { font-size: 13.5px; font-weight: 700; line-height: 1.35; color: ${T.ink}; } ol.hwk-qadam { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; } .hwk-qadam li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: ${T.ink}; } .hwk-qadam li i { flex: 0 0 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-style: normal; font-weight: 800; font-size: 12px; line-height: 1; color: ${T.accent}; background: ${T.accentSoft}; } p.hwk-keyingi { margin: 0; font-size: 13.5px; line-height: 1.5; color: ${T.ink2}; } p.hwk-keyingi b { color: ${T.ink}; }
         .cs-cta { flex-direction: column; align-items: stretch; justify-content: center; text-align: center; gap: 0; position: relative; padding: 0; background: none; border: none; box-shadow: none; }
         @property --csa { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
         .cs-cap { position: relative; overflow: hidden; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%;

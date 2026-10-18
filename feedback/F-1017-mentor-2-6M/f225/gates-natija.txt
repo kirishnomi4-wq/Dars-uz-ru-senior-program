@@ -1,0 +1,73 @@
+src/1-Modull/CssLesson1.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/1-Modull/CssLesson2.jsx | 1/12 darvoza yiqildi: emoji
+src/1-Modull/CssPractice.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/1-Modull/DeployLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/1-Modull/GitLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/1-Modull/Htmllesson1.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/1-Modull/Htmllesson2.jsx | 1/12 darvoza yiqildi: emoji
+src/1-Modull/HtmlPractice.jsx | 12/12 darvoza toza.
+src/1-Modull/HtmlTakrorlashLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/1-Modull/InternetLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/1-Modull/PmLesson1.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/1-Modull/PmLesson2.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/1-Modull/PmLesson3.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/1-Modull/VsCodeLesson.jsx | 1/12 darvoza yiqildi: emoji
+src/2-Modull/JsConditionsLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/2-Modull/JsFunctionsLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/2-Modull/JsIntroLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/2-Modull/JsLoopsLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/2-Modull/JsVarsLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/2-Modull/PeanStackLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/2-Modull/PmLesson4.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/2-Modull/PmLesson5.jsx | 1/12 darvoza yiqildi: emoji
+src/2-Modull/PmLesson6.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/2-Modull/PmMuammoIzlash.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/2-Modull/PracticeLesson1.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/2-Modull/PracticeLesson2.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/2-Modull/PracticeLesson3.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/2-Modull/PracticeLesson4.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/3-Modull/PmLesson10.jsx | 1/12 darvoza yiqildi: emoji
+src/3-Modull/PmLesson8.jsx | 1/12 darvoza yiqildi: emoji
+src/3-Modull/PmLesson9.jsx | 1/12 darvoza yiqildi: emoji
+src/3-Modull/ReactApiGetLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/3-Modull/ReactApiPostLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/3-Modull/ReactBuildSiteLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/3-Modull/ReactCrudPracticeLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/3-Modull/ReactFirstComponentLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/3-Modull/ReactIntroLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/3-Modull/ReactProjectDayLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/3-Modull/ReactPropsReuseLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/3-Modull/ReactRouterPracticeLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/3-Modull/ReactStateEffectLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/4a-Modull/NestArchAliveLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/4a-Modull/NestArchPracticeLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/4a-Modull/NestArchResourceLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/4a-Modull/PmLesson15.jsx | 1/12 darvoza yiqildi: emoji
+src/4b-Modull/EdgeCasesTestLesson.jsx | 1/12 darvoza yiqildi: tell
+src/4b-Modull/JestUnitTestLesson.jsx | 1/12 darvoza yiqildi: tell
+src/4b-Modull/PmLesson16.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/4c-Modull/AiPipelineProjectLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/4c-Modull/CiCdIntroLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/4c-Modull/FullPipelineProjectLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/4c-Modull/FullProPipelineLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/4c-Modull/GithubActionsLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/4c-Modull/PmLesson17.jsx | 1/12 darvoza yiqildi: emoji
+src/4c-Modull/PmLesson18.jsx | 1/12 darvoza yiqildi: emoji
+src/4-Modull/ApiPostmanLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/4-Modull/AuthEnvLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/4-Modull/BackendCrudPracticeLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/4-Modull/DataIntroLesson.jsx | 1/12 darvoza yiqildi: tell
+src/4-Modull/DbSqlNosqlLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/4-Modull/FullstackConnectPracticeLesson.jsx | 1/12 darvoza yiqildi: tell
+src/4-Modull/FullstackFeedbackLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/4-Modull/FullstackProjectDayLesson.jsx | 1/12 darvoza yiqildi: emoji
+src/4-Modull/NodeServerLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/4-Modull/PmLesson11.jsx | 1/12 darvoza yiqildi: emoji
+src/4-Modull/PmLesson12.jsx | 1/12 darvoza yiqildi: emoji
+src/4-Modull/PmLesson13.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/4-Modull/PmLesson14.jsx | 1/12 darvoza yiqildi: emoji
+src/4-Modull/PostgresCrudLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+src/4-Modull/RoutingLesson.jsx | 1/12 darvoza yiqildi: tell
+src/skelet/NamunaDars.jsx | 12/12 darvoza toza.
+src/pm/PmUserStoryLesson.jsx | 2/12 darvoza yiqildi: tell, emoji
+DONE

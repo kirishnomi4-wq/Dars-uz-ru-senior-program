@@ -9,7 +9,7 @@ Hamma raqam — **Mentor misoli** (mashq uchun yozilgan holat); o'quvchi matnida
 
 - **Ip:** 9-Modulda Mentor «Maydon» saytini qurdi (maydonda bo'sh vaqtni ko'rish va band qilish), 10-Modulda uni o'lchadi va prodga chiqardi; yillik yo'l darsida keyingi qadam sifatida
   **jamoa yig'ish**ni tanladi (9-Modul intervyularida 5 kishidan 2 tasi «jamoaga odam yetmadi» degan). 11-Modulda Mentor final mahsulotni noldan tanlaydi — xuddi o'quvchi kabi:
-  6 g'oya → saralash va RICE → ikki g'oya bo'yicha 10 intervyu → final g'oya → PRD → roadmap → prototip → platforma → telefonda → poydevor → 3 funksiya → sinov → yakkama-yakka → pitch.
+  5 g'oya (F-1015-185; avval 6) → saralash va RICE → ikki g'oya bo'yicha 10 intervyu → final g'oya → PRD → roadmap → prototip → platforma → telefonda → poydevor → 3 funksiya → sinov → yakkama-yakka → pitch.
 - **Mahsulot:** «Maydon Jamoa» — mahalladagi mini-futbol uchun jamoa yig'adigan **mobil ilova**: tashkilotchi o'yin e'lon qiladi (kun, soat, maydon, nechta odam kerak),
   boshqa o'yinchilar «Qo'shilaman» ni bosadi; e'londa «8 / 10» — qo'shilganlar / kerak.
 - **Odamlar** (ismsiz, o'ylab topilgan qahramon yo'q): **tashkilotchi** — o'yinni e'lon qiladigan o'yinchi · **o'yinchi** — qo'shiladigan odam. Ikkalasi ham o'yinchi; «tashkilotchi» — faqat e'lon bergan payti.
@@ -20,7 +20,8 @@ Hamma raqam — **Mentor misoli** (mashq uchun yozilgan holat); o'quvchi matnida
 - **Platforma** (8-dars): **mobil** — o'yinchi maydonda, qo'lida telefon; o'yindan oldin eslatma (push — 12-Modulda) telefonga keladi.
 - Metafora yo'q.
 
-### 1.1 Mentorning 6 g'oyasi (1-dars) — har biri: muammo · kim uchun · yechim
+### 1.1 Mentorning 5 g'oyasi (1-dars) — har biri: muammo · kim uchun · yechim
+**17.10 foydalanuvchi qarori (F-1015-185): 6 → 5** — o'quvchi ham, Mentor ham **5** g'oya yozadi; «Yo'qolgan buyumlar» olindi (2-darsda saralashdan o'tmaydigan namuna — «Eski darsliklar»). Quyidagi 06.10 yozuvi tarix uchun.
 **06.10 foydalanuvchi qarori (F-1006-272, «1. A»):** o'quvchi ham, Mentor ham **6** g'oya yozadi (dastur «10 g'oya» o'rniga). Olib tashlandi: Kitob almashish · Repetitor topish · Mahalla turniri · Mashg'ulot kundaligi.
 Manba (1-dars 4-ekran, 9.21): 1, 2 — «Keyin» qutisi (9-Modul MVP; 2 — intervyu yozuvi bilan: 5 kishidan 1 tasi «pulni bo'lishish qiyin», 9.26) ·
 5 — 9-Modul ro'yxati (Mentor yozuvi «Eski darsliklarni kimga berishni bilmay, o'quvchilar ularni uyda yillab saqlaydi.») · 3, 4, 6 — yangi kuzatuv
@@ -33,7 +34,6 @@ Manba (1-dars 4-ekran, 9.21): 1, 2 — «Keyin» qutisi (9-Modul MVP; 2 — inte
 | 3 | Mahalla to'garaklari | qaysi to'garak qayerda va qachon — bilinmaydi | to'garak izlayotgan o'smirlar | to'garaklar xaritasi va jadvali |
 | 4 | Sinf uy vazifalari | uy vazifasi chatlarda yo'qoladi | sinfdoshlar | har fan bo'yicha vazifalar bir joyda |
 | 5 | Eski darsliklar | eski darsligini kimga berishni bilmaydi, u uyda yillab turadi | o'quvchilar | ishlatilgan darsliklar e'loni |
-| 6 | Yo'qolgan buyumlar | maktabda yo'qolgan narsa topilmaydi | maktab o'quvchilari | topilgan buyumlar e'loni |
 
 ### 1.2 Saralash va RICE (2-dars)
 
@@ -41,8 +41,8 @@ Manba (1-dars 4-ekran, 9.21): 1, 2 — «Keyin» qutisi (9-Modul MVP; 2 — inte
   **qiziqmi** — bitiruvgacha shu ustida ishlashni xohlaymanmi. Uchalasi «ha» bo'lgan g'oya RICE ga o'tadi.
   O'quvchi matnida siz-formada (9.48): «Birinchi versiyasini shu modulning 6 haftasida qura olasizmi?» · «Gaplasha oladigan kamida 5 tanishingiz bormi?» · «Bitiruvgacha shu ustida ishlashni xohlaysizmi?».
   Real auditoriya savoli muammo borligini isbotlamaydi — gaplashadigan odamlar borligini tekshiradi (muammoni 3–4-darslardagi suhbatlar tekshiradi).
-- Mentor misolida uchala savoldan **4 g'oya** o'tdi: 1 jamoa yig'ish · 2 maydon pulini bo'lishish · 3 mahalla to'garaklari · 4 sinf uy vazifalari (06.10 — 6 g'oya, F-1006-272).
-  Qolganlari: 5 eski darsliklar — bajarilmaydi (pul va yetkazish kerak); 6 yo'qolgan buyumlar — real auditoriya topilmadi. «Qiziqmi?» dan bu misolda hammasi o'tadi.
+- Mentor misolida uchala savoldan **4 g'oya** o'tdi: 1 jamoa yig'ish · 2 maydon pulini bo'lishish · 3 mahalla to'garaklari · 4 sinf uy vazifalari (17.10 — 5 g'oya, F-1015-185).
+  Qolgani: 5 eski darsliklar — bajarilmaydi (pul va yetkazish kerak). (F-1015-185: 6-g'oya olindi.) «Qiziqmi?» dan bu misolda hammasi o'tadi.
 - **RICE** (manba: Intercom blogi, Sean McBride, 2018 — intercom.com/blog/rice-simple-prioritization-for-product-managers, 06.10 o'qildi):
   **qamrov** (Reach) — ma'lum vaqtda nechta odamga yetadi · **ta'sir** (Impact) — bitta odamga qancha foyda: 3 juda katta · 2 katta · 1 o'rta · 0,5 kichik · 0,25 juda kichik ·
   **ishonch** (Confidence) — taxminga qanchalik ishonasiz: 100% · 80% · 50% (Intercom: yuqori · o'rta · past; **bu kursdagi sodda izoh** — 100% o'lchangan son bor · 80% dalil bor · 50% faqat taxmin, darsda «Bu kursda:» bilan, 9.49) · **mehnat** (Effort) — qancha ish. Formula: **qamrov × ta'sir × ishonch ÷ mehnat**.
@@ -528,4 +528,5 @@ Yangi kalit kerak bo'lsa — MD oxiridagi «TAYANCHGA SAVOL» ga yoziladi.
     «Run» · `\dt` va boshqa meta-buyruqlar ishlaydi · bir nechta SQL — har biriga alohida natija; darsda SQL'lar birma-bir yoziladi. Juftlikda: hammasi ✓ bo'lsa — «qaysi bo'lak yanada aniqroq bo'lishi mumkin?» («eng zaif» emas);
     ko'ngillilar guruh oldida — faqat vaqt qolsa (90 daqiqa hisobida yo'q). «Tuzatish», «tuzatildi» — pitch bo'lagi uchun ham (15-darsdagi «tuzat-» chegarasi — faqat 15-dars ichida, «tuzatilgan reja» bilan doskada aralashmasin).
 100. **G'oyalar soni — 6 (06.10, foydalanuvchi, F-1006-272):** o'quvchi ham, Mentor ham 6 g'oya yozadi (1.1). 2-dars: saralash 6 → 5 → 4 (Eski darsliklar — bajarilmaydi, Yo'qolgan buyumlar — real auditoriya yo'q), RICE 4 → uchta: Jamoa yig'ish 24 · Mahalla to'garaklari 20 · Maydon pulini bo'lishish 5; ikkita — o'zgarmadi (3-dars). Menyu: «Oltita g'oyani qayerdan topasiz?» · «Oltita g'oyadan qaysi uchtasi qoladi?».
+101. **G'oyalar soni — 5 (17.10, foydalanuvchi, F-1015-185):** «6 ta g'oya ko'p» — o'quvchi ham, Mentor ham 5 g'oya; 2-dars saralashi 5 → 4 (Eski darsliklar — bajarilmaydi), RICE → 3 → 2. 100-band shu bilan almashtirildi.
 101. **Pilot ko'rigidan umumiy qoidalar (F-1006-270/271)** — `QURUVCHI_SABOQ.md` D 32–39: yengil halqa (guruhda bitta) · bo'sh chiziq yo'q · yashirin bosish yo'q · chap–o'ng bog'lanishi · real odamlar · kod tekshiruvi ma'lumotdan mustaqil · ⛶ `.zoom-on` · «Ortda qoldingizmi» darsda bir marta.

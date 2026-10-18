@@ -1,0 +1,75 @@
+<title>Kattalashtirish joyi natija</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: bitta o'qish ustuni, har guruh — surat + ro'yxat; qaror savollari pastda variant-kartalar bilan */
+:root{
+  --bg:#f6f5fb; --panel:#ffffff; --ink:#1d1b2e; --mute:#5e5a78; --line:#e3e0f0;
+  --acc:#5b3fd6; --acc-soft:#ece8fd; --ok:#1f8a4c; --ok-soft:#e3f4ea; --warn:#b5541b; --warn-soft:#fbeadf;
+  --f-body:"Manrope",system-ui,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#14131c; --panel:#1d1c28; --ink:#ecebf5; --mute:#a5a2bd; --line:#2f2d40;
+  --acc:#a593ff; --acc-soft:#2a2547; --ok:#5fd18e; --ok-soft:#173326; --warn:#f19a62; --warn-soft:#3a2416; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#14131c; --panel:#1d1c28; --ink:#ecebf5; --mute:#a5a2bd; --line:#2f2d40;
+  --acc:#a593ff; --acc-soft:#2a2547; --ok:#5fd18e; --ok-soft:#173326; --warn:#f19a62; --warn-soft:#3a2416; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font:15px/1.6 var(--f-body)}
+.wrap{max-width:960px;margin:0 auto;padding-block:32px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:28px}
+h1{font-size:28px;line-height:1.2;margin:0;text-wrap:balance;font-weight:800}
+h2{font-size:19px;margin:0;font-weight:800;text-wrap:balance}
+.eyebrow{font:600 12px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--acc)}
+p{margin:0;max-width:68ch}
+.mute{color:var(--mute)}
+.sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.sum div{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.sum b{display:block;font:800 26px var(--f-body);font-variant-numeric:tabular-nums}
+.sec{display:flex;flex-direction:column;gap:12px}
+.g{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.g.ok{border-color:var(--ok)}
+.tag{display:inline-block;font:600 12px var(--f-mono);padding:2px 8px;border-radius:999px;background:var(--warn-soft);color:var(--warn)}
+.g.ok .tag{background:var(--ok-soft);color:var(--ok)}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+figure{margin:0;display:flex;flex-direction:column;gap:6px;min-width:0}
+figure img{border:1px solid var(--line);border-radius:8px;background:#fff;width:100%}
+figcaption{font:12px var(--f-mono);color:var(--mute)}
+.keys{font:12.5px/1.7 var(--f-mono);color:var(--mute);overflow-wrap:anywhere}
+ul{margin:0;padding-left:20px}
+li{margin:2px 0}
+.q{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.opt{border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.opt.rec{border-color:var(--acc);background:var(--acc-soft)}
+.opt b{font-size:15px}
+.rec-l{font:600 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--acc)}
+code{font:13px var(--f-mono);background:var(--acc-soft);padding:1px 5px;border-radius:4px}
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.pair figcaption b{color:var(--ok)}
+.done{background:var(--ok-soft);border:1px solid var(--ok);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+</style>
+<div class="wrap">
+  <header class="sec"><span class="eyebrow">F-1015-125…128 · 129 · 133 · 134 · 17.10</span>
+    <h1>⛶ asosiy vizual burchagida — natija</h1>
+    <p>Z1 = A bajarildi. 94 dars faylida <code>Zoomable</code> ⛶ joyini o'zi hisoblaydi. Avval vizual yonida qidiradi, keyin vizual burchagining ichida. Ikkala joyda ham tugma o'rnida matn yoki belgi bo'lmasligi shart. Ikkalasi band bo'lsa, ⛶ 36 px qatorda, lekin vizualning o'ng chetida turadi. Qoida DARS_ETALON 206.6 ga yozildi.</p></header>
+  <div class="sum">
+    <div><b>113 → 29</b><span class="mute">⛶ vizualdan 40 px dan uzoq. Qolganlari asosan to'r-kanvas burchagi, o'lchovchi kanvasni hisobga olmaydi.</span></div>
+    <div><b>0</b><span class="mute">⛶ barqaror holatda matnni yopmaydi (lint:layout, 102 dars). Bitta topilma faqat animatsiya paytida.</span></div>
+    <div><b>1 → 66</b><span class="mute">ikki ustunli ekranlar, tepasi 0–20 px farq bilan bir chiziqda</span></div>
+    <div><b>94 / 102</b><span class="mute">fayl 12/12 darvozadan o'tdi (128/129 bilan birga 102)</span></div>
+  </div>
+  <section class="sec"><h2>⛶ joyi</h2>
+    <div class="pair"><figure><img src="{{s5_o}}" alt="oldin"><figcaption>oldin · m7-08 s5 — ⛶ ustun chetida</figcaption></figure><figure><img src="{{s5_k}}" alt="keyin"><figcaption><b>keyin</b> · telefon yonida, telefon va «Talab» bir chiziqdan</figcaption></figure></div>
+    <div class="pair"><figure><img src="{{s4_o}}" alt="oldin"><figcaption>oldin · m7-08 s4 — ⛶ karta o'rtasida</figcaption></figure><figure><img src="{{s4_k}}" alt="keyin"><figcaption><b>keyin</b> · telefon burchagida</figcaption></figure></div>
+    <div class="pair"><figure><img src="{{s0_o}}" alt="oldin"><figcaption>oldin · m7-08 s0</figcaption></figure><figure><img src="{{s0_k}}" alt="keyin"><figcaption><b>keyin</b> · ⛶ javoblar bloki burchagida</figcaption></figure></div>
+    <div class="pair"><figure><img src="{{m907_o}}" alt="oldin"><figcaption>oldin · m9-07 s3</figcaption></figure><figure><img src="{{m907_k}}" alt="keyin"><figcaption><b>keyin</b> · kanvas burchagi ichida</figcaption></figure></div>
+    <div class="pair"><figure><img src="{{m601_o}}" alt="oldin"><figcaption>oldin · m6-01 s3</figcaption></figure><figure><img src="{{m601_k}}" alt="keyin"><figcaption><b>keyin</b> · sxema kartasi burchagida</figcaption></figure></div>
+    <div class="pair"><figure><img src="{{m1212_o}}" alt="oldin"><figcaption>oldin · m12-12 s7</figcaption></figure><figure><img src="{{m1212_k}}" alt="keyin"><figcaption><b>keyin</b> · yopish xavfi bor — qatorda, vizual o'ng chetida</figcaption></figure></div>
+  </section>
+  <section class="sec"><h2>128 · 129 · 133 · 134</h2>
+    <div class="pair"><figure><img src="{{q128_o}}" alt="oldin"><figcaption>oldin · 128 QA: «band qildi» — xulosada `band-qildi`</figcaption></figure><figure><img src="{{q128_k}}" alt="keyin"><figcaption><b>keyin</b> · chip ham `band-qildi`</figcaption></figure></div>
+    <div class="pair"><figure><img src="{{q129_o}}" alt="oldin"><figcaption>oldin · 129 QA: SQL kartadan chiqib ketgan</figcaption></figure><figure><img src="{{q129_k}}" alt="keyin"><figcaption><b>keyin</b> · uzun kod bo'sh joydan bo'linadi (102 dars)</figcaption></figure></div>
+    <div class="pair"><figure><img src="{{q133_o}}" alt="oldin"><figcaption>oldin · 133 QA: m7-11 s6 — qator va «band qildi»</figcaption></figure><figure><img src="{{q133_k}}" alt="keyin"><figcaption><b>keyin</b> · ⛶ telefon yonida; Uch qadam — hodisa nomlari</figcaption></figure></div>
+    <div class="pair"><figure><img src="{{q134_o}}" alt="oldin"><figcaption>oldin · 134 QA: m7-12 s3 — ⛶ qatori</figcaption></figure><figure><img src="{{q134_k}}" alt="keyin"><figcaption><b>keyin</b> · qator yo'q, ⛶ vizual burchagida</figcaption></figure></div>
+  </section>
+  <p class="mute">Ochiq: Z2 (<code>.q-split</code> tepaga tekislash) relizdan keyin qolipda qilinadi. Qolgan 29 «uzoq» ekranlar ko'zdan kechirildi, ularning ko'pchiligida ⛶ kanvas yoki karta burchagida turibdi.</p>
+</div>

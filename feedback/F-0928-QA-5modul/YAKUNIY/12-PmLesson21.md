@@ -53,7 +53,7 @@ Holat: 04.10.2026 — kodga mos
 - Eyebrow: Amaliyot · besh kun
 - Sarlavha: **Kunlarni oching va ikki qatorni birga kuzating.**
 - Mentor (boshida): Har ustun — botingizning bitta kuni, ostida esa o'sha kunning ikki soni.
-- Panel: **Botingizning kunlari** · kalit: qaytgan · qaytmagan · n / 5
+- Panel: **Botingizning kunlari** · kalit: qaytgan · qaytmagan (ochilgan kunlar jadvalda ko'rinadi; «n / 5» olindi) *(✎ F-1015-120, 208-qonun 0-band: takror olindi)*
 - Jadval: 1-kun … 5-kun · har ustunda odam-belgilari (qaytganlar ajralib turadi) · qatorlar **Keldi** · **Qaytdi** (ochilmagan kunda «·»)
   - Keldi: 9 · 7 · 6 · 23 · 8
   - Qaytdi: 0 · 4 · 4 · 4 · 5
@@ -88,7 +88,7 @@ Holat: 04.10.2026 — kodga mos
 - Tugmalar: Orqaga · Javobni tanlang → Davom etish
 
 ## 6 · Biznes olamidan · Duolingo
-- Eyebrow: Biznes olamidan (bosqich yorlig'i: «Duolingo · n / 5»; bashoratda: «Avval o'zingiz belgilab ko'ring · n / 5»)
+- Eyebrow: Biznes olamidan (bosqich yorlig'i: «Duolingo»; bashoratda: «Avval o'zingiz belgilab ko'ring»; sanoq tugmada *(✎ F-1015-120, 208-qonun 0-band: takror olindi)*)
 - Sarlavha: **Duolingo'dagi bitta raqam**
 - Sahna (tepada, bosqichga qarab o'zgaradi; chap tepada yorliq «duolingo»; o'ng tepada izoh):
   - 1-bosqich: telefon, olov belgisi va raqam «7»
@@ -134,7 +134,7 @@ Holat: 04.10.2026 — kodga mos
 - 1-kunda son yozilgach: Hisobda 1-kundan oldingi kun yo'q — shuning uchun 1-kunning qaytgani 0.
 - 2-maydon (1-maydon to'lgach chiqadi): «Ulardan nechtasi qaytdi?»
 - Xato yozuvlari: Bu katakka faqat son yoziladi, masalan: 7. · Qaytganlar o'sha kuni kelganlardan ko'p bo'lolmaydi — ular shu kelganlar ichidan sanaladi.
-- Tugma: Saqlash → / ✓ Yangilash · yetishmasa yonida: Nechta odam kelganini yozing · Ulardan nechtasi qaytganini yozing · Qaytganlar kelganlardan oshmasin
+- Tugma: Saqlash → / ✓ Yangilash · yetishmasa yonida: Nechta odam kelganini yozing · Ulardan nechtasi qaytganini yozing · Qaytganlar kelganlardan oshmasin (tugma doim bosiladi; bosilsa yozuv ajraladi, kursor kerakli katakka ✎ F-1015-164)
 - Saqlagach: ✓ N-kun yozildi: X odam keldi, Y tasi qaytdi.
 - Yordam: Kechagi ro'yxatni oching va bugungisi bilan solishtiring: **ikkalasida ham bor odamlar** — qaytganlar.
 - Uchtasi yozilgach: **Uch kunlik hisobingiz** — «n-kun · Keldi X · Qaytdi Y» (×3), har qator yonida: Tahrirlash
@@ -146,7 +146,7 @@ Holat: 04.10.2026 — kodga mos
 - Eyebrow: Tekshiruv · besh kun
 - Sarlavha: **Har qatorda qaytish kunlarini belgilang.**
 - Mentor (boshida): To'lgan katak — odam o'sha kuni kelgan. Chap yonidagi katak ham to'lgan bo'lsa, shu katakni bosing: bu — qaytish kuni.
-- Panel: **Besh kunlik ro'yxat** · kalit: odam kelgan kun · siz belgilagan kun (birinchi belgidan keyin) · qaytish kuni (tekshiruvdan keyin) · n / 4
+- Panel: **Besh kunlik ro'yxat** · kalit: odam kelgan kun · siz belgilagan kun (birinchi belgidan keyin) · qaytish kuni (tekshiruvdan keyin) (sanoq tugmada «Yana N qatorni belgilang») *(✎ F-1015-120, 208-qonun 0-band: takror olindi)*
 - Jadval (ustunlar 1-kun … 5-kun; qatorlar navbat bilan chiqadi):
 
 | Odam | Kelgan kunlari | ✔ Qaytish kunlari | Tekshiruvdan keyingi izoh |
@@ -157,6 +157,7 @@ Holat: 04.10.2026 — kodga mos
 | Malika | 3, 4, 5 | 4, 5 | 4- va 5-kun: Malika 3-kundan boshlab uzilmay kelgan. |
 
 - Tugmalar: Tekshirish · Bu odam qaytmagan · yonida: Qaytish kunlarini bosing yoki «Bu odam qaytmagan»ni tanlang / Endi tekshiring
+- «Tekshirish» birinchi kun belgilangach chiqadi; ungacha — «Bu odam qaytmagan» va yonidagi yo'l-yo'riq ✎ F-1015-164
 - Nishon sharti: Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki. / (birinchi xatodan keyin) Nishon birinchi urinish uchun edi.
 - Javob (javob qatori + shu qatorning izohi):
   - to'g'ri: ✓ To'g'ri.
@@ -282,18 +283,20 @@ Holat: 04.10.2026 — kodga mos
 
 ## 15 · Yakun
 - Eyebrow: Dars yakuni
-- Belgi: ✓ Dars tugadi
+- Belgi: ✓ Dars tugadi · Testlar: N/N ✎ F-1015-161
 - Sarlavha: **Uch kunlik hisobingiz yozildi.** (yonida: n/4 to'g'ri javob)
-- Arena tugmasi: 12 SAVOL · 15 SONIYA · PODIUM · (jonli darsda mentor boshlamaguncha) Mentorni kuting
+- Arena tugmasi: (jonli darsda mentor boshlamaguncha) Mentorni kuting
 - ✓ Endi siz bilasiz:
   - Kecha kelgan odam bugun ham kelsa — u bugun qaytgan odam.
   - Har kunda ikki son bor: nechta odam keldi va ulardan nechtasi qaytdi.
   - Ko'p odam kelgani — ko'p odam qaytgani degani emas: ikki sonni birga o'qing.
   - Qaytish ikki kunning yonma-yon turishidan ko'rinadi — bitta kundan emas.
-- Nishonlaringiz — n/4
 - Uyga vazifa · Amaliy topshiriqni bajarish →
+- Nishonlaringiz — n/4
 - Keyingi dars — **Zaxira dars**: ulgurmagan ishni tugatasiz va botingizni sayqallaysiz. Undan keyin — **Demo Day**: botingizni jonli ko'rsatasiz va uning raqamlarini aytasiz. Uch kunlik hisobingizni saqlang — o'sha kuni kerak bo'ladi.
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10, S2-A): «To'liq / Qisqa» tanlovi qoladi; karta banner ostida JOYIDA ochiladi (popup/varaq yo'q — PM 77/58 dagi qatlam yechimi bekor), «Topshiriq kartasi · TO'LIQ» sarlavha-qatori olindi (tanlangan chip bilan takror), maydonlar quti, qadamlar raqam-doira, bitta ustun; «Keyingi dars» karta ichida; HW ochilganda Yakun siqilmaydi (:has(.hw-chips) qoidalari olindi), banner 138px.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Day by Day** (4-ekran) — Kunlarni ochib, ikki sonni yonma-yon kuzatdingiz

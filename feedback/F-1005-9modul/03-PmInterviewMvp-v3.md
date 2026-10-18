@@ -102,11 +102,11 @@ Sanoq: band 4/5 · telefon 3/5 · jamoa 2/5 · pul 1/5 (tayanch bilan aynan). «
 - Chap yorliq: Dars oxirida o'z g'oyangiz uchun shu doskani to'ldirasiz
 - Chap: doskaning bo'sh shakli — tepada bo'sh muammo qatori «? / 5», pastda uch quti «Qilamiz · Keyin · Qilmaymiz»; kataklar ichida kulrang skelet-chiziqlar navbat bilan paydo bo'ladi (matnsiz — 4 va 9-ekran kashfiyotini ochmaydi, P-015).
 - O'ng yorliq: Bugungi 4 qadam
-- Qadamlar (01 · matn · teg; bosilmaydi):
-  - 01 · Besh yozuvdagi shikoyatlarni sanaysiz · `sanoq`
-  - 02 · Eng ko'p chiqqanini bitta gapga yozasiz · `muammo`
-  - 03 · Imkoniyatlarni uch qutiga ajratasiz · `MVP`
-  - 04 · Shikoyatlarni kod bilan sanaysiz · `kod`
+- Qadamlar (01 · matn; bosilmaydi; teg yo'q — matnni takrorlardi) *(✎ F-1015-114, 208-qonun 0-band: takror olindi)*:
+  - 01 · Besh yozuvdagi shikoyatlarni sanaysiz
+  - 02 · Eng ko'p chiqqanini bitta gapga yozasiz
+  - 03 · Imkoniyatlarni uch qutiga ajratasiz
+  - 04 · Shikoyatlarni kod bilan sanaysiz
 - Tugmalar: Orqaga · Boshlaymiz →
 
 ## 2 · Besh yozuv  ← QTushuncha
@@ -177,7 +177,7 @@ Sanoq: band 4/5 · telefon 3/5 · jamoa 2/5 · pul 1/5 (tayanch bilan aynan). «
 ## 6 · Burbn  ← QVoqea (PM keys)
 - Eyebrow: Biznes olamidan (PM-028)
 - Sarlavha: **Ko'p imkoniyatli ilovadan nima qoldi?** (37)
-- Karta yorlig'i: «Burbn · N/6»; 5-kartada sahnada «Instagram» nom-yorlig'i o'z rangida ochiladi (sir-brend — ochilish qadamida), logotip yo'q (PM-028/029).
+- Karta yorlig'i va nuqtalar yo'q — tugma «Keyingi (N/6)» aytadi *(✎ F-1015-114, 208-qonun 0-band: takror olindi)*; 5-kartada sahnada «Instagram» nom-yorlig'i o'z rangida ochiladi (sir-brend — ochilish qadamida), logotip yo'q (PM-028/029).
 - Sahna (186): chizilgan telefon ekrani — «Burbn» menyusi, to'rt qator chizilgan belgi bilan: Joyni belgilash · Uchrashuv rejasi · Ball yig'ish · Surat joylash.
   Bashorat kadrlarida keyingi o'zgarish yopiq (`pre`), javob sahnada ochilmaydi.
 - **Harakat → Vizual o'zgarish:** «Keyingi» → sahna navbat bilan o'zgaradi: 3-kartada «Surat joylash» qatori ajraladi, qolgan uchtasi xiralashadi; 5-kartada uch qator chiziladi va yo'qoladi,
@@ -231,6 +231,9 @@ Sanoq: band 4/5 · telefon 3/5 · jamoa 2/5 · pul 1/5 (tayanch bilan aynan). «
   - ② «hamma»: «Hamma» — juda keng. Yozuvlarda kim gapirgan edi? (49)
   - n = 1: Bu bitta yozuvda chiqdi — ko'proq yozuvda chiqqanini oling. (59)
   - qisqa: Qisqa qoldi: to'liq yozing. (27)
+- Shart bajarilmaganda «Qo'shish» va «Saqlash» o'chiq emas — bosilganda tugma ostida `QXato`, kursor birinchi bo'sh joyga *(✎ F-1015-164)*:
+  - «Qo'shish»: Avval shikoyatni yozing. · Nechta yozuvda chiqqanini tanlang. · (5 ta bo'lsa) Beshta shikoyat yetadi — «Saqlash»ni bosing.
+  - «Saqlash»: ① Kamida ikki shikoyat qo'shing. · ② Avval kim qiynalishini yozing. · ③ Avval nimadan qiynalishini yozing.
 - Yordam (yopiq): Yozuvlarni birma-bir o'qing va har shikoyat yoniga chiziqcha qo'ying. Ikki shikoyat bitta asosiy qiyinchilikni ko'rsatsa, ularni bitta qatorga yozing.
 - Natija (3/3): forma yopiladi, o'quvchining doskasi fokusga — shikoyat qatorlari sanog'i bilan, tepada o'z muammo kartasi, ✎.
 - Xulosa: Muammo gapingiz saqlandi — imkoniyatlar endi shu gapga qarab tanlanadi. (71)
@@ -243,7 +246,7 @@ Sanoq: band 4/5 · telefon 3/5 · jamoa 2/5 · pul 1/5 (tayanch bilan aynan). «
 - Mentor: «Qilamiz» qutisi — MVP: mahsulotning ish beradigan eng sodda birinchi versiyasi. Ikki savol — bugun birinchi versiyani kichik saqlash uchun; universal qoida emas. (2 gap, audit 4)
 - Ikki savol (harakat paneli tepasida, bitta manba `IKKI_SAVOL` — 9, 10-ekran va 4-recap, P-063):
   1 · Busiz muammo hal bo'ladimi? · 2 · Yozuvlarda unga sabab bormi?
-- Harakat paneli: joriy imkoniyat kartasi «N / 8» + uch tugma: Qilamiz · Keyin · Qilmaymiz. Vizual: doska — tepada «Maydon» muammo kartasi, pastda uch quti.
+- Harakat paneli: joriy imkoniyat kartasi («N / 8» kartada yo'q — tugma «(N/8)» aytadi, F-1015-114) + uch tugma: Qilamiz · Keyin · Qilmaymiz. Vizual: doska — tepada «Maydon» muammo kartasi, pastda uch quti.
 - **Harakat → Vizual o'zgarish:** quti tugmasini bosish → karta doskaning tanlangan qutisiga uchadi; noto'g'ri bo'lsa quti bir lahza qizil chegara oladi va karta o'z qutisiga ko'chadi;
   karta ostida sabab-qatori ochiladi; qutidagi «N ta» o'sadi.
 - Kartalar (navbat — aralash; kod `IMKONIYATLAR`) va sabab-qatorlari:
@@ -255,7 +258,7 @@ Sanoq: band 4/5 · telefon 3/5 · jamoa 2/5 · pul 1/5 (tayanch bilan aynan). «
   - Jamoa yig'ish → Keyin — Jamoa haqida ikki yozuv bor, lekin bo'sh vaqtni busiz ham bilib, band qilsa bo'ladi. (77)
   - Katakni band qilish → Qilamiz — Bo'sh vaqtni ko'rib band qila olmasa, kelguncha boshqa odam egallaydi. (70)
   - Vaqt bo'shasa — eslatma → Keyin — Muammoga yordam beradi, lekin kataklar busiz ham bo'sh vaqtni ko'rsatadi. (73)
-- Javob qatori: to'g'ri — Shu qutida turadi. · noto'g'ri yo'nalish bo'yicha (≤60):
+- Javob qatori: to'g'ri — alohida izoh yo'q («✓ quti nomi» qatori aytadi, F-1015-114) · noto'g'ri yo'nalish bo'yicha (≤60):
   - «Qilamiz» kerak edi: Busiz muammo hal bo'lmaydi — u MVP'da kerak. (45)
   - «Qilamiz» tanlandi, kerak emas edi: Muammo busiz ham hal bo'ladi — MVP'ga shart emas. (49)
   - «Keyin» kerak edi, «Qilmaymiz» tanlandi: Yozuvlarda bunga sabab bor — o'chirmang, keyinga suring. (56)
@@ -272,7 +275,7 @@ Sanoq: band 4/5 · telefon 3/5 · jamoa 2/5 · pul 1/5 (tayanch bilan aynan). «
 - Sarlavha: **Hozir nimani qurmaslik kerak?** (30)
 - Mentor: Muammo gapingiz tepada turibdi — har imkoniyatni unga solishtiring. (67)
 - Tepada (kulrang, 8-ekrandan): o'quvchining muammo kartasi.
-- Qadam-tugmalari 1/2/3: Qilamiz · Keyin · Qilmaymiz
+- Qadam-tugmalari yo'q — forma yorlig'i (joriy quti nomi) va doskadagi joriy quti aytadi. *(✎ F-1015-114, 208-qonun 0-band: takror olindi)*
 - Forma: joriy qutiga imkoniyat yoziladi (har biri «Qo'shish», qutida bir nechta); placeholder:
   «Qaysi imkoniyatsiz muammo hal bo'lmaydi?» · «Qaysi imkoniyat keyin kerak bo'ladi?» · «Yozuvlarda qaysi imkoniyatga sabab yo'q?» · «Saqlash» o'ngda.
   Har qutida kamida bitta.
@@ -281,6 +284,7 @@ Sanoq: band 4/5 · telefon 3/5 · jamoa 2/5 · pul 1/5 (tayanch bilan aynan). «
   - bo'sh so'z («yaxshi», «chiroyli», «qulay»): Bu hali imkoniyat emas: mahsulot nima qila olsin? (49)
   - «Qilamiz»da 3 tadan ko'p: «Qilamiz»da uchtadan ko'p: har biriga birinchi savolni qayta bering. (68 — yorliq qatori, xato izohi emas)
   - qisqa: Qisqa qoldi: imkoniyatni to'liq yozing. (39)
+- Shart bajarilmaganda tugmalar o'chiq emas — bosilganda tugma ostida `QXato`, kursor qatorga *(✎ F-1015-164)*: «Qo'shish» — Avval imkoniyatni yozing. · «Saqlash» — «{quti}» qutisiga kamida bitta imkoniyat yozing.
 - Yordam (yopiq): `IKKI_SAVOL` — Har imkoniyatga ikki savol bering: busiz muammo hal bo'ladimi? «Ha» bo'lsa — yozuvlarda unga sabab bormi?
 - Natija (3/3): forma yopiladi, o'quvchining doskasi fokusga — tepada muammo gapi, pastda uch quti o'z imkoniyatlari bilan, har qatorda ✎.
 - Xulosa: Uch qutingiz saqlandi: «Qilamiz» — sizning MVP'ingiz. (53)
@@ -355,8 +359,8 @@ Sanoq: band 4/5 · telefon 3/5 · jamoa 2/5 · pul 1/5 (tayanch bilan aynan). «
 - Eyebrow: O'zingiz o'ylab ko'ring
 - Sarlavha: **Siz aslida qaysi muammoni hal qilyapsiz?** (40)
 - Mentor: Ekranga qaramasdan ayting: kim, qachon, nimadan qiynaladi va bu nechta yozuvda chiqdi? (86)
-- 1-qadam: (mustaqil rejimda) Ovoz chiqarib o'zingizga ayting / (jonli darsda) Sherigingizga ayting — taymer 30 s / 1 daqiqa, platforma standarti.
-- 2-qadam: Endi shu gapni bir qatorda yozing · placeholder «… … qiynaladi. 5 yozuvdan … tasida chiqdi.»
+- Qadam-qatori yo'q (Mentor aytadi) *(✎ F-1015-114, 208-qonun 0-band: takror olindi)*; taymer 30 s / 1 daqiqa, platforma standarti.
+- Forma yorlig'i: Endi shu gapni bir qatorda yozing · placeholder «… … qiynaladi. 5 yozuvdan … tasida chiqdi.»
 - Xulosa (yozgach): Ko'p yozuvda chiqqan shikoyat — kuchli belgi; birinchi versiya shu bitta muammoni hal qiladi. (89) — «Bugungi asosiy fikr» bilan so'zma-so'z
 - Tugmalar: Orqaga · Davom etish
 
@@ -386,25 +390,25 @@ Sanoq: band 4/5 · telefon 3/5 · jamoa 2/5 · pul 1/5 (tayanch bilan aynan). «
 - Eyebrow: Dars yakuni
 - Belgi: ✓ Dars tugadi (yonida: N/4 to'g'ri)
 - Sarlavha: **Muammo gapingiz va MVP chegarangiz tayyor.** (43)
-- Bugungi asosiy fikr — Ko'p yozuvda chiqqan shikoyat — kuchli belgi; birinchi versiya shu bitta muammoni hal qiladi.
 - CODE STRIKE + arena — platforma standarti (192).
 - Endi siz bilasiz:
   - Bitta yozuvdagi gap bir odamniki. Ko'p yozuvda chiqqani — kuchli belgi; keyin uning og'irligini ham qaraymiz.
   - Muammo gapi kim, qachon va nimadan qiynalishini aytadi — unda yechim yo'q.
   - MVP — mahsulotning ish beradigan eng sodda birinchi versiyasi; «Qilamiz»ga busiz muammo hal bo'lmaydigan imkoniyat kiradi.
   - Burbn jamoasi odamlar ko'p qilgan bitta ishni qoldirdi — ilova Instagram bo'ldi.
-- Nishonlaringiz — n/4
 - Uyga vazifa (`HwCard` yakun ekranida — alohida `.homework.jsx` yo'q, GATE M M-q9; PM-025):
   - Kim uchun: o'z g'oyangiz · Nechta: 1 muammo gapi va uch quti · Muddat: keyingi darsgacha
   - ① O'z besh yozuvingizni qayta o'qing va har shikoyat nechta yozuvda chiqqanini sanang.
   - ② Eng ko'p chiqqanini bitta muammo gapiga yozing: kim, qachon, nimadan qiynaladi.
   - ③ Imkoniyatlarni uch qutiga ajrating — «Qilamiz»da faqat busiz muammo hal bo'lmaydiganlari qolsin.
   - Tugma: Amaliy topshiriqni bajarish →
+- Nishonlaringiz — n/4
 - Keyingi dars — «Mini-MVP arxitekturasi». «Maydon»ning «Qilamiz» qutisidagi uch imkoniyat uchun sayt, Backend va Database'ni bitta chizmaga chizasiz.
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
 - Fon so'zlari (uz; kod bosqichida {uz, ru}, R-008):
   - Arena (`QZ_BG_SHAPES`): yozuv · shikoyat · muammo · sanoq · MVP · qilamiz · keyin · qilmaymiz · intervyu (+ o'yin qatlami shakllari)
   - Uyga vazifa banneri (`HW_TOKENS`): yozuv · muammo · MVP · quti · sanoq
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ---
 
@@ -511,10 +515,10 @@ Arena yozuvlari — umumiy shablon (platforma standarti, o'zgarmaydi).
    `IMKONIYATLAR` (8 ta: nom, quti, sabab), `IKKI_SAVOL` dan; uch qavat (yozuvlar · shikoyatlar + muammo kartasi · uch quti); holatlar kulrang · accent · yashil ✓ · qizil chiziq;
    nuqtalar ustma-ust tushishi (4-ekran birlashish); `// qolip-maket:` e'loni; `zoom` (⛶, q17); `prefers-reduced-motion`.
 2. **s0** `QKirish` (DE-201): maket — besh yozuv-kartasi; tanlovdan keyin «? / 5» belgisi; javob bitta, `correct: false` hammaga (J-026).
-3. **s1** `QReja`: chap — doskaning bo'sh shakli (skelet-chiziqlar), o'ng — 4 qadam «01 · matn · teg».
+3. **s1** `QReja`: chap — doskaning bo'sh shakli (skelet-chiziqlar), o'ng — 4 qadam «01 · matn» (teg yo'q, F-1015-114).
 4. **s2** `QTushuncha`: besh «Ochish»; `QBashorat` + `QTaxmin`; qatorlar saralanishi; `tugadi` (q18); nishon `patternSpotter`.
 5. **s4** `QTushuncha`: ikki qator-tugma (toggle, U-013); «Nega?» qatorlari; ikkinchi `QBashorat` (3 · 4 · 7) + `QTaxmin` + `QIzoh`; birlashish animatsiyasi; muammo kartasi o'zi yoziladi; `tugadi`.
-6. **s6** `QVoqea`: telefon maketi (chizilgan belgilar, emoji emas); yorliq «Burbn · N/6», 5-kartada «Instagram» nom-yorlig'i; 2 bashorat ballsiz (`ans` — 0, 0) + `QTaxmin`; manba — fayl izohida.
+6. **s6** `QVoqea`: telefon maketi (chizilgan belgilar, emoji emas); yorliq/nuqtalar yo'q (F-1015-114), 5-kartada «Instagram» nom-yorlig'i; 2 bashorat ballsiz (`ans` — 0, 0) + `QTaxmin`; manba — fayl izohida.
 7. **s8** `QMustaqil`: shikoyat qatori + 1–5 tugmalari + «Qo'shish»; ② ③ yozuv qatorlari; yig'ilgan gap; javob-qatorlari detektorlari (yechim so'zlari: sayt, ilova, bot, kerak · «hamma» · n = 1 · qisqa);
    `OUT_KEY` `pm-m7d3-muammo` = `{ shikoyatlar: [{ t, n }], kim, nima, n }`; nishon `problemWriter`. Yozuvlar soni 5 sukutda (TAYANCHGA SAVOL 3).
 8. **s9** `QTushuncha` (mashq): 8 karta, 3 tugma, sabab-qatorlari, 4 yo'nalishli javob qatori, Yordam birinchi xatodan keyin; `tugadi`; nishon `scopeKeeper` (birinchi urinish).
@@ -522,7 +526,7 @@ Arena yozuvlari — umumiy shablon (platforma standarti, o'zgarmaydi).
 10. **s11** `QKod`: darvoza-savol (`GATE_OPTS`, ✔ 1); `sanoq.js` (`KD_CODE`, uz + ru izohlar); terminal «Kutilgan natija» boshidan xira; nishon `codeCounter`.
 11. **Testlar s3/s5/s7/s12** → `QTest` (DE-203, q20): `INLINE_KEYS { s3: 1, s5: 3, s7: 0, s12: 2 }`, `explainCorrect`, `explainWrong` (variant bo'yicha + umumiy).
 12. **s13** `QMustaqil` 2 qadam: taymer (30 s / 1 daqiqa), bir qatorlik yozish joyi.
-13. **s15** `QKartochka` (DE-204, 11 karta). **s16** `QYakun`: sarlavha, asosiy fikr, 4 band, HwCard (3 qadam), «Keyingi dars».
+13. **s15** `QKartochka` (DE-204, 11 karta). **s16** `QYakun`: sarlavha, 4 band, HwCard (3 qadam), «Keyingi dars».
 14. **RECAPS** (3, 5, 7, 12) — raqam 1/2/3 (S-026), `Q_LABELS` / `SCORED_IDX` bilan mos (S-025).
 15. **Arena** `QUIZ_BANK` 12 savol, kalitlar 0,2,1,3 · 1,0,3,2 · 3,1,2,0; `QZ_BG_SHAPES`, `HW_TOKENS` ({uz, ru}, R-008).
 16. `ACHIEVEMENTS` (4), `LESSON_META` `{ lessonId: 'pm-m7d3-v1', lessonTitle: 'Besh suhbatdan qaysi muammo chiqdi?' }`, `SCREEN_INTENTS` — 17 ekran.
@@ -535,7 +539,7 @@ Arena yozuvlari — umumiy shablon (platforma standarti, o'zgarmaydi).
 - 6-ekran: bashorat kartalarida (2, 4) Mentor va sahna oldingi kartadagidek (pre); 4-karta natijasi «haqiqatda: bittasini».
 - 8, 10-ekran: javob-qatori ostida pilot qatori «Shunday qoldirsangiz — yana «Saqlash»ni bosing.» (10-ekranda «Qo'shish»ni); ✎ → «Tahrirlash» tugmasi (10-ekranda butun qutilar uchun bitta).
 - 11-ekran: VS Code oynasi uzun izoh qatorlarini gorizontal suradi; «Bajardim»dan keyin tugma «✓ Bajardim — to'rt qator chiqdi».
-- 16-ekran: «Bugungi asosiy fikr» yashil kartada CODE STRIKE ustida (QYakun da alohida joy yo'q).
+- 16-ekran: «Bugungi asosiy fikr» yo'q (207-qonun, F-1015-112).
 - Artefakt-strip «Doskam» (KOD 17): faqat uyga vazifa kartasida; 8, 10, 13-ekranda o'quvchining kartasi o'zi; 11-ekranda yo'q (kod «Maydon» yozuvlari bilan).
 
 REPO: yo'q (PM darsi, teg yo'q).

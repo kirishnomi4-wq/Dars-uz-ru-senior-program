@@ -50,10 +50,11 @@ Mentor misoli (dars bo'yi bir xil):
 - Chap: Dars oxirida: `kanallar` va birinchi `post`
   - Telefon (chatlar ro'yxati, qatorlar navbat bilan chiziladi): Mahalla futbol guruhi · Telegram guruhi · 60 kishi · Shahar futbol kanali · Telegram kanali · katta · Sinf chati · Telegram guruhi · ostida bo'sh pufak «…» va «Yuborilmagan»
 - O'ng:
-  - 01 · Mahsulotingiz haqida qayerda yozishni tanlaysiz · `kanal`
-  - 02 · Yuborishdan oldin nimani tekshirishni bilib olasiz · `xavfsizlik`
-  - 03 · Facebook kimlardan boshlanganini ko'rasiz · `voqea`
-  - 04 · Birinchi postni yozib, sinf chatiga yuborasiz · `post`
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
+  - 01 · Mahsulotingiz haqida qayerda yozishni tanlaysiz
+  - 02 · Yuborishdan oldin nimani tekshirishni bilib olasiz
+  - 03 · Facebook kimlardan boshlanganini ko'rasiz
+  - 04 · Birinchi postni yozib, sinf chatiga yuborasiz
 - Tugmalar: Orqaga · Boshlaymiz
 
 ## 2 · Uch savol
@@ -98,7 +99,7 @@ Mentor misoli (dars bo'yi bir xil):
 - Sarlavha: Mahalla guruhiga Mentor *nima deb yozdi?*
 - Mentor: Avval o'ngdagi yorliqni tanlang, so'ng chapdagi matnda uning joyini bosing.
 - Chap — telefon «Mentor telefoni» (kattaroq), chat «Mahalla futbol guruhi · 60 kishi»: pufakda Mentor posti, to'rt bo'lak, har biri ostida uzuq chiziq.
-- O'ng — karta «To'rt yorliq · N / 4»:
+- O'ng — karta «To'rt yorliq» (hisob tugmada *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*):
   - halol holat — hozir nima tayyor
   - kim uchun — post kimga qaratilgan
   - bitta harakat — odam endi nima qiladi
@@ -136,8 +137,8 @@ Mentor misoli (dars bo'yi bir xil):
 - Eyebrow: Tushuncha · xavfsizlik
 - Sarlavha: Postni yuborishdan oldin *nimani tekshirasiz?*
 - Mentor: Har vaziyatga «Mumkin» yoki «Mumkin emas» deb javob bering.
-- Chap — ro'yxat kartasi «Yuborishdan oldin · N / 6»: bandlar bittadan qo'shiladi, har biri oldida bo'sh katak.
-- O'ng — vaziyat kartasi (tepada 1 · 2 · 3 · 4 · 5 · 6), tugmalar: Mumkin · Mumkin emas
+- Chap — ro'yxat kartasi «Yuborishdan oldin» (hisob tugmada *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*): bandlar bittadan qo'shiladi, har biri oldida bo'sh katak.
+- O'ng — vaziyat kartasi (raqamlar qatori yo'q *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*), tugmalar: Mumkin · Mumkin emas
 - Vaziyatlar → to'g'ri javob → qo'shiladigan band · xato izohi:
   1. Postni o'zingiz a'zo bo'lgan sinf chatiga Mentor ko'rgach yuborasiz. → Mumkin → 1-band · A'zo bo'lgan chat, Mentor ko'rgan — qaysi band to'sadi?
   2. Mahalla guruhiga egasidan so'ramasdan post yuborasiz. → Mumkin emas → 2-band · Guruhning egasi bor — avval undan so'raladi.
@@ -153,14 +154,14 @@ Mentor misoli (dars bo'yi bir xil):
 ## 7 · Facebook
 - Eyebrow: Biznes olamidan
 - Sarlavha: Facebook *kimlardan boshlangan?*
-- Nuqtalar: Facebook · N/3
+- Yorliq va nuqtalar yo'q — tugma «Voqea davomi (N/3)» aytadi; bashorat yorlig'i «Avval o'zingiz belgilab ko'ring» *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
 - 1/3 sahna ustida: Facebook — do'stlar bilan yozishadigan va yangilik ulashadigan ijtimoiy tarmoq.
 - Sahna: brauzer oynasi, tepada nom «Facebook»; ichida odamchalar doirasi, qulf belgisi va yorliq «faqat Garvard talabalari»
 - Kadrlar (kadr nomi · Mentor):
   - 1/3 Garvard — 2004-yilda Facebook faqat Garvard talabalari uchun ochilgan — kichik, yopiq auditoriya. Garvard — Amerikadagi universitet.
   - 2/3 O'zinikilar — Xizmatni tez orada «o'zinikilarning hammasi» ishlata boshlagan. (doira yashil bo'ladi)
   - 3/3 Hamma uchun — Keyin universitet ketidan universitetga ochilgan, hamma uchun — ikki yildan keyin. Auditoriyaning zichligi hajmidan muhimroq. (yonida yangi doiralar, hammasini katta doira o'raydi — yorliq «hamma uchun · ikki yildan keyin»)
-- Bashorat (1/3 kadrda, tanlamaguncha davom etib bo'lmaydi): Facebook · 1/3 — Yopiq auditoriyada xizmatni kimlar ishlata boshlagan?
+- Bashorat (1/3 kadrda, tanlamaguncha davom etib bo'lmaydi; yorliq «Avval o'zingiz belgilab ko'ring»): Yopiq auditoriyada xizmatni kimlar ishlata boshlagan?
   - Bir nechta qiziquvchi
   - Talabalarning bir qismi
   - O'zinikilarning hammasi
@@ -191,11 +192,11 @@ Mentor misoli (dars bo'yi bir xil):
 - Sarlavha: Kanallaringizni *uch savol bilan tanlang.*
 - Mentor: Joy turini tanlang va uch savolga javob bering — birinchisiga dalil 11-Modul intervyularingizda.
   - (intervyu yozuvlari topilmasa) Joy turini tanlang va uch savolga javob bering — birinchisiga dalil intervyu qog'ozingizda.
-- Chap — telefon «sizning telefoningiz», sarlavha «Kanallarim · N / 3»: saqlangan joylar qatorlari (uch katak), tagida turi:
+- Chap — telefon «sizning telefoningiz», sarlavha «Kanallarim» (hisob tugmada *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*): saqlangan joylar qatorlari (uch katak), tagida turi:
   - o'tgan joy — «kanal» va kulrang `?kanal={belgi}` (masalan `?kanal=sinf`)
   - ruxsat uyda so'raladigan joy — «ruxsat kutilmoqda» va belgi; ostida: Ruxsat olingach bu joyga post yuboriladi — hozircha u kanal emas.
   - o'tmagan joy — «uch savoldan o'tmadi», qator kulrang
-- O'ng — bitta karta (yorliq «1 / 3», tahrirda — «Tahrirlash»):
+- O'ng — bitta karta (yorliqsiz; tahrirda — «Tahrirlash» *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*):
   - **Joy turi** — Sinf chati · Maktab chati · Mahalla guruhi · To'garak guruhi · Do'stlar · O'z Instagram sahifasi · Boshqa («Boshqa» → maydon, placeholder «Joy turi — guruh nomi emas»)
     - ostida: Guruhning nomini emas — turini tanlang.
   - Savollar ketma-ket (javob berilgani ixcham qator bo'lib qoladi):
@@ -413,6 +414,7 @@ Natijalar (podium) — jonli reyting
   - Keyingi dars — **«50 foydalanuvchiga qanday yetasiz?»**
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
 
 ## Nishonlar
 - **Safe Check!** — Olti vaziyatni birinchi urinishda to'g'ri ajratdingiz (6-ekran, olti vaziyat birinchi urinishda)

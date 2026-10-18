@@ -85,7 +85,7 @@ Holat: 04.10.2026 — kodga mos
 ## 6 · Bitta sayt tarixi
 - Eyebrow: Biznes olamidan
 - Sarlavha: Bu sayt birinchi foydalanuvchilarini *qayerdan* olgan?
-- Bosqichlar (har kartada «n / 5»):
+- Bosqichlar (kartada sanoq yo'q — tugma «Keyingi bosqich (n/5)» va nuqtalar ko'rsatadi) *(✎ F-1015-120, 208-qonun 0-band: takror olindi)*:
   1. **2004-yil** — AQShdagi bitta universitetda oddiy sayt ochildi. Unga **faqat o'sha universitet talabalari** yozila olardi.
   2. Avval o'zingiz belgilab ko'ring · 2 / 5 — **Sayt faqat bitta universitetda ochiq edi. Sizningcha, u yerda qanday tarqaldi?**
      - Sekin — har kim o'zi qidirib topdi
@@ -127,6 +127,7 @@ Holat: 04.10.2026 — kodga mos
   - son 100 dan katta bo'lsa: Bu guruhda odam ko'p. Ularning nechtasi sizni taniydi? O'sha sonni yozing.
   - hammasi joyida: Guruh, kimlar va odam soni yozildi — saqlashingiz mumkin.
 - Tugma yonida nima yetishmaydi: guruh nomi yozilmagan / kimlar borligi yozilmagan / odam soni yozilmagan
+- «✓ Saqlash» doim bosiladi: maydon to'lmagan bo'lsa saqlanmaydi — yondagi yozuv ajraladi, kursor birinchi bo'sh maydonga o'tadi ✎ F-1015-164
 - Tugmalar: ✓ Saqlash · tahrirda: ✓ Yangilash
 - Uchtasi yozilgach ro'yxat: **Uchta guruhingiz** · **guruh nomi** → kimlar → N odam · tahrirlash belgisi ✎ (ustida: Tahrirlash)
 - O'ng panel — Topshiriq:
@@ -275,19 +276,27 @@ const guruhlar = [
 
 ## 15 · Yakun
 - Eyebrow: Dars yakuni
-- Belgi: ✓ Dars tugadi
+- Belgi: ✓ Dars tugadi · Testlar: N/N ✎ F-1015-161
 - Sarlavha: Uchta *guruhingizni* yozdingiz.
 - Natija halqasi: N/4 to'g'ri javob
-- Bugungi asosiy fikr — Birinchi foydalanuvchilar tanish guruhlardan keladi.
 - CODE STRIKE arenasi: 12 SAVOL · 15 SONIYA · PODIUM (jonli darsda mentor boshlaguncha: Mentorni kuting)
 - ✓ Endi siz bilasiz:
   - Botingizni birinchi bo'lib ishlatadigan odamlar — birinchi foydalanuvchilar.
   - Sizni taniydigan, bir-birini tez-tez ko'radigan odamlar — tanish guruh.
   - Tanish guruhda bitta odam botni ochsa, xabar qolganlarga ham yetadi.
   - Birinchi foydalanuvchilarni bot emas, siz olib kelasiz.
+- Tugma: Uyga vazifa · Amaliy topshiriqni bajarish →
+- Uyga vazifa (ochilganda) — «Uyda nima qilasiz?»: Uyda uchta joyingizdagi odamlarni ismma-ism yozib chiqasiz: maqsad — yigirmata ism. Qancha vaqtingiz bor — o'zingiz tanlaysiz.
+  - Variant: To'liq · ~20 daqiqa · Qisqa · ~10 daqiqa (tanlanmaguncha: «Avval variantni tanlang — topshiriq-karta shunga moslashadi.»)
+  - Topshiriq kartasi: Nechta ism — yigirmata ism (qisqa: yettita ism) · Qayerdan — uchala joyingizdan (qisqa: eng zich joyingizdan) · Muddat — keyingi darsgacha
+  - To'liq: Har joy uchun alohida ro'yxat oching → O'sha joydan taniydigan odamlaringizning ismini yozing va har ism yoniga joyini belgilang → Oxirida jami nechta ism chiqqanini sanang
+  - Qisqa: Eng zich joyingizni tanlang → O'sha joydan yettita ism yozing → Har ism yoniga uni haftada necha marta ko'rishingizni qo'shing
+  ✎ F-1015-112: MD da yo'q edi — koddagi HwCard'dan qo'shildi.
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
 - Keyingi dars — **«Telegram Bot API + tugmalar»**. 1-darsda ochgan botingizga birinchi kodni yozasiz: /start buyrug'i va menyu tugmalari.
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10, S2-A): «To'liq / Qisqa» tanlovi qoladi; karta banner ostida JOYIDA ochiladi (popup/varaq yo'q — PM 77/58 dagi qatlam yechimi bekor), «Topshiriq kartasi · TO'LIQ» sarlavha-qatori olindi (tanlangan chip bilan takror), maydonlar quti, qadamlar raqam-doira, bitta ustun; «Keyingi dars» karta ichida; HW ochilganda Yakun siqilmaydi (:has(.hw-chips) qoidalari olindi), banner 138px.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Circle Explorer** — Uch halqani ochib solishtirdingiz (4-ekran)

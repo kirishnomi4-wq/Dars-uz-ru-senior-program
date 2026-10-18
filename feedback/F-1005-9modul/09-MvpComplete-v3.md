@@ -259,8 +259,8 @@ Tashqi audit (ChatGPT) Filtri: `09-FILTR.md` — 05.10.2026 qo'llandi.
   - Hodisa harakat haqiqatan saqlangandan keyin yoziladi.
   - Shaxsiy ma'lumotni Backend faqat token bilan beradi; parol va sirlar `.env` da turadi.
 - Uyga vazifa — **yo'q** (172.4): ish repo'da; o'z MVP'ingiz har blokning 5-qadamidagi talablar bilan davom etadi (ekranda alohida blok yo'q).
-- Keyingi dars — «Odam ilovangizda qayerda to'xtab qoladi?»: MVP ni boshqa odam ishlatadi, siz esa tushuntirmasdan kuzatasiz.
 - Nishonlaringiz — N/3
+- Keyingi dars — «Odam ilovangizda qayerda to'xtab qoladi?»: MVP ni boshqa odam ishlatadi, siz esa tushuntirmasdan kuzatasiz.
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
 
 ### Kartochkalar (12)
@@ -279,6 +279,7 @@ Tashqi audit (ChatGPT) Filtri: `09-FILTR.md` — 05.10.2026 qo'llandi.
 | Ega paroli qayerda turadi? | `.env` va Render'da | Kodda ham, GitHub'da ham emas |
 | Talab qaysi uch qismdan iborat? | Qayerda · nima qilsin · nima buzilmasin | Oxirida: «Boshqa joyga tegma» |
 | MVP'ni internetga chiqarish nima deyiladi? | Deploy | Bizda: Backend — Render, sayt — Netlify |
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ---
 

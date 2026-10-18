@@ -224,6 +224,7 @@ Vaqt: ≈ 90 daqiqa — 0–2 ≈ 12 · Amaliyot 1 ≈ 22 · 4–5 ≈ 9 · Amal
 ## 5 · Ochiq va yopiq ilova  ← QTushuncha (bashorat + 4 qadam)
 - Eyebrow: Tushuncha · ochiq va yopiq
 - Sarlavha: **Ilova ochiq va yopiq: o'zgarish sizga qanday yetadi?** (52)
+- ✎ F-1015-168: taxmindan oldin telefondagi tugma bosilsa — «Avval taxminingizni belgilang.» (tugma o'chiq turmaydi).
 - Mentor (bosqichga qarab, SABOQ 11):
   - bashoratgacha: Avval taxminingizni belgilang, keyin 2-telefonda «Qo'shilaman»ni bosing.
   - 1-harakatdan keyin: Endi 1-telefondagi «Ilovani yopish»ni bosing.
@@ -232,8 +233,8 @@ Vaqt: ≈ 90 daqiqa — 0–2 ≈ 12 · Amaliyot 1 ≈ 22 · 4–5 ≈ 9 · Amal
   - tugagach: Natijani taxminingiz bilan solishtiring.
 - Bashorat (ballsiz; tanlangach ixcham qator): **Ilova yopiq paytda joy bo'shasa, bu telefoningizda ko'rinadimi?** · Ha, telefon ekranida chiqadi · Yo'q, ko'rinmaydi
 - Sahna (real vaqt sahnasi; namuna o'yin «8 / 10», siz qo'shilgansiz):
-  - 1-telefon · siz — «O'yinlar»: Shanba, 18:00 · Mahalla maydoni · 8 / 10; telefon ostida sahna tugmasi «Ilovani yopish» (xira — 1-qadamdan keyin halqaga o'tadi)
-  - Backend — «Database: 8»; yonida kichik soat «16:59» va sahna tugmasi «17:00 ga o'tkazish» (xira — 3-qadamdan keyin halqaga o'tadi)
+  - 1-telefon · siz — «O'yinlar»: Shanba, 18:00 · Mahalla maydoni · 8 / 10; telefon ostida sahna tugmasi «Ilovani yopish» (1-qadamdan keyin chiqadi, halqada; bungacha ko'rinmaydi *(✎ F-1015-164)*)
+  - Backend — «Database: 8»; yonida kichik soat «16:59» va sahna tugmasi «17:00 ga o'tkazish» (3-qadamdan keyin chiqadi, halqada; bungacha faqat soat *(✎ F-1015-164)*)
   - 2-telefon · boshqa o'yinchi — «O'yin»: «Qo'shilaman» (halqada, bashoratdan keyin)
   - Qadam belgilari (tugma yonida): 1 Qo'shiling · 2 Ilovani yoping · 3 O'yindan chiqing · 4 Soatni suring
 - **Harakat → Vizual o'zgarish:**
@@ -389,7 +390,7 @@ Vaqt: ≈ 90 daqiqa — 0–2 ≈ 12 · Amaliyot 1 ≈ 22 · 4–5 ≈ 9 · Amal
   - Amaliyot 1 bajarilgan, 2 yo'q: **«Hozir ko'ryapti» ishlaydi — jonli xabar qoldi.** (47)
   - Amaliyot 1 bajarilmagan, boshqasi bajarilgan: **«Hozir ko'ryapti»ni telefonda tekshirish qoldi.** (47)
   - hech biri: **Loyiha kuni boshlandi — qolgan qadamni tugating.** (48)
-- Arena tugmasi (o'yin qatlami, darsdan): CODE STRIKE · 12 SAVOL · 15 SONIYA · PODIUM · (jonli darsda) Mentorni kuting
+- Arena tugmasi (o'yin qatlami, darsdan): CODE STRIKE · (jonli darsda) Mentorni kuting
 - **[07.10: yakunda KO'RSATILMAYDI — SABOQ E 50 (foydalanuvchi tasdig'i); fikr darsning ichki o'qi bo'lib qoladi]** Bugungi asosiy fikr (`small`, ScoreRing'dan keyin, P-013): Bu modulda ilova ochiq bo'lsa, o'zgarish jonli xabar bo'lib keladi; yopiq bo'lsa, faqat ilova oldindan qo'ygan eslatma chiqadi.
 - Endi siz bilasiz (5; asosiy fikr bu yerda takrorlanmaydi — T-048):
   - Xona — Backend'dagi ulanishlar guruhi: hodisa faqat shu guruhdagilarga boradi.

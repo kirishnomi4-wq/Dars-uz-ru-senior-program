@@ -28,10 +28,11 @@ Holat: 05.10.2026 — kodga mos
 - Tizim xaritasi (so'rov yo'l bo'ylab aylanib turadi): Foydalanuvchi — bosadi · Frontend — ko'rsatadi · Backend — hisoblaydi, tekshiradi · Database — eslab qoladi
 - Izoh: So'rov yo'l bo'ylab boradi, javob yashil bo'lib qaytadi.
 - O'ng yorliq: Bugungi 4 qadam
-  - 01 · Tizimning 5 qismi — har biri nima qiladi · qismlar
-  - 02 · So'rov qanday yuradi · so'rov yo'li
-  - 03 · Ko'p kirish yo'li, bitta tizim · web · bot · mobil
-  - 04 · O'z loyihangiz chizmasi · chizma
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-121, 208-qonun 0-band: takror olindi)*
+  - 01 · Tizimning 5 qismi — har biri nima qiladi
+  - 02 · So'rov qanday yuradi
+  - 03 · Ko'p kirish yo'li, bitta tizim
+  - 04 · O'z loyihangiz chizmasi
 - Tugmalar: Orqaga · Boshlaymiz →
 
 ## 2 · Tushuncha · 5 qism
@@ -53,7 +54,7 @@ Holat: 05.10.2026 — kodga mos
 - Eyebrow: Tajriba · so'rov yo'li
 - Sarlavha: «Savatga» bosilgach so'rov qayerga boradi?
 - Mentor: So'rovni o'zingiz yo'naltiring: har qadamda keyingi qismni bosing.
-- Bashorat (yorliq: Avval o'zingiz belgilab ko'ring): Frontend'dan keyin so'rov qayerga boradi?
+- Bashorat yo'q — so'rovni yo'naltirish o'zi xatoli topshiriq, taxmin uning birinchi qadamini so'rab tugunlarni qulflardi (208/0 e) *(✎ F-1015-121, 208-qonun 0-band: takror olindi)*
   - Database'ga
   - Backend'ga
 - (tanlangach) Karta «Qadamlar» (o'tgani ✓):
@@ -73,9 +74,8 @@ Holat: 05.10.2026 — kodga mos
   - Frontend'dan Database bosilsa: Bizning tizimda Frontend Database'ga to'g'ridan bormaydi.
   - Javob qaytayotganda: Javob ham shu yo'l bilan orqaga qaytadi.
   - Boshqa holatda: Konvert chiziq bo'ylab keyingi qismga yuradi.
-- Natija qatori: Taxminingiz to'g'ri chiqdi: Frontend'dan keyin — Backend. · yoki: Taxminingiz: Database · haqiqatda: Backend
 - Xulosa: So'rov Frontend → Backend → Database yuradi, javob shu yo'l bilan qaytadi.
-- Tugmalar: Orqaga · Avval o'zingiz belgilab ko'ring → Yo'lni yuring (N/5) → Davom etish
+- Tugmalar: Orqaga · Yo'lni yuring (N/5) → Davom etish
 
 ## 4 · 1-savol
 - Eyebrow: Mashq · 1-savol
@@ -102,6 +102,7 @@ Holat: 05.10.2026 — kodga mos
 - Mentor: Boshida ko'pchilik shu ikkisini adashtiradi. Ishni bosing, keyin uning tomonini bosing.
 - Karta «Ishlar» (joylangani ro'yxatdan chiqadi): Tugmani ko'rsatadi · Narxni hisoblaydi · Rasmni ko'rsatadi · Parolni tekshiradi · Savatni chizadi · Buyurtmani Database'ga yozadi
 - Ish tanlangach: Endi tomonni bosing: brauzer yoki server.
+- Ish tanlanmasdan tomon bosilsa (tomon doim bosiladi, joylanmaydi): Avval ishlardan birini bosing. ✎ F-1015-164
 - Ikki tomon: brauzer oynasi (`onlayn-xarid.uz`, «Frontend · brauzer») · o'rtada «API» · server qutisi («Backend · server»)
 - To'g'ri joylansa, tomon o'zgaradi:
   - Frontend: Rasmni ko'rsatadi → rasm va «Telefon» · Savatni chizadi → «Savat 2» · Tugmani ko'rsatadi → «Savatga»
@@ -344,6 +345,7 @@ Backend → AI
   - Keyingi dars — Bitta gapni uch kishi bir xil tushunadimi? Kod yozishdan oldin g'oyani bitta varaqqa yozishni o'rganamiz.
 - Nishonlaringiz — N/4
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10, S1-A): uy vazifasi kartasi P-025 — sarlavha «Uyda nima qilasiz?» (bannerdagi «Uyga vazifa» bilan takror emas); maydonlar: Kim uchun — o'z loyihangiz · Nechta — 1 chizma, 1 so'rov yo'li · Muddat — keyingi darsgacha (qiymatlar topshiriq matnidan); qadamlar raqam-doira; «Keyingi dars» karta ichida; bezak emoji olindi.
 
 ## Nishonlar
 - Data Keeper — Database doimiy xotira ekanini topdingiz (4-ekran, 1-savol — birinchi urinishda to'g'ri)

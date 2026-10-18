@@ -1,0 +1,11 @@
+// m3-13 ko'rik suratlari: a2 (3 chip qo'shilgan), a4 (g'oya tanlangan), to'liq sahifa balandligi. Chaqirish: node …/f377-m313.mjs <html> <chiqish>
+import { chromium } from 'playwright-core';
+const [,, PAGE, OUT] = process.argv; const ID = 'react-build-site-final-p4-v18';
+const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome', headless: true });
+async function och(s) { const ctx = await b.newContext({ viewport: { width: 1280, height: 820 } }); await ctx.route(/^https?:\/\//, (r) => r.abort());
+  await ctx.addInitScript(([id, s]) => { localStorage.clear(); localStorage.setItem('liveSession:' + id, JSON.stringify({ mode: 'self' })); localStorage.setItem('ccProgress:' + id, JSON.stringify({ screen: s, maxReached: s, answers: {}, earned: [], startedAt: Date.now(), total: 9, savedAt: Date.now() })); for (const r of ['mentor','learner','student','self']) { localStorage.setItem('inetOnboarded_'+r,'1'); localStorage.setItem('hcOnboarded_'+r,'1'); } }, [ID, s]);
+  const p = await ctx.newPage(); await p.goto('file://' + PAGE); await p.waitForTimeout(1300); return { p, ctx }; }
+{ const { p, ctx } = await och(3); for (let k = 0; k < 3; k++) { await p.locator('.am-chip').first().click().catch(() => {}); await p.waitForTimeout(300); } await p.screenshot({ path: OUT + '/a2-toliq.png', fullPage: false }); const h = await p.evaluate(() => document.querySelector('.stage-content').scrollHeight); await p.evaluate(() => document.querySelector('.stage-content').scrollTo(0, 9999)); await p.waitForTimeout(300); await p.screenshot({ path: OUT + '/a2-past.png' }); console.log('a2 balandlik', h); await ctx.close(); }
+{ const { p, ctx } = await och(4); await p.screenshot({ path: OUT + '/s4.png' }); await ctx.close(); }
+{ const { p, ctx } = await och(5); await p.click('.am-chip:has-text("O\'yinlar")').catch(() => {}); await p.waitForTimeout(500); await p.screenshot({ path: OUT + '/a4-tanlandi.png' }); const h = await p.evaluate(() => document.querySelector('.stage-content').scrollHeight); await p.evaluate(() => document.querySelector('.stage-content').scrollTo(0, 9999)); await p.waitForTimeout(300); await p.screenshot({ path: OUT + '/a4-past.png' }); console.log('a4 balandlik', h); await ctx.close(); }
+await b.close();

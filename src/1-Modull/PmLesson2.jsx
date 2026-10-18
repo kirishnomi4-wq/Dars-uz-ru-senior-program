@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback, createContext, useContext } from 'react';
-// Kod kompilyatori — UMUMIY modul (F-0809-05). PM darsida ham AYNAN shu asbob ishlaydi:
-// u dars-sahifasining bo'lagi emas, tugma bilan ochiladigan to'liq-ekran asbob, shuning
+// Kod kompilyatori — UMUMIY modul (F-0809-05). PM darsida ham AYNAN shu kompilyator ishlaydi:
+// u dars-sahifasining bo'lagi emas, tugma bilan ochiladigan to'liq-ekran oyna, shuning
 // uchun CodeStrike to'q sariq brendida qoladi (PM_DARS_ETALON 1-bo'lim, palitra-istisnosi).
 import HtmlCompiler, { checks as C } from '../compilator/HtmlCompiler.jsx';
 
@@ -41,7 +41,7 @@ const G = "'Source Serif 4', Georgia, serif"; // sayt-maketi sarlavhalari (PM-ST
 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 
 
 
@@ -1104,6 +1104,12 @@ const Zoomable = ({ children, off = false }) => { // off: birinchi bosishgacha �
 };
 
 // ===== SCREEN 0 — HOOK =====
+// F-1015-394 (216-qonun): kirish javobi — variantga bitta qisqa gap + «Bugun…» qatori (eski uzun umumiy matn o'qilmasdi)
+const ACK_KIRISH = {
+  a: { uz: "Rang emas — bo'limlar tartibi farq qiladi.", ru: 'Не цвет — отличается порядок разделов.' },
+  b: { uz: "Aynan! Tartib to'g'ri bo'lsa, kerakli narsa darrov topiladi.", ru: 'Именно! При верном порядке нужное находится сразу.' },
+  c: { uz: 'Matn bir xil — tartibi boshqa.', ru: 'Текст тот же — порядок другой.' }
+};
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [v, setV] = useState('good');
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
@@ -1147,7 +1153,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                   o'quvchi cheksiz harakatdan charchamasin. */}
               {OPTS.map((o, oi) => { const on = picked === o.id; return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}${voteHint ? ` turn-ring turn-wave w${oi + 1}` : ''}`} disabled={picked !== null} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>); })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr({ uz: <>Farq — bo'limlarning <b>tartibida</b>: so'zlar bir xil bo'lsa ham, biri to'g'ri tartibda turgani uchun kerakli narsa darrov topiladi. Bugun aynan shu tartibni qurishni o'rganasiz.</>, ru: <>Разница — в <b>порядке</b> разделов: слова те же, но одна страница выстроена верно, поэтому нужное находится сразу. Сегодня вы научитесь строить именно такой порядок.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step"><b>{tr(ACK_KIRISH[picked])}</b> {tr({ uz: "Bugun shu tartibni qurishni o'rganasiz.", ru: 'Сегодня научитесь выстраивать этот порядок.' })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -1560,9 +1566,13 @@ function checkStructure(html) {
   }
 
   // ④ <main> ichidagi bo'limlar KETMA-KETLIGI — qaysi bo'lim qayerga ketishi aytiladi
-  const titles = h2s.map(el => txt(el).toLowerCase());
+  // F-1017-209: imloga chidamli — kichik harf, apostrof turi, takror harf («mmuamo»), bo'sh joy farqsiz; 1 harf xato («muomo») ham o'tadi
+  const kodNorm = (s) => String(s || '').toLowerCase().replace(/[\u2018\u2019\u02BB\u02BC`\u00B4]/g, "'").replace(/[^a-z']+/g, '').replace(/(.)\1+/g, '$1'); // raqam/belgi ham olinadi («1. Muomo» → «muomo»)
+  const lev = (x, y) => { const d = Array.from({ length: y.length + 1 }, (_, j) => j); for (let i = 1; i <= x.length; i++) { let p = d[0]; d[0] = i; for (let j = 1; j <= y.length; j++) { const tmp = d[j]; d[j] = Math.min(d[j] + 1, d[j - 1] + 1, p + (x[i - 1] === y[j - 1] ? 0 : 1)); p = tmp; } } return d[y.length]; };
+  const wordHit = (title, word) => title.includes(word) || lev(title, word) <= (word.length <= 6 ? 1 : 2);
+  const titles = h2s.map(el => kodNorm(txt(el)));
   // 🔴 tr(s.word) — joriy tildagi kalit so'z (yuqoridagi KOD_WORDS izohi)
-  const at = KOD_SECS.map(s => titles.findIndex(t => t.includes(String(tr(s.word)).toLowerCase())));
+  const at = KOD_SECS.map(s => titles.findIndex(t => wordHit(t, kodNorm(tr(s.word)))));
   const missIdx = at.findIndex(x => x === -1);
   if (!main || !h2s.length) {
     res.hints.c4 = tr({ uz: "Avval <main> ichiga bo'lim sarlavhalarini yozing.", ru: 'Сначала напишите внутри <main> заголовки разделов.' });
@@ -1579,36 +1589,54 @@ function checkStructure(html) {
 
 // Jonli natija — o'quvchi kodi haqiqiy sahifa bo'lib ko'rinadi (skript YO'Q: sandbox bo'sh).
 // Nusxa-ko'chirishga qarshi: faqat SKELET ko'rinadi — bo'limlar nomi/tartibi berilmaydi.
-const KOD_PLACEHOLDER = {
-  uz: `<!-- Bu xira NAMUNA. Yozishni boshlasangiz o'chadi — o'zingiz yozing. -->
-<header>
+// F-1017-209 (mentor fidbeki): kompilyator BO'SH emas — skelet bilan ochiladi. Bo'lim nomlari tayyor (imlo tuzog'i yo'q),
+// lekin ATAYLAB aralash tartibda; o'quvchi tartibni to'g'rilaydi va har <p> ga bir gap yozadi. Dars maqsadi — tartib, imlo emas.
+const KOD_STARTER = {
+  uz: `<header>
   <h2>OLX</h2>
   <p>Ortiqcha buyumingizni soting</p>
 </header>
 
 <main>
-  <h2>... bo'lim nomi ...</h2>
-  <p>... bir gap izoh ...</p>
-  <!-- jami 4 bo'lim — tartibini o'zingiz tanlaysiz -->
+  <!-- Bo'limlar aralash turibdi: tartibini to'g'rilang, har <p> ga bir gap yozing -->
+  <h2>Harakat</h2>
+  <p></p>
+
+  <h2>Isbot</h2>
+  <p></p>
+
+  <h2>Muammo</h2>
+  <p></p>
+
+  <h2>Qanday ishlaydi</h2>
+  <p></p>
 </main>
 
 <footer>
   <p>Aloqa: salom@olx.uz</p>
 </footer>`,
-  ru: `<!-- Это бледный ОБРАЗЕЦ. Начнёте писать — он исчезнет, пишите сами. -->
-<header>
+  ru: `<header>
   <h2>OLX</h2>
   <p>Продайте вещь, которой не пользуетесь</p>
 </header>
 
 <main>
-  <h2>... название раздела ...</h2>
-  <p>... пояснение в одну фразу ...</p>
-  <!-- всего 4 раздела — порядок выбираете вы -->
+  <!-- Разделы перепутаны: расставьте по порядку и напишите по одной фразе в каждый <p> -->
+  <h2>Действие</h2>
+  <p></p>
+
+  <h2>Доказательство</h2>
+  <p></p>
+
+  <h2>Проблема</h2>
+  <p></p>
+
+  <h2>Как это работает</h2>
+  <p></p>
 </main>
 
 <footer>
-  <p>Связь: salom@olx.uz</p>
+  <p>Контакты: salom@olx.uz</p>
 </footer>`
 };
 
@@ -1646,10 +1674,9 @@ const KOD_PREVIEW_CSS = `
 const KOD_TASK = {
   eyebrow: { uz: 'Koding · yakuniy ish', ru: 'Кодинг · итоговая работа' },
   previewCss: KOD_PREVIEW_CSS,
-  title: { uz: "index.html — sahifaning uch qavatini yozing", ru: 'index.html — напишите три слоя страницы' },
-  brief: { uz: <>Uchta teg: <span className="mono">header</span> (sayt nomi) · <span className="mono">main</span> (asosiy qism) · <span className="mono">footer</span> (havolalar va aloqa). <span className="mono">main</span> ichida 4 bo'lim — har biri <span className="mono">h2</span> sarlavha + <span className="mono">p</span> izoh. Bo'limlar: <b>Isbot</b> · <b>Harakat</b> · <b>Muammo</b> · <b>Qanday ishlaydi</b> — <b>to'g'ri tartibda</b> joylang.</>, ru: <>Три тега: <span className="mono">header</span> (название сайта) · <span className="mono">main</span> (основная часть) · <span className="mono">footer</span> (ссылки и контакты). Внутри <span className="mono">main</span> — 4 раздела, у каждого заголовок <span className="mono">h2</span> + пояснение <span className="mono">p</span>. Разделы: <b>Доказательство</b> · <b>Действие</b> · <b>Проблема</b> · <b>Как это работает</b> — расставьте <b>в верном порядке</b>.</> },
+  title: { uz: "index.html — bo'limlarni tartibga keltiring", ru: 'index.html — расставьте разделы по порядку' },
+  brief: { uz: <>Kod tayyor, lekin <span className="mono">main</span> ichidagi 4 bo'lim <b>aralash</b> turibdi. Ikki ish: bo'limlarni hikoya tartibiga keltiring (Muammo → Qanday ishlaydi → Isbot → Harakat) va har sarlavha ostidagi <span className="mono">&lt;p&gt;</span> ga bir gap yozing.</>, ru: <>Код готов, но 4 раздела внутри <span className="mono">main</span> стоят <b>вперемешку</b>. Два дела: расставьте разделы по порядку истории (Проблема → Как это работает → Доказательство → Действие) и напишите по одной фразе в каждый <span className="mono">&lt;p&gt;</span> под заголовком.</> },
   previewUrl: 'olx.uz',                 // natija paneli soxta brauzer oynasiga aylanadi
-  placeholder: KOD_PLACEHOLDER,          // xira NAMUNA — yozish boshlansa o'chadi
   requirements: KOD_CONDS.map((c) => ({
     id: c.id,
     label: c.label,
@@ -1672,7 +1699,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [open, setOpen] = useState(() => { const s = readKoding(); return !!(s && s.open); });
   const [st, setSt] = useState(() => {
     const saved = readKoding();
-    return { code: (typeof storedAnswer?.code === 'string' ? storedAnswer.code : null) || (saved && saved.code) || '', done: !!(storedAnswer && storedAnswer.solved) || !!(saved && saved.done) }; // F-0914-10: saqlangan javob matn bo'lmasa — zaxira-zanjir (oq ekran himoyasi)
+    return { code: (typeof storedAnswer?.code === 'string' ? storedAnswer.code : null) || (saved && saved.code) || tr(KOD_STARTER), done: !!(storedAnswer && storedAnswer.solved) || !!(saved && saved.done) }; // F-0914-10: saqlangan javob matn bo'lmasa — zaxira-zanjir (oq ekran himoyasi)
   });
   const { code, done } = st;
   // Navbat (88-qonun): kompilyator ochilmagan bo'lsa tugma o'zi chorlaydi. Kompilyator
@@ -1741,7 +1768,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           qolsa, shart-chiplari (.hc-top) va «Davom etish» (.hc-bottom) ekrandan tashqarida qoladi. */}
       {open && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
-          <HtmlCompiler stage="m1-05" lang={__lang} task={KOD_TASK} starterCode={code} storageKey={`${KODING_KEY}:code`}
+          <HtmlCompiler stage="m1-05" lang={__lang} task={KOD_TASK} starterCode={code || tr(KOD_STARTER)} storageKey={`${KODING_KEY}:code2`} /* F-1017-209: skelet-starter; eski bo'sh saqlov tiklanmasin */
             onContinue={finishPractice} onBack={() => { setOpen(false); writeKodingOpen(false); }} />
         </div>
       )}
@@ -1774,7 +1801,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
+    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
@@ -1795,7 +1822,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   return (
-    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash', ru: 'Завершить' })}</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash', ru: 'Завершить' })}</FinishBtn></>}>
       <div className="screen">
         <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">{Ico.check(11)}</span> {tr({ uz: 'Dars tugadi', ru: 'Урок завершён' })}</span>{!isMentorL && <span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span>}</div><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi siz <span className="italic" style={{ color: T.accent }}>sahifani</span> qura olasiz.</>, ru: <>Теперь вы умеете собрать <span className="italic" style={{ color: T.accent }}>страницу</span>.</> })}</h2>{/* 54-qonun (UserStory qarori bilan bir xil): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
@@ -1807,7 +1834,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : undefined}
           />
         </div>
-        {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+        {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span style={{ color: T.success, display: 'inline-flex' }}>{Ico.check(15)}</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck" style={{ display: 'inline-flex' }}>{Ico.check(15)}</span><span>{tr(r)}</span></li>))}</ul></div>
         <div className="hw-big-wrap fade-up d4">
           <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
@@ -3239,8 +3266,8 @@ export default function PmLesson2({ lang: langProp, onFinished, liveToken }) {
         .dd-hint { color: ${T.ink3}; font-style: italic; font-size: 13px; }
         .dd-pool { display: flex; flex-wrap: wrap; gap: 9px; min-height: 48px; padding: 10px; border-radius: 14px; background: ${T.bg}; }
         .dd-pool-empty { color: ${T.ink3}; font-size: 12.5px; font-style: italic; align-self: center; }
-        .dd-chip { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: ${T.accent}; background: ${T.paper}; border: 2px solid ${T.accent}; border-radius: 11px; padding: 9px 13px; cursor: grab; touch-action: none; box-shadow: 0 6px 14px -8px rgba(${T.shadowBase},.35); transition: transform .12s; user-select: none; }
-        .dd-chip::before { content: '⠿'; margin-right: 7px; opacity: .55; font-weight: 400; } /* F-0926-05 #5: yumshatildi — oq fon + 2px accent chegara (border: tap-hint animatsiyasi box-shadow'ni o'zgartiradi, halqa yo'qolmasin), ushlagich sudralishni aytadi */
+        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 11px; padding: 11px 15px; cursor: grab; touch-action: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: transform .12s; user-select: none; }
+        .dd-chip::before { content: '⠿'; margin-right: 7px; opacity: .75; font-weight: 400; } /* F-1015-352 (F-1002-59): to'ldirilgan gradient chip, ⠿ ushlagich sudralishni aytadi */
         .dd-chip:hover { transform: translateY(-2px); }
         .dd-chip:active { cursor: grabbing; }
         .dd-chip.hint { animation: tap-hint 1.7s ease-in-out infinite; }

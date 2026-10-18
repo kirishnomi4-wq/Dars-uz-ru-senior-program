@@ -23,7 +23,7 @@ const T = {
 const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', str: '#7DD181', comment: '#6B7585', punct: '#9FB4D8' };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 
 
 
@@ -220,7 +220,7 @@ const RECAPS = {
   4: {
     title: { uz: "React — interfeys quruvchi kutubxona", ru: 'React — библиотека для интерфейсов' },
     cards: [
-      { ic: "🧰", h: { uz: "React — tayyor asboblar to'plami", ru: 'React — набор готовых инструментов' }, body: { uz: <>React — JavaScript'da yozilgan <b>tayyor asboblar</b> to'plami, sahifani tez qurish uchun.</>, ru: <>React — набор <b>готовых инструментов</b> на JavaScript, чтобы быстро строить страницу.</> }, vis: { uz: <RcFlow items={["JavaScript", "React kutubxonasi", "Interfeys tez quriladi"]} />, ru: <RcFlow items={["JavaScript", "Библиотека React", "Интерфейс строится быстро"]} /> } },
+      { ic: "🧰", h: { uz: "React — tayyor bo'laklar to'plami", ru: 'React — набор готовых блоков' }, body: { uz: <>React — JavaScript'da yozilgan <b>tayyor bo'laklar</b> to'plami, sahifani tez qurish uchun.</>, ru: <>React — набор <b>готовых блоков</b> на JavaScript, чтобы быстро строить страницу.</> }, vis: { uz: <RcFlow items={["JavaScript", "React kutubxonasi", "Interfeys tez quriladi"]} />, ru: <RcFlow items={["JavaScript", "Библиотека React", "Интерфейс строится быстро"]} /> } },
       { ic: "🚫", h: { uz: "Til ham, brauzer ham, tizim ham emas", ru: 'Не язык, не браузер и не система' }, body: { uz: <>React til ham, brauzer ham, tizim ham emas — u faqat <b>interfeys quradi</b>.</>, ru: <>React — не язык, не браузер и не система: он только <b>строит интерфейс</b>.</> } },
       { ic: "🏭", h: { uz: "Kim yaratgan", ru: 'Кто создал' }, body: { uz: <>React'ni <b>Facebook</b> 2013-yilda yaratgan, bugun Instagram ham shu kutubxonada ishlaydi.</>, ru: <>React создал <b>Facebook</b> в 2013 году, сегодня на нём работает даже Instagram.</> }, ask: { uz: "React qaysi tanish tilning o'zida yozilgan?", ru: 'На каком знакомом вам языке написан React?' } },
     ]
@@ -899,7 +899,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 );
               })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{/* F-0926-06 (I2, KORPUS §215): noto'g'ri variantga «To'g'ri» emas — «Aslida» */}{tr({ uz: <>{picked === 'b' ? "To'g'ri! " : 'Aslida '}<b>{picked === 'b' ? 'Faqat' : 'faqat'} o'zgargan joy yangilanadi</b>. Buni qiladigan vositaning nomi — <b>React</b>. Hozir qanday ishlashini ko'ramiz.</>, ru: <>{picked === 'b' ? 'Верно! ' : 'На самом деле '}<b>{picked === 'b' ? 'Обновляется' : 'обновляется'} только изменившееся место</b>. Инструмент, который это делает, называется <b>React</b>. Сейчас посмотрим, как это работает.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{/* F-0926-06 (I2, KORPUS §215): noto'g'ri variantga «To'g'ri» emas — «Aslida» */}{tr({ uz: <>{picked === 'b' ? "To'g'ri! " : 'Aslida '}<b>{picked === 'b' ? 'Faqat' : 'faqat'} o'zgargan joy yangilanadi</b>. Buni qiladigan narsaning nomi — <b>React</b>. Hozir qanday ishlashini ko'ramiz.</>, ru: <>{picked === 'b' ? 'Верно! ' : 'На самом деле '}<b>{picked === 'b' ? 'Обновляется' : 'обновляется'} только изменившееся место</b>. Инструмент, который это делает, называется <b>React</b>. Сейчас посмотрим, как это работает.</> })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -1041,7 +1041,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <div className="frame fade-up delay-1" style={{ padding: '13px 16px' }}>
-              <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b style={{ color: T.accent }}>React</b> — saytning ko'rinadigan qismini, ya'ni <b>interfeysni</b>, tayyor bo'laklardan qurishga yordam beradigan <b>JavaScript kutubxonasi</b>. Kutubxona degani — tayyor asboblar to'plami: hammasini noldan yozmaysiz.</>, ru: <><b style={{ color: T.accent }}>React</b> — <b>библиотека JavaScript</b>, которая помогает строить видимую часть сайта, то есть <b>интерфейс</b>, из готовых блоков. Библиотека — это набор готовых инструментов: не пишете всё с нуля.</> })}</p>
+              <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b style={{ color: T.accent }}>React</b> — saytning ko'rinadigan qismini, ya'ni <b>interfeysni</b>, tayyor bo'laklardan qurishga yordam beradigan <b>JavaScript kutubxonasi</b>. Kutubxona degani — tayyor bo'laklar to'plami: hammasini noldan yozmaysiz.</>, ru: <><b style={{ color: T.accent }}>React</b> — <b>библиотека JavaScript</b>, которая помогает строить видимую часть сайта, то есть <b>интерфейс</b>, из готовых блоков. Библиотека — это набор готовых блоков: не пишете всё с нуля.</> })}</p>
             </div>
             <div className="fade-up delay-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 9 }}>
               {KEYS.map(k => (
@@ -1081,7 +1081,7 @@ const Screen4 = (props) => (
     questionText="React aslida nima?"
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>React aslida <span className="italic" style={{ color: T.accent }}>nima</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Что же такое <span className="italic" style={{ color: T.accent }}>React</span> на самом деле?</h2></> })}
     options={[tr({ uz: 'Yangi dasturlash tili', ru: 'Новый язык программирования' }), tr({ uz: 'JavaScript kutubxonasi', ru: 'Библиотека JavaScript' }), tr({ uz: 'Brauzer dasturining nomi', ru: 'Название браузера' }), tr({ uz: 'Operatsion tizim turi', ru: 'Вид операционной системы' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "React — interfeys qurish uchun tayyor asboblar to'plami.", ru: 'React — набор готовых инструментов для построения интерфейса.' })}
+    explainCorrect={tr({ uz: "React — interfeys qurish uchun tayyor bo'laklar to'plami.", ru: 'React — набор готовых блоков для построения интерфейса.' })}
     explainWrong={{
       0: tr({ uz: "React yangi til emas — u JavaScript'ning o'zida yozilgan.", ru: 'React — не новый язык: он написан на самом JavaScript.' }),
       2: tr({ uz: "Brauzer — Chrome, Safari kabi dastur, React unday emas.", ru: 'Браузер — это программа вроде Chrome или Safari, React — не такая.' }),
@@ -1589,7 +1589,7 @@ const Screen12 = (props) => (
     options={[tr({ uz: "Faqat kompyuter o'yinlarini yasash", ru: 'Делать только компьютерные игры' }), tr({ uz: 'React bilimi bilan telefon ilovasi yasash', ru: 'Делать мобильные приложения со знанием React' }), tr({ uz: 'Saytlarni rang bilan bezash', ru: 'Украшать сайты цветом' }), tr({ uz: 'Internetga simsiz ulanish', ru: 'Беспроводное подключение к интернету' })]} correctIdx={1}
     explainCorrect={tr({ uz: "Bitta bilim, ikki platforma: sayt ham, telefon ilovasi ham.", ru: 'Одно знание — две платформы: и сайт, и мобильное приложение.' })}
     explainWrong={{
-      0: tr({ uz: "React Native o'yin yasash vositasi emas.", ru: 'React Native — не инструмент для игр.' }),
+      0: tr({ uz: "React Native o'yin yasash uchun emas.", ru: 'React Native — не инструмент для игр.' }),
       2: tr({ uz: "Bezash — CSS'ning ishi, React Native'niki emas.", ru: 'Украшение — работа CSS, а не React Native.' }),
       3: tr({ uz: "React Native internetga ulanishga aloqador emas.", ru: 'React Native не связан с подключением к интернету.' }),
       default: tr({ uz: "Instagram va Discord qayerda ishlashini eslang.", ru: 'Вспомните, где работают Instagram и Discord.' })
@@ -1605,9 +1605,13 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     card: { l: '<SkinCard />', name: tr({ uz: 'Skin kartochka', ru: 'Карточка скина' }) },
     footer: { l: '<Footer />', name: tr({ uz: 'Pastki qism', ru: 'Нижняя часть' }) }
   };
-  const [items, setItems] = useState(storedAnswer ? ['nav', 'card', 'card'] : []);
-  const done = items.length >= 3;
-  const MAX = 7;
+  const [items, setItems] = useState(storedAnswer ? ['nav', 'search', 'card', 'card', 'card', 'footer'] : []); // F-1017-215: tiklanganda to'liq namuna — yangi shart (menyu+2 skin+footer) bajarilgan bo'lsin
+  const MAX = 8;
+  // F-1017-215 (mentor: «kattaroq, qiziqroq»): maqsad — namunadagi do'kon (menyu + kamida 2 skin + pastki qism), tartib erkin
+  const TARGET = ['nav', 'search', 'card', 'card', 'card', 'footer'];
+  const has = (k, n = 1) => items.filter(x => x === k).length >= n;
+  const done = has('nav') && has('card', 2) && has('footer');
+  const missing = [!has('nav') && COMP.nav.name, !has('card', 2) && (tr({ uz: '2 ta skin kartochka', ru: '2 карточки скина' })), !has('footer') && COMP.footer.name].filter(Boolean);
   const add = (k) => { if (items.length >= MAX) return; setItems(prev => [...prev, k]); };
   const reset = () => setItems([]);
   const counts = items.reduce((m, k) => { m[k] = (m[k] || 0) + 1; return m; }, {});
@@ -1636,9 +1640,9 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>);
       case 'card': return (
         <div key={i} className="el-in" style={{ display: 'flex', alignItems: 'center', gap: 8, background: T.paper, borderRadius: 8, padding: 6, boxShadow: '0 2px 7px -2px rgba(0,0,0,0.12)' }}>
-          <span style={{ width: 34, height: 34, borderRadius: 6, background: sk.bg, backgroundImage: PIXEL, backgroundSize: '8.5px 8.5px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15 }}>{sk.emoji}</span>
+          <span style={{ width: 52, height: 52, borderRadius: 8, background: sk.bg, backgroundImage: PIXEL, backgroundSize: '10px 10px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15 }}>{sk.emoji}</span>
           <span style={{ display: 'flex', flexDirection: 'column', gap: 1, minWidth: 0 }}>
-            <span style={{ fontFamily: MANROPE, fontWeight: 700, fontSize: 10.5, color: T.ink }}>{tr(sk.name)}</span>
+            <span style={{ fontFamily: MANROPE, fontWeight: 800, fontSize: 13, color: T.ink }}>{tr(sk.name)}</span>
             <span style={{ fontFamily: MANROPE, fontSize: 9, color: T.ink3 }}>{tr({ uz: "♥ 12 · 12 000 so'm", ru: '♥ 12 · 12 000 сум' })}</span>
           </span>
           <span style={{ marginLeft: 'auto', fontFamily: MANROPE, fontWeight: 700, fontSize: 9, color: T.paper, background: T.accent, borderRadius: 99, padding: '3px 9px', flexShrink: 0 }}>{tr({ uz: 'Savatga', ru: 'В корзину' })}</span>
@@ -1651,17 +1655,17 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     }
   };
   return (
-    <Stage eyebrow={tr({ uz: "Amaliyot · sahifa yig'amiz", ru: 'Практика · собираем страницу' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Kamida 3 ta blok', ru: 'Минимум 3 блока' })} (${items.length}/3)`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Amaliyot · sahifa yig'amiz", ru: 'Практика · собираем страницу' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Do'konni namunadek yig'ing", ru: 'Соберите магазин как в образце' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(8px,1.2vw,12px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'z saytingizni <span className="italic" style={{ color: T.accent }}>bloklardan</span> quring.</>, ru: <>Постройте свой сайт из <span className="italic" style={{ color: T.accent }}>блоков</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Endi o'zingiz quring. <b style={{ color: T.ink }}>Tugmalarni bosib</b>, Minecraft saytingizni bloklardan yig'ing — xohlagan blokni <b style={{ color: T.ink }}>qayta-qayta</b> qo'yish mumkin.</>, ru: <>Теперь стройте сами. <b style={{ color: T.ink }}>Нажимайте кнопки</b> и собирайте свой Minecraft-сайт из блоков — один блок можно ставить <b style={{ color: T.ink }}>снова и снова</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Endi o'zingiz quring: namunadagi do'konni <b style={{ color: T.ink }}>tugmalarni bosib</b> yig'ing — menyu, qidiruv, <b style={{ color: T.ink }}>3 ta skin</b> va pastki qism. Bitta blok necha marta kerak bo'lsa, shuncha bosing.</>, ru: <>Теперь сами: соберите магазин как в образце, <b style={{ color: T.ink }}>нажимая кнопки</b> — меню, поиск, <b style={{ color: T.ink }}>3 скина</b> и подвал. Один блок можно нажать столько раз, сколько нужно.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <p className="flow-label">{tr({ uz: 'Bloklar (komponentlar)', ru: 'Блоки (компоненты)' })}</p>
             <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {Object.keys(COMP).map(k => (
-                <button key={k} className="gchip" disabled={items.length >= MAX} onClick={() => add(k)}>{COMP[k].name} <span className="mono" style={{ color: CODE.tag, fontSize: 11 }}>{COMP[k].l}</span></button>
+                <button key={k} className="gchip" disabled={items.length >= MAX} onClick={() => add(k)}>{COMP[k].name} <span className="mono" style={{ color: CODE.tag, fontSize: 11 }}>{COMP[k].l}</span>{counts[k] > 1 && <span style={{ marginLeft: 6, fontFamily: "'JetBrains Mono',monospace", fontSize: 11, fontWeight: 700, color: T.success }}>×{counts[k]}</span>}</button>
               ))}
               {items.length > 0 && <button className="gchip" onClick={reset}>{tr({ uz: '↺ Tozalash', ru: '↺ Очистить' })}</button>}
             </div>
@@ -1675,13 +1679,18 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {reused && <span className="tagpill fade-step" style={{ color: T.success }}>✓ {COMP[reused].l} — {counts[reused]} {tr({ uz: 'marta. Bitta kod!', ru: 'раза. Один код!' })}</span>}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Sahifangiz', ru: 'Ваша страница' })}</p>
-            <Win title="mening-mc-saytim.uz" minH={130}>
+            <p className="flow-label">{tr({ uz: 'Namuna — shunday bo\'lsin', ru: 'Образец — так должно быть' })}</p>
+            <div className="fade-up delay-1" style={{ display: 'flex', gap: 5, flexWrap: 'wrap', alignItems: 'center', padding: '6px 10px', background: T.bg, borderRadius: 10, marginBottom: 6 }}>
+              {TARGET.map((k, i) => <span key={i} className="mono" style={{ fontSize: 11, color: '#C8501F', background: T.paper, borderRadius: 6, padding: '3px 7px' }}>{COMP[k].l}</span>)}
+            </div>
+            <p className="flow-label">{tr({ uz: 'Sahifangiz', ru: 'Ваша страница' })} <span style={{ color: done ? T.success : T.ink3, fontWeight: 700 }}>{done ? '✓' : `${items.length}/${TARGET.length}`}</span></p>
+            <Win title="mening-mc-saytim.uz" minH={260}>
               {items.length === 0
                 ? null /* F-0926-06 (P1): bo'sh oynadagi yo'riq olindi — mentor aytadi */
                 : <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>{items.map((k, i) => renderPart(k, i))}</div>}
             </Win>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Siz hozir <b>React'cha fikrladingiz</b>: sahifa = komponentlar ro'yxati.</>, ru: <>Вы только что <b>мыслили как React</b>: страница = список компонентов.</> })}</p></div>}
+            {!done && items.length > 0 && <p className="small fade-step" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: 'Yetishmayapti: ', ru: 'Не хватает: ' })}{missing.join(' · ')}</p>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Do'kon tayyor! Siz hozir <b>React'cha fikrladingiz</b>: sahifa = komponentlar ro'yxati, bitta <span className="mono">&lt;SkinCard /&gt;</span> — uch xil karta.</>, ru: <>Вы только что <b>мыслили как React</b>: страница = список компонентов.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1768,7 +1777,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const REACT_FLASHCARDS = [
   { front: { uz: "React qaysi dasturlash tilida yozilgan?", ru: 'На каком языке программирования написан React?' }, back: "JavaScript", note: { uz: "React yangi til emas — kutubxona", ru: 'React — не новый язык, а библиотека' } },
   { front: { uz: "React nima qurish uchun ishlatiladi?", ru: 'Для чего используют React?' }, back: { uz: "Interfeys (interface)", ru: 'Интерфейс (interface)' }, note: { uz: "sahifaning ko'rinadigan qismi: menyu, kartochka, tugma", ru: 'видимая часть страницы: меню, карточки, кнопки' } },
-  { front: { uz: "React kabi tayyor asboblar to'plami qanday ataladi?", ru: 'Как называется набор готовых инструментов, такой как React?' }, back: { uz: "Kutubxona (library)", ru: 'Библиотека (library)' }, note: { uz: "har safar noldan yozmaysiz — tayyorini olasiz", ru: 'не пишете каждый раз с нуля — берёте готовое' } },
+  { front: { uz: "React kabi tayyor bo'laklar to'plami qanday ataladi?", ru: 'Как называется набор готовых блоков, такой как React?' }, back: { uz: "Kutubxona (library)", ru: 'Библиотека (library)' }, note: { uz: "har safar noldan yozmaysiz — tayyorini olasiz", ru: 'не пишете каждый раз с нуля — берёте готовое' } },
   { front: { uz: "React'ni kim va qaysi yilda yaratgan?", ru: 'Кто и в каком году создал React?' }, back: "Facebook, 2013", note: { uz: "Instagram, WhatsApp shu kutubxonada ishlaydi", ru: 'Instagram и WhatsApp работают на этой библиотеке' } },
   { front: { uz: "Sahifaning qayta ishlatiladigan bo'lagi qanday ataladi?", ru: 'Как называется переиспользуемая часть страницы?' }, back: { uz: "Komponent (component)", ru: 'Компонент (component)' }, note: { uz: "menyu, qidiruv katagi, kartochka, tugma", ru: 'меню, строка поиска, карточка, кнопка' } },
   { front: { uz: "Bitta komponentni necha marta ishlatish mumkin?", ru: 'Сколько раз можно использовать один компонент?' }, back: { uz: "Istalgancha", ru: 'Сколько угодно' }, note: { uz: "kartochka ko'payadi, kod bitta qoladi", ru: 'карточек больше, а код остаётся один' } },
@@ -1776,7 +1785,7 @@ const REACT_FLASHCARDS = [
   { front: { uz: "React sahifaning yengil nusxasini xotirada saqlaydi — u qanday ataladi?", ru: 'React хранит в памяти лёгкую копию страницы — как она называется?' }, back: "Virtual DOM", note: { uz: "ko'rinmas nusxa", ru: 'невидимая копия' } },
   { front: { uz: "Virtual DOM yangi nusxani nima bilan solishtiradi?", ru: 'С чем Virtual DOM сравнивает новую копию?' }, back: { uz: "Eski nusxa bilan", ru: 'Со старой копией' }, note: { uz: "solishtiradi va farqni topadi", ru: 'сравнивает и находит разницу' } },
   { front: { uz: "O'zgarish bo'lganda React sahifaning qaysi qismini yangilaydi?", ru: 'Какую часть страницы React обновляет при изменении?' }, back: { uz: "Faqat o'zgargan joyni", ru: 'Только изменившееся место' }, note: { uz: "butun sahifa emas — shuning uchun tez", ru: 'не всю страницу — поэтому быстро' } },
-  { front: { uz: "React bilimi bilan telefon ilovasi yasaydigan vositaning nomi nima?", ru: 'Как называется инструмент, который позволяет делать мобильные приложения со знанием React?' }, back: "React Native", note: { uz: "Instagram, Discord, Shopify shu yo'lda", ru: 'Instagram, Discord, Shopify идут этим путём' } },
+  { front: { uz: "React bilimi bilan telefon ilovasi yasash uchun nima ishlatiladi?", ru: 'Как называется инструмент, который позволяет делать мобильные приложения со знанием React?' }, back: "React Native", note: { uz: "Instagram, Discord, Shopify shu yo'lda", ru: 'Instagram, Discord, Shopify идут этим путём' } },
   { front: { uz: "Koddagi xatoni topib tuzatish qanday ataladi?", ru: 'Как называется поиск и исправление ошибки в коде?' }, back: { uz: "Debugging", ru: 'Дебаггинг' }, note: { uz: "AI ham xato qiladi — siz tekshirasiz", ru: 'ИИ тоже ошибается — проверяете вы' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1809,7 +1818,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
+    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
   const audio = useAudio([{ id: 's16', text: "Tabriklaymiz — React dunyosiga birinchi qadamni qo'ydingiz! Esda saqlang: React — interfeys uchun JavaScript kutubxonasi. Komponent — sahifaning bloki: bir marta yoz, istalgancha ishlat. Virtual DOM esa solishtiradi va faqat o'zgargan joyni yangilaydi. Keyingi darsda birinchi komponentingizni o'zingiz yozasiz.", trigger: 'on_mount', waits_for: null }]);
@@ -1829,13 +1838,13 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
   return (
-    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className="screen">
         <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок завершён' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>React dunyosiga <span className="italic" style={{ color: T.accent }}>xush kelibsiz</span>.</>, ru: <>Добро пожаловать в <span className="italic" style={{ color: T.accent }}>мир React</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : undefined} />
         </div>
-        {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+        {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
         <div className="hw-big-wrap fade-up d4">
           <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
@@ -3145,8 +3154,8 @@ export default function ReactIntroLesson({ lang: langProp, onFinished, liveToken
         .dd-pool { display: flex; flex-wrap: wrap; gap: 9px; min-height: 48px; padding: 10px; border-radius: 14px; background: ${T.bg}; position: relative; z-index: 1; }
         .dd-slots { position: relative; }
         .dd-pool-empty { color: ${T.ink3}; font-size: 12.5px; font-style: italic; align-self: center; }
-        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(11.5px,1.5vw,13.5px); color: ${T.accent}; background: ${T.paper}; border: 2px solid ${T.accent}; border-radius: 11px; padding: 9px 13px; line-height: 1.3; cursor: grab; touch-action: none; box-shadow: 0 6px 14px -8px rgba(${T.shadowBase},.35); transition: transform .12s; user-select: none; }
-        .dd-chip::before { content: '⠿'; margin-right: 7px; opacity: .55; font-weight: 400; } /* F-0926-06 (159/15): oq fon + 2px accent chegara + ushlagich — 1–2-Modul bilan bir xil */
+        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 11px; padding: 11px 15px; cursor: grab; touch-action: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: transform .12s; user-select: none; }
+        .dd-chip::before { content: '⠿'; margin-right: 7px; opacity: .75; font-weight: 400; } /* F-1015-352 (F-1002-59): to'ldirilgan gradient chip, ⠿ ushlagich sudralishni aytadi */
         .dd-chip:hover { transform: translateY(-2px); }
         .dd-chip:active { cursor: grabbing; }
         .dd-done { font-weight: 700; color: ${T.success}; font-size: 14.5px; }

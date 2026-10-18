@@ -28,7 +28,7 @@ const tr = (node) => {
 const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.uz ?? '') : o;
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QChip, QBashorat, QXulosa, QXato, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QKod, QMustaqil, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
 import HtmlCompiler, { checks as C } from '../compilator/HtmlCompiler.jsx';
@@ -46,7 +46,7 @@ const AchMissCtx = createContext(null); //  151-qonun: { missed:Set<ekran id>, m
 
 // Matn ichidagi `kod` bo'laklarini chip qilib ko'rsatadi (qcode)
 const fmtCode = (s) => (typeof s === 'string' && s.includes('`'))
-  ? s.split('`').map((p, i) => i % 2 ? <code className="qcode" key={i}>{p}</code> : p)
+  ? s.split('`').map((p, i) => i % 2 ? <code className={p.length > 24 && p.includes(' ') ? 'qcode uzun' : 'qcode'} key={i}>{p}</code> : p)
   : s;
 
 // AUDIOSIZ dars — useAudio/getAudioEngine zaglushkasi (QuestionScreen imzosi saqlanadi, TTS yo'q)
@@ -107,6 +107,8 @@ const Zoomable = ({ children }) => {
   const [hasContent, setHasContent] = useState(true);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
+  const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
+  const [zQator, setZQator] = useState(false); // F-1015-125: joy yo'q — 36px qatorda, vizual o'ng chetida
   useEffect(() => {
     const el = zref.current; if (!el || typeof MutationObserver === 'undefined') return;
     const ink = (n) => {
@@ -119,6 +121,37 @@ const Zoomable = ({ children }) => {
     const run = () => {
       const zb = el.querySelector(':scope > .zoom-btn');
       if (!zb || el.classList.contains('zoom-on')) { setZFloat(false); return; }
+      // F-1015-125: ⛶ asosiy vizual burchagida (206 dagi qator o'rniga) — eng tashqi chizilgan elementlardan eng kattasi (+ ≥ 50% yuzalilari)
+      const zr0 = el.getBoundingClientRect(); const qol = el.querySelector('[data-zoom-asosiy]'); const tash = [];
+      if (qol) tash.push(qol);
+      else { const q = [...el.children].filter(n => !n.classList.contains('zoom-btn')); while (q.length) { const n = q.shift(); const b = n.getBoundingClientRect(); if (b.width < 2 || b.height < 2) { q.push(...n.children); continue; } if (n.tagName === 'svg' || ink(n)) tash.push(n); else q.push(...n.children); } }
+      const yuza = (n) => { const b = n.getBoundingClientRect(); return b.width * b.height; };
+      const maks = tash.length ? Math.max(...tash.map(yuza)) : 0;
+      const asosiy = tash.filter(n => yuza(n) >= maks * 0.5);
+      if (asosiy.length && zr0.width) {
+        let T = 1e9, R = -1e9; for (const n of asosiy) { const b = n.getBoundingClientRect(); T = Math.min(T, b.top); R = Math.max(R, b.right); }
+        const k = el.offsetWidth / zr0.width; const pt = parseFloat(getComputedStyle(el).paddingTop) || 0; const xs = (R - zr0.left) * k;
+        // ⛶ uchun joy (qator olingan holat koordinatasida): zoomable ichida va o'rnida matn/belgi yo'q bo'lsin (206: ⛶ hech narsani yopmaydi)
+        const band = (dx, dy) => { const s = pt / k, bl = R + (dx - 3) / k, br = bl + 36 / k, bt = T - s + (dy - 3) / k, bb = bt + 36 / k;
+          if (bl < zr0.left - 1 || br > zr0.right + 1) return true;
+          for (const n of el.querySelectorAll('*')) { if (n.closest('.zoom-btn')) continue;
+            const yaprq = /^(IMG|svg|INPUT|BUTTON|TEXTAREA|SELECT|CANVAS|VIDEO)$/.test(n.tagName) || [...n.childNodes].some(c => c.nodeType === 3 && c.textContent.trim());
+            if (!yaprq || (n.closest('svg') && n.tagName !== 'svg')) continue; const b = n.getBoundingClientRect(); if (b.width < 1) continue;
+            if (b.left < br && b.right > bl && b.top - s < bb && b.bottom - s > bt) return true; }
+          // zoomable tashqarisidagi qo'shni matn/belgi (qo'shni ustun, pastki izoh)
+          for (const [px, py] of [[bl, bt], [br, bt], [bl, bb], [br, bb], [(bl + br) / 2, (bt + bb) / 2]]) for (const n of document.elementsFromPoint(px, py)) {
+            if (el.contains(n) || n.contains(el) || n.closest('.zoom-btn')) continue;
+            if (/^(IMG|svg|INPUT|BUTTON|TEXTAREA|SELECT|CANVAS|VIDEO)$/.test(n.tagName) || [...n.childNodes].some(c => c.nodeType === 3 && c.textContent.trim())) return true; }
+          return false; };
+        const j = [[8, 0], [-38, 8]].find(([dx, dy]) => !band(dx, dy)); // 1) yonida · 2) burchak ichida
+        if (j) {
+          el.style.setProperty('--zb-x', (xs + j[0]) + 'px'); el.style.setProperty('--zb-y', Math.max(0, (T - zr0.top) * k - pt + j[1]) + 'px');
+          setZQator(false); setZJoy(true); setZFloat(false); return;
+        }
+        el.style.setProperty('--zb-x', Math.max(0, xs - 30) + 'px'); // 3) 36px qatorda, vizual o'ng chetida
+        setZJoy(false); setZQator(true); setZFloat(false); return;
+      }
+      setZJoy(false); setZQator(false);
       const r = zb.getBoundingClientRect(), zr = el.getBoundingClientRect(); if (!r.width) return;
       let hit = false;
       for (let y = r.top; y < Math.min(r.top + 220, zr.bottom) && !hit; y += 18) for (const x of [r.left - 30, r.left - 140]) {
@@ -128,9 +161,10 @@ const Zoomable = ({ children }) => {
     };
     let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(run); };
     sch(); const t = setTimeout(sch, 700); // fade-kirish tugagach yana bir bor
+    const t2 = setTimeout(sch, 1600); if (document.fonts && document.fonts.ready) document.fonts.ready.then(sch); // F-1015-125: shrift/animatsiyadan keyingi joy
     const mo = new MutationObserver(sch); mo.observe(el, { childList: true, subtree: true, characterData: true });
     window.addEventListener('resize', sch);
-    return () => { cancelAnimationFrame(raf); clearTimeout(t); mo.disconnect(); window.removeEventListener('resize', sch); };
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); mo.disconnect(); window.removeEventListener('resize', sch); };
   }, []);
   useLayoutEffect(() => {
     const el = zref.current; if (!el) return;
@@ -148,7 +182,7 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}`}>
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
         {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
@@ -831,7 +865,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   );
 };
 
-// ===== SCREEN 1 — REJA (QReja: chapda dars oxiridagi holat — belgi «Ulangan», ochiq chiziq bir marta chiziladi; o'ngda «01 · matn · teg») =====
+// ===== SCREEN 1 — REJA (QReja: chapda dars oxiridagi holat — belgi «Ulangan», ochiq chiziq bir marta chiziladi; o'ngda «01 · matn») =====
 const REJA = [
   { t: { uz: "Ekran nega o'zi yangilanmasligini ko'rish", ru: 'Увидеть, почему экран не обновляется сам' }, teg: { uz: "so'rov", ru: 'запрос' } },
   { t: { uz: 'Ochiq turadigan ulanish va undan keladigan xabar', ru: 'Открытое соединение и сообщение по нему' }, teg: { uz: 'doimiy ulanish, hodisalar', ru: 'постоянное соединение, события' } },
@@ -851,7 +885,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
         mentor={<Mentor>{tr({ uz: "Har qadamni avval Maydon Jamoa misolida ko'rasiz, keyin o'z mahsulotingizda qilasiz. Backend bugun hali xabar yubormaydi — bugungi ish ulanish va sxema.", ru: 'Каждый шаг вы сначала увидите на примере «Maydon Jamoa», потом сделаете в своём продукте. Сегодня Backend ещё не отправляет сообщения — сегодня соединение и схема.' })}</Mentor>}
         chapYorliq={tr({ uz: 'Dars oxirida', ru: 'В конце урока' })}
         chap={<Sahna t1={{ ekran: 'oyinlar', belgi, son: 8, osti: <span className="ws-readme"><b>README.md</b><span>{tr({ uz: '«Real vaqt» · 5 qator', ru: '«Real vaqt» · 5 строк' })}</span></span> }} be={{}} c1={c1} />}
-        qadamlar={REJA.map(r => ({ t: tr(r.t), teg: tr(r.teg) }))}
+        qadamlar={REJA.map(r => ({ t: tr(r.t) }))}
       >
         <p className="ws-reja-past">{tx({ uz: "o'z repo'ngiz — ulanish va `README.md` «Real vaqt» · Mentor misoli `maydon-jamoa` · tayyor holat `m12-dars-02-done`", ru: 'ваш репозиторий — соединение и `README.md` «Real vaqt» · пример Ментора `maydon-jamoa` · готовое состояние `m12-dars-02-done`' })}</p>
         {isMentor && <div className="ws-ustoz"><b>{tr({ uz: "O'qituvchi eslatmasi", ru: 'Заметка для учителя' })}</b>
@@ -902,7 +936,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         vizual={<Sahna
           t1={{ son, sonYangi: son === 9, eski: son === 8 && SAHNA.eski, onTort: q === 1 && !band && !tugadi ? tort : null, tortHalqa: q === 1 && !band, qadam: q === 1 && !band && !tugadi ? { n: 2, t: { uz: 'Pastga torting', ru: 'Потяните вниз' } } : null }}
           be={{ db: 9, qator: beQator, qadam: taxmin && q === 0 && !band ? { n: 1, t: { uz: "Yuborib ko'ring", ru: 'Попробуйте отправить' } } : null,
-            ichi: !tugadi && q === 0 && <button type="button" className={cx('ws-yubor', halqa(taxmin && q === 0 && !band))} disabled={!taxmin || q !== 0 || band} onClick={yubor}>{tr({ uz: '1-telefonga yuborish', ru: 'Отправить на телефон 1' })}</button> }}
+            ichi: !tugadi && q === 0 && taxmin && !band && <button type="button" className={cx('ws-yubor', halqa(true), 'fade-step')} onClick={yubor}>{tr({ uz: '1-telefonga yuborish', ru: 'Отправить на телефон 1' })}</button> }} /* F-1015-164: dars tugmasi bashoratdan keyin chiqadi */
           t2={{ son: 9, qoshildi: true }} c1={c1} c2="yoq" k1={k1} y1={q === 1 && !tugadi ? { uz: '✕', ru: '✕' } : null} />}
         xulosa={done && <XulosaQ natija={taxmin && <Natija togri={togri} tanlov={S2_TAXMIN.find(v => v.k === taxmin).t} haqiqat={{ uz: "yo'q, faqat so'rovga javoban", ru: 'нет, только в ответ на запрос' }} />} matn={tr({ uz: "11-Modulda yo'l faqat so'rov paytida ochiladi: ilova so'ramasa, Backend unga hech narsa yubora olmaydi.", ru: 'В 11-м модуле путь открывается только во время запроса: если приложение не спрашивает, Backend ничего не может ему отправить.' })} />}
       />
@@ -1023,7 +1057,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         vizual={<div className="ws-viz">
           <Sahna
             t1={{ son, sonYangi: son === 9 && !avval, qoshilYoq: true, konvert: q === 0 ? 'yopiq' : 'ochiq', onKonvert: taxmin && q === 0 ? och : null, konvertHalqa: taxmin && q === 0,
-              osti: <>{q >= 1 && <KonvertIchi />}{!tugadi && <button type="button" className={cx('ws-qayta', q !== 1 && 'xira', halqa(q === 1 && !band))} disabled={q !== 1 || band} onClick={qayta}>{tr({ uz: "Qayta so'rash", ru: 'Запросить заново' })}</button>}</> }}
+              osti: <>{q >= 1 && <KonvertIchi />}{!tugadi && q === 1 && !band && <button type="button" className={cx('ws-qayta', halqa(true), 'fade-step')} onClick={qayta}>{tr({ uz: "Qayta so'rash", ru: 'Запросить заново' })}</button>}</> }} /* F-1015-164: konvert ochilgach chiqadi */
             be={{ db: 9, dbYon }} t2={{ son: 9, qoshildi: true }} c1="ochiq" c2="yoq" k1={k1} />
           {q >= 1 && <p className="ws-nom fade-step">{tr({ uz: <>Ulanish orqali yuboriladigan nomli xabar — <b>hodisa</b>: nomi va ma'lumoti bor.</>, ru: <>Именованное сообщение, отправляемое по соединению, — <b>событие</b>: у него есть название и данные.</> })}</p>}
         </div>}
@@ -1102,8 +1136,10 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <div className="ws-kodlar">
             <div className="ws-kodlar-ch">
               {!tugadi && <div className="ws-tugmalar">
-                <button type="button" className={cx('ws-tokensiz', q >= 1 && 'bajarildi', halqa(taxmin && q === 0 && !band))} disabled={!taxmin || q !== 0 || band} onClick={tokensizUlan}>{tr({ uz: 'Tokensiz ulanish', ru: 'Подключиться без токена' })}</button>
-                <button type="button" className={cx('ws-token', halqa(q === 1 && !band))} disabled={q !== 1 || band} onClick={tokenUlan}>{tr({ uz: 'Token bilan ulanish', ru: 'Подключиться с токеном' })}</button>
+                {/* F-1015-164: bajarilgan qadam — ✓ yozuv; joriy qadam — tugma (bashoratdan keyin); navbati kelmagani ko'rinmaydi */}
+                {q >= 1 ? <span className="ws-qadam-hol">✓ {tr({ uz: 'Tokensiz ulanish', ru: 'Подключиться без токена' })}</span>
+                  : taxmin && !band && <button type="button" className={cx('ws-tokensiz', halqa(true), 'fade-step')} onClick={tokensizUlan}>{tr({ uz: 'Tokensiz ulanish', ru: 'Подключиться без токена' })}</button>}
+                {q === 1 && !band && <button type="button" className={cx('ws-token', halqa(true), 'fade-step')} onClick={tokenUlan}>{tr({ uz: 'Token bilan ulanish', ru: 'Подключиться с токеном' })}</button>}
               </div>}
               <KodKarta yorliq={<code>mobil/src/ulanish.ts</code>} qatorlar={ilovaQ} yon={{ 3: authYon }}
                 izoh={tx({ uz: "`BACKEND_MANZILI` — `.env` dagi `EXPO_PUBLIC_API_URL` (web-trekda `VITE_API_URL`); `token` — kirishda saqlangan token.", ru: '`BACKEND_MANZILI` — `EXPO_PUBLIC_API_URL` из `.env` (в веб-треке `VITE_API_URL`); `token` — токен, сохранённый при входе.' })} />
@@ -1198,7 +1234,8 @@ const NatijaOyna = ({ son, kelgan, onBoshqa }) => (
     <div className="ws-no-tana">
       <span className="ws-no-p">{NAMUNA_OYIN.vaqt.uz} · {NAMUNA_OYIN.joy.uz}</span>
       <span className="ws-no-h"><b key={String(son)} className={cx(son !== null && son > 8 && 'ws-pop')}>{son === null ? '…' : son}</b> / 10</span>
-      <button type="button" className={cx('ws-no-btn', halqa(!!onBoshqa && son < 10))} disabled={!onBoshqa || son >= 10} onClick={onBoshqa}>{"Boshqa o'yinchi qo'shildi"}</button>
+      {/* F-1015-164: hodisa yuboradigan sinov tugmasi — kod tekshiruvdan o'tgach chiqadi, 10 / 10 da yo'qoladi */}
+      {onBoshqa && son < 10 && <button type="button" className={cx('ws-no-btn', halqa(true), 'fade-step')} onClick={onBoshqa}>{"Boshqa o'yinchi qo'shildi"}</button>}
       <span className="ws-no-k">{kelgan ? 'Kelgan hodisa: oyin-ozgardi {"oyinId":1,"sabab":"qoshildi"}' : "Kelgan hodisa: hali yo'q"}</span>
     </div>
   </div>
@@ -1239,7 +1276,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <QTugma ikkinchi aria-expanded={yordam} onClick={() => setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: 'Подсказка' })}</QTugma>
           {yordam && <QIzoh>{tx({ uz: "Shakli 11-Moduldagi `yangila.addEventListener('click', korsat)` kabi: avval hodisa nomi qo'shtirnoqda, keyin ishlaydigan funksiya. Son o'zgarmasa — nom `oyin-ozgardi` deb, chiziqcha bilan yozilganini tekshiring.", ru: "Вид как у `yangila.addEventListener('click', korsat)` из 11-го модуля: сначала имя события в кавычках, потом функция, которая сработает. Если число не меняется — проверьте, что имя написано как `oyin-ozgardi`, через дефис." })}</QIzoh>}
         </div>}
-        bajardim={!done && <div className="ws-bajardim"><QTugma className={halqa(shart)} disabled={!shart} onClick={bajardim}>{tr({ uz: 'Bajardim', ru: 'Готово' })}</QTugma></div>}
+        bajardim={!done && shart && <div className="ws-bajardim fade-step"><QTugma className={halqa(true)} onClick={bajardim}>{tr({ uz: 'Bajardim', ru: 'Готово' })}</QTugma></div>} /* F-1015-164: kod tekshiruvdan o'tgach chiqadi */
         {...{ [QKOD_ONG]: <div className="ws-kodoyna">
           {!done && <div className="ws-amal"><QTugma className={halqa(!shart && !isMentor)} onClick={() => setOpen(true)}>{tr({ uz: 'Kompilyatorni ochish', ru: 'Открыть компилятор' })}</QTugma>
             <span className="ws-amal-t">{tr({ uz: "Kod oynasi ochiladi — kodni yozasiz va natijasini shu yerda ko'rasiz.", ru: 'Откроется окно кода — вы пишете код и сразу видите здесь результат.' })}</span></div>}
@@ -1275,6 +1312,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [kelmadi, setKelmadi] = useState(false);
   const [eski, setEski] = useState(avval);
   const [token, setToken] = useState(avval ? 'yaroqsiz' : 'yaroqli');
+  const [eslat, setEslat] = useState(0); // F-1015-168: taxmindan oldin telefondagi tugma bosilsa — sabab
   const ketma = useKetma();
   const done = q >= 4;
   const tugadi = useTugadi(done, 1300, avval);
@@ -1302,14 +1340,16 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
         sarlavha={tr({ uz: <>Ulanish uzilsa, o'yinchi buni <span className="italic" style={{ color: T.accent }}>qayerdan biladi</span>?</>, ru: <>Если соединение оборвётся, <span className="italic" style={{ color: T.accent }}>откуда</span> игрок это узнает?</> })}
         mentor={<Mentor>{tr({ uz: 'Doimiy ulanish ham uziladi — birinchi telefonda uchish rejimini yoqing va tepadagi belgiga qarang.', ru: 'Постоянное соединение тоже обрывается — включите режим полёта на первом телефоне и посмотрите на значок вверху.' })}</Mentor>}
-        bashorat={!tugadi && <Bashorat savol={{ uz: 'Uchish rejimida belgi nimani ko\'rsatadi?', ru: 'Что покажет значок в режиме полёта?' }} variantlar={S10_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
+        bashorat={!tugadi && <><Bashorat savol={{ uz: 'Uchish rejimida belgi nimani ko\'rsatadi?', ru: 'Что покажет значок в режиме полёта?' }} variantlar={S10_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />{eslat > 0 && !taxmin && <QXato key={eslat}>{tr({ uz: 'Avval taxminingizni belgilang.', ru: 'Сначала отметьте свой прогноз.' })}</QXato>}</>}
         vizual={<div className="ws-viz">
           <Sahna
-            t1={{ ekran: 'oyinlar', belgi, son: 8, eski: eski && SAHNA.eskiMumkin, samolyot, onSamolyot: taxmin && !band && !tugadi ? samBos : null, samolyotHalqa: !!(taxmin && !band && samBos),
+            t1={{ ekran: 'oyinlar', belgi, son: 8, eski: eski && SAHNA.eskiMumkin, samolyot, onSamolyot: !taxmin && !tugadi ? () => setEslat(n => n + 1) : taxmin && !band && !tugadi ? samBos : null, samolyotHalqa: !!(taxmin && !band && samBos),
               qadam: !taxmin || band || tugadi ? null : q === 0 ? { n: 1, t: { uz: 'Uchish rejimini yoqing', ru: 'Включите режим полёта' } } : q === 2 ? { n: 3, t: { uz: "Uchish rejimini o'chiring", ru: 'Выключите режим полёта' } } : null,
               osti: tugadi && <div className="ws-uch-belgi fade-step"><UlanishBelgisi holat="ulangan" /><UlanishBelgisi holat="ulanmoqda" /><UlanishBelgisi holat="ulanmagan" /></div> }}
             be={{ db, dbYangi: db === 9 && !avval, qadam: q === 3 && !band ? { n: 4, t: { uz: 'Tokenni yaroqsiz qiling', ru: 'Сделайте токен недействительным' } } : null,
-              osti: !tugadi && <button type="button" className={cx('ws-kalit', token === 'yaroqsiz' && 'off', halqa(q === 3 && !band))} disabled={q !== 3 || band} onClick={kalit}>Token: <b>{token === 'yaroqli' ? tr({ uz: 'yaroqli', ru: 'действителен' }) : tr({ uz: 'yaroqsiz', ru: 'недействителен' })}</b></button> }}
+              osti: !tugadi && (q === 3 && !band
+                ? <button type="button" className={cx('ws-kalit', token === 'yaroqsiz' && 'off', halqa(true))} onClick={kalit}>Token: <b>{token === 'yaroqli' ? tr({ uz: 'yaroqli', ru: 'действителен' }) : tr({ uz: 'yaroqsiz', ru: 'недействителен' })}</b></button>
+                : <span className={cx('ws-kalit', 'hol', token === 'yaroqsiz' && 'off')}>Token: <b>{token === 'yaroqli' ? tr({ uz: 'yaroqli', ru: 'действителен' }) : tr({ uz: 'yaroqsiz', ru: 'недействителен' })}</b></span>) }} /* F-1015-164: navbati kelguncha token holati — yozuv (tugma emas) */
             t2={{ son: qoshildi ? 9 : 8, sonYangi: qoshildi && !avval, qoshildi, onQoshil: q === 1 && !band ? qoshil : null, qoshilHalqa: q === 1 && !band,
               qadam: q === 1 && !band ? { n: 2, t: { uz: "Ikkinchi telefonda qo'shiling", ru: 'Присоединитесь на втором телефоне' } } : null }}
             c1={c1} c2={c2} k1={k1} k2={k2} y1={kelmadi ? SAHNA.kelmadi : null} />
@@ -1341,8 +1381,7 @@ const Screen11 = (props) => (
     }} />
 );
 
-// ===== SCREEN 12 — TUSHUNCHA · sxema (bashorat + 5 qator, bittadan — SABOQ 9, 13): sabab tanlanadi → hodisa → GET /oyinlar → telefondagi joy o'zgaradi → qator jadvalga =====
-const S12_TAXMIN = [{ k: 'bir', t: { uz: 'Bitta', ru: 'Одно' } }, { k: 'uch', t: { uz: 'Uchta', ru: 'Три' } }, { k: 'besh', t: { uz: 'Beshta', ru: 'Пять' } }];
+// ===== SCREEN 12 — TUSHUNCHA · sxema (5 qator, bittadan — SABOQ 9, 13; taxmin yo'q — tanlash topshiriq, 208/0 e): sabab tanlanadi → hodisa → GET /oyinlar → telefondagi joy o'zgaradi → qator jadvalga =====
 const SX_USTUN = [{ uz: 'Real vaqt nuqtasi', ru: 'Точка реального времени' }, { uz: 'Kim nima qiladi', ru: 'Кто что делает' }, { uz: 'Hodisa', ru: 'Событие' }, { uz: 'Kim oladi', ru: 'Кто получает' }, { uz: "Ekranda nima o'zgaradi", ru: 'Что меняется на экране' }];
 // Telefondagi joy qatorga qarab (1, 2 — «8 / 10» · 3 — tashkilotchi ko'rinishi · 4 — navbat · 5 — o'yinlar ro'yxati); joriy joy — sokin chegara (halqa faqat sabab tugmalarida, SABOQ 32)
 const sxTel = (i, keyin) => {
@@ -1358,7 +1397,7 @@ const JadvalIc = () => <svg viewBox="0 0 16 16" width="12" height="12" aria-hidd
 const SxJadval = ({ n, yangi, joyQator }) => (
   <div className="ws-sx-j">
     <div className="ws-sx-ram">
-    <div className="ws-sx-bar"><JadvalIc /><span>{tr({ uz: 'Mentor sxemasi', ru: 'Схема Ментора' })}</span><b>{n} / 5</b></div>
+    <div className="ws-sx-bar"><JadvalIc /><span>{tr({ uz: 'Mentor sxemasi', ru: 'Схема Ментора' })}</span></div>
     <div className="ws-sx-jadval" role="table">
       <div className="ws-sx-r bosh" role="row">{SX_USTUN.map((u, i) => <span key={i} role="columnheader" className={cx(i === 3 && 'ws-sx-kimc')}>{tr(u)}</span>)}</div>
       {MENTOR_SXEMA.slice(0, n).map((r, i) => (
@@ -1376,7 +1415,6 @@ const SxJadval = ({ n, yangi, joyQator }) => (
 );
 const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const avval = !!storedAnswer;
-  const [taxmin, setTaxmin] = useState(storedAnswer?.taxmin ?? null);
   const [n, setN] = useState(avval ? 5 : 0);
   const [kor, setKor] = useState(avval ? { i: 4, keyin: true } : { i: 0, keyin: false });
   const [band, setBand] = useState(false);
@@ -1387,9 +1425,9 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const ketma = useKetma();
   const done = n >= 5;
   const tugadi = useTugadi(done, 1400, avval);
-  useEffect(() => { if (done && !avval) onAnswer(screen, { correct: true, picked: true, taxmin }); }, [done]); // eslint-disable-line
+  useEffect(() => { if (done && !avval) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   const tanla = (s) => {
-    if (!taxmin || band || done) return;
+    if (band || done) return;
     const i = n;
     if (s !== MENTOR_SXEMA[i].sabab) { setXato(s); setSilk(x => x + 1); return; }
     setXato(null); setBand(true);
@@ -1400,11 +1438,10 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       [1300, () => { setYangi(-1); if (i + 1 < 5) setKor({ i: i + 1, keyin: false }); setBand(false); }]]);
   };
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · sxema', ru: 'Понятие · схема' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={tr(navYorliq(taxmin, n, 5, { uz: "Qatorlarni to'ldiring", ru: 'Заполните строки' }, done))} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · sxema', ru: 'Понятие · схема' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: "Qatorlarni to'ldiring", ru: 'Заполните строки' })} (${n}/5)`} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
         sarlavha={tr({ uz: <>Kim nima qilsa, <span className="italic" style={{ color: T.accent }}>kimning ekrani</span> o'zgaradi?</>, ru: <>Кто что сделает — <span className="italic" style={{ color: T.accent }}>чей экран</span> изменится?</> })}
         mentor={<Mentor>{tr({ uz: 'Har o\'zgarish uchun Backend yuboradigan hodisaning sababini tanlang — qator jadvalga tushadi.', ru: 'Для каждого изменения выберите причину события, которое отправляет Backend, — строка попадёт в таблицу.' })}</Mentor>}
-        bashorat={!tugadi && <Bashorat savol={{ uz: 'Besh xil o\'zgarish uchun Mentor nechta hodisa nomi yozgan?', ru: 'Сколько названий событий Ментор написал для пяти разных изменений?' }} variantlar={S12_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
         vizual={<div className="ws-viz">
           <div className={cx('ws-sx', done && 'tayyor')}>
             <div className="ws-sx-tel"><Sahna ixcham t1={sxTel(kor.i, kor.keyin)} be={{}} c1="ochiq" k1={k1} /></div>
@@ -1412,14 +1449,14 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <SxJadval n={n} yangi={yangi} joyQator={!done} />
               {!done && !tugadi && <div key={`${n}-${silk}`} className={cx('ws-sx-karta', 'fade-step', xato && 'silk')}>
                 <b className="ws-sx-kt">{tr(MENTOR_SXEMA[n].kimNima)}</b>
-                <div className={cx('ws-sx-sabablar', taxmin && !band && 'ws-chorla')}>{SABABLAR.map(s => <QChip key={s} className="ws-sabab" holat={xato === s ? 'err' : undefined} silk={xato === s} disabled={!taxmin || band} onClick={() => tanla(s)}>{s}</QChip>)}</div>
+                <div className={cx('ws-sx-sabablar', !band && 'ws-chorla')}>{SABABLAR.map(s => <QChip key={s} className="ws-sabab" holat={xato === s ? 'err' : undefined} silk={xato === s} disabled={band} onClick={() => tanla(s)}>{s}</QChip>)}</div>
                 {xato && <QXato>{tr({ uz: "Sabab o'yinchi nima qilganini aytadi — kartani qayta o'qing.", ru: 'Причина говорит, что сделал игрок, — прочитайте карточку ещё раз.' })}</QXato>}
               </div>}
             </div>
           </div>
           {done && <p className="ws-nom fade-step">{tr({ uz: <>Kim nima qilganda qaysi hodisa kimga borishi va ekranda nima o'zgarishi yozilgan jadval — <b>real vaqt oqimi sxemasi</b>.</>, ru: <>Таблица, где записано, кто что делает, какое событие кому идёт и что меняется на экране, — <b>схема потока реального времени</b>.</> })}</p>}
         </div>}
-        xulosa={done && <XulosaQ natija={taxmin && <Natija togri={taxmin === 'bir'} tanlov={S12_TAXMIN.find(v => v.k === taxmin).t} haqYorliq={{ uz: 'Mentor misolida', ru: 'в примере Ментора' }} haqiqat={{ uz: 'bitta — `oyin-ozgardi`, besh sabab bilan', ru: 'одно — `oyin-ozgardi`, с пятью причинами' }} />} matn={tr({ uz: 'Mentor misolida bitta hodisa besh sabab bilan keladi; har qatorda kim olishi va nima o\'zgarishi yozilgan.', ru: 'В примере Ментора одно событие приходит с пятью причинами; в каждой строке записано, кто получает и что меняется.' })} izoh={tr({ uz: 'Sxema — reja: hodisalar hali yuborilmaydi; Mentorning sodda variantida ular hamma ulangan ilovaga boradi.', ru: 'Схема — это план: события пока не отправляются; в простом варианте Ментора они идут во все подключённые приложения.' })} />}
+        xulosa={done && <XulosaQ matn={tr({ uz: 'Mentor misolida bitta hodisa besh sabab bilan keladi; har qatorda kim olishi va nima o\'zgarishi yozilgan.', ru: 'В примере Ментора одно событие приходит с пятью причинами; в каждой строке записано, кто получает и что меняется.' })} izoh={tr({ uz: 'Sxema — reja: hodisalar hali yuborilmaydi; Mentorning sodda variantida ular hamma ulangan ilovaga boradi.', ru: 'Схема — это план: события пока не отправляются; в простом варианте Ментора они идут во все подключённые приложения.' })} />}
       />
     </Stage>
   );
@@ -1458,11 +1495,19 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   // Karta qatorga aylanadi: yangi qatorga id — q1, q2… (qayta ishlatilmaydi), tartib o'zgarmaydi
   const qatorQil = (c, ro) => (c.id ? ro.map(r => (r.id === c.id ? { ...c } : r)) : [...ro, { ...c, id: 'q' + idRef.current++ }]);
   // «Qator tayyor» qatorni yopadi; keyingi qator — «+ Yana qator» bilan (ikki tugma bir ishni qilmaydi — F-1006-383)
+  // F-1015-164: «Qator tayyor» doim bosiladi; bo'sh katak bo'lsa sabab chiqadi va birinchi bo'sh katakka fokus
+  const [katakSabab, setKatakSabab] = useState(false);
   const tayyor = () => {
-    if (!sxToliq(karta)) return;
+    if (!sxToliq(karta)) {
+      setKatakSabab(true);
+      const i = SX_MAYDON.findIndex(m => !String((karta && karta[m.id]) || '').trim());
+      const el = document.querySelectorAll('.ws-ms-karta .ws-ms-inp')[i]; if (el) el.focus();
+      return;
+    }
     setQatorlar(qatorQil(karta, qatorlar));
-    setKarta(null); setXato(false);
+    setKarta(null); setXato(false); setKatakSabab(false);
   };
+  const bosKatak = karta ? SX_MAYDON.filter(m => !String(karta[m.id] || '').trim()).length : 0;
   const tahrir = (r) => { if (saqlandi || (karta && !sxBoshmi(karta) && karta.id !== r.id)) return; setKarta({ ...r }); };
   const saqla = () => {
     if (karta && !sxBoshmi(karta) && !sxToliq(karta)) { setXato(true); return; }
@@ -1498,14 +1543,15 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </label>
             ))}
             <div className="ws-ms-tugmalar">
-              <QTugma className={halqa(sxToliq(karta))} disabled={!sxToliq(karta)} onClick={tayyor}>{tr({ uz: 'Qator tayyor', ru: 'Строка готова' })}</QTugma>
-              {qatorlar.length > 0 && <QTugma ikkinchi onClick={() => { setKarta(null); setXato(false); }}>{tr({ uz: 'Bekor qilish', ru: 'Отмена' })}</QTugma>}
+              <QTugma className={halqa(sxToliq(karta))} onClick={tayyor}>{tr({ uz: 'Qator tayyor', ru: 'Строка готова' })}</QTugma>
+              {qatorlar.length > 0 && <QTugma ikkinchi onClick={() => { setKarta(null); setXato(false); setKatakSabab(false); }}>{tr({ uz: 'Bekor qilish', ru: 'Отмена' })}</QTugma>}
               <YordamTugma ochiq={yordam} onClick={() => setYordam(o => !o)} />
             </div>
+            {katakSabab && bosKatak > 0 && <QXato>{tr({ uz: `${bosKatak} ta katak bo'sh.`, ru: `Пустых ячеек: ${bosKatak}.` })}</QXato>}
           </div>}
           {!karta && <div className="ws-ms-past">
             <QTugma className={halqa(qatorlar.length > 0)} onClick={saqla}>{tr({ uz: 'Saqlash', ru: 'Сохранить' })}</QTugma>
-            {qatorlar.length < 5 && <QTugma ikkinchi onClick={() => setKarta(sxBosh())}>{tr({ uz: '+ Yana qator', ru: '+ Ещё строка' })}</QTugma>}
+            {qatorlar.length < 5 && <QTugma ikkinchi onClick={() => { setKarta(sxBosh()); setKatakSabab(false); }}>{tr({ uz: '+ Yana qator', ru: '+ Ещё строка' })}</QTugma>}
             <YordamTugma ochiq={yordam} onClick={() => setYordam(o => !o)} />
           </div>}
           {xato && <QXato>{tr({ uz: "Kamida bitta qator kerak; har qatorda beshta katak to'lsin.", ru: 'Нужна хотя бы одна строка; в каждой строке заполните пять ячеек.' })}</QXato>}
@@ -2082,7 +2128,7 @@ function QuizArena({ live, onClose, startSolo }) {
 }
 
 // ===== 🏆 PODIUM / STATISTIKA — jonli reyting (jonli-ulanishni ⚡ Jonli qiladi; self-mode fallback tayyor) =====
-const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
+const ScreenPodium = ({ screen, answers, achievements, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
   const isLive = !!(live && (live.mode === 'student' || live.mode === 'mentor') && live.pin);
@@ -2119,11 +2165,19 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head head-c"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
+        <div className="head head-c"><h2 className="title h-title fade-up">{isLive ? tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> }) : tr({ uz: <>Bugungi <span className="italic" style={{ color: T.accent }}>natijangiz</span></>, ru: <>Ваш сегодняшний <span className="italic" style={{ color: T.accent }}>результат</span></> })}</h2></div>
         {!isLive ? (
-          <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
-            <ScoreRing correct={selfCorrect} total={totalQ} />
-            <div className="frame-soft" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>{tr({ uz: 'Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — 🥇🥈🥉 podium chiqadi.', ru: 'Вы в самостоятельном режиме. На живом уроке здесь появится рейтинг всей группы — подиум 🥇🥈🥉.' })}</p></div>
+          <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div className="pod-card">
+              <div className="pod-card-ring"><ScoreRing correct={selfCorrect} total={totalQ} /></div><p className="ring-iz">{tr({ uz: "Testlarda birinchi urinishda topilgan to'g'ri javoblar", ru: 'Верные ответы в тестах с первой попытки' })}</p>
+              <div className="pod-card-sec">
+                <span className="pod-card-lbl">{tr({ uz: 'Nishonlar', ru: 'Значки' })} · {Object.keys(ACHIEVEMENTS).filter(id => achievements && achievements.has(id)).length}/{Object.keys(ACHIEVEMENTS).length}</span>
+                <div className="pod-card-badges">
+                  {Object.entries(ACHIEVEMENTS).map(([id, a], k) => { const got = !!(achievements && achievements.has(id)); return <span key={id} className={`pcb ${got ? 'got' : ''}`} style={{ '--k': k }} title={tr(a.desc)}><span className="pcb-ic" aria-hidden="true">{got ? a.icon : '🔒'}</span><span className="pcb-nm">{got ? a.name : '?'}</span></span>; })}
+                </div>
+              </div>
+              <div className="pod-card-note"><span className="pcn-ic" aria-hidden="true">💡</span><p className="body">{tr({ uz: "Bu — shaxsiy natijangiz. Jonli darsda shu yerda butun guruhning natijalar ro'yxati va 🥇🥈🥉 eng yaxshi uchtalik (podium) chiqadi.", ru: 'Это ваш личный результат. На живом уроке здесь появится список результатов всей группы и 🥇🥈🥉 тройка лучших (подиум).' })}</p></div>
+            </div>
           </div>
         ) : !loaded ? (
           <p className="mono small fade-up" style={{ color: T.ink2 }}>{tr({ uz: 'Natijalar yuklanmoqda…', ru: 'Результаты загружаются…' })}</p>
@@ -2385,7 +2439,6 @@ const ScreenA1 = (props) => {
       natija={<NatijaA1 trek={trek} />}
       doneText={{ uz: "Mahsulotingiz Backend'ga ulangan: belgi ulanish holatini ko'rsatadi.", ru: 'Ваш продукт подключён к Backend: значок показывает состояние соединения.' }}
       izoh={{ uz: "Render'da yangi versiya chiqqanda ulanish uziladi — belgi bir lahza «Ulanmoqda…» bo'ladi.", ru: 'Когда на Render выходит новая версия, соединение обрывается — значок на миг становится «Подключается…».' }}
-      ortda={{ uz: "— `backend/.env` va `mobil/.env` ga o'z qiymatlaringizni yozing.", ru: '— в `backend/.env` и `mobil/.env` впишите свои значения.' }}
       ulgur={{ uz: "Ulgurmasangiz: Render kutishi cho'zilsa — 4-qadam uyga vazifaning 1-bandi; 3-qadamdan keyin «Davom etish» ochiladi — 2-amaliyotga o'ting.", ru: 'Если не успеваете: затянулось ожидание Render — шаг 4 станет пунктом 1 домашнего задания; после шага 3 откроется «Продолжить» — переходите ко 2-й практике.' }}
       ulgurQadam={3}
       ustoz={{ uz: "Render bepul xizmati 15 daqiqa so'rovsiz qolsa uxlaydi; rasmiy hujjat: ochiq ulanishdagi WebSocket xabarlari ham so'rov sanaladi — socket.io ping xabarlari shunga kiradimi, «qur» da tekshiriladi (o'quvchiga aytilmaydi). 11-Modul 15-darsidagi «Render uxlaydi» riski bilan bog'lanishi: ulangan foydalanuvchi bo'lsa uyg'oq, hech kim bo'lmasa uxlaydi. 4-qadam (2) da belgi sekin o'zgarsa — hujjatdagi 45 soniya chegarasi; shoshiltirmang.", ru: 'Бесплатный сервис Render засыпает после 15 минут без запросов; официальная документация: сообщения WebSocket в открытом соединении тоже считаются запросами — входят ли сюда ping-сообщения socket.io, проверяется на этапе сборки (ученику не говорим). Связь с риском «Render засыпает» из 15-го урока 11-го модуля: есть подключённый пользователь — не спит, нет никого — засыпает. Если в шаге 4 (2) значок меняется медленно — это предел 45 секунд из документации; не торопите.' }}
@@ -2484,7 +2537,7 @@ const HW_QADAM = [
 ];
 const HwCard = ({ keyingi }) => (
   <div className="card ws-hw fade-up">
-    <div className="card-lbl acc">{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div>
+    <div className="card-lbl acc">{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div>
     <div className="ws-hw-karta">
       <span className="ws-hw-q"><em>{tr({ uz: 'kim uchun', ru: 'для кого' })}</em><b>{tr({ uz: "o'z mahsulotingiz", ru: 'ваш продукт' })}</b></span>
       <span className="ws-hw-q"><em>{tr({ uz: 'muddat', ru: 'срок' })}</em><b>{tr({ uz: 'keyingi darsgacha', ru: 'до следующего урока' })}</b></span>
@@ -2506,7 +2559,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
+    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
   const idx = (id) => SCREEN_META.findIndex(m => m.id === id);
@@ -2527,17 +2580,17 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   return (
-    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash', ru: 'Завершить' })}</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className={cx('ws-yakun', !(a1 && a2) && 'yoq-chip')}>
         <QYakun til={__lang}
-          chip={tr({ uz: 'Ulanish va sxema tayyor', ru: 'Соединение и схема готовы' })}
+          chip={tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}
           togri={correct} jami={total}
           sarlavha={tr(sarlavha)}
           cta={<>
             <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
               <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: 'Mentorni kuting', ru: 'Дождитесь наставника' }) : undefined} />
             </div>
-            {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+            {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
           </>}
           recap={RECAP.map(tr)}
           uyga={<HwCard keyingi={tr({ uz: <>Keyingi dars — <b>«Ekran o'zi yangilanishi uchun nimani yozasiz?»</b>: sxemangizdagi hodisalar talabga aylanadi.</>, ru: <>Следующий урок — <b>«Что написать, чтобы экран обновлялся сам?»</b>: события из вашей схемы станут требованием.</> })} />}
@@ -2718,7 +2771,7 @@ export default function WebSocketBasicsLesson({ lang: langProp, onFinished, live
         .ws-samolyot { position: absolute; right: 0; top: -1px; width: 22px; height: 20px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid ${T.line}; border-radius: 7px; background: ${T.bg}; color: ${T.ink2}; cursor: pointer; padding: 0; transition: background 0.25s, color 0.25s; }
         .ws-samolyot.on { background: ${T.accent}; color: #fff; border-color: ${T.accent}; }
         .ws-samolyot:disabled { cursor: default; }
-        .ws-tort { flex: none; align-self: center; height: 22px; padding: 0 10px; border: 1px dashed ${T.accent}; border-radius: 999px; background: ${T.accentSoft}; color: ${T.accent}; font-family: 'Manrope'; font-size: 11.5px; font-weight: 800; cursor: pointer; }
+        .ws-tort { flex: none; align-self: center; height: 22px; padding: 0 10px; border: 1px solid ${T.accent}; border-radius: 999px; background: ${T.accentSoft}; color: ${T.accent}; font-family: 'Manrope'; font-size: 11.5px; font-weight: 800; cursor: pointer; }
         .ws-tel-ekran { position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; animation: ws-ekran 0.35s ease-out both; transition: transform 0.18s; }
         @keyframes ws-ekran { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: none; } }
         .ws-tort-ic { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 15px; color: ${T.ink2}; }
@@ -2732,7 +2785,7 @@ export default function WebSocketBasicsLesson({ lang: langProp, onFinished, live
         .ws-son.yangi { color: ${T.accent}; animation: ws-pop 0.55s cubic-bezier(.3,1.5,.5,1); }
         .ws-eski { font-family: 'Manrope'; font-style: normal; font-size: 10.5px; font-weight: 700; color: ${T.ink2}; background: ${fon(T.ink, 0.07)}; border-radius: 999px; padding: 1px 7px; animation: fade-in-up 0.4s ease-out both; }
         .ws-doiralar { display: grid; grid-template-columns: repeat(5, 14px); gap: 6px; margin: 3px 0 4px; }
-        .ws-doiralar i { width: 14px; height: 14px; border-radius: 50%; border: 1.5px dashed ${fon(T.ink, 0.3)}; }
+        .ws-doiralar i { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid transparent; background: ${T.bg}; }
         .ws-doiralar i.bor { border: 0; background: ${fon(T.ink, 0.38)}; }
         .ws-doiralar i.yangi { background: ${T.accent}; animation: ws-pop 0.5s cubic-bezier(.3,1.5,.5,1); }
         .ws-tash { align-self: flex-start; font-size: 11.5px; font-weight: 700; color: ${T.ink2}; padding: 1px 4px; border-radius: 6px; }
@@ -2792,12 +2845,12 @@ export default function WebSocketBasicsLesson({ lang: langProp, onFinished, live
         .ws-db { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 2px 9px; border-radius: 7px; background: ${fon(T.paper, 0.12)}; transition: background 0.3s; }
         .ws-db.yon { background: ${T.accent}; }
         .ws-db b { color: ${T.paper}; }
-        .ws-yubor { margin-top: 2px; padding: 7px 11px; border: 1.5px dashed ${T.paper}; border-radius: 10px; background: ${fon(T.paper, 0.08)}; color: ${T.paper}; font-family: 'Manrope'; font-size: 12px; font-weight: 800; cursor: pointer; white-space: nowrap; }
+        .ws-yubor { margin-top: 2px; padding: 7px 11px; border: 1.5px solid ${T.paper}; border-radius: 10px; background: ${fon(T.paper, 0.08)}; color: ${T.paper}; font-family: 'Manrope'; font-size: 12px; font-weight: 800; cursor: pointer; white-space: nowrap; }
         .ws-yubor:disabled { cursor: default; opacity: 0.6; }
         .ws-be-qator { font-size: 11.5px; font-weight: 700; color: ${T.paper}; opacity: 0.85; text-align: center; }
         .ws-kalit { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1.5px solid ${T.ok}; border-radius: 999px; background: ${fon(T.ok, 0.1)}; color: ${T.ink}; font-family: 'JetBrains Mono', monospace; font-size: 12px; cursor: pointer; transition: background 0.3s, border-color 0.3s; }
         .ws-kalit b { color: ${T.ok}; } .ws-kalit.off { border-color: ${T.err}; background: ${fon(T.err, 0.1)}; } .ws-kalit.off b { color: ${T.err}; }
-        .ws-kalit:disabled { cursor: default; }
+        .ws-kalit.hol { cursor: default; border-style: solid; }
         /* Chiziq va konvert */
         .ws-chiziq { position: relative; }
         .ws-chiziq.yot { height: 272px; min-width: 56px; }
@@ -2860,7 +2913,7 @@ export default function WebSocketBasicsLesson({ lang: langProp, onFinished, live
         .ws-qayta, .ws-tokensiz, .ws-token { padding: 8px 14px; border: 1.5px solid ${T.ink}; border-radius: 10px; background: ${T.paper}; color: ${T.ink}; font-family: 'Manrope'; font-size: 13px; font-weight: 800; cursor: pointer; white-space: nowrap; }
         .ws-qayta:disabled, .ws-tokensiz:disabled, .ws-token:disabled { cursor: default; }
         .ws-qayta.xira { opacity: 0.45; }
-        .ws-tokensiz.bajarildi { border-color: ${T.line}; color: ${T.ink2}; }
+        .ws-qadam-hol { display: inline-flex; align-items: center; gap: 4px; padding: 8px 4px; font-family: 'Manrope'; font-size: 13px; font-weight: 700; color: ${T.ok}; white-space: nowrap; }
         .ws-tugmalar { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
         .ws-kod { display: flex; flex-direction: column; gap: 6px; width: 100%; max-width: 400px; padding: 10px 12px; border-radius: 12px; background: ${CODE.bg}; color: ${CODE.text}; }
         .ws-kod-y { font-size: 11.5px; color: ${CODE.punct}; }
@@ -2876,7 +2929,7 @@ export default function WebSocketBasicsLesson({ lang: langProp, onFinished, live
         .ws-readme { white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 10px; background: ${T.paper}; border: 1px solid ${T.line}; font-size: 12.5px; color: ${T.ink}; animation: fade-in-up 0.4s ease-out 0.9s both; }
         .ws-readme b { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: ${T.ink2}; }
         p.ws-reja-past { margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: ${T.ink2}; }
-        .ws-ustoz { display: flex; flex-direction: column; gap: 4px; padding: 10px 12px; border-radius: 12px; border: 1px dashed ${T.line}; background: ${T.paper}; font-size: 13px; color: ${T.ink2}; }
+        .ws-ustoz { display: flex; flex-direction: column; gap: 4px; padding: 10px 12px; border-radius: 12px; border: 1px solid transparent; background: ${T.bg}; font-size: 13px; color: ${T.ink2}; }
         .ws-ustoz b { color: ${T.ink}; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
         /* 12-ekran: telefon chapda, sxema jadvali o'ngda */
         .ws-sx { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 18px; align-items: start; }
@@ -2885,7 +2938,6 @@ export default function WebSocketBasicsLesson({ lang: langProp, onFinished, live
         .ws-sx-j { display: flex; flex-direction: column; gap: 6px; }
         .ws-sx-ram { border: 1px solid ${fon(T.ink, 0.2)}; border-radius: 10px; overflow: hidden; background: ${fon(T.ink, 0.025)}; }
         .ws-sx-bar { display: flex; align-items: center; gap: 7px; padding: 6px 10px; background: ${T.ink}; color: ${fon(T.paper, 0.82)}; font-family: 'JetBrains Mono', monospace; font-size: 11px; }
-        .ws-sx-bar b { margin-left: auto; font-weight: 700; color: ${T.paper}; }
         .ws-sx-jadval { display: flex; flex-direction: column; }
         .ws-sx-r > span + span { border-left: 1px solid ${fon(T.ink, 0.1)}; }
         .ws-sx-r:not(.bosh):not(.joy):nth-child(odd) { background: ${fon(T.ink, 0.03)}; }
@@ -2897,7 +2949,7 @@ export default function WebSocketBasicsLesson({ lang: langProp, onFinished, live
         .ws-sx-r.yangi { animation: ws-qator 1.2s ease-out both; }
         @keyframes ws-qator { 0% { opacity: 0; transform: translateX(16px); background: ${fon(T.ok, 0.22)}; } 30% { opacity: 1; transform: none; background: ${fon(T.ok, 0.22)}; } 100% { background: transparent; } }
         .ws-sx-r.joy { grid-template-columns: 1fr; }
-        .ws-sx-r.joy > span { margin: 6px 8px; padding: 6px; border: 1.5px dashed ${fon(T.ink, 0.25)}; border-radius: 8px; color: ${T.ink2}; font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+        .ws-sx-r.joy > span { margin: 6px 8px; padding: 6px; border: 1.5px solid transparent; background: ${T.bg}; border-radius: 8px; color: ${T.ink2}; font-family: 'JetBrains Mono', monospace; font-size: 11px; }
         .ws-sx-alt { display: none; flex-wrap: wrap; gap: 4px 12px; font-size: 12.5px; color: ${T.ink2}; } /* faqat tor ekranda («Kim oladi» ustuni yashirilganda) */
         .ws-sx-alt b { color: ${T.ink}; }
         .ws-sx-kim { display: none; font-style: normal; }
@@ -2952,7 +3004,7 @@ export default function WebSocketBasicsLesson({ lang: langProp, onFinished, live
         .ws-ms-tugmalar, .ws-ms-past { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 2px; }
         .ws-ms-past { max-width: 640px; }
         .ws-ms-yordam { margin-left: auto; }
-        .ws-yordam-misol { display: flex; flex-direction: column; gap: 3px; max-width: 640px; padding: 10px 12px; border-radius: 12px; background: ${T.paper}; border: 1px dashed ${fon(T.ink, 0.22)}; font-size: 13px; color: ${T.ink}; }
+        .ws-yordam-misol { display: flex; flex-direction: column; gap: 3px; max-width: 640px; padding: 10px 12px; border-radius: 12px; background: ${T.bg}; border: 1px solid transparent; font-size: 13px; color: ${T.ink}; }
         .ws-yordam-misol > b { font-size: 11.5px; font-weight: 800; color: ${T.ink2}; margin-bottom: 2px; }
         .ws-yordam-misol > span { display: flex; gap: 8px; align-items: baseline; }
         .ws-yordam-misol i { flex: none; width: 16px; font-style: normal; font-size: 11px; font-weight: 800; color: ${T.accent}; }
@@ -2965,7 +3017,7 @@ export default function WebSocketBasicsLesson({ lang: langProp, onFinished, live
         .ws-ps { display: block; margin: 2px 0; font-size: 13px; line-height: 1.5; }
         .ws-joy-n { margin-left: 6px; font-size: 12px; color: ${fon(T.ink, 0.5)}; font-style: italic; }
         .ws-yordam-btn { margin-top: 6px; }
-        .ws-yordam { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; padding: 10px 12px; border-radius: 10px; background: ${T.bg}; border: 1px dashed ${T.line}; }
+        .ws-yordam { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; padding: 10px 12px; border-radius: 10px; background: ${T.bg}; border: 1px solid transparent; }
         .ws-yordam-s { display: block; font-size: 12.5px; line-height: 1.5; color: ${T.ink}; }
         p.ws-ortda, p.ws-ulgur { margin: 0; font-size: 12.5px; line-height: 1.6; color: ${T.ink2}; }
         p.ws-ulgur { padding: 6px 10px; border-left: 0; border-radius: 10px; background: ${T.bg}; }
@@ -3007,12 +3059,12 @@ export default function WebSocketBasicsLesson({ lang: langProp, onFinished, live
         .ws-yakun { display: contents; }
         .ws-yakun.yoq-chip .done-chip { display: none; }
         .ws-hw { display: flex; flex-direction: column; gap: 10px; }
-        .ws-hw-karta { display: flex; flex-wrap: wrap; gap: 8px 16px; }
-        .ws-hw-q { display: inline-flex; gap: 6px; align-items: baseline; font-size: 13px; }
-        .ws-hw-q em { font-style: normal; color: ${T.ink2}; } .ws-hw-q b { color: ${T.ink}; }
+        .ws-hw-karta { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; }
+        .ws-hw-q { display: flex; flex-direction: column; gap: 3px; padding: 9px 11px; border-radius: 10px; background: ${T.bg}; border: 1px solid ${T.line}; font-size: 13.5px; font-weight: 700; line-height: 1.35; color: ${T.ink}; }
+        .ws-hw-q em { display: block; font-style: normal; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: ${T.ink2}; } .ws-hw-q b { font-size: 13.5px; font-weight: 700; line-height: 1.35; color: ${T.ink}; }
         .ws-hw-qadam { list-style: none; display: flex; flex-direction: column; gap: 8px; }
         .ws-hw-qadam li { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: ${T.ink}; }
-        .ws-hw-qadam li i { flex: none; width: 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-style: normal; font-size: 12px; font-weight: 800; background: ${T.accentSoft}; color: ${T.accent}; }
+        .ws-hw-qadam li i { flex: 0 0 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-style: normal; font-weight: 800; font-size: 12px; line-height: 1; color: ${T.accent}; background: ${T.accentSoft}; }
         .ws-hw-keyingi { font-size: 13.5px; color: ${T.ink2}; }
         /* ⛶ kattalashtirish — skeletda tushib qolgan qoida (SABOQ 38) */
         /* ikki klassli selektor: keyingi «.zoomable position relative» qoidasi oynani joyidan siljitib, ekran chetidan kesardi (F-1006-386) */
@@ -3049,11 +3101,30 @@ export default function WebSocketBasicsLesson({ lang: langProp, onFinished, live
         .zoomable.z-float > .zoom-btn { visibility: hidden; } /* ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun) */
         .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band, F-0926-01) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
+        .ring-iz { margin: 0; font-size: 13px; line-height: 1.4; color: ${T.ink2}; text-align: center; } /* F-1015-147: hisob qoidasi */
+        /* F-1015-158: natija — bitta karta (m5-08 namunasi): halqa, nishonlar, 💡 izoh; halqa atrofida qo'shimcha chiziq yo'q */
+        .pod-card { position: relative; width: 100%; max-width: 480px; margin-top: 6px; background: ${T.paper}; border-radius: 20px; padding: 0 clamp(14px,2.4vw,20px) clamp(14px,2.4vw,20px); display: flex; flex-direction: column; gap: 12px; box-shadow: 0 16px 34px -20px rgba(${T.shadowBase},0.35); }
+        .pod-card-ring { display: flex; justify-content: center; padding-top: clamp(14px,2.4vw,20px); } .pod-card-ring > * { margin-top: 0 !important; }
+        .screen:has(.pod-card) .head { text-align: center; }
+        .pod-card-sec { background: ${T.bg}; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .pod-card-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: ${T.accent}; }
+        .pod-card-badges { display: flex; justify-content: center; gap: clamp(8px,1.6vw,12px); flex-wrap: wrap; }
+        .pcb { width: 84px; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+        .pcb-ic { width: 50px; height: 50px; border-radius: 14px; display: grid; place-items: center; font-size: 26px; line-height: 1; background: ${T.paper}; box-shadow: inset 0 0 0 1px ${T.line}; }
+        .pcb.got .pcb-ic { background: ${T.accentSoft}; box-shadow: inset 0 0 0 2px ${T.accent}; animation: pcb-pop 0.5s cubic-bezier(.3,1.6,.5,1) both; animation-delay: calc(0.35s + var(--k) * 0.12s); }
+        .pcb:not(.got) .pcb-ic { font-size: 18px; filter: grayscale(1); opacity: 0.55; }
+        .pcb-nm { font-family: 'Manrope'; font-size: 10.5px; line-height: 1.25; text-align: center; color: ${T.ink2}; }
+        .pcb.got .pcb-nm { color: ${T.ink}; font-weight: 700; }
+        @keyframes pcb-pop { from { transform: scale(0.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .pod-card-note { display: flex; gap: 10px; align-items: flex-start; background: ${T.accentSoft}; border-radius: 14px; padding: 11px 13px; }
+        .pcn-ic { width: 32px; height: 32px; flex: none; border-radius: 50%; display: grid; place-items: center; background: ${T.paper}; font-size: 16px; }
+        .pod-card-note .body { margin: 0; font-size: clamp(13px,1.5vw,14.5px); }
+        @media (prefers-reduced-motion: reduce) { .pcb.got .pcb-ic { animation: none; } }
+        .zoomable.zb-joy:not(.zoom-on) { padding-top: 0 !important; } .zoomable.zb-joy:not(.zoom-on) > .zoom-btn { top: var(--zb-y, 0px) !important; left: var(--zb-x, auto) !important; right: auto !important; visibility: visible !important; } /* F-1015-125 (206.6): ⛶ asosiy vizual burchagida; 36px qator — faqat zaxira */ .zoomable.zb-qator:not(.zoom-on) { padding-top: 0 !important; } /* F-1015-176: ⛶ joy topolmasa — ko'rsatilmaydi, bo'sh qator yo'q */ .zoomable.zb-qator:not(.zoom-on) > .zoom-btn { display: none !important; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
-        /* F-1004-12: ⛶ matn ustiga tushmasin. Keng ekranda tugma kontentdan tashqarida, o'ng chetda turadi;
-           torroq ekranda ichkarida qoladi va o'ng ustunning birinchi yorlig'iga o'ngdan 40 px joy beriladi. */
-        @media (min-width: 1200px) { .zoomable:not(.zoom-on) > .zoom-btn { top: 0; right: -42px; } .zoomable.z-float:not(.zoom-on) > .zoom-btn { visibility: visible; } }
-        @media (max-width: 1199px) { .zoomable:not(.z-float):not(.zoom-on) > .split > :last-child > :is(p, h2, h3, h4, .eyebrow, .flow-label, .note-h):first-child, .zoomable:not(.z-float):not(.zoom-on) > .zoom-btn + :is(p, h2, h3, h4, .eyebrow, .flow-label, .note-h) { padding-right: 40px; } }
+        /* F-1004-12 · F-1015-111 (B): ⛶ hech narsani yopmaydi va kartadan chiqmaydi — vizual tepasida o'ziga ajratilgan
+           36 px qatorda, o'ng chetda; har kenglikda bir xil (7-Modul U2 naqshi). */
+        .zoomable:not(.z-empty):not(.zoom-on) { padding-top: 36px; } .zoomable:not(.zoom-on) > .zoom-btn { top: 0; right: 0; }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
         @keyframes zoom-pop { from { opacity: 0; transform: translate(-50%,-50%) scale(0.93); } to { opacity: 1; transform: translate(-50%,-50%) scale(1); } }
         .mentor-ava { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: ${T.accentSoft}; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.28); }
@@ -3136,6 +3207,7 @@ export default function WebSocketBasicsLesson({ lang: langProp, onFinished, live
 
         /* === 🔤 KOD-ATAMA CHIP (fmtCode) === */
         .qcode { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
+        .qcode.uzun { white-space: normal; overflow-wrap: break-word; } /* F-1015-129: uzun kod (SQL, buyruq) bo'sh joydan bo'linadi, kartadan chiqmaydi */
 
         /* === 🏅 ACHIEVEMENTS — hisoblagich + to'liq-ekran bayram === */
         .ach-cnt-wrap { position: relative; }

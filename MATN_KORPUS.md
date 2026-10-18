@@ -823,11 +823,11 @@ eshitadi va va'da bilan mazmun orasida bo'shliq qoladi. Ishonch shu yerda sinadi
    Ularning butun ishi ikkita asosiy **tushunchaga** — ya'ni 2 ta muhim fikrga — tayanadi…»
    (sir yo'q + «tushuncha»ni «muhim fikr» bilan qavssiz izohlash — ikki marta aytilgan bir narsa)
 ✅ «Kod yozishni boshlashdan oldin yaxshi dasturchilar muammoni qanday **hal qilishni** o'ylaydi.
-   Buning uchun ular ikkita kuchli **vositadan** foydalanadi: **sistema** va **algoritm**.
+   Buning uchun ular ikkita kuchli **usuldan** foydalanadi: **sistema** va **algoritm**.
    Bugun shu ikki g'oyani oddiy misollar orqali o'rganamiz, keyingi darslarda esa ularni
    **JavaScript**'da ishlatamiz.»
-📌 Nima o'zgardi: (a) intriga → **maqsad** («muammoni hal qilish»); (b) «tushuncha» → **vosita**
-   (o'smir uchun ushlanadigan so'z); (c) oxirida **keyingi darsga ko'prik** — bugungi bilim
+📌 Nima o'zgardi: (a) intriga → **maqsad** («muammoni hal qilish»); (b) «tushuncha» → **usul**
+   (o'smir uchun ushlanadigan so'z; 17.10 da «vosita» ham kitobiy deb topildi → «usul», §229); (c) oxirida **keyingi darsga ko'prik** — bugungi bilim
    qayerda ishlatilishi aytiladi.
 🔧 Grep (o'quvchi-matnida): `sir\b` · `sirni` · ru `секрет` · `по секрету`.
    Kod izohlaridagi «sir saqlanadi» (Kahoot-reveal) — istisno, u o'quvchiga ko'rinmaydi.
@@ -3502,7 +3502,7 @@ Yorliqqa izoh yozilmaydi: reja-ekran ta'rif aytmaydi (§162).
 
 ### c) Reja darsning o'z ekranlari bilan ziddiyatda bo'lmaydi
 ❌ Reja: «Express — oson **server**» · 6-ekran: «Express **asbobini** kodga chaqiramiz»
-✅ Ikkalasi ham: Express — serverni osonlashtiruvchi **asbob**
+✅ Ikkalasi ham: Express — serverni osonlashtiruvchi **paket** («asbob» emas — §229)
 
 Bu §177 ning reja-ekrandagi ko'rinishi: bitta xato da'vo odatda **bir necha joyda**
 ko'chirilgan bo'ladi. m4-04 da u reja va **yakun-RECAP**da turgan edi (test va flashcard
@@ -3656,6 +3656,7 @@ ekranda bitta xira qator turadi va u ikki holatdan birini aytadi. 76 darsda **ay
 | birinchi urinish xato bo'lgach | «Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.» | «Значок давался за первую попытку — теперь спокойно найдите верный ответ.» |
 | birinchi urinish xato bo'lgach — **qayta urinishi YO'Q ekran** (tanlov qotadi; F-0918-06, foydalanuvchi 18.09) | «Nishon birinchi urinish uchun edi.» | «Значок давался за первую попытку.» |
 
+**🔁 F-1015-180 (17.10, foydalanuvchi: «Nishon birinchi urinish uchun edi. — kerak emas bu»):** xatodan keyingi ikki qator (2- va 3-satr) **olib tashlandi** — xato bo'lgach shart qatori shunchaki yo'qoladi (keraksiz shovqin, xato izohi yetarli). Faqat «boshida» qatori qoladi. Yangi darsda xatodan keyingi nishon yozuvi yozilmaydi (7–14-M: 35 dars, 17.10).
 ❌ «Afsus, nishonni qo'ldan boy berdingiz!» — jazo ohangi; o'quvchi topshiriqning qolganiga qo'l siltaydi.
 ❌ Bir martalik ekranda «…endi bemalol to'g'risini toping» — yolg'on: qayta urinish yo'q, to'g'risini topishning iloji yo'q.
 📌 Qator rangi — palitradagi eng xira, lekin **fonga kontrast ≥ 4.5:1** bo'lgan rang (13px matn). `ink3` (2.2–2.5:1) o'qilmaydi —
@@ -4469,3 +4470,108 @@ Foydalanuvchi (44): «title ham bot ham bitta narsani aytyapti». O'lchov: 6-Mod
 
 **Qoida:** o'quvchi bilmaydigan metafora-atama oddiy so'z bilan almashadi; almashganda test savoli javobni oshkor qilmasligi tekshiriladi (8.4).
 
+
+## 227. AMALIYOT EKRANIDA MENTOR PROMPT BANDLARINI TAKRORLAMAYDI (F-1015-304, foydalanuvchi 15.10)
+
+*(m1-10 CSS Praktika pilot, MD v3 · a1/a2/a3 — §216 ning amaliyot-ekrandagi ko'rinishi)*
+
+Amaliyot ekranida chapda «Vazifa», «Promptda ayting» bandlari va «Masalan:» turadi, o'ngda natija surati va uning ostida bitta qator.
+Mentor gapi shulardan birini qaytarsa, o'quvchi bir fikrni ikki marta o'qiydi — foydalanuvchi: «bandlar va Masalan bilan takror».
+
+- ❌ a1 Mentor: «Gemini'ga `style.css` ni ham bering — u bor dizaynga qo'shadi, noldan yozmaydi.» (bandda «hozirgi `style.css`», misolda «Mana style.css: …»)
+  ✅ Mentor yo'q — bandlar va misol o'zi aytadi.
+- ❌ a2 Mentor: «Bu CSS darsidagi flexbox — Gemini javobida `display: flex` va `gap` ni toping.» + natija ostida «`display: flex` — yonma-yon, `gap` — orasidagi bo'shliq.»
+  ✅ Mentor yo'q; natija ostida bitta qator: «Bu CSS darsidagi flexbox: `display: flex` — yonma-yon, `gap` — orasidagi bo'shliq.»
+- ❌ a3 Mentor: «…asosiy rang `style.css` da bir necha joyda yozilgan, uni hammasida birdan almashtirasiz.» (1–2-qadamlar aynan shuni aytadi)
+  ✅ Mentor yo'q; yangi qismi («Gemini'siz») eyebrow'ga: «Amaliyot 3 · Gemini'siz».
+
+**Qoida:** amaliyot ekranida Mentor faqat ekranning boshqa joyida YO'Q gapni aytadi; aytadigani bo'lmasa — Mentor qo'yilmaydi.
+Yangi qism (masalan, «AI'siz») eng qisqa joyga — eyebrow yoki natija ostidagi qatorga — ko'chadi. Bog'liq: §216, §225.
+
+
+## 228. QISQARTIRISH = TAKRORNI OLISH, TUSHUNARLI GAPNI EMAS (F-1015-113, foydalanuvchi 16.10)
+
+*(208-qonun 0-bandi · pilot m7-01 «Loyihangiz kimga kerak?»)*
+
+Foydalanuvchi: «qisqa deganda — bitta narsani hamma joyda qayta-qayta takrorlayapti, element juda ko'payib ketyapti. So'zni qisqa qilaman deb
+o'quvchiga tushunarsiz so'z ishlatish QAT'IYAN taqiqlanadi — mentor gapi yoqimli, tushunarli bo'lsin».
+
+- ❌ s4 Mentor: «KIM, MUAMMO, YECHIM — «Kim mening foydalanuvchim?» darsidagi auditoriya-karta. Ilovada odatda avval YECHIM ko'rinadi — kimga va qaysi muammoga kerakligini siz topasiz.»
+  (karta qatorlari ekranda o'zi turibdi — nomini qayta sanash takror; boshqa dars nomi va «auditoriya-karta» atamasi o'quvchiga yuk)
+  ✅ «Ilovani ochsangiz, avval u nima qilishini ko'rasiz. Endi teskarisini qiling: u odamni nimadan qutqarganini toping.»
+- ❌ yo'l emas: «YECHIM → MUAMMO toping.» (qisqa, lekin quruq va tushunarsiz — strelka-uslub, §174a)
+- ❌ s13: Mentor «…ovoz chiqarib ayting… Keyin KIM qatoriga yozing» + chiplar «1 Ovoz chiqarib ayting · 2 KIM qatorini yozing» + tugma «KIM qatorini yozing»
+  ✅ Mentor gapi va tugma qoladi; chip-qator olinadi (bir gap — bir joyda).
+
+**Qoida:** matn faqat ekranning boshqa joyida aytilgan bo'lsa olinadi. Qolgan gap qisqartirilmaydi — soddalashtiriladi: atama o'rniga oddiy so'z,
+boshqa darsga havola o'rniga ekrandagi narsa. Bog'liq: §216, §227, 208-qonun 0-band.
+
+## §FORK — FORK QILINGAN REPO'DA NIMA BOR — OLDINDAN AYTILADI (2026-10-17, F-1015-154)
+
+Foydalanuvchi: «main, yechim degan branchlar bor ekan — darslikda ham shu bo'yicha yozilsin, mainni yuklab "hech nima chiqmadi" demasin».
+
+- ❌ m7-04 «Ochish»: «GitHub'da `github.com/Azizbekcrypto/maydon` → «Fork» (o'z nusxangiz). Terminalda: `git clone …`»
+  (o'quvchi bo'sh repo'ni ko'rib, xato qildim deb o'ylaydi — kutilgan holat aytilmagan)
+  ✅ «… → «Fork» (o'z nusxangiz). Unda faqat README bor — sayt va Backend'ni shu darsdan o'zingiz qurasiz (tayyor namuna — `yechim` tarmog'ida). Terminalda: …»
+
+**Qoida:** o'quvchi tashqi repo'ni ochadigan har qadamda u yerda NIMA ko'rinishi bir gapda aytiladi (bo'sh / skelet / tayyor), tayyor namuna qayerdaligi bilan.
+
+## 229. «ASBOB» YO'Q — NARSANING O'Z NOMI AYTILADI (F-1017-200, mentorlar fidbeki 17.10)
+
+Mentorlar: o'quvchilar «asbob» so'zini behayo ma'noda tushunib, darsda kulib o'tirishibdi (ReactIntro, JestUnitTest suratlari).
+Foydalanuvchi: «generalne shu so'z biror darsda bo'lmasin» · «vosita ham o'quvchiga tushunarsiz».
+
+- ❌ JestUnitTest Mentor: «Test asbobi kerak — Jest.»
+  ✅ «Testlarni ishga tushiradigan dastur kerak — Jest.»
+- ❌ ReactIntro: «React — tayyor asboblar to'plami»
+  ✅ «React — tayyor bo'laklar to'plami» (dars React'ni bo'laklardan qurish deb tushuntiradi; kartochka javobi «Kutubxona» qoladi)
+- ❌ NodeServer: «Asboblar do'koni» · «Express asbobini kodga chaqiramiz»
+  ✅ «Paketlar do'koni» · «Express paketini kodga chaqiramiz» (npm aynan paket o'rnatadi — bir darsda bitta so'z)
+- ❌ AuthEnv: «JWT_SECRET — u bilaguzukka muhr bosadigan asbob»
+  ✅ «… bilaguzukdagi muhr shu kalit bilan bosiladi»
+- ❌ yo'l emas: «asbob» → «vosita» hamma joyda (bitta kitobiy so'zni boshqasiga almashtirish — o'quvchi baribir tushunmaydi)
+
+- ❌ «Bu boshqa vositalar ishi» · «Bugungi 2 katta vosita» · «qaysi vosita ishlatiladi?» (F-1017-203)
+  ✅ «Bu boshqa dasturlar ishi» · «Bugungi 2 katta mavzu» · «nima ishlatiladi?»
+
+**Qoida:** «asbob» hech qaysi o'quvchi-matnida yozilmaydi. O'rniga umumiy so'z qidirilmaydi — narsaning o'zi nima bo'lsa shu aytiladi:
+dastur · paket · bo'lak · muhr/kalit · (jismoniy bo'lsa) qurilma. Lint: `asbob` (error). Bog'liq: §174 (bir darsda bitta so'z), sinonim-taqiq.
+
+## §NATIJA-SON — XATO XABARI HAQIQIY SON BILAN · ✓ FAQAT TEKSHIRUVDAN KEYIN (2026-10-17, F-1015-156 · 163 · 2-seans 7–14-M)
+- ❌ m5-01 sinovdan keyin, 3 qator xato: «Bir javob noto'g'ri hodisaga ulangan — qayta tekshiring.» (qotgan matn — son yolg'on)
+  ✅ «3 ta qator mos emas — ✗ qatorni ↻ bilan almashtiring.» · xato yo'q, mijoz javobsiz: «1 ta mijoz javobsiz ketdi — unga qator qo'shing.»
+- ❌ qator to'lishi bilan «/start → Salom va menyu ✓» · tanlovdan keyin «✓ Javobingiz: …», «✓ Tanlovingiz: A holat» (✓ «to'g'ri» deb o'qiladi)
+  ✅ «/start → Salom va menyu» (belgisiz) → sinovdan keyin «… ✓» yoki «… ✗ mos emas» · «Javobingiz: …» (belgisiz)
+- ❌ forma tugmasi xira, bosilmaydi, sabab yo'q
+  ✅ tugma bosiladi → «2 ta katak bo'sh.» · «Avval manbani tanlang.» · «Ish nomini yozing.» (qisqa, aniq — nima yetishmayapti)
+- Agent darslari (163, §229 ga qo'shimcha): ❌ «Asbob (tool) — agent chaqira oladigan funksiya» · «maqsad, asboblar va chegara»
+  ✅ «Tool — agent chaqira oladigan funksiya» · «maqsad, tool'lar va chegara» (m6-04 dagi atama — ikki darsda bitta so'z)
+**Qoida:** xato/natija xabaridagi son — haqiqiy hisob; ✓ faqat tekshirilgan va to'g'ri narsada. Bog'liq: DE 219 (eski raqami 211, 17.10 ko'chirildi).
+
+## §JIDDIY — 12–17 YOSHGA BOLALARCHA METAFORA YO'Q · KIRISH JAVOBI QISQA (2026-10-17, F-1015-382 · 383)
+Foydalanuvchi (m4-08 ko'rigi): «mashina bazada yashaydi degan detski so'zlarni ishlatmaylik — bu 12–17 yosh, normalne tushunadigan bolalar» · «bu so'z juda uzun bo'pti, qisqa tushunarli qilaylik».
+- ❌ «Mashinalar endi **bazada yashaydi**.» (sarlavha) → ✅ «Bugun AvtoIjara **backendini** qurasiz.»
+- ❌ «Sayt papkangiz internetda qayerda **yashaydi**?» → ✅ «… qayerda **turadi**?» · ❌ «JavaScript alohida script.js faylida **yashaydi**» → ✅ «… faylida **turadi**»
+- ❌ «Aniq! Mashinalar qo'lda yozilgan — yangisini qo'shish uchun har safar kodni ochish kerak, sahifani yangilasangiz o'zgarish yo'qoladi. Bugun ma'lumotni doimiy bazada saqlaydigan va boshqariladigan backend quramiz.»
+  ✅ «Aniq! Ro'yxat kodning ichida — sahifani yangilasangiz, o'zgarish yo'qoladi. Bugun ma'lumotni **bazada** saqlaydigan backend quramiz.»
+  (va tagidagi takror ❌ «Tugma bor — lekin hech narsa o'zgarmadi. Ro'yxat kod ichida qotib qolgan, orqada server yo'q!» → ✅ «Tugma bor — lekin hech narsa o'zgarmadi.»)
+**Qoida:** narsani o'z nomi va oddiy fe'l bilan («saqlanadi», «turadi», «quriladi») — jonlantirish («yashaydi», «uychasi», «do'stimiz») yo'q. Kirish javobi: «Aniq!» + 1 sabab + 1 «bugun» gapi; ekranda boshqa joyda aytilgan gap takrorlanmaydi (208).
+Sinf-supurish (17.10): 19 praktika — o'quvchiga ko'rinadigan 3 joy (m4-08 sarlavha, m1-11 sarlavha, m2-08 test varianti) tuzatildi; qolgan «yashaydi» — kod izohlari. Butun src: 30 faylda «yashaydi» — praktika bo'lmagan darslar boshqa seanslar doirasida (topshiriq kerak bo'lsa — foydalanuvchi qarori).
+
+## §KIRISH-JAVOB — TANLANGAN VARIANTGA BITTA GAP + BITTA «BUGUN…» (2026-10-17, F-1015-392 · 393 · 394 · DE 216)
+Foydalanuvchi (m4-13 ko'rigi): «buni o'quvchi o'qimaydi, qisqa tushunarli, o'qigisi keladigan qilaylik … #global».
+- ❌ (noto'g'ri variantlarning hammasiga bitta matn, 259 belgi) «Ikkinchi daftar chalkashlikni ikki baravar qiladi; joylarni kamaytirish — yechim emas, daromad kamayadi. Qorovulga bir qarashda ko'rinadigan panel kerak: bo'sh/band joylar rangda, kirish-chiqish bir bosishda. Bugun shuni quramiz — front, server va baza birga.»
+  ✅ «Ikkinchi yozuvchi — ikki baravar chalkashlik.» / «Joy kamaysa — pul ham kamayadi.» / «Aynan!» + «Bugun qorovul uchun panel quramiz: bo'sh joy — yashil, band — qizil.»
+- ❌ (metafora) «Aslida sabab — rejasizlik. Katta vazifani bo'laklamasak, AI ham, biz ham adashamiz. Uy qurishdan oldin ham avval chizma chiziladi. Bugun aynan shuni — rejalashtirishni — o'rganamiz.»
+  ✅ «Tezlik emas — reja yo'q edi.» + «Bugun katta vazifani bo'laklab, reja tuzishni o'rganamiz.»
+- ❌ (har variantga «Aynan!») m3-11: «Aynan! React Router butun sahifani emas, faqat kerakli qismini almashtiradi…» — «Internet tez» tanlaganga ham.
+  ✅ «Internet emas — Router faqat kerakli qismni almashtiradi.» + «Bugun robo-games'ni ko'p sahifali qilamiz.»
+- ❌ «…Restoranda ham shunday: zal alohida, oshxona alohida…» · «…sayt maxsus bilaguzuk beradi…» · «…keng tarqalgan afsona…»
+  ✅ «Bitta fayl yana chalkashib ketadi.» · «Bugun login qo'shamiz: faqat kirgan odam o'zgartira oladi.» · «Tasodif emas — server aniq qoida bilan tanlaydi.»
+**Qoida:** javob = tanlangan variantga ≤ 60 belgilik bitta gap (nega aynan shu ishlamaydi; to'g'risiga «Aynan!») + hammaga bir xil bitta «Bugun …» qatori; jami ≤ 120 belgi (uz va ru). Tanlanmagan variantni tushuntirmaydi, metafora yo'q. Bog'liq: §JIDDIY, §215, DE 216.
+Sinf-supurish (17.10): LMS 2–6 — 31 dars tuzatildi (`qurish/f393.py`, `f394.py`); ReactFirstComponent — 3-seans ishlayotgani uchun tegilmadi. Sinov: `sinov/f394-kirish.mjs`.
+
+## §YAKKA-YORIQ — «yoningizda odam bo'lmasa…» sinfi (F-1015-213, 18.10, foydalanuvchi: «bunaqa gaplar umuman kerak emas»)
+❌ «Yoningizda odam bo'lmasa, uydagilardan biriga qo'ng'iroq qilib so'rang yoki bu qadamni uyda bajaring.»
+✅ (olinadi — gap yo'q)
+**Sabab:** dars sinfda, sherik bilan o'tiladi; «bo'lmasa»ga mo'ljallangan zaxira-yo'riq ekranga ishonchsizlik qo'shadi va o'quvchi o'qimaydi. Yakka rejimda forma shunchaki ishlaydi, qadamni uyda bajarish uyga vazifada aytiladi. Qidirildi: 7–14-M 102 dars, bitta joy (m9-03 s10) — olindi.

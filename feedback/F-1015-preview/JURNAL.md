@@ -534,3 +534,12 @@ ro'yxat 70/70 · unit 24/0 · preview-keys-check ✓ · yakka 70 · shared 22/22
 **smoke-preview yakka 70/70 · shared 22/22** (har biri: dars-api 0, belgi, PIN/mentor paneli yo'q, saqlov surati o'zgarmagan; nazorat qismi — hisoblagich va mentor paneli bor).
 Holat 15.10 kechqurungi src (CssPractice — 3-seansning joriy nusxasi). Yakshanbada praktikalar o'zgaradi — buyruq o'sha kuni qayta yuriladi.
 Sinalmagan: skriptning «ro'yxat ✗» yo'li (yangi lesson_id) — hozir id'lar mos, shu sabab ishlab ko'rilmadi.
+
+## F-1015-24 · 15.10.2026 18:15 — COMMIT `b399583` (push YO'Q)
+
+`feat(preview): LMS «Bilimlar bazasi» preview rejimi — serversiz, yagona manba visitMode prop (F-1015-01…23)` — 92 fayl (+4686/−340):
+A — preview 37 (`src/live` 7 · `scripts` 8, shu jumladan F-1015-21 dan keyin yozilgan `preview-reliz.mjs` · `preview/` 2 · `feedback/F-1015-preview/` 20) ·
+B — 52 dars (F-1012/F-1013; commitdan oldin tahlil bilan solishtirildi — o'zgarmagan) · D — `src/App.jsx`, `src/compilator/HtmlCompiler.jsx`, `teg-xaritasi.json`.
+Commitdan oldin indeks bo'sh edi; praktikalar, `package.json`, `lms/` indeksga tushmagani tekshirildi.
+KIRMADI: 18 praktika (3-seans yakshanbagacha qayta quradi), `package.json`. Bu yozuv commitdan keyin qo'shildi (JURNAL.md — commit qilinmagan o'zgarish).
+Keyingi: YAKSHANBA 18.10 reliz — F-1015-22 tartibi.

@@ -32,10 +32,11 @@ Telefon maketi: «Maydon Jamoa» · O'yinlar · Shanba · «Shanba, 18:00» · �
 - Chap — yorliq: Dars oxirida: sarlavha, foyda va bitta tugma · kulrang teg `lending`
   - Vizual bir marta o'zi yoziladi: brauzer oynasida navbat bilan — Maydon Jamoa · sarlavha · tugma · telefon (Maydon Jamoa · 8 / 10) · yonida uch qator «foyda»; oxirida manzil qatorida qulf belgisi va `….netlify.app`
 - Reja:
-  1. Sahifaning birinchi qatorini yozishni bilib olasiz · sarlavha
-  2. Funksiyani odamga beradigan foydaga aylantirasiz · foyda
-  3. Instagram nimadan boshlanganini ko'rasiz · voqea
-  4. Sahifani sherigingiz bilan sinab, internetga chiqarasiz · sinov
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
+  1. Sahifaning birinchi qatorini yozishni bilib olasiz
+  2. Funksiyani odamga beradigan foydaga aylantirasiz
+  3. Instagram nimadan boshlanganini ko'rasiz
+  4. Sahifani sherigingiz bilan sinab, internetga chiqarasiz
 - Tugmalar: Orqaga · Boshlaymiz
 
 ## 2 · Sarlavha
@@ -86,7 +87,7 @@ Telefon maketi: «Maydon Jamoa» · O'yinlar · Shanba · «Shanba, 18:00» · �
 - Eyebrow: Tushuncha · foyda
 - Sarlavha: Funksiya odamga *nima beradi?*
 - Mentor: Telefonda ajralib turgan funksiyaga qarang va u odamga nima berishini o'ngdagi kartadan tanlang.
-- Chip qatori (joriysi ajralgan, o'tgani ✓): 1 «Qo'shilaman» · 2 «8 / 10» · 3 «Kelaman» · 4 Eslatma
+- Chip qatori yo'q — funksiya nomi kartada, hisob tugmada «(n/4)». *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
 - Chapda — kattalashgan telefon «Maydon Jamoa» (O'yin ekrani: ‹ O'yinlar · Shanba, 18:00 · Mahalla maydoni · 8 / 10 · tugma «Qo'shilaman»; 3-kartada o'yin kuni — «Kelaman»). Joriy funksiya halqada. Telefon yonida yozilgan juftliklar ro'yxati: funksiya — ingichka chiziq — foyda.
 - O'ngda — bitta karta (yorliq: funksiya):
   1. «Qo'shilaman» tugmasi
@@ -155,12 +156,12 @@ Telefon maketi: «Maydon Jamoa» · O'yinlar · Shanba · «Shanba, 18:00» · �
 ## 7 · Instagram
 - Eyebrow: Biznes olamidan
 - Sarlavha: Instagram *nimadan boshlangan?*
-- Nuqtalar qatori: Instagram · N/3
+- Yorliq va nuqtalar yo'q — tugma «Voqea davomi (N/3)» aytadi; bashorat yorlig'i «Avval o'zingiz belgilab ko'ring» *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
 - Brend tanishtiruvi (1/3 da): Instagram — rasm va video ulashiladigan ilova.
 - 1/3 — Burbn
   - Mentor: Burbn — Instagram asoschilarining birinchi ilovasi. Unda qayerdaligini belgilash, rejalar va rasm bor edi: funksiya ko'p, lekin uni hech kim ishlatmagan.
   - Sahna: telefon, tepada nom «Burbn»; menyuda uch qator — Belgilash · Rejalar · Rasm
-  - Bashorat (yorliq: Instagram · 1/3): Asoschilar funksiyalar bilan nima qilgan?
+  - Bashorat (Avval o'zingiz belgilab ko'ring): Asoschilar funksiyalar bilan nima qilgan?
     - Yana funksiya qo'shgan
     - Hammasini qoldirgan
     - Ko'pini olib tashlagan
@@ -198,7 +199,7 @@ Telefon maketi: «Maydon Jamoa» · O'yinlar · Shanba · «Shanba, 18:00» · �
   - 11-Modul ma'lumoti bo'lmasa: Avval muammo gapingiz va yechimingizni bir qatordan yozing, keyin sarlavhaga o'ting.
 - Tepada — ixcham qator «11-Moduldan · PRD» (bosilsa ochiladi): Muammo: <muammo gapingiz> · Kim uchun: <…> · Yechim: <…> · Uchta asosiy funksiya: <…>
   - Ma'lumot bo'lmasa — ikki maydon: «Muammo gapi — kim nimadan qiynaladi?» · «Yechim — mahsulot nima qiladi?»
-- Chapda — o'quvchi sahifasi brauzer maketida, yozilgani sari to'lib boradi; tepada yorliq: Sahifam · n / 4. Nom bo'lmasa — kulrang «mahsulot nomi».
+- Chapda — o'quvchi sahifasi brauzer maketida, yozilgani sari to'lib boradi; tepada yorliq: Sahifam (hisob tugmada «Yana N ta bo'lak» *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*). Nom bo'lmasa — kulrang «mahsulot nomi».
 - O'ngda — bitta karta (joriy bo'lak), belgi hisoblagichi bilan:
   - (nom bo'lmasa, birinchi) Mahsulot nomi · 40 belgigacha
   1. Sarlavha · 1 / 4 — Kim uchun va nima foyda? · «Bir qator, odamga qaratib» · 60 belgigacha
@@ -230,7 +231,7 @@ Telefon maketi: «Maydon Jamoa» · O'yinlar · Shanba · «Shanba, 18:00» · �
 - Sarlavha: Sherigingiz 5 soniyada *nimani tushunadi?* (yakka rejimda: 5 soniyadan keyin sahifadan *nima esda qoladi?*)
 - Mentor: Ekranni sherigingizga buring va «5 soniyani boshlash»ni bosing — keyin unga uch savol berasiz.
   - Yakka rejimda: Sahifangizni 5 soniya ko'ring, keyin uch savolga ekranga qaramasdan, yoddan javob yozing.
-- Chip qatori: 1 Ko'rsatish · 2 So'rash · 3 Solishtirish (yakka: 1 Ko'rish · 2 Yozish · 3 Solishtirish)
+- Chip qatori yo'q — birinchi ikki qismni Mentor, uchinchisini tugma «Solishtiring (n/3)» aytadi. *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
 - 1-qism: o'quvchi sahifasi parda ostida; tugma: 5 soniyani boshlash → parda ko'tariladi, sanoq 5 → 0, parda tushadi. Kulrang qator: 5 soniya — shu mashqning qoidasi.
 - 2-qism: uch savol bittadan — Bu nima? · Kim uchun? · Bu yerda nima qilish mumkin?
   - Maydon: «U nima dedi?» (yakka: «Nima esda qoldi?») · tugmalar: Javob bermadi (yakka: Eslay olmadim) · Saqlash
@@ -366,6 +367,7 @@ Natijalar (podium) — jonli reyting
   - Keyingi dars — **«WebSocket: ekran o'zi yangilanadigan ulanish»**
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
 
 ## Nishonlar
 - **Benefit Finder!** — Uch funksiyaning foydasini va hali yo'q funksiyani birinchi urinishda ajratdingiz (4-ekran, to'rt kartada birinchi urinishda)

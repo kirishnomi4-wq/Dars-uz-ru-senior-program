@@ -72,11 +72,11 @@ Tashqi audit (ChatGPT) Filtri: `02-FILTR.md` — 05.10.2026 qo'llandi.
   - O'shanda nima qildi? — «Hammasiga «ha» dedim, keyin ikkitasiga qayta qo'ng'iroq qildim»
   - Nima qiyin bo'ldi? — «Kim birinchi qo'ng'iroq qilganini eslay olmadim»
   oxirida karta chetida yashil chiziq.
-- O'ng (01 · matn · teg; bosilmaydi — P-015):
-  - 01 · Qaysi savol bo'lib o'tgan ishni so'rashini ajratasiz · `savol`
-  - 02 · O'yinchi bilan suhbatni to'rt qatorga yozasiz · `shablon`
-  - 03 · Kitobdagi ona qaysi savolga voqeani aytganini ko'rasiz · `voqea`
-  - 04 · O'z muammongiz bo'yicha sinfdoshingiz bilan suhbatlashasiz · `juftlik`
+- O'ng (01 · matn; bosilmaydi — P-015; teg yo'q — matnni takrorlardi) *(✎ F-1015-114, 208-qonun 0-band: takror olindi)*:
+  - 01 · Qaysi savol bo'lib o'tgan ishni so'rashini ajratasiz
+  - 02 · O'yinchi bilan suhbatni to'rt qatorga yozasiz
+  - 03 · Kitobdagi ona qaysi savolga voqeani aytganini ko'rasiz
+  - 04 · O'z muammongiz bo'yicha sinfdoshingiz bilan suhbatlashasiz
 - Harakat yo'q (reja ekrani) — vizual o'zi yoziladi.
 - Tugmalar: Orqaga · Boshlaymiz →
 
@@ -84,7 +84,7 @@ Tashqi audit (ChatGPT) Filtri: `02-FILTR.md` — 05.10.2026 qo'llandi.
 - Eyebrow: Takror · ikki xil savol
 - Sarlavha: **Qaysi savol maydonda bo'lgan voqeani ochadi?** (44)
 - Mentor: Botingizni ishlatgan odamdan nimani so'raganingizni eslang — o'sha qoida maydonda ham ishlaydi. Har savolni o'z tomoniga joylang.
-- Bashorat (ballsiz, 181): **Bu savollardan nechtasi voqeani ochadi?** · 2 · 3 · 4 — tanlov saqlanadi.
+- Bashorat yo'q — saralashning o'zi topshiriq (181 faqat bosib ko'riladigan ekranga); kartalar darrov joylanadi. *(✎ F-1015-114, 208-qonun 0-band: takror olindi)*
 - Vizual: tepada olti savol-karta (aralash tartibda) · ostida ikki tomon, bir balandlikda: chap **Bo'lib o'tgan ishni so'raydi** · o'ng **Bo'lib o'tgan ishni so'ramaydi** ·
   o'ng chetda suhbatdosh — o'yinchi (pufak bo'sh).
 - Savollar (o'yinchiga) → o'yinchining javobi → yorliq:
@@ -103,7 +103,7 @@ Tashqi audit (ChatGPT) Filtri: `02-FILTR.md` — 05.10.2026 qo'llandi.
 - 6/6 da: tomonlar ustida `m5-08` dagi nom paydo bo'ladi: chap **voqea savoli**, o'ng **bo'sh savol**. Natija qatori (`QTaxmin`): «Taxminingiz: 2 · haqiqatda: 3» yoki «Taxminingiz to'g'ri chiqdi».
 - Xulosa: G'oya haqidagi savol ham bo'sh savol: javobida maydonda bo'lgan voqea yo'q. (75)
 - Tugma (pastki): 6 savolni joylang (N/6) → Davom etish · `tugadi`: kartalar paneli yopiladi, ikki tomon va o'yinchi pufagi butun enga (199).
-- ✎ Kod (05.10, quruvchi): olti karta tepada birdaniga emas — bittadan katta karta («N / 6») chiqadi va tanlangan tomonga uchib kiradi (SABOQ 9, 13); bashorat savoli shu karta ustida. Matn o'zgarmagan.
+- ✎ Kod (05.10, quruvchi): olti karta tepada birdaniga emas — bittadan katta karta («N / 6») chiqadi va tanlangan tomonga uchib kiradi (SABOQ 9, 13). «N / 6» kartada yo'q — tugma «6 savolni joylang (N/6)» aytadi (F-1015-114). Matn o'zgarmagan.
 - O'qituvchi eslatmasi: 6-savoldagi maqtovni «yomon» demang — u rost his, faqat maydonda nima bo'lganini aytmaydi. Kitob voqeasi (6-ekran) shu haqda.
 
 ## 3 · 1-savol  ← QTest (✔ C, `correctIdx 2`)
@@ -123,7 +123,7 @@ Tashqi audit (ChatGPT) Filtri: `02-FILTR.md` — 05.10.2026 qo'llandi.
 - Eyebrow: Tajriba · bitta suhbat
 - Sarlavha: **Bitta o'yinchidan nimani bilib olasiz?** (38)
 - Mentor: Savolni siz tanlaysiz, o'sha o'yinchi javob beradi. Javob shablonning qaysi qatoriga tushishini kuzating.
-- Chap — qadam-ro'yxati (`QQadamlar`, 163.8): 1 Oxirgi marta nima bo'ldi? · 2 O'shanda nima qildi? · 3 Nima qiyin bo'ldi? (joriy — accent, o'tgani ✓).
+- Chap — qadam-ro'yxati yo'q: o'ngdagi shablon qatorlari (joriy — accent) xuddi shuni ko'rsatadi. *(✎ F-1015-114, 208-qonun 0-band: takror olindi)*
   Har qadamda ikki savol-tugma (bir uzunlikda). O'ng — suhbatdosh (o'yinchi) + shablon kartasi; 1-qator «Kim bilan — o'yinchi» oldindan yozilgan, qolgan uchtasi uzuq chiziq.
 - Qadamlar (✔ — qatorni to'ldiradigan savol; o'rni almashib turadi):
   1. «Maydon topish sizga qiyinmi?» → «Ha, ba'zan qiyin.» → javob savolda ·
@@ -161,7 +161,8 @@ Tashqi audit (ChatGPT) Filtri: `02-FILTR.md` — 05.10.2026 qo'llandi.
 - Eyebrow: Kitobdan (GATE M 02-q0; PM-028 ramkasi)
 - Sarlavha: **Onangiz ham rostini aytadigan savol qanday bo'ladi?** (51)
 - Mentor: «The Mom Test» — Rob Fitzpatrick degan tadbirkorning odamlar bilan qanday gaplashish haqidagi kitobi. U 2013-yilda chiqqan.
-- Nuqtalar (5) · yorliq **The Mom Test · N/5** (bashorat kartasida ham) · maket `KitobSahna` (chizilgan: kitob muqovasi → oshxona stoli, ona va o'g'il siluetlari, planshet, javon; logotip yo'q, son o'ylab topilmagan).
+- Bosqich hisobi faqat tugmada «Keyingi bosqich (N/5)»; nuqtalar qatori yo'q; bashorat yorlig'i «Avval o'zingiz belgilab ko'ring», variantda ✓/✗ yo'q (natija qatori aytadi). *(✎ F-1015-114, 208-qonun 0-band: takror olindi)*
+- Maket `KitobSahna` (chizilgan: kitob muqovasi → oshxona stoli, ona va o'g'il siluetlari, planshet, javon; logotip yo'q, son o'ylab topilmagan).
 - Bosqichlar (karta matni qisqa; karta cho'zilmaydi):
   - 1/5 **Kitob bitta misol bilan boshlanadi** — Muallif o'zi ham odamlar bilan noto'g'ri gaplashganini yozadi. Kitobda o'g'il onasi bilan ikki marta gaplashadi.
     · maket: muqova ochilib oshxona sahnasiga o'tadi
@@ -176,9 +177,9 @@ Tashqi audit (ChatGPT) Filtri: `02-FILTR.md` — 05.10.2026 qo'llandi.
     · maket: javonda bitta ochilgan kitob, yorliq «3 oy oldin»
 - Bashorat natijasi (`QTaxmin`): «Taxminingiz: … · haqiqatda: …» yoki «Taxminingiz to'g'ri chiqdi».
 - ✎ Kod (05.10, quruvchi): SABOQ 8 — bosqich gapi Mentorda. 1/5 da Mentor: kitob izohi + bosqich matni; bashorat bosqichlarida Mentor birinchi gapni aytadi («O'g'il g'oyasini aytadi: …» · «Ikkinchi suhbatda …»), bashorat kartasida savol («Onasi nima deydi?» · «Qaysi biri ko'proq narsa ochadi?»). So'zlar aynan, faqat ikki joyga bo'lingan.
-- Sahna yozuvlari (rasm ostida): 1 «Kitob · 2013» · 2 «Birinchi suhbat» · 3 «Maqtov» · 4 «Ikkinchi suhbat» · 5 «3 oy oldin»
+- Rasm ostidagi yozuvlar yo'q (Mentor va bosqich nomi aytardi): «Birinchi suhbat» va «Ikkinchi suhbat» — 2- va 4-bosqich nomi (sarlavha) bo'ldi. *(✎ F-1015-114, 208-qonun 0-band: takror olindi)*
 - **Harakat → Vizual o'zgarish:** «Keyingi bosqich» yoki bashorat varianti → `KitobSahna` holati o'zgaradi: muqova → oshxona (o'g'il planshetni ko'rsatadi) →
-  ona pufagi «Ajoyib ekan!» + yorliq «baho» → o'g'il planshetni qo'yadi, javonga ishora qiladi → javondagi kitob ochiladi, «3 oy oldin». Bashoratda tanlangan variant ✓/✗ va `QTaxmin`.
+  ona pufagi «Ajoyib ekan!» + yorliq «baho» → o'g'il planshetni qo'yadi, javonga ishora qiladi → javondagi kitob ochiladi, «3 oy oldin». Bashoratdan keyin `QTaxmin`.
 - Xulosa (5/5 dan keyin, ko'prik o'rnida): Kitob nomi shundan: ona ham rostini aytadigan savollar. Maydon intervyusida ham oxirgi voqea so'raladi. (103)
 - Tugma (pastki): Keyingi bosqich (N/5) → Davom etish · nuqtalar ustida: Avval shu bosqichni tugating
 - O'qituvchi eslatmasi: «rostini aytadi» — kitob nomidan; gap yolg'onda emas: g'oyani eshitgan odam muloyimlik qilib maqtaydi yoki kelajakni taxmin qiladi,
@@ -208,7 +209,7 @@ Tashqi audit (ChatGPT) Filtri: `02-FILTR.md` — 05.10.2026 qo'llandi.
   - (1-darsda muammo tanlangan bo'lsa — `pm-m7d1-tanlangan`) O'tgan darsda tanlagan muammongiz: «{matn}». Shu bilan davom etasiz yoki ro'yxatingizdan (`pm-m7d1-muammolar`) boshqasini tanlaysiz.
   - (bo'lmasa) Atrofingizdagi bitta muammoni yozing.
 - Mentor: Muammoga kim duch kelsa, o'shandan so'raysiz — maydonda bular o'yinchi va maydon egasi edi. Savolda g'oyangiz bo'lmasin.
-- Bitta ustun: qadam-chiplari 1/2/3 → forma (har qadamda bitta qator) → Yordam · «Shablonga yozish» o'ngda (187) · ostida shablon kartasi.
+- Bitta ustun: qadam-chiplari 1/2/3 → forma (har qadamda bitta qator; savol placeholder'da, alohida yorliqsiz — F-1015-114) → Yordam · «Shablonga yozish» o'ngda (187) · ostida shablon kartasi.
 - Qadamlar va qatorlar:
   - 1 Muammo — «Qaysi muammo haqida so'raysiz?» (ro'yxatdan bosib tanlash yoki yozish) → karta sarlavha-qatori «Muammo: …»
   - 2 Kimdan so'raysiz — «Bu muammoga kim duch keladi?» → karta sarlavha-qatori «Kimdan so'rayman: …»
@@ -221,6 +222,7 @@ Tashqi audit (ChatGPT) Filtri: `02-FILTR.md` — 05.10.2026 qo'llandi.
   - 3-qadamda g'oya so'zi («sayt», «ilova», «bot», «g'oya»): Savolda g'oyangiz bor — odamning o'zi haqida so'rang. (53)
   - 3-qadamda «shundaymi», «to'g'rimi»: Bunga odam shunchaki «ha» deydi. (32)
   - o'tsa (yashil, bitta qator): Savol o'tgan voqeani so'rayapti — shablonga yozildi. (51)
+  - qator bo'sh bo'lsa: «Shablonga yozish» o'chiq emas — bosilganda tugma ostida `QXato` va kursor qatorga qaytadi: 1-qadam — Avval muammoni yozing. · 2-qadam — Avval kimdan so'rashingizni yozing. · 3-qadam — Avval birinchi savolni yozing. *(✎ F-1015-164)*
 - Yordam: Savolni «Oxirgi marta … qachon bo'ldi?» yoki «Oxirgi marta … bo'lganda nima bo'ldi?» deb boshlang. Muammoning ikki tomoni bo'lsa, ikkalasidan ham so'rang.
 - **Harakat → Vizual o'zgarish:** qatorni yozib «Shablonga yozish» → shablon kartasiga qator kiradi, joriy chip keyingisiga o'tadi; o'tmagan qator `err` fonda va ostida bitta `QXato`.
   3/3 da forma yopiladi, shablon kartasi butun enga (199), har qator yonida ✎ (sichqoncha ustida: Tahrirlash).
@@ -234,7 +236,7 @@ Tashqi audit (ChatGPT) Filtri: `02-FILTR.md` — 05.10.2026 qo'llandi.
 - Sarlavha: **Sinfdoshingizdan nimani eshitasiz?** (34)
 - Mentor (jonli darsda): Avval siz so'raysiz, keyin sherigingiz sizdan so'raydi. Javobni o'sha zahoti, u aytganidek yozing.
 - Mentor (mustaqil rejimda): Yoningizdagi bir odamga savollaringizni bering. Javobni o'sha zahoti, u aytganidek yozing.
-- Bitta ustun: qadam-chiplari 1/2/3 → forma → Yordam · «Yozuvga qo'shish» o'ngda · ostida 8-ekrandagi shablon kartasi (savollar bilan).
+- Bitta ustun: forma (qadam-chiplari yo'q — shablon qatorlari joriyni ko'rsatadi) *(✎ F-1015-114, 208-qonun 0-band: takror olindi)* → Yordam · «Yozuvga qo'shish» o'ngda · ostida 8-ekrandagi shablon kartasi (savollar bilan).
   1-qator «Kim bilan» oldindan yozilgan: jonli — «sinfdosh», mustaqil — «yoningizdagi odam» (✎ bilan o'zgartiriladi).
 - Qadamlar (har qadamda tepada savol, ostida bitta qator «U nima dedi?»):
   - 1 Oxirgi marta nima bo'ldi? — savol: {8-ekrandagi birinchi savol}
@@ -242,7 +244,7 @@ Tashqi audit (ChatGPT) Filtri: `02-FILTR.md` — 05.10.2026 qo'llandi.
   - 3 Nima qiyin bo'ldi? — savol: «Eng qiyini nima bo'ldi?»
 - Tekshiruv (`QXato`, ≤60):
   - xulosa so'zi («kerak», «hamma», «ko'pchilik», «odatda»): Bu xulosaga o'xshaydi — u aytganidek yozing. (44)
-  - qator bo'sh: tugma o'chiq emas, yonida qulf-yorliq: Sinfdoshingiz nima dedi — shuni yozing. (40)
+  - qator bo'sh: tugma o'chiq emas; qulf-yorliq yo'q (placeholder «U nima dedi?» va Mentor aytadi) *(✎ F-1015-114, 208-qonun 0-band: takror olindi)*
 - Yordam: Sinfdoshingizda bu voqea bo'lmagan bo'lsa — shuni yozing: bu ham javob. Kitobdagi yana bir qoida: kamroq gapiring, ko'proq tinglang.
 - **Harakat → Vizual o'zgarish:** javobni yozib «Yozuvga qo'shish» → shablon qatoriga eshitgan javob qo'shtirnoqda kiradi, chap chetda yashil chiziq; xulosa so'zi bo'lsa qator `err` fonda.
   3/3 da forma yopiladi, karta ustida yorliq **mashq yozuvi**, karta butun enga, har qator yonida ✎.
@@ -298,6 +300,7 @@ console.log(yozilmagan(yozuvlar[2]));
 - **Harakat → Vizual o'zgarish:** darvozada to'g'ri javob → kod namunasidagi `""` qiymatlar bir lahza ajraladi; kod ishga tushganda Console'da uch ro'yxat chiqadi, shartlar birma-bir ✓.
 - Tugma: ✓ Bajardim — kod ishladi · qulf-holat: Avval kod-savolini yeching
 - ✎ Kod (05.10, quruvchi): «Bajardim» kod oynasi bir marta ochilgandan keyin yoqiladi (SABOQ 11: bir vaqtda bitta faol tugma — avval «Kompilyatorni ochish»).
+- Darvoza yechilmaguncha tugma yo'q — o'rnida kulrang matn (`QIzoh`): Avval kod-savolini yeching · «Bajardim» kod oynasi ochilgandan keyin chiqadi · bosilgach tugma emas, yashil yozuv: ✓ Bajardim — kod ishladi *(✎ F-1015-164)*
 - Tugmalar: Orqaga · ① Kod-savolini yeching → ② Kodni yozing → Davom etish
 - Jonli darsda: Sinfda: N bajardi · N hali bajarmoqda
 - Nishon: **Record Checker!**
@@ -320,13 +323,14 @@ console.log(yozilmagan(yozuvlar[2]));
 - Sarlavha: **Odam qisqa javob bersa, keyin nima so'raysiz?** (45)
 - Mentor: Maydon egasi bitta gap bilan javob berdi. Avval {sherigingizga | ovoz chiqarib o'zingizga} keyingi savolni ayting, keyin yozing.
 - Vizual: suhbatdosh (maydon egasi) va uning pufagi: «Kecha ko'p qo'ng'iroq bo'ldi.» · ostida shablon kartasi, «O'shanda nima qildi?» qatori joriy (uzuq chiziq).
-- Qadamlar 1/2: 1 Sherigingizga ayting | Ovoz chiqarib ayting · 2 Keyingi savolni yozing
+- Qadam-qatori yo'q (Mentor gapi aytadi); faqat taymer. *(✎ F-1015-114, 208-qonun 0-band: takror olindi)*
   - Mustaqil taymer (30 s): 30 soniyani boshlash · Hozir ovoz chiqarib ayting · To'xtatish · Vaqt tugadi — aytib bo'ldingiz. Barakalla! · ↻ Yana 30 soniya
   - Jonli taymer (1 daqiqa): Har biringizga 30 soniyadan — avval A, keyin B. · 1 daqiqani boshlash · Hozir A gapiradi · Hozir B gapiradi · To'xtatish · ↻ Yana 1 daqiqa
 - Qator maslahati: O'sha kun haqida nimani so'raysiz?
 - Tekshiruv (`QXato`, 8-ekrandagi qoidalar va matnlar): kelajak yoki shart — Bu ish hali bo'lmagan — o'tgan kunni so'rang. · g'oya so'zi — Savolda g'oyangiz bor — odamning o'zi haqida so'rang. ·
   «shundaymi», «to'g'rimi» — Bunga odam shunchaki «ha» deydi. · o'tsa (yashil): Savol o'sha voqeani davom ettiryapti.
 - Yordam: O'sha kunni so'rang: «O'shanda nima qildingiz?» yoki «Keyin nima bo'ldi?»
+- Qator bo'sh bo'lsa: «Saqlash» o'chiq emas — bosilganda tugma ostida `QXato`: Avval savolingizni yozing. va kursor qatorga qaytadi *(✎ F-1015-164)*
 - **Harakat → Vizual o'zgarish:** savolni yozib «Saqlash» → savol o'quvchi pufagi bo'lib chiqadi. O'tsa — egasi davom etadi: «Hammasiga «ha» dedim, keyin ikkitasiga qayta qo'ng'iroq qildim.»,
   javob shablonning «O'shanda nima qildi?» qatoriga qo'shtirnoqda tushadi, chap chetda yashil chiziq. O'tmasa — egasi pufagi ostida kulrang yorliq («va'da» / «javob savolda» / «baho»), bitta `QXato`.
 - Xulosa (yozgach): Qisqa javobdan keyin o'sha voqeani davom ettirasiz — yozuvning keyingi qatori shunday yoziladi. (95)
@@ -489,7 +493,7 @@ Jonli darsda mentor «Qayta tushuntirishni ochish» bosganda chiqadi. Yorliq: Qa
    «n / 5» izlari) — 0, 1, 2, 4, 8, 9, 12-ekranlar shundan. s10 kod yozuvlari ham shu kalitlar bilan. `reduced-motion` — o'tishsiz.
 4. s2 — `S2_SAVOLLAR` (6: matn, javob, tur `voqea|vada|savolda|baho`); bashorat 2/3/4; saralash; 6/6 da tomon nomlari; `QXato` matnlari turga qarab.
 5. s4 — `S4_QADAMLAR` (3 × 2 savol, ✔ o'rni 2/1/2); bo'sh savol bosilsa tugma o'chadi; 3/3 da `QIzoh` atama-qatori va «1 / 5»; 42 s ipucha; nishon `firstRecord`.
-6. s6 — `KitobSahna` maketi (muqova → oshxona → pufak → javon), `MOM_SLIDES` 5 ta, 2 bashorat, `QTaxmin`, 4/5 dan keyin `QIzoh`; yorliq «The Mom Test · N/5»; manba izohi faylda ham.
+6. s6 — `KitobSahna` maketi (muqova → oshxona → pufak → javon), `MOM_SLIDES` 5 ta, 2 bashorat, `QTaxmin`, 4/5 dan keyin `QIzoh`; nuqtalar va rasm-osti yozuvi yo'q (F-1015-114); manba izohi faylda ham.
 7. s8 — o'qiydi: `pm-m7d1-tanlangan` (`{ matn, kim }`, tanlangan holda) va `pm-m7d1-muammolar` (ro'yxat); yo'q bo'lsa erkin qator; tekshiruv `RegExp` lari (kelajak, g'oya so'zi, «shundaymi», «hamma»); natija saqlanadi
    `pm-m7d2-shablon` = `{ muammo, kimdan, savol1 }` — s9, uyga vazifa va 3-dars uchun (tayanch 6-bo'lim).
 8. s9 — jonli/mustaqil ikki Mentor matni; 1-qator «Kim bilan» standart qiymati rejimga qarab; xulosa-so'z tekshiruvi; mashq yozuvi `pm-m7d2-mashq` = `{ kim, voqea, qildi, qiyin }`.

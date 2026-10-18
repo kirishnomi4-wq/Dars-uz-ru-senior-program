@@ -1,0 +1,31 @@
+.bosh { gap: 10px; }
+h3 { margin: 0; font-size: 16px; }
+.d-av { width: 30px; height: 30px; flex: none; border-radius: 50%; background: var(--d-asoft); color: var(--d-accent); font-weight: 800; display: grid; place-items: center; font-size: 13px; }
+.d-mentor { display: flex; gap: 10px; align-items: flex-start; }
+.maqsad { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 8px; } .maqsad li { margin: 0; }
+.natija { background: var(--accent-soft); border-radius: 10px; padding: 10px 14px; }
+.muammo-r li { margin: 5px 0; }
+.oqim { display: flex; flex-direction: column; gap: 4px; }
+.oqim .q { display: grid; grid-template-columns: 44px 120px minmax(0, 1fr) 56px; gap: 10px; align-items: center; padding: 8px 10px; border-radius: 9px; background: var(--bg); font-size: 14px; }
+.oqim .n { font-family: var(--f-mono); font-size: 12px; color: var(--ink2); font-variant-numeric: tabular-nums; }
+.oqim .tur { font-size: 12px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--ink2); }
+.oqim .v { font-family: var(--f-mono); font-size: 12px; color: var(--ink2); text-align: right; font-variant-numeric: tabular-nums; }
+.oqim .asos .tur { color: var(--accent); }
+.oqim .markaz { background: var(--accent-soft); font-weight: 700; }
+.oqim .test .tur { color: var(--ink); }
+.oqim .savol { outline: 1.5px dashed var(--accent); outline-offset: -1.5px; }
+@media (max-width: 640px) { .oqim .q { grid-template-columns: 34px minmax(0, 1fr) 48px; } .oqim .tur { grid-column: 2; } .oqim .m { grid-column: 2 / 4; } .oqim .v { grid-row: 1; grid-column: 3; } }
+.dars { min-height: 0; }
+.e3-q { display: flex; flex-direction: column; gap: 6px; }
+.e5-gap { font-size: 17px; font-weight: 700; line-height: 1.35; }
+.e5-iz { font-size: 13.5px; color: var(--d-ink2); }
+.e5-iz.ok b { color: var(--d-ok); } .e5-iz.xato b { color: var(--d-err); }
+.e8-sahna { display: flex; flex-direction: column; gap: 10px; }
+.e8-slayd { background: var(--d-paper); border-radius: 12px; padding: 12px 14px; font-size: 14.5px; animation: kir .4s ease-out both; }
+.jadval-w { overflow-x: auto; }
+.jadval { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 520px; }
+.jadval th { text-align: left; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink2); padding: 8px 10px; border-bottom: 1px solid var(--line); }
+.jadval td { padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.jadval td:first-child { color: var(--ink2); width: 46%; }
+.qaror .sav { display: flex; flex-direction: column; gap: 6px; padding-top: 4px; }
+@media (prefers-reduced-motion: reduce) { .e8-slayd { animation: none; } }

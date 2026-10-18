@@ -1892,3 +1892,45 @@ B11 nishon sharti (qoldirish tavsiya) · B12 m6-08 ⛶ telefon · B13 amaliyot e
 B15 m6-08 s3 tugmalar · B16 m6-09/10 yashil xulosa pastda.
 **Q4 = A:** F-1004-66/67/68 va podium tarjimasi (LMS fayllari) — alohida seansda, yangi modullardan keyin.
 
+
+## F-1012-04 — Navigatsiya sinf-supurish: qaytganda qulf, mentor qulfi, sudrash nusxasi, liveMode (1–4c, 70 dars) — 13.10.2026
+**Topildi (mentor fidbeki F-1012-01…03, NestJS 1-dars LMS preview):** to'liq tahlil `feedback/F-1012-navigatsiya-klapan/ANALIZ_2026-10-13.md`.
+A qaytganda qulf — 42 dars / 122 ekran · K klapan saqlamaydi — 14 · M mentor qulfi — 70 · B sudrash nusxa — 22 dars / 23 joy · C NestJS 9-ekran tartibi — 1 · D liveMode — 43.
+**Qaror (foydalanuvchi, 13.10):** 70 darsning hammasi bitta yo'la; liveMode qo'shilsin; mentor preview'da qulfsiz. Yechim — umumiy codemod (ildizda `maxReached` → `gate.passed`; NavNext `freeRide` ga mentor + passed).
+**Doiradan tashqari (qaror kutiladi):** 5–14-Modul — M 113 fayl, B 14 fayl; `src/skelet/NamunaDars.jsx` (yangi darslar shu shablondan) — M.
+
+## F-1013-E — Emoji darvozasi (DE-196, limit 4/blok) — eski 1–4c darslarning umumiy qismlari — 13.10.2026 16:04
+- **Qaror (GATE M m1-15 q0 A, foydalanuvchi):** dars ustida ishlanganda faqat o'sha ish tekkan ekranlar emojisiz qilinadi; umumiy qismlar shu yerda, hamma darsda bir yo'la.
+- **O'lchov (13.10.2026 16:04, `node lint-emoji.mjs src/1-Modull … src/4c-Modull`):** 88 fayl tekshirildi · 319 error · 780 warn.
+- **Asosiy manbalar (har darsda nusxa):** mentor praktika paneli (✍👨‍🎓✏🖊💡), mentor test-statistikasi va recap tugmalari (📊🔓✅❌⏳📨📖), CodeStrike arena/podium (🏆⚔🔥🏁🥇🥈🥉),
+  RECAPS kartalari ikonkalari, eski ekranlardagi bezak-emoji. Arena/nishon/podium — o'yin qatlami (DE-196 istisnosi): avval darvoza istisnosi aniqlanadi, keyin qolgani tozalanadi.
+- **Bog'liq:** 1815/1825-qatorlardagi «oldindan bor darvoza qarzi» va «185 toza yuza» bandlari; misol — `VsCodeLesson.jsx` 13.10: yangi 7-qadam ekrani emojisiz, qolgan 7 error eski qismlarda.
+- **Holat:** ⬜ navbatda (tartibni foydalanuvchi belgilaydi).
+
+## F-1015-306 — `tell` + `emoji` darvozasi eski arena/CODE STRIKE qismlarida (1–4c) — 15.10.2026 15:45
+- **Topildi:** m1-10 CssPractice pilotida (F-1015-305) `npm run gates` 10/12: `tell` — arena QUIZ_BANK #2 (✔ «background-color» eng uzun, ×2.67);
+  `emoji` — `CsWordmark` blokida 22 emoji. Ikkalasi zaxira nusxada (`arxiv/F-1015-amaliyot-oldin/CssPractice.jsx`) ham aynan shunday — yangi kodda topilma yo'q.
+- **Qaror (foydalanuvchi, 15.10):** tuzatilmaydi — arena «aynan» qoladi; shu yerga yoziladi. Emoji qismi F-1013-E ga qo'shiladi (CODE STRIKE — o'yin qatlami istisnosi masalasi).
+- **O'lchov (15.10.2026, `node lint-tell.mjs src/1-Modull … src/4c-Modull`):** 88 fayl · 212 error · 43 warn. Eng ko'p: PracticeLesson2 15 · AuthEnvLesson 11 · ReactBuildSiteLesson 11 · ReactProjectDayLesson 8.
+- **Eslatma (F-1015 praktika qolipi):** qolgan 17 praktika qayta qurilganda ularning ichki testlari olinadi — u darslardagi `tell`ning bir qismi o'z-o'zidan yo'qoladi; arena savollari qoladi.
+- **Holat:** ⬜ navbatda.
+
+## F-1015-123 — «Uyga vazifa» ochilgan kartasi 1–6-Modulda P-025 emas (eski ro'yxat-karta) — 16.10.2026
+- **Topildi (7–14-M tuzatishida sinf-supurish):** 1–4c-Modul darslarida karta hali «Uyga vazifa» sarlavhali ro'yxat (rangli fe'l — matn), maydonlar va raqam-doira yo'q
+  (grep `hwOpen && <div className="card hw fade-up`: 1-M 10 · 2-M 13 · 3-M 11 · 4-M 11 · 4a 3 · 4b 2 · 4c 5 = 55 fayl). ①-belgi, popup, siquvchi `:has(.hw-chips)` — 0.
+- **Andoza (7–14-M da qilingan, DE 207.11):** `feedback/F-1015-7-14M/vositalar/hwtex.py` (texnik ro'yxat → P-025, maydon qiymati topshiriq matnidan) + `qavs.py` + `hwolch.mjs`.
+- **To'siq:** 1–4-Modul LMS prodda (reliz 18.10), maydon qiymatlari — yangi o'quvchi matni (MD + ko'rik kerak).
+- **Holat:** ⬜ navbatda — foydalanuvchi qarori (relizdan keyin).
+
+## F-1015-172 — «Bittadan» (DE 213): ekran bir yo'la to'lgan joylar — 11–14-M (7–8-M ham) — 17.10.2026
+- **Topildi:** QA (m9-02 s9, m9-05 s2/s3/s5/s9): ro'yxat + karta + uch savol + yordam bir ekranda; chegarali quti ichida chegara; hujjat maketi to'liq ochiq.
+- **Andoza (pilot, foydalanuvchi maqulladi):** m9-05 s2, m9-02 s8, m9-01 s8 — DE 213 1–6.
+- **Kerak:** o'lchov (bir ekranda faol karta/tugma soni, chegarali quti soni, ko'rinadigan matn bloklari) → ro'yxat → modulma-modul qurish (namuna sahifa → ko'rik → qurish).
+- **Holat:** ⬜ navbatda — foydalanuvchi buyrug'i bilan.
+
+## F-1017-225 — Yakun ekrani jim (DE 220): «Yakunlash» holat ko'rsatmaydi, CODE STRIKE server xatosini yutadi — 7–14-M (src/5…12-Modull + src/pm Jtbd/Metrics) — 18.10.2026
+- **Topildi (2–6-M tuzatishida sinf-supurish):** `<button className="btn-white-accent" onClick={onFinish}>` — 103 fayl; `catch { return; }` / `catch (_e) { return; }` (openArena lobby) — 103 fayl. Mexanizm 2–6 bilan bir xil.
+- **Andoza (2–6-M da qilingan, DE 220):** `feedback/F-1017-mentor-2-6M/vositalar/codemod-225.py <fayllar>` — import (`FinishBtn, liveToast`) + tugma → `FinishBtn` + lobby-catch → toast + arena self (`isMentorL && arenaSolo`). Har faylda sonlar tekshiriladi, farq → fayl yozilmaydi (qo'lda). Umumiy fayllar (`src/live/LiveUI.jsx`, `index.js`) ALLAQACHON tayyor — 7–14 darslarida faqat dars-fayl o'zgaradi.
+- **Isbot:** `vositalar/yakun-sinov-225.mjs <OUT> <fayl>` (solo · mentor tarmoqsiz · o'quvchi) + `npm run gates` har fayl + tell/emoji soni zaxira bilan teng.
+- **Doira:** 2-seans (7–14-M, F-1015-1xx). Foydalanuvchi qarori 18.10: «2-seansni KATTA'da saqlaymiz».
+- **Holat:** ✅ 18.10 01:15 — 3-seans (foydalanuvchi «1 ni qil», avtopilot): 103/103 codemod, gates 103/103 (102 ta 12/12, Jtbd eski tell/emoji), 10 namuna brauzerda, build-lms+smoke ✓. Jurnal `feedback/F-1017-mentor-2-6M/JURNAL.md`. QA saytlar deploy qilinmadi.

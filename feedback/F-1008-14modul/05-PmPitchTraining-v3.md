@@ -118,7 +118,7 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 · **1.1 — olti bo'lak, Mentor pitchining ol
     o'quvchi taymerida 5:00 dan oshsa chiziq o'ngga qizil davom etadi, yonida «+m:ss».
   - **baholash varag'i** (o'ngda; jadval — «ma'lumot» ko'rinishi, E 45: to'q sarlavha qatori «Baholash varag'i · n / 6», katak chiziqlari, kulrang fon, soyasiz): olti qator — bo'lak nomi · hakam savoli (kulrang, kichik) · belgi katagi (✓ — yashil, ✗ — `err`) · izoh;
     pastda alohida qator **«Tinglovchining hakam savoli»** (bo'shi — uzuq ramka, U-041; yakka rejimda — «Hakam savoli»; 05-FILTR 24); o'quvchi varag'ida eng pastda «Vaqt: m:ss» (taymerdan o'zi yoziladi).
-  - **tuzatishlar ro'yxati** (varaq ostida; 4, 7-ekranlar): sarlavha «Tuzatishlar ro'yxati · n / 3», uch qator «bo'lak · nima o'zgaradi» (bo'shi — uzuq chiziq); varaqdagi manba qator yonida kichik kulrang yorliq «ro'yxatda».
+  - **tuzatishlar ro'yxati** (varaq ostida; 4, 7-ekranlar): sarlavha «Tuzatishlar ro'yxati» (sanoq tugmada *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*), uch qator «bo'lak · nima o'zgaradi» (bo'shi — uzuq chiziq); varaqdagi manba qator yonida kichik kulrang yorliq «ro'yxatda».
   - Ishlatiladi: 0 (guruh + to'lgan taymer, tinglovchi pufaklarida «…») · 1 (skelet, matnsiz) · 2 (to'liq: guruh, taymer, Mentor varag'i) · 3, 5, 8 (javobdan keyin kichik varaq qatori) · 4 (varaq ixcham + karta + ro'yxat) · 6 (o'quvchi bo'laklari + taymer + varaq) · 7 (varaq ixcham + karta + ro'yxat).
   - Har ekranda ≤ 3 blok: guruh va taymer — bitta blok. `prefers-reduced-motion` da yurish, uchish va to'lqin yo'q — holatlar birdan almashadi (DE-200). 393 kenglikda varaq guruh ostiga tushadi, o'lchamlar barqaror, hech narsa kesilmaydi (E 41). Vizual ⛶ ichida (q17, E 48).
 - **Keyingi bosiladigan joy (E 40, qat'iy):** har bosiladigan variant va tugmaning o'z yengil accent chegarasi, yengil to'lqin navbatma-navbat 2 marta, kattalashishsiz; bitta navbatdagi tugma — halqa, to'lqin 3 marta, `scale` yo'q. `prefers-reduced-motion` da to'lqin yo'q, chegara qoladi.
@@ -151,12 +151,13 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 · **1.1 — olti bo'lak, Mentor pitchining ol
 - Sarlavha: **Bugun pitchingizga guruh varag'idan tuzatish yozasiz.** (53) — natija va'dasi (P-014), «uchta» soni oldindan va'da qilinmaydi (05-FILTR 8)
 - Mentor: Avval Mentor misolida varaqni ko'rasiz, keyin pitchingizni guruhga aytasiz.
 - Chap — kulrang yorliq «pitch mashqi 1: guruh fidbeki va tuzatishlar ro'yxati» (App.jsx osti so'zma-so'z, P-015) + ostida kulrang qator: Guruh — 3–4 kishi; guruh bo'lmasa, varaqni o'zingiz to'ldirasiz.
-  Vizual (`GuruhVaraqSahna`, skelet — DE-200, bir marta o'zi yuradi): to'rt nomsiz qiyofa, olti bo'sh bo'lakli taymer chizig'i 5:00 gacha yuradi; o'ngda bo'sh varaq ramkasi (olti qator chizig'i, matnsiz) va ostida uch uzuq qator. Matn yo'q — 2, 4-ekran kashfiyotini ochmaydi (P-015).
+  Vizual (`GuruhVaraqSahna`, skelet — DE-200, bir marta o'zi yuradi): to'rt nomsiz qiyofa, olti bo'sh bo'lakli taymer chizig'i 5:00 gacha yuradi; o'ngda varaq ramkasi (olti bo'lak nomi); uchta raqamli bo'sh uzuq qator olindi *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*. Matn yo'q — 2, 4-ekran kashfiyotini ochmaydi (P-015).
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
-  - 01 · Varaqdan nimani tuzatishni o'qishni bilib olasiz · `baholash varag'i`
-  - 02 · Izohdan aniq tuzatish yozishni o'rganasiz · `tuzatish`
-  - 03 · Pitchingizni guruhga 5 daqiqada aytasiz · `taymer`
-  - 04 · Varaqingizdan uchta tuzatish yozasiz · `tuzatishlar ro'yxati`
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*
+  - 01 · Varaqdan nimani tuzatishni o'qishni bilib olasiz
+  - 02 · Izohdan aniq tuzatish yozishni o'rganasiz
+  - 03 · Pitchingizni guruhga 5 daqiqada aytasiz
+  - 04 · Varaqingizdan uchta tuzatish yozasiz
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz · Keyingi bosiladigan joy: «Boshlaymiz» (vizual tugagach halqada).
 - O'qituvchi eslatmasi: Guruhlarni hozir aytib qo'ying (3 kishi — sukut; 12–15 o'quvchi bo'lsa — to'rt-besh guruh; 4 kishilik guruhda vaqt ko'proq ketadi). Guruh oldida aytishni istamagan o'quvchi yakka rejimda ishlaydi — bu ham to'liq yo'l. Bugun bo'laklar qayta yozilmaydi: natija — uch tuzatishli ro'yxat.
 - Izoh (MD): sarlavhada yangi atama yo'q (T-011): «tuzatish» — oddiy so'z, «tuzatishlar ro'yxati» va «baholash varag'i» — faqat kulrang teglarda va App.jsx yorlig'ida. Sarlavha — natija va'dasi (P-014). 01 — 2-ekran · 02 — 4-ekran · 03 — 6-ekran · 04 — 7-ekran.
@@ -167,10 +168,10 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 · **1.1 — olti bo'lak, Mentor pitchining ol
 - Sarlavha: **Mentor pitchini eshitgan guruh varaqqa nima yozdi?** (50)
 - Mentor: Tugmalarni birma-bir bosing va har bosishdan keyin varaqqa qarang.
   (Birinchi harakat — bashorat; uning yo'rig'i `QBashorat` yorlig'ida, Mentor takrorlamaydi — T-047.)
-- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bitta o'lchov, o'sish tartibida): **Guruh Mentor pitchining nechta bo'lagiga ✗ qo'ydi?** · Bitta · Ikkita · Uchta — tanlangach ixcham qator; tugmalar shundan keyin yoqiladi.
+- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bitta o'lchov, o'sish tartibida): **Guruh Mentor pitchining nechta bo'lagiga ✗ qo'ydi?** · Bitta · Ikkita · Uchta — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*.
 - Vizual (`GuruhVaraqSahna`, to'liq; ≤ 3 blok: guruh va taymer · varaq · tugmalar qatori): **chapda** — guruh (Mentor gapiradi, uch tinglovchi; ustida yorliq «Mentor misoli · Maydon Jamoa», nom o'z yashil rangida) va taymer chizig'i (olti bo'lak, hali bo'sh) ·
   **o'ngda** — bo'sh baholash varag'i: olti qator (bo'lak nomi + `HAKAM_SAVOL` kulrang, belgi va izoh kataklari bo'sh), pastda bo'sh «Hakam savoli» qatori (uzuq ramka).
-- Tugmalar (ixcham, bir qatorda; joriysi accent, bosilgani ✓): 1 Pitch · 2 Varaq · 3 Hakam savoli
+- Tugmalar (ixcham, bir qatorda; joriysi accent, bosilgani ✓): 1 Pitch · 2 Varaq · 3 Hakam savoli *(✎ F-1015-164: tugmalar bashoratdan keyin chiqadi; bosiladigani faqat joriysi, bosilgani — «✓ nom» yozuvi, keyingisi hali ko'rinmaydi)*
 - **Harakat → Vizual o'zgarish:**
   1. «Pitch» → taymer chizig'i bo'lak-bo'lak to'lib boradi (har bo'lak ≈ 1 s; chiziq ustida kulrang yorliq «tezlashtirilgan»), joriy bo'lak accent; Mentor pufagida joriy bo'lakning birinchi gapi almashadi (`JAMOA_PITCH`; Muammo boshida avval lahza gapi «Shanba, 18:00. Maydonda 8 kishi…» — 2-dars qarori, keyin Muammo gapi); Yechimda Mentor qo'lidagi telefonda «8 / 10» → «9 / 10». Tinglovchilar pitch davomida jim — varaq bo'sh qoladi.
      `QIzoh`: Guruh pitchni oxirigacha tinglaydi — varaq pitchdan keyin to'ldiriladi.
@@ -210,8 +211,8 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 · **1.1 — olti bo'lak, Mentor pitchining ol
 - Sarlavha: **Mentor varag'idan qanday tuzatish chiqadi?** (42)
 - Mentor: Har kartada izohga javob beradigan tuzatishni tanlang — u ro'yxatga tushadi.
 - Bashorat yo'q: ro'yxatdagi «n / 3» sanog'i javobni ochib qo'yardi (P-036); ekran harakatli, «Keyingi» bilan o'tilmaydi (P-064 talab qilmaydi).
-- Vizual (≤ 3 blok: varaq · karta · ro'yxat): **chapda** — Mentor varag'i ixcham (Bozor va Raqamlar ✗ qatorlari va «Hakam savoli» qatori accent chegara bilan, qolgani xira) · **o'ngda** — bitta katta karta (joriy band, «N / 3»), tepasida manba qatori (izoh yoki savol), ostida uchta tuzatish varianti (har birining o'z chegarasi — E 40) ·
-  **pastda** — «Tuzatishlar ro'yxati · n / 3»: uch bo'sh uzuq qator.
+- Vizual (≤ 3 blok: varaq · karta · ro'yxat): **chapda** — Mentor varag'i ixcham (Bozor va Raqamlar ✗ qatorlari va «Hakam savoli» qatori accent chegara bilan, qolgani xira) · **o'ngda** — bitta katta karta (joriy band; sanoq tugmada *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*), tepasida manba qatori (izoh yoki savol), ostida uchta tuzatish varianti (har birining o'z chegarasi — E 40) ·
+  **pastda** — «Tuzatishlar ro'yxati»: uch bo'sh uzuq qator.
 - Kartalar (navbat bilan; to'g'ri javob — `MENTOR_TUZATISH`, A-6 aynan; variantlar tartibi kodda qat'iy):
   1. **Bozor · ✗** — manba qatori: «60 kishi kim — o'yinchimi, guruhmi?»
      - Bozorga kattaroq son yozaman: butun shahar aholisi soni
@@ -263,8 +264,8 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 · **1.1 — olti bo'lak, Mentor pitchining ol
 ## 6 · Guruhda pitch  ← QMustaqil (guruh + yakka rejim; 3 qism ketma-ket; USTAXONA)
 - Eyebrow: Guruhda ish · yakka rejimda: Mustaqil ish
 - Sarlavha: **Pitchingizni guruhga 5 daqiqada ayta olasizmi?** (46) · yakka rejimda: **Pitchingizni 5 daqiqada ayta olasizmi?** (38)
-- Rejim (qism yorliqlaridan oldin, bir marta; ikki tugma, har birining o'z chegarasi): «Guruh tinglaydi» · «Guruh yo'q — o'zim». Jonli darsda oldindan «Guruh tinglaydi» tanlangan, mustaqil rejimda — «Guruh yo'q — o'zim»; o'quvchi almashtira oladi. Tanlov — `tur`.
-- Qism yorliqlari (ot-shakl, T-073; joriysi accent, bajarilgani ✓): 1 Pitch · 2 Varaq · 3 Hakam savoli
+- Rejim (pitch boshlanguncha, bir marta; ikki tugma, har birining o'z chegarasi): «Guruh tinglaydi» · «Guruh yo'q — o'zim». Jonli darsda oldindan «Guruh tinglaydi» tanlangan, mustaqil rejimda — «Guruh yo'q — o'zim»; o'quvchi almashtira oladi. Tanlov — `tur`.
+- Qism yorliqlari yo'q — bosilmas edi; har qismni Mentor aytadi, hisob tugmada «Uch qismni bajaring (N/3)» *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*.
 - **Chapda — Sahna** (`GuruhVaraqSahna` «o'z» holati): guruh (yakka rejimda — bitta qiyofa va telefon belgisi «yozilmoqda») · taymer chizig'i (olti bo'lak) · gapiruvchi pufagida — o'quvchi bo'lagining boshi (`pm-m12d1-pitch`; uzun matn «…» bilan, karta cho'zilmaydi — SABOQ 29).
   Muammo bo'lagi ostida kulrang qator (`pm-m12d2-hikoya.lahza` bo'lsa): Hikoyangiz: «{lahza}». Kalit yo'q yoki bo'lak `null` — bo'lak nomi va kulrang «yozilmagan».
   **O'ngda — joriy qism** (bitta katta karta) · ostida — varaq ixcham (2-qismdan).
@@ -276,7 +277,7 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 · **1.1 — olti bo'lak, Mentor pitchining ol
     Yakka rejimda uchinchi qator o'rnida: Yozuv — video yoki ovoz; u telefoningizda qoladi, hech qayerga yuklanmaydi.
   - Taymer (12-Modul naqshi, o'quvchining o'z dars qurilmasida): 5 daqiqani boshlash · Hozir siz gapirasiz · m:ss · To'xtatish · Qaytadan. 5:00 dan keyin taymer to'xtamaydi — qizil «+m:ss». Taymer yurganda Sahnada joriy bo'lak (vaqt bo'yicha) accent.
   - Keyingi bosiladigan joy: «5 daqiqani boshlash» → «To'xtatish».
-- **2-qism · Varaq** (bittadan karta — E 53: «{bo'lak} · N / 6»):
+- **2-qism · Varaq** (bittadan karta — E 53: «{bo'lak}»; sanoq varaq sarlavhasida *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*):
   - Mentor (guruh): Pitch tugagach, varaq ekrani ochiq holda qurilmangizni guruhga uzating: ular har bo'lakka birga ✓ yoki ✗ qo'yadi.
   - Mentor (yakka): Yozuvni bir marta ko'ring va har bo'lakka o'zingiz ✓ yoki ✗ qo'ying.
   - Guruh rejimida birinchi karta — tasdiq (tinglovchi o'zi bosadi; 13-Modul 6-dars naqshi): kulrang qator «Qurilmani tinglovchilar oldi.» · tugma «Biz tingladik — varaqni to'ldiramiz». Yakka rejimda o'rnida — tugma «Yozuvni ko'rdim».
@@ -306,7 +307,7 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 · **1.1 — olti bo'lak, Mentor pitchining ol
 - Saqlash: `pm-m12d5-varaq` — `tur`, `varaq` (6), `hakamSavoli`, `vaqt` (taymer soniyasi), `tuzatishlar: []`, `savedAt` (A-12; 3-qism «Saqlash»da).
 - Tugma (pastki): Uch qismni bajaring (N/3) → Davom etish (jonli darsda majburiy — `optionalLive` yo'q; 05-FILTR 28).
 - Keyingi bosiladigan joy: rejim tugmasi (birinchi kirishda) → «5 daqiqani boshlash» → «To'xtatish» → tasdiq tugmasi → har kartada «✓» / «✗» (to'lqin) → izoh maydoni (✗ da) → «Keyingi bo'lak» → hakam savoli maydoni → «Saqlash».
-- Artefakt-strip (U-042): shu ekrandan — «Varaqim · n/6» (ixcham); 7-ekranda «Tuzatishlarim · n/3»; test, arena, podium va yakunda yo'q (E 50).
+- Artefakt-strip yo'q: «Varaqim · n/6» varaq sarlavhasini, «Tuzatishlarim · n/3» tugma va ro'yxatni takrorlardi *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*.
 - Nishon: **Pitch Round!** (taymer to'xtatilgan va varaq bilan hakam savoli saqlangan — guruh yoki yakka; bonus, ish qilingan ekranda — P-048).
 - Mentor rejimi: proyektorda katta taymer 5:00 va olti bo'lakli chiziq (navbat raqami bilan: «1-navbat» … «4-navbat»); Mentor hammaga bir vaqtda boshlatadi. Mentor statistikasi: «Pitchni aytdi» · «Varaq saqlandi» (son) — belgi, izoh va hakam savoli Mentor ekraniga ham, proyektorga ham chiqmaydi (TAQIQLAR 3).
 - O'qituvchi eslatmasi: Avval ≈ 2 daqiqa — bitta ko'ngilli guruhda tinglovchi bo'lsin, siz varaqning bitta kartasini birga to'ldirib ko'rsating (izoh — bo'lak haqida). Keyin taymerni sinf bo'ylab birga boshlating: avval hamma guruhda 1-navbat, keyin 2-navbat va hokazo; varaqqa 2–3 daqiqa. Guruh — 3 kishi (12 o'quvchi — 4 guruh); vaqt yetmasa — tuzatishlar uyga, pitchlar emas (05-FILTR 27).
@@ -319,7 +320,7 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 · **1.1 — olti bo'lak, Mentor pitchining ol
 - Sarlavha: **Varaqingizdan uchta tuzatish yozing.** (36)
 - Mentor: Har kartadagi izohni o'qing va shu bo'lakda nima o'zgarishini bir gapda yozing.
 - Kirish (P-046): 6-ekrandagi varaq (`pm-m12d5-varaq.varaq`, `hakamSavoli`). Varaq saqlanmagan bo'lsa — karta o'rnida kulrang: Tuzatishlar varaqdan chiqadi — avval pitchni aytib, varaqni to'ldiring. (tugma «Orqaga»; «Davom etish» ochiq — `optionalLive`, yakun 4-holat).
-- **Chapda — varaq ixcham** (o'quvchiniki: ✗ qatorlar `err` chet, «Hakam savoli» qatori, «Vaqt»; ro'yxatga tushgan qator yonida kulrang «ro'yxatda»). **O'ngda — bitta katta karta (joriy band «N / 3»)** · **pastda** — «Tuzatishlar ro'yxati · n / 3».
+- **Chapda — varaq ixcham** (o'quvchiniki: ✗ qatorlar `err` chet, «Hakam savoli» qatori, «Vaqt»; ro'yxatga tushgan qator yonida kulrang «ro'yxatda»). **O'ngda — bitta katta karta (joriy band; sanoq tugmada)** · **pastda** — «Tuzatishlar ro'yxati» *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*.
 - Kartalar tartibi (oldindan qo'yiladi, o'quvchi o'zgartira oladi — A-4 qoidasi): ✗ qatorlar (varaq tartibida) → hakam savoli → kerak bo'lsa ✓ qatordan biri.
   - ✗ uchtadan ko'p bo'lsa — birinchi karta oldidan bitta tanlov: «Eng muhim uchtasini tanlang» (✗ qatorlar, har birining o'z chegarasi); kulrang: Qolgan ✗ lar — uyga vazifada.
   - Karta tepasida manba qatori: «✗ · {bo'lak} · «{izoh}»» yoki «Hakam savoli · «{hakamSavoli}»» yoki «✓ · {bo'lak} · yanada aniqroq».
@@ -400,6 +401,7 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 · **1.1 — olti bo'lak, Mentor pitchining ol
 - Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
 - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18). Artefakt-strip yakunda yo'q (E 50).
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
 - Izoh (MD): uyga vazifada keyingi darslar aytilmaydi (T-038). «Nechta: ikki ish» — ① va ②; ③ faqat qolgan ish bo'lsa (sinf 14). ② — tanish odam ixtiyoriy («xohlasangiz» — 05-FILTR 30), bo'lmasa telefon; tanish odam ismi hech qayerga yozilmaydi; «sinov» so'zi yo'q.
   Yakun sarlavhalari kalitdan yig'iladi: `tur`, `varaq` (saqlangan-saqlanmagan), `tuzatishlar.length` (P-046). Ikkinchi sarlavha yakka rejimni rost aytadi (tayanch 1.5).
 
@@ -524,9 +526,9 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 6. s4: `TUZATISH_KARTA` ketma-ket (E 53); variant tugmalari (E 40); to'g'ri — ro'yxatga uchish; xato — silkinish + `QXato`; 3-kartada Keyingi qadam qatori va gapdagi «maydon egalari» accent; nishon `fixFinder` (xato 0); oxirida `QIzoh` (tuzatishlar ro'yxati ta'rifi). Bashorat yo'q (A — 4-ekran izohi).
 7. s6: rejim (`guruh` | `yakka`) · 3 qism (12-Modul `Screen11` taymer naqshi: `boshla` / `toxtat` / `qayta`, `+m:ss`, vaqt bo'yicha joriy bo'lak) · tasdiq tugmasi (guruh — «Biz tingladik — varaqni to'ldiramiz», yakka — «Yozuvni ko'rdim») ·
    varaq bittadan karta (6; ✓/✗ + izoh; «Keyingi bo'lak») · hakam savoli maydoni · tekshiruv funksiyasi: belgisiz · ✗ izoh < 8 · `BAHO_RE` (12-Modul 1601 aynan) · oltita ✓ · telefon/akkaunt shakli (13-Modul 6-dars qoidasi: «+998», «@», «t.me/», 9 raqam) · hakam savoli bo'sh · `PUL_RE` (`investitsiya|ulush|summa`) ·
-   o'qiydi `pm-m12d1-pitch.bolaklar` va `pm-m12d2-hikoya.lahza` (yo'q bo'lsa — A-12 holatlari); saqlash — 3-qism «Saqlash»; nishon `pitchRound`; artefakt-strip «Varaqim».
+   o'qiydi `pm-m12d1-pitch.bolaklar` va `pm-m12d2-hikoya.lahza` (yo'q bo'lsa — A-12 holatlari); saqlash — 3-qism «Saqlash»; nishon `pitchRound`; artefakt-strip yo'q (F-1015-119).
 8. s7: kirish — `pm-m12d5-varaq` (varaq yo'q — kulrang qator va `optionalLive`); kartalar tartibi (✗ → hakam savoli → ✓; ✗ > 3 da tanlov); bo'lak tanlovi; maydon; tekshiruv: bo'sh · bo'lak tanlanmagan · takror bo'lak · `VADA_RE` (12-Modul 1600 aynan) · mavhum («yaxshiroq|chiroyliroq|yaxshilayman», < 30) ·
-   «bo'lakni olib tashla» · telefon/akkaunt; har «Saqlash» bitta band qo'shadi; Yordam — `MENTOR_TUZATISH`; ✎ tahrirlash; nishon `threeFixes`; artefakt-strip «Tuzatishlarim».
+   «bo'lakni olib tashla» · telefon/akkaunt; har «Saqlash» bitta band qo'shadi; Yordam — `MENTOR_TUZATISH`; ✎ tahrirlash; nishon `threeFixes`; artefakt-strip yo'q (F-1015-119).
    Tekshiruv funksiyalari — PM-108 tartibida kamida 12 namuna bilan `node` da sinaladi (apostrof `normT` bilan — 12-Modul naqshi): «zerikarli edi» → baho · «Jamoa bo'lagida kim nima qilgani yo'q» → o'tadi · «90 123 45 67» → bloklanadi · «Qancha investitsiya kerak?» → yo'naltiradi · «Nega maydon egalari bunga pul to'lamaydi?» → o'tadi · «yaxshiroq aytaman» → mavhum · «tez orada 100 ta bo'ladi» → va'da va boshqalar.
 9. **Saqlash** `localStorage` `pm-m12d5-varaq` = `{ tur: 'guruh' | 'yakka', varaq: [{ bolak, belgi: '✓' | '✗' | null, izoh }] (6), hakamSavoli: string | null, tuzatishlar: [{ bolak, nima, manba }] (0–3), vaqt: n | null, savedAt }` — tayanch 8 + 9.24; maydonlar shartnomasi — A-12.
    s6 — `tur`, `varaq`, `hakamSavoli`, `vaqt`, `tuzatishlar: []`; s7 — `tuzatishlar` (birlashtiriladi; `manba` karta turidan). `pm-m12d1-pitch` ga va boshqa darsning kalitiga yozmaydi (sinf 3). Ism, telefon, yozuv fayli, havola hech qaysi maydonga yozilmaydi.

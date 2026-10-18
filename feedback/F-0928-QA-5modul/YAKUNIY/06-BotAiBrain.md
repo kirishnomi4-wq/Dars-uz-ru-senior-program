@@ -282,7 +282,7 @@ bot.on('text', async (ctx) => {
 - Eyebrow: Yakuniy · amaliy
 - Sarlavha: Oxirgi qadam: AI bilan javob yo'lini tartibga soling.
 - Mentor: Mijoz AvtoPizza botiga erkin savol yozdi. Bo'laklarni sudrab to'g'ri tartibga qo'ying.
-- Joylar: 1-qadam · 2-qadam · 3-qadam · 4-qadam · 5-qadam
+- Joylar: 1 · 2 · 3 · 4 · 5 (bo'sh joyda: bu yerga joylang; «N-qadam» yozuvi raqamni takrorlardi) *(✎ F-1015-120, 208-qonun 0-band: takror olindi)*
 - Bo'laklar (aralash chiqadi) — to'g'ri tartib:
   1. Mijoz xabari keladi
   2. Xabarga system prompt va suhbat tarixi qo'shiladi
@@ -310,7 +310,7 @@ bot.on('text', async (ctx) => {
      - Xato izohi: Xato bo'lsa: «Shu xato chiqdi: {xato}. Tuzat.»
   4. **Telegramda tekshirish** — mavzuga oid savol → javob system prompt'ga mos; mavzudan tashqari («Ertaga ob-havo?») → chegarada qoladi; narx so'rang → o'z menyungiz bilan solishtiring (mos kelmasa — hallutsinatsiya, system prompt'ga menyuni aniqroq yozing).
 - Hammasi bajarilgach: AI botning ichida. Nima deyishini system prompt'ingiz belgilaydi.
-- Yorliq (o'ngda): kutilgan natija · namuna: AvtoPizza
+- Yorliq (o'ngda): kutilgan natija · namuna: AvtoPizza (yorliq natija ostida ✎ F-1015-166)
 - Kutilgan natija chati:
   - mijoz: Achchiq bo'lmagani qaysi?
   - bot: Margarita va Pishloqli achchiq emas. Margarita — 45 000 so'm. Tanlaysizmi? /menu
@@ -348,7 +348,7 @@ Natijalar (podium) — jonli reyting
 
 ## 19 · Yakun
 - Eyebrow: Tayyor
-- Belgi: ✓ Bot javobni AI'dan oladi
+- Belgi: ✓ Dars tugadi · Testlar: N/N ✎ F-1015-161
 - Sarlavha: Botingiz javobni AI'dan oladi — siz boshqarasiz.
 - Natija halqasi: N/5 to'g'ri
 - Arena tugmasi: CODE STRIKE (jonli darsda kutilsa: Mentorni kuting)
@@ -365,6 +365,7 @@ Natijalar (podium) — jonli reyting
   - Keyingi dars — **«Loyiha kuni: bot + DB + AI»**. Handler, baza va AI'ni bitta botga yig'asiz va uni kompyuteringiz yopiq bo'lsa ham ishlaydigan serverga joylaysiz.
 - Nishonlaringiz — N/4
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10, S1-A): uy vazifasi kartasi P-025 — sarlavha «Uyda nima qilasiz?» (bannerdagi «Uyga vazifa» bilan takror emas); maydonlar: Kim uchun — o'z botingiz · Nechta — 1 system prompt, 5 xabar · Muddat — keyingi darsgacha (qiymatlar topshiriq matnidan); qadamlar raqam-doira; «Keyingi dars» karta ichida; bezak emoji olindi.
 
 ## Nishonlar
 - Prompt Writer — AvtoPizza boti uchun system prompt yozdingiz

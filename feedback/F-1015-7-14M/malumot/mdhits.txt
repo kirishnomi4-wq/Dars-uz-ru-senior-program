@@ -1,0 +1,326 @@
+## feedback/F-1006-12modul/YAKUNIY/05-BreakAndFix.md 2
+   tugma 458 - Tugmalar: Orqaga · Yakunlash →
+   tugma 484 - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1006-12modul/YAKUNIY/04-LiveNotifyDay.md 2
+   tugma 295 - Tugmalar: Orqaga · Yakunlash →
+   tugma 315 - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1006-12modul/YAKUNIY/09-RetentionDay.md 2
+   tugma 301 - Tugmalar: Orqaga · Yakunlash →
+   tugma 323 - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1006-12modul/YAKUNIY/02-WebSocketBasics.md 4
+   yonma 17 - Maket: ikki telefon yonma-yon — «1-telefon · siz» va «2-telefon · boshqa o'yinchi», ikkalasida O'yin ekrani («8 / 10»,
+   yonma 129 - Ostida ikki ustun:
+   tugma 468 - Tugmalar: Orqaga · Yakunlash →
+   tugma 492 - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1007-13modul/05-PaymentDay-v3.md 6
+   asosiy 31 2. **Bugungi asosiy fikr (P-013; yakunda ko'rsatilmaydi — darsning ichki o'qi, SABOQ E 50):** Agentning «to'lov ishlaydi
+   tugma 421 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 434 - «Bugungi asosiy fikr» qutisi yakunda yo'q (SABOQ E 50) — fikr A-bo'lim 2-bandida, darsning ichki o'qi.
+   asosiy 435 - Endi siz bilasiz (5; asosiy fikr bu yerda takrorlanmaydi — T-048):
+   tugma 445 - Tugmalar: Orqaga · Qaytadan · Yakunlash
+   asosiy 540 10. Test savoli ustida «To'g'ri javobni tanlang» yorlig'i yo'q (SABOQ 6). Hook javoblari «Aynan!» / «Qiziq fikr!» (T-028
+## feedback/F-1007-13modul/03-PaymentWebhook-v3.md 8
+   asosiy 26 2. **Bugungi asosiy fikr (P-013; yakunda ko'rsatilmaydi — darsning ichki o'qi, SABOQ E 50):** To'lov o'tganini Backend'g
+   yonma 208 - Tugadi (199): tugmalar yopiladi, sahna va kod kartasi fokusga (ikki konvert natijasi yonma-yon: «mos ✓ · `200`» va «mo
+   yonma 249 - Tugadi (199): qadam belgilari va o'chirgich yopiladi, ikki holat yonma-yon fokusga («tekshiruvsiz — 2 qator» · «tekshi
+   tugma 617 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 628 - «Bugungi asosiy fikr» qutisi yakunda yo'q (SABOQ E 50) — fikr A-bo'lim 2-bandida, darsning ichki o'qi.
+   erta 638 - **AI bilan davom** (`AiDavomCard`, CODE STRIKE ostida, mentor rejimida yo'q — PM-109, F-1007-475): sarlavha **Erta tug
+   tugma 641 - Tugmalar: Orqaga · Qaytadan · Yakunlash
+   asosiy 743 15. Test savoli ustida «To'g'ri javobni tanlang» yorlig'i yo'q (SABOQ 6). Hook javoblari «Aynan!» / «Qiziq fikr!» (T-028
+## feedback/F-1007-13modul/02-PmMonetization-v3.md 6
+   asosiy 27 2. **Bugungi asosiy fikr (P-013; dars ichida turadi, yakunda KO'RSATILMAYDI — SABOQ E 50):** Model tanlash kim to'lashi 
+   tugma 443 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 453 - «Bugungi asosiy fikr» qutisi — yakunda YO'Q (SABOQ E 50; fikr dars ichida qoladi — A-2).
+   asosiy 454 - Endi siz bilasiz (asosiy fikr so'zma-so'z takrorlanmaydi, T-048):
+   asosiy 580 - S-027: har old tomon — to'liq savol, «?» bilan; «ta'rif → atamani toping» shakli yo'q. Bugungi asosiy fikr kartochkada
+   asosiy 614 13. s14 `QYakun`: sarlavha **to'rt holat** — `pm-m11d2-model` dan (`model`, `soniManba`, `soni`; P-046); `recap` 5 qator
+## feedback/F-1007-13modul/06-PmMoneyTalk-v3.md 9
+   asosiy 7 ekranda ≤ 3 blok · maketda hech narsa kesilmaydi (E 41) · yakun — E 50 standarti («Bugungi asosiy fikr» qutisi yakunda y
+   asosiy 28 2. **Bugungi asosiy fikr (P-013 — darsning ichki o'qi; yakunda ko'rsatilmaydi, SABOQ E 50):** Suhbat — sotish emas, savo
+   tugma 376 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 387 - «Bugungi asosiy fikr» qutisi — yo'q (E 50; fikr A-2 da — darsning ichki o'qi).
+   asosiy 388 - Endi siz bilasiz (T-048 — asosiy fikr so'zma-so'z takrorlanmaydi):
+   erta 402 - **AI bilan davom** (`AiDavomCard`, CODE STRIKE ostida, mentor rejimida yo'q — F-1007-475, PM-109): sarlavha **Erta tug
+   asosiy 446 - S-027: har old tomon — to'liq savol, «?» bilan; «ta'rif → atamani toping» shakli yo'q. Bugungi asosiy fikr kartochkada
+   asosiy 541 12. s11 `QYakun`: sarlavha **besh holat** — `pm-m11d6-suhbat` dan (`skript` to'liq / qisman / yo'q · `suhbatlar` da `rea
+   asosiy 622 Bugungi asosiy fikr (A-2, yakunda ko'rsatilmaydi): 105 · ≤110.
+## feedback/F-1007-13modul/09-PmPayCheck-v3.md 9
+   asosiy 7 ekranda ≤ 3 blok · maketda hech narsa kesilmaydi (E 41) · yakun — E 50 standarti («Bugungi asosiy fikr» qutisi yakunda y
+   asosiy 29 2. **Bugungi asosiy fikr (P-013 — darsning ichki o'qi; yakunda ko'rsatilmaydi, SABOQ E 50):** Yozma tasdiq — odamning o'
+   tugma 415 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 427 - «Bugungi asosiy fikr» qutisi — yo'q (E 50; fikr A-2 da — darsning ichki o'qi).
+   asosiy 428 - Endi siz bilasiz (T-048 — asosiy fikr so'zma-so'z takrorlanmaydi):
+   asosiy 484 - S-027: har old tomon — to'liq savol, «?» bilan; «ta'rif → atamani toping» shakli yo'q. Bugungi asosiy fikr kartochkada
+   asosiy 584 12. s11 `QYakun`: sarlavha **olti holat** — `pm-m11d9-tasdiq` dan (`xabar` bor / yo'q · `soralgan` · `tasdiqlar.length` 
+   asosiy 664 (qo'lda qayta sanaldi: 39 · 38 · 53 · 39), asosiy fikr (102, «**» dan keyingi bo'shliq), bashorat qatori boshi (29), uzu
+   asosiy 668 Bugungi asosiy fikr (A-2, yakunda ko'rsatilmaydi): 102 · ≤110.
+## feedback/F-1007-13modul/01-PmUnitEconomics-v3.md 22
+   asosiy 24 2. **Bugungi asosiy fikr (P-013; dars ichida turadi, yakunda KO'RSATILMAYDI — SABOQ E 50):** Keltiradigan pul to'lovchin
+   yonma 85 - **ikki ustun** (o'ngda): «Jalb qilish narxi» (accent) va «Keltiradigan pul» (yashil) — gorizontal ustun, so'm shkalasi
+   yonma 87 - Ishlatiladi: 0 (kichik: kanallar + son) · 1 (o'zi yuradi) · 2 (kanallar + foydalanuvchilar + 1-ustun) · 3 (javobdan ke
+   yonma 121 Mentor misolidagi uch kanal kartasi navbat bilan kiradi, ostida odam belgilari to'planadi (kanal kartalaridan «tushmaydi
+   yonma 151 - Natija (bitta yashil blok; `tugadi` — kanal kartalari va tugma yopiladi, ustun kartasi butun enga, ikki natija yonma-y
+   yonma 215 - Vizual (≤ 3 blok): **chapda** — «pullik kanal · 60 000 so'm» kartasi (yorliq «Mentorning taxmini · mashq») va ostida 1
+   yonma 222 - Natija (bitta yashil blok; `tugadi`): birinchi kichik qator — «Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz ✕ — asl
+   asosiy 233 ✎ Asosiy fikr (A-2) shu ekranda — Mentor misolida va «agar» sonlari bilan; xulosa «bu misolda» bilan chegaralangan (sinf
+   yonma 271 - **Yakuniy karta «Ikki sonim»** (3/3 dan keyin; butun enga — `BirlikSahna` ikki ustuni o'quvchi sonlari bilan): «Jalb q
+   yonma 289 - **Harakat → Vizual o'zgarish:** maydon yozilsa — karta ostidagi jonli qatorda son yangilanadi; «Keyingi» → karta chapg
+   yonma 321 - Vizual: chapda — «Ikki sonim» kartasi (ixcham, ikki ustun); o'ngda — 2–3-tugmada varaq. Telefon yo'q (bo'sh ustun yo'q
+   yonma 408 «Bajardim» → natijadagi Mentor qatori «pullik kanal: zarar» va «Mahsulotim» (kalit yo'q yoki `tur: 'mashq'` — «Mashq») q
+   tugma 445 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 455 - «Bugungi asosiy fikr» qutisi — yakunda YO'Q (SABOQ E 50; fikr dars ichida qoladi — A-2).
+   asosiy 456 - Endi siz bilasiz (asosiy fikr so'zma-so'z takrorlanmaydi, T-048):
+   asosiy 473 - Izoh (MD): ① — real odam bilan, lekin suhbat emas: o'quvchi o'z sonini tushuntiradi, narx so'ramaydi va pul haqida kel
+   asosiy 579 - S-027: har old tomon — to'liq savol, «?» bilan; «ta'rif → atamani toping» shakli yo'q. Bugungi asosiy fikr kartochkada
+   asosiy 615 13. s13 `QYakun`: sarlavha **to'rt holat** — `pm-m11d1-birlik` dan (`tur`, `jalbNarxi`, `keltiradi`; P-046); `recap` 5 q
+   asosiy 639 7. ✅ (07.10 qabul — tayanch 9.17, 1.1 va A-2 tuzatildi; F-1007-459 da birinchi yarmi ham: «qoplashi kerak», tayanch 1.1)
+   asosiy 648 16. **Uyga vazifa ②** — «pullik kanal o'z pulini qoplashi uchun bitta to'lovchini jalb qilish narxi necha so'mdan oshmas
+   asosiy 650 18. ✅ **Yopildi — F-1007-459:** yorliq yetmadi — muhr «qoplanadi», ostida doimiy qator «Bu hisobda faqat kanallarga sarf
+   yonma 729 - [x] Bitta misol-ip — «Maydon Jamoa» (1.0, 1.1, 1.13 aynan); metafora yo'q; bitta vizual — `BirlikSahna` (kanallar · fo
+## feedback/F-1007-13modul/10-ReferralDay-v3.md 6
+   asosiy 23 2. **Bugungi asosiy fikr (P-013; yakunda ko'rsatilmaydi — darsning ichki o'qi, SABOQ E 50):** Har foydalanuvchining o'z 
+   tugma 433 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 447 - «Bugungi asosiy fikr» qutisi yakunda yo'q (SABOQ E 50) — fikr A-bo'lim 2-bandida, darsning ichki o'qi.
+   tugma 458 - Tugmalar: Orqaga · Qaytadan · Yakunlash
+   asosiy 505 - Bugungi asosiy fikr kartochkada so'zma-so'z yo'q (P-013).
+   asosiy 602 11. Test savoli ustida «To'g'ri javobni tanlang» yorlig'i yo'q (SABOQ 6). Hook javoblari «Aynan!» / «Qiziq fikr!» (T-028
+## feedback/F-1007-13modul/12-StabilizeDay-v3.md 5
+   asosiy 27 2. **Bugungi asosiy fikr (P-013; yakunda ko'rsatilmaydi — darsning ichki o'qi, SABOQ E 50):** Yangi ish qo'shilgach eski
+   tugma 399 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 413 - «Bugungi asosiy fikr» qutisi yakunda yo'q (SABOQ E 50) — fikr A-bo'lim 2-bandida, darsning ichki o'qi.
+   tugma 424 - Tugmalar: Orqaga · Qaytadan · Yakunlash
+   asosiy 518 9. **11-ekran `QYakun`:** sarlavha — `yozuv` va blok bayroqlaridan (sakkiz holat); ✓ yorliq — `xatolarYozildi`; «O'rnati
+## feedback/F-1007-13modul/08-WinBackDay-v3.md 6
+   asosiy 27 2. **Bugungi asosiy fikr (P-013; yakunda ko'rsatilmaydi — darsning ichki o'qi, SABOQ E 50):** O'yinchining ilovasi yopiq
+   yonma 200 > 1) Foydalanuvchilar jadvaliga: `telegram_chat_id` (bo'sh bo'lishi mumkin; Telegram chat raqami katta son — uni to'liq 
+   tugma 439 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 450 - «Bugungi asosiy fikr» qutisi yakunda yo'q (SABOQ E 50) — fikr A-bo'lim 2-bandida, darsning ichki o'qi.
+   tugma 461 - Tugmalar: Orqaga · Qaytadan · Yakunlash
+   asosiy 549 10. **11-ekran `QYakun`:** sarlavha — blok bayroqlari va tekshiruv kartalaridan (besh holat); ✓ yorliq faqat A3 bajarilg
+## feedback/F-1008-14modul/06-DemoPrep-v3.md 12
+   asosiy 27 2. **Bugungi asosiy fikr (P-013 — darsning ichki o'qi; yakunda ko'rsatilmaydi, SABOQ E 50):** Demo — oldindan yozilgan q
+   yonma 73 - **Video (Mentor misolida; ⛔ pilot):** laptop ekrani yozuvi, bitta demo o'tishi, 60 soniya; 4-qadam videoda ko'rinishi 
+   yonma 314 Yordam — Mentor misolida: laptopda ikki oyna yonma-yon — chapda demo yo'li (1-namuna akkaunt), o'ngda yashirin oynada o'
+   tugma 411 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 422 - «Bugungi asosiy fikr» qutisi — yo'q (E 50; fikr A-2 da — darsning ichki o'qi).
+   asosiy 423 - Endi siz bilasiz (T-048 — asosiy fikr so'zma-so'z takrorlanmaydi; 1-qator — ta'rif, T-042):
+   asosiy 470 - S-027: har old tomon — to'liq savol, «?» bilan. Bugungi asosiy fikr kartochkada so'zma-so'z yo'q (P-013). «inglizchasi
+   asosiy 569 10. **s11 `QYakun`:** sarlavha **besh holat** (11-ekran, ustunlik tartibi) — `pm-m12d6-demo` va blok bayroqlaridan, o'ti
+   yonma 582 video yozish (ikki oyna yonma-yon) va uzunligi; agent namuna akkaunt promptiga qanday javob beradi (bor akkauntni topadi
+   yonma 604 7. **Video — laptop ekrani yozuvi**; 4-qadam (telefon) videoda ko'rinmaydi — Mentor misolida laptopda ikki oyna yonma-yo
+   yonma 625 7. **Laptopda ikki oyna yonma-yon** (video, Yordam) — kichik ekranda telefon kengligidagi sahifa sig'adi deb oldim; pilo
+   asosiy 669 Bugungi asosiy fikr (A-2): 1 ta · 104–104 · ≤110
+## feedback/F-1008-14modul/04-PolishDay-v3.md 5
+   asosiy 28 2. **Bugungi asosiy fikr (P-013; yakunda ko'rsatilmaydi — darsning ichki o'qi, SABOQ E 50):** Demo yo'lida ekran har bos
+   tugma 403 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 414 - «Bugungi asosiy fikr» qutisi yakunda yo'q (SABOQ E 50) — fikr A-bo'lim 2-bandida, darsning ichki o'qi.
+   tugma 425 - Tugmalar: Orqaga · Qaytadan · Yakunlash
+   asosiy 559 10. **11-ekran `QYakun`:** sarlavha — blok bayroqlari va tekshiruv kartalaridan (besh holat, ustunlik tartibi); ✓ yorliq
+## feedback/F-1008-14modul/03-ProductSpeed-v3.md 11
+   asosiy 24 2. **Bugungi asosiy fikr (P-013; yakunda ko'rsatilmaydi — darsning ichki o'qi, SABOQ E 50):** Tezlik his bilan emas, o'l
+   yonma 180 - Tugadi (199): qadam belgilari yopiladi, sahifa va vaqt chizig'i yonma-yon fokusga; vizual ⛶ ichida. Tugmalar: Orqaga ·
+   yonma 211 - Tugadi (199): o'chirgich va qadam belgilari yopiladi, ikki holat yonma-yon fokusga («o'lchamsiz — tugma siljidi» · «o'
+   yonma 288 3. «Qayta ochish» → sahifa qayta chiqadi, «Qo'shilaman» bosiladi → bloklar kamroq — qizil chiziq qisqaroq (brauzer kamro
+   yonma 521 - O'ng tomon — «kutilgan natija · namuna: Maydon Jamoa»: ikki Lighthouse doirasi yonma-yon — «Oldin · `{oldin baho}`» · 
+   yonma 522 ostida `TEZLIK.md` — Oldin va Keyin ustunlari to'la, «Tuzatishlar»: «rasmlar: o'lcham, width/height, keyin yuklash» · «k
+   tugma 542 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 552 - «Bugungi asosiy fikr» qutisi yakunda yo'q (SABOQ E 50) — fikr A-bo'lim 2-bandida, darsning ichki o'qi.
+   tugma 564 - Tugmalar: Orqaga · Qaytadan · Yakunlash
+   yonma 653 9. **9-ekran:** sahifa `ilova` (brauzer ko'rinishi; karta «Shanba, 18:00 · Mahalla maydoni · 8 / 10» → «9 / 10»); kod us
+   asosiy 664 14. Test savoli ustida «To'g'ri javobni tanlang» yorlig'i yo'q (SABOQ 6). Hook javoblari «Aynan!» / «Qiziq fikr!» (T-028
+## feedback/F-1008-14modul/09-VideoPortfolio-v3.md 10
+   asosiy 9 «Ortda qoldingizmi» darsda bir marta, 1-amaliyotda · yakun — E 50 standarti («Bugungi asosiy fikr» qutisi yakunda yo'q),
+   asosiy 26 2. **Bugungi asosiy fikr (P-013 — darsning ichki o'qi; yakunda ko'rsatilmaydi, SABOQ E 50):** 3 daqiqalik video sizni uc
+   yonma 50 6-darsdagi demo ssenariysi o'quvchi matnida nomi bilan aytilmaydi (A1 da «6-darsdan olindi» kulrang yorlig'i bilan oldin
+   tugma 368 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 379 - «Bugungi asosiy fikr» qutisi yakunda yo'q (SABOQ E 50) — fikr A-bo'lim 2-bandida, darsning ichki o'qi.
+   asosiy 380 - Endi siz bilasiz (5; T-048 — asosiy fikr so'zma-so'z takrorlanmaydi; 1-qator — ta'rif, T-042):
+   tugma 390 - Tugmalar: Orqaga · Qaytadan · Yakunlash
+   asosiy 501 - S-027: har old tomon — to'liq savol, «?» bilan; «ta'rif → atamani toping» shakli yo'q (1-karta — atamadan ta'rifga). B
+   asosiy 527 13. **s11 `QYakun`:** sarlavha — besh holat (`pm-m12d9-video` va blok bayroqlaridan; ustunlik tartibi — 11-ekran); ✓ yor
+   asosiy 620 Bugungi asosiy fikr (A-2): 1 ta · 99–99 · ≤110
+## feedback/F-0928-QA-5modul/YAKUNIY/05-BotAiProject.md 1
+   fc 210 - Yorliq: Takrorlash — kartochkalar
+## feedback/F-0928-QA-5modul/YAKUNIY/03-BotApiButtons.md 2
+   tugma 388 - Tugmalar: Orqaga · Yakunlash →
+   fc 409 - Kalit so'zlar (takrorlash): **token** — botning maxfiy kaliti (.env faylida) · **Telegraf** — Node.js uchun bot kutubx
+## feedback/F-0928-QA-5modul/YAKUNIY/09-BotFeedbackIteration.md 1
+   fc 200 - Takrorlash — kartochkalar (12; old tomonida savol, ochilganda javob va izoh):
+## feedback/F-0928-QA-5modul/YAKUNIY/07-BotFullProject.md 2
+   fc 198 - Yorliq: Takrorlash — kartochkalar (12 ta, "Kartochkalar" bo'limida)
+   fc 204 Oyna: Takrorlash — kartochkalar. Hisoblagichlar: ↻ O'rganilmoqda · N · ✓ Bildim · N. Tugmalar: ✗ Takrorlash · ✓ Bildim.
+## feedback/F-0928-QA-5modul/YAKUNIY/02-PmLesson19.md 2
+   yonma 112 - ✔ Yangilik ertasiga darsda yonma-yon o'tirganlarga yetardi
+   asosiy 281 - Bugungi asosiy fikr — Birinchi foydalanuvchilar tanish guruhlardan keladi.
+## feedback/F-0928-QA-5modul/YAKUNIY/08-PmLesson20.md 1
+   asosiy 264 - Bugungi asosiy fikr — Javob sizda emas: uni botingizni ishlatgan odam biladi.
+## feedback/F-0928-QA-5modul/YAKUNIY/12-PmLesson21.md 6
+   yonma 35 - Xulosa (ikkala karta ko'rilgach): **Har kunda ikki son bor: nechta odam keldi va ulardan nechtasi qaytdi.** O'tgan dar
+   yonma 163 - «Bu odam qaytmagan» bosilgan, lekin qaytish kuni bor: Bu odam qaytgan: ikki to'lgan katak yonma-yon turgan joy bor.
+   yonma 271 | Qaytish nimadan ko'rinadi? | Ikki kunning yonma-yon turishidan; bitta kundan ko'rinmaydi |
+   yonma 292 - Qaytish ikki kunning yonma-yon turishidan ko'rinadi — bitta kundan emas.
+   yonma 299 - **Day by Day** (4-ekran) — Kunlarni ochib, ikki sonni yonma-yon kuzatdingiz
+   yonma 311 3. Ikki kunni yonma-yon qo'ying — Kechagi ro'yxatni bugungisi bilan solishtiring: ikkalasida ham bor odamlar — qaytganla
+## feedback/F-0929-QA-6modul/YAKUNIY/02-PmLesson22.md 1
+   asosiy 306 - Bugungi asosiy fikr — Bitta gapni har kim boshqacha tushunishi mumkin. Shuning uchun fikrni yozib, aniqlashtiramiz.
+## feedback/F-0929-QA-6modul/YAKUNIY/06-PmLesson23.md 0
+## feedback/F-0929-QA-6modul/YAKUNIY/12-PmLesson24.md 2
+   yonma 32 - **Bitta ro'yxat** — Oltita ish yonma-yon turibdi — qaysi biri bugun boshlanishini hech narsa aytmaydi.
+   asosiy 288 - Bugungi asosiy fikr — Ishni ufqqa bizning xohishimiz emas, unga kerak narsaning tayyor bo'lish payti qo'yadi.
+## feedback/F-0929-QA-6modul/YAKUNIY/14-PmLesson25.md 2
+   yonma 136 - Mentor: Uchta qatorni birma-bir to'ldiring — slayd yonma-yon yozilib boradi.
+   yonma 305 3. Ikki tomonni yonma-yon qo'ying — Har raqamdan so'rang: u kimning ishini sanadi — tizimni qurgan odamningmi, foydalanu
+## feedback/F-1005-9modul/09-MvpComplete-v3.md 3
+   yonma 102 - Vizual: «Maydon» xaritasining chap va o'rta qismi — ikki telefon yonma-yon («1-telefon», «2-telefon»), ikkalasida Shan
+   yonma 134 - O'ng tomon — «Kutilgan natija (namuna: «Maydon»)»: ikki brauzer oynasi yonma-yon — 1-oyna: 19:00 band, «Band qilindi»;
+   tugma 248 - Tugmalar: Orqaga · Yakunlash → (platforma shakli)
+## feedback/F-1005-9modul/07-MvpFirstScreen-v3.md 4
+   asosiy 24 2. **Bugungi asosiy fikr (P-013):** Agent talabga tayanib quradi; noaniq yoki aytilmagan joyni taxmin qilishi mumkin — s
+   yonma 141 - Tugadi (199): harakat paneli yopiladi; uch qatorli talab kartasi va tuzalgan maket yonma-yon fokusga; vizual ⛶ ichida 
+   tugma 305 - Tugmalar: Orqaga · Yakunlash →
+   tugma 321 - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1005-9modul/11-MvpIteration-v3.md 3
+   asosiy 20 2. **Bugungi asosiy fikr (P-013):** Sinovdan keyin vazifani to'xtatgan bitta muammo talab bilan tuzatiladi va o'sha vazi
+   tugma 300 - Tugmalar: Orqaga · Yakunlash → (platforma shakli)
+   tugma 314 - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1005-9modul/06-PmAnalyticsDayOne-v3.md 7
+   asosiy 19 2. **Bugungi asosiy fikr (P-013):** Bizning MVP da analitika birinchi odamdan oldin ulanadi — shunda qaysi qadamdan keyi
+   yonma 73 Panelda hech narsa o'zgarmaydi: ikki ustun «?» qoladi, band 0 — ustunlar bir lahza miltillaydi (bo'sh). Shundan keyin va
+   yonma 104 2. Bitta qator (`QIzoh`): Bu mashqda har odam har qadamda bir marta sanaladi: ikki ustun farqi — o'sha qadamda to'xtagan
+   tugma 251 - Tugmalar: Orqaga · Yakunlash → (platforma shakli)
+   asosiy 262 - Bugungi asosiy fikr (ScoreRing ostida, `small`, kartochkaga qo'shilmaydi — P-013): Bizning MVP da analitika birinchi o
+   tugma 288 - Tugmalar: Orqaga · Qaytadan · Yakunlash
+   asosiy 398 12. s11 `QYakun`: `recap` 4 qator, «Bugungi asosiy fikr» `small`; kartochkalar — s10 alohida ekranda (`FLASHCARDS` 12); 
+## feedback/F-1005-9modul/03-PmInterviewMvp-v3.md 5
+   asosiy 21 6. **Bugungi asosiy fikr (P-013, yakunda va 13-ekran xulosasida so'zma-so'z):** Ko'p yozuvda chiqqan shikoyat — kuchli b
+   asosiy 360 - Xulosa (yozgach): Ko'p yozuvda chiqqan shikoyat — kuchli belgi; birinchi versiya shu bitta muammoni hal qiladi. (89) —
+   asosiy 389 - Bugungi asosiy fikr — Ko'p yozuvda chiqqan shikoyat — kuchli belgi; birinchi versiya shu bitta muammoni hal qiladi.
+   asosiy 525 13. **s15** `QKartochka` (DE-204, 11 karta). **s16** `QYakun`: sarlavha, asosiy fikr, 4 band, HwCard (3 qadam), «Keyingi
+   asosiy 538 - 16-ekran: «Bugungi asosiy fikr» yashil kartada CODE STRIKE ustida (QYakun da alohida joy yo'q).
+## feedback/F-1005-10modul/YAKUNIY/04-PmAbTest.md 9
+   yonma 15 - Maket (chap): ikki telefon yonma-yon — chapda tugma «Band qilish», o'ngda «18:00 ni band qilish» (telefonning o'zini h
+   yonma 99 3. **Ikki guruh — bir vaqtda** — ikki guruh yonma-yon, oynalar ustida «A · hozirgi» va «B · yangi», ostida ikki «?»
+   yonma 181 - Sarlavha: **Dashboard A va B foizini yonma-yon ko'rsatsin.**
+   yonma 193 - Yordam (bosilsa ochiladi): «Nima qilsin: sanoq javobiga `variantlar` qo'shilsin — A va B uchun `vaqt-tanladi`, `band-q
+   yonma 196 4. Sinfdoshlar bilan tekshirish — Netlify manzilingizni (`….netlify.app`) 3–4 sinfdoshingizga bering: ular telefonida oc
+   yonma 202 Nima qilsin: A va B uchun {gipotezangizdagi raqam} yonma-yon chiqsin; har variantda turli brauzerlar sanalsin.
+   tugma 244 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 250 - Bugungi asosiy fikr: Gipoteza qaysi raqamga qarashni oldindan aytadi, A/B test shu raqamni ikki guruhda bir vaqtda sol
+   asosiy 369 - Bugungi asosiy fikr: Gipoteza qaysi raqamga qarashni oldindan aytadi, A/B test shu raqamni ikki guruhda bir vaqtda sol
+## feedback/F-1005-10modul/YAKUNIY/11-PmPitchRehearsal.md 3
+   tugma 287 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 293 - Bugungi asosiy fikr: Har slayd zalning bitta savoliga javob beradi; fidbek qaysi javob yetmaganini ko'rsatadi.
+   asosiy 403 Pitch besh daqiqalik bo'ldi, eng zaif slayd tuzatildi. Bugungi asosiy fikr: Har slayd zalning bitta savoliga javob berad
+## feedback/F-1005-10modul/YAKUNIY/06-PmTrustAudit.md 3
+   tugma 234 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 240 - Asosiy fikr: Odam ma'lumotini ishonib berishi uchun kerakli minimumni yig'asiz, maqsad tugagach o'chirasiz va buni say
+   tugma 257 - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1005-10modul/YAKUNIY/10-PmYearPath.md 3
+   tugma 293 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 299 - Bugungi asosiy fikr — Vaqt chizig'i bir yilda nima bo'lganini ko'rsatadi, keyingi qadam esa shu chiziqdan o'sadi.
+   asosiy 410 15-ekran (yuqorida): sarlavha, bugungi asosiy fikr, «Endi siz bilasiz» — 4 qator, keyingi dars «Besh daqiqada nimani ko'
+## feedback/F-1005-11modul/YAKUNIY/09-ExpoPrototype.md 9
+   yonma 221 - Chap — brauzer oynasi `localhost:5173`: O'yinlar, to'rt karta yonma-yon (kun va soat, maydon, son); ostida surgich: Ke
+   yonma 226 - 600 px dan tor oynada kartalar yonma-yon qisiladi.
+   yonma 233 - Natija: ✓ Taxminingiz to'g'ri chiqdi (boshqa javobda: Taxminingiz: … · haqiqatda: **yonma-yon qisiladi**)
+   order 257 border: 1px solid #ccc;
+   yonma 274 - Xulosa («Bajardim» dan keyin): Bitta `@media` qoidasi bilan o'sha sahifa telefonda ustma-ust, kompyuterda yonma-yon tu
+   yonma 390 - web: telefon (brauzer `localhost:5173`, kartalar ustma-ust) va kompyuter oynasi `localhost:5173` (kartalar yonma-yon)
+   tugma 487 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 496 - Bugungi asosiy fikr: Mobil trekda prototip Expo ilovasiga ko'chadi — har ekran o'z faylida — va QR orqali Expo Go'da o
+   tugma 511 - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1005-11modul/YAKUNIY/11-FeatureOne.md 3
+   yonma 150 - Chap — ikki telefon yonma-yon, yorliqlar «1-telefon · o'yinchi» va «2-telefon · o'yinchi»; ikkalasida O'yin ekrani: «Y
+   tugma 276 - Tugmalar: Orqaga · Yakunlash →
+   tugma 294 - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1005-11modul/YAKUNIY/14-FeatureThree.md 3
+   yonma 19 - Maket: ikki telefon yonma-yon — «1-telefon · qo'shilgan o'yinchi» va «2-telefon · yangi o'yinchi»; ikkalasida «‹ O'yin
+   tugma 271 - Tugmalar: Orqaga · Yakunlash →
+   tugma 289 - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1005-11modul/YAKUNIY/12-FeatureTwo.md 3
+   yonma 136 - Chap — ikki telefon yonma-yon («Bugun: shanba»):
+   tugma 255 - Tugmalar: Orqaga · Yakunlash →
+   tugma 279 - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1005-11modul/YAKUNIY/10-FoundationDay.md 3
+   yonma 20 - Maket: ikki telefon yonma-yon — «1-telefon · o'yinchi» va «2-telefon · tashkilotchi»; ikkalasida «Maydon Jamoa», O'yin
+   tugma 255 - Tugmalar: Orqaga · Yakunlash →
+   tugma 273 - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1005-11modul/YAKUNIY/07-LivePrototype.md 3
+   tugma 396 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 405 - Bugungi asosiy fikr: Qog'ozdagi wireframe ekranni agentga aniq ko'rsatadi; namuna ma'lumot va animatsiya uni Backend's
+   tugma 420 - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1005-11modul/YAKUNIY/08-PlatformChoice.md 5
+   yonma 20 - Maket (ikki maket yonma-yon):
+   yonma 216 - O'ng — ikki ustun: web · mobil, o'rtada «teng». Ostida savol-karta bittadan:
+   tugma 386 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 392 - Bugungi asosiy fikr: Chizma qismlar, jadvallar va real vaqt nuqtalarini ko'rsatadi; bu modulda platforma faqat foydala
+   tugma 406 - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1005-11modul/YAKUNIY/13-PmAudienceTest.md 4
+   tugma 260 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 270 - Bugungi asosiy fikr: Bu darsda ko'p kishida takrorlangan va vazifaga to'sqinlik qilgan to'xtash birinchi tuzatiladi, k
+   tugma 286 - Tugmalar: Orqaga · Qaytadan · Yakunlash
+   asosiy 380 - Bugungi asosiy fikr: Bu darsda ko'p kishida takrorlangan va vazifaga to'sqinlik qilgan to'xtash birinchi tuzatiladi, k
+## feedback/F-1005-11modul/YAKUNIY/04-PmFinalIdea.md 14
+   yonma 6 Darsning bitta vizuali — «Ikki g'oya doskasi». Chapda Mentorning o'nta yozuv kartasi ikki ustunda: «Jamoa yig'ish» (1–5)
+   yonma 30 - Maket: kulrang yorliq «Mentor misoli»; ikki ustun — **Jamoa yig'ish** (ostida «mahalladagi o'yinchilar») · **Mahalla t
+   yonma 36 - O'nta yozuv navbat bilan ochiladi — har kartada Kim qatori; ikki ustun ostida «? / 5»
+   yonma 43 - Mentor: Intervyu savollari ikkala g'oyaga bir xil edi — shuning uchun javoblarni yonma-yon sanash mumkin.
+   yonma 81 - C: Sanoq ikki g'oyani yonma-yon ko'rsatadi.
+   yonma 196 - Ikkala g'oya saqlangach: o'quvchi doskasi — ikki ustun (o'z g'oya nomlari, ✎ — tahrirlash), uch qator: Muammo bo'lgan 
+   yonma 228 - Sarlavha: Ikki g'oyani yonma-yon sanaydigan *kod* yozamiz.
+   yonma 308 | Ikki g'oyaning javoblarini nega yonma-yon sanash mumkin? | Ikkala g'oyaga bir xil savollar berilgan |
+   tugma 322 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 331 - Bugungi asosiy fikr: Yozuvlar sanog'i final g'oya uchun yangi dalil beradi, isbot emas: qaror bitta songa tayanmaydi.
+   yonma 354 - **Count Coder!** — Ikki g'oyani yonma-yon sanaydigan kod yozdingiz (11-ekran, kod-savol birinchi urinishda va «Bajardi
+   yonma 363 - 1 · Ikkala g'oyaga bir xil savollar berilgan — javoblar yonma-yon sanaladi.
+   yonma 388 - ✔ Javoblarni yonma-yon sanay olish uchun
+   asosiy 452 - Bugungi asosiy fikr: Yozuvlar sanog'i final g'oya uchun yangi dalil beradi, isbot emas: qaror bitta songa tayanmaydi.
+## feedback/F-1005-11modul/YAKUNIY/02-PmIdeaRice.md 3
+   yonma 26 - Maket (chap): yo'l «6 g'oya» → «?» → «3 g'oya»; ostida «Mentorning g'oyalari · 6 / 6» — olti qator (raqam, nom, manba 
+   tugma 333 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 339 - Bugungi asosiy fikr: Uch savoldan o'tgan g'oyalarni RICE tartiblaydi; RICE — tanlovga yordam, hukm emas.
+## feedback/F-1005-11modul/YAKUNIY/03-PmInterviewsOne.md 13
+   yonma 6 Darsning bitta vizuali — ikki ustunli shablon. Chapda **Jamoa yig'ish**, o'ngda **Mahalla to'garaklari** (9–11-ekranlard
+   yonma 7 Qatorlar ikki ustunda bir xil, ekrandan ekranga qo'shiladi: Kim · Oxirgi marta · Qanday qildi · Eng qiyini → Hozir nima 
+   yonma 35 - Maket: ikki g'oya kartasi yonma-yon — nom, «Muammo», «Kim uchun» qatorlari va kulrang yorliq «RICE 24» / «RICE 20» (ma
+   yonma 62 - O'ngda: ikki ustunli shablon — Jamoa yig'ish · Mahalla to'garaklari, hozircha faqat «Kim» qatori
+   yonma 94 - Javobdan keyin: shablonning «Oxirgi marta» qatori ikki ustunda, bo'laklar ajralgan
+   yonma 137 - O'ngda — bitta katta yozuv kartasi (navbat bilan beshta yozuv): Kim · Oxirgi marta · Qanday qildi · Eng qiyini · Hozir
+   yonma 191 - Ostida: ikki ustunli shablon (ustun nomi — g'oya, yo'q bo'lsa «1-g'oya» / «2-g'oya»): Kimdan · Oxirgi marta, 3-qadamda
+   yonma 222 - Ostida: ikki ustunli shablon, ustunlar ostida «Yozuvlar · n / 5»; mashq yozuvi — alohida «Mashq» qatorida
+   yonma 238 - Vazifa: 1 `savollar` besh savollik ro'yxat qaytaradi · 2 Birinchi savolda `goya.bolak` turadi · 3 Sahifada ikki ustun,
+   yonma 297 - Shart xabarlari: Har g'oyaga besh savol: ro'yxat uzunligi 5 bo'lsin. · 1-savol: «Oxirgi marta», bo'lak va «qachon bo'l
+   yonma 298 - Bajarilgach (o'ngda): Sahifada — ikki ustunli shablon (Oxirgi marta · Qanday qildi · Eng qiyini · Hozir nima bilan · H
+   tugma 341 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 347 - Bugungi asosiy fikr: Ikki g'oyani bir xil savollar bilan tekshirasiz; odamning qiziqishini so'zidan ko'ra ishi aniqroq
+## feedback/F-1005-11modul/YAKUNIY/15-PmOneOnOne.md 3
+   tugma 246 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 252 - Bugungi asosiy fikr: Holat bo'lib o'tganni ko'rsatadi, qadam esa oldindagi riskni kamaytiradi.
+   asosiy 362 - Bugungi asosiy fikr: Holat bo'lib o'tganni ko'rsatadi, qadam esa oldindagi riskni kamaytiradi.
+## feedback/F-1005-11modul/YAKUNIY/05-PmPrd.md 4
+   yonma 259 - Yordam (tugma): Bitta bo'limdan boshlang: `## Muammo`, ostiga muammo gapingiz. Sarlavhadan oldin bo'sh qator qoldiring
+   tugma 333 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 339 - Bugungi asosiy fikr: G'oya bir sahifaga yetti bo'lim bo'lib yoziladi va qurishdan oldin uch savol bilan tekshiriladi.
+   asosiy 453 - Bugungi asosiy fikr: G'oya bir sahifaga yetti bo'lim bo'lib yoziladi va qurishdan oldin uch savol bilan tekshiriladi.
+## feedback/F-1005-11modul/YAKUNIY/16-PmPrototypePitch.md 3
+   tugma 327 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 333 - Bugungi asosiy fikr: Uch daqiqada zal muammoni dalil bilan eshitadi, yechimni bir gapda tushunadi va ilovani telefonda
+   asosiy 453 - Bugungi asosiy fikr: Uch daqiqada zal muammoni dalil bilan eshitadi, yechimni bir gapda tushunadi va ilovani telefonda
+## feedback/F-1005-11modul/YAKUNIY/06-PmRoadmap.md 4
+   yonma 312 - Javob topilgach: yonma-yon PRD (5-bo'lim «Uchta asosiy funksiya») va doskaning «Hozir» zonasi, orasida ikki tomonlama 
+   tugma 339 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 345 - Bugungi asosiy fikr: RICE ishlar tartibini ko'rsatadi, ish esa unga kerak narsa tayyor bo'lgan ufqda boshlanadi.
+   asosiy 465 - Bugungi asosiy fikr: RICE ishlar tartibini ko'rsatadi, ish esa unga kerak narsa tayyor bo'lgan ufqda boshlanadi.
+## feedback/F-1005-11modul/YAKUNIY/01-PmTenIdeas.md 7
+   yonma 7 Ro'yxat ko'rinishida — ixcham qatorlar va hisoblagich «n / 6» («Mentorning g'oyalari» yoki «G'oyalarim»); oltita bo'lsa 
+   yonma 41 - Mentorning olti g'oya nomi (ikki ustun, raqamli) navbat bilan ✓ oladi: Jamoa yig'ish · Maydon pulini bo'lishish · Maha
+   yonma 113 - Natija: ro'yxat butun enga, ikki ustun × 3 (nom · manba · ›); qatorni bosganda uch qismi ochiladi
+   yonma 187 - «Saqlash»dan keyin karta ro'yxatga uchadi, hisoblagich o'sadi, yangi bo'sh karta chiqadi; 6 / 6 da karta yopiladi, ro'
+   tugma 322 - Tugmalar: Orqaga · Yakunlash →
+   asosiy 328 - Bugungi asosiy fikr: G'oya nom emas: unda muammo, kim uchun va yechim yoziladi.
+   asosiy 441 - Bugungi asosiy fikr — 14-ekranda: G'oya nom emas: unda muammo, kim uchun va yechim yoziladi.
+## feedback/F-0928-QA-5modul/YAKUNIY/11-PmMetrics.md 2
+   yonma 56 - Mentor (javob tanlangach): Endi botdan yana uch raqamni so'rang va ikki suhbatni yonma-yon o'qing.
+   yonma 318 - Keyingi dars — **«Kecha kelgan odam bugun ham keldimi?»** Botingizning bir necha kunini yonma-yon qo'yasiz: kanalga e'
+{'asosiy': 106, 'tugma': 66, 'yonma': 91, 'emoji': 0, 'fc': 5, 'erta': 2, 'order': 1}

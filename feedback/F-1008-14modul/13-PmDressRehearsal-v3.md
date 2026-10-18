@@ -138,10 +138,11 @@ pilotlar (tuzilish va saboqlar; matn ko'chirilmadi): `01-PmInvestorPitch-v3.md` 
 - Chap — kulrang yorliq «hakamlar oldidan to'liq repetitsiya» (App.jsx osti so'zma-so'z, P-015).
   Vizual (`ChiqishSahna` skeleti, bir marta o'zi yuradi — DE-200): taymer chizig'ining olti kulrang bo'lagi birma-bir to'q bo'ladi, keyin uzuq savol-javob bo'lagi yonadi; ostida bo'sh varaq — uch kulrang qator. Matnsiz — 2, 3-ekran kashfiyotini ochmaydi (P-015).
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
-  - 01 · Butun chiqish qaysi tartibda o'tishini bilib olasiz · `to'liq repetitsiya`
-  - 02 · Hakam chiqishga qanday belgi qo'yishini bilasiz · `hakam varag'i`
-  - 03 · Chiqishdan oldin demo qurilmalarini tekshirasiz · `B reja`
-  - 04 · Chiqishingizni o'tasiz, hakam varaqni to'ldiradi · `savol-javob`
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*
+  - 01 · Butun chiqish qaysi tartibda o'tishini bilib olasiz
+  - 02 · Hakam chiqishga qanday belgi qo'yishini bilasiz
+  - 03 · Chiqishdan oldin demo qurilmalarini tekshirasiz
+  - 04 · Chiqishingizni o'tasiz, hakam varaqni to'ldiradi
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz · Keyingi bosiladigan joy: «Boshlaymiz» (vizual tugagach halqada).
 - O'qituvchi eslatmasi: Guruhlar 3–4 kishidan (5-darsdagidek). Mehmon bo'lsa — uni sinfga tanishtiring, ismini doskaga yozmang. Bugun repo'ga tegilmaydi, kod o'zgarmaydi.
 - Izoh (MD): sarlavhada yangi atama yo'q (T-011; «to'liq repetitsiya», «hakam varag'i» — faqat kulrang teg va App.jsx ostida). Sarlavha — natija va'dasi (P-014). «chiqishingizni» — pitch o'quvchida bor (1, 8-darslar; T-039).
@@ -152,9 +153,9 @@ pilotlar (tuzilish va saboqlar; matn ko'chirilmadi): `01-PmInvestorPitch-v3.md` 
 - Sarlavha: **Pitch, demo va savollar birga qanday o'tadi?** (44) — 0-ekran savoliga javob beradigan ekran (T-064)
 - Mentor: Tugmalarni birma-bir bosing va Mentor chiqishi chiziqda qanday yig'ilishiga qarang. (83)
   (Birinchi harakat — bashorat; uning yo'rig'i `QBashorat` yorlig'ida, Mentor takrorlamaydi — T-047.)
-- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bitta o'lchov, o'sish tartibida): **Mentor misolida butun chiqish necha daqiqagacha boradi?** (55) · 5 daqiqagacha · 8 daqiqagacha · 12 daqiqagacha — tanlangach ixcham qator; tugmalar shundan keyin yoqiladi.
+- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bitta o'lchov, o'sish tartibida): **Mentor misolida butun chiqish necha daqiqagacha boradi?** (55) · 5 daqiqagacha · 8 daqiqagacha · 12 daqiqagacha — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*.
 - Vizual (`ChiqishSahna`, ≤ 3 blok: sahna · tugmalar qatori · natija): tepada — hakamlar; o'rtada — bo'sh taymer chizig'i (uzuq); pastda — laptop brauzeri va telefon. Ustida kulrang yorliq «Mentor misoli · reja».
-- Tugmalar (ixcham, bir qatorda; joriysi accent, bosilgani ✓): 1 Pitch va jonli demo · 2 Savol-javob · 3 Demo ochilmasa
+- Tugmalar (ixcham, bir qatorda; joriysi accent, bosilgani ✓): 1 Pitch va jonli demo · 2 Savol-javob · 3 Demo ochilmasa *(✎ F-1015-164: tugmalar bashoratdan keyin chiqadi; bosiladigani faqat joriysi, bosilgani — «✓ nom» yozuvi, keyingisi hali ko'rinmaydi)*
 - **Harakat → Vizual o'zgarish:**
   1. «Pitch va jonli demo» → taymer chizig'ida olti bo'lak navbat bilan yonadi (Muammo · Bozor · Yechim · Raqamlar · Jamoa · Keyingi qadam; ostida vaqtlari), 5:00 belgisi yonadi; Yechim bo'lagi kengayib, ichida demo ssenariysining besh qadami yonadi:
      laptopda «O'yinlar» → «Qo'shilaman», telefonda «8 / 10» o'zi «9 / 10» bo'ladi, «Hozir ko'ryapti».
@@ -181,7 +182,7 @@ pilotlar (tuzilish va saboqlar; matn ko'chirilmadi): `01-PmInvestorPitch-v3.md` 
 - Sarlavha: **Hakam butun chiqishga qanday belgi qo'yadi?** (43)
 - Mentor: Har vaziyatni o'qing va varaqdagi mos belgini bosing. (53)
 - Bashorat yo'q — har vaziyatda o'quvchining o'zi tanlaydi (P-064: bashorat 2-ekranda).
-- Vizual (≤ 3 blok: vaziyat kartasi · varaq · natija): **chapda** — joriy vaziyat kartasi («Vaziyat n / 3»; ustida kulrang yorliq «mashq vaziyati»; kartada chizilgan kichik sahna: laptop yoki hakam pufagi) ·
+- Vizual (≤ 3 blok: vaziyat kartasi · varaq · natija): **chapda** — joriy vaziyat kartasi (ustida kulrang yorliq «mashq vaziyati»; «Vaziyat n / 3» olindi — yorliqni takrorlardi, sanoq tugmada *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*; kartada chizilgan kichik sahna: laptop yoki hakam pufagi) ·
   **o'ngda** — varaq (sarlavhasiz; uch bo'lim): «Vaqt» (kulrang «m:ss — taymer yozadi») · «Demo» (uch belgi: Ishladi · B reja · Ishlamadi) · «Savol-javob» (savol qatori va uch belgi: Son yoki fakt bilan · Tekshirib aytaman · Javob savolga tegmadi); joriy bo'lim — accent chegara.
 - Vaziyatlar (navbat bilan; matn — A-6 `VAZIYAT` aynan; ✔ o'rni — 2, 2, 3):
   1. Yechimda laptop «Ulanmoqda…» ko'rsatdi. B reja gapi aytildi, video oxirigacha ko'rsatildi. (90) · bo'lim «Demo»
@@ -238,7 +239,7 @@ pilotlar (tuzilish va saboqlar; matn ko'chirilmadi): `01-PmInvestorPitch-v3.md` 
 - Mentor: Har kartadagi ishni laptop va telefoningizda qiling, keyin nima ko'rganingizni belgilang. (89)
 - Tepada raqamli doiralar 1/2/3/4 (Backend · B reja video · Namuna akkaunt · Telefon; joriy — accent, belgilangani ✓) — miqdor shu vizualda va sarlavhada (P-062).
 - Doiralar ostida kulrang qator (faqat `pm-m12d7-tekshiruv` da `buzildi === true` urinish bo'lsa va uning `qayta` qiymati `'takrorlanmadi'` bo'lmasa): 7-darsda «{usul}» hali ochiq qolgan — chiqishda buzilsa, B rejaga o'tasiz. (74) (`{usul}` — «Tarmoq uzilishi» · «Bo'sh ma'lumot» · «Ikki marta bosish»)
-- **Bitta katta karta (joriy qism)** — ish (bir gap) va tanlov tugmalari (har birining o'z chegarasi); tanlov — «nima ko'rdingiz» (honor-belgi emas — KORPUS §19):
+- **Bitta katta karta (joriy qism; sarlavhasi — faqat qism nomi, raqami tugmada *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*)** — ish (bir gap) va tanlov tugmalari (har birining o'z chegarasi); tanlov — «nima ko'rdingiz» (honor-belgi emas — KORPUS §19):
   1. **Backend** — Laptopda demo yo'lingizni oching va ro'yxat chiqqanini ko'ring. (61) · «Ro'yxat ochildi» · «Ochilmadi» (xatti-harakat — xizmat soni yo'q, 13-FILTR 22, 23)
      «Ochilmadi» (yoki `pm-m12d6-demo.uygotish` `true` emas) — kulrang qator: Birinchi ochilish cho'zilishi mumkin — kutib, sahifani yangilang. (58)
   2. **B reja video** — Laptopda B reja videosini oching va boshini ko'ring. (52) · «Video ochildi» · «Video hali yo'q»
@@ -270,7 +271,7 @@ pilotlar (tuzilish va saboqlar; matn ko'chirilmadi): `01-PmInvestorPitch-v3.md` 
 - Mentor: Hakam kimligini tanlang, so'ng hakam «5 daqiqani boshlash»ni bossin. (68)
   Yakka rejimda (tanlov «O'zim — yakka»): «5 daqiqani boshlash»ni bosing va butun chiqishni ovoz chiqarib o'ting. (71)
 - **Tepada — hakam tanlovi** (yorliq input ichida — kulrang «Hakam kim?», E 43; har tugmaning o'z chegarasi): «Mentor yoki mehmon» · «Guruhdagi tinglovchi» · «O'zim — yakka» → `tur`.
-- Ostida tugmalar (ixcham, bir qatorda; joriysi accent): 1 Pitch · 2 Savol-javob
+- Ostida tugmalar (ixcham, bir qatorda; joriysi accent): 1 Pitch · 2 Savol-javob *(✎ F-1015-164: «Savol-javob» pitch to'xtatilgach chiqadi — undan oldin ko'rinmaydi)*
 - **1 · Pitch:**
   - «Pitchdan oldin» — bitta kulrang blok (bosilmaydi, katakchasiz — korpus §19): Taymer va savollar — hakamning qurilmasida; demo — sizning laptopingizda. (73) · Navbatingiz uzoq cho'zilsa — demo yo'lini yana ochib ko'ring. (60)
     (Hakam rejimi — dars sahifasi hakam qurilmasida ochiladi, belgilar gapiruvchining kalitiga 7-ekranda yoziladi; qurilmalararo sinxron yo'q — hakam varaqni gapiruvchining qurilmasida to'ldiradi (7-ekran). Hakam rejimi qurilmasa — zaxira: laptopda ikkinchi oyna; ⛔ «qur» pilotida qaysi yo'l qulayligi — 13-FILTR 2.)
@@ -283,7 +284,7 @@ pilotlar (tuzilish va saboqlar; matn ko'chirilmadi): `01-PmInvestorPitch-v3.md` 
   - Savol tugmalari (`HAKAM_SAVOL`, 7 ta; tugmada savolning o'zi): 8-darsda berilganlari (`pm-m12d8-final.savollar[].id` — 08-FILTR 7; matn solishtirilmaydi, 13-FILTR 25) — kulrang yorliq «8-darsda bo'lgan» (bosilsa ham bo'ladi) · oxirida «Boshqa savol» (hakam o'zi so'raydi; matni yozilmaydi; har bosish — `boshqa:1`, `boshqa:2`, `boshqa:3`).
   - Savol tugmasi → savol taymer chizig'ining savol-javob bo'lagidagi katakka uchadi, 1:00 chizig'i yura boshlaydi; «To'xtatish» → katak qotadi (belgisiz — belgi 7-ekranda). 1:00 dan oshsa — katak qizil «+m:ss» (saqlanmaydi). 3 savoldan keyin savol tugmalari yopiladi.
   - Yakka rejimda: savol tugmalari o'rnida dars savollarni navbat bilan ko'rsatadi (3 ta, 8-darsda bo'lmaganlaridan, tasodifiy); javobni ovoz chiqarib aytasiz va «To'xtatish»ni bosasiz.
-- Tekshiruv (`QXato`, ≤60): hakam tanlanmagan — «5 daqiqani boshlash» yopiq, yorliq: Avval hakam kimligini tanlang. (30)
+- Tekshiruv (`QXato`, ≤60): hakam tanlanmagan — «5 daqiqani boshlash» ko'rinmaydi (tanlangach chiqadi *(✎ F-1015-164)*), yorliq: Avval hakam kimligini tanlang. (30)
 - **Harakat → Vizual o'zgarish:** «5 daqiqani boshlash» → taymer chizig'i to'lib boradi, joriy bo'lak accent bilan almashadi, 5:00 dan oshsa chiziq qizil davom etadi · «To'xtatish» → vaqt qotadi, «Savol-javob» tugmasi halqaga oladi ·
   savol tugmasi → savol katakka uchadi, 1 daqiqa chizig'i yuradi · «To'xtatish» → katak qotadi; uchinchi katakdan keyin savol-javob bo'lagi yashil chet oladi.
 - Xulosa (o'quvchi ma'lumotidan, P-046; holatga qarab):
@@ -307,7 +308,7 @@ pilotlar (tuzilish va saboqlar; matn ko'chirilmadi): `01-PmInvestorPitch-v3.md` 
 - Sarlavha (`tur` ga qarab — E 54, 13-FILTR 10): hakam / guruh — **Hakam chiqishingizga qanday belgi qo'ydi?** (41) · yakka — **Mashq varag'iga qanday belgi qo'yasiz?** (39)
 - Mentor: Dars ochiq qurilmangizni hakamga bering: u har kartada bittasini tanlaydi. (74)
   Yakka rejimda: Har kartada bittasini o'zingiz tanlang — bu mashq varag'i. (58)
-- **Tepada — ixcham chiziq «Hakam varag'i · n / N»** (N = 2 + berilgan savollar soni): qator nomlari, belgilangani rangli (bo'sh uzuq qatorlar yo'q, SABOQ 17).
+- **Tepada — ixcham chiziq «Hakam varag'i»** (sanoq tugmada «Har kartaga belgi (n/N)» *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*): qator nomlari, belgilangani rangli (bo'sh uzuq qatorlar yo'q, SABOQ 17).
 - **Markazda — bitta katta karta (joriy):**
   1. **Vaqt** — «Pitch: m:ss» va belgi o'zi: «Sig'di» (5:00 gacha, yashil) yoki «Oshdi · +m:ss» (qizil); hakam bosmaydi. («Keyingi bo'lak» tugmasi yo'q — 08-FILTR 16 bilan bir: umumiy taymer; bo'lak vaqtlari o'lchanmaydi.) `pm-m12d8-final.vaqt` bo'lsa — kulrang qator: «8-darsda: {m:ss}». Tugma «Keyingi».
   2. **Demo** — Jonli demo qanday o'tdi? (24) · «Ishladi» · «B reja» · «Ishlamadi»
@@ -393,6 +394,7 @@ pilotlar (tuzilish va saboqlar; matn ko'chirilmadi): `01-PmInvestorPitch-v3.md` 
 - Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
 - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18). Artefakt-strip yakunda yo'q (E 50).
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
 - Izoh (MD): uyga vazifada keyingi qatorlar (Zaxira dars, Demo Day) aytilmaydi (T-038). ① — kod tuzatish emas: 14-Modulda kod faqat 3, 4, 6, 7-darslarda o'zgaradi (tayanch 1.0) — demo nosozligi Mentorga ko'rsatiladi (TAYANCHGA SAVOL 12).
   ② — tanish doira, ismsiz (TAQIQLAR 3); yozib olish ixtiyoriy, video hech qayerga yuklanmaydi (T12). Yakun sarlavhalari kalitdan va dars holatidan yig'iladi: `vaqt`, `demo`, `varaq[].belgi`, `tur`, 7-ekran «Saqlash» bayrog'i (P-046).
 
@@ -548,7 +550,7 @@ Natija qanday chiqsa — shunday yoziladi; sabab to'qilmaydi.
 - **Render** bepul xizmati: 15 daqiqa so'rovsiz qolsa uxlaydi, uyg'onishi ≈1 daqiqa — tayanch 6 va `00-MANBA.md` 5 (render.com/docs/free, 06.10.2026). Yangi tashqi fakt bu darsda yo'q.
 - Taymer chizig'i va varaq naqshi — `src/10-Modull/PmGrowthPitchLesson.jsx` 780 (`TaymerChiziq`), 12-Modul `12-PmGrowthPitch-v3.md` 11-ekran (varaq, «Pitchdan oldin», guruh yo'rig'i) va `12-FILTR.md` 22, 23, 31, 32 (demo real odamlarsiz, «o'zgartirildi» va qayta baholash).
 - Namuna akkaunt (`namuna = true`, sanoqqa kirmaydi) — 12-Modul tayanchi 9.44 c; telefon brauzeri — ikkinchi qurilma — 14-Modul tayanch 9.6 (07 pilot TS 4). Hakam ta'rifi va `HAKAM_SAVOL` — `01-PmInvestorPitch-v3.md` A-4, A-6.
-- Ekran yozish vositasi, proyektor ulanishi, telefon modeli — tilga olinmadi (tayanch 6: tekshirilmagan).
+- Ekran yozish dasturi, proyektor ulanishi, telefon modeli — tilga olinmadi (tayanch 6: tekshirilmagan).
 
 ---
 

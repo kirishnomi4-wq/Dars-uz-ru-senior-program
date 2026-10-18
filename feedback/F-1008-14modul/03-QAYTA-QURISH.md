@@ -66,7 +66,7 @@
 - Eyebrow: Mashq · haqiqiy hisobot
 - Sarlavha: **Hisobotdagi topilmaga qaysi tuzatish mos?** (41)
 - Mentor: Bu topilmalar — tanish saytlarning 08.10 hisobotidan. Har kartaga mos tuzatishni tanlang.
-- Karta dastasi (SABOQ P4/P8 naqshi, bittadan, «1 / 3»): har kartada sayt nomi (o'z rangida), Lighthouse belgisi va UI yozuvi + o'zbekcha izoh:
+- Karta dastasi (SABOQ P4/P8 naqshi, bittadan; «n / 3» olindi — chapdagi ro'yxat joriy topilmani ko'rsatadi *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*): har kartada sayt nomi (o'z rangida), Lighthouse belgisi va UI yozuvi + o'zbekcha izoh:
   1. **OLX** ▲ `Reduce unused JavaScript` — «Est savings of 1 354 KiB» · izoh: «Sahifa ishlatmaydigan kod ham yuklanadi.» → to'g'ri: **Keraksiz kodni olib tashlash**
   2. **Olcha** ■ `Image elements do not have explicit width and height` — «6 ta rasm» · izoh: «Rasmlarda o'lcham yozilmagan.» → to'g'ri: **Rasmga width va height yozish**
   3. **OLX** ▲ `Total Blocking Time` — «7 725 ms» · izoh: «Ochilishda brauzer kod bilan band bo'lgan.» → to'g'ri: **Keraksiz kodni olib tashlash**

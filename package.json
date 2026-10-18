@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "pitch": "PITCH=1 vite --config vite.taqdimot.config.js --host --port 5330 --strictPort --open /pitch.html",
     "build": "vite build",
     "lint": "oxlint",
     "preview": "vite preview",

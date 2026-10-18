@@ -6,6 +6,7 @@ import { createRoot } from 'react-dom/client';
 // Harness'da bor darslar (kalit = saytdagi #/lesson/<kalit>). Kerak bo'lganda qo'shiladi.
 const LESSONS = {
   'm1-01': () => import('../1-Modull/InternetLesson.jsx'),
+  'm1-03': () => import('../1-Modull/Htmllesson1.jsx'), // prezentatsiya suratlari (13.10): test + praktika paneli
 };
 
 function Harness() {

@@ -8,13 +8,10 @@ import { fon } from './tokens.js';
 export const qolipCss = (Q) => `
   /* --- Ekran: tepadan boshlanadi, bloklar orasida bir xil oraliq (174) --- */
   .q-ekran { display: flex; flex-direction: column; gap: clamp(12px,1.8vw,16px); min-width: 0; }
-  .q-split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(14px,2.4vw,24px); align-items: stretch; min-width: 0; }
+  .q-split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(14px,2.4vw,24px); align-items: start; min-width: 0; } /* F-1015-141 (Z2): ustunlar tepadan, mazmun balandligida — karta bo'sh cho'zilmaydi */
   .q-split.q-keng-ong { grid-template-columns: minmax(0,0.85fr) minmax(0,1.15fr); }
   .q-col { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
   .q-col > .q-karta:last-child, .q-col > .q-vizual-karta:last-child { flex-grow: 1; }
-  /* ⛶ qobig'i (zoomable) ichidagi vizual ham ustun balandligini to'ldiradi — ikki ustun bir balandlikda */
-  .q-split > .q-col > .zoomable:last-child { flex-grow: 1; display: flex; flex-direction: column; }
-  .q-split > .q-col > .zoomable:last-child > :not(.zoom-btn):last-child { flex-grow: 1; }
   @media (max-width: 860px) {
     .q-split, .q-split.q-keng-ong { grid-template-columns: minmax(0,1fr); }
     .q-split.q-vizual-avval > .q-col:last-child { order: -1; } /* telefonda vizual tepada — bosish va o'zgarish bir ko'rishda */
@@ -159,6 +156,11 @@ export const qolipCss = (Q) => `
   .q-blok-tugadi { background: ${Q.okFon}; border-radius: 12px; padding: clamp(12px,2vw,16px); }
   .q-blok-tugadi p { margin: 0; color: ${Q.ink}; line-height: 1.5; }
   .q-blok-natija { display: flex; flex-direction: column; min-width: 0; }
+  .q-blok-ong > .q-blok-izoh { display: flex; align-items: center; min-height: 30px; } /* F-1015-166: natija ostidagi izoh (F-1015-176: joy topolmagan ⛶ ko'rsatilmaydi) */
+  .q-blok-ong > .zoomable.zb-qator:not(.zoom-on) { padding-top: 0 !important; }
+  /* F-1015-176: amaliyot natijasidagi telefon/oyna maketining o'z yorlig'i maket OSTIGA (qadamlar kartasi bilan bir chiziqdan boshlansin) */
+  .q-blok-natija [class*="-tel-ust"] > [class*="-tel-yorliq"], .q-blok-natija [class*="-tel-ust"] > [class*="-tel-tex"], .q-blok-natija [class*="-tel-ust"] > [class*="-rol"],
+  .q-blok-natija [class*="-telj"] > [class*="-tel-yorliq"], .q-blok-natija [class*="-tel-w"] > [class*="-tel-y"] { order: 9; margin-top: 6px; }
   .q-blok-ortda { display: flex; flex-direction: column; gap: 4px; font-size: 12px; line-height: 1.5; color: ${Q.ink2}; min-width: 0; }
   .q-blok-buyruq { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: ${Q.ink}; background: ${Q.bg}; border: 1px solid ${Q.line}; border-radius: 6px; padding: 3px 7px; display: block; white-space: nowrap; overflow-x: auto; } /* buyruq bo'linmaydi (--tags), tor ekranda ichida suriladi */
   .q-prompt { width: 100%; background: ${Q.bg}; border: 1px solid ${Q.line}; border-radius: 11px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; }
@@ -238,7 +240,7 @@ export const qolipCss = (Q) => `
   .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
   .hero-l { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
   .done-chip { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${Q.ok}; background: ${Q.okFon}; padding: 5px 12px; border-radius: 99px; } .done-chip .tick { width: 15px; height: 15px; border-radius: 50%; background: ${Q.ok}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; }
-  .hero-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; } .score-chip { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; font-variant-numeric: tabular-nums; color: ${Q.accent}; background: ${Q.accentSoft}; padding: 5px 12px; border-radius: 999px; } /* F-1003-04/05: yakunda halqa o'rniga yorliq */
+  .hero-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; } .score-chip { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; font-variant-numeric: tabular-nums; color: ${Q.accent}; background: ${Q.accentSoft}; padding: 5px 12px; border-radius: 999px; } .score-chip.neytral { color: ${Q.ink2}; background: ${Q.paper}; box-shadow: inset 0 0 0 1px ${Q.line}; } .score-chip.toliq { color: ${Q.ok}; background: ${Q.okFon}; box-shadow: none; } /* F-1015-146: ball belgisi — neytral, hammasi to'g'ri bo'lsa yashil */ /* F-1003-04/05: yakunda halqa o'rniga yorliq */
   .recap { display: flex; flex-direction: column; gap: 8px; list-style: none; } .recap li { display: flex; align-items: flex-start; gap: 10px; font-size: clamp(13px,1.6vw,15px); color: ${Q.ink}; animation: fade-in-up 0.4s ease-out forwards; opacity: 0; } .recap .ck { color: ${Q.ok}; font-weight: 700; flex-shrink: 0; background: none; padding: 0; }
   /* F-0803-08 — UYGA VAZIFA KAPSULASI (PmLesson2 etaloni): yakun sahifasida
   «Endi siz bilasiz» dan KEYIN turadi, bosilganda topshiriq kartasi ochiladi. */

@@ -11,7 +11,7 @@ Holat: 2026-10-16 — kodga mos (F-1015-328…330 dan keyin). `lessonId` = `netl
   - Sayt faylini Telegram orqali yuboraman
   - ✔ Saytni internetga chiqarib, havolasini yuboraman
   - Do'stim mening kompyuterimga kelib ko'radi
-- Javob: «Javob — ikkinchisi. Sayt internetga chiqsa, bitta havola yetadi: do'stingiz uni telefonida ochadi. Bugun saytingizni davom ettirasiz va shunday havola olasiz.»
+- Javob (216-qonun, F-1015-393): Telegram → «Fayl telefonda sayt bo'lib ochilmaydi.» · havola → «Aynan!» · do'st keladi → «Har safar kelib ko'rish — qulay emas.» + «Bugun saytni internetga chiqarib, havola olasiz.»
 
 ## 1 · Reja
 - Eyebrow: Reja · Sarlavha: Bugun nima qilamiz?

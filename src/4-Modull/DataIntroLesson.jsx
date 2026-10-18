@@ -38,7 +38,7 @@ const tr = (node) => {
 };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 
 
 
@@ -643,6 +643,12 @@ const TableCard = ({ title, cols, onField, activeField, doneFields, accent }) =>
 );
 
 // ===== SCREEN 0 — HOOK (server o'chsa, postlar qayerda?) =====
+// F-1015-394 (216-qonun): kirish javobi — variantga bitta qisqa gap + «Bugun…» qatori (eski uzun umumiy matn o'qilmasdi)
+const ACK_KIRISH = {
+  a: { uz: 'Havoda emas — ular diskda saqlanadi.', ru: 'Не «в воздухе» — они хранятся на диске.' },
+  b: { uz: "Server o'chdi — lekin postlar qoldi.", ru: 'Сервер выключился — а посты остались.' },
+  c: { uz: 'Aynan!', ru: 'Именно!' }
+};
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [off, setOff] = useState(false);       // server o'chiq holatda
   const [tried, setTried] = useState(!!storedAnswer); // kamida bir marta o'chir-yoq qilingan
@@ -697,9 +703,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 );
               })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{picked === 'c'
-              ? tr({ uz: <>Topdingiz! Postlar serverning vaqtinchalik xotirasida emas, alohida <b>ma'lumotlar bazasida</b> (diskda) saqlanadi. Shuning uchun server o'chib-yonsa ham yo'qolmaydi. Bugun aynan shu ma'lumot dunyosiga kiramiz.</>, ru: <>Верно! Посты хранятся не во временной памяти сервера, а в отдельной <b>базе данных</b> (на диске). Поэтому даже если сервер перезагрузится, они не пропадут. Сегодня мы входим именно в этот мир данных.</> })
-              : tr({ uz: <>Ko'rdingizmi? Server o'chdi, lekin postlar saqlanib qoldi. Chunki ular <b>ma'lumotlar bazasida</b> saqlanadi.</>, ru: <>Видели? Сервер выключился, а посты остались. Потому что они хранятся в <b>базе данных</b>.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step"><b>{tr(ACK_KIRISH[picked])}</b> {tr({ uz: "Bugun ma'lumotlar bazasi bilan tanishamiz.", ru: 'Сегодня знакомимся с базой данных.' })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -2553,7 +2557,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
+    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
@@ -2572,13 +2576,13 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const total = SCORED_IDX.length;
   const audio = useAudio([{ id: 's16', text: `Tabriklaymiz — ilovaning ma'lumot sxemasini o'zingiz ulab chizdingiz! Esda saqlang: ma'lumot — tartibli kalit va qiymat; JSON bitta narsani yozadi; jadval qator va ustundan iborat; id — rozetka, _id — vilka; sxema esa butun ma'lumot xaritasini ko'rsatadi. Keyingi darsda shu jadvallarni haqiqiy bazada, PostgreSQL'da quramiz.`, trigger: 'on_mount', waits_for: null }]);
   return (
-    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className="screen">
         <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок пройден' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Birinchi sxemangiz <span className="italic" style={{ color: T.accent }}>tayyor</span>.</>, ru: <>Ваша первая схема <span className="italic" style={{ color: T.accent }}>готова</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : undefined} />
         </div>
-        {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+        {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
         <div className="hw-big-wrap fade-up d4">
           <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
@@ -2590,7 +2594,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "O'z ilovangiz sxemasini chizib ko'ring:", ru: 'Попробуйте нарисовать схему своего приложения:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi darsda bu jadvallarni haqiqiy bazada — PostgreSQL'da quramiz! 🚀", ru: 'На следующем уроке мы построим эти таблицы в настоящей базе — в PostgreSQL! 🚀' })}</p><div className="hw-chal"><p className="small" style={{ margin: '0 0 8px', color: T.ink2 }}>{tr({ uz: <><b style={{ color: T.ink }}>Ixtiyoriy challenge.</b> Qog'oz o'rniga haqiqiy vosita bilan chizmoqchimisiz? DrawSQL — sxema chizadigan bepul sayt. Bu topshiriq <b>majburiy emas</b>: xohlagan o'quvchi uchun.</>, ru: <><b style={{ color: T.ink }}>Необязательный челлендж.</b> Хотите нарисовать не на бумаге, а в настоящем инструменте? DrawSQL — бесплатный сайт для схем. Это задание <b>необязательное</b> — для тех, кто захочет.</> })}</p><a className="btn-soft" href="https://drawsql.app/diagrams/new" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, textDecoration: 'none' }}>{tr({ uz: 'DrawSQL da ochish ↗', ru: 'Открыть в DrawSQL ↗' })}</a></div></div>}
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "O'z ilovangiz sxemasini chizib ko'ring:", ru: 'Попробуйте нарисовать схему своего приложения:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi darsda bu jadvallarni haqiqiy bazada — PostgreSQL'da quramiz! 🚀", ru: 'На следующем уроке мы построим эти таблицы в настоящей базе — в PostgreSQL! 🚀' })}</p><div className="hw-chal"><p className="small" style={{ margin: '0 0 8px', color: T.ink2 }}>{tr({ uz: <><b style={{ color: T.ink }}>Ixtiyoriy challenge.</b> Qog'oz o'rniga kompyuterda chizmoqchimisiz? DrawSQL — sxema chizadigan bepul sayt. Bu topshiriq <b>majburiy emas</b>: xohlagan o'quvchi uchun.</>, ru: <><b style={{ color: T.ink }}>Необязательный челлендж.</b> Хотите нарисовать не на бумаге, а в настоящем инструменте? DrawSQL — бесплатный сайт для схем. Это задание <b>необязательное</b> — для тех, кто захочет.</> })}</p><a className="btn-soft" href="https://drawsql.app/diagrams/new" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, textDecoration: 'none' }}>{tr({ uz: 'DrawSQL da ochish ↗', ru: 'Открыть в DrawSQL ↗' })}</a></div></div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">
@@ -3463,11 +3467,11 @@ export default function DataIntroLesson({ lang: langProp, onFinished, liveToken 
 
         /* === 4-MODUL v18 QO'SHIMCHA: DRAG mikro · vilka/rozetka · blueprint === */
         .cdrag-pool { display: flex; flex-wrap: wrap; gap: 9px; min-height: 46px; padding: 12px; border-radius: 12px; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px rgba(${T.shadowBase},0.08); align-items: center; }
-        .cdrag-chip { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 10px; background: #fff; border: 2px solid ${T.accent}; color: ${T.accent}; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.2); cursor: grab; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 13px; font-weight: 600; transition: transform 0.15s, box-shadow 0.2s; } /* F-0926-06: sudraladigan chip — oq + 2px accent ramka + accent matn + ⠿ (159/15) */
+        .cdrag-chip { display: inline-flex; align-items: center; gap: 6px; padding: 9px 14px; border-radius: 10px; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; color: #fff; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); cursor: grab; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 13px; font-weight: 700; transition: transform 0.15s, box-shadow 0.2s; } /* F-1017-202 (DE 159.15): sudraladigan chip — to'ldirilgan gradient, oq matn, ⠿ ushlagich */
         .cdrag-grip { font-size: 12px; line-height: 1; opacity: 0.7; margin-right: 1px; }
         .cdrag-chip:active { cursor: grabbing; }
-        .cdrag-chip:hover { transform: translateY(-2px); box-shadow: 0 9px 20px -6px rgba(${T.shadowBase},0.28); }
-        .cdrag-chip.fk { color: ${T.accent}; box-shadow: 0 5px 14px -6px rgba(255,79,40,0.35), inset 0 0 0 1.5px ${T.accent}44; }
+        .cdrag-chip:hover { transform: translateY(-2px); box-shadow: 0 12px 20px -8px rgba(255,79,40,.7), inset 0 2px 0 rgba(255,255,255,.3); }
+        .cdrag-chip .tc-badge.fk { background: rgba(255,255,255,0.92); color: ${T.accent}; } .cdrag-chip .tc-fork { color: #fff; } /* gradient ustida FK belgisi o'qilsin */
         .cdrag-chip.shake { animation: cdrag-reject 0.5s cubic-bezier(.3,1.2,.5,1); }
         @keyframes cdrag-reject { 0% { transform: translateY(0); } 22% { transform: translateY(-9px) scale(1.05) rotate(-2deg); } 44% { transform: translateX(-5px) rotate(1deg); } 62% { transform: translateX(5px) rotate(-1deg); } 80% { transform: translateX(-3px); } 100% { transform: none; } }
         .cdrag-zones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }

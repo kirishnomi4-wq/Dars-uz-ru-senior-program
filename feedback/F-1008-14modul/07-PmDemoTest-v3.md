@@ -142,10 +142,11 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `07-PmTerms-v3.md` + 
 - Chap — kulrang yorliq «demo tekshiruvi: buzamiz, agent tuzatadi, uch marta to'liq o'tish» (App.jsx osti so'zma-so'z, P-015) + ostida kulrang qator: Buzish — faqat o'z mahsulotingizda. (35)
   Vizual (`DemoSahna`, tayyor holat, bir marta o'zi yuradi — DE-200): ssenariy chizig'ining besh qadami birma-bir ✓ bo'ladi, taymer chizig'i oxirigacha yuradi; o'ngda bo'sh buzish yozuvi kartasi (uch qator yorlig'i, natija yo'q) — qaysi usul nima ko'rsatishi — 4-ekran va amaliyot kashfiyoti (P-015).
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
-  - 01 · Hakam demoda nimani ko'rishini bilasiz · `uch savol`
-  - 02 · Uch riskda nima kutishingizni yozasiz · `buzish yozuvi`
-  - 03 · Demongizni buzasiz, agent tuzatadi · `Tuzatish qilindi`
-  - 04 · Demoni uch marta to'liq o'tasiz · `B reja`
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*
+  - 01 · Hakam demoda nimani ko'rishini bilasiz
+  - 02 · Uch riskda nima kutishingizni yozasiz
+  - 03 · Demongizni buzasiz, agent tuzatadi
+  - 04 · Demoni uch marta to'liq o'tasiz
 - Pastki qator (mono, kichik): repo — o'z repo'ngiz · Mentor misoli `maydon-jamoa` · namuna `m14-dars-07-done`
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz
 - O'qituvchi eslatmasi: Menyu ostidagi «uch marta to'liq o'tish» — Amaliyot 2: demo boshidan oxirigacha uch marta, ikkinchisida B reja. Bugun yangi funksiya qo'shilmaydi: 6-darsdan beri faqat tuzatish. Buzish — faqat o'quvchining o'z mahsulotida.
@@ -156,7 +157,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `07-PmTerms-v3.md` + 
 - Sarlavha: **Demo o'tishi qaysi savollarga javob bermaydi?** (45)
 - Mentor: Demo o'tishini ishga tushiring, keyin har savol uchun tanlang: o'tishda ko'rindimi? (83)
   (Birinchi harakat — bashorat; uning yo'rig'i `QBashorat` yorlig'ida, Mentor takrorlamaydi — T-047.)
-- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — o'sish tartibida): **Uch savoldan nechtasiga demo o'tishi javob beradi?** · Bittasiga · Ikkitasiga · Uchalasiga — tanlangach yopilmaydi: ixcham qator «Taxminingiz: …» natijagacha turadi; «Demo o'tishini boshlash» shundan keyin yoqiladi.
+- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — o'sish tartibida): **Uch savoldan nechtasiga demo o'tishi javob beradi?** · Bittasiga · Ikkitasiga · Uchalasiga — tanlangach yopilmaydi: ixcham qator «Taxminingiz: …» natijagacha turadi; «Demo o'tishini boshlash» shundan keyin chiqadi; o'tish ketayotganda tugma o'rnida kulrang yozuv «Demo o'tmoqda…» *(✎ F-1015-164)*.
 - Vizual (≤ 3 blok: sahna · savol kartasi va tugmalar · natija): **tepada** — ssenariy chizig'i va taymer · **chapda** — `DemoSahna` (laptop brauzeri + telefon) · **o'ngda** — joriy savol kartasi («Savol n / 3») va ostida ikki tugma «O'tishda ko'rindi» · «O'tishda ko'rinmadi».
 - Demo o'tishi (tugma «Demo o'tishini boshlash»; Mentor ssenariysi A-6, ≈10 s animatsiya, besh qadam navbat bilan yonadi): 1 Kirish → 2 «O'yinlar» (e'lon kartasi) → 3 «Qo'shilaman» bosiladi → 4 telefonda «8 / 10» o'zi «9 / 10» bo'ladi → 5 «Hozir ko'ryapti: 2». Taymer chizig'i oxirigacha yuradi (yorliq «Mentor rejasi: 60–90 soniya»; animatsiya vaqti — son emas).
 - Savol kartalari (navbat bilan; `UCH_SAVOL`):
@@ -243,7 +244,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `07-PmTerms-v3.md` + 
 - Sarlavha: **Demongizda har riskdan nima kutasiz?** (36)
 - Mentor: «Nima qilaman» tayyor — demo yo'lingizga moslang, «Nima kutaman»ni o'zingiz yozing. (83)
 - Tepada raqamli doiralar 1/2/3 (risk nomlari: Tarmoq uzilishi · Bo'sh ma'lumot · Ikki marta bosish; joriy — accent, tayyori ✓). Ostida kulrang qator (faqat `pm-m12d6-demo.ssenariy` bo'lsa): «Demo ssenariyingiz: {1-qadam} · {2} · {3} · {4} · {5}». Kalit yo'q — qator ko'rinmaydi.
-- **Bitta katta karta (joriy qism)** — ikki maydon (yorliq input ichida — raqam belgisi va qisqa savol, E 43):
+- **Bitta katta karta (joriy qism; sarlavhasi — faqat risk nomi, raqami doirada *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*)** — ikki maydon (yorliq input ichida — raqam belgisi va qisqa savol, E 43):
   1. **Nima qilaman** — oldindan yozilgan, tahrirlanadi (bitta manba `USULLAR`):
      - tarmoq: Telefonda uchish rejimini yoqaman; demo harakatini laptopda qilaman; keyin uchish rejimini o'chiraman. (102)
      - bosh: Agent tekshiruv akkauntida hali bo'sh yozuv ochadi; uni demo yo'limda ochaman. (78)
@@ -414,7 +415,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `07-PmTerms-v3.md` + 
   - «Tuzatish qilindi» — ish fakti; natijani o'sha usul bilan qayta tekshiruv ko'rsatadi. (85)
 - Uyga vazifa (`HwCard`, P-025 karta shaklida; yakunda aynan shu bandlar; alohida `.homework.jsx` yo'q): sarlavha **Uyda nima qilasiz?**
   - Kim uchun: o'z demongiz · Nechta: ikkitagacha (② ixtiyoriy) · Muddat: keyingi darsgacha
-  - ① Darsda qolgan ishni tugating: {holatga qarab — qolgan usullarni buzib yozing · tuzatish va qayta tekshiruvni tugating, `XATOLAR.md` ni yangilang · qolgan demo o'tishlarini taymer bilan qiling · B reja videosini yozing (kompyuteringizdagi ekran yozish vositasi bilan, demo o'tishingiz uzunligida — 6-dars)}. Hammasi tugagan bo'lsa ① ko'rinmaydi.
+  - ① Darsda qolgan ishni tugating: {holatga qarab — qolgan usullarni buzib yozing · tuzatish va qayta tekshiruvni tugating, `XATOLAR.md` ni yangilang · qolgan demo o'tishlarini taymer bilan qiling · B reja videosini yozing (kompyuteringizdagi ekran yozish dasturi bilan, demo o'tishingiz uzunligida — 6-dars)}. Hammasi tugagan bo'lsa ① ko'rinmaydi.
   - ② Xohlasangiz, bitta tanish odamga — ota-onangiz yoki sinfdoshingizga — demongizni bir marta ko'rsating va so'rang: «Nima ekani bir qarashda bilindimi?» Bilinmagan joyni yozib qo'ying. Sherik Amaliyot 2 da javob bergan bo'lsa — shu yetadi.
   - Karta ostida (bitta kulrang qator): Uning ismi hech qayerga yozilmaydi; video telefonda yoki kompyuterda qoladi. (76)
   - Tugma: Amaliy topshiriqni bajarish →
@@ -422,6 +423,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `07-PmTerms-v3.md` + 
 - Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
 - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18). Artefakt-strip yakunda yo'q (E 50).
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
 - Izoh (MD): uyga vazifada keyingi darslar aytilmaydi (T-038). ② — ixtiyoriy (07-FILTR 22, 05-FILTR 30 bilan bir; TS13 RAD), bitta tanish odam, tanish doira (TAQIQLAR 3); «sinov» so'zi o'quvchi matnida ishlatilmadi — «ko'rsating», «so'rang». ② — 2-ekrandagi ikkinchi savol (bir qarashda) real odamda. Uyga vazifa yengil: ① faqat qolgan ish bo'lsa (sinf 14).
   Yakun sarlavhalari kalitdan va dars holatidan yig'iladi: `urinishlar[].boldi`, `.buzildi`, `.tuzatishQilindi` · `urinishlar[].qayta` · Amaliyot 1 va 2 bayrog'i (4-qadam «Bajardim») · `otishlar[].natija` (P-046).
 
@@ -575,7 +577,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 - **Render** bepul xizmati: 15 daqiqa so'rovsiz qolsa uxlaydi, uyg'onishi ≈1 daqiqa — tayanch 6 va `00-MANBA.md` 5 (render.com/docs/free, 06.10.2026; 12-Modul tayanchi 6). Yangi tashqi fakt bu darsda yo'q.
 - Buzish yozuvi, «Tuzatish qilindi», qayta tekshiruv, uchish rejimi va «Ulanmoqda…» kutishi — 12-Modul 5-darsi (`feedback/F-1006-12modul/05-BreakAndFix-v3.md`, 05-FILTR 6, 11, 12). Tekshiruv akkaunti va `id` bo'yicha o'chirish — 12-Modul tayanchi 9.35, 9.37 g; `namuna` ustuni — 12-Modul tayanchi 1.7.
 - `XATOLAR.md` shakli va «yangi funksiya qo'shilmaydi» tekshiruvi (`git diff`) — 13-Modul 12-darsi (`12-StabilizeDay-v3.md` A-4, 2-amaliyot). Brauzer ko'rinishi qayta eksporti — 12-Modul tayanchi 9.28 (13-Modul 12-dars A-4 dagi buyruqlar).
-- Uchish rejimi, telefon brauzeri — umumiy so'z; tugma va menyu nomlari yozilmadi. Ekran yozish vositasi — umumiy so'z (tayanch 1.9: aniq dastur nomi ⛔).
+- Uchish rejimi, telefon brauzeri — umumiy so'z; tugma va menyu nomlari yozilmadi. Ekran yozish dasturi — umumiy so'z (tayanch 1.9: aniq dastur nomi ⛔).
 
 ---
 
@@ -605,7 +607,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 3. ⛔ **Telefon brauzeri uchish rejimidan keyin sahifani qayta yuklashi** — muammo ko'rinmay qolishi mumkin (12-Modul 5-dars Shubhali 3 naqshi); pilotda haqiqiy telefonda (Android va iPhone). Pilotdan keyin uch variantdan bittasi muhrlanadi: ulanish o'zi qaytadi · sahifani qo'lda yangilash kerak · brauzer o'zi qayta yuklaydi (07-FILTR 13); MD kutilgan xatti-harakatni oldindan yozmaydi.
 4. **Ikki marta bosish** — «tez» bosish odamga bog'liq; bir urinishda chiqmasligi mumkin — matnda «yana bir-ikki marta qaytaring», ko'rilganning hammasi «Nima bo'ldi» ga yoziladi.
 5. **«Bir qarashda bilinadimi?» ga o'tish javob bermaydi** — 07-FILTR 1 bilan hal: kalit `[ko'rindi, ko'rinmadi, ko'rinmadi]`, bashorat «bittasiga»; javob — tinglovchidan (sherik Amaliyot 2 da yoki uyga vazifa ② ixtiyoriy).
-6. **B reja video** — 6-darsda yozilgan bo'lishi kerak (`pm-m12d6-demo.video`); bo'lmasa — ikkinchi o'tish B rejasiz, video — uyga vazifa ①. Ekran yozish vositasining nomi aytilmaydi (tayanch 1.9, ⛔).
+6. **B reja video** — 6-darsda yozilgan bo'lishi kerak (`pm-m12d6-demo.video`); bo'lmasa — ikkinchi o'tish B rejasiz, video — uyga vazifa ①. Ekran yozish dasturining nomi aytilmaydi (tayanch 1.9, ⛔).
 7. **«B reja» so'zi** — 12-Modul 10-darsida «Ishlatilmaydi» ro'yxatida edi (u yerda boshqa ma'no — «zaxira reja»); 14-Modul tayanchi 2 — o'zgarmaydigan atama (B reja — 60 soniyalik video). Bu darsda faqat video ma'nosida.
 8. **Render uyqusi** — dars davomida 15 daqiqa so'rovsiz qolsa Backend yana uxlaydi; Amaliyot 2 boshida yana uyg'otish yozildi. Render interfeysi va qayta chiqarish — 12-Modul so'zi bilan, tugma nomi yozilmadi.
 9. **Agent bo'sh holatni qanday tayyorlashi** — o'quvchi mahsulotida yozuv yaratish yo'li har xil (Database yoki API); prompt yaratilgan yozuvlarni `id` lari bilan aytishni so'raydi, natija — o'quvchining o'zi ko'rgani. Pilotda Mentor repo'sida.
@@ -614,7 +616,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 
 ## Oldindan tuzatiladigan sinflar — o'z tekshiruvim (tayanch 7: 18 band)
 1. [x] **90 daqiqa — reja, o'lchov emas** — A-11 taqsimot va ulgurmagan yo'l (Amaliyot 1 — 2-qadamdan, Amaliyot 2 — 2-qadamdan keyin «Davom etish»); tashqi kutish oqimni to'xtatmaydi; ⛔ pilotda taymer (Shubhali 1); «sig'adi» deyilmaydi.
-2. [x] **Tekshirilmagan tashqi qadam — «qur» darvozasi** — telefon brauzeri va uchish rejimi (Shubhali 3), Mentor natijasi va agentning bo'sh holati (REPO 5), ekran yozish vositasi (umumiy so'z) — ⛔; Render, Netlify, Expo — faqat 12–13-Modul so'zi va buyruqlari; tugma nomi yozilmadi.
+2. [x] **Tekshirilmagan tashqi qadam — «qur» darvozasi** — telefon brauzeri va uchish rejimi (Shubhali 3), Mentor natijasi va agentning bo'sh holati (REPO 5), ekran yozish dasturi (umumiy so'z) — ⛔; Render, Netlify, Expo — faqat 12–13-Modul so'zi va buyruqlari; tugma nomi yozilmadi.
 3. [x] **Saqlash kaliti — shartnoma** — A-12: tayanch 8 sxemasi aynan, har maydon, tipi, `bool | null` uch holat, kim yozadi (5, 6, 7-ekran); qayta tekshiruv — `ccProgress` (TAYANCHGA SAVOL 5); ism, login, `id`, video yozilmaydi; boshqa darsning kaliti faqat o'qiladi.
 4. [x] **Mentor misoli va kurs qolipi — umumiy qoida emas** — «Mentor misolida», «Bu misolda» (2, 4-ekran xulosalari), «Bu darsda demo uch savol bilan ko'riladi» (2-ekran O'qituvchi eslatmasi, kartochka 2), «Bu mashqda» (kartochka 12); «Nima qilaman» — o'quvchi moslaydi (5-ekran).
 5. [x] **Kafolat va sabab da'vosi yo'q** — «Tuzatish qilindi» + «qayta tekshiruvda takrorlanmadi» (6-ekran, 8-ekran, kartochka 10); «Buzilmadi» ostida «boshqa safar ham shunday degani emas» (6-ekran); 8-ekran — o'tish xatosiz bo'lsa ham bilinmaydi; agent «o'chirdim» — uning so'zi; Mentor sababi to'qilmadi (⛔).

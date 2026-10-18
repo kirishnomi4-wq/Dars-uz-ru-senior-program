@@ -1,9 +1,12 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo, createContext, useContext } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef, useCallback, useMemo, createContext, useContext } from 'react';
+import { createPortal } from 'react-dom'; // F-1015-362: «Avval tayyorlaning» oynasi .lesson-root ga (fade-up transform ichida fixed ishlamaydi)
 
 // ============================================================
 // PRAKTIKA 3-DARS — DEKOMPOZITSIYA (mini-do'kon, 1-qism) — PLATFORM STANDARD v16
 // F-1015-340 (16.10, foydalanuvchi bilan sahifama-sahifa): 19 → 8 ekran. O'quvchi O'ZI mini-do'kon rejasini tuzadi (REJA.md: shart/keyin, poydevordan),
 //        keyin faqat 1-qadamni quradi (gemini.google.com: mahsulotlar va narxlar) va Copilot bilan 2 mahsulot qo'shadi. Savat/jami -> 4-dars (o'sha papka).
+// F-1015-341: a1 = «Do'konni yig'ing» (qismlarni Shart/Keyin ga sudrash, bog'liqlik, o'ngda do'kon jonli quriladi); F-1015-342: daqiqalar o'rniga «Shart»da 4 ta joy;
+//        loyiha = jonli katalog: massiv + for (kartochkalar), if (toifa tugmalari) — Gemini; qidiruv funksiyasi — Copilot. Sevimli — uyga vazifa.
 // Asosiy xabar: "Avval bo'laklang, keyin AI'ni oching. Bitta qadam — bitta so'rov." Antigravity ishlatilmaydi (18+). Oldingi 19 ekranli: arxiv/F-1015-practice3-oldin/.
 // Toza dizayn — ortiqcha emoji yo'q; ma'no so'z va tipografiya bilan beriladi.
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
@@ -19,7 +22,7 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 
 
 
@@ -771,6 +774,12 @@ const Zoomable = ({ children, off = false }) => {
 };
 
 // ===== SCREEN 0 — HOOK (rejasiz boshlash) =====
+// F-1015-393: kirish javobi — variantga bitta qisqa gap + «Bugun…» qatori (eski uzun umumiy matn o'qilmasdi)
+const ACK_KIRISH = {
+  a: { uz: 'Aynan!', ru: 'Именно!' },
+  b: { uz: "Tezlik emas — reja yo'q edi.", ru: 'Дело не в скорости — не было плана.' },
+  c: { uz: "Kompyuter emas — reja yo'q edi.", ru: 'Дело не в компьютере — не было плана.' }
+};
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [phase, setPhase] = useState(storedAnswer ? 'built' : 'idle');
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
@@ -814,7 +823,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                       <span className="radio">{on && <span className="radio-dot" />}</span><span>{o.label}</span>
                     </button>); })}
                 </div>
-                {picked !== null && <p className="hook-ack fade-step">{/* F-0926-06 (§215): noto'g'ri variantga «To'g'ri» deyilmaydi — «Aslida»; «usta» obrazi olindi (til-lint) */}{picked === 'a' ? tr({ uz: <>To'g'ri! Katta vazifani <b>bo'laklamasak</b>, AI ham, biz ham adashamiz. Uy qurishdan oldin ham avval <b>chizma</b> chiziladi. Bugun aynan shuni — rejalashtirishni — o'rganamiz.</>, ru: <>Верно! Если не <b>разбить</b> большую задачу, запутаются и AI, и мы. Перед стройкой дома тоже сначала чертят <b>чертёж</b>. Сегодня учимся именно этому — планированию.</> }) : tr({ uz: <>Aslida sabab — rejasizlik. Katta vazifani <b>bo'laklamasak</b>, AI ham, biz ham adashamiz. Uy qurishdan oldin ham avval <b>chizma</b> chiziladi. Bugun aynan shuni — rejalashtirishni — o'rganamiz.</>, ru: <>На самом деле причина — отсутствие плана. Если не <b>разбить</b> большую задачу, запутаются и AI, и мы. Перед стройкой дома тоже сначала чертят <b>чертёж</b>. Сегодня учимся именно этому — планированию.</> })}</p>}
+                {picked !== null && <p className="hook-ack fade-step"><b>{tr(ACK_KIRISH[picked])}</b> {tr({ uz: "Bugun katta vazifani bo'laklab, reja tuzishni o'rganamiz.", ru: 'Сегодня учимся разбивать большую задачу и составлять план.' })}</p>}
               </div>
             )}
           </Col>
@@ -825,31 +834,48 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   );
 };
 
-// ===== SCREEN 1 — REJA (F-1015-340): «Avval tayyorlaning ▾» + bugungi qoida + 3 blok =====
+// ===== SCREEN 1 — REJA (F-1015-340/341): «Avval tayyorlaning ▾» + bugungi qoida + 3 blok =====
 const TAYYOR = [
-  { uz: <>Ish stolida <span className="qcode">mini-dokon</span> papkasini yarating va VS Code'da oching; ichida <span className="qcode">REJA.md</span>, <span className="qcode">index.html</span> va <span className="qcode">style.css</span>, Go Live.</>, ru: <>Создайте на рабочем столе папку <span className="qcode">mini-dokon</span> и откройте её в VS Code; внутри <span className="qcode">REJA.md</span>, <span className="qcode">index.html</span> и <span className="qcode">style.css</span>, Go Live.</> },
+  { uz: <>Ish stolida <span className="qcode">mini-dokon</span> papkasini yarating va VS Code'da oching; ichida <span className="qcode">REJA.md</span>, <span className="qcode">index.html</span>, <span className="qcode">style.css</span> va <span className="qcode">script.js</span>, Go Live.</>, ru: <>Создайте на рабочем столе папку <span className="qcode">mini-dokon</span> и откройте её в VS Code; внутри <span className="qcode">REJA.md</span>, <span className="qcode">index.html</span>, <span className="qcode">style.css</span> и <span className="qcode">script.js</span>, Go Live.</> },
   { uz: "Boshqa oynada gemini.google.com'ni oching.", ru: 'В другом окне откройте gemini.google.com.' },
   { uz: "Copilot yoqilganini tekshiring — VS Code pastki chizig'ida Copilot belgisi bor.", ru: 'Проверьте, что Copilot включён — в нижней строке VS Code есть значок Copilot.' }
 ];
 const REJA_BLOK = [
   { t: { uz: 'Reja', ru: 'План' }, tag: { uz: "o'zingiz · REJA.md", ru: 'сами · REJA.md' } },
-  { t: { uz: 'Mahsulotlar va narx', ru: 'Товары и цены' }, tag: 'Gemini' },
-  { t: { uz: 'Yana 2 mahsulot', ru: 'Ещё 2 товара' }, tag: 'Copilot' }
+  { t: { uz: 'Katalog va toifa tugmalari', ru: 'Каталог и кнопки категорий' }, tag: 'Gemini' },
+  { t: { uz: 'Qidiruv', ru: 'Поиск' }, tag: 'Copilot' }
 ];
 // F-1015-334 (foydalanuvchi, A variant): «Avval tayyorlaning» — ochiladigan, ko'zga tashlanadigan tugma; ochilmaguncha «nafas oladi»
+// F-1015-362: pastga ochilmaydi — o'rtada oyna (⛶ kabi); ✕, Esc yoki fon bilan yopiladi, fokus tugmaga qaytadi; portal — .lesson-root (zoom va CSS shu yerda)
 const TayyorTugma = () => {
   const [ochiq, setOchiq] = useState(false);
   const [korgan, setKorgan] = useState(false);
+  const btnRef = useRef(null);
+  const yopRef = useRef(null);
+  const yop = () => { setOchiq(false); setTimeout(() => btnRef.current && btnRef.current.focus(), 0); };
+  useEffect(() => {
+    if (!ochiq) return;
+    const onKey = (e) => { if (e.key === 'Escape') yop(); };
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKey);
+    yopRef.current && yopRef.current.focus();
+    return () => { document.body.style.overflow = ''; window.removeEventListener('keydown', onKey); };
+  }, [ochiq]);
+  const sarlavha = <>{tr({ uz: 'Avval tayyorlaning', ru: 'Сначала подготовьтесь' })} · {tr({ uz: `${TAYYOR.length} qadam`, ru: `${TAYYOR.length} шага` })}</>;
   return (
-    <div className="fade-up delay-1"><div className={`am-tayyor am-tt ${ochiq ? 'on' : ''} ${korgan ? '' : 'am-tt-nafas'}`}>
-      <button type="button" className="am-tt-btn" aria-expanded={ochiq} onClick={() => { setOchiq(o => !o); setKorgan(true); }}>
-        <span className="am-tayyor-h">{tr({ uz: 'Avval tayyorlaning', ru: 'Сначала подготовьтесь' })} · {tr({ uz: `${TAYYOR.length} qadam`, ru: `${TAYYOR.length} шага` })}</span>
+    <div className="fade-up delay-1"><div className={`am-tayyor am-tt ${korgan ? '' : 'am-tt-nafas'}`}>
+      <button ref={btnRef} type="button" className="am-tt-btn" aria-haspopup="dialog" aria-expanded={ochiq} onClick={() => { setOchiq(true); setKorgan(true); }}>
+        <span className="am-tayyor-h">{sarlavha}</span>
         <span className="am-qt-ic" aria-hidden="true">▾</span>
       </button>
-      {ochiq && <div className="am-tt-ich am-ochil">
-        <ol className="am-tayyor-l">{TAYYOR.map((x, i) => <li key={i}><span className="am-tayyor-n">{i + 1}</span><span>{tr(x)}</span></li>)}</ol>
-        <p className="am-tayyor-s">{tr({ uz: "Tayyor bo'lsa — «Boshlaymiz».", ru: 'Готово — «Начинаем».' })}</p>
-      </div>}
+      {ochiq && createPortal(<>
+        <div className="zoom-backdrop" onClick={yop} />
+        <div className="am-tt-oyna" role="dialog" aria-modal="true" aria-label={tr({ uz: 'Avval tayyorlaning', ru: 'Сначала подготовьтесь' })}>
+          <div className="am-tt-oyna-h"><span className="am-tayyor-h">{sarlavha}</span><button ref={yopRef} type="button" className="am-tt-yop" onClick={yop} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button></div>
+          <ol className="am-tayyor-l">{TAYYOR.map((x, i) => <li key={i}><span className="am-tayyor-n">{i + 1}</span><span>{tr(x)}</span></li>)}</ol>
+          <p className="am-tayyor-s">{tr({ uz: "Tayyor bo'lsa — «Boshlaymiz».", ru: 'Готово — «Начинаем».' })}</p>
+        </div>
+      </>, (btnRef.current && btnRef.current.closest('.lesson-root')) || document.body)}
     </div></div>
   );
 };
@@ -857,12 +883,12 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Boshlaymiz', ru: 'Начинаем' }} onClick={onNext} /></>}>
     <div className="screen" style={{ gap: 'clamp(14px,2.4vw,20px)' }}>
       <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Do'konni qaysi <span className="italic" style={{ color: T.accent }}>qadamdan</span> boshlaysiz?</>, ru: <>С какого <span className="italic" style={{ color: T.accent }}>шага</span> начнёте магазин?</> })}</h2></div>
-      <Mentor>{tr({ uz: <>Bugun maktab mini-do'konini qurasiz. AI'ni darrov ochmaymiz: avval <b style={{ color: T.ink }}>reja</b> tuzasiz, keyin faqat birinchi qadamni qurasiz.</>, ru: <>Сегодня строите школьный мини-магазин. AI сразу не открываем: сначала составите <b style={{ color: T.ink }}>план</b>, потом построите только первый шаг.</> })}</Mentor>
+      <Mentor>{tr({ uz: <>Bugun maktab mini-do'konini JavaScript bilan jonlantirasiz: toifa tugmalari va qidiruv ishlaydi. AI'ni darrov ochmaymiz: avval <b style={{ color: T.ink }}>reja</b> tuzasiz, keyin uni qadamma-qadam qurasiz.</>, ru: <>Сегодня оживите школьный мини-магазин на JavaScript: заработают кнопки категорий и поиск. AI сразу не открываем: сначала составите <b style={{ color: T.ink }}>план</b>, потом построите его шаг за шагом.</> })}</Mentor>
       <TayyorTugma />
       <Split>
         <Col>
           <p className="flow-label">{tr({ uz: 'Dars oxirida · namuna', ru: 'К концу урока · образец' })}</p>
-          <DokonMaket nom={tr(DK_NOM)} items={[...DK_MAHSULOT, ...DK_QOSHIMCHA].map(x => ({ n: tr(x.n), p: x.p }))} />
+          <DokonJonli nom={tr(DK_NOM)} items={dkNamuna()} q={Q_BUGUN} />
         </Col>
         <Col>
           <p className="flow-label am-yorliq-joy" aria-hidden="true">{tr({ uz: 'Dars oxirida · namuna', ru: 'К концу урока · образец' })}</p>
@@ -879,60 +905,72 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
   </Stage>
 );
 
-// ===== Bitta ip — o'quvchining mini-do'koni: REJA.md (a1) va katalog (a2, a3) yozganidan jonli quriladi =====
+// ===== Bitta ip — o'quvchining mini-do'koni (F-1015-341: jonli katalog): reja (a1) → katalog + toifa tugmalari (a2) → qidiruv (a3) =====
 const DOKON_KEY = 'ccDokon';
 const dkRead = () => { try { const v = JSON.parse(localStorage.getItem(DOKON_KEY) || 'null'); return v && typeof v === 'object' ? v : {}; } catch { return {}; } };
 const dkWrite = (patch) => { try { localStorage.setItem(DOKON_KEY, JSON.stringify({ ...dkRead(), ...patch, savedAt: Date.now() })); } catch { /* saqlab bo'lmadi */ } };
 const DK_NOM = { uz: "Maktab mini-do'koni", ru: 'Школьный мини-магазин' };
-const REJA_NAMUNA = [
-  { uz: 'Mahsulotlar va narxlar', ru: 'Товары и цены' }, { uz: "Savatga qo'shish", ru: 'Добавление в корзину' }, { uz: 'Jami narx', ru: 'Итоговая сумма' },
-  { uz: 'Qidiruv', ru: 'Поиск' }, { uz: 'Sharhlar', ru: 'Отзывы' }, { uz: 'Login', ru: 'Логин' }
+const DK_TOIFA = [
+  { id: 'oquv', uz: "O'quv", ru: 'Учёба' },
+  { id: 'ichimlik', uz: 'Ichimlik', ru: 'Напитки' },
+  { id: 'shirinlik', uz: 'Shirinlik', ru: 'Сладости' }
 ];
+const DK_RANG = { oquv: ['#dbeafe', '#1d4ed8'], ichimlik: ['#dcfce7', '#15803d'], shirinlik: ['#fef3c7', '#b45309'] };
 const DK_MAHSULOT = [
-  { n: { uz: 'Ruchka', ru: 'Ручка' }, p: '3 000' }, { n: { uz: 'Kitob', ru: 'Книга' }, p: '35 000' },
-  { n: { uz: 'Sumka', ru: 'Рюкзак' }, p: '90 000' }, { n: { uz: "Chizg'ich", ru: 'Линейка' }, p: '4 000' }
+  { n: { uz: 'Ruchka', ru: 'Ручка' }, p: '3 000', t: 'oquv' }, { n: { uz: "Chizg'ich", ru: 'Линейка' }, p: '4 000', t: 'oquv' },
+  { n: { uz: 'Sharbat', ru: 'Сок' }, p: '6 000', t: 'ichimlik' }, { n: { uz: 'Suv', ru: 'Вода' }, p: '3 000', t: 'ichimlik' },
+  { n: { uz: 'Shokolad', ru: 'Шоколад' }, p: '8 000', t: 'shirinlik' }, { n: { uz: 'Pechenye', ru: 'Печенье' }, p: '5 000', t: 'shirinlik' }
 ];
-const DK_QOSHIMCHA = [{ n: { uz: 'Sharbat', ru: 'Сок' }, p: '6 000' }, { n: { uz: 'Bulochka', ru: 'Булочка' }, p: '4 000' }];
+const dkNamuna = () => DK_MAHSULOT.map(x => ({ n: tr(x.n), p: x.p, t: x.t }));
+const Q_BUGUN = new Set(['royxat', 'karta', 'filtr', 'qidiruv']);
 const narxToza = (p) => (p || '').replace(/\s*(so'm|сум)\s*$/i, '').trim();
-const DokonMaket = ({ nom, items, yangi = 0 }) => (
-  <div className={`dk-sayt ${items.length > 4 ? 'dk-6' : ''}`}>
-    <div className="dk-bar"><span className="bb-dots"><i /><i /><i /></span><span className="dk-url">mini-dokon · Live Server</span></div>
-    <div className="dk-body">
-      <p className="dk-h1">{nom && nom.trim() ? nom.trim() : <span className="dk-yoq">? {tr({ uz: "do'kon nomi", ru: 'название магазина' })}</span>}</p>
-      <div className="dk-grid">{items.map((x, i) => (
-        <div key={i} className={`dk-karta ${i >= items.length - yangi ? 'dk-yangi' : ''}`}>
-          {i >= items.length - yangi && <span className="dk-teg">Copilot</span>}
-          <span className="dk-rasm" />
-          {x.n && x.n.trim() ? <b>{x.n.trim()}</b> : <span className="dk-yoq">? {tr({ uz: 'nomi', ru: 'название' })}</span>}
-          {narxToza(x.p) ? <span className="dk-narx">{narxToza(x.p)} {tr({ uz: "so'm", ru: 'сум' })}</span> : <span className="dk-yoq">? {tr({ uz: 'narx', ru: 'цена' })}</span>}
-        </div>
-      ))}</div>
-    </div>
-  </div>
-);
-const rejaQism = (rows) => {
-  const yoz = rows.filter(r => r.t.trim());
-  return { shart: yoz.filter(r => r.b === 'shart'), keyin: yoz.filter(r => r.b === 'keyin'), belgisiz: yoz.filter(r => !r.b) };
-};
-const rejaMatn = (rows) => {
-  const q = rejaQism(rows);
-  return tr({ uz: `# Mini-do'kon — reja\n\n## Shart (MVP)\n${q.shart.map((r, i) => `${i + 1}. ${r.t.trim()}`).join('\n')}\n\n## Keyin\n${q.keyin.map(r => `- ${r.t.trim()}`).join('\n')}\n`,
-    ru: `# Мини-магазин — план\n\n## Нужно (MVP)\n${q.shart.map((r, i) => `${i + 1}. ${r.t.trim()}`).join('\n')}\n\n## Потом\n${q.keyin.map(r => `- ${r.t.trim()}`).join('\n')}\n` });
-};
-// REJA.md — VS Code oynasi ko'rinishida; hali yozilmagan joy — «?»
-const RejaMaket = ({ rows }) => {
-  const q = rejaQism(rows);
-  const yoq = <div className="rj-li rj-yoq">?</div>;
+const kamHarakat = () => typeof window !== 'undefined' && !!window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const SevBelgi = ({ on }) => <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M12 20.5S3 15 3 9a4.5 4.5 0 0 1 9-1 4.5 4.5 0 0 1 9 1c0 6-9 11.5-9 11.5z" fill={on ? '#e11d48' : 'none'} stroke={on ? '#e11d48' : '#64748b'} strokeWidth="2" strokeLinejoin="round" /></svg>;
+// Jonli do'kon maketi: q — qaysi qismlar qurilgan (a1 dagi «Shart» ustuni); toifa tugmalari, qidiruv, yurak, savat — bosilsa ishlaydi
+const DokonJonli = ({ nom, items, q, yangi = null, teg = {} }) => {
+  const [toifa, setToifa] = useState('hammasi');
+  const [soz, setSoz] = useState('');
+  const [sev, setSev] = useState(() => new Set());
+  const [savat, setSavat] = useState(0);
+  const bor = (id) => q.has(id);
+  const yq = (id) => (yangi === id ? ' dk-yangi-q' : '');
+  const teglash = (id) => (teg[id] ? <span className="dk-teg">{teg[id]}</span> : null);
+  const toifalar = DK_TOIFA.filter(t => items.some(x => x.t === t.id));
+  const izla = soz.trim().toLowerCase();
+  const korin = items.map((x, i) => ({ ...x, _i: i })).filter(x => (!bor('filtr') || toifa === 'hammasi' || x.t === toifa) && (!bor('qidiruv') || !izla || (x.n || '').toLowerCase().includes(izla)));
+  const nomi = (x) => (x.n && x.n.trim() ? <b>{x.n.trim()}</b> : <span className="dk-yoq">? {tr({ uz: 'nomi', ru: 'название' })}</span>);
+  const narxi = (x) => (narxToza(x.p) ? <span className="dk-narx">{narxToza(x.p)} {tr({ uz: "so'm", ru: 'сум' })}</span> : <span className="dk-yoq">? {tr({ uz: 'narx', ru: 'цена' })}</span>);
+  const sevAlmash = (i) => setSev(o => { const n = new Set(o); if (n.has(i)) n.delete(i); else n.add(i); return n; });
   return (
-    <div className="rj-oyna">
-      <div className="rj-bar"><span className="bb-dots"><i /><i /><i /></span><span className="rj-fayl">REJA.md</span></div>
-      <div className="rj-body">
-        <div className="rj-h1">{tr({ uz: "# Mini-do'kon — reja", ru: '# Мини-магазин — план' })}</div>
-        <div className="rj-h2">{tr({ uz: '## Shart (MVP)', ru: '## Нужно (MVP)' })}</div>
-        {q.shart.length ? q.shart.map((r, i) => <div key={i} className="rj-li">{i + 1}. {r.t.trim()}</div>) : yoq}
-        <div className="rj-h2">{tr({ uz: '## Keyin', ru: '## Потом' })}</div>
-        {q.keyin.length ? q.keyin.map((r, i) => <div key={i} className="rj-li">- {r.t.trim()}</div>) : yoq}
-        {q.belgisiz.length > 0 && <><div className="rj-h2 rj-yoq">{tr({ uz: "## ? belgi qo'yilmagan", ru: '## ? без отметки' })}</div>{q.belgisiz.map((r, i) => <div key={i} className="rj-li rj-yoq">- {r.t.trim()}</div>)}</>}
+    <div className={`dk-sayt ${items.length > 4 ? 'dk-6' : ''}`}>
+      <div className="dk-bar"><span className="bb-dots"><i /><i /><i /></span><span className="dk-url">mini-dokon · Live Server</span></div>
+      <div className="dk-body">
+        <div className="dk-bosh">
+          <p className="dk-h1">{nom && nom.trim() ? nom.trim() : <span className="dk-yoq">? {tr({ uz: "do'kon nomi", ru: 'название магазина' })}</span>}</p>
+          <div className="dk-ong">
+            {bor('sevimli') && <span className={`dk-pill dk-kir${yq('sevimli')}`}><SevBelgi on={sev.size > 0} /> {sev.size}</span>}
+            {bor('savat') && <span className={`dk-pill dk-savat dk-kir${yq('savat')}`}>{tr({ uz: 'Savat', ru: 'Корзина' })} · {savat}</span>}
+            {bor('tolov') && <span className={`dk-pill dk-tolov dk-kir${yq('tolov')}`}>{tr({ uz: "To'lash", ru: 'Оплатить' })}</span>}
+            {bor('akkaunt') && <span className={`dk-pill dk-kir${yq('akkaunt')}`}>{tr({ uz: 'Kirish', ru: 'Войти' })}</span>}
+          </div>
+        </div>
+        {bor('qidiruv') && <div className={`dk-rel dk-kir${yq('qidiruv')}`}><input className="dk-qidir" value={soz} onChange={e => setSoz(e.target.value)} placeholder={tr({ uz: 'Qidirish...', ru: 'Поиск...' })} aria-label={tr({ uz: 'Qidiruv', ru: 'Поиск' })} />{teglash('qidiruv')}</div>}
+        {bor('filtr') && <div className={`dk-filtr dk-rel dk-kir${yq('filtr')}`}>{[{ id: 'hammasi', uz: 'Hammasi', ru: 'Все' }, ...toifalar].map(t => <button key={t.id} type="button" className={`dk-tf ${toifa === t.id ? 'on' : ''}`} aria-pressed={toifa === t.id} onClick={() => setToifa(t.id)}>{tr(t)}</button>)}{teglash('filtr')}</div>}
+        {!bor('royxat') && <div className="dk-bosh-sahifa">{tr({ uz: "Bo'sh sahifa — «Shart» ustuniga qism qo'shing", ru: 'Пустая страница — добавьте часть в столбец «Нужно»' })}</div>}
+        {bor('royxat') && !bor('karta') && <ul className={`dk-royxat dk-kir${yq('royxat')}`}>{korin.map(x => <li key={x._i}>{(x.n || '').trim() || '?'} — {narxToza(x.p) || '?'} {tr({ uz: "so'm", ru: 'сум' })}</li>)}</ul>}
+        {bor('royxat') && bor('karta') && (korin.length ? (
+          <div className="dk-grid">{korin.map((x, k) => { const r = DK_RANG[x.t]; const tf = DK_TOIFA.find(t => t.id === x.t); return (
+            <div key={x._i} className="dk-karta dk-pop" style={{ animationDelay: `${Math.min(k, 8) * 45}ms` }}>
+              <span className="dk-rasm" style={r ? { background: r[0] } : undefined} />
+              {tf && <span className="dk-toifa" style={{ color: r[1] }}>{tr(tf)}</span>}
+              {nomi(x)}
+              {narxi(x)}
+              {(bor('sevimli') || bor('savat')) && <div className="dk-amal">
+                {bor('sevimli') && <button type="button" className="dk-sev" aria-pressed={sev.has(x._i)} aria-label={tr({ uz: 'Sevimli', ru: 'Избранное' })} onClick={() => sevAlmash(x._i)}><SevBelgi on={sev.has(x._i)} /></button>}
+                {bor('savat') && <button type="button" className="dk-savatga" onClick={() => setSavat(s => s + 1)}>{tr({ uz: 'Savatga', ru: 'В корзину' })}</button>}
+              </div>}
+            </div>); })}</div>
+        ) : <p className="dk-yoq-t">{tr({ uz: 'Hech narsa topilmadi', ru: 'Ничего не найдено' })}</p>)}
       </div>
     </div>
   );
@@ -957,14 +995,33 @@ const Qadamlar = ({ b, cls = '' }) => (
   </div>
 );
 // F-1015-330: a2/a3 da qadamlar bitta tugmada — o'ngdagi namuna ostida, bosilsa ochiladi
+// F-1015-372: «Qadamlar» pastga ochilmaydi — o'rtada oyna («Avval tayyorlaning» kabi); ✕, Esc yoki fon bilan yopiladi, fokus tugmaga qaytadi
 const QadamTugma = ({ b, cls = '' }) => {
   const [ochiq, setOchiq] = useState(false);
+  const btnRef = useRef(null);
+  const yopRef = useRef(null);
+  const yop = () => { setOchiq(false); setTimeout(() => btnRef.current && btnRef.current.focus(), 0); };
+  useEffect(() => {
+    if (!ochiq) return;
+    const onKey = (e) => { if (e.key === 'Escape') yop(); };
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKey);
+    yopRef.current && yopRef.current.focus();
+    return () => { document.body.style.overflow = ''; window.removeEventListener('keydown', onKey); };
+  }, [ochiq]);
+  const sarlavha = <>{tr({ uz: 'Qadamlar', ru: 'Шаги' })} · {b.qadamlar.length}</>;
   return (
-    <div className={`am-karta am-qt ${ochiq ? 'on' : ''} ${cls}`}>
-      <button type="button" className="am-qt-btn" aria-expanded={ochiq} onClick={() => setOchiq(o => !o)}>
-        <span>{tr({ uz: 'Qadamlar', ru: 'Шаги' })} · {b.qadamlar.length}</span><span className="am-qt-ic" aria-hidden="true">▾</span>
+    <div className={`am-karta am-qt ${cls}`}>
+      <button ref={btnRef} type="button" className="am-qt-btn" aria-haspopup="dialog" aria-expanded={ochiq} onClick={() => setOchiq(true)}>
+        <span>{sarlavha}</span><span className="am-qt-ic" aria-hidden="true">▾</span>
       </button>
-      {ochiq && <ol className="am-qadam am-ochil">{b.qadamlar.map((x, i) => <li key={i}><span className="am-qn">{i + 1}</span><span>{fmtCode(tr(x))}</span></li>)}</ol>}
+      {ochiq && createPortal(<>
+        <div className="zoom-backdrop" onClick={yop} />
+        <div className="am-tt-oyna" role="dialog" aria-modal="true" aria-label={tr({ uz: 'Qadamlar', ru: 'Шаги' })}>
+          <div className="am-tt-oyna-h"><span className="am-tayyor-h">{sarlavha}</span><button ref={yopRef} type="button" className="am-tt-yop" onClick={yop} aria-label={tr({ uz: 'Yopish', ru: 'Закрыть' })}>✕</button></div>
+          <ol className="am-qadam">{b.qadamlar.map((x, i) => <li key={i}><span className="am-qn">{i + 1}</span><span>{fmtCode(tr(x))}</span></li>)}</ol>
+        </div>
+      </>, (btnRef.current && btnRef.current.closest('.lesson-root')) || document.body)}
     </div>
   );
 };
@@ -979,66 +1036,208 @@ const KodNusxa = ({ yorliq, kod }) => {
     </div>
   );
 };
-
-
-
-// ===== a1 — reja (AI'siz): qadamlar → shart/keyin → tartib → REJA.md =====
-const A1 = {
-  qadamlar: [
-    { uz: "Do'kon uchun qadamlarni yozing — kamida 4 ta, har biri bitta ish.", ru: 'Запишите шаги для магазина — минимум 4, каждый — одно дело.' },
-    { uz: "Har qadamga belgi qo'ying: «Shart» yoki «Keyin».", ru: 'Отметьте каждый шаг: «Нужно» или «Потом».' },
-    { uz: "«Shart» qadamlarni ↑ bilan tartiblang — poydevor tepada tursin.", ru: 'Расставьте шаги «Нужно» кнопкой ↑ — фундамент сверху.' },
-    { uz: "«Saqlash» → «Nusxalash» → `REJA.md` ga qo'ying, `Ctrl+S`.", ru: '«Сохранить» → «Скопировать» → вставьте в `REJA.md`, `Ctrl+S`.' }
-  ]
-};
 const NusxaTugma = ({ matn, yorliq }) => {
   const [ok, setOk] = useState(false);
   const nusxa = async () => { try { await navigator.clipboard.writeText(matn); setOk(true); setTimeout(() => setOk(false), 1600); } catch { /* clipboard yopiq — ustoz ko'rsatadi */ } };
   return <button type="button" className="am-nusxa" onClick={nusxa}>{ok ? tr({ uz: '✓ Nusxalandi', ru: '✓ Скопировано' }) : tr(yorliq)}</button>;
 };
-const BOSH_REJA = () => Array.from({ length: 6 }, () => ({ t: '', b: null }));
+
+// ===== a1 — «Do'konni yig'ing» (F-1015-341/342, AI'siz): qismlarni «Shart» / «Keyin» ga suring; bog'liqlik + «Shart»da 4 ta joy → REJA.md =====
+const JOY = 4;
+// need — busiz bu qism ishlamaydi; s — o'quvchiga savol (nega avval need kerak)
+const QISM = [
+  { id: 'royxat', n: { uz: "Mahsulot ro'yxati", ru: 'Список товаров' }, need: null },
+  { id: 'karta', n: { uz: 'Kartochkalar', ru: 'Карточки' }, need: 'royxat', s: { uz: 'kartochkaga nimani chizasiz?', ru: 'что рисовать на карточке?' } },
+  { id: 'filtr', n: { uz: 'Toifa tugmalari', ru: 'Кнопки категорий' }, need: 'karta', s: { uz: 'tugma nimani saralaydi?', ru: 'что будет отбирать кнопка?' } },
+  { id: 'qidiruv', n: { uz: 'Qidiruv', ru: 'Поиск' }, need: 'karta', s: { uz: 'qidiruv nimani topadi?', ru: 'что будет находить поиск?' } },
+  { id: 'sevimli', n: { uz: 'Sevimli', ru: 'Избранное' }, need: 'karta', s: { uz: "yurakni qayerga qo'yasiz?", ru: 'куда поставить сердечко?' } },
+  { id: 'savat', n: { uz: 'Savat', ru: 'Корзина' }, need: 'karta', s: { uz: "savatga nima qo'shasiz?", ru: 'что класть в корзину?' } },
+  { id: 'tolov', n: { uz: "To'lov", ru: 'Оплата' }, need: 'savat', s: { uz: "nimaning pulini to'laydi?", ru: 'за что платить?' } },
+  { id: 'akkaunt', n: { uz: 'Akkaunt bilan kirish', ru: 'Вход в аккаунт' }, need: null }
+];
+const qTop = (id) => QISM.find(x => x.id === id);
+const rejaMatn = (shart, keyin) => {
+  const yoz = (L) => `${L === 'uz' ? "# Mini-do'kon — reja" : '# Мини-магазин — план'}\n\n${L === 'uz' ? '## Shart (MVP)' : '## Нужно (MVP)'}\n${shart.map((id, i) => `${i + 1}. ${qTop(id).n[L]}`).join('\n')}\n\n${L === 'uz' ? '## Keyin' : '## Потом'}\n${keyin.map(id => `- ${qTop(id).n[L]}`).join('\n')}\n`;
+  return tr({ uz: yoz('uz'), ru: yoz('ru') });
+};
+// REJA.md — VS Code oynasi ko'rinishida
+const RejaMaket = ({ shart, keyin }) => (
+  <div className="rj-oyna">
+    <div className="rj-bar"><span className="bb-dots"><i /><i /><i /></span><span className="rj-fayl">REJA.md</span></div>
+    <div className="rj-body">
+      <div className="rj-h1">{tr({ uz: "# Mini-do'kon — reja", ru: '# Мини-магазин — план' })}</div>
+      <div className="rj-h2">{tr({ uz: '## Shart (MVP)', ru: '## Нужно (MVP)' })}</div>
+      {shart.map((id, i) => <div key={id} className="rj-li">{i + 1}. {tr(qTop(id).n)}</div>)}
+      <div className="rj-h2">{tr({ uz: '## Keyin', ru: '## Потом' })}</div>
+      {keyin.map(id => <div key={id} className="rj-li">- {tr(qTop(id).n)}</div>)}
+    </div>
+  </div>
+);
+const A1 = {
+  qadamlar: [
+    { uz: "Har qismni «Shart» yoki «Keyin» ustuniga suring — yoki qismni bosib, keyin ustunni bosing.", ru: 'Перетащите каждую часть в столбец «Нужно» или «Потом» — или нажмите на часть, потом на столбец.' },
+    { uz: "«Shart»da 4 ta joy bor — do'kon qaysi qismlarsiz ishlamaydi?", ru: 'В «Нужно» 4 места — без каких частей магазин не работает?' },
+    { uz: "«Saqlash» → «REJA.md ni nusxalash» → `REJA.md` ga qo'ying, `Ctrl+S`.", ru: '«Сохранить» → «Скопировать REJA.md» → вставьте в `REJA.md`, `Ctrl+S`.' }
+  ]
+};
+const qismOqi = (k) => { const d = dkRead()[k]; return Array.isArray(d) ? d.filter((id, i) => qTop(id) && d.indexOf(id) === i) : []; };
 const ScreenReja = ({ screen, onNext, onPrev }) => {
-  const [rows, setRows] = useState(() => { const d = dkRead().reja; return Array.isArray(d) && d.length === 6 ? d.map(r => ({ t: r.t || '', b: r.b || null })) : BOSH_REJA(); });
-  const [saqlangan, setSaqlangan] = useState(() => !!dkRead().rejaSaqlangan);
+  const [shart, setShart] = useState(() => qismOqi('rejaShart').slice(0, JOY));
+  const [keyin, setKeyin] = useState(() => { const s = qismOqi('rejaShart').slice(0, JOY); return qismOqi('rejaKeyin').filter(id => !s.includes(id)); });
   const [yigil, setYigil] = useState(() => !!dkRead().rejaSaqlangan);
-  const ozgar = (fn) => setRows(o => { const n = fn(o.map(r => ({ ...r }))); dkWrite({ reja: n }); return n; });
-  const q = rejaQism(rows);
-  const toliq = rows.filter(r => r.t.trim().length >= 2).length >= 4 && q.belgisiz.length === 0 && q.shart.length > 0 && q.keyin.length > 0;
-  const saqla = () => { if (!toliq) return; dkWrite({ rejaSaqlangan: true }); setSaqlangan(true); setYigil(true); };
+  const [tan, setTan] = useState(null);       // bosib tanlangan qism (sudramasdan joylash uchun)
+  const [hover, setHover] = useState(null);   // sudralayotganda ustidagi ustun
+  const [xabar, setXabar] = useState(null);   // { t: 'xato' | 'info', m }
+  const [silk, setSilk] = useState(null);
+  const [yangi, setYangi] = useState(null);
+  const elRef = useRef({});
+  const flipRef = useRef(null);
+  const dragRef = useRef(null);
+  const sudraldi = useRef(false);
+  const silkT = useRef(null);
+  useEffect(() => () => clearTimeout(silkT.current), []);
+  useEffect(() => { dkWrite({ rejaShart: shart, rejaKeyin: keyin }); }, [shart, keyin]);
+  const pool = QISM.filter(x => !shart.includes(x.id) && !keyin.includes(x.id)).map(x => x.id);
+  const bosh = JOY - shart.length;
+  const kerak = ['royxat', 'karta'].filter(id => !shart.includes(id));
+  const toliq = pool.length === 0 && bosh === 0 && kerak.length === 0;
+
+  // FLIP: qism eski joyidan yangisiga «uchib» boradi
+  const eslab = (ust) => { const r = {}; Object.entries(elRef.current).forEach(([id, el]) => { if (el) r[id] = el.getBoundingClientRect(); }); if (ust) r[ust.id] = ust.rect; flipRef.current = r; };
+  useLayoutEffect(() => {
+    const old = flipRef.current; flipRef.current = null;
+    if (!old || kamHarakat()) return;
+    Object.entries(elRef.current).forEach(([id, el]) => {
+      const o = old[id]; if (!el || !o || !el.animate) return;
+      const n = el.getBoundingClientRect(); const dx = o.left - n.left, dy = o.top - n.top;
+      if (Math.abs(dx) < 1 && Math.abs(dy) < 1) return;
+      el.animate([{ transform: `translate(${dx}px,${dy}px)` }, { transform: 'translate(0,0)' }], { duration: 420, easing: 'cubic-bezier(.2,.8,.2,1)' });
+    });
+  }, [shart, keyin]);
+  const qaytar = (id, rect) => { const el = elRef.current[id]; if (!el || !rect || !el.animate || kamHarakat()) return; const n = el.getBoundingClientRect(); el.animate([{ transform: `translate(${rect.left - n.left}px,${rect.top - n.top}px)` }, { transform: 'translate(0,0)' }], { duration: 380, easing: 'cubic-bezier(.2,.8,.2,1)' }); };
+  const silkit = (id) => { clearTimeout(silkT.current); setSilk(id); silkT.current = setTimeout(() => setSilk(null), 480); };
+
+  const kochir = (id, zona, rect) => {
+    setTan(null);
+    const q = qTop(id);
+    if (zona === 'shart') {
+      if (shart.includes(id)) { qaytar(id, rect); return; }
+      if (q.need && !shart.includes(q.need)) {
+        if (rect) qaytar(id, rect); else silkit(id);
+        setXabar({ t: 'xato', m: tr({ uz: `Avval «${qTop(q.need).n.uz}» kerak — ${q.s.uz}`, ru: `Сначала нужно «${qTop(q.need).n.ru}» — ${q.s.ru}` }) });
+        return;
+      }
+      if (shart.length >= JOY) {
+        if (rect) qaytar(id, rect); else silkit(id);
+        setXabar({ t: 'xato', m: tr({ uz: "4 ta joy band — bugun shuncha ulguramiz. Avval bittasini «Keyin» ustuniga o'tkazing.", ru: 'Все 4 места заняты — сегодня успеем только столько. Сначала перенесите одну часть в столбец «Потом».' }) });
+        return;
+      }
+      eslab(rect && { id, rect });
+      setKeyin(k => k.filter(x => x !== id)); setShart(s => [...s, id]); setYangi(id);
+      setXabar(null);
+      return;
+    }
+    // «Keyin» yoki qismlar qatori: shu qismga tayanganlar ham «Shart»dan chiqadi
+    const ketadi = new Set([id]);
+    let topildi = true;
+    while (topildi) { topildi = false; shart.forEach(s => { const nd = qTop(s).need; if (nd && ketadi.has(nd) && !ketadi.has(s)) { ketadi.add(s); topildi = true; } }); }
+    const ergash = shart.filter(s => s !== id && ketadi.has(s));
+    if ((zona === 'keyin' && keyin.includes(id)) || (zona === 'pool' && pool.includes(id))) { qaytar(id, rect); return; }
+    eslab(rect && { id, rect });
+    setShart(s => s.filter(x => !ketadi.has(x)));
+    setKeyin(k => { const qol = k.filter(x => x !== id); return zona === 'keyin' ? [...qol, id, ...ergash] : qol; });
+    setYangi(null);
+    setXabar(ergash.length ? { t: 'info', m: tr({ uz: `${ergash.map(x => `«${qTop(x).n.uz}»`).join(', ')} ham ko'chdi — ular «${q.n.uz}»siz ishlamaydi.`, ru: `${ergash.map(x => `«${qTop(x).n.ru}»`).join(', ')} тоже перенесены — без «${q.n.ru}» они не работают.` }) } : null);
+  };
+
+  // Sudrash: qismning o'zi barmoq/sichqoncha ortidan yuradi; qo'yilgan ustunga FLIP bilan o'tiradi
+  const bosildi = (e, id) => {
+    if (e.button !== undefined && e.button !== 0) return;
+    const el = elRef.current[id]; if (!el) return;
+    dragRef.current = { id, el, x0: e.clientX, y0: e.clientY, faol: false };
+    const ustun = (x, y) => { const t = document.elementFromPoint(x, y); const z = t && t.closest ? t.closest('[data-zona]') : null; return z ? z.getAttribute('data-zona') : null; };
+    const harakat = (ev) => {
+      const d = dragRef.current; if (!d) return;
+      const dx = ev.clientX - d.x0, dy = ev.clientY - d.y0;
+      if (!d.faol && Math.hypot(dx, dy) < 6) return;
+      if (!d.faol) { d.faol = true; d.el.classList.add('ql-sudr'); setTan(null); }
+      d.el.style.transform = `translate(${dx}px,${dy}px)`;
+      setHover(ustun(ev.clientX, ev.clientY));
+    };
+    const qoyib = (ev) => {
+      window.removeEventListener('pointermove', harakat); window.removeEventListener('pointerup', qoyib); window.removeEventListener('pointercancel', qoyib);
+      const d = dragRef.current; dragRef.current = null;
+      if (!d || !d.faol) return;
+      sudraldi.current = true; setTimeout(() => { sudraldi.current = false; }, 0);
+      const z = ev.type === 'pointerup' ? ustun(ev.clientX, ev.clientY) : null;
+      const r = d.el.getBoundingClientRect();
+      d.el.classList.remove('ql-sudr'); d.el.style.transform = '';
+      setHover(null);
+      const rect = { left: r.left, top: r.top };
+      if (z) kochir(d.id, z, rect); else qaytar(d.id, rect);
+    };
+    window.addEventListener('pointermove', harakat); window.addEventListener('pointerup', qoyib); window.addEventListener('pointercancel', qoyib);
+  };
+
+  const chip = (id, zona, i) => {
+    const q = qTop(id);
+    return (
+      <button key={id} type="button" ref={el => { elRef.current[id] = el; }} className={`ql-chip ${tan === id ? 'ql-tan' : ''} ${silk === id ? 'ql-silk' : ''}`} aria-pressed={tan === id}
+        onPointerDown={e => bosildi(e, id)} onClick={e => { e.stopPropagation(); if (sudraldi.current) return; setTan(t => (t === id ? null : id)); }}>
+        {zona === 'shart' && <span className="ql-n">{i + 1}</span>}
+        <b>{tr(q.n)}</b>
+      </button>
+    );
+  };
+  const ustunProps = (id) => ({
+    'data-zona': id,
+    className: `ql-zona ql-zona-${id} ${tan ? 'ql-kut' : ''} ${hover === id ? 'ql-ust' : ''}`,
+    onClick: () => { if (tan) kochir(tan, id); },
+    role: tan ? 'button' : undefined,
+    tabIndex: tan ? 0 : undefined,
+    onKeyDown: (e) => { if (tan && e.target === e.currentTarget && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); kochir(tan, id); } }
+  });
+  const saqla = () => { if (!toliq) return; dkWrite({ rejaShart: shart, rejaKeyin: keyin, rejaSaqlangan: true }); setYigil(true); setXabar(null); setTan(null); };
+  const saqlaYorliq = pool.length ? { uz: `Hamma qismni joylang — yana ${pool.length} ta`, ru: `Разместите все части — ещё ${pool.length}` }
+    : bosh ? { uz: `«Shart»da yana ${bosh} ta bo'sh joy`, ru: `В «Нужно» ещё ${bosh} свободных места` }
+    : kerak.length ? { uz: "Ro'yxat va kartochkalarsiz do'kon bo'sh", ru: 'Без списка и карточек магазин пуст' }
+    : { uz: 'Saqlash', ru: 'Сохранить' };
   return (
     <Stage eyebrow={tr({ uz: "Amaliyot 1 · AI'siz", ru: 'Практика 1 · без AI' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: "Do'konni qadamlarga bo'lib, rejani yozing.", ru: 'Разбейте магазин на шаги и напишите план.' })}</h2></div>
-        <Mentor>{tr({ uz: <><b style={{ color: T.ink }}>Shart</b> — do'kon busiz ishlamaydi. <b style={{ color: T.ink }}>Keyin</b> — foydali, lekin kutsa bo'ladi. Faqat «shart» qadamlar — bu <b style={{ color: T.ink }}>MVP</b>: eng kichik, lekin ishlaydigan do'kon.</>, ru: <><b style={{ color: T.ink }}>Нужно</b> — без этого магазин не работает. <b style={{ color: T.ink }}>Потом</b> — полезно, но может подождать. Только шаги «нужно» — это <b style={{ color: T.ink }}>MVP</b>: самый маленький, но работающий магазин.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bugungi <span className="italic" style={{ color: T.accent }}>do'konga</span> 4 ta qism tanlang.</>, ru: <>Выберите 4 части для сегодняшнего <span className="italic" style={{ color: T.accent }}>магазина</span>.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Bugun vaqt <b style={{ color: T.ink }}>4 ta qismga</b> yetadi. Do'kon busiz ishlamaydigan 4 tasini «Shart»ga qo'ying — bu <b style={{ color: T.ink }}>MVP</b>. Qolgani — «Keyin».</>, ru: <>Сегодня времени хватит на <b style={{ color: T.ink }}>4 части</b>. Поставьте в «Нужно» те 4, без которых магазин не работает, — это <b style={{ color: T.ink }}>MVP</b>. Остальное — «Потом».</> })}</Mentor>
         <Split>
           <Col>
-            {!yigil && <div className="am-karta fade-up delay-1">
-              <p className="flow-label">{tr({ uz: "Do'kon qadamlari", ru: 'Шаги магазина' })}</p>
-              {rows.map((r, i) => (
-                <div key={i} className="rj-qator">
-                  <span className="am-qn">{i + 1}</span>
-                  <input className="am-input" value={r.t} placeholder={tr({ uz: `masalan: ${REJA_NAMUNA[i].uz}`, ru: `например: ${REJA_NAMUNA[i].ru}` })} onChange={e => { const v = e.target.value; ozgar(n => { n[i].t = v; return n; }); }} />
-                  <div className="am-chips">
-                    <button type="button" className={`am-chip rj-shart ${r.b === 'shart' ? 'on' : ''}`} aria-pressed={r.b === 'shart'} onClick={() => ozgar(n => { n[i].b = 'shart'; return n; })}>{tr({ uz: 'Shart', ru: 'Нужно' })}</button>
-                    <button type="button" className={`am-chip ${r.b === 'keyin' ? 'on' : ''}`} aria-pressed={r.b === 'keyin'} onClick={() => ozgar(n => { n[i].b = 'keyin'; return n; })}>{tr({ uz: 'Keyin', ru: 'Потом' })}</button>
-                  </div>
-                  <button type="button" className="rj-up" disabled={i === 0} aria-label={tr({ uz: 'Yuqoriga', ru: 'Вверх' })} onClick={() => ozgar(n => { [n[i - 1], n[i]] = [n[i], n[i - 1]]; return n; })}>↑</button>
+            {!yigil && <div className="am-karta ql-taxta fade-up delay-1">
+              <div {...ustunProps('pool')}>
+                <div className="ql-zona-h"><span>{tr({ uz: "Do'kon qismlari", ru: 'Части магазина' })}</span><span className="ql-izoh">{tr({ uz: 'suring yoki bosing', ru: 'перетащите или нажмите' })}</span></div>
+                <div className="ql-chips">{pool.length ? pool.map(id => chip(id, 'pool')) : <span className="ql-bosh">{tr({ uz: 'Hammasi joylandi', ru: 'Всё размещено' })}</span>}</div>
+              </div>
+              <div className="ql-ikki">
+                <div {...ustunProps('shart')}>
+                  <div className="ql-zona-h"><span>{tr({ uz: 'Shart — bugun', ru: 'Нужно — сегодня' })}</span><span className="ql-sanoq">{shart.length} / {JOY}</span></div>
+                  <div className="ql-chips ql-ustun">{Array.from({ length: JOY }, (_, i) => shart[i] ? chip(shart[i], 'shart', i) : <div key={'joy' + i} className="ql-joy"><span className="ql-n">{i + 1}</span></div>)}</div>
                 </div>
-              ))}
-              <button type="button" className="am-saqla" disabled={!toliq} onClick={saqla}>{tr(toliq ? { uz: 'Saqlash', ru: 'Сохранить' } : { uz: 'Kamida 4 qadam va har biriga belgi', ru: 'Минимум 4 шага и отметка у каждого' })}</button>
+                <div {...ustunProps('keyin')}>
+                  <div className="ql-zona-h"><span>{tr({ uz: 'Keyin', ru: 'Потом' })}</span></div>
+                  <div className="ql-chips ql-ustun">{keyin.length ? keyin.map(id => chip(id, 'keyin')) : <span className="ql-bosh">{tr({ uz: "Kutsa bo'ladigan qismlar", ru: 'Части, которые могут подождать' })}</span>}</div>
+                </div>
+              </div>
+              {xabar && <p key={xabar.m} className={`ql-xabar ${xabar.t}`} role="status">{xabar.m}</p>}
+              <button type="button" className="am-saqla" disabled={!toliq} onClick={saqla}>{tr(saqlaYorliq)}</button>
             </div>}
             {yigil && <div className="am-karta am-ochil">
               <div className="am-prompt-h"><p className="flow-label">{tr({ uz: 'Sizning rejangiz', ru: 'Ваш план' })}</p><button type="button" className="am-nusxa" onClick={() => setYigil(false)}>{tr({ uz: 'Tahrirlash', ru: 'Изменить' })}</button></div>
-              <p className="am-satr">{tr({ uz: `Shart: ${q.shart.length} · Keyin: ${q.keyin.length}`, ru: `Нужно: ${q.shart.length} · Потом: ${q.keyin.length}` })}</p>
-            </div>}
-            {toliq && saqlangan && <div className="am-karta am-ochil">{/* matnning o'zi o'ngdagi REJA.md maketida — bu yerda takrorlanmaydi */}
+              <RejaMaket shart={shart} keyin={keyin} />
               <p className="am-tayyor-ok">{tr({ uz: "Reja tayyor — uni REJA.md ga qo'ying.", ru: 'План готов — вставьте его в REJA.md.' })}</p>
-              <NusxaTugma matn={rejaMatn(rows)} yorliq={{ uz: 'REJA.md ni nusxalash', ru: 'Скопировать REJA.md' }} />
+              {!(shart.includes('filtr') && shart.includes('qidiruv')) && <p className="ql-xabar info">{tr({ uz: "Darsda «Toifa tugmalari» va «Qidiruv»ni quramiz — rejangizdagi boshqa qismlar keyingi darsda.", ru: 'На уроке строим «Кнопки категорий» и «Поиск» — остальные части вашего плана будут на следующем уроке.' })}</p>}
+              <NusxaTugma matn={rejaMatn(shart, keyin)} yorliq={{ uz: 'REJA.md ni nusxalash', ru: 'Скопировать REJA.md' }} />
             </div>}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'REJA.md · yozganingizdan quriladi', ru: 'REJA.md · строится из вашего текста' })}</p>
-            <RejaMaket rows={rows} />
+            <p className="flow-label">{tr({ uz: "Do'kon · rejangizdan quriladi", ru: 'Магазин · строится из вашего плана' })}</p>
+            <DokonJonli nom={tr(DK_NOM)} items={dkNamuna()} q={new Set(shart)} yangi={yangi} />
             <QadamTugma b={A1} />
           </Col>
         </Split>
@@ -1047,64 +1246,74 @@ const ScreenReja = ({ screen, onNext, onPrev }) => {
   );
 };
 
-// ===== a2 — 1-qadam (Gemini): faqat mahsulotlar va narxlar, savatsiz =====
+// ===== a2 — Gemini: katalog (massiv + for) va toifa tugmalari (if) =====
 const A2 = {
   qadamlar: [
-    { uz: "Do'kon nomi va 4 mahsulotni yozing → «Saqlash».", ru: 'Впишите название магазина и 4 товара → «Сохранить».' },
+    { uz: "Do'kon nomi va mahsulotlarni yozing, toifasini tanlang → «Saqlash».", ru: 'Впишите название магазина и товары, выберите категорию → «Сохранить».' },
     { uz: "«Promptni nusxalash» → gemini.google.com'ga qo'ying va yuboring.", ru: '«Скопировать промпт» → вставьте в gemini.google.com и отправьте.' },
-    { uz: "Javobdagi kodlarni `mini-dokon` papkasidagi `index.html` va `style.css` ga qo'ying, `Ctrl+S`.", ru: 'Вставьте код из ответа в `index.html` и `style.css` папки `mini-dokon`, `Ctrl+S`.' },
-    { uz: "Live Server'da tekshiring: 4 karta, har birida narx bor, savat yo'q.", ru: 'Проверьте в Live Server: 4 карточки, у каждой цена, корзины нет.' }
+    { uz: "Javobdagi uch faylni `index.html`, `style.css` va `script.js` ga qo'ying, `Ctrl+S`.", ru: 'Вставьте три файла из ответа в `index.html`, `style.css` и `script.js`, `Ctrl+S`.' },
+    { uz: "Live Server'da toifa tugmalarini bosing — kartochkalar almashadimi?", ru: 'В Live Server нажмите кнопки категорий — карточки меняются?' }
   ]
 };
+const narxSon = (p) => narxToza(p).replace(/\D/g, '');
+const katToliq = (x) => !!(x && x.n && x.n.trim().length >= 2 && /\d/.test(x.p || '') && DK_TOIFA.some(t => t.id === x.t));
 const a2Prompt = (nom, m) => {
-  const uz = m.map(x => `${x.n.trim()} (${narxToza(x.p)} so'm)`).join(', ');
-  const ru = m.map(x => `${x.n.trim()} (${narxToza(x.p)} сум)`).join(', ');
-  return { uz: `${nom} uchun sahifa yasa: 4 ta mahsulot — ${uz}.\nHar biri alohida kartada: nomi va narxi.\nHozircha faqat shu: savat va tugmalar qo'shma.\nindex.html va style.css'ni alohida, to'liq yoz.`,
-    ru: `Сделай страницу для: ${nom}. 4 товара — ${ru}.\nКаждый в отдельной карточке: название и цена.\nПока только это: корзину и кнопки не добавляй.\nНапиши index.html и style.css отдельно и целиком.` };
+  const tl = DK_TOIFA.filter(t => m.some(x => x.t === t.id));
+  const qator = (L) => m.map(x => `- ${x.n.trim()}, ${narxSon(x.p)} ${L === 'uz' ? "so'm" : 'сум'}, ${DK_TOIFA.find(t => t.id === x.t)[L]}`).join('\n');
+  return {
+    uz: `${nom} uchun bitta sahifali do'kon yasa. index.html, style.css va script.js'ni alohida, to'liq yoz.\n1. Mahsulotlar script.js da massivda tursin — har biri { nom, narx, toifa }:\n${qator('uz')}\n2. Kartochkalarni for sikli bilan chiz: nomi, narxi va toifasi.\n3. Tepada toifa tugmalari: Hammasi, ${tl.map(t => t.uz).join(', ')}. Bosilganda if bilan faqat shu toifa kartochkalari qolsin.\nHozircha faqat shu: savat va qidiruv qo'shma. Har bo'limga qisqa izoh yoz.`,
+    ru: `Сделай одностраничный магазин «${nom}». Напиши index.html, style.css и script.js отдельно и целиком.\n1. Товары храни в script.js в массиве — каждый { name, price, category }:\n${qator('ru')}\n2. Карточки рисуй циклом for: название, цена и категория.\n3. Сверху кнопки категорий: Все, ${tl.map(t => t.ru).join(', ')}. По нажатию через if остаются только карточки этой категории.\nПока только это: корзину и поиск не добавляй. К каждому разделу — короткий комментарий.`
+  };
 };
-const BOSH_KAT = () => Array.from({ length: 4 }, () => ({ n: '', p: '' }));
+const BOSH_KAT = () => Array.from({ length: 6 }, () => ({ n: '', p: '', t: '' }));
 const ScreenKatalog = ({ screen, onNext, onPrev }) => {
   const [nom, setNom] = useState(() => dkRead().nom || '');
-  const [m, setM] = useState(() => { const d = dkRead().mahsulot; return Array.isArray(d) && d.length === 4 ? d.map(x => ({ n: x.n || '', p: x.p || '' })) : BOSH_KAT(); });
+  const [m, setM] = useState(() => { const d = dkRead().katalog; return Array.isArray(d) && d.length === 6 ? d.map(x => ({ n: (x && x.n) || '', p: (x && x.p) || '', t: (x && x.t) || '' })) : BOSH_KAT(); });
   const [saqlangan, setSaqlangan] = useState(() => !!dkRead().katSaqlangan);
   const [yigil, setYigil] = useState(() => !!dkRead().katSaqlangan);
   const yozNom = (v) => { setNom(v); dkWrite({ nom: v }); };
-  const yozM = (i, k, v) => setM(o => { const n = o.map(x => ({ ...x })); n[i][k] = v; dkWrite({ mahsulot: n }); return n; });
-  const toliq = nom.trim().length >= 3 && m.every(x => x.n.trim().length >= 2 && /\d/.test(x.p));
+  const yozM = (i, k, v) => setM(o => { const n = o.map(x => ({ ...x })); n[i][k] = v; dkWrite({ katalog: n }); return n; });
+  const toza = m.filter(katToliq);
+  const toliq = nom.trim().length >= 3 && toza.length >= 4 && new Set(toza.map(x => x.t)).size >= 2;
   const saqla = () => { if (!toliq) return; dkWrite({ katSaqlangan: true }); setSaqlangan(true); setYigil(true); };
-  const matn = toliq && saqlangan ? tr(a2Prompt(nom.trim(), m)) : null;
+  const matn = toliq && saqlangan ? tr(a2Prompt(nom.trim(), toza)) : null;
+  const yozilgan = m.filter(x => x.n.trim() || x.p.trim());
   return (
     <Stage eyebrow={tr({ uz: 'Amaliyot 2 · Gemini', ru: 'Практика 2 · Gemini' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: 'Rejangizning faqat birinchi qadamini quring.', ru: 'Постройте только первый шаг своего плана.' })}</h2></div>
-        <Mentor>{tr({ uz: <>Gemini'ga butun do'konni emas, faqat <b style={{ color: T.ink }}>mahsulotlar va narxlarni</b> berasiz. Bitta qadam — bitta so'rov: natijani rejangiz bilan solishtirish oson.</>, ru: <>Даёте Gemini не весь магазин, а только <b style={{ color: T.ink }}>товары и цены</b>. Один шаг — один запрос: результат легко сверить с планом.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: 'Katalog va toifa tugmalarini quring.', ru: 'Постройте каталог и кнопки категорий.' })}</h2></div>
+        <Mentor>{tr({ uz: <>Gemini'ga rejangizning birinchi qismlarini berasiz: <b style={{ color: T.ink }}>ro'yxat, kartochkalar va toifa tugmalari</b>. Prompt JavaScript darslaridagi so'zlar bilan aytadi: massiv, for sikli, if.</>, ru: <>Даёте Gemini первые части своего плана: <b style={{ color: T.ink }}>список, карточки и кнопки категорий</b>. Промпт говорит словами из уроков JavaScript: массив, цикл for, if.</> })}</Mentor>
         <Split>
           <Col>
             {!yigil && <div className="am-karta fade-up delay-1">
               <label className="am-maydon"><span>{tr({ uz: "Do'kon nomi", ru: 'Название магазина' })}</span><input className="am-input" value={nom} placeholder={tr({ uz: `masalan: ${DK_NOM.uz}`, ru: `например: ${DK_NOM.ru}` })} onChange={e => yozNom(e.target.value)} /></label>
               <div className="am-chips"><button type="button" className="am-chip" onClick={() => yozNom(tr(DK_NOM))}>{tr(DK_NOM)}</button></div>
-              <div className="am-maydon"><span>{tr({ uz: '4 ta mahsulot — nomi va narxi', ru: '4 товара — название и цена' })}</span>
+              <div className="am-maydon"><span>{tr({ uz: 'Mahsulotlar — nomi, narxi, toifasi (kamida 4 ta)', ru: 'Товары — название, цена, категория (минимум 4)' })}</span>
                 {m.map((x, i) => (
                   <div key={i} className="rj-qator">
                     <span className="am-qn">{i + 1}</span>
                     <input className="am-input" value={x.n} placeholder={tr({ uz: `masalan: ${DK_MAHSULOT[i].n.uz}`, ru: `например: ${DK_MAHSULOT[i].n.ru}` })} onChange={e => yozM(i, 'n', e.target.value)} />
                     <input className="am-input dk-narx-in" inputMode="numeric" value={x.p} placeholder={DK_MAHSULOT[i].p} aria-label={tr({ uz: "Narxi, so'm", ru: 'Цена, сум' })} onChange={e => yozM(i, 'p', e.target.value)} />
+                    <select className="am-input dk-toifa-in" value={x.t} aria-label={tr({ uz: 'Toifasi', ru: 'Категория' })} onChange={e => yozM(i, 't', e.target.value)}>
+                      <option value="">{tr({ uz: 'toifa', ru: 'категория' })}</option>
+                      {DK_TOIFA.map(t => <option key={t.id} value={t.id}>{tr(t)}</option>)}
+                    </select>
                   </div>
                 ))}
               </div>
-              <button type="button" className="am-saqla" disabled={!toliq} onClick={saqla}>{tr(toliq ? { uz: 'Saqlash', ru: 'Сохранить' } : { uz: "Nom va 4 mahsulotni to'ldiring", ru: 'Заполните название и 4 товара' })}</button>
+              <button type="button" className="am-saqla" disabled={!toliq} onClick={saqla}>{tr(toliq ? { uz: 'Saqlash', ru: 'Сохранить' } : { uz: 'Nom va kamida 4 mahsulot, 2 xil toifa', ru: 'Название и минимум 4 товара, 2 разные категории' })}</button>
             </div>}
             {yigil && <div className="am-karta am-ochil">
               <div className="am-prompt-h"><p className="flow-label">{tr({ uz: 'Sizning katalogingiz', ru: 'Ваш каталог' })}</p><button type="button" className="am-nusxa" onClick={() => setYigil(false)}>{tr({ uz: 'Tahrirlash', ru: 'Изменить' })}</button></div>
               <p className="am-loyiha-nom">{nom}</p>
-              <p className="am-satr">{m.map(x => x.n.trim()).join(' · ')}</p>
+              <p className="am-satr">{toza.map(x => x.n.trim()).join(' · ')}</p>
             </div>}
             {matn && <div className="am-ochil"><PromptBlok matn={matn} tayyor={{ uz: "Prompt tayyor — Gemini'ga yuboring.", ru: 'Промпт готов — отправьте в Gemini.' }} /></div>}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Natija · yozganingizdan quriladi', ru: 'Результат · строится из вашего текста' })}</p>
-            <DokonMaket nom={nom} items={m} />
-            <p className="small am-osti">{tr({ uz: "Savat hali yo'q — u rejangizdagi keyingi qadam.", ru: 'Корзины пока нет — это следующий шаг вашего плана.' })}</p>
+            <DokonJonli nom={nom} items={yozilgan.length ? yozilgan : BOSH_KAT().slice(0, 2)} q={new Set(['royxat', 'karta', 'filtr'])} />
+            <p className="small am-osti">{tr({ uz: "Qidiruv hali yo'q — uni keyingi qadamda Copilot bilan qo'shasiz.", ru: 'Поиска пока нет — добавите его на следующем шаге с Copilot.' })}</p>
             <QadamTugma b={A2} />
           </Col>
         </Split>
@@ -1113,35 +1322,40 @@ const ScreenKatalog = ({ screen, onNext, onPrev }) => {
   );
 };
 
-// ===== a3 — Copilot bilan yana 2 mahsulot =====
-const A3_IZOH = { uz: "<!-- yana bitta mahsulot kartasi: Sharbat, 6 000 so'm -->", ru: '<!-- ещё одна карточка товара: Сок, 6 000 сум -->' };
+// ===== a3 — Copilot: izohdan qidiruv (input + funksiya) =====
+const A3_IZOH_HTML = { uz: '<!-- qidiruv maydoni: input, id="qidiruv", placeholder "Qidirish..." -->', ru: '<!-- поле поиска: input, id="qidiruv", placeholder "Поиск..." -->' };
+const A3_IZOH_JS = { uz: "// qidiruv: yozilgan so'z nomida bor mahsulotlarnigina chiz", ru: '// поиск: рисуй только товары, в названии которых есть введённое слово' };
 const A3 = {
   qadamlar: [
-    { uz: "`index.html` da oxirgi mahsulot kartasidan keyin izohni qo'ying va `Enter` bosing.", ru: 'В `index.html` после последней карточки товара вставьте комментарий и нажмите `Enter`.' },
-    { uz: "Kulrang taklif chiqadi — o'qing, to'g'ri bo'lsa `Tab` bilan qabul qiling.", ru: 'Появится серая подсказка — прочитайте, если верно, примите клавишей `Tab`.' },
-    { uz: "Ikkinchi mahsulot uchun izohni o'zingiz yozing: nomi va narxi bilan.", ru: 'Для второго товара напишите комментарий сами: с названием и ценой.' },
-    { uz: "`Ctrl+S` — brauzerda 6 karta. `REJA.md` da 1-qadam yoniga ✓ qo'ying.", ru: '`Ctrl+S` — в браузере 6 карточек. В `REJA.md` поставьте ✓ рядом с шагом 1.' }
+    { uz: "`index.html` da toifa tugmalari ustiga 1-izohni qo'ying, `Enter` → kulrang taklifni o'qing, `Tab`.", ru: 'В `index.html` над кнопками категорий вставьте 1-й комментарий, `Enter` → прочитайте серую подсказку, `Tab`.' },
+    { uz: "`script.js` oxiriga 2-izohni qo'ying, `Enter` → `Tab`. Taklif bir necha qator bo'lishi mumkin — hammasini o'qing.", ru: 'В конец `script.js` вставьте 2-й комментарий, `Enter` → `Tab`. Подсказка может быть в несколько строк — прочитайте целиком.' },
+    { uz: "`Ctrl+S` → qidiruvga bitta mahsulot nomining boshini yozing: faqat o'sha mahsulot qoladimi?", ru: '`Ctrl+S` → впишите в поиск начало названия одного товара: остался только он?' },
+    { uz: "`REJA.md` da bajarilgan qismlar yoniga ✓ qo'ying.", ru: 'В `REJA.md` поставьте ✓ рядом с готовыми частями.' }
   ]
 };
 const ScreenCopilot = ({ screen, onNext, onPrev }) => {
   const d = dkRead();
-  const ozi = Array.isArray(d.mahsulot) && d.mahsulot.every(x => x && x.n && x.n.trim() && /\d/.test(x.p || ''));
-  const asos = ozi ? d.mahsulot : DK_MAHSULOT.map(x => ({ n: tr(x.n), p: x.p }));
-  const nom = ozi && d.nom && d.nom.trim() ? d.nom : tr(DK_NOM);
+  const ozi = Array.isArray(d.katalog) ? d.katalog.filter(katToliq) : [];
+  const items = ozi.length >= 4 ? ozi : dkNamuna();
+  const nom = ozi.length >= 4 && d.nom && d.nom.trim() ? d.nom : tr(DK_NOM);
   return (
     <Stage eyebrow={tr({ uz: 'Amaliyot 3 · Copilot', ru: 'Практика 3 · Copilot' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: "Copilot bilan yana ikki mahsulot qo'shing.", ru: 'Добавьте ещё два товара с Copilot.' })}</h2></div>
-        <Mentor>{tr({ uz: <>Copilot sahifangizdagi kartalarni ko'rib, xuddi shunday yangisini taklif qiladi. Nom va narxni <b style={{ color: T.ink }}>siz</b> berasiz.</>, ru: <>Copilot видит карточки на странице и предлагает такую же новую. Название и цену задаёте <b style={{ color: T.ink }}>вы</b>.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: "Copilot bilan qidiruv qo'shing.", ru: 'Добавьте поиск с Copilot.' })}</h2></div>
+        <Mentor>{tr({ uz: <>Copilot sahifangizdagi kodni o'qiydi va izohdan qidiruv funksiyasini yozadi. Nima qilishini <b style={{ color: T.ink }}>siz</b> aytasiz: izoh aniq bo'lsa, taklif ham aniq.</>, ru: <>Copilot читает код вашей страницы и по комментарию пишет функцию поиска. Что она делает, говорите <b style={{ color: T.ink }}>вы</b>: точный комментарий — точная подсказка.</> })}</Mentor>
         <Split>
           <Col>
-            <div className="am-karta fade-up delay-1"><KodNusxa yorliq={{ uz: "index.html ga — oxirgi kartadan keyin", ru: 'в index.html — после последней карточки' }} kod={tr(A3_IZOH)} /></div>
+            <div className="am-karta fade-up delay-1">
+              <KodNusxa yorliq={{ uz: '1 · index.html ga — toifa tugmalari ustiga', ru: '1 · в index.html — над кнопками категорий' }} kod={tr(A3_IZOH_HTML)} />
+              <KodNusxa yorliq={{ uz: '2 · script.js ga — oxiriga', ru: '2 · в script.js — в конец' }} kod={tr(A3_IZOH_JS)} />
+            </div>
             <Qadamlar b={A3} cls="fade-up delay-2" />
-            <details className="am-yordam"><summary>{tr({ uz: 'Taklif chiqmadimi?', ru: 'Подсказка не появилась?' })}</summary><p>{tr({ uz: "Izohdan keyin Enter'ni yana bir bosing. Baribir chiqmasa — pastki chiziqdagi Copilot belgisini tekshiring yoki shu izohni Gemini'ga yuboring.", ru: 'Нажмите Enter после комментария ещё раз. Если нет — проверьте значок Copilot в нижней строке или отправьте комментарий в Gemini.' })}</p></details>
+            <details className="am-yordam"><summary>{tr({ uz: 'Taklif chiqmadimi?', ru: 'Подсказка не появилась?' })}</summary><p>{tr({ uz: "Izohdan keyin Enter'ni yana bir bosing. Baribir chiqmasa — pastki chiziqdagi Copilot belgisini tekshiring yoki ikkala izohni Gemini'ga yuboring.", ru: 'Нажмите Enter после комментария ещё раз. Если нет — проверьте значок Copilot в нижней строке или отправьте оба комментария в Gemini.' })}</p></details>
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'Kutilgan natija · 6 mahsulot', ru: 'Ожидаемый результат · 6 товаров' })}</p>
-            <DokonMaket nom={nom} items={[...asos, ...DK_QOSHIMCHA.map(x => ({ n: tr(x.n), p: x.p }))]} yangi={2} />
+            <p className="flow-label">{tr({ uz: 'Kutilgan natija · qidiruv ishlaydi', ru: 'Ожидаемый результат · поиск работает' })}</p>
+            <DokonJonli nom={nom} items={items} q={Q_BUGUN} yangi="qidiruv" teg={{ qidiruv: 'Copilot' }} />
+            <p className="small am-osti">{tr({ uz: "Yozib ko'ring — sizning saytingiz ham shunday ishlashi kerak.", ru: 'Попробуйте ввести — ваш сайт должен работать так же.' })}</p>
           </Col>
         </Split>
       </div>
@@ -1182,22 +1396,22 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
+    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
-  const RECAP = [tr({ uz: "Katta ishni AI'ga berishdan oldin qadamlarga bo'lasiz", ru: 'Перед тем как дать большую работу AI, разбиваете её на шаги' }), tr({ uz: "«Shart» (MVP) — busiz do'kon ishlamaydi; «keyin» — kutsa bo'ladi", ru: '«Нужно» (MVP) — без этого магазин не работает; «потом» — может подождать' }), tr({ uz: 'Poydevordan boshlaysiz: avval mahsulotlar va narxlar', ru: 'Начинаете с фундамента: сначала товары и цены' }), tr({ uz: "Bitta qadam — bitta so'rov", ru: 'Один шаг — один запрос' }), tr({ uz: 'Copilot naqshni davom ettiradi — mazmunini siz berasiz', ru: 'Copilot продолжает образец — содержание задаёте вы' })];
-  const HOMEWORK = [{ b: tr({ uz: '«Keyin» qadamlar', ru: 'Шаги «потом»' }), t: tr({ uz: "— REJA.md da ularni ham muhimlik bo'yicha tartiblang", ru: '— расставьте и их в REJA.md по важности' }) }, { b: tr({ uz: 'Savat uchun prompt', ru: 'Промпт для корзины' }), t: tr({ uz: "— rejangizdagi keyingi qadamga bitta aniq prompt yozib qo'ying", ru: '— напишите один точный промпт для следующего шага плана' }) }, { b: tr({ uz: 'Papkani saqlang', ru: 'Сохраните папку' }), t: tr({ uz: '— mini-dokon keyingi darsda davom etadi', ru: '— mini-dokon продолжится на следующем уроке' }) }];
+  const RECAP = [tr({ uz: "Katta ishni AI'ga berishdan oldin qadamlarga bo'lasiz", ru: 'Перед тем как дать большую работу AI, разбиваете её на шаги' }), tr({ uz: "MVP — vaqtga sig'adigan, lekin ishlaydigan qism; qolgani «keyin»", ru: 'MVP — часть, которая укладывается во время и работает; остальное — «потом»' }), tr({ uz: "Ba'zi qism boshqasisiz ishlamaydi: savat — kartochkalardan keyin", ru: 'Некоторые части не работают без других: корзина — после карточек' }), tr({ uz: 'Mahsulotlar massivda, kartochkalar for sikli bilan, toifa tugmalari if bilan', ru: 'Товары — в массиве, карточки — циклом for, кнопки категорий — через if' }), tr({ uz: 'Copilot izohdan funksiya yozadi — nima qilishini siz aytasiz', ru: 'Copilot пишет функцию по комментарию — что она делает, говорите вы' })];
+  const HOMEWORK = [{ b: tr({ uz: 'Sevimli', ru: 'Избранное' }), t: tr({ uz: "— har kartochkaga yurak tugmasi qo'shing: bosilsa to'ladi (Copilot yoki Gemini bilan)", ru: '— добавьте на каждую карточку кнопку-сердечко: по нажатию закрашивается (с Copilot или Gemini)' }) }, { b: tr({ uz: 'Savat uchun prompt', ru: 'Промпт для корзины' }), t: tr({ uz: "— rejangizdagi keyingi qadamga bitta aniq prompt yozib qo'ying", ru: '— напишите один точный промпт для следующего шага плана' }) }, { b: tr({ uz: 'Papkani saqlang', ru: 'Сохраните папку' }), t: tr({ uz: '— mini-dokon keyingi darsda davom etadi', ru: '— mini-dokon продолжится на следующем уроке' }) }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
   return (
-    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className="screen">
         <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: '3-praktika tugadi', ru: 'Практика 3 завершена' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi siz ishni <span className="italic" style={{ color: T.accent }}>reja bilan</span> boshlaysiz</>, ru: <>Теперь Вы — <span className="italic" style={{ color: T.accent }}>архитектор</span> проекта</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} disabled={studentWait} liveOn={studentLive} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : undefined} />
         </div>
-        {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+        {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь Вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
         <div className="hw-big-wrap fade-up d4">
           <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
@@ -1646,9 +1860,9 @@ function QzFX() {
 
 // ===== 🏅 ACHIEVEMENTS (nishonlar) — dekompozitsiya praktikasidagi real bosqichlar =====
 const ACHIEVEMENTS = {
-  planner:   { icon: '🧭', name: 'Planner!',   desc: { uz: "Do'kon rejasini o'zingiz yozdingiz", ru: 'Вы сами написали план магазина' } },
-  mvp:       { icon: '🎯', name: 'MVP!',       desc: { uz: "MVP'ning birinchi qadamini qurdingiz", ru: 'Вы построили первый шаг MVP' } },
-  graduate:  { icon: '🏆', name: 'Level Up!',  desc: { uz: "Do'kon katalogini oxirigacha qurdingiz", ru: 'Вы достроили каталог магазина' } },
+  planner:   { icon: '🧭', name: 'Planner!',   desc: { uz: "Do'kon rejasini o'zingiz tuzdingiz", ru: 'Вы сами составили план магазина' } },
+  mvp:       { icon: '🎯', name: 'MVP!',       desc: { uz: 'Katalog va toifa tugmalarini qurdingiz', ru: 'Вы построили каталог и кнопки категорий' } },
+  graduate:  { icon: '🏆', name: 'Level Up!',  desc: { uz: "Qidiruvni qo'shib, MVP'ni tugatdingiz", ru: 'Вы добавили поиск и закончили MVP' } },
   architect: { icon: '📐', name: 'Architect!', desc: { uz: 'MVP nimaligini birinchi urinishda topdingiz', ru: 'Вы с первой попытки определили, что такое MVP' } },
 };
 // F-1015-340: blok nishonlari «Davom etish»da (bonus; isbot yo'q — ustoz ko'rib turadi); test nishoni — s4 (birinchi urinish)
@@ -1755,12 +1969,12 @@ const QUIZ_BANK = [
   { q: { uz: "AI'ni ochishdan oldin nima qilish kerak?", ru: 'Что нужно сделать до открытия AI?' }, opts: [{ uz: "Rejani tuzish (bo'laklash)", ru: 'Составить план (разбить задачу)' }, { uz: "Darhol 'do'kon yasab ber' deyish", ru: 'Сразу сказать «сделай магазин»' }, { uz: 'Kompyuterni yangilash', ru: 'Обновить компьютер' }, { uz: 'Sahifa rangini tanlash', ru: 'Выбрать цвет страницы' }], correct: 0 },
   { q: { uz: "Mini-do'kon MVP o'zagi nimadan iborat?", ru: 'Из чего состоит ядро MVP мини-магазина?' }, opts: [{ uz: 'Login va parol tizimi', ru: 'Система логина и пароля' }, { uz: "Sun'iy intellekt chat-boti", ru: 'Чат-бот с искусственным интеллектом' }, { uz: 'Reklama bannerlari va aksiyalar', ru: 'Рекламные баннеры и акции' }, { uz: "Mahsulotlar ro'yxati va narx", ru: 'Список товаров и цены' }], correct: 3 },
   { q: { uz: "Do'kon qurishni qaysi qadamdan boshlaymiz?", ru: 'С какого шага начинаем строить магазин?' }, opts: [{ uz: "Savatga qo'shish tugmasidan", ru: 'С кнопки «в корзину»' }, { uz: 'Qidiruv oynasidan', ru: 'С окна поиска' }, { uz: "Mahsulotlar ro'yxatidan", ru: 'Со списка товаров' }, { uz: "To'lov va bank kartasidan", ru: 'С оплаты и банковской карты' }], correct: 2 },
-  { q: { uz: "Qaysi biri MVP uchun SHART emas (keyin qo'shiladi)?", ru: 'Что НЕ обязательно для MVP (добавляется потом)?' }, opts: [{ uz: "Mahsulotlar ro'yxati", ru: 'Список товаров' }, { uz: 'Har biriga narx', ru: 'Цена у каждого' }, { uz: 'Qidiruv va login', ru: 'Поиск и логин' }, { uz: 'Mahsulot nomi va rasmi', ru: 'Название и фото товара' }], correct: 2 },
+  { q: { uz: "Qaysi biri MVP uchun SHART emas (keyin qo'shiladi)?", ru: 'Что НЕ обязательно для MVP (добавляется потом)?' }, opts: [{ uz: "Mahsulotlar ro'yxati", ru: 'Список товаров' }, { uz: 'Har biriga narx', ru: 'Цена у каждого' }, { uz: "To'lov va login", ru: 'Оплата и логин' }, { uz: 'Mahsulot nomi va rasmi', ru: 'Название и фото товара' }], correct: 2 },
   { q: { uz: 'Rejani kim tuzadi?', ru: 'Кто составляет план?' }, opts: [{ uz: "Siz, AI'ni ochishdan oldin", ru: 'Вы, до того как открыть AI' }, { uz: "AI, birinchi so'rovdan keyin", ru: 'AI, после первого запроса' }, { uz: 'Copilot, kod yozayotganda', ru: 'Copilot, пока пишет код' }, { uz: 'Hech kim, reja shart emas', ru: 'Никто, план не нужен' }], correct: 0 },
   { q: { uz: 'Aniq buyruq nega muhim?', ru: 'Почему важна точная команда?' }, opts: [{ uz: "Chiroyliroq ko'rinadi", ru: 'Выглядит красивее' }, { uz: 'Aniq buyruq → aniq natija', ru: 'Точная команда → точный результат' }, { uz: "Tezroq yozib bo'ladi", ru: 'Быстрее печатать' }, { uz: "AI'ni ortiqcha charchatmaydi", ru: 'Не утомляет AI лишний раз' }], correct: 1 },
   { q: { uz: 'Qaysi buyruq eng aniq?', ru: 'Какая команда самая точная?' }, opts: [{ uz: "Menga bir ro'yxat qilib ber", ru: 'Сделай мне какой-нибудь список' }, { uz: 'Biror yaxshi narsa qilib ber', ru: 'Сделай что-нибудь хорошее' }, { uz: "Maktab do'koni uchun 4 mahsulotli ro'yxat", ru: 'Список из 4 товаров для школьного магазина' }, { uz: 'Chiroyliroq qilib yasab ber', ru: 'Сделай покрасивее' }], correct: 2 },
   { q: { uz: "To'g'ri qurilish tartibi qaysi?", ru: 'Какой порядок стройки верный?' }, opts: [{ uz: "Ko'rinish → narx → ro'yxat", ru: 'Вид → цены → список' }, { uz: "Bezak → ro'yxat → narx", ru: 'Украшение → список → цены' }, { uz: "Narx → ro'yxat → login", ru: 'Цены → список → логин' }, { uz: "Ro'yxat → narx → ko'rinish", ru: 'Список → цены → вид' }], correct: 3 },
-  { q: { uz: "Gemini'ga qaysi qadamni berasiz?", ru: 'Какой шаг Вы дадите Gemini?' }, opts: [{ uz: "Butun do'konni bitta so'rovda", ru: 'Весь магазин одним запросом' }, { uz: 'Rejadagi faqat birinchi qadamni', ru: 'Только первый шаг из плана' }, { uz: 'Rejadagi eng chiroyli qadamni', ru: 'Самый красивый шаг из плана' }, { uz: "Rejadagi oxirgi, «keyin» qadamni", ru: 'Последний шаг «потом» из плана' }], correct: 1 },
+  { q: { uz: "Gemini'ga qaysi qadamni berasiz?", ru: 'Какой шаг Вы дадите Gemini?' }, opts: [{ uz: "Butun do'konni bitta so'rovda", ru: 'Весь магазин одним запросом' }, { uz: 'Rejadagi kichik bir qismni', ru: 'Небольшую часть из плана' }, { uz: 'Rejadagi eng chiroyli qadamni', ru: 'Самый красивый шаг из плана' }, { uz: "Rejadagi oxirgi, «keyin» qadamni", ru: 'Последний шаг «потом» из плана' }], correct: 1 },
   { q: { uz: "«Keyin» qadamlar qachon quriladi?", ru: 'Когда строятся шаги «потом»?' }, opts: [{ uz: "MVP'dan oldin, birinchi navbatda", ru: 'До MVP, в первую очередь' }, { uz: 'Hech qachon qurilmaydi', ru: 'Никогда не строятся' }, { uz: "Faqat dizayn tayyor bo'lganda", ru: 'Только когда готов дизайн' }, { uz: 'MVP ishlagandan keyin', ru: 'После того, как MVP заработает' }], correct: 3 },
 ];
 const quizPts = (elapsedMs) => elapsedMs <= 500 ? 1000 : Math.max(0, Math.round(1000 * (1 - (Math.min(elapsedMs, QUIZ_MS) / QUIZ_MS) / 2)));
@@ -2395,6 +2609,7 @@ export default function PracticeLesson3({ lang: langProp, onFinished, liveToken 
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
         @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: clamp(14px,3vw,20px); } }
         .flow-label { font-family: 'Manrope'; font-weight: 700; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: ${T.ink2}; }
+        @media (min-width: 761px) { .split:has(> .col > .flow-label:first-child) > .col:not(:has(> .flow-label:first-child))::before { content: "."; visibility: hidden; font-family: 'Manrope'; font-weight: 700; font-size: 10px; letter-spacing: 0.14em; } } /* F-1015-371: ikki ustun bloklari bir chiziqdan boshlanadi */
         .num-badge { width: 30px; height: 30px; border-radius: 50%; background: ${T.accentSoft}; color: ${T.accent}; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono'; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 14px; flex-shrink: 0; }
 
         /* === ROADMAP === */
@@ -2783,8 +2998,8 @@ export default function PracticeLesson3({ lang: langProp, onFinished, liveToken 
         .dd-hint { color: ${T.ink3}; font-style: italic; font-size: 13px; }
         .dd-pool { display: flex; flex-wrap: wrap; gap: 9px; min-height: 48px; padding: 10px; border-radius: 14px; background: ${T.bg}; }
         .dd-pool-empty { color: ${T.ink3}; font-size: 12.5px; font-style: italic; align-self: center; }
-        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: ${T.accent}; background: ${T.paper}; border: 2px solid ${T.accent}; border-radius: 11px; padding: 9px 13px; cursor: grab; touch-action: none; box-shadow: 0 6px 14px -8px rgba(${T.shadowBase},.35); transition: transform .12s; user-select: none; }
-        .dd-chip::before { content: '⠿'; margin-right: 7px; opacity: .55; font-weight: 400; } /* F-0926-06 (159/15): oq fon + 2px accent chegara + ushlagich — baland to'q-sariq gradient olindi */
+        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 11px; padding: 11px 15px; cursor: grab; touch-action: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: transform .12s; user-select: none; }
+        .dd-chip::before { content: '⠿'; margin-right: 7px; opacity: .75; font-weight: 400; } /* F-1015-352 (F-1002-59): to'ldirilgan gradient chip, ⠿ ushlagich sudralishni aytadi */
         .dd-chip:hover { transform: translateY(-2px); }
         .dd-chip:active { cursor: grabbing; }
         .dd-slots, .dd-pool { position: relative; }
@@ -3036,7 +3251,7 @@ export default function PracticeLesson3({ lang: langProp, onFinished, liveToken 
         .am-nusxa { align-self: flex-start; background: ${T.paper}; color: ${T.ink}; border: 1.5px solid ${T.accent}; border-radius: 10px; padding: 9px 16px; font: 700 13px 'Manrope', sans-serif; cursor: pointer; }
         .am-nusxa:hover { background: ${T.accentSoft}; }
         .am-prompt-h { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
-        .am-tayyor { background: ${T.paper}; border: 2px solid ${T.accent}; border-radius: 16px; padding: clamp(14px,2vw,18px); display: flex; flex-direction: column; gap: 10px; box-shadow: 0 10px 24px -10px rgba(255,79,40,0.35); }
+        .am-tayyor { background: ${T.paper}; border: 1.5px solid rgba(255,79,40,0.35); border-radius: 16px; padding: clamp(14px,2vw,18px); display: flex; flex-direction: column; gap: 10px; box-shadow: 0 10px 24px -10px rgba(255,79,40,0.35); }
         .am-tayyor-h { margin: 0; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(16px,2vw,19px); color: ${T.ink}; }
         .lesson-root .am-tayyor-l { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
         .am-tayyor-l li { display: flex; gap: 12px; align-items: flex-start; font-size: clamp(14px,1.6vw,15.5px); color: ${T.ink}; line-height: 1.5; }
@@ -3071,7 +3286,25 @@ export default function PracticeLesson3({ lang: langProp, onFinished, liveToken 
         .am-tt.on .am-qt-ic { transform: rotate(180deg); }
         .am-tt-ich { display: flex; flex-direction: column; gap: 10px; padding: 0 clamp(14px,2vw,18px) clamp(14px,2vw,18px); }
         .am-tt-nafas { animation: am-nafas 2.4s ease-in-out infinite; }
-        @keyframes am-nafas { 0%, 100% { box-shadow: 0 10px 24px -10px rgba(255,79,40,0.35), 0 0 0 0 rgba(255,79,40,0.3); } 50% { box-shadow: 0 10px 24px -10px rgba(255,79,40,0.35), 0 0 0 7px rgba(255,79,40,0); } }
+        .am-tayyor.am-tt { box-shadow: none; } /* F-1015-362: yordamchi blok — yumshoq ramka, soyasiz */
+        @keyframes am-nafas { 0%, 100% { box-shadow: 0 0 0 0 rgba(255,79,40,0.18); } 50% { box-shadow: 0 0 0 6px rgba(255,79,40,0); } }
+        .am-tt-oyna { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(560px,92vw); max-height: calc(88vh / var(--lz, 1)); overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(18px,3vw,28px); display: flex; flex-direction: column; gap: 14px; box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); animation: zoom-pop 0.3s cubic-bezier(.34,1.3,.4,1); }
+        .am-tt-oyna-h { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+        .am-tt-yop { flex: none; width: 34px; height: 34px; border-radius: 10px; border: 1.5px solid ${T.line}; background: ${T.paper}; color: ${T.ink2}; font-size: 15px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+        .am-tt-yop:hover { color: ${T.accent}; border-color: ${T.accent}; }
+        .am-tt-yop:focus-visible { outline: 2px solid ${T.accent}; outline-offset: 2px; }
+        .am-yig { width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; border: none; cursor: pointer; text-align: left; font: inherit; padding: 14px 18px; }
+        .am-yig-ok { font-weight: 700; color: ${T.success}; font-size: 14.5px; }
+        .am-yig-k { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 13.5px; color: ${T.ink2}; }
+        .am-yig:hover .am-yig-k { color: ${T.accent}; }
+        .am-yig:focus-visible { outline: 2px solid ${T.accent}; outline-offset: 2px; }
+        .sk-kotar { animation: sk-kotar 0.5s cubic-bezier(.2,.7,.3,1) both; } /* F-1015-363: prompt yig'ilgach kod oynasi yuqoriga ko'tariladi */
+        @keyframes sk-kotar { from { opacity: 0.4; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+        .sk-bar-nur { animation: sk-bar-nur 1.1s ease-out; }
+        @keyframes sk-bar-nur { from { box-shadow: inset 0 -2px 0 rgba(250,204,21,0.9); background: rgba(250,204,21,0.22); } to { box-shadow: inset 0 -2px 0 rgba(250,204,21,0); } }
+        @media (prefers-reduced-motion: reduce) { .sk-kotar, .sk-bar-nur, .am-tt-oyna { animation: none !important; } }
+        .sk-nur { border-radius: 6px; animation: sk-nur 1.2s ease-out; }
+        @keyframes sk-nur { 0%, 35% { background: rgba(250,204,21,0.38); } 100% { background: transparent; } }
         @media (prefers-reduced-motion: reduce) { .am-tt-nafas { animation: none; } }
         .screen > .head + .split { margin-top: clamp(6px,1vw,10px); } /* F-1015-333: mentorsiz ekranda sarlavha bloklarga yopishmasin */
         .am-chips { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -3102,11 +3335,7 @@ export default function PracticeLesson3({ lang: langProp, onFinished, liveToken 
         .rj-qator { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
         .rj-qator .am-input { flex: 1 1 150px; width: auto; min-width: 0; padding: 8px 10px; }
         .rj-qator .dk-narx-in { flex: 0 0 104px; }
-        .rj-up { flex: none; width: 32px; height: 32px; border-radius: 8px; border: 1.5px solid ${T.line}; background: ${T.bg}; color: ${T.ink}; font: 700 14px 'Manrope', sans-serif; cursor: pointer; }
-        .rj-up:hover:not(:disabled) { border-color: ${T.ink2}; }
-        .rj-up:disabled { opacity: 0.35; cursor: default; }
-        .rj-up:focus-visible { outline: 2px solid ${T.accent}; outline-offset: 2px; }
-        .am-chip.on.rj-shart { border-color: ${T.success}; color: ${T.success}; box-shadow: 0 0 0 1.5px ${T.success}; }
+        .rj-qator .dk-toifa-in { flex: 0 0 118px; padding: 8px 8px; }
         .rj-oyna { border-radius: 12px; overflow: hidden; background: ${CODE.bg}; box-shadow: 0 10px 26px -10px rgba(${T.shadowBase},0.3); }
         .rj-bar { display: flex; align-items: center; gap: 10px; background: #111827; padding: 7px 12px; }
         .rj-fayl { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #cbd5e1; }
@@ -3127,8 +3356,71 @@ export default function PracticeLesson3({ lang: langProp, onFinished, liveToken 
         .dk-rasm { align-self: stretch; height: 34px; border-radius: 7px; background: linear-gradient(135deg, #dbeafe, #e0e7ff); margin-bottom: 4px; }
         .dk-narx { font-weight: 700; color: #1d4ed8; }
         .dk-yoq { display: inline-flex; border: 1.5px dashed #94a3b8; border-radius: 7px; padding: 1px 8px; color: #475569; font-weight: 700; font-size: 12px; font-style: normal; }
-        .dk-yangi { border: 2px solid ${T.success}; }
         .dk-teg { position: absolute; top: 6px; right: 6px; font: 700 9.5px 'JetBrains Mono', monospace; background: ${T.success}; color: #fff; padding: 1px 6px; border-radius: 5px; }
+        /* F-1015-341/342: a1 «Do'konni yig'ing» — qismlar qatori + Shart (4 ta joy) / Keyin ustunlari */
+        .ql-taxta { gap: 10px; }
+        .ql-zona { border: 1.5px solid ${T.line}; background: ${T.paper}; border-radius: 12px; padding: 10px; display: flex; flex-direction: column; gap: 8px; min-height: 64px; transition: border-color 0.2s, background 0.2s; }
+        .ql-zona-pool { background: ${T.bg}; border-color: transparent; }
+        .ql-zona-shart { border-color: #9cc9b0; }
+        .ql-zona-shart .ql-zona-h { color: ${T.success}; }
+        .ql-zona.ql-kut { border-color: ${T.ink2}; cursor: pointer; }
+        .ql-zona.ql-kut:focus-visible { outline: 2px solid ${T.accent}; outline-offset: 2px; }
+        .ql-zona.ql-ust { border-color: ${T.accent}; background: ${T.accentSoft}; }
+        .ql-zona-shart.ql-ust { border-color: ${T.success}; background: ${T.successSoft}; }
+        .ql-zona-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; font: 800 11px 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: ${T.ink2}; }
+        .ql-izoh { font: 600 11px 'Manrope', sans-serif; letter-spacing: 0; text-transform: none; color: ${T.ink2}; }
+        .ql-ikki { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        @media (max-width: 560px) { .ql-ikki { grid-template-columns: 1fr; } }
+        .ql-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+        .ql-ustun { flex-direction: column; align-items: stretch; }
+        .ql-chip { display: inline-flex; align-items: center; gap: 7px; font: 800 13px 'Manrope', sans-serif; color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 10px; padding: 8px 11px; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: box-shadow 0.15s, transform 0.12s; text-align: left; }
+        .ql-chip::before { content: '⠿'; opacity: .75; font-weight: 400; } /* F-1015-359 (F-1002-59): to'ldirilgan gradient chip, ⠿ ushlagich sudralishni aytadi */
+        .ql-chip b { font-weight: 700; }
+        .ql-chip:hover { transform: translateY(-1px); }
+        .ql-chip:focus-visible { outline: 2px solid ${T.accent}; outline-offset: 2px; }
+        .ql-chip.ql-tan { box-shadow: 0 0 0 2px ${T.paper}, 0 0 0 4px ${T.accent}, 0 10px 18px -8px rgba(255,79,40,.6); }
+        .ql-chip.ql-sudr { cursor: grabbing; position: relative; z-index: 30; pointer-events: none; box-shadow: 0 18px 30px -10px rgba(${T.shadowBase},0.5); }
+        .ql-chip .ql-n { background: #fff; color: ${T.accent}; }
+        .ql-n { flex: none; width: 18px; height: 18px; border-radius: 50%; background: ${T.success}; color: #fff; font: 800 10.5px 'JetBrains Mono', monospace; display: inline-flex; align-items: center; justify-content: center; }
+        .ql-joy { display: flex; align-items: center; gap: 7px; min-height: 37px; padding: 0 10px; border: 1.5px dashed #c9d9cf; border-radius: 10px; }
+        .ql-joy .ql-n { background: transparent; color: ${T.success}; box-shadow: inset 0 0 0 1.5px #9cc9b0; }
+        .ql-sanoq { font: 700 12px 'JetBrains Mono', monospace; letter-spacing: 0; color: ${T.success}; }
+        .ql-bosh { font-size: 12.5px; color: ${T.ink2}; font-style: italic; }
+        .ql-silk { animation: ql-silk 0.45s; }
+        @keyframes ql-silk { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(3px); } }
+        .ql-xabar.ql-xabar { margin: 0; font-size: 13.5px; font-weight: 600; line-height: 1.45; padding: 8px 12px; border-radius: 10px; animation: ql-kir 0.3s ease-out; }
+        .ql-xabar.xato { color: #b42318; background: #fdecea; }
+        .ql-xabar.info { color: ${T.success}; background: ${T.successSoft}; }
+        @keyframes ql-kir { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+        /* Jonli do'kon maketi — qismlar paydo bo'lganda sirg'alib kiradi, kartochkalar «pop» */
+        .dk-bosh { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+        .dk-ong { display: flex; gap: 6px; flex-wrap: wrap; }
+        .dk-pill { display: inline-flex; align-items: center; gap: 4px; font: 700 11px 'Manrope', sans-serif; color: #0f172a; background: #fff; border: 1px solid #cbd5e1; border-radius: 999px; padding: 4px 10px; }
+        .dk-savat { background: #1d4ed8; color: #fff; border-color: #1d4ed8; }
+        .dk-tolov { background: #15803d; color: #fff; border-color: #15803d; }
+        .dk-rel { position: relative; }
+        .dk-qidir { width: 100%; font: 500 13px 'Manrope', sans-serif; color: #0f172a; background: #fff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 7px 10px; outline: none; }
+        .dk-qidir::placeholder { color: #64748b; }
+        .dk-qidir:focus { border-color: #1d4ed8; box-shadow: 0 0 0 3px #dbeafe; }
+        .dk-filtr { display: flex; gap: 6px; flex-wrap: wrap; }
+        .dk-tf { font: 700 11.5px 'Manrope', sans-serif; color: #334155; background: #fff; border: 1px solid #cbd5e1; border-radius: 999px; padding: 5px 11px; cursor: pointer; transition: background 0.15s, color 0.15s; }
+        .dk-tf:hover { border-color: #64748b; }
+        .dk-tf.on { background: #dbeafe; color: #1e40af; border-color: #1d4ed8; }
+        .dk-tf:focus-visible, .dk-sev:focus-visible, .dk-savatga:focus-visible { outline: 2px solid #1d4ed8; outline-offset: 2px; }
+        .lesson-root .dk-royxat { margin: 0; padding-left: 18px; font: 500 12.5px 'JetBrains Mono', monospace; color: #0f172a; line-height: 1.7; }
+        .dk-bosh-sahifa { border: 1.5px dashed #cbd5e1; border-radius: 10px; padding: 28px 12px; text-align: center; font-size: 12.5px; color: #475569; }
+        .dk-toifa { font: 700 10px 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.04em; }
+        .dk-amal { display: flex; align-items: center; gap: 6px; margin-top: 4px; align-self: stretch; }
+        .dk-sev { flex: none; border: 1px solid #cbd5e1; background: #fff; border-radius: 7px; width: 28px; height: 26px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; }
+        .dk-savatga { flex: 1; font: 700 11px 'Manrope', sans-serif; color: #1e40af; background: #eff6ff; border: 1px solid #93c5fd; border-radius: 7px; padding: 6px; cursor: pointer; }
+        .dk-yoq-t.dk-yoq-t { margin: 0; font-size: 12.5px; color: #475569; text-align: center; padding: 14px 0; }
+        .dk-kir { animation: dk-kir 0.45s cubic-bezier(.2,.8,.2,1) both; }
+        @keyframes dk-kir { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+        .dk-pop { animation: dk-pop 0.4s cubic-bezier(.2,.9,.3,1.3) both; }
+        @keyframes dk-pop { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: none; } }
+        .dk-yangi-q { border-radius: 10px; animation: dk-kir 0.45s cubic-bezier(.2,.8,.2,1) both, dk-nur 1.1s 0.35s 2; }
+        @keyframes dk-nur { 0% { box-shadow: 0 0 0 0 rgba(31,122,77,0.55); } 100% { box-shadow: 0 0 0 10px rgba(31,122,77,0); } }
+        @media (prefers-reduced-motion: reduce) { .ql-silk, .ql-xabar, .dk-kir, .dk-pop, .dk-yangi-q { animation: none !important; } }
       `}</style>
       <LiveGateCtx.Provider value={{ locked, live, passed: screen < maxReached }}>
         <AchCtx.Provider value={earned}>

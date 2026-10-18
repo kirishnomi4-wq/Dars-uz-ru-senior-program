@@ -1,7 +1,7 @@
 # 16-dars «G'oyangiz va ilovangiz guruhni ishontiradimi?» — yakuniy matn
 
 Fayl: `src/9-Modull/PmPrototypePitchLesson.jsx` · 16 ekran · Keyingi dars: «Demo Day 7»
-Holat: 07.10.2026 — kodga mos
+Holat: 18.10.2026 — kodga mos (v4, F-1015-250…253 avtopilot: Mentor misoli 6 yozuv — jadval 3/3·2/3, 3/3·2/3, 2/3·2/3, 3/3·1/3, «Olti intervyu»; 2, 4, 8-ekran bashorat yolg'iz (213.7); 9-ekran nishon eslatmasi olindi)
 
 Darsning bitta vizuali — uch daqiqa sahnasi. Chapda telefon «Maydon Jamoa», o'ngda to'rt bo'lak kartasi, ostida taymer chizig'i 0–3:00, ustida zal (to'rt chizilgan bosh va bitta savol pufagi).
 Telefon ekranlari:
@@ -19,9 +19,9 @@ Taymer chizig'i bo'laklari: Muammo ≈40 s · Yechim ≈20 s · Jonli demo ≈1,
 
 Mentor misoli — «Maydon Jamoa» pitchi (dars bo'yi bir xil):
 - Muammo: O'yinchilar o'yindan oldin jamoaga yetarli odam yig'ishda va kim aniq kelishini bilishda qiynaladi.
-  - 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.
-  - 5 o'yinchidan 4 tasi birinchi versiyani sinab ko'rishga kun belgiladi.
-  - 10 intervyu — kichik son; bu tanlov uchun dalil, isbot emas.
+  - 3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.
+  - 3 o'yinchidan 3 tasi birinchi versiyani sinab ko'rishga kun belgiladi.
+  - Olti intervyu — kichik son; bu tanlov uchun dalil, isbot emas.
 - Yechim: Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.
 - Jonli demo: Shanba 18:00 › «Qo'shilaman» › 9 / 10 · Sinovda 3 kishidan 3 tasi bu o'yinni topishda to'xtadi — ro'yxatni kun bo'yicha qildik.
 - Keyingi qadam: Mahalla futbol guruhidan 10 kishini sinovga chaqiraman, keyin o'yindan oldin eslatma qo'shaman.
@@ -52,10 +52,11 @@ Bo'lak holatlari: bo'sh (uzuq chiziqlar) · joriy · yozildi · ✓ · ✗ · tu
 - Chap: Dars oxirida
   - Sahna: telefon (O'yinlar) va to'rtta nomsiz bo'lak; bo'laklarga Mentor misolining birinchi qatorlari birma-bir yoziladi, taymer chizig'i 3:00 gacha yetadi, zal ustida ✓
 - Reja:
-  1. Muammoni dalil bilan aytishni bilib olasiz · muammo
-  2. Mahsulotni bir gapda aytishni o'rganasiz · yechim
-  3. Ilovani telefonda ko'rsatishga tayyorlanasiz · jonli demo
-  4. Pitchni sherigingizga aytib, baholatasiz · baholash varag'i
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*
+  1. Muammoni dalil bilan aytishni bilib olasiz
+  2. Mahsulotni bir gapda aytishni o'rganasiz
+  3. Ilovani telefonda ko'rsatishga tayyorlanasiz
+  4. Pitchni sherigingizga aytib, baholatasiz
 - Tugmalar: Orqaga · Boshlaymiz
 
 ## 2 · To'rt bo'lak
@@ -67,7 +68,7 @@ Bo'lak holatlari: bo'sh (uzuq chiziqlar) · joriy · yozildi · ✓ · ✗ · tu
   - Tanlangach ixcham qator: savol · Taxminingiz: …
 - Vizual: chapda telefon (O'yinlar) · o'ngda to'rt bo'sh bo'lak o'rni, ostida taymer chizig'i, ustida zal (pufakda «?»)
 - Qadamlar: 1 Muammoni qo'shing · 2 Yechimni qo'shing · 3 Ilovani ko'rsating · 4 Keyingi qadamni qo'shing
-  1. Muammo bo'lagi — muammo gapi va kichik qator «5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.» · taymerda ≈40 s · pufak: Bu muammo borligini qayerdan bilasiz? → ✓
+  1. Muammo bo'lagi — muammo gapi va kichik qator «3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.» · taymerda ≈40 s · pufak: Bu muammo borligini qayerdan bilasiz? → ✓
   2. Yechim bo'lagi — yechim gapi · ≈20 s · pufak: Mahsulot nima qiladi? → ✓
   3. Uchinchi bo'lak (nomsiz) — telefon o'zi ishlaydi: O'yinlar → «Shanba 18:00» → O'yin → «Qo'shilaman» → «9 / 10», tugma «Qo'shildingiz»; bo'lakda qator «Shanba 18:00 › «Qo'shilaman» › 9 / 10» · ≈1,5 daqiqa · pufak: Ishlayotganini ko'rsata olasizmi? → ✓. Shundan keyin bo'lak nomi chiqadi: **Jonli demo**
      - Izoh: Jonli demo bo'lagida ilova zal oldida telefonda ishlatib ko'rsatiladi.
@@ -90,7 +91,7 @@ Bo'lak holatlari: bo'sh (uzuq chiziqlar) · joriy · yozildi · ✓ · ✗ · tu
   - B: Keyingi qadam reja haqida, bu sanoq esa bo'lib o'tgan.
   - C: Yechim ilova nima qilishini aytadi, muammo sanog'ini emas.
   - Umumiy: Bu sanoq nimani ko'rsatadi: muammonimi yoki ilovanimi?
-- Javob topilgach (savol ostida): to'rt bo'lak nomi qatorda — Muammo · Yechim · Jonli demo · Keyingi qadam; «Muammo» ajralib, ichida «4 / 5»
+- Javob topilgach (savol ostida): to'rt bo'lak nomi qatorda — Muammo · Yechim · Jonli demo · Keyingi qadam; «Muammo» ajralib, ichida «3 / 3»
 - Barcha testlarda umumiy yozuvlar: Javob tanlang → Davom etish · javobdan keyin «To'g'ri» yoki «Qaytadan urinib ko'ring» (xatodan keyin tugma: To'g'ri javobni toping) · xato qilgan o'quvchiga: «Qisqa takrorlash — mavzuni yana bir ko'rish» · jonli darsda: «Jonli dars — bitta urinish, o'ylab bosing!» · «Javobingiz qabul qilindi» · «Hozir to'g'ri javobni bilib olasiz.» · xato qolsa: «To'g'ri javob: D — Muammoga — u muammo borligini ko'rsatadi»
 
 ## 4 · Muammo va dalil
@@ -101,15 +102,15 @@ Bo'lak holatlari: bo'sh (uzuq chiziqlar) · joriy · yozildi · ✓ · ✗ · tu
 - Bashorat (Avval o'zingiz belgilab ko'ring): Bu misolda muammo gapi yonida nechta dalil turadi? · 1 · 2 · 3
 - Chapda — zal (pufakda «?») va katta Muammo bo'lagi (uch bo'sh qator)
 - O'ngda — sanoq jadvali (ustunlar: Jamoa yig'ish (5) · Mahalla to'garaklari (5)):
-  - oxirgi marta muammo bo'lgan · 4 / 5 · 3 / 5
-  - hozir nima bilan · 5 / 5 · 3 / 5
-  - eng qiyini · 3 / 5 · 3 / 5
-  - harakat belgisi · 4 / 5 · 1 / 5
+  - oxirgi marta muammo bo'lgan · 3 / 3 · 2 / 3
+  - hozir nima bilan · 3 / 3 · 2 / 3
+  - eng qiyini · 2 / 3 · 2 / 3
+  - harakat belgisi · 3 / 3 · 1 / 3
 - Qadamlar: 1 Muammo gapini qo'ying · 2 Sanoqni qo'shing · 3 Harakat belgisini qo'shing
   1. Bo'lakka yoziladi: O'yinchilar o'yindan oldin jamoaga yetarli odam yig'ishda va kim aniq kelishini bilishda qiynaladi. · pufak: Bu muammo borligini qayerdan bilasiz?
-  2. Jadvalda «oxirgi marta muammo bo'lgan» qatori yonadi va bo'lakka uchadi: 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan. · pufak: Ular bu ilovaga qiziqadimi?
-  3. Jadvalda «harakat belgisi» qatori yonadi va bo'lakka uchadi: 5 o'yinchidan 4 tasi birinchi versiyani sinab ko'rishga kun belgiladi. · pufak o'rnida ✓; qatorlar yonida yorliqlar: sanoq · harakat belgisi
-     - Izoh: 10 intervyu — kichik son; bu tanlov uchun dalil, isbot emas.
+  2. Jadvalda «oxirgi marta muammo bo'lgan» qatori yonadi va bo'lakka uchadi: 3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan. · pufak: Ular bu ilovaga qiziqadimi?
+  3. Jadvalda «harakat belgisi» qatori yonadi va bo'lakka uchadi: 3 o'yinchidan 3 tasi birinchi versiyani sinab ko'rishga kun belgiladi. · pufak o'rnida ✓; qatorlar yonida yorliqlar: sanoq · harakat belgisi
+     - Izoh: Olti intervyu — kichik son; bu tanlov uchun dalil, isbot emas.
 - Harakatsiz turganda: Yoqilgan qadamni bosing — zal savoli qanday o'zgarishini ko'ring.
 - Natija: «Taxminingiz to'g'ri chiqdi» yoki «Taxminingiz: N · bu misolda: 2»
 - Xulosa: Bu misolda muammoni ikki dalil ko'rsatdi: necha kishida bo'lgani va kim sinovga kun belgilagani.
@@ -133,13 +134,13 @@ Bo'lak holatlari: bo'sh (uzuq chiziqlar) · joriy · yozildi · ✓ · ✗ · tu
 ## 6 · iPhone
 - Eyebrow: Biznes olamidan
 - Sarlavha: iPhone birinchi marta *qanday taqdim etilgan?*
-- Mentor — har bosqichda almashadi; ostida yorliq «iPhone · N/3» va uch nuqta
+- Mentor — har bosqichda almashadi; yorliq va nuqtalar yo'q — tugma «Keyingi bosqich» aytadi *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*
 - 1/3 sahna ustida: **iPhone** — Apple kompaniyasining telefoni. **Nokia** va **BlackBerry** — 2007-yilda telefon chiqargan kompaniyalar.
 - Bosqichlar (sahna nomi · Mentor):
   1. Ko'p tugma — 2007-yilda telefon kompaniyalari tugmasi ko'proq telefon qilishda bellashgan. Nokia va BlackBerry kabi telefonlarda klaviatura yoki stilus bo'lgan.
      - sahna: klaviaturali telefon (tugmalar birma-bir yonadi) va stilusli telefon; ostida nomlar Nokia · BlackBerry
      - bashorat ustida kulrang qator: Stiv Jobs — o'sha paytdagi Apple rahbari.
-     - Bashorat (yorliq «iPhone · 1/3»): Stiv Jobs iPhone'ni nechta qurilma deb taqdim etgan? · 1 · 2 · 3 — tanlangach ixcham qator: savol · Taxminingiz: N
+     - Bashorat (yorliq «Avval o'zingiz belgilab ko'ring»): Stiv Jobs iPhone'ni nechta qurilma deb taqdim etgan? · 1 · 2 · 3 — tanlangach ixcham qator: savol · Taxminingiz: N
   2. Bitta ekran — Apple esa klaviatura, stilus va deyarli hamma tugmani olib tashlagan. Telefonda bitta ekran va Home tugmasi qolgan.
      - sahna: tugmalar so'nadi, stilus chiqib ketadi; iPhone — bitta katta ekran va pastda doira tugma, yorliq «Home»
   3. Uch qurilma bittada — Stiv Jobs iPhone'ni «uch qurilma bittada» deb taqdim etgan: iPod, telefon va internet. iPod — Apple'ning musiqa pleeri.
@@ -228,7 +229,7 @@ WHERE holat IN ('qoshildi', 'keladi');
 - Mentor: Oldingi darslarda yozganlaringiz shu yerda: har bo'lakni tekshirib, «Saqlash»ni bosing.
   - oldingi darslardan hech narsa topilmasa: Har bo'lakni yozib, «Saqlash»ni bosing.
   - to'rttasi saqlangach: To'rt bo'lak saqlandi: «Davom etish»ni bosing.
-- Tepada chiziq: Pitchim · n/4 — Muammo · Yechim · Jonli demo · Keyingi qadam (saqlangani ✓)
+- «Pitchim · n/4» chizig'i yo'q — forma ustidagi bo'lak belgilari (✓) va tugma «(n/4)» aytadi. *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*
 - Bosqichlar: 1 Muammo · 2 Yechim · 3 Jonli demo · 4 Keyingi qadam; yonida zal savoli va bo'lak kartasi
   1. Muammo — Muammo gapi (Kim nimadan qiynaladi?) · Dalil (Necha kishidan nechtasida? Kim sinovga kun belgiladi?)
   2. Yechim — Bir gap (Mahsulot odamga nima qiladi?)
@@ -236,7 +237,7 @@ WHERE holat IN ('qoshildi', 'keladi');
   4. Keyingi qadam — rejadan tugmalar · maydon (Rejangizdagi birinchi ish)
      - tugmalar ustida: Uyda «Avval» qadamini bajargan bo'lsangiz — keyingisini tanlang.
 - Oldingi darslardan o'zi qo'yiladigan sinov qatori: Sinovda {n} kishidan {k} tasi «{joy}» joyida to'xtadi — o'zgartirdim. (mashq sinovida: Mashq sinovida …) + Qayta sinovda bu safar takrorlanmadi. / Qayta sinovda yana to'xtadi.
-- Tugma: Saqlash
+- Tugma: Saqlash (doim bosiladi; majburiy qator bo'sh bo'lsa tugma ostida: «<qator nomi>» qatorini yozing. — fokus o'sha maydonga) *(✎ F-1015-164)*
 - Tekshiruv:
   - Dalilga sanoqni yozing: necha kishidan nechtasi?
   - Bu so'z sanoq emas — necha kishidan nechtasi?
@@ -261,7 +262,7 @@ WHERE holat IN ('qoshildi', 'keladi');
   - 2-qadam: Gap tugagach, dars ochiq turgan qurilmangizni sherigingizga bering — u har bo'lakka ✓ yoki ✗ qo'yadi. (yakka: Har bo'lakka o'zingiz ✓ yoki ✗ qo'ying, keyin «Saqlash»ni bosing.)
   - 3-qadam: ✗ olgan bo'lakni varaqdagi izohga qarab qayta yozing. (hammasi ✓ bo'lsa: Varaqdagi izohga qarab bitta bo'lakni aniqroq qilib yozing.)
   - tugagach: Bo'lak tuzatildi: «Davom etish»ni bosing.
-- Qadamlar: 1 Ayting · 2 Baholang · 3 Tuzating
+- Qadam belgilari (1 Ayting · 2 Baholang · 3 Tuzating) yo'q — har qadamni Mentor aytadi. *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*
 - 1-qadam:
   - Pitchdan oldin:
     - Mobil trekda: laptopda `npx expo start` ishlab turibdi, ilova telefonda Expo Go'da ochiq.
@@ -312,7 +313,7 @@ WHERE holat IN ('qoshildi', 'keladi');
 | Uch daqiqalik pitch qaysi to'rt bo'lakdan iborat? | Muammo, yechim, jonli demo va keyingi qadam |
 | Muammo bo'lagida muammo gapi yonida nima turadi? | Dalil: necha kishida bo'lgani va harakat belgisi |
 | Harakat belgisi nimani ko'rsatadi? | Odam qiziqishni so'z bilan emas, ish bilan ko'rsatganini — masalan, sinovga kun belgilagani |
-| 10 intervyu natijasi isbot bo'ladimi? | Yo'q: 10 intervyu — kichik son; bu tanlov uchun dalil, isbot emas |
+| 10 intervyu natijasi isbot bo'ladimi? | Yo'q: Olti intervyu — kichik son; bu tanlov uchun dalil, isbot emas |
 | Yechim bo'lagida nima aytiladi? | Mahsulot odamga nima qilishi — bir gapda |
 | Stiv Jobs iPhone'ni qanday taqdim etgan? | «Uch qurilma bittada»: iPod, telefon va internet |
 | Apple iPhone'dan nimalarni olib tashlagan? | Klaviatura, stilus va deyarli hamma tugmani: bitta ekran va Home tugmasi qolgan |
@@ -330,7 +331,6 @@ WHERE holat IN ('qoshildi', 'keladi');
 - Eyebrow: Dars yakuni
 - Belgi: ✓ Dars tugadi · N/4 to'g'ri
 - Sarlavha: 3 daqiqalik pitchingiz *tayyor va baholandi*. · 11-ekran bajarilmagan bo'lsa: Pitchingiz *to'rt bo'lakka* yozildi.
-- Bugungi asosiy fikr: Uch daqiqada zal muammoni dalil bilan eshitadi, yechimni bir gapda tushunadi va ilovani telefonda ko'radi.
 - Pitchim · n/4 — Muammo · Yechim · Jonli demo · Keyingi qadam (pitch saqlangan bo'lsa)
 - CODE STRIKE arenasi: 12 SAVOL · 15 SONIYA · PODIUM (jonli darsda mentor boshlaguncha: Mentorni kuting)
 - ✓ Endi siz bilasiz:
@@ -348,6 +348,8 @@ WHERE holat IN ('qoshildi', 'keladi');
   - Keyingi dars — **«Demo Day 7»**
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Honest Count!** — Database'dan son olib, unga nimalar kirganini aniqladingiz (9-ekran, savol birinchi urinishda va «Bajardim»)
@@ -368,7 +370,7 @@ Xato javobdan keyin o'quvchi «Qisqa takrorlash — mavzuni yana bir ko'rish» b
 2. 5-ekran (2-savol) — **Ish bilan dalil**
    - 1 · «Kerak», «yuklab olaman» — fikr yoki va'da.
    - 2 · Sinab ko'rishga kun belgilash — ish: bu harakat belgisi.
-   - 3 · 10 intervyu — kichik son; bu tanlov uchun dalil, isbot emas.
+   - 3 · Olti intervyu — kichik son; bu tanlov uchun dalil, isbot emas.
    - Sinfga savol: Sizning intervyuingizda kim ish bilan qiziqish ko'rsatdi?
 3. 7-ekran (3-savol) — **Bir gapda yechim**
    - 1 · Stiv Jobs iPhone'ni «uch qurilma bittada» deb taqdim etgan.
@@ -399,7 +401,7 @@ Arena: CODE STRIKE · 12 SAVOL · 15 SONIYA · PODIUM · «Tezroq to'g'ri bossan
    - Odam g'oyani juda maqtab, yaxshi baho berganini
    - ✔ Odam qiziqishni ish bilan ko'rsatganini
    - Odam ilovani do'stlariga aytib berishini
-4. «10 intervyu — kichik son» degan gap nimani aytadi?
+4. «Olti intervyu — kichik son» degan gap nimani aytadi?
    - Intervyular foydasiz, ularni tashlash kerak
    - Yuzta intervyusiz g'oyani tanlab bo'lmaydi
    - To'garaklar g'oyasi yaxshiroq ekanini

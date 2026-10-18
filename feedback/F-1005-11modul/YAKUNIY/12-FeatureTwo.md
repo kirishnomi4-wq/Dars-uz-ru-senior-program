@@ -1,7 +1,7 @@
 # 12-dars «Loyiha kuni: 2-asosiy funksiya» — yakuniy matn
 
 Fayl: `src/9-Modull/FeatureTwoLesson.jsx` · 12 ekran · Keyingi dars: «Uch foydalanuvchidan keyin nimani tuzatasiz?»
-Holat: 07.10.2026 — kodga mos
+Holat: 18.10.2026 — kodga mos (v4, F-1015-269…271 avtopilot: 3, 6-ekran bashorat yolg'iz (213.7); reja-satri karta)
 
 Darsning bitta vizuali — «Tasdiq sahnasi»: chapda «Maydon Jamoa» telefoni (O'yin ekrani), o'ngda Backend qutisi va Database jadvali.
 Telefon ustida (ilova tashqarisida) ikki yorliq: rol — o'yinchi yoki tashkilotchi · «Bugun: shanba» (yoki «Bugun: juma», «Bugun: shanba, 17:00»).
@@ -274,9 +274,11 @@ Natijalar (podium) — jonli reyting
   2. Har sinovchidan oldin «Hisobdan chiqish»ni bosing: sinovchi namuna ism va har biri boshqa namuna telefon bilan ro'yxatdan o'tadi — o'z raqamini yozmaydi. Telefoningizni bering — unga hech narsa o'rnatish shart emas; mobil trekda laptopda `npx expo start` ishlab tursin (bitta Wi-Fi).
   3. Vazifani o'qib bering va kuzating: har to'xtashni vaqti bilan qog'ozga yozing, oxirida belgilang — vazifani bajara oldimi, ha yoki yo'q. Yozuvlarni keyingi darsga olib keling.
   - Karta ostida: 9-Moduldagidek: vazifa berasiz, yo'lni tushuntirmaysiz, yechimni ko'rsatib bermaysiz va qayerda to'xtaganini yozasiz.
-- Keyingi dars — **«Uch foydalanuvchidan keyin nimani tuzatasiz?»**: auditoriya bilan sinov va shu darsda tuzatish.
 - Nishonlaringiz — N/3 (uchta nishon nomi va tavsifi — «Nishonlar» bo'limida)
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Keyingi dars — **«Uch foydalanuvchidan keyin nimani tuzatasiz?»**: auditoriya bilan sinov va shu darsda tuzatish.
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Rule Keeper** — Tugma yashirilsa ham qoida Backend'da kerakligini topdingiz (4-ekran, birinchi urinishda to'g'ri)

@@ -1,0 +1,6775 @@
+[
+ {
+  "key": "m6-01",
+  "mode": "self",
+  "screens": 19,
+  "total": 19,
+  "clicks": 0,
+  "realFound": false,
+  "findings": [
+   {
+    "screen": 18,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Data Keeper »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m6-03",
+  "mode": "self",
+  "screens": 20,
+  "total": 20,
+  "clicks": 0,
+  "realFound": false,
+  "findings": [
+   {
+    "screen": 19,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 Role Mapp»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m6-04",
+  "mode": "self",
+  "screens": 20,
+  "total": 20,
+  "clicks": 0,
+  "realFound": false,
+  "findings": [
+   {
+    "screen": 19,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 Chat vs A»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m6-05",
+  "mode": "self",
+  "screens": 20,
+  "total": 20,
+  "clicks": 0,
+  "realFound": false,
+  "findings": [
+   {
+    "screen": 19,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 Right Ski»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m6-07",
+  "mode": "self",
+  "screens": 20,
+  "total": 20,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 16,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 42,
+      "who": "button.lp-done-btn «Yana 5 qadam»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 Clear Tri»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m6-08",
+  "mode": "self",
+  "screens": 21,
+  "total": 21,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 3,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 17,
+      "who": "button.btn «▶ Buyurtmani boshlash»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 17,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 72,
+      "who": "button.lp-done-btn «Yana 5 qadam»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 20,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 226,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 Full Pipe»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m6-09",
+  "mode": "self",
+  "screens": 20,
+  "total": 20,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 16,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 72,
+      "who": "button.lp-done-btn «Yana 6 qadam»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 RN Start »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m6-10",
+  "mode": "self",
+  "screens": 20,
+  "total": 20,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 16,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 216,
+      "who": "button.lp-done-btn «Yana 5 qadam»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 221,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 List Buil»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m6-11",
+  "mode": "self",
+  "screens": 20,
+  "total": 20,
+  "clicks": 0,
+  "realFound": false,
+  "findings": [
+   {
+    "screen": 19,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 226,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 API Conne»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m6-13",
+  "mode": "self",
+  "screens": 21,
+  "total": 21,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 16,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 12,
+      "who": "button.lp-done-btn «Yana 6 qadam»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 20,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 226,
+      "who": "div.card.ach-coll «🏅 Nishonlaringiz — 0/4 🔒 One Syste»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m7-01",
+  "mode": "self",
+  "screens": 17,
+  "total": 17,
+  "clicks": 0,
+  "realFound": false,
+  "findings": [
+   {
+    "screen": 9,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [
+     {
+      "el": "span.ak-matn",
+      "over": 19,
+      "w": 396,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "anywhere",
+      "clip": "span.ak-matn",
+      "txt": "To'garak qaysi xonada ekanini bilmay, o'quvc"
+     },
+     {
+      "el": "span.ak-matn",
+      "over": 9,
+      "w": 409,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "anywhere",
+      "clip": "span.ak-matn",
+      "txt": "Maktab oldida velosiped qo'yadigan joy yo'q "
+     },
+     {
+      "el": "span.ak-matn",
+      "over": 48,
+      "w": 409,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "anywhere",
+      "clip": "span.ak-matn",
+      "txt": "Kechqurun ko'cha chirog'i yonmaydi — o'smirl"
+     },
+     {
+      "el": "span.ak-matn",
+      "over": 79,
+      "w": 389,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "anywhere",
+      "clip": "span.ak-matn",
+      "txt": "Suv qachon o'chirilishini qo'shnilar kech bi"
+     }
+    ],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 16,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 201,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Product Spot»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m7-02",
+  "mode": "self",
+  "screens": 16,
+  "total": 16,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 1,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": [
+     {
+      "el": "span.fi-sh-matn",
+      "gap": 0,
+      "txt": "«"
+     }
+    ]
+   },
+   {
+    "screen": 9,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 17,
+      "who": "div.fi-sh.ustun «SHABLON Kim bilan yoningizdagi odam »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 15,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 243,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 First Record»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m7-03",
+  "mode": "self",
+  "screens": 17,
+  "total": 17,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 62,
+      "who": "div.q-karta «Kod yozuvlar[4] ni chiqarsa, termina»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 16,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 290,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Pattern Spot»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m7-04",
+  "mode": "self",
+  "screens": 18,
+  "total": 18,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 7,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 39,
+      "who": "div.mz-chizma «O'yinchi Maydon egasi Sayt · React M»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 17,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 314,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/5 🔒 Booking Guar»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m7-05",
+  "mode": "self",
+  "screens": 20,
+  "total": 20,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 22,
+      "who": "div.an-sayt «localhost:5173 Maydon Shanba 16:00–1»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 10,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 213,
+      "who": "div.an-kod «App.jsx import { motion, AnimatePres»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 326,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/5 🔒 Smooth Press»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m7-06",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 3,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 14,
+      "who": "div.ad-panel «1-kun 2-kun 3-kun 4-kun 5-kun Maydon»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 7,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 61,
+      "who": "span.ad-ortda-iz «— web/.env o'zgarmaydi»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 281,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Drop Spotter»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m7-07",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": false,
+  "findings": [
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 57,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/3 🔒 Three Parts »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m7-08",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 0,
+    "step": 0,
+    "clip": [
+     {
+      "el": "div.dm-kq",
+      "cut": 167,
+      "txt": "16:00 bo'sh 17:00 band 18:00 bo'sh 19:00 bo'"
+     }
+    ],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [
+     {
+      "el": "div.dm-kq",
+      "cut": 171,
+      "txt": "16:00 bo'sh 17:00 band 18:00 bo'sh 19:00 bo'"
+     }
+    ],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 73,
+      "who": "div.dm-tel.dm-diz «Shanba Du Se Ch Pa Ju Sh Ya 16:00 17»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 7,
+      "who": "code.q-blok-buyruq «git checkout -f dars-08-start»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 7,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 54,
+      "who": "code.q-blok-buyruq «git checkout -f dars-08-done»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 201,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Pattern Pick»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m7-09",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 5,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 21,
+      "who": "div.mc-db «DATABASE bandlar kun soat ism telefo»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 86,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/3 🔒 One Booking »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m7-10",
+  "mode": "self",
+  "screens": 16,
+  "total": 16,
+  "clicks": 0,
+  "realFound": false,
+  "findings": [
+   {
+    "screen": 15,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 201,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Silent Obser»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m7-11",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 49,
+      "who": "div.q-karta.kz-karta «KUZATUV YOZUVI · MAYDON Vazifa: Sha»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 79,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/3 🔒 Stop Finder »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m7-12",
+  "mode": "self",
+  "screens": 16,
+  "total": 16,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 4,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 46,
+      "who": "div.ps-tomon.ish «BO'LIB O'TGAN ISH Intervyu yozuvlari»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 8,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 137,
+      "who": "div.ps-sahna.ps-s8 «1 Muammo 2 Yechim 3 Foydalanuvchi Bu»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 15,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 230,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Story Finder»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m8-01",
+  "mode": "self",
+  "screens": 15,
+  "total": 15,
+  "clicks": 0,
+  "realFound": false,
+  "findings": [
+   {
+    "screen": 14,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 281,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Result Finde»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m8-02",
+  "mode": "self",
+  "screens": 18,
+  "total": 18,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 36,
+      "who": "div.hc-telefon «Maydon»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 4,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 12,
+      "who": "div.hc-telefon «Maydon hodisaYoz( 'ochdi' ) POST /ho»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 32,
+      "who": "div.hc-telefon «Maydon Brauzer xotirasi (localStorag»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 12,
+      "who": "div.hc-telefon «Maydon 0 / 36 brauzer»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 17,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 379,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/5 🔒 Event Path \ud83d»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m8-03",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 6,
+      "who": "div.ld-telefon «Maydon ‹ Bugun › 16:00 17:00 18:00 1»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 5,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 14,
+      "who": "div.ld-dash «maydon-….netlify.app/dashboard Maydo»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 8,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 7,
+      "who": "p.ld-ortda-izoh «Render va Netlify o'zingizniki — o't»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 108,
+      "who": "p.ld-keyingi.fade-up «Keyingi dars — «Ikki variantdan qays»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m8-04",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 1,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 21,
+      "who": "code «maydon»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 71,
+      "who": "code.q-blok-buyruq «git checkout -f m10-dars-04-start (.»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 7,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 36,
+      "who": "code.q-blok-buyruq «git checkout -f m10-dars-04-done (Re»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 363,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Hypothesis B»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m8-05",
+  "mode": "self",
+  "screens": 18,
+  "total": 18,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 12,
+      "who": "div.xr-telefon «maydon/ega Bandlar +998 90 000 00 01»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 4,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 12,
+      "who": "div.xr-telefon «maydon/ega Bandlar Telefon raqami Qi»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 36,
+      "who": "div.xr-telefon «maydon/ega Ega kirishi Parol •••••• »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 8,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [
+     {
+      "el": "span.xr-input.tola",
+      "over": 3,
+      "w": 95,
+      "ws": "nowrap",
+      "onPurpose": false,
+      "ow": "normal",
+      "clip": "span.xr-input.tola",
+      "txt": "+998 90 000 00 01"
+     }
+    ],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 9,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 12,
+      "who": "div.xr-telefon «maydon/ega Ega kirishi Parol Davom e»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 36,
+      "who": "div.xr-telefon «maydon/ega Bandlar parol + kod ✓ Tel»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 13,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 74,
+      "who": "code.q-blok-buyruq «git checkout -f m10-dars-05-start»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 17,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 379,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/5 🔒 SQL Shield \ud83d»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m8-06",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 12,
+      "who": "div.ta-telefon «maydon-….netlify.app Maydon Shanba ·»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 225,
+      "who": "code.q-blok-buyruq «git checkout -f m10-dars-06-start»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 7,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 241,
+      "who": "code.q-blok-buyruq «git checkout -f m10-dars-06-done»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": [
+     {
+      "el": "mark",
+      "gap": 0,
+      "txt": "Band o'yin kunidan keyin 30 ku"
+     }
+    ]
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 295,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Data Detecti»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m8-07",
+  "mode": "self",
+  "screens": 18,
+  "total": 18,
+  "clicks": 0,
+  "realFound": false,
+  "findings": [
+   {
+    "screen": 17,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 379,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/5 🔒 Right Origin»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m8-08",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 37,
+      "who": "span.pu-s2-ip «so'rov — bitta IP manzildan»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 3,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 176,
+      "who": "code.q-blok-buyruq «git checkout -b prod»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 5,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 86,
+      "who": "b «0 s»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 148,
+      "who": "code.q-blok-buyruq «git checkout -b prod»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 8,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 60,
+      "who": "code.q-blok-buyruq «git checkout -b prod»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 111,
+      "who": "p.pu-keyingi «Keyingi dars — «Loyiha kuni: prodga »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m8-09",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 3,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 128,
+      "who": "code.q-blok-buyruq «git push -f -u origin prod»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [
+     {
+      "el": "p.pr-pt",
+      "over": 37,
+      "w": 386,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "anywhere",
+      "clip": "p.pr-pt",
+      "txt": "Nega muhim: chegara saytda bo'lsa, Backend'g"
+     },
+     {
+      "el": "p.pr-pt",
+      "over": 161,
+      "w": 386,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "anywhere",
+      "clip": "p.pr-pt",
+      "txt": "Nega muhim: Backend kechiksa, ro'yxat joyi b"
+     },
+     {
+      "el": "p.pr-pt",
+      "over": 38,
+      "w": 386,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "anywhere",
+      "clip": "p.pr-pt",
+      "txt": "Taklif: o'yinchi sahifasidagi «yuklanmoqda» "
+     }
+    ],
+    "cover": [],
+    "below": [
+     {
+      "cut": 151,
+      "who": "span.pr-ortda-izoh «(PR'ni mentor bilan ochasiz)»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 8,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [
+     {
+      "el": "span.pr-rv-s",
+      "over": 181,
+      "w": 252,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "normal",
+      "clip": "span.pr-rv-s",
+      "txt": "A — 42 tadan 12, B — 40 tadan 17; 82 ta brau"
+     },
+     {
+      "el": "span.pr-rv-s",
+      "over": 215,
+      "w": 252,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "normal",
+      "clip": "span.pr-rv-s",
+      "txt": "So'rovni saytsiz ham yuborsa bo'ladi; chegar"
+     },
+     {
+      "el": "span.pr-rv-iz",
+      "over": 87,
+      "w": 252,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "normal",
+      "clip": "span.pr-rv-iz",
+      "txt": "Backend kechiksa, ro'yxat bo'sh — «yuklanmoq"
+     },
+     {
+      "el": "span.pr-rv-s",
+      "over": 50,
+      "w": 252,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "normal",
+      "clip": "span.pr-rv-s",
+      "txt": "Tekshirdim, shunday: holat faqat o'yinchi sa"
+     }
+    ],
+    "cover": [],
+    "below": [
+     {
+      "cut": 169,
+      "who": "span.pr-ortda-izoh «(REVIEW.md ni o'z izohlaringiz bilan»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 115,
+      "who": "p.pr-keyingi.fade-up «Keyingi dars — «Bir yilda nimalarni »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m8-10",
+  "mode": "self",
+  "screens": 16,
+  "total": 16,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 20,
+      "who": "div.q-karta.q-voqea «Bungacha ⛶ Uzum — narsani telefonda»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 9,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [
+     {
+      "el": "span.ycq-nom",
+      "over": 10,
+      "w": 83,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "normal",
+      "clip": "span.ycq-nom",
+      "txt": "Maydon prodda"
+     }
+    ],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 10,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [
+     {
+      "el": "span.ycq-nom",
+      "over": 10,
+      "w": 83,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "normal",
+      "clip": "span.ycq-nom",
+      "txt": "Maydon prodda"
+     }
+    ],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 15,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 282,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Time Keeper!»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m8-11",
+  "mode": "self",
+  "screens": 17,
+  "total": 17,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 47,
+      "who": "div.pr-sahna.t-tasma «✓ Muammo 4 / 5 5 suhbatdan «maydon b»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 8,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 50,
+      "who": "div.pr-vq.pr-vq-s8 «Muammo Bu qanday bo'lgan? Yechim Say»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 101,
+      "who": "p.pr-kulrang «Yo'q raqamni o'ylab topmaysiz — bor »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 16,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 282,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Feedback Sor»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m9-01",
+  "mode": "self",
+  "screens": 15,
+  "total": 15,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 0,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [
+     {
+      "el": "i",
+      "over": 239,
+      "w": 127,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "normal",
+      "clip": "i",
+      "txt": "Tanaffusda telefonni quvvatlash uchun bo'sh "
+     },
+     {
+      "el": "i",
+      "over": 285,
+      "w": 127,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "normal",
+      "clip": "i",
+      "txt": "To'garak qaysi xonada ekanini bilmay, o'quvc"
+     },
+     {
+      "el": "i",
+      "over": 288,
+      "w": 127,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "normal",
+      "clip": "i",
+      "txt": "Maktab oldida velosiped qo'yadigan joy yo'q "
+     },
+     {
+      "el": "i",
+      "over": 337,
+      "w": 127,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "normal",
+      "clip": "i",
+      "txt": "Maydonga kelasiz — band; bo'sh vaqtni bilish"
+     }
+    ],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 33,
+      "who": "div.q-karta.q-voqea «Starbucks — qahva va boshqa ichimlik»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 14,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 361,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Source Finde»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m9-02",
+  "mode": "self",
+  "screens": 16,
+  "total": 16,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 20,
+      "who": "div.q-karta.q-voqea «Snapchat'da yangi format ⛶ Snapchat »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 15,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 311,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Sorted It! \ud83d»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m9-03",
+  "mode": "self",
+  "screens": 16,
+  "total": 16,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 1,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [
+     {
+      "el": "span.io-yk-k",
+      "over": 79,
+      "w": 170,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "normal",
+      "clip": "span.io-yk-k",
+      "txt": "o'yinchi, 16 yosh, o'yinni ko'pincha o'zi yi"
+     }
+    ],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 7,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 19,
+      "who": "div.q-karta.q-voqea «Airbnb — begona odamning uyida ijara»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 9,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 39,
+      "who": "div.io-sh-k.bosh «1-g'oya»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 10,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 58,
+      "who": "div.io-sh-k.ostida «YOZUVLAR · 0 / 5»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 15,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 311,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Same Questio»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m9-04",
+  "mode": "self",
+  "screens": 16,
+  "total": 16,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 4,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [
+     {
+      "el": "span.fi-yc-k",
+      "over": 14,
+      "w": 219,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "normal",
+      "clip": "span.fi-yc-k",
+      "txt": "o'yinchi, 16 yosh, o'yinni ko'pincha o'zi yi"
+     }
+    ],
+    "cover": [],
+    "below": [
+     {
+      "cut": 36,
+      "who": "div.fi-sd «JAMOA YIG'ISH MAHALLA TO'GARAKLARI M»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 15,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 311,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Problem Buil»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m9-05",
+  "mode": "self",
+  "screens": 16,
+  "total": 16,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 41,
+      "who": "button.pr-qsavol «Bu muammo kimda bo'lgan?»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 20,
+      "who": "div.q-karta.q-voqea «Amazon — juda katta internet-magazin»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 8,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 8,
+      "who": "span.pr-ramka «1 sahifa»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 15,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 361,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Clear Limits»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m9-06",
+  "mode": "self",
+  "screens": 16,
+  "total": 16,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 46,
+      "who": "div.rm-ish.toliq «Ro'yxat o'zi yangilanadi «Keyin» qut»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 4,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 35,
+      "who": "div.rm-doska «Hozir 11-Modul Poydevor RICE ga kirm»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 15,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 313,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 RICE Ranker!»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m9-07",
+  "mode": "self",
+  "screens": 20,
+  "total": 20,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 0,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [
+     {
+      "el": "span.jt-maydon",
+      "over": 3,
+      "w": 74,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "normal",
+      "clip": "span.jt-maydon",
+      "txt": "Nechta odam"
+     }
+    ],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 24,
+      "who": "div.jt-tel.prototip «Maydon Jamoa ‹ O'yinlar Shanba, 18:0»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 312,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Paper First »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m9-08",
+  "mode": "self",
+  "screens": 20,
+  "total": 20,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 6,
+      "who": "div.pc-tel «Maydon Jamoa E'lon berish Kun Yaksha»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 6,
+      "who": "div.pc-tel «Maydon Jamoa ‹ O'yinlar Shanba, 18:0»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 10,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 7,
+      "who": "div.pc-tel «Maydon Jamoa O'yinlar Shanba, 18:00 »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 357,
+      "who": "p.pc-keyingi.fade-up «Keyingi dars — «React Native va Expo»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m9-09",
+  "mode": "self",
+  "screens": 19,
+  "total": 19,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 1,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": [
+     {
+      "el": "div.ep-qatlam",
+      "gap": 0,
+      "txt": "O'yinlar"
+     }
+    ]
+   },
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": [
+     {
+      "el": "div.ep-qatlam",
+      "gap": 0,
+      "txt": "O'yinlar"
+     }
+    ]
+   },
+   {
+    "screen": 5,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 9,
+      "who": "div.ep-telefon.expo «Maydon Jamoa O'yinlar Shanba, 18:00 »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": [
+     {
+      "el": "div.ep-qatlam",
+      "gap": 0,
+      "txt": "O'yinlar"
+     }
+    ]
+   },
+   {
+    "screen": 14,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 5,
+      "who": "p.ep-ortda «Ortda qoldingizmi — Mentor misolini »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": [
+     {
+      "el": "div.ep-qatlam",
+      "gap": 0,
+      "txt": "O'yinlar"
+     }
+    ]
+   },
+   {
+    "screen": 18,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 332,
+      "who": "p.ep-keyingi.fade-up «Keyingi dars — «Loyiha kuni: poydevo»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m9-10",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 20,
+      "who": "div.fd-db «Database · Neon oyinchilar id ism te»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 3,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 13,
+      "who": "p.fd-ortda «Ortda qoldingizmi — Mentor misolini »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 5,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 9,
+      "who": "div.fd-telefon «Maydon Jamoa O'yinlar»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 85,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/3 🔒 Token Keeper»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m9-11",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 15,
+      "who": "div.fo-db «Database · Neon oyinchilar id ism 1 »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 3,
+    "step": 0,
+    "clip": [
+     {
+      "el": "span.fo-kartalar",
+      "cut": 48,
+      "txt": "Shanba, 18:00 Mahalla maydoni · 10 kishi ker"
+     }
+    ],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 5,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 9,
+      "who": "div.fo-tel «Maydon Jamoa ‹ O'yinlar Yakshanba, 1»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 85,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/3 🔒 Right Owner »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m9-12",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 8,
+      "who": "div.ft-telefon «Maydon Jamoa ‹ O'yinlar Shanba, 18:0»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 5,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 8,
+      "who": "div.ft-telefon «Maydon Jamoa ‹ O'yinlar Shanba, 18:0»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 243,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/3 🔒 Rule Keeper »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m9-13",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": false,
+  "findings": [
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 312,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Repeat Spott»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m9-14",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 15,
+      "who": "div.f3-telefon «Maydon Jamoa ‹ O'yinlar Yakshanba, 1»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 5,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 15,
+      "who": "div.f3-telefon «Maydon Jamoa ‹ O'yinlar Yakshanba, 1»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 85,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/3 🔒 Queue Keeper»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m9-15",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 11,
+      "who": "p.oo-nishon «Birinchi urinishda to'g'ri bajarsang»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 311,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Status Check»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m9-16",
+  "mode": "self",
+  "screens": 16,
+  "total": 16,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 1,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 16,
+      "who": "div.pt-sahna.pt-reja-sahna «Maydon Jamoa O'yinlar SHANBA 18:00 8»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 11,
+      "who": "div.pt-sahna «Maydon Jamoa O'yinlar SHANBA 18:00 8»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 26,
+      "who": "div.q-karta.q-voqea «iPhone — Apple kompaniyasining telef»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 8,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 11,
+      "who": "div.pt-sahna «Maydon Jamoa O'yinlar SHANBA 18:00 8»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 13,
+      "who": "p.pt-kul-q «Ilova ochilmasa — ekran videosini ko»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 15,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 282,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Honest Count»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m10-01",
+  "mode": "self",
+  "screens": 16,
+  "total": 16,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 0,
+    "step": 0,
+    "clip": [
+     {
+      "el": "div.ls-kor",
+      "cut": 122,
+      "txt": "Maydon Jamoa › Maydon Jamoa O'yinlar SHANBA "
+     }
+    ],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [
+     {
+      "el": "div.ls-kor",
+      "cut": 108,
+      "txt": "Maydon Jamoa › Maydon Jamoa O'yinlar SHANBA "
+     }
+    ],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 141,
+      "who": "div.ls-oyna «maydon-jamoa-….netlify.app Maydon Ja»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [
+     {
+      "el": "div.ls-kor",
+      "cut": 116,
+      "txt": "Maydon Jamoa Mahalla futboliga jamoani bir j"
+     }
+    ],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 141,
+      "who": "div.ls-oyna «maydon-jamoa-….netlify.app Maydon Ja»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 7,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 26,
+      "who": "div.q-karta.q-voqea «Instagram — rasm va video ulashiladi»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 9,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 101,
+      "who": "div.ls-oyna «maydon-jamoa-….netlify.app mahsulot »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 10,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 60,
+      "who": "span.ld-kulrang «5 soniya — shu mashqning qoidasi.»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [
+     {
+      "el": "div.ls-kor",
+      "cut": 176,
+      "txt": "Maydon Jamoa Mahalla futboliga jamoani bir j"
+     }
+    ],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 80,
+      "who": "p.ld-ortda «Ortda qoldingizmi — Mentor misolini »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 15,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 230,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Benefit Find»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m10-02",
+  "mode": "self",
+  "screens": 20,
+  "total": 20,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 9,
+      "who": "div.ws-telefon «Maydon Jamoa ‹ O'yinlar Shanba, 18:0»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 4,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 9,
+      "who": "div.ws-telefon «Maydon Jamoa Maydon Jamoa»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 5,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 53,
+      "who": "button.ws-qayta.xira «Qayta so'rash»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 7,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 259,
+      "who": "div.ws-kod «mobil/src/ulanish.ts import { io } f»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 10,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 47,
+      "who": "button.ws-kalit «Token: yaroqli»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 12,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 96,
+      "who": "div.ws-backend «Backend»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 15,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 170,
+      "who": "p.ws-ulgur «Ulgurmasangiz: Render kutishi cho'zi»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 16,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 70,
+      "who": "p.ws-ulgur «Ulgurmasangiz: bu blok uyga vazifani»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 229,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Event Reader»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m10-03",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 0,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 66,
+      "who": "div.rt-agent «Agentga talab»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 60,
+      "who": "div.rt-varaq «MENTOR TALABI · MAYDON JAMOA Qayerda»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 4,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 34,
+      "who": "div.rt-telefon «Maydon Jamoa O'yinlar Ulangan SHANBA»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 254,
+      "who": "p.rt-ulgur «Ulgurmasangiz: git push qilib, «3 · »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 7,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 415,
+      "who": "p.rt-ulgur «Ulgurmasangiz: Prompt yuborilgan va »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 230,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Gap Finder! »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m10-04",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 9,
+      "who": "div.jx-telefon «Maydon Jamoa ‹ O'yinlar Shanba, 18:0»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 3,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 193,
+      "who": "p.jx-ortda «Ortda qoldingizmi — Mentor misolini »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 5,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 50,
+      "who": "button.jx-yopish.xira «Ilovani yopish»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 116,
+      "who": "p.jx-ulgur «Ulgurmasangiz: vaqt tugayaptimi — (1»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 8,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 137,
+      "who": "p.jx-ulgur «Ulgurmasangiz: vaqt tugasa — yakun e»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 114,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Open Screens»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m10-05",
+  "mode": "self",
+  "screens": 19,
+  "total": 19,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 0,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 32,
+      "who": "div.bf-backend «Backend Database: 8»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 9,
+      "who": "div.bf-telefon «Maydon Jamoa ‹ O'yinlar Ulangan Shan»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 4,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 170,
+      "who": "div.bf-kod «Mentor ilovasi · m12-dars-05-start u»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 9,
+      "who": "div.bf-telefon «Maydon Jamoa ‹ O'yinlar Ulangan Shan»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 9,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 9,
+      "who": "div.bf-telefon «Maydon Jamoa ‹ O'yinlar Ulangan Shan»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 9,
+      "who": "div.bf-telefon «Maydon Jamoa ‹ O'yinlar Ulangan Shan»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 14,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 472,
+      "who": "p.bf-ulgur «Ulgurmasangiz: Render'da qayta chiqa»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 15,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 331,
+      "who": "p.bf-ulgur «Ulgurmasangiz: 3-usulning qayta teks»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 18,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 229,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Lost Event \ud83d»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m10-06",
+  "mode": "self",
+  "screens": 16,
+  "total": 16,
+  "clicks": 0,
+  "realFound": false,
+  "findings": [
+   {
+    "screen": 15,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 230,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Safe Check! »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m10-07",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 7,
+      "who": "div.it-chat «MF Mahalla futbol guruhi 60 a'zo Ma»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 213,
+      "who": "p.fu-ortda «Ortda qoldingizmi — Mentor misolini »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 7,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 173,
+      "who": "p.fu-ulgur «Siyosat sahifasi push qilinsa yetadi»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 230,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Estimate Spo»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m10-08",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 4,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [
+     {
+      "el": "span.qs-url-t",
+      "over": 27,
+      "w": 206,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "normal",
+      "clip": "span.qs-url-t",
+      "txt": "maydon-jamoa-….netlify.app/sanoq.html"
+     }
+    ],
+    "cover": [],
+    "below": [
+     {
+      "cut": 281,
+      "who": "p.do-ortda «Ortda qoldingizmi — Mentor misolini »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 5,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 149,
+      "who": "div.q-karta.q-voqea «Netflix — film va serial ko'rsatadig»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 7,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 71,
+      "who": "p.do-ulgur «Vaqt tugayaptimi — (1)–(3) ni tekshi»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 230,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Drop-off Fin»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m10-09",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 50,
+      "who": "button.qs-yop.qs-st «Ilovani yopish»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 3,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 114,
+      "who": "p.qs-ortda «Ortda qoldingizmi — Mentor misolini »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 5,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 120,
+      "who": "button.qs-ochirgich.on «Eslatmalar»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 52,
+      "who": "p.qs-ulgur «Ulgurmasangiz: haftalik chegarani 3-»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 8,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 184,
+      "who": "p.qs-ulgur «Ulgurmasangiz: sanoq qatori va o'chi»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 135,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Open Line 🔒»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m10-10",
+  "mode": "self",
+  "screens": 16,
+  "total": 16,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 4,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 266,
+      "who": "div.hv «Maydon Jamoa metrika hisoboti Ro'yxa»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 14,
+      "who": "div.q-karta.q-voqea «Duolingo — til o'rganish ilovasi. K»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 9,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 66,
+      "who": "div.q-karta «Hisobot · 0 / 4 Ro'yxatdan o'tgan As»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 10,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 28,
+      "who": "div.uc-karta.uc-kirish «1 / 4 Ro'yxatdan o'tgan Son / 50 shu»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 15,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 230,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Evidence Fin»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m10-11",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 25,
+      "who": "div.pd-varaq «Mentor misoli · Maydon Jamoa pitchi »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 230,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Claim Finder»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m10-12",
+  "mode": "self",
+  "screens": 16,
+  "total": 16,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 8,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 45,
+      "who": "div.gp-demo-joy.bosh «»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [
+     {
+      "el": "span.gp-bolak-q",
+      "over": 191,
+      "w": 958,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "normal",
+      "clip": "span.gp-bolak-q",
+      "txt": "Tashkilotchi o'yinni e'lon qiladi, o'yinchil"
+     }
+    ],
+    "cover": [],
+    "below": [
+     {
+      "cut": 316,
+      "who": "span «0:00»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": [
+     {
+      "el": "span.gp-tm-bo",
+      "gap": 0,
+      "txt": "Muammo"
+     },
+     {
+      "el": "span.gp-tm-bo",
+      "gap": 0,
+      "txt": "Jonli demo"
+     },
+     {
+      "el": "span.gp-tm-bo",
+      "gap": 0,
+      "txt": "Raqamlar"
+     },
+     {
+      "el": "span.gp-tm-bo",
+      "gap": 0,
+      "txt": "Keyingi qadam"
+     }
+    ]
+   },
+   {
+    "screen": 15,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 201,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Growth Chart»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m11-01",
+  "mode": "self",
+  "screens": 14,
+  "total": 14,
+  "clicks": 0,
+  "realFound": false,
+  "findings": [
+   {
+    "screen": 13,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 494,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Cost Check! »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m11-02",
+  "mode": "self",
+  "screens": 15,
+  "total": 15,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 114,
+      "who": "span «o'yinchilar»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 4,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 62,
+      "who": "span «o'yinchilar»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 9,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 55,
+      "who": "div.ms-taymer «0:00 1 daqiqani boshlash»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 10,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 52,
+      "who": "div.q-karta «Modelim · to'lashi mumkin: ? Masala»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 14,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 494,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Who Pays! 🔒»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m11-03",
+  "mode": "self",
+  "screens": 20,
+  "total": 20,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 4,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 177,
+      "who": "div.pw-kod «backend · imzo tekshiruvi const kuti»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 109,
+      "who": "button.pw-karta «Payme O'zbekistondagi to'lov xizmati»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 15,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 160,
+      "who": "p.pw-ulgur «Ulgurmasangiz: Render kutishi cho'zi»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 16,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 235,
+      "who": "p.pw-ulgur «Ulgurmasangiz: Render kutishi cho'zi»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 19,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 483,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Signature Gu»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m11-04",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 5,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 10,
+      "who": "div.pz-karta.fade-up «1 / 5 · XARAJAT 1 Mahsulotni ushlab»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 73,
+      "who": "p.pz-ulgur «Ulgurmasangiz: Render kutishi cho'zi»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 7,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [
+     {
+      "el": "code",
+      "over": 160,
+      "w": 142,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "normal",
+      "clip": "code",
+      "txt": "maydon-jamoa-….onrender.com/tolov-mashq?raqa"
+     }
+    ],
+    "cover": [],
+    "below": [
+     {
+      "cut": 8,
+      "who": "p.pz-ulgur «Ulgurmasangiz: Render kutishi cho'zi»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 582,
+      "who": "div.card.pz-ai «Erta tugatdingizmi? AI bilan davom e»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m11-05",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 61,
+      "who": "p.pd-ost «Bu tugmalar faqat o'z Backend'ingizn»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 3,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 245,
+      "who": "p.pd-ulgur «Ulgurmasangiz: Render kutishi cho'zi»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 5,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 85,
+      "who": "div.pd-yk.fade-step «2 Kechiktirib yuborish NIMA QILDIM P»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 273,
+      "who": "p.pd-ulgur «Ulgurmasangiz: vaqt tugayaptimi — yo»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 8,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 142,
+      "who": "p.pd-ulgur «Ulgurmasangiz: Render kutishi cho'zi»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 396,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Pro Once 🔒 »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m11-06",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": false,
+  "findings": [
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 484,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Just Ask! 🔒»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m11-07",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 1,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [
+     {
+      "el": "code",
+      "over": 58,
+      "w": 181,
+      "ws": "nowrap",
+      "onPurpose": true,
+      "ow": "normal",
+      "clip": "code",
+      "txt": "maydon-jamoa-….netlify.app/oferta.html"
+     }
+    ],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 280,
+      "who": "p.st-ulgur «Ulgurmasangiz: 3-qadamdan keyin «Dav»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 7,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 342,
+      "who": "p.st-ulgur «Ulgurmasangiz: 2-qadamdan keyin «Dav»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": [
+     {
+      "el": "mark.st-yangi",
+      "gap": 0,
+      "txt": "Karta ma'lumoti so'ralmaydi — "
+     },
+     {
+      "el": "mark.st-yangi",
+      "gap": 0,
+      "txt": "To'lov raqami, hisob, holat va"
+     }
+    ]
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 614,
+      "who": "div.card.st-ai «Erta tugatdingizmi? AI bilan davom e»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m11-08",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 50,
+      "who": "div.wb-telefon «»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 3,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 788,
+      "who": "p.wb-ulgur «Ulgurmasangiz: (4) git grep ni Rende»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 155,
+      "who": "p.wb-ulgur «Ulgurmasangiz: 4-qadamni dars oxirid»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 415,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Start First »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m11-09",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 83,
+      "who": "div.tv-tel «‹ 1-tashkilotchi \"Doimiy o'yin\" 30 k»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 4,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 158,
+      "who": "div.tv-varaq «Mentor misoli · Maydon Jamoa muhr Pr»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 49,
+      "who": "div.tv-ixcham «Yozma tasdiqlarim so'ralgan · 0 yozm»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 484,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 In Writing! »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m11-10",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 44,
+      "who": "button.rf-och.q-chip «Havolani ochish»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 3,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 152,
+      "who": "p.rf-ulgur «Ulgurmasangiz: Render kutilganda age»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 8,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 38,
+      "who": "p.rf-ulgur «Ulgurmasangiz: (4) boshqa ID tekshir»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 415,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Own Link 🔒 »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m11-11",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 8,
+      "who": "span.hd-karta-n «Karta · 1 / 5»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 4,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 10,
+      "who": "div.q-karta.q-voqea «Tesla — elektromobil ishlab chiqarad»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 230,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Status Check»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m11-12",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 80,
+      "who": "button.sb-korish «Tekshiruvni ko'rish»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 3,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 370,
+      "who": "p.sb-ulgur «Ulgurmasangiz: uchta karta belgilang»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 396,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Honest Mark »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m12-01",
+  "mode": "self",
+  "screens": 16,
+  "total": 16,
+  "clicks": 0,
+  "realFound": false,
+  "findings": [
+   {
+    "screen": 15,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 201,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Right Order!»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m12-02",
+  "mode": "self",
+  "screens": 15,
+  "total": 15,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 27,
+      "who": "div.sp-tel «Maydon Jamoa O'YIN Shanba, 18:00 Mah»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 130,
+      "who": "em «0:00 · Muammo»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 14,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 230,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 One Moment! »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m12-03",
+  "mode": "self",
+  "screens": 19,
+  "total": 19,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 1,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 14,
+      "who": "p.tz-mono-q «o'z repo'ngiz — lending/ va TEZLIK.m»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 57,
+      "who": "span.tz-sodda «soddalashtirilgan sahna»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 4,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 57,
+      "who": "span.tz-sodda «soddalashtirilgan sahna»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 5,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 57,
+      "who": "span.tz-sodda «soddalashtirilgan sahna»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 7,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 65,
+      "who": "div.tz-ong «Yuklanmoqda Yuklangan: 0 / 6 1-e'lon»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 9,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 82,
+      "who": "em «brauzer band»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 13,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 7,
+      "who": "p.tz-ulgur «Ulgurmasangiz: Lighthouse uzoq kutil»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 14,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [],
+    "low": [],
+    "edge": [
+     {
+      "el": "span.tz-kk-q.yangi",
+      "gap": 0,
+      "txt": "<img"
+     }
+    ]
+   },
+   {
+    "screen": 18,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 229,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Shift Stoppe»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m12-04",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 1,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 28,
+      "who": "p.py-reja-ost ««Maydon Jamoa» — namuna; amaliyotlar»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 3,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 548,
+      "who": "p.py-ulgur «Ulgurmasangiz: «Davom etish» 3-qadam»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": [
+     {
+      "el": "span.q-joy",
+      "gap": 0,
+      "txt": "{namuna yozuv}"
+     }
+    ]
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 43,
+      "who": "p.py-ulgur «Ulgurmasangiz: «Davom etish» 3-qadam»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 8,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [
+     {
+      "over": "button.zoom-btn",
+      "txt0": "span.py-ikki-y.mono",
+      "pct": 6,
+      "txt": "prefers-reduced-motion: reduce"
+     }
+    ],
+    "below": [],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 112,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Tap Echo 🔒 »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m12-05",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 200,
+      "who": "div.gv-varaq «Baholash varag'i · 0 / 6 Muammo Bu m»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 201,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Part, Not Pe»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m12-06",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 107,
+      "who": "div.dp-lap «maydon-jamoa-….netlify.app Maydon Ja»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 3,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [
+     {
+      "el": "span.dp-url",
+      "over": 3,
+      "w": 228,
+      "ws": "normal",
+      "onPurpose": false,
+      "ow": "anywhere",
+      "clip": "div.stage-content",
+      "txt": "maydon-jamoa-….netlify.app"
+     }
+    ],
+    "cover": [],
+    "below": [
+     {
+      "cut": 454,
+      "who": "p.dp-ulgur «Ulgurmasangiz: 3-qadamdan keyin (ris»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 5,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 93,
+      "who": "div.dp-lap «maydon-jamoa-….netlify.app Maydon Ja»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": [
+     {
+      "el": "span.dp-ss-i.ok",
+      "gap": 1,
+      "txt": "internet yo'q"
+     }
+    ]
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 265,
+      "who": "p.dp-ulgur «Ulgurmasangiz: 2-qadamdan keyin «Dav»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 8,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 207,
+      "who": "p.dp-ulgur «Ulgurmasangiz: 2-qadamdan keyin (dem»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 113,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Fresh Start »",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m12-07",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 77,
+      "who": "div.dt-tel «Maydon Jamoa Ulangan Shanba, 18:00 M»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 4,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 160,
+      "who": "div.dt-yozuv.kutish «Mentorning kutishi — natija emas 1 ·»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 447,
+      "who": "p.dt-ulgur «Ulgurmasangiz: uch urinish belgilang»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 7,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 53,
+      "who": "p.dt-ulgur «Ulgurmasangiz: 1-o'tishdan keyin (2-»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 230,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Investor Eye»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m12-08",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 3,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 157,
+      "who": "span «0:00»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 141,
+      "who": "p.fp-kulrang «Demo ochilmasa — B reja videosini ko»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 201,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Sharp Answer»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m12-09",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 1,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 17,
+      "who": "p.vp-reja-p ««Maydon Jamoa» — namuna; videoni o'z»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 3,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 188,
+      "who": "p.vp-ulgur «Ulgurmasangiz: «Qanday ishlayman»ni »",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 99,
+      "who": "p.vp-ulgur «Ulgurmasangiz: video bir marta yozil»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 8,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [
+     {
+      "over": "button.zoom-btn",
+      "txt0": "b",
+      "pct": 30,
+      "txt": "Ko'rinmadi"
+     }
+    ],
+    "below": [],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 134,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Fits Three \ud83d»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m12-10",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 31,
+      "who": "div.fr-varaq «Mentor misoli · Buyurtma va xatlar Y»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 4,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 79,
+      "who": "div.fr-varaq «Mentor misoli · Buyurtma va xatlar Y»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 77,
+      "who": "div.fr-varaq «Mentor misoli · Buyurtma va xatlar Y»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 230,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Rules First!»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m12-11",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 69,
+      "who": "div.xd-br «diamondchallenge.org/competition Dia»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 6,
+      "who": "div.xd-varaq.ariza «Ariza qoralamasi · Maydon Jamoa KONS»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 251,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Source Reade»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m12-12",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 4,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [
+     {
+      "over": "button.zoom-btn",
+      "txt0": "span.oor-oy",
+      "pct": 34,
+      "txt": "oy"
+     }
+    ],
+    "below": [
+     {
+      "cut": 9,
+      "who": "div.oor-qator «Ish Xalqaro dastur Diamond Challenge»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 6,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 51,
+      "who": "div.nx-karta «1 · MAHSULOT Davom ettiraman To'xtat»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 230,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Three Lines!»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ },
+ {
+  "key": "m12-13",
+  "mode": "self",
+  "screens": 12,
+  "total": 12,
+  "clicks": 0,
+  "realFound": true,
+  "findings": [
+   {
+    "screen": 2,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 94,
+      "who": "div.cs-lap-ekran «maydon-jamoa-….netlify.app Maydon Ja»",
+      "last": false,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   },
+   {
+    "screen": 11,
+    "step": 0,
+    "clip": [],
+    "overlap": [],
+    "hover": [],
+    "cover": [],
+    "below": [
+     {
+      "cut": 230,
+      "who": "div.card.ach-coll «Nishonlaringiz — 0/4 🔒 Right Marks!»",
+      "last": true,
+      "panel": false
+     }
+    ],
+    "low": [],
+    "edge": []
+   }
+  ],
+  "errs": [],
+  "vp": "1280x773"
+ }
+]

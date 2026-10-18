@@ -36,11 +36,11 @@ O'ngda uch zaiflik kartasi (har biri qizil «ochiq» → yashil «yopilgan», ra
 - Mentor: Har zaiflikni kodda topib, bitta o'zgarish bilan yopamiz. Oxirida ega kirishiga ikkinchi qadam — telefon ilovasidagi 6 xonali kod qo'shamiz.
 - Chap yorliq: Dars oxirida — uch karta yashil, ega kirishi 2FA bilan
 - Chapda ega sahifasi maketi va «Xavfsizlik ro'yxati» — bir marta o'zi o'ynaydi: uch karta birin-ketin «ochiq» → «yopilgan», keyin 2FA qatori «yo'q» → «qo'shildi», sahifada «parol + kod ✓».
-- O'ngda qadamlar:
-  - 01 · Qidiruv so'rovi matnni qo'shmasin · SQL injection
-  - 02 · Ism kod emas, matn bo'lib chiqsin · XSS
-  - 03 · Maxfiy kalit kodda turmasin · maxfiy kalitlar
-  - 04 · Ega kirishiga ikkinchi qadam · 2FA
+- O'ngda qadamlar (teg yo'q — chapdagi karta nomlarini takrorlardi) *(✎ F-1015-115, 208-qonun 0-band)*:
+  - 01 · Qidiruv so'rovi matnni qo'shmasin
+  - 02 · Ism kod emas, matn bo'lib chiqsin
+  - 03 · Maxfiy kalit kodda turmasin
+  - 04 · Ega kirishiga ikkinchi qadam
 - Pastki qator: repo `maydon` · boshlanish `m10-dars-05-start` · tayyor namuna `m10-dars-05-done`
 - Tugmalar: Orqaga · Boshlaymiz
 
@@ -251,7 +251,7 @@ O'ngda uch zaiflik kartasi (har biri qizil «ochiq» → yashil «yopilgan», ra
   - Ha, parol yetadi
   - Yo'q, kod ham kerak
 - Chizma: chapda ikki telefon — ega sahifasi («Ega kirishi» · Parol · Davom etish) va «Telefon ilovasi» (Maydon · ega · `— — —` · 30 s); yo'lak `POST /kirish` (oxirida: `token`); o'ngda 2FA qatori (kulrang «yo'q») va kod kartasi «Backend · NestJS»: parol · `EGA_PAROLI` · ✓ · 6 xonali kod · `EGA_2FA_KALITI` · ✓ (oxirida: token →).
-- Telefon ostidagi tugma (qadamlar, N/3):
+- Telefon ostidagi tugma (qadamlar; hisob «N/3» faqat pastki tugmada — F-1015-115):
   1. Parol bilan kiring — parol `••••••` yoziladi, «6 xonali kod» maydoni chiqadi, ilovada kod `284 193` ko'rinadi.
   2. Telefon ilovasidagi kodni yozing — kod maydonga tushadi, sahifa tugmasi «Kirish»; o'ngda: Parol + telefon ilovasidagi 6 xonali kod — **ikki bosqichli kirish (2FA)** deyiladi.
   3. Ichkariga kiring — sayt parol va kodni birga Backend'ga yuboradi, Backend ikkalasini ✓ qiladi, token qaytadi, sahifada bandlar ro'yxati va «parol + kod ✓»; 2FA qatori yashil «qo'shildi».
@@ -428,6 +428,7 @@ O'ngda uch zaiflik kartasi (har biri qizil «ochiq» → yashil «yopilgan», ra
   - Keyingi dars — «Foydalanuvchi sizga ma'lumotini ishonadimi?». Ma'lumot sizib chiqsa nima bo'ladi: audit va maxfiylik siyosati.
 - Nishonlaringiz — N/5
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — sarlavha «Uyda nima qilasiz?», maydonlar katta quti (yorliq bosh harfda, «:» siz), qadamlar raqam-doira, «Keyingi dars» karta ichida (13.5px); qadam matni o'zgarmagan.
 
 ## Nishonlar
 - SQL Shield — SQL injection belgisini kodda topdingiz (3-ekran, 1-savol — birinchi urinishda to'g'ri)

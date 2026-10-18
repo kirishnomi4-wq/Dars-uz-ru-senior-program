@@ -815,6 +815,32 @@
       "suggest": "«ulanish joyi» (chokdagi → ulanish joyidagi, choklarda → ulanish joylarida); ru «место соединения», «шов» ham emas",
       "law": "MATN_ETALONI lug'at · F-1004-39 / D8 (04.10)",
       "except": "\\bid:\\s*'chok'"
+    },
+    {
+      "id": "asbob",
+      "pattern": "\\b[Aa]sbob",
+      "flags": "",
+      "severity": "error",
+      "suggest": "narsaning o'z nomi: dastur (Jest, Postman, Vite) · paket (Express, npm — «paketlar do'koni») · bo'lak (React) · muhr/maxfiy kalit; jismoniy bo'lsa — qurilma. «vosita» bilan almashtirilmaydi",
+      "law": "MATN_ETALONI lug'at · MATN_KORPUS §229 · F-1017-200 (17.10)"
+    },
+    {
+      "id": "ustimga",
+      "pattern": "\\b[Uu]stim(?:ga|da|dan)",
+      "flags": "",
+      "severity": "error",
+      "except": "/\\*[^*]*ustimda",
+      "suggest": "ikki ma'noli — o'quvchilar kuladi. Hover-tugma: «Sichqonchani shu yerga olib keling» → «Topdingiz!»; birinchi shaxs («ustimga», «ustimdasiz») yozilmaydi",
+      "law": "F-1017-201 (17.10) · mentorlar fidbeki · m2-08 PracticeLesson1 eski hover namunasi"
+    },
+    {
+      "id": "vosita",
+      "pattern": "\\b[Vv]osita",
+      "flags": "",
+      "severity": "warn",
+      "except": "\\bvosita\\s*(===|=|:\\s*id|\\})|\\.vosita\\b|\\bvosita \\}",
+      "suggest": "kitobiy — o'quvchi tushunmaydi. Narsaning o'z nomi: dastur (Live Server, npm, Node.js) · usul (sikl, algoritm) · mavzu (dars bo'limi) · AI yordamchi / Gemini / Copilot; yoki gapni «nima ishlatiladi?» qilib qayta tuzing",
+      "law": "MATN_ETALONI lug'at · MATN_KORPUS §229 · F-1017-203 (17.10)"
     }
   ]
 }

@@ -1,0 +1,13 @@
+src/12-Modull/DemoPrepLesson.jsx
+src/12-Modull/PmDemoTestLesson.jsx
+src/12-Modull/PmDressRehearsalLesson.jsx
+src/12-Modull/PmFinalPitchLesson.jsx
+src/12-Modull/PmFreelanceLesson.jsx
+src/12-Modull/PmInvestorPitchLesson.jsx
+src/12-Modull/PmNextStepsLesson.jsx
+src/12-Modull/PmPitchTrainingLesson.jsx
+src/12-Modull/PmProgramsLesson.jsx
+src/12-Modull/PmStoryPitchLesson.jsx
+src/12-Modull/PolishDayLesson.jsx
+src/12-Modull/ProductSpeedLesson.jsx
+src/12-Modull/VideoPortfolioLesson.jsx

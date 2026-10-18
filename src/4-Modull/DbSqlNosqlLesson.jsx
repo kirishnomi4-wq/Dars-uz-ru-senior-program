@@ -37,7 +37,7 @@ const tr = (node) => {
 };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 
 
 
@@ -634,6 +634,12 @@ const Compass = ({ lean = 0 }) => {
 };
 
 // ===== SCREEN 0 — HOOK (bir xil ma'lumot — ikki xil saqlash) =====
+// F-1015-394 (216-qonun): kirish javobi — variantga bitta qisqa gap + «Bugun…» qatori (eski uzun umumiy matn o'qilmasdi)
+const ACK_KIRISH = {
+  a: { uz: 'Jadval har doim ham qulay emas.', ru: 'Таблица удобна не всегда.' },
+  b: { uz: 'Zamonaviylik — sabab emas.', ru: 'Новизна — не причина.' },
+  c: { uz: 'Aynan!', ru: 'Именно!' }
+};
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const audio = useAudio([{ id: 's0', text: "Mana bir xil Instagram ma'lumot — ikki xil qadoqda. SQL qutida u qator-ustunli jadval, NoSQL paketida esa erkin hujjat. Ikkala ko'rinishni bosib ko'ring, keyin ayting: qaysi biri to'g'ri saqlash usuli?", trigger: 'on_mount', waits_for: { type: 'option_picked' } }]);
   const [view, setView] = useState('sql');
@@ -681,9 +687,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 );
               })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{picked === 'c'
-              ? tr({ uz: <>Aynan! <b>Ikkalasi ham ishlaydi</b> — savol qaysi vazifaga qaysi biri yaxshiroq ekanida. Bugun shu tanlovni o'rganamiz va nega bizga <b>PostgreSQL</b> mosligini ko'ramiz.</>, ru: <>Именно! <b>Работают оба</b> — вопрос в том, какой лучше под какую задачу. Сегодня научимся делать этот выбор и увидим, почему нам подходит <b>PostgreSQL</b>.</> })
-              : tr({ uz: <>Ko'pchilik SQL yoki NoSQL'dan bittasi har doim yaxshiroq deb o'ylaydi. Aslida <b>tanlov vazifaga bog'liq</b> — dars davomida buning sababini ko'ramiz.</>, ru: <>Многие думают, что один из двух всегда лучше. На самом деле <b>выбор зависит от задачи</b> — почему, увидим по ходу урока.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step"><b>{tr(ACK_KIRISH[picked])}</b> {tr({ uz: "Bugun tanlashni o'rganamiz va nega PostgreSQL mos kelishini ko'ramiz.", ru: 'Сегодня учимся выбирать и увидим, почему нам подходит PostgreSQL.' })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -2270,7 +2274,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
+    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
@@ -2289,13 +2293,13 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
   return (
-    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className="screen">
         <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi siz <span className="italic" style={{ color: T.accent }}>to'g'ri bazani</span> tanlay olasiz.</>, ru: <>Теперь вы умеете выбирать <span className="italic" style={{ color: T.accent }}>верную базу</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : undefined} />
         </div>
-        {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+        {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
         <div className="hw-big-wrap fade-up d4">
           <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
@@ -2797,7 +2801,7 @@ export default function DbSqlNosqlLesson({ lang: langProp, onFinished, liveToken
         .qx-nos-empty { font-family: 'Manrope'; font-style: italic; font-size: 12.5px; color: #8DA0BE; flex: 1; }
         .qx-pool { display: flex; flex-wrap: wrap; gap: 10px; min-height: 52px; border-radius: 14px; padding: 12px; background: ${T.paper}; box-shadow: 0 6px 16px -8px rgba(${T.shadowBase},0.16); align-items: center; justify-content: center; }
         .qx-pool-empty { font-family: 'Manrope'; font-style: italic; font-size: 13px; color: ${T.ink3}; }
-        .qx-card { display: inline-flex; align-items: center; gap: 7px; font-family: 'Manrope'; font-weight: 700; font-size: 13.5px; color: ${T.ink}; background: ${T.paper}; border: none; border-radius: 10px; padding: 9px 13px; cursor: grab; touch-action: none; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.28); transition: box-shadow 0.15s; }
+        .qx-card { display: inline-flex; align-items: center; gap: 7px; font-family: 'Manrope'; font-weight: 700; font-size: 13.5px; color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 10px; padding: 9px 13px; cursor: grab; touch-action: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: box-shadow 0.15s; }
         .qx-card:active { cursor: grabbing; }
         /* drag-lift: karta sudralganda ko'tariladi + chuqur soya tashlaydi */
         .qx-card.qx-dragging { box-shadow: 0 22px 40px -12px rgba(${T.shadowBase},0.5), 0 4px 10px -4px rgba(${T.shadowBase},0.3) !important; cursor: grabbing; animation: none !important; }
@@ -2807,7 +2811,7 @@ export default function DbSqlNosqlLesson({ lang: langProp, onFinished, liveToken
         .qx-nos-body .qx-card { background: #223049; color: #E8E5DD; box-shadow: 0 6px 16px -6px rgba(0,0,0,0.4); animation: qx-grow 0.3s cubic-bezier(.34,1.4,.4,1); }
         @keyframes qx-grow { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         .qx-ic { font-size: 15px; }
-        .qx-card.reject { animation: qx-shake 0.44s cubic-bezier(.36,.07,.19,.97); box-shadow: 0 0 0 2px ${T.accent}, 0 6px 16px -6px rgba(255,79,40,0.5); }
+        .qx-card.reject { animation: qx-shake 0.44s cubic-bezier(.36,.07,.19,.97); box-shadow: 0 0 0 2px ${T.paper}, 0 0 0 4px ${T.accent}, 0 6px 16px -6px rgba(255,79,40,0.5); } /* F-1017-202: gradient chip — halqa oq+accent */
         @keyframes qx-shake { 10%,90% { transform: translateX(-2px); } 20%,80% { transform: translateX(4px); } 30%,50%,70% { transform: translateX(-7px); } 40%,60% { transform: translateX(7px); } }
         @media (prefers-reduced-motion: reduce) { .qx-card.reject, .qx-nos-body .qx-card { animation: none !important; } }
         .qx-done { background: ${T.successSoft}; border-radius: 12px; padding: 12px 15px; font-family: 'Manrope'; font-size: clamp(13px,1.6vw,15px); color: ${T.ink}; animation: fade-step 0.3s; }

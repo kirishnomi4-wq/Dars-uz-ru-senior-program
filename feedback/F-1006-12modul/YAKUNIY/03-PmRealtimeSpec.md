@@ -46,12 +46,13 @@ Mentor talabi (dars bo'yi bir xil):
 - Sarlavha: Bugun agentga talab yozasiz va *natijani tekshirasiz.*
 - Mentor: 2-darsdagi sxemangiz bugun talabga aylanadi. Kodni agent yozadi, qaror va tekshiruv — sizdan.
 - Chap — kulrang yorliq: real vaqt talabi: hodisalar, ulanish holatlari, chekka holatlar
-  - vizual bir marta o'zi yuradi: talab varag'ida «Nima qilsin» ostida uch bo'sh bo'lim uyasi (1 · 2 · 3) birma-bir chiqadi → telefonda («O'yinlar», belgi «Ulangan») «8 / 10» → «9 / 10»
+  - vizual bir marta o'zi yuradi: telefonda («O'yinlar», belgi «Ulangan») «8 / 10» → «9 / 10»; bo'sh talab varag'i yo'q — u 2-ekranda chiqadi (208/0 d) *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
 - Reja:
-  1. Mentor talabini bo'lim-bo'lim ko'rasiz · talab
-  2. Kam uchraydigan vaziyatlarni ko'rasiz · chekka holatlar
-  3. O'z mahsulotingiz uchun talab yozasiz · real vaqt talabi
-  4. Agent quradi, siz telefonda tekshirasiz · tekshirish
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
+  1. Mentor talabini bo'lim-bo'lim ko'rasiz
+  2. Kam uchraydigan vaziyatlarni ko'rasiz
+  3. O'z mahsulotingiz uchun talab yozasiz
+  4. Agent quradi, siz telefonda tekshirasiz
 - Pastki qator: repo `maydon-jamoa` · boshlang'ich holat `m12-dars-03-start` · namuna `m12-dars-03-done` — amaliyotlarni o'z mahsulotingizda bajarasiz.
 - Tugmalar: Orqaga · Boshlaymiz
 
@@ -65,7 +66,7 @@ Mentor talabi (dars bo'yi bir xil):
   - uch bo'lim ochilgach: 11-Modulda PRD yozgansiz — u nima qurilishini aytadi; real vaqt talabi esa o'zgarish qanday ko'rinishini.
 - Bashorat (yorliq «Avval o'zingiz belgilab ko'ring», ballsiz): Agentga faqat «ro'yxat o'zi yangilansin» deb yozilsa, nechta narsa uning tanloviga qoladi? · Hech narsa · Bir-ikkitasi · Ko'p narsa
   - tanlangach ixcham qator: savol · Taxminingiz: <tanlov>
-- Vizual: chapda telefon «O'yinlar» (belgi «Ulangan», karta «Shanba, 18:00 · Mahalla maydoni · 8 / 10») va Backend («Database: 8»); o'ngda talab varag'i «Mentor talabi · Maydon Jamoa» — boshida kulrang: Qayerda (Mentor talabidagi qator) · Nima qilsin: uch bo'sh uya (1 · 2 · 3) · Nima buzilmasin (Mentor talabidagi qator). Varaq ostida tugma «Keyingi bo'lim N/3».
+- Vizual: chapda telefon «O'yinlar» (belgi «Ulangan», karta «Shanba, 18:00 · Mahalla maydoni · 8 / 10») va Backend («Database: 8»); o'ngda talab varag'i «Mentor talabi · Maydon Jamoa» — boshida kulrang: Qayerda (Mentor talabidagi qator) · Nima qilsin: uch bo'sh uya (1 · 2 · 3) · Nima buzilmasin (Mentor talabidagi qator). Varaq ostida tugma «Keyingi bo'lim» (hisob faqat pastki tugmada *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*).
 - Har bosish:
   1. Backend'da «Database: 9» → konvert `oyin-ozgardi · qoshildi` telefonga uchadi → telefondan «so'rov» borib, «javob» qaytadi → kartada «9 / 10». Varaqda **1 · Hodisalar**: o'yinchi «Qo'shilaman» ni bosadi · `oyin-ozgardi` · sabab `qoshildi` · hamma ulangan ilova · «8 / 10» → «9 / 10» — ostida kulrang: + yana 4 qator — 2-darsdagi sxemadan
   2. Belgi ketma-ket: «Ulangan» → «Ulanmoqda…» (chiziq uzilgan) → «Ulanmagan» (chiziq yo'q, telefonda «↓») → yana «Ulangan»; har almashganda varaqda **2 · Ulanish holatlari** ning mos qatori yonadi (uch qator — Mentor talabidagidek).
@@ -102,7 +103,7 @@ Mentor talabi (dars bo'yi bir xil):
   - 3-vaziyat: Birinchi telefonda ilovani fonga olib keting — pastdagi bosh ekran chizig'ini bosing.
   - uch vaziyatdan keyin: Talab har vaziyatda nima bo'lishi kerakligini aytadi — qanday qilish agentning tanloviga qoladi.
 - Bashorat (ballsiz): Internet bir necha soniyaga uzilib qaytdi. Shu payt bo'lgan qo'shilish birinchi telefonda qachon ko'rinadi? · O'sha zahoti · Ulanish qaytganda · Pastga tortganda
-- Vizual: sahna tepasida kulrang yorliq «Vaziyat N/3 · shunday bo'lishi mumkin»; ikki telefonli sahna — 1-telefon «O'yinlar» (belgi «Ulangan», «8 / 10»), o'rtada Backend («Database: 8»), 2-telefon «O'yin» («Qo'shilaman»); o'ngda varaq «Mentor talabi · Maydon Jamoa» — «3 · Kam uchraydigan vaziyatlar», uchta bo'sh qator.
+- Vizual: sahna tepasida kulrang yorliq «Shunday bo'lishi mumkin» (hisob tugmada *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*); ikki telefonli sahna — 1-telefon «O'yinlar» (belgi «Ulangan», «8 / 10»), o'rtada Backend («Database: 8»), 2-telefon «O'yin» («Qo'shilaman»); o'ngda varaq «Mentor talabi · Maydon Jamoa» — «3 · Kam uchraydigan vaziyatlar», uchta bo'sh qator.
 - Vaziyatlar:
   1. Samolyot (1-telefon) → belgi «Ulanmoqda…», chiziq uzilgan; 2-telefonda qo'shilish → «Database: 9», 2-telefonda «9 / 10»; konvert `oyin-ozgardi` uzilgan joyda so'nadi — yorliq «kelmadi»; keyin uchish rejimi o'chadi, belgi «Ulangan»; 1-telefonda «8 / 10» va kulrang «eski». Varaqqa 1-qator: Internet uzilib qaytsa — ro'yxat yangi holatni ko'rsatsin.
   2. 1-telefon chizig'i bir lahza uzilib tiklanadi — yorliq «qayta tiklangan». «Qo'shilaman» (2-telefon) → «Qo'shildingiz», «9 / 10», «Database: 9»; bitta konvert `oyin-ozgardi` 1-telefonga keladi → ketma-ket ikki «so'rov» — «javob», «9 / 10» ikki marta yonadi; telefon ostida «so'rov: 2». Varaqqa 2-qator: Bitta o'zgarish ekranni bir marta yangilasin — ulanish qayta tiklangandan keyin ham.
@@ -120,7 +121,7 @@ Mentor talabi (dars bo'yi bir xil):
 - Sarlavha: Mahsulotingiz uchun *real vaqt talabini* yozing.
 - Mentor: Bo'limlarni birma-bir to'ldiring — hodisalar 2-darsdagi sxemangizdan olindi.
   - 2-darsdagi sxema saqlanmagan bo'lsa: Bo'limlarni birma-bir to'ldiring — sxemangiz saqlanmagan, hodisa qatorlarini o'zingiz yozasiz.
-- Tepada ixcham chiziq: 1 · Hodisalar · 2 · Ulanish holatlari · 3 · Chekka holatlar (tayyor bo'limda — «· N qator»; bosilsa, bo'lim qayta ochiladi). Bir vaqtda bitta karta: «N · <bo'lim> · N / 3».
+- Tepada ixcham chiziq: 1 · Hodisalar · 2 · Ulanish holatlari · 3 · Chekka holatlar (tayyor bo'limda — «· N qator»; bosilsa, bo'lim qayta ochiladi). Bir vaqtda bitta karta — yorliqsiz: bo'lim nomi tepadagi chiziqda, hisob tugmada. *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
 - **Karta 1 · Hodisalar** — Bugun qaysi qatorlarni qurasiz? Belgilang.
   - 2-darsdagi sxema qatorlari (har biri: nuqta · hodisa · ekranda), har birida belgilash katagi; sukutda hammasi belgilangan.
   - sxema yo'q bo'lsa: to'rt maydon — Kim nima qiladi · Hodisa nomi va sababi · Kim oladi · Ekranda nima o'zgaradi; tugmalar: Qator tayyor · Bekor qilish · Qator qo'shish (ko'pi bilan beshta qator) · Yordam
@@ -310,6 +311,7 @@ Mentor talabi (dars bo'yi bir xil):
   - Keyingi dars — **«Loyiha kuni: jonli xabar va eslatma»**
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — sarlavha «Uyda nima qilasiz?», maydonlar katta quti (yorliq bosh harfda, «:» siz), qadamlar raqam-doira, «Keyingi dars» karta ichida (13.5px); qadam matni o'zgarmagan.
 
 ## Nishonlar
 - **Gap Finder!** — Talab nimani aytmasligini birinchi urinishda topdingiz (3-ekran, birinchi urinishda to'g'ri)

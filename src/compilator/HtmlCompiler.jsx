@@ -612,7 +612,13 @@ const checks = {
   // iframe ichida ishlatib, natijani postMessage orqali oladi.
 
   // console.log chiqishida shu qiymat bormi?
+  // F-1017-206: solishtirish NORMALLASHGAN — katta-kichik harf, ortiqcha probel va apostrof turi (' ‘ ’ ʻ) farq qilmaydi
+  // («hello» = «Hello»). Ko'p so'zli qiymat TARTIBLI qoladi («1 2 3 4 5» — sanoq); tartibsiz ro'yxat uchun logsEach.
   logs: (value, hint) => ({ __runtime: 'log_includes', value: String(value), hint }),
+
+  // Bir nechta qiymat — HAR BIRI chiqishda bor, TARTIBI muhim emas (massiv/ro'yxat natijalari:
+  // o'quvchi «uzum banan olma» deb yozsa ham to'g'ri). F-1017-206.
+  logsEach: (values, hint) => ({ __runtime: 'log_each', values: (Array.isArray(values) ? values : [values]).map(String), hint }),
 
   // JS ifoda (masalan global o'zgaruvchi yoki typeof) shu qiymatga tengmi?
   evalEquals: (expr, expected, hint) => ({ __runtime: 'eval_equals', expr, expected: String(expected), hint }),
@@ -641,7 +647,8 @@ const checks = {
 //           { tag, count: 3 }                   → kamida n ta
 //    CSS:   { css: { sel, prop, value? } }      → xossa (yoki aniq qiymat)
 //    JS:    { js: /addEventListener/ }          → manbada namuna
-//    Runtime: { logs: 5 }                       → console.log chiqishi
+//    Runtime: { logs: 5 }                       → console.log chiqishi (harf/probel farqsiz)
+//             { logsEach: ['olma','banan'] }     → har biri chiqishda bor, tartibsiz
 //             { eval: 'typeof f', equals: 'function' }
 //             { click: '#btn', read: '#out', expect: 'Salom' }
 //  Har bir kalitga ixtiyoriy `hint` (maslahat matni) qo'shsa bo'ladi.
@@ -656,6 +663,7 @@ function specToCheck(s) {
   // belgilari RegExp'ni yiqitardi → butun dars oq ekran). RegExp berilsa avvalgidek.
   if (s.js) return s.js instanceof RegExp ? checks.js(s.js, hint) : checks.jsText(String(s.js), hint);
   if (s.logs !== undefined) return checks.logs(s.logs, hint);
+  if (s.logsEach !== undefined) return checks.logsEach(s.logsEach, hint);
   if (s.eval !== undefined) return checks.evalEquals(s.eval, s.equals, hint);
   if (s.toggle) return checks.toggle(s.toggle, s.read || s.toggle, s.a, s.b, hint);
   if (s.click) return checks.domAfterClick(s.click, s.read, s.expect, hint);
@@ -1077,7 +1085,7 @@ const buildHarness = (probes, nonce) => `<script>
 (function(){
   try{var _cs=document.currentScript;if(_cs)_cs.parentNode.removeChild(_cs);}catch(e){}
   var logs=[],_push=Array.prototype.push,_str=String,_json=JSON.stringify,
-      _idx=String.prototype.indexOf,_trim=String.prototype.trim,_low=String.prototype.toLowerCase,
+      _idx=String.prototype.indexOf,_trim=String.prototype.trim,_low=String.prototype.toLowerCase,_rep=String.prototype.replace,
       _st=window.setTimeout,_qs=document.querySelector;
   var _l=console.log;console.log=function(){
     for(var i=0;i<arguments.length;i++){var a=arguments[i];
@@ -1085,6 +1093,8 @@ const buildHarness = (probes, nonce) => `<script>
     try{_l.apply(console,arguments);}catch(e){}
   };
   function has(hay,needle){return _idx.call(_str(hay),needle)!==-1;}
+  // F-1017-206: konsol-matnini normallashtirish — kichik harf, apostrof turlari → ', probel yig'iladi
+  function norm(s){var x=_low.call(_str(s));x=_rep.call(x,/[\u2018\u2019\u02BB\u02BC\u0060\u00B4]/g,"'");x=_rep.call(x,/\\s+/g,' ');return _trim.call(x);}
   function qs(sel){try{return _qs.call(document,sel);}catch(e){return null;}}
   function runProbes(){
     var P=${JSON.stringify(probes)};
@@ -1094,9 +1104,13 @@ const buildHarness = (probes, nonce) => `<script>
       var p=P[k],ok=false;
       try{
         if(p.type==='log_includes'){
-          var v=_trim.call(_str(p.value));
-          ok=has(joined,v);
-          if(!ok){for(var q=0;q<logs.length;q++){if(has(_trim.call(_str(logs[q])),v)){ok=true;break;}}}
+          var v=norm(p.value);
+          ok=has(norm(joined),v);
+          if(!ok){for(var q=0;q<logs.length;q++){if(has(norm(logs[q]),v)){ok=true;break;}}}
+        }else if(p.type==='log_each'){
+          var J=norm(joined),vals=p.values||[];
+          ok=vals.length>0;
+          for(var m=0;m<vals.length;m++){if(!has(J,norm(vals[m]))){ok=false;break;}}
         }else if(p.type==='eval_equals'){
           var r; try{r=eval(p.expr);}catch(e){r=undefined;}
           ok=_str(r)===_str(p.expected);
@@ -2577,6 +2591,7 @@ function StyleTag() {
       .hc-brief{margin:0;color:${HC_T.ink2};font-size:clamp(13px,1.5vw,15px);line-height:1.55;max-width:60ch}
 
       .hc-checklist{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:6px}
+.hc-title,.hc-brief,.hc-chip,.hc-hint{user-select:none;-webkit-user-select:none} /* F-1017-224 (mentor): vazifa matni/shart/maslahatdagi kod belgilanmaydi — o'quvchi nusxalamasdan o'zi teradi */
       .hc-count{font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-weight:700;font-size:12px;color:#fff;background:linear-gradient(135deg,${HC_T.accent},${HC_T.accent2});padding:6px 11px;border-radius:99px;box-shadow:0 6px 16px -6px rgba(255,77,38,.5)}
       .hc-chip{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:500;color:${HC_T.ink2};background:${HC_T.paper};padding:6px 14px 6px 7px;border-radius:99px;border:1px solid ${HC_T.line};box-shadow:0 1px 2px rgba(${HC_T.shadowBase},.04);transition:all .22s ease;cursor:default}
       .hc-chip.ok{color:${HC_T.ink};font-weight:600;border-color:${HC_T.success}40;background:${HC_T.successSoft}}

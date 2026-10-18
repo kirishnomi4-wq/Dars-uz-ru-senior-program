@@ -284,7 +284,7 @@ parol va `.env` qiymatlari hech qayerga (`DEMO.md`, repo, agent chati, video), l
 - Ipucha (40 s): Yoqilgan tugmani bosing — internetsiz nima ochiladi? (52)
 - Keyingi bosiladigan joy: bashorat variantlari → joriy sahna tugmasi (halqa) → «Davom etish».
 - O'qituvchi eslatmasi: «Kutish» va «havola» — hayotda tez-tez tanlanadigan yo'l; bu misolda internet qaytmadi. Telefon internetini laptopga ulash ham yo'l bo'lishi mumkin, lekin telefon demoning ikkinchi qurilmasi va u ham internetga bog'liq — B reja internetsiz ochilishi kerak.
-  Video ommaviy joyga, sinf chatiga yuklanmaydi va repo'ga qo'shilmaydi (Amaliyot 2). Ekran yozish vositasi har kompyuterda boshqacha — umumiy so'z bilan ayting.
+  Video ommaviy joyga, sinf chatiga yuklanmaydi va repo'ga qo'shilmaydi (Amaliyot 2). Ekran yozish dasturi har kompyuterda boshqacha — umumiy so'z bilan ayting.
 ✎ Sarlavha 0-ekran va Amaliyot 1 dagi «Internet yo'q» riskining davomi; «B reja» — dars nomidagi so'z, ta'rif shu yerda (QIzoh). Bitta g'oya (P-008): internetsiz faqat laptopdagi fayl ochiladi. Natija sahnada, matn sababni oldindan aytmaydi (P-036).
   Uch yo'l — Mentor misolining sahnasi; «bu misolda internet qaytmadi» (xulosa «Bu misolda» bilan — sinf 4). B reja gapi — 9.9 aynan.
 
@@ -309,7 +309,7 @@ parol va `.env` qiymatlari hech qayerga (`DEMO.md`, repo, agent chati, video), l
      Tanlang: **«Uyg'ondi — ro'yxat chiqdi»** · **«Ochilmadi»**. «Ochilmadi» bosilsa — agentga faqat xato qatori: «Shu xato chiqdi: {xato}. Nima bo'lganini ayt, hech narsani o'zgartirma.»
      Kutayotganda: video uchun boshqa oyna va bildirishnomalarni yoping (3-qadam).
      Yordam — Mentor misolida: brauzerda `https://maydon-jamoa-….onrender.com/oyinlar` — javobda o'yinlar ro'yxati chiqadi (bu manzil kirmagan odamga ham ochiq — 12-Modulda).
-  3. **Video** — kompyuteringizdagi ekran yozish vositasi bilan demo ssenariysini bir marta o'ting va yozing: tayyorlovdan «Hozir ko'ryapti»gacha, demo o'tishingiz uzunligida (Mentor misolida — 60 soniya; 06-FILTR 21).
+  3. **Video** — kompyuteringizdagi ekran yozish dasturi bilan demo ssenariysini bir marta o'ting va yozing: tayyorlovdan «Hozir ko'ryapti»gacha, demo o'tishingiz uzunligida (Mentor misolida — 60 soniya; 06-FILTR 21).
      Yozishdan oldin: parol kiritiladigan joy, `.env`, terminal, chat, maxfiy tokenli manzil va boshqa oynalar ekranda ko'rinmasin. Ovoz shart emas; yuzingiz yoki ismingiz videoga tushsa — 2-darsdagi video qoidasi (ota-ona roziligi) ishga tushadi, ekran yozuvining o'zi uchun kerak emas (06-FILTR 19, 20). Videoni repo papkasiga emas, laptopdagi boshqa papkaga saqlang — `git add` bilan GitHub'ga tushib qolmasin. Keyin demo holatini boshiga qaytaring («Keyin» qatoringiz).
      Yordam — Mentor misolida: laptopda ikki oyna yonma-yon — chapda demo yo'li (1-namuna akkaunt), o'ngda yashirin oynada o'sha o'yin (2-namuna akkaunt): 4-qadam videoda ham ko'rinadi.
   4. **Tekshirish va `DEMO.md`** — video faylni laptopda ochib, oxirigacha ko'ring va uch qatorni belgilang: (1) beshala qadam ko'rinadi · (2) parol, `.env`, maxfiy tokenli manzil va haqiqiy foydalanuvchi ismi ko'rinmaydi · (3) fayl laptopda, havola emas.
@@ -331,7 +331,7 @@ parol va `.env` qiymatlari hech qayerga (`DEMO.md`, repo, agent chati, video), l
 - Nishon: Plan B Ready — 4-qadam «Bajardim»ida, «Video tayyor» belgilangan bo'lsa (ish bajarilgan ekran — P-048).
 - Tugmalar: Orqaga · Avval bajaring → Davom etish
 - ✎ MD izohi: sarlavhada «B yo'llar» — uch ish (akkaunt — «Login esdan chiqdi» va «Ro'yxat bo'sh», uyg'otish — «Backend uxlagan», video — «Internet yo'q»); «B reja» faqat video (T-015). Namuna akkaunt — o'chirilmaydi (demo kunigacha kerak; 7-darsdagi tekshiruv akkauntidan farqi — TAYANCHGA SAVOL 6).
-  Demo yozuvida real odamlar bo'lmasligi — 12-Modul 9.44 c (real odamlarga jonli xabar bormasin). Ekran yozish vositasi — umumiy so'z (tayanch 1.9; ⛔). Video tekshiruvi o'quvchining o'zida (sinf 10).
+  Demo yozuvida real odamlar bo'lmasligi — 12-Modul 9.44 c (real odamlarga jonli xabar bormasin). Ekran yozish dasturi — umumiy so'z (tayanch 1.9; ⛔). Video tekshiruvi o'quvchining o'zida (sinf 10).
 - O'qituvchi eslatmasi: video yozishdan oldin ekranga birga qarang — ochiq chat, parol saqlagich oynasi, terminal ko'rinmasin. Video sinf chatiga yuborilmaydi. Namuna akkaunt paroli `DEMO.md` ga yozilmaganini tekshiring.
   Telefon brauzerida real vaqt ishlashini kuzating: telefon kirgan bo'lishi kerak (kirmagan odamning ekrani o'zi yangilanmaydi — 12-Modul).
 
@@ -362,7 +362,7 @@ parol va `.env` qiymatlari hech qayerga (`DEMO.md`, repo, agent chati, video), l
 - Model: to'rt qadam o'quvchining o'z repo'sida va demosida; agent — yangi risk qatori va kerak bo'lsa faqat tuzatish uchun (3-qadam). Sherik — hakam o'rnida, ixtiyoriy. Tartib (06-FILTR 2, 4): tayyorlov → demo o'tishi → ✕ bo'lsa tuzatish va **qayta to'liq o'tish** → faqat tekshirilgan versiyaga teg.
 - Qadamlar (bittadan ochiladi, har birida «Bajardim»):
   1. **Tayyorlov** — terminalda `git status`: o'zgargan fayl yo'q va tarmoq «up to date» (hammasi push qilingan). Mobil trekda — brauzer ko'rinishini yangilang (push'dan keyin o'zi yangilanmaydi): `npx expo export -p web` → `netlify deploy --prod --dir dist`. Web-trekda push'dan keyin Netlify saytni odatda o'zi yangilaydi.
-     Keyin `DEMO.md` dagi «Tayyorlov» ro'yxatini (`[ ]` qatorlari) bittadan belgilang (✓ — dars holatida): Backend uyg'otildi · ikkala qurilmada namuna akkaunt bilan kirilgan · demo holati boshida · B reja videosi laptopda ochishga tayyor (`video` `true` bo'lmasa — qator kulrang «video hali yo'q»).
+     Keyin `DEMO.md` dagi «Tayyorlov» ro'yxatini (`[ ]` qatorlari) bittadan belgilang (✓ — dars holatida): Backend uyg'otildi · ikkala qurilmada namuna akkaunt bilan kirilgan · demo holati boshida · B reja videosi laptopda ochishga tayyor (`video` `true` bo'lmasa — qator kulrang «video hali yo'q»; katagi yo'q oddiy yozuv, belgilanmaydi *(✎ F-1015-164)*).
      Kutayotganda (eksport, Netlify) — tayyorlov qatorlarini belgilang.
   2. **Demo o'tishi** — «Taymer»ni bosing va `DEMO.md` dagi ssenariy bo'yicha demo qiling; har qadamdan keyin chapdagi qadamni bosing: **✓** (rejadagidek) yoki **✕** (bosilsa — «Nima bo'ldi» bir qator). Oxirida «Taymerni to'xtatish».
      Taymer chizig'ida ikki belgi: «Mentor rejasi: 60–90 soniya» · «Yechim bo'lagi: 90 soniya» (bu mashqda — pitch mashqida Yechim bo'lagiga 90 soniya ajratilgan, jonli demo shu ichida joylashadi; vaqt baho emas — 06-FILTR 35). Sherik bo'lsa — laptop ekraniga qarab, hakam o'rnida o'tiradi; ismi hech qayerga yozilmaydi.
@@ -418,7 +418,7 @@ parol va `.env` qiymatlari hech qayerga (`DEMO.md`, repo, agent chati, video), l
   - Amaliyot 1 bajarilgan, demo o'tishi yo'q: **Ssenariy va risklar yozildi — demo o'tishi qoldi.** (50)
   - ssenariy saqlangan, Amaliyot 1 bajarilmagan: **Demoga tayyorgarlik hali tugamagan.** (35)
   - ssenariy saqlanmagan: **Demo ssenariysi bugun hali yozilmagan.** (39)
-- Arena tugmasi (o'yin qatlami, darsdan): CODE STRIKE · 12 SAVOL · 15 SONIYA · PODIUM · (jonli darsda) Mentorni kuting
+- Arena tugmasi (o'yin qatlami, darsdan): CODE STRIKE · (jonli darsda) Mentorni kuting
 - «Bugungi asosiy fikr» qutisi — yo'q (E 50; fikr A-2 da — darsning ichki o'qi).
 - Endi siz bilasiz (T-048 — asosiy fikr so'zma-so'z takrorlanmaydi; 1-qator — ta'rif, T-042):
   - Demoda bosiladigan qadamlar ro'yxati — demo ssenariysi. (56)
@@ -427,12 +427,13 @@ parol va `.env` qiymatlari hech qayerga (`DEMO.md`, repo, agent chati, video), l
   - B reja videosi laptopda faylda turadi: internet uzilsa ham ochiladi. (68)
   - Teg qo'yilgach yangi funksiya to'xtatiladi — faqat tuzatish qilinadi. (69)
 - Uyga vazifa — yo'q (tayanch 4, sinf 14: loyiha kuni; ish repo'da — uch blok o'z mahsulotingizda).
-- Keyingi dars — «Investor ko'zi bilan: demo buzilmaydimi?»
 - Nishonlaringiz — N/4 (pastda; mentor rejimida yo'q)
-- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18). Artefakt-strip yakunda yo'q (E 50).
+- Keyingi dars — «Investor ko'zi bilan: demo buzilmaydimi?»
+- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Nishonlaringiz · Keyingi dars. Ichki skroll qutisi yo'q (SABOQ 18). Artefakt-strip yakunda yo'q (E 50).
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
 - Izoh (MD): sarlavha kalitdan (`pm-m12d6-demo`: `ssenariy`, `video`, `teg`, `otishVaqt`) va blok bayroqlaridan (ccProgress: 4-qadam «Bajardim»; o'tishdagi ✓/✕ — dars holati) yig'iladi (P-046). «Keyingi dars» qatori — `00-NOMLAR.md` 7-qator, so'zma-so'z, quyruqsiz (T-038; tayanch 7 «RAD etilganlar»).
   Birinchi holat «to'liq o'tdi» — beshala qadam ✓ bo'lsa; «demo buzilmaydi» ma'nosida emas (sinf 5).
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ---
 
@@ -590,7 +591,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 4. Jonli demo, namuna o'yin, «O'yindan chiqish», ikkinchi qurilma — 12-Modul tayanchi 9.44 c va `12-PmGrowthPitch-v3.md` 8-ekran; namuna akkaunt (`namuna = true`) — 12-Modul tayanchi 1.7, 9.5, 9.35; mehmon ko'rinishi (`GET /oyinlar` tokensiz) — 12-Modul tayanchi 1.8;
    brauzer ko'rinishi qayta eksporti — 12-Modul tayanchi 9.28; «Hozir ko'ryapti» — 12-Modul tayanchi 1.4; yashirin oyna — 12-Modul tayanchi 9.35 b.
 5. Risk ta'rifi — 11-Modul tayanchi 2 («rejaga xalaqit berishi mumkin bo'lgan narsa»), `15-PmOneOnOne-v3.md`; ekran videosi zaxirasi — 11-Modul `16-PmPrototypePitch-v3.md` (YAKUNIY 273, 346).
-6. Ekran yozish vositasi, telefonni proyektorga ulash — tekshirilmagan (tayanch 6): umumiy so'z, nomi va menyusi yozilmadi.
+6. Ekran yozish dasturi, telefonni proyektorga ulash — tekshirilmagan (tayanch 6): umumiy so'z, nomi va menyusi yozilmadi.
 
 ---
 
@@ -617,7 +618,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 
 ## Shubhali joylar (ishonchim komil emas)
 1. ⛔ **90 daqiqa** — Amaliyot 2 ≈ 26 daqiqa (namuna akkaunt, Backend uyg'onishi taxminan bir daqiqa, video yozish va ko'rish); auditor bahosi: 110–140, bug chiqsa 140–190 (06-FILTR 50). Pilotda 12–15 o'quvchi bilan taymer bilan o'lchanadi; oshsa — video Amaliyot 3 dan keyinga (ulgurmagan yo'l bor) yoki 7-darsga (foydalanuvchi qarori); pilotdan keyin dars 120+ deb qabul qilinishi mumkin — foydalanuvchi qarori.
-2. ⛔ **Ekran yozish vositasi** — har kompyuterda boshqacha (nomi, ovoz yozish, fayl joyi); umumiy so'z. Ba'zi maktab kompyuterlarida yozish cheklangan bo'lishi mumkin — pilotda.
+2. ⛔ **Ekran yozish dasturi** — har kompyuterda boshqacha (nomi, ovoz yozish, fayl joyi); umumiy so'z. Ba'zi maktab kompyuterlarida yozish cheklangan bo'lishi mumkin — pilotda.
 3. ⛔ **Namuna o'yin demo kunida ro'yxatda turadimi** — «Shanba, 18:00» sanasi o'tgan bo'lsa ilova uni yashirishi mumkin; pilotda Mentor repo'sida. O'quvchi mahsulotida ham — 1-qadam promptida agent «haqiqiy foydalanuvchilar bormi» deb tekshiradi, sana emas.
 4. ⛔ **Mentorning demo o'tishi vaqti va videosi** — `{⛔ pilotda}`; 60–90 soniya — Mentor rejasi (tayanch 1.14), o'lchov emas.
 5. ⛔ **Telefon brauzerida real vaqt va «Hozir ko'ryapti: 2»** — brauzer ko'rinishida 12-Modulda ishlagan; haqiqiy telefonda (Android, iPhone) pilotda.
@@ -630,7 +631,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 
 ## Oldindan tuzatiladigan sinflar — o'z tekshiruvim (tayanch 7: 18 band)
 1. [x] **90 daqiqa — reja, o'lchov emas** — A-11 taqsimot; har blokda «Ulgurmasangiz» (A1 — 3-qadamdan, A2 — 2-qadamdan, A3 — 2-qadamdan); tashqi kutishda ish (uyg'onish — oynalarni tayyorlash, eksport — tayyorlov qatorlari); ⛔ pilotda taymer (Shubhali 1); «sig'adi» deyilmaydi.
-2. [x] **Tekshirilmagan tashqi qadam — «qur» darvozasi** — ekran yozish vositasi (umumiy so'z, Shubhali 2), telefon brauzeri va real vaqt (Shubhali 5), namuna o'yin (Shubhali 3), Mentor vaqti va videosi (REPO 5) — ⛔; Render — rasmiy (Manbalar 1); git — lokal rasmiy qo'llanma va sinov (Manbalar 3); GitHub UI nomlari yozilmadi.
+2. [x] **Tekshirilmagan tashqi qadam — «qur» darvozasi** — ekran yozish dasturi (umumiy so'z, Shubhali 2), telefon brauzeri va real vaqt (Shubhali 5), namuna o'yin (Shubhali 3), Mentor vaqti va videosi (REPO 5) — ⛔; Render — rasmiy (Manbalar 1); git — lokal rasmiy qo'llanma va sinov (Manbalar 3); GitHub UI nomlari yozilmadi.
 3. [x] **Saqlash kaliti — shartnoma** — A-12: tayanch 8 sxemasi aynan, har maydon, tipi, `bool | null` uch holat, qaysi qadam yozadi; tayyorlov/«Keyin» kalitda yo'q (TS 4); login, parol, URL, video nomi yozilmaydi; boshqa darsning kaliti faqat o'qiladi.
 4. [x] **Mentor misoli va kurs qolipi — umumiy qoida emas** — «Mentor misolida» (0, 5-ekran Mentor, bloklar Yordami), «Bu misolda» (2, 5-ekran xulosalari), «bu mashqda» (besh qadam, 90 soniya, 60 soniya); besh risk — «Bu risk demongizda yo'q» (3-ekran); ssenariy — o'quvchining o'zi.
 5. [x] **Kafolat va sabab da'vosi yo'q** — «demo buzilmaydi» yo'q; uyg'otish natijasi — «ro'yxat chiqsa» (6-ekran); «to'liq o'tdi» — beshala qadam ✓ bo'lsa (11-ekran), «buzilmaydi» ma'nosida emas; agentning «ishlaydi» degani — da'vo (7-ekran D).

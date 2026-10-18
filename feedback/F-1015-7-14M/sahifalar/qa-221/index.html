@@ -1,0 +1,257 @@
+<title>Final g'oya darsi ikkinchi ko'rik</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: bitta ustun; har band = sizning so'zingiz → hozirgi surat → tashxis → taklif-namuna (dars palitrasida) → tanlov */
+:root {
+  --bg: #f4f3f8; --card: #ffffff; --ink: #1d1b2b; --ink2: #5d5a72; --line: #e2e0ec; --accent: #5b3fd6; --accent-soft: #ece8fd; --warn: #b4540f; --warn-soft: #fbeedd;
+  --f-body: 'Manrope', system-ui, sans-serif; --f-mono: 'JetBrains Mono', ui-monospace, monospace;
+  /* dars palitrasi — namuna oynasi ikki mavzuda ham dars qanday ko'rinsa shunday */
+  --d-bg: #F2F0FA; --d-paper: #FFFFFF; --d-line: #E7E3F4; --d-ink: #1B1630; --d-ink2: #565073; --d-accent: #5B3DE6; --d-asoft: #EBE5FD; --d-ok: #1F7A4D; --d-okfon: #E3F0E8; --d-err: #C2362B; --d-errfon: #FAE3E0; --d-mute: #F6F4FC;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #15141c; --card: #1f1d29; --ink: #ecebf4; --ink2: #a7a4ba; --line: #34314a; --accent: #a593ff; --accent-soft: #2c2650; --warn: #f0a35a; --warn-soft: #3a2a18; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #15141c; --card: #1f1d29; --ink: #ecebf4; --ink2: #a7a4ba; --line: #34314a; --accent: #a593ff; --accent-soft: #2c2650; --warn: #f0a35a; --warn-soft: #3a2a18; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 80px; }
+.wrap { max-width: 1060px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+h1 { font-size: clamp(22px, 3vw, 30px); margin: 0; text-wrap: balance; } h2 { font-size: 19px; margin: 0; text-wrap: balance; } h3 { font-size: 14px; margin: 0; color: var(--ink2); text-transform: uppercase; letter-spacing: .06em; }
+p { margin: 0; max-width: 78ch; } .lead { color: var(--ink2); }
+.band { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+.id { font-family: var(--f-mono); font-size: 12px; color: var(--accent); letter-spacing: .04em; }
+.soz { border-left: 3px solid var(--accent); padding: 4px 12px; color: var(--ink2); font-style: italic; }
+.ikki { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 16px; align-items: start; }
+@media (max-width: 860px) { .ikki { grid-template-columns: 1fr; } }
+figure { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+figure img { width: 100%; border-radius: 8px; border: 1px solid var(--line); display: block; }
+figcaption { font-size: 12.5px; color: var(--ink2); }
+.tanlov { display: flex; flex-direction: column; gap: 8px; }
+.tanlov .v { display: flex; gap: 10px; align-items: baseline; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; }
+.tanlov .v b { font-family: var(--f-mono); color: var(--accent); flex-shrink: 0; }
+.tanlov .v.tavsiya { border-color: var(--accent); background: var(--accent-soft); }
+.ogoh { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-weight: 600; }
+ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+/* ---- dars namunasi (mock) ---- */
+.dars { background: var(--d-bg); color: var(--d-ink); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+.dars .t { font-size: 20px; font-weight: 800; letter-spacing: -.01em; } .dars .t i { font-style: normal; color: var(--d-accent); }
+.dars .hol { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--d-ink2); }
+.k { background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.k .y { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--d-ink2); }
+.q { display: flex; align-items: center; gap: 10px; background: var(--d-mute); border-radius: 10px; padding: 9px 12px; }
+.q .n { width: 20px; color: var(--d-ink2); font-family: var(--f-mono); font-size: 12px; } .q b { flex: 1; font-weight: 700; } .q .s { color: var(--d-ink2); font-size: 12.5px; }
+.q.chet { color: var(--d-ink2); } .q.chet b { font-weight: 600; }
+.chip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--d-line); background: var(--d-paper); border-radius: 999px; padding: 6px 12px; font-weight: 700; font-size: 13px; }
+.chip.on { border-color: var(--d-accent); color: var(--d-accent); background: var(--d-asoft); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.ok { color: var(--d-ok); background: var(--d-okfon); border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 800; }
+.yoq { color: var(--d-err); background: var(--d-errfon); border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 800; }
+.mute { color: var(--d-ink2); font-size: 13px; }
+.form { display: flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--f-mono); font-size: 14px; flex-wrap: wrap; }
+.form .b { background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 8px; padding: 4px 10px; min-width: 38px; text-align: center; } .form .b.bosh { color: var(--d-ink2); }
+.form .r { background: var(--d-accent); color: #fff; border-radius: 8px; padding: 4px 10px; font-weight: 700; }
+.bar { display: grid; grid-template-columns: 20px minmax(0, 1fr) minmax(90px, 1.2fr) 42px; align-items: center; gap: 10px; background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 10px; padding: 8px 12px; }
+.bar.top { border-color: var(--d-accent); } .bar .n { color: var(--d-ink2); font-family: var(--f-mono); font-size: 12px; } .bar .f { font-family: var(--f-mono); font-size: 11px; color: var(--d-ink2); }
+.bar .tr { height: 8px; border-radius: 999px; background: var(--d-line); overflow: hidden; } .bar .tr i { display: block; height: 100%; background: var(--d-accent); border-radius: 999px; }
+.bar .v { font-family: var(--f-mono); font-weight: 700; color: var(--d-accent); text-align: right; }
+.bar.chet { opacity: .6; } .bar.chet .tr i { background: var(--d-ink2); } .bar.chet .v { color: var(--d-ink2); }
+.ok-qator { background: var(--d-okfon); color: var(--d-ok); border-radius: 10px; padding: 9px 12px; font-weight: 700; }
+.qadam { display: flex; gap: 8px; align-items: center; } .qadam .d { width: 22px; height: 22px; border-radius: 50%; background: var(--d-accent); color: #fff; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.uch { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; align-items: start; }
+.tug { display: inline-flex; align-items: center; border-radius: 10px; padding: 7px 14px; font-weight: 800; font-size: 13px; background: var(--d-accent); color: #fff; }
+.tug.ik { background: var(--d-paper); color: var(--d-accent); border: 1px solid var(--d-accent); }
+.voronka { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.voronka .s { background: var(--d-asoft); border-radius: 10px; padding: 8px 14px; font-weight: 700; display: flex; gap: 8px; align-items: baseline; } .voronka .s b { font-size: 20px; color: var(--d-accent); font-family: var(--f-mono); }
+.voronka .s.fin { background: var(--d-accent); color: #fff; } .voronka .s.fin b { color: #fff; }
+</style>
+<style>
+.row { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1.6fr) 110px; gap: 10px; align-items: center; padding: 8px 12px; background: var(--d-mute); border-radius: 10px; font-size: 13.5px; }
+.row b { font-weight: 700; } .row i { color: var(--d-ink2); font-style: italic; }
+.row .ok { justify-self: end; } .row .yoq { justify-self: end; }
+.inp { display: inline-block; min-width: 200px; border: 1.5px solid var(--d-accent); border-radius: 8px; padding: 4px 10px; color: var(--d-ink2); background: var(--d-paper); font-style: normal; }
+.ikkiv { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.ikkiv .v { background: var(--d-mute); border-radius: 10px; padding: 8px 12px; font-size: 13px; } .ikkiv .v b { display: block; font-size: 13.5px; }
+.bol { background: var(--d-asoft); color: var(--d-accent); border-radius: 6px; padding: 1px 6px; font-weight: 700; font-style: normal; }
+.sav { display: flex; flex-direction: column; gap: 4px; font-size: 13.5px; font-style: italic; color: var(--d-ink); }
+.sav span::before { content: counter(s) ". "; counter-increment: s; font-style: normal; color: var(--d-ink2); font-family: var(--f-mono); font-size: 12px; }
+.sav { counter-reset: s 1; }
+.steps { display: flex; gap: 18px; font-size: 13px; color: var(--d-ink2); } .steps b { color: var(--d-ink); } .steps i { display: inline-flex; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--d-line); align-items: center; justify-content: center; font-style: normal; font-size: 11px; margin-right: 6px; } .steps b i { border-color: var(--d-accent); color: var(--d-accent); }
+.yig { display: flex; align-items: center; gap: 10px; background: var(--d-okfon); color: var(--d-ok); border-radius: 10px; padding: 8px 12px; font-size: 13.5px; } .yig b { font-family: var(--f-mono); margin-left: auto; }
+.yig.kul { background: var(--d-mute); color: var(--d-ink2); }
+.ust2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.yc { display: inline-flex; align-items: center; gap: 4px; border: 1px solid var(--d-line); background: var(--d-paper); border-radius: 8px; padding: 2px 8px; font-family: var(--f-mono); font-size: 12px; } .yc.ok { border-color: var(--d-accent); background: var(--d-asoft); color: var(--d-accent); }
+.yc.ha { border-color: var(--d-ok); background: var(--d-okfon); color: var(--d-ok); font-family: var(--f-body); font-weight: 700; } .yc.kul { color: var(--d-ink2); font-family: var(--f-body); }
+.dk { display: grid; grid-template-columns: 110px 1fr 1fr; gap: 6px 12px; align-items: center; font-size: 13px; } .dk .h { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--d-ink2); } .dk .n { font-family: var(--f-mono); font-weight: 700; } .dk .m { color: var(--d-accent); font-size: 12px; font-weight: 700; } .dk .chips { gap: 4px; }
+.gk { display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 14px; background: var(--d-paper); border: 1.5px solid var(--d-line); } .gk b { font-size: 15px; } .gk span { font-family: var(--f-mono); font-size: 12px; color: var(--d-ink2); } .gk.on { border-color: var(--d-accent); }
+.fq { display: grid; grid-template-columns: 120px minmax(0,1fr); gap: 10px; align-items: center; background: var(--d-mute); border-radius: 10px; padding: 8px 12px; font-size: 13.5px; } .fq .y { margin: 0; } .fq.joriy { outline: 1.5px solid var(--d-accent); background: var(--d-paper); } .fq.chet { color: var(--d-ink2); }
+.inp { display: inline-block; min-width: 200px; border: 1.5px solid var(--d-accent); border-radius: 8px; padding: 4px 10px; color: var(--d-ink2); background: var(--d-paper); font-style: normal; }
+.fk { border: 1.5px solid var(--d-accent); background: var(--d-asoft); border-radius: 12px; padding: 10px 14px; display: flex; flex-direction: column; gap: 2px; } .fk .y { color: var(--d-accent); } .fk b { font-size: 16px; }
+.namuna { font-size: 12.5px; color: var(--d-ink2); font-style: italic; }
+table.yz { border-collapse: collapse; font-size: 12.5px; width: 100%; } table.yz th, table.yz td { text-align: left; padding: 4px 8px; border-bottom: 1px solid var(--line); vertical-align: top; } table.yz th { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink2); }
+</style>
+<div class="wrap">
+  <header class="band">
+    <span class="id">F-1015-221 … 228 · 4-dars m9-04 · ikkinchi ko'rik 18.10</span>
+    <h1>Sakkiz joy: sizning so'zingiz, tashxis, qanday bo'ladi</h1>
+    <p class="lead">Eng kattasi — Mentor misoli 10 yozuvdan 6 taga. U sonlarni, testni, kod ekranini va 5-darsdagi ikki havolani o'zgartiradi — 1-bandda hammasi yozilgan. «Hammasi A» yoki raqam bilan.</p>
+  </header>
+
+  <section class="band">
+    <span class="id">F-1015-221 · Mentor misoli: 10 yozuv → 6 yozuv (2, 4, 8, 11-ekran, testlar)</span>
+    <h2>Oltita yozuv: har g'oyaga uchta — sonlar baribir farqni ko'rsatadi</h2>
+    <p class="soz">«10 ta emas 6 ta qilaylik — UI toza va tushunarli bo'lardi»</p>
+    <div class="ikki">
+      <figure><img src="r/19.png" alt="2-ekran, o'nta yozuv"><figcaption>Hozir: har savolda o'nta karta.</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p><b>Tashxis.</b> Rozi: 13 yoshli o'quvchi o'nta kartani o'qimaydi, 3 + 3 ni o'qiydi. Qoladigan yozuvlar: jamoa — 1, 2, 3 (uchalasida muammo va kun belgilagan); to'garak — 6 (o'smir, muammo, yo'q), 7 (ota-ona, muammo, kun belgiladi), 8 (o'smir, «onam biladi», yo'q). Darsning uch kashfiyoti saqlanadi: muammo ikkalasida ham bor (farq bitta yozuv), harakat belgisi jamoada kuchli, to'garakda tanlovchi ota-ona.</p>
+        <table class="yz"><tr><th>Qator</th><th>Jamoa yig'ish</th><th>Mahalla to'garaklari</th></tr>
+          <tr><td>Muammo bo'lgan</td><td><b>3 / 3</b></td><td><b>2 / 3</b></td></tr>
+          <tr><td>Hozir nima bilan</td><td>Telegram guruhi 3 / 3</td><td>tanishlar orqali 2 / 3</td></tr>
+          <tr><td>Eng qiyini</td><td>javoblar yo'qoladi 2 / 3</td><td>qayerda va qachon — bilinmaydi 2 / 3</td></tr>
+          <tr><td>Harakat belgisi</td><td><b>3 / 3</b></td><td><b>1 / 3</b></td></tr></table>
+        <p><b>Qayerga tegadi.</b> 0-ekran «3 ta intervyu» · 2, 4-ekran sonlari · 3-test savoli («jamoada 3 yozuvda, to'garakda 2 tasida») · 4-ekran bashorati «Bittasi · Ikkitasi · Uchtasi» · 8-ekran dalili «Muammo 3 / 3 · belgi 3 / 3» · 11-ekran kodi (6 yozuv, natija) · kartochka «6 yozuv» · arena va eslatmalardagi «10 intervyu» → «olti intervyu». Dars nomi qoladi: o'quvchining o'zi 5 + 5 yig'adi, Mentor misoli qisqa. 5-darsda ikki havola («2-yozuv», «5-yozuv») — 5-dars qayta loyihasida tuzatiladi (5 → 2).</p>
+      </div>
+    </div>
+    <div class="tanlov">
+      <div class="v tavsiya"><b>A</b><span>3 + 3 yozuv (1, 2, 3 · 6, 7, 8), yuqoridagi sonlar; hamma bog'liq joy bir yo'la o'zgaradi.</span></div>
+      <div class="v"><b>B</b><span>10 yozuv qoladi, faqat ko'rinish ixchamlanadi (karta bir qator).</span></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <span class="id">F-1015-222 · 2-ekran yakuni</span>
+    <h2>Yozuv chiplari doskaning ustida alohida osilgan — doska kartasining ichiga kiradi</h2>
+    <p class="soz">«shuni bitta cardga olsak … cardda o'ralsa akuratne yaxshi ko'rinadi»</p>
+    <div class="ikki">
+      <figure><img src="r/20.png" alt="2-ekran yakuni"><figcaption>Hozir: chiplar tepada, doska pastda — ikki narsa.</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p><b>Tashxis.</b> Chiplar doskaning ustun nomlari ostida turishi kerak (8-ekrandagidek). Olti yozuv bilan bu bitta qator.</p>
+        <div class="dars"><span class="hol">Taklif A — bitta karta: ustun nomi · chiplar · qatorlar</span>
+          <div class="k"><div class="dk">
+            <span></span><span class="h">Jamoa yig'ish</span><span class="h">Mahalla to'garaklari</span>
+            <span></span><span class="chips"><span class="yc ok">1 ✓</span><span class="yc ok">2 ✓</span><span class="yc ok">3 ✓</span></span><span class="chips"><span class="yc ok">6 ✓</span><span class="yc ok">7 ✓</span><span class="yc">8</span></span>
+            <b>Muammo bo'lgan</b><span class="n">●●● 3 / 3</span><span class="n">●●○ 2 / 3</span>
+            <b>Hozir nima bilan</b><span><span class="n">●●● 3 / 3</span><br><span class="m">Telegram guruhi</span></span><span><span class="n">●●○ 2 / 3</span><br><span class="m">tanishlar orqali</span></span>
+            <b>Eng qiyini</b><span><span class="n">●●○ 2 / 3</span><br><span class="m">javoblar yo'qoladi</span></span><span><span class="n">●●○ 2 / 3</span><br><span class="m">qayerda va qachon — bilinmaydi</span></span>
+            <span class="mute">Harakat belgisi</span><span class="mute">? / 3</span><span class="mute">? / 3</span>
+          </div></div></div>
+      </div>
+    </div>
+    <div class="tanlov"><div class="v tavsiya"><b>A</b><span>Chiplar doska kartasida, ustun nomi ostida (8-ekrandagi `IxchamDoska` ko'rinishi).</span></div></div>
+  </section>
+
+  <section class="band">
+    <span class="id">F-1015-223 · 4-ekran boshi</span>
+    <h2>Bashorat yolg'iz chiqadi; tanlangach qatorga kichrayadi, karta pastdan keladi</h2>
+    <p class="soz">«birinchi shu ko'rinsin, pastdagi ko'rinmay tursin; tanlagach pastdagi animatsiyada kelsin, u esa kichraysin»</p>
+    <div class="ikki">
+      <figure><img src="r/22.png" alt="4-ekran bashorati"><figcaption>Hozir: bashorat bilan birga qadamlar, chiplar va doska ham ko'rinib turadi.</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p><b>Tashxis.</b> 2-ekranda shunday qilingan (213.7), 4-ekranda qolib ketgan. Bashoratgacha pastda hech narsa yo'q; tanlangach bashorat bitta qatorga yig'iladi («Taxminingiz: bittasi»), karta pastdan kirib keladi.</p>
+      </div>
+    </div>
+    <div class="tanlov"><div class="v tavsiya"><b>A</b><span>Bashorat yolg'iz → ixcham qator → karta animatsiya bilan (0,4 s; kam-harakat rejimida darrov).</span></div></div>
+  </section>
+
+  <section class="band">
+    <span class="id">F-1015-224 · 4-ekran, 1-qadam</span>
+    <h2>Chiplar va doska ikki alohida narsa — bitta karta, chiplarga yengil chegara</h2>
+    <p class="soz">«bitta cardga olsak, yozadiganlarga birozdan border qo'ysak … 6 ta bo'ladi»</p>
+    <div class="ikki">
+      <figure><img src="r/24.png" alt="4-ekran 1-qadam"><figcaption>Hozir: chapda chegarasiz chiplar, o'ngda doska kartasi.</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="dars"><span class="hol">Taklif A — bitta karta: tepada olti chip (belgi bilan), pastda doska</span>
+          <div class="k">
+            <div class="ust2">
+              <div><span class="y">Jamoa yig'ish</span><div class="chips" style="margin-top:6px;flex-direction:column;align-items:flex-start"><span class="yc ha">1 · o'yinchi, 15 yosh · kun belgiladi</span><span class="yc ha">2 · o'yinchi, 14 yosh · kun belgiladi</span><span class="yc ha">3 · o'yinchi, 16 yosh · kun belgiladi</span></div></div>
+              <div><span class="y">Mahalla to'garaklari</span><div class="chips" style="margin-top:6px;flex-direction:column;align-items:flex-start"><span class="yc kul">6 · o'smir, 14 yosh · yo'q</span><span class="yc ha">7 · ota-ona · kun belgiladi</span><span class="yc kul">8 · o'smir, 15 yosh · yo'q</span></div></div>
+            </div>
+            <div class="dk" style="border-top:1px solid var(--d-line);padding-top:8px"><b>Harakat belgisi</b><span class="n">●●● 3 / 3</span><span class="n">○●○ 1 / 3</span></div>
+          </div></div>
+      </div>
+    </div>
+    <div class="tanlov"><div class="v tavsiya"><b>A</b><span>Chiplar (1 px chegara, bir xil en) va doska bitta kartada; doska kartaning pastki qismi.</span></div></div>
+  </section>
+
+  <section class="band">
+    <span class="id">F-1015-225 · 4-ekran, 2-qadam «Kim belgiladi»</span>
+    <h2>Guruhlarga surilgan chiplar tushunarsiz — javob ikki oddiy qator bo'lsin</h2>
+    <p class="soz">«tushunarsiz»</p>
+    <div class="ikki">
+      <figure><img src="r/25.png" alt="4-ekran 2-qadam"><figcaption>Hozir: to'garak chiplari «O'SMIR» va «OTA-ONA» guruhiga suriladi, 7-chip ramkada, kursiv iqtiboslar.</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p><b>Tashxis.</b> Savol «kim kun belgiladi?» — javob bitta jadval: kim · nechtasi. Chiplarni surish o'rniga karta ichida ikki qator chiqadi, chiplar joyida qoladi.</p>
+        <div class="dars"><span class="hol">Taklif A — to'garak ustuni ostida ikki javob qatori</span>
+          <div class="k">
+            <span class="y">Kim kun belgiladi? · Mahalla to'garaklari</span>
+            <div class="yig kul"><span>O'smirlar (6, 8)</span><b>0 / 2 · «onam biladi»</b></div>
+            <div class="yig"><span>Ota-ona (7)</span><b>1 / 1 kun belgiladi</b></div>
+            <span class="mute">To'garakda kunni ota-ona belgiladi, o'smirlar esa belgilamadi.</span>
+          </div></div>
+      </div>
+    </div>
+    <div class="tanlov"><div class="v tavsiya"><b>A</b><span>Guruhlash animatsiyasi olinadi; ikki qator («O'smirlar 0 / 2», «Ota-ona 1 / 1») karta ichida, ostida bitta gap.</span></div></div>
+  </section>
+
+  <section class="band">
+    <span class="id">F-1015-226 · 8-ekran, 1-qadam (Mentor tanlovi)</span>
+    <h2>To'liq doska yana qaytadi — o'quvchi o'qigisi kelmaydi; ikki g'oya kartasi yetadi</h2>
+    <p class="soz">«juda element ko'p, qaragim ham o'qigim ham kelmadi»</p>
+    <div class="ikki">
+      <figure><img src="r/26.png" alt="8-ekran doskasi"><figcaption>Hozir: ixcham doska — raqam chiplari, to'rt qator, nuqtalar, matnlar.</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p><b>Tashxis.</b> Doska 2 va 4-ekranda ko'rilgan. Tanlov uchun ikkita son yetadi: muammo va harakat belgisi. 10-ekranda o'quvchi o'z g'oyasini xuddi shunday kartalardan tanlaydi — Mentor misoli shunga o'xshasa, o'quvchi 10-ekranda adashmaydi.</p>
+        <div class="dars"><span class="hol">Taklif A — ikki g'oya kartasi (bosiladi), doska yo'q</span>
+          <div class="ust2">
+            <div class="gk on"><b>Jamoa yig'ish</b><span>Muammo 3 / 3 · belgi 3 / 3</span></div>
+            <div class="gk"><b>Mahalla to'garaklari</b><span>Muammo 2 / 3 · belgi 1 / 3</span></div>
+          </div>
+          <span class="mute">Bosilgach: o'ngdagi final kartasiga uchadi (hozirgidek), ikkinchisi «Keyin»ga.</span>
+        </div>
+      </div>
+    </div>
+    <div class="tanlov"><div class="v tavsiya"><b>A</b><span>1-qadamda doska o'rniga ikki g'oya kartasi (ikki son bilan). 2-qadamda chapda final kartasi + bo'laklar; doska yo'q.</span></div><div class="v"><b>B</b><span>Doska qoladi, faqat ikki qator (Muammo bo'lgan · Harakat belgisi), chip va nuqtasiz.</span></div></div>
+  </section>
+
+  <section class="band">
+    <span class="id">F-1015-227 · 10-ekran, 1-qadam</span>
+    <h2>Doska + ikki karta ikki narsa — bitta karta: ikki g'oya, har birida uch son</h2>
+    <p class="soz">«shuni bitta card qilamizmi yo shart emasmi»</p>
+    <div class="ikki">
+      <figure><img src="r/27.png" alt="10-ekran 1-qadam"><figcaption>Hozir: o'quvchi doskasi, ostida ikki kichik karta — sonlar ikki marta.</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p><b>Tashxis.</b> Shart: sonlar ikki joyda takror. Doska olinadi, ikki g'oya kartasi uch son bilan (muammo, eng qiyini, belgi) bitta kartada; 8-ekrandagi Mentor kartalari bilan bir xil ko'rinish.</p>
+        <div class="dars"><span class="hol">Taklif A — bitta karta, ichida ikki g'oya</span>
+          <div class="k"><span class="y">Doskangiz · bittasini tanlang</span><div class="ust2">
+            <div class="gk on"><b>oshxona menyusi boti</b><span>Muammo 4 / 5 · belgi 3 / 5</span><span>Eng qiyini: «nima borligini bilmaydi» 3 / 5</span></div>
+            <div class="gk"><b>maydon navbati jadvali</b><span>Muammo 2 / 4 · belgi 1 / 4</span><span>Eng qiyini: «maydon band» 2 / 4</span></div>
+          </div></div></div>
+      </div>
+    </div>
+    <div class="tanlov"><div class="v tavsiya"><b>A</b><span>Doska olinadi; bitta kartada ikki g'oya (uch son), biri bosiladi.</span></div></div>
+  </section>
+
+  <section class="band">
+    <span class="id">F-1015-228 · 10-ekran, 2-qadam</span>
+    <h2>Yetti blok bitta kartada — uchta qism qoladi: tanlov, sabab, muammo gapi</h2>
+    <p class="soz">«biroz tushunarsizmi — ko'r o'zing»</p>
+    <div class="ikki">
+      <figure><img src="r/28.png" alt="10-ekran 2-qadam"><figcaption>Hozir: Vaqtincha tanlov · Keyin · izoh · Nega shu g'oya? · Namuna · Kim · Qachon · Nimadan (o'ngda kursiv matn) · «…» · Saqlash.</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p><b>Tashxis.</b> Kulrang qatorlarning o'ng tomonidagi kursiv matn («Kim qiynaladi?») javobga o'xshaydi; «…» qatori bo'sh; «Nega shu g'oya?» izoh + qator ikki narsa; «Muammo gapi» degan sarlavha yo'q — o'quvchi nima qilayotganini bilmaydi.</p>
+        <div class="dars"><span class="hol">Taklif A — uch qism, har biri sarlavha bilan</span>
+          <div class="k" style="gap:8px">
+            <div class="fk"><span class="y">Final g'oya · vaqtincha</span><b>maydon navbati jadvali</b><span class="mute">Muammo 2 / 4 · belgi 1 / 4 · «Keyin»: oshxona menyusi boti</span></div>
+            <div class="fq joriy"><span class="y">Nega shu g'oya?</span><span class="inp">Doskada sonlar ikkinchi g'oyada kattaroq — sababi</span></div>
+            <span class="y">Muammo gapi</span>
+            <span class="namuna">Namuna (Mentor): O'yinchilar o'yindan oldin jamoaga yetarli odam yig'ishda va kim aniq kelishini bilishda qiynaladi.</span>
+            <div class="fq chet"><span class="y">Kim</span><span></span></div>
+            <div class="fq chet"><span class="y">Qachon</span><span></span></div>
+            <div class="fq chet"><span class="y">Nimadan qiynaladi</span><span></span></div>
+            <div class="chips" style="justify-content:flex-end"><span class="tug">Saqlash</span></div>
+          </div>
+          <span class="mute">Yig'ilgan gap qatori faqat birinchi bo'lak yozilgach chiqadi.</span>
+        </div>
+      </div>
+    </div>
+    <div class="tanlov"><div class="v tavsiya"><b>A</b><span>«Keyin» final kartasining ichida bitta qator; «Nega shu g'oya?» bitta qator (faqat kerak bo'lsa); «Muammo gapi» sarlavhasi; kulrang qatorlarda o'ng matn yo'q; «…» qatori yo'q.</span></div></div>
+  </section>
+</div>

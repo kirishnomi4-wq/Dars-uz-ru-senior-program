@@ -33,10 +33,11 @@ Chiziq bo'ylab uchadigan konvertlar yorlig'i: so'rov · javob · `oyin-ozgardi`.
 - Mentor: Har qadamni avval Maydon Jamoa misolida ko'rasiz, keyin o'z mahsulotingizda qilasiz. Backend bugun hali xabar yubormaydi — bugungi ish ulanish va sxema.
 - Chap — Dars oxirida: 1-telefon (O'yinlar ekrani, belgi «Ulanmoqda…» → chiziq chiziladi va ochiq qoladi, ustida «ochiq» → belgi «Ulangan») va Backend; telefon ostida: README.md · «Real vaqt» · 5 qator
 - Reja:
-  1. Ekran nega o'zi yangilanmasligini ko'rish · so'rov
-  2. Ochiq turadigan ulanish va undan keladigan xabar · doimiy ulanish, hodisalar
-  3. Ilovani Backend'ga ulash, belgini tekshirish · ulanish
-  4. Mahsulotingiz uchun sxema yozish · real vaqt oqimi sxemasi
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
+  1. Ekran nega o'zi yangilanmasligini ko'rish
+  2. Ochiq turadigan ulanish va undan keladigan xabar
+  3. Ilovani Backend'ga ulash, belgini tekshirish
+  4. Mahsulotingiz uchun sxema yozish
 - Pastki qator: o'z repo'ngiz — ulanish va `README.md` «Real vaqt» · Mentor misoli `maydon-jamoa` · tayyor holat `m12-dars-02-done`
 - Tugmalar: Orqaga · Boshlaymiz
 
@@ -282,9 +283,9 @@ document.querySelector('.boshqa').addEventListener('click', function () {
 - Eyebrow: Tushuncha · sxema
 - Sarlavha: Kim nima qilsa, *kimning ekrani* o'zgaradi?
 - Mentor: Har o'zgarish uchun Backend yuboradigan hodisaning sababini tanlang — qator jadvalga tushadi.
-- Bashorat (Avval o'zingiz belgilab ko'ring): Besh xil o'zgarish uchun Mentor nechta hodisa nomi yozgan? · Bitta · Uchta · Beshta
+- Bashorat yo'q — sababni tanlashning o'zi topshiriq (208/0 e); «bitta hodisa» xulosada aytiladi. *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
 - Chap — 1-telefon (joriy qatorga mos joy belgilangan: «8 / 10» · «Kelishini tasdiqladi: 7 / 9» · «Navbatda: 0» · O'yinlar ro'yxati)
-- O'ng — jadval «Mentor sxemasi» · N / 5; ustunlar: Real vaqt nuqtasi · Kim nima qiladi · Hodisa · Kim oladi · Ekranda nima o'zgaradi
+- O'ng — jadval «Mentor sxemasi» (hisob tugmada *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*); ustunlar: Real vaqt nuqtasi · Kim nima qiladi · Hodisa · Kim oladi · Ekranda nima o'zgaradi
 - Ostida karta (bittadan): «Kim nima qiladi» matni va besh sabab: `qoshildi` · `chiqdi` · `tasdiqladi` · `navbatga-yozildi` · `elon-berildi`
   1. o'yinchi «Qo'shilaman» ni bosadi — ✔ `qoshildi`
   2. o'yinchi o'yindan chiqadi (navbatdagi kirsa — shu hodisa) — ✔ `chiqdi`
@@ -304,10 +305,9 @@ document.querySelector('.boshqa').addEventListener('click', function () {
 | o'yinlar ro'yxati | tashkilotchi o'yin e'lon qiladi | `oyin-ozgardi` · sabab `elon-berildi` | hamma ulangan ilova | ro'yxatda yangi karta |
 
 - Nom qatori: Kim nima qilganda qaysi hodisa kimga borishi va ekranda nima o'zgarishi yozilgan jadval — **real vaqt oqimi sxemasi**.
-- Natija: Taxminingiz to'g'ri chiqdi ✓ (yoki: Taxminingiz ✕ — Mentor misolida: bitta — `oyin-ozgardi`, besh sabab bilan)
 - Xulosa: Mentor misolida bitta hodisa besh sabab bilan keladi; har qatorda kim olishi va nima o'zgarishi yozilgan.
 - Izoh: Sxema — reja: hodisalar hali yuborilmaydi; Mentorning sodda variantida ular hamma ulangan ilovaga boradi.
-- Tugma: Avval o'zingiz belgilab ko'ring → Qatorlarni to'ldiring (N/5) → Davom etish
+- Tugma: Qatorlarni to'ldiring (N/5) → Davom etish
 
 ## 13 · O'z sxemangiz
 - Eyebrow: Mustaqil ish · sxema
@@ -489,7 +489,9 @@ Natijalar (podium) — jonli reyting
   3. **Sxema** — mahsulotingizning har ekranini ochib chiqing: boshqa odam tufayli o'zgaradigan yana joy bormi? Sxemada 5 tadan kam qator bo'lsa — darsdagi sxema kartasiga va README'ga qo'shing.
   - Keyingi dars — **«Ekran o'zi yangilanishi uchun nimani yozasiz?»**: sxemangizdagi hodisalar talabga aylanadi.
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — sarlavha «Uyda nima qilasiz?», maydonlar katta quti (yorliq bosh harfda, «:» siz), qadamlar raqam-doira, «Keyingi dars» karta ichida (13.5px); qadam matni o'zgarmagan.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Event Reader** — Hodisa nimani olib kelishini topdingiz (6-ekran, birinchi urinishda to'g'ri)

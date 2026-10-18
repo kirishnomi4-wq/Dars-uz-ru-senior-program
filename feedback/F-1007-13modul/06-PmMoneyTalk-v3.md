@@ -135,13 +135,14 @@ namunalar: 12-Modul `06-PmChannels-v3.md` + `06-FILTR.md` (juftlik va yakka reji
 - Sarlavha: **Bugun narx haqida savol berishni o'rganasiz.** (44)
 - Mentor: Narxingiz hozircha taxmin — uni odamlarning o'z gapi bilan tekshirasiz. Avval sherigingiz bilan mashq qilasiz.
 - Chap — yorliq «Narx bo'yicha uchta real suhbat» (App.jsx osti so'zma-so'z, P-015) + ostida kulrang qator: Darsda — suhbat savollari va mashq; suhbatlar — darsda va uyda, uchtagacha. (75)
-  Vizual: `SuhbatVaraq` varaq o'zi yuradi (DE-200) — «Savollar» bo'limida to'rtta raqamli bo'sh uzuq qator (o'quvchi 6-ekranda to'ldiradi — U-041), «Yozuvlarim · real 0 / 3» bo'limida ustun nomlari «kim · gap · belgi · narx» va uchta bo'sh uzuq qator navbat bilan chiziladi.
+  Vizual: bo'sh varaq yo'q — u 6-ekranda o'quvchi to'ldirganda chiqadi (208/0 d); chapda faqat kulrang qator. *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
   Savol matni yo'q — 2-ekran kashfiyotini ochmaydi (P-036); ustun nomlari — haqiqiy mazmun (SABOQ 33).
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
-  - 01 · Narxni suhbatning qayerida aytishni bilasiz · `suhbat`
-  - 02 · Odamning javobini so'zma-so'z yozasiz · `ha · qimmat · yo'q`
-  - 03 · O'z narxingiz uchun savollar yozasiz · `suhbat savollari`
-  - 04 · Sherigingiz bilan rol o'yinida mashq qilasiz · `rol o'yini`
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
+  - 01 · Narxni suhbatning qayerida aytishni bilasiz
+  - 02 · Odamning javobini so'zma-so'z yozasiz
+  - 03 · O'z narxingiz uchun savollar yozasiz
+  - 04 · Sherigingiz bilan rol o'yinida mashq qilasiz
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz
 - O'qituvchi eslatmasi: Menyu ostidagi «uchta real suhbat» — dastur natijasi: darsda — suhbat savollari, rol o'yini va imkon bo'lsa bitta real suhbat; qolgani uyda (Qaror-0 11). Darsda hech kim pul olmaydi va hech narsa sotmaydi.
 - Izoh (MD): sarlavhada yangi atama yo'q (T-011); «suhbat», «suhbat savollari», «rol o'yini» — faqat kulrang teglarda (P-015). Chap yorliq App.jsx ostini so'zma-so'z beradi, ostidagi kulrang qator uni darsdagi haqiqatga chegaralaydi (11-Modul 03-FILTR 1 sinfi: menyu osti darsda bo'lmaydigan sonni va'da qilmasin).
@@ -150,9 +151,8 @@ namunalar: 12-Modul `06-PmChannels-v3.md` + `06-FILTR.md` (juftlik va yakka reji
 - Eyebrow: Tushuncha · suhbat
 - Sarlavha: **Mentor tashkilotchiga qaysi gaplarni aytadi?** (44)
 - Mentor: Mentor misolida Pro tashkilotchi uchun, o'yinchilar bepul — har gapga mos tugmani bosing.
-  (Birinchi harakat — bashorat; uning yo'rig'i `QBashorat` yorlig'ida, Mentor takrorlamaydi — T-047.)
-- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 zinapoya): **Mentor hozir 6 gap aytadi — nechtasi savol bo'ladi?** (F-1007-474: gaplar hali ekranda yo'q, shuning uchun savol «hozir keladi» deb aytadi; sahna ustida «6 gap» va 1…6 katakcha — kelgani yashil, joriysi accent) · 2 · 3 · 4 — tanlangach yopilmaydi: ixcham qator «Taxminingiz: N» natijagacha turadi; tugmalar shundan keyin yoqiladi.
-- Vizual (≤ 3 blok: sahna · varaq · tugmalar qatori): **chapda** — sahna (Mentor va tashkilotchi; ular orasida joriy gap kartasi «Gap n / 6», kulrang — hali hech kim aytmagan) · **o'ngda** — varaq «Mentor misoli · Maydon Jamoa»: **Savollar** bo'limi — to'rtta raqamli bo'sh uzuq uya; ostida kulrang qator «Mentor bunday demaydi · 0» ·
+- Bashorat yo'q — «Savol / Sotish gapi» ajratishning o'zi topshiriq (208/0 e); shu bilan «6 gap» katakchalari ham yo'q (ular bashorat hali ko'rinmagan gaplarni tilga olgani uchun qo'yilgan edi — F-1007-474). *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
+- Vizual (≤ 3 blok: sahna · varaq · tugmalar qatori): **chapda** — sahna (Mentor va tashkilotchi; ular orasida joriy gap kartasi (yorliqsiz — hisob tugmada *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*), kulrang — hali hech kim aytmagan) · **o'ngda** — varaq «Mentor misoli · Maydon Jamoa»: **Savollar** bo'limi — to'rtta raqamli bo'sh uzuq uya; ostida kulrang qator «Mentor bunday demaydi · 0» ·
   **varaq ostida** — ikki tugma: «Savol» · «Sotish gapi».
 - Kartalar (navbat bilan; 1, 3, 4, 6 — Mentorning suhbat savollari, tayanch 1.6 so'zma-so'z; 2, 5 — sotish gaplari, A-6):
   1. «Hozir o'yinni qanday yig'asiz va bunga haftada qancha vaqt ketadi?» ✔ Savol → varaqning 1-uyasiga
@@ -170,11 +170,11 @@ namunalar: 12-Modul `06-PmChannels-v3.md` + `06-FILTR.md` (juftlik va yakka reji
   - 4-gap, «Sotish gapi»: Gap oxiriga qarang: endi kim gapiradi? (38)
   - 5-gap, «Savol»: Bu gap odamdan so'rayaptimi yoki undayaptimi? (45)
   - 6-gap, «Sotish gapi»: Bu gapga kim javob beradi — qarang. (35)
-- Natija (bitta blok — E 42; `tugadi`: tugmalar yopiladi, sahna yig'iladi, varaq butun enga, ⛶ ichida — q17/q18): yashil xulosa qutisi — birinchi kichik qator taxmin: «Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz ✕ — aslida: 4»;
+- Natija (bitta blok — E 42; `tugadi`: tugmalar yopiladi, sahna yig'iladi, varaq butun enga, ⛶ ichida — q17/q18): yashil xulosa qutisi (taxmin qatorisiz *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*);
   varaq sarlavhasi «Mentorning suhbat savollari» bo'ladi (harflar almashadi): to'rt savol tartib bilan, ostida «Mentor bunday demaydi · 2».
 - Xulosa: Bu darsda suhbat — sotish emas, savol: avval odamning hozirgi ishi so'raladi, keyin narx. (89) — atama «suhbat» shu yerda tug'iladi (T-011)
 - `QIzoh` (qutining oxirgi kichik qatori — E 42): Suhbat savollari — har odamga bir xil tartibda beriladigan asosiy savollar. (75) — atama «suhbat savollari»
-- Tugma (pastki): Avval belgilang → Gaplarni ajrating (N/6) → Davom etish
+- Tugma (pastki): Gaplarni ajrating (N/6) → Davom etish
 - Ipucha (40 s harakatsizlikda; javobni aytmaydi): Gap odamdan nimadir so'rayaptimi yoki uni olishga undayaptimi? (62)
 - Keyingi bosiladigan joy: bashorat variantlari → ikki tugma (navbatma-navbat to'lqin) → «Davom etish».
 - Nishon: Just Ask! (olti gap birinchi urinishda).
@@ -208,9 +208,9 @@ namunalar: 12-Modul `06-PmChannels-v3.md` + `06-FILTR.md` (juftlik va yakka reji
 - Eyebrow: Tushuncha · javob
 - Sarlavha: **Uch tashkilotchi narx haqida nima dedi?** (39)
 - Mentor: Mentor javoblarni intervyudagidek so'zma-so'z yozgan — har yozuvga mos belgini bosing.
-- Bashorat (ballsiz; S-015 — o'sish tartibida): **Uch tashkilotchidan nechtasi «ha» dedi?** · 0 · 1 · 2 — tanlangach ixcham qator natijagacha turadi; belgi tugmalari shundan keyin yoqiladi.
+- Bashorat yo'q — belgi qo'yishning o'zi topshiriq (208/0 e); belgi tugmalari darhol yoqiq. *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
 - Vizual (≤ 3 blok: sahna · varaq · belgi tugmalari): **chapda** — sahna: Mentor (pufagida 3-savol: «"Doimiy o'yin" 30 kunga 15 000 so'm bo'lsa — olarmidingiz? Nega?») va joriy tashkilotchi (yorliq «1-tashkilotchi» …; pufagida gapi so'zma-so'z) ·
-  **o'ngda** — varaq: «Mentorning suhbat savollari» (ixcham, 3-savol accent) va «Suhbatlar · n / 3» jadvali (kim · gap · belgi · narx) · **varaq ostida** — to'rt belgi tugmasi: ha · qimmat · yo'q · javob yo'q; tugmalar ostida doimiy kulrang qator: Javob yo'q — odam javob bermasa. (32)
+  **o'ngda** — varaq: «Mentorning suhbat savollari» (ixcham, 3-savol accent) va «Suhbatlar» jadvali (kim · gap · belgi · narx; hisob tugmada *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*) · **varaq ostida** — to'rt belgi tugmasi: ha · qimmat · yo'q · javob yo'q; tugmalar ostida doimiy kulrang qator: Javob yo'q — odam javob bermasa. (32)
 - Yozuvlar (tayanch 1.6 so'zma-so'z; navbat bilan):
   1. **1-tashkilotchi:** «Har hafta guruhga o'zim yozaman. O'zi e'lon qilsa — 15 000 ga olaman.» ✔ ha → belgi katagi yashil «ha»; narx katagiga gapdagi «15 000» uchadi.
   2. **2-tashkilotchi:** «Telegram guruhi tekin-ku, pul to'lamayman.» ✔ yo'q → katak kulrang «yo'q», narx katagi «—»; `QIzoh` (~3 s): «Yo'q» ham natija — u ham yozuvda qoladi. (41)
@@ -222,11 +222,11 @@ namunalar: 12-Modul `06-PmChannels-v3.md` + `06-FILTR.md` (juftlik va yakka reji
   - 3-yozuv, «ha»: U shu narxda olishini aytdimi? (30)
   - 3-yozuv, «yo'q»: U boshqa narxda nima qilishini aytdi — qarang. (46)
   - istalgan yozuv, «javob yo'q»: U javob berdi — gapi yozilgan. (30)
-- Natija (bitta blok — E 42; `tugadi`: belgi tugmalari yopiladi, sahna yig'iladi, varaq butun enga): yashil xulosa qutisi — birinchi kichik qator taxmin («Taxminingiz to'g'ri chiqdi ✓» yoki «Taxminingiz ✕ — aslida: 1»);
+- Natija (bitta blok — E 42; `tugadi`: belgi tugmalari yopiladi, sahna yig'iladi, varaq butun enga): yashil xulosa qutisi (taxmin qatorisiz *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*);
   varaqda uch qator to'la (ha · 15 000 · yo'q · — · qimmat · 10 000), jadval ostida kulrang Mentor yozuvi (T-008 — olam ichidagi matn, tayanch 1.6): Narx hozircha qoladi, «qimmat» javobi yozib qo'yildi.
 - Xulosa: Bu darsda javob so'zma-so'z yoziladi va belgi oladi: ha, qimmat, yo'q yoki javob yo'q. (86)
 - `QIzoh` (qutining oxirgi kichik qatori): Mentor xulosasi: uch suhbat — kichik son: narx haqida dalil, isbot emas. (72)
-- Tugma (pastki): Avval belgilang → Belgi qo'ying (N/3) → Davom etish
+- Tugma (pastki): Belgi qo'ying (N/3) → Davom etish
 - Ipucha (40 s): Odam shu narxda oladimi, qimmat dedimi yoki olmaydimi? (54)
 - Keyingi bosiladigan joy: bashorat → to'rt belgi tugmasi (navbatma-navbat to'lqin) → «Davom etish».
 - Nishon: Word for Word! (uch yozuvga birinchi urinishda mos belgi).
@@ -259,7 +259,7 @@ namunalar: 12-Modul `06-PmChannels-v3.md` + `06-FILTR.md` (juftlik va yakka reji
 - Sarlavha: **Narxingiz uchun suhbat savollarini yozing.** (42)
 - Mentor: Mentorning savollarini o'z mahsulotingizga moslang — bo'sh joylarni to'ldiring.
 - **Chapda — telefon** (`SuhbatVaraq` telefon holati: 0-ekrandagi o'quvchi ekrani). `pm-m11d4-narx` yo'q bo'lsa — telefon ko'rinmaydi, karta va varaq bitta ustunda (bo'sh ustun yo'q — SABOQ 20).
-  **O'ngda — bitta katta karta (joriy qism)**, ostida varaq «Suhbat savollarim» ixcham: to'rt savol, o'zgaradigan joylar uzuq ramkada (to'ldiriladigan joy — U-041). Maydonlarda yorliq input ichida — raqam belgisi va qisqa savol (E 43).
+  **O'ngda — bitta katta karta (joriy qism; yorlig'ida qism nomi, sanoqsiz; tepadagi qism qatori yo'q — hisob tugmada *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*)**, ostida varaq «Suhbat savollarim» ixcham: to'rt savol, o'zgaradigan joylar uzuq ramkada (to'ldiriladigan joy — U-041). Maydonlarda yorliq input ichida — raqam belgisi va qisqa savol (E 43).
 - Qismlar (ketma-ket; «Saqlash» o'ngda — 187):
   1. **Kim to'laydi** — maydon (≤ 30; `pm-m11d2-model.kim` dan oldindan, tahrirlanadi — yorliq «2-darsdagi tanlovingiz»; kalit yo'q bo'lsa bo'sh, placeholder «Mahsulotingizda kim to'laydi? Rolini yozing»).
      Kulrang qator (`pm-m9d3-intervyu` bo'lsa): 11-Modulda intervyu berganlar: «{kim}» · «{kim}» … (takrorsiz, ko'pi bilan 5; faqat rol). Kalit yo'q — qator ko'rinmaydi.
@@ -399,14 +399,16 @@ namunalar: 12-Modul `06-PmChannels-v3.md` + `06-FILTR.md` (juftlik va yakka reji
   - ④ Darsda qolgan qismni tugating: {holatga qarab — suhbat savollarini yozing · rol o'yinini oilangizdan biri bilan o'tkazing}. Hammasi tugagan bo'lsa ④ ko'rinmaydi.
   - Karta ostida (bitta kulrang qator): Notanishga yozmang; uchrashuv taklifi kelsa — faqat kattalar bilan. «Ha» desa ham, pul olmang.
   - Tugma: Amaliy topshiriqni bajarish →
-- **AI bilan davom** (`AiDavomCard`, CODE STRIKE ostida, mentor rejimida yo'q — F-1007-475, PM-109): sarlavha **Erta tugatdingizmi? AI bilan davom eting** · matn: gemini.google.com'ni oching, pastdagi so'rovni yuboring va suhbat savollaringizni bittadan bering — AI tashkilotchi bo'lib javob beradi. Javoblarini «Orqaga» bilan qaytib, rol o'yini yozuviga kiriting. · so'rov qutisi (nusxalash tugmasi): «Sen «Maydon Jamoa»ga o'xshash ilovada har hafta o'yin tashkil qiladigan tashkilotchisan: o'yinchilarni qo'lda yig'asan, bunga vaqt ketadi. Men senga narx haqida 4 ta savol beraman. Har biriga qisqa, hayotiy javob ber; narx aytilganda avval ikkilan, keyin o'z fikringni ayt. O'zing savol berma, sotishga undama. Birinchi savolim: »
+- Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
+- **AI bilan davom** (`AiDavomCard`, Nishonlardan keyin, mentor rejimida yo'q — F-1007-475, PM-109): sarlavha **Erta tugatdingizmi? AI bilan davom eting** · matn: gemini.google.com'ni oching, pastdagi so'rovni yuboring va suhbat savollaringizni bittadan bering — AI tashkilotchi bo'lib javob beradi. Javoblarini «Orqaga» bilan qaytib, rol o'yini yozuviga kiriting. · so'rov qutisi (nusxalash tugmasi): «Sen «Maydon Jamoa»ga o'xshash ilovada har hafta o'yin tashkil qiladigan tashkilotchisan: o'yinchilarni qo'lda yig'asan, bunga vaqt ketadi. Men senga narx haqida 4 ta savol beraman. Har biriga qisqa, hayotiy javob ber; narx aytilganda avval ikkilan, keyin o'z fikringni ayt. O'zing savol berma, sotishga undama. Birinchi savolim: »
   Sabab: mustaqil rejimda sherik yo'q — 6–7-ekranlar tez o'tadi va dars qisqa tugaydi; AI sherik o'rnini bosadi, yozuv 7-ekrandagi mashq yozuviga tushadi.
 - Keyingi dars — «Foydalanuvchiga shartlarni qanday ochiq aytasiz?»
-- Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
 - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18). Artefakt-strip yakunda yo'q (E 50).
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
 - Izoh (MD): uyga vazifada keyingi darslar (yozma tasdiq) aytilmaydi (T-038; pilot eslatmasi 6). Uy suhbatlari — qog'ozda (11-Modul 3-dars naqshi); kalitga qanday tushishi — TAYANCHGA SAVOL 7.
   «Uchtagacha» — maqsad uchta, lekin kam bo'lsa ham halol natija, baho emas (12-Modul 10-dars qoidasi ruhi; sinf 14 — uyga vazifa yengil va aniq). «Kim bilan» — HwCard yorlig'i (11-Modul 3-dars bilan bir).
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ---
 

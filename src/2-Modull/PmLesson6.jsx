@@ -34,7 +34,7 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 
 
 
@@ -1422,32 +1422,27 @@ function chiqar(v) { chiqarilgan.push(String(v)); console.log(v); }
 `;
 const ensureHelper = (code) => (/function\s+chiqar\s*\(/.test(code || '') ? code : KOD_HELPER + (code || ''));
 const KOD_STARTER = KOD_HELPER + `// Saytingiz uch qatlamdan iborat. Har qatlamni do'kon egasi tushunadigan tilda yozing.
-const sistema = {
-  korinish: "",   // peshtaxta: mijoz ekranda nimani ko'radi?
-  ishlash:  "",   // oshpaz: sayt qanday ishni o'zi bajaradi?
-  malumot:  ""    // javon: sayt nimani eslab qoladi?
-};
-
-const qatlamlar = ["korinish", "ishlash", "malumot"];
-const nomlar = {
-  korinish: "Ko'rinadigan qism",
-  ishlash:  "Ishni bajaradigan qism",
-  malumot:  "Ma'lumot saqlanadigan joy"
-};
+const nomlar = ["Ko'rinadigan qism", "Ishni bajaradigan qism", "Ma'lumot saqlanadigan joy"];
+const javoblar = [
+  "",   // peshtaxta: mijoz ekranda nimani ko'radi?
+  "",   // oshpaz: sayt qanday ishni o'zi bajaradi?
+  ""    // javon: sayt nimani eslab qoladi?
+];
 
 // Bu funksiya bitta qatlamni tayyor gapga aylantiradi.
-function oddiyGap(qatlam) {
-  return nomlar[qatlam] + ": " + "";
+function oddiyGap(i) {
+  return nomlar[i] + ": " + "";
 }
 
 // Uchala qatlamni ekranga chiqaring.
-for (let i = 0; i < qatlamlar.length; i++) {
+for (let i = 0; i < nomlar.length; i++) {
   // chiqar(...) ni shu yerda chaqiring
 }`;
+// F-1017-204: obyekt (sistema[qatlam]) olindi — LMS 3 da obyekt o'tilmagan; ikki massiv + [i] (PmLesson5 kabi, hammasi o'tilgan).
 const KOD_CONDS = [
   { id: 'c1', label: { uz: "Uch qatlam to'ldirilgan", ru: 'Три слоя заполнены' }, hint: { uz: "Har qator ichidagi qo'shtirnoq orasiga o'z javobingizni yozing.", ru: 'Впишите свой ответ между кавычками в каждой строке.' } },
-  { id: 'c2', label: { uz: 'Funksiya gap qaytaradi', ru: 'Функция возвращает фразу' }, hint: { uz: "return qatoriga sistema[qatlam] ni qo'shing.", ru: 'Добавьте в строку return выражение sistema[qatlam].' } },
-  { id: 'c3', label: { uz: 'Uch qator chiqdi', ru: 'Вышли три строки' }, hint: { uz: "Sikl ichida chiqar(oddiyGap(qatlamlar[i])) deb yozing.", ru: 'Внутри цикла напишите chiqar(oddiyGap(qatlamlar[i])).' } }
+  { id: 'c2', label: { uz: 'Funksiya gap qaytaradi', ru: 'Функция возвращает фразу' }, hint: { uz: "return qatoriga javoblar[i] ni qo'shing.", ru: 'Добавьте в строку return выражение javoblar[i].' } },
+  { id: 'c3', label: { uz: 'Uch qator chiqdi', ru: 'Вышли три строки' }, hint: { uz: "Sikl ichida chiqar(oddiyGap(i)) deb yozing.", ru: 'Внутри цикла напишите chiqar(oddiyGap(i)).' } }
 ];
 const readKoding = () => readLS(KODING_KEY);
 // F-0801-01: kompilyator ochiq-yopiqligi ham saqlanadi — fon-tabda Chrome sahifani
@@ -1457,8 +1452,8 @@ const writeKodingOpen = (open) => writeLS(KODING_KEY, { ...(readKoding() || {}),
 // c1/c2/c3 — runtime `eval` (closure-harness ichida), c4 jargon — statik: kod SATR-LITERALLARIDA kasbiy so'z (topilgan so'z hint'da).
 // Saqlov-moslik: eski `pm-m2d13-code`.code → starter (chiqar-yordamchisi yo'q bo'lsa avtomatik qo'shiladi); yangi kod `pm-m2d13-code:code`.
 const KOD_FILE = 'qatlamlar.js';
-const KOD_EVAL_C1 = '(function(){try{var s=sistema;return ["korinish","ishlash","malumot"].every(function(k){return typeof s[k]==="string"&&s[k].trim().length>=6;});}catch(e){return false;}})()';
-const KOD_EVAL_C2 = '(function(){try{var p=oddiyGap("korinish");return typeof p==="string"&&!!sistema.korinish&&sistema.korinish.trim().length>0&&p.indexOf(sistema.korinish.trim())!==-1;}catch(e){return false;}})()';
+const KOD_EVAL_C1 = '(function(){try{var s=javoblar;return s.length===3&&[0,1,2].every(function(k){return typeof s[k]==="string"&&s[k].trim().length>=6;});}catch(e){return false;}})()';
+const KOD_EVAL_C2 = '(function(){try{var p=oddiyGap(0);return typeof p==="string"&&!!javoblar[0]&&javoblar[0].trim().length>0&&p.indexOf(javoblar[0].trim())!==-1;}catch(e){return false;}})()';
 const KOD_EVAL_C3 = '(function(){try{return chiqarilgan.length===3;}catch(e){return false;}})()';
 const kodJargon = (js) => {
   // faqat satr-literallar (o'quvchi yozgan matn) — izoh/identifikator emas
@@ -1488,7 +1483,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [open, setOpen] = useState(() => { const s = readKoding(); return !!(s && s.open); });
   const [st, setSt] = useState(() => {
     const saved = readKoding();
-    return { code: (typeof storedAnswer?.code === 'string' ? storedAnswer.code : null) || (saved && saved.code) || KOD_STARTER, done: !!(storedAnswer && storedAnswer.solved) || !!(saved && saved.done) }; // F-0914-10: saqlangan javob matn bo'lmasa — zaxira-zanjir (oq ekran himoyasi)
+    return { code: (typeof storedAnswer?.code === 'string' ? storedAnswer.code : null) || (saved && saved.code && !/const\s+sistema\s*=/.test(saved.code) ? saved.code : null) || KOD_STARTER, /* F-1017-204: eski obyektli kod yangi tekshiruvga tushmasin */ done: !!(storedAnswer && storedAnswer.solved) || !!(saved && saved.done) }; // F-0914-10: saqlangan javob matn bo'lmasa — zaxira-zanjir (oq ekran himoyasi)
   });
   const { code, done } = st;
   useEffect(() => {
@@ -1516,13 +1511,13 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Koding · 🛠 kompilyator', ru: 'Кодинг · 🛠 компилятор' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval kompilyatorda bajaring', ru: 'Сначала выполните в компиляторе' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Endi saytingizning uch qatlamini <span className="italic" style={{ color: T.accent }}>sahifada ko'rsatamiz</span>.</>, ru: <>Теперь <span className="italic" style={{ color: T.accent }}>покажем на странице</span> три слоя вашего сайта.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Obyekt, funksiya va sikl — hammasi tanish. Yangisi bitta: <b style={{ color: T.ink }}>uch qatlamni o'z tilingizda yozasiz</b>.</>, ru: <>Объект, функция и цикл вам знакомы. Новое одно: <b style={{ color: T.ink }}>три слоя пишете своими словами</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Massiv, funksiya va sikl — hammasi tanish. Yangisi bitta: <b style={{ color: T.ink }}>uch qatlamni o'z tilingizda yozasiz</b>.</>, ru: <>Массив, функция и цикл вам знакомы. Новое одно: <b style={{ color: T.ink }}>три слоя пишете своими словами</b>.</> })}</Mentor>
         <MentorNote>{tr({ uz: 'Vaqt: 10 daqiqa. Tugallanmasa — uy vazifasining qisqa varianti beriladi.', ru: 'Время: 10 минут. Не успели — даётся короткий вариант домашнего задания.' })}</MentorNote>
         <MentorWatchLine live={live} />
         <div className="kdx fade-up delay-1">
           <div className="kdx-fn">
             <span className="kdx-fn-bar"><span className="bb-dots"><i /><i /><i /></span>sistema.js</span>
-            <code className="kdx-fn-code">oddiyGap(<span className="kx-kim">qatlam</span>)</code>
+            <code className="kdx-fn-code">oddiyGap(<span className="kx-kim">i</span>)</code>
           </div>
           <span className="kdx-arrow" aria-hidden="true">➜</span>
           <div className="kdx-out">
@@ -1540,7 +1535,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       </div>
       {open && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
-          <HtmlCompiler lang={__lang} task={kodTask} storageKey={`${KODING_KEY}:code`} onContinue={finish} onBack={() => { setOpen(false); writeKodingOpen(false); }} />
+          <HtmlCompiler lang={__lang} task={kodTask} storageKey={`${KODING_KEY}:code2`} /* F-1017-204: obyektsiz starter — eski saqlov tiklanmasin */ onContinue={finish} onBack={() => { setOpen(false); writeKodingOpen(false); }} />
         </div>
       )}
     </Stage>
@@ -1771,7 +1766,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await live.quizControl('lobby', -1); } catch (_e) { return; } }
+    if (isMentorL && quizSt === 'off') { try { await live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
   // 📝 Uyga vazifa varianti (ilgari alohida ekranda edi — F-0803-06)
@@ -1804,7 +1799,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const isNarrow = useIsMobile(768);
   const toggleGloss = () => setOpen(o => { const nv = !o; if (nv && isNarrow) setTimeout(() => { if (glossRef.current) glossRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' }); }, 80); return nv; });
   return (
-    <Stage eyebrow={tr({ uz: 'Yakun', ru: 'Итог' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash', ru: 'Завершить' })}</button></>}>
+    <Stage eyebrow={tr({ uz: 'Yakun', ru: 'Итог' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash', ru: 'Завершить' })}</FinishBtn></>}>
       <div className="screen">
         <div className="hero"><div className="hero-l">
           <div className="hero-chips"><span className="done-chip fade-up"><span className="tick" style={{ color: T.amberLine }}>{p6.medal(13)}</span> {tr({ uz: 'Modulning oxirgi darsi tugadi', ru: 'Последний урок модуля завершён' })}</span>{!isMentorL && <span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span>}</div>
@@ -1815,7 +1810,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : undefined} />
         </div>
-        {arena && <QuizArena live={live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+        {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <Zoomable>
             <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span style={{ color: T.success, display: 'inline-flex' }}>{Ico.check(15)}</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP_LIST.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck" style={{ display: 'inline-flex' }}>{Ico.check(15)}</span><span>{tr(r)}</span></li>))}</ul></div>
             {/* F-0803-06: alohida uy-vazifa ekrani olib tashlangach, undagi VARIANT-TANLOVI

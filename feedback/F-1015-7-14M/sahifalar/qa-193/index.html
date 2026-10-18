@@ -1,0 +1,309 @@
+<title>RICE darsi ko'rigi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: bitta ustun; har band = sizning so'zingiz → hozirgi surat → tashxis → taklif-namuna (dars palitrasida) → tanlov */
+:root {
+  --bg: #f4f3f8; --card: #ffffff; --ink: #1d1b2b; --ink2: #5d5a72; --line: #e2e0ec; --accent: #5b3fd6; --accent-soft: #ece8fd; --warn: #b4540f; --warn-soft: #fbeedd;
+  --f-body: 'Manrope', system-ui, sans-serif; --f-mono: 'JetBrains Mono', ui-monospace, monospace;
+  /* dars palitrasi — namuna oynasi ikki mavzuda ham dars qanday ko'rinsa shunday */
+  --d-bg: #F2F0FA; --d-paper: #FFFFFF; --d-line: #E7E3F4; --d-ink: #1B1630; --d-ink2: #565073; --d-accent: #5B3DE6; --d-asoft: #EBE5FD; --d-ok: #1F7A4D; --d-okfon: #E3F0E8; --d-err: #C2362B; --d-errfon: #FAE3E0; --d-mute: #F6F4FC;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #15141c; --card: #1f1d29; --ink: #ecebf4; --ink2: #a7a4ba; --line: #34314a; --accent: #a593ff; --accent-soft: #2c2650; --warn: #f0a35a; --warn-soft: #3a2a18; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #15141c; --card: #1f1d29; --ink: #ecebf4; --ink2: #a7a4ba; --line: #34314a; --accent: #a593ff; --accent-soft: #2c2650; --warn: #f0a35a; --warn-soft: #3a2a18; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 80px; }
+.wrap { max-width: 1060px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+h1 { font-size: clamp(22px, 3vw, 30px); margin: 0; text-wrap: balance; } h2 { font-size: 19px; margin: 0; text-wrap: balance; } h3 { font-size: 14px; margin: 0; color: var(--ink2); text-transform: uppercase; letter-spacing: .06em; }
+p { margin: 0; max-width: 78ch; } .lead { color: var(--ink2); }
+.band { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+.id { font-family: var(--f-mono); font-size: 12px; color: var(--accent); letter-spacing: .04em; }
+.soz { border-left: 3px solid var(--accent); padding: 4px 12px; color: var(--ink2); font-style: italic; }
+.ikki { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 16px; align-items: start; }
+@media (max-width: 860px) { .ikki { grid-template-columns: 1fr; } }
+figure { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+figure img { width: 100%; border-radius: 8px; border: 1px solid var(--line); display: block; }
+figcaption { font-size: 12.5px; color: var(--ink2); }
+.tanlov { display: flex; flex-direction: column; gap: 8px; }
+.tanlov .v { display: flex; gap: 10px; align-items: baseline; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; }
+.tanlov .v b { font-family: var(--f-mono); color: var(--accent); flex-shrink: 0; }
+.tanlov .v.tavsiya { border-color: var(--accent); background: var(--accent-soft); }
+.ogoh { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-weight: 600; }
+ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+/* ---- dars namunasi (mock) ---- */
+.dars { background: var(--d-bg); color: var(--d-ink); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+.dars .t { font-size: 20px; font-weight: 800; letter-spacing: -.01em; } .dars .t i { font-style: normal; color: var(--d-accent); }
+.dars .hol { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--d-ink2); }
+.k { background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.k .y { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--d-ink2); }
+.q { display: flex; align-items: center; gap: 10px; background: var(--d-mute); border-radius: 10px; padding: 9px 12px; }
+.q .n { width: 20px; color: var(--d-ink2); font-family: var(--f-mono); font-size: 12px; } .q b { flex: 1; font-weight: 700; } .q .s { color: var(--d-ink2); font-size: 12.5px; }
+.q.chet { color: var(--d-ink2); } .q.chet b { font-weight: 600; }
+.chip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--d-line); background: var(--d-paper); border-radius: 999px; padding: 6px 12px; font-weight: 700; font-size: 13px; }
+.chip.on { border-color: var(--d-accent); color: var(--d-accent); background: var(--d-asoft); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.ok { color: var(--d-ok); background: var(--d-okfon); border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 800; }
+.yoq { color: var(--d-err); background: var(--d-errfon); border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 800; }
+.mute { color: var(--d-ink2); font-size: 13px; }
+.form { display: flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--f-mono); font-size: 14px; flex-wrap: wrap; }
+.form .b { background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 8px; padding: 4px 10px; min-width: 38px; text-align: center; } .form .b.bosh { color: var(--d-ink2); }
+.form .r { background: var(--d-accent); color: #fff; border-radius: 8px; padding: 4px 10px; font-weight: 700; }
+.bar { display: grid; grid-template-columns: 20px minmax(0, 1fr) minmax(90px, 1.2fr) 42px; align-items: center; gap: 10px; background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 10px; padding: 8px 12px; }
+.bar.top { border-color: var(--d-accent); } .bar .n { color: var(--d-ink2); font-family: var(--f-mono); font-size: 12px; } .bar .f { font-family: var(--f-mono); font-size: 11px; color: var(--d-ink2); }
+.bar .tr { height: 8px; border-radius: 999px; background: var(--d-line); overflow: hidden; } .bar .tr i { display: block; height: 100%; background: var(--d-accent); border-radius: 999px; }
+.bar .v { font-family: var(--f-mono); font-weight: 700; color: var(--d-accent); text-align: right; }
+.bar.chet { opacity: .6; } .bar.chet .tr i { background: var(--d-ink2); } .bar.chet .v { color: var(--d-ink2); }
+.ok-qator { background: var(--d-okfon); color: var(--d-ok); border-radius: 10px; padding: 9px 12px; font-weight: 700; }
+.qadam { display: flex; gap: 8px; align-items: center; } .qadam .d { width: 22px; height: 22px; border-radius: 50%; background: var(--d-accent); color: #fff; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.uch { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; align-items: start; }
+.tug { display: inline-flex; align-items: center; border-radius: 10px; padding: 7px 14px; font-weight: 800; font-size: 13px; background: var(--d-accent); color: #fff; }
+.tug.ik { background: var(--d-paper); color: var(--d-accent); border: 1px solid var(--d-accent); }
+.voronka { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.voronka .s { background: var(--d-asoft); border-radius: 10px; padding: 8px 14px; font-weight: 700; display: flex; gap: 8px; align-items: baseline; } .voronka .s b { font-size: 20px; color: var(--d-accent); font-family: var(--f-mono); }
+.voronka .s.fin { background: var(--d-accent); color: #fff; } .voronka .s.fin b { color: #fff; }
+</style>
+<div class="wrap">
+  <header class="band">
+    <span class="id">F-1015-193 … 199 · 2-dars m9-02 «Beshta g'oyadan qaysi uchtasi qoladi?» · ko'rik 17.10</span>
+    <h1>2-dars ko'rigi: nima tushunarsiz, nima taklif qilinadi</h1>
+    <p class="lead">Har bandda sizning so'zingiz, hozirgi surat, tashxis va taklif-namuna. Namunalar dars palitrasida chizilgan, kod hali tegilmagan. Tanlovni band raqami bilan ayting («193 A, 195 A…») yoki «hammasi A».</p>
+    <div class="ogoh">Darsdan o'quvchi nima oladi (sizning 2-savolingizga): o'zining 5 g'oyasidan 3 tasi RICE soni bilan, 2 tasi intervyuga belgilangan, har «chetda» ga bitta sabab. Shu uchlik 3-darsga (intervyu) kiradi. Darsda hozir ikki son yashaydi: nom «uchtasi qoladi», oxiri «ikkitasi intervyuga». Taklif 194 da shuni bitta gapga bog'laydi.</div>
+  </header>
+
+  <section class="band">
+    <span class="id">F-1015-193 · 0-ekran (kirish kartasi)</span>
+    <h2>«5 g'oya → ? → 3 g'oya» yo'li — nimaligini his qilib bo'lmaydi</h2>
+    <p class="soz">«manashuni ko'rdim lekin tushunarsiz-da, nimaligini his qilolmadim»</p>
+    <div class="ikki">
+      <figure><img src="r/1.png" alt="Hozirgi 0-ekran kartasi"><figcaption>Hozir: tepada «5 g'oya — ? — 3 g'oya ? ? ?» yo'li, ostida Mentorning 5 g'oyasi manba yorlig'i bilan.</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p><b>Tashxis.</b> «?» belgilari hali tushuntirilmagan narsani so'rab turibdi. O'quvchi birinchi ekranda nima qilishini bilmaydi: bu savolmi, bosiladimi, chizmami. Manba yorliqlari («Keyin» qutisi, Yangi kuzatuv) 1-dars so'zlari, lekin bu yerda savolga aloqasi yo'q.</p>
+        <div class="dars">
+          <span class="hol">Taklif A — yo'l olinadi, bitta gap va ro'yxat</span>
+          <div class="k">
+            <span class="y">Mentorning g'oyalari · 5</span>
+            <p class="mute" style="margin:0">Dars oxirida shulardan uchtasi qoladi. Qaysilari — savollar va sonlar aytadi.</p>
+            <div class="q"><span class="n">1</span><b>Jamoa yig'ish</b></div>
+            <div class="q"><span class="n">2</span><b>Maydon pulini bo'lishish</b></div>
+            <div class="q"><span class="n">3</span><b>Mahalla to'garaklari</b></div>
+            <div class="q"><span class="n">4</span><b>Sinf uy vazifalari</b></div>
+            <div class="q"><span class="n">5</span><b>Eski darsliklar</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tanlov">
+      <div class="v tavsiya"><b>A</b><span>Yo'l va manba yorliqlari olinadi. Kartada bitta gap + 5 g'oya nomi. Kirish savoli va variantlar o'zgarmaydi.</span></div>
+      <div class="v"><b>B</b><span>Yo'l qoladi, lekin so'z bilan: «5 g'oya → savollar va sonlar → 3 g'oya», «?» yo'q.</span></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <span class="id">F-1015-194 · 1-ekran (reja, voronka)</span>
+    <h2>Voronka yaxshi, lekin «qo'lingizda nima qoladi» aytilmagan</h2>
+    <p class="soz">«yomon emas, yana nimadir bormi? bu darsdan o'quvchi aniq narsa oladimi, "yuring ketaylik" emasmi»</p>
+    <div class="ikki">
+      <figure><img src="r/2.png" alt="Hozirgi voronka"><figcaption>Hozir: 5 g'oyangiz → 4 uch savoldan o'tdi → 3 RICE da yuqori → 2 intervyuga.</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p><b>Tashxis.</b> Voronka jarayonni ko'rsatadi, natijani emas. O'quvchi «bugun nima o'rganaman» va «oxirida qo'limda nima bo'ladi» ni o'qimaydi. Reja ro'yxatidagi 3-band (Instagram Stories) keys, ko'nikma emas.</p>
+        <div class="dars">
+          <span class="hol">Taklif A — voronka + bitta «qo'lingizda qoladi» qatori</span>
+          <div class="k">
+            <span class="y">Dars oxirida</span>
+            <div class="voronka">
+              <div class="s"><b>5</b> g'oyangiz</div>
+              <div class="s"><b>4</b> uch savoldan o'tdi</div>
+              <div class="s"><b>3</b> RICE da yuqori — shular qoladi</div>
+              <div class="s fin"><b>2</b> tasi birinchi intervyuga</div>
+            </div>
+            <div class="ok-qator">Qo'lingizda: 3 g'oya, har birining RICE soni va har «chetda» ga bitta sabab.</div>
+          </div>
+          <div class="k">
+            <span class="y">Bugun o'rganasiz</span>
+            <div class="qadam"><span class="d">1</span>Har g'oyaga uchta «ha / yo'q» savol berasiz</div>
+            <div class="qadam"><span class="d">2</span>RICE ning to'rt savoli bilan baholaysiz</div>
+            <div class="qadam"><span class="d">3</span>Bitta son o'zgarsa, tartib nima bo'lishini ko'rasiz</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tanlov">
+      <div class="v tavsiya"><b>A</b><span>3-blokka «shular qoladi» qo'shiladi, ostida bitta «Qo'lingizda» qatori. Reja 4 banddan 3 ga (Stories keysi rejada aytilmaydi, dars ichida qoladi).</span></div>
+      <div class="v"><b>B</b><span>Faqat «Qo'lingizda» qatori qo'shiladi, reja 4 band qoladi.</span></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <span class="id">F-1015-195 · 2-ekran (Mentorning g'oyalari uch savoldan)</span>
+    <h2>Avval faqat taxmin, tanlagach ketadi, keyin savol-karta keladi</h2>
+    <p class="soz">«shuni birinchi chiqarsak, tanlagandan keyin u ketsa-da animatsiyada, bu keladi — shunda UI ham toza bo'ladi» · «bu ham tushunarlimi, metodika tomondan o'ylab ko'r»</p>
+    <div class="ikki">
+      <figure><img src="r/3.png" alt="Hozirgi 2-ekran"><figcaption>Hozir: taxmin kartasi va savol-karta bir vaqtda, 5 g'oya × 3 «?» katak.</figcaption></figure>
+      <div class="dars">
+        <span class="hol">Taklif A — 1-holat: faqat taxmin</span>
+        <div class="k">
+          <span class="y">Avval o'zingiz belgilab ko'ring</span>
+          <b>Beshta g'oyadan nechtasi uch savoldan o'tadi?</b>
+          <div class="chips"><span class="chip">2 ta</span><span class="chip">4 ta</span><span class="chip">5 ta</span></div>
+        </div>
+        <span class="hol">2-holat: taxmin bitta qatorga yig'iladi, savol-karta pastdan keladi</span>
+        <div class="q"><span class="s">Taxminingiz: 4 ta</span></div>
+        <div class="k">
+          <div class="qadam"><span class="d">1</span><div><b>Bajariladimi?</b> <span class="mute">Birinchi versiyasini shu modulning 6 haftasida qura olasizmi?</span></div></div>
+          <div class="q"><b>Jamoa yig'ish</b><span class="chip">?</span></div>
+          <div class="q"><b>Maydon pulini bo'lishish</b><span class="chip">?</span></div>
+          <div class="q"><b>Mahalla to'garaklari</b><span class="chip">?</span></div>
+          <div class="q"><b>Sinf uy vazifalari</b><span class="chip">?</span></div>
+          <div class="q"><b>Eski darsliklar</b><span class="chip">?</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="ikki">
+      <figure><img src="r/6.png" alt="Hozirgi natija ko'rinishi"><figcaption>Hozir (uch savoldan keyin): «3 savol ✓» chip, har g'oyada ✓✓✓, chetda ✕ — —.</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p><b>Tashxis (metodika).</b> ✓✓✓ kataklar qaysi savol ekanini aytmaydi; «✕ — —» o'quvchi uchun «ikkitasi so'ralmadi» degani, lekin buni hech kim tushuntirmaydi. Taxmin bilan natija bog'lanmagan. Bitta kataklik joyida so'z kerak: nimadan o'tdi, nimada yiqildi.</p>
+        <div class="dars">
+          <span class="hol">Taklif A — 3-holat: natija so'z bilan</span>
+          <div class="k">
+            <div class="ok-qator">4 tasi o'tdi, 1 tasi chetda. Taxminingiz to'g'ri chiqdi.</div>
+            <div class="q"><b>Jamoa yig'ish</b><span class="ok">uch savoldan o'tdi</span></div>
+            <div class="q"><b>Maydon pulini bo'lishish</b><span class="ok">uch savoldan o'tdi</span></div>
+            <div class="q"><b>Mahalla to'garaklari</b><span class="ok">uch savoldan o'tdi</span></div>
+            <div class="q"><b>Sinf uy vazifalari</b><span class="ok">uch savoldan o'tdi</span></div>
+            <div class="q chet"><b>Eski darsliklar</b><span class="yoq">Bajariladimi? — yo'q</span><span class="s">pul va yetkazish kerak</span></div>
+            <p class="mute" style="margin:0">Bitta «yo'q» yetadi: keyingi savollar unga berilmaydi. G'oyalarni uch savol bilan ajratish saralash deyiladi.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tanlov">
+      <div class="v tavsiya"><b>A</b><span>Uch holat ketma-ket: taxmin yolg'iz → bitta qatorga yig'iladi, savol-karta keladi (har g'oyada bitta «?», savol o'zgarganda katak o'zgaradi) → natija so'z bilan, chetdagi qatorda qaysi savol va sabab. «3 savol ✓» chipi va «Qoldi: N» olinadi.</span></div>
+      <div class="v"><b>B</b><span>Faqat tartib: taxmin avval, keyin savol-karta. Natija ko'rinishi hozirgidek (✓✓✓).</span></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <span class="id">F-1015-196 · 4-ekran (RICE to'rt savol, Mentor misoli)</span>
+    <h2>Juda uzun: savol bittadan kelsin, javob berilgani ketsin, oxirida faqat kerakli qism qolsin</h2>
+    <p class="soz">«juda uzun bo'lib ketibdi, bittadan bossa tepadagisi ko'rinmay tursin» · «Jamoa yig'ish tomonini oxirida olib tashlasak — kerakli qismini qoldiramiz; bitta UI da hammasini to'ldirish shart emas»</p>
+    <div class="ikki">
+      <figure><img src="r/8.png" alt="Hozirgi 4-ekran to'liq"><figcaption>Hozir: 4 savol-qator + formula + Mentorning to'rt g'oyasi chiziqlari — hammasi bir ekranda, pastga tushadi.</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p><b>Tashxis.</b> O'quvchi 4 savolga javob beradi, lekin javob bergan qatorlari pastga itarib turaveradi. Formula qatorining o'zi javoblarni saqlaydi, shuning uchun qatorlar takror.</p>
+        <div class="dars">
+          <span class="hol">Taklif A — 1-holat: bitta savol, formula to'lib boradi</span>
+          <div class="k">
+            <span class="y">Mentorning g'oyasi · Jamoa yig'ish</span>
+            <div class="form"><span class="b">60</span>×<span class="b bosh">?</span>×<span class="b bosh">?</span>÷<span class="b bosh">?</span>=<span class="b bosh">?</span></div>
+            <div><b>Ta'sir.</b> <span class="mute">Har biriga qanchalik yordam beradi?</span></div>
+            <div class="chips"><span class="chip">ozgina</span><span class="chip">sezilarli</span><span class="chip">katta: o'yin bo'ladi yoki bo'lmaydi</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="uch">
+      <div class="dars">
+        <span class="hol">2-holat: to'rt javobdan keyin — formula + taxmin, yolg'iz</span>
+        <div class="k">
+          <div class="form"><span class="b">60</span>×<span class="b">2</span>×<span class="b">80%</span>÷<span class="b">4</span>=<span class="r">24</span></div>
+          <p class="mute" style="margin:0">Bu baho RICE deyiladi: nechta odam × qanchalik yordam × dalil bormi ÷ necha hafta.</p>
+        </div>
+        <div class="k">
+          <span class="y">Avval o'zingiz belgilab ko'ring</span>
+          <b>Qamrovi eng katta «Mahalla to'garaklari» (80) to'rt g'oya ichida nechanchi bo'ladi?</b>
+          <div class="chips"><span class="chip">Birinchi</span><span class="chip">Ikkinchi</span><span class="chip">Uchinchi</span></div>
+        </div>
+      </div>
+      <div class="dars">
+        <span class="hol">3-holat: taxmindan keyin — to'rt g'oya chiziqlari (savol-qatorlar yo'q)</span>
+        <div class="k">
+          <span class="y">Mentorning to'rt g'oyasi · RICE</span>
+          <div class="bar top"><span class="n">1</span><div><b>Jamoa yig'ish</b><br><span class="f">60 × 2 × 80% ÷ 4</span></div><div class="tr"><i style="width:100%"></i></div><span class="v">24</span></div>
+          <div class="bar"><span class="n">2</span><div><b>Mahalla to'garaklari</b><br><span class="f">80 × 1 × 50% ÷ 2</span></div><div class="tr"><i style="width:83%"></i></div><span class="v">20</span></div>
+          <div class="bar"><span class="n">3</span><div><b>Maydon pulini bo'lishish</b><br><span class="f">30 × 1 × 50% ÷ 3</span></div><div class="tr"><i style="width:21%"></i></div><span class="v">5</span></div>
+          <div class="bar chet"><span class="n">4</span><div><b>Sinf uy vazifalari</b><br><span class="f">30 × 0,5 × 50% ÷ 2</span></div><div class="tr"><i style="width:16%"></i></div><span class="v">3,75</span></div>
+          <div class="ok-qator">Taxminingiz: birinchi · haqiqatda: ikkinchi. Qamrov katta, lekin ta'sir va ishonch past.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tanlov">
+      <div class="v tavsiya"><b>A</b><span>Uch holat: savol bittadan, javob formula katagiga tushadi, savol-qator ketadi → formula + taxmin yolg'iz → chiziqlar, taxmin natijasi bitta qatorda. Savol-qatorlar oxirida yo'q.</span></div>
+      <div class="v"><b>B</b><span>Savol bittadan keladi, lekin javob berilgani ixcham bitta qator bo'lib tepada qoladi (4 qisqa qator), formula ostida.</span></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <span class="id">F-1015-197 · 8-ekran (o'z g'oyalarini saralash) — o'quvchi shu yerda to'xtab qoladi</span>
+    <h2>«Kamida uchta o'tishi kerak» sharti yo'lni yopadi, yechim esa ✎ belgisida yashiringan</h2>
+    <p class="soz">«uje shu yerda qoqildi» · «uje qoqildim, o'tolmayapman, tushunarli qilishimiz kerak»</p>
+    <div class="ikki">
+      <figure><img src="r/9.png" alt="Hozirgi 8-ekran: 1 o'tdi, 4 chetda"><figcaption>Hozir: 1 o'tdi, 4 chetda. Kulrang gap kartadan tashqarida, «✎ bilan qayta ko'ring». «Davom etish» o'chiq. Yashil quti sabablarni qayta sanaydi.</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p><b>Tashxis.</b> Uchta sabab bir joyda: (1) shart 3 ta, lekin keyingi bosqichga aslida 2 ta yetadi (intervyuga 2 ta); (2) nima qilish kerakligi karta tashqarisida mayda kulrang matn, tugma esa ✎ belgisi; (3) yashil xulosa chetda qatorlaridagi sabablarni yana takrorlaydi. O'quvchi halol «yo'q» degan, dars uni jazolagandek.</p>
+        <div class="dars">
+          <span class="hol">Taklif A — shart 2 ta; nima qilish kartaning o'zida, so'z-tugma bilan</span>
+          <div class="k">
+            <div style="display:flex;justify-content:space-between;align-items:baseline"><span class="y">G'oyalarim</span><span class="mute">Saralandi 5 / 5</span></div>
+            <div class="q"><span class="n">3</span><b>Oshxona menyusi boti</b><span class="ok">o'tdi</span></div>
+            <div class="ogoh" style="background:var(--d-asoft);color:var(--d-accent)">Keyingi bosqichga kamida 2 g'oya kerak. Chetdagilardan bittasini qayta ko'ring.</div>
+            <span class="y">Chetda</span>
+            <div class="q chet"><span class="n">1</span><div><b>Vazifalar sahifasi</b><br><span class="s">Real auditoriya bormi? — yo'q · 5 tanish topa olmayman</span></div><span class="tug ik">Qayta ko'rish</span></div>
+            <div class="q chet"><span class="n">2</span><div><b>Maydon navbati</b><br><span class="s">Bajariladimi? — yo'q · pul yoki yetkazib berish kerak</span></div><span class="tug ik">Qayta ko'rish</span></div>
+            <div class="q chet"><span class="n">4</span><div><b>Sinf chat</b><br><span class="s">Qiziqmi? — yo'q · menga qiziq emas</span></div><span class="tug ik">Qayta ko'rish</span></div>
+            <div class="q chet"><span class="n">5</span><div><b>Eski kitoblar</b><br><span class="s">Real auditoriya bormi? — yo'q · bunday odamlarni bilmayman</span></div><span class="tug ik">Qayta ko'rish</span></div>
+          </div>
+          <span class="hol">2 va undan ko'p o'tganda — bitta gap, takror yo'q</span>
+          <div class="ok-qator">5 g'oyadan 2 tasi uch savoldan o'tdi. Uch savol yoqqan-yoqmaganiga emas, sababga qarab saraladi.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tanlov">
+      <div class="v tavsiya"><b>A</b><span>Shart 3 → 2. 2 dan kam o'tsa: karta ichida bitta rangli qator + chetdagi qatorlarda «Qayta ko'rish» so'z-tugma (✎ o'rniga; bosilsa o'sha g'oyaning savol-kartasi qaytadi). Sabab chetdagi qatorning o'zida, yashil xulosa bitta gap. Tashqaridagi kulrang matn olinadi. 9-ekranda 2 ta bo'lsa «Uchta» yorlig'i «O'tganlar» bo'ladi, ikkalasi intervyuga.</span></div>
+      <div class="v"><b>B</b><span>Shart umuman yo'q: 1 ta o'tsa ham davom, RICE o'sha bittasiga, intervyuga 1 ta. Sodda, lekin 10-ekran («son o'zgarsa tartib») va kod ekraniga ma'lumot kam qoladi.</span></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <span class="id">F-1015-198 · 9-ekran (o'z RICE natijasi)</span>
+    <h2>Ikki tushuntirish gapi va pastki yashil xulosa — bir narsani uch marta aytadi</h2>
+    <p class="soz">siz ko'chirgan matn: «Baho teng — qaysi biri oldin, o'zingiz tanlaysiz.» · «Intervyu uchun ikkitasini belgilang: RICE birinchi ikkitasini taklif qiladi, qaror — sizniki.»</p>
+    <div class="ikki">
+      <figure><img src="r/12.png" alt="Hozirgi 9-ekran natijasi"><figcaption>Hozir: chiziqlar, ikki ✓ Intervyuga tugma, ostida ikki gap, karta tashqarisida yana xulosa.</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p><b>Tashxis.</b> «Baho teng» gapi faqat 7,5 = 7,5 bo'lgani uchun chiqqan, lekin qaysi qatorlar tengligini aytmaydi. Ikkinchi gap tugmalar allaqachon ko'rsatib turgan narsani so'z bilan qaytaradi. Pastdagi xulosa uchinchi takror.</p>
+        <div class="dars">
+          <span class="hol">Taklif A — teng belgisi qatorning o'zida, bitta qisqa qator, pastki xulosa yo'q</span>
+          <div class="k">
+            <span class="y">G'oyalaringiz · RICE</span>
+            <div class="bar top"><span class="n">1</span><div><b>Oshxona menyusi boti</b><br><span class="f">60 × 1 × 100% ÷ 2</span></div><div class="tr"><i style="width:100%"></i></div><span class="v">30</span></div>
+            <div class="bar top"><span class="n">2</span><div><b>Maydon navbati</b><br><span class="f">30 × 2 × 80% ÷ 5</span></div><div class="tr"><i style="width:32%"></i></div><span class="v">9,6</span></div>
+            <div class="bar"><span class="n">3</span><div><b>Vazifalar sahifasi</b> <span class="mute">· 4-bilan teng</span><br><span class="f">60 × 1 × 50% ÷ 4</span></div><div class="tr"><i style="width:25%"></i></div><span class="v">7,5</span></div>
+            <div class="bar chet"><span class="n">4</span><div><b>Sinf chat</b> <span class="mute">· 3-bilan teng</span><br><span class="f">30 × 1 × 100% ÷ 4</span></div><div class="tr"><i style="width:25%"></i></div><span class="v">7,5</span></div>
+            <div class="chips"><span class="chip on">✓ 1 intervyuga</span><span class="chip on">✓ 2 intervyuga</span><span class="chip">3 ni olish</span></div>
+            <p class="mute" style="margin:0">Intervyuga ikkitasi belgilangan. Boshqasini xohlasangiz, almashtiring.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tanlov">
+      <div class="v tavsiya"><b>A</b><span>Teng bahoda qatorning o'zida «· N-bilan teng» yozuvi; ikki gap o'rniga bitta qisqa qator karta ichida; pastki yashil xulosa olinadi (almashtirganda sabab qatori qoladi).</span></div>
+      <div class="v"><b>B</b><span>Faqat gaplarni qisqartirish, joylashuv hozirgidek.</span></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <span class="id">F-1015-199 · Natijalar ekrani</span>
+    <h2>Yaxshi — o'zgarmaydi</h2>
+    <p class="soz">«uje yaxshi»</p>
+    <p>Nishonlar 3 ta (yakka rejimda «Pair Review» yo'q), halqa, bitta karta. Tegilmaydi.</p>
+  </section>
+
+  <section class="band">
+    <h3>Tartib (tasdiqdan keyin)</h3>
+    <ul>
+      <li>MD v4 yangilanadi (0, 1, 2, 4, 8, 9-ekranlar), keyin kod, har ekranning oraliq holatlari surat bilan (uz 1280, uz 390, ru 1280).</li>
+      <li>Darvozalar 12/12, dizayn o'z-ko'rigi (kartasiz osilgan narsa, bog'liqlik, tekislik), keyin sizga.</li>
+      <li>197 dagi «Qayta ko'rish» so'z-tugmasi va 195 dagi «taxmin avval» qolipi 3–6-darslarda ham qo'llanadi.</li>
+    </ul>
+  </section>
+</div>

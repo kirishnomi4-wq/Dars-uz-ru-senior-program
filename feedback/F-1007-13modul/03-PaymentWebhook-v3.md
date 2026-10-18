@@ -132,10 +132,11 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
 - Chap — «Dars oxirida»: `TOLOV_SAHNA` tayyor holatda — telefon (mashq sahifasi) · To'lov xizmati · Backend (`tolovlar` · «1 qator», holati «tolandi»); bir marta o'zi yuradi (DE-200): konvert xizmatdan Backend'ga uchadi → qator kiradi → `200` qaytadi.
   Sahna ostida README kartasining bitta qatori: «To'lov» · 5 qator.
 - O'ng — qadamlar (tex-karta «01 · matn · teg», bosilmaydi; teglar App.jsx `sub` so'zlari bilan — P-015):
-  - 01 · Xabar kimdan kelganini tekshirish · `imzo`
-  - 02 · Bitta to'lovni bir marta yozish · `takror xabar`
-  - 03 · O'tmagan to'lovni ajratish · `rad etilgan to'lov`
-  - 04 · O'z Backend'ingizda mashq to'lov bilan tekshirish · `test rejim`
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
+  - 01 · Xabar kimdan kelganini tekshirish
+  - 02 · Bitta to'lovni bir marta yozish
+  - 03 · O'tmagan to'lovni ajratish
+  - 04 · O'z Backend'ingizda mashq to'lov bilan tekshirish
 - Pastki qator (mono, kichik): o'z repo'ngiz — `backend/` va `README.md` «To'lov» · Mentor misoli `maydon-jamoa` · tayyor holat `m13-dars-03-done`
 - Tugmalar: Orqaga · Boshlaymiz
 - O'qituvchi eslatmasi: darsning og'ir qismi — 7-ekran (kod oynasi) va ikki blok (har birida Render'da yangi versiya kutiladi). 2, 11-ekranlarga ortiqcha vaqt bermang. Vaqt yetmasa A2 uyga vazifaning 1-bandiga o'tadi; sxema 13-ekranda saqlanadi.
@@ -149,7 +150,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
   - boshida: 7-Modulda Telegram yangi xabarni botingiz manziliga o'zi yuborardi — avval «Botga yozish» ni bosib, o'shani eslang.
   - 1-qadamdan keyin: Endi xuddi shu yo'lni to'lov bilan ko'ring — «To'lash (mashq)» ni bosing.
 - Bashorat (ballsiz, yorliq «Avval o'zingiz belgilab ko'ring»; tanlangach ixcham qator): **To'lov xizmati xabarni qayerga yuboradi?** · Tashkilotchining telefoniga · Backend'ning ochiq manziliga · To'g'ridan-to'g'ri Database'ga
-- Sahna (1-holat — 7-Modul): chapda telefon — Telegram chati (pufak joyi bo'sh; chat ostida tugma «Botga yozish» — halqada) · o'rtada «Telegram» tuguni · o'ngda «botingiz» tuguni (yorliq `…onrender.com/telegram`). Qadam belgilari tugma yonida (SABOQ 21): 1 Botga yozing · 2 To'lang.
+- Sahna (1-holat — 7-Modul): chapda telefon — Telegram chati (pufak joyi bo'sh; chat ostida tugma «Botga yozish» — halqada; bashoratdan keyin chiqadi, bosilgach ko'rinmaydi *(✎ F-1015-164)*) · o'rtada «Telegram» tuguni · o'ngda «botingiz» tuguni (yorliq `…onrender.com/telegram`). Qadam belgilari tugma yonida (SABOQ 21): 1 Botga yozing · 2 To'lang.
 - **Harakat → Vizual o'zgarish:**
   1. «Botga yozish» → chatda «Salom!» pufagi → konvert Telegram tugunidan bot tuguniga uchadi (yorliq `…onrender.com/telegram`) → botdan javob qaytadi, chatda javob pufagi.
      Nom qatori 1 (bitta): 7-Modulda: Telegram yangi xabarni botingiz manziliga o'zi yuboradi — bu webhook.
@@ -186,7 +187,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
 - Mentor: Backend manzili internetda ochiq — avval «Haqiqiy xabar» ni, keyin «Soxta xabar» ni yuboring.
 - Bashorat (ballsiz; tanlangach ixcham qator): **Manzilni bilgan begona odam «to'landi» deb yozsa, nima bo'ladi?** · Backend uni to'lov deb yozadi · Backend uni ajratib, yozmaydi
 - Sahna: o'rtada «To'lov xizmati» (ichida qulf belgili qator `TOLOV_KALITI`) · o'ngda «Backend» (ichida qulf qatori `TOLOV_KALITI · .env` va `tolovlar` · «1 qator» — m-101) · xizmat tuguni ostida kichik «boshqa kompyuter» tuguni (noutbuk shakli, odam chizilmaydi).
-  Telefon bu ekranda kichik va xira (chapda). Ikki qulf qatori orasida kulrang yozuv: «bir xil kalit — faqat shu ikkalasida». Ostida tugmalar «Haqiqiy xabar» (halqada) · «Soxta xabar». Qadam belgilari: 1 Haqiqiy xabar · 2 Soxta xabar.
+  Telefon bu ekranda kichik va xira (chapda). Ikki qulf qatori orasida kulrang yozuv: «bir xil kalit — faqat shu ikkalasida». Ostida tugmalar «Haqiqiy xabar» (halqada) · «Soxta xabar» (navbatdagisigina chiqadi: «Haqiqiy xabar» — bashoratdan keyin, «Soxta xabar» — undan keyin *(✎ F-1015-164)*). Qadam belgilari: 1 Haqiqiy xabar · 2 Soxta xabar.
 - Kod kartasi (sahna ostida — E 46; o'qish uchun, qisqartirilgan — P-065), yorlig'i `backend` · imzo tekshiruvi:
   ```ts
   const kutilgan = createHmac('sha256', process.env.TOLOV_KALITI)
@@ -236,7 +237,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
   - 1-qadamdan keyin: Xizmat javobni kutib qoldi — «Kuting» ni bosing.
   - 2-qadamdan keyin: Bitta to'lov ikki marta yozildi — Backend ichidagi «Takror tekshiruvi» ni yoqing.
 - Bashorat (ballsiz; tanlangach ixcham qator): **Javob kelmasa, xizmat nima qiladi?** · Xabarni boshqa yubormaydi · Xabarni qayta yuboradi
-- Sahna: telefon (mashq sahifasi; «To'lash (mashq)» halqada) · To'lov xizmati (ichida kichik soat — javob kutish) · Backend (holat chirog'i kulrang, yozuv «uxlayapti»; `tolovlar` · «0 qator»; ichida o'chirgich «Takror tekshiruvi: o'chiq»). Qadam belgilari: 1 To'lang · 2 Kuting · 3 Tekshiruvni yoqing.
+- Sahna: telefon (mashq sahifasi; «To'lash (mashq)» halqada) · To'lov xizmati (ichida kichik soat — javob kutish) · Backend (holat chirog'i kulrang, yozuv «uxlayapti»; `tolovlar` · «0 qator»; ichida o'chirgich «Takror tekshiruvi: o'chiq»). Qadam belgilari: 1 To'lang · 2 Kuting · 3 Tekshiruvni yoqing. *(✎ F-1015-164: «Kuting» faqat 2-qadamda, o'chirgich 3-qadamda chiqadi; bosilgach o'chirgich — holat yozuvi, tugma emas)*
 - **Harakat → Vizual o'zgarish:**
   1. «To'lash (mashq)» → konvert `m-101` Backend'ga yetadi; chiroq «uyg'onmoqda…» (sahnada ≈2 s) → `tolovlar` ga «m-101 · tolandi» → `200` konverti yo'lga chiqadi, lekin xizmatdagi soat to'xtaydi va konvert yo'lda so'nadi; xizmatda qizil yorliq «javob kelmadi». «Kuting» halqaga o'tadi.
   2. «Kuting» → xizmat **o'sha** `m-101` xabarini qayta yuboradi → Backend (chiroq yashil, «uyg'oq») yana yozadi → jadvalda ikki qator «m-101», ikkalasi qizil ajratiladi, yonida «bitta to'lov — ikki qator». O'chirgich «Takror tekshiruvi» halqaga o'tadi.
@@ -260,7 +261,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
   2. «Yangi to'lov xabari», keyin «Oxirgi xabar yana keldi» ni bosing: jadvalda bitta qator qolsin.
   3. «Rad etilgan to'lov xabari», keyin «Oxirgi xabar yana keldi» ni bosing: «rad» qatori bitta bo'lsin.
 - Yordam: `yozilganlar.includes(raqam)` ro'yxatda shu raqam bor-yo'qligini tekshiradi. «rad» qatori ikki marta yozilsa — tekshiruvingiz `rad` qatoridan pastda turibdi.
-- Tugma (o'ngda): Bajardim — shartlar ✓ bo'lgach ochiladi (§19 halol tugma).
+- Tugma (o'ngda): Bajardim — shartlar ✓ bo'lgach ochiladi (§19 halol tugma). *(✎ F-1015-164: tugma doim bosiladi; shartlar ✓ bo'lmasa ostida «Avval kompilyatorda uchala shart ✓ bo'lsin.» Natija oynasi tugmalari kod o'tgach chiqadi, «Oxirgi xabar yana keldi» — birinchi xabardan keyin)*
 - O'ng — platforma tugmasi «Kompilyatorni ochish» (nomi tegilmaydi; ostida bir qator: «Kod oynasi ochiladi — kodni yozasiz va natijasini shu yerda ko'rasiz.») → `HtmlCompiler`, fayllar:
   - `index.html` — tayyor, o'zgarmaydi:
     ```html
@@ -371,10 +372,10 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
   - boshida: Mashq sahifasida «Rad etish (mashq)» ni bosing va konvert ichiga qarang.
   - 1-qadamdan keyin: Endi «Oxirgi xabar yana keldi» ni bosing — shu xabar ikkinchi marta kelsa-chi?
 - Bashorat (ballsiz; tanlangach ixcham qator): **To'lov o'tmasa, Backend'ga nima keladi?** · Hech narsa kelmaydi · Xabar keladi, holati «rad»
-- Sahna: telefon (mashq sahifasi; «Rad etish (mashq)» halqada) · To'lov xizmati · Backend (`tolovlar` · «1 qator» — «m-101 · tolandi»; o'chirgich «Takror tekshiruvi: yoqiq»). Qadam belgilari: 1 Rad eting · 2 Yana yuboring.
+- Sahna: telefon (mashq sahifasi; «Rad etish (mashq)» halqada) · To'lov xizmati · Backend (`tolovlar` · «1 qator» — «m-101 · tolandi»; o'chirgich «Takror tekshiruvi: yoqiq» — holat yozuvi, bosilmaydi *(✎ F-1015-164)*). Qadam belgilari: 1 Rad eting · 2 Yana yuboring.
 - **Harakat → Vizual o'zgarish:**
   1. «Rad etish (mashq)» → sahifada qizil qator «To'lov o'tmadi» → konvert `m-102` Backend'ga uchadi va ochiladi: `holat: 'rad'` qatori ajralib turadi → Backend ichida uch qator ketma-ket yonadi: «imzo ✓» · «m-102 — yangi» · «holat: rad» →
-     `tolovlar` ga «m-102 · rad» (kulrang) → `200` xizmatga qaytadi; Backend ichida bir qator «hech narsa ochilmaydi». Sahna ostida «Oxirgi xabar yana keldi» halqaga o'tadi.
+     `tolovlar` ga «m-102 · rad» (kulrang) → `200` xizmatga qaytadi; Backend ichida bir qator «hech narsa ochilmaydi». Sahna ostida «Oxirgi xabar yana keldi» chiqadi (halqada; animatsiya paytida ko'rinmaydi *(✎ F-1015-164)*).
      Nom qatori (bitta): To'lov o'tmagan holat — rad etilgan to'lov: xabar keladi va yoziladi, lekin hech narsa ochilmaydi.
   2. «Oxirgi xabar yana keldi» → konvert `m-102` yana → Backend ichida «m-102 — bor» → yozilmaydi → `200 { takror: true }`; jadvalda «rad» qatori bitta.
 - Natija qatori: «Taxminingiz ✕ — aslida: xabar keladi, holati «rad»» (yoki «Taxminingiz to'g'ri chiqdi ✓»).
@@ -407,7 +408,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
   - boshida: Tepadagi «Mashq to'lov» va «Haqiqiy xizmat» ni almashtirib ko'ring.
   - ikkalasi ko'rilgach: Endi pastdagi uch kartani bittadan oching.
 - Bashorat (ballsiz; tanlangach ixcham qator): **Bu darsdagi mashq to'lovda to'lov xizmati qayerda?** · Boshqa kompaniya serverida · Backend'ingizning o'zida · Telefoningizning ichida
-- Sahna: telefon · To'lov xizmati · Backend; sahna ustida ikki nomli tugma (§209, bittasi tanlangan): «Mashq to'lov» · «Haqiqiy xizmat». Sahna ostida uch yopiq karta (U-013: «›», bosilgach ✓), har biri nomi o'z rangida, logotipsiz: **Payme** · **Click** · **Stripe**.
+- Sahna: telefon · To'lov xizmati · Backend; sahna ustida ikki nomli tugma (§209, bittasi tanlangan): «Mashq to'lov» · «Haqiqiy xizmat». Sahna ostida uch yopiq karta (U-013: «›», bosilgach ✓), har biri nomi o'z rangida, logotipsiz: **Payme** · **Click** · **Stripe**. *(✎ F-1015-164: ikki nomli tugma bashoratdan keyin, uch karta ikkala rejim ko'rilgach chiqadi — o'chiq turmaydi)*
   Qadam belgilari: 1 Ikkalasini ko'ring · 2 Uch kartani oching.
 - **Harakat → Vizual o'zgarish:**
   1. «Mashq to'lov» → «To'lov xizmati» tuguni Backend ichiga sirg'alib kiradi: Backend ichida ikki qism — «Mashq to'lov» sahifasi (`GET /tolov-mashq`) va `POST /tolov/webhook`; ikkalasining ustida bitta qulf qatori `TOLOV_KALITI · .env`. Telefon sahifasi ostida qator «Karta so'ralmaydi, pul yechilmaydi.»
@@ -434,13 +435,13 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
   ⛔ «qur» oldidan Payme, Click, Stripe faktlari rasmiy hujjatdan qayta tekshiriladi, sana bilan — xizmatlar qoidasi o'zgarishi mumkin (F-1007-461).
   «Prepare va Complete» — Click hujjatidagi nomlar (T-033: tarjima qilinmaydi). «Already paid» — Click xato kodi `-4`, raqami o'quvchiga aytilmaydi. Telegram `secret_token` — 4-ekran O'qituvchi eslatmasida.
 
-## 12 · Mentor sxemasi  ← QTushuncha (bashorat + 5 qator, bittadan)
+## 12 · Mentor sxemasi  ← QTushuncha (5 qator, bittadan)
 - Eyebrow: Tushuncha · sxema
 - Sarlavha: **To'lov boshidan oxirigacha kim kimga yozadi?** (44)
-- Mentor (bosqichga qarab — F-1007-479): bashoratgacha: Avval yuqoridagi savolga belgi qo'ying — keyin beshta karta birma-bir keladi. · keyin: Har kartada kim nima qilishini o'qing va bu ish kimga yetib borishini tanlang — qator jadvalga tushadi. Jadvalda kelmagan qatorlar bo'sh (raqam + uzuq chiziq) ko'rinib turadi.
-- Bashorat (ballsiz; tanlangach ixcham qator): **To'lov o'tgach, ilova buni qayerdan biladi?** · To'lov xizmatidan · Backend'dan qayta so'rab · Telefonning o'zidan
+- Mentor: Har kartada kim nima qilishini o'qing va bu ish kimga yetib borishini tanlang — qator jadvalga tushadi. Jadvalda kelmagan qatorlar bo'sh (raqam + uzuq chiziq) ko'rinib turadi.
+- Bashorat yo'q — «kimga» tanlashning o'zi topshiriq (208/0 e); karta darhol chiqadi. *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
 - Chap — `TOLOV_SAHNA` (telefon · To'lov xizmati · Backend; telefon ichida kichik «ilova» va «brauzer» yorliqlari) — joriy qatorga mos tugun halqada.
-- O'ng — sxema jadvali: to'q sarlavha qatori «Mentor sxemasi — reja · n / 5» (E 45 — jadval «ma'lumot» ko'rinishida), ustunlar Kim · Nima qiladi · Kimga; qatorlar hali yo'q.
+- O'ng — sxema jadvali: to'q sarlavha qatori «Mentor sxemasi — reja» (hisob tugmada *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*) (E 45 — jadval «ma'lumot» ko'rinishida), ustunlar Kim · Nima qiladi · Kimga; qatorlar hali yo'q.
   Jadval ostida joriy karta — **bittadan** (SABOQ 9, 13; oq, accent chegarali — bosiladigan): «Kim» va «Nima qiladi» matni, to'rt variant (har kartada bir xil tartibda): «Brauzer» · «To'lov xizmati» · «Backend» · «Ilova».
   Kartalar (A-bo'lim 4 jadvali, aynan): 1 Ilova — «To'lovga o'tish» bosilganda to'lov sahifasini ochadi → Brauzer · 2 Tashkilotchi — to'lov sahifasida to'laydi yoki rad etadi; karta ma'lumoti faqat xizmatda → To'lov xizmati ·
   3 To'lov xizmati — to'lov xabarini yuboradi: `POST /tolov/webhook` → Backend · 4 Backend — imzoni tekshiradi, to'lovni bir marta yozadi, Pro muddatini uzaytiradi, `200` qaytaradi → To'lov xizmati · 5 Ilova — Pro holatini qayta so'raydi: `GET /men` → Backend.
@@ -449,10 +450,9 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
     qator jadvalga sirg'alib kiradi (~1 s yashil), hisoblagich oshadi, keyingi karta chiqadi;
   - boshqa variant → karta bir marta silkinadi, bir qator (`QXato`, ≤60): Kartani qayta o'qing: bu ish kimga yetib boradi? (48)
 - Nom qatori (5/5 dan keyin, bitta): Kim kimga nima yuborishi yozilgan jadval — to'lov oqimi sxemasi.
-- Natija qatori: «Taxminingiz ✕ — aslida: Backend'dan qayta so'rab» (yoki «Taxminingiz to'g'ri chiqdi ✓»).
 - Xulosa: Mentor sxemasida Backend javobni xizmatga qaytaradi; ilova esa yangi holatni Backend'dan o'zi so'raydi. (103)
 - Qator (`QIzoh`, xulosadan keyin, bitta): Sxema — reja: bugun to'lov xabari va uning tekshiruvi quriladi; Pro va ilova hali o'zgarmaydi.
-- Tugadi (199): karta yopiladi, to'liq jadval butun enga (sahna kichik, chapda); vizual ⛶ ichida. Tugmalar: Orqaga · Avval o'zingiz belgilab ko'ring → Qatorlarni to'ldiring (N/5) → Davom etish
+- Tugadi (199): karta yopiladi, to'liq jadval butun enga (sahna kichik, chapda); vizual ⛶ ichida. Tugmalar: Orqaga · Qatorlarni to'ldiring (N/5) → Davom etish
 ✎ Tayanch 1.3 sxemasi «X → Y → Z» shaklida — bu yerda uch ustunga ajratildi (`pm-m11d3-oqim` shakli; TAYANCHGA SAVOL 12). «To'lovga o'tish» va `GET /men` — tayanch 1.3 sxemasidagi nomlar; Pro — Mentor modeli (tayanch 1.0); QIzoh ularning bugun qurilmasligini halol aytadi (keyingi dars va'da qilinmaydi).
   4-qator — o'qitiladigan nuqta: Backend javobi xizmatga boradi, ilovaga emas; 5-qator — ilova o'zi so'raydi (12-Modulning «ilova Backend'dan qayta so'raydi» naqshi).
 
@@ -635,10 +635,12 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–6 ≈ 15 · 7 (k
 - Uyga vazifa (`uyga`, karta: kim uchun — o'z mahsulotingiz · nechta — ikki ish · muddat — keyingi darsgacha):
   1. **Tugatish** — darsda ulgurmagan blokni bajaring: `tolovlar` da mashq to'lov qatorlari tursin, uchala tekshiruv belgilangan bo'lsin, README'da «To'lov» bo'limi bo'lsin.
   2. **Sxema** — sxemangizni mahsulotingizdagi haqiqiy tugma va ekran nomlari bilan solishtiring: nom farq qilsa — darsdagi sxema kartasida va README'da tuzating.
-- **AI bilan davom** (`AiDavomCard`, CODE STRIKE ostida, mentor rejimida yo'q — PM-109, F-1007-475): sarlavha **Erta tugatdingizmi? AI bilan davom eting** · matn: gemini.google.com'ni oching, pastdagi so'rovni yuboring — AI to'lov xizmati bo'lib to'rt xabar beradi. Har biriga Backend'ingiz nima qilishini yozing; adashgan joyingizni «Orqaga» bilan 5–9-ekranlarda qayta ko'ring. · so'rov qutisi (nusxalash): «Sen to'lov xizmatisan. Menga navbat bilan 4 ta webhook xabari ber: imzosi to'g'ri, imzosi noto'g'ri, takror (bir xil to'lov raqami), rad etilgan (holat: rad). Har xabar — qisqa JSON: tolovRaqami, holat, summa, oyinchiId va X-Imzo sarlavhasi. Har biridan keyin men Backend'im nima qilishini yozaman (yozadi yoki yozmaydi, javobi 200 yoki 401); sen to'g'ri-noto'g'riligini bir gapda ayt va nega. Mahsulot: Maydon Jamoa, Pro 30 kun, 10 000 so'm. Birinchi xabarni ber.»
-- Keyingi dars — «Narxni qanday belgilaysiz?»
 - Nishonlaringiz — N/4
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- **AI bilan davom** (`AiDavomCard`, Nishonlardan keyin, mentor rejimida yo'q — PM-109, F-1007-475): sarlavha **Erta tugatdingizmi? AI bilan davom eting** · matn: gemini.google.com'ni oching, pastdagi so'rovni yuboring — AI to'lov xizmati bo'lib to'rt xabar beradi. Har biriga Backend'ingiz nima qilishini yozing; adashgan joyingizni «Orqaga» bilan 5–9-ekranlarda qayta ko'ring. · so'rov qutisi (nusxalash): «Sen to'lov xizmatisan. Menga navbat bilan 4 ta webhook xabari ber: imzosi to'g'ri, imzosi noto'g'ri, takror (bir xil to'lov raqami), rad etilgan (holat: rad). Har xabar — qisqa JSON: tolovRaqami, holat, summa, oyinchiId va X-Imzo sarlavhasi. Har biridan keyin men Backend'im nima qilishini yozaman (yozadi yoki yozmaydi, javobi 200 yoki 401); sen to'g'ri-noto'g'riligini bir gapda ayt va nega. Mahsulot: Maydon Jamoa, Pro 30 kun, 10 000 so'm. Birinchi xabarni ber.»
+- Keyingi dars — «Narxni qanday belgilaysiz?»
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — sarlavha «Uyda nima qilasiz?», maydonlar katta quti (yorliq bosh harfda, «:» siz), qadamlar raqam-doira, «Keyingi dars» karta ichida (13.5px); qadam matni o'zgarmagan.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ---
 

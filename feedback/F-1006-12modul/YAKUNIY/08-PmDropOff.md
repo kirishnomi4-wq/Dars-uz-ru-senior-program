@@ -29,10 +29,11 @@ Telefon ekranlari: Kirish (Login · Parol · «Kirish» · «Ro'yxatdan o'tish»
 - Chap — kulrang yorliq: qadamlar bo'yicha sanoq, gipoteza va shu darsda tuzatish
   - Vizual bir marta o'zi yuradi: telefon «Maydon Jamoa» ochiladi (Kirish ekrani) → to'rt kulrang ustun sonsiz o'sadi → ikki oraliqda kulrang belgi → telefonda ekran almashadi (O'yinlar, tepada «Kirish») → ✓ yangi versiya
 - Reja:
-  1. Har qadamda nechta qurilma borligini sanaysiz · sanoq
-  2. Qaysi qadamga kam odam o'tganini foizdan topasiz · foiz
-  3. Bittasi uchun gipoteza yozasiz · gipoteza
-  4. Tuzatishni tekshirib, yangi versiyani chiqarasiz · yangi versiya
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
+  1. Har qadamda nechta qurilma borligini sanaysiz
+  2. Qaysi qadamga kam odam o'tganini foizdan topasiz
+  3. Bittasi uchun gipoteza yozasiz
+  4. Tuzatishni tekshirib, yangi versiyani chiqarasiz
 - Pastki qator: repo `maydon-jamoa` · boshlang'ich holat `m12-dars-08-start` · namuna `m12-dars-08-done` — amaliyotlarni o'z mahsulotingizda bajarasiz.
 - Pastki qator 2 (7-darsda sanoq o'lchanmagan bo'lsa): Ilovangizda qadamlar hali sanalmasa — Amaliyot 1 ning birinchi bo'limi nima qilishni aytadi.
 - Tugmalar: Orqaga · Boshlaymiz
@@ -135,12 +136,12 @@ Telefon ekranlari: Kirish (Login · Parol · «Kirish» · «Ro'yxatdan o'tish»
 ## 5 · Netflix
 - Eyebrow: Biznes olamidan
 - Sarlavha: Netflix'da *ko'rishlar qayerdan keladi?*
-- Bosqich yorlig'i: Netflix · N/3 (uch nuqta)
+- Yorliq va nuqtalar yo'q — tugma «Keyingi bosqich (N/3)» aytadi; bashorat yorlig'i «Avval o'zingiz belgilab ko'ring» *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
 - 1/3 — **Har kimda o'ziniki**
   - Sahna ustida: Netflix — film va serial ko'rsatadigan xizmat.
   - Mentor: Netflix'da bosh sahifa har kimda o'ziniki: tavsiyalar ko'rish tarixidan — odam oldin ko'rganlaridan yig'iladi.
   - Sahna: ikki telefon yonma-yon, ikkalasida Netflix bosh sahifasi (rangli kartalar qatorlari, matnsiz, har birida boshqa); har biri ostida «ko'rganlari» kartalari.
-  - Bashorat (yorliq: Netflix · 1/3): 2016-yilda Netflix aytishicha, ko'rishlarning qanchasi tavsiyalardan keladi?
+  - Bashorat (Avval o'zingiz belgilab ko'ring): 2016-yilda Netflix aytishicha, ko'rishlarning qanchasi tavsiyalardan keladi?
     - Qariyb 20 foizi
     - Qariyb 50 foizi
     - Qariyb 80 foizi
@@ -307,7 +308,8 @@ Natijalar (podium) — jonli reyting
   - Bir-ikki kunlik oz sondan xulosa chiqarmang — bu kuzatuv.
   - Keyingi dars — **«Loyiha kuni: foydalanuvchini qaytaradigan eslatma»**
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
 
 ## Nishonlar
 - **Drop-off Finder!** — Foizi eng past oraliqni birinchi urinishda topdingiz (3-ekran, birinchi urinishda to'g'ri)

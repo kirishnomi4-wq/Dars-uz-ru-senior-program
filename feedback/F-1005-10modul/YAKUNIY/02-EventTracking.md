@@ -34,11 +34,11 @@ Holat: 06.10.2026 — kodga mos
   - Yo'lak: `POST /hodisalar` (band paytida `POST /bandlar`) · chetda kulrang Umami tuguni
   - O'ngda: Backend · NestJS (✓ 201) → Database · PostgreSQL: bandlar +1 band ✓ · jadval `hodisalar` (`id · nom · yaratilgan`)
   - Qatorlar: `1 · ochdi · 16:02` · `2 · vaqt-tanladi · 16:03` · `3 · band-qildi · 16:03`
-- O'ng — qadamlar:
-  - 01 · Harakat saytdan hodisa bo'lib chiqadi · `hodisa`
-  - 02 · Backend hodisa nomini tekshiradi · `Backend`
-  - 03 · Hodisa jadvalga ismsiz yoziladi · `Database`
-  - 04 · Uch hodisa Umami bilan solishtiriladi · `uch hodisa`
+- O'ng — qadamlar (teg yo'q — matndagi so'zni takrorlardi) *(✎ F-1015-115, 208-qonun 0-band: takror olindi)*:
+  - 01 · Harakat saytdan hodisa bo'lib chiqadi
+  - 02 · Backend hodisa nomini tekshiradi
+  - 03 · Hodisa jadvalga ismsiz yoziladi
+  - 04 · Uch hodisa Umami bilan solishtiriladi
 - Pastki qator: repo `maydon` · boshlanish `m10-dars-02-start` · tayyor namuna `m10-dars-02-done`
 - Tugmalar: Orqaga · Boshlaymiz
 
@@ -49,7 +49,7 @@ Holat: 06.10.2026 — kodga mos
 - Bashorat (yorliq: Avval o'zingiz belgilab ko'ring): Uch harakatdan keyin `hodisalar` jadvalida nechta qator bo'ladi? · Bitta · Ikkita · Uchta
   - Tanlangach ixcham qator: Taxminingiz · savol · tanlov
 - Chizma — 1-ekrandagidek (telefon · Backend · NestJS · Database · PostgreSQL · `hodisalar` · Umami), qatorlar bo'sh.
-- Tugma telefon ostida (navbat bilan, N/3): Saytni oching 1/3 → 18:00 ni tanlang 2/3 → Band qiling 3/3
+- Tugma telefon ostida (navbat bilan): Saytni oching → 18:00 ni tanlang → Band qiling (hisob faqat pastki tugmada — F-1015-115)
   - Har bosishda konvert telefondan Backend'ga uchadi, Backend ✓ 201, jadvalga qator tushadi: `1 · ochdi · 16:02` · `2 · vaqt-tanladi · 16:03` · `3 · band-qildi · 16:03`; Umami'ga alohida kulrang nuqta.
   - 3-qadamda avval `POST /bandlar` → bandlar +1 band ✓, keyin `band-qildi`.
 - Joriy qator (birinchi qatordan keyin): Umami ochilishni o'zi yozardi. O'z jadvalimizga esa ochilish ham nom bilan keladi — `ochdi`.
@@ -83,9 +83,9 @@ Holat: 06.10.2026 — kodga mos
 - Sarlavha: Nomi xato yozilgan hodisa jadvalga kiradimi?
 - Mentor: Sayt kodida bitta harf adashsa, hodisa boshqa nom bilan keladi. Har so'rovni Backend'ga yuboring va jadvalga qarang.
 - Bashorat: Sayt `Band qildi` deb yuborsa, nima bo'ladi? · Jadvalga yoziladi · Backend rad etadi
-- Telefon ekranida bitta so'rov (navbat bilan): Maydon · `hodisaYoz('ochdi')` · POST /hodisalar · 1 / 5
+- Telefon ekranida bitta so'rov (navbat bilan): Maydon · `hodisaYoz('ochdi')` · POST /hodisalar
   - So'rovlar tartibi: `ochdi` · `Band qildi` · `vaqt-tanladi` · `vaqt_tanladi` · `band-qildi`
-  - Tugma telefon ostida: Yuborish 1/5 … 5/5
+  - Tugma telefon ostida: Yuborish (hisob «N/5» faqat pastki tugmada) *(✎ F-1015-115, 208-qonun 0-band: takror olindi)*
 - Backend · NestJS tuguni ichida nomlar ro'yxati: `ochdi` · `vaqt-tanladi` · `band-qildi`
   - Nom ro'yxatda bo'lsa: ✓ 201, `hodisalar` ga qator tushadi (`16:21`, `16:22`, `16:23`)
   - Nom ro'yxatda bo'lmasa: 400, konvert qaytadi, Backend ostida sabab:
@@ -122,8 +122,8 @@ Holat: 06.10.2026 — kodga mos
 - Mentor: Ism va telefonni hodisaga yozmaymiz — sahifani ochgan odam ularni hali bermagan. Uch harakatni bajaring va jadvalning yangi ustuniga qarang.
 - Bashorat: 1-telefonda sahifa yangilansa, jadval uni yangi brauzer deb yozadimi? · Ha, yangi brauzer · Yo'q, o'sha brauzer
 - Chapda ikki telefon (yorliqlar: 1-telefon · 2-telefon), har birining ichida pastki qator: Brauzer xotirasi (localStorage) — `maydon-brauzer: bo'sh`
-  - 1-telefon ostida: Ochish 1/3 → Yangilash 2/3 → ✓ Yangilandi
-  - 2-telefon ostida: Ochish 3/3 → ✓ Ochildi
+  - 1-telefon ostida: Ochish → Yangilash → ✓ Yangilandi
+  - 2-telefon ostida: Ochish → ✓ Ochildi (hisob faqat pastki tugmada — F-1015-115)
 - O'ngda jadval `hodisalar`: `id · nom · brauzer_id · yaratilgan` (yangi ustun `brauzer_id` ajralib turadi)
   - Ochish → xotirada `maydon-brauzer: 7f3a…` → qator `1 · ochdi · 7f3a… · 16:10`
   - Yangilash → o'sha `7f3a…` → qator `2 · ochdi · 7f3a… · 16:11`
@@ -391,6 +391,7 @@ GROUP BY nom;
   - Izoh: Keyingi dars — **«Loyiha kuni: jonli dashboard»**. Talabni siz yozasiz, agent dashboard'ni (holat panelini) yig'adi: jadvaldagi hodisalar bir sahifada ko'rinadi.
 - Nishonlaringiz — N/5 (olingan nishonda nomi va tavsifi, olinmaganida faqat nomi)
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — sarlavha «Uyda nima qilasiz?», maydonlar katta quti (yorliq bosh harfda, «:» siz), qadamlar raqam-doira, «Keyingi dars» karta ichida (13.5px); qadam matni o'zgarmagan.
 
 ## Nishonlar
 - Event Path — Hodisa jadvalga Backend orqali borishini bildingiz (3-ekran, 1-savol)

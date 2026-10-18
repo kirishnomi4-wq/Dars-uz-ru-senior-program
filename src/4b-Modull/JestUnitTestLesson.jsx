@@ -27,7 +27,7 @@ const T = {
 const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', str: '#7DD181', comment: '#6B7585', punct: '#9FB4D8', ok: '#7DD181', err: '#FF8A7A' };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 
 
 
@@ -727,6 +727,12 @@ function useStuckValve(done, progress = 0) {
 }
 
 // ===== SCREEN 0 — HOOK: kodni o'zgartirdingiz, buzilmadimi? =====
+// F-1015-394 (216-qonun): kirish javobi — variantga bitta qisqa gap + «Bugun…» qatori (eski uzun umumiy matn o'qilmasdi)
+const ACK_KIRISH = {
+  a: { uz: "Qo'lda tekshirish — sekin va charchatadi.", ru: 'Проверять вручную — долго и утомительно.' },
+  b: { uz: 'Aynan!', ru: 'Именно!' },
+  c: { uz: 'Tekshirmasangiz, xatoni mijoz topadi.', ru: 'Без проверки ошибку найдёт клиент.' }
+};
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [tried, setTried] = useState(!!storedAnswer);
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
@@ -759,9 +765,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 return (<button key={o.id} className={`hook-option ${on ? 'on' : ''}`} disabled={picked !== null || !tried} style={{ opacity: !tried ? 0.55 : 1 }} onClick={() => pick(o.id)}><span className="radio">{on && <span className="radio-dot" />}</span><span>{tr(o.label)}</span></button>);
               })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{picked === 'b'
-              ? tr({ uz: <>Aynan! Oldingi modullarda <b>o'zingiz</b> tekshirgansiz. Endi <b>test</b> yozasiz — kompyuter kodni <b>har o'zgarishda avtomatik</b> tekshiradi. Bugun shuni o'rganamiz: Jest.</>, ru: <>Именно! В предыдущих модулях вы проверяли <b>сами</b>. Теперь вы напишете <b>тест</b> — компьютер будет проверять код <b>автоматически при каждом изменении</b>. Этим сегодня и займёмся: Jest.</> })
-              : tr({ uz: <>Qo'lda tekshirish 5 ta hisobda ham charchatadi, tekshirmaslik esa xatoni mijozgacha olib boradi. Uchinchi yo'l bor — <b>test</b>: kompyuter kodni <b>har o'zgarishda avtomatik</b> tekshiradi. Bugun shuni o'rganamiz: Jest.</>, ru: <>Проверять вручную утомительно уже на 5 расчётах, а не проверять — значит довезти ошибку до клиента. Есть третий путь — <b>тест</b>: компьютер проверяет код <b>автоматически при каждом изменении</b>. Этим сегодня и займёмся: Jest.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step"><b>{tr(ACK_KIRISH[picked])}</b> {tr({ uz: "Bugun Jest bilan test yozamiz — kompyuter o'zi tekshiradi.", ru: 'Сегодня пишем тесты на Jest — компьютер проверяет сам.' })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -988,7 +992,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: "1-qadam · o'rnatish", ru: 'Шаг 1 · установка' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: '2 qadamni bajaring', ru: 'Выполните 2 шага' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Test yozish uchun <span className="italic" style={{ color: T.accent }}>nima kerak</span>?</>, ru: <>Что <span className="italic" style={{ color: T.accent }}>нужно</span>, чтобы писать тесты?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Test asbobi kerak — <b style={{ color: T.ink }}>Jest</b>. Uni bir marta o'rnatamiz va <span className="mono">package.json</span>'ga <span className="mono">"test": "jest"</span> buyrug'ini yozamiz. Ikki qadamni bajaring.</>, ru: <>Нужен инструмент для тестов — <b style={{ color: T.ink }}>Jest</b>. Установим его один раз и запишем в <span className="mono">package.json</span> команду <span className="mono">"test": "jest"</span>. Выполните два шага.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Testlarni ishga tushiradigan dastur kerak — <b style={{ color: T.ink }}>Jest</b>. Uni bir marta o'rnatamiz va <span className="mono">package.json</span>'ga <span className="mono">"test": "jest"</span> buyrug'ini yozamiz. Ikki qadamni bajaring.</>, ru: <>Нужен инструмент для тестов — <b style={{ color: T.ink }}>Jest</b>. Установим его один раз и запишем в <span className="mono">package.json</span> команду <span className="mono">"test": "jest"</span>. Выполните два шага.</> })}</Mentor>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Terminal ostidagi tugmani bosing — avval o'rnatish, keyin \"test\": \"jest\" qo'shiladi.", ru: '💡 Нажмите кнопку под терминалом — сначала установка, затем добавится "test": "jest".' })}</p>}
         {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
         <Zoomable>{/* F-0926-06 J1: ⛶ qaytdi — 1-izoh kartaga o'ngdan joy berildi */}
@@ -1301,7 +1305,7 @@ const Screen11 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Практика · вопрос 3' })}
     questionText="describe nima uchun ishlatiladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>describe</span> nima uchun <span className="italic" style={{ color: T.accent }}>kerak</span>?</>, ru: <>Зачем <span className="italic" style={{ color: T.accent }}>нужен</span> <span className="mono" style={{ color: T.accent }}>describe</span>?</> })}</h2></>}
-    options={[{ uz: 'Test ichida funksiyani chaqirib, ishga tushiradi', ru: 'Вызывает и запускает функцию внутри теста' }, { uz: 'Natijani kutilgan qiymat bilan solishtiradi', ru: 'Сравнивает результат с ожидаемым значением' }, { uz: "Jest asbobini loyihaga o'rnatib sozlaydi", ru: 'Устанавливает и настраивает Jest в проекте' }, { uz: "Bog'liq barcha testlarni bitta guruhga yig'adi", ru: 'Собирает все связанные тесты в одну группу' }]} correctIdx={3}
+    options={[{ uz: 'Test ichida funksiyani chaqirib, ishga tushiradi', ru: 'Вызывает и запускает функцию внутри теста' }, { uz: 'Natijani kutilgan qiymat bilan solishtiradi', ru: 'Сравнивает результат с ожидаемым значением' }, { uz: "Jest dasturini loyihaga o'rnatib sozlaydi", ru: 'Устанавливает и настраивает Jest в проекте' }, { uz: "Bog'liq barcha testlarni bitta guruhga yig'adi", ru: 'Собирает все связанные тесты в одну группу' }]} correctIdx={3}
     explainCorrect={{ uz: "describe — papka: bitta funksiyaning testlari bir joyda.", ru: "describe — папка: тесты одной функции лежат в одном месте." }}
     explainWrong={{
       0: { uz: 'Funksiyani it ichida siz chaqirasiz, describe emas.', ru: 'Функцию вызываете вы внутри it, а не describe.' },
@@ -1660,7 +1664,7 @@ const QZ_BG_SHAPES = [
 const QUIZ_BANK = [
   { q: { uz: 'Unit-test nima qiladi?', ru: 'Что делает юнит-тест?' }, opts: [{ uz: "Saytning tashqi ko'rinishini chiroyli qiladi", ru: 'Делает внешний вид сайта красивым' }, { uz: "Foydalanuvchi kiritgan ma'lumotni bazaga yozib qo'yadi", ru: 'Записывает данные пользователя в базу' }, { uz: 'Loyiha serverini ishga tushirib, ulanishni ochadi', ru: 'Запускает сервер проекта и открывает соединение' }, { uz: 'Funksiya kirish→chiqishini avtomatik tekshiradi', ru: 'Автоматически проверяет вход→выход функции' }], correct: 3 },
   { q: { uz: '`expect(natija).toBe(kutilgan)` — bu nima?', ru: '`expect(результат).toBe(ожидаемое)` — что это?' }, opts: [{ uz: "Natijani darhol ekranga chiqarib ko'rsatadi", ru: 'Сразу выводит результат на экран' }, { uz: 'Sinaladigan funksiyani chaqirib ishga tushiradi', ru: 'Вызывает и запускает испытуемую функцию' }, { uz: 'Tasdiq: natija kutilgan qiymatga tengmi', ru: 'Утверждение: равен ли результат ожидаемому' }, { uz: "Yozilgan testni butunlay o'chirib tashlaydi", ru: 'Полностью удаляет написанный тест' }], correct: 2 },
-  { q: { uz: '`describe` nima uchun kerak?', ru: 'Зачем нужен `describe`?' }, opts: [{ uz: "Jest asbobini loyihaga o'rnatib sozlaydi", ru: 'Устанавливает и настраивает Jest в проекте' }, { uz: "Bog'liq testlarni bitta guruhga yig'adi", ru: 'Собирает связанные тесты в одну группу' }, { uz: 'Natijani kutilgan qiymat bilan tekshiradi', ru: 'Проверяет результат по ожидаемому значению' }, { uz: 'Funksiyani chaqirib, ishga tushiradi', ru: 'Вызывает и запускает функцию' }], correct: 1 },
+  { q: { uz: '`describe` nima uchun kerak?', ru: 'Зачем нужен `describe`?' }, opts: [{ uz: "Jest dasturini loyihaga o'rnatib sozlaydi", ru: 'Устанавливает и настраивает Jest в проекте' }, { uz: "Bog'liq testlarni bitta guruhga yig'adi", ru: 'Собирает связанные тесты в одну группу' }, { uz: 'Natijani kutilgan qiymat bilan tekshiradi', ru: 'Проверяет результат по ожидаемому значению' }, { uz: 'Funksiyani chaqirib, ishga tushiradi', ru: 'Вызывает и запускает функцию' }], correct: 1 },
   { q: { uz: 'Test fayli qanday nomlanadi?', ru: 'Как называется файл теста?' }, opts: ['order.js', '`order.spec.ts`', 'order.jest', 'order.test.html'], correct: 1 },
   { q: { uz: '`npm test` nima qiladi?', ru: 'Что делает `npm test`?' }, opts: [{ uz: 'Loyihadagi bazani butunlay tozalab tashlaydi', ru: 'Полностью очищает базу проекта' }, { uz: "Loyihani internet serveriga yuklab qo'yadi", ru: 'Загружает проект на интернет-сервер' }, { uz: 'Yangi funksiya yozib, alohida faylga saqlaydi', ru: 'Пишет новую функцию и сохраняет её в отдельный файл' }, { uz: "Jest'ni ishga tushiradi va testlarni tekshiradi", ru: 'Запускает Jest и проверяет тесты' }], correct: 3 },
   { q: { uz: 'Testda `console.log` yozsak, u nimani tekshiradi?', ru: 'Если написать в тесте `console.log` — что он проверит?' }, opts: [{ uz: 'Natijani kutilgan qiymat bilan avtomatik solishtiradi', ru: 'Автоматически сравнит результат с ожидаемым' }, { uz: "Funksiyaning ishlash tezligini o'lchab beradi", ru: 'Измерит скорость работы функции' }, { uz: 'Hech narsani — u faqat ekranga chiqaradi, xolos', ru: 'Ничего — он лишь выводит на экран, и всё' }, { uz: 'Kodning umumiy qatorlar sonini hisoblaydi', ru: 'Посчитает общее число строк кода' }], correct: 2 },
@@ -2381,7 +2385,7 @@ function Flashcards({ cards }) {
 // 🃏 JEST FLASHCARD KARTALARI (front=savol, back=qisqa javob, note=bir qatorlik izoh) — matnni 🎓 Metodist sayqallaydi
 const JEST_FLASHCARDS = [
   { front: { uz: "Bitta funksiyani avtomatik sinaydigan test qanday ataladi?", ru: 'Как называется тест, который автоматически испытывает одну функцию?' }, back: { uz: 'Unit-test', ru: 'Юнит-тест' }, note: { uz: "bitta mashina-funksiyani sinaydi", ru: 'испытывает одну машину-функцию' } },
-  { front: { uz: "Testlarni ishga tushiradigan asbob qanday ataladi?", ru: 'Как называется инструмент, который запускает тесты?' }, back: 'Jest', note: { uz: 'robot-sinovchi', ru: 'робот-испытатель' } },
+  { front: { uz: "Testlarni ishga tushiradigan dastur qanday ataladi?", ru: 'Как называется инструмент, который запускает тесты?' }, back: 'Jest', note: { uz: 'robot-sinovchi', ru: 'робот-испытатель' } },
   { front: { uz: "Jestni loyihangizga qaysi buyruq bilan o'rnatasiz?", ru: 'Какой командой вы устанавливаете Jest в свой проект?' }, back: 'npm i -D jest ts-jest', note: { uz: "package.json ichida test buyrug'i ham yoziladi", ru: 'в package.json также прописывается команда test' } },
   { front: { uz: "Testlarni qaysi buyruq bilan ishga tushirasiz?", ru: 'Какой командой вы запускаете тесты?' }, back: 'npm test', note: { uz: "yashil PASS yoki qizil FAIL chiqadi", ru: 'появится зелёный PASS или красный FAIL' } },
   { front: { uz: "Bitta mashinaning barcha sinovlarini qaysi so'z bir guruhga yig'adi?", ru: 'Какое слово собирает все испытания одной машины в одну группу?' }, back: 'describe', note: { uz: 'robot papkasi', ru: 'папка робота' } },
@@ -2425,7 +2429,7 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
+    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [
@@ -2444,13 +2448,13 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
   return (
-    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className="screen">
         <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Birinchi testni yozdingiz', ru: 'Вы написали первый тест' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi kompyuter siz uchun <span className="italic" style={{ color: T.accent }}>tekshiradi</span>.</>, ru: <>Теперь компьютер <span className="italic" style={{ color: T.accent }}>проверяет</span> за вас.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : undefined} />
         </div>
-        {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+        {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
         <div className="hw-big-wrap fade-up d4">
           <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
@@ -3329,7 +3333,8 @@ export default function JestUnitTestLesson({ lang: langProp, onFinished, liveTok
         @keyframes dd-settle { 0% { opacity: 0; transform: translateY(-9px) scale(1.05); } 60% { opacity: 1; transform: translateY(2px) scale(0.98); } 100% { transform: none; } }
         .dd-tail { color: ${CODE.punct}; font-size: 12px; padding-left: 4px; opacity: 0.75; }
         .dd-pool { display: flex; flex-direction: column; gap: 8px; }
-        .dd-chip { display: flex; align-items: center; gap: 8px; background: ${T.paper}; border-radius: 10px; padding: 11px 13px; font-size: 11.5px; color: ${T.ink}; cursor: grab; touch-action: none; user-select: none; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.18); transition: box-shadow 0.16s, transform 0.16s; }
+        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 11px; padding: 11px 15px; cursor: grab; touch-action: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: transform .12s; user-select: none; }
+        .dd-chip::before { content: '⠿'; margin-right: 7px; opacity: .75; font-weight: 400; } /* F-1015-352 (F-1002-59): to'ldirilgan gradient chip, ⠿ ushlagich sudralishni aytadi */
         .dd-chip:hover { transform: translateY(-1px); }
         .dd-chip.drag { cursor: grabbing; box-shadow: 0 16px 34px -10px rgba(${T.shadowBase},0.4); }
 

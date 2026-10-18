@@ -1,0 +1,149 @@
+<title>QA 139–153 savollar</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#f6f5fb; --panel:#ffffff; --ink:#1d1b2e; --mute:#5e5a78; --line:#e3e0f0;
+  --acc:#5b3fd6; --acc-soft:#ece8fd; --ok:#1f8a4c; --ok-soft:#e3f4ea; --warn:#b5541b; --warn-soft:#fbeadf;
+  --f-body:"Manrope",system-ui,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#14131c; --panel:#1d1c28; --ink:#ecebf5; --mute:#a5a2bd; --line:#2f2d40;
+  --acc:#a593ff; --acc-soft:#2a2547; --ok:#5fd18e; --ok-soft:#173326; --warn:#f19a62; --warn-soft:#3a2416; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#14131c; --panel:#1d1c28; --ink:#ecebf5; --mute:#a5a2bd; --line:#2f2d40;
+  --acc:#a593ff; --acc-soft:#2a2547; --ok:#5fd18e; --ok-soft:#173326; --warn:#f19a62; --warn-soft:#3a2416; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font:15px/1.6 var(--f-body)}
+.wrap{max-width:980px;margin:0 auto;padding-block:32px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:30px}
+h1{font-size:28px;line-height:1.2;margin:0;text-wrap:balance;font-weight:800}
+h2{font-size:19px;margin:0;font-weight:800;text-wrap:balance}
+.eyebrow{font:600 12px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--acc)}
+p{margin:0;max-width:70ch}
+.mute{color:var(--mute)}
+.sec{display:flex;flex-direction:column;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+.sec.info{border-style:dashed}
+.n{font:800 13px var(--f-mono);color:var(--acc)}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+figure{margin:0;display:flex;flex-direction:column;gap:6px;min-width:0}
+figure img{border:1px solid var(--line);border-radius:8px;background:#fff;width:100%}
+figcaption{font:12px var(--f-mono);color:var(--mute)}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.opt{border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.opt.rec{border-color:var(--acc);background:var(--acc-soft)}
+.rec-l{font:600 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--acc)}
+code{font:13px var(--f-mono);background:var(--acc-soft);padding:1px 5px;border-radius:4px}
+ul{margin:0;padding-left:20px}
+.done{background:var(--ok-soft);border:1px solid var(--ok);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:6px}
+.big{background:var(--warn-soft);border:1px solid var(--warn);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+</style>
+<div class="wrap">
+<header style="display:flex;flex-direction:column;gap:10px">
+  <span class="eyebrow">F-1015-139…153 · 17.10 · tashxis, kodga tegilmagan</span>
+  <h1>15 ta yangi fidbek: savollar</h1>
+  <p>Har savolda tavsiya qilingan variant ajratib ko'rsatilgan. Javob uchun «hammasi A» yoki «144 B, qolgani A» deb yozish kifoya. Faqat ma'lumot uchun bo'limlar (javob kerak emas) uzuq chiziqli ramkada.</p>
+  <div class="done"><b>Bajarilmoqda (tasdiqlangan):</b> 135–138 = A. QA saytlari ish tugagach yangilanadi.</div>
+</header>
+
+<section class="sec"><span class="n">139 · global</span><h2>To'g'ri javob tanlanganda matn maydonga uchib kirsin</h2>
+  <p>Hozir to'g'ri bo'lak tanlansa, tugma faqat rangini o'zgartiradi, maydonda esa matn shunchaki paydo bo'ladi. Ko'z bo'lak qayerga ketganini kuzatolmaydi.</p>
+  <div class="shots"><figure><img src="F-1015-139-m8-09-s6-javob-animatsiya.jpg" alt=""><figcaption>m8-09 s6 (QA)</figcaption></figure></div>
+  <div class="opts">
+    <div class="opt rec"><span class="rec-l">tavsiya</span><b>A. Matn uchib kiradi</b><span>Bo'lakdagi matn nusxasi 0,35 s ichida tugmadan maydonga uchib boradi va o'sha joyga tushadi. Tugma «ishlatildi» holatida xira bo'lib qoladi. Harakat o'chirilgan qurilmalarda matn darhol joyiga tushadi. Shunday «bo'lakni maydonga yig'ish» ekranlari hamma darslarda topiladi va bir xil qilinadi.</span></div>
+    <div class="opt"><b>B. Hozirgidek</b><span>Faqat rang o'zgaradi.</span></div></div>
+</section>
+
+<section class="sec"><span class="n">140</span><h2>⛶ — karta bitta bo'lsa, kartaning burchagida</h2>
+  <p>Siz ko'rgan sayt 07.10 dagi eski versiya. Lokal versiyada tungi Z1 ⛶ ni telefonning yoniga qo'ygan. Siz esa uni butun oq kartaning yuqori o'ng burchagiga tortib chizgansiz.</p>
+  <div class="shots"><figure><img src="F-1015-140-m7-08-s5-zoom-karta.jpg" alt=""><figcaption>QA (eski): ⛶ o'rtada</figcaption></figure><figure><img src="lokal-m7-08-uz-s4.jpg" alt=""><figcaption>lokal (Z1): ⛶ telefon yonida</figcaption></figure></div>
+  <div class="opts">
+    <div class="opt rec"><span class="rec-l">tavsiya</span><b>A. Yaxlit karta → kartaning burchagi</b><span>⛶ butun kartani kattalashtirsa (ramkali bitta karta), u kartaning yuqori o'ng burchagida, ichkarida turadi. Boshqa holatlarda Z1 qoidasi o'zgarmaydi. 206.6 qonuniga qo'shiladi va 94 darsda o'lchanadi.</span></div>
+    <div class="opt"><b>B. Z1 qoladi</b><span>⛶ asosiy rasm yonida qoladi.</span></div></div>
+</section>
+
+<section class="sec"><span class="n">141 · qolip</span><h2>«Talab» kartasi tepaga, «Qayta ko'rish» joyiga (Z2)</h2>
+  <p>Bu 127-fidbek bilan bir xil. ⛶ ning joyi tunda tuzatildi. Karta pastga cho'zilib qolishining sababi qolipdagi <code>.q-split</code>: ikki ustun bo'yi bo'yicha bir xil cho'ziladi. Buni Z2 tuzatadi. Z2 qolip fayliga tegadi, ya'ni boshqa seans ishlayotgan 1–6-M praktika darslariga ham.</p>
+  <div class="shots"><figure><img src="F-1015-141-m7-08-s6-joylashuv.jpg" alt=""><figcaption>QA (eski)</figcaption></figure><figure><img src="lokal-m7-08-uz-s5.jpg" alt=""><figcaption>lokal: ⛶ joyida, karta hali cho'zilgan</figcaption></figure></div>
+  <div class="opts">
+    <div class="opt rec"><span class="rec-l">tavsiya</span><b>A. Z2 ni hozir qilaman</b><span><code>.q-split</code> ustunlari tepadan tekislanadi. Oldin va keyin <code>.q-split</code> ishlatilgan barcha ekranlar (1–6-M ham) o'lchanadi. Biror ekranda yomonlashsa, o'sha ekranga alohida tuzatish qilinadi. Nazorat seansiga jurnal orqali xabar beriladi.</span></div>
+    <div class="opt"><b>B. Relizdan keyin</b><span>Qolipga hozir tegilmaydi.</span></div></div>
+</section>
+
+<section class="sec"><span class="n">144 · global</span><h2>«Ortda qoldingizmi» bloklari va ortiqcha matn</h2>
+  <p>«Ortda qoldingizmi — faqat mentor bilan» va undagi <code>git fetch …</code> buyruqlari <b>45 darsda</b> bor. Ular ichida GitHub'dagi Maydon repo'si teglariga murojaat bor (153 ga qarang). m8-06 da yana ikki ortiqcha gap bor: «Har gap kodda bor…» va «Render va Netlify — sizniki…».</p>
+  <div class="shots"><figure><img src="F-1015-144-m8-09-s7-ortda-blok.jpg" alt=""><figcaption>m8-09 s7</figcaption></figure><figure><img src="F-1015-144b-m8-06-ru-s8-ortiqcha.jpg" alt=""><figcaption>m8-06 s8 (RU)</figcaption></figure></div>
+  <div class="opts">
+    <div class="opt rec"><span class="rec-l">tavsiya</span><b>A. O'quvchi ekranidan olib tashlanadi</b><span>45 darsning hammasidan olib tashlanadi. Teglar Maydon README'sida qoladi: ortda qolgan o'quvchiga mentor u yerdan yordam beradi. Ekranda ikki ustun bir xil chiziqdan boshlanadi: «Kutilgan natija» sarlavhasi va karta chap ustun bilan teng turadi. Ortiqcha gaplar ham olib tashlanadi.</span></div>
+    <div class="opt"><b>B. Yig'iladigan tugma</b><span>Blok yashiriladi, o'rnida kichik «Ortda qoldingizmi?» tugmasi qoladi va bosilganda ochiladi.</span></div></div>
+</section>
+
+<section class="sec"><span class="n">145</span><h2>Bema'ni matn yozish mumkin, «Nusxalash» kerakmi</h2>
+  <p>Hozir uchala qatorga istalgan narsani yozish mumkin, tekshiruv yo'q. «Nusxalash» A3 qadamida kerak, chunki matn Antigravity'ga yuboriladi. Ammo «O'z g'oyangiz» qadamida matn hech qayerga ketmaydi, shuning uchun tugma ortiqcha.</p>
+  <div class="shots"><figure><img src="F-1015-145-m8-09-s7-nusxalash.jpg" alt=""><figcaption>m8-09 s7, 5-qadam</figcaption></figure></div>
+  <div class="opts">
+    <div class="opt rec"><span class="rec-l">tavsiya</span><b>A. Nusxalash faqat agentga ketadigan joyda + yengil tekshiruv</b><span>Matn hech qayerga ketmaydigan qadamlardan «Nusxalash» olib tashlanadi. Har qatorga kamida 2 ta so'z va 8 ta harf yozilishi shart. Bir xil harflar takrori (masalan «aaaa») va harfsiz matn qabul qilinmaydi. Hamma darslarda shunday qadamlar qidiriladi.</span></div>
+    <div class="opt"><b>B. Faqat Nusxalash olinadi</b><span>Tekshiruv qo'shilmaydi.</span></div></div>
+</section>
+
+<section class="sec"><span class="n">146 · qolip</span><h2>Yakundagi «1/2 to'g'ri» belgisi</h2>
+  <p>Bu belgi qolipdagi QYakun komponentida. U hamma darslarda bir xil, qizg'ish rangda.</p>
+  <div class="shots"><figure><img src="F-1015-146-m8-09-yakun-ball-chip.jpg" alt=""><figcaption>m8-09 s12</figcaption></figure></div>
+  <div class="opts">
+    <div class="opt rec"><span class="rec-l">tavsiya</span><b>A. Joyida, rang neytral</b><span>Belgi «Dars tugadi» yonida qoladi. Rangi kulrang bo'ladi, hammasi to'g'ri bo'lsa yashil. Matni aniqroq: «Testlar: 1/2».</span></div>
+    <div class="opt"><b>B. Yakundan olib tashlanadi</b><span>Ball «Natijalar» ekranidagi halqada ko'rsatilgani yetarli.</span></div></div>
+</section>
+
+<section class="sec"><span class="n">147</span><h2>Nega «1/2» chiqadi</h2>
+  <p>Hisob shunday: darsda 2 ta test bor (1-savol va 2-savol). <b>Faqat birinchi urinishda</b> to'g'ri berilgan javob sanaladi. Xato qilib, keyin to'g'risini topsangiz, u sanalmaydi. CODE STRIKE o'yini bu hisobga kirmaydi. Kodda xato ko'rinmadi. Ikkala testni birinchi urinishda to'g'ri yechib, 2/2 chiqishini avtomat sinovda tasdiqlayman.</p>
+  <div class="shots"><figure><img src="F-1015-147-m8-09-s10-ball.jpg" alt=""><figcaption>m8-09 s10</figcaption></figure></div>
+  <div class="opts">
+    <div class="opt rec"><span class="rec-l">tavsiya</span><b>A. Halqa ostida izoh</b><span>Halqa ostiga «birinchi urinishda to'g'ri» deb yoziladi, shunda hisob tushunarli bo'ladi. Hamma darslarda.</span></div>
+    <div class="opt"><b>B. Hozirgidek</b><span>Faqat sinov o'tkaziladi.</span></div></div>
+</section>
+
+<section class="sec"><span class="n">148</span><h2>m8-07 kirish: variantlar pastda</h2>
+  <div class="shots"><figure><img src="F-1015-148-m8-07-s1-variantlar.jpg" alt=""><figcaption>QA</figcaption></figure><figure><img src="lokal-m8-07-uz-s0.jpg" alt=""><figcaption>lokal: tun hali boshlanmagan</figcaption></figure></div>
+  <div class="opts">
+    <div class="opt rec"><span class="rec-l">tavsiya</span><b>A. Sahna to'liq kenglikda, variantlar ostida 3 ustunda</b><span>Shu ekran tuzatiladi. Uch ustunli, sahna siqilib qolgan boshqa kirish ekranlari ham o'lchanadi va topilsa, xuddi shunday qilinadi.</span></div>
+    <div class="opt"><b>B. Faqat m8-07</b><span>Boshqa ekranlarga tegilmaydi.</span></div></div>
+</section>
+
+<section class="sec"><span class="n">149 · global</span><h2>Ovoz</h2>
+  <p>Hozir darslarda umuman ovoz yo'q. 19.09 da «ovoz kerak emas» degan qaror qabul qilingan edi. U Mentorning gapini o'qib beradigan ovoz haqida edi. Bosish va to'g'ri javob ovozlari haqida qaror bo'lmagan.</p>
+  <div class="opts">
+    <div class="opt rec"><span class="rec-l">tavsiya</span><b>A. Qisqa ovozlar</b><span>To'g'ri javob, xato javob va dars tugashi uchun qisqa ovoz bo'ladi. Ovozlar brauzerda yasaladi, alohida fayl kerak emas. Har bosishda ovoz bo'lmaydi, chunki sinfda 20 ta kompyuter bir vaqtda chalinib ketadi. Pastki chapda 🔈 o'chirish tugmasi bo'ladi. Qolip orqali hamma darslarga qo'shiladi.</span></div>
+    <div class="opt"><b>B. Ovoz yo'q</b><span>Hozirgidek qoladi.</span></div>
+    <div class="opt"><b>C. Har bosishda ham ovoz</b><span>Tugma bosilganda ham chiqadi.</span></div></div>
+</section>
+
+<section class="sec"><span class="n">150 · RU</span><h2>«Maydon» nega tarjima qilinmaydi</h2>
+  <p>«Maydon» — o'quvchilar 9–14-modullarda quradigan saytning nomi, xuddi «Netlify» yoki «Telegram» kabi. Sayt shapkasida ham «Maydon» deb yozilgan. Shuning uchun RU'da ham o'zgarmaydi: o'quvchi ekranda va o'z saytida bitta nomni ko'radi. Qo'shtirnoqdagi boshqa so'zlar (tugma nomlari va hokazo) tarjima qilinadi.</p>
+  <div class="shots"><figure><img src="F-1015-150a-m8-09-ru-kartochka.jpg" alt=""><figcaption>m8-09 kartochka (RU)</figcaption></figure><figure><img src="F-1015-150b-m8-07-ru-maydon.jpg" alt=""><figcaption>m8-07 (RU)</figcaption></figure></div>
+  <div class="opts">
+    <div class="opt rec"><span class="rec-l">tavsiya</span><b>A. Nom o'zgarmaydi</b><span>«Maydon» RU'da ham shunday qoladi.</span></div>
+    <div class="opt"><b>B. RU'da «Поле»</b><span>Bunda sayt nomi va darsdagi nom farq qiladi.</span></div></div>
+</section>
+
+<section class="sec"><span class="n">151–152 · RU</span><h2>RU'da matn karta chetidan chiqib ketadi, son maydoni har narsani qabul qiladi</h2>
+  <p>151: RU so'zlari uzunroq (masalan «Забронировали»), shuning uchun ustunga sig'maydi. 152: «сейчас / к концу месяца» maydonlari oddiy matn maydoni (<code>type="text"</code>), sana turi emas. Ichiga «10.10.2…» kabi har narsa yozish mumkin, uzun bo'lsa «…» bilan kesiladi.</p>
+  <div class="shots"><figure><img src="F-1015-151-m8-01-ru-s3-toshib.jpg" alt=""><figcaption>m8-01 s3 (RU)</figcaption></figure><figure><img src="F-1015-152-m8-01-ru-s10-input.jpg" alt=""><figcaption>m8-01 s10 (RU)</figcaption></figure></div>
+  <div class="opts">
+    <div class="opt rec"><span class="rec-l">tavsiya</span><b>A. RU bo'yicha to'liq o'lchov + son maydoni</b><span>7–14-modullarning hamma darsi RU'da o'lchanadi, chetidan chiqqan matnlar tuzatiladi. Son maydonlariga faqat raqam, <code>%</code> yoki «?» yoziladi, eng ko'pi 6 belgi. Yozilgan qiymat to'liq ko'rinadi, «…» bilan kesilmaydi.</span></div></div>
+</section>
+
+<section class="big"><span class="n">153 · katta ish</span><h2>Maydon repo'si: havola ishlamaydi, kodni to'liq yozish</h2>
+  <p><code>github.com/Azizbekcrypto/maydon</code> hozir <b>404</b> qaytaradi: repo yopiq yoki umuman yo'q. Unda o'qish materiali ham yo'q, darslarda faqat <code>git fetch</code> uchun ishlatiladi. Lokal <code>~/Desktop/maydon</code> da faqat 9-Modul bor (teglar <code>dars-04…dars-11</code>, NestJS + React). Darslar esa 10–14-modullar uchun yana <b>~70 ta teg</b> (<code>m10-dars-02-start … m14-dars-09-done</code>) va 7 ta 9-Modul tegini so'raydi.</p>
+  <p><b>Savol A, repo:</b> o'quvchi <code>git fetch</code> qila olishi uchun repo <b>ochiq (public)</b> bo'lishi shart. Yopiq repo'dan o'quvchi kodni ololmaydi. Tavsiya: ochiq repo.</p>
+  <p><b>Savol B, .env:</b> tavsiya — repo'da faqat <code>.env.example</code> bo'ladi, unga tayyor lokal qiymatlar yoziladi (<code>localhost</code> baza, namuna parol, test kalitlar), README'da qadam-baqadam yo'riqnoma. Haqiqiy <code>.env</code> yuklanmaydi. Haqiqiy Neon yoki to'lov kaliti ochiq repo'ga tushsa, istalgan odam bazani o'chirib yuborishi mumkin. Agar baribir haqiqiy <code>.env</code> kerak bo'lsa, faqat bepul, alohida, «o'chsa ham zarari yo'q» hisoblar bilan.</p>
+  <p><b>Savol C, qanday quriladi:</b> har dars ekranidagi «kutilgan natija»ni o'qib, kod dars ketidan dars yoziladi va har dars uchun <code>start/done</code> tegi qo'yiladi. Har bosqich lokalda ishga tushirib tekshiriladi. Teglar bir-biriga ulanib ketgani uchun ish ketma-ket boradi. Tavsiya: men o'zim plyus bir vaqtda bitta yordamchi agent, modul-modul bilan, jami 5 navbat (10–14-M). Tokeni ko'p ketadi, lekin ishonchli. Push qilinmaydi: ertalab siz repo ochasiz va yuklaysiz.</p>
+</section>
+
+<section class="sec info"><span class="n">142 · faqat ma'lumot</span><h2>Izohlardagi doirachalar</h2>
+  <p>Bu GitHub ko'rinishidagi namuna: ismsiz avatar doirasi, «Conversation» yorlig'i. Bosilmaydi, bosilishi ham kerak emas. Siz yozgandek, hammasi joyida.</p>
+  <div class="shots"><figure><img src="F-1015-142-m8-09-s7-avatar.jpg" alt=""><figcaption>m8-09 s7</figcaption></figure></div>
+</section>
+
+<section class="sec info"><span class="n">143 · faqat ma'lumot</span><h2>m7-08 da uyga vazifa bor</h2>
+  <p>To'g'ri, m7-08 oddiy dars, unda uyga vazifa bor. «Loyiha kuni» darslarida (masalan m8-09) uyga vazifa yo'q, chunki ish repo'da qilinadi. Bu 207.4-qonun, 132-savolga ham shunday javob bergan edim.</p>
+  <div class="shots"><figure><img src="F-1015-143-m7-08-yakun-uyga.jpg" alt=""><figcaption>m7-08 yakun</figcaption></figure></div>
+</section>
+</div>

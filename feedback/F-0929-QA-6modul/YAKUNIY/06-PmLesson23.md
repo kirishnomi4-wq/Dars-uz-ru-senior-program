@@ -1,5 +1,8 @@
 # 6-dars «Ilova o'zi qaror qilsa, kimga tegadi?» — yakuniy matn
 
+> ✎ **F-1015-122 (16.10, 208-qonun 4-band, foydalanuvchi qarori — 2-variant):** dars yuzasidagi bezak emoji kodda olingan — sarlavha, yorliq, karta ikonlari, fayl tablari, test/amaliyot yorliqlari, tugmalar. Qolgan: sxema tugunlari, keys sahnasi, o'yin qatlami (nishon, arena, podium), Yakun, takrorlash oynasi, Mentor paneli, bot/ilova maketidagi mahsulot mazmuni. Bu MD dagi shunday bezak emoji endi ekranda yo'q.
+
+
 Fayl: `src/6-Modull/PmLesson23.jsx` · 16 ekran · Keyingi dars: «O'z Skill'ingizni yozing»
 Holat: 05.10.2026 — kodga mos
 
@@ -94,7 +97,7 @@ Holat: 05.10.2026 — kodga mos
 - Tugmalar: Orqaga · Javobni tanlang → Davom etish
 
 ## 6 · Haqiqiy holat — bitta qator
-- Eyebrow: Haqiqiy holat (bosqich yorlig'i: «Haqiqiy holat · n / 5»; bashoratda: «Avval o'zingiz belgilab ko'ring · n / 5»)
+- Eyebrow: Haqiqiy holat (bosqich yorlig'i yo'q — eyebrow aytadi, sanoq tugmada; bashoratda: «Avval o'zingiz belgilab ko'ring» *(✎ F-1015-121, 208-qonun 0-band: takror olindi)*)
 - Sarlavha: **AI bilan yozishganda har kuni ko'radigan bitta qator**
 - Chap tomonda — yozishma oynasi:
   - AI yordamchi
@@ -142,6 +145,7 @@ Holat: 05.10.2026 — kodga mos
   - uchala qator bitta odamga bo'lsa: Uchala qator bitta odamga tegyapti — do'konda boshqa odam ham bor.
   - hammasi joyida bo'lsa: Ish ham, odam ham yozildi.
   - Tugma: Saqlash → / ✓ Yangilash
+  - «Saqlash →» doim bosiladi; maydon bo'sh bo'lsa saqlanmaydi, tugma ostida: Ilova qaysi ishni o'zi qilmasligini yozing. / Bu qaror kimga tegishini yozing. (qisqa · takror · «hamma» holatini yuqoridagi javob-qatori aytadi), kursor kerakli maydonga ✎ F-1015-164
 - Uchtasi saqlangach: Mini-do'koningizning uch chegarasi — «1 {qaror} → {odam}» (×3, har birida «Tahrirlash» tugmasi)
 - Yordam: Ikki savol bering: ilova buni so'ramay qilsa nima bo'ladi? Bu qaror aniq kimga tegadi?
 - Jonli darsda: Sinfda: N bajardi · N hali bajarmoqda
@@ -290,18 +294,20 @@ Holat: 05.10.2026 — kodga mos
 
 ## 15 · Yakun
 - Eyebrow: Dars yakuni
-- Belgi: ✓ Dars tugadi (yonida: n/4 to'g'ri)
+- Belgi: ✓ Dars tugadi · Testlar: N/N ✎ F-1015-161
 - Sarlavha: **Uchta chegarangiz yozildi.**
-- Arena tugmasi: CODE STRIKE · 12 SAVOL · 15 SONIYA · PODIUM · (jonli darsda mentor boshlamaguncha) Mentorni kuting
+- Arena tugmasi: CODE STRIKE · (jonli darsda mentor boshlamaguncha) Mentorni kuting
 - ✓ Endi siz bilasiz:
   - Chegara — ilova qaysi ishni o'zi qilaverishi, qaysisini odamdan o'tkazishi haqida oldindan qilingan qaror.
   - Chegara ilova o'zi qiladigan va odamga tegadigan ishga qo'yiladi — ayniqsa muhim yoki xavfli ishga.
   - Har chegarada bu qaror tegadigan aniq odamlar yoziladi.
   - Chegarani ilova emas, ilovani yaratayotgan odam qo'yadi — ya'ni siz.
+- Uyga vazifa · Amaliy topshiriqni bajarish →
 - Nishonlaringiz — n/4
 - Keyingi dars — **O'z Skill'ingizni yozing:** AI uchun o'zingiz yo'riqnoma yozib, uni sinab ko'rasiz.
-- Uyga vazifa · Amaliy topshiriqni bajarish →
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10, S2-A): «To'liq / Qisqa» tanlovi qoladi; karta banner ostida JOYIDA ochiladi (popup/varaq yo'q — PM 77/58 dagi qatlam yechimi bekor), «Topshiriq kartasi · TO'LIQ» sarlavha-qatori olindi (tanlangan chip bilan takror), maydonlar quti, qadamlar raqam-doira, bitta ustun; «Keyingi dars» karta ichida; HW ochilganda Yakun siqilmaydi (:has(.hw-chips) qoidalari olindi), banner 138px.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Mirror Check!** (4-ekran) — Qaror kimga tegishini o'zingiz ko'rdingiz

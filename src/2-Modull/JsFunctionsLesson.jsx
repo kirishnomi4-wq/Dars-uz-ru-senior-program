@@ -36,7 +36,7 @@ const tr = (node) => {
 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // F-0801-01 (102-qonun): ochiq praktika-oynasi ham saqlanadi — Chrome fon-tabni bo'shatib
 // sahifani qayta yuklasa, o'quvchi praktika ICHIGA qaytadi, ortidagi darsga emas.
 const _pracKey = (id) => `ccPractice:${id}`;
@@ -880,6 +880,12 @@ function Flashcards({ cards }) {
 }
 
 // ===== SCREEN 0 — HOOK (qo'lda takror dardi) =====
+// F-1015-394 (216-qonun): kirish javobi — variantga bitta qisqa gap + «Bugun…» qatori (eski uzun umumiy matn o'qilmasdi)
+const ACK_KIRISH = {
+  a: { uz: "Qo'lda qayta yozish — sekin va xato ko'p.", ru: 'Переписывать вручную — долго и с ошибками.' },
+  b: { uz: 'Aynan! Bu — funksiya.', ru: 'Именно! Это — функция.' },
+  c: { uz: "Hisobsiz o'yin ishlamaydi.", ru: 'Без подсчёта игра не работает.' }
+};
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const NEED = 5;
   const [count, setCount] = useState(0);
@@ -934,7 +940,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               })}
             </div>
             {/* F-0926-06: noto'g'ri variantga «To'g'ri…» deyilmaydi (I2) — tanlovga qarab ikki xil boshlanish */}
-            {picked !== null && <p className="hook-ack fade-step">{picked === 'b' ? tr({ uz: <>Aynan shunday — bu <b>funksiya</b>. Bir marta "mashina"ni yozasiz, keyin nom bilan istalgancha chaqirasiz. Bugun shuni o'rganamiz.</>, ru: <>Именно так — это <b>функция</b>. Один раз пишете «машину», а потом вызываете её по имени сколько угодно. Этим сегодня и займёмся.</> }) : tr({ uz: <>Aslida dasturchi <b>funksiya</b> yasaydi: bir marta "mashina"ni yozadi, keyin nom bilan istalgancha chaqiradi. Bugun shuni o'rganamiz.</>, ru: <>На самом деле программист делает <b>функцию</b>: один раз пишет «машину», а потом вызывает её по имени сколько угодно. Этим сегодня и займёмся.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step"><b>{tr(ACK_KIRISH[picked])}</b> {tr({ uz: "Bugun funksiya yozib, uni nom bilan chaqirishni o'rganamiz.", ru: 'Сегодня научимся писать функцию и вызывать её по имени.' })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -1766,7 +1772,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
+    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [tr({ uz: 'Funksiya — nomlangan, qayta ishlatiladigan kod bloki (mashina)', ru: 'Функция — именованный, многоразовый блок кода (машина)' }), tr({ uz: 'Funksiyani nomi bilan chaqiramiz — zarar()', ru: 'Функцию вызываем по имени — zarar()' }), tr({ uz: 'Parametr — funksiyaga beriladigan kirish (input)', ru: 'Параметр — вход, который передают функции (input)' }), tr({ uz: 'return — funksiya qaytaradigan natija (output)', ru: 'return — результат, который возвращает функция (output)' }), tr({ uz: "console.log ko'rsatadi, return qaytaradi (saqlash uchun)", ru: 'console.log показывает, return возвращает (для сохранения)' })];
@@ -1784,7 +1790,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
     return nv;
   });
   return (
-    <Stage eyebrow={{ uz: 'Tayyor', ru: 'Готово' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
+    <Stage eyebrow={{ uz: 'Tayyor', ru: 'Готово' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className="screen">
         <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi murakkab ishni bitta <span className="italic" style={{ color: T.accent }}>nom</span> ortiga yashira olasiz.</>, ru: <>Теперь вы умеете прятать сложную работу за одним <span className="italic" style={{ color: T.accent }}>именем</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
@@ -1796,7 +1802,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
             hint={studentWait ? { uz: '⏳ Mentorni kuting', ru: '⏳ Дождитесь ментора' } : undefined}
           />
         </div>
-        {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+        {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>
         <div className="hw-big-wrap fade-up d4">
           <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
@@ -2537,7 +2543,7 @@ function MentorPracticeOverlay({ entry, live, onClose }) {
   if (view === 'demo') {
     return (
       <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg }}>
-        <HtmlCompiler lang={__lang} task={entry.task} starterCode={entry.starter} onContinue={() => setView('watch')} onBack={() => setView('watch')} />
+        <HtmlCompiler lang={__lang} task={entry.task} storageKey={codeKeyOf(LESSON_META.lessonId, `mentor-s${entry.fromScreen}`)} /* F-1017-208: mentor kodi kuzatish↔ko'rsatish almashganda saqlanadi */ starterCode={entry.starter} onContinue={() => setView('watch')} onBack={() => setView('watch')} />
       </div>
     );
   }
@@ -2610,14 +2616,14 @@ const TASK_SALOM = {
 const TASK_KVADRAT = {
   eyebrow: { uz: 'Praktika · return', ru: 'Практика · return' },
   title: { uz: 'Javob qaytaradigan mashina', ru: 'Машина, которая возвращает ответ' },
-  brief: { uz: "`zarar` funksiyasi yozing: bitta parametr (`kuch`) olsin va `return kuch * 3` qilsin. Keyin `console.log(zarar(5))` yozing — konsolda `15` chiqadi.", ru: 'Напишите функцию `zarar`: принимает один параметр (`kuch`) и делает `return kuch * 3`. Затем напишите `console.log(zarar(5))` — в консоли появится `15`.' },
+  brief: { uz: "`zarar` funksiyasi yozing: bitta parametr (`kuch`) olsin va `return kuch * 3` qilsin. Keyin javobni saqlang: `let natija = zarar(5)`, so'ng `console.log(natija)` yozing — konsolda `15` chiqadi.", ru: 'Напишите функцию `zarar`: принимает один параметр (`kuch`) и делает `return kuch * 3`. Затем сохраните ответ: `let natija = zarar(5)`, потом напишите `console.log(natija)` — в консоли появится `15`.' }, // F-1017-204: darsda o'tilgani — javobni o'zgaruvchiga saqlash (s7)
   files: [
     { name: 'script.js', lang: 'js', starter: `// Bu yerga yozing
 ` },
   ],
   requirements: [
     { id: 'ret', label: { uz: 'return ishlatildi', ru: 'использован return' }, check: C.js(/\breturn\b/, { uz: "Funksiya ichida `return kuch * 3` yozing", ru: 'Внутри функции напишите `return kuch * 3`' }) },
-    { id: 'log', label: { uz: 'konsolda 15', ru: 'в консоли 15' }, check: C.logs('15', { uz: "`console.log(zarar(5))` yozing — javob konsolga chiqadi", ru: 'Напишите `console.log(zarar(5))` — ответ выйдет в консоль' }) },
+    { id: 'log', label: { uz: 'konsolda 15', ru: 'в консоли 15' }, check: C.logs('15', { uz: "`let natija = zarar(5)` va `console.log(natija)` yozing — javob konsolga chiqadi", ru: 'Напишите `let natija = zarar(5)` и `console.log(natija)` — ответ выйдет в консоль' }) },
   ],
 };
 
@@ -2631,7 +2637,8 @@ const TASK_QAYTA = {
   ],
   requirements: [
     { id: 'param', label: { uz: 'parametrli funksiya', ru: 'функция с параметром' }, check: C.js(/function\s+\w+\s*\(\s*\w+/, { uz: "`function salomla(ism) {` deb boshlang", ru: 'Начните с `function salomla(ism) {`' }) },
-    { id: 'log', label: { uz: 'ikkala salom konsolda', ru: 'оба приветствия в консоли' }, check: C.logs('Salom, Aziza Salom, Bobur', { uz: "Funksiyani ikki marta chaqiring: `salomla(\"Aziza\")` va `salomla(\"Bobur\")`", ru: 'Вызовите функцию дважды: `salomla(\"Aziza\")` и `salomla(\"Bobur\")`' }) },
+    { id: 'log1', label: { uz: 'konsolda: Salom, Aziza', ru: 'в консоли: Salom, Aziza' }, check: C.logs('Salom, Aziza', { uz: "`salomla(\"Aziza\")` deb chaqiring — konsolda `Salom, Aziza` chiqadi", ru: 'Вызовите `salomla(\"Aziza\")` — в консоли появится `Salom, Aziza`' }) },
+    { id: 'log2', label: { uz: 'konsolda: Salom, Bobur', ru: 'в консоли: Salom, Bobur' }, check: C.logs('Salom, Bobur', { uz: "Yana bir marta chaqiring: `salomla(\"Bobur\")`", ru: 'Вызовите ещё раз: `salomla(\"Bobur\")`' }) }, // F-1017-205: bitta birlashgan logs «!» qo'shilsa rad etardi
   ],
 };
 
@@ -3515,8 +3522,8 @@ export default function JsFunctionsLesson({ lang: langProp, onFinished, onPracti
         .dd-hint { color: ${T.ink3}; font-style: italic; font-size: 13px; }
         .dd-pool { display: flex; flex-wrap: wrap; gap: 9px; min-height: 48px; padding: 10px; border-radius: 14px; background: ${T.bg}; }
         .dd-pool-empty { color: ${T.ink3}; font-size: 12.5px; font-style: italic; align-self: center; }
-        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: ${T.accent}; background: ${T.paper}; border: 2px solid ${T.accent}; border-radius: 11px; padding: 9px 13px; cursor: grab; touch-action: none; transition: transform .12s; user-select: none; } /* F-0926-06: sudraladigan chip — oq fon + accent chegara + ushlagich (159/15) */
-        .dd-chip::before { content: '⠿'; margin-right: 7px; opacity: .6; font-weight: 400; }
+        .dd-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: clamp(13px,1.7vw,15px); color: #fff; background: linear-gradient(170deg, #FF8A3D, ${T.accent}); border: none; border-radius: 11px; padding: 11px 15px; cursor: grab; touch-action: none; box-shadow: 0 8px 16px -8px rgba(255,79,40,.6), inset 0 2px 0 rgba(255,255,255,.3); transition: transform .12s; user-select: none; }
+        .dd-chip::before { content: '⠿'; margin-right: 7px; opacity: .75; font-weight: 400; } /* F-1015-352 (F-1002-59): to'ldirilgan gradient chip, ⠿ ushlagich sudralishni aytadi */
         .dd-chip:hover { transform: translateY(-2px); }
         .dd-chip:active { cursor: grabbing; }
         .dd-slots, .dd-pool { position: relative; }

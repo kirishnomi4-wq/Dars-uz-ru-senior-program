@@ -47,7 +47,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–3 ≈ 7 · 4–6
    Mentor misoli — mobil trek (Maydon Jamoa — mobil ilova, tayanch 1.0): kod hajmi — Expo Atlas. Mentor lendingidagi qaysi rasm katta, qaysi kutubxona keraksiz — ⛔ pilotda (agent ro'yxati); MD da `{…}`. Boshqa son yo'q; statistika deyilmaydi (T-043).
    Rasmiy chegaralar (son emas, qoida — Manbalar 1–5): 0–49 · 50–89 · 90–100 · LCP 2,5 soniya yoki kamroq · CLS 0,1 yoki kamroq · TBT (Mobile) 200 ms gacha — yashil · vaznlar 10/10/25/30/25.
    Kod oynasi va sahnadagi namuna qiymatlar (son emas, shakl): rasm `width="180"` `height="320"` (namuna sahifa, 9-band) — TAYANCHGA SAVOL 4.
-7. **Metafora yo'q. Keyssiz** (tayanch 5: K13 Telegram «yetkazish tezligi» — mos emas). Qahramon yo'q — vazifani Mentor beradi; odamlar roli bilan: tashkilotchi, o'yinchi, hakam (faqat 0-ekran Mentor gapida, ismsiz, gapisiz). Lighthouse, Expo Atlas, Netlify, Chrome — asbob nomlari (T-033: tarjima qilinmaydi), logotipsiz.
+7. **Metafora yo'q. Keyssiz** (tayanch 5: K13 Telegram «yetkazish tezligi» — mos emas). Qahramon yo'q — vazifani Mentor beradi; odamlar roli bilan: tashkilotchi, o'yinchi, hakam (faqat 0-ekran Mentor gapida, ismsiz, gapisiz). Lighthouse, Expo Atlas, Netlify, Chrome — dastur nomlari (T-033: tarjima qilinmaydi), logotipsiz.
 8. **Kod — kim nima yozadi:** lending va ilovadagi o'zgarishni **agent** qiladi (A2 talabi); **o'lchashni o'quvchi o'zi qiladi** (A1, A3 — Lighthouse va kod hajmi buyrug'i; sinf 10). Kod oynasida (11-ekran) o'quvchi `width`, `height`, `loading` atributlarini qo'lda yozadi — namuna sahifada («haqiqiy lending emas» — oynadagi izohda ochiq).
 9. **Toza yuza (D4):** tugma, variant va maketda emoji yo'q; brauzer, rasm joyi, baho doirasi, vaqt chizig'i, kod ustuni — CSS/SVG; «Maydon Jamoa» nomi sahna brauzer satrida va sahifa sarlavhasida o'z rangida (11-Modul yashili); logotip yo'q.
    Rang — holat foni (D3): yaxshi / joyida — `ok`, siljidi / javobsiz — `err`, joriy — `accent`, kutilmoqda — `ink2`. **Lighthouse doirasining uch rangi** (qizil · to'q sariq · yashil) — Lighthouse'ning o'z ko'rinishi, maket ichida (brend rangi kabi; KOD 3, Shubhali 10); rang ma'nosi o'quvchi matnida so'z bilan aytiladi (2-ekran shkalasi).
@@ -66,7 +66,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–3 ≈ 7 · 4–6
 
 - **Ip (P-001/004):** «Maydon Jamoa» — mahalladagi mini-futbol uchun jamoa yig'adigan ilova (tayanch 1.0); 12-Modulda unga lending qurilgan. Bugun Mentor lendingini Lighthouse bilan o'lchaydi, rasm siljishi va kech kelgan katta rasmni ko'radi, ilovaning keraksiz kodini topadi,
   dalili bor tuzatishdan keyin xuddi shu sharoitda qayta o'lchaydi. O'quvchi xuddi shuni o'z lendingi va ilovasida qiladi (11-ekran, A1–A3).
-- **Hook:** «Ochish» bosiladi — sahifa sekin chiziladi, rasm kech keladi, «Qo'shilmoqchiman» pastga sakraydi → «sababini qanday topasiz?» → 2-ekranda o'lchov asbobi (Lighthouse bahosi) → 4-ekranda eng katta narsa (LCP) → 5-ekranda siljish (CLS) va `width`/`height` →
+- **Hook:** «Ochish» bosiladi — sahifa sekin chiziladi, rasm kech keladi, «Qo'shilmoqchiman» pastga sakraydi → «sababini qanday topasiz?» → 2-ekranda o'lchov dasturi (Lighthouse bahosi) → 4-ekranda eng katta narsa (LCP) → 5-ekranda siljish (CLS) va `width`/`height` →
   7-ekranda pastdagi rasmlar (keyin yuklash) → 9-ekranda ilova sahifasi: ochilishda brauzer band, bosish kutadi (TBT) va yuklanadigan keraksiz kod (yuklanadigan kod hajmi) → 11-ekranda kod oynasi → 12-ekranda ish tartibi → A1 (oldin) → A2 (ikki tuzatish) → A3 (keyin va yangi versiya).
 - **Bitta vizual — «brauzer + Lighthouse paneli» sahnasi** (bitta manba `TEZLIK_SAHNA`, 163/180; topshiriq: «brauzer maketi (sahifa yuklanishi, rasm siljishi) + baho doirasi»):
   - **chapda brauzer oynasi** telefon kengligida (ramka ≈200×360, o'lcham barqaror; yorliq ramka ustida «brauzer · Mobile rejimi»): manzil satri `maydon-jamoa-….netlify.app` (lending) yoki brauzer ko'rinishi manzili (9-ekran); ostida yuklanish chizig'i.
@@ -93,7 +93,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–3 ≈ 7 · 4–6
   Shundan keyin o'ngdagi variantlar faollashadi (bosilmaguncha xira).
 - Variantlar (radio, ballsiz; har birining o'z yengil chegarasi — E 40):
   - Sahifani boshqa kompyuterda ochib ko'raman
-  - ✔ Sahifani o'lchov asbobi bilan tekshiraman
+  - ✔ Sahifani o'lchov dasturi bilan tekshiraman
   - Agentga «sahifani tezlashtir» deb yozaman
 - Javob — 2-variant: **Aynan!** O'lchov qaysi joy sekinligini son bilan ko'rsatadi — tuzatish o'sha joydan boshlanadi. (93)
 - Javob — 1-variant: **Qiziq fikr!** Boshqa kompyuterda boshqacha ochilishi mumkin — lekin qaysi joy sekinligi bilinmaydi. (97)
@@ -110,10 +110,11 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–3 ≈ 7 · 4–6
 - Chap — «Dars oxirida»: `TEZLIK_SAHNA` tayyor holatda — lending (rasmlar joyida, tugma joyida) va Lighthouse doirasi ikki holatda: «Oldin · `{oldin baho}`» → «Keyin · `{keyin baho}`» (⛔ pilotda o'lchanadi — «qur» da Mentor soni; MD da son yo'q).
   Bir marta o'zi yuradi (DE-200): doira «oldin» sonidan «keyin» soniga o'tadi. Sahna ostida `TEZLIK.md` kartasining bitta qatori: «Oldin · Keyin».
 - O'ng — qadamlar (tex-karta «01 · matn · teg», bosilmaydi; teglar App.jsx `sub` so'zlari bilan — P-015):
-  - 01 · Sahifa tezligini son bilan o'lchash · `Lighthouse`
-  - 02 · Rasm kelganda sahifa siljimasligi · `rasmlar`
-  - 03 · Yuklanadigan keraksiz kodni topish · `yuklanadigan kod hajmi`
-  - 04 · Oldin va keyin sonlarini solishtirish · `oldin va keyin`
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*
+  - 01 · Sahifa tezligini son bilan o'lchash
+  - 02 · Rasm kelganda sahifa siljimasligi
+  - 03 · Yuklanadigan keraksiz kodni topish
+  - 04 · Oldin va keyin sonlarini solishtirish
 - Pastki qator (mono, kichik): o'z repo'ngiz — `lending/` va `TEZLIK.md` · Mentor misoli `maydon-jamoa` · tayyor holat `m14-dars-03-done`
 - Tugmalar: Orqaga · Boshlaymiz
 - O'qituvchi eslatmasi: darsning og'ir qismi — 11-ekran (kod oynasi) va uch blok (har birida tashqi kutish: Lighthouse 30–60 soniya, Netlify yangilanishi, Expo Atlas yoki `npm run build`). 2-ekrandagi «Desktop» qadamiga ortiqcha vaqt bermang.
@@ -124,21 +125,21 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–3 ≈ 7 · 4–6
 - Eyebrow: Tushuncha · Lighthouse bahosi
 - Sarlavha: **Sahifa qanchalik tez ochilishini nima o'lchaydi?** (48)
 - Mentor (bosqichga qarab):
-  - boshida: Chrome ichida o'lchov asbobi bor — o'ngdagi «Analyze page load» ni bosing.
+  - boshida: Chrome ichida o'lchov dasturi bor — o'ngdagi «Analyze page load» ni bosing.
   - 1-qadamdan keyin: Endi tepadagi «Desktop» ni bosib, bahoni yana bir ko'ring.
-- Bashorat (ballsiz, yorliq «Avval o'zingiz belgilab ko'ring»; tanlangach ixcham qator): **Bu asbob sahifaga qanday baho beradi?** · 1 dan 5 gacha · 0 dan 10 gacha · 0 dan 100 gacha
-- Sahna: chapda brauzer (lending, ochilgan holat) · o'ngda Lighthouse paneli: sozlama qatori `Mode: Navigation` · `Device: Mobile` (tanlangan) `| Desktop` · `Categories: Performance` · tugma «Analyze page load» (halqada); baho doirasi bo'sh. Qadam belgilari tugma yonida (SABOQ 21): 1 O'lchang · 2 Desktop.
+- Bashorat (ballsiz, yorliq «Avval o'zingiz belgilab ko'ring»; tanlangach ixcham qator): **Bu dastur sahifaga qanday baho beradi?** · 1 dan 5 gacha · 0 dan 10 gacha · 0 dan 100 gacha
+- Sahna: chapda brauzer (lending, ochilgan holat) · o'ngda Lighthouse paneli: sozlama qatori `Mode: Navigation` · `Device: Mobile` (tanlangan) `| Desktop` · `Categories: Performance` · tugma «Analyze page load» (halqada); baho doirasi bo'sh. Qadam belgilari yo'q — har qadamni Mentor nomi bilan aytadi, hisob tugmada *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*.
 - **Harakat → Vizual o'zgarish:**
   1. «Analyze page load» → brauzerdagi sahifa boshidan qayta ochiladi (0-ekrandagidek, qisqa); panelda doira chiziladi → o'rtada `{oldin baho}` ⛔, doira shu son turgan oraliq rangida; shkalada o'sha bo'lak yonadi; ostida besh qator chiqadi:
      FCP · Speed Index (kulrang) · **LCP** · **TBT** · **CLS** — har birining qiymati `{…}` ⛔ («qur» da Mentor lendingining haqiqiy o'lchovi).
-     Nom qatori 1 (bitta): Chrome ichidagi o'lchov asbobi — Lighthouse; u sahifaga 0 dan 100 gacha baho beradi — Lighthouse bahosi.
+     Nom qatori 1 (bitta): Chrome ichidagi o'lchov dasturi — Lighthouse; u sahifaga 0 dan 100 gacha baho beradi — Lighthouse bahosi.
      «Desktop» halqaga o'tadi.
   2. «Desktop» → sozlama `Device: Desktop` ga o'tadi, sahifa keng oynada qayta ochiladi → doirada boshqa o'lchov `{desktop baho}` ⛔; doira yonida kulrang yorliq «boshqa sharoit». Bir lahzadan keyin sozlama o'zi «Mobile» ga qaytadi, doirada yana `{oldin baho}`.
      Nom qatori 2 (bitta): Shkala: 0–49 — qizil, 50–89 — to'q sariq, 90–100 — yashil.
 - Natija qatori — yashil xulosaning birinchi kichik qatori (E 42): «Taxminingiz ✕ — aslida: 0 dan 100 gacha» (yoki «Taxminingiz to'g'ri chiqdi ✓»). Hamma tushuncha-ekranda shunday; QIzoh — shu qutining oxirgi kichik qatori.
 - Xulosa: Bu darsda tezlik Lighthouse bahosi va uch soni bilan tekshiriladi: oldin va keyin — o'sha sahifa, o'sha rejim. (110)
 - Qator (`QIzoh`, xulosadan keyin, bitta): Baho har o'lchashda biroz farq qilishi mumkin; 100 shart emas — Lighthouse buni «juda qiyin» deydi.
-- Tugadi (199): sozlama qatori va qadam belgilari yopiladi, doira va besh qator fokusga; vizual ⛶ ichida (q17). Tugmalar: Orqaga · Avval o'zingiz belgilab ko'ring → Qadamlarni bajaring (N/2) → Davom etish
+- Tugadi (199): sozlama qatori yopiladi, doira va besh qator fokusga; vizual ⛶ ichida (q17). Tugmalar: Orqaga · Avval o'zingiz belgilab ko'ring → Qadamlarni bajaring (N/2) → Davom etish
 - O'qituvchi eslatmasi: vaznlar (Lighthouse 10): LCP 25% · TBT 30% · CLS 25% · FCP 10% · Speed Index 10% (Manbalar 1). Mobile va Desktop — Lighthouse ikki xil sharoitda o'lchaydi; shuning uchun darsda faqat Mobile. Sahnadagi `{desktop baho}` — Mentor lendingining haqiqiy Desktop o'lchovi («qur»);
   agar Mobile bilan bir xil chiqsa — 2-qadam yorlig'i «bu safar bir xil chiqdi» bo'ladi, xulosa ikkala holatda rost.
 ✎ T-011 tartibi: hodisa (o'lchash) → «Lighthouse» → «Lighthouse bahosi»; LCP, TBT, CLS — bu ekranda faqat qator nomi, ta'rifsiz (keyingi ekranlar ochadi — P-036). «Analyze page load», «Mode», «Device», «Categories», «Performance», «Mobile», «Desktop» — Lighthouse UI yozuvlari (T-024, T-033; Manbalar 2).
@@ -166,8 +167,8 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–3 ≈ 7 · 4–6
 - Mentor (bosqichga qarab):
   - boshida: Lendingni qadamma-qadam oching — «Sekin ochish» ni bosing.
   - 1-qadamdan keyin: Endi o'sha narsani sahifaning o'zida bosib ko'rsating.
-- Bashorat (ballsiz; tanlangach ixcham qator): **Lighthouse qaysi narsaning ko'rinish vaqtini kuzatadi?** · Birinchi harfning · Eng katta narsaning · Oxirgi rasmning (03-FILTR 9: odam hissi emas — asbob nimani kuzatadi)
-- Sahna: chapda brauzer (lending, bo'sh) · o'ngda **vaqt chizig'i** (4 belgi kulrang: «ochildi» · «birinchi matn» · «eng katta narsa» · «hamma rasm») va Lighthouse panelidan bitta qator «LCP · `{oldin LCP}` s» ⛔ (kulrang). Ostida tugma «Sekin ochish» (halqada). Qadam belgilari: 1 Sekin ochish · 2 Eng kattasini toping.
+- Bashorat (ballsiz; tanlangach ixcham qator): **Lighthouse qaysi narsaning ko'rinish vaqtini kuzatadi?** · Birinchi harfning · Eng katta narsaning · Oxirgi rasmning (03-FILTR 9: odam hissi emas — dastur nimani kuzatadi)
+- Sahna: chapda brauzer (lending, bo'sh) · o'ngda **vaqt chizig'i** (4 belgi kulrang: «ochildi» · «birinchi matn» · «eng katta narsa» · «hamma rasm») va Lighthouse panelidan bitta qator «LCP · `{oldin LCP}` s» ⛔ (kulrang). Ostida tugma «Sekin ochish» (halqada). Qadam belgilari yo'q — har qadamni Mentor nomi bilan aytadi, hisob tugmada *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*.
 - **Harakat → Vizual o'zgarish:**
   1. «Sekin ochish» → sahifa bosqichma-bosqich chiziladi: oq → «Maydon Jamoa» va sarlavha (chiziqda «birinchi matn» yonadi) → tepadagi rasm (chiziqda «eng katta narsa» accent bilan yonadi) → pastdagi rasmlar («hamma rasm»). Brauzerdagi sahifa bosiladigan bo'ladi (sarlavha, rasm, tugma — har birining o'z yengil chegarasi).
   2. Eng katta narsani bosish →
@@ -177,7 +178,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–3 ≈ 7 · 4–6
 - Natija qatori: «Taxminingiz ✕ — aslida: eng katta narsaning» (yoki «Taxminingiz to'g'ri chiqdi ✓»).
 - Xulosa: Bu misolda eng katta narsa — tepadagi rasm: u kech kelsa, LCP ham kech bo'ladi. (79)
 - Qator (`QIzoh`, xulosadan keyin, bitta): Rasmiy tavsiya: LCP 2,5 soniya yoki kamroq bo'lsin.
-- Tugadi (199): qadam belgilari yopiladi, sahifa va vaqt chizig'i yonma-yon fokusga; vizual ⛶ ichida. Tugmalar: Orqaga · Avval o'zingiz belgilab ko'ring → Qadamlarni bajaring (N/2) → Davom etish
+- Tugadi (199): sahifa va vaqt chizig'i yonma-yon fokusga; vizual ⛶ ichida. Tugmalar: Orqaga · Avval o'zingiz belgilab ko'ring → Qadamlarni bajaring (N/2) → Davom etish
 - O'qituvchi eslatmasi: LCP — eng katta rasm, matn bloki yoki video (rasmiy, Manbalar 3). Mentor lendingida LCP qaysi element ekani — ⛔ «qur» da Lighthouse hisobotidan tekshiriladi; boshqa chiqsa (masalan sarlavha matni), sahna va xulosa o'sha elementga moslanadi.
   «Birinchi harf» (FCP) — bahoning 10 foizi, darsda nomi bilan; o'quvchi so'rasa: «birinchi matn yoki rasm chiqqan vaqt».
 ✎ Bashorat — bir o'lchovning uch darajasi, vaqt bo'yicha o'sish tartibida (S-015). «Eng katta narsa» — o'quvchi so'zi, atama ta'rifida «element» o'rniga «rasm yoki matn» (T-009). Sahna — namuna lending (TAYANCHGA SAVOL 3).
@@ -190,7 +191,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–3 ≈ 7 · 4–6
   - 1-qadamdan keyin: Endi rasmga o'lcham yozing — «`width` va `height`» o'chirgichini yoqing.
 - Bashorat (ballsiz; tanlangach ixcham qator): **Rasm kelganda tugma nima bo'ladi?** · Joyida qoladi · Pastga suriladi
 - Sahna: chapda brauzer (lending; tepadagi rasm joyi bo'sh, balandligi yo'q — tugma sarlavhaning ostida) · o'ngda Lighthouse panelidan qator «CLS · `{oldin CLS}`» ⛔ (kulrang;) · brauzer ostida tugma «Sahifani ochish» (halqada) va o'chirgich «`width` va `height`: yo'q» (xira, 1-qadamgacha bosilmaydi).
-  Qadam belgilari: 1 Bosib ko'ring · 2 O'lcham yozing.
+  Qadam belgilari yo'q — har qadamni Mentor nomi bilan aytadi, hisob tugmada *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*.
 - Kod kartasi (sahna ostida — E 46; o'qish uchun — P-065), yorlig'i `lending/index.html` · tepadagi rasm; ikki holat, o'chirgichga qarab:
   ```html
   <img src="oyinlar.png" alt="O'yinlar ekrani">
@@ -208,7 +209,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–3 ≈ 7 · 4–6
 - Natija qatori: «Taxminingiz ✕ — aslida: pastga suriladi» (yoki «Taxminingiz to'g'ri chiqdi ✓»).
 - Xulosa: Bu misolda `width` va `height` rasm uchun joyni oldindan band qiladi — tugma siljimaydi. (88)
 - Qator (`QIzoh`, xulosadan keyin, bitta): Rasmiy tavsiya: CLS 0,1 yoki kamroq bo'lsin.
-- Tugadi (199): o'chirgich va qadam belgilari yopiladi, ikki holat yonma-yon fokusga («o'lchamsiz — tugma siljidi» · «o'lcham bilan — joyida»); vizual ⛶ ichida. Tugmalar: Orqaga · Avval o'zingiz belgilab ko'ring → Qadamlarni bajaring (N/2) → Davom etish
+- Tugadi (199): o'chirgich yopiladi, ikki holat yonma-yon fokusga («o'lchamsiz — tugma siljidi» · «o'lcham bilan — joyida»); vizual ⛶ ichida. Tugmalar: Orqaga · Avval o'zingiz belgilab ko'ring → Qadamlarni bajaring (N/2) → Davom etish
 - O'qituvchi eslatmasi: rasmiy (web.dev): «we recommend adding `width` and `height` attributes to all `<img>` tags» — brauzer joyni oldindan band qiladi. CSS'da `height: auto` bo'lsa, rasm nisbati saqlanadi (11-ekran namunasi shunday).
   Mentor lendingidagi tepadagi rasmning haqiqiy o'lchami — ⛔ «qur» da (sahnadagi 180 × 320 — namuna, TAYANCHGA SAVOL 4).
 ✎ «Sakraydi» — 0-ekran hookining o'z so'zi bilan javob (T-064). 1-qadam — o'quvchining o'z harakati siljish natijasini his qiladi (bosish rasmga tushadi); sahna bosishni rasm kelishi bilan bog'laydi (vizual bosqichda — bosish payti emas, sahna holati; Shubhali 9). Uch blok: sahna · tugmalar · kod kartasi (SABOQ 26).
@@ -238,7 +239,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–3 ≈ 7 · 4–6
   - 2-qadamdan keyin: Shu atributni tepadagi rasmga ham qo'yib ko'ring — «Tepadagisiga ham» ni bosing.
 - Bashorat (ballsiz; tanlangach ixcham qator): **Pastdagi rasm qachon yuklansa yaxshi?** · Sahifa ochilishi bilan · Unga yaqinlashganda · Faqat bosilganda
 - Sahna: chapda brauzer (lending, uzun sahifa; birinchi ekran chegarasi — kulrang uzuq chiziq, yorliq «birinchi ekran»; pastdagi ikki rasm chiziqdan pastda) · o'ngda ro'yxat «Yuklanmoqda» — uch rasm nomi va hisoblagich «Yuklangan: n / 3» · vaqt chizig'ida «eng katta narsa» belgisi (4-ekrandan).
-  Ostida tugmalar «Hammasi birdan» (halqada) · «Keyin yuklash» · «Tepadagisiga ham» (keyingilari xira). Qadam belgilari: 1 Hammasi birdan · 2 Keyin yuklash · 3 Tepadagisiga ham.
+  Ostida tugmalar «Hammasi birdan» (halqada) · «Keyin yuklash» · «Tepadagisiga ham» (keyingilari xira). Qadam belgilari yo'q — har qadamni Mentor nomi bilan aytadi, hisob tugmada *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*.
 - **Harakat → Vizual o'zgarish:**
   1. «Hammasi birdan» → sahifa ochiladi; uchala rasm bir vaqtda yuklana boshlaydi — o'quvchi hali pastga aylantirmagan bo'lsa ham «Yuklangan: 3 / 3»; ro'yxatda pastdagi ikki rasm qatori kulrang yorliq bilan «hali ko'rinmagan».
   2. «Keyin yuklash» → pastdagi ikki rasmda `loading="lazy"` yozuvi chiqadi → sahifa qayta ochiladi: faqat tepadagi rasm yuklanadi — «1 / 3»; pastdagilar o'rnida kulrang joy (o'lchami band). Sahifa o'zi sekin pastga aylanadi: rasmga yaqinlashganda u yuklanadi — «2 / 3», «3 / 3». Sahna ustida kulrang yorliq «soddalashtirilgan sahna» (brauzer rasmni ancha oldin yuklay boshlashi mumkin — 03-FILTR 14).
@@ -247,7 +248,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–3 ≈ 7 · 4–6
 - Natija qatori: «Taxminingiz ✕ — aslida: unga yaqinlashganda» (yoki «Taxminingiz to'g'ri chiqdi ✓»).
 - Xulosa: Bu misolda `loading="lazy"` faqat pastdagi rasmlarda: tepadagi rasm sahifa bilan birga yuklanadi. (97)
 - Qator (`QIzoh`, xulosadan keyin, bitta): Rasmiy ogohlantirish: birinchi ekrandagi rasmga, ayniqsa LCP rasmiga, keyin yuklash qo'yilmaydi.
-- Tugadi (199): tugmalar va qadam belgilari yopiladi, sahna «Keyin yuklash» holatida fokusga (tepadagi rasm — oddiy, pastdagilar — `loading="lazy"`); vizual ⛶ ichida. Tugmalar: Orqaga · Avval o'zingiz belgilab ko'ring → Qadamlarni bajaring (N/3) → Davom etish
+- Tugadi (199): tugmalar yopiladi, sahna «Keyin yuklash» holatida fokusga (tepadagi rasm — oddiy, pastdagilar — `loading="lazy"`); vizual ⛶ ichida. Tugmalar: Orqaga · Avval o'zingiz belgilab ko'ring → Qadamlarni bajaring (N/3) → Davom etish
 - O'qituvchi eslatmasi: rasmiy (web.dev): «Don't lazy-load images that are likely to be in-viewport when the page loads, especially LCP images.» · keyin yuklanadigan rasmlarga ham `width` va `height` (aks holda brauzer ularni 0 × 0 deb hisoblab, hammasini birdan yuklashi mumkin — Manbalar 4).
   `loading="lazy"` ni qo'llab-quvvatlamaydigan eski brauzer atributni e'tiborsiz qoldiradi — sahifa buzilmaydi (rasmiy). «Qancha yaqinlashganda» — brauzerning o'zi hal qiladi; darsda masofa aytilmaydi.
   Brauzer rasmni ekranga yetmasdan ancha oldin yuklay boshlaydi: qisqa sahifada pastdagi rasm ham sahifa bilan birga kelishi mumkin (sinaldi — Manbalar 8); sahna uzun sahifani ko'rsatadi.
@@ -278,7 +279,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–3 ≈ 7 · 4–6
   - 2-qadamdan keyin: Endi «Qayta ochish» ni bosing va farqni ko'ring.
 - Bashorat (ballsiz; tanlangach ixcham qator): **Tugma bosilmagan paytda brauzer nima qilyapti?** · Rasmlarni yuklayapti · Kodni bajaryapti · Hech narsa qilmayapti
 - Sahna: chapda brauzer — manzil satri brauzer ko'rinishi (`….netlify.app`), sahifa: «O'yinlar» · karta «Shanba, 18:00 · Mahalla maydoni · 8 / 10» · tugma «Qo'shilaman» · o'ngda **kod ustuni** «Yuklanadigan kod» (uch blok: «ilova kodi» · «kerakli kutubxonalar» · «import qilingan, lekin kerak emas» — kulrang, ustida «yuklanadi, ishlatilmaydi») va
-  Lighthouse panelidan qator «TBT · ms» (kulrang). Ostida tugmalar «Ochish va bosish» (halqada) · «Olib tashlash» · «Qayta ochish» (xira). Qadam belgilari: 1 Ochib bosing · 2 Olib tashlang · 3 Qayta bosing.
+  Lighthouse panelidan qator «TBT · ms» (kulrang). Ostida tugmalar «Ochish va bosish» (halqada) · «Olib tashlash» · «Qayta ochish» (xira). Qadam belgilari yo'q — har qadamni Mentor nomi bilan aytadi, hisob tugmada *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*.
 - **Harakat → Vizual o'zgarish:**
   1. «Ochish va bosish» → sahifa chiqadi; **sahifa ochilayotganda** kod ustunidagi bloklar birma-bir accent bilan yonadi («bajarilmoqda») va brauzer ostida qizil chiziq «brauzer band» o'sib boradi — TBT shu chiziq (bloklar ishlagan vaqt); o'quvchi shu paytda «Qo'shilaman» ni bosadi → tugma javob bermaydi (kichik soat belgisi) — bosish kutadi (nega muhimligi; 03-FILTR 1) →
      oxirgi blok tugagach bosish o'tadi: karta «9 / 10»; qizil chiziq to'xtaydi. TBT qatori qizil.
@@ -497,9 +498,9 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–3 ≈ 7 · 4–6
 - Qator (`QIzoh`, natija ostida, bitta): Agentning «tayyor» degani — da'vo; tezlik o'zgargani 3-amaliyotdagi sonlardan bilinadi.
 - Ulgurmasangiz: Netlify kutishi cho'zilsa — 4-qadamning (1) bandi 3-amaliyot boshida; «Davom etish» 3-qadamdan keyin ochiladi (SABOQ E 55). Blok 4-qadam «Bajardim»idan keyin bajarilgan sanaladi.
 - Tugmalar: Orqaga · Avval bajaring → Davom etish
-- ✎ MD izohi: tuzatish talabini o'quvchi tanlovi to'ldiradi (sinf 13 — Mentorning qarori yo'q); kutubxonani o'chirish — qaytarib bo'ladigan (Git), lekin baribir dalil va «Davom et» bilan (sinf 13). Rasmni kichraytirish asbobini agent tanlaydi — loyihaga kutubxona qo'shilmaydi (Shubhali 5).
+- ✎ MD izohi: tuzatish talabini o'quvchi tanlovi to'ldiradi (sinf 13 — Mentorning qarori yo'q); kutubxonani o'chirish — qaytarib bo'ladigan (Git), lekin baribir dalil va «Davom et» bilan (sinf 13). Rasmni kichraytirish dasturini agent tanlaydi — loyihaga kutubxona qo'shilmaydi (Shubhali 5).
   «Tuzatish qilindi» atamasi bu blokda «… qilindi» shaklida; «tezlashdi» — faqat 3-amaliyotdan keyin son bilan (sinf 5). Web-trekda `npm run dev` — 11-Modul `prototip/` odati (TAYANCHGA SAVOL 14).
-- O'qituvchi eslatmasi: agent rasmni o'zgartira olmasa (asbob yo'q) — o'quvchi faqat `width`, `height` va `loading` qismini qiladi; yakunda «1-tuzatish» baribir qilingan sanaladi (atributlar bor). Kutubxona olib tashlangach ilova ochilmasa — agentga «faqat shu o'chirishni qaytar» (3-qadam xato yo'li; `git revert` o'rgatilmaydi, agent boshqa joyga tegmasin — 03-FILTR 44); kerak bo'lsa o'qituvchi yordam beradi.
+- O'qituvchi eslatmasi: agent rasmni o'zgartira olmasa (bunday funksiyasi yo'q) — o'quvchi faqat `width`, `height` va `loading` qismini qiladi; yakunda «1-tuzatish» baribir qilingan sanaladi (atributlar bor). Kutubxona olib tashlangach ilova ochilmasa — agentga «faqat shu o'chirishni qaytar» (3-qadam xato yo'li; `git revert` o'rgatilmaydi, agent boshqa joyga tegmasin — 03-FILTR 44); kerak bo'lsa o'qituvchi yordam beradi.
 
 ## 15 · Amaliyot 3 — qayta o'lchash: «Keyin» va yangi versiya  ← amaliyot bloki (QBlok + `ScreenBlok`, ≈10 daq)
 - Eyebrow: Amaliyot 3 · o'z mahsulotingiz
@@ -561,7 +562,9 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–3 ≈ 7 · 4–6
   2. **Ilova sahifasi (xohlasangiz)** — Lighthouse'ni ilovangiz sahifasida ham ishlating (web-trek — sayt, mobil trek — brauzer ko'rinishi), xuddi shu sozlama bilan; sonlarni `TEZLIK.md` ga alohida qator qilib yozing.
 - Keyingi dars — «Loyiha kuni: demo uchun sayqal»
 - Nishonlaringiz — N/4
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — sarlavha «Uyda nima qilasiz?», maydonlar katta quti (yorliq bosh harfda, «:» siz), qadamlar raqam-doira, «Keyingi dars» karta ichida (13.5px); qadam matni o'zgarmagan.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ---
 
@@ -606,7 +609,7 @@ Oyna yorlig'i: Qayta tushuntirish · tugmalar: ← Oldingi · Keyingisi → · �
 
 | Old tomon (savol) | Orqa (javob) | Izoh |
 |---|---|---|
-| Lighthouse nima? | Chrome ichidagi sahifani o'lchaydigan asbob | Undagi bo'lim nomi Performance — tezlik; baho 0 dan 100 gacha |
+| Lighthouse nima? | Chrome ichidagi sahifani o'lchaydigan dastur | Undagi bo'lim nomi Performance — tezlik; baho 0 dan 100 gacha |
 | Lighthouse bahosining ranglari qanday? | 0–49 qizil, 50–89 to'q sariq, 90–100 yashil | 100 bo'lishi shart emas — Lighthouse buni juda qiyin deydi |
 | LCP nima? | Birinchi ekrandagi eng katta rasm yoki matn ko'ringan vaqt | Soniyada; rasmiy tavsiya — 2,5 soniya yoki kamroq |
 | CLS nima? | Ko'rinib turgan narsalarning joyidan siljishi | Birliksiz son; rasmiy tavsiya — 0,1 yoki kamroq |
@@ -710,7 +713,7 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari — ru'da ham o'sha; R-008): Lighthou
 7. **Birliklar kalitda** — maydon nomi tayanchdagidek (`lcp`, `cls`, `tbt`, `bundleKb`), birlik ta'rifda: soniya · birliksiz · ms · kB; karta birlikni ko'rsatadi. «Son yolg'iz emas» — birlik maydon nomiga qo'shilsinmi (`lcpS`, `tbtMs`) — qaror sizda; 6-dars shu kalitni o'qiydi.
 8. **Yakun — besh holat** (18-ekran): baho oshgan (sonlar bilan) · oshmagan · tuzatish qilingan (2-amaliyot bayrog'i), keyin yo'q · faqat oldin · hech narsa. «Tezlashdi» so'zi hech bir holatda yo'q — sonlar o'zi aytadi.
 9. **Nishonlar:** Shift Stopper · Lazy Below · Quick Tap · Measured Twice (grep 0); Measured Twice — natijadan qat'i nazar (13-Modul M-q6 A naqshi).
-10. **Hook** — «Hakamlar oldida kutish uzoq tuyuladi» (Mentor gapi; hakam gapisiz); variantlar: boshqa kompyuter · ✔ o'lchov asbobi · agentga «tezlashtir». Topshiriqdagi «demo paytida sahifa sekin ochiladi» — sahna lending (demo ssenariysi 6-darsda, u yerga tegmadim).
+10. **Hook** — «Hakamlar oldida kutish uzoq tuyuladi» (Mentor gapi; hakam gapisiz); variantlar: boshqa kompyuter · ✔ o'lchov dasturi · agentga «tezlashtir». Topshiriqdagi «demo paytida sahifa sekin ochiladi» — sahna lending (demo ssenariysi 6-darsda, u yerga tegmadim).
 11. **«Performance»** — o'quvchi matnida faqat Lighthouse UI yorlig'i sifatida (A1 1-qadam, 2-ekran sahnasi, kartochka 1 izohi «Undagi bo'lim nomi Performance — tezlik»). Tayanch 2 «performance (prozada)» ni taqiqlaydi, T19 «Performance nomi bilan» ga ruxsat beradi.
 12. **«Mobile rejimi»** (tayanchda «mobil rejim») — «mobil trek» bilan bir darsda ikki ma'no bo'lmasligi uchun Lighthouse yozuvi bilan (T-015).
 13. **«birinchi ekran»** — «sahifa ochilganda pastga aylantirmasdan ko'rinadigan qism» (tayanch 1.3 so'zi); 12-Modul 8-darsida «ilova ochilgandagi birinchi ekran» — yaqin ma'no. Boshqa so'z kerakmi (masalan «sahifa tepasi»)?
@@ -759,7 +762,7 @@ Fon so'zlari (`QZ_BG_SHAPES`, kod so'zlari — ru'da ham o'sha; R-008): Lighthou
 15. [x] **Ayb da'vosi yo'q** — xato yo'llari: «Shu xato chiqdi: {xato}. Tuzat.», «{nima} talabdagidek emas: …»; «xatongiz emas», «sizda emas» — 0 (grep).
 16. [x] **Kelajak va'dasi yo'q** — «mahsulot tezlashadi» yo'q; `TEZLIK.md` da xulosa so'zi yo'q (faqat sonlar); pitchda ishlatish — faqat ✎ da, va'da emas; keyingi dars — faqat yakundagi qatorda.
 17. [—] **Pul va investitsiya** — bu darsda pul yo'q (Pro, to'lov tilga olinmaydi).
-18. [—] **Yosh va rasmiy shartlar** — xalqaro sayt va dastur yo'q; tashqi asboblar (Lighthouse, Expo, Vite, Chrome) — faqat rasmiy hujjatdagi faktlar (Manbalar 1–7).
+18. [—] **Yosh va rasmiy shartlar** — xalqaro sayt va dastur yo'q; tashqi dasturlar (Lighthouse, Expo, Vite, Chrome) — faqat rasmiy hujjatdagi faktlar (Manbalar 1–7).
 + **Tashqi auditda RAD etilganlar** — hook «Aynan!» / «Qiziq fikr!» saqlangan [x] · yakundagi «Keyingi dars — «…»» qatori [x] · Reja sarlavhasi — natija-gap [x] · ekranda ≤3 blok [x] · bank so'zi — keyssiz [—].
 + **12-Modul SABOQ E** — har variantning o'z chegarasi (0, 4) [x] · maketda kesilmaydi (brauzer o'lchami barqaror) [x] · taxmin qatori yashil xulosa ichida [x] · yorliq input ichida (A1, A3 kartalari) [x] · bittadan karta (A1 4-qadam tanlovi) [x] · yakun standart [x].
 
@@ -830,7 +833,7 @@ Kafolat va taqiq so'zlari («darhol», «har doim», «albatta», «100%», «ka
     1 gap 79 | 0 · Kirish — sahifa sekin ochiladi  ← | Hakamlar oldida kutish uzoq tuyuladi — «Ochish» ni bosing va sahifani kuzating.
     1 gap 41 | 0 · Kirish — sahifa sekin ochiladi  ← | Endi o'ngdagi javoblardan birini tanlang.
     2 gap 164 | 1 · Reja  ← QReja | 13-Modulda mahsulotingiz buzilmasligini tekshirgansiz — bugun u qanchalik tez ochilishini 
-    1 gap 74 | 2 · Lighthouse bahosi  ← QTushuncha ( | Chrome ichida o'lchov asbobi bor — o'ngdagi «Analyze page load» ni bosing.
+    1 gap 74 | 2 · Lighthouse bahosi  ← QTushuncha ( | Chrome ichida o'lchov dasturi bor — o'ngdagi «Analyze page load» ni bosing.
     1 gap 58 | 2 · Lighthouse bahosi  ← QTushuncha ( | Endi tepadagi «Desktop» ni bosib, bahoni yana bir ko'ring.
     1 gap 58 | 4 · Eng katta narsa — LCP  ← QTushunc | Lendingni qadamma-qadam oching — «Sekin ochish» ni bosing.
     1 gap 54 | 4 · Eng katta narsa — LCP  ← QTushunc | Endi o'sha narsani sahifaning o'zida bosib ko'rsating.

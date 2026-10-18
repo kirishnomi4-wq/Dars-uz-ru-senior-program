@@ -26,7 +26,7 @@ const T = {
 const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', str: '#7DD181', comment: '#6B7585', punct: '#9FB4D8' };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 
 
 
@@ -87,16 +87,12 @@ const SCREEN_META = [
   { id: 'sp1', type: 'practice',    template: 'custom',   scored: false, scope: null },
   { id: 's4',  type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
   { id: 's5',  type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's5b', type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
   { id: 's6',  type: 'exploration', template: 'custom',   scored: false, scope: null },
   { id: 's7',  type: 'exploration', template: 'custom',   scored: false, scope: null },
   { id: 'sp2', type: 'practice',    template: 'custom',   scored: false, scope: null },
   { id: 's8',  type: 'exploration', template: 'custom',   scored: false, scope: null },
   { id: 's9',  type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
   { id: 's10', type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's11', type: 'case',        template: 'custom',   scored: false, scope: null },
-  { id: 's12', type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
-  { id: 's13', type: 'exploration', template: 'custom',   scored: false, scope: null },
   { id: 'sp3', type: 'practice',    template: 'custom',   scored: false, scope: null },
   { id: 's14', type: 'debug',       template: 'custom',   scored: false, scope: null },
   { id: 's15', type: 'test',        template: 'custom',   scored: true,  scope: 'final' },
@@ -228,33 +224,17 @@ const RECAPS = {
     cards: [
       { ic: "🚀", h: { uz: "npm run dev — loyihani ishga tushiradi", ru: 'npm run dev — запускает проект' }, body: { uz: <><span className="mono">npm run dev</span> loyihangizni <b>ishga tushiradi</b> va manzil beradi: <span className="mono">localhost:5173</span>.</>, ru: <><span className="mono">npm run dev</span> <b>запускает</b> ваш проект и даёт адрес: <span className="mono">localhost:5173</span>.</> }, vis: <RcFlow items={["npm run dev", "localhost:5173", { uz: "brauzerda ochiladi", ru: 'откроется в браузере' }]} /> },
       { ic: "💻", h: { uz: "localhost — faqat sizning kompyuteringizda", ru: 'localhost — только на вашем компьютере' }, body: { uz: <><span className="mono">localhost:5173</span> — internetdagi sayt emas, uni <b>faqat siz</b> ko'rasiz.</>, ru: <><span className="mono">localhost:5173</span> — не сайт в интернете, его видите <b>только вы</b>.</> } },
-      { ic: "🔌", h: { uz: "Uch buyruq — loyiha tayyor", ru: 'Три команды — и проект готов' }, body: { uz: <>Tartib: <span className="mono">npm create vite@latest</span> → <span className="mono">npm install</span> → <span className="mono">npm run dev</span>.</>, ru: <>Порядок: <span className="mono">npm create vite@latest</span> → <span className="mono">npm install</span> → <span className="mono">npm run dev</span>.</> }, ask: { uz: "npm run dev bosgach, sayt qaysi manzilda ochiladi?", ru: 'По какому адресу откроется сайт после npm run dev?' } },
+      { ic: "🔌", h: { uz: "Node.js + uch buyruq — loyiha tayyor", ru: 'Node.js + три команды — и проект готов' }, body: { uz: <>Tartib: <span className="mono">npm create vite@latest</span> → <span className="mono">npm install</span> → <span className="mono">npm run dev</span>.</>, ru: <>Порядок: <span className="mono">npm create vite@latest</span> → <span className="mono">npm install</span> → <span className="mono">npm run dev</span>.</> }, ask: { uz: "npm run dev bosgach, sayt qaysi manzilda ochiladi?", ru: 'По какому адресу откроется сайт после npm run dev?' } },
     ]
   },
-  7: {
-    title: { uz: "JSX — JS ichidagi HTML, className bilan", ru: 'JSX — HTML внутри JS, с className' },
-    cards: [
-      { ic: "🔤", h: { uz: "className — class emas", ru: 'className, а не class' }, body: { uz: <>JSX'da HTML'dagi <span className="mono">class</span> o'rniga <span className="mono">className</span> yoziladi, chunki <span className="mono">class</span> <b>JS'da band</b>.</>, ru: <>В JSX вместо <span className="mono">class</span> из HTML пишут <span className="mono">className</span>, потому что <span className="mono">class</span> <b>занят в JS</b>.</> }, vis: <RcFlow items={["HTML: class", "JSX: className"]} /> },
-      { ic: "🧩", h: { uz: "JSX'ning 3 qoidasi", ru: '3 правила JSX' }, body: { uz: <>JSX'ning <b>3 qoidasi</b>: jingalak qavsda JavaScript, className va bitta tashqi teg.</>, ru: <><b>3 правила</b> JSX: в фигурных скобках — JavaScript, className и один внешний тег.</> } },
-      { ic: "⚠️", h: { uz: "class yozsangiz nima bo'ladi?", ru: 'Что будет, если написать class?' }, body: { uz: <>JSX'da <span className="mono">class</span> yozsangiz, React <b>ogohlantirish</b> beradi, chunki bu JavaScript qoidasi.</>, ru: <>Если написать в JSX <span className="mono">class</span>, React выдаст <b>предупреждение</b> — это правило JavaScript.</> }, ask: { uz: "Nega JSX'da class emas, className yoziladi?", ru: 'Почему в JSX пишут className, а не class?' } },
-    ]
-  },
-  12: {
+  11: {
     title: { uz: "Props — komponentga uzatiladigan ma'lumot", ru: 'Props — данные, которые передают компоненту' },
     cards: [
       { ic: "📦", h: { uz: "Props — komponentga ma'lumot", ru: 'Props — данные для компонента' }, body: { uz: <><span className="mono">GameCard</span> bitta, kartochkalar esa har xil — buni <b>props</b> hal qiladi.</>, ru: <><span className="mono">GameCard</span> один, а карточки разные — это решают <b>props</b>.</> }, vis: <RcFlow items={['name="Blox Fruits"', "props", { uz: "kartochkada chiqadi", ru: 'появится на карточке' }]} /> },
       { ic: "♻️", h: { uz: "Komponent bitta, ma'lumot har xil", ru: 'Компонент один, данные разные' }, body: { uz: <>Komponent kodini <b>bir marta</b> yozasiz, har chaqiruvga esa boshqa props berasiz.</>, ru: <>Код компонента пишут <b>один раз</b>, а каждому вызову дают другие props.</> } },
       { ic: "🎁", h: { uz: "Props — rang ham, sozlama ham emas", ru: 'Props — не цвет и не настройка' }, body: { uz: <>Props — rang yoki sozlama emas, komponentga beriladigan <b>ma'lumot</b>: nom, rasm, son.</>, ru: <>Props — не цвет и не настройка, а <b>данные</b> для компонента: имя, картинка, число.</> }, ask: { uz: "GameCard'ga name'dan boshqa yana qanday props uzatish mumkin?", ru: 'Какие ещё props, кроме name, можно передать в GameCard?' } },
     ]
-  },
-  15: {
-    title: { uz: "Komponent nomi — Katta harf bilan", ru: 'Имя компонента — с Заглавной буквы' },
-    cards: [
-      { ic: "🔠", h: { uz: "Katta harf — React uchun belgi", ru: 'Заглавная буква — знак для React' }, body: { uz: <>React <b>Katta harfdan</b> biladi: <span className="mono">GameCard</span> — komponent, oddiy teg emas.</>, ru: <>React понимает по <b>Заглавной букве</b>: <span className="mono">GameCard</span> — компонент, а не обычный тег.</> }, vis: <RcFlow items={[{ uz: "<GameCard/> — komponent", ru: '<GameCard/> — компонент' }, { uz: "<gamecard/> — HTML teg", ru: '<gamecard/> — HTML-тег' }]} /> },
-      { ic: "🏭", h: { uz: "Komponent = Katta harfli funksiya + JSX", ru: 'Компонент = функция с Заглавной буквы + JSX' }, body: { uz: <>Komponent — nomi Katta harfli va <b>JSX qaytaradigan</b> oddiy funksiya.</>, ru: <>Компонент — обычная функция с именем с Заглавной буквы, которая <b>возвращает JSX</b>.</> } },
-      { ic: "🔎", h: { uz: "kichik harf — jimgina xato", ru: 'строчная буква — тихая ошибка' }, body: { uz: <><span className="mono">gamecard</span> deb yozsangiz, React xato bermaydi, lekin ekranda <b>hech narsa</b> chiqmaydi.</>, ru: <>Если написать <span className="mono">gamecard</span>, React не выдаст ошибку, но на экране <b>ничего</b> не появится.</> }, ask: { uz: "<GameCard /> va <gamecard /> — React ularni qanday farqlaydi?", ru: 'Как React различает <GameCard /> и <gamecard />?' } },
-    ]
-  },
+  }
 };
 // Overlay — ekran ustida (indekslarga tegmaydi)
 // Overlay — ekran USTIDA ochiladi (indekslarga tegmaydi), slayd-slayd o'tiladi.
@@ -858,22 +838,24 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
 
 // ===== SCREEN 2 — VITE SETUP (4 ta terminal qadam) =====
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's2', text: `Loyiha to'rt qadamda tayyor bo'ladi. Har bir buyruqni tartib bilan bosing va nima qilishini o'qing. Oxirgi buyruqdan keyin loyihangiz brauzerda ochiladi — localhost besh ming bir yuz yetmish uchda.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's2', text: `Loyiha besh qadamda tayyor bo'ladi. Har bir buyruqni tartib bilan bosing va nima qilishini o'qing. Oxirgi buyruqdan keyin loyihangiz brauzerda ochiladi — localhost besh ming bir yuz yetmish uchda.`, trigger: 'on_mount', waits_for: null }]);
+  // F-1017-219 (mentor): npm Node.js bilan keladi — avval Node tekshiriladi, aks holda 1-buyruq xato beradi
   const STEPS = [
+    { cmd: 'node -v', info: { uz: "Avval Node.js kerak — npm u bilan keladi. nodejs.org → LTS → o'rnating (uyda oldindan qilsa ham bo'ladi). Terminalda node -v raqam chiqsa (masalan v22) — tayyor.", ru: 'Сначала нужен Node.js — npm идёт вместе с ним. nodejs.org → LTS → установите (можно заранее дома). Если в терминале node -v показывает номер (например v22) — готово.' } },
     { cmd: 'npm create vite@latest robo-games', info: { uz: "Loyihaning tuzilishini yaratadi — barcha papka va fayllar tayyor.", ru: 'Создаёт структуру проекта — все папки и файлы готовы.' } },
     { cmd: 'cd robo-games', info: { uz: "Loyiha papkasining ichiga kiramiz.", ru: 'Заходим внутрь папки проекта.' } },
     { cmd: 'npm install', info: { uz: "Kerakli kutubxonalarni — shu jumladan React'ning o'zini — yuklab oladi (node_modules).", ru: 'Скачивает нужные библиотеки — включая сам React (node_modules).' } },
     { cmd: 'npm run dev', info: { uz: "Loyihani kompyuteringizda ishga tushiradi.", ru: 'Запускает проект на вашем компьютере.' } }
   ];
-  const [step, setStep] = useState(storedAnswer ? 4 : 0);
+  const [step, setStep] = useState(storedAnswer ? 5 : 0);
   const [count, setCount] = useState(0);
-  const done = step >= 4;
+  const done = step >= 5;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: "O'rnatish", ru: 'Установка' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Qadamlar', ru: 'Шаги' })}: ${step}/4`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "O'rnatish", ru: 'Установка' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Qadamlar', ru: 'Шаги' })}: ${step}/5`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Loyiha <span className="italic" style={{ color: T.accent }}>to'rt qadamda</span> tayyor bo'ladimi?</>, ru: <>Проект будет готов <span className="italic" style={{ color: T.accent }}>за четыре шага</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Har bir buyruqni <b style={{ color: T.ink }}>tartib bilan</b> bosing va nima qilishini o'qing. Oxirgi buyruqdan keyin loyihangiz brauzerda ochiladi — <span className="mono">localhost:5173</span>. Bu manzil — <b style={{ color: T.ink }}>o'z kompyuteringiz</b>, internet emas.</>, ru: <>Нажимайте команды <b style={{ color: T.ink }}>по порядку</b> и читайте, что делает каждая. После последней команды проект откроется в браузере — <span className="mono">localhost:5173</span>. Этот адрес — <b style={{ color: T.ink }}>ваш компьютер</b>, а не интернет.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Loyiha <span className="italic" style={{ color: T.accent }}>besh qadamda</span> tayyor bo'ladimi?</>, ru: <>Проект будет готов <span className="italic" style={{ color: T.accent }}>за пять шагов</span>?</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Avval kompyuteringizda <b style={{ color: T.ink }}>Node.js</b> bo'lishi kerak — <span className="mono">npm</span> u bilan keladi, 1-qadam shuni tekshiradi. Har bir buyruqni <b style={{ color: T.ink }}>tartib bilan</b> bosing va nima qilishini o'qing. Oxirgi buyruqdan keyin loyihangiz brauzerda ochiladi — <span className="mono">localhost:5173</span>. Bu manzil — <b style={{ color: T.ink }}>o'z kompyuteringiz</b>, internet emas.</>, ru: <>Сначала на компьютере должен быть <b style={{ color: T.ink }}>Node.js</b> — <span className="mono">npm</span> идёт вместе с ним, 1-й шаг это проверяет. Нажимайте команды <b style={{ color: T.ink }}>по порядку</b> и читайте, что делает каждая. После последней команды проект откроется в браузере — <span className="mono">localhost:5173</span>. Этот адрес — <b style={{ color: T.ink }}>ваш компьютер</b>, а не интернет.</> })}</Mentor>
         <Zoomable off={!done}>
         <div className="split">
           <Col>
@@ -1065,22 +1047,6 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 5b — TEST 2 (className) =====
-const Screen5b = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Tekshiruv', ru: 'Проверка' })}
-    audioText="JSX'da nima uchun class o'rniga className yoziladi? To'g'ri javobni tanlang."
-    questionText="JSX'da nima uchun class o'rniga className yoziladi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>JSX'da nima uchun <span className="mono" style={{ color: T.accent }}>className</span> yoziladi?</>, ru: <>Почему в JSX пишется <span className="mono" style={{ color: T.accent }}>className</span>?</> })}</h2></>}
-    options={[tr({ uz: "Chunki class so'zi JavaScript'da band", ru: 'Потому что слово class занято в JavaScript' }), tr({ uz: 'Chunki className chiroyliroq eshitiladi', ru: 'Потому что className звучит красивее' }), tr({ uz: "Chunki HTML'da class degan so'z yo'q", ru: 'Потому что в HTML нет слова class' }), tr({ uz: "Farqi yo'q — ikkalasi ham ishlayveradi", ru: 'Разницы нет — работают оба' })]} correctIdx={0}
-    explainCorrect={tr({ uz: "JSX JavaScript ichida yashaydi, `class` esa JS'da band so'z.", ru: 'JSX живёт внутри JavaScript, а `class` — занятое слово JS.' })}
-    explainWrong={{
-      1: tr({ uz: "Gap chiroyda emas — bu JavaScript qoidasi bilan bog'liq.", ru: 'Дело не в красоте — это связано с правилом JavaScript.' }),
-      2: tr({ uz: "Aksincha — HTML'da aynan `class` ishlatiladi.", ru: 'Наоборот — в HTML используется именно `class`.' }),
-      3: tr({ uz: "Farqi bor — JSX'da `class` yozsangiz, React ogohlantiradi.", ru: 'Разница есть — на `class` в JSX React выдаст предупреждение.' }),
-      default: tr({ uz: "JSX qaysi til ichida yashashini eslang.", ru: 'Вспомните, внутри какого языка живёт JSX.' })
-    }} />
-);
-
 // ===== SCREEN 6 — KOMPONENT ANATOMIYASI =====
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's6', text: `Mana birinchi komponentingiz — GameCard. U oddiy JavaScript funksiyasi, siz funksiyalarni yaxshi bilasiz! Faqat ikki farqi bor: nomi katta harf bilan boshlanadi va JSX qaytaradi. O'ngdagi kartochkaga qarang — bu kod aynan shuni chizadi. Koddagi uch qismni bosib o'rganing.`, trigger: 'on_mount', waits_for: null }]);
@@ -1218,7 +1184,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 9 — TEST 3 (props nima?) =====
 const Screen9 = (props) => (
-  <QuestionScreen {...props} idx={9} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Практика · Вопрос 3' })}
+  <QuestionScreen {...props} idx={9} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Практика · Вопрос 3' })}
     audioText="Props nima? To'g'ri javobni tanlang."
     questionText="Props nima?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="italic" style={{ color: T.accent }}>Props</span> nima?</>, ru: <>Что такое <span className="italic" style={{ color: T.accent }}>props</span>?</> })}</h2></>}
@@ -1279,179 +1245,6 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 11 — VIBECODING (AI agentga komponent yozdirish) =====
-const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's11', text: `Prompt berishni praktika darslarida o'rgangansiz. Endi katta farq bor: siz React kodini o'qiy olasiz! AI agentga komponent yozdiring: rejani tasdiqlang, keyin yozgan kodini o'zingiz tekshiring — props to'g'rimi, katta harf joyidami.`, trigger: 'on_mount', waits_for: null }]);
-  const TASKS = [
-    { id: 't1', label: { uz: "Kartochkaga o'yinchilar sonini qo'shib ber", ru: 'Добавь на карточку число игроков' }, plan: [{ uz: "GameCard'ga players degan yangi props qo'shaman", ru: 'Добавлю в GameCard новый props players' }, { uz: "Kartochka pastida {props.players} chiqaraman", ru: 'Выведу {props.players} внизу карточки' }], code: <><Jx>{'<GameCard '}</Jx><At>name</At>=<St>"Adopt Me!"</St> <At>players</At>=<St>"402K"</St><Jx>{' />'}</Jx></> },
-    { id: 't2', label: { uz: 'Saytga sarlavha komponenti yasab ber', ru: 'Сделай компонент заголовка для сайта' }, plan: [{ uz: 'Header degan yangi komponent yozaman', ru: 'Напишу новый компонент Header' }, { uz: "App boshida <Header /> deb chaqiraman", ru: 'Вызову <Header /> в начале App' }], code: <><Jx>{'function'}</Jx> <At>Header</At>{'() { '}<Jx>{'return'}</Jx> <Jx>{'<h1>'}</Jx>🎮 Robo Games<Jx>{'</h1>'}</Jx>{'; }'}</> },
-    { id: 't3', label: { uz: 'Sayt pastiga footer yasab ber', ru: 'Сделай футер внизу сайта' }, plan: [{ uz: 'Footer degan yangi komponent yozaman', ru: 'Напишу новый компонент Footer' }, { uz: "App oxirida <Footer /> deb chaqiraman", ru: 'Вызову <Footer /> в конце App' }], code: <><Jx>{'function'}</Jx> <At>Footer</At>{'() { '}<Jx>{'return'}</Jx> <Jx>{'<p>'}</Jx>© robo-games · 2026<Jx>{'</p>'}</Jx>{'; }'}</> }
-  ];
-  const [task, setTask] = useState(null);
-  const [phase, setPhase] = useState(storedAnswer ? 'done' : 'idle'); // idle | planned | building | done
-  const timer = useRef(null);
-  const done = phase === 'done';
-  useEffect(() => () => clearTimeout(timer.current), []);
-  const choose = (id) => { clearTimeout(timer.current); setTask(id); setPhase('planned'); };
-  const approve = () => { clearTimeout(timer.current); setPhase('building'); timer.current = setTimeout(() => setPhase('done'), 1300); };
-  const cur = TASKS.find(t => t.id === task) || (storedAnswer ? TASKS[0] : null);
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  return (
-    <Stage eyebrow={tr({ uz: 'Keyingi qadam · AI', ru: 'Следующий шаг · AI' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Agent bilan ishlab ko'ring", ru: 'Поработайте с агентом' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Komponentni <span className="italic" style={{ color: T.accent }}>AI'ga yozdirsak</span>-chi?</>, ru: <>А что если <span className="italic" style={{ color: T.accent }}>поручить компонент AI</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Prompt berishni praktikada o'rgangansiz. Endi katta farq bor: siz <b style={{ color: T.ink }}>React kodini o'qiy olasiz</b>! Buyruq bering, agent rejasini <b style={{ color: T.ink }}>tasdiqlang</b>, keyin yozgan kodini <b style={{ color: T.ink }}>o'zingiz tekshiring</b>: props to'g'rimi, Katta harf joyidami. Boshliq — siz.</>, ru: <>Давать промпты вы научились на практике. Теперь большая разница: вы <b style={{ color: T.ink }}>умеете читать код React</b>! Дайте команду, <b style={{ color: T.ink }}>утвердите план</b> агента, потом <b style={{ color: T.ink }}>сами проверьте</b> его код: верны ли props, на месте ли Заглавная буква. Главный здесь — вы.</> })}</Mentor>
-        <Zoomable>
-        <div className="split">
-          <Col>
-            <p className="flow-label">{tr({ uz: "1. Agentga so'z bilan ayting", ru: '1. Скажите агенту словами' })}</p>
-            <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {TASKS.map(t => <button key={t.id} className={`chip ${task === t.id ? 'chip-on' : ''}`} onClick={() => choose(t.id)} style={{ justifyContent: 'flex-start', textAlign: 'left' }}>"{tr(t.label)}"</button>)}
-            </div>
-            {cur && (
-              <div className="ai-card fade-step" key={task || 'stored'}>
-                <div className="ai-row"><span className="ai-badge">{tr({ uz: 'Agent', ru: 'Агент' })}</span><span className="ai-bubble">{phase === 'planned' ? tr({ uz: 'Mana rejam — tasdiqlaysizmi?', ru: 'Вот мой план — утверждаете?' }) : (phase === 'building' ? tr({ uz: 'Yozyapman…', ru: 'Пишу…' }) : tr({ uz: 'Bajardim — kodni tekshiring', ru: 'Готово — проверьте код' }))}</span></div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                  {cur.plan.map((p, i) => <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'center', fontSize: 13 }}><span style={{ color: phase === 'planned' ? T.ink3 : T.success }}>{phase === 'planned' ? '○' : '✓'}</span><span style={{ color: T.ink }}>{tr(p)}</span></div>)}
-                </div>
-                {phase === 'planned' && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={approve}>{tr({ uz: 'Rejani tasdiqlash', ru: 'Утвердить план' })}</button>}
-                {phase === 'building' && <p className="ai-prompt" style={{ color: T.accent }}>{tr({ uz: 'Kod yozilyapti…', ru: 'Код пишется…' })}</p>}
-                {phase === 'done' && <div className="ai-code fade-step"><div className="ai-line ok" style={{ cursor: 'default' }}>{cur.code}</div></div>}
-              </div>
-            )}
-          </Col>
-          <Col>
-            <p className="flow-label">{tr({ uz: '2. Natija — localhost:5173', ru: '2. Результат — localhost:5173' })}</p>
-            <Win title="robo-games — localhost:5173" minH={130}>
-              {done && cur ? (
-                <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  {cur.id === 't2' && <p style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 800, fontSize: 14, color: T.ink, margin: 0 }}>🎮 Robo Games <span className="mono small" style={{ color: T.success, fontWeight: 700 }}>{tr({ uz: '+ yangi', ru: '+ новое' })}</span></p>}
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 9 }}>
-                    <RoCard name="Adopt Me!" players={cur.id === 't1' ? '402K' : undefined} />
-                    <RoCard name="Blox Fruits" players={cur.id === 't1' ? '750K' : undefined} />
-                  </div>
-                  {cur.id === 't1' && <span className="mono small" style={{ color: T.success, fontWeight: 700 }}>{tr({ uz: "+ 👥 o'yinchilar soni props orqali keldi", ru: '+ 👥 число игроков пришло через props' })}</span>}
-                  {cur.id === 't3' && <p style={{ fontFamily: "'Manrope',sans-serif", fontSize: 10.5, color: T.ink3, margin: 0, textAlign: 'center' }}>© robo-games · 2026 <span className="mono" style={{ color: T.success, fontWeight: 700 }}>{tr({ uz: '+ yangi', ru: '+ новое' })}</span></p>}
-                </div>
-              ) : (
-                null /* F-0926-06 P1: bo'sh oynadagi yo'riq olindi — mentor aytadi */
-              )}
-            </Win>
-            {done
-              ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Agent kodini <b>o'qiy oldingizmi</b>? Komponent Katta harf bilan, props to'g'ri — siz buni endi <b>tekshira olasiz</b>. Aynan shu — vibecoding'dagi eng kuchli mahorat.</>, ru: <>Смогли <b>прочитать</b> код агента? Компонент с Заглавной буквы, props верные — теперь вы умеете это <b>проверять</b>. Именно это — самый сильный навык в вайбкодинге.</> })}</p></div>
-              : null /* F-0926-06: takror yo'riq olindi (159/6) — «tekshiring» mentorda */}
-          </Col>
-        </div>
-        </Zoomable>
-      </div>
-    </Stage>
-  );
-};
-
-// ===== SCREEN 12 — TEST 4 (Katta harf qoidasi) =====
-const Screen12 = (props) => (
-  <QuestionScreen {...props} idx={12} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 4-savol', ru: 'Практика · Вопрос 4' })}
-    audioText="Nima uchun komponent nomi katta harf bilan boshlanadi? To'g'ri javobni tanlang."
-    questionText="Nima uchun komponent nomi Katta harf bilan boshlanadi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Nima uchun komponent nomi <span className="italic" style={{ color: T.accent }}>Katta harf</span> bilan boshlanadi?</>, ru: <>Почему имя компонента начинается с <span className="italic" style={{ color: T.accent }}>Заглавной буквы</span>?</> })}</h2></>}
-    options={[tr({ uz: "Shunchaki chiroyliroq ko'rinishi uchun", ru: 'Просто чтобы выглядело красивее' }), tr({ uz: "React katta harfdan komponentligini biladi", ru: 'По заглавной букве React понимает, что это компонент' }), tr({ uz: 'Katta harf yozilgan kodni tezlashtiradi', ru: 'Заглавная буква ускоряет код' }), tr({ uz: "Klaviaturada shunday yozish qulayroq", ru: 'Так удобнее печатать на клавиатуре' })]} correctIdx={1}
-    explainCorrect={tr({ uz: "Katta harf React'ga «bu komponent, oddiy teg emas» deydi.", ru: 'Заглавная буква говорит React: «это компонент, а не обычный тег».' })}
-    explainWrong={{
-      0: tr({ uz: "Bu chiroy uchun emas — bu React qoidasi.", ru: 'Это не ради красоты — это правило React.' }),
-      2: tr({ uz: "Katta harf kod tezligiga ta'sir qilmaydi.", ru: 'Заглавная буква не влияет на скорость кода.' }),
-      3: tr({ uz: "Qulaylik emas — kichik harfli teg HTML deb qabul qilinadi.", ru: 'Не удобство — тег со строчной буквы считается HTML.' }),
-      default: tr({ uz: "`<gamecard />` deb yozsangiz nima bo'lishini eslang.", ru: 'Вспомните, что будет, если написать `<gamecard />`.' })
-    }} />
-);
-
-// ===== SCREEN 13 — AMALIYOT: O'Z KARTOCHKANGIZNI SOZLANG =====
-const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's13', text: `Endi o'zingiz boshqaring! Ikkita props bor: name va emoji. Qiymatlarni almashtirib, o'z o'yin kartochkangizni yasang. Kod qanday o'zgarishini kuzating — komponent esa bitta bo'lib qolaveradi.`, trigger: 'on_mount', waits_for: null }]);
-  const EMOJIS = ['🐾', '🍇', '🏠', '🗼', '🐶', '🕵️'];
-  const [nm, setNm] = useState('Adopt Me!');
-  const [em, setEm] = useState('🐾');
-  const [nmTried, setNmTried] = useState(storedAnswer ? new Set(['Adopt Me!', 'Blox Fruits']) : new Set(['Adopt Me!']));
-  const [emTried, setEmTried] = useState(storedAnswer ? new Set(['🐾', '🍇']) : new Set(['🐾']));
-  const done = nmTried.size >= 2 && emTried.size >= 2;
-  const pickNm = (v) => { setNm(v); setNmTried(prev => { const s = new Set(prev); s.add(v); return s; }); };
-  const pickEm = (v) => { setEm(v); setEmTried(prev => { const s = new Set(prev); s.add(v); return s; }); };
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  return (
-    <Stage eyebrow={tr({ uz: 'Amaliyot · props', ru: 'Практика · props' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Ikkala props'ni almashtiring", ru: 'Поменяйте оба props' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(8px,1.2vw,12px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'z kartochkangizni <span className="italic" style={{ color: T.accent }}>props bilan</span> sozlay olasizmi?</>, ru: <>Сможете настроить свою карточку <span className="italic" style={{ color: T.accent }}>через props</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Endi o'zingiz boshqaring! 2 ta props bor: <span className="mono">name</span> va <span className="mono">emoji</span>. Qiymatlarni almashtirib, o'z kartochkangizni yasang. <b style={{ color: T.ink }}>Kod qanday o'zgarishini kuzating</b> — komponent esa bitta bo'lib qolaveradi.</>, ru: <>Теперь управляйте сами! Есть 2 props: <span className="mono">name</span> и <span className="mono">emoji</span>. Меняйте значения и соберите свою карточку. <b style={{ color: T.ink }}>Следите, как меняется код</b> — а компонент остаётся один.</> })}</Mentor>
-        <Zoomable>
-        <div className="split">
-          <Col>
-            <p className="flow-label">name props</p>
-            <div className="fade-up delay-1" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-              {GAMES.map(g => <button key={g.name} className={`gchip ${nm === g.name ? 'chip-on' : ''}`} /* F-0926-06: baland rang yo'q (159/10) */ onClick={() => pickNm(g.name)}>{g.name}</button>)}
-            </div>
-            <p className="flow-label" style={{ marginTop: 2 }}>emoji props</p>
-            <div className="fade-up delay-2" style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-              {EMOJIS.map(e => <button key={e} className={`gchip ${em === e ? 'chip-on' : ''}`} onClick={() => pickEm(e)}>{e}</button>)}
-            </div>
-            <pre className="code-box fade-up delay-2">
-              <Jx>{'<GameCard'}</Jx>{'\n'}
-              {'  '}<At>name</At>=<St>"{nm}"</St>{'\n'}
-              {'  '}<At>emoji</At>=<St>"{em}"</St>{'\n'}
-              <Jx>{'/>'}</Jx>
-            </pre>
-          </Col>
-          <Col>
-            <p className="flow-label">{tr({ uz: 'Kartochkangiz', ru: 'Ваша карточка' })}</p>
-            <Win title="robo-games — localhost:5173" minH={110}>
-              <div style={{ maxWidth: 170 }}><RoCard key={`${nm}-${em}`} name={nm} emoji={em} likeable /></div>
-            </Win>
-            <span className="tagpill fade-step" style={{ color: done ? T.success : T.ink }}>{nmTried.size >= 2 ? '✓' : '○'} {tr({ uz: 'name almashtirildi', ru: 'name изменён' })} · {emTried.size >= 2 ? '✓' : '○'} {tr({ uz: 'emoji almashtirildi', ru: 'emoji изменён' })}</span>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Siz hozir <b>props bilan boshqardingiz</b>: ma'lumot o'zgardi — ko'rinish o'zgardi, kod esa bitta.</>, ru: <>Вы только что <b>управляли через props</b>: данные изменились — вид изменился, а код один. На следующем уроке карточка будет <b>меняться и при нажатии</b> (state)!</> })}</p></div>}
-          </Col>
-        </div>
-        </Zoomable>
-      </div>
-    </Stage>
-  );
-};
-
-// 🐞 Qayta ishlatiladigan DEBUG CHALLENGE — xatoli qatorni topib bosish (silliq HARAKAT → ✨ Animatsiya).
-// Boshqa darsga: faqat `lines`/`fixed`/`explain` almashtiriladi.
-function DebugChallenge({ lines, fixed, explain, onSolved, onWrong }) {
-  const bugIdx = lines.findIndex(l => l.bug);
-  const [picked, setPicked] = useState(-1);
-  const [wrongIdx, setWrongIdx] = useState(-1);
-  const solved = picked === bugIdx;
-  useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
-  const click = (i) => {
-    if (solved) return;
-    if (i === bugIdx) setPicked(i);
-    else { if (onWrong) onWrong(); setWrongIdx(i); setTimeout(() => setWrongIdx(w => (w === i ? -1 : w)), 500); }
-  };
-  return (
-    <div className="dbg fade-up">
-      <div className="dbg-code">
-        {lines.map((l, i) => (
-          <div key={i} className={`dbg-line ${solved && i === bugIdx ? 'is-fixed' : ''} ${wrongIdx === i ? 'wrong' : ''}`} onClick={() => click(i)}>
-            <span className="dbg-ln">{i + 1}</span>
-            <span className="dbg-txt">{solved && i === bugIdx ? fixed : l.text}</span>
-            {solved && i === bugIdx && <span className="dbg-badge">✓</span>}{/* F-0929-91: «tuzatildi» so'zi olindi — tor ustunda qirqilardi; yashil qator + ✓ yetarli (foydalanuvchi S2) */}
-          </div>
-        ))}
-      </div>
-      {/* F-0926-06: takror yo'riq olindi (159/6) — «toping» mentorda */}
-      {solved && <div className="dbg-ok">{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })} {tr(explain)}</div>}
-    </div>
-  );
-}
-
-// 🃏 Qayta ishlatiladigan FLASHCARDS — aktiv takrorlash (3D flip + o'z-o'zini baholash + spaced recall).
-// Boshqa darsga: faqat `cards` ({ front, back, note }) almashtiriladi.
-// F-0803-13/14: KARTA JAVOBI UZUNLIKKA MOSLASHADI.
-// Muammo edi: `.fc-tag` hamma javobga bir xil katta monoshrift berardi — u bir so'zlik javob
-// (`let`, `=`, `string`) uchun tanlangan o'lcham. Uzun javob 2-3 qatorga bo'linib, qat'iy
-// balandlikdagi kartaga sig'masdi va izoh pastki chetga yopishib qolardi.
-// Yechim: (1) uzunlik bo'yicha 4 pog'onali o'lcham · (2) bitta kod-tokeni — mono,
-// gap — Manrope (o'qishga qulay, ~25% tor) · (3) gap ichidagi kod so'zlari mono qoladi.
 const FC_CODE_WORDS = /\b(let|const|var|string|number|boolean|true|false|null|undefined|function|return|for|while|if|else)\b/g;
 const FC_VOCAB = new Set(['let', 'const', 'var', 'string', 'number', 'boolean', 'true', 'false', 'null', 'undefined', 'function', 'return', 'for', 'while', 'if', 'else']);
 // Kodmi yoki so'zmi? Monoshrift FAQAT kodga: lug'atdagi kalit so'z yoki kod-belgisi bo'lgan
@@ -1651,7 +1444,7 @@ const ScreenPractice3 = (props) => (
 
 // 🃏 FLASHCARD KARTALARI (front=savol, back=qisqa javob, note=misol)
 const REACT_FLASHCARDS = [
-  { front: { uz: "Yangi React loyihasini bitta buyruqda qaysi asbob yaratadi?", ru: 'Какой инструмент создаёт новый React-проект одной командой?' }, back: "Vite", note: "npm create vite@latest" },
+  { front: { uz: "Yangi React loyihasini bitta buyruqda qaysi dastur yaratadi?", ru: 'Какой инструмент создаёт новый React-проект одной командой?' }, back: "Vite", note: "npm create vite@latest" },
   { front: { uz: "Kerakli kutubxonalarni qaysi buyruq yuklab oladi?", ru: 'Какая команда скачивает нужные библиотеки?' }, back: "npm install", note: { uz: "React'ning o'zini ham yuklaydi (node_modules)", ru: 'скачивает и сам React (node_modules)' } },
   { front: { uz: "Loyihani ishga tushirish uchun qaysi buyruq yoziladi?", ru: 'Какой командой запускают проект?' }, back: "npm run dev", note: { uz: "shundan keyin sayt brauzerda ochiladi", ru: 'после этого сайт откроется в браузере' } },
   { front: { uz: "npm run dev'dan keyin sayt qaysi manzilda ochiladi?", ru: 'По какому адресу откроется сайт после npm run dev?' }, back: "localhost:5173", note: { uz: "internetdagi sayt emas — faqat siz ko'rasiz", ru: 'это не сайт в интернете — видите только вы' } },
@@ -1678,13 +1471,13 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 
 // ===== 🏅 ACHIEVEMENTS (nishonlar) — dars davomidagi REAL bosqichlar uchun (tekin emas) =====
 const ACHIEVEMENTS = {
-  sharp:    { icon: '⚡', name: 'JSX Master!',      desc: { uz: "Komponent qoidasi testidan o'tdingiz", ru: 'Вы прошли тест на правило компонента' } },
+  sharp:    { icon: '⚡', name: 'JSX Master!',      desc: { uz: "Props testidan o'tdingiz", ru: 'Вы прошли тест на правило компонента' } },
   debugger: { icon: '🐞', name: 'Nice Catch!',      desc: { uz: "AI kodidagi class→className xatosini tuzatdingiz", ru: 'Вы исправили ошибку class→className в коде AI' } },
   builder:  { icon: '🧱', name: 'First Component!', desc: { uz: "Birinchi komponent chaqiruvini o'zingiz yozdingiz", ru: 'Вы сами написали первый вызов компонента' } },
   graduate: { icon: '🏆', name: 'Level Up!',        desc: { uz: "Birinchi komponent darsini to'liq yakunladingiz", ru: 'Вы полностью завершили урок о первом компоненте' } },
 };
 // Ekran id → nishon (recordAnswer'da, faqat REAL solve bilan: SCORED test / debug challenge / final)
-const ACH_TRIGGERS = { s12: 'sharp', s14: 'debugger', s15: 'builder' };
+const ACH_TRIGGERS = { s9: 'sharp', s14: 'debugger', s15: 'builder' }; // F-1017-221: sharp → props testi (s9)
 
 // 🏅 151-qonun: amaliy topshiriq nishoni faqat BIRINCHI urinishga beriladi. Shart OLDINDAN aytiladi; birinchi urinish
 // xato bo'lsa — jazosiz qisqa xabar (`once` — qayta urinishi yo'q ekran). Mentor ekranida, «Qaytadan» mashq-o'tishida va
@@ -1760,7 +1553,7 @@ const Q_LABELS = { 5: { uz: "1 — Vite / loyiha", ru: '1 — Vite / проек�
 
 // Server-baholash javob kaliti (mentor darsni ochganda avto-yuklanadi).
 // scored MCScreen'lar correctIdx'idan qo'lda: s4=1, s5b=0, s9=0, s12=1. s15 = -1 (yakuniy amaliy — yozma).
-const INLINE_KEYS = { s4: 1, s5b: 0, s9: 0, s12: 1, s15: -1 };
+const INLINE_KEYS = { s4: 1, s9: 0, s15: -1 }; // F-1017-221: s5b, s12 testlari olindi
 
 // ===== ⚡ CODE STRIKE — CTA kapsulasi (arena STRUKTURASINI ⚡ Jonli quradi; bu yerda faqat wordmark + CSS) =====
 const QUIZ_MS = 15000;
@@ -1780,7 +1573,7 @@ const QZ_BG_SHAPES = [
 // ⚔️ Mustahkamlash-jang savollari (dars qamrovi: Vite, App.jsx, JSX, komponent, chaqirish, props).
 // correct taqsimoti QAT'IY 3/3/3/3 (0×3, 1×3, 2×3, 3×3). Matnni 🎓 Metodist sayqallaydi.
 const QUIZ_BANK = [
-  { q: { uz: "Vite nima?", ru: 'Что такое Vite?' }, opts: [{ uz: "Loyihani bir buyruqda quruvchi tez asbob", ru: 'Быстрый инструмент, собирающий проект одной командой' }, { uz: "Yangi dasturlash tilining nomi", ru: 'Название нового языка программирования' }, { uz: "Brauzerga o'rnatiladigan qo'shimcha dastur", ru: 'Расширение, которое ставят в браузер' }, { uz: "Ma'lumotlar bazasini boshqaruvchi dastur", ru: 'Программа для управления базой данных' }], correct: 0 },
+  { q: { uz: "Vite nima?", ru: 'Что такое Vite?' }, opts: [{ uz: "Loyihani bir buyruqda quruvchi tez dastur", ru: 'Быстрый инструмент, собирающий проект одной командой' }, { uz: "Yangi dasturlash tilining nomi", ru: 'Название нового языка программирования' }, { uz: "Brauzerga o'rnatiladigan qo'shimcha dastur", ru: 'Расширение, которое ставят в браузер' }, { uz: "Ma'lumotlar bazasini boshqaruvchi dastur", ru: 'Программа для управления базой данных' }], correct: 0 },
   { q: { uz: "`npm create vite@latest` buyrug'i nima qiladi?", ru: 'Что делает команда `npm create vite@latest`?' }, opts: [{ uz: "Saytni internetga chiqarib e'lon qiladi", ru: 'Публикует сайт в интернете' }, { uz: "Loyihaning tayyor tuzilishini — papka va fayllarni yaratadi", ru: 'Создаёт готовую структуру проекта — папки и файлы' }, { uz: "Koddagi barcha xatolarni o'zi tuzatadi", ru: 'Сама исправляет все ошибки в коде' }, { uz: "Kerakli rasmlarni internetdan yuklaydi", ru: 'Скачивает нужные картинки из интернета' }], correct: 1 },
   { q: { uz: "Sizning kodingiz asosan qaysi faylda yoziladi?", ru: 'В каком файле в основном пишется ваш код?' }, opts: ["index.html", "package.json", "App.jsx", "style.css"], correct: 2 },
   { q: { uz: "`npm run dev` buyrug'i nima uchun?", ru: 'Для чего команда `npm run dev`?' }, opts: [{ uz: "Loyihani butunlay o'chiradi", ru: 'Полностью удаляет проект' }, { uz: "Kutubxonalarni internetga yuklaydi", ru: 'Загружает библиотеки в интернет' }, { uz: "Barcha fayllarni o'chiradi", ru: 'Удаляет все файлы' }, { uz: "Loyihani localhost'da ishga tushiradi", ru: 'Запускает проект на localhost' }], correct: 3 },
@@ -2313,6 +2106,43 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   );
 };
 
+function DebugChallenge({ lines, fixed, explain, onSolved, onWrong }) {
+  const bugIdx = lines.findIndex(l => l.bug);
+  const [picked, setPicked] = useState(-1);
+  const [wrongIdx, setWrongIdx] = useState(-1);
+  const solved = picked === bugIdx;
+  useEffect(() => { if (solved) onSolved && onSolved(); }, [solved]); // eslint-disable-line
+  const click = (i) => {
+    if (solved) return;
+    if (i === bugIdx) setPicked(i);
+    else { if (onWrong) onWrong(); setWrongIdx(i); setTimeout(() => setWrongIdx(w => (w === i ? -1 : w)), 500); }
+  };
+  return (
+    <div className="dbg fade-up">
+      <div className="dbg-code">
+        {lines.map((l, i) => (
+          <div key={i} className={`dbg-line ${solved && i === bugIdx ? 'is-fixed' : ''} ${wrongIdx === i ? 'wrong' : ''}`} onClick={() => click(i)}>
+            <span className="dbg-ln">{i + 1}</span>
+            <span className="dbg-txt">{solved && i === bugIdx ? fixed : l.text}</span>
+            {solved && i === bugIdx && <span className="dbg-badge">✓</span>}{/* F-0929-91: «tuzatildi» so'zi olindi — tor ustunda qirqilardi; yashil qator + ✓ yetarli (foydalanuvchi S2) */}
+          </div>
+        ))}
+      </div>
+      {/* F-0926-06: takror yo'riq olindi (159/6) — «toping» mentorda */}
+      {solved && <div className="dbg-ok">{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })} {tr(explain)}</div>}
+    </div>
+  );
+}
+
+// 🃏 Qayta ishlatiladigan FLASHCARDS — aktiv takrorlash (3D flip + o'z-o'zini baholash + spaced recall).
+// Boshqa darsga: faqat `cards` ({ front, back, note }) almashtiriladi.
+// F-0803-13/14: KARTA JAVOBI UZUNLIKKA MOSLASHADI.
+// Muammo edi: `.fc-tag` hamma javobga bir xil katta monoshrift berardi — u bir so'zlik javob
+// (`let`, `=`, `string`) uchun tanlangan o'lcham. Uzun javob 2-3 qatorga bo'linib, qat'iy
+// balandlikdagi kartaga sig'masdi va izoh pastki chetga yopishib qolardi.
+// Yechim: (1) uzunlik bo'yicha 4 pog'onali o'lcham · (2) bitta kod-tokeni — mono,
+// gap — Manrope (o'qishga qulay, ~25% tor) · (3) gap ichidagi kod so'zlari mono qoladi.
+
 // ===== SCREEN 14 — DEBUGGING (class vs className) — reusable DebugChallenge =====
 const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [done, setDone] = useState(!!storedAnswer);
@@ -2329,7 +2159,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Debugging', ru: 'Дебаггинг' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Xatoni toping', ru: 'Найдите ошибку' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI yordam beradi — siz esa <span className="italic" style={{ color: T.accent }}>tekshirasiz</span>.</>, ru: <>AI помогает — а вы <span className="italic" style={{ color: T.accent }}>проверяете</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>AI kod yozishda <b style={{ color: T.ink }}>ajoyib yordamchi</b> — yangi komponentni bir zumda yozib berdi. Lekin <b style={{ color: T.ink }}>odamlar ham, AI ham</b> ba'zan kichik xato qiladi. Shuni topib tuzatish — <b style={{ color: T.ink }}>debugging</b>, va bu eng yaxshi mahorat. Eslang: JSX'da bitta so'z <b style={{ color: T.ink }}>band</b> edi. Qaysi qator shunga zid — toping-chi.</>, ru: <>AI — <b style={{ color: T.ink }}>отличный помощник</b> в написании кода: новый компонент он написал за секунду. Но <b style={{ color: T.ink }}>и люди, и AI</b> иногда допускают мелкие ошибки. Найти и исправить их — это <b style={{ color: T.ink }}>дебаггинг</b>, самый ценный навык. Вспомните: одно слово в JSX было <b style={{ color: T.ink }}>занято</b>. Какая строка этому противоречит — найдите её.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Komponentni <b style={{ color: T.ink }}>AI'ga ham yozdirsa</b> bo'ladi: siz buyruq berasiz, u bir zumda yozib beradi — mana, GameCard'ni ham yozib berdi. Lekin <b style={{ color: T.ink }}>odamlar ham, AI ham</b> ba'zan kichik xato qiladi. Shuni topib tuzatish — <b style={{ color: T.ink }}>debugging</b>, va bu eng yaxshi mahorat. Eslang: JSX'da bitta so'z <b style={{ color: T.ink }}>band</b> edi. Qaysi qator shunga zid — toping-chi.</>, ru: <>Компонент можно <b style={{ color: T.ink }}>поручить и AI</b>: вы даёте команду, он пишет за секунду — вот, GameCard он тоже написал. Но <b style={{ color: T.ink }}>и люди, и AI</b> иногда допускают мелкие ошибки. Найти и исправить их — это <b style={{ color: T.ink }}>дебаггинг</b>, самый ценный навык. Вспомните: одно слово в JSX было <b style={{ color: T.ink }}>занято</b>. Какая строка этому противоречит — найдите её.</> })}</Mentor>
         <Zoomable off={!done}>
         <div className="split">
           <Col>
@@ -2360,12 +2190,15 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [value, setValue] = useState(() => (typeof storedAnswer?.picked === 'string' ? storedAnswer.picked : '')); /* F-0915-02 */
   const [passed, setPassed] = useState(!!storedAnswer?.correct);
   const norm = value.replace(/\s+/g, ' ').trim();
-  const m = norm.match(/^<\s*GameCard\s+name\s*=\s*"([^"]{2,20})"\s*\/\s*>$/);
-  const inner = m ? m[1].trim() : '';
+  // F-1017-222 (mentor): JSX'da name='…' ham to'g'ri — ikkala tirnoq (juft bo'lsa) qabul qilinadi
+  const m = norm.match(/^<\s*GameCard\s+name\s*=\s*(["'])([^"']{2,20})\1\s*\/\s*>$/);
+  const nameStr = m ? m[2] : '';
+  const inner = nameStr.trim();
   const valid = !!inner;
   const hasComp = /<\s*GameCard\b/.test(value);
   const hasLowerComp = /<\s*gamecard\b/i.test(value) && !hasComp;
-  const hasName = /name\s*=\s*"[^"]+"/.test(value);
+  const hasOtherComp = /<\s*[A-Z][A-Za-z]*\b/.test(value) && !hasComp && !hasLowerComp; // F-1017-220: Katta harf, lekin boshqa nom (Robo) — sababi aytiladi
+  const hasName = /name\s*=\s*(["'])[^"']+\1/.test(value);
   const hasClose = /\/\s*>\s*$/.test(value.trim());
   useEffect(() => {
     if (valid && !passed) {
@@ -2382,7 +2215,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Chaqiruvni yozing', ru: 'Напишите вызов' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: komponentni <span className="italic" style={{ color: T.accent }}>o'zingiz</span> chaqiring.</>, ru: <>Последний шаг: вызовите компонент <span className="italic" style={{ color: T.accent }}>сами</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Mana <b style={{ color: T.ink }}>haqiqiy dasturchi muhiti</b> — VS Code'da <span className="mono">App.jsx</span> ochiq. 4-qatorda komponent chaqiruvi yetishmayapti: kartochkani <b style={{ color: T.ink }}>name</b> prop'i bilan chaqiring (istalgan o'yin nomi). Yozishingiz bilan kartochka jonlanadi.</>, ru: <>Вот <b style={{ color: T.ink }}>настоящая среда программиста</b> — в VS Code открыт <span className="mono">App.jsx</span>. В 4-й строке не хватает вызова компонента: вызовите карточку с пропом <b style={{ color: T.ink }}>name</b> (любое название игры). Как только напишете — карточка оживёт.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Mana <b style={{ color: T.ink }}>haqiqiy dasturchi muhiti</b> — VS Code'da <span className="mono">App.jsx</span> ochiq. 4-qatorda komponent chaqiruvi yetishmayapti — <span className="mono">&lt;GameCard name="…" /&gt;</span>: kartochkani <b style={{ color: T.ink }}>name</b> prop'i bilan chaqiring (istalgan o'yin nomi). Yozishingiz bilan kartochka jonlanadi.</>, ru: <>Вызов — <span className="mono">&lt;GameCard name="…" /&gt;</span>. Вот <b style={{ color: T.ink }}>настоящая среда программиста</b> — в VS Code открыт <span className="mono">App.jsx</span>. В 4-й строке не хватает вызова компонента: вызовите карточку с пропом <b style={{ color: T.ink }}>name</b> (любое название игры). Как только напишете — карточка оживёт.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -2406,11 +2239,12 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
             </div>
             <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              <span className="tagpill" style={{ opacity: hasComp ? 1 : 0.4 }}>{hasComp ? '✓' : '1'} {tr({ uz: 'komponent — Katta harf', ru: 'компонент — заглавная буква' }) /* F-0927 (S6): teg kod bo'lagini aytardi */}</span>
+              <span className="tagpill" style={{ opacity: hasComp ? 1 : 0.4 }}>{hasComp ? '✓' : '1'} {tr({ uz: '<GameCard /> — Katta harf', ru: '<GameCard /> — Заглавная буква' }) /* F-0927 (S6): teg kod bo'lagini aytardi */}</span>
               <span className="tagpill" style={{ opacity: hasName ? 1 : 0.4 }}>{hasName ? '✓' : '2'} {tr({ uz: 'name prop', ru: 'проп name' })}</span>
               <span className="tagpill" style={{ opacity: hasClose ? 1 : 0.4 }}>{hasClose ? '✓' : '3'} {tr({ uz: 'yopilishi', ru: 'закрытие' })}</span>
             </div>
             {hasLowerComp && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Esingizdami? Komponent nomi <b>Katta harf</b> bilan: <span className="mono">GameCard</span> — aks holda React uni HTML teg deb o'ylaydi.</>, ru: <>Помните? Имя компонента — с <b>Заглавной буквы</b>: <span className="mono">GameCard</span> — иначе React примет его за HTML-тег.</> })}</p></div>}
+            {hasOtherComp && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Komponent nomi aynan <span className="mono">GameCard</span> — App.jsx da shu funksiya yozilgan; boshqa nomli komponent yo'q.</>, ru: <>Имя компонента именно <span className="mono">GameCard</span> — в App.jsx написана эта функция; компонента с другим именем нет.</> })}</p></div>}
             {passed && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ Mukammal! Komponent + props — chaqiruvni to'liq o'zingiz yozdingiz. Bu endi sizning mahoratingiz.", ru: '✓ Превосходно! Компонент + props — вы полностью сами написали вызов. Теперь это ваш навык.' })}</p></div>}
           </Col>
           <Col>
@@ -2446,7 +2280,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
+    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
   const audio = useAudio([{ id: 's16', text: "Tabriklaymiz — birinchi React komponentingiz tayyor! Esda saqlang: Vite loyihani bir buyruqda yaratadi, kod App.jsx'da yoziladi, JSX'da className va jingalak qavs ishlaydi, komponent katta harf bilan boshlanadi, props esa ma'lumot uzatadi. Keyingi darsda kartochkalarimiz jonlanadi: state va effect!", trigger: 'on_mount', waits_for: null }]);
@@ -2466,13 +2300,13 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
   return (
-    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
+    <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className="screen">
         <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Birinchi komponentingiz <span className="italic" style={{ color: T.accent }}>tayyor</span>.</>, ru: <>Ваш первый компонент <span className="italic" style={{ color: T.accent }}>готов</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : undefined} />
         </div>
-        {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+        {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
         <div className="hw-big-wrap fade-up d4">
           <button className={`hw-big ${hwCharge ? 'charging' : ''}`} onClick={fireHw}>
@@ -2614,7 +2448,7 @@ export default function ReactFirstComponentLesson({ lang: langProp, onFinished, 
     if (typeof onFinished === 'function') onFinished(sealPayload(LESSON_META.lessonId, payload));
   };
 
-  const screens = [Screen0, Screen1, Screen2, Screen3, ScreenPractice1, Screen4, Screen5, Screen5b, Screen6, Screen7, ScreenPractice2, Screen8, Screen9, Screen10, Screen11, Screen12, Screen13, ScreenPractice3, Screen14, Screen15, ScreenPodium, ScreenFlashcards, Screen16];
+  const screens = [Screen0, Screen1, Screen2, Screen3, ScreenPractice1, Screen4, Screen5, Screen6, Screen7, ScreenPractice2, Screen8, Screen9, Screen10, ScreenPractice3, Screen14, Screen15, ScreenPodium, ScreenFlashcards, Screen16]; // F-1017-221 (A′): 23→19 — s5b, s11, s12, s13 olindi
   const Current = screens[screen];
   return (
     <LangContext.Provider value={lang}>

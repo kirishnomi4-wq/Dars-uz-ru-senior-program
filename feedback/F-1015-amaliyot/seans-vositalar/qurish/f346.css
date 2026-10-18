@@ -1,0 +1,34 @@
+        /* ===== F-1015-346 · m3-12: kod oynasi, AvtoIjara oynasi, kun tanlash, ijaralar (izohda backtick yo'q) ===== */
+        .sk-izoh { color: #94a3b8; }
+        .sk-nur { border-radius: 6px; animation: sk-nur 0.9s ease-out; }
+        @keyframes sk-nur { from { background: rgba(250,204,21,0.35); } to { background: transparent; } }
+        .cr-son { font: 800 12.5px 'Manrope', sans-serif; color: ${T.ink}; }
+        .lesson-root .cr-jadval { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+        .cr-jadval li { display: grid; grid-template-columns: minmax(62px, auto) 1fr auto; align-items: center; gap: 10px; font-size: 14px; color: ${T.ink}; }
+        .cr-jadval li span { color: ${T.ink2}; }
+        .cr-jadval .qcode { white-space: nowrap; }
+        @media (max-width: 560px) { .cr-jadval li { grid-template-columns: 58px 1fr; } .cr-jadval .qcode { grid-column: 1 / -1; justify-self: start; } }
+        .am-yordam pre.am-masalan { color: ${CODE.text}; }
+        .sk-mos { background: rgba(74,222,128,0.16); border-radius: 6px; box-shadow: inset 3px 0 0 #4ade80; }
+        .rt-oyin { display: flex; flex-direction: column; gap: 6px; }
+        .rt-rasm { border-radius: 12px; height: 70px; display: flex; align-items: center; justify-content: center; font-size: 34px; }
+        .rt-nom.rt-nom { margin: 0; font-family: "Source Serif 4", serif; font-weight: 600; font-size: 18px; color: ${T.ink}; }
+        .rt-forma { display: flex; flex-direction: column; gap: 10px; }
+        .av-url { display: flex; gap: 2px; align-items: center; font: 600 11.5px "JetBrains Mono", monospace; background: ${T.bg}; border-radius: 8px; padding: 6px 10px; color: ${T.ink2}; }
+        .av-url b { color: ${T.ink}; }
+        .av-menu { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+        .av-link { font: 700 12px "Manrope", sans-serif; color: ${T.ink}; background: ${T.bg}; border: 1.5px solid ${T.line}; border-radius: 999px; padding: 5px 12px; cursor: pointer; }
+        .av-link.on { border-color: ${T.ink}; background: ${T.paper}; }
+        .av-link:focus-visible, .av-kb:focus-visible { outline: 2px solid ${T.accent}; outline-offset: 2px; }
+        .av-kun { display: flex; align-items: center; gap: 12px; margin: 10px 0; }
+        .av-kun b { font: 800 15px "Manrope", sans-serif; color: ${T.ink}; min-width: 64px; text-align: center; }
+        .av-kb { width: 34px; height: 34px; border-radius: 10px; border: 1.5px solid ${T.line}; background: ${T.paper}; font: 800 18px "Manrope", sans-serif; color: ${T.ink}; cursor: pointer; }
+        .av-kb:disabled { color: ${T.ink3}; cursor: default; }
+        .av-ijara { display: flex; flex-direction: column; gap: 8px; }
+        .lesson-root .av-ijara-l { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+        .av-ijara-l li { display: grid; grid-template-columns: 1fr auto auto; gap: 12px; font-size: 13.5px; color: ${T.ink}; }
+        .av-ijara-l li span:nth-child(2) { color: ${T.ink2}; font-family: "JetBrains Mono", monospace; }
+        .av-jami.av-jami { margin: 0; display: flex; justify-content: space-between; border-top: 1px dashed ${T.line}; padding-top: 8px; font-weight: 800; color: ${T.ink}; }
+        .av-jami b { color: ${T.success}; font-family: "JetBrains Mono", monospace; }
+        .av-json { max-height: 180px; overflow: auto; }
+        @media (prefers-reduced-motion: reduce) { .sk-nur { animation: none !important; } }

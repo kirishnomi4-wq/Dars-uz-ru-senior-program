@@ -1,7 +1,7 @@
 # 10-dars «Loyiha kuni: poydevor — Database, kirish, deploy» — yakuniy matn
 
 Fayl: `src/9-Modull/FoundationDayLesson.jsx` · 12 ekran · Keyingi dars: «Loyiha kuni: 1-asosiy funksiya»
-Holat: 07.10.2026 — kodga mos
+Holat: 18.10.2026 — kodga mos (v4, F-1015-263…265 avtopilot: 3, 6-ekran bashorat yolg'iz (213.7); reja-satri karta)
 
 Darsning bitta vizuali — «Poydevor xaritasi»: chapda telefon (ustida «Expo Go», ichida «Maydon Jamoa» nomi o'z rangida, pastda qulf-quti `expo-secure-store` — bo'sh yoki ichida `token`) → o'rtada **Backend** qutisi (`POST /royxat` · `POST /kirish` · `GET /oyinlar` qulf belgisi bilan; joyi: `localhost:3000 · laptop` yoki `maydon-jamoa-….onrender.com · Render`) → o'ngda **Database · Neon** (jadvallar `oyinchilar` · `oyinlar` · `ishtirokchilar`; `ishtirokchilar` — bo'sh, kulrang). So'rovlar — uchib yuradigan konvert.
 
@@ -268,9 +268,10 @@ Natijalar (podium) — jonli reyting
   - Kirishda parol yoziladi: token telefonda saqlanadi va yopiq so'rovlarga qo'shiladi.
   - Telefon `localhost` bilan laptopdagi Backend'ni topmaydi — bu darsda Backend barqaror manzil uchun internetga chiqadi.
   - `EXPO_PUBLIC_` qiymati ilovada ochiq ko'rinadi: unga faqat Backend manzili yoziladi.
-- Keyingi dars — **«Loyiha kuni: 1-asosiy funksiya»**: roadmap'dagi birinchi funksiya — talabni siz yozasiz.
 - Nishonlaringiz — N/3 (uchta nishon nomi va tavsifi — «Nishonlar» bo'limida)
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Keyingi dars — **«Loyiha kuni: 1-asosiy funksiya»**: roadmap'dagi birinchi funksiya — talabni siz yozasiz.
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Token Keeper** — Ilova o'yinchini telefondagi token bilan tanishini topdingiz (4-ekran, birinchi urinishda to'g'ri)

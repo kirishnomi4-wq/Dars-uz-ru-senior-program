@@ -1,7 +1,7 @@
 # 9-dars «React Native va Expo: prototip telefonda» — yakuniy matn
 
 Fayl: `src/9-Modull/ExpoPrototypeLesson.jsx` · 19 ekran · Keyingi dars: «Loyiha kuni: poydevor — Database, kirish, deploy»
-Holat: 07.10.2026 — kodga mos
+Holat: 18.10.2026 — kodga mos (v4, F-1015-260…262 avtopilot: 6, 10-ekran bashorat yolg'iz (213.7); reja-satri va 8-ekran holat-tugmalari — karta)
 
 Darsning bitta vizuali — «Maydon Jamoa» telefoni uch holatda: brauzer (tepada manzil qatori) · Expo Go (ramka ustida «Expo Go» yorlig'i, manzil qatori yo'q) · bosh ekran (telefonning ikonkalar ekrani).
 Uch ekran: **O'yinlar** · **O'yin** · **E'lon berish**. Namuna ma'lumot (dars bo'yi bir xil):
@@ -20,7 +20,7 @@ O'yinlar ekrani: tepada «Maydon Jamoa», sarlavha «O'yinlar», to'rt o'yin kar
   - javobdan keyin: Endi telefon ostidagi «Ochib ko'rish»ni bosing.
   - natijadan keyin: «Davom etish»ni bosing — bugungi rejani ko'rasiz.
 - Maket: telefon (brauzer, manzil qatorida `localhost:5173`, ekran bo'sh); orqaroqda kichik kompyuter brauzeri `localhost:5173` — «Maydon Jamoa», O'yinlar, to'rt o'yin kartasi.
-- Telefon ostida tugma: Ochib ko'rish (variant tanlanguncha xira)
+- Telefon ostida tugma: Ochib ko'rish (variant tanlangach chiqadi; bungacha ko'rinmaydi) *(✎ F-1015-164)*
 - Variantlar (ballsiz):
   - Prototip chiqadi — manzil kompyuterdagi bilan bir xil
   - Prototip chiqmaydi — telefon manzilni o'zidan qidiradi
@@ -38,10 +38,11 @@ O'yinlar ekrani: tepada «Maydon Jamoa», sarlavha «O'yinlar», to'rt o'yin kar
 - Mentor: Mobil trekda prototip Expo ilovasiga aylanadi, web-trekda — telefonga moslashgan saytga. Avval Maydon Jamoa misolida ko'rasiz, keyin o'z trekingizda, o'z repo'ngizda qilasiz.
 - Chap — Dars oxirida: telefon (Expo Go) bir marta o'zi o'ynaydi: O'yinlar → Shanba, 18:00 kartasi bosiladi → O'yin ekrani suriladi → «Qo'shilaman» bosiladi → «8 / 10» → «9 / 10», «Qo'shildingiz»
 - Reja:
-  1. Ekranlarni React Native'ga ko'chirish · Expo
-  2. Har ekranni alohida faylga qo'yish · navigatsiya
-  3. QR orqali telefonda ochish · Expo Go
-  4. Web-trekda: telefonga moslashgan sayt · adaptiv sayt · PWA
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*
+  1. Ekranlarni React Native'ga ko'chirish
+  2. Har ekranni alohida faylga qo'yish
+  3. QR orqali telefonda ochish
+  4. Web-trekda: telefonga moslashgan sayt
 - Pastki qator: Trekingiz: mobil (yoki: Trekingiz: web · 8-darsda trek saqlanmagan bo'lsa: Trekni amaliyotda tanlaysiz) · Mentor misoli `maydon-jamoa` · tayyor holat `m11-dars-09-done`
 - Tugmalar: Orqaga · Boshlaymiz
 
@@ -58,8 +59,8 @@ O'yinlar ekrani: tepada «Maydon Jamoa», sarlavha «O'yinlar», to'rt o'yin kar
   </div>
 </div>
 ```
-- Hisoblagich: Almashdi: N / 4
-- Tugmalar (bo'lak tanlangach faol): View · Pressable · Text · StyleSheet
+- (hisob faqat pastki tugmada — F-1015-116)
+- Tugmalar (kodda bo'lak tanlangach chiqadi; topilgani — yashil «✓ View» yozuvi) *(✎ F-1015-164)*: View · Pressable · Text · StyleSheet
   - To'g'ri juftlik: kod bo'lagi React Native yozuviga almashadi, telefonda o'sha qism ilova ko'rinishiga o'tadi.
   - Xato juftlik (tugma silkinadi, bir qator):
     - matn bo'lagiga boshqa tugma: `View` — quti: matn uchun boshqa komponent kerak.
@@ -108,7 +109,7 @@ const s = StyleSheet.create({ … })
   - boshida: `src/app/` papkasidagi fayllarni birma-bir bosing — telefonda qaysi ekran ochilishini ko'rasiz.
   - 4/4 dan keyin: 8-Modulda Stack Navigator bilan ekrandan ekranga o'tgansiz — Expo Router'da ham Stack bor, faqat har ekran — alohida fayl.
 - Chap — telefon (Expo Go), boshida ekran bo'sh.
-- O'ng — fayl daraxti (fayllar navbat bilan halqada, ochilgani oldida ✓):
+- O'ng — fayl daraxti (faqat navbatdagi fayl tugma, halqada; ochilgani — ✓ yozuv, qolgani — oddiy fayl nomi *(✎ F-1015-164)*):
 ```
 mobil/
   src/app/
@@ -122,7 +123,7 @@ mobil/
   - `elon.tsx` → E'lon berish ekrani ustiga suriladi; yonida `/elon`
   - `[id].tsx` → O'yin ekrani (Shanba, 18:00) ustiga suriladi; yonida `/oyin/1`
   - `_layout.tsx` → yonida `<Stack />`; uch ekran bir lahza qiya ustma-ust ko'rinadi, keyin ustki ekran chiqib ketadi; qator yonida kulrang: ekran emas — ularni bog'laydi
-- Daraxt ostida: `.tsx` — TypeScript'dagi React fayli: kodni agent yozadi, siz o'qiysiz · Hisoblagich: Ochildi: N / 4
+- Daraxt ostida: `.tsx` — TypeScript'dagi React fayli: kodni agent yozadi, siz o'qiysiz  (hisob faqat pastki tugmada — F-1015-116)
 - Nom qatori (4/4 dan keyin): Ekranlarni fayllar bilan tuzadigan bu navigatsiya **Expo Router** deyiladi: bu misolda har ekran o'z faylida.
 - Xulosa: Bu misolda uch ekran — uch fayl; `_layout.tsx` ularni Stack qilib ustma-ust qo'yadi.
 - Tugmalar: Orqaga · Fayllarni oching (N/4) → Davom etish
@@ -149,7 +150,7 @@ const router = useRouter();
 const { id } = useLocalSearchParams();
 const oyin = oyinlar.find((o) => o.id === id);
 ```
-- Kartani bosish: `router.push` qatori yonadi → manzil yorlig'ida `/oyin/2` → `oyin/[id].tsx` kartasi yonadi, `id` yonida `= '2'` → telefonda O'yin ekrani o'sha o'yin bilan ochiladi → O'yinlar'ga qaytadi. Hisoblagich: Ochildi: N / 4
+- Kartani bosish: `router.push` qatori yonadi → manzil yorlig'ida `/oyin/2` → `oyin/[id].tsx` kartasi yonadi, `id` yonida `= '2'` → telefonda O'yin ekrani o'sha o'yin bilan ochiladi → O'yinlar'ga qaytadi. (hisob faqat pastki tugmada — F-1015-116)
 - 4/4 da: to'rt manzil `/oyin/1` · `/oyin/2` · `/oyin/3` · `/oyin/4` bitta `oyin/[id].tsx` yorlig'iga chiziq bilan ulanadi.
 - Natija: ✓ Taxminingiz to'g'ri chiqdi (boshqa javobda: Taxminingiz: … · haqiqatda: **1 ta**)
 - Xulosa: Bu misolda to'rt o'yin bitta `oyin/[id].tsx` faylidan ochiladi: `router.push` manzilga o'yin raqamini qo'yadi.
@@ -224,7 +225,7 @@ const oyin = oyinlar.find((o) => o.id === id);
 .oyinlar { display: flex; gap: 12px; }
 ```
 - 600 px dan tor oynada kartalar yonma-yon qisiladi.
-- Kalit-tugma (toraytirgandan keyin faol): Telefon uchun qoida → `style.css` ga qo'shiladi va kartalar bitta ustunga tushadi:
+- Kalit-tugma (toraytirgandan keyin chiqadi; yoqilgach — holat yozuvi *(✎ F-1015-164)*): Telefon uchun qoida → `style.css` ga qo'shiladi va kartalar bitta ustunga tushadi:
 ```css
 @media (max-width: 600px) {
   .oyinlar { flex-direction: column; }
@@ -244,7 +245,7 @@ const oyin = oyinlar.find((o) => o.id === id);
   2. Qavslar ichiga: `.oyinlar { flex-direction: column; }`
   3. Natija oynasida «Telefon» kengligini tanlang — kartalar ustma-ust tursin.
 - Yordam (tugma, ochiladi): Kartalar o'zgarmasa, `max-width` dan keyin ikki nuqta borligini va `.oyinlar` qoidasi `@media` qavslari ichida turganini tekshiring.
-- Tugma: Bajardim (kod tekshiruvdan o'tib, natija oynasida «Telefon» tanlangach ochiladi)
+- Tugma: Bajardim (kod tekshiruvdan o'tib, natija oynasida «Telefon» tanlangach chiqadi; bungacha ko'rinmaydi) *(✎ F-1015-164)*
 - O'ng — kod kartasi `style.css` (boshlang'ich holat) va tugma «Kompilyatorni ochish»; ostida: Kod oynasi ochiladi — kodni yozasiz va natijasini shu yerda ko'rasiz.
 ```css
 .oyinlar {
@@ -281,13 +282,13 @@ const oyin = oyinlar.find((o) => o.id === id);
   - boshida: Chrome saytni o'rnatishni taklif qilishi uchun sayt o'zi haqida kichik fayl beradi — uning maydonlarini birma-bir qo'shing.
   - 4/4 dan keyin: Endi «Netlify'ga chiqarish»ni bosing — telefon saytni HTTPS manzilda ochadi.
 - Chap — telefon bosh ekrani: kulrang ikonka kataklari, bitta bo'sh joy.
-- O'ng — fayl kartasi `manifest.webmanifest`, ostida kulrang: sayt o'zi haqida yozgan fayl. To'rt maydon bittadan (joriysi halqada, har birida «Qo'shish»; qo'shilgani oldida ✓):
+- O'ng — fayl kartasi `manifest.webmanifest`, ostida kulrang: sayt o'zi haqida yozgan fayl. To'rt maydon bittadan (faqat joriysida «Qo'shish», halqada; qo'shilgani oldida ✓; «Netlify'ga chiqarish» qatori navbati kelguncha oddiy kulrang yozuv *(✎ F-1015-164)*):
   1. `"name": "Maydon Jamoa"` → bo'sh joy ostida «Maydon Jamoa»
   2. `"icons": [192 px, 512 px]` → bo'sh joyda ikonka; yonida `192` · `512`
   3. `"start_url": "/"` → yonida kichik ko'rinish: «Maydon Jamoa», O'yinlar, ikki karta (manzil qatori bilan)
   4. `"display": "standalone"` → kichik ko'rinishdan manzil qatori yo'qoladi
   5. Tugma «Netlify'ga chiqarish» → telefon tepasida `https://maydon-jamoa-….netlify.app` qulf bilan → ikonka bosh ekrandagi joyiga tushadi → bosiladi → O'yinlar manzil qatorisiz ochiladi; kartada ✓ `https://maydon-jamoa-….netlify.app`
-- Hisoblagich: Shart: N / 5
+- (hisob faqat pastki tugmada — F-1015-116)
 - Nom qatori (5/5 dan keyin): Bosh ekranga ilova kabi qo'shiladigan sayt **PWA (Progressive Web App)** deyiladi.
 - Xulosa: Bu misolda manifestdagi to'rt maydon va HTTPS manzil saytni telefonga o'rnatiladigan qildi.
 - Tugmalar: Orqaga · Shartlarni qo'shing (N/5) → Davom etish
@@ -419,7 +420,7 @@ const oyin = oyinlar.find((o) => o.id === id);
        > Qayerda: `mobil/src/app/` — mavjud ekranlar.
        > Nima qilsin: o'yin kartasi bosilganda kichrayib qaytsin — 0,15 soniya. «8 / 10» dagi son o'zgarganda bir lahza kattalashib, 0,3 soniyada silliq qaytsin. Ekrandan ekranga o'tish Stack'nikidek silliq qolsin.
        > Nima buzilmasin: ekranlar, namuna ma'lumot va bosish yo'llari o'zgarmasin; telefonda harakatni kamaytirish yoqilgan bo'lsa, kichrayish va kattalashish bo'lmasin. Paket kerak bo'lsa — faqat `npx expo install` bilan. Boshqa joyga tegma, o'zgargan fayllarni ayt.
-       - Ostida: Motion — web uchun; ilovada animatsiyani agent React Native vositasi bilan yozadi.
+       - Ostida: Motion — web uchun; ilovada animatsiyani agent React Native kutubxonasi bilan yozadi.
   3. **Ishga tushirish** — ilova telefonda o'zi yangilanadi; yangilanmasa — terminalda `r`.
      - Xato bo'lsa: «Shu xato chiqdi: {xato}. Tuzat.»
   4. **Telefonda tekshirish** — talabning har qatori: karta kichrayib qaytadimi · son kattalashib qaytadimi · ekranlar silliq almashadimi · ekranlar va bosish yo'llari o'sha-o'shami.
@@ -493,7 +494,6 @@ Natijalar (podium) — jonli reyting
   - 2-amaliyot bajarilgan: Prototipingiz endi o'z telefoningizda ochiladi.
   - faqat 1-amaliyot: Prototip telefonda ochildi — oxirgi qadam uyda.
   - 1-amaliyot bajarilmagan: Telefonga chiqarish boshlandi — qolgani uyda.
-- Bugungi asosiy fikr: Mobil trekda prototip Expo ilovasiga ko'chadi — har ekran o'z faylida — va QR orqali Expo Go'da ochiladi; web-trekda u adaptiv sayt va PWA bo'lib, telefonning bosh ekraniga qo'shiladi.
 - CODE STRIKE arenasi (jonli darsda mentor boshlaguncha: Mentorni kuting)
 - ✓ Endi siz bilasiz:
   - React Native'da quti `View` bilan, matn `Text` bilan, bosiladigan joy `Pressable` bilan yoziladi.
@@ -508,7 +508,9 @@ Natijalar (podium) — jonli reyting
   3. **GitHub** — o'zgarishlar GitHub'da tursin: mobil trekda `mobil/`, web-trekda `prototip/` va `README.md` da Netlify havolasi.
   - Keyingi dars — **«Loyiha kuni: poydevor — Database, kirish, deploy»**: prototip telefonda ochiladi, endi uning ortidagi umumiy Database va kirish navbati.
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10, S1-A): uy vazifasi kartasi P-025 — sarlavha «Uyda nima qilasiz?» (bannerdagi «Uyga vazifa» bilan takror emas); maydonlar: Kim uchun — o'z mahsulotingiz · Nechta — 1 prototip · Muddat — keyingi darsgacha (qiymatlar topshiriq matnidan); qadamlar raqam-doira; «Keyingi dars» karta ichida; bezak emoji olindi.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Native Card** — Matn <Text> ichida turishini topdingiz (3-ekran, birinchi urinishda to'g'ri)

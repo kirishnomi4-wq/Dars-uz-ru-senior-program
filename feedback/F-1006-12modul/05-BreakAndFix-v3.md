@@ -187,7 +187,7 @@ Vaqt: ≈ 90 daqiqa — 0–1 ≈ 6 · 2–7 ≈ 20 · 8 (kod oynasi) ≈ 8 · 9
   });
   ```
   Karta ostida kichik hisoblagich: «Tinglovchilar: 1».
-- O'rtada Backend («Database: 8»; ichida tugma «Yangi versiya» — halqada) · o'ngda 2-telefon («O'yin», «Qo'shilaman»). Qadam belgilari: 1 Yangi versiya · 2 Ikkinchi telefonda qo'shiling.
+- O'rtada Backend («Database: 8»; ichida tugma «Yangi versiya» — bashoratdan keyin chiqadi, halqada *(✎ F-1015-164)*) · o'ngda 2-telefon («O'yin», «Qo'shilaman»). Qadam belgilari: 1 Yangi versiya · 2 Ikkinchi telefonda qo'shiling.
 - **Harakat → Vizual o'zgarish:**
   1. «Yangi versiya» → Backend tugunida bir qator «yangi versiya ishga tushmoqda…» → ikkala chiziq uziladi; 1-telefonda belgi «Ulanmoqda…», chiziq boshida ↻ va urinish nuqtalari — har biri oldingisidan biroz kechroq yonadi →
      yangi versiya tayyor → chiziq tiklanadi, belgi «Ulangan»; kod kartasida `ulanish.on('connect', …)` qatori yonadi → ichidagi `ulanish.on('oyin-ozgardi', …)` qatori yonadi → hisoblagich «Tinglovchilar: 1» → «2» (kattalashib qaytadi).
@@ -260,7 +260,8 @@ Vaqt: ≈ 90 daqiqa — 0–1 ≈ 6 · 2–7 ≈ 20 · 8 (kod oynasi) ≈ 8 · 9
   2. `connect` ichida faqat `korsat()` tursin — qayta ulanganda son qayta so'ralsin.
   3. Natija oynasida: «Internetni uzish» → «Boshqa o'yinchi qo'shildi» → «Internetni qaytarish». Son «9 / 10» bo'lsin; yana «Boshqa o'yinchi qo'shildi» — bitta jonli xabar.
 - Yordam: Ikki `ulanish.on` bir-birining ichida turmaydi: ikkalasi ham qatorning eng chap chetidan boshlanadi. Jonli xabar ikki marta chiqsa — `oyin-ozgardi` tinglovchisi hali `connect` ichida.
-- Tugma (o'ngda): Bajardim — shartlar ✓ bo'lgach ochiladi (§19 halol tugma).
+- Tugma (o'ngda): Bajardim — shartlar ✓ bo'lgach chiqadi; bungacha ko'rinmaydi (§19 halol tugma) *(✎ F-1015-164)*.
+- Dars ichidagi natija oynasida sinov tugmalari kod tekshiruvdan o'tgach chiqadi; har biri faqat bosish mumkin bo'lganda ko'rinadi («Internetni uzish» ↔ «Internetni qaytarish» almashadi, «Boshqa o'yinchi qo'shildi» — «10 / 10» gacha) *(✎ F-1015-164)*.
 - O'ng — platforma tugmasi «Kompilyatorni ochish» (nomi tegilmaydi; ostida bir qator: «Kod oynasi ochiladi — kodni yozasiz va natijasini shu yerda ko'rasiz.») → `HtmlCompiler`, fayllar:
   - `index.html` — tayyor, o'zgarmaydi:
     ```html
@@ -360,6 +361,7 @@ Vaqt: ≈ 90 daqiqa — 0–1 ≈ 6 · 2–7 ≈ 20 · 8 (kod oynasi) ≈ 8 · 9
 - Chap — 1-telefon («O'yin», «8 / 10»): urinishga qarab o'zgaradi — 1: holat qatorida samolyot · 2: telefon ekranini boshqa ilova (nomsiz kulrang chat oynasi) yopadi, keyin «O'yin» qaytadi · 3: belgi «Ulanmoqda…» → «Ulangan», tepada jonli xabar.
 - O'ng — buzish yozuvi kartasi (bittadan, SABOQ 9): tepada ixcham chiziq «1 · 2 · 3» (joriy — accent, tayyori ✓); karta: usul nomi, uch qator yorlig'i «Nima qildim» · «Nima kutdim» · «Nima bo'ldi», ostida ikki tugma **«Buzildi»** · **«Buzilmadi»**.
   Urinishlar — A-bo'lim 4-band jadvali (`MENTOR_YOZUV`, aynan): 1 Internetni uzish · 2 Fonga olib qaytarish · 3 Backend'ning yangi versiyasi.
+- «Urinishni ko'rish» tugmasi bashoratdan keyin chiqadi *(✎ F-1015-164)*.
 - **Harakat → Vizual o'zgarish:** «Urinishni ko'rish» → telefon o'sha usulni o'ynaydi (≈3 s) → kartada «Nima qildim» va «Nima kutdim» yoziladi → «Nima bo'ldi» yoziladi → «Buzildi» / «Buzilmadi» halqaga o'tadi →
   - to'g'ri belgi → karta ixcham qatorga yig'ilib tepadagi chiziqqa tushadi («1 · Internetni uzish · buzildi»; ~1 s yashil) → keyingi urinish;
   - boshqa belgi → karta silkinadi, bir qator (`QXato`, ≤60): Kutilgani bilan bo'lganini yana bir solishtiring. (49)
@@ -394,6 +396,7 @@ Vaqt: ≈ 90 daqiqa — 0–1 ≈ 6 · 2–7 ≈ 20 · 8 (kod oynasi) ≈ 8 · 9
 - Bashorat (ballsiz; tanlangach ixcham qator): **Tuzatishni qanday tekshirasiz?** · Agentning so'zidan · Koddagi o'zgarishdan · O'sha usul bilan qayta buzib (S-015: dalil kuchi o'sish tartibida)
 - Chap — 1-telefon («O'yin», belgi «Ulangan», «8 / 10»). O'ng — buzish yozuvi kartasi (ixcham uch qator: «1 · Internetni uzish · buzildi» · «2 · Fonga olib qaytarish · buzilmadi» · «3 · Backend'ning yangi versiyasi · buzildi») va ustida agent chati (Antigravity).
   Qadam belgilari: 1 Yozuvni yuboring · 2 Qayta: internetni uzish · 3 Qayta: yangi versiya.
+  Chatdagi qadam tugmalari: bajarilgani — yashil ✓ yozuv, joriysi — tugma (bashoratdan keyin), navbati kelmagani ko'rinmaydi *(✎ F-1015-164)*.
 - **Harakat → Vizual o'zgarish:**
   1. «Yozuvni yuborish» → chatda ikki pufak (T-008): siz → «1 va 3-urinish talabdagidek emas — yozuvim pastda. Tuzat, har muammoning sababini bir gap bilan ayt.» · Antigravity → «Tuzatdim: qayta ulanganda ro'yxat qayta so'raladi, tinglovchi bir marta qo'shiladi, ilova xonaga qayta kiradi.»
      Yozuvda 1 va 3-qator yonida belgi **«tuzatish qilindi»** (accent). Nom qatori (bitta): «Tuzatish qilindi» — kodda o'zgartirish qilindi: bu ish fakti.
@@ -410,7 +413,7 @@ Vaqt: ≈ 90 daqiqa — 0–1 ≈ 6 · 2–7 ≈ 20 · 8 (kod oynasi) ≈ 8 · 9
 - Eyebrow: Mustaqil ish · kutish
 - Sarlavha: **Har usuldan oldin nima kutishingizni yozing.** (44)
 - Mentor: Talabingizdagi chekka holatlardan boshlang: har usulga bittasini tanlang.
-- Tepada ixcham chiziq: 1 Internetni uzish · 2 Fonga olib qaytarish · 3 Backend'ning yangi versiyasi (joriy — accent, tayyori ✓). Bir vaqtda bitta katta karta — uch maydon:
+- Tepada ixcham chiziq: 1 Internetni uzish · 2 Fonga olib qaytarish · 3 Backend'ning yangi versiyasi (joriy — accent, tayyori ✓; faqat ochilgan bosqichlar ko'rinadi, joriysi — holat yozuvi, tayyori — tahrir tugmasi *(✎ F-1015-164)*). Bir vaqtda bitta katta karta — uch maydon:
   1. **Nima qilaman** — oldindan yozilgan, tahrirlanadi:
      - internet: «Uchish rejimini yoqaman; belgi «Ulanmoqda…» bo'lgach boshqa akkaunt o'zgarish qiladi; keyin o'chiraman.»
      - fon: «Boshqa ilovaga o'taman; shu payt boshqa akkaunt o'zgarish qiladi; bir daqiqadan keyin qaytaman.»

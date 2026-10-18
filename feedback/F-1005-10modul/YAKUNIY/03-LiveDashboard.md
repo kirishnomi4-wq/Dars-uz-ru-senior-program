@@ -215,7 +215,7 @@ Holat: 06.10.2026 — kodga mos
 
 ## 11 · Yakun
 - Eyebrow: Yakun
-- Belgi: ✓ Loyiha kuni tugadi · N/2 to'g'ri
+- Belgi: ✓ Dars tugadi · Testlar: N/N ✎ F-1015-161
 - Sarlavha: Dashboard jonli: har raqamni tushunib o'qiysiz.
 - Jonli viktorina tugmasi: CODE STRIKE · kutish holatida: Mentorni kuting
 - Endi siz bilasiz:

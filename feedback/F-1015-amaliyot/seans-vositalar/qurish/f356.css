@@ -1,0 +1,20 @@
+        /* ===== F-1015-356 · m4c-07: lenta paneli, jurnal (izohda backtick yo'q) ===== */
+        .ci-panel { background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 12px; overflow: hidden; }
+        .ci-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 14px; border-bottom: 1px solid ${T.line}; font: 700 13px 'Manrope', sans-serif; color: ${T.ink}; }
+        .ci-tablo { font: 700 11.5px 'JetBrains Mono', monospace; border-radius: 6px; padding: 3px 8px; background: ${T.line}; color: ${T.ink}; }
+        .ci-tablo.green { background: ${T.successSoft}; color: ${T.success}; }
+        .ci-tablo.red { background: #FAE3E0; color: #A3271D; }
+        .ci-row { display: grid; grid-template-columns: 22px 1fr auto 46px; align-items: center; gap: 8px; padding: 8px 14px; font-size: 13.5px; color: ${T.ink}; border-bottom: 1px solid ${T.line}; transition: background 0.25s; }
+        .ci-row:last-child { border-bottom: none; }
+        .ci-row code { font: 600 12px 'JetBrains Mono', monospace; color: ${T.ink2}; }
+        .ci-b { font: 800 14px 'JetBrains Mono', monospace; text-align: center; color: ${T.ink2}; }
+        .ci-v { font: 600 11.5px 'JetBrains Mono', monospace; color: ${T.ink2}; text-align: right; }
+        .ci-ok .ci-b { color: ${T.success}; } .ci-ok { background: ${T.successSoft}; }
+        .ci-fail .ci-b { color: #A3271D; } .ci-fail { background: #FAE3E0; }
+        .ci-skip { color: ${T.ink2}; }
+        @media (max-width: 560px) { .ci-row { grid-template-columns: 22px 1fr 46px; } .ci-row code { display: none; } }
+        .ci-kut .ci-b { color: ${T.ink2}; }
+        .pro-izoh { color: #94a3b8; }
+        .pro-ochiq { color: #FFB4A8; background: rgba(239,68,68,0.18); border-radius: 6px; }
+        .pro-kesh { color: #9BE7A5; background: rgba(74,222,128,0.14); border-radius: 6px; }
+        @media (prefers-reduced-motion: reduce) { .ci-row { transition: none; } }

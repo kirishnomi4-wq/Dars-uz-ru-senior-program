@@ -33,21 +33,18 @@ Mentor manbalari (yorliq «Mentor misolida»): intervyu yozuvlari — «jamoa yi
 - Chap — kulrang yorliq: Dars oxirida — Mentor bilan yakkama-yakka: tuzatilgan pitch
   - Vizual o'zi yuradi: «Maydon Jamoa» varag'ida to'rt bo'lak navbat bilan kiradi (har birida bitta kulrang gap), gap ostiga uch katakli bo'sh teg chiziladi, oxirida sarlavha yonida «?».
 - Reja:
-  1. Pitchingizdan tekshirsa bo'ladigan gaplarni topasiz · da'vo
-  2. Har biriga sonlaringizdan dalil qo'yasiz · dalil
-  3. Dalilsiz gapni qayta yozasiz yoki olib tashlaysiz · tuzatilgan pitch
-  4. Pitchingizni Mentor bilan yakkama-yakka ko'rasiz · yakkama-yakka
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
+  1. Pitchingizdan tekshirsa bo'ladigan gaplarni topasiz
+  2. Har biriga sonlaringizdan dalil qo'yasiz
+  3. Dalilsiz gapni qayta yozasiz yoki olib tashlaysiz
+  4. Pitchingizni Mentor bilan yakkama-yakka ko'rasiz
 - Tugmalar: Orqaga · Boshlaymiz
 
 ## 2 · Da'vo va dalil
 - Eyebrow: Tushuncha · da'vo va dalil
 - Sarlavha: Mentor pitchidagi qaysi gapning *dalili bor?*
 - Mentor: Mentor misolida pitchga ilova chiqqandan keyingi gaplar qo'shilgan — har gapga mos tugmani bosing.
-- Bashorat (yorliq: Avval o'zingiz belgilab ko'ring): Mentor pitchidagi to'rt gapdan nechtasining dalili bor?
-  - 1
-  - 2
-  - 3
-  - Tanlangach ixcham qator: Mentor pitchidagi to'rt gapdan nechtasining dalili bor? · Taxminingiz: <tanlov>
+- Bashorat yo'q — «Dalil bor / yo'q» belgilashning o'zi topshiriq (208/0 e). *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
 - Vizual: chapda manba oynasi (bo'sh — «Manba»), o'ngda «Mentor misoli · Maydon Jamoa pitchi» (to'rt bo'lak; joriy gap halqada), chap ostida ikki tugma: Dalil bor · Dalil yo'q
 - Gaplar navbat bilan:
   1. Muammo · «O'yinchilar jamoaga odam yig'ishda qiynaladi.» — ✔ Dalil bor. Manba oynasida intervyu yozuvlari: jamoa yig'ish · 5 o'yinchi · 11-Modul · oxirgi marta muammo bo'lgan · 4 / 5; «4 / 5» gapga uchadi, gap ostida: 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan. · kulrang: 5 o'yinchi — kichik son: bu tanlov uchun dalil, isbot emas.
@@ -63,19 +60,14 @@ Mentor manbalari (yorliq «Mentor misolida»): intervyu yozuvlari — «jamoa yi
   - 3-gapda «Dalil bor»: Qaysi manbada «yoqdi» sanalgan?
   - 4-gapda «Dalil bor»: Bugungi son bor. «Tez orada» uchun qaysi son bor?
 - Ipucha (harakatsizlikda): Bu gapni 11-Modul intervyusi yoki 10-darsdagi hisobot ko'rsatadimi?
-- Xulosa (birinchi qatori — taxmin natijasi): Taxminingiz to'g'ri chiqdi ✓ yoki Taxminingiz ✕ — aslida: 2
-  - Pitchdagi tekshirsa bo'ladigan gap — da'vo. Da'voni ko'rsatadigan son yoki yozuv — dalil.
-- Tugmalar: Orqaga · Avval belgilang → Gaplarni belgilang (N/4) → Davom etish
+- Xulosa (taxmin qatorisiz *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*): Pitchdagi tekshirsa bo'ladigan gap — da'vo. Da'voni ko'rsatadigan son yoki yozuv — dalil.
+- Tugmalar: Orqaga · Gaplarni belgilang (N/4) → Davom etish
 
 ## 3 · Son, manba, qachon
 - Eyebrow: Tushuncha · dalil
 - Sarlavha: Zal sondan tashqari *yana nimani so'raydi?*
 - Mentor: Mentor dalilini to'ldiramiz: har safar mos variantni bosing va zal savoliga qarang.
-- Bashorat (yorliq: Avval o'zingiz belgilab ko'ring): Dalilga sondan tashqari yana nechta narsa yoziladi?
-  - 0
-  - 1
-  - 2
-  - Tanlangach ixcham qator: Dalilga sondan tashqari yana nechta narsa yoziladi? · Taxminingiz: <tanlov>
+- Bashorat yo'q — variant tanlashning o'zi topshiriq (208/0 e). *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
 - Vizual: chapda manba oynasi, o'ngda «Mentor misoli · Maydon Jamoa pitchi» varag'ining Jonli demo bo'lagi: «Ilovani odamlar ishlatyapti.», ostida dalil tegi — avval bitta bo'sh katak; varaq ustida zal (uch odam) va savol pufagi «?». Pastda qadamlar: Son · Manba · Qachon (o'tgani ✓)
 - Tanlovlar:
   1. Son — Ko'p odam ishlatyapti · ✔ 38 kishi ro'yxatdan o'tdi, 19 tasi asosiy harakatni qildi
@@ -90,9 +82,8 @@ Mentor manbalari (yorliq «Mentor misolida»): intervyu yozuvlari — «jamoa yi
      - 20 yoki 27: Bu kunda boshqa son sanalgan — tegdagi son qachon edi?
 - Ipucha (harakatsizlikda): Zal pufagidagi savolga qaysi variant javob beradi?
 - Natija — teg: 38 kishi ro'yxatdan o'tdi, 19 tasi asosiy harakatni qildi (11 tasi — sinfdosh) · Database · ishga tushirilganidan bir hafta keyin
-- Xulosa (birinchi qatori — taxmin natijasi): Taxminingiz to'g'ri chiqdi ✓ yoki Taxminingiz ✕ — aslida: 2 — manba va qachon sanalgani
-  - Bu darsda har dalilda uch narsa bor: son yoki yozuv, manba va qachon olingani.
-- Tugmalar: Orqaga · Avval belgilang → Dalilni to'ldiring (N/3) → Davom etish
+- Xulosa (taxmin qatorisiz *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*): Bu darsda har dalilda uch narsa bor: son yoki yozuv, manba va qachon olingani.
+- Tugmalar: Orqaga · Dalilni to'ldiring (N/3) → Davom etish
 
 ## 4 · 1-savol
 - Eyebrow: Tekshiruv · dalil
@@ -116,11 +107,11 @@ Mentor manbalari (yorliq «Mentor misolida»): intervyu yozuvlari — «jamoa yi
 - Eyebrow: Mustaqil ish · da'vo
 - Sarlavha: Pitchingizdagi *da'volarni belgilang.*
 - Mentor: Tekshirsa bo'ladigan gapni bosing; bugun aytmoqchi bo'lgan yangi gapingiz bo'lsa — qo'shing.
-- Tepada ixcham chiziq: Da'volarim · n (belgilangan gaplar qisqa, «…» bilan)
+- Tepada ixcham chiziq: Da'volarim (sanoq tugmada *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*; belgilangan gaplar qisqa, «…» bilan)
 - 11-Modul pitchingiz topilmasa — kulrang qator: 11-Modul pitchingiz topilmadi — har bo'lakdan asosiy gapni yozing. (har bo'lakka bitta maydon, placeholder — bo'lak nomi)
 - Kulrang qator: Yechim — zal jonli demoda o'zi ko'radi, bugun unga dalil qo'yilmaydi: {yechim} (pitch topilmasa — maydon «Yechim»)
 - Bo'lak qadamlari: 1 Muammo · 2 Jonli demo · 3 Keyingi qadam
-- Karta: «{bo'lak} · N / 3» — bo'lak gaplari (bosiladi; 11-Modul pitchidagi muammo dalili kulrang, yorliq «dalil»; telefondagi harakat kulrang, «jonli demoda ko'rinadi»)
+- Karta — yorliqsiz (bo'lak nomi tepadagi qadam-qatorida *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*) — bo'lak gaplari (bosiladi; 11-Modul pitchidagi muammo dalili kulrang, yorliq «dalil»; telefondagi harakat kulrang, «jonli demoda ko'rinadi»)
   - Yangi gap maydoni (placeholder: Bugun shu bo'lakda nima demoqchisiz?) · + Yangi gap
   - Tugmalar: Keyingi bo'lak (oxirgi bo'lakda — Saqlash) · Yordam
 - Tekshiruv:
@@ -142,8 +133,8 @@ Mentor manbalari (yorliq «Mentor misolida»): intervyu yozuvlari — «jamoa yi
 - Mentor: Dalilni 10-darsdagi hisobotingizdan tanlang; dalil topilmasa — «Dalil yo'q»ni bosing.
 - Jonli darsda (kulrang qator): Yakkama-yakkada da'vo va dalillaringizni Mentorga o'z ekraningizda ko'rsatasiz.
 - Da'volar saqlanmagan bo'lsa (karta o'rnida): Da'volar hali belgilanmagan — avval pitchingizdagi da'volarni belgilang. · tugma: Da'volarni belgilash
-- Tepada ixcham chiziq: Dalillar · n / N (har da'vo qisqa · ✓ dalil yoki «dalil yo'q»)
-- Chapda — manba oynasi (tanlangan dalil manbasi, ichida sizning soningiz); o'ngda — karta «Da'vo n / N · {bo'lak}»: gap, ostida dalil tegi (son yoki yozuv · manba · qachon)
+- Tepada ixcham chiziq: Dalillar (sanoq tugmada *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*; har da'vo qisqa · ✓ dalil yoki «dalil yo'q»)
+- Chapda — manba oynasi (tanlangan dalil manbasi, ichida sizning soningiz); o'ngda — karta «Da'vo · {bo'lak}» *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*: gap, ostida dalil tegi (son yoki yozuv · manba · qachon)
 - Dalil tanlovlari (10-darsdagi hisobotdan, bor qatorlar):
   - Ro'yxatdan o'tgan: {son}, shundan sinfdosh {son} · {manba} · {sana}
   - Asosiy harakatni qilgan: {son} · {manba} · {sana}
@@ -174,7 +165,7 @@ Mentor manbalari (yorliq «Mentor misolida»): intervyu yozuvlari — «jamoa yi
 - Mentor: Har dalilsiz da'voga bittasini tanlang, oxirida pitchingizni saqlang.
 - Jonli darsda (kulrang qator): Mentor chaqirganda pitchingizni ko'rsating; o'zgarsa — ✎ bilan o'zgartiring.
 - Da'volar saqlanmagan bo'lsa: Da'volar hali belgilanmagan — avval pitchingizdagi da'volarni belgilang. · tugma: Da'volarni belgilash
-- Tepada ixcham chiziq: Dalilsiz · n / N (gap qisqa · qoldi / qayta yozildi / olib tashlandi)
+- Tepada ixcham chiziq: Dalilsiz (sanoq tugmada *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*; gap qisqa · qoldi / qayta yozildi / olib tashlandi)
 - Karta: bo'lak · gap · «dalil yo'q» · ikki tugma: Qayta yozish · Olib tashlash
   - Qayta yozish → gap maydonga aylanadi; ostida 6-ekrandagi dalil tanlovlari va «O'zim yozaman» · Saqlash
   - Olib tashlash → gap chiziladi; Keyingi qadam bo'lagida boshqa gap qolmasa: O'rniga keyingi qadam · Zaxira rejadagi ish: {ish} (10-darsda zaxira reja bo'lsa) · maydon (placeholder: Keyingi ishingiz) · Saqlash
@@ -267,7 +258,8 @@ Natijalar (podium) — jonli reyting
   - Neon'ga kira olmasangiz — sonni o'ylab topmang: 10-darsdagi hisobot sonini sanasi bilan qoldiring.
   - Keyingi dars — **«Raqamlaringiz zalni ishontiradimi?»**
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — sarlavha «Uyda nima qilasiz?», maydonlar katta quti (yorliq bosh harfda, «:» siz), qadamlar raqam-doira, «Keyingi dars» karta ichida (13.5px); qadam matni o'zgarmagan.
 
 ## Nishonlar
 - **Claim Finder!** — Mentor pitchidagi to'rt gapning dalili bor-yo'qligini birinchi urinishda topdingiz (2-ekran, birinchi urinishda to'g'ri)

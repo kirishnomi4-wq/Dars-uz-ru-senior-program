@@ -70,7 +70,7 @@ const self = { ['liveSession:' + ID]: JSON.stringify({ mode: 'self' }) };
   ok('s0: xato javobga «Qiziq fikr!»', (await p.innerText('.stage-content')).includes('Qiziq fikr!'));
   await nx(); await p.waitForTimeout(500); ok('s0 → s1', (await raqam(p)) === '02/09');
   hammaK.push(...(await kontrast()).map(x => ({ ...x, e: 's1' })));
-  ok("s1: «Avval tayyorlaning» kartasi (3 qadam)", await p.evaluate(() => document.querySelectorAll('.am-tayyor-l li').length === 3));
+  { await p.click('.am-tt-btn'); await p.waitForTimeout(400); const _tt = await p.evaluate(() => document.querySelectorAll('.am-tt-oyna .am-tayyor-l li').length); await p.keyboard.press('Escape'); await p.waitForTimeout(250); ok("s1: «Avval tayyorlaning» oynada (3 qadam, F-1015-370)", _tt === 3); }
   ok("s1: eski g'oya-banki yo'q", await p.evaluate(() => !document.querySelector('.am-bank')));
   await nx(); await p.waitForTimeout(500);
   for (const [n, kut] of [['a1', '03/09'], ['a2', '04/09'], ['a3', '05/09']]) {

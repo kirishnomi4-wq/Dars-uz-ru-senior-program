@@ -1,5 +1,8 @@
 # 4-dars «AI-agent nima» — yakuniy matn
 
+> ✎ **F-1015-122 (16.10, 208-qonun 4-band, foydalanuvchi qarori — 2-variant):** dars yuzasidagi bezak emoji kodda olingan — sarlavha, yorliq, karta ikonlari, fayl tablari, test/amaliyot yorliqlari, tugmalar. Qolgan: sxema tugunlari, keys sahnasi, o'yin qatlami (nishon, arena, podium), Yakun, takrorlash oynasi, Mentor paneli, bot/ilova maketidagi mahsulot mazmuni. Bu MD dagi shunday bezak emoji endi ekranda yo'q.
+
+
 Fayl: `src/6-Modull/AgentArchitectureLesson.jsx` · 20 ekran · Keyingi dars: «Claude Skills»
 Holat: 05.10.2026 — kodga mos
 
@@ -16,11 +19,11 @@ Holat: 05.10.2026 — kodga mos
 - Tugma: ▶ Ikki javobni ko'rish → ✓ Solishtirildi
 - Savol (tugma bosilgach ochiladi): Asosiy farq nimada?
   - Agent chiroyliroq va batafsilroq gapirdi
-  - ✔ Agent asboblar bilan bir necha qadam bajardi
+  - ✔ Agent tool'lar bilan bir necha qadam bajardi
   - Farqi yo'q — ikkalasi bir xil ishladi
 - Javob izohlari:
-  - 2-variant: **Aynan!** Oddiy AI savolga javob berdi. AI-agent esa maqsadni oldi va do'kon asboblari — Database, band qilish, kuryer xizmati — yordamida bir necha qadamni bajardi. Bugun agent qanday ishlashini va tizimda qayerda turishini ko'ramiz.
-  - 1- va 3-variant: **Qiziq fikr!** Lekin gap chiroyli so'zda emas. Ikkinchi AI javob berish bilan qolmadi: do'kon asboblari yordamida mahsulotni topdi, band qildi va yetkazishni so'radi. Bunday AI'ni agent deyishadi.
+  - 2-variant: **Aynan!** Oddiy AI savolga javob berdi. AI-agent esa maqsadni oldi va do'kon tool'lari — Database, band qilish, kuryer xizmati — yordamida bir necha qadamni bajardi. Bugun agent qanday ishlashini va tizimda qayerda turishini ko'ramiz.
+  - 1- va 3-variant: **Qiziq fikr!** Lekin gap chiroyli so'zda emas. Ikkinchi AI javob berish bilan qolmadi: do'kon tool'lari yordamida mahsulotni topdi, band qildi va yetkazishni so'radi. Bunday AI'ni agent deyishadi.
 - Tugma: Davom etish
 
 ## 1 · Reja
@@ -28,38 +31,39 @@ Holat: 05.10.2026 — kodga mos
 - Sarlavha: AI-agent — maqsad sari qadam tashlaydigan AI.
 - Mentor: Bugun uchta savolga javob topamiz: agent oddiy AI'dan nimasi bilan farq qiladi, u tizimda qayerda turadi va qachon uni tanlash kerak.
 - Chizma: Database · Tashqi xizmat (API) · Xabar ← Agent
-- Karta: Bizning tizimda agent backend ichida ishlaydi va siz bergan asboblar (tool) orqali tizimning boshqa qismlari bilan ishlaydi.
+- Karta: Bizning tizimda agent backend ichida ishlaydi va siz bergan tool'lar orqali tizimning boshqa qismlari bilan ishlaydi.
 - Bugungi 4 qadam
-  1. Oddiy AI va agent — farqi nimada · farq
-  2. Agent sikli: idrok → qaror → amal · sikl
-  3. Tool — agent ishlata oladigan asbob · asbob
-  4. Qachon agent kerak va chegara · qaror
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-121, 208-qonun 0-band: takror olindi)*
+  1. Oddiy AI va agent — farqi nimada
+  2. Agent sikli: idrok → qaror → amal
+  3. Tool — agent chaqira oladigan funksiya
+  4. Qachon agent kerak va chegara
 - Tugmalar (telefonda): 4 qadamni ko'rish · ↩ Natijani ko'rish
 - Tugmalar: Orqaga · Boshlaymiz →
 
 ## 2 · Oddiy AI va agent
 - Eyebrow: Tushuncha · farq
 - Sarlavha: Oddiy AI javob beradi, agent maqsadga qadam tashlaydi.
-- Mentor: Oddiy AI'ga savol berasiz — u javob beradi. Agentga maqsad berasiz — u keyingi qadamni o'zi tanlaydi va siz bergan asboblardan foydalanadi. Agentni detektivga o'xshatish mumkin: maqsad oladi, dalil yig'adi, keyingi qadamni tanlaydi. Har jihatni bosing.
+- Mentor: Oddiy AI'ga savol berasiz — u javob beradi. Agentga maqsad berasiz — u keyingi qadamni o'zi tanlaydi va siz bergan tool'lardan foydalanadi. Agentni detektivga o'xshatish mumkin: maqsad oladi, dalil yig'adi, keyingi qadamni tanlaydi. Har jihatni bosing.
 - Jihatlar (bosilgani ✓ bilan belgilanadi; o'ngda jihat nomi va ikki karta ochiladi: **Oddiy AI** · **Agent**):
   - **Nima beriladi?** — Oddiy AI: savol · Agent: maqsad
   - **Necha qadam?** — Oddiy AI: odatda bitta javob · Agent: maqsadga yetguncha bir necha qadam
   - **Tizim bilan?** — Oddiy AI: javob matnini beradi · Agent: tool'lar orqali Database, xabar va boshqa xizmatlar bilan ishlaydi
-  - **Qachon?** — Oddiy AI: aniq, bir martalik ish (tarjima, matn yozish) · Agent: bir necha qadam va asbob kerak bo'lgan ish
-- Xulosa (4/4 dan keyin): Bir jumla: **oddiy AI javob beradi, agent asboblar bilan qadamma-qadam ish bajaradi.** Ikkalasi ham foydali — har biri o'z o'rnida.
-- Eslatma (4/4 dan keyin): Eslatma: bugungi ba'zi chat-AI'lar ham asboblardan foydalana oladi. Agentning asosiy belgisi — maqsad sari bir necha qadamni o'zi tanlashi.
+  - **Qachon?** — Oddiy AI: aniq, bir martalik ish (tarjima, matn yozish) · Agent: bir necha qadam va tool kerak bo'lgan ish
+- Xulosa (4/4 dan keyin): Bir jumla: **oddiy AI javob beradi, agent tool'lar bilan qadamma-qadam ish bajaradi.** Ikkalasi ham foydali — har biri o'z o'rnida.
+- Eslatma (4/4 dan keyin): Eslatma: bugungi ba'zi chat-AI'lar ham tool'lardan foydalana oladi. Agentning asosiy belgisi — maqsad sari bir necha qadamni o'zi tanlashi.
 - Tugmalar: Orqaga · 4 jihatni ko'ring (N/4) → Davom etish
 
 ## 3 · Bir vazifa, ikki yo'l
 - Eyebrow: Animatsiya · bir vazifa, ikki yo'l
 - Sarlavha: Bitta vazifa — oddiy AI bitta javob, agent bir necha qadam.
-- Mentor: Agent sikl bo'ylab ishlaydi: har qadamda bitta asbobni ishlatadi. Tugmani bosing.
+- Mentor: Agent sikl bo'ylab ishlaydi: har qadamda bitta tool'ni ishlatadi. Tugmani bosing.
 - Tugma: ▶ Ikki yondashuvni ishga tushiring → ✓ Ko'rsatildi
 - Chap — Oddiy AI — bitta javob:
   - tugma bosilguncha: Tugmani bosing →
   - tugma bosilgach: «Quloqchin yoki powerbank olishingiz mumkin.» → tugadi.
   - Belgi: 1 javob · faqat matn
-- O'ng — Agent — sikl + asboblar (tugma bosilgach yonida: ↻ sikl):
+- O'ng — Agent — sikl + tool'lar (tugma bosilgach yonida: ↻ sikl):
   1. **1-amal** — Database'dan 200 ming so'mgacha mahsulotlarni qidirdi
   2. **2-amal** — Quloqchinni band qildi (Database'ga yozdi)
   3. **3-amal** — Kuryer xizmatidan (API) bugungi yetkazishni so'radi
@@ -71,13 +75,13 @@ Holat: 05.10.2026 — kodga mos
 - Eyebrow: Mashq · 1-savol
 - Yorliq: To'g'ri javobni tanlang
 - Savol: Oddiy AI (chat) savolga javoban odatda nima qiladi?
-  - Bir necha asbobni ishlatib, ishni oxirigacha bajaradi
+  - Bir necha tool'ni ishlatib, ishni oxirigacha bajaradi
   - ✔ Javob matnini beradi va to'xtaydi
   - Database'ga o'zi yangi buyurtma yozadi
   - Hech narsa — u faqat agent ichida ishlaydi
 - Javob izohlari:
-  - To'g'ri: To'g'ri! Oddiy AI savolga javob beradi va to'xtaydi — tizimdagi ma'lumotni o'zi o'zgartirmaydi. Bir necha qadam va asbob kerak bo'lgan ish uchun agent foydali bo'lishi mumkin.
-  - 1-variant: Asboblarni ishlatib, ishni oxirigacha bajarish — agentning ishi.
+  - To'g'ri: To'g'ri! Oddiy AI savolga javob beradi va to'xtaydi — tizimdagi ma'lumotni o'zi o'zgartirmaydi. Bir necha qadam va tool kerak bo'lgan ish uchun agent foydali bo'lishi mumkin.
+  - 1-variant: Tool'larni ishlatib, ishni oxirigacha bajarish — agentning ishi.
   - 3-variant: Database'ga yozish uchun tool kerak — bu agentning ishi.
   - 4-variant: Oddiy AI alohida ishlaydi — agent shart emas.
 - Test yozuvlari (4, 8, 11, 14-ekran uchun bir xil): To'g'ri · Qaytadan urinib ko'ring · birinchi urinish xato bo'lsa: Qisqa takrorlash — mavzuni yana bir ko'rish · jonli darsda: Jonli dars — bitta urinish, o'ylab bosing! · Javobingiz qabul qilindi · Hozir to'g'ri javobni bilib olasiz. · To'g'ri javob: <harf> — <to'g'ri variant>
@@ -91,17 +95,17 @@ Holat: 05.10.2026 — kodga mos
 - Tugma: ▶ Siklni boshlash → Keyingi qadam → → ✓ Tugadi
 - Bosqichlar (har bosishda bittasi):
   1. **Idrok:** agent vaziyatni ko'radi — masalan, Database'dan mahsulotlar ro'yxatini o'qiydi.
-  2. **Qaror:** keyingi qadamni tanlaydi (qaror) — qaysi asbobni ishlatish kerak?
-  3. **Amal:** tanlagan asbobini ishlatadi — masalan, mahsulotni band qiladi.
+  2. **Qaror:** keyingi qadamni tanlaydi (qaror) — qaysi tool'ni ishlatish kerak?
+  3. **Amal:** tanlagan tool'ini ishlatadi — masalan, mahsulotni band qiladi.
 - Karta — Nega sikl?: Har amaldan keyin agent natijani ko'radi va keyingi qadamni tanlaydi — maqsad bajarilguncha. Shu sikl tufayli agent bir nechta qadamni ketma-ket bajara oladi.
-- Xulosa (3/3 dan keyin): Siz agentga maqsad, asboblar va chegara berasiz. Agent shu doirada keyingi qadamni tanlaydi.
+- Xulosa (3/3 dan keyin): Siz agentga maqsad, tool'lar va chegara berasiz. Agent shu doirada keyingi qadamni tanlaydi.
 - Tugmalar: Orqaga · Siklni ko'ring (N/3) → Davom etish
 
 ## 6 · Tool nima
 - Eyebrow: Ulanish · tool
-- Sarlavha: Tool — agent ishlata oladigan asbob.
+- Sarlavha: Tool — agentning ruxsatnomasi. ✎ F-1015-163
 - Mentor: Agent tizim bilan faqat tool'lar orqali ishlaydi. Tool — siz yozgan oddiy funksiya: masalan, Database'dan o'qish yoki xabar yuborish. Toolni ruxsatnomaga o'xshatish mumkin: agent faqat ruxsat berilgan ishni qila oladi. Tugmani bosing.
-- Karta — Tool nima?: Tool (o'zbekcha «asbob») — agent chaqira oladigan funksiya.
+- Karta — Tool nima?: Tool — agent chaqira oladigan funksiya.
 - Tugma: Tool qanday ishlaydi? → ✓ Ko'rdingiz
 - O'ng (tugma bosilgach):
   1. **AI modeli tanlaydi:** «Buyurtma holatini bilish uchun Database tool'ini chaqiraman.»
@@ -143,21 +147,21 @@ Holat: 05.10.2026 — kodga mos
 - Mentor: Agent kuchli, lekin oddiy ishga ortiqcha murakkablik qo'shadi. Tugmani bosib, qoidani ko'ring.
 - Karta — Oddiy AI yetadi — qachon?: Aniq, bir martalik ish: tarjima, matn yozish, g'oya taklif qilish, savolga javob. Tizim bilan bir necha qadam ishlash shart emas.
 - Tugma: Agent qachon foydali? → ✓ Ko'rdingiz
-- Karta (tugma bosilgach) — Agent — qachon?: Bir necha qadam va asbob kerak bo'lgan ish: buyurtma muammosini hal qilish, ma'lumot yig'ib qaror qilish, bir nechta xizmat bilan ishlash.
-- Xulosa: Qoida: **aniq va oddiy vazifa → oddiy AI yetishi mumkin; bir necha qadam va asbob kerak bo'lsa → agent foydali bo'lishi mumkin.** Keraksiz joyda agent ishlatish — ortiqcha murakkablik.
+- Karta (tugma bosilgach) — Agent — qachon?: Bir necha qadam va tool kerak bo'lgan ish: buyurtma muammosini hal qilish, ma'lumot yig'ib qaror qilish, bir nechta xizmat bilan ishlash.
+- Xulosa: Qoida: **aniq va oddiy vazifa → oddiy AI yetishi mumkin; bir necha qadam va tool kerak bo'lsa → agent foydali bo'lishi mumkin.** Keraksiz joyda agent ishlatish — ortiqcha murakkablik.
 - Tugmalar: Orqaga · Qoidani ko'ring → Davom etish
 
 ## 10 · Oddiy AI yoki agent
 - Eyebrow: Mashq · qaysi biri
 - Sarlavha: Har vazifaga: oddiy AI yoki agent?
-- Mentor: Endi o'zingiz qaror qiling. Har vazifani o'qing: bitta javob yetadimi yoki bir necha qadam va asbob kerakmi?
-- Vazifalar (navbat bilan, «Vazifa N/4»):
+- Mentor: Endi o'zingiz qaror qiling. Har vazifani o'qing: bitta javob yetadimi yoki bir necha qadam va tool kerakmi?
+- Vazifalar (navbat bilan, yorliq «Vazifa»; sanoq tugmada «Tanlang (N/4)» *(✎ F-1015-121, 208-qonun 0-band: takror olindi)*):
   1. Mahsulot tavsifini ruschaga tarjima qil — to'g'ri: Oddiy AI
   2. Kelmay qolgan buyurtmani tekshir, kuryerga yoz va mijozga javob ber — to'g'ri: Agent
   3. Yangi mahsulot uchun 3 ta nom taklif qil — to'g'ri: Oddiy AI
   4. Mijoz shikoyatini oxirigacha hal qil: buyurtmani top, pul qaytarishni so'ra, mijozga xabar yubor — to'g'ri: Agent
 - Tanlov tugmalari: Oddiy AI · bitta javob (+) · Agent · bir necha qadam (+)
-- Xato bo'lsa: Qaytadan o'ylang: bu bitta javobli ishmi yoki bir necha qadam va asbob kerakmi?
+- Xato bo'lsa: Qaytadan o'ylang: bu bitta javobli ishmi yoki bir necha qadam va tool kerakmi?
 - Hammasi to'g'ri bo'lsa: Hammasi to'g'ri! Endi vazifaga qarab oddiy AI yoki agentni to'g'ri tanlay olasiz.
 - Tugmalar: Orqaga · Tanlang (N/4) → Davom etish
 
@@ -172,7 +176,7 @@ Holat: 05.10.2026 — kodga mos
 - Javob izohlari:
   - To'g'ri: To'g'ri! Tarjima — bitta qadamli, aniq vazifa. Oddiy AI yetadi. Bunga agent ishlatish — keraksiz murakkablik.
   - 2-variant: Agent har doim yaxshi emas — bir qadamli ish uchun u ortiqcha.
-  - 3-variant: Ikkalasini birga — keraksiz. Sodda ishni sodda asbob bilan qiling.
+  - 3-variant: Ikkalasini birga — keraksiz. Sodda ishni sodda tool bilan qiling.
   - 4-variant: Aksincha — tarjima oddiy AI'ning odatiy ishi.
 - Test yozuvlari va tugmalar — 4-ekrandagidek.
 
@@ -240,14 +244,14 @@ Holat: 05.10.2026 — kodga mos
 - Eyebrow: Amaliyot · reja
 - Sarlavha: Loyihangiz uchun AI-agentni rejalashtiring
 - Mentor: Bu topshiriqni **o'z loyihangizda** bajaring. Har bosqichni bajarib, belgilab boring. Tugagach **«Bajardim»** tugmasini bosing — ustoz kuzatib turadi.
-- TOPSHIRIQ: Loyihangizni o'ylang. Unda qaysi vazifa bir necha qadam va asbob talab qiladi? O'sha — agentga nomzod. Uni tanlab, qaysi tool'lar kerakligini va chegarani yozing.
-- Bosqichlar — belgilab boring (bosilgani ✓ bilan belgilanadi):
+- TOPSHIRIQ: Loyihangizni o'ylang. Unda qaysi vazifa bir necha qadam va tool talab qiladi? O'sha — agentga nomzod. Uni tanlab, qaysi tool'lar kerakligini va chegarani yozing.
+- Bosqichlar (yorliqsiz — Mentor «belgilab boring» deydi ✎ F-1015-166; bosilgani ✓ bilan belgilanadi):
   1. Bir necha qadamli bitta vazifani tanlang (masalan: kelmay qolgan buyurtmani hal qilish)
   2. Agent maqsadini bir jumlada yozing
   3. Agentga qaysi 2–3 tool kerak: Database? tashqi xizmat (API)? xabar?
   4. Har tool uchun bir qatorda yozing: agent u bilan nima qiladi
   5. Chegarani belgilang: agent nima qila olmasligi kerak va qaysi amalga odam tasdig'i kerak?
-- Tugma: Yana N qadam → Bajardim → ✓ Bajarildi — ustozni kuting
+- Tugma: Yana N qadam (oddiy yozuv) → Bajardim (hamma qadam belgilangach chiqadi) → ✓ Bajarildi — ustozni kuting (holat-yozuvi) ✎ F-1015-164
 - Bajarilgach (yashil): Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.
 - Tugmalar: Orqaga · Avval bajaring → Davom etish
 
@@ -263,7 +267,7 @@ Natijalar (podium) — jonli reyting
 | Maqsad berilsa, bir necha qadamni tanlab bajaradigan AI qanday ataladi? | AI-agent | Siz bergan tool'lar va chegara doirasida ishlaydi |
 | Oddiy AI savolga javoban odatda nima qiladi? | Javob beradi va to'xtaydi | Tizimdagi ma'lumotni o'zi o'zgartirmaydi |
 | Agent sikli qaysi uch qadamdan iborat? | Idrok, qaror, amal | Har amaldan keyin natijani tekshiradi |
-| Agent chaqira oladigan funksiya nima deyiladi? | Tool (asbob) | Siz yozgan oddiy funksiya |
+| Agent chaqira oladigan funksiya nima deyiladi? | Tool | Siz yozgan oddiy funksiya |
 | Qaysi tool'ni chaqirishni kim tanlaydi? | AI modeli | Tool'ni esa backend kodi bajaradi |
 | Agent buyurtma holatini o'qishi uchun qaysi tool kerak? | Database tool'i | Database'ga so'rov |
 | Agent kuryer xizmatidan ma'lumot so'rasa, bu qaysi tool? | API tool'i | API — boshqa xizmat bilan ma'lumot almashish yo'li |
@@ -289,13 +293,15 @@ Natijalar (podium) — jonli reyting
   - Bizning tizimda agent backend ichida, siz bergan tool'lar orqali ishlaydi
   - Oddiy ishga oddiy AI yetadi; xavfli amalga — chegara va odam tasdig'i
 - Tugma: Uyga vazifa · Amaliy topshiriqni bajarish → (fonda: amaliyot · loyiha · mashq · natija)
-- Uyga vazifa (bosilgach):
+- Uyda nima qilasiz? (Uyga vazifa bosilgach)
+  - Kim uchun — o'z loyihangiz · Nechta — 1 vazifa · Muddat — keyingi darsgacha
   - **Toping** — loyihangizda qaysi vazifa bir necha qadamli? O'sha — agentga nomzod
   - **Tool'lar** — agentga qaysi tool'lar kerak: Database? API? xabar?
   - **Chegara** — agent nima qila olmasligi kerak? Chegarani yozing
 - Keyingi dars — Claude Skills: AI va agentga yozma yo'riqnoma berib, uning ishini aniq shakllantirish.
 - Nishonlaringiz — N/4 (olingan nishonda nomi va tavsifi, olinmaganida faqat nomi)
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10, S1-A): uy vazifasi kartasi P-025 — sarlavha «Uyda nima qilasiz?» (bannerdagi «Uyga vazifa» bilan takror emas); maydonlar: Kim uchun — o'z loyihangiz · Nechta — 1 vazifa · Muddat — keyingi darsgacha (qiymatlar topshiriq matnidan); qadamlar raqam-doira; «Keyingi dars» karta ichida; bezak emoji olindi.
 
 ## Nishonlar
 - Yuqoridagi hisoblagich: N/4 · bosilganda: Badges — N/4 (har nishon nomi; olinmagani qulf bilan)
@@ -313,14 +319,14 @@ Natijalar (podium) — jonli reyting
    - AI-agent — Agent — **maqsad oladi** va tool'lar bilan bir necha qadam bajaradi.
    - Farq — amal — Agent tizimdagi ma'lumotni **tool orqali o'zgartira oladi**.
    - Sinfga savol: Oddiy AI va agentning asosiy farqi nima?
-2. Tool — agentning asbobi (8-ekran)
+2. Tool — agent chaqiradigan funksiya (8-ekran)
    - Tool nima? — Tool — **siz yozgan funksiya**.
    - Uch xil tool — Database, API, xabar — har biri alohida tool.
    - Amal tool orqali — Agent faqat **siz bergan tool'lar** orqali amal qiladi.
    - Sinfga savol: Agent tizimga qanday amal qiladi?
 3. Qachon oddiy AI, qachon agent (11-ekran)
    - Bir martalik ish — Aniq, bir martalik ish (tarjima, matn) — **oddiy AI** yetadi.
-   - Bir necha qadam — Bir necha qadam va asbob kerak bo'lsa — **agent** foydali bo'lishi mumkin.
+   - Bir necha qadam — Bir necha qadam va tool kerak bo'lsa — **agent** foydali bo'lishi mumkin.
    - To'g'ri tanlov — Oddiy ishga agent — **ortiqcha murakkablik**.
    - Sinfga savol: Nega har ishga agent kerak emas?
 4. Agent — backend qismi (14-ekran)
@@ -331,7 +337,7 @@ Natijalar (podium) — jonli reyting
 
 ## Jonli viktorina (12 savol)
 - Tugma (Yakun ekranida): CODE STRIKE · kutish holatida: Mentorni kuting
-- Arena fonidagi so'zlar: agent · perceive · decide · act · tool · asbob · idrok→amal · goal · guardrail · backend
+- Arena fonidagi so'zlar: agent · perceive · decide · act · tool · tool · idrok→amal · goal · guardrail · backend
 
 1. Oddiy AI va agent o'rtasidagi asosiy farq nima?
    - ✔ Oddiy AI javob beradi; agent qadamlar bilan ishlaydi
@@ -358,7 +364,7 @@ Natijalar (podium) — jonli reyting
    - Hech qaysi biri to'g'ri emas
    - AI va agentni birga ishlatish
    - ✔ Oddiy AI yetadi
-6. Bir necha qadam va asbob kerak bo'lgan ish uchun nima foydali?
+6. Bir necha qadam va tool kerak bo'lgan ish uchun nima foydali?
    - Bitta javobli oddiy AI
    - Oddiy chiziqli skript
    - Faqat frontend qismi

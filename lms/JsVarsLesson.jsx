@@ -5,8 +5,10 @@
 //  Qayta yig'ish:  node scripts/build-lms.mjs src/2-Modull/JsVarsLesson.jsx
 //  Tahrir MANBAGA kiritiladi, keyin shu buyruq qayta yuriladi.
 // ============================================================
+// src/2-Modull/lms-entry:JsVarsLesson.jsx
+import React3, { createElement as __ccEl, useState as useState5, useEffect as useEffect6, useRef as useRef5, useMemo as useMemo2, useCallback as useCallback3, createContext as createContext2, useContext as useContext2, useState, useEffect, useLayoutEffect, useRef, useMemo, useCallback, isValidElement } from "react";
+
 // src/2-Modull/JsVarsLesson.jsx
-import React3, { useState as useState4, useEffect as useEffect5, useRef as useRef4, useMemo as useMemo2, useCallback as useCallback3, createContext as createContext2, useContext as useContext2, useState, useEffect, useLayoutEffect, useRef, useMemo, useCallback, isValidElement } from "react";
 
 // src/compilator/HtmlCompiler.jsx
 var __lang = "uz";
@@ -17,7 +19,7 @@ var tr = (node) => {
   return node[__lang] ?? node.uz ?? node.ru ?? "";
 };
 var useMedia = (q) => {
-  const [on, setOn] = useState(() => typeof window !== "undefined" && window.matchMedia ? window.matchMedia(q).matches : false);
+  const [on2, setOn] = useState(() => typeof window !== "undefined" && window.matchMedia ? window.matchMedia(q).matches : false);
   useEffect(() => {
     if (typeof window === "undefined" || !window.matchMedia) return;
     const mq = window.matchMedia(q);
@@ -30,7 +32,7 @@ var useMedia = (q) => {
     mq.addListener(upd);
     return () => mq.removeListener(upd);
   }, [q]);
-  return on;
+  return on2;
 };
 var TOUCH_KEYS = {
   html: ["<", ">", "/", '"', "=", "#", "-"],
@@ -61,7 +63,7 @@ var HC_T = {
   accent2: "#FF8A3D",
   accentSoft: "#FFEDE5",
   success: "#0FA968",
-  successSoft: "#E4F7EE",
+  successSoft: "#E3F0E8",
   warn: "#9A5400",
   shadowBase: "58, 53, 48",
   line: "#E9E6DF"
@@ -353,33 +355,126 @@ function formatHtml(src) {
   if (!back || domFingerprint(back) !== domFingerprint(nodes)) return null;
   return res;
 }
-var TAG_MENU = [
-  { t: "h1", d: { uz: "eng katta sarlavha", ru: "самый большой заголовок" } },
-  { t: "h2", d: { uz: "bo'lim sarlavhasi", ru: "заголовок раздела" } },
-  { t: "h3", d: { uz: "kichik sarlavha", ru: "малый заголовок" } },
-  { t: "p", d: { uz: "matn xatboshisi", ru: "абзац текста" } },
-  { t: "a", d: { uz: "havola", ru: "ссылка" } },
-  { t: "img", d: { uz: "rasm", ru: "картинка" } },
-  { t: "ul", d: { uz: "ro'yxat", ru: "список" } },
-  { t: "ol", d: { uz: "raqamli ro'yxat", ru: "нумерованный список" } },
-  { t: "li", d: { uz: "ro'yxat bandi", ru: "пункт списка" } },
-  { t: "header", d: { uz: "sahifa boshi", ru: "шапка страницы" } },
-  { t: "nav", d: { uz: "menyu", ru: "меню" } },
-  { t: "section", d: { uz: "bo'lim", ru: "раздел" } },
-  { t: "footer", d: { uz: "sahifa pasti", ru: "подвал страницы" } },
-  { t: "div", d: { uz: "oddiy quti", ru: "обычный блок" } },
-  { t: "span", d: { uz: "matn ichidagi bo'lak", ru: "кусочек внутри текста" } },
-  { t: "strong", d: { uz: "qalin matn", ru: "жирный текст" } },
-  { t: "em", d: { uz: "qiya matn", ru: "наклонный текст" } },
-  { t: "br", d: { uz: "qator uzish", ru: "перенос строки" } },
-  { t: "button", d: { uz: "tugma", ru: "кнопка" } }
+var TEG_TARTIB = ["m1-01", "m1-02", "m1-03", "m1-04", "m1-14", "m1-05", "m1-06", "m1-07", "m1-15", "m1-08", "m1-10", "m1-09", "m1-11", "m1-12", "m1-13", "m2-01", "m2-02", "m2-03", "m2-04", "m2-05", "m2-06", "m2-07", "m2-08", "m2-09", "m2-10", "m2-11", "m2-12", "m2-13", "m2-14", "m2-15", "m2-16", "m3-*", "m4-*", "m4a-*", "m4b-*", "m4c-*"];
+var BOSQICH = { "_izoh": "Qaysi darsdan qaysi imkoniyat ochiladi (Q5). Dars kompilyatorga `stage` bermasa — hammasi ochiq (2-Moduldan boshlab).", "emmet": "m1-15", "class_id_qisqartma": "m1-06", "css_maslahat": "m1-06", "js_maslahat": "m2-02" };
+var TAG_MENU_ALL = [
+  { t: "h1", dars: "m1-03", matn: true, d: { "uz": "eng katta sarlavha", "ru": "самый большой заголовок" } },
+  { t: "h2", dars: "m1-03", matn: true, d: { "uz": "bo'lim sarlavhasi", "ru": "заголовок раздела" } },
+  { t: "h3", dars: "m1-03", matn: true, d: { "uz": "kichik sarlavha", "ru": "малый заголовок" } },
+  { t: "h4", dars: "m1-03", matn: true, d: { "uz": "4-daraja sarlavha", "ru": "заголовок 4-го уровня" } },
+  { t: "h5", dars: "m1-03", matn: true, d: { "uz": "5-daraja sarlavha", "ru": "заголовок 5-го уровня" } },
+  { t: "h6", dars: "m1-03", matn: true, d: { "uz": "eng kichik sarlavha", "ru": "самый маленький заголовок" } },
+  { t: "p", dars: "m1-03", matn: true, d: { "uz": "matn xatboshisi", "ru": "абзац текста" } },
+  { t: "strong", dars: "m1-03", matn: true, d: { "uz": "qalin matn", "ru": "жирный текст" } },
+  { t: "em", dars: "m1-03", matn: true, d: { "uz": "qiya matn", "ru": "наклонный текст" } },
+  { t: "ul", dars: "m1-03", d: { "uz": "ro'yxat", "ru": "список" } },
+  { t: "ol", dars: "m1-03", d: { "uz": "raqamli ro'yxat", "ru": "нумерованный список" } },
+  { t: "li", dars: "m1-03", matn: true, d: { "uz": "ro'yxat bandi", "ru": "пункт списка" } },
+  { t: "a", dars: "m1-03", matn: true, d: { "uz": "havola", "ru": "ссылка" } },
+  { t: "html", dars: "m1-03", d: { "uz": "butun sahifa", "ru": "вся страница" } },
+  { t: "head", dars: "m1-03", d: { "uz": "sahifa sozlamalari (ko'rinmaydi)", "ru": "настройки страницы (не видно)" } },
+  { t: "title", dars: "m1-03", matn: true, d: { "uz": "varaq nomi", "ru": "название вкладки" } },
+  { t: "body", dars: "m1-03", d: { "uz": "sahifa tanasi (ko'rinadi)", "ru": "тело страницы (видно)" } },
+  { t: "img", dars: "m1-04", void: true, d: { "uz": "rasm", "ru": "картинка" } },
+  { t: "header", dars: "m1-04", d: { "uz": "sahifa boshi", "ru": "шапка страницы" } },
+  { t: "main", dars: "m1-04", d: { "uz": "asosiy qism", "ru": "основная часть" } },
+  { t: "footer", dars: "m1-04", d: { "uz": "sahifa pasti", "ru": "подвал страницы" } },
+  { t: "div", dars: "m1-04", d: { "uz": "oddiy quti", "ru": "обычный блок" } },
+  { t: "form", dars: "m1-04", d: { "uz": "forma", "ru": "форма" } },
+  { t: "input", dars: "m1-04", void: true, d: { "uz": "yozish maydoni", "ru": "поле ввода" } },
+  { t: "label", dars: "m1-04", matn: true, d: { "uz": "maydon yozuvi", "ru": "подпись поля" } },
+  { t: "button", dars: "m1-04", matn: true, d: { "uz": "tugma", "ru": "кнопка" } },
+  { t: "style", dars: "m1-06", d: { "uz": "CSS shu yerda", "ru": "CSS здесь" } },
+  { t: "link", dars: "m1-06", void: true, d: { "uz": "CSS faylini ulash", "ru": "подключить CSS" } },
+  { t: "nav", dars: "m1-08", d: { "uz": "menyu", "ru": "меню" } },
+  { t: "section", dars: "m1-08", d: { "uz": "bo'lim", "ru": "раздел" } },
+  { t: "span", dars: "m2-08", matn: true, d: { "uz": "matn ichidagi bo'lak", "ru": "кусочек внутри текста" } }
 ];
-var ATTR_MENU = {
-  a: [{ a: "href", d: { uz: "qayerga olib boradi", ru: "куда ведёт" } }],
-  img: [{ a: "src", d: { uz: "rasm manzili", ru: "адрес картинки" } }, { a: "alt", d: { uz: "rasm o'rnidagi matn", ru: "текст вместо картинки" } }],
-  input: [{ a: "type", d: { uz: "maydon turi", ru: "тип поля" } }, { a: "placeholder", d: { uz: "xira maslahat", ru: "подсказка" } }],
-  "*": [{ a: "class", d: { uz: "CSS uchun nom", ru: "имя для CSS" } }, { a: "id", d: { uz: "yagona nom", ru: "уникальное имя" } }]
+var ATTR_MENU_ALL = {
+  "a": [{ a: "href", dars: "m1-03", d: { "uz": "qayerga olib boradi", "ru": "куда ведёт" } }],
+  "img": [{ a: "src", dars: "m1-04", d: { "uz": "rasm manzili", "ru": "адрес картинки" } }, { a: "alt", dars: "m1-04", d: { "uz": "rasm o'rnidagi matn", "ru": "текст вместо картинки" } }],
+  "input": [{ a: "type", dars: "m1-04", d: { "uz": "maydon turi", "ru": "тип поля" }, v: ["text", "email", "password", "number"] }, { a: "placeholder", dars: "m1-04", d: { "uz": "xira maslahat", "ru": "подсказка" } }, { a: "value", dars: "m1-04", d: { "uz": "boshlang'ich qiymat", "ru": "начальное значение" } }],
+  "*": [{ a: "class", dars: "m1-06", d: { "uz": "CSS uchun nom", "ru": "имя для CSS" } }, { a: "style", dars: "m1-06", d: { "uz": "CSS shu yerning o'zida", "ru": "CSS прямо здесь" } }, { a: "id", dars: "m1-08", d: { "uz": "yagona nom", "ru": "уникальное имя" } }],
+  "link": [{ a: "rel", dars: "m1-06", d: { "uz": "ulash turi", "ru": "тип связи" }, v: ["stylesheet"] }, { a: "href", dars: "m1-06", d: { "uz": "fayl manzili", "ru": "адрес файла" } }],
+  "html": [{ a: "lang", dars: "m1-15", d: { "uz": "sahifa tili", "ru": "язык страницы" } }]
 };
+var CSS_MENU_ALL = [
+  { p: "color", dars: "m1-06", d: { "uz": "matn rangi", "ru": "цвет текста" }, v: ["red", "blue", "green", "white", "black", "#…"] },
+  { p: "background-color", dars: "m1-06", d: { "uz": "fon rangi", "ru": "цвет фона" }, v: ["#…", "white", "black"] },
+  { p: "font-size", dars: "m1-06", d: { "uz": "shrift kattaligi", "ru": "размер шрифта" }, v: ["16px", "24px", "32px"] },
+  { p: "text-align", dars: "m1-06", d: { "uz": "matn tekislash", "ru": "выравнивание текста" }, v: ["center", "left", "right"] },
+  { p: "font-family", dars: "m1-06", d: { "uz": "shrift", "ru": "шрифт" }, v: ["Arial", "Georgia", "sans-serif"] },
+  { p: "margin", dars: "m1-06", d: { "uz": "tashqi bo'shliq", "ru": "внешний отступ" }, v: ["0", "8px", "16px", "auto"] },
+  { p: "padding", dars: "m1-06", d: { "uz": "ichki bo'shliq", "ru": "внутренний отступ" }, v: ["8px", "16px", "24px"] },
+  { p: "display", dars: "m1-07", d: { "uz": "ko'rinish turi", "ru": "тип отображения" }, v: ["flex", "block", "none"] },
+  { p: "gap", dars: "m1-07", d: { "uz": "elementlar orasi", "ru": "промежуток" }, v: ["8px", "16px", "24px"] },
+  { p: "justify-content", dars: "m1-07", d: { "uz": "gorizontal joylash", "ru": "по горизонтали" }, v: ["center", "space-between", "flex-start", "flex-end"] },
+  { p: "align-items", dars: "m1-07", d: { "uz": "vertikal joylash", "ru": "по вертикали" }, v: ["center", "flex-start", "flex-end"] },
+  { p: "flex-direction", dars: "m1-07", d: { "uz": "yo'nalish", "ru": "направление" }, v: ["row", "column"] },
+  { p: "height", dars: "m1-07", d: { "uz": "balandlik", "ru": "высота" }, v: ["100px", "200px", "100vh"] },
+  { p: "width", dars: "m1-15", d: { "uz": "kenglik", "ru": "ширина" }, v: ["100px", "300px", "100%"] },
+  { p: "background", dars: "m1-15", d: { "uz": "fon", "ru": "фон" }, v: ["#…", "white"] },
+  { p: "border-radius", dars: "m1-15", d: { "uz": "burchak yumaloqligi", "ru": "скругление углов" }, v: ["8px", "12px", "50%"] },
+  { p: "box-shadow", dars: "m1-15", d: { "uz": "soya", "ru": "тень" }, v: ["0 4px 12px rgba(0,0,0,.15)"] }
+];
+var JS_MENU_ALL = {
+  kw: [{ k: "let", dars: "m2-02", d: { "uz": "o'zgaruvchi (o'zgaradi)", "ru": "переменная (меняется)" } }, { k: "const", dars: "m2-02", d: { "uz": "o'zgarmas", "ru": "константа" } }, { k: "if", dars: "m2-04", d: { "uz": "shart", "ru": "условие" } }, { k: "else", dars: "m2-04", d: { "uz": "aks holda", "ru": "иначе" } }, { k: "else if", dars: "m2-04", d: { "uz": "yana bir shart", "ru": "ещё одно условие" } }, { k: "true", dars: "m2-04", d: { "uz": "rost", "ru": "истина" } }, { k: "false", dars: "m2-04", d: { "uz": "yolg'on", "ru": "ложь" } }, { k: "for", dars: "m2-05", d: { "uz": "sikl (sanab)", "ru": "цикл (со счётчиком)" } }, { k: "while", dars: "m2-05", d: { "uz": "sikl (shart bo'lguncha)", "ru": "цикл (пока условие)" } }, { k: "function", dars: "m2-06", d: { "uz": "funksiya", "ru": "функция" } }, { k: "return", dars: "m2-06", d: { "uz": "javob qaytarish", "ru": "вернуть значение" } }, { k: "=>", dars: "m2-08", d: { "uz": "qisqa funksiya", "ru": "стрелочная функция" } }],
+  api: [{ k: "console.log", dars: "m2-02", d: { "uz": "konsolga chiqarish", "ru": "вывести в консоль" }, q: "console.log()" }, { k: "prompt", dars: "m2-04", d: { "uz": "foydalanuvchidan so'rash", "ru": "спросить у пользователя" }, q: 'prompt("")' }, { k: ".length", dars: "m2-05", d: { "uz": "nechta element", "ru": "сколько элементов" } }, { k: "onclick", dars: "m2-08", d: { "uz": "bosilganda", "ru": "при нажатии" }, q: ".onclick = () => {\n  \n}" }, { k: "oninput", dars: "m2-08", d: { "uz": "yozilganda", "ru": "при вводе" }, q: ".oninput = () => {\n  \n}" }],
+  snip: [{ q: "log", dars: "m2-02", body: "console.log();" }, { q: "if", dars: "m2-04", body: "if () {\n  \n}" }, { q: "else", dars: "m2-04", body: "else {\n  \n}" }, { q: "for", dars: "m2-05", body: "for (let i = 0; i < 5; i++) {\n  \n}" }, { q: "while", dars: "m2-05", body: "while () {\n  \n}" }, { q: "fn", dars: "m2-06", body: "function nom() {\n  \n}" }]
+};
+var tegRank = (k) => {
+  if (!k) return Infinity;
+  const i = TEG_TARTIB.indexOf(k);
+  if (i !== -1) return i;
+  const m = /^(m\d[abc]?)-/.exec(k);
+  const w = m ? TEG_TARTIB.indexOf(m[1] + "-*") : -1;
+  return w === -1 ? Infinity : w;
+};
+var tegOchiq = (stage, dars) => !stage || tegRank(dars) <= tegRank(stage);
+var tagBody = (name, ind) => {
+  const sn = SNIPPETS[name];
+  if (sn) return { body: sn.body.split("\n").join("\n" + ind), caret: sn.body.slice(0, sn.caret).split("\n").join("\n" + ind).length };
+  if (VOID_TAGS.has(name)) return { body: `<${name}>`, caret: name.length + 2 };
+  return { body: `<${name}></${name}>`, caret: name.length + 2 };
+};
+var EMMET_BANG = '<!DOCTYPE html>\n<html lang="uz">\n<head>\n  <meta charset="UTF-8">\n  <title>Sahifa</title>\n</head>\n<body>\n  \n</body>\n</html>';
+function emmetExpand(abbr, ind, { classOn }) {
+  if (abbr === "!") {
+    const t = EMMET_BANG.split("\n").join("\n" + ind);
+    return { body: t, caret: t.indexOf("<body>\n") + 7 + ind.length + 2 };
+  }
+  const parts = abbr.split(">");
+  const re = /^([a-zA-Z][a-zA-Z0-9]*)?((?:[.#][a-zA-Z0-9_-]+)*)(?:\*(\d{1,2}))?$/;
+  const P = [];
+  for (const x of parts) {
+    const m = re.exec(x);
+    if (!m || !m[1] && !m[2]) return null;
+    if (m[2] && !classOn) return null;
+    const tag = (m[1] || "div").toLowerCase();
+    if (!TAG_MENU_ALL.some((q) => q.t === tag)) return null;
+    if (parts.length === 1 && !m[2] && !m[3]) return null;
+    const cls = (m[2].match(/\.[a-zA-Z0-9_-]+/g) || []).map((c2) => c2.slice(1));
+    const id = (m[2].match(/#[a-zA-Z0-9_-]+/) || [""])[0].slice(1);
+    P.push({ tag, cls, id, n: Math.min(20, Math.max(1, Number(m[3] || 1))) });
+  }
+  const open = (q) => "<" + q.tag + (q.id ? ' id="' + q.id + '"' : "") + (q.cls.length ? ' class="' + q.cls.join(" ") + '"' : "") + ">";
+  const rend = (i, pad) => {
+    const q = P[i];
+    const out = [];
+    for (let k = 0; k < q.n; k++) {
+      if (VOID_TAGS.has(q.tag)) {
+        out.push(pad + open(q));
+        continue;
+      }
+      if (i === P.length - 1) out.push(pad + open(q) + "</" + q.tag + ">");
+      else out.push(pad + open(q) + "\n" + rend(i + 1, pad + "  ") + "\n" + pad + "</" + q.tag + ">");
+    }
+    return out.join("\n");
+  };
+  const body = rend(0, ind).slice(ind.length);
+  const c = body.indexOf("></");
+  return { body, caret: c === -1 ? body.length : c + 1 };
+}
 var SNIPPETS = {
   ul: { body: "<ul>\n  <li></li>\n  <li></li>\n</ul>", caret: 11 },
   ol: { body: "<ol>\n  <li></li>\n  <li></li>\n</ol>", caret: 11 },
@@ -548,7 +643,12 @@ var checks = {
   // Bular funksiya emas, "probe" obyekti qaytaradi — komponent ularni
   // iframe ichida ishlatib, natijani postMessage orqali oladi.
   // console.log chiqishida shu qiymat bormi?
+  // F-1017-206: solishtirish NORMALLASHGAN — katta-kichik harf, ortiqcha probel va apostrof turi (' ‘ ’ ʻ) farq qilmaydi
+  // («hello» = «Hello»). Ko'p so'zli qiymat TARTIBLI qoladi («1 2 3 4 5» — sanoq); tartibsiz ro'yxat uchun logsEach.
   logs: (value, hint) => ({ __runtime: "log_includes", value: String(value), hint }),
+  // Bir nechta qiymat — HAR BIRI chiqishda bor, TARTIBI muhim emas (massiv/ro'yxat natijalari:
+  // o'quvchi «uzum banan olma» deb yozsa ham to'g'ri). F-1017-206.
+  logsEach: (values, hint) => ({ __runtime: "log_each", values: (Array.isArray(values) ? values : [values]).map(String), hint }),
   // JS ifoda (masalan global o'zgaruvchi yoki typeof) shu qiymatga tengmi?
   evalEquals: (expr, expected, hint) => ({ __runtime: "eval_equals", expr, expected: String(expected), hint }),
   // clickSel bosilgach, readSel matni expected'ni o'z ichiga oladimi?
@@ -566,6 +666,7 @@ function specToCheck(s) {
   }
   if (s.js) return s.js instanceof RegExp ? checks.js(s.js, hint) : checks.jsText(String(s.js), hint);
   if (s.logs !== void 0) return checks.logs(s.logs, hint);
+  if (s.logsEach !== void 0) return checks.logsEach(s.logsEach, hint);
   if (s.eval !== void 0) return checks.evalEquals(s.eval, s.equals, hint);
   if (s.toggle) return checks.toggle(s.toggle, s.read || s.toggle, s.a, s.b, hint);
   if (s.click) return checks.domAfterClick(s.click, s.read, s.expect, hint);
@@ -737,7 +838,9 @@ var TEXT_TAGS = /* @__PURE__ */ new Set([
   "td",
   "th",
   "figcaption",
-  "blockquote"
+  "blockquote",
+  ...TAG_MENU_ALL.filter((t) => t.matn).map((t) => t.t)
+  // xaritadagi `matn` belgisi (F-1001-91)
 ]);
 var inTextTag = (src) => {
   const re = /<(\/?)([a-zA-Z][a-zA-Z0-9-]*)(?:"[^"]*"|'[^']*'|[^<>"'])*?(\/?)>/g;
@@ -1012,7 +1115,7 @@ var buildHarness = (probes, nonce) => `<script>
 (function(){
   try{var _cs=document.currentScript;if(_cs)_cs.parentNode.removeChild(_cs);}catch(e){}
   var logs=[],_push=Array.prototype.push,_str=String,_json=JSON.stringify,
-      _idx=String.prototype.indexOf,_trim=String.prototype.trim,_low=String.prototype.toLowerCase,
+      _idx=String.prototype.indexOf,_trim=String.prototype.trim,_low=String.prototype.toLowerCase,_rep=String.prototype.replace,
       _st=window.setTimeout,_qs=document.querySelector;
   var _l=console.log;console.log=function(){
     for(var i=0;i<arguments.length;i++){var a=arguments[i];
@@ -1020,6 +1123,8 @@ var buildHarness = (probes, nonce) => `<script>
     try{_l.apply(console,arguments);}catch(e){}
   };
   function has(hay,needle){return _idx.call(_str(hay),needle)!==-1;}
+  // F-1017-206: konsol-matnini normallashtirish — kichik harf, apostrof turlari → ', probel yig'iladi
+  function norm(s){var x=_low.call(_str(s));x=_rep.call(x,/[‘’ʻʼ\`´]/g,"'");x=_rep.call(x,/\\s+/g,' ');return _trim.call(x);}
   function qs(sel){try{return _qs.call(document,sel);}catch(e){return null;}}
   function runProbes(){
     var P=${JSON.stringify(probes)};
@@ -1029,9 +1134,13 @@ var buildHarness = (probes, nonce) => `<script>
       var p=P[k],ok=false;
       try{
         if(p.type==='log_includes'){
-          var v=_trim.call(_str(p.value));
-          ok=has(joined,v);
-          if(!ok){for(var q=0;q<logs.length;q++){if(has(_trim.call(_str(logs[q])),v)){ok=true;break;}}}
+          var v=norm(p.value);
+          ok=has(norm(joined),v);
+          if(!ok){for(var q=0;q<logs.length;q++){if(has(norm(logs[q]),v)){ok=true;break;}}}
+        }else if(p.type==='log_each'){
+          var J=norm(joined),vals=p.values||[];
+          ok=vals.length>0;
+          for(var m=0;m<vals.length;m++){if(!has(J,norm(vals[m]))){ok=false;break;}}
         }else if(p.type==='eval_equals'){
           var r; try{r=eval(p.expr);}catch(e){r=undefined;}
           ok=_str(r)===_str(p.expected);
@@ -1099,6 +1208,18 @@ document.addEventListener('error',function(e){
   if(el.parentNode)el.parentNode.insertBefore(b,el.nextSibling);
 },true);
 <\/script>`;
+var ANCHOR_NAV = `<script>
+document.addEventListener('click',function(e){
+  var a=e.target&&e.target.closest?e.target.closest('a[href^="#"]'):null;
+  if(!a)return;
+  e.preventDefault();
+  var id=a.getAttribute('href').slice(1),el=null;
+  try{id=decodeURIComponent(id)}catch(_){}
+  if(id)el=document.getElementById(id);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  else if(!id)window.scrollTo({top:0,behavior:'smooth'});
+},true);
+<\/script>`;
 var wrapDoc = (html, css, js, opts = {}) => {
   const head = (pos) => `<!doctype html>
 <html lang="${__lang}">
@@ -1112,6 +1233,7 @@ ${css || ""}</style>
 ${opts.harness || ""}
 ${opts.consoleNonce != null ? CONSOLE_FORWARD(opts.consoleNonce, pos) : ""}
 ${opts.harness ? "" : IMG_FALLBACK()}
+${opts.harness ? "" : ANCHOR_NAV}
 </head>
 <body>
 `;
@@ -1209,9 +1331,29 @@ function HtmlCompiler({
   onBack,
   storageKey,
   // F-0801-01: berilsa — yozilgan kod shu kalitda saqlanadi
-  lang = "uz"
+  lang = "uz",
   // 'uz' | 'ru' — modul dars kontekstidan tashqarida ishlaydi
+  stage
+  // F-1001-91 (Q2): dars kaliti (`'m1-03'`) — ro'yxatda faqat shu darsgacha o'tilganlar; yo'q bo'lsa hammasi
 }) {
+  const tagMenu = useMemo(() => TAG_MENU_ALL.filter((t) => tegOchiq(stage, t.dars)), [stage]);
+  const attrMenu = useMemo(() => {
+    const o = {};
+    for (const k of Object.keys(ATTR_MENU_ALL)) o[k] = ATTR_MENU_ALL[k].filter((a) => tegOchiq(stage, a.dars));
+    return o;
+  }, [stage]);
+  const emmetOn = tegOchiq(stage, BOSQICH.emmet);
+  const classOn = tegOchiq(stage, BOSQICH.class_id_qisqartma);
+  const cssMenu = useMemo(() => tegOchiq(stage, BOSQICH.css_maslahat) ? CSS_MENU_ALL.filter((c) => tegOchiq(stage, c.dars)) : [], [stage]);
+  const jsMenu = useMemo(() => {
+    if (!tegOchiq(stage, BOSQICH.js_maslahat)) return [];
+    const snip = Object.fromEntries(JS_MENU_ALL.snip.filter((q) => tegOchiq(stage, q.dars)).map((q) => [q.q, q.body]));
+    const items = [];
+    for (const k of JS_MENU_ALL.kw) if (tegOchiq(stage, k.dars)) items.push({ k: k.k, d: k.d, body: snip[k.k] || (/^(true|false|null|=>)$/.test(k.k) ? k.k : k.k + " ") });
+    for (const a of JS_MENU_ALL.api) if (tegOchiq(stage, a.dars)) items.push({ k: a.k, d: a.d, body: a.q || a.k });
+    for (const q of Object.keys(snip)) if (!items.some((i) => i.k === q)) items.push({ k: q, d: { uz: snip[q].split("\n")[0] + " …", ru: snip[q].split("\n")[0] + " …" }, body: snip[q] });
+    return items;
+  }, [stage]);
   __lang = lang === "ru" ? "ru" : "uz";
   const task = taskProp && typeof taskProp === "object" ? taskProp : DEFAULT_TASK;
   const taskReqs = Array.isArray(task.requirements) ? task.requirements : [];
@@ -1260,6 +1402,7 @@ function HtmlCompiler({
   const checkFrameRef = useRef(null);
   const fromFrame = (e, ref) => !!(ref.current && e.source && e.source === ref.current.contentWindow);
   const showConsole = useMemo(() => files.some((f) => f.lang === "js"), [files]);
+  const consoleOnly = showConsole && !task.previewUrl && !files.some((f) => f.lang === "html") && !/\bdocument\b|\balert\s*\(/.test(js);
   const consoleNonceRef = useRef(0);
   const [consoleBuf, setConsoleBuf] = useState({ lines: [], dropped: 0 });
   const consoleLines = consoleBuf.lines;
@@ -1621,34 +1764,91 @@ function HtmlCompiler({
   const escAtRef = useRef({ at: -1, seq: -1 });
   const refreshMenu = () => {
     const el = taRef.current;
-    if (!el || activeLang !== "html" || document.activeElement !== el) return setMenu(null);
+    if (!el || document.activeElement !== el) return setMenu(null);
     const v = el.value, s = el.selectionStart;
     if (s !== el.selectionEnd) return setMenu(null);
     if (escAtRef.current.at === s && escAtRef.current.seq === editSeqRef.current) return setMenu(null);
     const open = (next) => setMenu((prev) => prev && prev.kind === next.kind && prev.from === next.from && prev.items.length === next.items.length ? { ...next, idx: Math.min(prev.idx, next.items.length - 1) } : next);
     const before = v.slice(0, s);
+    if (activeLang === "css") {
+      if (!cssMenu.length) return setMenu(null);
+      const ob = before.lastIndexOf("{"), cb = before.lastIndexOf("}");
+      if (ob === -1 || cb > ob) return setMenu(null);
+      const seg = before.slice(Math.max(ob, before.lastIndexOf(";"), before.lastIndexOf("\n")) + 1);
+      const mv = /^\s*([a-z-]+)\s*:\s*([a-zA-Z0-9#.%-]*)$/.exec(seg);
+      if (mv) {
+        const def = cssMenu.find((c) => c.p === mv[1]);
+        if (!def) return setMenu(null);
+        const pref = mv[2];
+        const items = def.v.filter((x) => x.startsWith(pref)).map((x) => ({ a: x, d: "" }));
+        if (!items.length) return setMenu(null);
+        return open({ kind: "cssval", src: "lt", items, idx: 0, from: s - pref.length, ...caretXY() });
+      }
+      const mp = /^\s*([a-z-]+)$/.exec(seg);
+      if (mp) {
+        const pref = mp[1];
+        const items = cssMenu.filter((c) => c.p.startsWith(pref)).sort((x, y) => (x.p === pref ? 0 : 1) - (y.p === pref ? 0 : 1));
+        if (!items.length) return setMenu(null);
+        return open({ kind: "cssprop", src: "lt", items, idx: 0, from: s - pref.length, ...caretXY() });
+      }
+      return setMenu(null);
+    }
+    if (activeLang === "js") {
+      if (!jsMenu.length) return setMenu(null);
+      const ls0 = before.lastIndexOf("\n") + 1, line = before.slice(ls0);
+      if (line.includes("//")) return setMenu(null);
+      if (before.lastIndexOf("/*") > before.lastIndexOf("*/")) return setMenu(null);
+      let q = null;
+      for (const ch of line) {
+        if (q) {
+          if (ch === q) q = null;
+        } else if (ch === '"' || ch === "'" || ch === "`") q = ch;
+      }
+      if (q) return setMenu(null);
+      const mi = /([A-Za-z_$.][\w$.]*)$/.exec(line);
+      if (!mi || mi[1].replace(/^\./, "").length < 2) return setMenu(null);
+      const match = (pf) => jsMenu.filter((x) => x.k.startsWith(pf)).sort((x, y) => (x.k === pf ? 0 : 1) - (y.k === pf ? 0 : 1));
+      let pref = mi[1], items = match(pref);
+      if (!items.length && pref.includes(".")) {
+        pref = pref.slice(pref.lastIndexOf("."));
+        items = match(pref);
+      }
+      if (!items.length) return setMenu(null);
+      return open({ kind: "js", src: "bare", items, idx: 0, from: s - pref.length, ...caretXY() });
+    }
+    if (activeLang !== "html") return setMenu(null);
+    const byPref = (list, key, pref) => list.filter((x) => x[key].startsWith(pref)).sort((x, y) => (x[key] === pref ? 0 : 1) - (y[key] === pref ? 0 : 1));
     const mTag = /<([a-zA-Z][a-zA-Z0-9-]*)?$/.exec(before);
     if (mTag && before[mTag.index + 1] !== "/") {
       const pref = (mTag[1] || "").toLowerCase();
-      const items = TAG_MENU.filter((x) => x.t.startsWith(pref));
+      const items = byPref(tagMenu, "t", pref);
       if (!items.length) return setMenu(null);
-      return open({ kind: "tag", items, idx: 0, from: mTag.index, ...caretXY() });
+      return open({ kind: "tag", src: "lt", items, idx: 0, from: mTag.index, ...caretXY() });
+    }
+    const mVal = /<([a-zA-Z][a-zA-Z0-9-]*)(?:"[^"]*"|'[^']*'|[^<>"'])*\s([a-zA-Z-]+)="([a-zA-Z0-9-]*)$/.exec(before);
+    if (mVal) {
+      const tag = mVal[1].toLowerCase(), attr = mVal[2].toLowerCase(), pref = mVal[3].toLowerCase();
+      const def = [...attrMenu[tag] || [], ...attrMenu["*"] || []].find((x) => x.a === attr);
+      const items = def && def.v ? byPref(def.v.map((v2) => ({ a: v2, d: "" })), "a", pref) : [];
+      if (!items.length) return setMenu(null);
+      return open({ kind: "val", src: "lt", items, idx: 0, from: s - pref.length, ...caretXY() });
     }
     const mAttr = /<([a-zA-Z][a-zA-Z0-9-]*)((?:"[^"]*"|'[^']*'|[^<>"'])*)\s([a-zA-Z-]*)$/.exec(before);
     if (mAttr) {
       const tag = mAttr[1].toLowerCase(), pref = (mAttr[3] || "").toLowerCase(), had = mAttr[2];
-      const pool = [...ATTR_MENU[tag] || [], ...ATTR_MENU["*"]];
-      const items = pool.filter((x) => x.a.startsWith(pref) && !new RegExp("(^|\\s)" + x.a + "\\s*=").test(had));
+      const pool = [...attrMenu[tag] || [], ...attrMenu["*"] || []];
+      const items = byPref(pool, "a", pref).filter((x) => !new RegExp("(^|\\s)" + x.a + "\\s*=").test(had));
       if (!items.length) return setMenu(null);
-      return open({ kind: "attr", items, idx: 0, from: s - pref.length, ...caretXY() });
+      return open({ kind: "attr", src: "lt", items, idx: 0, from: s - pref.length, ...caretXY() });
     }
     const ls = before.lastIndexOf("\n") + 1;
-    const mBare = /^[ \t]*([a-zA-Z][a-zA-Z0-9-]*)$/.exec(before.slice(ls));
-    if (mBare && !v.slice(s).split("\n")[0].trim() && !inTextTag(before.slice(0, ls))) {
+    const mBare = /(?:^[ \t]*|<[a-zA-Z][^<>]*>)([a-zA-Z][a-zA-Z0-9-]*)$/.exec(before.slice(ls));
+    const rest = v.slice(s).split("\n")[0];
+    if (mBare && (!rest.trim() || /^\s*<\/[a-zA-Z][a-zA-Z0-9-]*>\s*$/.test(rest)) && !inTextTag(before.slice(0, s - mBare[1].length))) {
       const pref = mBare[1].toLowerCase();
-      const items = TAG_MENU.filter((x) => x.t.startsWith(pref));
+      const items = byPref(tagMenu, "t", pref);
       if (!items.length) return setMenu(null);
-      return open({ kind: "tag", items, idx: 0, from: s - mBare[1].length, ...caretXY() });
+      return open({ kind: "tag", src: "bare", items, idx: 0, from: s - mBare[1].length, ...caretXY() });
     }
     setMenu(null);
   };
@@ -1662,22 +1862,30 @@ function HtmlCompiler({
       setMenu(null);
       return;
     }
+    if (menu.kind === "val" || menu.kind === "cssval") {
+      put(el, item.a, menu.from + item.a.length);
+      setMenu(null);
+      return;
+    }
+    if (menu.kind === "cssprop") {
+      put(el, item.p + ": ", menu.from + item.p.length + 2);
+      setMenu(null);
+      return;
+    }
+    if (menu.kind === "js") {
+      const v0 = el.value, ls0 = v0.lastIndexOf("\n", menu.from - 1) + 1;
+      const ind0 = (/^[ \t]*/.exec(v0.slice(ls0, menu.from)) || [""])[0];
+      const body2 = item.body.split("\n").join("\n" + ind0);
+      const ci = body2.indexOf("()") !== -1 ? body2.indexOf("()") + 1 : body2.indexOf("\n" + ind0 + "  \n") !== -1 ? body2.indexOf("\n" + ind0 + "  \n") + ind0.length + 3 : body2.length;
+      put(el, body2, menu.from + ci);
+      setMenu(null);
+      return;
+    }
     const name = item.t, v = el.value;
     const ls = v.lastIndexOf("\n", menu.from - 1) + 1;
     const ind = (/^[ \t]*/.exec(v.slice(ls, menu.from)) || [""])[0];
-    const sn = SNIPPETS[name];
-    let body, caretOff;
-    if (sn) {
-      body = sn.body.split("\n").join("\n" + ind);
-      caretOff = sn.body.slice(0, sn.caret).split("\n").join("\n" + ind).length;
-    } else if (VOID_TAGS.has(name)) {
-      body = `<${name}>`;
-      caretOff = body.length;
-    } else {
-      body = `<${name}></${name}>`;
-      caretOff = name.length + 2;
-    }
-    put(el, body, menu.from + caretOff);
+    const { body, caret } = tagBody(name, ind);
+    put(el, body, menu.from + caret);
     setMenu(null);
   };
   const maybeLinkedRename = (el, prev, next) => {
@@ -1730,6 +1938,51 @@ function HtmlCompiler({
     refreshMenu();
     updateCaretUi();
   };
+  const handleTab = (el, shift) => {
+    const v = el.value, s = el.selectionStart, en = el.selectionEnd;
+    const lineStart = v.lastIndexOf("\n", s - 1) + 1;
+    const line = v.slice(lineStart, s);
+    if (s === en && activeLang === "html" && !shift) {
+      const ind = (/^[ \t]*/.exec(line) || [""])[0];
+      const mWord = /(?:^[ \t]*|<[a-zA-Z][^<>]*>)([a-zA-Z][a-zA-Z0-9-]*)$/.exec(line);
+      const word = mWord ? mWord[1].toLowerCase() : null;
+      let ex = null, from = s;
+      if (word && TAG_MENU_ALL.some((t) => t.t === word) && !inTextTag(v.slice(0, s - word.length))) {
+        ex = tagBody(word, ind);
+        from = s - word.length;
+      } else if (emmetOn) {
+        const mAb = /([!a-zA-Z.#][a-zA-Z0-9.#>*_-]*)$/.exec(line);
+        let abbr = mAb ? mAb[1] : null;
+        if (abbr && line[mAb.index - 1] === "<") {
+          const g = abbr.indexOf(">");
+          abbr = g === -1 ? null : abbr.slice(g + 1) || null;
+        }
+        if (abbr && (abbr !== "!" || line.trim() === "!") && !inTextTag(v.slice(0, s - abbr.length))) {
+          ex = emmetExpand(abbr, ind, { classOn });
+          if (ex) from = s - abbr.length;
+        }
+      }
+      if (ex) {
+        el.setSelectionRange(from, s);
+        document.execCommand("insertText", false, ex.body);
+        const caret = from + ex.caret;
+        el.setSelectionRange(caret, caret);
+        caretRef.current = caret;
+        setMenu(null);
+        return;
+      }
+    }
+    if (shift) {
+      const back = /^ {1,2}/.exec(v.slice(lineStart, lineStart + 2));
+      if (!back) return;
+      const caret = Math.max(lineStart, s - back[0].length);
+      el.setSelectionRange(lineStart, lineStart + back[0].length);
+      document.execCommand("delete");
+      el.setSelectionRange(caret, caret);
+    } else {
+      put(el, "  ", s + 2);
+    }
+  };
   const onKeyDown = (e) => {
     const el = e.target;
     const v = el.value, s = el.selectionStart, en = el.selectionEnd;
@@ -1747,11 +2000,12 @@ function HtmlCompiler({
         setMenu((m) => ({ ...m, idx: (m.idx - 1 + m.items.length) % m.items.length }));
         return;
       }
-      if (e.key === "Enter" && !e.shiftKey && !e.ctrlKey && !e.metaKey && !e.altKey || e.key === "Tab") {
+      if (e.key === "Tab" || e.key === "Enter" && menu.src !== "bare" && !e.shiftKey && !e.ctrlKey && !e.metaKey && !e.altKey) {
         e.preventDefault();
         acceptMenu(menu.items[menu.idx]);
         return;
       }
+      if (e.key === "Enter" && menu.src === "bare") setMenu(null);
       if (e.key === "Escape") {
         e.preventDefault();
         escAtRef.current = { at: s, seq: editSeqRef.current };
@@ -1787,27 +2041,7 @@ function HtmlCompiler({
     }
     if (e.key === "Tab") {
       e.preventDefault();
-      const sn = oneCaret && activeLang === "html" ? SNIPPETS[line.trim().toLowerCase()] : null;
-      if (sn && /^[ \t]*[a-z0-9]+$/i.test(line)) {
-        const ind = (/^[ \t]*/.exec(line) || [""])[0];
-        const body = sn.body.split("\n").join("\n" + ind);
-        el.setSelectionRange(lineStart, s);
-        document.execCommand("insertText", false, ind + body);
-        const caret = lineStart + ind.length + sn.caret;
-        el.setSelectionRange(caret, caret);
-        caretRef.current = caret;
-        return;
-      }
-      if (e.shiftKey) {
-        const back = /^ {1,2}/.exec(v.slice(lineStart, lineStart + 2));
-        if (!back) return;
-        const caret = Math.max(lineStart, s - back[0].length);
-        el.setSelectionRange(lineStart, lineStart + back[0].length);
-        document.execCommand("delete");
-        el.setSelectionRange(caret, caret);
-      } else {
-        put(el, "  ", s + 2);
-      }
+      handleTab(el, e.shiftKey);
       return;
     }
     if (e.key === "Enter" && oneCaret) {
@@ -1998,7 +2232,7 @@ ${ind}`, s + 1 + ind.length);
   } else if (blockedBySyntax) {
     statusMsg = <span className="hc-wait-msg">✓ {tr({ uz: "Shartlar bajarildi — sintaksis xatosi qoldi (yuqorida)", ru: "Условия выполнены — остался синтаксис (см. выше)" })}</span>;
   } else {
-    statusMsg = <span className="hc-wait-msg">{narrow ? tr({ uz: "Shartlarni bajaring — «Natija» tabida ko'rinadi", ru: "Выполняйте условия — смотрите во вкладке «Результат»" }) : tr({ uz: "Shartlarni bajaring — natija o'ngda ko'rinadi", ru: "Выполняйте условия — результат виден справа" })}</span>;
+    statusMsg = <span className="hc-wait-msg">{narrow ? consoleOnly ? tr({ uz: "Shartlarni bajaring — «Console» tabida ko'rinadi", ru: "Выполняйте условия — смотрите во вкладке «Console»" }) : tr({ uz: "Shartlarni bajaring — «Natija» tabida ko'rinadi", ru: "Выполняйте условия — смотрите во вкладке «Результат»" }) : tr({ uz: "Shartlarni bajaring — natija o'ngda ko'rinadi", ru: "Выполняйте условия — результат виден справа" })}</span>;
   }
   return <div
     className={`hc-root${dragging ? " dragging" : ""}`}
@@ -2052,7 +2286,7 @@ ${tr({ uz: "Bosing — kursor shu qatorga tushadi", ru: "Нажмите — ку
             ⌨ {tr({ uz: "Kod", ru: "Код" })}
           </button>
           <button type="button" role="tab" aria-selected={pane === "result"} className={pane === "result" ? "on" : ""} onClick={() => setPane("result")}>
-            📺 {tr({ uz: "Natija", ru: "Результат" })}
+            {consoleOnly ? "🖥️ Console" : <>📺 {tr({ uz: "Natija", ru: "Результат" })}</>}
           </button>
         </div>}
 
@@ -2163,17 +2397,17 @@ ${tr({ uz: "Bosing — kursor shu qatorga tushadi", ru: "Нажмите — ку
   }
                   <div className="hc-menu-list" ref={menuListRef}>
                     {menu.items.map((it, i) => <button
-    key={it.t || it.a}
+    key={it.t || it.a || it.p || it.k}
     role="option"
     aria-selected={i === menu.idx}
     className={`hc-menu-row ${i === menu.idx ? "on" : ""}`}
     onClick={() => acceptMenu(it)}
   >
-                        <span className="hc-menu-k">{menu.kind === "tag" ? `<${it.t}>` : it.a}</span>
+                        <span className="hc-menu-k">{menu.kind === "tag" ? `<${it.t}>` : menu.kind === "val" ? `"${it.a}"` : menu.kind === "cssprop" ? `${it.p}:` : it.a ?? it.k}</span>
                         <span className="hc-menu-d">{tr(it.d)}</span>
                       </button>)}
                   </div>
-                  <span className="hc-menu-tip">{touch ? tr({ uz: "Bosib tanlang", ru: "Нажмите, чтобы выбрать" }) : tr({ uz: "Enter — tanlash · Esc — yopish", ru: "Enter — выбрать · Esc — закрыть" })}</span>
+                  <span className="hc-menu-tip">{touch ? tr({ uz: "Bosib tanlang", ru: "Нажмите, чтобы выбрать" }) : menu.src === "bare" ? tr({ uz: "Tab — tanlash · Esc — yopish", ru: "Tab — выбрать · Esc — закрыть" }) : tr({ uz: "Enter — tanlash · Esc — yopish", ru: "Enter — выбрать · Esc — закрыть" })}</span>
                 </div>}
             </div>
           </div>
@@ -2198,9 +2432,11 @@ ${tr({ uz: "Bosing — kursor shu qatorga tushadi", ru: "Нажмите — ку
     onMouseDown={(e) => e.preventDefault()}
     onClick={() => {
       const el = taRef.current;
-      if (el) put(el, "  ", el.selectionStart + 2);
+      if (!el) return;
+      if (menu) acceptMenu(menu.items[menu.idx]);
+      else handleTab(el, false);
     }}
-    title={tr({ uz: "Ichkariga surish", ru: "Отступ" })}
+    title={tr({ uz: "Tab — tegni yoyish / ichkariga surish", ru: "Tab — раскрыть тег / отступ" })}
   >⇥</button>
             </div>}
           {
@@ -2246,7 +2482,7 @@ ${tr({ uz: "Bosing — kursor shu qatorga tushadi", ru: "Нажмите — ку
             <i />
           </div>}
 
-        <section className="hc-pane hc-preview-pane">
+        <section className={`hc-pane hc-preview-pane${consoleOnly ? " console-only" : ""}`}>
           <div className="hc-pane-bar">
             {
     /* `task.previewUrl` berilsa — natija paneli SOXTA BRAUZER oynasiga aylanadi
@@ -2256,7 +2492,7 @@ ${tr({ uz: "Bosing — kursor shu qatorga tushadi", ru: "Нажмите — ку
             {task.previewUrl ? <>
                 <span className="hc-dots"><i /><i /><i /></span>
                 <span className="hc-url"><span className="hc-lock">●</span>{tr(task.previewUrl)}</span>
-              </> : <span className="hc-pane-name">📺 {tr({ uz: "Natija", ru: "Результат" })}</span>}
+              </> : consoleOnly ? <span className="hc-pane-name">🖥️ Console</span> : <span className="hc-pane-name">📺 {tr({ uz: "Natija", ru: "Результат" })}</span>}
             {
     /* Kod o'zgargan, lekin hali ishga tushirilmagan bo'lsa — ochiq aytiladi */
   }
@@ -2276,7 +2512,7 @@ ${tr({ uz: "Bosing — kursor shu qatorga tushadi", ru: "Нажмите — ку
           {hung && <div className="hc-hung" role="alert">{HUNG_MSG}</div>}
           {showConsole && <div className="hc-console">
               <div className="hc-console-bar">
-                <span className="hc-console-title">🖥️ Console</span>
+                {!consoleOnly && <span className="hc-console-title">🖥️ Console</span>}
                 {consoleLines.length > 0 && <span className="hc-console-count">{consoleLines.length}{consoleBuf.dropped > 0 ? " · " + tr({ uz: `eng eski ${consoleBuf.dropped} yashirildi`, ru: `скрыто старых: ${consoleBuf.dropped}` }) : ""}</span>}
                 {consoleNew > 0 && <button className="hc-console-new" onClick={consoleScrollBottom}>↓ {tr({ uz: `yangi ${consoleNew}`, ru: `новых ${consoleNew}` })}</button>}
                 {consoleLines.length > 0 && <button className="hc-console-clear" onClick={() => setConsoleLines([])}>{tr({ uz: "tozalash", ru: "очистить" })}</button>}
@@ -2371,7 +2607,7 @@ function StyleTag() {
         zoom:var(--lz,1);height:calc(100dvh / var(--lz,1));
         /* F-0813-01: 1160px «kichkina ramka» e'tirozi — desktopda +50% kengaytirildi.
            Balandlik TEGILMAGAN (100dvh o'zgarishsiz); kichik ekranda width:100% cap. */
-        display:flex;flex-direction:column;justify-content:center;gap:clamp(12px,1.8vw,18px);padding:clamp(16px,2.4vw,30px);overflow:hidden;-webkit-font-smoothing:antialiased;width:100%;max-width:1740px;margin:0 auto}
+        display:flex;flex-direction:column;justify-content:safe center;gap:clamp(12px,1.8vw,18px);padding:clamp(16px,2.4vw,30px);overflow:hidden;-webkit-font-smoothing:antialiased;width:100%;max-width:1740px;margin:0 auto}
 
       .hc-top{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px}
       .hc-eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:${HC_T.accent};display:inline-flex;align-items:center;gap:7px}
@@ -2380,7 +2616,8 @@ function StyleTag() {
       .hc-brief{margin:0;color:${HC_T.ink2};font-size:clamp(13px,1.5vw,15px);line-height:1.55;max-width:60ch}
 
       .hc-checklist{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:6px}
-      .hc-count{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:12px;color:#fff;background:linear-gradient(135deg,${HC_T.accent},${HC_T.accent2});padding:6px 11px;border-radius:99px;box-shadow:0 6px 16px -6px rgba(255,77,38,.5)}
+.hc-title,.hc-brief,.hc-chip,.hc-hint{user-select:none;-webkit-user-select:none} /* F-1017-224 (mentor): vazifa matni/shart/maslahatdagi kod belgilanmaydi — o'quvchi nusxalamasdan o'zi teradi */
+      .hc-count{font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-weight:700;font-size:12px;color:#fff;background:linear-gradient(135deg,${HC_T.accent},${HC_T.accent2});padding:6px 11px;border-radius:99px;box-shadow:0 6px 16px -6px rgba(255,77,38,.5)}
       .hc-chip{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:500;color:${HC_T.ink2};background:${HC_T.paper};padding:6px 14px 6px 7px;border-radius:99px;border:1px solid ${HC_T.line};box-shadow:0 1px 2px rgba(${HC_T.shadowBase},.04);transition:all .22s ease;cursor:default}
       .hc-chip.ok{color:${HC_T.ink};font-weight:600;border-color:${HC_T.success}40;background:${HC_T.successSoft}}
       .hc-dot{flex-shrink:0;width:21px;height:21px;border-radius:50%;background:${HC_T.bg};color:${HC_T.ink3};display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;transition:all .25s}
@@ -2389,14 +2626,16 @@ function StyleTag() {
       .hc-msg{height:40px;width:100%;display:flex;align-items:center;justify-content:center;margin-top:3px;overflow:hidden}
       .hc-hint.hc-hint{margin:0;font-size:13px;color:${HC_T.warn};background:#FFF6EA;border:1px solid #F4DFBC;padding:8px 15px;border-radius:11px;max-width:76ch;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
       /* K-M-02: tugma flex — matn (span) kesiladi, «+N» belgisi qisilmaydi va doim ko'rinadi */
-      .hc-err{font-size:12.5px;color:#C01024;background:#FDECEC;border:1px solid #F6CFCF;padding:7px 14px;border-radius:10px;font-family:'JetBrains Mono',monospace;max-width:min(100%,96ch);line-height:1.4;display:inline-flex;align-items:center;gap:8px;min-width:0;cursor:pointer;text-align:left}
+      .hc-err{font-size:12.5px;color:#C01024;background:#FDECEC;border:1px solid #F6CFCF;padding:7px 14px;border-radius:10px;font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;max-width:min(100%,96ch);line-height:1.4;display:inline-flex;align-items:center;gap:8px;min-width:0;cursor:pointer;text-align:left}
       .hc-err-text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
       .hc-err:hover{background:#FBDFDF;border-color:#EEB8B8}
       .hc-err-more{flex-shrink:0;background:#C01024;color:#fff;border-radius:99px;padding:1px 7px;font-size:11px}
 
       /* F-0813-01: 3 ustun — editor | sudraluvchi chegara | natija. Ulush --hcL/--hcR
          o'zgaruvchilarida (30–70%), sudralganda JS yangilaydi, tanlov eslab qolinadi. */
-      .hc-split{flex:none;height:calc(62dvh / var(--lz,1));min-height:0;display:grid;grid-template-columns:minmax(0,var(--hcL,1fr)) 12px minmax(0,var(--hcR,1fr));gap:clamp(3px,.4vw,5px)}
+      /* F-1004-18: past ekranda (1280×773) sarlavha + ro'yxat + 62dvh sig'masdi — markazlash tepani kesardi.
+         Endi panel qisqaradi (balandlik doimiy, xabar paydo bo'lganda sakramaydi), tepa «safe center» bilan kesilmaydi. */
+      .hc-split{flex:0 1 auto;height:calc(62dvh / var(--lz,1));min-height:240px;display:grid;grid-template-columns:minmax(0,var(--hcL,1fr)) 12px minmax(0,var(--hcR,1fr));gap:clamp(3px,.4vw,5px)}
       .hc-pane{display:flex;flex-direction:column;min-height:0;border-radius:18px;overflow:hidden;background:${HC_T.paper};box-shadow:0 1px 0 ${HC_T.line},0 18px 40px -22px rgba(${HC_T.shadowBase},.35)}
       .hc-pane-bar{display:flex;align-items:center;gap:10px;padding:10px 15px;font-size:12px;font-weight:600;color:${HC_T.ink2}}
       .hc-editor-pane .hc-pane-bar{background:${HC_CODE.bg};color:#A7B6D6;border-bottom:1px solid rgba(255,255,255,.06)}
@@ -2404,9 +2643,9 @@ function StyleTag() {
       .hc-dots{display:inline-flex;gap:6px;flex-shrink:0}
       .hc-dots i{width:11px;height:11px;border-radius:50%;background:#3A4760;display:block}
       .hc-dots i:nth-child(1){background:#ff5f56}.hc-dots i:nth-child(2){background:#ffbd2e}.hc-dots i:nth-child(3){background:#27c93f}
-      .hc-pane-name{font-family:'JetBrains Mono',monospace;font-weight:700}
+      .hc-pane-name{font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-weight:700}
       /* Soxta brauzer manzil-qatori — task.previewUrl berilganda (F-0809-05) */
-      .hc-url{font-family:'JetBrains Mono',monospace;font-size:11px;color:${HC_T.ink2};display:flex;align-items:center;gap:6px;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+      .hc-url{font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-size:11px;color:${HC_T.ink2};display:flex;align-items:center;gap:6px;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
       .hc-lock{color:${HC_T.success};font-size:8px;flex-shrink:0}
       .hc-live{margin-left:auto;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:${HC_T.success};background:${HC_T.successSoft};padding:4px 9px;border-radius:99px;font-weight:800;display:inline-flex;align-items:center;gap:6px}
       .hc-live::before{content:"";width:6px;height:6px;border-radius:50%;background:${HC_T.success};animation:hc-pulse 1.8s infinite}
@@ -2420,7 +2659,7 @@ function StyleTag() {
       .hc-tabs{display:flex;gap:4px;flex:1 1 auto;min-width:0;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch}
       .hc-tabs::-webkit-scrollbar{display:none}
       .hc-tab{flex-shrink:0}
-      .hc-tab{background:transparent;border:none;color:#7E92B4;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;padding:6px 13px;border-radius:9px;cursor:pointer;transition:all .15s;white-space:nowrap}
+      .hc-tab{background:transparent;border:none;color:#7E92B4;font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-size:12px;font-weight:600;padding:6px 13px;border-radius:9px;cursor:pointer;transition:all .15s;white-space:nowrap}
       .hc-tab:hover{color:#cfe0ff;background:rgba(255,255,255,.06)}
       .hc-tab.active{color:#fff;background:rgba(255,255,255,.14);box-shadow:inset 0 -2px 0 ${HC_T.accent}}
       .hc-mini{margin-left:auto;background:linear-gradient(135deg,${HC_T.accent},${HC_T.accent2});color:#fff;border:none;border-radius:9px;padding:6px 13px;font-size:11.5px;font-weight:700;cursor:pointer;font-family:'Manrope',sans-serif;transition:all .18s;flex-shrink:0;box-shadow:0 6px 14px -6px rgba(255,77,38,.6)}
@@ -2428,7 +2667,7 @@ function StyleTag() {
       .hc-mini:active{transform:translateY(0)}
 
       .hc-editor-wrap{flex:1;min-height:0;display:flex;background:${HC_CODE.bg};overflow:hidden}
-      .hc-gutter{flex:0 0 auto;padding:18px 10px 18px 16px;font-family:'JetBrains Mono',monospace;font-size:var(--hcfs,14px);line-height:1.7;color:#41527A;text-align:right;white-space:pre;user-select:none;overflow:hidden;pointer-events:none}
+      .hc-gutter{flex:0 0 auto;padding:18px 10px 18px 16px;font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-size:var(--hcfs,14px);line-height:1.7;color:#41527A;text-align:right;white-space:pre;user-select:none;overflow:hidden;pointer-events:none}
       /* overflow:hidden — joriy-qator chizig'i surilganda quti tashqarisiga chiqmasin */
       .hc-code-box{position:relative;flex:1;min-width:0;min-height:0;overflow:hidden}
 
@@ -2436,7 +2675,7 @@ function StyleTag() {
          bo'lishi shart (shrift, o'lcham, qator balandligi, chekinish, white-space) —
          bitta piksel farq qilsa, harflar kursordan siljib ketadi. */
       .hc-hl,.hc-code{position:absolute;inset:0;margin:0;border:none;
-        font-family:'JetBrains Mono',monospace;font-size:var(--hcfs,14px);line-height:1.7;letter-spacing:0;
+        font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-size:var(--hcfs,14px);line-height:1.7;letter-spacing:0;
         padding:18px 20px 18px 12px;tab-size:2;white-space:pre;overflow:auto}
       .hc-hl{color:${HC_CODE.text};background:${HC_CODE.bg};pointer-events:none;overflow:hidden;z-index:0}
       .hc-code{resize:none;outline:none;background:transparent;color:transparent;caret-color:${HC_T.accent2};z-index:1}
@@ -2483,11 +2722,17 @@ function StyleTag() {
       .hc-hung{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;font-size:14px;line-height:1.55;font-weight:700;color:#9A2A0F;background:#FFF1EC;border-top:2px solid ${HC_T.accent}}
 
       .hc-console{flex-shrink:0;height:34%;min-height:96px;display:flex;flex-direction:column;background:${HC_CODE.bg};border-top:1px solid rgba(255,255,255,.07)}
+      /* F-1004-18: console-only — bo'sh oq Natija oynasi o'rniga console butun panelda */
+      .hc-preview-pane.console-only{background:${HC_CODE.bg}}
+      .hc-preview-pane.console-only .hc-pane-bar{background:${HC_CODE.bg};color:#A7B6D6;border-bottom:1px solid rgba(255,255,255,.06)}
+      .hc-preview-pane.console-only .hc-frame{flex:none;height:0;visibility:hidden}
+      .hc-preview-pane.console-only .hc-console{flex:1;height:auto;border-top:none}
+      .hc-console-bar:empty{display:none}
       .hc-console-bar{display:flex;align-items:center;gap:8px;padding:7px 14px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7E92B4;border-bottom:1px solid rgba(255,255,255,.06)}
-      .hc-console-title{font-family:'JetBrains Mono',monospace}
+      .hc-console-title{font-family:'JetBrains Mono',monospace;font-feature-settings:"liga" 0,"calt" 0}
       .hc-console-clear{margin-left:auto;background:rgba(255,255,255,.08);color:#cfe0ff;border:none;border-radius:7px;padding:4px 10px;font-size:10.5px;font-weight:600;cursor:pointer;text-transform:none;letter-spacing:0;font-family:'Manrope',sans-serif;transition:all .15s}
       .hc-console-clear:hover{background:${HC_T.accent};color:#fff}
-      .hc-console-body{flex:1;min-height:0;overflow:auto;padding:6px 0;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.6}
+      .hc-console-body{flex:1;min-height:0;overflow:auto;padding:6px 0;font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-size:13px;line-height:1.6}
       .hc-console-empty{color:#5B6B86;padding:4px 15px;font-style:italic}
       .hc-console-count{font-weight:600;color:#5B6B86;text-transform:none;letter-spacing:0}
       .hc-console-new{background:${HC_T.accent};color:#fff;border:none;border-radius:99px;padding:3px 10px;font-size:10.5px;font-weight:700;cursor:pointer;text-transform:none;letter-spacing:0}
@@ -2532,7 +2777,7 @@ function StyleTag() {
       .hc-sb-pos{margin-left:auto;white-space:nowrap}
       .hc-sb-font{display:flex;align-items:center;gap:3px}
       .hc-sb-fs{min-width:20px;text-align:center;color:#A7B6D6}
-      .hc-sb-btn{background:transparent;border:none;color:#7E92B4;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;cursor:pointer;border-radius:6px;padding:2px 7px;transition:all .15s}
+      .hc-sb-btn{background:transparent;border:none;color:#7E92B4;font-family:'JetBrains Mono',monospace; font-feature-settings: "liga" 0, "calt" 0;font-size:11px;font-weight:700;cursor:pointer;border-radius:6px;padding:2px 7px;transition:all .15s}
       .hc-sb-btn:hover{background:rgba(255,255,255,.12);color:#fff}
 
       .hc-divider{cursor:col-resize;display:flex;align-items:center;justify-content:center;touch-action:none;border-radius:8px;transition:background .15s}
@@ -2620,167 +2865,90 @@ function StyleTag() {
 }
 var HtmlCompiler_default = HtmlCompiler;
 
-// src/live/liveClient.js
-var DEFAULT_API_URL = "https://dars-api.coddycamp.uz";
-var LIVE_API_URL = "" ? String("").replace(/\/+$/, "") : DEFAULT_API_URL;
-var LIVE_ENABLED = !!LIVE_API_URL;
-var LIVE_POLL_MS = 2500;
-var LIVE_POLL_MAX_MS = 15e3;
-var LIVE_HEARTBEAT_MS = 1e4;
-var LIVE_STALE_MS = 18e4;
-var LMS_SOLO_RECHECK_MS = 2e4;
-var API = `${LIVE_API_URL}/api/v1/live`;
-async function errorFrom(r, fallback) {
-  let msg = "";
-  try {
-    msg = (await r.json()).message || "";
-  } catch {
+// src/live/previewMode.js
+var PREVIEW = "preview";
+var on = false;
+var runId = null;
+var OWN_KEY_PREFIXES = [
+  "liveSession:",
+  "liveNickname",
+  "ccProgress:",
+  "ccPractice:",
+  "ccCode:",
+  "ccDetails:",
+  "ccSeal:",
+  "ccHomework:",
+  "ccHwSeal:",
+  "ccHwQa-",
+  "ccDemoDay",
+  "ccPitch",
+  "ccBridgeCard",
+  "cc-site-url",
+  "cc-deploy-project",
+  "pm-",
+  "bridge-",
+  "ld-tahrir",
+  "inetOnboarded_",
+  "hcOnboarded_",
+  "hcFont",
+  "hcSplit"
+];
+var PASS_KEYS = ["cc_lang", "bridgeLang", "hwDemoLang"];
+var isOwnKey = (k) => typeof k === "string" && (PASS_KEYS.includes(k) || OWN_KEY_PREFIXES.some((p) => k.startsWith(p)));
+var isPreview = () => on;
+function notePreviewProps(props) {
+  if (props && props.visitMode === PREVIEW) {
+    if (typeof props.previewRunId === "string" && /^[A-Za-z0-9_-]{16,128}$/.test(props.previewRunId)) runId = props.previewRunId;
+    enable();
   }
-  const e = new Error(msg || fallback);
-  e.status = r.status;
-  return e;
+  return isPreview();
 }
-async function liveRpc(fn, body) {
-  const r = await fetch(`${API}/rpc/${fn}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body || {})
-  });
-  if (!r.ok) throw await errorFrom(r, `${fn}: ${r.status}`);
-  if (r.status === 204) return null;
-  const t = await r.text();
-  return t ? JSON.parse(t) : null;
+function enable() {
+  if (on) return;
+  on = true;
+  installOverlay();
 }
-async function liveGet(pin) {
-  const r = await fetch(`${API}/session/${encodeURIComponent(pin)}`);
-  if (r.status === 404) return null;
-  if (!r.ok) throw new Error(`get: ${r.status}`);
-  return r.json();
-}
-async function liveList(url) {
-  const r = await fetch(url);
-  if (!r.ok) throw new Error(`list: ${r.status}`);
-  return r.json();
-}
-var livePlayers = (pin) => liveList(`${API}/players/${encodeURIComponent(pin)}`);
-var liveAnswers = (pin, screenIdx) => liveList(`${API}/answers/${encodeURIComponent(pin)}${screenIdx == null ? "" : `?screen=${encodeURIComponent(screenIdx)}`}`);
-var liveQuizAnswers = (pin) => liveList(`${API}/answers/${encodeURIComponent(pin)}?range=arena`);
-async function lmsFetch(method, url, liveToken, body) {
-  const r = await fetch(url, {
-    method,
-    headers: { Authorization: `Bearer ${liveToken}`, ...body ? { "Content-Type": "application/json" } : {} },
-    body: body ? JSON.stringify(body) : void 0
-  });
-  let data = null;
-  try {
-    data = await r.json();
-  } catch {
-  }
-  if (!r.ok) {
-    const e = new Error(data && data.message || `lms: ${r.status}`);
-    e.code = data && data.error || `http_${r.status}`;
-    e.status = r.status;
-    throw e;
-  }
-  return data;
-}
-var lmsJoin = (liveToken, body) => lmsFetch("POST", `${LIVE_API_URL}/api/v1/lms/join`, liveToken, body);
-var lmsRestart = (liveToken, lessonId) => lmsFetch("POST", `${LIVE_API_URL}/api/v1/lms/restart`, liveToken, { lesson_id: lessonId });
-async function progressPut(liveToken, body, { keepalive = false } = {}) {
-  const r = await fetch(`${LIVE_API_URL}/api/v1/me/progress`, {
-    method: "PUT",
-    headers: { Authorization: `Bearer ${liveToken}`, "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-    keepalive
-  });
-  let data = null;
-  try {
-    data = await r.json();
-  } catch {
-  }
-  if (!r.ok) {
-    const e = new Error(data && data.message || `progress: ${r.status}`);
-    e.code = data && data.error || `http_${r.status}`;
-    e.status = r.status;
-    throw e;
-  }
-  return data;
-}
-function peekTokenRole(liveToken) {
-  try {
-    const part = String(liveToken).split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
-    const role = JSON.parse(atob(part)).role;
-    return role === "mentor" || role === "student" ? role : null;
-  } catch {
+function installOverlay() {
+  if (typeof Storage === "undefined" || typeof window === "undefined") return;
+  const P = Storage.prototype;
+  if (P.__ccPreview) return;
+  const local = /* @__PURE__ */ new Map(), session = /* @__PURE__ */ new Map();
+  const memOf = (s) => {
+    try {
+      if (s === window.localStorage) return local;
+    } catch {
+    }
+    try {
+      if (s === window.sessionStorage) return session;
+    } catch {
+    }
     return null;
-  }
+  };
+  const get = P.getItem, set = P.setItem, rem = P.removeItem;
+  P.getItem = function(k) {
+    const m = memOf(this), key = String(k);
+    if (!m || !isOwnKey(key)) return get.call(this, k);
+    if (m.has(key)) return m.get(key);
+    return PASS_KEYS.includes(key) ? get.call(this, k) : null;
+  };
+  P.setItem = function(k, v) {
+    const m = memOf(this), key = String(k);
+    if (m && isOwnKey(key)) {
+      m.set(key, String(v));
+      return;
+    }
+    return set.call(this, k, v);
+  };
+  P.removeItem = function(k) {
+    const m = memOf(this), key = String(k);
+    if (m && isOwnKey(key)) {
+      m.set(key, null);
+      return;
+    }
+    return rem.call(this, k);
+  };
+  Object.defineProperty(P, "__ccPreview", { value: true });
 }
-var _lsKey = (id) => `liveSession:${id}`;
-var liveRead = (id) => {
-  try {
-    return JSON.parse(localStorage.getItem(_lsKey(id)) || "null");
-  } catch {
-    return null;
-  }
-};
-var liveStore = (id, o) => {
-  try {
-    localStorage.setItem(_lsKey(id), JSON.stringify(o));
-  } catch {
-  }
-};
-var liveClear = (id) => {
-  try {
-    localStorage.removeItem(_lsKey(id));
-  } catch {
-  }
-};
-var fmtPin = (p) => p ? String(p).replace(/(\d{3})(\d{3})/, "$1 $2") : "";
-var PROG_TTL_MS = 6 * 60 * 60 * 1e3;
-var _progKey = (id) => `ccProgress:${id}`;
-var progRead = (id, total) => {
-  try {
-    const p = JSON.parse(localStorage.getItem(_progKey(id)) || "null");
-    if (!p || p.total !== total || Date.now() - (p.savedAt || 0) > PROG_TTL_MS) return null;
-    return p;
-  } catch {
-    return null;
-  }
-};
-var _progWriteHook = null;
-var setProgWriteHook = (fn) => {
-  _progWriteHook = typeof fn === "function" ? fn : null;
-};
-var progWrite = (id, o) => {
-  try {
-    localStorage.setItem(_progKey(id), JSON.stringify(o));
-  } catch {
-  }
-  try {
-    if (_progWriteHook) _progWriteHook(id, o);
-  } catch {
-  }
-};
-var progClear = (id) => {
-  try {
-    localStorage.removeItem(_progKey(id));
-  } catch {
-  }
-};
-var LIVE_NICK_KEY = "liveNickname";
-var nickRead = () => {
-  try {
-    return localStorage.getItem(LIVE_NICK_KEY) || "";
-  } catch {
-    return "";
-  }
-};
-var nickStore = (n) => {
-  try {
-    localStorage.setItem(LIVE_NICK_KEY, n);
-  } catch {
-  }
-};
 
 // src/live/i18n.js
 import React from "react";
@@ -2897,6 +3065,7 @@ function noteEarned(lessonId, ids) {
   if (changed) persist(lessonId);
 }
 function resetResultDetails(lessonId) {
+  clearedProgress.delete(lessonId);
   attemptsByLesson.delete(lessonId);
   earnedAtByLesson.delete(lessonId);
   arenaByLesson.delete(lessonId);
@@ -2922,6 +3091,46 @@ var attemptMark = (lessonId) => {
   }
 };
 var sealKey = (lessonId, p) => `${(p && p.livePin) ?? ""}|${(p && p.liveMode) ?? ""}|${attemptMark(lessonId)}`;
+var CAP_BYTES = 48e3;
+var byteLen = (s) => {
+  try {
+    return new TextEncoder().encode(s).length;
+  } catch {
+    return s.length;
+  }
+};
+function capPayload(payload, cap = CAP_BYTES) {
+  if (!payload || typeof payload !== "object") return payload;
+  if (byteLen(JSON.stringify(payload)) <= cap) return payload;
+  const p = JSON.parse(JSON.stringify(payload));
+  const dropped = [];
+  const step = (name, fn) => {
+    if (byteLen(JSON.stringify(p)) <= cap) return;
+    fn();
+    dropped.push(name);
+  };
+  step("answers", () => {
+    delete p.answers;
+  });
+  step("attempts", () => {
+    for (const q of p.questions || []) if (Array.isArray(q.attempts) && q.attempts.length > 3) q.attempts = q.attempts.slice(0, 3);
+  });
+  step("text", () => {
+    const c = (s) => typeof s === "string" && s.length > 120 ? s.slice(0, 120) : s;
+    for (const q of p.questions || []) {
+      q.question = c(q.question);
+      if (q.options) q.options = q.options.map(c);
+      q.correct_answer = c(q.correct_answer);
+      for (const a of q.attempts || []) a.answer = c(a.answer);
+    }
+  });
+  step("questions", () => {
+    while ((p.questions || []).length > 1 && byteLen(JSON.stringify(p)) > cap) p.questions.pop();
+  });
+  p.truncated = true;
+  p.truncatedFields = dropped;
+  return p;
+}
 function sealPayload(lessonId, payload) {
   if (!lessonId || !payload || typeof payload !== "object") return payload;
   try {
@@ -2937,7 +3146,7 @@ function sealPayload(lessonId, payload) {
       else held = null;
     }
     if (held && held.key === key) return JSON.parse(held.json);
-    const rec = { key, json: JSON.stringify(payload) };
+    const rec = { key, json: JSON.stringify(capPayload(payload)) };
     sealedByLesson.set(lessonId, rec);
     try {
       store()?.setItem(SEAL_KEY(lessonId), JSON.stringify(rec));
@@ -2951,7 +3160,7 @@ function sealPayload(lessonId, payload) {
 function unsealPayload(lessonId) {
   sealedByLesson.delete(lessonId);
 }
-function buildResultDetails({ lessonId, screenMeta, answers, earned, achievements, lang: langIn, now, arenaBank } = {}) {
+function buildResultDetails({ lessonId, screenMeta, answers, earned, achievements, lang: langIn, now, arenaBank, firstPass, lastAnswers, startedAt: startedIn, totalScreens: totalIn } = {}) {
   const lang = langIn === "ru" || langIn === "uz" ? langIn : getLiveLang();
   const finish = now || Date.now();
   load(lessonId);
@@ -3026,8 +3235,212 @@ function buildResultDetails({ lessonId, screenMeta, answers, earned, achievement
     list.push({ id, name: String(def && def.name || id).slice(0, LIM.name), title: String(title).slice(0, LIM.title), earned_at: iso(at.get(String(raw)) ?? at.get(id) ?? finish) });
   }
   list.sort((x, y) => x.earned_at < y.earned_at ? -1 : x.earned_at > y.earned_at ? 1 : 0);
-  return { lang, questions, achievements: list.slice(0, LIM.achievements) };
+  const prog = clearedProgress.get(lessonId) || null;
+  const fp = firstPass !== void 0 ? firstPass : prog ? prog.firstPass ?? null : void 0;
+  const started = Number.isFinite(startedIn) ? startedIn : prog && Number.isFinite(prog.startedAt) ? prog.startedAt : null;
+  const totalScreens = Number.isInteger(totalIn) ? totalIn : (screenMeta || []).length || (prog && Number.isInteger(prog.total) ? prog.total : 0);
+  const missed = questions.filter((q) => q.kind === "test" && q.correct !== true).map((q) => q.question_id);
+  let retake = null;
+  if (fp !== void 0) {
+    if (fp && typeof fp === "object") {
+      const la = lastAnswers || prog && prog.answers || null;
+      retake = { pressed: true, lastPass: passStats(screenMeta, la, started, finish) };
+    } else retake = { pressed: false };
+  }
+  const out = { detailsVersion: 2, lang, questions, achievements: list.slice(0, LIM.achievements), missed, totalScreens, finishedAt: iso(finish), truncated: false, retake };
+  if (started) out.startedAt = iso(started);
+  return out;
 }
+function passStats(screenMeta, answers, startedAt, finish) {
+  const scored = [];
+  (screenMeta || []).forEach((m, i) => {
+    if (m && m.scored) scored.push(i);
+  });
+  const total = scored.length;
+  const correct = answers && typeof answers === "object" ? scored.filter((i) => answers[i] && answers[i].correct === true).length : null;
+  const o = { totalQuestions: total, correctAnswers: correct, scorePercent: correct === null || !total ? null : Math.round(correct / total * 100) };
+  if (Number.isFinite(startedAt)) o.durationSec = Math.max(0, Math.floor((finish - startedAt) / 1e3));
+  return o;
+}
+var clearedProgress = /* @__PURE__ */ new Map();
+function noteProgressCleared(lessonId, prog) {
+  if (!lessonId) return;
+  if (prog && typeof prog === "object") clearedProgress.set(lessonId, prog);
+}
+
+// src/live/liveClient.js
+var DEFAULT_API_URL = "https://dars-api.coddycamp.uz";
+var LIVE_API_URL = "" ? String("").replace(/\/+$/, "") : DEFAULT_API_URL;
+var LIVE_ENABLED = !!LIVE_API_URL;
+var LIVE_POLL_MS = 2500;
+var LIVE_POLL_MAX_MS = 15e3;
+var LIVE_HEARTBEAT_MS = 1e4;
+var LIVE_STALE_MS = 18e4;
+var LMS_SOLO_RECHECK_MS = 2e4;
+var API = `${LIVE_API_URL}/api/v1/live`;
+function net(url, init) {
+  if (isPreview()) {
+    const e = new Error("preview: dars-api yopiq");
+    e.code = "preview_offline";
+    return Promise.reject(e);
+  }
+  return fetch(url, init);
+}
+async function errorFrom(r, fallback) {
+  let msg = "";
+  try {
+    msg = (await r.json()).message || "";
+  } catch {
+  }
+  const e = new Error(msg || fallback);
+  e.status = r.status;
+  return e;
+}
+async function liveRpc(fn, body) {
+  const r = await net(`${API}/rpc/${fn}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body || {})
+  });
+  if (!r.ok) throw await errorFrom(r, `${fn}: ${r.status}`);
+  if (r.status === 204) return null;
+  const t = await r.text();
+  return t ? JSON.parse(t) : null;
+}
+async function liveGet(pin) {
+  const r = await net(`${API}/session/${encodeURIComponent(pin)}`);
+  if (r.status === 404) return null;
+  if (!r.ok) throw new Error(`get: ${r.status}`);
+  return r.json();
+}
+async function liveList(url) {
+  const r = await net(url);
+  if (!r.ok) throw new Error(`list: ${r.status}`);
+  return r.json();
+}
+var livePlayers = (pin) => liveList(`${API}/players/${encodeURIComponent(pin)}`);
+var liveAnswers = (pin, screenIdx) => liveList(`${API}/answers/${encodeURIComponent(pin)}${screenIdx == null ? "" : `?screen=${encodeURIComponent(screenIdx)}`}`);
+var liveQuizAnswers = (pin) => liveList(`${API}/answers/${encodeURIComponent(pin)}?range=arena`);
+async function lmsFetch(method, url, liveToken, body) {
+  const r = await net(url, {
+    method,
+    headers: { Authorization: `Bearer ${liveToken}`, ...body ? { "Content-Type": "application/json" } : {} },
+    body: body ? JSON.stringify(body) : void 0
+  });
+  let data = null;
+  try {
+    data = await r.json();
+  } catch {
+  }
+  if (!r.ok) {
+    const e = new Error(data && data.message || `lms: ${r.status}`);
+    e.code = data && data.error || `http_${r.status}`;
+    e.status = r.status;
+    throw e;
+  }
+  return data;
+}
+var lmsJoin = (liveToken, body) => lmsFetch("POST", `${LIVE_API_URL}/api/v1/lms/join`, liveToken, body);
+var lmsRestart = (liveToken, lessonId) => lmsFetch("POST", `${LIVE_API_URL}/api/v1/lms/restart`, liveToken, { lesson_id: lessonId });
+async function progressPut(liveToken, body, { keepalive = false } = {}) {
+  const r = await net(`${LIVE_API_URL}/api/v1/me/progress`, {
+    method: "PUT",
+    headers: { Authorization: `Bearer ${liveToken}`, "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+    keepalive
+  });
+  let data = null;
+  try {
+    data = await r.json();
+  } catch {
+  }
+  if (!r.ok) {
+    const e = new Error(data && data.message || `progress: ${r.status}`);
+    e.code = data && data.error || `http_${r.status}`;
+    e.status = r.status;
+    throw e;
+  }
+  return data;
+}
+function peekTokenRole(liveToken) {
+  try {
+    const part = String(liveToken).split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
+    const role = JSON.parse(atob(part)).role;
+    return role === "mentor" || role === "student" ? role : null;
+  } catch {
+    return null;
+  }
+}
+var _lsKey = (id) => `liveSession:${id}`;
+var liveRead = (id) => {
+  try {
+    return JSON.parse(localStorage.getItem(_lsKey(id)) || "null");
+  } catch {
+    return null;
+  }
+};
+var liveStore = (id, o) => {
+  try {
+    localStorage.setItem(_lsKey(id), JSON.stringify(o));
+  } catch {
+  }
+};
+var liveClear = (id) => {
+  try {
+    localStorage.removeItem(_lsKey(id));
+  } catch {
+  }
+};
+var fmtPin = (p) => p ? String(p).replace(/(\d{3})(\d{3})/, "$1 $2") : "";
+var PROG_TTL_MS = 6 * 60 * 60 * 1e3;
+var _progKey = (id) => `ccProgress:${id}`;
+var progRead = (id, total) => {
+  try {
+    const p = JSON.parse(localStorage.getItem(_progKey(id)) || "null");
+    if (!p || p.total !== total || Date.now() - (p.savedAt || 0) > PROG_TTL_MS) return null;
+    return p;
+  } catch {
+    return null;
+  }
+};
+var _progWriteHook = null;
+var setProgWriteHook = (fn) => {
+  _progWriteHook = typeof fn === "function" ? fn : null;
+};
+var progWrite = (id, o) => {
+  try {
+    localStorage.setItem(_progKey(id), JSON.stringify(o));
+  } catch {
+  }
+  try {
+    if (_progWriteHook) _progWriteHook(id, o);
+  } catch {
+  }
+};
+var progClear = (id) => {
+  try {
+    noteProgressCleared(id, JSON.parse(localStorage.getItem(_progKey(id)) || "null"));
+  } catch {
+  }
+  try {
+    localStorage.removeItem(_progKey(id));
+  } catch {
+  }
+};
+var LIVE_NICK_KEY = "liveNickname";
+var nickRead = () => {
+  try {
+    return localStorage.getItem(LIVE_NICK_KEY) || "";
+  } catch {
+    return "";
+  }
+};
+var nickStore = (n) => {
+  try {
+    localStorage.setItem(LIVE_NICK_KEY, n);
+  } catch {
+  }
+};
 
 // src/live/progressSync.js
 var DEBOUNCE_MS = 2e3;
@@ -3038,7 +3451,7 @@ function setProgressChannel(lessonId, ch) {
     clearTimeout(prev.timer);
     flush(lessonId, { keepalive: true });
   }
-  if (!ch) {
+  if (!ch || isPreview()) {
     channels.delete(lessonId);
     return;
   }
@@ -3110,7 +3523,10 @@ import { useState as useState2, useEffect as useEffect2, useRef as useRef2, useC
 var LiveGateCtx = createContext(null);
 var STORED_MODES = ["self", "student", "mentor", "solo", "review"];
 function useLiveSession(lessonId, answerKey, opts = {}) {
-  const liveToken = opts.liveToken || null;
+  const previewRef = useRef2(null);
+  if (previewRef.current === null) previewRef.current = notePreviewProps(opts);
+  const preview = previewRef.current;
+  const liveToken = preview ? null : opts.liveToken || null;
   const lessonVersion = opts.lessonVersion || null;
   const keyRef = useRef2(answerKey);
   keyRef.current = answerKey;
@@ -3118,10 +3534,10 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
     unsealPayload(lessonId);
   }, [lessonId]);
   const initRef = useRef2(void 0);
-  if (initRef.current === void 0) initRef.current = LIVE_ENABLED ? liveRead(lessonId) : null;
+  if (initRef.current === void 0) initRef.current = LIVE_ENABLED && !preview ? liveRead(lessonId) : null;
   const init = initRef.current;
   const [mode, setMode] = useState2(() => {
-    if (!LIVE_ENABLED) return "self";
+    if (!LIVE_ENABLED || preview) return "self";
     if (init && STORED_MODES.includes(init.mode)) return init.mode;
     return "choosing";
   });
@@ -3150,9 +3566,9 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
   }, []);
   useEffect2(() => {
     if (mode !== "student" || !pin) return;
-    let on = true, timer = null, delay = LIVE_POLL_MS;
+    let on2 = true, timer = null, delay = LIVE_POLL_MS;
     const schedule = () => {
-      if (on) timer = setTimeout(tick, delay);
+      if (on2) timer = setTimeout(tick, delay);
     };
     const tick = async () => {
       if (typeof document !== "undefined" && document.hidden) {
@@ -3161,7 +3577,7 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
       }
       try {
         const row = await liveGet(pin);
-        if (!on) return;
+        if (!on2) return;
         delay = LIVE_POLL_MS;
         setConnected(true);
         if (!row) {
@@ -3183,7 +3599,7 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
         const alive = Date.now() - lastSeenRef.current < LIVE_STALE_MS;
         setMentorAlive((p) => p === alive ? p : alive);
       } catch {
-        if (!on) return;
+        if (!on2) return;
         setConnected(false);
         delay = Math.min(delay * 2, LIVE_POLL_MAX_MS);
       }
@@ -3199,16 +3615,16 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
     };
     if (typeof document !== "undefined") document.addEventListener("visibilitychange", onVis);
     return () => {
-      on = false;
+      on2 = false;
       clearTimeout(timer);
       if (typeof document !== "undefined") document.removeEventListener("visibilitychange", onVis);
     };
   }, [mode, pin, lessonId]);
   useEffect2(() => {
     if (mode !== "mentor" || !pin) return;
-    let on = true;
+    let on2 = true;
     liveGet(pin).then((row) => {
-      if (!on) return;
+      if (!on2) return;
       if (!row || row.status === "ended") {
         liveClear(lessonId);
         setPin(null);
@@ -3231,7 +3647,7 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
     };
     if (typeof document !== "undefined") document.addEventListener("visibilitychange", onVis);
     return () => {
-      on = false;
+      on2 = false;
       clearInterval(id);
       if (typeof document !== "undefined") document.removeEventListener("visibilitychange", onVis);
     };
@@ -3515,15 +3931,15 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
     if (mode !== "solo" || lms.state !== "joined" || !attemptId || attemptStatus !== "active") return;
     const tok2 = lmsTokenRef.current;
     if (!tok2 || peekTokenRole(tok2) !== "student") return;
-    let on = true, inFlight = false;
+    let on2 = true, inFlight = false;
     const recheck = async () => {
-      if (!on || inFlight || typeof document !== "undefined" && document.hidden) return;
+      if (!on2 || inFlight || typeof document !== "undefined" && document.hidden) return;
       inFlight = true;
       try {
         const body = { lesson_id: lessonId };
         if (lessonVersion) body.lesson_version = lessonVersion;
         const res = await lmsJoin(tok2, body);
-        if (!on || !res || res.mode !== "student") return;
+        if (!on2 || !res || res.mode !== "student") return;
         resetResultDetails(lessonId);
         if (applyServerSession(res, tok2)) setLiveJoinedNote(true);
       } catch {
@@ -3537,7 +3953,7 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
     };
     if (typeof document !== "undefined") document.addEventListener("visibilitychange", onVis);
     return () => {
-      on = false;
+      on2 = false;
       clearInterval(id);
       if (typeof document !== "undefined") document.removeEventListener("visibilitychange", onVis);
     };
@@ -3578,7 +3994,8 @@ function useLiveSession(lessonId, answerKey, opts = {}) {
     attempt,
     serverProgress,
     restartAttempt,
-    liveJoinedNote
+    liveJoinedNote,
+    preview
   };
 }
 
@@ -3608,8 +4025,58 @@ function useServerProgress(live, refs) {
   }, [p]);
 }
 
+// src/live/useAutoNext.js
+import { useEffect as useEffect4, useRef as useRef4, useState as useState3 } from "react";
+var AUTO_NEXT_MS = 6e3;
+function useAutoNext({ on: on2, onFire, qKey }) {
+  const [sec, setSec] = useState3(null);
+  const [auto, setAuto] = useState3(true);
+  const firedRef = useRef4(false);
+  const fireRef = useRef4(onFire);
+  fireRef.current = onFire;
+  useEffect4(() => {
+    firedRef.current = false;
+  }, [qKey]);
+  useEffect4(() => {
+    if (!on2 || !auto) {
+      setSec(null);
+      return void 0;
+    }
+    const deadline = Date.now() + AUTO_NEXT_MS;
+    setSec(Math.ceil(AUTO_NEXT_MS / 1e3));
+    const iv = setInterval(() => {
+      const rem = deadline - Date.now();
+      if (rem > 0) {
+        setSec(Math.ceil(rem / 1e3));
+        return;
+      }
+      clearInterval(iv);
+      setSec(null);
+      if (!firedRef.current) {
+        firedRef.current = true;
+        fireRef.current();
+      }
+    }, 200);
+    return () => clearInterval(iv);
+  }, [on2, auto, qKey]);
+  const fireNow = () => {
+    if (firedRef.current) return;
+    firedRef.current = true;
+    setSec(null);
+    fireRef.current();
+  };
+  const shown = on2 && auto ? sec ?? Math.ceil(AUTO_NEXT_MS / 1e3) : null;
+  return {
+    sec: shown,
+    auto,
+    fireNow,
+    pause: () => setAuto(false),
+    resume: () => setAuto(true)
+  };
+}
+
 // src/live/LiveUI.jsx
-import React2, { useState as useState3, useEffect as useEffect4 } from "react";
+import React2, { useState as useState4, useEffect as useEffect5 } from "react";
 var LT = { bg: "#F6F4EF", ink: "#0E0E10", ink2: "#5A5A60", ink3: "#A7A6A2", paper: "#FFFFFF", accent: "#FF4F28", accentSoft: "#FFE8E1", success: "#1F7A4D" };
 var _liveBtnPri = { background: LT.accent, color: "#fff", border: "none", borderRadius: 12, padding: "14px 20px", fontSize: 16, fontWeight: 700, cursor: "pointer" };
 var _liveBadgeS = { position: "fixed", top: 2, left: "50%", transform: "translateX(-50%)", zIndex: 9998, background: LT.paper, border: `1px solid ${LT.ink3}55`, borderRadius: 99, padding: "2px 14px", fontSize: 13, fontWeight: 600, color: LT.ink2, boxShadow: "0 2px 10px rgba(58,53,48,0.12)", display: "flex", alignItems: "center", gap: 8, whiteSpace: "nowrap", maxWidth: "92vw" };
@@ -3626,15 +4093,16 @@ function LiveBigCode({ pin, onClose }) {
     </div>;
 }
 function LiveGate({ live, title = "Jonli dars" }) {
-  const [code, setCode] = useState3("");
-  const [nick, setNick] = useState3(() => nickRead());
-  const [mentorCode, setMentorCode] = useState3("");
-  const [role, setRole] = useState3("student");
+  const [code, setCode] = useState4("");
+  const [nick, setNick] = useState4(() => nickRead());
+  const [mentorCode, setMentorCode] = useState4("");
+  const [role, setRole] = useState4("student");
   const card = { position: "relative", width: "100%", maxWidth: 420, background: LT.paper, borderRadius: 20, padding: "clamp(24px,4vw,36px)", boxShadow: "0 10px 40px -12px rgba(58,53,48,0.22)", display: "flex", flexDirection: "column", gap: 18 };
   const wrap = { minHeight: "calc(100dvh / var(--lz, 1))", display: "flex", alignItems: "center", justifyContent: "center", padding: 24 };
   const link = { background: "none", border: "none", color: LT.ink3, fontSize: 13, cursor: "pointer", alignSelf: "center" };
   const lms = live.lms || { state: "idle" };
-  const [pinFallback, setPinFallback] = useState3(false);
+  const [pinFallback, setPinFallback] = useState4(false);
+  if (live.preview) return null;
   if (lms.state === "joining" || live.hasLmsToken && lms.state === "idle") {
     return <div style={wrap}><div style={card} data-live="lms-joining">
       <div style={{ textAlign: "center" }}><div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: LT.accent }}>{tr2(title)}</div><h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(22px,3vw,28px)", color: LT.ink, margin: "6px 0 4px" }}>{tr2({ uz: "Darsga ulanmoqda…", ru: "Подключение к уроку…" })}</h2><p style={{ color: LT.ink2, fontSize: 14, margin: 0 }}>{tr2({ uz: "LMS orqali avtomatik kirish. Bir necha soniya.", ru: "Автоматический вход через LMS. Несколько секунд." })}</p></div>
@@ -3691,25 +4159,26 @@ function LiveGate({ live, title = "Jonli dars" }) {
   </div></div>;
 }
 function LiveBadge({ live, total }) {
-  const [bigOpen, setBigOpen] = useState3(false);
-  const [nPlayers, setNPlayers] = useState3(null);
-  useEffect4(() => {
+  const [bigOpen, setBigOpen] = useState4(false);
+  const [nPlayers, setNPlayers] = useState4(null);
+  useEffect5(() => {
     if (live.mode !== "mentor" || !live.pin || live.ended) return;
-    let on = true, t = null;
+    let on2 = true, t = null;
     const tick = async () => {
       try {
         const rows = await livePlayers(live.pin);
-        if (on) setNPlayers(rows.length);
+        if (on2) setNPlayers(rows.length);
       } catch {
       }
-      if (on) t = setTimeout(tick, 6e3);
+      if (on2) t = setTimeout(tick, 6e3);
     };
     tick();
     return () => {
-      on = false;
+      on2 = false;
       clearTimeout(t);
     };
   }, [live.mode, live.pin, live.ended]);
+  if (live.preview) return <div data-tour="live" data-live="badge-preview" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> {tr2({ uz: "Oldindan ko'rish", ru: "Предпросмотр" })}</div>;
   if (live.mode === "mentor") {
     if (live.ended) return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.ink3)} /> {tr2({ uz: "🔓 O'quvchilar erkin qilindi", ru: "🔓 Ученики отпущены" })}</div>;
     return <>
@@ -3747,6 +4216,40 @@ function LiveBadge({ live, total }) {
     return <div data-tour="live" className="live-badge" style={_liveBadgeS}><span style={_liveDot(LT.success)} /> {tr2({ uz: "👨‍🏫 Mentor:", ru: "👨‍🏫 Ментор:" })} {Math.min(live.mentorScreen + 1, total)} / {total}{live.nickname && <span style={{ color: LT.ink3 }}>· {live.nickname}</span>}</div>;
   }
   return null;
+}
+var _toastEl = null;
+var _toastT = null;
+function liveToast(node, ms = 6e3) {
+  if (typeof document === "undefined") return;
+  const text = tr2(node);
+  if (!_toastEl) {
+    _toastEl = document.createElement("div");
+    _toastEl.setAttribute("role", "status");
+    _toastEl.setAttribute("data-live", "toast");
+    Object.assign(_toastEl.style, { position: "fixed", left: "50%", bottom: "28px", transform: "translateX(-50%)", zIndex: "12000", background: LT.ink, color: "#fff", borderRadius: "14px", padding: "12px 18px", fontFamily: "'Manrope', system-ui, sans-serif", fontSize: "15px", fontWeight: "600", lineHeight: "1.4", textAlign: "center", maxWidth: "min(92vw, 560px)", boxShadow: "0 10px 30px -8px rgba(0,0,0,0.45)", opacity: "0", transition: "opacity .25s", pointerEvents: "none" });
+    document.body.appendChild(_toastEl);
+  }
+  _toastEl.textContent = typeof text === "string" ? text : String(text);
+  _toastEl.style.opacity = "1";
+  clearTimeout(_toastT);
+  _toastT = setTimeout(() => {
+    if (_toastEl) _toastEl.style.opacity = "0";
+  }, ms);
+}
+function FinishBtn({ onClick, children, disabled, ...rest }) {
+  const [done, setDone] = useState4(false);
+  const click = (e) => {
+    if (done) return;
+    try {
+      if (typeof onClick === "function") onClick(e);
+    } catch (err) {
+      console.error("[finish]", err);
+      return;
+    }
+    setDone(true);
+    liveToast(isPreview() ? { uz: "Ko'rish rejimi — natija yozilmaydi.", ru: "Режим просмотра — результат не записывается." } : { uz: "Dars yakunlandi ✓ Endi bu oynani yopsangiz bo'ladi.", ru: "Урок завершён ✓ Теперь это окно можно закрыть." });
+  };
+  return <button {...rest} data-live={done ? "finish-done" : "finish"} disabled={disabled || done} onClick={click}>{done ? tr2({ uz: "Yakunlandi ✓", ru: "Завершено ✓" }) : children}</button>;
 }
 
 // src/2-Modull/JsVarsLesson.jsx
@@ -3804,8 +4307,8 @@ var AchMissCtx = createContext2(null);
 var PRACTICE_DONE_BASE = 500;
 var useLang = () => useContext2(LangContext);
 function useIsMobile(breakpoint = 640) {
-  const [isMobile, setIsMobile] = useState4(typeof window !== "undefined" ? window.innerWidth < breakpoint : false);
-  useEffect5(() => {
+  const [isMobile, setIsMobile] = useState5(typeof window !== "undefined" ? window.innerWidth < breakpoint : false);
+  useEffect6(() => {
     if (typeof window === "undefined") return;
     const onResize = () => setIsMobile(window.innerWidth < breakpoint);
     window.addEventListener("resize", onResize);
@@ -3934,17 +4437,17 @@ var getAudioEngine = () => {
 };
 function useAudio(segments) {
   const lang = useLang();
-  const [state, setState] = useState4({ isPlaying: false, currentSegment: null, waitingFor: null, muted: false });
-  const engineRef = useRef4(null);
-  const segmentsRef = useRef4(segments);
+  const [state, setState] = useState5({ isPlaying: false, currentSegment: null, waitingFor: null, muted: false });
+  const engineRef = useRef5(null);
+  const segmentsRef = useRef5(segments);
   const key = segments ? JSON.stringify(segments) : "";
-  const prevKey = useRef4(key);
+  const prevKey = useRef5(key);
   if (prevKey.current !== key) {
     segmentsRef.current = segments;
     prevKey.current = key;
   }
   const stable = segmentsRef.current;
-  useEffect5(() => {
+  useEffect6(() => {
     const engine = getAudioEngine();
     if (!engine) return;
     engineRef.current = engine;
@@ -4024,10 +4527,10 @@ function AchCounter() {
   const gate = useContext2(LiveGateCtx);
   const count = earned ? earned.size : 0;
   const total = Object.keys(ACHIEVEMENTS).length;
-  const prevRef = useRef4(count);
-  const [bump, setBump] = useState4(false);
-  const [open, setOpen] = useState4(false);
-  useEffect5(() => {
+  const prevRef = useRef5(count);
+  const [bump, setBump] = useState5(false);
+  const [open, setOpen] = useState5(false);
+  useEffect6(() => {
     if (count > prevRef.current) {
       setBump(true);
       const t = setTimeout(() => setBump(false), 800);
@@ -4055,9 +4558,9 @@ var Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navConte
   const isNarrow = useIsMobile(768);
   const collapseOn = isNarrow && !mentorStatic;
   const padH = isMobile ? 12 : 60;
-  const [mCollapsed, setMCollapsed] = useState4(false);
-  const contentRef = useRef4(null);
-  useEffect5(() => {
+  const [mCollapsed, setMCollapsed] = useState5(false);
+  const contentRef = useRef5(null);
+  useEffect6(() => {
     setMCollapsed(false);
   }, [screen]);
   const setCollapsed = useCallback3((v) => {
@@ -4100,18 +4603,18 @@ var Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navConte
     </MentorCtx.Provider>;
 };
 var NavBack = ({ onPrev }) => <button className="btn-ghost" onClick={onPrev} style={{ padding: "clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)", fontSize: "clamp(13px,1.5vw,15px)" }}>{tr3({ uz: "Orqaga", ru: "Назад" })}</button>;
-var NavNext = ({ disabled, label = { uz: "Davom etish", ru: "Продолжить" }, onClick, optionalLive }) => {
+var NavNext = ({ disabled, label = { uz: "Davom etish", ru: "Продолжить" }, onClick, optionalLive, mentorLock }) => {
   const gate = useContext2(LiveGateCtx);
   const locked = !!(gate && gate.locked);
   const live = gate && gate.live;
-  const freeRide = !!(optionalLive && live && live.mode === "student" && live.status !== "ended" && live.mentorAlive);
+  const freeRide = !!(optionalLive && live && live.mode === "student" && live.status !== "ended" && live.mentorAlive || live && live.mode === "mentor" && !mentorLock || gate && gate.passed);
   return <button className="btn-white-accent" disabled={(freeRide ? false : disabled) || locked} onClick={onClick} title={locked ? tr3({ uz: "Mentor hali bu sahifaga o'tmadi", ru: "Наставник ещё не открыл эту страницу" }) : void 0} style={{ padding: "clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)", fontSize: "clamp(13px,1.5vw,15px)", marginLeft: "auto" }}>{locked ? tr3({ uz: "⏳ Mentorni kuting", ru: "⏳ Ждите наставника" }) : freeRide && disabled ? tr3({ uz: "Davom etish", ru: "Продолжить" }) : tr3(label)}</button>;
 };
 var FeedbackBlock = ({ show, isCorrect, neutral, children }) => {
-  const [mounted, setMounted] = useState4(show);
-  const [visible, setVisible] = useState4(false);
-  const ref = useRef4(null);
-  useEffect5(() => {
+  const [mounted, setMounted] = useState5(show);
+  const [visible, setVisible] = useState5(false);
+  const ref = useRef5(null);
+  useEffect6(() => {
     if (show) {
       setMounted(true);
       requestAnimationFrame(() => requestAnimationFrame(() => {
@@ -4140,20 +4643,20 @@ var RECAPS = {
       {
         ic: "📦",
         h: { uz: "O'zgaruvchi — nomlangan quti", ru: "Переменная — коробка с именем" },
-        body: { uz: <>O'zgaruvchi — bu <b>qiymat saqlaydigan nomlangan «quti»</b>. Ichiga biror narsa solamiz, qutiga <b>nom</b> beramiz, keyin shu nom bilan chaqiramiz.</>, ru: <>Переменная — это <b>«коробка» с именем, в которой хранится значение</b>. Кладём внутрь что-нибудь, даём коробке <b>имя</b> — и потом зовём её по этому имени.</> },
-        vis: <RcFlow items={[{ uz: "📦 quti", ru: "📦 коробка" }, { uz: "🏷️ nom: yosh", ru: "🏷️ имя: yosh" }, { uz: "🔢 ichida: 14", ru: "🔢 внутри: 14" }]} />,
+        body: { uz: <>Qutiga qiymat solamiz va uni <b>nom</b> bilan chaqiramiz.</>, ru: <>Кладём значение в коробку и зовём её по <b>имени</b>.</> },
+        vis: <RcFlow items={[{ uz: "📦 quti", ru: "коробка" }, { uz: "🏷️ nom: age", ru: "имя: age" }, { uz: "🔢 ichida: 14", ru: "внутри: 14" }]} />,
         ask: { uz: "Uyda qanday «nomlangan qutilar» bor — masalan «tuz» yozilgan idish?", ru: "Какие «коробки с именами» есть у вас дома — например, банка с надписью «соль»?" }
       },
       {
         ic: "🏷️",
         h: { uz: "Nom bo'lsa — topa olamiz", ru: "Есть имя — легко найти" },
-        body: { uz: <>Qutiga <b>nom</b> berganimiz uchun keyin uni <b>oson topamiz</b>. «yosh» desak — ichidagi 14 chiqadi. Nomsiz quti — qidirib topib bo'lmaydi.</>, ru: <>Мы дали коробке <b>имя</b>, поэтому потом <b>легко её находим</b>. Скажем «yosh» — получим 14 изнутри. А коробку без имени не отыскать.</> },
-        vis: <RcFlow items={[{ uz: "🏷️ ism", ru: "🏷️ ism" }, { uz: "🏷️ yosh", ru: "🏷️ yosh" }, { uz: "🏷️ shahar", ru: "🏷️ shahar" }]} sep="·" />
+        body: { uz: <>«age» desak, qutidagi 14 chiqadi — <b>nom</b> bilan qutini oson topamiz.</>, ru: <>Скажем «age» — получим 14: по <b>имени</b> коробку легко найти.</> },
+        vis: <RcFlow items={[{ uz: "🏷️ name", ru: "name" }, { uz: "🏷️ age", ru: "age" }, { uz: "🏷️ city", ru: "city" }]} sep="·" />
       },
       {
         ic: "🎯",
         h: { uz: "Amal ham, sahifa ham emas", ru: "Не действие и не страница" },
-        body: { uz: <>O'zgaruvchi — bu <b>hisob-kitob amali</b> yoki internet sahifasi emas. U shunchaki <b>ma'lumotni saqlab turadigan joy</b>.</>, ru: <>Переменная — это не <b>математическое действие</b> и не интернет-страница. Это просто <b>место, где хранятся данные</b>.</> }
+        body: { uz: <>O'zgaruvchi amal ham, sahifa ham emas — u ma'lumotni <b>saqlab turadigan</b> joy.</>, ru: <>Переменная — не действие и не страница, а место, где <b>хранятся</b> данные.</> }
       }
     ]
   },
@@ -4163,20 +4666,20 @@ var RECAPS = {
       {
         ic: "🔄",
         h: { uz: "Qiymat o'zgarsa — let", ru: "Значение меняется — let" },
-        body: { uz: <>Qiymati <b>keyin o'zgaradigan</b> o'zgaruvchini <b>let</b> so'zi bilan ochamiz. «number» yoki «print» emas — aynan let.</>, ru: <>Переменную, значение которой <b>потом будет меняться</b>, создаём словом <b>let</b>. Не «number» и не «print» — именно let.</> },
-        vis: <RcFlow items={[{ uz: "let ball = 10", ru: "let ball = 10" }, { uz: "ball = 25", ru: "ball = 25" }, { uz: "📦 endi 25", ru: "📦 теперь 25" }]} />,
+        body: { uz: <>Qiymati <b>keyin o'zgaradigan</b> o'zgaruvchini <b>let</b> so'zi bilan ochamiz.</>, ru: <>Переменную, значение которой <b>потом меняется</b>, создаём словом <b>let</b>.</> },
+        vis: <RcFlow items={[{ uz: "let score = 10", ru: "let score = 10" }, { uz: "score = 25", ru: "score = 25" }, { uz: "📦 endi 25", ru: "теперь 25" }]} />,
         ask: { uz: "O'yin bali dars davomida o'zgaradimi? Unda let mi, boshqami?", ru: "Счёт в игре меняется по ходу урока? Тогда let или что-то другое?" }
       },
       {
         ic: "🎮",
         h: { uz: "Misol: o'yin bali", ru: "Пример: счёт в игре" },
-        body: { uz: <>O'yinda <b>ball</b> ortib boradi — 10, keyin 25. Bunday <b>o'zgarib turadigan</b> narsa uchun <b>let</b> to'g'ri keladi.</>, ru: <>В игре <b>счёт</b> растёт — 10, потом 25. Для таких <b>меняющихся</b> вещей подходит <b>let</b>.</> },
-        vis: <RcFlow items={[{ uz: "10", ru: "10" }, { uz: "20", ru: "20" }, { uz: "25", ru: "25" }, { uz: "🔼 o'zgaradi", ru: "🔼 меняется" }]} sep="·" />
+        body: { uz: <>O'yin bali 10 dan 25 ga o'sadi — o'zgarib turadigan narsa uchun <b>let</b>.</>, ru: <>Счёт в игре растёт с 10 до 25 — для меняющихся вещей подходит <b>let</b>.</> },
+        vis: <RcFlow items={[{ uz: "10", ru: "10" }, { uz: "20", ru: "20" }, { uz: "25", ru: "25" }, { uz: "🔼 o'zgaradi", ru: "меняется" }]} sep="·" />
       },
       {
         ic: "🎯",
         h: { uz: "let bilan constni adashtirmang", ru: "Не путайте let и const" },
-        body: { uz: <>Yodda tuting: <b>let</b> — keyin <b>o'zgartirsa bo'ladi</b>. const esa — <b>o'zgarmaydi</b>. Savolda «o'zgaradigan» so'zi bo'lsa — javob let.</>, ru: <>Запомните: <b>let</b> — потом <b>можно менять</b>. А const — <b>не меняется</b>. Если в вопросе есть слово «меняется» — ответ let.</> }
+        body: { uz: <><b>let</b> — keyin o'zgartirsa bo'ladi, <b>const</b> esa o'zgarmaydi.</>, ru: <><b>let</b> потом можно менять, а <b>const</b> — нельзя.</> }
       }
     ]
   },
@@ -4186,51 +4689,51 @@ var RECAPS = {
       {
         ic: "🔒",
         h: { uz: "O'zgarmasa — const", ru: "Не меняется — const" },
-        body: { uz: <>Tug'ilgan yilingiz kabi <b>o'zgarmas</b> qiymat uchun <b>const</b> ishlatamiz. const qutisini <b>qulflab</b> qo'yamiz — ichidagisi doim shu bo'lib qoladi.</>, ru: <>Для <b>неизменных</b> значений — как год вашего рождения — используем <b>const</b>. Коробку const мы <b>запираем на замок</b>: внутри навсегда остаётся то же самое.</> },
-        vis: <RcFlow items={[{ uz: "const yil = 2011", ru: "const yil = 2011" }, { uz: "🔒 qulf", ru: "🔒 замок" }, { uz: "doim 2011", ru: "всегда 2011" }]} />,
+        body: { uz: <>Tug'ilgan yil kabi o'zgarmas qiymat uchun <b>const</b> — u qutini qulflaydi.</>, ru: <>Для неизменного значения, как год рождения, берём <b>const</b> — он запирает коробку.</> },
+        vis: <RcFlow items={[{ uz: "const yil = 2011", ru: "const yil = 2011" }, { uz: "🔒 qulf", ru: "замок" }, { uz: "doim 2011", ru: "всегда 2011" }]} />,
         ask: { uz: "Bir haftada necha kun bor? Bu o'zgaradimi? Unda let mi, const mi?", ru: "Сколько дней в неделе? Это меняется? Тогда let или const?" }
       },
       {
         ic: "🚫",
         h: { uz: "O'zgartirsangiz — xato", ru: "Попробуете изменить — ошибка" },
-        body: { uz: <>const PI = 3.14 dan keyin <b>PI = 3</b> desak — <b>xato</b> beradi. Chunki const bir marta to'ldiriladi va <b>o'zgarmaydi</b>.</>, ru: <>Если после const PI = 3.14 написать <b>PI = 3</b> — будет <b>ошибка</b>. Потому что const заполняется один раз и <b>не меняется</b>.</> },
-        vis: <RcFlow items={[{ uz: "const PI = 3.14", ru: "const PI = 3.14" }, { uz: "PI = 3", ru: "PI = 3" }, { uz: "❌ xato", ru: "❌ ошибка" }]} />
+        body: { uz: <>const PI = 3.14 dan keyin <b>PI = 3</b> desak, <b>xato</b> chiqadi.</>, ru: <>Если после const PI = 3.14 написать <b>PI = 3</b>, будет <b>ошибка</b>.</> },
+        vis: <RcFlow items={[{ uz: "const PI = 3.14", ru: "const PI = 3.14" }, { uz: "PI = 3", ru: "PI = 3" }, { uz: "❌ xato", ru: "ошибка" }]} />
       },
       {
         ic: "🎯",
         h: { uz: "Qulf kerakmi? — const", ru: "Нужен замок? — const" },
-        body: { uz: <>Qoida: qiymat <b>hech qachon o'zgarmasa</b> — const. O'zgarib tursa — let. «o'zgarmas», «doim bir xil» so'zlari constdan darak beradi.</>, ru: <>Правило: значение <b>никогда не меняется</b> — const. Меняется — let. Слова «неизменный», «всегда одинаковый» подсказывают: это const.</> }
+        body: { uz: <>Qiymat hech qachon o'zgarmasa — <b>const</b>, o'zgarib tursa — <b>let</b>.</>, ru: <>Значение никогда не меняется — <b>const</b>, меняется — <b>let</b>.</> }
       }
     ]
   },
   13: {
-    title: { uz: "Number (raqam) va string (matn)", ru: "Number (число) и string (текст)" },
+    title: { uz: "Number (son) va string (matn)", ru: "Number (число) и string (текст)" },
     cards: [
       {
         ic: "🔢",
-        h: { uz: "Tirnoqsiz — bu raqam", ru: "Без кавычек — это число" },
-        body: { uz: <>25 — bu <b>number (raqam)</b>, chunki <b>qo'shtirnoqsiz</b> yozilgan. Number bilan <b>hisob-kitob</b> qilsa bo'ladi: qo'shish, ko'paytirish.</>, ru: <>25 — это <b>number (число)</b>, потому что записано <b>без кавычек</b>. С number можно <b>считать</b>: складывать, умножать.</> },
-        vis: <RcFlow items={[{ uz: "25 → number", ru: "25 → number" }, { uz: "25 + 5 = 30", ru: "25 + 5 = 30" }, { uz: "✅ hisob bo'ladi", ru: "✅ можно считать" }]} />,
-        ask: { uz: "10 + 5 raqamlar bilan bo'ladi. Lekin «o'n» + «besh» bo'ladimi?", ru: "10 + 5 с числами работает. А «десять» + «пять» сработает?" }
+        h: { uz: "Tirnoqsiz — bu son", ru: "Без кавычек — это число" },
+        body: { uz: <>Qo'shtirnoqsiz 25 — bu <b>number</b> (son), u bilan hisob qilsa bo'ladi.</>, ru: <>25 без кавычек — это <b>number</b> (число), с ним можно считать.</> },
+        vis: <RcFlow items={[{ uz: "25 → number", ru: "25 → number" }, { uz: "25 + 5 = 30", ru: "25 + 5 = 30" }, { uz: "✅ hisob bo'ladi", ru: "можно считать" }]} />,
+        ask: { uz: "10 + 5 sonlar bilan bo'ladi. Lekin «o'n» + «besh» bo'ladimi?", ru: "10 + 5 с числами работает. А «десять» + «пять» сработает?" }
       },
       {
         ic: "✍️",
         h: { uz: "Qo'shtirnoqda — bu matn", ru: "В кавычках — это текст" },
-        body: { uz: <>«25» qo'shtirnoqda bo'lsa — bu endi <b>string (matn)</b>, raqam emas. «yigirma» ham — <b>harflar</b> bo'lgani uchun string.</>, ru: <>Если «25» в кавычках — это уже <b>string (текст)</b>, а не число. «двадцать» тоже string — ведь это <b>буквы</b>.</> },
+        body: { uz: <>Qo'shtirnoqdagi «25» — endi <b>string</b> (matn), son emas.</>, ru: <>«25» в кавычках — это уже <b>string</b> (текст), а не число.</> },
         vis: <RcFlow items={[{ uz: '"25" → matn', ru: '"25" → текст' }, { uz: '"yigirma" → matn', ru: '"yigirma" → текст' }]} sep="·" />
       },
       {
         ic: "🎯",
         h: { uz: "true — boshqa tur", ru: "true — другой тип" },
-        body: { uz: <>true — bu <b>boolean</b> (ha/yo'q), raqam emas. Demak faqat <b>tirnoqsiz 25</b> — number bo'ladi.</>, ru: <>true — это <b>boolean</b> (да/нет), а не число. Значит, number здесь только <b>25 без кавычек</b>.</> }
+        body: { uz: <>true — bu <b>boolean</b> (rost/yolg'on), son ham, matn ham emas.</>, ru: <>true — это <b>boolean</b> (истина/ложь): не число и не текст.</> }
       }
     ]
   }
 };
-function RecapOverlay({ screenIdx, onClose }) {
+function RecapOverlay({ screenIdx, onClose, showAsk }) {
   const rc = RECAPS[screenIdx];
-  const [i, setI] = useState4(0);
-  useEffect5(() => {
+  const [i, setI] = useState5(0);
+  useEffect6(() => {
     const onKey = (e) => {
       if (e.key === "Escape") onClose();
       else if (e.key === "ArrowRight") setI((p) => Math.min(p + 1, rc.cards.length - 1));
@@ -4244,7 +4747,7 @@ function RecapOverlay({ screenIdx, onClose }) {
   const last = i === rc.cards.length - 1;
   return <div className="rc-overlay">
       <div className="rc-head">
-        <span className="rc-tag">{tr3({ uz: "📖 Qayta tushuntirish", ru: "📖 Повторное объяснение" })}</span>
+        <span className="rc-tag">{tr3({ uz: "📖 Eslatma", ru: "📖 Напоминание" })}</span>
         <span className="rc-title">{tr3(rc.title)}</span>
         <button className="rc-x" onClick={onClose} aria-label={tr3({ uz: "Yopish", ru: "Закрыть" })}>✕</button>
       </div>
@@ -4253,32 +4756,32 @@ function RecapOverlay({ screenIdx, onClose }) {
         <h2 className="rc-h">{tr3(card.h)}</h2>
         <p className="rc-body">{tr3(card.body)}</p>
         {card.vis && <div className="rc-vis">{card.vis}</div>}
-        {card.ask && <div className="rc-ask">🗣️ {tr3({ uz: "Sinfga savol:", ru: "Вопрос классу:" })} {tr3(card.ask)}</div>}
+        {card.ask && showAsk && <div className="rc-ask">🗣️ {tr3({ uz: "Sinfga savol:", ru: "Вопрос классу:" })} {tr3(card.ask)}</div>}
       </div>
       <div className="rc-nav">
         <button className="rc-btn ghost" disabled={i === 0} onClick={() => setI(i - 1)}>{tr3({ uz: "← Oldingi", ru: "← Предыдущая" })}</button>
         <div className="rc-dots">{rc.cards.map((_, k) => <button key={k} className={`rc-dot ${k === i ? "cur" : k < i ? "fill" : ""}`} onClick={() => setI(k)} aria-label={`${k + 1}-${tr3({ uz: "karta", ru: "карточка" })}`} />)}</div>
-        {last ? <button className="rc-btn done" onClick={onClose}>{tr3({ uz: "✓ Tushunarli — davom etamiz", ru: "✓ Понятно — продолжаем" })}</button> : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr3({ uz: "Keyingisi →", ru: "Следующая →" })}</button>}
+        {last ? <button className="rc-btn done" onClick={onClose}>{tr3({ uz: "Tushunarli", ru: "Понятно" })}</button> : <button className="rc-btn" onClick={() => setI(i + 1)}>{tr3({ uz: "Keyingisi →", ru: "Следующая →" })}</button>}
       </div>
     </div>;
 }
 var fmtCode = (s) => typeof s === "string" && s.includes("`") ? s.split("`").map((p, i) => i % 2 ? <code className="qcode" key={i}>{p}</code> : p) : s;
 var MSTATS_COLORS = ["#019ACB", "#8B5CF6", "#E8A13A", "#E0559A"];
 function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onReveal, onOpenRecap }) {
-  const [data, setData] = useState4({ players: null, rows: [] });
-  useEffect5(() => {
-    let on = true, t = null;
+  const [data, setData] = useState5({ players: null, rows: [] });
+  useEffect6(() => {
+    let on2 = true, t = null;
     const tick = async () => {
       try {
         const [players, answers] = await Promise.all([livePlayers(live.pin), liveAnswers(live.pin, screenIdx)]);
-        if (on) setData({ players, rows: answers });
+        if (on2) setData({ players, rows: answers });
       } catch {
       }
-      if (on) t = setTimeout(tick, 3e3);
+      if (on2) t = setTimeout(tick, 3e3);
     };
     tick();
     return () => {
-      on = false;
+      on2 = false;
       clearTimeout(t);
     };
   }, [live.pin, screenIdx]);
@@ -4296,7 +4799,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
       <div className="mstats-head">
         <span className="mstats-lbl">{tr3({ uz: "📊 Jonli natija", ru: "📊 Живой результат" })}</span>
         <span className="mstats-n">{allIn ? tr3({ uz: "✓ Hamma javob berdi", ru: "✓ Все ответили" }) : <>{tr3({ uz: "Javob berdi:", ru: "Ответили:" })} <b>{answered}</b> / {total}</>}</span>
-        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? "ready" : ""}`} onClick={onReveal}>{tr3({ uz: "🔓 Natijani ochish", ru: "🔓 Открыть результат" })}</button>}
+        {!reveal && onReveal && <button className={`mstats-reveal ${allIn ? "ready" : ""}`} onClick={onReveal}>{tr3({ uz: "Natijani ochish", ru: "Открыть результат" })}</button>}
       </div>
       <div className="mstats-prog"><span className={`mstats-prog-fill ${allIn ? "full" : ""}`} style={{ width: `${total ? Math.round(answered / total * 100) : 0}%` }} /></div>
       {reveal ? <div className="mstats-big">
@@ -4326,17 +4829,17 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
     const level = answered < RECAP_MIN_ANSWERS ? "few" : pct < RECAP_NEED_PCT ? "need" : pct < RECAP_GOOD_PCT ? "maybe" : "good";
     return <div className={`mstats-verdict ${level}`}>
             {level === "need" && <>
-              <p className="mstats-verdict-t">{tr3({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlash tavsiya etiladi.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — класс не понял эту тему. Перед продолжением советуем коротко повторить.</> })}</p>
-              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr3({ uz: "Qayta tushuntirish", ru: "Повторное объяснение" })} — {tr3(RECAPS[screenIdx]?.title)}</button>}
+              <p className="mstats-verdict-t">{tr3({ uz: <>⚠️ Faqat <b>{pct}%</b> to'g'ri — bu mavzu sinfga tushunarsiz qolgan. Davom etishdan oldin qisqa takrorlab oling.</>, ru: <>⚠️ Только <b>{pct}%</b> верных — класс не понял эту тему. Перед продолжением советуем коротко повторить.</> })}</p>
+              {onOpenRecap && <button className="rc-open" onClick={onOpenRecap}>📖 {tr3({ uz: "Eslatma", ru: "Напоминание" })} — {tr3(RECAPS[screenIdx]?.title)}</button>}
             </>}
             {level === "maybe" && <>
               <p className="mstats-verdict-t">{tr3({ uz: <>🟡 <b>{pct}%</b> to'g'ri — yomon emas. Xohlasangiz, davom etishdan oldin qisqa takrorlab oling.</>, ru: <>🟡 <b>{pct}%</b> верных — неплохо. Если хотите, коротко повторите перед продолжением.</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr3({ uz: "📖 Qisqa takrorlash", ru: "📖 Быстрое повторение" })}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>{tr3({ uz: "Qisqa takrorlash", ru: "Быстрое повторение" })}</button>}
             </>}
             {level === "good" && <p className="mstats-verdict-t">{tr3({ uz: <>✅ <b>{pct}%</b> to'g'ri — sinf mavzuni o'zlashtirdi. Bemalol davom eting!</>, ru: <>✅ <b>{pct}%</b> верных — класс освоил тему. Смело продолжайте!</> })}</p>}
             {level === "few" && <>
               <p className="mstats-verdict-t">{tr3({ uz: <>Javob berganlar kam ({answered} ta) — foiz bo'yicha xulosa chiqarish qiyin. O'zingiz baholang:</>, ru: <>Ответивших мало ({answered}) — судить по процентам сложно. Оцените сами:</> })}</p>
-              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr3({ uz: "Qayta tushuntirish", ru: "Повторное объяснение" })} — {tr3(RECAPS[screenIdx]?.title)}</button>}
+              {onOpenRecap && <button className="rc-open soft" onClick={onOpenRecap}>📖 {tr3({ uz: "Eslatma", ru: "Напоминание" })} — {tr3(RECAPS[screenIdx]?.title)}</button>}
             </>}
           </div>;
   })()}
@@ -4345,7 +4848,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
           {waiting.slice(0, 8).map((p) => <span key={p.id} className="mstats-wait-chip">{p.nickname}</span>)}
           {waiting.length > 8 && <span className="mstats-wait-chip more">+{waiting.length - 8}</span>}
         </div>}
-      {reveal && struggling && <p className="mstats-warn">{tr3({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntirish tavsiya etiladi.", ru: "⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Советуем объяснить её ещё раз." })}</p>}
+      {reveal && struggling && <p className="mstats-warn">{tr3({ uz: "⚠️ Ko'pchilik xato qildi — bu mavzu tushunarsiz bo'lgan ko'rinadi. Qayta tushuntiring.", ru: "⚠️ Большинство ошиблось — похоже, тема осталась непонятной. Советуем объяснить её ещё раз." })}</p>}
       {answered === 0 && <p className="mstats-wait">{tr3({ uz: "O'quvchilar javoblari shu yerda jonli ko'rinadi…", ru: "Ответы учеников появятся здесь в реальном времени…" })}</p>}
     </div>;
 }
@@ -4357,12 +4860,12 @@ var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options,
   const live = gate.live;
   const oneShot = !!(live && live.mode === "student");
   const isMentorLive = !!(live && live.mode === "mentor");
-  const mountTs = useRef4(Date.now());
-  const [picked, setPicked] = useState4(storedAnswer?.lastPicked ?? storedAnswer?.picked ?? null);
-  const [solved, setSolved] = useState4(storedAnswer ? storedAnswer.solved ?? storedAnswer.picked === correctIdx : false);
-  const firstCorrectRef = useRef4(storedAnswer ? storedAnswer.firstAttemptCorrect ?? storedAnswer.correct ?? null : null);
-  const [mReveal, setMReveal] = useState4(() => !!(isMentorLive && storedAnswer));
-  const [recapOpen, setRecapOpen] = useState4(false);
+  const mountTs = useRef5(Date.now());
+  const [picked, setPicked] = useState5(storedAnswer?.lastPicked ?? storedAnswer?.picked ?? null);
+  const [solved, setSolved] = useState5(storedAnswer ? storedAnswer.solved ?? storedAnswer.picked === correctIdx : false);
+  const firstCorrectRef = useRef5(storedAnswer ? storedAnswer.firstAttemptCorrect ?? storedAnswer.correct ?? null : null);
+  const [mReveal, setMReveal] = useState5(() => !!(isMentorLive && storedAnswer));
+  const [recapOpen, setRecapOpen] = useState5(false);
   const hasRecap = !!RECAPS[screen];
   const doReveal = () => {
     setMReveal(true);
@@ -4370,7 +4873,7 @@ var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options,
     if (storedAnswer === void 0) onAnswer(screen, { mentorRevealed: true });
   };
   const liveRevealScreen = live ? live.revealScreen : -1;
-  useEffect5(() => {
+  useEffect6(() => {
     if (isMentorLive && liveRevealScreen === screen) setMReveal(true);
   }, [isMentorLive, liveRevealScreen, screen]);
   const pick = (i) => {
@@ -4398,8 +4901,8 @@ var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options,
   const wrongLocked = oneShot && solved && picked !== correctIdx;
   const revealed = !oneShot || !!(live && (live.revealScreen === screen || (live.mentorMax ?? live.mentorScreen) > screen || live.status === "ended" || !live.mentorAlive));
   const waiting = oneShot && solved && !revealed;
-  return <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : void 0} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? mReveal ? tr3({ uz: "Davom etish", ru: "Продолжить" }) : tr3({ uz: "Avval natijani oching", ru: "Сначала откройте результат" }) : solved ? tr3({ uz: "Davom etish", ru: "Продолжить" }) : oneShot ? tr3({ uz: "Javob tanlang", ru: "Выберите ответ" }) : tr3({ uz: "To'g'ri javobni toping", ru: "Найдите верный ответ" })} onClick={onNext} /></>}>
-      <div className="screen" style={{ justifyContent: isMentorLive ? "flex-start" : "safe center", gap: "clamp(16px,2.5vw,24px)" }}>
+  return <Stage eyebrow={eyebrow} screen={screen} narrow audioState={audioText ? audio : void 0} navContent={<><NavBack onPrev={onPrev} /><NavNext mentorLock disabled={isMentorLive ? !mReveal : !solved} label={isMentorLive ? mReveal ? tr3({ uz: "Davom etish", ru: "Продолжить" }) : tr3({ uz: "Avval natijani oching", ru: "Сначала откройте результат" }) : solved ? tr3({ uz: "Davom etish", ru: "Продолжить" }) : oneShot ? tr3({ uz: "Javob tanlang", ru: "Выберите ответ" }) : tr3({ uz: "To'g'ri javobni toping", ru: "Найдите верный ответ" })} onClick={onNext} /></>}>
+      <div className="screen" style={{ justifyContent: "flex-start", gap: "clamp(16px,2.5vw,24px)" }}>
         <div className="fade-up">{question}</div>
         {oneShot && !solved && <p className="small mono fade-up" style={{ margin: "-8px 0 0", color: T.accent, fontWeight: 600 }}>{tr3({ uz: "⚡ Jonli dars — bitta urinish, o'ylab bosing!", ru: "⚡ Живой урок — одна попытка, подумайте перед нажатием!" })}</p>}
         <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: picked !== null ? 8 : 11 }}>
@@ -4427,20 +4930,21 @@ var QuestionScreen = ({ screen, scope, eyebrow, question, questionText, options,
   })}
         </div>
         <FeedbackBlock show={isMentorLive ? mReveal : picked !== null} isCorrect={isMentorLive ? true : solved && !wrongLocked} neutral={waiting}>
-          <p className="small mono" style={{ margin: "0 0 6px", fontWeight: 600, color: waiting ? T.blue : isMentorLive || solved && !wrongLocked ? T.success : T.accent, textTransform: "uppercase", letterSpacing: "0.08em" }}>
+          {(isMentorLive || waiting || wrongLocked) && <p className="small mono" style={{ margin: "0 0 6px", fontWeight: 600, color: waiting ? T.blue : isMentorLive || solved && !wrongLocked ? T.success : T.accent, textTransform: "uppercase", letterSpacing: "0.08em" }}>
             {isMentorLive ? `✓ ${tr3({ uz: "To'g'ri javob:", ru: "Верный ответ:" })} ${String.fromCharCode(65 + correctIdx)} — ${tr3(options[correctIdx])}` : waiting ? tr3({ uz: "📨 Javobingiz qabul qilindi", ru: "📨 Ваш ответ принят" }) : wrongLocked ? `${tr3({ uz: "To'g'ri javob:", ru: "Верный ответ:" })} ${String.fromCharCode(65 + correctIdx)} — ${tr3(options[correctIdx])}` : solved ? tr3({ uz: "To'g'ri", ru: "Верно" }) : tr3({ uz: "Qaytadan urinib ko'ring", ru: "Попробуйте ещё раз" })}
-          </p>
+          </p>}
           <p className="body" style={{ margin: 0 }}>
+            {!isMentorLive && !waiting && !wrongLocked && <b className="fb-mark" style={{ color: solved ? T.success : T.accent, marginRight: 6 }}>{solved ? tr3({ uz: "✓ To'g'ri.", ru: "✓ Верно." }) : tr3({ uz: "✗ Xato.", ru: "✗ Неверно." })}</b>}
             {isMentorLive ? tr3(explainCorrect) : waiting ? tr3({ uz: "Javobingiz qabul qilindi. Mentor «Natijani ochish»ni bosganda natija hammada birdan ko'rinadi.", ru: "Ваш ответ принят. Когда наставник нажмёт «Открыть результат», итог появится у всех одновременно." }) : wrongLocked ? tr3(explainWrong[picked] ?? explainWrong.default) : solved ? tr3(explainCorrect) : tr3(explainWrong[picked] ?? explainWrong.default)}
           </p>
           {
     /* Xato qilgan o'quvchi mavzuni qisqa kartalarda qayta ko'radi (3-qadamda kontent keladi).
        Jonli darsda — javob sirini saqlash uchun faqat reveal'dan keyin chiqadi. */
   }
-          {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr3({ uz: "📖 Qisqa takrorlash — mavzuni yana bir ko'rish", ru: "📖 Быстрое повторение — взглянуть на тему ещё раз" })}</button>}
+          {hasRecap && !isMentorLive && firstCorrectRef.current === false && (!oneShot || revealed) && <button className="rc-open-mini" onClick={() => setRecapOpen(true)}>{tr3({ uz: "📖 Eslatma", ru: "📖 Напоминание" })}</button>}
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
-        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
       </div>
     </Stage>;
 };
@@ -4448,8 +4952,8 @@ function ScoreRing({ correct, total }) {
   const PCT = total ? correct / total : 0;
   const col = PCT >= 0.6 ? T.success : T.accent;
   const R = 50, ST = 9, C = 2 * Math.PI * R;
-  const [off, setOff] = useState4(C);
-  useEffect5(() => {
+  const [off, setOff] = useState5(C);
+  useEffect6(() => {
     const t = setTimeout(() => setOff(C * (1 - PCT)), 200);
     return () => clearTimeout(t);
   }, [C, PCT]);
@@ -4480,9 +4984,18 @@ var Mentor = ({ children }) => {
       </div>
     </div>;
 };
-var Zoomable = ({ children }) => {
-  const [big, setBig] = useState4(false);
-  useEffect5(() => {
+var Zoomable = ({ children, off = false }) => {
+  const [big, setBig] = useState5(false);
+  const zref = useRef5(null);
+  const [hasContent, setHasContent] = useState5(true);
+  useEffect6(() => {
+    const el = zref.current;
+    if (!el) return;
+    const kids = [...el.childNodes].filter((n) => !(n.nodeType === 1 && n.classList.contains("zoom-btn")));
+    const c = kids.some((n) => (n.textContent || "").trim().length > 0 || n.nodeType === 1 && n.querySelector("img,svg,canvas,input,textarea,video,iframe,button"));
+    if (c !== hasContent) setHasContent(c);
+  });
+  useEffect6(() => {
     if (!big) return;
     const onKey = (e) => {
       if (e.key === "Escape") setBig(false);
@@ -4496,18 +5009,19 @@ var Zoomable = ({ children }) => {
   }, [big]);
   return <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div className={`zoomable ${big ? "zoom-on" : ""}`}>
-        <button type="button" className="zoom-btn" onClick={() => setBig((b) => !b)} aria-label={big ? tr3({ uz: "Kichraytirish", ru: "Уменьшить" }) : tr3({ uz: "Kattalashtirish", ru: "Увеличить" })} title={big ? tr3({ uz: "Kichraytirish", ru: "Уменьшить" }) : tr3({ uz: "Kattalashtirish", ru: "Увеличить" })}>{big ? "✕" : "⛶"}</button>
+      <div ref={zref} className={`zoomable ${big ? "zoom-on" : ""}${hasContent ? "" : " z-empty"}`}>
+        {hasContent && !off && <button type="button" className="zoom-btn" onClick={() => setBig((b) => !b)} aria-label={big ? tr3({ uz: "Kichraytirish", ru: "Уменьшить" }) : tr3({ uz: "Kattalashtirish", ru: "Увеличить" })} title={big ? tr3({ uz: "Kichraytirish", ru: "Уменьшить" }) : tr3({ uz: "Kattalashtirish", ru: "Увеличить" })}>{big ? "✕" : "⛶"}</button>}
         {children}
       </div>
     </>;
 };
 var Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const audio = useAudio([{ id: "s0", text: `O'yin o'ynaganingizda ekranda ballingiz, jonlaringiz va ismingiz turadi. O'yin ularni qayerda eslab qoladi? "Kod" tugmasini bosib, ichkariga qarang.`, trigger: "on_mount", waits_for: { type: "option_picked" } }]);
-  const [picked, setPicked] = useState4(storedAnswer?.picked ?? null);
-  const [view, setView] = useState4("game");
+  const [picked, setPicked] = useState5(storedAnswer?.picked ?? null);
+  const [view, setView] = useState5("game");
   const OPTS = [
-    { id: "a", label: { uz: "Sehr bilan — shunchaki eslab qoladi", ru: "Магией — просто запоминает" } },
+    { id: "a", label: { uz: "O'zi — shunchaki eslab qoladi", ru: "Сама — просто запоминает" } },
+    // F-0926-06: «sehr» so'zi olindi (til-lint)
     { id: "b", label: { uz: `Nomlangan "quti" — o'zgaruvchida saqlaydi`, ru: "В «коробке» с именем — в переменной" } },
     { id: "c", label: { uz: "Hech qayerda — har safar yo'qoladi", ru: "Нигде — каждый раз теряется" } }
   ];
@@ -4525,7 +5039,7 @@ var Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
         <Split>
           <Col>
             <div className="fade-up delay-1" style={{ display: "flex", gap: 8 }}>
-              <button className={`chip ${view === "game" ? "chip-on" : ""}`} onClick={() => setView("game")}>{tr3({ uz: "👾 O'yin", ru: "👾 Игра" })}</button>
+              <button className={`chip ${view === "game" ? "chip-on" : ""}`} onClick={() => setView("game")}>{tr3({ uz: "O'yin", ru: "Игра" })}</button>
               <button className={`chip ${view === "code" ? "chip-on" : ""}`} onClick={() => setView("code")}>{"</>"} {tr3({ uz: "Kod", ru: "Код" })}</button>
             </div>
             <div className="demo-swap" key={view}>
@@ -4539,22 +5053,29 @@ var Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                     <div style={{ fontFamily: "'Manrope',sans-serif", fontSize: 11, color: "#9FB4D8", letterSpacing: "0.1em" }}>{tr3({ uz: "BALL", ru: "СЧЁТ" })}</div>
                   </div>
                   <div style={{ textAlign: "center", fontSize: 18 }}>❤️ ❤️ ❤️</div>
-                </div> : <pre className="code-box"><Kw>let</Kw> <Vr>ball</Vr> <Op>=</Op> <Nm>1250</Nm>{"\n"}<Kw>let</Kw> <Vr>jon</Vr> <Op>=</Op> <Nm>3</Nm>{"\n"}<Kw>let</Kw> <Vr>ism</Vr> <Op>=</Op> <St>"Aziza"</St></pre>}
+                </div> : <pre className="code-box"><Kw>let</Kw> <Vr>score</Vr> <Op>=</Op> <Nm>1250</Nm>{"\n"}<Kw>let</Kw> <Vr>lives</Vr> <Op>=</Op> <Nm>3</Nm>{"\n"}<Kw>let</Kw> <Vr>name</Vr> <Op>=</Op> <St>"Aziza"</St></pre>}
             </div>
-            {view === "code" && <p className="mono small" style={{ color: T.ink3, marginTop: 6, textAlign: "center" }}>{tr3({ uz: '↑ har bir qiymat — nomlangan "quti"da', ru: "↑ каждое значение — в «коробке» с именем" })}</p>}
+            {
+    /* F-0926-06: «↑ har bir qiymat — nomlangan quti»da» izohi olindi — javobni oldindan aytardi (159/17) */
+  }
           </Col>
           <Col>
-            <p className="eyebrow fade-up delay-2" style={{ color: T.ink2, margin: 0 }}>{tr3({ uz: "Sizningcha, o'yin ballni qanday eslab qoladi?", ru: "Как, по-вашему, игра запоминает счёт?" })}</p>
+            {
+    /* F-0926-06: «Sizningcha, …?» yorlig'i olindi — savol mentor gapida bor (G1) */
+  }
             <div className="fade-up delay-3" style={{ display: "flex", flexDirection: "column", gap: 9 }}>
               {OPTS.map((o) => {
-    const on = picked === o.id;
-    return <button key={o.id} className={`hook-option ${on ? "on" : ""}`} disabled={picked !== null} onClick={() => pick(o.id)}>
-                    <span className="radio">{on && <span className="radio-dot" />}</span>
+    const on2 = picked === o.id;
+    return <button key={o.id} className={`hook-option ${on2 ? "on" : ""}`} disabled={picked !== null} onClick={() => pick(o.id)}>
+                    <span className="radio">{on2 && <span className="radio-dot" />}</span>
                     <span>{tr3(o.label)}</span>
                   </button>;
   })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step">{tr3({ uz: <>To'g'ri yo'nalish! Bu "qutilar" — <b>o'zgaruvchilar</b>. Bugun ularni o'rganamiz.</>, ru: <>Верное направление! Эти «коробки» — <b>переменные</b>. Сегодня мы их изучим.</> })}</p>}
+            {
+    /* F-0926-06: noto'g'ri variantga «To'g'ri…» deyilmaydi (I2, KORPUS §215) */
+  }
+            {picked !== null && <p className="hook-ack fade-step">{picked === "b" ? tr3({ uz: <>To'g'ri! Bu "qutilar" — <b>o'zgaruvchilar</b>. Bugun ularni o'rganamiz.</>, ru: <>Верно! Эти «коробки» — <b>переменные</b>. Сегодня мы их изучим.</> }) : tr3({ uz: <>Aslida o'yin har qiymatni nomlangan "quti"da saqlaydi — bu <b>o'zgaruvchilar</b>. Bugun ularni o'rganamiz.</>, ru: <>На самом деле игра хранит каждое значение в «коробке» с именем — это <b>переменные</b>. Сегодня мы их изучим.</> })}</p>}
           </Col>
         </Split>
         </Zoomable>
@@ -4567,15 +5088,20 @@ var Screen1 = ({ screen, onNext, onPrev }) => {
     { text: { uz: "O'zgaruvchi nima — nomlangan quti", ru: "Что такое переменная — коробка с именем" }, tag: "" },
     { text: { uz: "Qiymat berish", ru: "Присваивание значения" }, tag: "=" },
     { text: { uz: "O'zgaradigan va o'zgarmas", ru: "Меняющееся и неизменное" }, tag: "let / const" },
-    { text: { uz: "Ma'lumot turlari", ru: "Типы данных" }, tag: { uz: "matn · raqam", ru: "текст · число" } },
+    { text: { uz: "Ma'lumot turlari", ru: "Типы данных" }, tag: { uz: "matn · son", ru: "текст · число" } },
     { text: { uz: "O'zgaruvchini o'zingiz yozasiz", ru: "Сами напишете переменную" }, tag: "" }
   ];
   const isNarrow = useIsMobile(768);
-  const [showSteps, setShowSteps] = useState4(false);
+  const [showSteps, setShowSteps] = useState5(false);
   const PreviewBlock = <Col>
-      <p className="flow-label">{tr3({ uz: "Bugun shunday kod yozasiz", ru: "Сегодня вы напишете такой код" })}</p>
-      <pre className="code-box" style={{ fontSize: "clamp(13px,1.9vw,15px)" }}><span className="fade-up" style={{ display: "block", animationDelay: "0.1s" }}><Kw>let</Kw> <Vr>ism</Vr> <Op>=</Op> <St>"Aziza"</St></span><span className="fade-up" style={{ display: "block", animationDelay: "0.3s" }}><Kw>let</Kw> <Vr>yosh</Vr> <Op>=</Op> <Nm>14</Nm></span><span className="fade-up" style={{ display: "block", animationDelay: "0.5s" }}><Kw>const</Kw> <Vr>shahar</Vr> <Op>=</Op> <St>"Toshkent"</St></span></pre>
+      {
+    /* F-0926-06: yorliq + kod + izoh bitta .vis-card ichida (160-qonun) */
+  }
+      <div className="vis-card">
+      <p className="flow-label" style={{ margin: 0 }}>{tr3({ uz: "Bugun shunday kod yozasiz", ru: "Сегодня вы напишете такой код" })}</p>
+      <pre className="code-box" style={{ fontSize: "clamp(13px,1.9vw,15px)" }}><span className="fade-up" style={{ display: "block", animationDelay: "0.1s" }}><Kw>let</Kw> <Vr>name</Vr> <Op>=</Op> <St>"Aziza"</St></span><span className="fade-up" style={{ display: "block", animationDelay: "0.3s" }}><Kw>let</Kw> <Vr>age</Vr> <Op>=</Op> <Nm>14</Nm></span><span className="fade-up" style={{ display: "block", animationDelay: "0.5s" }}><Kw>const</Kw> <Vr>city</Vr> <Op>=</Op> <St>"Toshkent"</St></span></pre>
       <p className="mono small" style={{ color: T.accent, margin: 0 }}>{tr3({ uz: `→ uchta o'zgaruvchi, uchta "quti"`, ru: "→ три переменные, три «коробки»" })}</p>
+      </div>
     </Col>;
   const StepsBlock = <Col>
       <p className="flow-label">{tr3({ uz: "5 qadam", ru: "5 шагов" })}</p>
@@ -4588,10 +5114,13 @@ var Screen1 = ({ screen, onNext, onPrev }) => {
         <div className="head">
           <h2 className="title h-title fade-up">{tr3({ uz: <>Bugun <span className="italic" style={{ color: T.accent }}>birinchi haqiqiy kodingizni</span> yozasiz!</>, ru: <>Сегодня вы напишете <span className="italic" style={{ color: T.accent }}>свой первый настоящий код</span>!</> })}</h2>
         </div>
-        <Mentor>{tr3({ uz: <>Mana, eng qizig'i boshlanadi — bugun siz birinchi marta <b style={{ color: T.ink }}>haqiqiy JavaScript kodi</b> yozasiz! Hammasi <b style={{ color: T.ink }}>o'zgaruvchilardan</b> boshlanadi. 5 qadamda o'rganamiz va oxirida o'zingiz yozasiz.</>, ru: <>Вот и самое интересное — сегодня вы впервые напишете <b style={{ color: T.ink }}>настоящий код на JavaScript</b>! Всё начинается с <b style={{ color: T.ink }}>переменных</b>. Разберём их за 5 шагов, а в конце напишете сами.</> })}</Mentor>
+        {
+    /* F-0926-06: «bugun birinchi haqiqiy kod yozasiz» sarlavhada bor — mentor takrorlamaydi (159/1) */
+  }
+        <Mentor>{tr3({ uz: <>Mana, eng qizig'i: <b style={{ color: T.ink }}>haqiqiy JavaScript kodi</b> <b style={{ color: T.ink }}>o'zgaruvchilardan</b> boshlanadi. 5 qadamda o'rganamiz va oxirida o'zingiz yozasiz.</>, ru: <>Вот самое интересное: <b style={{ color: T.ink }}>настоящий код на JavaScript</b> начинается с <b style={{ color: T.ink }}>переменных</b>. Разберём их за 5 шагов, а в конце напишете сами.</> })}</Mentor>
         {!isNarrow ? <Zoomable><Split>{PreviewBlock}{StepsBlock}</Split></Zoomable> : !showSteps ? <div className="fade-step" style={{ display: "flex", flexDirection: "column", gap: "clamp(12px,2vw,16px)" }}>
             {PreviewBlock}
-            <button className="btn" style={{ alignSelf: "flex-start" }} onClick={() => setShowSteps(true)}>{tr3({ uz: "📋 Bugungi 5 qadamni ko'rish", ru: "📋 Посмотреть 5 шагов на сегодня" })}</button>
+            <button className="btn" style={{ alignSelf: "flex-start" }} onClick={() => setShowSteps(true)}>{tr3({ uz: "Bugungi 5 qadamni ko'rish", ru: "Посмотреть 5 шагов на сегодня" })}</button>
           </div> : <div className="fade-step" style={{ display: "flex", flexDirection: "column", gap: "clamp(12px,2vw,16px)" }}>
             <button className="btn-soft" style={{ alignSelf: "flex-start" }} onClick={() => setShowSteps(false)}>{tr3({ uz: "↩ Kodni ko'rish", ru: "↩ Посмотреть код" })}</button>
             {StepsBlock}
@@ -4602,11 +5131,11 @@ var Screen1 = ({ screen, onNext, onPrev }) => {
 var Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: "s2", text: `O'zgaruvchini shunday tasavvur qiling: ustiga nom yozilgan quti. Qutining nomi bor — masalan "ism", ichida esa qiymat turadi — masalan Aziza. Nom orqali qutini istalgan payt topib, ichidagini olasiz. Quti qismlarini bosib ko'ring.`, trigger: "on_mount", waits_for: null }]);
   const PARTS = {
-    nom: { label: tr3({ uz: "Nom", ru: "Имя" }), role: tr3({ uz: "Qutining yorlig'i — uni shu nom orqali chaqirasiz. Masalan: ism, ball, yosh.", ru: "Ярлык коробки — по этому имени вы её и зовёте. Например: ism, ball, yosh." }) },
+    nom: { label: tr3({ uz: "Nom", ru: "Имя" }), role: tr3({ uz: "Qutining yorlig'i — uni shu nom orqali chaqirasiz. Masalan: name, score, age.", ru: "Ярлык коробки — по этому имени вы её и зовёте. Например: name, score, age." }) },
     qiymat: { label: tr3({ uz: "Qiymat", ru: "Значение" }), role: tr3({ uz: 'Quti ichida saqlanadigan narsa. Masalan: "Aziza", 1250, 14.', ru: 'То, что хранится внутри коробки. Например: "Aziza", 1250, 14.' }) }
   };
-  const [active, setActive] = useState4(null);
-  const [seen, setSeen] = useState4(/* @__PURE__ */ new Set());
+  const [active, setActive] = useState5(null);
+  const [seen, setSeen] = useState5(/* @__PURE__ */ new Set());
   const isNarrow = useIsMobile(768);
   const done = seen.size >= 2;
   const tap = (k) => {
@@ -4617,30 +5146,46 @@ var Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       return n;
     });
   };
-  useEffect5(() => {
+  useEffect6(() => {
     if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
   }, [done]);
   return <Stage eyebrow={tr3({ uz: "O'zgaruvchi", ru: "Переменная" })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr3({ uz: "Davom etish", ru: "Продолжить" }) : `${seen.size}/2 ${tr3({ uz: "qismni ko'ring", ru: "части посмотрите" })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
         <div className="head"><h2 className="title h-title fade-up">{tr3({ uz: <>O'zgaruvchi aslida <span className="italic" style={{ color: T.accent }}>nima</span>?</>, ru: <>Что такое переменная <span className="italic" style={{ color: T.accent }}>на самом деле</span>?</> })}</h2></div>
-        <Mentor>{tr3({ uz: <>O'zgaruvchi — bu ustiga <b style={{ color: T.ink }}>yorliq yopishtirilgan quti</b>. Yorlig'i — uning <b style={{ color: T.ink }}>nomi</b> (masalan <span className="mono">ism</span>), ichidagi narsa — <b style={{ color: T.ink }}>qiymati</b> (masalan <span className="mono">"Aziza"</span>). Nomini aytib, ichidagini istalgan payt olasiz. Quti qismlarini bosib ko'ring.</>, ru: <>Переменная — это <b style={{ color: T.ink }}>коробка с наклеенным ярлыком</b>. Ярлык — это её <b style={{ color: T.ink }}>имя</b> (например <span className="mono">ism</span>), а то, что внутри — <b style={{ color: T.ink }}>значение</b> (например <span className="mono">"Aziza"</span>). Назовёте имя — в любой момент получите содержимое. Понажимайте на части коробки.</> })}</Mentor>
-        <Zoomable>
+        <Mentor>{tr3({ uz: <>O'zgaruvchi — bu ustiga <b style={{ color: T.ink }}>yorliq yopishtirilgan quti</b>. Yorlig'i — uning <b style={{ color: T.ink }}>nomi</b> (masalan <span className="mono">name</span>), ichidagi narsa — <b style={{ color: T.ink }}>qiymati</b> (masalan <span className="mono">"Aziza"</span>). Nomini aytib, ichidagini istalgan payt olasiz. Quti qismlarini bosib ko'ring.</>, ru: <>Переменная — это <b style={{ color: T.ink }}>коробка с наклеенным ярлыком</b>. Ярлык — это её <b style={{ color: T.ink }}>имя</b> (например <span className="mono">name</span>), а то, что внутри — <b style={{ color: T.ink }}>значение</b> (например <span className="mono">"Aziza"</span>). Назовёте имя — в любой момент получите содержимое. Понажимайте на части коробки.</> })}</Mentor>
+        <Zoomable off={!active}>
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: "flex", justifyContent: "center", padding: "8px 0" }}>
               <div style={{ background: T.paper, borderRadius: 16, boxShadow: `0 10px 26px -6px rgba(${T.shadowBase},0.16)`, overflow: "hidden", minWidth: 210 }}>
-                <div onClick={() => tap("nom")} style={{ cursor: "pointer", background: active === "nom" ? T.accent : T.ink, color: "#fff", fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: 14, padding: "10px 16px", display: "flex", alignItems: "center", gap: 8, transition: "all 0.2s" }}><span style={{ fontFamily: "'Manrope',sans-serif", fontSize: 9.5, opacity: 0.65, letterSpacing: "0.12em" }}>{tr3({ uz: "NOMI", ru: "ИМЯ" })}</span>📦 ism {seen.has("nom") && <span style={{ marginLeft: "auto" }}>✓</span>}</div>
-                <div onClick={() => tap("qiymat")} style={{ cursor: "pointer", padding: "18px 16px", textAlign: "center", fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: "clamp(20px,4vw,28px)", color: active === "qiymat" ? T.accent : T.ink, background: active === "qiymat" ? T.accentSoft : "#fff", transition: "all 0.2s" }}><div style={{ fontFamily: "'Manrope',sans-serif", fontSize: 9.5, opacity: 0.6, letterSpacing: "0.12em", fontWeight: 600, marginBottom: 5 }}>{tr3({ uz: "QIYMATI · ICHIDAGI", ru: "ЗНАЧЕНИЕ · ВНУТРИ" })}</div>"Aziza" {seen.has("qiymat") && <span style={{ fontSize: 14, color: T.success }}>✓</span>}</div>
+                <div onClick={() => tap("nom")} style={{
+    cursor: "pointer",
+    background: active === "nom" ? T.accent : T.accentSoft,
+    color: active === "nom" ? "#fff" : T.accent,
+    /* F-0926-06: bosiladigan qora yorliq → accent (159/5) */
+    fontFamily: "'JetBrains Mono',monospace",
+    fontFeatureSettings: '"liga" 0, "calt" 0',
+    fontWeight: 700,
+    fontSize: 14,
+    padding: "10px 16px",
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+    transition: "all 0.2s"
+  }}><span style={{ fontFamily: "'Manrope',sans-serif", fontSize: 9.5, opacity: 0.65, letterSpacing: "0.12em" }}>{tr3({ uz: "NOMI", ru: "ИМЯ" })}</span>📦 name {seen.has("nom") && <span style={{ marginLeft: "auto" }}>✓</span>}</div>
+                <div onClick={() => tap("qiymat")} style={{ cursor: "pointer", padding: "18px 16px", textAlign: "center", fontFamily: "'JetBrains Mono',monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontWeight: 700, fontSize: "clamp(20px,4vw,28px)", color: active === "qiymat" ? T.accent : T.ink, background: active === "qiymat" ? T.accentSoft : "#fff", transition: "all 0.2s" }}><div style={{ fontFamily: "'Manrope',sans-serif", fontSize: 9.5, opacity: 0.6, letterSpacing: "0.12em", fontWeight: 600, marginBottom: 5 }}>{tr3({ uz: "QIYMATI · ICHIDAGI", ru: "ЗНАЧЕНИЕ · ВНУТРИ" })}</div>"Aziza" {seen.has("qiymat") && <span style={{ fontSize: 14, color: T.success }}>✓</span>}</div>
               </div>
             </div>
-            <pre className="code-box fade-up delay-2" style={{ textAlign: "center" }}><Kw>let</Kw> <Vr>ism</Vr> <Op>=</Op> <St>"Aziza"</St></pre>
+            <pre className="code-box fade-up delay-2" style={{ textAlign: "center" }}><Kw>let</Kw> <Vr>name</Vr> <Op>=</Op> <St>"Aziza"</St></pre>
           </Col>
           <Col>
             {active ? <div className="sk-info pop-in" key={active}>
                 <span className="sk-tagbig"><span className="sk-wordbadge">{PARTS[active].label}</span></span>
                 <p className="body" style={{ color: T.ink, margin: "11px 0 0" }}>{PARTS[active].role}</p>
-              </div> : !isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: "center", fontStyle: "italic", margin: 0 }}>{tr3({ uz: "Quti nomi yoki ichini bosing", ru: "Нажмите на имя коробки или на её содержимое" })}</p></div> : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr3({ uz: <>✓ Mana shu — <b>o'zgaruvchi</b>: nomi bor quti. <span className="mono">ism</span> deb chaqirsangiz, ichidagi <span className="mono">"Aziza"</span> ni olasiz.</>, ru: <>✓ Вот это и есть <b>переменная</b>: коробка с именем. Позовёте <span className="mono">ism</span> — получите <span className="mono">"Aziza"</span> изнутри.</> })}</p></div>}
+              </div> : null}
+            {
+    /* F-0926-06: «✓ Mana shu — o'zgaruvchi…» yashil qutisi olindi — mentor gapini takrorlardi (159/1) */
+  }
           </Col>
         </div>
         </Zoomable>
@@ -4650,14 +5195,14 @@ var Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 var Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: "s3", text: `Matematikada teng belgisi "teng" degani. Dasturlashda esa u "qutiga joylashtir" degani. Bir qiymat tanlab, nima bo'lishini kuzating.`, trigger: "on_mount", waits_for: null }]);
   const VALUES = ["Aziza", "Bobur", "Dilnoza"];
-  const [val, setVal] = useState4(null);
-  const [read, setRead] = useState4(false);
-  const [sawNameless, setSawNameless] = useState4(false);
+  const [val, setVal] = useState5(null);
+  const [read, setRead] = useState5(false);
+  const [sawNameless, setSawNameless] = useState5(false);
   const done = val !== null && read;
-  useEffect5(() => {
+  useEffect6(() => {
     if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
   }, [done]);
-  return <Stage eyebrow={tr3({ uz: "Qiymat berish", ru: "Присваивание" })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr3({ uz: "Davom etish", ru: "Продолжить" }) : val === null ? tr3({ uz: "Bir qiymat tanlang", ru: "Выберите значение" }) : tr3({ uz: "Qutini o'qing 🤖", ru: "Прочитайте коробку 🤖" })} onClick={onNext} /></>}>
+  return <Stage eyebrow={tr3({ uz: "Qiymat berish", ru: "Присваивание" })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr3({ uz: "Davom etish", ru: "Продолжить" }) : val === null ? tr3({ uz: "Bir qiymat tanlang", ru: "Выберите значение" }) : tr3({ uz: "Qutini o'qing", ru: "Прочитайте коробку" })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
         <div className="head"><h2 className="title h-title fade-up">{tr3({ uz: <>Qutiga qiymatni <span className="italic" style={{ color: T.accent }}>qanday</span> solamiz?</>, ru: <>А <span className="italic" style={{ color: T.accent }}>как</span> положить значение в коробку?</> })}</h2></div>
         <Mentor>{tr3({ uz: <>Matematikada <b style={{ color: T.ink }}>=</b> — «teng» degani. Dasturlashda esa <b style={{ color: T.ink }}>=</b> — <b style={{ color: T.ink }}>«qutiga joylashtir»</b> degani. Bir qiymat tanlab, nima bo'lishini kuzating.</>, ru: <>В математике <b style={{ color: T.ink }}>=</b> — это «равно». А в программировании <b style={{ color: T.ink }}>=</b> — это <b style={{ color: T.ink }}>«положи в коробку»</b>. Выберите значение и посмотрите, что произойдёт.</> })}</Mentor>
@@ -4668,32 +5213,36 @@ var Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="fade-up delay-1" style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
               {VALUES.map((v) => <button key={v} className={`chip ${val === v ? "chip-on" : ""}`} onClick={() => setVal(v)}>"{v}"</button>)}
             </div>
-            <pre className="code-box fade-up delay-2" style={{ fontSize: "clamp(14px,2.4vw,18px)" }}><Kw>let</Kw> <Vr>ism</Vr> <Op>=</Op> <span className="pop-num" key={val} style={{ color: CODE.str }}>"{val || "..."}"</span></pre>
-            <div className="frame fade-up delay-2"><p className="body" style={{ margin: 0, color: T.ink }}>{tr3({ uz: <>O'qiymiz: «<span className="mono">"{val || "..."}"</span> ni <span className="mono">ism</span> qutisiga sol».</>, ru: <>Читаем: «положи <span className="mono">"{val || "..."}"</span> в коробку <span className="mono">ism</span>».</> })}</p></div>
+            <pre className="code-box fade-up delay-2" style={{ fontSize: "clamp(14px,2.4vw,18px)" }}><Kw>let</Kw> <Vr>name</Vr> <Op>=</Op> <span className="pop-num" key={val} style={{ color: CODE.str }}>"{val || "..."}"</span></pre>
+            <div className="frame fade-up delay-2"><p className="body" style={{ margin: 0, color: T.ink }}>{tr3({ uz: <>O'qiymiz: «<span className="mono">"{val || "..."}"</span> ni <span className="mono">name</span> qutisiga sol».</>, ru: <>Читаем: «положи <span className="mono">"{val || "..."}"</span> в коробку <span className="mono">name</span>».</> })}</p></div>
           </Col>
           <Col>
             <p className="flow-label">{tr3({ uz: "Natija — quti", ru: "Результат — коробка" })}</p>
             <div style={{ display: "flex", justifyContent: "center", padding: "10px 0" }}>
-              {val ? <VarBox name="ism" value={`"${val}"`} valColor={CODE.str} pulse /> : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: "center", fontStyle: "italic", margin: 0 }}>{tr3({ uz: "Qiymat tanlang — qutiga yoziladi", ru: "Выберите значение — оно запишется в коробку" })}</p></div>}
+              {val ? <VarBox name="name" value={`"${val}"`} valColor={CODE.str} pulse /> : null}
             </div>
             {
     /* OMBORCHI O'QI: nom orqali chaqirib qiymatni chiqarish (robot-qo'l) */
   }
             {val && <div className="fade-up" style={{ display: "flex", flexDirection: "column", gap: 8, alignItems: "center" }}>
-                <button className="btn" onClick={() => setRead(true)} disabled={read} style={{ opacity: read ? 0.6 : 1 }}>🤖 {tr3({ uz: <><span className="mono">ism</span> ni o'qi (chaqir)</>, ru: <>прочитать <span className="mono">ism</span> (позвать)</> })}</button>
+                <button className="btn" onClick={() => setRead(true)} disabled={read} style={{ opacity: read ? 0.6 : 1 }}>{
+    /* F-0926-06: emoji olindi (H3) */
+  }{tr3({ uz: <><span className="mono">name</span> ni o'qi (chaqir)</>, ru: <>прочитать <span className="mono">name</span> (позвать)</> })}</button>
                 {
     /* F-0803-10: matn o'rniga NATIJANING O'ZI — quti nomi → ichidagi qiymat (rasm gapiradi) */
   }
-                {read && <div className="pop-in" style={{ display: "flex", alignItems: "center", gap: 10, fontFamily: "'JetBrains Mono', monospace", fontSize: "clamp(15px,2.4vw,19px)", fontWeight: 700 }}>
+                {read && <div className="pop-in" style={{ display: "flex", alignItems: "center", gap: 10, fontFamily: "'JetBrains Mono', monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontSize: "clamp(15px,2.4vw,19px)", fontWeight: 700 }}>
                     <span className="wh-arm" style={{ display: "inline-block" }}>🤖</span>
-                    <span style={{ color: T.ink2 }}>ism</span>
+                    <span style={{ color: T.ink2 }}>name</span>
                     <span style={{ color: T.ink3 }}>→</span>
                     <span className="pop-num" style={{ color: CODE.str, animationDelay: ".3s", animationFillMode: "both" }}>"{val}"</span>
                   </div>}
-                {read && <button className="btn" onClick={() => setSawNameless(true)} disabled={sawNameless} style={{ opacity: sawNameless ? 0.6 : 1 }}>{tr3({ uz: "❓ Nomsiz qutini chaqirib ko'ring", ru: "❓ Попробуйте позвать коробку без имени" })}</button>}
+                {read && <button className="btn" onClick={() => setSawNameless(true)} disabled={sawNameless} style={{ opacity: sawNameless ? 0.6 : 1 }}>{tr3({ uz: "Nomsiz qutini chaqirib ko'ring", ru: "Попробуйте позвать коробку без имени" })}</button>}
                 {sawNameless && <div className="frame-dash pop-in" style={{ width: "100%" }}><p className="small" style={{ margin: 0, color: T.ink2 }}>{tr3({ uz: <><span className="wh-grope" style={{ display: "inline-block" }}>🤖</span> Nomsiz qutini robot-qo'l paypaslab topolmadi — <span className="wh-graygone" style={{ display: "inline-block" }}>bo'sh qaytdi</span>. Shuning uchun har qutiga <b style={{ color: T.ink }}>nom (yorliq)</b> kerak!</>, ru: <><span className="wh-grope" style={{ display: "inline-block" }}>🤖</span> Коробку без имени рука-робот так и не нащупала — <span className="wh-graygone" style={{ display: "inline-block" }}>вернулась пустой</span>. Вот почему каждой коробке нужно <b style={{ color: T.ink }}>имя (ярлык)</b>!</> })}</p></div>}
               </div>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr3({ uz: <>✓ Endi <span className="mono">ism</span> ni chaqirsangiz <span className="mono">"{val}"</span> qaytadi.</>, ru: <>✓ Теперь, если позвать <span className="mono">ism</span>, вернётся <span className="mono">"{val}"</span>.</> })}</p></div>}
+            {
+    /* F-0926-06: «✓ Endi name ni chaqirsangiz … qaytadi» olindi — natija «🤖 name → …» qatorida bor (I3) */
+  }
           </Col>
         </div>
         </Zoomable>
@@ -4706,22 +5255,22 @@ var Screen4 = (props) => <QuestionScreen
   scope="module-mikro"
   eyebrow={tr3({ uz: "Mashq · 1-savol", ru: "Практика · вопрос 1" })}
   audioText="O'zgaruvchi nima? To'g'ri variantni tanlang."
-  questionText={{ uz: "O'zgaruvchi (peremennaya) nima?", ru: "Что такое переменная?" }}
-  question={<><p className="eyebrow" style={{ color: T.accent }}>{tr3({ uz: "O'zgaruvchi nima?", ru: "Что такое переменная?" })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr3({ uz: "O'zgaruvchi (peremennaya) nima?", ru: "Что такое переменная?" })}</h2></>}
+  questionText={{ uz: "O'zgaruvchi (variable) nima?", ru: "Что такое переменная?" }}
+  question={<><p className="eyebrow" style={{ color: T.accent }}>{tr3({ uz: "O'zgaruvchi nima?", ru: "Что такое переменная?" })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr3({ uz: "O'zgaruvchi (variable) nima?", ru: "Что такое переменная?" })}</h2></>}
   options={[{ uz: 'Qiymat saqlaydigan nomlangan "quti"', ru: "«Коробка» с именем, где хранится значение" }, { uz: "Sonlar ustida hisob-kitob amali", ru: "Математическое действие над числами" }, { uz: "Brauzerda ochiladigan sahifa", ru: "Страница, которая открывается в браузере" }, { uz: "Ekranda ko'rinadigan rang turi", ru: "Вид цвета на экране" }]}
   correctIdx={0}
-  explainCorrect={{ uz: "To'g'ri! O'zgaruvchi — nomi bor quti: ichida qiymat (matn, raqam...) saqlanadi va siz uni nom orqali chaqirasiz.", ru: "Верно! Переменная — коробка с именем: внутри хранится значение (текст, число…), и вы обращаетесь к ней по имени." }}
-  explainWrong={{ 1: { uz: "Yo'q — bu hisoblash emas. O'zgaruvchi qiymat saqlaydigan nomlangan quti.", ru: "Нет — это не вычисление. Переменная — коробка с именем, где хранится значение." }, 2: { uz: "Yo'q — bu sahifa emas. O'zgaruvchi — kod ichidagi qiymat qutisi.", ru: "Нет — это не страница. Переменная — коробка со значением внутри кода." }, 3: { uz: "Yo'q — rang emas. O'zgaruvchi — qiymat saqlaydigan nomlangan quti.", ru: "Нет — не цвет. Переменная — коробка с именем, где хранится значение." }, default: { uz: "O'zgaruvchi — qiymat saqlaydigan nomlangan quti.", ru: "Переменная — коробка с именем, где хранится значение." } }}
+  explainCorrect={{ uz: "O'zgaruvchi — nomli quti, ichida qiymat turadi.", ru: "Переменная — коробка с именем, внутри хранится значение." }}
+  explainWrong={{ 1: { uz: "Hisob-kitob — bu amal, o'zgaruvchi esa amal emas.", ru: "Вычисление — это действие, а переменная — не действие." }, 2: { uz: "O'zgaruvchi brauzerda ochilmaydi — u kod ichida turadi.", ru: "Переменная не открывается в браузере — она живёт внутри кода." }, 3: { uz: "O'zgaruvchi ekranda ko'rinmaydi va rang turi ham emas.", ru: "Переменную не видно на экране, и это не вид цвета." }, default: { uz: "Darsdagi «age» misolini eslang: ichida nima bor edi?", ru: "Вспомните пример «age» из урока: что было внутри?" } }}
 />;
 var S5_VALS = [25, 60, 100, 250];
 var Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: "s5", text: `O'yindagi ballingizni eslang — u doim o'zgarib turadi-ku. Bunday o'zgarib turadigan qiymatlar uchun let so'zini ishlatamiz. let qutisiga yangi qiymat-tokenni soling — eski qiymat tushib ketadi, yangisi joylashadi.`, trigger: "on_mount", waits_for: null }]);
-  const [box, setBox] = useState4(() => storedAnswer?.box || { value: 10 });
-  const [refills, setRefills] = useState4(storedAnswer?.refills || 0);
-  const [falling, setFalling] = useState4(null);
-  const [drag, setDrag] = useState4(null);
-  const [over, setOver] = useState4(false);
-  const [jolt, setJolt] = useState4(false);
+  const audio = useAudio([{ id: "s5", text: `O'yindagi ballingizni eslang — u doim o'zgarib turadi. Bunday o'zgarib turadigan qiymatlar uchun let so'zini ishlatamiz. let qutisiga yangi qiymat-tokenni soling — eski qiymat tushib ketadi, yangisi joylashadi.`, trigger: "on_mount", waits_for: null }]);
+  const [box, setBox] = useState5(() => storedAnswer?.box || { value: 10 });
+  const [refills, setRefills] = useState5(storedAnswer?.refills || 0);
+  const [falling, setFalling] = useState5(null);
+  const [drag, setDrag] = useState5(null);
+  const [over, setOver] = useState5(false);
+  const [jolt, setJolt] = useState5(false);
   const ball = box.value;
   const done = refills >= 1;
   const place = (v) => {
@@ -4735,17 +5284,17 @@ var Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     setTimeout(() => setJolt(false), 450);
     setTimeout(() => setFalling(null), 560);
   };
-  useEffect5(() => {
+  useEffect6(() => {
     if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true, box, refills });
   }, [done]);
   return <Stage eyebrow="let" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr3({ uz: "Davom etish", ru: "Продолжить" }) : tr3({ uz: "Yangi qiymat soling", ru: "Положите новое значение" })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
         <div className="head"><h2 className="title h-title fade-up">{tr3({ uz: <><span className="italic mono" style={{ color: T.accent }}>let</span> — qiymatni keyin o'zgartirsa bo'ladimi?</>, ru: <><span className="italic mono" style={{ color: T.accent }}>let</span> — можно ли потом изменить значение?</> })}</h2></div>
-        <Mentor>{tr3({ uz: <>O'yindagi <b style={{ color: T.ink }}>ballingiz</b> doim o'zgarib turadi-ku. Bunday qiymatlar uchun <b style={{ color: T.ink }}>let</b> so'zini ishlatamiz. Qutiga <b style={{ color: T.ink }}>yangi qiymat-tokenni</b> soling (sudrang yoki bosing) — eski qiymat tushib ketadi, yangisi joylashadi.</>, ru: <>Ваш <b style={{ color: T.ink }}>счёт</b> в игре всё время меняется, так ведь? Для таких значений используем слово <b style={{ color: T.ink }}>let</b>. Положите в коробку <b style={{ color: T.ink }}>новый жетон-значение</b> (перетащите или нажмите) — старое выпадет, новое займёт его место.</> })}</Mentor>
+        <Mentor>{tr3({ uz: <>O'yindagi <b style={{ color: T.ink }}>ballingiz</b> doim o'zgarib turadi. Bunday qiymatlar uchun <b style={{ color: T.ink }}>let</b> so'zini ishlatamiz. Qutiga <b style={{ color: T.ink }}>yangi qiymat-tokenni</b> soling (sudrang yoki bosing) — eski qiymat tushib ketadi, yangisi joylashadi. Oxirgi qatordagi <span className="mono">console.log(score)</span> qutida nima borligini pastdagi <b style={{ color: T.ink }}>konsolga</b> chiqaradi.</>, ru: <>Ваш <b style={{ color: T.ink }}>счёт</b> в игре всё время меняется. Для таких значений используем слово <b style={{ color: T.ink }}>let</b>. Положите в коробку <b style={{ color: T.ink }}>новый жетон-значение</b> (перетащите или нажмите) — старое выпадет, новое займёт его место. Последняя строка <span className="mono">console.log(score)</span> выводит содержимое коробки в <b style={{ color: T.ink }}>консоль</b> внизу.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">{tr3({ uz: "Yangi qiymat tokeni — qutiga soling", ru: "Новый жетон значения — положите в коробку" })}</p>
+            <p className="flow-label">{tr3({ uz: "Yangi qiymatlar", ru: "Новые значения" })}</p>
             <div className="fade-up delay-1" style={{ display: "flex", gap: 8, justifyContent: "center", flexWrap: "wrap" }}>
               {S5_VALS.map((v) => <button
     key={v}
@@ -4772,15 +5321,23 @@ var Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     className={jolt ? "wh-jolt" : ""}
     style={{ outline: over ? `2px dashed ${T.accent}` : "none", outlineOffset: 4, borderRadius: 16, transition: "outline 0.15s" }}
   >
-                <VarBox name="ball" value={ball} valColor={CODE.num} pulse />
+                <VarBox name="score" value={ball} valColor={CODE.num} pulse />
               </div>
               {falling != null && <span className="mono wh-fall" style={{ position: "absolute", top: 8, left: "50%", color: CODE.num, fontWeight: 700, fontSize: 18, pointerEvents: "none" }}>{falling} ↓</span>}
             </div>
           </Col>
           <Col>
             <p className="flow-label">{tr3({ uz: "Kod", ru: "Код" })}</p>
-            <pre className="code-box fade-up" style={{ fontSize: "clamp(13px,2vw,15px)" }}><Kw>let</Kw> <Vr>ball</Vr> <Op>=</Op> <Nm>10</Nm>  <span style={{ color: CODE.comment }}>{"// boshlang'ich"}</span>{"\n"}{refills > 0 && <><Vr>ball</Vr> <Op>=</Op> <Nm>{ball}</Nm>  <span style={{ color: CODE.comment }}>{"// yangilandi"}</span></>}</pre>
-            {done ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr3({ uz: <>✓ <b>let</b> — bu o'zgaradigan quti. Eski qiymat tushdi, yangisi joylashdi. Xohlagancha yangilaysiz!</>, ru: <>✓ <b>let</b> — коробка, которую можно менять. Старое значение выпало, новое встало на место. Обновляйте сколько хотите!</> })}</p></div> : <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>{tr3({ uz: <>Diqqat: ikkinchi marta <span className="mono">let</span> yozilmaydi — quti bor, faqat ichini almashtiramiz.</>, ru: <>Внимание: второй раз <span className="mono">let</span> не пишут — коробка уже есть, мы лишь меняем содержимое.</> })}</p></div>}
+            <pre className="code-box fade-up" style={{ fontSize: "clamp(13px,2vw,15px)" }}><Kw>let</Kw> <Vr>score</Vr> <Op>=</Op> <Nm>10</Nm>  <span style={{ color: CODE.comment }}>{tr3({ uz: "// boshlang'ich", ru: "// начальное" })}</span>{"\n"}{refills > 0 && <><Vr>score</Vr> <Op>=</Op> <Nm>{ball}</Nm>  <span style={{ color: CODE.comment }}>{"// yangilandi"}</span>{"\n"}</>}<Vr>console</Vr>.<Vr>log</Vr>(<Vr>score</Vr>)</pre>
+            {
+    /* F-1017-204: console.log birinchi praktikadan oldin — natija konsolda ko'rinadi */
+  }
+            <p className="flow-label" style={{ margin: 0 }}>{tr3({ uz: "Konsol", ru: "Консоль" })}</p>
+            <pre className="code-box" style={{ fontSize: "clamp(13px,2vw,15px)", margin: 0 }}><span style={{ color: CODE.comment }}>{"> "}</span><Nm>{ball}</Nm></pre>
+            {
+    /* F-0926-06: yashil «✓ let — o'zgaradigan quti…» olindi — mentor gapini takrorlardi (159/1); «Diqqat» javobdan keyin ham qoladi */
+  }
+            <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>{tr3({ uz: <>Diqqat: ikkinchi marta <span className="mono">let</span> yozilmaydi — quti bor, faqat ichini almashtiramiz.</>, ru: <>Внимание: второй раз <span className="mono">let</span> не пишут — коробка уже есть, мы лишь меняем содержимое.</> })}</p></div>
           </Col>
         </div>
         </Zoomable>
@@ -4796,42 +5353,45 @@ var Screen5b = (props) => <QuestionScreen
   question={<><p className="eyebrow" style={{ color: T.accent }}>{tr3({ uz: "Mustahkamlash", ru: "Закрепление" })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr3({ uz: <>Qiymati keyin <span className="italic" style={{ color: T.accent }}>o'zgaradigan</span> o'zgaruvchini qaysi so'z bilan ochamiz?</>, ru: <>Каким словом создаём переменную, значение которой потом <span className="italic" style={{ color: T.accent }}>меняется</span>?</> })}</h2></>}
   options={["const", "let", "number", "print"]}
   correctIdx={1}
-  explainCorrect={{ uz: "To'g'ri! let bilan ochilgan qutining qiymatini keyin istagancha o'zgartirish mumkin.", ru: "Верно! Значение коробки, созданной через let, потом можно менять сколько угодно." }}
+  explainCorrect={{ uz: "let qutisining qiymati keyin istagancha o'zgaradi.", ru: "Значение коробки let потом можно менять сколько угодно." }}
   explainWrong={{
-    0: { uz: "Yo'q — const o'zgarmas qiymat uchun. O'zgaradigan qiymat uchun let.", ru: "Нет — const для неизменных значений. Для меняющихся — let." },
-    2: { uz: "Yo'q — number bunday so'z emas. To'g'risi — let.", ru: "Нет — number не такое слово. Правильно — let." },
-    3: { uz: "Yo'q — print bunday so'z emas. O'zgaradigan qiymat uchun let.", ru: "Нет — print не такое слово. Для меняющегося значения — let." },
-    default: { uz: "O'zgaradigan qiymat uchun — let.", ru: "Для меняющегося значения — let." }
+    0: { uz: "const qulflanadi — keyin qiymatini o'zgartirib bo'lmaydi.", ru: "const запирается — потом значение уже не поменять." },
+    2: { uz: "number — qiymat turi, o'zgaruvchi ochadigan so'z emas.", ru: "number — это тип значения, а не слово для создания переменной." },
+    3: { uz: "print o'zgaruvchi ochadigan so'z emas.", ru: "print не создаёт переменную." },
+    default: { uz: "Qulflanmaydigan quti qaysi so'z bilan ochilardi?", ru: "Какое слово создаёт коробку без замка?" }
   }}
 />;
 var Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: "s6", text: `Ba'zi qiymatlar esa hech qachon o'zgarmaydi. Tug'ilgan yilingizni o'ylab ko'ring — u doim bir xil. Bunday qiymatlar uchun const so'zini ishlatamiz. const qutisining ichini o'zgartirib bo'lmaydi. Ishonmaysizmi? Tugmani bosib, o'zgartirishga urinib ko'ring.`, trigger: "on_mount", waits_for: null }]);
-  const [tried, setTried] = useState4(false);
+  const [tried, setTried] = useState5(false);
   const done = tried;
-  useEffect5(() => {
+  useEffect6(() => {
     if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
   }, [done]);
   return <Stage eyebrow="const" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr3({ uz: "Davom etish", ru: "Продолжить" }) : tr3({ uz: "O'zgartirishga urining", ru: "Попробуйте изменить" })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
         <div className="head"><h2 className="title h-title fade-up">{tr3({ uz: <>Ba'zi qiymatlar <span className="italic" style={{ color: T.accent }}>o'zgarmasligi</span> kerakmi?</>, ru: <>А если значение <span className="italic" style={{ color: T.accent }}>не должно меняться</span>?</> })}</h2></div>
-        <Mentor>{tr3({ uz: <>Ba'zi qiymatlar hech qachon o'zgarmaydi: <b style={{ color: T.ink }}>tug'ilgan yilingiz</b> doim bir xil-ku. Bunday qiymatlar uchun <b style={{ color: T.ink }}>const</b> so'zini ishlatamiz — uning ichini o'zgartirib bo'lmaydi. Ishonmaysizmi? Tugmani bosing.</>, ru: <>Некоторые значения не меняются никогда: <b style={{ color: T.ink }}>год вашего рождения</b> всегда один и тот же. Для таких значений используем слово <b style={{ color: T.ink }}>const</b> — его содержимое изменить нельзя. Не верите? Нажмите кнопку.</> })}</Mentor>
+        <Mentor>{tr3({ uz: <>Ba'zi qiymatlar hech qachon o'zgarmaydi: <b style={{ color: T.ink }}>tug'ilgan yilingiz</b> doim bir xil. Bunday qiymatlar uchun <b style={{ color: T.ink }}>const</b> so'zini ishlatamiz — uning ichini o'zgartirib bo'lmaydi. Ishonmaysizmi? Tugmani bosing.</>, ru: <>Некоторые значения не меняются никогда: <b style={{ color: T.ink }}>год вашего рождения</b> всегда один и тот же. Для таких значений используем слово <b style={{ color: T.ink }}>const</b> — его содержимое изменить нельзя. Не верите? Нажмите кнопку.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <p className="flow-label">{tr3({ uz: "Quti — o'zgarmas (const)", ru: "Коробка — неизменная (const)" })}</p>
             <div style={{ display: "flex", justifyContent: "center", padding: "8px 0" }}>
               <div className={tried ? "shake-x" : ""} style={{ position: "relative" }}>
-                <VarBox name="tugilgan_yil" value={2012} valColor={CODE.num} />
+                <VarBox name="birth_year" value={2012} valColor={CODE.num} />
                 {tried && <span className="pop-num" style={{ position: "absolute", top: -10, right: -10, fontSize: 22 }}>🔒</span>}
                 {tried && <span className="mono wh-reject" style={{ position: "absolute", top: 6, left: "50%", color: CODE.num, fontWeight: 700, fontSize: 17, pointerEvents: "none" }}>2015 ↩</span>}
               </div>
             </div>
-            <button className="btn" onClick={() => setTried(true)} style={{ alignSelf: "center" }}>{tr3({ uz: "✏️ Qiymatni o'zgartirishga urinish", ru: "✏️ Попытаться изменить значение" })}</button>
+            <button className="btn" onClick={() => setTried(true)} style={{ alignSelf: "center" }}>{tr3({ uz: "Qiymatni o'zgartirishga urinish", ru: "Попытаться изменить значение" })}</button>
           </Col>
           <Col>
             <p className="flow-label">{tr3({ uz: "Kod", ru: "Код" })}</p>
-            <pre className="code-box fade-up" style={{ fontSize: "clamp(13px,2vw,15px)" }}><Kw>const</Kw> <Vr>tugilgan_yil</Vr> <Op>=</Op> <Nm>2012</Nm>{"\n"}{tried && <><Vr>tugilgan_yil</Vr> <Op>=</Op> <Nm>2015</Nm>{"\n"}<span className="el-in" style={{ color: T.accent, display: "inline-block" }}>{"❌ Xato: const o'zgarmaydi!"}</span></>}</pre>
-            {done ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr3({ uz: <>Ko'rdingizmi — <b>const</b> qutini "qulflaydi" 🔒. Qiymat bir marta solinadi va o'zgarmaydi.</>, ru: <>Видели? <b>const</b> «запирает» коробку 🔒. Значение кладётся один раз и больше не меняется.</> })}</p></div> : <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>{tr3({ uz: <>const = constant = o'zgarmas. Tug'ilgan yil, hafta kunlari soni (7), Pi soni — bularga const.</>, ru: <>const = constant = неизменный. Год рождения, число дней в неделе (7), число Пи — для них const.</> })}</p></div>}
+            <pre className="code-box fade-up" style={{ fontSize: "clamp(13px,2vw,15px)" }}><Kw>const</Kw> <Vr>birth_year</Vr> <Op>=</Op> <Nm>2012</Nm>{"\n"}{tried && <><Vr>birth_year</Vr> <Op>=</Op> <Nm>2015</Nm>{"\n"}<span className="el-in" style={{ color: T.accent, display: "inline-block" }}>{"❌ Xato: const o'zgarmaydi!"}</span></>}</pre>
+            {
+    /* F-0926-06: yashil «Ko'rdingizmi — const qulflaydi» olindi — mentor gapi + qutidagi 🔒 aytadi (159/1); izoh javobdan keyin ham qoladi */
+  }
+            <div className="frame-soft"><p className="body" style={{ margin: 0, color: T.ink }}>{tr3({ uz: <>const = constant = o'zgarmas. Tug'ilgan yil, hafta kunlari soni (7), Pi soni — bularga const.</>, ru: <>const = constant = неизменный. Год рождения, число дней в неделе (7), число Пи — для них const.</> })}</p></div>
           </Col>
         </div>
         </Zoomable>
@@ -4839,19 +5399,19 @@ var Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     </Stage>;
 };
 var Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: "s7", text: `Endi eng muhim qoidani mustahkamlaymiz. Qiymat o'zgaradimi — let. O'zgarmaydimi — const. Quyidagi har bir holat uchun to'g'ri so'zni tanlang.`, trigger: "on_mount", waits_for: null }]);
+  const audio = useAudio([{ id: "s7", text: `Endi eng muhim qoidani mustahkamlaymiz. Qiymat o'zgaradimi — let. O'zgarmaydimi — const. Har bir holat uchun to'g'ri so'zni tanlang.`, trigger: "on_mount", waits_for: null }]);
   const CASES = [
     { t: { uz: "O'yindagi ballingiz", ru: "Ваш счёт в игре" }, a: "let", why: { uz: "doim o'zgaradi", ru: "всё время меняется" } },
     { t: { uz: "Tug'ilgan yilingiz", ru: "Год вашего рождения" }, a: "const", why: { uz: "hech o'zgarmaydi", ru: "никогда не меняется" } },
     { t: { uz: "Haftadagi kunlar (7)", ru: "Дней в неделе (7)" }, a: "const", why: { uz: "doim 7", ru: "всегда 7" } }
   ];
-  const [ans, setAns] = useState4(storedAnswer?.ans || {});
+  const [ans, setAns] = useState5(storedAnswer?.ans || {});
   const done = CASES.every((c, i) => ans[i] === c.a);
   const choose = (i, v) => {
     if (ans[i] === CASES[i].a) return;
     setAns((p) => ({ ...p, [i]: v }));
   };
-  useEffect5(() => {
+  useEffect6(() => {
     if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true, ans });
   }, [done]);
   return <Stage eyebrow="let vs const" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr3({ uz: "Davom etish", ru: "Продолжить" }) : tr3({ uz: "Hammasini to'g'ri tanlang", ru: "Выберите верно для всех" })} onClick={onNext} /></>}>
@@ -4885,14 +5445,14 @@ var Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 var Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: "s8", text: `Eski kodlarda yana bitta so'zni uchratasiz — var. Bu o'zgaruvchining eng eski usuli, 2015-yilgacha hamma shuni ishlatardi. Lekin uning kamchiliklari bor edi, shuning uchun bugun biz let va const ishlatamiz. var bilan shunchaki tanish bo'lib qo'ying. Tugmani bosib, eski va yangi usulni solishtiring.`, trigger: "on_mount", waits_for: null }]);
-  const [era, setEra] = useState4("new");
-  const [touched, setTouched] = useState4(false);
+  const [era, setEra] = useState5("new");
+  const [touched, setTouched] = useState5(false);
   const done = touched;
   const set = (e) => {
     setEra(e);
     setTouched(true);
   };
-  useEffect5(() => {
+  useEffect6(() => {
     if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
   }, [done]);
   return <Stage eyebrow="var" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr3({ uz: "Davom etish", ru: "Продолжить" }) : tr3({ uz: "Ikkalasini ko'ring", ru: "Посмотрите оба" })} onClick={onNext} /></>}>
@@ -4903,20 +5463,24 @@ var Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: "flex", gap: 8 }}>
-              <button className={`chip ${era === "old" ? "chip-on" : ""}`} onClick={() => set("old")}>{tr3({ uz: "🕰️ Eski (2015 gacha)", ru: "🕰️ Старый (до 2015)" })}</button>
-              <button className={`chip ${era === "new" ? "chip-on" : ""}`} onClick={() => set("new")}>{tr3({ uz: "✨ Hozir", ru: "✨ Сейчас" })}</button>
+              <button className={`chip ${era === "old" ? "chip-on" : ""}`} onClick={() => set("old")}>{tr3({ uz: "Eski (2015 gacha)", ru: "Старый (до 2015)" })}</button>
+              <button className={`chip ${era === "new" ? "chip-on" : ""}`} onClick={() => set("new")}>{tr3({ uz: "Hozir", ru: "Сейчас" })}</button>
             </div>
             <pre className="code-box demo-swap" key={`code-${era}`} style={{ fontSize: "clamp(13px,2.1vw,16px)" }}>
-              {era === "old" ? <><Kw>var</Kw> <Vr>ism</Vr> <Op>=</Op> <St>"Aziza"</St>{"\n"}<Kw>var</Kw> <Vr>yosh</Vr> <Op>=</Op> <Nm>14</Nm></> : <><Kw>let</Kw> <Vr>ism</Vr> <Op>=</Op> <St>"Aziza"</St>{"\n"}<Kw>const</Kw> <Vr>yosh</Vr> <Op>=</Op> <Nm>14</Nm></>}
+              {era === "old" ? <><Kw>var</Kw> <Vr>name</Vr> <Op>=</Op> <St>"Aziza"</St>{"\n"}<Kw>var</Kw> <Vr>age</Vr> <Op>=</Op> <Nm>14</Nm></> : <><Kw>let</Kw> <Vr>name</Vr> <Op>=</Op> <St>"Aziza"</St>{"\n"}<Kw>const</Kw> <Vr>age</Vr> <Op>=</Op> <Nm>14</Nm></>}
             </pre>
-            <p className="el-in" key={`note-${era}`} style={{ margin: "8px 0 0", fontSize: 13, fontWeight: 600, color: era === "old" ? T.accent : T.success }}>{era === "old" ? tr3({ uz: "⚠️ Eski usul — kamchiliklari bor edi", ru: "⚠️ Старый способ — у него были недостатки" }) : tr3({ uz: "✨ Zamonaviy va ishonchli usul", ru: "✨ Современный и надёжный способ" })}</p>
+            {
+    /* F-0926-06: kod ostidagi «Eski usul / Zamonaviy usul» izohi olindi — «Qisqa xulosa» kartasi aytadi (159/1) */
+  }
           </Col>
           <Col>
             <div className="frame fade-up delay-2">
               <p className="eyebrow" style={{ color: T.accent, margin: "0 0 6px" }}>{tr3({ uz: "Qisqa xulosa", ru: "Коротко о главном" })}</p>
               <p className="body" style={{ margin: 0, color: T.ink }}>{tr3({ uz: <><span className="mono">var</span> — eski usul, eski kodlarda ko'rasiz. <br /><span className="mono">let</span> va <span className="mono">const</span> — zamonaviy, ishonchli usul. <b>Siz doim shu ikkitasini ishlating.</b></>, ru: <><span className="mono">var</span> — старый способ, увидите его в старом коде. <br /><span className="mono">let</span> и <span className="mono">const</span> — современный, надёжный способ. <b>Всегда используйте эти два.</b></> })}</p>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr3({ uz: <>Endi uchalasini ham bilasiz: <b>var</b> (eski), <b>let</b> va <b>const</b> (yangi). Tanlov oson — let yoki const.</>, ru: <>Теперь вы знаете все три: <b>var</b> (старый), <b>let</b> и <b>const</b> (новые). Выбор прост — let или const.</> })}</p></div>}
+            {
+    /* F-0926-06: yashil «Endi uchalasini ham bilasiz…» olindi — «Qisqa xulosa» bilan bir ma'no (I3) */
+  }
           </Col>
         </div>
         </Zoomable>
@@ -4933,23 +5497,23 @@ var Screen9 = (props) => <QuestionScreen
   question={<><p className="eyebrow" style={{ color: T.accent }}>{tr3({ uz: "To'g'ri javobni tanlang", ru: "Выберите верный ответ" })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr3({ uz: <>Tug'ilgan yilingiz kabi <span className="italic" style={{ color: T.accent }}>o'zgarmas</span> qiymat uchun qaysi so'zni ishlatasiz?</>, ru: <>Какое слово подойдёт для <span className="italic" style={{ color: T.accent }}>неизменного</span> значения — как год вашего рождения?</> })}</h2></>}
   options={["let", "var", "const", "box"]}
   correctIdx={2}
-  explainCorrect={{ uz: "To'g'ri! O'zgarmas qiymat uchun const — u qutini qulflaydi, qiymat o'zgarmaydi.", ru: "Верно! Для неизменного значения — const: он запирает коробку, значение не меняется." }}
+  explainCorrect={{ uz: "const qutini qulflaydi — qiymat o'zgarmay qoladi.", ru: "const запирает коробку — значение больше не меняется." }}
   explainWrong={{
-    0: { uz: "Yo'q — let o'zgaradigan qiymat uchun. O'zgarmas qiymatga const.", ru: "Нет — let для меняющихся значений. Для неизменного — const." },
-    1: { uz: "Yo'q — var eski usul. Zamonaviy o'zgarmas qiymat uchun const.", ru: "Нет — var это старый способ. Для неизменного значения сегодня — const." },
-    3: { uz: "Yo'q — box bunday so'z emas. O'zgarmas qiymat uchun const.", ru: "Нет — слова box не существует. Для неизменного значения — const." },
-    default: { uz: "O'zgarmas qiymat uchun — const.", ru: "Для неизменного значения — const." }
+    0: { uz: "let qutisi qulflanmaydi — qiymati keyin o'zgarishi mumkin.", ru: "Коробка let не запирается — её значение потом может измениться." },
+    1: { uz: "var — eski usul, bugun o'zgarmas qiymat uchun ishlatilmaydi.", ru: "var — старый способ, для неизменных значений его сейчас не берут." },
+    3: { uz: "box — JavaScriptda bunday so'z yo'q.", ru: "В JavaScript нет слова box." },
+    default: { uz: "Qaysi so'z qutini qulflaydi — shuni eslang.", ru: "Вспомните, какое слово запирает коробку." }
   }}
 />;
 var Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: "s10", text: `Qutiga turli xil narsa solish mumkin. Matn — masalan ism, qo'shtirnoq ichida yoziladi. Raqam — masalan yosh, qo'shtirnoqsiz. Va ha-yo'q qiymati — true yoki false. Bularni ma'lumot turlari deyiladi. Har birini bosib ko'ring.`, trigger: "on_mount", waits_for: null }]);
   const TYPES = {
-    string: { name: { uz: "Matn — string", ru: "Текст — string" }, box: { n: "ism", v: '"Aziza"' }, color: CODE.str, desc: { uz: `Harflar, so'zlar. Doim qo'shtirnoq ichida: "..."`, ru: 'Буквы, слова. Всегда в кавычках: "..."' } },
-    number: { name: { uz: "Raqam — number", ru: "Число — number" }, box: { n: "yosh", v: "14" }, color: CODE.num, desc: { uz: "Sonlar, qo'shtirnoqsiz. Ular bilan hisob qilamiz.", ru: "Числа, без кавычек. С ними можно считать." } },
-    boolean: { name: { uz: "Ha/yo'q — boolean", ru: "Да/нет — boolean" }, box: { n: "maktabda", v: "true" }, color: CODE.bool, desc: { uz: "Faqat ikki qiymat: true (ha) yoki false (yo'q).", ru: "Только два значения: true (да) или false (нет)." } }
+    string: { name: { uz: "Matn — string", ru: "Текст — string" }, box: { n: "name", v: '"Aziza"' }, color: CODE.str, desc: { uz: `Harflar, so'zlar. Doim qo'shtirnoq ichida: "..."`, ru: 'Буквы, слова. Всегда в кавычках: "..."' } },
+    number: { name: { uz: "Son — number", ru: "Число — number" }, box: { n: "age", v: "14" }, color: CODE.num, desc: { uz: "Sonlar, qo'shtirnoqsiz. Ular bilan hisob qilamiz.", ru: "Числа, без кавычек. С ними можно считать." } },
+    boolean: { name: { uz: "Rost/yolg'on — boolean", ru: "Истина/ложь — boolean" }, box: { n: "maktabda", v: "true" }, color: CODE.bool, desc: { uz: "Faqat ikki qiymat: true (rost) yoki false (yolg'on).", ru: "Только два значения: true (истина) или false (ложь)." } }
   };
-  const [active, setActive] = useState4(null);
-  const [seen, setSeen] = useState4(/* @__PURE__ */ new Set());
+  const [active, setActive] = useState5(null);
+  const [seen, setSeen] = useState5(/* @__PURE__ */ new Set());
   const isNarrow = useIsMobile(768);
   const done = seen.size >= 3;
   const tap = (k) => {
@@ -4960,14 +5524,14 @@ var Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       return n;
     });
   };
-  useEffect5(() => {
+  useEffect6(() => {
     if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
   }, [done]);
   return <Stage eyebrow={tr3({ uz: "Ma'lumot turlari", ru: "Типы данных" })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr3({ uz: "Davom etish", ru: "Продолжить" }) : `${seen.size}/3 ${tr3({ uz: "turni ko'ring", ru: "типа — посмотрите" })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
         <div className="head"><h2 className="title h-title fade-up">{tr3({ uz: <>Quti ichida qanday <span className="italic" style={{ color: T.accent }}>qiymatlar</span> bo'ladi?</>, ru: <>Какие <span className="italic" style={{ color: T.accent }}>значения</span> бывают внутри коробки?</> })}</h2></div>
-        <Mentor>{tr3({ uz: <>Qutiga turli xil narsa sig'adi: <b style={{ color: T.ink }}>matn</b> (qo'shtirnoq ichida), <b style={{ color: T.ink }}>raqam</b> (qo'shtirnoqsiz) va <b style={{ color: T.ink }}>ha/yo'q</b> (true yoki false). Bular — <b style={{ color: T.ink }}>ma'lumot turlari</b>. Har birini bosing.</>, ru: <>В коробку помещается разное: <b style={{ color: T.ink }}>текст</b> (в кавычках), <b style={{ color: T.ink }}>число</b> (без кавычек) и <b style={{ color: T.ink }}>да/нет</b> (true или false). Это — <b style={{ color: T.ink }}>типы данных</b>. Нажмите на каждый.</> })}</Mentor>
-        <Zoomable>
+        <Mentor>{tr3({ uz: <>Qutiga turli xil narsa sig'adi: <b style={{ color: T.ink }}>matn</b> (qo'shtirnoq ichida), <b style={{ color: T.ink }}>son</b> (qo'shtirnoqsiz) va <b style={{ color: T.ink }}>rost/yolg'on</b> (true yoki false). Bular — <b style={{ color: T.ink }}>ma'lumot turlari</b>. Har birini bosing.</>, ru: <>В коробку помещается разное: <b style={{ color: T.ink }}>текст</b> (в кавычках), <b style={{ color: T.ink }}>число</b> (без кавычек) и <b style={{ color: T.ink }}>истина/ложь</b> (true или false). Это — <b style={{ color: T.ink }}>типы данных</b>. Нажмите на каждый.</> })}</Mentor>
+        <Zoomable off={!active}>
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: "flex", flexDirection: "column", gap: 9 }}>
@@ -4982,8 +5546,10 @@ var Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {active ? <div className="fade-step" style={{ display: "flex", flexDirection: "column", gap: 12 }} key={active}>
                 <div style={{ display: "flex", justifyContent: "center" }}><VarBox name={TYPES[active].box.n} value={TYPES[active].box.v} valColor={TYPES[active].color} small pulse /></div>
                 <div className="sk-info"><span className="sk-tagbig"><span className="sk-wordbadge">{tr3(TYPES[active].name)}</span></span><p className="body" style={{ color: T.ink, margin: "10px 0 0" }}>{tr3(TYPES[active].desc)}</p></div>
-              </div> : !isNarrow ? <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: "center", fontStyle: "italic", margin: 0 }}>{tr3({ uz: "Bir turni bosing", ru: "Нажмите на один из типов" })}</p></div> : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr3({ uz: <>✓ Uchta asosiy tur: <b>matn</b>, <b>raqam</b>, <b>boolean</b>. Eng muhim farq — qo'shtirnoq!</>, ru: <>✓ Три основных типа: <b>текст</b>, <b>число</b>, <b>boolean</b>. Главное отличие — кавычки!</> })}</p></div>}
+              </div> : null}
+            {
+    /* F-0926-06: yashil «✓ Uchta asosiy tur…» olindi — mentor uchala turni sanaydi, qatorlar ✓ bo'ladi (159/1) */
+  }
           </Col>
         </div>
         </Zoomable>
@@ -4992,8 +5558,8 @@ var Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 var Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: "s11", text: `Endi eng muhim sirni ochaman. Qo'shtirnoq bitta narsani butunlay o'zgartiradi. Agar raqamlar qo'shtirnoqsiz bo'lsa — qo'shiladi: besh qo'shuv besh — o'n. Lekin qo'shtirnoq ichida bo'lsa — ular matn, shunchaki yopishtiriladi: besh-besh — besh yuz emas, ellik besh degani — "55". Ikki tugmani bosib solishtiring.`, trigger: "on_mount", waits_for: null }]);
-  const [mode, setMode] = useState4("num");
-  const [seen, setSeen] = useState4(/* @__PURE__ */ new Set(["num"]));
+  const [mode, setMode] = useState5("num");
+  const [seen, setSeen] = useState5(/* @__PURE__ */ new Set(["num"]));
   const done = seen.size >= 2;
   const set = (m) => {
     setMode(m);
@@ -5004,31 +5570,33 @@ var Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     });
   };
   const isNum = mode === "num";
-  useEffect5(() => {
+  useEffect6(() => {
     if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
   }, [done]);
-  return <Stage eyebrow={tr3({ uz: "Matn vs Raqam", ru: "Текст vs Число" })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr3({ uz: "Davom etish", ru: "Продолжить" }) : tr3({ uz: "Ikkalasini ko'ring", ru: "Посмотрите оба" })} onClick={onNext} /></>}>
+  return <Stage eyebrow={tr3({ uz: "Matn vs Son", ru: "Текст vs Число" })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr3({ uz: "Davom etish", ru: "Продолжить" }) : tr3({ uz: "Ikkalasini ko'ring", ru: "Посмотрите оба" })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
         <div className="head"><h2 className="title h-title fade-up">{tr3({ uz: <>Besh qo'shuv besh — <span className="italic" style={{ color: T.accent }}>qachon</span> o'n emas?</>, ru: <>Пять плюс пять — <span className="italic" style={{ color: T.accent }}>когда</span> это не десять?</> })}</h2></div>
-        <Mentor>{tr3({ uz: <>Bitta <b style={{ color: T.ink }}>qo'shtirnoq</b> hammasini o'zgartiradi! Raqamlar qo'shtirnoqsiz bo'lsa — <b style={{ color: T.ink }}>qo'shiladi</b> (5+5=10). Qo'shtirnoq ichida bo'lsa — ular matn, <b style={{ color: T.ink }}>yopishtiriladi</b> ("5"+"5"="55"). Solishtiring.</>, ru: <>Одни <b style={{ color: T.ink }}>кавычки</b> меняют всё! Числа без кавычек — <b style={{ color: T.ink }}>складываются</b> (5+5=10). А в кавычках это текст — он <b style={{ color: T.ink }}>склеивается</b> ("5"+"5"="55"). Сравните.</> })}</Mentor>
+        <Mentor>{tr3({ uz: <>Bitta <b style={{ color: T.ink }}>qo'shtirnoq</b> hammasini o'zgartiradi! Sonlar qo'shtirnoqsiz bo'lsa — <b style={{ color: T.ink }}>qo'shiladi</b> (5+5=10). Qo'shtirnoq ichida bo'lsa — ular matn, <b style={{ color: T.ink }}>yopishtiriladi</b> ("5"+"5"="55"). Solishtiring.</>, ru: <>Одни <b style={{ color: T.ink }}>кавычки</b> меняют всё! Числа без кавычек — <b style={{ color: T.ink }}>складываются</b> (5+5=10). А в кавычках это текст — он <b style={{ color: T.ink }}>склеивается</b> ("5"+"5"="55"). Сравните.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: "flex", gap: 8 }}>
-              <button className={`chip ${isNum ? "chip-on" : ""}`} onClick={() => set("num")}>{tr3({ uz: "🔢 Raqam", ru: "🔢 Число" })}</button>
-              <button className={`chip ${!isNum ? "chip-on" : ""}`} onClick={() => set("str")}>{tr3({ uz: "🔤 Matn", ru: "🔤 Текст" })}</button>
+              <button className={`chip ${isNum ? "chip-on" : ""}`} onClick={() => set("num")}>{tr3({ uz: "Son", ru: "Число" })}</button>
+              <button className={`chip ${!isNum ? "chip-on" : ""}`} onClick={() => set("str")}>{tr3({ uz: "Matn", ru: "Текст" })}</button>
             </div>
             <pre className="code-box demo-swap" key={mode} style={{ fontSize: "clamp(14px,2.4vw,18px)" }}>
-              {isNum ? <><Nm>5</Nm> <Op>+</Op> <Nm>5</Nm>  <span style={{ color: CODE.comment }}>{"// raqamlar"}</span></> : <><St>"5"</St> <Op>+</Op> <St>"5"</St>  <span style={{ color: CODE.comment }}>{"// matn"}</span></>}
+              {isNum ? <><Nm>5</Nm> <Op>+</Op> <Nm>5</Nm>  <span style={{ color: CODE.comment }}>{"// sonlar"}</span></> : <><St>"5"</St> <Op>+</Op> <St>"5"</St>  <span style={{ color: CODE.comment }}>{"// matn"}</span></>}
             </pre>
           </Col>
           <Col>
             <p className="flow-label">{tr3({ uz: "Natija", ru: "Результат" })}</p>
             <div className="demo-swap" key={mode + "r"} style={{ background: T.paper, borderRadius: 14, padding: "22px", textAlign: "center", boxShadow: `0 8px 20px -6px rgba(${T.shadowBase},0.14)` }}>
               <div className="pop-num" key={mode} style={{ fontFamily: "'Fraunces',serif", fontSize: "clamp(36px,8vw,52px)", color: isNum ? CODE.num : T.accent }}>{isNum ? "10" : '"55"'}</div>
-              <p className="body" style={{ margin: "6px 0 0", color: T.ink2 }}>{isNum ? tr3({ uz: "Qo'shildi — chunki raqam", ru: "Сложилось — потому что числа" }) : tr3({ uz: "Yopishdi — chunki matn", ru: "Склеилось — потому что текст" })}</p>
+              <p className="body" style={{ margin: "6px 0 0", color: T.ink2 }}>{isNum ? tr3({ uz: "Qo'shildi — chunki son", ru: "Сложилось — потому что числа" }) : tr3({ uz: "Yopishdi — chunki matn", ru: "Склеилось — потому что текст" })}</p>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr3({ uz: <>✓ Esda saqlang: <b>qo'shtirnoq bor → matn</b>, <b>qo'shtirnoq yo'q → raqam</b>. Bu — eng ko'p chalkashtiradigan joy!</>, ru: <>✓ Запомните: <b>есть кавычки → текст</b>, <b>нет кавычек → число</b>. Тут путаются чаще всего!</> })}</p></div>}
+            {
+    /* F-0926-06: yashil «✓ Esda saqlang: qo'shtirnoq bor → matn…» olindi — mentor gapini takrorlardi (159/1) */
+  }
           </Col>
         </div>
         </Zoomable>
@@ -5041,48 +5609,48 @@ var Screen12 = (props) => <QuestionScreen
   scope="module-mikro"
   eyebrow={tr3({ uz: "Mashq · 3-savol", ru: "Практика · вопрос 3" })}
   audioText="Quyidagilardan qaysi biri RAQAM (number)?"
-  questionText={{ uz: "Qaysi biri RAQAM (number)?", ru: "Что из этого — ЧИСЛО (number)?" }}
-  question={<><p className="eyebrow" style={{ color: T.accent }}>{tr3({ uz: "To'g'ri javobni tanlang", ru: "Выберите верный ответ" })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr3({ uz: <>Qaysi biri <span className="italic" style={{ color: T.accent }}>RAQAM</span> (number)?</>, ru: <>Что из этого — <span className="italic" style={{ color: T.accent }}>ЧИСЛО</span> (number)?</> })}</h2></>}
+  questionText={{ uz: "Qaysi biri SON (number)?", ru: "Что из этого — ЧИСЛО (number)?" }}
+  question={<><p className="eyebrow" style={{ color: T.accent }}>{tr3({ uz: "To'g'ri javobni tanlang", ru: "Выберите верный ответ" })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr3({ uz: <>Qaysi biri <span className="italic" style={{ color: T.accent }}>SON</span> (number)?</>, ru: <>Что из этого — <span className="italic" style={{ color: T.accent }}>ЧИСЛО</span> (number)?</> })}</h2></>}
   options={['"25"', "25", '"yigirma"', "true"]}
   correctIdx={1}
-  explainCorrect={{ uz: "To'g'ri! 25 — qo'shtirnoqsiz, demak raqam (number). U bilan hisob qilsa bo'ladi.", ru: "Верно! 25 — без кавычек, значит число (number). С ним можно считать." }}
+  explainCorrect={{ uz: "Qo'shtirnoq yo'q — demak son, u bilan hisob qilsa bo'ladi.", ru: "Кавычек нет — значит, это число, с ним можно считать." }}
   explainWrong={{
-    0: { uz: `"25" — qo'shtirnoqda, demak bu matn (string), raqam emas.`, ru: '"25" — в кавычках, значит это текст (string), а не число.' },
+    0: { uz: `"25" — qo'shtirnoqda, demak bu matn (string), son emas.`, ru: '"25" — в кавычках, значит это текст (string), а не число.' },
     2: { uz: `"yigirma" — qo'shtirnoqdagi so'z, bu matn (string).`, ru: '"yigirma" — слово в кавычках, это текст (string).' },
-    3: { uz: "true — bu boolean (ha/yo'q), raqam emas. Raqam — qo'shtirnoqsiz 25.", ru: "true — это boolean (да/нет), не число. Число — 25 без кавычек." },
-    default: { uz: "Qo'shtirnoqsiz son — raqam: 25.", ru: "Число без кавычек — 25." }
+    3: { uz: "true — bu boolean (rost/yolg'on), son emas.", ru: "true — это boolean (истина/ложь), а не число." },
+    default: { uz: "Qo'shtirnoq bor-yo'qligiga qarang.", ru: "Посмотрите, есть ли кавычки." }
   }}
 />;
 var S13_COLOR = (t) => t === "str" ? CODE.str : t === "bool" ? CODE.bool : CODE.num;
 var S13_BLOCKS = [
-  { kw: "let", name: "ism", val: '"Aziza"', t: "str" },
-  { kw: "let", name: "yosh", val: "14", t: "num" },
-  { kw: "const", name: "shahar", val: '"Toshkent"', t: "str" },
-  { kw: "let", name: "ball", val: "0", t: "num" },
-  { kw: "const", name: "maktab", val: '"Coddycamp"', t: "str" },
-  { kw: "let", name: "oqiyaptimi", val: "true", t: "bool" }
+  { kw: "let", name: "name", val: '"Aziza"', t: "str" },
+  { kw: "let", name: "age", val: "14", t: "num" },
+  { kw: "const", name: "city", val: '"Toshkent"', t: "str" },
+  { kw: "let", name: "score", val: "0", t: "num" },
+  { kw: "const", name: "school", val: '"Coddycamp"', t: "str" },
+  { kw: "let", name: "is_studying", val: "true", t: "bool" }
 ];
 var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: "s13", text: `Endi navbat sizga — o'zingiz haqingizda bir nechta o'zgaruvchi yarating. Pastdagi bloklarni bosib qo'shing: ism, yosh, shahar... Kamida 3 ta o'zgaruvchi yig'ing.`, trigger: "on_mount", waits_for: null }]);
   const MAX = 6;
-  const [items, setItems] = useState4(() => Array.isArray(storedAnswer?.items) ? storedAnswer.items : []);
+  const [items, setItems] = useState5(() => Array.isArray(storedAnswer?.items) ? storedAnswer.items : []);
   const done = items.length >= 3;
   const add = (b) => {
     if (items.length >= MAX || items.find((x) => x.name === b.name)) return;
     setItems((prev) => [...prev, b]);
   };
   const reset = () => setItems([]);
-  useEffect5(() => {
+  useEffect6(() => {
     if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true, items });
   }, [done]);
   return <Stage eyebrow={tr3({ uz: "Amaliyot · o'zgaruvchilar", ru: "Практика · переменные" })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr3({ uz: "Davom etish", ru: "Продолжить" }) : `${tr3({ uz: "Kamida 3 ta", ru: "Минимум 3" })} (${items.length}/3)`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: "clamp(8px,1.2vw,12px)" }}>
         <div className="head"><h2 className="title h-title fade-up">{tr3({ uz: <>O'z o'zgaruvchilaringizni <span className="italic" style={{ color: T.accent }}>yarating</span></>, ru: <><span className="italic" style={{ color: T.accent }}>Создайте</span> свои переменные</> })}</h2></div>
-        <Mentor>{tr3({ uz: <>Endi navbat sizga — o'zingiz haqingizda o'zgaruvchilar yarating. Bloklarni bosib qo'shing: ism, yosh, shahar... Kamida <b style={{ color: T.ink }}>3 ta</b> o'zgaruvchi yig'ing.</>, ru: <>Теперь ваша очередь — создайте переменные о себе. Нажимайте блоки, чтобы добавить: ism, yosh, shahar... Соберите минимум <b style={{ color: T.ink }}>3</b> переменные.</> })}</Mentor>
+        <Mentor>{tr3({ uz: <>Endi navbat sizga — o'zingiz haqingizda o'zgaruvchilar yarating. Bloklarni bosib qo'shing: name, age, city... Kamida <b style={{ color: T.ink }}>3 ta</b> o'zgaruvchi yig'ing.</>, ru: <>Теперь ваша очередь — создайте переменные о себе. Нажимайте блоки, чтобы добавить: name, age, city... Соберите минимум <b style={{ color: T.ink }}>3</b> переменные.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">{tr3({ uz: "Bloklar — bosib qo'shing", ru: "Блоки — нажмите, чтобы добавить" })}</p>
+            <p className="flow-label">{tr3({ uz: "Bloklar", ru: "Блоки" })}</p>
             <div className="fade-up delay-1" style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
               {S13_BLOCKS.map((b, i) => <button key={i} className="gchip" disabled={items.length >= MAX || !!items.find((x) => x.name === b.name)} onClick={() => add(b)}>
                   <span className="mono" style={{ color: T.accent }}>{b.kw}</span> {b.name}
@@ -5096,7 +5664,7 @@ var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <pre className="code-box" style={{ minHeight: 110 }}>
               {items.length === 0 ? <span style={{ color: CODE.comment }}>{tr3({ uz: "// blok qo'shing…", ru: "// добавьте блок…" })}</span> : items.map((b, i) => <span key={i} className="el-in" style={{ display: "block" }}><Kw>{b.kw}</Kw> <Vr>{b.name}</Vr> <Op>=</Op> <span style={{ color: S13_COLOR(b.t) }}>{b.val}</span></span>)}
             </pre>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr3({ uz: <>✓ Zo'r! Siz {items.length} ta o'zgaruvchi yaratdingiz — har biri nomi va qiymati bor quti.</>, ru: <>✓ Отлично! Вы создали {items.length} переменные — каждая это коробка с именем и значением.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr3({ uz: <>✓ Juda yaxshi! Siz {items.length} ta o'zgaruvchi yaratdingiz — har biri nomi va qiymati bor quti.</>, ru: <>✓ Отлично! Вы создали {items.length} переменные — каждая это коробка с именем и значением.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -5105,13 +5673,13 @@ var Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 var Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: "s14", text: `AI sizga kod yozib berdi, lekin bittasida xato bor — dastur ishlamayapti. Yaxshilab qarang: bir o'zgaruvchining matn qiymati qo'shtirnoqsiz qolib ketibdi. Xato qatorni toping va bosing.`, trigger: "on_mount", waits_for: { type: "error_found" } }]);
-  const [picked, setPicked] = useState4(storedAnswer ? "ism" : null);
-  const [fixed, setFixed] = useState4(!!storedAnswer);
-  const found = picked === "ism";
+  const [picked, setPicked] = useState5(storedAnswer ? "name" : null);
+  const [fixed, setFixed] = useState5(!!storedAnswer);
+  const found = picked === "name";
   const done = fixed;
   const pickIsm = () => {
     if (found) return;
-    setPicked("ism");
+    setPicked("name");
     audio.triggerEvent("error_found");
     if (!audio.muted) setTimeout(() => {
       const e = getAudioEngine();
@@ -5125,34 +5693,40 @@ var Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       if (e && !audio.muted) e.pushOneOff(`Tuzatildi! Endi "Aziza" matn bo'ldi — kod ishlaydi.`);
     }, 300);
   };
-  useEffect5(() => {
+  useEffect6(() => {
     if (done && storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
   }, [done]);
   return <Stage eyebrow={tr3({ uz: "Debugging", ru: "Отладка" })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr3({ uz: "Davom etish", ru: "Продолжить" }) : found ? tr3({ uz: "Endi tuzating", ru: "Теперь исправьте" }) : tr3({ uz: "Xatoni toping", ru: "Найдите ошибку" })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
         <div className="head"><h2 className="title h-title fade-up">{tr3({ uz: <>Kod ishlamadi — <span className="italic" style={{ color: T.accent }}>nega</span>?</>, ru: <>Код не заработал — <span className="italic" style={{ color: T.accent }}>почему</span>?</> })}</h2></div>
         <Mentor>{tr3({ uz: <>AI kod yozib berdi, lekin dastur <b style={{ color: T.ink }}>ishlamayapti</b>. Yaxshilab qarang: bir o'zgaruvchining <b style={{ color: T.ink }}>matn qiymati qo'shtirnoqsiz</b> qolib ketibdi. Xato qatorni toping va bosing.</>, ru: <>ИИ написал вам код, но программа <b style={{ color: T.ink }}>не работает</b>. Присмотритесь: у одной переменной <b style={{ color: T.ink }}>текстовое значение осталось без кавычек</b>. Найдите строку с ошибкой и нажмите на неё.</> })}</Mentor>
-        <Zoomable>
+        <Zoomable off={!found}>
         <div className="split">
           <Col>
             <div className="ai-card fade-up delay-1">
               <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr3({ uz: "Mana, o'zgaruvchilaringiz:", ru: "Вот ваши переменные:" })}</span></div>
               <div className="ai-code">
-                <div className="ai-line" style={{ cursor: "default" }}><Kw>let</Kw> <Vr>yosh</Vr> <Op>=</Op> <Nm>14</Nm></div>
-                <div className={`ai-line ${found ? fixed ? "ok" : "bad" : ""}`} onClick={pickIsm}><Kw>let</Kw> <Vr>ism</Vr> <Op>=</Op> {fixed ? <St>"Aziza"</St> : <span style={{ color: CODE.text }}>Aziza</span>} {!fixed && <span style={{ color: CODE.comment }}>{"// ?"}</span>}</div>
-                <div className="ai-line" style={{ cursor: "default" }}><Kw>const</Kw> <Vr>shahar</Vr> <Op>=</Op> <St>"Toshkent"</St></div>
+                <div className="ai-line" style={{ cursor: "default" }}><Kw>let</Kw> <Vr>age</Vr> <Op>=</Op> <Nm>14</Nm></div>
+                <div className={`ai-line ${found ? fixed ? "ok" : "bad" : ""}`} onClick={pickIsm}><Kw>let</Kw> <Vr>name</Vr> <Op>=</Op> {fixed ? <St>"Aziza"</St> : <span style={{ color: CODE.text }}>Aziza</span>}{
+    /* F-0926-06: xato qatordagi «// ?» belgisi olindi — javobni oldindan ko'rsatardi (159/17) */
+  }</div>
+                <div className="ai-line" style={{ cursor: "default" }}><Kw>const</Kw> <Vr>city</Vr> <Op>=</Op> <St>"Toshkent"</St></div>
               </div>
-              {!found && <p className="ai-prompt">{tr3({ uz: "Qaysi qatorda xato? Bosing.", ru: "В какой строке ошибка? Нажмите." })}</p>}
-              {found && !fixed && <button className="btn fade-step" style={{ alignSelf: "flex-start" }} onClick={fix}>{tr3({ uz: `🔧 "Aziza" ga qo'shtirnoq qo'shish`, ru: '🔧 Добавить кавычки к "Aziza"' })}</button>}
-              {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: "normal", fontWeight: 600 }}>{tr3({ uz: "✓ Tuzatildi — endi kod ishlaydi!", ru: "✓ Исправлено — теперь код работает!" })}</p>}
+              {
+    /* F-0926-06: «Qaysi qatorda xato? Bosing.» olindi — mentor gapi (159/1) */
+  }
+              {found && !fixed && <button className="btn fade-step" style={{ alignSelf: "flex-start" }} onClick={fix}>{tr3({ uz: `"Aziza" ga qo'shtirnoq qo'shish`, ru: 'Добавить кавычки к "Aziza"' })}</button>}
+              {
+    /* F-0926-06: «✓ Tuzatildi — endi kod ishlaydi!» olindi — qator yashil + «Endi ishlaydi» ustuni aytadi (I3) */
+  }
             </div>
           </Col>
           <Col>
-            {!found && (picked && picked !== "ism" ? <div className="frame-warn fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr3({ uz: <>Bu qator to'g'ri. Yana qarang: qaysi matn qiymatida <b>qo'shtirnoq yetishmayapti</b>?</>, ru: <>Эта строка верная. Посмотрите ещё: какому текстовому значению <b>не хватает кавычек</b>?</> })}</p></div> : <div className="hint"><p className="body zb-notch" style={{ margin: 0, color: T.ink2 }}>{tr3({ uz: <>Eslang: matn qiymati doim <b style={{ color: T.ink }}>qo'shtirnoq ichida</b> bo'lishi kerak. Qaysi qatorda yo'q?</>, ru: <>Вспомните: текстовое значение всегда должно быть <b style={{ color: T.ink }}>в кавычках</b>. В какой строке их нет?</> })}</p></div>)}
-            {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr3({ uz: "✓ Topdingiz!", ru: "✓ Нашли!" })}</p><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr3({ uz: <><span className="mono">Aziza</span> qo'shtirnoqsiz — kompyuter uni o'zgaruvchi deb o'ylab, topolmayapti. To'g'risi: <span className="mono">"Aziza"</span>. Chap tugmani bosing →</>, ru: <><span className="mono">Aziza</span> без кавычек — компьютер думает, что это переменная, и не может её найти. Правильно: <span className="mono">"Aziza"</span>. Нажмите кнопку слева →</> })}</p></div>}
+            {!found && (picked && picked !== "name" ? <div className="frame-warn fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr3({ uz: <>Bu qator to'g'ri. Yana qarang: qaysi matn qiymatida <b>qo'shtirnoq yetishmayapti</b>?</>, ru: <>Эта строка верная. Посмотрите ещё: какому текстовому значению <b>не хватает кавычек</b>?</> })}</p></div> : null)}
+            {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr3({ uz: "✓ Topdingiz!", ru: "✓ Нашли!" })}</p><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr3({ uz: <><span className="mono">Aziza</span> qo'shtirnoqsiz — kompyuter uni o'zgaruvchi deb o'ylab, topolmayapti. To'g'risi: <span className="mono">"Aziza"</span>. Tugmani bosing.</>, ru: <><span className="mono">Aziza</span> без кавычек — компьютер думает, что это переменная, и не может её найти. Правильно: <span className="mono">"Aziza"</span>. Нажмите кнопку.</> })}</p></div>}
             {fixed && <>
               <p className="flow-label">{tr3({ uz: "Endi ishlaydi", ru: "Теперь работает" })}</p>
-              <div style={{ display: "flex", justifyContent: "center" }}><VarBox name="ism" value={'"Aziza"'} valColor={CODE.str} small /></div>
+              <div style={{ display: "flex", justifyContent: "center" }}><VarBox name="name" value={'"Aziza"'} valColor={CODE.str} small /></div>
               <div className="takeaway fade-step"><div className="ta-bulb">🛠️</div><p className="ta-h">{tr3({ uz: "Topdingiz va tuzatdingiz — bu debugging!", ru: "Нашли и исправили — это и есть отладка!" })}</p><p className="ta-sub">{tr3({ uz: "Matn = qo'shtirnoq ichida", ru: "Текст = в кавычках" })}</p></div>
             </>}
           </Col>
@@ -5163,8 +5737,8 @@ var Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 var Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: "s15", text: `Mana, eng muhim lahza. Shu paytgacha qutilarni qo'l bilan to'ldirdingiz — endi birinchi qutingizni so'z bilan yozasiz. Ismingizni saqlaydigan o'zgaruvchi yozing: let, keyin nom, teng belgisi va qo'shtirnoqda ismingiz. Masalan: let ism teng qo'shtirnoqda Aziza.`, trigger: "on_mount", waits_for: { type: "typed_ok" } }]);
-  const [value, setValue] = useState4(typeof storedAnswer?.picked === "string" ? storedAnswer.picked : "");
-  const [passed, setPassed] = useState4(!!storedAnswer?.correct);
+  const [value, setValue] = useState5(typeof storedAnswer?.picked === "string" ? storedAnswer.picked : "");
+  const [passed, setPassed] = useState5(!!storedAnswer?.correct);
   const v = value.trim();
   const m = v.match(/^(let|const|var)\s+([A-Za-z_]\w*)\s*=\s*(.+)$/);
   const hasKw = /^(let|const|var)\b/.test(v);
@@ -5174,37 +5748,37 @@ var Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const nm = valid ? m[2] : "";
   const vv = valid ? m[3].trim() : "";
   const valIsStr = /^".*"$/.test(vv) || /^'.*'$/.test(vv);
-  useEffect5(() => {
+  useEffect6(() => {
     if (valid && !passed) {
       setPassed(true);
       onAnswer(screen, { correct: true, picked: value });
       audio.triggerEvent("typed_ok");
       if (!audio.muted) setTimeout(() => {
         const e = getAudioEngine();
-        if (e && !audio.muted) e.pushOneOff(`Zo'r! Birinchi o'zgaruvchingizni o'zingiz yozdingiz. Tabriklayman!`);
+        if (e && !audio.muted) e.pushOneOff(`Juda yaxshi! Birinchi o'zgaruvchingizni o'zingiz yozdingiz. Tabriklayman!`);
       }, 300);
     }
   }, [valid]);
   return <Stage eyebrow={tr3({ uz: "Yakuniy · amaliy", ru: "Финал · практика" })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? tr3({ uz: "Davom etish", ru: "Продолжить" }) : tr3({ uz: "O'zgaruvchini yozing", ru: "Напишите переменную" })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: "clamp(10px,1.6vw,16px)" }}>
         <div className="head"><h2 className="title h-title fade-up">{tr3({ uz: <>Oxirgi qadam: o'zgaruvchini <span className="italic" style={{ color: T.accent }}>o'zingiz</span> yozing.</>, ru: <>Последний шаг: напишите переменную <span className="italic" style={{ color: T.accent }}>сами</span>.</> })}</h2></div>
-        <Mentor>{tr3({ uz: <><b style={{ color: T.ink }}>Shu paytgacha qutilarni qo'l bilan to'ldirdingiz — endi birinchi qutingizni so'z bilan yozasiz.</b> Ismingizni saqlaydigan o'zgaruvchi yozing: <span className="mono">let</span>, keyin nom, <span className="mono">=</span> va qo'shtirnoqda ismingiz. Masalan: <span className="mono">let ism = "Aziza"</span>.</>, ru: <><b style={{ color: T.ink }}>До сих пор вы заполняли коробки руками — теперь создадите первую коробку словами.</b> Напишите переменную, которая хранит ваше имя: <span className="mono">let</span>, затем имя, <span className="mono">=</span> и ваше имя в кавычках. Например: <span className="mono">let ism = "Aziza"</span>.</> })}</Mentor>
-        <Zoomable>
+        <Mentor>{tr3({ uz: <><b style={{ color: T.ink }}>Shu paytgacha qutilarni qo'l bilan to'ldirdingiz — endi birinchi qutingizni so'z bilan yozasiz.</b> Ismingizni saqlaydigan o'zgaruvchi yozing: <span className="mono">let</span>, keyin nom, <span className="mono">=</span> va qo'shtirnoqda ismingiz.</>, ru: <><b style={{ color: T.ink }}>До сих пор вы заполняли коробки руками — теперь создадите первую коробку словами.</b> Напишите переменную, которая хранит ваше имя: <span className="mono">let</span>, затем имя, <span className="mono">=</span> и ваше имя в кавычках.</> })}</Mentor>
+        <Zoomable off={!valid}>
         <div className="split">
           <Col>
-            <input className="fade-up delay-1" value={value} onChange={(e) => setValue(e.target.value)} placeholder={'let ism = "Aziza"'} spellCheck={false} autoCapitalize="off" autoCorrect="off" style={{ width: "100%", fontFamily: "'JetBrains Mono', monospace", fontSize: 16, padding: "14px 16px", borderRadius: 12, border: "none", background: T.paper, color: T.ink, outline: "none", transition: "box-shadow 0.2s", boxShadow: valid ? `0 0 0 2px ${T.success}, 0 8px 20px -8px rgba(${T.shadowBase},0.2)` : `0 4px 14px -6px rgba(${T.shadowBase},0.16)` }} />
+            <input className="fade-up delay-1" value={value} onChange={(e) => setValue(e.target.value)} placeholder={"let …"} spellCheck={false} autoCapitalize="off" autoCorrect="off" style={{ width: "100%", fontFamily: "'JetBrains Mono', monospace", fontFeatureSettings: '"liga" 0, "calt" 0', fontSize: 16, padding: "14px 16px", borderRadius: 12, border: "none", background: T.paper, color: T.ink, outline: "none", transition: "box-shadow 0.2s", boxShadow: valid ? `0 0 0 2px ${T.success}, 0 8px 20px -8px rgba(${T.shadowBase},0.2)` : `0 4px 14px -6px rgba(${T.shadowBase},0.16)` }} />
             <div className="fade-up delay-2" style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
               <span className="tagpill" style={{ opacity: hasKw ? 1 : 0.4 }}>{hasKw ? "✓" : "1"} let / const</span>
               <span className="tagpill" style={{ opacity: hasName ? 1 : 0.4 }}>{hasName ? "✓" : "2"} {tr3({ uz: "nom", ru: "имя" })}</span>
               <span className="tagpill" style={{ opacity: hasEq ? 1 : 0.4 }}>{hasEq ? "✓" : "3"} =</span>
               <span className="tagpill" style={{ opacity: valid ? 1 : 0.4 }}>{valid ? "✓" : "4"} {tr3({ uz: "qiymat", ru: "значение" })}</span>
             </div>
-            {passed ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr3({ uz: <>✓ Zo'r! Bu — to'liq, to'g'ri o'zgaruvchi. Siz haqiqiy JavaScript yozdingiz!</>, ru: <>✓ Класс! Это полная, правильная переменная. Вы написали настоящий JavaScript!</> })}</p></div> : <p className="body" style={{ margin: 0, color: T.ink3, fontSize: 13 }}>{tr3({ uz: <>Matn qiymatini qo'shtirnoqqa oling: <span className="mono">"..."</span>. Raqam uchun qo'shtirnoq shart emas.</>, ru: <>Текстовое значение возьмите в кавычки: <span className="mono">"..."</span>. Числу кавычки не нужны.</> })}</p>}
+            {passed ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr3({ uz: <>✓ Juda yaxshi! Bu — to'liq, to'g'ri o'zgaruvchi. Siz haqiqiy JavaScript yozdingiz!</>, ru: <>✓ Класс! Это полная, правильная переменная. Вы написали настоящий JavaScript!</> })}</p></div> : <p className="body" style={{ margin: 0, color: T.ink3, fontSize: 13 }}>{tr3({ uz: <>Matn qiymatini qo'shtirnoqqa oling: <span className="mono">"..."</span>. Son uchun qo'shtirnoq shart emas.</>, ru: <>Текстовое значение возьмите в кавычки: <span className="mono">"..."</span>. Числу кавычки не нужны.</> })}</p>}
           </Col>
           <Col>
-            <p className="flow-label">{tr3({ uz: "natija — quti", ru: "результат — коробка" })}</p>
+            {valid && <p className="flow-label">{tr3({ uz: "natija — quti", ru: "результат — коробка" })}</p>}
             <div style={{ display: "flex", justifyContent: "center", padding: "10px 0" }}>
-              {valid ? <VarBox name={nm} value={vv} valColor={valIsStr ? CODE.str : CODE.num} /> : <div className="frame-dash"><p className="small" style={{ color: T.ink3, textAlign: "center", fontStyle: "italic", margin: 0 }}>{tr3({ uz: "To'liq yozing — quti shu yerda paydo bo'ladi", ru: "Допишите до конца — коробка появится здесь" })}</p></div>}
+              {valid ? <VarBox name={nm} value={vv} valColor={valIsStr ? CODE.str : CODE.num} /> : null}
             </div>
           </Col>
         </div>
@@ -5214,16 +5788,16 @@ var Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 var JS_FLASHCARDS = [
   { front: { uz: "Qiymatni saqlab turadigan nomlangan «quti» qanday ataladi?", ru: "Как называется «коробка» с именем, которая хранит значение?" }, back: { uz: "o'zgaruvchi", ru: "переменная" }, note: { uz: "quti + nom + ichidagi qiymat", ru: "коробка + имя + значение внутри" } },
-  { front: { uz: "Qiymati keyin o'zgaradigan qutini qaysi so'z bilan ochamiz?", ru: "Каким словом создаём коробку, значение которой потом меняется?" }, back: "let", note: { uz: "let ball = 10, keyin ball = 25", ru: "let ball = 10, потом ball = 25" } },
+  { front: { uz: "Qiymati keyin o'zgaradigan qutini qaysi so'z bilan ochamiz?", ru: "Каким словом создаём коробку, значение которой потом меняется?" }, back: "let", note: { uz: "let score = 10, keyin score = 25", ru: "let score = 10, потом score = 25" } },
   { front: { uz: "Qiymati hech qachon o'zgarmaydigan qutini qaysi so'z ochadi?", ru: "Какое слово создаёт коробку, значение которой никогда не меняется?" }, back: "const", note: { uz: "const yil = 2011 — quti qulflangan", ru: "const yil = 2011 — коробка заперта" } },
   { front: { uz: "Qutiga qiymat solish uchun qaysi belgi ishlatiladi?", ru: "Каким знаком кладут значение в коробку?" }, back: "=", note: { uz: 'u "sol" degani — "teng" degani emas', ru: "он значит «положи», а не «равно»" } },
   { front: { uz: "Matn (so'z, gap) turi qanday ataladi?", ru: "Как называется тип для текста (слов, фраз)?" }, back: "string", note: { uz: `qo'shtirnoq ichida yoziladi: "Aziza"`, ru: 'пишется в кавычках: "Aziza"' } },
-  { front: { uz: "Raqam turi qanday ataladi?", ru: "Как называется тип для чисел?" }, back: "number", note: { uz: "qo'shtirnoqsiz yoziladi: 14, 3.14", ru: "пишется без кавычек: 14, 3.14" } },
+  { front: { uz: "Son turi qanday ataladi?", ru: "Как называется тип для чисел?" }, back: "number", note: { uz: "qo'shtirnoqsiz yoziladi: 14, 3.14", ru: "пишется без кавычек: 14, 3.14" } },
   { front: { uz: "true va false qaysi turga kiradi?", ru: "К какому типу относятся true и false?" }, back: "boolean", note: { uz: "faqat ikki qiymat: rost yoki yolg'on", ru: "всего два значения: истина или ложь" } },
-  { front: { uz: "«14» qo'shtirnoq ichida yozilsa, qaysi tur bo'ladi?", ru: "Если «14» написано в кавычках, какой это тип?" }, back: "string", note: { uz: "raqamga o'xshaydi, lekin bu matn", ru: "похоже на число, но это текст" } },
+  { front: { uz: "«14» qo'shtirnoq ichida yozilsa, qaysi tur bo'ladi?", ru: "Если «14» написано в кавычках, какой это тип?" }, back: "string", note: { uz: "songa o'xshaydi, lekin bu matn", ru: "похоже на число, но это текст" } },
   { front: { uz: "Bugun ishlatilmaydigan eski so'z qaysi?", ru: "Какое старое слово сегодня уже не используют?" }, back: "var", note: { uz: "o'rniga let yoki const yozing", ru: "вместо него пишите let или const" } },
   { front: { uz: "let bilan const orasidagi asosiy farq nima?", ru: "В чём главная разница между let и const?" }, back: { uz: "let o'zgaradi, const o'zgarmaydi", ru: "let меняется, const — нет" }, note: { uz: "o'yin bali — let, tug'ilgan yil — const", ru: "счёт в игре — let, год рождения — const" } },
-  { front: { uz: "O'zgaruvchi nomi raqam bilan boshlansa bo'ladimi?", ru: "Может ли имя переменной начинаться с цифры?" }, back: { uz: "Yo'q, bo'lmaydi", ru: "Нет, нельзя" }, note: { uz: "bo'sh joy ham bo'lmaydi: tugilgan_yil", ru: "пробелов тоже нельзя: tugilgan_yil" } },
+  { front: { uz: "O'zgaruvchi nomi raqam bilan boshlansa bo'ladimi?", ru: "Может ли имя переменной начинаться с цифры?" }, back: { uz: "Yo'q, bo'lmaydi", ru: "Нет, нельзя" }, note: { uz: "bo'sh joy ham bo'lmaydi: birth_year", ru: "пробелов тоже нельзя: birth_year" } },
   { front: { uz: "const PI = 3.14 dan keyin PI = 3 yozsangiz nima bo'ladi?", ru: "Что будет, если после const PI = 3.14 написать PI = 3?" }, back: { uz: "Xato beradi", ru: "Будет ошибка" }, note: { uz: "const qutisi bir marta to'ldiriladi", ru: "коробка const заполняется один раз" } }
 ];
 var FC_CODE_WORDS = /\b(let|const|var|string|number|boolean|true|false|null|undefined|function|return|for|while|if|else)\b/g;
@@ -5245,11 +5819,11 @@ var fcAnswer = (raw) => {
     </span>;
 };
 function Flashcards({ cards }) {
-  const [queue, setQueue] = useState4(() => cards.map((_, i) => i));
-  const [flipped, setFlipped] = useState4(false);
-  const [known, setKnown] = useState4(0);
-  const [exiting, setExiting] = useState4(null);
-  const swapRef = useRef4(0);
+  const [queue, setQueue] = useState5(() => cards.map((_, i) => i));
+  const [flipped, setFlipped] = useState5(false);
+  const [known, setKnown] = useState5(0);
+  const [exiting, setExiting] = useState5(null);
+  const swapRef = useRef5(0);
   const total = cards.length;
   const cur = queue[0];
   const card = cur != null ? cards[cur] : null;
@@ -5281,17 +5855,17 @@ function Flashcards({ cards }) {
       <div className="fc-cardwrap">
         <div className={`fc-fly ${exiting === "knew" ? "out-knew" : ""} ${exiting === "again" ? "out-again" : ""}`} key={swapRef.current}>
         <div className={`fc-card ${flipped ? "flip" : ""}`} onClick={() => !flipped && !exiting && setFlipped(true)} role="button" tabIndex={0}>
-          <div className="fc-face fc-front"><span className="fc-q">{tr3(card.front)}</span><span className="fc-cue">{tr3({ uz: "Javobni o'ylang", ru: "Подумайте над ответом" })} 🤔 <span className="fc-tap">{tr3({ uz: "bosing", ru: "нажмите" })}</span></span></div>
+          <div className="fc-face fc-front"><span className="fc-q">{tr3(card.front)}</span></div>
           <div className="fc-face fc-back">{fcAnswer(tr3(card.back))}{card.note && <span className="fc-note">{tr3(card.note)}</span>}</div>
         </div>
         </div>
       </div>
-      {flipped ? <div className="fc-actions"><button className="fc-btn again" disabled={!!exiting} onClick={again}>{tr3({ uz: "✗ Takrorlash", ru: "✗ Повторить" })}</button><button className="fc-btn knew" disabled={!!exiting} onClick={knew}>{tr3({ uz: "✓ Bildim", ru: "✓ Знаю" })}</button></div> : <p className="fc-hint">{tr3({ uz: "👆 Kartani bosing — javobni ko'rasiz", ru: "👆 Нажмите на карточку — увидите ответ" })}</p>}
+      {flipped ? <div className="fc-actions"><button className="fc-btn again" disabled={!!exiting} onClick={again}>{tr3({ uz: "✗ Takrorlash", ru: "✗ Повторить" })}</button><button className="fc-btn knew" disabled={!!exiting} onClick={knew}>{tr3({ uz: "✓ Bildim", ru: "✓ Знаю" })}</button></div> : <p className="fc-hint" />}
     </div>;
 }
 var ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: "sflash", text: `O'zingizni sinab ko'ring. Har kartada bir savol — javobini o'ylang, keyin kartani bosing.`, trigger: "on_mount", waits_for: null }]);
-  useEffect5(() => {
+  useEffect6(() => {
     if (storedAnswer === void 0) onAnswer(screen, { correct: true, picked: true });
   }, []);
   return <Stage eyebrow={tr3({ uz: "Takrorlash", ru: "Повторение" })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={false} label={tr3({ uz: "Yakunlash →", ru: "Завершить →" })} onClick={onNext} /></>}>
@@ -5302,8 +5876,8 @@ var ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     </Stage>;
 };
 var Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, onHomework }) => {
-  const [hwOpen, setHwOpen] = useState4(false);
-  const [hwCharge, setHwCharge] = useState4(false);
+  const [hwOpen, setHwOpen] = useState5(false);
+  const [hwCharge, setHwCharge] = useState5(false);
   const fireHw = () => {
     if (hwCharge || hwOpen) return;
     setHwCharge(true);
@@ -5314,8 +5888,8 @@ var Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, onHo
   };
   const _gate = useContext2(LiveGateCtx) || {};
   const _live = _gate.live;
-  const [arena, setArena] = useState4(false);
-  const [arenaSolo, setArenaSolo] = useState4(false);
+  const [arena, setArena] = useState5(false);
+  const [arenaSolo, setArenaSolo] = useState5(false);
   const quizSt = _live && _live.quiz && _live.quiz.state || "off";
   const isStudentL = _live && _live.mode === "student";
   const isMentorL = _live && _live.mode === "mentor";
@@ -5327,7 +5901,11 @@ var Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, onHo
     if (isMentorL && quizSt === "off") {
       try {
         await _live.quizControl("lobby", -1);
-      } catch {
+      } catch (e) {
+        console.warn("[arena]", e);
+        liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: "Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна." });
+        setArenaSolo(true);
+        setArena(true);
         return;
       }
     }
@@ -5335,16 +5913,16 @@ var Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, onHo
     setArena(true);
   };
   const audio = useAudio([{ id: "s16", text: "Tabriklaymiz — bugun siz birinchi haqiqiy JavaScript kodingizni yozdingiz! Eslab qoling: o'zgaruvchi — nomlangan quti, let o'zgaradi, const o'zgarmaydi, qiymatlar esa matn, raqam yoki boolean bo'ladi. Keyingi darsda o'zgaruvchilarni ekranga chiqarib, ular bilan amallar bajaramiz.", trigger: "on_mount", waits_for: null }]);
-  const RECAP = [{ uz: "O'zgaruvchi — qiymat saqlaydigan nomlangan quti", ru: "Переменная — коробка с именем, где хранится значение" }, { uz: 'Qiymat berish: = ("qutiga sol")', ru: "Присваивание: = («положи в коробку»)" }, { uz: "let — o'zgaradi, const — o'zgarmas", ru: "let — меняется, const — неизменный" }, { uz: "var — eski usul, bugun let/const", ru: "var — старый способ, сегодня let/const" }, { uz: "Turlar: matn (string), raqam (number), boolean", ru: "Типы: текст (string), число (number), boolean" }];
-  const HOMEWORK = [{ b: "ism", t: { uz: "— let bilan, qo'shtirnoqda", ru: "— через let, в кавычках" } }, { b: "yosh", t: { uz: "— let bilan, qo'shtirnoqsiz raqam", ru: "— через let, число без кавычек" } }, { b: "tugilgan_yil", t: { uz: "— const bilan", ru: "— через const" } }];
+  const RECAP = [{ uz: "O'zgaruvchi — qiymat saqlaydigan nomlangan quti", ru: "Переменная — коробка с именем, где хранится значение" }, { uz: 'Qiymat berish: = ("qutiga sol")', ru: "Присваивание: = («положи в коробку»)" }, { uz: "let — o'zgaradi, const — o'zgarmas", ru: "let — меняется, const — неизменный" }, { uz: "var — eski usul, bugun let/const", ru: "var — старый способ, сегодня let/const" }, { uz: "Turlar: matn (string), son (number), boolean", ru: "Типы: текст (string), число (number), boolean" }];
+  const HOMEWORK = [{ b: "name", t: { uz: "— let bilan, qo'shtirnoqda", ru: "— через let, в кавычках" } }, { b: "age", t: { uz: "— let bilan, qo'shtirnoqsiz son", ru: "— через let, число без кавычек" } }, { b: "birth_year", t: { uz: "— const bilan", ru: "— через const" } }];
   const correct = SCORED_IDX.filter((i) => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
-  return <Stage eyebrow={tr3({ uz: "Tayyor", ru: "Готово" })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: "clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)", fontSize: "clamp(13px,1.5vw,15px)" }}>{tr3({ uz: "Qaytadan", ru: "Заново" })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: "auto", padding: "clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)", fontSize: "clamp(13px,1.5vw,15px)" }}>{tr3({ uz: "Yakunlash ✓", ru: "Завершить ✓" })}</button></>}>
+  return <Stage eyebrow={tr3({ uz: "Tayyor", ru: "Готово" })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: "clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)", fontSize: "clamp(13px,1.5vw,15px)" }}>{tr3({ uz: "Qaytadan", ru: "Заново" })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: "auto", padding: "clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)", fontSize: "clamp(13px,1.5vw,15px)" }}>{tr3({ uz: "Yakunlash ✓", ru: "Завершить ✓" })}</FinishBtn></>}>
       <div className="screen">
-        <div className="hero"><div className="hero-l"><span className="done-chip fade-up"><span className="tick">✓</span> {tr3({ uz: "Dars tugadi", ru: "Урок завершён" })}</span><h2 className="title h-title fade-up d1">{tr3({ uz: <>Birinchi <span className="italic" style={{ color: T.accent }}>JavaScript</span> kodingizni yozdingiz.</>, ru: <>Вы написали свой первый код на <span className="italic" style={{ color: T.accent }}>JavaScript</span>.</> })}</h2>{
+        <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr3({ uz: "Dars tugadi", ru: "Урок завершён" })}</span><span className="score-chip fade-up">{correct}/{total} {tr3({ uz: "to'g'ri", ru: "верно" })}</span></div><h2 className="title h-title fade-up d1">{tr3({ uz: <>Birinchi <span className="italic" style={{ color: T.accent }}>JavaScript</span> kodingizni yozdingiz.</>, ru: <>Вы написали свой первый код на <span className="italic" style={{ color: T.accent }}>JavaScript</span>.</> })}</h2>{
     /* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */
-  }</div><ScoreRing correct={correct} total={total} /></div>
+  }</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? "ready" : ""}`}>
           <CsWordmark
     stats={false}
@@ -5354,7 +5932,7 @@ var Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, onHo
     hint={studentWait ? tr3({ uz: "⏳ Mentorni kuting", ru: "⏳ Ждите наставника" }) : void 0}
   />
         </div>
-        {arena && <QuizArena live={_live || { mode: "self" }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+        {arena && <QuizArena live={isMentorL && arenaSolo ? { mode: "self" } : _live || { mode: "self" }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: "50%", background: T.success, color: "#fff", display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 10 }}>✓</span> {tr3({ uz: "Endi siz bilasiz", ru: "Теперь вы знаете" })}</div><ul className="recap">{RECAP.map((r, i) => <li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr3(r)}</span></li>)}</ul></div>
         <div className="hw-big-wrap fade-up d4">
           <button className={`hw-big ${hwCharge ? "charging" : ""}`} onClick={fireHw}>
@@ -5383,7 +5961,7 @@ var Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, onHo
       </div>
     </Stage>;
 };
-var Q_LABELS = { 4: { uz: "1 — O'zgaruvchi nima", ru: "1 — Что такое переменная" }, 6: { uz: "2 — let (o'zgaradigan)", ru: "2 — let (меняется)" }, 10: { uz: "3 — const (o'zgarmas)", ru: "3 — const (неизменный)" }, 13: { uz: "4 — Raqam (number)", ru: "4 — Число (number)" }, 16: { uz: "5 — O'zgaruvchi yoz", ru: "5 — Напиши переменную" } };
+var Q_LABELS = { 4: { uz: "1 — O'zgaruvchi nima", ru: "1 — Что такое переменная" }, 6: { uz: "2 — let (o'zgaradigan)", ru: "2 — let (меняется)" }, 10: { uz: "3 — const (o'zgarmas)", ru: "3 — const (неизменный)" }, 13: { uz: "4 — Son (number)", ru: "4 — Число (number)" }, 16: { uz: "5 — O'zgaruvchi yoz", ru: "5 — Напиши переменную" } };
 var Confetti = () => {
   const COLORS = [T.accent, T.success, T.blue, "#FFD380", "#FF7755", "#7DD181"];
   return <div className="confetti" aria-hidden="true">
@@ -5408,27 +5986,27 @@ var ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const live = gate.live;
   const isLive = !!(live && (live.mode === "student" || live.mode === "mentor") && live.pin);
   const livePin = live ? live.pin : null;
-  const [players, setPlayers] = useState4([]);
-  const [rows, setRows] = useState4([]);
-  const [loaded2, setLoaded] = useState4(false);
-  useEffect5(() => {
+  const [players, setPlayers] = useState5([]);
+  const [rows, setRows] = useState5([]);
+  const [loaded2, setLoaded] = useState5(false);
+  useEffect6(() => {
     if (!isLive || !livePin) return;
-    let on = true, t = null;
+    let on2 = true, t = null;
     const tick = async () => {
       try {
         const [p, a] = await Promise.all([livePlayers(livePin), liveAnswers(livePin)]);
-        if (on) {
+        if (on2) {
           setPlayers(p);
           setRows(a);
           setLoaded(true);
         }
       } catch {
       }
-      if (on) t = setTimeout(tick, 3e3);
+      if (on2) t = setTimeout(tick, 3e3);
     };
     tick();
     return () => {
-      on = false;
+      on2 = false;
       clearTimeout(t);
     };
   }, [isLive, livePin]);
@@ -5445,7 +6023,7 @@ var ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   const selfCorrect = SCORED_IDX.filter((i) => answers[i]?.correct).length;
   return <Stage eyebrow={tr3({ uz: "Natijalar", ru: "Результаты" })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr3({ uz: "Davom etish", ru: "Продолжить" })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: "clamp(14px,2.2vw,20px)" }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr3({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
+        <div className="head head-c"><h2 className="title h-title fade-up">{tr3({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
         {!isLive ? <div className="fade-up" style={{ display: "flex", flexDirection: "column", gap: 16, alignItems: "center" }}>
             <ScoreRing correct={selfCorrect} total={totalQ} />
             <div className="frame-soft" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>{tr3({ uz: "Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — 🥇🥈🥉 podium chiqadi.", ru: "Вы в самостоятельном режиме. На живом уроке здесь появится рейтинг всей группы — подиум 🥇🥈🥉." })}</p></div>
@@ -5499,7 +6077,7 @@ var ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
                     </div>;
   })}
               </div>
-              {live.mode === "mentor" && <p className="small" style={{ margin: "10px 0 0", color: T.ink2 }}>{tr3({ uz: "⚠️ belgili savollar — sinf qiynalgan mavzular. Qayta tushuntirish tavsiya etiladi.", ru: "Вопросы с ⚠️ — темы, где класс споткнулся. Советуем объяснить их ещё раз." })}</p>}
+              {live.mode === "mentor" && <p className="small" style={{ margin: "10px 0 0", color: T.ink2 }}>{tr3({ uz: "⚠️ belgili savollar — sinf qiynalgan mavzular. Qayta tushuntiring.", ru: "Вопросы с ⚠️ — темы, где класс споткнулся. Советуем объяснить их ещё раз." })}</p>}
             </div>
           </>}
       </div>
@@ -5521,18 +6099,18 @@ var QZ_BG_SHAPES = [
   { ch: "//", l: 2, t: 46, s: 28, c: "rgba(203,173,255,0.10)", d: 26, dl: 2.6 }
 ];
 var QUIZ_BANK = [
-  { q: { uz: 'let ism = "Aziza" — bu yerda «quti»ning nomi qaysi?', ru: 'let ism = "Aziza" — где здесь имя «коробки»?' }, opts: ["ism", '"Aziza"', "let", "="], correct: 0 },
-  { q: { uz: "let yosh = 14 — 14 qanday ma'lumot turi?", ru: "let yosh = 14 — какой тип данных у 14?" }, opts: [{ uz: "string (matn)", ru: "string (текст)" }, { uz: "number (raqam)", ru: "number (число)" }, "boolean", "const"], correct: 1 },
+  { q: { uz: 'let name = "Aziza" — bu yerda «quti»ning nomi qaysi?', ru: 'let name = "Aziza" — где здесь имя «коробки»?' }, opts: ["name", '"Aziza"', "let", "="], correct: 0 },
+  { q: { uz: "let age = 14 — 14 qanday ma'lumot turi?", ru: "let age = 14 — какой тип данных у 14?" }, opts: [{ uz: "string (matn)", ru: "string (текст)" }, { uz: "number (son)", ru: "number (число)" }, "boolean", "const"], correct: 1 },
   { q: { uz: "Qaysi qiymat string (matn) hisoblanadi?", ru: "Какое значение считается string (текстом)?" }, opts: ["42", "true", '"Toshkent"', "3.14"], correct: 2 },
   { q: { uz: "const PI = 3.14 dan keyin PI = 3 desak nima bo'ladi?", ru: "Что будет, если после const PI = 3.14 написать PI = 3?" }, opts: [{ uz: "Xato beradi — const o'zgarmaydi", ru: "Будет ошибка — const не меняется" }, { uz: "PI qiymati 3 ga o'zgaradi", ru: "Значение PI изменится на 3" }, { uz: "Ikkala qiymat ham saqlanib qoladi", ru: "Сохранятся оба значения" }, { uz: "PI o'chib ketadi", ru: "PI удалится" }], correct: 0 },
   { q: { uz: "Kodda = belgisi aslida nimani bildiradi?", ru: "Что на самом деле означает знак = в коде?" }, opts: [{ uz: "Ikki qiymat bir-biriga teng", ru: "Два значения равны друг другу" }, { uz: "Qutiga qiymat sol (o'zlashtir)", ru: "Положи значение в коробку (присвой)" }, { uz: "Ikki qiymatni o'zaro taqqosla", ru: "Сравни два значения между собой" }, { uz: "Qutidagi qiymatni o'chir", ru: "Удали значение из коробки" }], correct: 1 },
   { q: { uz: "true va false qaysi ma'lumot turiga tegishli?", ru: "К какому типу данных относятся true и false?" }, opts: ["string", "number", "boolean", "const"], correct: 2 },
   { q: { uz: "Qaysi holatda const ishlatgan ma'qul?", ru: "В каком случае лучше использовать const?" }, opts: [{ uz: "Haftadagi kunlar soni (7)", ru: "Число дней в неделе (7)" }, { uz: "O'yin bali (o'zgarib turadi)", ru: "Счёт в игре (всё время меняется)" }, { uz: "Foydalanuvchi kiritgan matn", ru: "Текст, который ввёл пользователь" }, { uz: "Jon soni jangda", ru: "Число жизней в бою" }], correct: 0 },
-  { q: { uz: "let ball = 10 keyin ball = 25 yozildi. ball qutisida endi nima?", ru: "Написали let ball = 10, потом ball = 25. Что теперь в коробке ball?" }, opts: ["10", "25", { uz: "10 va 25", ru: "10 и 25" }, { uz: "Xato", ru: "Ошибка" }], correct: 1 },
-  { q: { uz: "let va const o'rtasidagi asosiy farq nima?", ru: "В чём главная разница между let и const?" }, opts: [{ uz: "let raqamga, const matnga mo'ljallangan", ru: "let для чисел, const для текста" }, { uz: "const koddan ancha tezroq ishlaydi", ru: "const работает намного быстрее" }, { uz: "let keyin o'zgaradi, const o'zgarmaydi", ru: "let потом меняется, const — нет" }, { uz: "Ikkalasi aynan bir xil, farqi yo'q", ru: "Они совершенно одинаковые" }], correct: 2 },
+  { q: { uz: "let score = 10 keyin score = 25 yozildi. score qutisida endi nima?", ru: "Написали let score = 10, потом score = 25. Что теперь в коробке score?" }, opts: ["10", "25", { uz: "10 va 25", ru: "10 и 25" }, { uz: "Xato", ru: "Ошибка" }], correct: 1 },
+  { q: { uz: "let va const o'rtasidagi asosiy farq nima?", ru: "В чём главная разница между let и const?" }, opts: [{ uz: "let songa, const matnga mo'ljallangan", ru: "let для чисел, const для текста" }, { uz: "const koddan ancha tezroq ishlaydi", ru: "const работает намного быстрее" }, { uz: "let keyin o'zgaradi, const o'zgarmaydi", ru: "let потом меняется, const — нет" }, { uz: "Ikkalasi aynan bir xil, farqi yo'q", ru: "Они совершенно одинаковые" }], correct: 2 },
   { q: { uz: `"14" (qo'shtirnoqda) qanday tur?`, ru: '"14" (в кавычках) — какой это тип?' }, opts: [{ uz: "number — u bilan hisob qilinadi", ru: "number — с ним можно считать" }, "const", "boolean", { uz: "string — bu matn", ru: "string — это текст" }], correct: 3 },
-  { q: { uz: "var haqida to'g'ri gap qaysi?", ru: "Какое утверждение о var верно?" }, opts: [{ uz: "Zamonaviy standart, doim ishlating", ru: "Современный стандарт, всегда используйте" }, { uz: "const bilan bir xil narsa", ru: "То же самое, что и const" }, { uz: "Faqat raqamlar uchun", ru: "Только для чисел" }, { uz: "Eski usul — bugun let/const afzal", ru: "Старый способ — сегодня лучше let/const" }], correct: 3 },
-  { q: { uz: `let shahar = "Toshkent" da qiymat qo'shtirnoqda. Nega?`, ru: 'В let shahar = "Toshkent" значение в кавычках. Почему?' }, opts: [{ uz: "Chunki u raqam", ru: "Потому что это число" }, { uz: "Qo'shtirnoq shart emas edi", ru: "Кавычки были не обязательны" }, { uz: "Chunki u boolean", ru: "Потому что это boolean" }, { uz: "Chunki u matn (string)", ru: "Потому что это текст (string)" }], correct: 3 }
+  { q: { uz: "var haqida to'g'ri gap qaysi?", ru: "Какое утверждение о var верно?" }, opts: [{ uz: "Zamonaviy standart, doim ishlating", ru: "Современный стандарт, всегда используйте" }, { uz: "const bilan bir xil narsa", ru: "То же самое, что и const" }, { uz: "Faqat sonlar uchun", ru: "Только для чисел" }, { uz: "Eski usul — bugun let/const afzal", ru: "Старый способ — сегодня лучше let/const" }], correct: 3 },
+  { q: { uz: `let city = "Toshkent" da qiymat qo'shtirnoqda. Nega?`, ru: 'В let city = "Toshkent" значение в кавычках. Почему?' }, opts: [{ uz: "Chunki u son", ru: "Потому что это число" }, { uz: "Qo'shtirnoq shart emas edi", ru: "Кавычки были не обязательны" }, { uz: "Chunki u boolean", ru: "Потому что это boolean" }, { uz: "Chunki u matn (string)", ru: "Потому что это текст (string)" }], correct: 3 }
 ];
 var quizPts = (elapsedMs) => elapsedMs <= 500 ? 1e3 : Math.max(0, Math.round(1e3 * (1 - Math.min(elapsedMs, QUIZ_MS) / QUIZ_MS / 2)));
 var quizScore = (rows) => {
@@ -5580,7 +6158,7 @@ var CsNeonBolt = ({ flip }) => <span className={`csn-boltwrap ${flip ? "flip" : 
   </span>;
 var CsWordmark = ({ onClick, disabled, hint, stats = true, bolt = true, liveOn = false }) => {
   const clickable = !!onClick && !disabled;
-  const [charge, setCharge] = useState4(false);
+  const [charge, setCharge] = useState5(false);
   const fire = () => {
     if (!clickable || charge) return;
     setCharge(true);
@@ -5620,8 +6198,8 @@ var CsWordmark = ({ onClick, disabled, hint, stats = true, bolt = true, liveOn =
     </div>;
 };
 function QzFX() {
-  const ref = useRef4(null);
-  useEffect5(() => {
+  const ref = useRef5(null);
+  useEffect6(() => {
     const cv = ref.current;
     if (!cv) return;
     if (window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
@@ -5694,24 +6272,24 @@ function QzFX() {
 function QuizArena({ live, onClose, startSolo }) {
   const isMentor = live.mode === "mentor";
   const isStudent = live.mode === "student";
-  const [soloMode, setSoloMode] = useState4(!!startSolo);
+  const [soloMode, setSoloMode] = useState5(!!startSolo);
   const solo = soloMode || !isMentor && !isStudent;
-  const soloRef = useRef4(solo);
+  const soloRef = useRef5(solo);
   soloRef.current = solo;
-  const [phase, setPhase] = useState4("lobby");
-  const [qi, setQi] = useState4(-1);
-  const [remaining, setRemaining] = useState4(QUIZ_MS);
-  const [myAnswers, setMyAnswers] = useState4({});
-  const [players, setPlayers] = useState4([]);
-  const [qRows, setQRows] = useState4([]);
-  const [answeredN, setAnsweredN] = useState4(0);
-  const [classEnded, setClassEnded] = useState4(false);
-  const seenQRef = useRef4(-1);
-  const qStartRef = useRef4(0);
-  const deadlineRef = useRef4(0);
-  const phaseRef = useRef4(phase);
+  const [phase, setPhase] = useState5("lobby");
+  const [qi, setQi] = useState5(-1);
+  const [remaining, setRemaining] = useState5(QUIZ_MS);
+  const [myAnswers, setMyAnswers] = useState5({});
+  const [players, setPlayers] = useState5([]);
+  const [qRows, setQRows] = useState5([]);
+  const [answeredN, setAnsweredN] = useState5(0);
+  const [classEnded, setClassEnded] = useState5(false);
+  const seenQRef = useRef5(-1);
+  const qStartRef = useRef5(0);
+  const deadlineRef = useRef5(0);
+  const phaseRef = useRef5(phase);
   phaseRef.current = phase;
-  useEffect5(() => {
+  useEffect6(() => {
     if (!isStudent || solo || !live.playerId) return;
     liveQuizAnswers(live.pin).then((rows) => {
       const mine = {};
@@ -5722,14 +6300,14 @@ function QuizArena({ live, onClose, startSolo }) {
     }).catch(() => {
     });
   }, []);
-  useEffect5(() => {
+  useEffect6(() => {
     if (soloRef.current) return;
-    let on = true, t = null;
+    let on2 = true, t = null;
     const tick = async () => {
       if (soloRef.current) return;
       try {
         const row = await liveGet(live.pin);
-        if (!on) return;
+        if (!on2) return;
         if (row) {
           const st = row.quiz_state || "off", q = row.quiz_q ?? -1;
           if (st === "q" && q !== seenQRef.current) {
@@ -5752,31 +6330,31 @@ function QuizArena({ live, onClose, startSolo }) {
         }
         const st1 = row ? row.quiz_state || "off" : null;
         const ph = st1 === "r" ? "reveal" : st1 === "done" ? "done" : st1 === "lobby" ? "lobby" : st1 === "q" ? "q" : phaseRef.current;
-        if (on) setClassEnded(!row || row.status === "ended");
+        if (on2) setClassEnded(!row || row.status === "ended");
         if (ph === "lobby" || ph === "reveal" || ph === "done" || phaseRef.current === "reveal") {
           const [pl, qa] = await Promise.all([livePlayers(live.pin), liveQuizAnswers(live.pin)]);
-          if (on) {
+          if (on2) {
             setPlayers(pl);
             setQRows(qa);
           }
         } else if (ph === "q" && isMentor) {
           const [pl, qa] = await Promise.all([livePlayers(live.pin), liveAnswers(live.pin, QUIZ_BASE_IDX + seenQRef.current)]);
-          if (on) {
+          if (on2) {
             setPlayers(pl);
             setAnsweredN(qa.length);
           }
         }
       } catch {
       }
-      if (on) t = setTimeout(tick, 1200);
+      if (on2) t = setTimeout(tick, 1200);
     };
     tick();
     return () => {
-      on = false;
+      on2 = false;
       clearTimeout(t);
     };
   }, []);
-  useEffect5(() => {
+  useEffect6(() => {
     if (phase !== "q") return;
     const iv = setInterval(() => {
       const rem = deadlineRef.current - Date.now();
@@ -5870,6 +6448,11 @@ function QuizArena({ live, onClose, startSolo }) {
     return n;
   }) : [];
   const lastQ = qi >= QUIZ_BANK.length - 1;
+  const autoNext = useAutoNext({
+    on: phase === "reveal" && isMentor && !solo && !lastQ,
+    onFire: () => ctrl("q", qi + 1),
+    qKey: qi
+  });
   const my = qi >= 0 ? myAnswers[qi] : null;
   const closeArena = () => {
     if (isMentor && !solo && phase !== "done") {
@@ -5889,7 +6472,7 @@ function QuizArena({ live, onClose, startSolo }) {
   }
       {classEnded && isStudent && !solo && phase !== "done" && <div className="qz-endnote fade-step">
           <span>{tr3({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: "⚠️ Живой урок завершён — продолжите тест самостоятельно:" })}</span>
-          <button className="qz-btn" onClick={startPractice}>{tr3({ uz: "📖 Mashq rejimida davom etish", ru: "📖 Продолжить в режиме тренировки" })}</button>
+          <button className="qz-btn" onClick={startPractice}>{tr3({ uz: "Mashq rejimida davom etish", ru: "Продолжить в режиме тренировки" })}</button>
         </div>}
 
       {
@@ -5965,7 +6548,8 @@ function QuizArena({ live, onClose, startSolo }) {
                   <span className="qz-bpts">{b.pts}</span>
                 </div>)}
             </div>}
-          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl("done", qi) : ctrl("q", qi + 1)}>{lastQ ? tr3({ uz: "🏁 G'oliblarni e'lon qilish", ru: "🏁 Объявить победителей" }) : tr3({ uz: "Keyingi savol →", ru: "Следующий вопрос →" })}</button>}
+          {isMentor && <button className="qz-btn big" onClick={() => lastQ ? ctrl("done", qi) : autoNext.fireNow()}>{lastQ ? tr3({ uz: "🏁 G'oliblarni e'lon qilish", ru: "🏁 Объявить победителей" }) : tr3({ uz: "Keyingi savol →", ru: "Следующий вопрос →" })}</button>}
+          {isMentor && !lastQ && <button className="qz-btn ghost qz-auto" onClick={autoNext.auto ? autoNext.pause : autoNext.resume} title={tr3({ uz: "Avto o'tishni to'xtatish — javobni tushuntirish uchun (arena oxirigacha)", ru: "Остановить авто-переход — чтобы объяснить ответ (до конца арены)" })}>{autoNext.auto ? `${tr3({ uz: "To'xtatish", ru: "Пауза" })}${autoNext.sec ? ` · ${autoNext.sec}` : ""}` : tr3({ uz: "▶ Avto", ru: "▶ Авто" })}</button>}
           {solo && <button className="qz-btn big" onClick={soloNext}>{lastQ ? tr3({ uz: "🏁 Natijani ko'rish", ru: "🏁 Посмотреть результат" }) : tr3({ uz: "Keyingi →", ru: "Дальше →" })}</button>}
         </div>}
 
@@ -6011,12 +6595,12 @@ function QuizArena({ live, onClose, startSolo }) {
 var ACHIEVEMENTS = {
   boxkeeper: { icon: "📦", name: "Box Keeper", desc: { uz: "O'zgaruvchi — nomlangan quti ekanini bildingiz", ru: "Вы узнали, что переменная — коробка с именем" } },
   lockmaster: { icon: "🔒", name: "Lock Master", desc: { uz: "const bilan qutini qulflashni o'rgandingiz", ru: "Вы научились запирать коробку через const" } },
-  typedetective: { icon: "🔍", name: "Type Detective", desc: { uz: "Ma'lumot turini (matn / raqam) aniqladingiz", ru: "Вы определили тип данных (текст / число)" } },
+  typedetective: { icon: "🔍", name: "Type Detective", desc: { uz: "Ma'lumot turini (matn / son) aniqladingiz", ru: "Вы определили тип данных (текст / число)" } },
   graduate: { icon: "🏆", name: "Level Up!", desc: { uz: "Birinchi JavaScript darsini to'liq yakunladingiz", ru: "Вы полностью прошли первый урок JavaScript" } }
 };
 var ACH_TRIGGERS = { s4: "boxkeeper", s9: "lockmaster", s12: "typedetective" };
 function AchCelebrate({ ach, onDone }) {
-  useEffect5(() => {
+  useEffect6(() => {
     const t = setTimeout(onDone, 4e3);
     return () => clearTimeout(t);
   }, []);
@@ -6045,28 +6629,28 @@ function AchToasts({ toasts, onDone }) {
   return <AchCelebrate key={t.k} ach={a} onDone={() => onDone(t.k)} />;
 }
 function MentorPracticeOverlay({ entry, live, onClose }) {
-  const [view, setView] = useState4("watch");
-  const [data, setData] = useState4({ players: null, rows: [] });
+  const [view, setView] = useState5("watch");
+  const [data, setData] = useState5({ players: null, rows: [] });
   const doneIdx = PRACTICE_DONE_BASE + entry.fromScreen;
-  useEffect5(() => {
-    let on = true, t = null;
+  useEffect6(() => {
+    let on2 = true, t = null;
     const tick = async () => {
       try {
         const [players, rows] = await Promise.all([livePlayers(live.pin), liveAnswers(live.pin, doneIdx)]);
-        if (on) setData({ players, rows });
+        if (on2) setData({ players, rows });
       } catch {
       }
-      if (on) t = setTimeout(tick, 3e3);
+      if (on2) t = setTimeout(tick, 3e3);
     };
     tick();
     return () => {
-      on = false;
+      on2 = false;
       clearTimeout(t);
     };
   }, [live.pin, doneIdx]);
   if (view === "demo") {
     return <div style={{ position: "fixed", inset: 0, zIndex: 2e3, background: T.bg }}>
-        <HtmlCompiler_default lang={__lang2} task={entry.task} starterCode={entry.starter} onContinue={() => setView("watch")} onBack={() => setView("watch")} />
+        <HtmlCompiler_default lang={__lang2} task={entry.task} storageKey={codeKeyOf(LESSON_META.lessonId, `mentor-s${entry.fromScreen}`)} starterCode={entry.starter} onContinue={() => setView("watch")} onBack={() => setView("watch")} />
       </div>;
   }
   const total = data.players ? data.players.length : 0;
@@ -6105,14 +6689,16 @@ function MentorPracticeOverlay({ entry, live, onClose }) {
 var TASK_BALL = {
   eyebrow: { uz: "Praktika · let", ru: "Практика · let" },
   title: { uz: "Birinchi qutingizni yozing", ru: "Напишите свою первую коробку" },
-  brief: { uz: "`let` bilan `ball` nomli quti oching va ichiga `0` soling. Keyin ballni `25` ga o'zgartiring va `console.log(ball)` yozing — pastdagi konsolda `25` chiqadi.", ru: "Создайте через `let` коробку с именем `ball` и положите в неё `0`. Затем измените ball на `25` и напишите `console.log(ball)` — в консоли внизу появится `25`." },
+  brief: { uz: "`let` bilan `score` nomli quti oching va ichiga `0` soling. Keyin uni `25` ga o'zgartiring va `console.log(score)` yozing — pastdagi konsolda `25` chiqadi.", ru: "Создайте через `let` коробку с именем `score` и положите в неё `0`. Затем измените score на `25` и напишите `console.log(score)` — в консоли внизу появится `25`." },
   files: [
     { name: "script.js", lang: "js", starter: `// Bu yerga yozing
 ` }
   ],
   requirements: [
-    { id: "let", label: "let ball = 0", check: checks.js(/let\s+ball\s*=/, { uz: "`let ball = 0` deb yozing", ru: "Напишите `let ball = 0`" }) },
-    { id: "log", label: { uz: "konsolda 25 chiqdi", ru: "в консоли появилось 25" }, check: checks.logs("25", { uz: "Ballni o'zgartiring (`ball = 25`) va `console.log(ball)` yozing", ru: "Измените ball (`ball = 25`) и напишите `console.log(ball)`" }) }
+    { id: "let", label: "let score = 0", check: checks.js(/let\s+[sS][cC][oO][rR][eE]\s*=/, { uz: "`let score = 0` deb yozing", ru: "Напишите `let score = 0`" }) },
+    { id: "yangi", label: { uz: "score = 25 — qiymat o'zgartirildi", ru: "score = 25 — значение изменено" }, check: checks.js(/(^|[;\n{])\s*score\s*=\s*25\b/i, { uz: "Ikkinchi qatorda `let`siz yozing: `score = 25` — quti bor, faqat ichini almashtiramiz", ru: "Во второй строке без `let`: `score = 25` — коробка уже есть, меняем только содержимое" }) },
+    // F-1017-205: `let score = 25` ham o'tardi
+    { id: "log", label: { uz: "konsolda 25 chiqdi", ru: "в консоли появилось 25" }, check: checks.logs("25", { uz: "Qiymatni o'zgartiring (`score = 25`) va `console.log(score)` yozing", ru: "Измените score (`score = 25`) и напишите `console.log(score)`" }) }
   ]
 };
 var TASK_QUOTES = {
@@ -6124,22 +6710,22 @@ var TASK_QUOTES = {
 ` }
   ],
   requirements: [
-    { id: "num", label: { uz: "raqamlar qo'shildi → 10", ru: "числа сложились → 10" }, check: checks.logs("10", { uz: "Qo'shtirnoqsiz yozing: `console.log(5 + 5)`", ru: "Напишите без кавычек: `console.log(5 + 5)`" }) },
+    { id: "num", label: { uz: "sonlar qo'shildi → 10", ru: "числа сложились → 10" }, check: checks.logs("10", { uz: "Qo'shtirnoqsiz yozing: `console.log(5 + 5)`", ru: "Напишите без кавычек: `console.log(5 + 5)`" }) },
     { id: "str", label: { uz: "matnlar yopishdi → 55", ru: "тексты склеились → 55" }, check: checks.logs("55", { uz: 'Qo\'shtirnoq ichida yozing: `console.log("5" + "5")`', ru: 'Напишите в кавычках: `console.log("5" + "5")`' }) }
   ]
 };
 var TASK_QUTILAR = {
   eyebrow: { uz: "Praktika · o'zgaruvchilar", ru: "Практика · переменные" },
   title: { uz: "O'zingiz haqingizda 3 ta quti", ru: "Три коробки о себе" },
-  brief: { uz: "Uch quti yozing: `ism` — `let` bilan, qo'shtirnoqda; `yosh` — `let` bilan, qo'shtirnoqsiz raqam; `tugilgan_yil` — `const` bilan (u hech qachon o'zgarmaydi).", ru: "Напишите три коробки: `ism` — через `let`, в кавычках; `yosh` — через `let`, число без кавычек; `tugilgan_yil` — через `const` (он никогда не меняется)." },
+  brief: { uz: "Uch quti yozing: `name` — `let` bilan, qo'shtirnoqda; `age` — `let` bilan, qo'shtirnoqsiz son; `birth_year` — `const` bilan (u hech qachon o'zgarmaydi).", ru: "Напишите три коробки: `name` — через `let`, в кавычках; `age` — через `let`, число без кавычек; `birth_year` — через `const` (он никогда не меняется)." },
   files: [
     { name: "script.js", lang: "js", starter: `// Bu yerga yozing
 ` }
   ],
   requirements: [
-    { id: "ism", label: 'let ism = "..."', check: checks.js(/let\s+ism\s*=\s*["'][^"']+["']/, { uz: 'Ismni qo\'shtirnoqqa oling: `let ism = "Aziza"`', ru: 'Возьмите имя в кавычки: `let ism = "Aziza"`' }) },
-    { id: "yosh", label: "let yosh = 14", check: checks.js(/let\s+yosh\s*=\s*\d/, { uz: "Yoshni qo'shtirnoqsiz yozing: `let yosh = 14`", ru: "Возраст пишите без кавычек: `let yosh = 14`" }) },
-    { id: "yil", label: "const tugilgan_yil = 2011", check: checks.js(/const\s+tugilgan_yil\s*=\s*\d/, { uz: "O'zgarmas qiymat uchun `const tugilgan_yil = 2011`", ru: "Для неизменного значения: `const tugilgan_yil = 2011`" }) }
+    { id: "name", label: 'let name = "..."', check: checks.js(/let\s+[nN][aA][mM][eE]\s*=\s*["'][^"']+["']/, { uz: 'Ismni qo\'shtirnoqqa oling: `let name = "Aziza"`', ru: 'Возьмите имя в кавычки: `let name = "Aziza"`' }) },
+    { id: "age", label: "let age = 14", check: checks.js(/let\s+[aA][gG][eE]\s*=\s*\d/, { uz: "Yoshni qo'shtirnoqsiz yozing: `let age = 14`", ru: "Возраст пишите без кавычек: `let age = 14`" }) },
+    { id: "yil", label: "const birth_year = 2011", check: checks.js(/const\s+[bB][iI][rR][tT][hH]_[yY][eE][aA][rR]\s*=\s*\d/, { uz: "O'zgarmas qiymat uchun `const birth_year = 2011`", ru: "Для неизменного значения: `const birth_year = 2011`" }) }
   ]
 };
 var PRACTICE_AFTER = {
@@ -6154,7 +6740,7 @@ function JsVarsLesson({ lang: langProp, onFinished, onPractice, liveToken }) {
   const lang = langProp || "uz";
   __lang2 = lang;
   setLiveLang(lang);
-  const savedRef = useRef4(void 0);
+  const savedRef = useRef5(void 0);
   if (savedRef.current === void 0) {
     const p = progRead(LESSON_META.lessonId, TOTAL_SCREENS);
     if (p) {
@@ -6165,18 +6751,19 @@ function JsVarsLesson({ lang: langProp, onFinished, onPractice, liveToken }) {
     savedRef.current = p;
   }
   const saved = savedRef.current;
-  const [screen, setScreen] = useState4(() => saved ? Math.min(Math.max(saved.screen || 0, 0), TOTAL_SCREENS - 1) : 0);
-  const [answers, setAnswers] = useState4(() => saved && saved.answers || {});
-  const [practice, setPractice] = useState4(null);
-  const [mentorPractice, setMentorPractice] = useState4(null);
-  const startTimeRef = useRef4(saved?.startedAt || Date.now());
-  const firstPassRef = useRef4(saved?.firstPass || null);
-  const soloSentRef = useRef4(/* @__PURE__ */ new Set());
-  const [fpPractice, setFpPractice] = useState4(!!saved?.firstPass);
-  const earnedRef = useRef4(new Set(saved?.earned || []));
-  const [earned, setEarned] = useState4(() => new Set(saved?.earned || []));
-  const [achToasts, setAchToasts] = useState4([]);
-  const achKeyRef = useRef4(0);
+  const [screen, setScreen] = useState5(() => saved ? Math.min(Math.max(saved.screen || 0, 0), TOTAL_SCREENS - 1) : 0);
+  const [maxReached, setMaxReached] = useState5(() => saved ? Math.max(saved.maxReached || 0, saved.screen || 0) : 0);
+  const [answers, setAnswers] = useState5(() => saved && saved.answers || {});
+  const [practice, setPractice] = useState5(null);
+  const [mentorPractice, setMentorPractice] = useState5(null);
+  const startTimeRef = useRef5(saved?.startedAt || Date.now());
+  const firstPassRef = useRef5(saved?.firstPass || null);
+  const soloSentRef = useRef5(/* @__PURE__ */ new Set());
+  const [fpPractice, setFpPractice] = useState5(!!saved?.firstPass);
+  const earnedRef = useRef5(new Set(saved?.earned || []));
+  const [earned, setEarned] = useState5(() => new Set(saved?.earned || []));
+  const [achToasts, setAchToasts] = useState5([]);
+  const achKeyRef = useRef5(0);
   const earn = useCallback3((id) => {
     if (firstPassRef.current) return;
     if (!ACHIEVEMENTS[id] || earnedRef.current.has(id)) return;
@@ -6184,8 +6771,8 @@ function JsVarsLesson({ lang: langProp, onFinished, onPractice, liveToken }) {
     setEarned(new Set(earnedRef.current));
     setAchToasts((t) => [...t, { id, k: ++achKeyRef.current }]);
   }, []);
-  const missedRef = useRef4(new Set(saved?.missed || []));
-  const [missed, setMissed] = useState4(() => new Set(saved?.missed || []));
+  const missedRef = useRef5(new Set(saved?.missed || []));
+  const [missed, setMissed] = useState5(() => new Set(saved?.missed || []));
   const missTry = useCallback3((idx) => {
     const sid = SCREEN_META[idx] && SCREEN_META[idx].id;
     const ach = ACH_TRIGGERS[sid];
@@ -6194,7 +6781,7 @@ function JsVarsLesson({ lang: langProp, onFinished, onPractice, liveToken }) {
     setMissed(new Set(missedRef.current));
   }, []);
   const achMissVal = useMemo2(() => ({ missed, miss: missTry, practice: fpPractice }), [missed, missTry, fpPractice]);
-  useEffect5(() => {
+  useEffect6(() => {
     const upd = () => {
       const z = Math.min(1.5, Math.max(1, Math.min(window.innerWidth / 1920, window.innerHeight / 1e3)));
       document.documentElement.style.setProperty("--lz", String(Math.round(z * 1e3) / 1e3));
@@ -6250,7 +6837,7 @@ function JsVarsLesson({ lang: langProp, onFinished, onPractice, liveToken }) {
       openLocal();
     }
   };
-  useEffect5(() => {
+  useEffect6(() => {
     if (typeof onPractice === "function") return;
     const p = pracRead(LESSON_META.lessonId);
     if (!p) return;
@@ -6308,18 +6895,21 @@ function JsVarsLesson({ lang: langProp, onFinished, onPractice, liveToken }) {
     setMentorPractice(null);
     startTimeRef.current = Date.now();
   };
-  useEffect5(() => {
-    progWrite(LESSON_META.lessonId, { screen, answers, earned: [...earnedRef.current], missed: [...missedRef.current], firstPass: firstPassRef.current, startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
+  useEffect6(() => {
+    progWrite(LESSON_META.lessonId, { screen, maxReached, answers, earned: [...earnedRef.current], missed: [...missedRef.current], firstPass: firstPassRef.current, startedAt: startTimeRef.current, total: TOTAL_SCREENS, savedAt: Date.now() });
   }, [screen, answers, earned, missed, fpPractice]);
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
   const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken });
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS });
   const isStudentLive = live.mode === "student" && live.status !== "ended" && live.mentorAlive;
+  useEffect6(() => {
+    setMaxReached((m) => screen === 0 && !Object.keys(answers || {}).length ? 0 : Math.max(m, screen));
+  }, [screen, answers]);
   const locked = isStudentLive && screen + 1 > live.mentorScreen;
-  useEffect5(() => {
+  useEffect6(() => {
     live.reportScreen(screen);
   }, [screen, live.mode, live.pin]);
-  useEffect5(() => {
+  useEffect6(() => {
     if (screen === TOTAL_SCREENS - 1) earn("graduate");
   }, [screen, earn]);
   const finishLesson = () => {
@@ -6370,6 +6960,7 @@ function JsVarsLesson({ lang: langProp, onFinished, onPractice, liveToken }) {
         .delay-1 { animation-delay: 0.12s; } .delay-2 { animation-delay: 0.24s; } .delay-3 { animation-delay: 0.36s; } .delay-4 { animation-delay: 0.48s; }
         @keyframes fade-step { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
         .zoomable { position: relative; }
+        .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
         /* F-0912-09 · 147-qonun (m1 da muhrlangan naqsh): ⛶ tugmasi burchagini matn
            AYLANIB o'tadi — faqat tugma yonidagi qator qisqaradi, qolganlari to'liq
@@ -6428,7 +7019,7 @@ function JsVarsLesson({ lang: langProp, onFinished, onPractice, liveToken }) {
         .feedback-block { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.4s ease-out, opacity 0.3s ease-out 0.1s, margin-top 0.4s ease-out; margin-top: 0; }
         .feedback-block.visible { max-height: 800px; opacity: 1; margin-top: clamp(14px,2vw,20px); }
 
-        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.ink}; color: ${T.bg}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
+        .btn { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.accent}; color: #fff; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); padding: clamp(11px,1.6vw,13px) clamp(20px,2.5vw,26px); font-size: clamp(13px,1.6vw,15px); }
         .btn:hover:not(:disabled) { background: ${T.accent}; box-shadow: 0 10px 24px -4px rgba(255,79,40,0.45); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
         /* === 🃏 FLASHCARDS (reusable, 3D flip) === */
@@ -6632,9 +7223,9 @@ function JsVarsLesson({ lang: langProp, onFinished, onPractice, liveToken }) {
         .progress-bar { height: 100%; background: ${T.accent}; transition: width 0.5s cubic-bezier(.4,0,.2,1); border-radius: 99px; box-shadow: 0 0 10px rgba(255,79,40,0.55), 0 0 3px rgba(255,79,40,0.4); }
 
         .frame { background: ${T.paper}; border-radius: 16px; padding: clamp(16px,3vw,24px); border: none; box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); }
-        .frame-soft { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
-        .frame-success { background: ${T.successSoft}; border-left: 4px solid ${T.success}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
-        .frame-warn { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; border-radius: 12px; padding: 12px 15px; }
+        .frame-soft { background: ${T.accentSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(255,79,40,0.22); }
+        .frame-success { background: ${T.successSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
+        .frame-warn { background: ${T.accentSoft}; border-radius: 12px; padding: 12px 15px; }
         .frame-dash { border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); }
 
         .screen { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; gap: clamp(14px,2vw,20px); }
@@ -6642,9 +7233,12 @@ function JsVarsLesson({ lang: langProp, onFinished, onPractice, liveToken }) {
            Standart flex-shrink tufayli bloklar siqilib, ichidagi matn qirqilardi (F-0802-14 dalili). */
         .screen > * { flex-shrink: 0; }
         .head { display: flex; flex-direction: column; gap: 6px; }
+        .head-c { text-align: center; align-items: center; } /* F-1003-04: natija ekrani — bitta o'q */
         .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(18px,3vw,36px); align-items: start; }
         .col { display: flex; flex-direction: column; gap: clamp(12px,2vw,16px); min-width: 0; }
         @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: clamp(14px,3vw,20px); } }
+        .vis-card { background: ${T.paper}; border-radius: 16px; padding: clamp(14px,2vw,18px); box-shadow: 0 8px 22px -6px rgba(${T.shadowBase},0.14); display: flex; flex-direction: column; gap: 12px; } /* F-0926-06: vizual + yorlig'i + izohi bitta blok (160-qonun) */
+        .vis-card .code-box { box-shadow: 0 0 0 1px rgba(${T.shadowBase},0.10); margin: 0; }
         .flow-label { font-family: 'Manrope'; font-weight: 700; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: ${T.ink2}; }
         .demo-swap { animation: fade-step 0.3s ease-out; }
 
@@ -6671,6 +7265,7 @@ function JsVarsLesson({ lang: langProp, onFinished, onPractice, liveToken }) {
         .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
         .hero-l { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 8px; }
         .done-chip { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.success}; background: ${T.successSoft}; padding: 5px 12px; border-radius: 99px; } .done-chip .tick { width: 15px; height: 15px; border-radius: 50%; background: ${T.success}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; }
+        .hero-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; } .score-chip { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 12px; font-variant-numeric: tabular-nums; color: ${T.accent}; background: ${T.accentSoft}; padding: 5px 12px; border-radius: 999px; } /* F-1003-04/05: yakunda halqa o'rniga yorliq */
         .ring-wrap { position: relative; width: 128px; height: 128px; flex-shrink: 0; }
         .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .ring-num { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 400; line-height: 1; } .ring-den { color: ${T.ink3}; font-size: 20px; } .ring-lbl { font-size: 10px; color: ${T.ink2}; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
@@ -6721,9 +7316,9 @@ function JsVarsLesson({ lang: langProp, onFinished, onPractice, liveToken }) {
         .mstats-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
         .mstats-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 12.5px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.blue}; }
         .mstats-n { font-family: 'Manrope'; font-size: 13.5px; font-weight: 600; color: ${T.ink2}; }
-        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.ink}; color: #fff; border: none; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
-        .mstats-reveal:hover { background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
-        .mstats-reveal.ready { background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
+        .mstats-reveal { font-family: 'Manrope'; font-weight: 700; font-size: 12.5px; background: ${T.paper}; color: ${T.accent}; border: 1px solid ${T.accent}; border-radius: 99px; padding: 7px 14px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.35); transition: all 0.2s; }
+        .mstats-reveal:hover { color: #fff; background: ${T.accent}; box-shadow: 0 6px 16px -4px rgba(255,79,40,0.5); }
+        .mstats-reveal.ready { color: #fff; background: ${T.accent}; animation: mstats-pulse 1.6s ease-in-out infinite; }
         @keyframes mstats-pulse { 0%,100% { box-shadow: 0 4px 12px -4px rgba(255,79,40,0.5); } 50% { box-shadow: 0 4px 18px 0 rgba(255,79,40,0.55); } }
         .mstats-prog { height: 7px; background: rgba(${T.shadowBase},0.09); border-radius: 99px; overflow: hidden; }
         .mstats-prog-fill { display: block; height: 100%; border-radius: 99px; background: ${T.blue}; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
@@ -6753,10 +7348,10 @@ function JsVarsLesson({ lang: langProp, onFinished, onPractice, liveToken }) {
         @media (max-width: 560px) { .mstats-count { min-width: 78px; font-size: 11px; } }
         /* Verdikt + recap tugmalari */
         .mstats-verdict { border-radius: 12px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; animation: fade-step 0.3s ease-out; }
-        .mstats-verdict.need { background: ${T.accentSoft}; border-left: 4px solid ${T.accent}; }
-        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); border-left: 4px solid #E8A13A; }
-        .mstats-verdict.good { background: ${T.successSoft}; border-left: 4px solid ${T.success}; }
-        .mstats-verdict.few { background: rgba(167,166,162,0.12); border-left: 4px solid ${T.ink3}; }
+        .mstats-verdict.need { background: ${T.accentSoft}; }
+        .mstats-verdict.maybe { background: rgba(232,161,58,0.14); }
+        .mstats-verdict.good { background: ${T.successSoft}; }
+        .mstats-verdict.few { background: rgba(167,166,162,0.12); }
         .mstats-verdict-t { margin: 0; font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.6vw,15px); line-height: 1.45; color: ${T.ink}; }
         .rc-open { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.6vw,15px); background: ${T.accent}; color: #fff; border: none; border-radius: 10px; padding: 10px 18px; cursor: pointer; box-shadow: 0 8px 20px -6px rgba(255,79,40,0.5); transition: all 0.2s; }
         .rc-open:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -6px rgba(255,79,40,0.55); }
@@ -6786,7 +7381,7 @@ function JsVarsLesson({ lang: langProp, onFinished, onPractice, liveToken }) {
         .rc-dot { width: 10px; height: 10px; border-radius: 99px; background: rgba(167,166,162,0.4); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
         .rc-dot.fill { background: ${T.ink3}; }
         .rc-dot.cur { background: ${T.accent}; width: 26px; }
-        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.ink}; color: ${T.bg}; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
+        .rc-btn { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(13px,1.7vw,16px); border: none; border-radius: 12px; padding: clamp(11px,1.6vw,14px) clamp(18px,2.6vw,26px); cursor: pointer; background: ${T.accent}; color: #fff; box-shadow: 0 6px 18px -4px rgba(${T.shadowBase},0.32); transition: all 0.2s; white-space: nowrap; }
         .rc-btn:hover:not(:disabled) { background: ${T.accent}; }
         .rc-btn:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
         .rc-btn.ghost { background: transparent; color: ${T.ink2}; box-shadow: none; }
@@ -7078,20 +7673,18 @@ function JsVarsLesson({ lang: langProp, onFinished, onPractice, liveToken }) {
         .mp-step.cur { color: ${T.success}; background: ${T.successSoft}; }
         .mp-arr { color: ${T.ink3}; font-weight: 700; }
         .mp-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
-        .mp-demo { flex: 1; min-width: 200px; padding: 14px 20px; border: none; border-radius: 14px; background: ${T.ink}; color: ${T.paper}; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; box-shadow: 0 10px 26px -10px rgba(${T.shadowBase},0.4); transition: transform 0.15s; }
+        .mp-demo { flex: 1; min-width: 200px; padding: 14px 20px; border: none; border-radius: 14px; background: ${T.accent}; color: #fff; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; box-shadow: 0 10px 26px -10px rgba(${T.shadowBase},0.4); transition: transform 0.15s; } /* F-0926-06: qora tugma → accent (159/5) */
         .mp-demo:hover { transform: translateY(-2px); }
         .mp-next { flex: 1; min-width: 160px; padding: 14px 20px; border: 1.5px solid rgba(${T.shadowBase},0.16); border-radius: 14px; background: ${T.paper}; color: ${T.ink}; font-family: 'Manrope'; font-weight: 800; font-size: 15px; cursor: pointer; transition: all 0.15s; }
         .mp-next:hover { border-color: ${T.accent}; color: ${T.accent}; }
         .mp-tip { margin: 2px 0 0; font-size: 12.5px; line-height: 1.5; color: ${T.ink3}; }
-        .hw-run { margin-top: 12px; align-self: flex-start; padding: 12px 20px; border: none; border-radius: 13px; background: ${T.ink}; color: ${T.paper}; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 14px; cursor: pointer; box-shadow: 0 10px 24px -10px rgba(${T.shadowBase},0.42); transition: transform 0.15s, background 0.15s; }
-        .hw-run:hover { transform: translateY(-2px); background: ${T.accent}; }
 
         /* option-wait (jonli test kutish holati) */
         .option-wait { background: ${T.blueSoft} !important; color: ${T.blue} !important; box-shadow: inset 0 0 0 2px ${T.blue}, 0 8px 22px -8px rgba(1,154,203,0.3) !important; }
         /* frame-wait (feedback kutish) */
-        .frame-wait { background: ${T.blueSoft}; border-left: 4px solid ${T.blue}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
+        .frame-wait { background: ${T.blueSoft}; border-radius: 12px; padding: clamp(14px,2.5vw,20px); box-shadow: 0 6px 16px -8px rgba(1,154,203,0.22); }
       `}</style>
-      <LiveGateCtx.Provider value={{ locked, live }}>
+      <LiveGateCtx.Provider value={{ locked, live, passed: screen < maxReached }}>
         <AchCtx.Provider value={earned}>
         <AchMissCtx.Provider value={achMissVal}>
         <div className="lesson-root">
@@ -7113,6 +7706,12 @@ function JsVarsLesson({ lang: langProp, onFinished, onPractice, liveToken }) {
       </LiveGateCtx.Provider>
     </LangContext.Provider>;
 }
+
+// src/2-Modull/lms-entry:JsVarsLesson.jsx
+function CcLessonEntry(props) {
+  notePreviewProps(props);
+  return __ccEl(JsVarsLesson, props);
+}
 export {
-  JsVarsLesson as default
+  CcLessonEntry as default
 };

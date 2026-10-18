@@ -1,7 +1,7 @@
 # 11-dars «Loyiha kuni: 1-asosiy funksiya» — yakuniy matn
 
 Fayl: `src/9-Modull/FeatureOneLesson.jsx` · 12 ekran · Keyingi dars: «Loyiha kuni: 2-asosiy funksiya»
-Holat: 07.10.2026 — kodga mos
+Holat: 18.10.2026 — kodga mos (v4, F-1015-266…268 avtopilot: 3, 6-ekran bashorat yolg'iz (213.7); reja-satri karta)
 
 Darsning bitta vizuali — «Funksiya sahnasi»: chapda telefon «Maydon Jamoa» (Expo Go), o'ngda Backend qutisi va Database · Neon kartasi; konvert — so'rov.
 Telefon ekranlari:
@@ -289,9 +289,10 @@ Natijalar (podium) — jonli reyting
   - Talabda aytilmagan holatni agent o'zi taxmin qilishi mumkin — uni talabda yozasiz.
   - E'lon egasini Backend tokendan oladi, «8 / 10» esa Database'dan sanaladi.
   - Ekrandagi son eskirgan bo'lishi mumkin: to'lgan o'yinni Backend tekshiradi.
-- Keyingi dars — **«Loyiha kuni: 2-asosiy funksiya»**: roadmap'dagi ikkinchi funksiya.
 - Nishonlaringiz — N/3 (uchta nishon nomi va tavsifi — «Nishonlar» bo'limida)
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Keyingi dars — **«Loyiha kuni: 2-asosiy funksiya»**: roadmap'dagi ikkinchi funksiya.
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Right Owner** — E'lon egasi tokendan olinishini topdingiz (4-ekran, 1-savol, birinchi urinishda to'g'ri)

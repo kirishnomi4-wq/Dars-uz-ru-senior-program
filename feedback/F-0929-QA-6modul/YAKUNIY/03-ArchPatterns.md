@@ -1,5 +1,8 @@
 # 3-dars «Arxitektura patternlari» — yakuniy matn
 
+> ✎ **F-1015-122 (16.10, 208-qonun 4-band, foydalanuvchi qarori — 2-variant):** dars yuzasidagi bezak emoji kodda olingan — sarlavha, yorliq, karta ikonlari, fayl tablari, test/amaliyot yorliqlari, tugmalar. Qolgan: sxema tugunlari, keys sahnasi, o'yin qatlami (nishon, arena, podium), Yakun, takrorlash oynasi, Mentor paneli, bot/ilova maketidagi mahsulot mazmuni. Bu MD dagi shunday bezak emoji endi ekranda yo'q.
+
+
 Fayl: `src/6-Modull/ArchPatternsLesson.jsx` · 20 ekran · Keyingi dars: «AI-agent nima»
 Holat: 05.10.2026 — kodga mos
 
@@ -38,10 +41,11 @@ models/     // ma'lumot
 - Yorliq: dars oxirida — siz shuni ayta olasiz
   - Karta: «Mening loyiham — **bitta ilova (monolit)**, ichi **MVC** bo'yicha tuzilgan.» — bir jumla, boshqa dasturchi darrov tushunadi.
 - Bugungi 4 qadam
-  1. MVC — 3 qism: Model, View, Controller · mvc
-  2. Mini-do'koningizning kodi qaysi qismga tushadi · moslash
-  3. Monolit va mikroservis — qachon qaysi biri qulay · tizimni bo'lish
-  4. Tizimni bir jumlada ta'riflash · bir jumla
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-121, 208-qonun 0-band: takror olindi)*
+  1. MVC — 3 qism: Model, View, Controller
+  2. Mini-do'koningizning kodi qaysi qismga tushadi
+  3. Monolit va mikroservis — qachon qaysi biri qulay
+  4. Tizimni bir jumlada ta'riflash
 - Tugmalar (telefonda): 4 qadamni ko'rish · ↩ Natijani ko'rish
 - Tugmalar: Orqaga · Boshlaymiz →
 
@@ -105,7 +109,7 @@ models/     // ma'lumot
 - Eyebrow: Moslash · mini-do'kon
 - Sarlavha: Mini-do'koningizning kodi qaysi qismga tushadi?
 - Mentor: MVC — texnologiyalar emas, kodning vazifalari. Shuning uchun React, Nest yoki PostgreSQL'ni emas, kod bo'laklarini joylaymiz. Har bir bo'lakni mos qismga joylang.
-- Chap — «Kod bo'lagi N/3» (navbat bilan) — to'g'ri javob:
+- Chap — «Kod bo'lagi» (navbat bilan; sanoq tugmada *(✎ F-1015-121, 208-qonun 0-band: takror olindi)*) — to'g'ri javob:
   1. Mahsulotlar ro'yxatini chiqaradigan React sahifa — View
   2. Nest'dagi controller — `/products` so'rovini qabul qiladigan kod — Controller
   3. Mahsulotda nomi va narxi bo'lishini belgilaydigan va uni Database'dan o'qiydigan kod — Model
@@ -187,7 +191,7 @@ models/     // ma'lumot
 - Eyebrow: Hayotiy · tizimni ajrating
 - Sarlavha: Monolitmi yoki mikroservismi?
 - Mentor: Arxitektor tizim tavsifini o'qib, u qanday tuzilganini aytadi. Har bir tizimni o'qing va tanlang.
-- Chap — «Tizim N/3» (navbat bilan) — to'g'ri javob:
+- Chap — «Tizim» (navbat bilan; sanoq tugmada *(✎ F-1015-121, 208-qonun 0-band: takror olindi)*) — to'g'ri javob:
   1. Kichik mini-do'kon: React sahifalar, bitta Nest backend va bitta Database. — Monolit
   2. Katta onlayn bozor: to'lov, qidiruv, yetkazib berish — har biri alohida xizmat, har biriga alohida jamoa qaraydi. — Mikroservis
   3. Yangi loyihaning birinchi sodda varianti (MVP — ishlaydigan eng sodda birinchi versiya): tezda bitta ilova kerak, jamoa 2 kishi. — Monolit
@@ -252,12 +256,12 @@ models/     // ma'lumot
 - Mentor: Bu topshiriqni **o'z AI yordamchingizda** bajaring. Har bosqichni bajarib, belgilab boring. Tugagach **«Bajardim»** tugmasini bosing — ustoz kuzatib turadi.
 - TOPSHIRIQ: O'z loyihangizni (yoki mini-do'konni) arxitektura tili bilan bir jumlada ta'riflang. Hali kod yozmaysiz — faqat rejalashtirasiz.
   - **Esda tuting:** bu yerda **ikki xil savol** bor. MVC — ilova ichidagi tartib. Monolit yoki mikroservis — tizim nechta ilovaga bo'lingani.
-- Bosqichlar — belgilab boring (bosilgani ✓ bilan belgilanadi):
+- Bosqichlar (yorliqsiz — Mentor «belgilab boring» deydi ✎ F-1015-166; bosilgani ✓ bilan belgilanadi):
   1. 1-savol: tizim qanday bo'lingan — bitta ilova (`monolit`) yoki alohida xizmatlar (`mikroservis`)?
   2. 2-savol: ilova ichi qanday tartiblangan — qaysi kod `View`, qaysi `Controller`, qaysi `Model`?
   3. Nega shu tanlov: loyihangizga monolit yetadimi yoki mikroservis kerakmi?
   4. Bir band javob yozing: «Mening tizimim — …, chunki …»
-- Tugma: Yana N qadam → ✓ Bajardim → ✓ Bajarildi — ustozni kuting
+- Tugma: Yana N qadam (oddiy yozuv) → ✓ Bajardim (hamma qadam belgilangach chiqadi) → ✓ Bajarildi — ustozni kuting (holat-yozuvi) ✎ F-1015-164
 - Bajarilgach (yashil): Zo'r! Vazifani bajardingiz. Ustoz tekshirib, keyingi qadamga o'tkazadi.
 - Tugmalar: Orqaga · Avval bajaring → Davom etish
 
@@ -299,13 +303,15 @@ Natijalar (podium) — jonli reyting
   - MVC — ilova ichi; monolit yoki mikroservis — tizim qanday bo'lingani
   - Kichik loyiha — ko'pincha monolit; tizim va jamoa kattalashsa, ayrim qismlar alohida xizmatga ajratiladi
 - Tugma: Uyga vazifa · Amaliy topshiriqni bajarish → (fonda: amaliyot · loyiha · mashq · natija)
-- Uyga vazifa (bosilgach):
+- Uyda nima qilasiz? (Uyga vazifa bosilgach)
+  - Kim uchun — o'z loyihangiz · Nechta — 1 qaror · Muddat — keyingi darsgacha
   - **Ta'riflang** — loyihangiz monolitmi yoki mikroservismi? Ichi MVC bo'yicha qanday tartiblangan?
   - **Moslang** — kod bo'laklaringizni View / Controller / Model'ga ajrating
   - **Qaror** — loyihangizga monolit yetadimi? Nega?
   - Keyingi dars — AI-agent: u ham tizimning bir qismi. Arxitekturada qayerda turadi?
 - Nishonlaringiz — N/4 (olingan nishonda nomi va tavsifi, olinmaganida faqat nomi)
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10, S1-A): uy vazifasi kartasi P-025 — sarlavha «Uyda nima qilasiz?» (bannerdagi «Uyga vazifa» bilan takror emas); maydonlar: Kim uchun — o'z loyihangiz · Nechta — 1 qaror · Muddat — keyingi darsgacha (qiymatlar topshiriq matnidan); qadamlar raqam-doira; «Keyingi dars» karta ichida; bezak emoji olindi.
 
 ## Nishonlar
 - Yuqoridagi hisoblagich: N/4 · bosilganda: Badges — N/4 (har nishon nomi; olinmagani qulf bilan)

@@ -140,10 +140,11 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 12-Modul `12-PmGrowthPitch-v3.
 - Chap — «Dars oxirida» + kulrang yorliq **pitch mashqi 2: taymer va savol-javob** (App.jsx osti so'zma-so'z, P-015)
   + vizual: `FinalSahna` skeleti — oltita nomsiz bo'lak (kulrang chiziqlar) va taymer chizig'i; chiziq 5:00 gacha yuradi, so'ng uchta kichik «1:00» katak birma-bir yonadi. Matnsiz, telefonsiz — 2, 3-ekran kashfiyotini ochmaydi (P-015).
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
-  - 01 · Hakam savoliga qanday javob berishni bilib olasiz · `savol-javob`
-  - 02 · Tuzatishlar ro'yxatingizni pitchga qo'llaysiz · `tuzatish`
-  - 03 · Pitchingizni taymer bilan 5 daqiqada aytasiz · `taymer`
-  - 04 · Uch savolga bir daqiqadan javob berasiz · `hakam savoli`
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*
+  - 01 · Hakam savoliga qanday javob berishni bilib olasiz
+  - 02 · Tuzatishlar ro'yxatingizni pitchga qo'llaysiz
+  - 03 · Pitchingizni taymer bilan 5 daqiqada aytasiz
+  - 04 · Uch savolga bir daqiqadan javob berasiz
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz · Keyingi bosiladigan joy: «Boshlaymiz» (vizual tugagach halqada).
 - O'qituvchi eslatmasi: Bugun baholash varag'i to'ldirilmaydi — u 5-darsda bor. Jonli demo uchun 6-darsdagi demo ssenariysi kerak bo'ladi: ikkinchi qurilma (telefon) dars boshida tayyor tursin.
 - Izoh (MD): sarlavhada yangi atama yo'q (T-011): «final» so'zi faqat dars nomida, ta'rifi 3-ekranda (0, 1-ekran Mentor gaplarida ham yo'q). «pitchingiz», «tuzatishlar ro'yxatingiz» — 1, 5-darsda yozilgan (T-039); bo'lmasa ham yo'l bor (5-ekran).
@@ -153,7 +154,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 12-Modul `12-PmGrowthPitch-v3.
 - Sarlavha: **Hakam savoliga qanday javob berasiz?** (36) — 0-ekran savoliga javob beradigan ekran (T-064)
 - Mentor: Hakam javobni bir daqiqada eshitadi — har savol ostidagi ikki javobdan mosini bosing. (85)
   (Birinchi harakat — bashorat; uning yo'rig'i `QBashorat` yorlig'ida, Mentor takrorlamaydi — T-047.)
-- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bitta o'lchov, o'sish tartibida): **Mentor nechta savolga «tekshirib aytaman» deydi?** · Hech biriga · Bittasiga · Ikkitasiga — tanlangach ixcham qator; kartalar shundan keyin yoqiladi.
+- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bitta o'lchov, o'sish tartibida): **Mentor nechta savolga «tekshirib aytaman» deydi?** · Hech biriga · Bittasiga · Ikkitasiga — tanlangach ixcham qator; kartalar shundan keyin chiqadi *(✎ F-1015-164)*.
 - Vizual (≤ 3 blok: sahna · javob kartalari · natija; telefonsiz — SABOQ 24): `FinalSahna` savol-javob rejimi — **tepada** uchta hakam qiyofasi va joriy savol pufagi · **o'rtada** savol-javob bo'lagi kattalashgan: uch katak «1:00» (joriy — accent) ·
   **pastda** joriy savolning ikki javob kartasi (oq, accent chegara; bir xil balandlikda). Kartalar ustida kulrang yorliq «Mentor misoli».
 - Kartalar (navbat bilan; `MENTOR_JAVOB` — A-6; har juftda ✔ o'rni: 1 — ikkinchi · 2 — birinchi · 3 — ikkinchi):
@@ -188,9 +189,9 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 12-Modul `12-PmGrowthPitch-v3.
 - Eyebrow: Tushuncha · tuzatish va taymer
 - Sarlavha: **Tuzatishlar qo'shilsa, pitch 5 daqiqaga sig'adimi?** (50)
 - Mentor: Tugmalarni birma-bir bosing va Mentor pitchi qanday o'zgarishiga qarang. (72)
-- Bashorat (ballsiz; S-015 — bitta o'lchov: gap uzunligi, o'sish tartibida): **Yangi gaplar eskisidan qanday?** · Qisqaroq · Taxminan teng · Uzunroq — tanlangach ixcham qator; tugmalar shundan keyin yoqiladi. (Vaqt haqida bashorat yo'q — haqiqiy vaqt faqat aytilganda bilinadi; 08-FILTR 1.)
+- Bashorat (ballsiz; S-015 — bitta o'lchov: gap uzunligi, o'sish tartibida): **Yangi gaplar eskisidan qanday?** · Qisqaroq · Taxminan teng · Uzunroq — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*. (Vaqt haqida bashorat yo'q — haqiqiy vaqt faqat aytilganda bilinadi; 08-FILTR 1.)
 - Vizual (`FinalSahna` to'liq; ≤ 3 blok: sahna · tugmalar qatori · natija): **chapda** telefon («O'yin» ekrani, «8 / 10») · **o'ngda** olti bo'lak — Mentor misoli (A-6 eski matnlari, bir qatordan), ostida taymer chizig'i olti bo'lakli, bo'sh; tepada kulrang yorliq «Mentor misoli · Maydon Jamoa».
-- Tugmalar (ixcham, bir qatorda; joriysi accent, bosilgani ✓): 1 Varaq · 2 Tuzatishlar · 3 Taymer
+- Tugmalar (ixcham, bir qatorda; joriysi accent, bosilgani ✓): 1 Varaq · 2 Tuzatishlar · 3 Taymer *(✎ F-1015-164: tugmalar bashoratdan keyin chiqadi; bosiladigani faqat joriysi, bosilgani — «✓ nom» yozuvi, keyingisi hali ko'rinmaydi)*
 - **Harakat → Vizual o'zgarish:**
   1. «Varaq» → Bozor va Raqamlar bo'laklari `err` chet oladi, ustida varaq izohi pufakda: «60 kishi kim — o'yinchimi, guruhmi?» · «Tasdiq — to'lovmi?»; Keyingi qadam ustida kulrang hakam savoli pufagi «Nega maydon egalari bunga pul to'lamaydi?»; qolgan uch bo'lak burchagida kichik ✓. Pastda kulrang qator: Mentor misoli · 5-darsdagi baholash varag'i. (44)
   2. «Tuzatishlar» → uch bo'lakda (Bozor, Raqamlar, Keyingi qadam) eski gap ustidan chiziq tortiladi va xiralashadi, o'rniga yangi gap sirg'alib kiradi (A-6); `err` chet va pufaklar yo'qoladi, yorliq **qo'llandi**; har yangi gap ostida kichik kulrang «uzunroq» belgisi (uchalasi eskisidan uzun); taymer chizig'i o'z joyida qoladi, chiziq boshida kulrang yorliq «reja».
@@ -235,8 +236,8 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 12-Modul `12-PmGrowthPitch-v3.
 - Kirish (P-046): `pm-m12d5-varaq.tuzatishlar` (3 band) — har band bitta karta; kartalar ustida kulrang yorliq `tur` dan: «5-darsdagi guruh varag'i» yoki «5-darsda o'zingiz to'ldirgan varaq» (ikkisi bir xil dalil emas — 05-FILTR 13); bo'lak gapi — `pm-m12d1-pitch.bolaklar[bolak]` (tahrirlanadi); shu bo'lak varaqda ✗ va `izoh` bo'lsa — kulrang qator.
   - Varaq yo'q: kulrang qator «Tuzatishlar ro'yxatingiz topilmadi — tuzatmoqchi bo'lgan bo'lakni tanlang.» (74) + olti bo'lak chiplari (≤ 3 tanlanadi) → tanlangan har bo'lakka karta (tuzatish qatorisiz; kulrang: Bu bo'lakda nimani aniqroq aytish mumkin?).
   - Pitch yo'q: maydon bo'sh, placeholder — `HAKAM_SAVOL[bolak]`; «Oldin» qatori va uzunlik tekshiruvi yo'q.
-- **Tepada — ixcham chiziq «Tuzatishlar · n / N»:** bo'lak nomi · «qo'llandi» yoki «keyinroq» (bo'sh uzuq qatorlar yo'q — SABOQ 17).
-- **Markazda — bitta katta karta «Tuzatish n / N»:** sarlavha — bo'lak nomi; kulrang qator 1 — tuzatish (`nima`); kulrang qator 2 (bo'lsa) — «Varaqda: {izoh}»; maydon — bo'lak gapi (yorliq input ichida — E 43: bo'lak nomi belgisi + placeholder);
+- **Tepada — ixcham chiziq «Tuzatishlar»** (sanoq tugmada *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*): bo'lak nomi · «qo'llandi» yoki «keyinroq» (bo'sh uzuq qatorlar yo'q — SABOQ 17).
+- **Markazda — bitta katta karta «Tuzatish»** (sanoqsiz *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*): sarlavha — bo'lak nomi; kulrang qator 1 — tuzatish (`nima`); kulrang qator 2 (bo'lsa) — «Varaqda: {izoh}»; maydon — bo'lak gapi (yorliq input ichida — E 43: bo'lak nomi belgisi + placeholder);
   belgi sanog'i «n / 160» va yonida kulrang «oldin: {m}» (eski gap uzunligi); tugmalar bir qatorda: «Saqlash» · ikkinchi «Keyinroq» · o'ngda «Yordam». «Saqlash» o'ngda (187).
 - Tekshiruv (`QXato`, ≤60; «yo'naltiradi» — ikkinchi «Saqlash» bilan o'tadi, «bloklaydi» — o'tmaydi):
   - matn o'zgarmagan (bloklaydi): Matn o'zgarmadi — tuzatishni qayta o'qing. (42)
@@ -261,7 +262,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 12-Modul `12-PmGrowthPitch-v3.
 - Tugma (pastki): Kartalarni ko'ring (n/N) → Davom etish (har karta «Saqlash» yoki «Keyinroq» bilan o'tgach; jonli darsda Mentor o'tkazishi mumkin — `optionalLive`).
 - Keyingi bosiladigan joy: joriy maydon (accent, to'lqin) → «Saqlash» (matn o'zgargach halqada) → keyingi karta → «Davom etish».
 - Saqlanadi: `pm-m12d8-final.tuzatishlar[]` (`holat: 'qollandi'` — «Saqlash», `'keyinroq'` — «Keyinroq») va `bolaklar` (oltala bo'lak; o'zgarmaganlari 1-darsdan nusxa) har «Saqlash» / «Keyinroq» da (A-12), `savedAt` yangilanadi.
-- Artefakt-strip (U-042): shu ekrandan — «Final pitch · qo'llandi n» (ixcham); 6, 7-ekranlarda ko'rinadi; test, arena, podium va yakunda yo'q (E 50).
+- Artefakt-strip yo'q: «Final pitch · qo'llandi n» 5-ekran yakunida xulosani, 6-ekranda bo'lak yorliqlarini («qo'llandi») takrorlardi, 7-ekranda vazifaga aloqasi yo'q edi *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*. Yakuniy sahna yorlig'i — «Final pitch».
 - Nishon: Fix Applied! (kamida bitta tuzatish «Saqlash» bilan qo'llangan; uzunlik ogohlantirishi nishonga ta'sir qilmaydi — 08-FILTR 19).
 - Mentor rejimi: forma o'rniga Mentor misoli (A-6 uch tuzatish, eski va yangi gap yonma-yon). Mentor statistikasi: «Tuzatish qo'llaganlar».
 - O'qituvchi eslatmasi: ≈15 daqiqa. Tuzatish — 5-darsdagi ro'yxat bandi; o'quvchi unga qo'shilmasa — «Keyinroq» bosadi va siz bilan qisqa gaplashadi, majburlanmaydi. Eng ko'p xato: yangi gap eskisining ustiga qo'shiladi (bo'lak uzayadi) · Raqamlarga yangi son to'qiladi.
@@ -279,7 +280,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 12-Modul `12-PmGrowthPitch-v3.
   · Demo — real odamlar qo'shilmagan o'yinda (namuna o'yin sanoq va xabarlardan ajratilgan — 9.59); demodan keyin holat boshiga qaytariladi.
   · Laptopda Database va `.env` yopiq — ekranni hakam ko'radi.
 - **Markazda — `FinalSahna`:** o'quvchining olti bo'lagi (5-ekrandan, ixcham; «qo'llandi» yorliqlari bilan) va taymer chizig'i (olti bo'lakli, `[40, 30, 90, 60, 30, 50]` s).
-  Taymer tugmalari: **5 daqiqani boshlash** · **To'xtatish** · **Qaytadan** (bo'lak-bo'lak «Keyingi bo'lak» tugmasi yo'q — umumiy taymer yetadi, sherik operator emas; 08-FILTR 16). 5:00 dan keyin taymer to'xtamaydi — qizil «+m:ss».
+  Taymer tugmalari: **5 daqiqani boshlash** · **To'xtatish** · **Qaytadan** («5 daqiqani boshlash» sherik/yakka tanlangach chiqadi, «Qaytadan» — taymer bir marta yoqilgach; o'chiq tugma yo'q *(✎ F-1015-164)*; bo'lak-bo'lak «Keyingi bo'lak» tugmasi yo'q — umumiy taymer yetadi, sherik operator emas; 08-FILTR 16). 5:00 dan keyin taymer to'xtamaydi — qizil «+m:ss».
   Juftlik yo'rig'i (bir qator): Avval A gapiradi, B taymerni boshlab tinglaydi; keyin almashasiz. (65)
   Demo ochilmasa (bitta kulrang qator, P-026): Demo ochilmasa — B reja videosini ko'rsating. (45)
 - **Harakat → Vizual o'zgarish:** «5 daqiqani boshlash» → chiziq to'lib boradi, reja bo'yicha joriy bo'lak accent bilan yonadi (bo'lak chegarasi bosilmaydi — chiziq reja) ·
@@ -302,8 +303,8 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 12-Modul `12-PmGrowthPitch-v3.
   Yakka rejimda: Savolni oching, «1 daqiqani boshlash»ni bosing va ovoz chiqarib javob bering. (77)
 - **Savollar (uchta, bittadan; TAYANCHGA SAVOL 5):** 1-savol — `pm-m12d5-varaq.hakamSavoli` (bo'lsa; ustida kulrang yorliq `tur` ga qarab «5-darsdagi guruh varag'idan» yoki «5-darsda o'zingiz yozgan savol» — 05-FILTR 13) · 2, 3-savol — sherik `SAVOL_BANK` dan tanlaydi (7 chip; tanlangani yopiladi, takrorlanmaydi; `hakamSavoli` bilan matni bir xil savol chipi chiqmaydi — 08-FILTR 13) ·
   yakka rejimda — dars tanlaydi: karta yopiq turadi, «Savolni ochish» bosilganda bankdan tasodifiy, takrorsiz. `hakamSavoli` yo'q bo'lsa — uchalasi bankdan.
-- **Tepada — ixcham chiziq «Savol-javob · n / 3»** (savol qisqa «…» · ✓).
-- **Markazda — bitta katta karta «Savol n / 3»:** savol (katta; «Odamlar hozir bu ishni nima bilan qiladi?» ostida kulrang: «bu ish» — pitchingizdagi Muammo; bank so'zi aynan — 9.3, 08-FILTR 14) · taymer 1:00 (pastga sanaydi) · tugmalar «1 daqiqani boshlash» · «To'xtatish» → maydon «Javobingiz qisqasi» (yorliq input ichida — E 43; placeholder `Son yoki fakt — qayerdan bilasiz?`; «n / 160») ·
+- **Tepada — ixcham chiziq «Savol-javob»** (sanoq tugmada *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*) (savol qisqa «…» · ✓).
+- **Markazda — bitta katta karta «Savol»** (sanoqsiz; savol ochilguncha — «Savolni sherigingiz tanlaydi» *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*): savol (katta; «Odamlar hozir bu ishni nima bilan qiladi?» ostida kulrang: «bu ish» — pitchingizdagi Muammo; bank so'zi aynan — 9.3, 08-FILTR 14) · taymer 1:00 (pastga sanaydi) · tugmalar «1 daqiqani boshlash» · «To'xtatish» → maydon «Javobingiz qisqasi» (yorliq input ichida — E 43; placeholder `Son yoki fakt — qayerdan bilasiz?`; «n / 160») ·
   ikkinchi tugma **«Tekshirib aytaman»** → javob maydoni ostida kichik maydon «Nimani tekshirasiz?» ochiladi (yorliq input ichida — E 43; `savollar[].tekshiradi` — matnga qo'shilmaydi, 08-FILTR 25) · o'ngda «Yordam» · «Saqlash» (o'ngda).
 - **O'ngda — `FinalSahna` savol-javob rejimi:** uch katak «1:00» (joriy — accent, to'lib boradi), ustida hakam qiyofasi va joriy savol pufagi.
 - 1:00 dan oshsa: taymer qizil «+m:ss» bilan davom etadi; `QIzoh`: Javob bir daqiqadan oshdi — bitta son yoki faktda to'xtang. (59)
@@ -386,6 +387,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 12-Modul `12-PmGrowthPitch-v3.
 - Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
 - Tartib (E 50): belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. «Bugungi asosiy fikr» qutisi, holat chiplari, artefakt-strip — yakunda yo'q. Ichki skroll qutisi yo'q (SABOQ 18).
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
 - Izoh (MD): «Kim bilan» — HwCard yorlig'i (12-Modul 12-dars bilan bir). ① va ③ — shartli (bajarilgan o'quvchida ko'rinmaydi). Uyda pitch faqat tanish odamga aytiladi; video yozish so'ralmaydi (TAQIQLAR 1). Muddat «keyingi darsgacha» — keyingi dars nomi faqat «Keyingi dars» qatorida (T-038).
 
 ---

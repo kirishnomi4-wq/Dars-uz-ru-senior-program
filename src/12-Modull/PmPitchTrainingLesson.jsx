@@ -31,7 +31,7 @@ const tr = (node) => {
 const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.uz ?? '') : o;
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext } from '../live/index.js';
+import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QTaxmin, QKirish, QReja, QTushuncha, QTest, QTestJavob, QKartochka, QYakun, QMustaqil, QChip, QXato, QIzoh, QXulosa } from '../qolip/index.jsx';
 
@@ -48,7 +48,7 @@ const AchMissCtx = createContext(null); //  151-qonun: { missed:Set<ekran id>, m
 
 // Matn ichidagi `kod` bo'laklarini chip qilib ko'rsatadi (qcode)
 const fmtCode = (s) => (typeof s === 'string' && s.includes('`'))
-  ? s.split('`').map((p, i) => i % 2 ? <code className="qcode" key={i}>{p}</code> : p)
+  ? s.split('`').map((p, i) => i % 2 ? <code className={p.length > 24 && p.includes(' ') ? 'qcode uzun' : 'qcode'} key={i}>{p}</code> : p)
   : s;
 
 // AUDIOSIZ dars — useAudio/getAudioEngine zaglushkasi (QuestionScreen imzosi saqlanadi, TTS yo'q)
@@ -102,6 +102,8 @@ const Zoomable = ({ children }) => {
   const [hasContent, setHasContent] = useState(true);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
+  const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
+  const [zQator, setZQator] = useState(false); // F-1015-125: joy yo'q — 36px qatorda, vizual o'ng chetida
   useEffect(() => {
     const el = zref.current; if (!el || typeof MutationObserver === 'undefined') return;
     const ink = (n) => {
@@ -114,6 +116,37 @@ const Zoomable = ({ children }) => {
     const run = () => {
       const zb = el.querySelector(':scope > .zoom-btn');
       if (!zb || el.classList.contains('zoom-on')) { setZFloat(false); return; }
+      // F-1015-125: ⛶ asosiy vizual burchagida (206 dagi qator o'rniga) — eng tashqi chizilgan elementlardan eng kattasi (+ ≥ 50% yuzalilari)
+      const zr0 = el.getBoundingClientRect(); const qol = el.querySelector('[data-zoom-asosiy]'); const tash = [];
+      if (qol) tash.push(qol);
+      else { const q = [...el.children].filter(n => !n.classList.contains('zoom-btn')); while (q.length) { const n = q.shift(); const b = n.getBoundingClientRect(); if (b.width < 2 || b.height < 2) { q.push(...n.children); continue; } if (n.tagName === 'svg' || ink(n)) tash.push(n); else q.push(...n.children); } }
+      const yuza = (n) => { const b = n.getBoundingClientRect(); return b.width * b.height; };
+      const maks = tash.length ? Math.max(...tash.map(yuza)) : 0;
+      const asosiy = tash.filter(n => yuza(n) >= maks * 0.5);
+      if (asosiy.length && zr0.width) {
+        let T = 1e9, R = -1e9; for (const n of asosiy) { const b = n.getBoundingClientRect(); T = Math.min(T, b.top); R = Math.max(R, b.right); }
+        const k = el.offsetWidth / zr0.width; const pt = parseFloat(getComputedStyle(el).paddingTop) || 0; const xs = (R - zr0.left) * k;
+        // ⛶ uchun joy (qator olingan holat koordinatasida): zoomable ichida va o'rnida matn/belgi yo'q bo'lsin (206: ⛶ hech narsani yopmaydi)
+        const band = (dx, dy) => { const s = pt / k, bl = R + (dx - 3) / k, br = bl + 36 / k, bt = T - s + (dy - 3) / k, bb = bt + 36 / k;
+          if (bl < zr0.left - 1 || br > zr0.right + 1) return true;
+          for (const n of el.querySelectorAll('*')) { if (n.closest('.zoom-btn')) continue;
+            const yaprq = /^(IMG|svg|INPUT|BUTTON|TEXTAREA|SELECT|CANVAS|VIDEO)$/.test(n.tagName) || [...n.childNodes].some(c => c.nodeType === 3 && c.textContent.trim());
+            if (!yaprq || (n.closest('svg') && n.tagName !== 'svg')) continue; const b = n.getBoundingClientRect(); if (b.width < 1) continue;
+            if (b.left < br && b.right > bl && b.top - s < bb && b.bottom - s > bt) return true; }
+          // zoomable tashqarisidagi qo'shni matn/belgi (qo'shni ustun, pastki izoh)
+          for (const [px, py] of [[bl, bt], [br, bt], [bl, bb], [br, bb], [(bl + br) / 2, (bt + bb) / 2]]) for (const n of document.elementsFromPoint(px, py)) {
+            if (el.contains(n) || n.contains(el) || n.closest('.zoom-btn')) continue;
+            if (/^(IMG|svg|INPUT|BUTTON|TEXTAREA|SELECT|CANVAS|VIDEO)$/.test(n.tagName) || [...n.childNodes].some(c => c.nodeType === 3 && c.textContent.trim())) return true; }
+          return false; };
+        const j = [[8, 0], [-38, 8]].find(([dx, dy]) => !band(dx, dy)); // 1) yonida · 2) burchak ichida
+        if (j) {
+          el.style.setProperty('--zb-x', (xs + j[0]) + 'px'); el.style.setProperty('--zb-y', Math.max(0, (T - zr0.top) * k - pt + j[1]) + 'px');
+          setZQator(false); setZJoy(true); setZFloat(false); return;
+        }
+        el.style.setProperty('--zb-x', Math.max(0, xs - 30) + 'px'); // 3) 36px qatorda, vizual o'ng chetida
+        setZJoy(false); setZQator(true); setZFloat(false); return;
+      }
+      setZJoy(false); setZQator(false);
       const r = zb.getBoundingClientRect(), zr = el.getBoundingClientRect(); if (!r.width) return;
       let hit = false;
       for (let y = r.top; y < Math.min(r.top + 220, zr.bottom) && !hit; y += 18) for (const x of [r.left - 30, r.left - 140]) {
@@ -123,9 +156,10 @@ const Zoomable = ({ children }) => {
     };
     let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(run); };
     sch(); const t = setTimeout(sch, 700); // fade-kirish tugagach yana bir bor
+    const t2 = setTimeout(sch, 1600); if (document.fonts && document.fonts.ready) document.fonts.ready.then(sch); // F-1015-125: shrift/animatsiyadan keyingi joy
     const mo = new MutationObserver(sch); mo.observe(el, { childList: true, subtree: true, characterData: true });
     window.addEventListener('resize', sch);
-    return () => { cancelAnimationFrame(raf); clearTimeout(t); mo.disconnect(); window.removeEventListener('resize', sch); };
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); mo.disconnect(); window.removeEventListener('resize', sch); };
   }, []);
   useLayoutEffect(() => {
     const el = zref.current; if (!el) return;
@@ -143,7 +177,7 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}`}>
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
         {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
@@ -785,7 +819,7 @@ const Varaq = ({ qatorlar, hakam, vaqt, ixcham = false, refQ, refHk }) => (
 // --- Tuzatishlar ro'yxati (4, 7-ekran): uch raqamli qator «bo'lak · nima o'zgaradi» ---
 const Royxat = ({ bandlar, refR, yangi = null, onTahrir }) => (
   <div className="gv-royxat">
-    <div className="gv-r-h">{tr({ uz: "Tuzatishlar ro'yxati", ru: 'Список исправлений' })} · {bandlar.filter(Boolean).length}{NB}/{NB}3</div>
+    <div className="gv-r-h">{tr({ uz: "Tuzatishlar ro'yxati", ru: 'Список исправлений' })}</div>
     {[0, 1, 2].map(i => {
       const b = bandlar[i];
       return (
@@ -809,15 +843,15 @@ const GuruhVaraqSahna = ({ yorliq, guruh, taymer, varaq, royxat, past, chapOstid
 );
 const mentorQatorlar = (fn) => MENTOR_VARAQ.map(q => ({ id: q.bolak, belgi: q.belgi, izoh: q.izoh ? tr(q.izoh) : null, ...(fn ? fn(q) : {}) }));
 // Bosqich tugmalari (ixcham, bir qatorda; joriysi accent halqada, bosilgani ✓)
-const Qadamlar3 = ({ nomlar, q, faol, onBos }) => (
-  <div className="gv-qadamlar">
-    {nomlar.map((n, i) => (
-      <QChip key={i} holat={i < q ? 'ok' : i === q && faol ? 'on' : undefined} className={cxx(i === q && faol && 'gv-joriy')} disabled={!faol || i !== q} onClick={onBos}>
-        <i>{i < q ? '✓' : i + 1}</i>{tr(n)}
-      </QChip>
+// F-1015-164: o'tilgani — ✓ yozuv (tugma emas), joriysi — tugma, keyingisi va bashoratdan oldin — ko'rinmaydi
+const Qadamlar3 = ({ nomlar, q, faol, onBos }) => (q === 0 && !faol ? null : (
+  <div className="gv-qadamlar fade-step">
+    {nomlar.map((n, i) => (i < q
+      ? <span key={i} className="gv-qd-ok"><i>✓</i>{tr(n)}</span>
+      : i === q && faol ? <QChip key={i} holat="on" className={'gv-joriy'} onClick={onBos}><i>{i + 1}</i>{tr(n)}</QChip> : null
     ))}
   </div>
-);
+));
 const ixchamBashorat = (taxmin, el) => <div className={cxx('gv-bash', taxmin && 'ix')}>{el}</div>;
 
 // ===== SCREEN 0 — KIRISH (QKirish; sof so'rovnoma — J-026: correct false hammaga; «Aynan!» / «Qiziq fikr!» — T-028, T-067) =====
@@ -880,10 +914,9 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
           <div className="gv-reja-g"><Doirachalar n={4} /><TaymerChiziq tolgan={bi} silliq /></div>
           <div className="gv-reja-v">
             <div className="gv-skelet">{BOLAK_ID.map((id, i) => <span key={id} className={cxx('gv-skelet-q', i < bi && 'on')}>{tr(BOLAK_NOM[id])}</span>)}</div>
-            <div className="gv-skelet-r">{[1, 2, 3].map(n => <span key={n}><i>{n}</i></span>)}</div>
           </div>
         </div>}
-        qadamlar={REJA.map(r => ({ t: tr(r.t), teg: tr(r.teg) }))}
+        qadamlar={REJA.map(r => ({ t: tr(r.t) }))}
       />
     </Stage>
   );
@@ -963,7 +996,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         mentor={<Mentor>{tr({ uz: 'Tugmalarni birma-bir bosing va har bosishdan keyin varaqqa qarang.', ru: 'Нажимайте кнопки по одной и после каждого нажатия смотрите на лист.' })}</Mentor>}
         bashorat={!done && ixchamBashorat(taxmin, <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr({ uz: "Guruh Mentor pitchining nechta bo'lagiga ✗ qo'ydi?", ru: 'Скольким частям питча Ментора группа поставила ✗?' })} variantlar={S2_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} />)}
         harakat={!done && <div className="gv-harakat">
-          <Qadamlar3 nomlar={S2_TUGMA} q={q} faol={!!taxmin && !band} onBos={bos} />
+          <Qadamlar3 nomlar={S2_TUGMA} q={q} faol={!!taxmin} onBos={bos} />
           {q > 0 && <QIzoh key={q}>{tr(S2_IZOH[q - 1])}</QIzoh>}
           {ipucha && IPUCHA(tr({ uz: "Yoqilgan tugmani bosing — varaq qanday to'lishini ko'ring.", ru: 'Нажмите активную кнопку — посмотрите, как заполняется лист.' }))}
         </div>}
@@ -1053,7 +1086,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const royxat = <Royxat bandlar={bandlar} refR={rRef} yangi={yangi} />;
   const karta = k && (
     <div key={n} className="gv-karta">
-      <div className="gv-karta-h"><b>{k.tur === 'x' ? <>{tr(BOLAK_NOM[k.bolak])} · <span className="gv-x">✗</span></> : tr({ uz: 'Hakam savoli', ru: 'Вопрос судьи' })}</b><span className="gv-karta-n">{n + 1}{NB}/{NB}3</span></div>
+      <div className="gv-karta-h"><b>{k.tur === 'x' ? <>{tr(BOLAK_NOM[k.bolak])} · <span className="gv-x">✗</span></> : tr({ uz: 'Hakam savoli', ru: 'Вопрос судьи' })}</b></div>
       <p className="gv-manba">«{tr(k.manba)}»</p>
       {k.kulrang && <p className="gv-kulrang">{tr(k.kulrang)}</p>}
       <div className="gv-varlar">
@@ -1127,7 +1160,6 @@ const S6_XATO = {
   bosh: { uz: 'Bitta hakam savolini yozing.', ru: 'Напишите один вопрос судьи.' },
   pul: { uz: "Bu kursda summa so'ralmaydi — savolni summasiz yozing.", ru: 'На этом курсе сумму не просят — напишите вопрос без суммы.' }
 };
-const S6_QISM = [{ uz: 'Pitch', ru: 'Питч' }, { uz: 'Varaq', ru: 'Лист' }, { uz: 'Hakam savoli', ru: 'Вопрос судьи' }];
 const hkYorliq = (tur) => (tur === 'guruh' ? tr({ uz: 'Tinglovchining hakam savoli', ru: 'Вопрос судьи от слушателя' }) : tr({ uz: 'Hakam savoli', ru: 'Вопрос судьи' }));
 const varaqOl = () => { const v = lsO(VARAQ_KEY); return v && Array.isArray(v.varaq) && v.varaq.length === 6 && typeof v.hakamSavoli === 'string' && v.hakamSavoli.trim() ? v : null; };
 const YANA = (t) => <p className="gv-yana">{t}</p>;
@@ -1244,7 +1276,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev, live }) => {
   );
   const bolakKarta = k <= 5 && (
     <div key={'b' + k} className={cxx('gv-karta', xato && xato.blok && 'err', band && 'kutadi')}>
-      <div className="gv-karta-h"><b>{tr(BOLAK_NOM[qq.bolak])}</b><span className="gv-karta-n">{k + 1}{NB}/{NB}6</span></div>
+      <div className="gv-karta-h"><b>{tr(BOLAK_NOM[qq.bolak])}</b></div>
       <p className="gv-hs">{tr(HAKAM_SAVOL[qq.bolak])}</p>
       <div className="gv-bt-q">
         <span className="gv-savol">{tr({ uz: "Bo'lak shu savolga javob berdimi?", ru: 'Ответила ли часть на этот вопрос?' })}</span>
@@ -1276,14 +1308,12 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev, live }) => {
   );
   const ongKarta = qism === 0 ? pitchKarta : qism === 1 ? (tasdiq ? bolakKarta : tasdiqKarta) : savolKarta;
   const bajarildi = (toxtadi ? 1 : 0) + (k >= 6 ? 1 : 0) + (done ? 1 : 0);
-  const strip = <div className="gv-strip">
-    {qism === 0 && !yur && !toxtadi && <div className="gv-rejim-q">
+  const strip = qism === 0 && !yur && !toxtadi && <div className="gv-strip">
+    <div className="gv-rejim-q">
       {[['guruh', { uz: 'Guruh tinglaydi', ru: 'Слушает группа' }], ['yakka', { uz: "Guruh yo'q — o'zim", ru: 'Группы нет — сам' }]].map(([id, t]) => (
         <button key={id} type="button" className={cxx('gv-rejim', tur === id && 'on')} onClick={() => setTur(id)}>{tr(t)}</button>
       ))}
-    </div>}
-    {S6_QISM.map((n, i) => <QChip key={i} holat={i < bajarildi ? 'ok' : i === qism ? 'on' : undefined} className="gv-tab"><i>{i < bajarildi ? '✓' : i + 1}</i>{tr(n)}</QChip>)}
-    <span className="gv-strip-y">{tr({ uz: 'Varaqim', ru: 'Мой лист' })} · {Math.min(k, 6)}/6</span>
+    </div>
   </div>;
   const forma = isMentor
     ? <div className="gv-fokus">
@@ -1402,7 +1432,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev, live }) => {
   );
   const tuzKarta = karta && (
     <div key={'t' + j + (tahrir !== null ? 'e' : '')} ref={kRef} className={cxx('gv-karta', xato && xato.blok && 'err')}>
-      <div className="gv-karta-h"><b className="gv-manba-q">{manbaQator}</b><span className="gv-karta-n">{j + 1}{NB}/{NB}3</span></div>
+      <div className="gv-karta-h"><b className="gv-manba-q">{manbaQator}</b></div>
       {karta.tur !== 'x' && <p className="gv-kulrang">{karta.tur === 'savol' ? tr({ uz: "Bu savolga qaysi bo'lak javob berishi kerak?", ru: 'Какая часть должна ответить на этот вопрос?' }) : tr({ uz: "Qaysi bo'lakni yanada aniqroq qilasiz?", ru: 'Какую часть сделаете ещё точнее?' })}</p>}
       <div className="gv-bolak-q">{BOLAK_ID.map(id => <button key={id} type="button" className={cxx('gv-bolak-t', tb === id && 'on', !tb && 'chorla')} onClick={() => { setTb(id); setXato(null); }}>{tr(BOLAK_NOM[id])}</button>)}</div>
       <div className={cxx('gv-maydon', tb && !matn.trim() && 'chorla')}>
@@ -1423,7 +1453,6 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev, live }) => {
   );
   const strip = <div className="gv-strip">
     <p className="gv-kulrang">{tr({ uz: "Uch bandning hammasi xato degani emas: biri savolga javob, biri bo'lakni yanada aniq qilish bo'lishi mumkin.", ru: 'Три пункта — не обязательно три ошибки: один может отвечать на вопрос, другой — делать часть точнее.' })}</p>
-    <span className="gv-strip-y">{tr({ uz: 'Tuzatishlarim', ru: 'Мои исправления' })} · {n}/3</span>
   </div>;
   const forma = isMentor
     ? <div className="gv-fokus"><Zoomable><GuruhVaraqSahna yorliq={<>{tr({ uz: 'Mentor misoli', ru: 'Пример Ментора' })} · <MJ /></>}
@@ -1993,7 +2022,7 @@ function QuizArena({ live, onClose, startSolo }) {
 }
 
 // ===== 🏆 PODIUM / STATISTIKA — jonli reyting (jonli-ulanishni ⚡ Jonli qiladi; self-mode fallback tayyor) =====
-const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
+const ScreenPodium = ({ screen, answers, achievements, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
   const isLive = !!(live && (live.mode === 'student' || live.mode === 'mentor') && live.pin);
@@ -2030,11 +2059,19 @@ const ScreenPodium = ({ screen, answers, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Natijalar', ru: 'Результаты' })} screen={screen} narrow navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head head-c"><h2 className="title h-title fade-up">{tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> })}</h2></div>
+        <div className="head head-c"><h2 className="title h-title fade-up">{isLive ? tr({ uz: <>Kim <span className="italic" style={{ color: T.accent }}>g'olib</span>?</>, ru: <>Кто <span className="italic" style={{ color: T.accent }}>победитель</span>?</> }) : tr({ uz: <>Bugungi <span className="italic" style={{ color: T.accent }}>natijangiz</span></>, ru: <>Ваш сегодняшний <span className="italic" style={{ color: T.accent }}>результат</span></> })}</h2></div>
         {!isLive ? (
-          <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
-            <ScoreRing correct={selfCorrect} total={totalQ} />
-            <div className="frame-soft" style={{ maxWidth: 480 }}><p className="body" style={{ margin: 0 }}>{tr({ uz: 'Siz mustaqil rejimdasiz. Jonli darsda bu yerda butun guruh reytingi — 🥇🥈🥉 podium chiqadi.', ru: 'Вы в самостоятельном режиме. На живом уроке здесь появится рейтинг всей группы — подиум 🥇🥈🥉.' })}</p></div>
+          <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div className="pod-card">
+              <div className="pod-card-ring"><ScoreRing correct={selfCorrect} total={totalQ} /></div><p className="ring-iz">{tr({ uz: "Testlarda birinchi urinishda topilgan to'g'ri javoblar", ru: 'Верные ответы в тестах с первой попытки' })}</p>
+              <div className="pod-card-sec">
+                <span className="pod-card-lbl">{tr({ uz: 'Nishonlar', ru: 'Значки' })} · {Object.keys(ACHIEVEMENTS).filter(id => achievements && achievements.has(id)).length}/{Object.keys(ACHIEVEMENTS).length}</span>
+                <div className="pod-card-badges">
+                  {Object.entries(ACHIEVEMENTS).map(([id, a], k) => { const got = !!(achievements && achievements.has(id)); return <span key={id} className={`pcb ${got ? 'got' : ''}`} style={{ '--k': k }} title={tr(a.desc)}><span className="pcb-ic" aria-hidden="true">{got ? a.icon : '🔒'}</span><span className="pcb-nm">{got ? a.name : '?'}</span></span>; })}
+                </div>
+              </div>
+              <div className="pod-card-note"><span className="pcn-ic" aria-hidden="true">💡</span><p className="body">{tr({ uz: "Bu — shaxsiy natijangiz. Jonli darsda shu yerda butun guruhning natijalar ro'yxati va 🥇🥈🥉 eng yaxshi uchtalik (podium) chiqadi.", ru: 'Это ваш личный результат. На живом уроке здесь появится список результатов всей группы и 🥇🥈🥉 тройка лучших (подиум).' })}</p></div>
+            </div>
           </div>
         ) : !loaded ? (
           <p className="mono small fade-up" style={{ color: T.ink2 }}>{tr({ uz: 'Natijalar yuklanmoqda…', ru: 'Результаты загружаются…' })}</p>
@@ -2162,7 +2199,7 @@ const HW_BANDLAR = [
   { uz: "Uch tuzatishni pitchingizga kiriting: har bandda aytilgan bo'lakni qayta yozing; vaqt 5 daqiqadan oshgan bo'lsa — qaysi bo'lak qisqarishini ham belgilang.", ru: 'Внесите три исправления в питч: перепишите часть из каждого пункта; если время больше 5 минут — отметьте и то, какая часть сократится.' },
   { uz: 'Pitchni taymer bilan bir marta ovoz chiqarib ayting — xohlasangiz tanish odamga, bo\'lmasa o\'zingiz telefonga yozib.', ru: 'Один раз расскажите питч вслух с таймером — если хотите, знакомому человеку, если нет — запишите себя на телефон.' }
 ];
-const HW_RAQAM = ['①', '②', '③'];
+const HW_RAQAM = ['1', '2', '3'];
 const HwCard = ({ qolgan, keyingi }) => (
   <div className="card gv-hw fade-up">
     <div className="card-lbl acc">{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div>
@@ -2203,7 +2240,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
   const openArena = async () => {
-    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
+    if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
   // Holat — pm-m12d5-varaq dan (P-046): tur, varaq saqlangan-saqlanmagan, tuzatishlar.length; mentor proyektorida — to'liq
@@ -2221,7 +2258,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   return (
-    <Stage eyebrow={tr({ uz: 'Dars yakuni', ru: 'Итог урока' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><button className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</button></>}>
+    <Stage eyebrow={tr({ uz: 'Dars yakuni', ru: 'Итог урока' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className={cxx('gv-yakun', !toliq && 'belgisiz')}>
         <QYakun til={__lang}
           chip={tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}
@@ -2231,7 +2268,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
               <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: 'Mentorni kuting', ru: 'Дождитесь наставника' }) : undefined} />
             </div>
-            {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
+            {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
           </>}
           recap={RECAP.map(tr)}
           uyga={<HwCard qolgan={qolgan} keyingi={keyingi} />}
@@ -2392,6 +2429,8 @@ export default function PmPitchTrainingLesson({ lang: langProp, onFinished, live
         .gv-qadamlar { display: flex; flex-wrap: wrap; gap: 8px; }
         .gv-qadamlar .q-chip i { font-style: normal; font-weight: 800; color: ${T.accent}; margin-right: 7px; }
         .gv-qadamlar .q-chip.ok i { color: ${T.ok}; }
+        .gv-qd-ok { display: inline-flex; align-items: center; padding: 9px 4px; font-weight: 700; font-size: clamp(13px,1.45vw,14px); color: ${T.ok}; }
+        .gv-qd-ok i { font-style: normal; font-weight: 800; margin-right: 6px; }
         .gv-qadamlar .q-chip.gv-joriy { animation: gv-puls 2.2s ease-out .3s 3; }
         p.gv-ipucha { margin: 0; font-size: 13px; font-weight: 700; color: ${T.accent}; }
         p.gv-kulrang { margin: 0; font-size: 13px; line-height: 1.45; color: ${T.ink2}; }
@@ -2466,7 +2505,7 @@ export default function PmPitchTrainingLesson({ lang: langProp, onFinished, live
         .gv-v-nom { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
         .gv-v-nom b { font-size: 14px; color: ${T.ink}; }
         .gv-v-nom small { font-size: 12px; line-height: 1.3; color: ${T.ink2}; }
-        .gv-v-b { width: 30px; height: 30px; border-radius: 8px; border: 1.5px dashed ${T.line}; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px; background: ${T.paper}; }
+        .gv-v-b { width: 30px; height: 30px; border-radius: 8px; border: 1.5px solid transparent; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px; background: ${T.bg}; }
         .gv-v-b.ok { border: none; background: ${T.ok}; color: #fff; animation: gv-pop .4s ease-out; }
         .gv-v-b.x { border: none; background: ${T.err}; color: #fff; animation: gv-pop .4s ease-out; }
         .gv-v-iz { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-width: 0; font-size: 14px; line-height: 1.35; color: ${T.ink}; }
@@ -2478,7 +2517,7 @@ export default function PmPitchTrainingLesson({ lang: langProp, onFinished, live
         .gv-v-q.ajrat { background: ${T.paper}; box-shadow: inset 3px 0 0 ${T.accent}; }
         .gv-v-q.yangi { animation: gv-yashil 1s ease-out; }
         .gv-v-hk { display: flex; flex-direction: column; gap: 3px; margin: 8px 10px 10px; padding: 8px 12px; border-radius: 10px; background: ${T.paper}; border: 1px solid ${T.line}; }
-        .gv-v-hk.bosh { border: 1.5px dashed ${fon(T.accent, 0.5)}; background: transparent; min-height: 52px; }
+        .gv-v-hk.bosh { border: 1.5px solid ${fon(T.accent, 0.5)}; background: transparent; min-height: 52px; }
         .gv-v-hk.ajrat { box-shadow: inset 3px 0 0 ${T.accent}; }
         .gv-v-hk.yangi { border-color: ${T.accent}; animation: gv-yashil 1.1s ease-out; }
         .gv-v-hk-y { font-size: 12px; font-weight: 800; color: ${T.accent}; }
@@ -2489,7 +2528,7 @@ export default function PmPitchTrainingLesson({ lang: langProp, onFinished, live
         .gv-royxat { display: flex; flex-direction: column; gap: 6px; }
         .gv-r-h { font-size: 13.5px; font-weight: 800; color: ${T.ink}; }
         .gv-r-q { display: flex; align-items: center; gap: 10px; min-height: 38px; padding: 5px 12px; border-radius: 10px; background: ${T.paper}; border: 1px solid ${T.line}; }
-        .gv-r-q.bosh { background: transparent; border: 1.5px dashed ${fon(T.accent, 0.45)}; }
+        .gv-r-q.bosh { background: transparent; border: 1.5px solid ${fon(T.accent, 0.45)}; }
         .gv-r-q.yangi { animation: gv-yashil 1.1s ease-out; border-color: ${T.ok}; }
         .gv-r-q > i { width: 24px; height: 24px; border-radius: 7px; background: ${T.accentSoft}; color: ${T.accent}; font-style: normal; font-weight: 800; font-size: 12px; display: inline-flex; align-items: center; justify-content: center; flex: none; }
         .gv-r-m { flex: 1; min-width: 0; font-size: 15px; line-height: 1.4; color: ${T.ink}; }
@@ -2550,10 +2589,6 @@ export default function PmPitchTrainingLesson({ lang: langProp, onFinished, live
         .gv-rejim-q { display: flex; gap: 8px; margin-right: 10px; }
         .gv-rejim { font-family: 'Manrope', sans-serif; font-size: 13.5px; font-weight: 700; color: ${T.ink}; background: ${T.paper}; border: 1.5px solid ${fon(T.accent, 0.45)}; border-radius: 10px; padding: 7px 12px; cursor: pointer; }
         .gv-rejim.on { background: ${T.accentSoft}; color: ${T.accent}; border-color: ${T.accent}; }
-        .gv-strip .q-chip.gv-tab { padding: 6px 10px; font-size: 12.5px; cursor: default; }
-        .gv-strip .q-chip.gv-tab i { font-style: normal; font-weight: 800; margin-right: 6px; color: ${T.accent}; }
-        .gv-strip .q-chip.gv-tab.ok i { color: ${T.ok}; }
-        .gv-strip-y { font-size: 12px; font-weight: 800; color: ${T.ink}; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 999px; padding: 5px 11px; margin-left: auto; white-space: nowrap; }
         .gv-bolak-q { display: flex; flex-wrap: wrap; gap: 5px; }
         .zoomable > .gv-royxat { padding-right: 40px; }
         .gv-strip > p.gv-kulrang { flex: 1; min-width: 0; }
@@ -2581,14 +2616,11 @@ export default function PmPitchTrainingLesson({ lang: langProp, onFinished, live
         .gv-reja-g { display: flex; flex-direction: column; align-items: stretch; gap: 8px; }
         @media (min-width: 761px) { .q-reja .zoomable:not(.zoom-on) > .zoom-btn { right: auto; left: calc(50% - 50px); } }
         .gv-reja-g .gv-tm { flex: 1; min-width: 0; }
-        .gv-reja-v { display: grid; grid-template-columns: minmax(0,1.3fr) minmax(0,1fr); gap: 12px; }
+        .gv-reja-v { display: grid; grid-template-columns: minmax(0,1fr); gap: 12px; }
         .gv-skelet { display: flex; flex-direction: column; border: 1px solid ${T.line}; border-radius: 10px; overflow: hidden; }
         .gv-skelet-q { font-size: 13.5px; font-weight: 700; color: ${T.ink2}; padding: 5px 10px; border-top: 1px solid ${T.line}; background: ${T.bg}; transition: color .3s, background .3s; }
         .gv-skelet-q:first-child { border-top: none; }
         .gv-skelet-q.on { color: ${T.ink}; background: ${T.paper}; }
-        .gv-skelet-r { display: flex; flex-direction: column; gap: 6px; }
-        .gv-skelet-r span { flex: 1; min-height: 30px; border-radius: 8px; border: 1.5px dashed ${fon(T.accent, 0.4)}; display: flex; align-items: center; padding: 0 8px; }
-        .gv-skelet-r i { font-style: normal; font-size: 12px; font-weight: 800; color: ${T.accent}; }
         /* Test javobidan keyingi kichik vizual (SABOQ 4) */
         .gv-test-viz { margin-top: 2px; }
         .gv-mini { display: inline-flex; align-items: center; gap: 10px; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 10px; padding: 8px 12px; font-size: 14.5px; color: ${T.ink}; }
@@ -2596,7 +2628,7 @@ export default function PmPitchTrainingLesson({ lang: langProp, onFinished, live
         .gv-mini > i { width: 24px; height: 24px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-style: normal; font-weight: 800; color: #fff; background: ${T.ok}; }
         .gv-mini > i.x { background: ${T.err}; }
         .gv-mini-u { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
-        .gv-mini-dst { position: relative; display: flex; align-items: center; gap: 10px; min-width: 260px; min-height: 40px; padding: 7px 12px; border-radius: 10px; border: 1.5px dashed ${fon(T.accent, 0.45)}; }
+        .gv-mini-dst { position: relative; display: flex; align-items: center; gap: 10px; min-width: 260px; min-height: 40px; padding: 7px 12px; border-radius: 10px; border: 1.5px solid ${fon(T.accent, 0.45)}; }
         .gv-mini-dst > i { width: 24px; height: 24px; border-radius: 7px; background: ${T.accentSoft}; color: ${T.accent}; font-style: normal; font-weight: 800; font-size: 12px; display: inline-flex; align-items: center; justify-content: center; }
         .gv-mini-fly { font-size: 14.5px; color: ${T.ink}; animation: gv-tush .8s cubic-bezier(.4,.1,.2,1) .3s both; }
         .gv-mini-fly b { color: ${T.accent}; }
@@ -2612,19 +2644,18 @@ export default function PmPitchTrainingLesson({ lang: langProp, onFinished, live
         .gv-yakun.belgisiz .done-chip .tick { display: none; }
         .gv-hw { display: flex; flex-direction: column; gap: 12px; }
         .gv-hw-karta { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-        .gv-hw-q { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; border-radius: 10px; background: ${T.bg}; }
+        .gv-hw-q { display: flex; flex-direction: column; gap: 2px; padding: 9px 11px; border-radius: 10px; background: ${T.bg}; border: 1px solid ${T.line}; }
         .gv-hw-k { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: ${T.ink2}; }
         .gv-hw-v { font-size: 13px; font-weight: 700; color: ${T.ink}; }
         ol.gv-hw-qadam { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
         .gv-hw-qadam li { display: flex; gap: 8px; font-size: 13.5px; line-height: 1.5; color: ${T.ink}; }
-        .gv-hw-qadam li > i { flex: none; font-style: normal; font-weight: 800; color: ${T.accent}; }
-        .gv-hw-keyingi { font-size: 13px; color: ${T.ink2}; }
+        .gv-hw-qadam li > i { flex: 0 0 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-style: normal; font-weight: 800; font-size: 12px; line-height: 1; color: ${T.accent}; background: ${T.accentSoft}; }
+        .gv-hw-keyingi { font-size: 13.5px; color: ${T.ink2}; line-height: 1.5; }
         @media (max-width: 760px) {
           .gv-sahna, .gv-ish, .gv-reja-v { grid-template-columns: minmax(0,1fr); gap: 12px; }
           .gv-hw-karta { grid-template-columns: 1fr; }
           .gv-tm-bo em { display: none; }
           .gv-v-q { grid-template-columns: minmax(0,1fr) 30px minmax(0,1.3fr); gap: 8px; padding: 6px 10px; }
-          .gv-strip-y { margin-left: 0; }
           .gv-tel { width: 84px; height: 136px; }
         }
         @media (prefers-reduced-motion: reduce) {
@@ -2645,11 +2676,30 @@ export default function PmPitchTrainingLesson({ lang: langProp, onFinished, live
         .zoomable.z-float > .zoom-btn { visibility: hidden; } /* ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun) */
         .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band, F-0926-01) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
+        .ring-iz { margin: 0; font-size: 13px; line-height: 1.4; color: ${T.ink2}; text-align: center; } /* F-1015-147: hisob qoidasi */
+        /* F-1015-158: natija — bitta karta (m5-08 namunasi): halqa, nishonlar, 💡 izoh; halqa atrofida qo'shimcha chiziq yo'q */
+        .pod-card { position: relative; width: 100%; max-width: 480px; margin-top: 6px; background: ${T.paper}; border-radius: 20px; padding: 0 clamp(14px,2.4vw,20px) clamp(14px,2.4vw,20px); display: flex; flex-direction: column; gap: 12px; box-shadow: 0 16px 34px -20px rgba(${T.shadowBase},0.35); }
+        .pod-card-ring { display: flex; justify-content: center; padding-top: clamp(14px,2.4vw,20px); } .pod-card-ring > * { margin-top: 0 !important; }
+        .screen:has(.pod-card) .head { text-align: center; }
+        .pod-card-sec { background: ${T.bg}; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .pod-card-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: ${T.accent}; }
+        .pod-card-badges { display: flex; justify-content: center; gap: clamp(8px,1.6vw,12px); flex-wrap: wrap; }
+        .pcb { width: 84px; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+        .pcb-ic { width: 50px; height: 50px; border-radius: 14px; display: grid; place-items: center; font-size: 26px; line-height: 1; background: ${T.paper}; box-shadow: inset 0 0 0 1px ${T.line}; }
+        .pcb.got .pcb-ic { background: ${T.accentSoft}; box-shadow: inset 0 0 0 2px ${T.accent}; animation: pcb-pop 0.5s cubic-bezier(.3,1.6,.5,1) both; animation-delay: calc(0.35s + var(--k) * 0.12s); }
+        .pcb:not(.got) .pcb-ic { font-size: 18px; filter: grayscale(1); opacity: 0.55; }
+        .pcb-nm { font-family: 'Manrope'; font-size: 10.5px; line-height: 1.25; text-align: center; color: ${T.ink2}; }
+        .pcb.got .pcb-nm { color: ${T.ink}; font-weight: 700; }
+        @keyframes pcb-pop { from { transform: scale(0.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .pod-card-note { display: flex; gap: 10px; align-items: flex-start; background: ${T.accentSoft}; border-radius: 14px; padding: 11px 13px; }
+        .pcn-ic { width: 32px; height: 32px; flex: none; border-radius: 50%; display: grid; place-items: center; background: ${T.paper}; font-size: 16px; }
+        .pod-card-note .body { margin: 0; font-size: clamp(13px,1.5vw,14.5px); }
+        @media (prefers-reduced-motion: reduce) { .pcb.got .pcb-ic { animation: none; } }
+        .zoomable.zb-joy:not(.zoom-on) { padding-top: 0 !important; } .zoomable.zb-joy:not(.zoom-on) > .zoom-btn { top: var(--zb-y, 0px) !important; left: var(--zb-x, auto) !important; right: auto !important; visibility: visible !important; } /* F-1015-125 (206.6): ⛶ asosiy vizual burchagida; 36px qator — faqat zaxira */ .zoomable.zb-qator:not(.zoom-on) { padding-top: 0 !important; } /* F-1015-176: ⛶ joy topolmasa — ko'rsatilmaydi, bo'sh qator yo'q */ .zoomable.zb-qator:not(.zoom-on) > .zoom-btn { display: none !important; }
         .zoom-btn:hover { background: ${T.paper}; color: ${T.accent}; transform: scale(1.08); }
         /* F-1008-583 (SABOQ P7): ⛶ vizualning o'z burchagida (top 8, right 8), kontentdan tashqarida emas;
            torroq ekranda ichkarida qoladi va o'ng ustunning birinchi yorlig'iga o'ngdan 40 px joy beriladi. */
-        @media (min-width: 1200px) { .zoomable:not(.zoom-on) > .zoom-btn { top: 8px; right: 8px; } .zoomable.z-float:not(.zoom-on) > .zoom-btn { visibility: visible; } }
-        @media (max-width: 1199px) { .zoomable:not(.z-float):not(.zoom-on) > .split > :last-child > :is(p, h2, h3, h4, .eyebrow, .flow-label, .note-h):first-child, .zoomable:not(.z-float):not(.zoom-on) > .zoom-btn + :is(p, h2, h3, h4, .eyebrow, .flow-label, .note-h) { padding-right: 40px; } }
+        .zoomable:not(.z-empty):not(.zoom-on) { padding-top: 36px; } .zoomable:not(.zoom-on) > .zoom-btn { top: 0; right: 0; }
         .zoom-backdrop { position: fixed; inset: 0; background: rgba(14,14,16,0.55); z-index: 1000; animation: fade-step 0.25s ease; }
         @keyframes zoom-pop { from { opacity: 0; transform: translate(-50%,-50%) scale(0.93); } to { opacity: 1; transform: translate(-50%,-50%) scale(1); } }
         .mentor-ava { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: ${T.accentSoft}; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.28); }
@@ -2732,6 +2782,7 @@ export default function PmPitchTrainingLesson({ lang: langProp, onFinished, live
 
         /* === 🔤 KOD-ATAMA CHIP (fmtCode) === */
         .qcode { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
+        .qcode.uzun { white-space: normal; overflow-wrap: break-word; } /* F-1015-129: uzun kod (SQL, buyruq) bo'sh joydan bo'linadi, kartadan chiqmaydi */
 
         /* === 🏅 ACHIEVEMENTS — hisoblagich + to'liq-ekran bayram === */
         .ach-cnt-wrap { position: relative; }

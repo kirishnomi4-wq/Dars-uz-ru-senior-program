@@ -1,0 +1,478 @@
+--- feedback/F-1006-12modul/YAKUNIY/05-BreakAndFix.md
++++ feedback/F-1006-12modul/YAKUNIY/05-BreakAndFix.md
+@@ -484 +484,2 @@
+-- Tugmalar: Orqaga · Qaytadan · Yakunlash
++- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1006-12modul/YAKUNIY/04-LiveNotifyDay.md
++++ feedback/F-1006-12modul/YAKUNIY/04-LiveNotifyDay.md
+@@ -312,0 +313 @@
++- Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+@@ -314,2 +315,2 @@
+-- Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+-- Tugmalar: Orqaga · Qaytadan · Yakunlash
++- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1006-12modul/YAKUNIY/09-RetentionDay.md
++++ feedback/F-1006-12modul/YAKUNIY/09-RetentionDay.md
+@@ -320,0 +321 @@
++- Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+@@ -322,2 +323,2 @@
+-- Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+-- Tugmalar: Orqaga · Qaytadan · Yakunlash
++- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1006-12modul/YAKUNIY/02-WebSocketBasics.md
++++ feedback/F-1006-12modul/YAKUNIY/02-WebSocketBasics.md
+@@ -492 +492,2 @@
+-- Tugmalar: Orqaga · Qaytadan · Yakunlash
++- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1007-13modul/05-PaymentDay-v3.md
++++ feedback/F-1007-13modul/05-PaymentDay-v3.md
+@@ -441,0 +442 @@
++- Nishonlaringiz — N/4 (pastda; mentor rejimida yo'q)
+@@ -443,3 +444,2 @@
+-- Nishonlaringiz — N/4 (pastda; mentor rejimida yo'q)
+-- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
+-- Tugmalar: Orqaga · Qaytadan · Yakunlash
++- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Nishonlaringiz · Keyingi dars. Ichki skroll qutisi yo'q (SABOQ 18).
++- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+@@ -447,0 +448 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1007-13modul/03-PaymentWebhook-v3.md
++++ feedback/F-1007-13modul/03-PaymentWebhook-v3.md
+@@ -638 +638,2 @@
+-- **AI bilan davom** (`AiDavomCard`, CODE STRIKE ostida, mentor rejimida yo'q — PM-109, F-1007-475): sarlavha **Erta tugatdingizmi? AI bilan davom eting** · matn: gemini.google.com'ni oching, pastdagi so'rovni yuboring — AI to'lov xizmati bo'lib to'rt xabar beradi. Har biriga Backend'ingiz nima qilishini yozing; adashgan joyingizni «Orqaga» bilan 5–9-ekranlarda qayta ko'ring. · so'rov qutisi (nusxalash): «Sen to'lov xizmatisan. Menga navbat bilan 4 ta webhook xabari ber: imzosi to'g'ri, imzosi noto'g'ri, takror (bir xil to'lov raqami), rad etilgan (holat: rad). Har xabar — qisqa JSON: tolovRaqami, holat, summa, oyinchiId va X-Imzo sarlavhasi. Har biridan keyin men Backend'im nima qilishini yozaman (yozadi yoki yozmaydi, javobi 200 yoki 401); sen to'g'ri-noto'g'riligini bir gapda ayt va nega. Mahsulot: Maydon Jamoa, Pro 30 kun, 10 000 so'm. Birinchi xabarni ber.»
++- Nishonlaringiz — N/4
++- **AI bilan davom** (`AiDavomCard`, Nishonlardan keyin, mentor rejimida yo'q — PM-109, F-1007-475): sarlavha **Erta tugatdingizmi? AI bilan davom eting** · matn: gemini.google.com'ni oching, pastdagi so'rovni yuboring — AI to'lov xizmati bo'lib to'rt xabar beradi. Har biriga Backend'ingiz nima qilishini yozing; adashgan joyingizni «Orqaga» bilan 5–9-ekranlarda qayta ko'ring. · so'rov qutisi (nusxalash): «Sen to'lov xizmatisan. Menga navbat bilan 4 ta webhook xabari ber: imzosi to'g'ri, imzosi noto'g'ri, takror (bir xil to'lov raqami), rad etilgan (holat: rad). Har xabar — qisqa JSON: tolovRaqami, holat, summa, oyinchiId va X-Imzo sarlavhasi. Har biridan keyin men Backend'im nima qilishini yozaman (yozadi yoki yozmaydi, javobi 200 yoki 401); sen to'g'ri-noto'g'riligini bir gapda ayt va nega. Mahsulot: Maydon Jamoa, Pro 30 kun, 10 000 so'm. Birinchi xabarni ber.»
+@@ -640,2 +641,2 @@
+-- Nishonlaringiz — N/4
+-- Tugmalar: Orqaga · Qaytadan · Yakunlash
++- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1007-13modul/02-PmMonetization-v3.md
++++ feedback/F-1007-13modul/02-PmMonetization-v3.md
+@@ -472,0 +473 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1007-13modul/06-PmMoneyTalk-v3.md
++++ feedback/F-1007-13modul/06-PmMoneyTalk-v3.md
+@@ -402 +402,2 @@
+-- **AI bilan davom** (`AiDavomCard`, CODE STRIKE ostida, mentor rejimida yo'q — F-1007-475, PM-109): sarlavha **Erta tugatdingizmi? AI bilan davom eting** · matn: gemini.google.com'ni oching, pastdagi so'rovni yuboring va suhbat savollaringizni bittadan bering — AI tashkilotchi bo'lib javob beradi. Javoblarini «Orqaga» bilan qaytib, rol o'yini yozuviga kiriting. · so'rov qutisi (nusxalash tugmasi): «Sen «Maydon Jamoa»ga o'xshash ilovada har hafta o'yin tashkil qiladigan tashkilotchisan: o'yinchilarni qo'lda yig'asan, bunga vaqt ketadi. Men senga narx haqida 4 ta savol beraman. Har biriga qisqa, hayotiy javob ber; narx aytilganda avval ikkilan, keyin o'z fikringni ayt. O'zing savol berma, sotishga undama. Birinchi savolim: »
++- Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
++- **AI bilan davom** (`AiDavomCard`, Nishonlardan keyin, mentor rejimida yo'q — F-1007-475, PM-109): sarlavha **Erta tugatdingizmi? AI bilan davom eting** · matn: gemini.google.com'ni oching, pastdagi so'rovni yuboring va suhbat savollaringizni bittadan bering — AI tashkilotchi bo'lib javob beradi. Javoblarini «Orqaga» bilan qaytib, rol o'yini yozuviga kiriting. · so'rov qutisi (nusxalash tugmasi): «Sen «Maydon Jamoa»ga o'xshash ilovada har hafta o'yin tashkil qiladigan tashkilotchisan: o'yinchilarni qo'lda yig'asan, bunga vaqt ketadi. Men senga narx haqida 4 ta savol beraman. Har biriga qisqa, hayotiy javob ber; narx aytilganda avval ikkilan, keyin o'z fikringni ayt. O'zing savol berma, sotishga undama. Birinchi savolim: »
+@@ -405 +405,0 @@
+-- Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
+@@ -409,0 +410 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1007-13modul/09-PmPayCheck-v3.md
++++ feedback/F-1007-13modul/09-PmPayCheck-v3.md
+@@ -447,0 +448 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1007-13modul/01-PmUnitEconomics-v3.md
++++ feedback/F-1007-13modul/01-PmUnitEconomics-v3.md
+@@ -474,0 +475 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1007-13modul/10-ReferralDay-v3.md
++++ feedback/F-1007-13modul/10-ReferralDay-v3.md
+@@ -454,0 +455 @@
++- Nishonlaringiz — N/4
+@@ -456,3 +457,2 @@
+-- Nishonlaringiz — N/4
+-- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
+-- Tugmalar: Orqaga · Qaytadan · Yakunlash
++- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Nishonlaringiz · Keyingi dars. Ichki skroll qutisi yo'q (SABOQ 18).
++- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+@@ -460,0 +461 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1007-13modul/12-StabilizeDay-v3.md
++++ feedback/F-1007-13modul/12-StabilizeDay-v3.md
+@@ -420,0 +421 @@
++- Nishonlaringiz — N/4
+@@ -422,3 +423,2 @@
+-- Nishonlaringiz — N/4
+-- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
+-- Tugmalar: Orqaga · Qaytadan · Yakunlash
++- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Nishonlaringiz · Keyingi dars. Ichki skroll qutisi yo'q (SABOQ 18).
++- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+@@ -425,0 +426 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1007-13modul/08-WinBackDay-v3.md
++++ feedback/F-1007-13modul/08-WinBackDay-v3.md
+@@ -457,0 +458 @@
++- Nishonlaringiz — N/4
+@@ -459,3 +460,2 @@
+-- Nishonlaringiz — N/4
+-- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
+-- Tugmalar: Orqaga · Qaytadan · Yakunlash
++- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Nishonlaringiz · Keyingi dars. Ichki skroll qutisi yo'q (SABOQ 18).
++- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+@@ -463,0 +464 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1008-14modul/06-DemoPrep-v3.md
++++ feedback/F-1008-14modul/06-DemoPrep-v3.md
+@@ -429,0 +430 @@
++- Nishonlaringiz — N/4 (pastda; mentor rejimida yo'q)
+@@ -431,2 +432 @@
+-- Nishonlaringiz — N/4 (pastda; mentor rejimida yo'q)
+-- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18). Artefakt-strip yakunda yo'q (E 50).
++- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Nishonlaringiz · Keyingi dars. Ichki skroll qutisi yo'q (SABOQ 18). Artefakt-strip yakunda yo'q (E 50).
+@@ -435,0 +436 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1008-14modul/04-PolishDay-v3.md
++++ feedback/F-1008-14modul/04-PolishDay-v3.md
+@@ -421,0 +422 @@
++- Nishonlaringiz — N/4
+@@ -423,3 +424,2 @@
+-- Nishonlaringiz — N/4
+-- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
+-- Tugmalar: Orqaga · Qaytadan · Yakunlash
++- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Nishonlaringiz · Keyingi dars. Ichki skroll qutisi yo'q (SABOQ 18).
++- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+@@ -427,0 +428 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1008-14modul/03-ProductSpeed-v3.md
++++ feedback/F-1008-14modul/03-ProductSpeed-v3.md
+@@ -564 +564,2 @@
+-- Tugmalar: Orqaga · Qaytadan · Yakunlash
++- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1008-14modul/09-VideoPortfolio-v3.md
++++ feedback/F-1008-14modul/09-VideoPortfolio-v3.md
+@@ -386,0 +387 @@
++- Nishonlaringiz — N/4
+@@ -388,3 +389,2 @@
+-- Nishonlaringiz — N/4
+-- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18). Artefakt-strip yakunda yo'q (E 50).
+-- Tugmalar: Orqaga · Qaytadan · Yakunlash
++- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Nishonlaringiz · Keyingi dars. Ichki skroll qutisi yo'q (SABOQ 18). Artefakt-strip yakunda yo'q (E 50).
++- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+@@ -391,0 +392 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-0928-QA-5modul/YAKUNIY/05-BotAiProject.md
++++ feedback/F-0928-QA-5modul/YAKUNIY/05-BotAiProject.md
+@@ -230,0 +231 @@
++- Nishonlaringiz — N/3
+@@ -232 +232,0 @@
+-- Nishonlaringiz — N/3
+@@ -233,0 +234 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-0928-QA-5modul/YAKUNIY/03-BotApiButtons.md
++++ feedback/F-0928-QA-5modul/YAKUNIY/03-BotApiButtons.md
+@@ -410,0 +411 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-0928-QA-5modul/YAKUNIY/09-BotFeedbackIteration.md
++++ feedback/F-0928-QA-5modul/YAKUNIY/09-BotFeedbackIteration.md
+@@ -218,0 +219 @@
++- Nishonlaringiz — N/3 (olingan nishonda nomi va tavsifi, olinmaganida faqat nomi)
+@@ -220 +220,0 @@
+-- Nishonlaringiz — N/3 (olingan nishonda nomi va tavsifi, olinmaganida faqat nomi)
+@@ -221,0 +222 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-0928-QA-5modul/YAKUNIY/07-BotFullProject.md
++++ feedback/F-0928-QA-5modul/YAKUNIY/07-BotFullProject.md
+@@ -198,0 +199 @@
++- Nishonlaringiz — N/3 (olingan nishonda nomi va tavsifi, olinmaganida faqat nomi)
+@@ -200 +200,0 @@
+-- Nishonlaringiz — N/3 (olingan nishonda nomi va tavsifi, olinmaganida faqat nomi)
+@@ -201,0 +202 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-0928-QA-5modul/YAKUNIY/02-PmLesson19.md
++++ feedback/F-0928-QA-5modul/YAKUNIY/02-PmLesson19.md
+@@ -281 +280,0 @@
+-- Bugungi asosiy fikr — Birinchi foydalanuvchilar tanish guruhlardan keladi.
+@@ -290,0 +290 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-0928-QA-5modul/YAKUNIY/08-PmLesson20.md
++++ feedback/F-0928-QA-5modul/YAKUNIY/08-PmLesson20.md
+@@ -264 +263,0 @@
+-- Bugungi asosiy fikr — Javob sizda emas: uni botingizni ishlatgan odam biladi.
+@@ -271,0 +271 @@
++- Keyingi dars — **«Foydalanuvchi fikri va iteratsiya».** Botga kelgan fikrlarni saralab, qaysi birini birinchi tuzatishni tanlaysiz.
+@@ -273 +272,0 @@
+-- Keyingi dars — **«Foydalanuvchi fikri va iteratsiya».** Botga kelgan fikrlarni saralab, qaysi birini birinchi tuzatishni tanlaysiz.
+@@ -274,0 +274 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-0928-QA-5modul/YAKUNIY/12-PmLesson21.md
++++ feedback/F-0928-QA-5modul/YAKUNIY/12-PmLesson21.md
+@@ -293,0 +294 @@
++- Keyingi dars — **Zaxira dars**: ulgurmagan ishni tugatasiz va botingizni sayqallaysiz. Undan keyin — **Demo Day**: botingizni jonli ko'rsatasiz va uning raqamlarini aytasiz. Uch kunlik hisobingizni saqlang — o'sha kuni kerak bo'ladi.
+@@ -295 +295,0 @@
+-- Keyingi dars — **Zaxira dars**: ulgurmagan ishni tugatasiz va botingizni sayqallaysiz. Undan keyin — **Demo Day**: botingizni jonli ko'rsatasiz va uning raqamlarini aytasiz. Uch kunlik hisobingizni saqlang — o'sha kuni kerak bo'ladi.
+@@ -296,0 +297 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-0929-QA-6modul/YAKUNIY/02-PmLesson22.md
++++ feedback/F-0929-QA-6modul/YAKUNIY/02-PmLesson22.md
+@@ -306 +305,0 @@
+-- Bugungi asosiy fikr — Bitta gapni har kim boshqacha tushunishi mumkin. Shuning uchun fikrni yozib, aniqlashtiramiz.
+@@ -315,0 +315 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-0929-QA-6modul/YAKUNIY/06-PmLesson23.md
++++ feedback/F-0929-QA-6modul/YAKUNIY/06-PmLesson23.md
+@@ -304,0 +305 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-0929-QA-6modul/YAKUNIY/12-PmLesson24.md
++++ feedback/F-0929-QA-6modul/YAKUNIY/12-PmLesson24.md
+@@ -288 +287,0 @@
+-- Bugungi asosiy fikr — Ishni ufqqa bizning xohishimiz emas, unga kerak narsaning tayyor bo'lish payti qo'yadi.
+@@ -294,0 +294 @@
++- Keyingi dars — **Loyiha kuni: to'liq tizim.** Web, mobil, bot, backend va Database'ni bitta ishlaydigan tizimga ulaysiz.
+@@ -296 +295,0 @@
+-- Keyingi dars — **Loyiha kuni: to'liq tizim.** Web, mobil, bot, backend va Database'ni bitta ishlaydigan tizimga ulaysiz.
+@@ -297,0 +297 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-0929-QA-6modul/YAKUNIY/14-PmLesson25.md
++++ feedback/F-0929-QA-6modul/YAKUNIY/14-PmLesson25.md
+@@ -290,0 +291 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1005-9modul/09-MvpComplete-v3.md
++++ feedback/F-1005-9modul/09-MvpComplete-v3.md
+@@ -261,0 +262 @@
++- Nishonlaringiz — N/3
+@@ -263 +263,0 @@
+-- Nishonlaringiz — N/3
+@@ -281,0 +282 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1005-9modul/07-MvpFirstScreen-v3.md
++++ feedback/F-1005-9modul/07-MvpFirstScreen-v3.md
+@@ -317,0 +318 @@
++- Nishonlaringiz — N/3
+@@ -319,3 +320,2 @@
+-- Nishonlaringiz — N/3
+-- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q; kirishda CODE STRIKE to'liq ko'rinadi.
+-- Tugmalar: Orqaga · Qaytadan · Yakunlash
++- Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Nishonlaringiz · Keyingi dars. Ichki skroll qutisi yo'q; kirishda CODE STRIKE to'liq ko'rinadi.
++- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+@@ -322,0 +323 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1005-9modul/11-MvpIteration-v3.md
++++ feedback/F-1005-9modul/11-MvpIteration-v3.md
+@@ -311,0 +312 @@
++- Nishonlaringiz — N/3
+@@ -313,2 +314,2 @@
+-- Nishonlaringiz — N/3
+-- Tugmalar: Orqaga · Qaytadan · Yakunlash
++- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1005-9modul/06-PmAnalyticsDayOne-v3.md
++++ feedback/F-1005-9modul/06-PmAnalyticsDayOne-v3.md
+@@ -262 +261,0 @@
+-- Bugungi asosiy fikr (ScoreRing ostida, `small`, kartochkaga qo'shilmaydi — P-013): Bizning MVP da analitika birinchi odamdan oldin ulanadi — shunda qaysi qadamdan keyin son keskin kamayganini ko'rasiz. (96)
+@@ -288 +287,2 @@
+-- Tugmalar: Orqaga · Qaytadan · Yakunlash
++- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+@@ -398 +398 @@
+-12. s11 `QYakun`: `recap` 4 qator, «Bugungi asosiy fikr» `small`; kartochkalar — s10 alohida ekranda (`FLASHCARDS` 12); `uyga` — `HwCard` yakun ekranida (alohida `.homework.jsx` yo'q — GATE M M-q9), `keyingi` matni.
++12. s11 `QYakun`: `recap` 4 qator; kartochkalar — s10 alohida ekranda (`FLASHCARDS` 12); `uyga` — `HwCard` yakun ekranida (alohida `.homework.jsx` yo'q — GATE M M-q9), `keyingi` matni.
+
+--- feedback/F-1005-9modul/03-PmInterviewMvp-v3.md
++++ feedback/F-1005-9modul/03-PmInterviewMvp-v3.md
+@@ -389 +388,0 @@
+-- Bugungi asosiy fikr — Ko'p yozuvda chiqqan shikoyat — kuchli belgi; birinchi versiya shu bitta muammoni hal qiladi.
+@@ -407,0 +407 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+@@ -525 +525 @@
+-13. **s15** `QKartochka` (DE-204, 11 karta). **s16** `QYakun`: sarlavha, asosiy fikr, 4 band, HwCard (3 qadam), «Keyingi dars».
++13. **s15** `QKartochka` (DE-204, 11 karta). **s16** `QYakun`: sarlavha, 4 band, HwCard (3 qadam), «Keyingi dars».
+@@ -538 +538 @@
+-- 16-ekran: «Bugungi asosiy fikr» yashil kartada CODE STRIKE ustida (QYakun da alohida joy yo'q).
++- 16-ekran: «Bugungi asosiy fikr» yo'q (207-qonun, F-1015-112).
+
+--- feedback/F-1005-10modul/YAKUNIY/04-PmAbTest.md
++++ feedback/F-1005-10modul/YAKUNIY/04-PmAbTest.md
+@@ -250 +249,0 @@
+-- Bugungi asosiy fikr: Gipoteza qaysi raqamga qarashni oldindan aytadi, A/B test shu raqamni ikki guruhda bir vaqtda solishtiradi.
+@@ -262,0 +262 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1005-10modul/YAKUNIY/11-PmPitchRehearsal.md
++++ feedback/F-1005-10modul/YAKUNIY/11-PmPitchRehearsal.md
+@@ -293 +292,0 @@
+-- Bugungi asosiy fikr: Har slayd zalning bitta savoliga javob beradi; fidbek qaysi javob yetmaganini ko'rsatadi.
+@@ -303,0 +303 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1005-10modul/YAKUNIY/06-PmTrustAudit.md
++++ feedback/F-1005-10modul/YAKUNIY/06-PmTrustAudit.md
+@@ -240 +239,0 @@
+-- Asosiy fikr: Odam ma'lumotini ishonib berishi uchun kerakli minimumni yig'asiz, maqsad tugagach o'chirasiz va buni saytda ochiq aytasiz; audit siyosatda yozilganni kod bilan solishtiradi.
+@@ -257 +256,2 @@
+-- Tugmalar: Orqaga · Qaytadan · Yakunlash
++- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1005-10modul/YAKUNIY/10-PmYearPath.md
++++ feedback/F-1005-10modul/YAKUNIY/10-PmYearPath.md
+@@ -299 +298,0 @@
+-- Bugungi asosiy fikr — Vaqt chizig'i bir yilda nima bo'lganini ko'rsatadi, keyingi qadam esa shu chiziqdan o'sadi.
+@@ -309,0 +309 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1005-11modul/YAKUNIY/09-ExpoPrototype.md
++++ feedback/F-1005-11modul/YAKUNIY/09-ExpoPrototype.md
+@@ -496 +495,0 @@
+-- Bugungi asosiy fikr: Mobil trekda prototip Expo ilovasiga ko'chadi — har ekran o'z faylida — va QR orqali Expo Go'da ochiladi; web-trekda u adaptiv sayt va PWA bo'lib, telefonning bosh ekraniga qo'shiladi.
+@@ -511 +510,2 @@
+-- Tugmalar: Orqaga · Qaytadan · Yakunlash
++- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1005-11modul/YAKUNIY/11-FeatureOne.md
++++ feedback/F-1005-11modul/YAKUNIY/11-FeatureOne.md
+@@ -291,0 +292 @@
++- Nishonlaringiz — N/3 (uchta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+@@ -293,2 +294,2 @@
+-- Nishonlaringiz — N/3 (uchta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+-- Tugmalar: Orqaga · Qaytadan · Yakunlash
++- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1005-11modul/YAKUNIY/14-FeatureThree.md
++++ feedback/F-1005-11modul/YAKUNIY/14-FeatureThree.md
+@@ -286,0 +287 @@
++- Nishonlaringiz — N/3 (uchta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+@@ -288,2 +289,2 @@
+-- Nishonlaringiz — N/3 (uchta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+-- Tugmalar: Orqaga · Qaytadan · Yakunlash
++- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1005-11modul/YAKUNIY/12-FeatureTwo.md
++++ feedback/F-1005-11modul/YAKUNIY/12-FeatureTwo.md
+@@ -276,0 +277 @@
++- Nishonlaringiz — N/3 (uchta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+@@ -278,2 +279,2 @@
+-- Nishonlaringiz — N/3 (uchta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+-- Tugmalar: Orqaga · Qaytadan · Yakunlash
++- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1005-11modul/YAKUNIY/10-FoundationDay.md
++++ feedback/F-1005-11modul/YAKUNIY/10-FoundationDay.md
+@@ -270,0 +271 @@
++- Nishonlaringiz — N/3 (uchta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+@@ -272,2 +273,2 @@
+-- Nishonlaringiz — N/3 (uchta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+-- Tugmalar: Orqaga · Qaytadan · Yakunlash
++- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1005-11modul/YAKUNIY/07-LivePrototype.md
++++ feedback/F-1005-11modul/YAKUNIY/07-LivePrototype.md
+@@ -405 +404,0 @@
+-- Bugungi asosiy fikr: Qog'ozdagi wireframe ekranni agentga aniq ko'rsatadi; namuna ma'lumot va animatsiya uni Backend'siz bosiladigan, jonli prototipga aylantiradi.
+@@ -420 +419,2 @@
+-- Tugmalar: Orqaga · Qaytadan · Yakunlash
++- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1005-11modul/YAKUNIY/08-PlatformChoice.md
++++ feedback/F-1005-11modul/YAKUNIY/08-PlatformChoice.md
+@@ -392 +391,0 @@
+-- Bugungi asosiy fikr: Chizma qismlar, jadvallar va real vaqt nuqtalarini ko'rsatadi; bu modulda platforma faqat foydalanuvchi ochadigan qismni tanlaydi — Backend va Database ikkala trekda bir xil.
+@@ -406 +405,2 @@
+-- Tugmalar: Orqaga · Qaytadan · Yakunlash
++- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1005-11modul/YAKUNIY/13-PmAudienceTest.md
++++ feedback/F-1005-11modul/YAKUNIY/13-PmAudienceTest.md
+@@ -270 +269,0 @@
+-- Bugungi asosiy fikr: Bu darsda ko'p kishida takrorlangan va vazifaga to'sqinlik qilgan to'xtash birinchi tuzatiladi, keyin yangi odam bilan qayta sinaladi.
+@@ -286 +285,2 @@
+-- Tugmalar: Orqaga · Qaytadan · Yakunlash
++- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1005-11modul/YAKUNIY/04-PmFinalIdea.md
++++ feedback/F-1005-11modul/YAKUNIY/04-PmFinalIdea.md
+@@ -331 +330,0 @@
+-- Bugungi asosiy fikr: Yozuvlar sanog'i final g'oya uchun yangi dalil beradi, isbot emas: qaror bitta songa tayanmaydi.
+@@ -348,0 +348 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1005-11modul/YAKUNIY/02-PmIdeaRice.md
++++ feedback/F-1005-11modul/YAKUNIY/02-PmIdeaRice.md
+@@ -339 +338,0 @@
+-- Bugungi asosiy fikr: Uch savoldan o'tgan g'oyalarni RICE tartiblaydi; RICE — tanlovga yordam, hukm emas.
+@@ -350,0 +350 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1005-11modul/YAKUNIY/03-PmInterviewsOne.md
++++ feedback/F-1005-11modul/YAKUNIY/03-PmInterviewsOne.md
+@@ -347 +346,0 @@
+-- Bugungi asosiy fikr: Ikki g'oyani bir xil savollar bilan tekshirasiz; odamning qiziqishini so'zidan ko'ra ishi aniqroq ko'rsatadi.
+@@ -358,0 +358 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1005-11modul/YAKUNIY/15-PmOneOnOne.md
++++ feedback/F-1005-11modul/YAKUNIY/15-PmOneOnOne.md
+@@ -252 +251,0 @@
+-- Bugungi asosiy fikr: Holat bo'lib o'tganni ko'rsatadi, qadam esa oldindagi riskni kamaytiradi.
+@@ -269,0 +269 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1005-11modul/YAKUNIY/05-PmPrd.md
++++ feedback/F-1005-11modul/YAKUNIY/05-PmPrd.md
+@@ -339 +338,0 @@
+-- Bugungi asosiy fikr: G'oya bir sahifaga yetti bo'lim bo'lib yoziladi va qurishdan oldin uch savol bilan tekshiriladi.
+@@ -350,0 +350 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1005-11modul/YAKUNIY/16-PmPrototypePitch.md
++++ feedback/F-1005-11modul/YAKUNIY/16-PmPrototypePitch.md
+@@ -333 +332,0 @@
+-- Bugungi asosiy fikr: Uch daqiqada zal muammoni dalil bilan eshitadi, yechimni bir gapda tushunadi va ilovani telefonda ko'radi.
+@@ -350,0 +350 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1005-11modul/YAKUNIY/06-PmRoadmap.md
++++ feedback/F-1005-11modul/YAKUNIY/06-PmRoadmap.md
+@@ -345 +344,0 @@
+-- Bugungi asosiy fikr: RICE ishlar tartibini ko'rsatadi, ish esa unga kerak narsa tayyor bo'lgan ufqda boshlanadi.
+@@ -362,0 +362 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-1005-11modul/YAKUNIY/01-PmTenIdeas.md
++++ feedback/F-1005-11modul/YAKUNIY/01-PmTenIdeas.md
+@@ -328 +327,0 @@
+-- Bugungi asosiy fikr: G'oya nom emas: unda muammo, kim uchun va yechim yoziladi.
+@@ -339,0 +339 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
+
+--- feedback/F-0928-QA-5modul/YAKUNIY/11-PmMetrics.md
++++ feedback/F-0928-QA-5modul/YAKUNIY/11-PmMetrics.md
+@@ -320,0 +321 @@
++✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».

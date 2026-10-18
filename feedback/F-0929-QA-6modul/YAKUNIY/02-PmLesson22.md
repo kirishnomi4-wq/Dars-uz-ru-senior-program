@@ -1,5 +1,8 @@
 # 2-dars «Bitta gapni uch kishi bir xil tushunadimi?» — yakuniy matn
 
+> ✎ **F-1015-122 (16.10, 208-qonun 4-band, foydalanuvchi qarori — 2-variant):** dars yuzasidagi bezak emoji kodda olingan — sarlavha, yorliq, karta ikonlari, fayl tablari, test/amaliyot yorliqlari, tugmalar. Qolgan: sxema tugunlari, keys sahnasi, o'yin qatlami (nishon, arena, podium), Yakun, takrorlash oynasi, Mentor paneli, bot/ilova maketidagi mahsulot mazmuni. Bu MD dagi shunday bezak emoji endi ekranda yo'q.
+
+
 Fayl: `src/6-Modull/PmLesson22.jsx` · 16 ekran · Keyingi dars: «Arxitektura patternlari»
 Holat: 05.10.2026 — kodga mos
 
@@ -84,7 +87,7 @@ Holat: 05.10.2026 — kodga mos
 ## 6 · Haqiqiy voqea — Microsoft
 - Eyebrow: Haqiqiy voqea
 - Sarlavha: Microsoft *qanday* boshlandi?
-- Bosqichlar (har kartada «Haqiqiy voqea · n / 7»):
+- Bosqichlar (kartada yorliq yo'q — «Haqiqiy voqea» eyebrow'da, sanoq tugmada «Keyingi bosqich (n/7)»; bashoratda faqat «Avval o'zingiz belgilab ko'ring») *(✎ F-1015-121, 208-qonun 0-band: takror olindi)*:
   1. **1975-yil** — Ikki yigit — Bill Geyts va Pol Allen — jurnalda yangi kompyuter haqida o'qib qoldi. Uning nomi Altair edi.
      - Rasm: Altair 8800 paneli (ALTAIR 8800 · 1975) — lampochkalar va kichik kalitlar; tagida: ekran ham, klaviatura ham yo'q — faqat kichik kalitlar va lampochkalar
   2. Avval o'zingiz belgilab ko'ring · 2 / 7 — **Ular kompyuterni chiqargan kompaniyaga murojaat qilib: «Bizda shu kompyuter uchun til bor», deyishdi. O'sha paytda til qay holatda edi?**
@@ -139,6 +142,7 @@ Holat: 05.10.2026 — kodga mos
   - qolgan kataklarda hammasi joyida: ✓ Qator to'liq — endi saqlashingiz mumkin.
 - Tugma yonida nima yetishmaydi: qator yozilmagan / qator takrorlandi
 - Tugmalar: ✓ Saqlash · tahrirda: ✓ Yangilash
+- «✓ Saqlash» doim bosiladi: qator tayyor bo'lmasa saqlanmaydi — yondagi yozuv ajraladi, kursor maydonga o'tadi ✎ F-1015-164
 - To'rttasi yozilgach: varaq «Sizning varag'ingiz» (to'rt katakda o'quvchining qatorlari) · tagida: Katakni bosib qatorini qayta yozishingiz mumkin.
 - Yakun qatori: ✓ To'rt katak ham yozildi — varaq saqlandi
 - O'ng panel — Sizning varag'ingiz: Muammo · Kim · Yechim · O'lchov (yozilgani ✓)
@@ -303,16 +307,24 @@ console.log(yozilmaganKataklar(varaq3));
 - Eyebrow: Dars yakuni
 - Belgilar: ✓ Dars tugadi · N/4 to'g'ri
 - Sarlavha: Mini-do'koningiz uchun *bitta varaq* to'ldirdingiz.
-- Bugungi asosiy fikr — Bitta gapni har kim boshqacha tushunishi mumkin. Shuning uchun fikrni yozib, aniqlashtiramiz.
 - CODE STRIKE arenasi: 12 SAVOL · 15 SONIYA · PODIUM (jonli darsda mentor boshlaguncha: Mentorni kuting)
 - ✓ Endi siz bilasiz:
   - Og'zaki gapni har kim o'zicha tushunadi — yozilgan qator hammaga bir xil ko'rinadi.
   - PRD — mahsulot talablari hujjati. Uning eng sodda ko'rinishi — bitta varaq, to'rt katak.
   - To'rt katak: muammo, kim, yechim, o'lchov.
   - Katak bo'sh qolsa, dasturchi taxmin qiladi — bilmasangiz, so'rab aniqlashtiring.
+- Tugma: Uyga vazifa · Amaliy topshiriqni bajarish →
+- Uyga vazifa (ochilganda) — «Uyda nima qilasiz?»: Uyda varag'ingizni bir odamga o'qib berasiz — u qayta so'ragan katakni yangidan yozasiz. Qancha vaqtingiz bor — o'zingiz tanlaysiz.
+  - Variant: To'liq · ~20 daqiqa · Qisqa · ~10 daqiqa (tanlanmaguncha: «Avval variantni tanlang — topshiriq-karta shunga moslashadi.»)
+  - Topshiriq kartasi: Nechta — 4 ta katak (qisqa: 1 ta katak) · Muddat — keyingi darsgacha
+  - To'liq: Varag'ingizni uydagi yoki sinfdagi bir odamga o'qib bering → U qayta so'ragan katakni belgilang → O'sha katakning qatorini yangidan yozing
+  - Qisqa: O'lchov katagingizdagi sonni topib oling → Uni qayerdan bilib olishingizni o'ylang → Javobni bitta qatorda yozing
+  ✎ F-1015-112: MD da yo'q edi — koddagi HwCard'dan qo'shildi.
 - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
 - Keyingi dars — **Arxitektura patternlari:** tizimni tuzishning sinab ko'rilgan usullari (MVC, monolit, mikroservis).
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10, S2-A): «To'liq / Qisqa» tanlovi qoladi; karta banner ostida JOYIDA ochiladi (popup/varaq yo'q — PM 77/58 dagi qatlam yechimi bekor), «Topshiriq kartasi · TO'LIQ» sarlavha-qatori olindi (tanlangan chip bilan takror), maydonlar quti, qadamlar raqam-doira, bitta ustun; «Keyingi dars» karta ichida; HW ochilganda Yakun siqilmaydi (:has(.hw-chips) qoidalari olindi), banner 138px.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Right Question!** — To'rt savolni murabbiydan o'zingiz so'radingiz (4-ekran)

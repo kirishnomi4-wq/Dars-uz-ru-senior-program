@@ -1,0 +1,310 @@
+## feedback/F-1006-12modul/YAKUNIY/05-BreakAndFix.md yakun-bolim: 1
+   keyingi 482 Y - Keyingi dars — **«Birinchi foydalanuvchilar sizni qayerdan topadi?»**
+   nishon 483 Y - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+   tugma 484 Y - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1006-12modul/YAKUNIY/04-LiveNotifyDay.md yakun-bolim: 1
+   keyingi 313 Y - Keyingi dars — **«Ulanish uzilsa: buzamiz va tuzatamiz»**.
+   nishon 314 Y - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+   tugma 315 Y - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1006-12modul/YAKUNIY/09-RetentionDay.md yakun-bolim: 1
+   keyingi 321 Y - Keyingi dars — **«50 foydalanuvchiga yetdingizmi?»**: Mentor tekshiruvi: metrika hisoboti va zaxira reja.
+   nishon 322 Y - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+   tugma 323 Y - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1006-12modul/YAKUNIY/02-WebSocketBasics.md yakun-bolim: 1
+   keyingi 490 Y - Keyingi dars — **«Ekran o'zi yangilanishi uchun nimani yozasiz?»**: sxemangizdagi hodisalar talabga aylanadi.
+   nishon 491 Y - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+   tugma 492 Y - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1007-13modul/05-PaymentDay-v3.md yakun-bolim: 1
+   fc 4 K Dars yangi — hamma ekran noldan, to'liq yozildi. Loyiha kuni, keyssiz (Qaror-0 21). Qolip: QKirish · QReja · QTushuncha · QTest · amaliyot bloki (QBlo
+   asosiy 434 Y - «Bugungi asosiy fikr» qutisi yakunda yo'q (SABOQ E 50) — fikr A-bo'lim 2-bandida, darsning ichki o'qi.
+   asosiy 435 Y - Endi siz bilasiz (5; asosiy fikr bu yerda takrorlanmaydi — T-048):
+   keyingi 442 Y - Keyingi dars — «Pul haqida qanday gaplashasiz?»
+   nishon 443 Y - Nishonlaringiz — N/4 (pastda; mentor rejimida yo'q)
+   keyingi 444 Y - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
+   nishon 444 Y - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
+   tugma 445 Y - Tugmalar: Orqaga · Qaytadan · Yakunlash
+   keyingi 447 Y «Keyingi dars» qatori — `00-NOMLAR.md` 6-qator, so'zma-so'z, quyruqsiz (T-038; tayanch 7 «RAD etilganlar»).
+## feedback/F-1007-13modul/03-PaymentWebhook-v3.md yakun-bolim: 1
+   asosiy 628 Y - «Bugungi asosiy fikr» qutisi yakunda yo'q (SABOQ E 50) — fikr A-bo'lim 2-bandida, darsning ichki o'qi.
+   erta 638 Y - **AI bilan davom** (`AiDavomCard`, CODE STRIKE ostida, mentor rejimida yo'q — PM-109, F-1007-475): sarlavha **Erta tugatdingizmi? AI bilan davom eti
+   keyingi 639 Y - Keyingi dars — «Narxni qanday belgilaysiz?»
+   nishon 640 Y - Nishonlaringiz — N/4
+   tugma 641 Y - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1007-13modul/02-PmMonetization-v3.md yakun-bolim: 2
+   asosiy 453 Y - «Bugungi asosiy fikr» qutisi — yakunda YO'Q (SABOQ E 50; fikr dars ichida qoladi — A-2).
+   asosiy 454 Y - Endi siz bilasiz (asosiy fikr so'zma-so'z takrorlanmaydi, T-048):
+   keyingi 467 Y - Keyingi dars — «Webhook: to'lov Backend'ga qanday yetib keladi»
+   nishon 468 Y - Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
+   keyingi 469 Y - Tartib: chip va ball · sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
+   nishon 469 Y - Tartib: chip va ball · sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
+   keyingi 472 Y «Kim bilan» — HwCard yorlig'i (12-Modul va 1-dars bilan bir). Muddat «keyingi darsgacha» — keyingi dars nomi faqat «Keyingi dars» qatorida (T-038).
+   fc 590 K s6 `QVoqea` · s8/s9 `QMustaqil` · s10 `QKod` (Neon varianti; o'ng ustun — 9-Modul 1-dars `QKOD_ONG` yechimi, SABOQ C) · s12 `QNatija` · `sflash` `QKar
+   asosiy 614 K 13. s14 `QYakun`: sarlavha **to'rt holat** — `pm-m11d2-model` dan (`model`, `soniManba`, `soni`; P-046); `recap` 5 qator = «Endi siz bilasiz» so'zma-s
+## feedback/F-1007-13modul/06-PmMoneyTalk-v3.md yakun-bolim: 2
+   asosiy 387 Y - «Bugungi asosiy fikr» qutisi — yo'q (E 50; fikr A-2 da — darsning ichki o'qi).
+   asosiy 388 Y - Endi siz bilasiz (T-048 — asosiy fikr so'zma-so'z takrorlanmaydi):
+   erta 402 Y - **AI bilan davom** (`AiDavomCard`, CODE STRIKE ostida, mentor rejimida yo'q — F-1007-475, PM-109): sarlavha **Erta tugatdingizmi? AI bilan davom eti
+   keyingi 404 Y - Keyingi dars — «Foydalanuvchiga shartlarni qanday ochiq aytasiz?»
+   nishon 405 Y - Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
+   keyingi 406 Y - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18). Artef
+   nishon 406 Y - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18). Artef
+   fc 524 K Qolip turlari: s0 `QKirish` · s1 `QReja` · s2/s4 `QTushuncha` (`zoom`, `tugadi` — q17/q18; `QBashorat` + taxmin qatori yashil xulosa qutisi ichida — E
+   asosiy 541 K 12. s11 `QYakun`: sarlavha **besh holat** — `pm-m11d6-suhbat` dan (`skript` to'liq / qisman / yo'q · `suhbatlar` da `real` / faqat `mashq` / bo'sh) (P
+## feedback/F-1007-13modul/09-PmPayCheck-v3.md yakun-bolim: 2
+   asosiy 427 Y - «Bugungi asosiy fikr» qutisi — yo'q (E 50; fikr A-2 da — darsning ichki o'qi).
+   asosiy 428 Y - Endi siz bilasiz (T-048 — asosiy fikr so'zma-so'z takrorlanmaydi):
+   keyingi 442 Y - Keyingi dars — «Loyiha kuni: taklif havolasi va mukofot»
+   nishon 443 Y - Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
+   keyingi 444 Y - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18). Artef
+   nishon 444 Y - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18). Artef
+   fc 563 K Qolip turlari: s0 `QKirish` · s1 `QReja` · s2/s4 `QTushuncha` (`zoom`, `tugadi` — q17/q18; `QBashorat` + taxmin qatori yashil xulosa qutisi ichida — E
+   asosiy 584 K 12. s11 `QYakun`: sarlavha **olti holat** — `pm-m11d9-tasdiq` dan (`xabar` bor / yo'q · `soralgan` · `tasdiqlar.length` · `tekshiruv`) (P-046, E 54); 
+## feedback/F-1007-13modul/01-PmUnitEconomics-v3.md yakun-bolim: 2
+   asosiy 455 Y - «Bugungi asosiy fikr» qutisi — yakunda YO'Q (SABOQ E 50; fikr dars ichida qoladi — A-2).
+   asosiy 456 Y - Endi siz bilasiz (asosiy fikr so'zma-so'z takrorlanmaydi, T-048):
+   keyingi 469 Y - Keyingi dars — «Mahsulotingiz qanday pul topadi?»
+   nishon 470 Y - Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
+   keyingi 471 Y - Tartib: chip va ball · sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
+   nishon 471 Y - Tartib: chip va ball · sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
+   asosiy 473 Y - Izoh (MD): ① — real odam bilan, lekin suhbat emas: o'quvchi o'z sonini tushuntiradi, narx so'ramaydi va pul haqida kelishmaydi (pul suhbati — 6-dars
+   keyingi 474 Y «Kim bilan» — HwCard yorlig'i (12-Modul darslari bilan bir). Muddat «keyingi darsgacha» — keyingi dars nomi faqat «Keyingi dars» qatorida (T-038).
+   fc 588 K Qolip turlari: s0 `QKirish` · s1 `QReja` · s2/s4/s5 `QTushuncha` (`zoom`, `tugadi` — q17/q18; `QBashorat`, taxmin natijasi — yashil xulosa qutisining 
+   asosiy 615 K 13. s13 `QYakun`: sarlavha **to'rt holat** — `pm-m11d1-birlik` dan (`tur`, `jalbNarxi`, `keltiradi`; P-046); `recap` 5 qator = «Endi siz bilasiz» so'z
+## feedback/F-1007-13modul/10-ReferralDay-v3.md yakun-bolim: 1
+   fc 4 K Dars yangi — hamma ekran noldan, to'liq yozildi. Loyiha kuni, keyssiz (Qaror-0 21). Qolip: QKirish · QReja · QTushuncha ×2 · QTest ×2 · QBlok ×3 · pod
+   asosiy 447 Y - «Bugungi asosiy fikr» qutisi yakunda yo'q (SABOQ E 50) — fikr A-bo'lim 2-bandida, darsning ichki o'qi.
+   keyingi 455 Y - Keyingi dars — «Mahsulotingiz hozir qayerda?»: roadmap bilan solishtirish va shaxsiy hisobot.
+   nishon 456 Y - Nishonlaringiz — N/4
+   keyingi 457 Y - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
+   nishon 457 Y - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
+   tugma 458 Y - Tugmalar: Orqaga · Qaytadan · Yakunlash
+   keyingi 460 Y «Endi siz bilasiz» — bilim, ikkala trekka to'g'ri (2-qator «Mentor ilovasida» bilan chegaralangan). «Keyingi dars» qatori — App.jsx `m11-11` nomi va o
+## feedback/F-1007-13modul/12-StabilizeDay-v3.md yakun-bolim: 1
+   fc 4 K Dars yangi — hamma ekran noldan, to'liq yozildi. Loyiha kuni, keyssiz (Qaror-0 21). Qolip: QKirish · QReja · QTushuncha ×2 · QTest ×2 · QBlok ×3 · pod
+   asosiy 413 Y - «Bugungi asosiy fikr» qutisi yakunda yo'q (SABOQ E 50) — fikr A-bo'lim 2-bandida, darsning ichki o'qi.
+   keyingi 421 Y - Keyingi dars — «Zaxira dars»
+   nishon 422 Y - Nishonlaringiz — N/4
+   keyingi 423 Y - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
+   nishon 423 Y - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
+   tugma 424 Y - Tugmalar: Orqaga · Qaytadan · Yakunlash
+   keyingi 425 Y - ✎ «Tuzatish qilindi va qayta tekshiruvda takrorlanmadi» — ikki fakt, «tuzatildi» emas (sinf 5). Holatlar 8 ta, har biri rost (E 54: «hech narsa» — a
+   asosiy 518 K 9. **11-ekran `QYakun`:** sarlavha — `yozuv` va blok bayroqlaridan (sakkiz holat); ✓ yorliq — `xatolarYozildi`; «O'rnatish fayli navbatda» — `navbatda
+## feedback/F-1007-13modul/08-WinBackDay-v3.md yakun-bolim: 1
+   fc 4 K Dars yangi — hamma ekran noldan, to'liq yozildi. Loyiha kuni, keyssiz (Qaror-0 21). Qolip: QKirish · QReja · QTushuncha ×2 · QTest ×2 · QBlok ×3 · pod
+   asosiy 450 Y - «Bugungi asosiy fikr» qutisi yakunda yo'q (SABOQ E 50) — fikr A-bo'lim 2-bandida, darsning ichki o'qi.
+   keyingi 458 Y - Keyingi dars — «Kim haqiqatan to'lashga tayyor?»: Mentor tekshiruvi: uchta yozma tasdiq.
+   nishon 459 Y - Nishonlaringiz — N/4
+   keyingi 460 Y - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
+   nishon 460 Y - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
+   tugma 461 Y - Tugmalar: Orqaga · Qaytadan · Yakunlash
+   keyingi 463 Y Sarlavhalar ikkala trekka to'g'ri (bot trekka bog'liq emas). «Keyingi dars» qatori — App.jsx `m11-09` nomi va osti (T-038: boshqa joyda va'da yo'q).
+   asosiy 549 K 10. **11-ekran `QYakun`:** sarlavha — blok bayroqlari va tekshiruv kartalaridan (besh holat); ✓ yorliq faqat A3 bajarilganda; `recap` 5 qator; `uyga: 
+   fc 762 K 12 ekran: 0 · Kirish — ilovani yana ochmagan o'yinchilar  ← QKirish | 1 · Bugun quramiz  ← QReja (172: tayyor natija + 3 qator + repo teglari) | 2 · B
+## feedback/F-1008-14modul/06-DemoPrep-v3.md yakun-bolim: 1
+   fc 4 K Dars yangi — hamma ekran noldan, to'liq yozildi. Dasturda TEX, shakli — loyiha kuni (T9); keyssiz (tayanch 5). Qolip: QKirish · QReja · QTushuncha · Q
+   asosiy 422 Y - «Bugungi asosiy fikr» qutisi — yo'q (E 50; fikr A-2 da — darsning ichki o'qi).
+   asosiy 423 Y - Endi siz bilasiz (T-048 — asosiy fikr so'zma-so'z takrorlanmaydi; 1-qator — ta'rif, T-042):
+   keyingi 430 Y - Keyingi dars — «Investor ko'zi bilan: demo buzilmaydimi?»
+   nishon 431 Y - Nishonlaringiz — N/4 (pastda; mentor rejimida yo'q)
+   keyingi 432 Y - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18). Artefakt-strip yaku
+   nishon 432 Y - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18). Artefakt-strip yaku
+   keyingi 434 Y - Izoh (MD): sarlavha kalitdan (`pm-m12d6-demo`: `ssenariy`, `video`, `teg`, `otishVaqt`) va blok bayroqlaridan (ccProgress: 4-qadam «Bajardim»; o'tis
+   fc 547 K Qolip turlari: s0 `QKirish` · s1 `QReja` · s2/s5 `QTushuncha` (`zoom`, `tugadi` — q17/q18; `QBashorat` + taxmin qatori yashil xulosa qutisi ichida — E
+   asosiy 569 K 10. **s11 `QYakun`:** sarlavha **besh holat** (11-ekran, ustunlik tartibi) — `pm-m12d6-demo` va blok bayroqlaridan, o'tishdagi ✓/✕ — dars holatidan (P
+## feedback/F-1008-14modul/04-PolishDay-v3.md yakun-bolim: 1
+   fc 4 K Dars yangi — hamma ekran noldan, to'liq yozildi. Loyiha kuni (dasturda AI-PRAKT), keyssiz (tayanch 5). Qolip: QKirish · QReja · QTushuncha ×2 · QTest 
+   asosiy 414 Y - «Bugungi asosiy fikr» qutisi yakunda yo'q (SABOQ E 50) — fikr A-bo'lim 2-bandida, darsning ichki o'qi.
+   keyingi 422 Y - Keyingi dars — «Guruh pitchingizda nimani tuzatishni aytadi?»
+   nishon 423 Y - Nishonlaringiz — N/4
+   keyingi 424 Y - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
+   nishon 424 Y - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18).
+   tugma 425 Y - Tugmalar: Orqaga · Qaytadan · Yakunlash
+   keyingi 427 Y «hali tugamagan» — qisman bajarilgan, tartibsiz holat (E 54); «hech narsa» — alohida sarlavha, «uyda» yo'q (loyiha kuni, sinf 14). Sarlavhalar ikkala 
+   asosiy 559 K 10. **11-ekran `QYakun`:** sarlavha — blok bayroqlari va tekshiruv kartalaridan (besh holat, ustunlik tartibi); ✓ yorliq — uchala blok bayrog'i AND (0
+## feedback/F-1008-14modul/03-ProductSpeed-v3.md yakun-bolim: 1
+   asosiy 552 Y - «Bugungi asosiy fikr» qutisi yakunda yo'q (SABOQ E 50) — fikr A-bo'lim 2-bandida, darsning ichki o'qi.
+   keyingi 562 Y - Keyingi dars — «Loyiha kuni: demo uchun sayqal»
+   nishon 563 Y - Nishonlaringiz — N/4
+   tugma 564 Y - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1008-14modul/09-VideoPortfolio-v3.md yakun-bolim: 1
+   fc 4 K Dars yangi — hamma ekran noldan, to'liq yozildi. TEX, loyiha kuni shakli (tayanch 4: «8 ekran + 3 blok + kartochkalar»), keyssiz (tayanch 5). Qolip: Q
+   asosiy 379 Y - «Bugungi asosiy fikr» qutisi yakunda yo'q (SABOQ E 50) — fikr A-bo'lim 2-bandida, darsning ichki o'qi.
+   asosiy 380 Y - Endi siz bilasiz (5; T-048 — asosiy fikr so'zma-so'z takrorlanmaydi; 1-qator — ta'rif, T-042):
+   keyingi 387 Y - Keyingi dars — «Birinchi buyurtmani qayerdan topasiz?»
+   nishon 388 Y - Nishonlaringiz — N/4
+   keyingi 389 Y - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18). Artefakt-strip yaku
+   nishon 389 Y - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q (SABOQ 18). Artefakt-strip yaku
+   tugma 390 Y - Tugmalar: Orqaga · Qaytadan · Yakunlash
+   keyingi 391 Y - ✎ «tayyor» — faqat o'quvchi o'zi uch tekshiruvni (ovoz, maxfiylik, vaqt) `true` belgilaganda (sinf 6; qayta yozish hammasini `null` qiladi); havola 
+   fc 509 K Qolip turlari: s0 `QKirish` · s1 `QReja` · s2/s5 `QTushuncha` (`zoom`, `tugadi` — q17/q18; s2 da `QBashorat` + taxmin qatori yashil xulosa qutisi ichi
+   asosiy 527 K 13. **s11 `QYakun`:** sarlavha — besh holat (`pm-m12d9-video` va blok bayroqlaridan; ustunlik tartibi — 11-ekran); ✓ yorliq faqat A3 bajarilganda; `re
+## feedback/F-0928-QA-5modul/YAKUNIY/05-BotAiProject.md yakun-bolim: 1
+   fc 210 Y - Yorliq: Takrorlash — kartochkalar
+   fc 211 Y - Kartochkalar (12 ta):
+   keyingi 231 Y - Keyingi dars — «Bot ichida AI». Bugun AI botingizning kodini yozdi. Keyingi darsda AI botning ichida ishlaydi: mijoz savoliga javobni o'zi yozadi.
+   nishon 232 Y - Nishonlaringiz — N/3
+## feedback/F-0928-QA-5modul/YAKUNIY/03-BotApiButtons.md yakun-bolim: 1
+   keyingi 407 Y - Keyingi dars — **«Bot eslab qoladi — holat va PostgreSQL»**. Bot mijoz tanlagan pitsani eslab qoladi: suhbat holatini PostgreSQL bazasida saqlaymiz.
+   nishon 408 Y - Nishonlaringiz — N/4
+   fc 409 Y - Kalit so'zlar (takrorlash): **token** — botning maxfiy kaliti (.env faylida) · **Telegraf** — Node.js uchun bot kutubxonasi · **ctx** — hodisa haqid
+## feedback/F-0928-QA-5modul/YAKUNIY/09-BotFeedbackIteration.md yakun-bolim: 1
+   fc 200 Y - Takrorlash — kartochkalar (12; old tomonida savol, ochilganda javob va izoh):
+   keyingi 219 Y - Keyingi dars — **«AI-agent yaratish»**. Botga maqsad berasiz — keyingi qadamni u o'zi tanlab, asbob chaqiradi: masalan, buyurtmani bazaga saqlaydi.
+   nishon 220 Y - Nishonlaringiz — N/3 (olingan nishonda nomi va tavsifi, olinmaganida faqat nomi)
+## feedback/F-0928-QA-5modul/YAKUNIY/07-BotFullProject.md yakun-bolim: 1
+   fc 198 Y - Yorliq: Takrorlash — kartochkalar (12 ta, "Kartochkalar" bo'limida)
+   keyingi 199 Y - Keyingi dars — «Botingizni ishlatgan odamdan nimani so'raysiz?». Botingiz endi tunda ham ishlaydi — keyingi darsda uni sinab ko'rgan odamdan nima qi
+   nishon 200 Y - Nishonlaringiz — N/3 (olingan nishonda nomi va tavsifi, olinmaganida faqat nomi)
+## feedback/F-0928-QA-5modul/YAKUNIY/02-PmLesson19.md yakun-bolim: 1
+   asosiy 281 Y - Bugungi asosiy fikr — Birinchi foydalanuvchilar tanish guruhlardan keladi.
+   nishon 288 Y - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+   keyingi 289 Y - Keyingi dars — **«Telegram Bot API + tugmalar»**. 1-darsda ochgan botingizga birinchi kodni yozasiz: /start buyrug'i va menyu tugmalari.
+## feedback/F-0928-QA-5modul/YAKUNIY/08-PmLesson20.md yakun-bolim: 1
+   asosiy 264 Y - Bugungi asosiy fikr — Javob sizda emas: uni botingizni ishlatgan odam biladi.
+   nishon 271 Y - Nishonlaringiz — n/4
+   keyingi 273 Y - Keyingi dars — **«Foydalanuvchi fikri va iteratsiya».** Botga kelgan fikrlarni saralab, qaysi birini birinchi tuzatishni tanlaysiz.
+## feedback/F-0928-QA-5modul/YAKUNIY/12-PmLesson21.md yakun-bolim: 1
+   yonma 292 Y - Qaytish ikki kunning yonma-yon turishidan ko'rinadi — bitta kundan emas.
+   nishon 293 Y - Nishonlaringiz — n/4
+   keyingi 295 Y - Keyingi dars — **Zaxira dars**: ulgurmagan ishni tugatasiz va botingizni sayqallaysiz. Undan keyin — **Demo Day**: botingizni jonli ko'rsatasiz va u
+## feedback/F-0929-QA-6modul/YAKUNIY/02-PmLesson22.md yakun-bolim: 1
+   asosiy 306 Y - Bugungi asosiy fikr — Bitta gapni har kim boshqacha tushunishi mumkin. Shuning uchun fikrni yozib, aniqlashtiramiz.
+   nishon 313 Y - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+   keyingi 314 Y - Keyingi dars — **Arxitektura patternlari:** tizimni tuzishning sinab ko'rilgan usullari (MVC, monolit, mikroservis).
+## feedback/F-0929-QA-6modul/YAKUNIY/06-PmLesson23.md yakun-bolim: 1
+   nishon 301 Y - Nishonlaringiz — n/4
+   keyingi 302 Y - Keyingi dars — **O'z Skill'ingizni yozing:** AI uchun o'zingiz yo'riqnoma yozib, uni sinab ko'rasiz.
+## feedback/F-0929-QA-6modul/YAKUNIY/12-PmLesson24.md yakun-bolim: 1
+   asosiy 288 Y - Bugungi asosiy fikr — Ishni ufqqa bizning xohishimiz emas, unga kerak narsaning tayyor bo'lish payti qo'yadi.
+   nishon 294 Y - Nishonlaringiz — n/4
+   keyingi 296 Y - Keyingi dars — **Loyiha kuni: to'liq tizim.** Web, mobil, bot, backend va Database'ni bitta ishlaydigan tizimga ulaysiz.
+## feedback/F-0929-QA-6modul/YAKUNIY/14-PmLesson25.md yakun-bolim: 1
+   nishon 287 Y - Nishonlaringiz — n/4
+   keyingi 288 Y - Keyingi: zaxira dars, so'ng **Demo Day 3** — IT-hamjamiyat oldida 3 daqiqalik pitch. Slaydingiz o'sha kuni sahnaga chiqadi.
+## feedback/F-1005-9modul/09-MvpComplete-v3.md yakun-bolim: 1
+   keyingi 262 Y - Keyingi dars — «Odam ilovangizda qayerda to'xtab qoladi?»: MVP ni boshqa odam ishlatadi, siz esa tushuntirmasdan kuzatasiz.
+   nishon 263 Y - Nishonlaringiz — N/3
+   fc 266 Y ### Kartochkalar (12)
+   fc 335 K 6. Ekran turlari: 0 `QKirish` (maket + radio) · 1 `QReja` · 2, 4 `QTushuncha` (`zoom`, `tugadi`, `QBashorat`, `QTaxmin`) · 3, 5 `QTest` · 7 `QKartochk
+## feedback/F-1005-9modul/07-MvpFirstScreen-v3.md yakun-bolim: 1
+   keyingi 318 Y - Keyingi dars — «Yaxshi interfeysdan nimani olasiz?»: bitta yaxshi namuna tanlab, animatsiyalarni agent orqali qo'shasiz.
+   nishon 319 Y - Nishonlaringiz — N/3
+   keyingi 320 Y - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q; kirishda CODE STRIKE to'liq ko
+   nishon 320 Y - Tartib: belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz. Ichki skroll qutisi yo'q; kirishda CODE STRIKE to'liq ko
+   tugma 321 Y - Tugmalar: Orqaga · Qaytadan · Yakunlash
+   fc 322 Y ✎ F-1005-88: kartochkalar yakundan alohida ekranga o'tdi.
+   fc 404 K 8. Kartochkalar — alohida `sflash` ekran (`ScreenFlashcards`, `QKartochka`, 12 karta; 1-dars naqshi). 7-ekran `QYakun`: `uyga` yo'q, `recap` 3 qator, 
+## feedback/F-1005-9modul/11-MvpIteration-v3.md yakun-bolim: 1
+   keyingi 312 Y - Keyingi dars — «Pitchingizda kimning hikoyasi bor?». Bugun o'yinchi to'xtagan joy tuzatildi. Pitchda muammo, yechim va sinovdagi real odamning hikoy
+   nishon 313 Y - Nishonlaringiz — N/3
+   tugma 314 Y - Tugmalar: Orqaga · Qaytadan · Yakunlash
+   fc 394 K 8. 7-ekran `QKartochka` (alohida, 12 karta; hisoblagichlar ↻ O'rganilmoqda · N · ✓ Bildim · N) · 8-ekran `QYakun`: `uyga` yo'q, `recap` 3 qator, `keyi
+## feedback/F-1005-9modul/06-PmAnalyticsDayOne-v3.md yakun-bolim: 1
+   asosiy 262 Y - Bugungi asosiy fikr (ScoreRing ostida, `small`, kartochkaga qo'shilmaydi — P-013): Bizning MVP da analitika birinchi odamdan oldin ulanadi — shunda 
+   fc 262 Y - Bugungi asosiy fikr (ScoreRing ostida, `small`, kartochkaga qo'shilmaydi — P-013): Bizning MVP da analitika birinchi odamdan oldin ulanadi — shunda 
+   keyingi 269 Y - Keyingi dars — «Loyiha kuni: MVP — birinchi ekran». Talabni siz yozasiz, agent birinchi ekranni quradi. Umami bugundan uning har ochilishini yozadi.
+   fc 270 Y - Kartochkalar (10-ekran «Takrorlash» uchun, `QKartochka`):
+   nishon 287 Y - Nishonlar — pastda (mentor rejimida yo'q).
+   tugma 288 Y - Tugmalar: Orqaga · Qaytadan · Yakunlash
+   fc 382 K s6/s7 (A1/A2) `QBlok` (`ScreenBlok` ulagichi, 5 qadam) · s9 `QNatija` · s10 `QKartochka` (alohida ekran) · s11 `QYakun`.
+   asosiy 398 K 12. s11 `QYakun`: `recap` 4 qator, «Bugungi asosiy fikr» `small`; kartochkalar — s10 alohida ekranda (`FLASHCARDS` 12); `uyga` — `HwCard` yakun ekrani
+   fc 398 K 12. s11 `QYakun`: `recap` 4 qator, «Bugungi asosiy fikr» `small`; kartochkalar — s10 alohida ekranda (`FLASHCARDS` 12); `uyga` — `HwCard` yakun ekrani
+## feedback/F-1005-9modul/03-PmInterviewMvp-v3.md yakun-bolim: 1
+   asosiy 389 Y - Bugungi asosiy fikr — Ko'p yozuvda chiqqan shikoyat — kuchli belgi; birinchi versiya shu bitta muammoni hal qiladi.
+   nishon 396 Y - Nishonlaringiz — n/4
+   keyingi 403 Y - Keyingi dars — «Mini-MVP arxitekturasi». «Maydon»ning «Qilamiz» qutisidagi uch imkoniyat uchun sayt, Backend va Database'ni bitta chizmaga chizasiz.
+   asosiy 525 K 13. **s15** `QKartochka` (DE-204, 11 karta). **s16** `QYakun`: sarlavha, asosiy fikr, 4 band, HwCard (3 qadam), «Keyingi dars».
+   fc 525 K 13. **s15** `QKartochka` (DE-204, 11 karta). **s16** `QYakun`: sarlavha, asosiy fikr, 4 band, HwCard (3 qadam), «Keyingi dars».
+   keyingi 525 K 13. **s15** `QKartochka` (DE-204, 11 karta). **s16** `QYakun`: sarlavha, asosiy fikr, 4 band, HwCard (3 qadam), «Keyingi dars».
+   asosiy 538 K - 16-ekran: «Bugungi asosiy fikr» yashil kartada CODE STRIKE ustida (QYakun da alohida joy yo'q).
+## feedback/F-1005-10modul/YAKUNIY/04-PmAbTest.md yakun-bolim: 1
+   asosiy 250 Y - Bugungi asosiy fikr: Gipoteza qaysi raqamga qarashni oldindan aytadi, A/B test shu raqamni ikki guruhda bir vaqtda solishtiradi.
+   keyingi 260 Y - Keyingi dars (uy vazifasi kartasida) — **«Kiberxavfsizlik: zaiflikni topib yopamiz»**.
+   nishon 261 Y - Nishonlaringiz — N/4 (olingan nishonda nomi va tavsifi, olinmaganida faqat nomi)
+## feedback/F-1005-10modul/YAKUNIY/11-PmPitchRehearsal.md yakun-bolim: 2
+   asosiy 293 Y - Bugungi asosiy fikr: Har slayd zalning bitta savoliga javob beradi; fidbek qaysi javob yetmaganini ko'rsatadi.
+   keyingi 301 Y - Uyga vazifa tugmasi: Uyga vazifa · Amaliy topshiriqni bajarish → (karta ochiladi; oxirida:) Keyingi dars — **«Zaxira dars»**: ortda qolgan ishni yet
+   nishon 302 Y - Nishonlaringiz — N/4 (to'rtta nishon — «Nishonlar» bo'limida)
+## feedback/F-1005-10modul/YAKUNIY/06-PmTrustAudit.md yakun-bolim: 1
+   asosiy 240 Y - Asosiy fikr: Odam ma'lumotini ishonib berishi uchun kerakli minimumni yig'asiz, maqsad tugagach o'chirasiz va buni saytda ochiq aytasiz; audit siyos
+   keyingi 255 Y - Keyingi dars — **«Production deploy: domen, SSL, monitoring»**: sayt yiqilsa, ogohlantirish sizga keladi.
+   nishon 256 Y - Nishonlaringiz — n/4
+   tugma 257 Y - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1005-10modul/YAKUNIY/10-PmYearPath.md yakun-bolim: 2
+   asosiy 299 Y - Bugungi asosiy fikr — Vaqt chizig'i bir yilda nima bo'lganini ko'rsatadi, keyingi qadam esa shu chiziqdan o'sadi.
+   keyingi 307 Y - Keyingi dars — **«Besh daqiqada nimani ko'rsatasiz?»**.
+   nishon 308 Y - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+## feedback/F-1005-11modul/YAKUNIY/09-ExpoPrototype.md yakun-bolim: 1
+   asosiy 496 Y - Bugungi asosiy fikr: Mobil trekda prototip Expo ilovasiga ko'chadi — har ekran o'z faylida — va QR orqali Expo Go'da ochiladi; web-trekda u adaptiv 
+   keyingi 509 Y - Keyingi dars — **«Loyiha kuni: poydevor — Database, kirish, deploy»**: prototip telefonda ochiladi, endi uning ortidagi umumiy Database va kirish na
+   nishon 510 Y - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+   tugma 511 Y - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1005-11modul/YAKUNIY/11-FeatureOne.md yakun-bolim: 1
+   keyingi 292 Y - Keyingi dars — **«Loyiha kuni: 2-asosiy funksiya»**: roadmap'dagi ikkinchi funksiya.
+   nishon 293 Y - Nishonlaringiz — N/3 (uchta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+   tugma 294 Y - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1005-11modul/YAKUNIY/14-FeatureThree.md yakun-bolim: 1
+   keyingi 287 Y - Keyingi dars — **«Roadmap bo'yicha qayerdasiz?»**: Mentor bilan yakkama-yakka: risklar va tuzatilgan reja.
+   nishon 288 Y - Nishonlaringiz — N/3 (uchta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+   tugma 289 Y - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1005-11modul/YAKUNIY/12-FeatureTwo.md yakun-bolim: 1
+   keyingi 277 Y - Keyingi dars — **«Uch foydalanuvchidan keyin nimani tuzatasiz?»**: auditoriya bilan sinov va shu darsda tuzatish.
+   nishon 278 Y - Nishonlaringiz — N/3 (uchta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+   tugma 279 Y - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1005-11modul/YAKUNIY/10-FoundationDay.md yakun-bolim: 1
+   keyingi 271 Y - Keyingi dars — **«Loyiha kuni: 1-asosiy funksiya»**: roadmap'dagi birinchi funksiya — talabni siz yozasiz.
+   nishon 272 Y - Nishonlaringiz — N/3 (uchta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+   tugma 273 Y - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1005-11modul/YAKUNIY/07-LivePrototype.md yakun-bolim: 1
+   asosiy 405 Y - Bugungi asosiy fikr: Qog'ozdagi wireframe ekranni agentga aniq ko'rsatadi; namuna ma'lumot va animatsiya uni Backend'siz bosiladigan, jonli prototip
+   keyingi 418 Y - Keyingi dars — **«Arxitektura va platforma: web yoki mobil ilova»**: prototip tayyor, endi uning ortida qanday qismlar turishi va qaysi platforma ke
+   nishon 419 Y - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+   tugma 420 Y - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1005-11modul/YAKUNIY/08-PlatformChoice.md yakun-bolim: 1
+   asosiy 392 Y - Bugungi asosiy fikr: Chizma qismlar, jadvallar va real vaqt nuqtalarini ko'rsatadi; bu modulda platforma faqat foydalanuvchi ochadigan qismni tanlay
+   keyingi 404 Y - Keyingi dars — **«React Native va Expo: prototip telefonda»**: platforma tanlandi, endi prototipni shu platformada telefonda ochish navbati.
+   nishon 405 Y - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+   tugma 406 Y - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1005-11modul/YAKUNIY/13-PmAudienceTest.md yakun-bolim: 2
+   asosiy 270 Y - Bugungi asosiy fikr: Bu darsda ko'p kishida takrorlangan va vazifaga to'sqinlik qilgan to'xtash birinchi tuzatiladi, keyin yangi odam bilan qayta si
+   keyingi 284 Y - Keyingi dars — **«Loyiha kuni: 3-asosiy funksiya»**
+   nishon 285 Y - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+   tugma 286 Y - Tugmalar: Orqaga · Qaytadan · Yakunlash
+## feedback/F-1005-11modul/YAKUNIY/04-PmFinalIdea.md yakun-bolim: 2
+   asosiy 331 Y - Bugungi asosiy fikr: Yozuvlar sanog'i final g'oya uchun yangi dalil beradi, isbot emas: qaror bitta songa tayanmaydi.
+   keyingi 346 Y - Keyingi dars — **«G'oyangiz bir sahifaga sig'adimi?»**
+   nishon 347 Y - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+## feedback/F-1005-11modul/YAKUNIY/02-PmIdeaRice.md yakun-bolim: 2
+   asosiy 339 Y - Bugungi asosiy fikr: Uch savoldan o'tgan g'oyalarni RICE tartiblaydi; RICE — tanlovga yordam, hukm emas.
+   keyingi 348 Y - Uyga vazifa tugmasi (ochilganda — uy vazifasi kartasi; uning ostida): Keyingi dars — **«Ikki g'oyadan qaysi biri odamlarga kerak?»**
+   nishon 349 Y - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+## feedback/F-1005-11modul/YAKUNIY/03-PmInterviewsOne.md yakun-bolim: 2
+   asosiy 347 Y - Bugungi asosiy fikr: Ikki g'oyani bir xil savollar bilan tekshirasiz; odamning qiziqishini so'zidan ko'ra ishi aniqroq ko'rsatadi.
+   keyingi 356 Y - Uyga vazifa tugmasi — Amaliy topshiriqni bajarish → (ochilganda — uy vazifasi kartasi «Uyda nima qilasiz?»; uning ostida): Keyingi dars — **«O'n int
+   nishon 357 Y - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+## feedback/F-1005-11modul/YAKUNIY/15-PmOneOnOne.md yakun-bolim: 2
+   asosiy 252 Y - Bugungi asosiy fikr: Holat bo'lib o'tganni ko'rsatadi, qadam esa oldindagi riskni kamaytiradi.
+   keyingi 267 Y - Keyingi dars — **«G'oyangiz va ilovangiz guruhni ishontiradimi?»**
+   nishon 268 Y - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+## feedback/F-1005-11modul/YAKUNIY/05-PmPrd.md yakun-bolim: 2
+   asosiy 339 Y - Bugungi asosiy fikr: G'oya bir sahifaga yetti bo'lim bo'lib yoziladi va qurishdan oldin uch savol bilan tekshiriladi.
+   keyingi 348 Y - Uyga vazifa tugmasi: Uyga vazifa · Amaliy topshiriqni bajarish → (ochilganda — uy vazifasi kartasi; uning ostida): Keyingi dars — **«Bitiruvgacha ni
+   nishon 349 Y - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+## feedback/F-1005-11modul/YAKUNIY/16-PmPrototypePitch.md yakun-bolim: 2
+   asosiy 333 Y - Bugungi asosiy fikr: Uch daqiqada zal muammoni dalil bilan eshitadi, yechimni bir gapda tushunadi va ilovani telefonda ko'radi.
+   keyingi 348 Y - Keyingi dars — **«Demo Day 7»**
+   nishon 349 Y - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+## feedback/F-1005-11modul/YAKUNIY/06-PmRoadmap.md yakun-bolim: 2
+   yonma 312 Y - Javob topilgach: yonma-yon PRD (5-bo'lim «Uchta asosiy funksiya») va doskaning «Hozir» zonasi, orasida ikki tomonlama chiziq
+   asosiy 345 Y - Bugungi asosiy fikr: RICE ishlar tartibini ko'rsatadi, ish esa unga kerak narsa tayyor bo'lgan ufqda boshlanadi.
+   keyingi 360 Y - Keyingi dars — **«Jonli prototip: qog'ozdan bosiladigan ekrangacha»**
+   nishon 361 Y - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+## feedback/F-1005-11modul/YAKUNIY/01-PmTenIdeas.md yakun-bolim: 2
+   asosiy 328 Y - Bugungi asosiy fikr: G'oya nom emas: unda muammo, kim uchun va yechim yoziladi.
+   keyingi 337 Y - Uyga vazifa · Amaliy topshiriqni bajarish → (ochilganda — uy vazifasi kartasi; uning ostida): Keyingi dars — **«Oltita g'oyadan qaysi uchtasi qoladi
+   nishon 338 Y - Nishonlaringiz — N/4 (to'rtta nishon nomi va tavsifi — «Nishonlar» bo'limida)
+## feedback/F-0928-QA-5modul/YAKUNIY/11-PmMetrics.md yakun-bolim: 1
+   nishon 317 Y - Nishonlaringiz — n/4
+   yonma 318 Y - Keyingi dars — **«Kecha kelgan odam bugun ham keldimi?»** Botingizning bir necha kunini yonma-yon qo'yasiz: kanalga e'lon bersangiz, kelganlar ko'pa
+   keyingi 318 Y - Keyingi dars — **«Kecha kelgan odam bugun ham keldimi?»** Botingizning bir necha kunini yonma-yon qo'yasiz: kanalga e'lon bersangiz, kelganlar ko'pa
+{'asosiy': 55, 'tugma': 24, 'yonma': 3, 'emoji': 0, 'fc': 29, 'erta': 2, 'keyingi': 76, 'nishon': 66}

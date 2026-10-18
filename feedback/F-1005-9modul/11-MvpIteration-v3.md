@@ -309,9 +309,10 @@ Tashqi audit (ChatGPT) Filtri: `11-FILTR.md` — 05.10.2026 qo'llandi.
   - Kuzatuvdan talab yozasiz: qayerda, nima qilsin, nima buzilmasin
   - Tuzatishdan keyin o'sha vazifa bilan qayta sinaysiz
 - Uyga vazifa — yo'q (172.4: ish repo'da; o'z MVP — bloklardagi «O'z g'oyangiz» qadami).
-- Keyingi dars — «Pitchingizda kimning hikoyasi bor?». Bugun o'yinchi to'xtagan joy tuzatildi. Pitchda muammo, yechim va sinovdagi real odamning hikoyasi bo'ladi.
 - Nishonlaringiz — N/3
-- Tugmalar: Orqaga · Qaytadan · Yakunlash
+- Keyingi dars — «Pitchingizda kimning hikoyasi bor?». Bugun o'yinchi to'xtagan joy tuzatildi. Pitchda muammo, yechim va sinovdagi real odamning hikoyasi bo'ladi.
+- Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ---
 

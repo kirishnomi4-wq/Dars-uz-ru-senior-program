@@ -59,7 +59,7 @@ Holat: 04.10.2026 — kodga mos
 - Savol: **Faqat shu raqamga qarab: bot yaxshilandimi?**
   - Ha, 20 odam qo'shildi
   - Bu raqamdan bilib bo'lmaydi
-- Tanlangach: ✓ Javobingiz: {tanlangan variant}
+- Tanlangach: Javobingiz: {tanlangan variant} (✓ siz — javob hali tekshirilmagan ✎ F-1015-156)
 - So'rash tugmalari (navbat bilan bittadan chiqadi, bosilgani «✓ …» bo'ladi; ikkala suhbatga qator qo'shiladi, ostida izoh):
   - + Bugun kelganlar → Bugun kelganlar: 18 · Bugun kelganlar: 6 — Bu dushanba botga uch barobar kam odam yozdi: 18 emas, 6.
   - + Kechagilardan qaytgani → Kechagilardan qaytgani: 20 tadan 9 · Kechagilardan qaytgani: 8 tadan 1 — O'tgan safar kechagi 20 odamdan 9 tasi qaytgan edi, bu safar 8 tadan 1 tasi.
@@ -72,7 +72,7 @@ Holat: 04.10.2026 — kodga mos
 - Eyebrow: Muhokama · uch nom
 - Sarlavha: **Har raqam qaysi savolga javob beradi?**
 - Mentor: Har qatorni birma-bir bosing.
-- Chapda: Bu dushanba — /stat → Jami: 120 · Bugun kelganlar: 6 · Kechagilardan qaytgani: 8 tadan 1 · Keragini olganlar: 4
+- Chapda (yorliq «Bu dushanba» karta ichida, /stat bilan bir qatorda ✎ F-1015-159): /stat → Jami: 120 · Bugun kelganlar: 6 · Kechagilardan qaytgani: 8 tadan 1 · Keragini olganlar: 4
 - Qator bosilsa o'ngda karta ochiladi (qayta bosilsa yopiladi; hech biri ochilmaganda «· · ·»):
   - Jami: 120 → «Botga jami qancha odam keldi?» · Botga /start bosgan hamma odam, har biri bir marta. U faqat o'sadi: bot qanday ishlayotganini yolg'iz aytmaydi.
   - Bugun kelganlar: 6 → «Botga bugun odam keldimi?» · **Bugun kelganlar** · Bugun botga yozgan yoki tugma bosgan odamlar — har biri bir marta sanaladi. · Inglizchasi: **DAU** («kunlik faol foydalanuvchilar»)
@@ -100,12 +100,12 @@ Holat: 04.10.2026 — kodga mos
   - tanlagach: Odam soni har kuni har xil — shuning uchun har yuztadan nechtasi qaytishini sanaymiz. Bu — foiz.
   - tugagach, B tanlangan bo'lsa: Aynan! Foiz ham shuni ko'rsatdi.
   - tugagach, A tanlangan bo'lsa: Qiziq fikr! Ko'pchilik shunday tanlaydi — foiz esa boshqacha chiqdi.
-- Tanlov: A holat · B holat
-- Tanlangach: ✓ Tanlovingiz: A holat / B holat
-- Holatlar (har birida 100 katakli to'r; hisoblash navbat bilan — avval A, keyin B):
+- Tanlov — kartaning o'zida: har kartada «Shu holat yaxshiroq» ✎ F-1015-160
+- Tanlangach: Tanlovingiz: A holat / B holat (✓ siz ✎ F-1015-156)
+- Holatlar (har birida 100 katakli to'r; halqa avval A ni, keyin B ni ko'rsatadi):
   - **A** — Dushanba 40 odam keldi, seshanba ulardan 8 tasi qaytdi → Foizni hisoblash → 8 ÷ 40 × 100 = **20** · yuzta odamdan 20 tasi
   - **B** — Payshanba 10 odam keldi, juma ulardan 4 tasi qaytdi → Foizni hisoblash → 4 ÷ 10 × 100 = **40** · yuzta odamdan 40 tasi
-  - Tanlovdan oldin tugma yozuvi: Avval holatni tanlang
+  - Tanlovdan oldin kartada faqat «Shu holat yaxshiroq» (o'chiq tugma yo'q)
 - Xulosa: **8 odam 4 tadan ko'p, lekin foiz B da ikki barobar katta: 40 va 20.** Odam soni har xil bo'lsa — foizni solishtiring.
 - Jonli darsda: Sinfda: N bajardi · N hali bajarmoqda
 - Tugmalar: Orqaga · ① Qaysi holat yaxshiroq — tanlang → ② Yana N holatda foizni hisoblang → Davom etish
@@ -123,7 +123,7 @@ Holat: 04.10.2026 — kodga mos
 - Tugmalar: Orqaga · Javobni tanlang → Davom etish
 
 ## 9 · Booking.com
-- Eyebrow: Biznes olamidan (bosqich yorlig'i: «Booking.com · n / 5»; bashoratda: «Avval o'zingiz belgilab ko'ring · n / 5»)
+- Eyebrow: Biznes olamidan (bosqich yorlig'i: «Booking.com»; bashoratda: «Avval o'zingiz belgilab ko'ring»; sanoq tugmada *(✎ F-1015-120, 208-qonun 0-band: takror olindi)*)
 - Sarlavha: **Booking.com'dagi yangi tugma rangi.**
 - Sahna (rasm; Booking.com nomi yorlig'i bilan; har bosqichda bitta kadr, yozuvi o'ng yuqorida): Saytga kirganlar · Yangi rang — bir qismiga (bashoratga javob berilgach) · Ikki guruh solishtiriladi (ikkinchi bashoratga javob berilgach) · Yaxshirog'i qoladi (4- va 5-bosqich)
 - Bosqichlar:
@@ -155,6 +155,7 @@ Holat: 04.10.2026 — kodga mos
     - tahrirlashda har variant yonida: = bot.start · = bot.on('text') · = bot.action / bot.hears · = ctx.reply
   - Tugma: Saqlash → / ✓ Yangilash
   - Yetishmasa yonida: Nimani sanashini yozing. · Raqamingizga qisqa nom bering. · Bu raqam allaqachon yozilgan — boshqasini tanlang. · Nima bo'lganda sanalishini tanlang — kamida bittasini.
+  - «Saqlash →» doim bosiladi: bo'sh kartada yozuv bosilgandan keyin chiqadi, kursor kerakli maydonga o'tadi ✎ F-1015-164
   - Karta ostida: Bir odam bir kunda bir marta sanaladi.
 - Saqlagach: ✓ {nom} yozildi: «{nimani sanaydi}» — bot uni {tanlanganlar, «yoki» bilan} sanaydi.
 - To'rttasi tayyor bo'lgach: **Botingizning to'rt raqami** — «n {nom} · {nimani sanaydi} · {nima bo'lganda}» (×4), har qator yonida: Tahrirlash
@@ -179,7 +180,8 @@ Holat: 04.10.2026 — kodga mos
   8. 16:30 bot → Bekzod — kerakli javobni yubordi
   9. 18:10 Sevara — /start bosdi
   10. 18:10 bot → Sevara — salom berdi
-- Savollar (Savol n / 3 · Belgilandi: N · Tekshirish):
+- Savollar (Savol · Belgilandi: N · Tekshirish; sanoq tugmada «Yana N savolni tekshiring» *(✎ F-1015-120, 208-qonun 0-band: takror olindi)*):
+  - «Tekshirish» birinchi qator belgilangach chiqadi ✎ F-1015-164
   1. **Bugun kelganlar — kimlar botga keldi?** (to'g'risi: Kamola, Otabek, Bekzod, Sevara)
      - To'g'ri: Bugun 4 odam keldi: Kamola ikki marta yozdi, lekin bir marta sanaladi.
      - Xato: Bu qatorni bot yozgan — odam emas. · {Ism} allaqachon sanalgan — bir odam bir marta. · (sabab topilmasa) Hali hammasi emas — yozuvni oxirigacha ko'ring.
@@ -305,19 +307,21 @@ Holat: 04.10.2026 — kodga mos
 
 ## 17 · Yakun
 - Eyebrow: Dars yakuni
-- Belgi: ✓ Dars tugadi
+- Belgi: ✓ Dars tugadi · Testlar: N/N ✎ F-1015-161
 - Sarlavha: **Botingizning bosh raqami tanlandi.** (yonida: n/4 to'g'ri javob)
-- Arena tugmasi: 12 SAVOL · 15 SONIYA · PODIUM · (jonli darsda mentor boshlamaguncha) Mentorni kuting
+- Arena tugmasi: (jonli darsda mentor boshlamaguncha) Mentorni kuting
 - ✓ Endi siz bilasiz:
   - Bot haqida sanab tekshirib bo'ladigan raqam metrika deyiladi.
   - Jami soni faqat o'sadi — bot qanday ishlayotganini u yolg'iz aytmaydi.
   - Qaytganlar foizi — kecha kelgan har yuzta odamdan nechtasi bugun ham keldi; odam soni har xil kunlar foizda solishtiriladi.
   - Bosh raqam — bot o'z ishini bajarganini sanaydi: bu botda keragini olganlar.
   - O'zgarishdan oldin bosh raqamni o'lchab qo'ying — keyin yangi raqam bilan solishtirasiz.
+- Uyga vazifa · Amaliy topshiriqni bajarish →
 - Nishonlaringiz — n/4
 - Keyingi dars — **«Kecha kelgan odam bugun ham keldimi?»** Botingizning bir necha kunini yonma-yon qo'yasiz: kanalga e'lon bersangiz, kelganlar ko'payadi — qaytganlar-chi?
-- Uyga vazifa · Amaliy topshiriqni bajarish →
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10, S2-A): «To'liq / Qisqa» tanlovi qoladi; karta banner ostida JOYIDA ochiladi (popup/varaq yo'q — PM 77/58 dagi qatlam yechimi bekor), «Topshiriq kartasi · TO'LIQ» sarlavha-qatori olindi (tanlangan chip bilan takror), maydonlar quti, qadamlar raqam-doira, bitta ustun; «Keyingi dars» karta ichida; HW ochilganda Yakun siqilmaydi (:has(.hw-chips) qoidalari olindi), banner 138px.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Two Mondays** (4-ekran) — Ikki dushanbani to'rt raqamda solishtirdingiz

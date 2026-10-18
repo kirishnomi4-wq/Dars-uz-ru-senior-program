@@ -1,5 +1,8 @@
 # 12-dars «Bugun qaysi ish boshlanadi?» — yakuniy matn
 
+> ✎ **F-1015-122 (16.10, 208-qonun 4-band, foydalanuvchi qarori — 2-variant):** dars yuzasidagi bezak emoji kodda olingan — sarlavha, yorliq, karta ikonlari, fayl tablari, test/amaliyot yorliqlari, tugmalar. Qolgan: sxema tugunlari, keys sahnasi, o'yin qatlami (nishon, arena, podium), Yakun, takrorlash oynasi, Mentor paneli, bot/ilova maketidagi mahsulot mazmuni. Bu MD dagi shunday bezak emoji endi ekranda yo'q.
+
+
 Fayl: `src/6-Modull/PmLesson24.jsx` · 16 ekran · Keyingi dars: «Loyiha kuni: to'liq tizim»
 Holat: 05.10.2026 — kodga mos
 
@@ -89,7 +92,7 @@ Holat: 05.10.2026 — kodga mos
 - Tugmalar: Orqaga · Javobni tanlang → Davom etish
 
 ## 6 · Haqiqiy voqea · Tesla
-- Eyebrow: Haqiqiy voqea (bosqich yorlig'i: «n / 6»; bashoratda: «Avval o'zingiz belgilab ko'ring · n / 6»)
+- Eyebrow: Haqiqiy voqea (bosqich yorlig'i yo'q — sanoq tugmada; bashoratda: «Avval o'zingiz belgilab ko'ring» *(✎ F-1015-121, 208-qonun 0-band: takror olindi)*)
 - Sarlavha: **Uzoq reja qisqa yozuvga sig'adimi?**
 - Reja varag'i (har bosqich kartasida): «2006 · QISQA YOZUV» · 1 Qimmat mashina — oz sonda · 2 Arzonrog'i — ko'proq sonda · 3 Eng arzoni — hamma uchun · ostida: 1-bosqichda «uch qator — qisqa yozuvda» (qatorlar yopiq), keyin «hammaga ochiq e'lon qilindi» (har bosqichda o'sha qator ochiladi)
 - Bosqichlar:
@@ -142,6 +145,7 @@ Holat: 05.10.2026 — kodga mos
   - uchinchi kartada uchala ish ham hech narsa kutmasa: Uchalasi ham bugun boshlanadi — unda bu reja emas, bugungi ro'yxat. Kutadigan bitta ish toping.
   - boshqa holatda: ✓ Yozildi — bu ish o'z ufqida turibdi.
   - Tugma: ✓ Saqlash / ✓ Yangilash
+  - «✓ Saqlash» doim bosiladi; maydon bo'sh bo'lsa yonida: Bu ufqqa bitta ish yozing. (qisqa · takror holatini javob-qatori aytadi), kursor maydonga ✎ F-1015-164
 - Uchtasi tayyor bo'lgach: Uch qatorli rejangiz — «1 **Hozir** → {ish}» (×3, har qator yonida qalam tugmasi — Tahrirlash)
 - Yordam: O'zingizga ikki savol bering: buni bugun boshlab bo'ladimi? Bo'lmasa, nimasi hali yo'q? Ikkinchi savolning javobi ufqni o'zi ko'rsatadi.
 - Saqlangach: Uch qatorli rejangiz saqlandi — har ish o'z ufqida turibdi
@@ -153,7 +157,7 @@ Holat: 05.10.2026 — kodga mos
 - Sarlavha: **Har ishni o'z ufqiga qo'ying.**
 - Mentor: Uch qatoringiz tayyor — endi shu savolni sartaroshxona tizimining yana oltita ishiga beramiz. Har javobdan keyin sabab ochiladi — uni o'qing: aynan sabab to'g'ri qo'yishni o'rgatadi.
 - Sahna: Sartaroshxona tizimi ochilganiga bir necha oy bo'ldi: har kuni navbatlar tushyapti, birinchi baholar endi kelyapti. Oldida yangi oltita ish turibdi.
-- Karta: n / 6 · ish nomi · tugmalar: Hozir · Uch oydan keyin · Olti oydan keyin
+- Karta: ish nomi (sanoq tugmada «… (n/6)» *(✎ F-1015-121, 208-qonun 0-band: takror olindi)*) · tugmalar: Hozir · Uch oydan keyin · Olti oydan keyin
 - Nishon sharti: Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki. / (birinchi tanlov xato bo'lsa) Nishon birinchi urinish uchun edi — endi bemalol to'g'risini toping.
 - Ishlar (✔ to'g'ri ufq → sabab):
   1. Ismi bo'yicha sartarosh qidirish — ✔ Hozir → Sartaroshlarning ismi Database'da allaqachon yozilgan
@@ -283,18 +287,19 @@ Holat: 05.10.2026 — kodga mos
 ## 15 · Yakun
 15-ekran.
 - Eyebrow: Dars yakuni
-- Belgi: ✓ Dars tugadi (yonida: n/4 to'g'ri)
+- Belgi: ✓ Dars tugadi · Testlar: N/N ✎ F-1015-161
 - Sarlavha: **Uch qatorli rejangizni yozdingiz.**
-- Bugungi asosiy fikr — Ishni ufqqa bizning xohishimiz emas, unga kerak narsaning tayyor bo'lish payti qo'yadi.
-- Arena tugmasi: CODE STRIKE · 12 SAVOL · 15 SONIYA · PODIUM · (jonli darsda mentor boshlamaguncha) Mentorni kuting
+- Arena tugmasi: CODE STRIKE · (jonli darsda mentor boshlamaguncha) Mentorni kuting
 - ✓ Endi siz bilasiz:
   - Ufq — ishlar qachon boshlanishiga qarab ajratilgan vaqt bo'lagi; bugun uch ufq bilan ishladik.
   - Ishni qachon boshlash mumkinligini unga kerak narsalar va shartlar belgilaydi.
   - Uzoq rejani kod emas, ilovani yaratayotgan odam tuzadi — ya'ni siz.
-- Nishonlaringiz — n/4
 - Uyga vazifa · Amaliy topshiriqni bajarish →
+- Nishonlaringiz — n/4
 - Keyingi dars — **Loyiha kuni: to'liq tizim.** Web, mobil, bot, backend va Database'ni bitta ishlaydigan tizimga ulaysiz.
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10, S2-A): «To'liq / Qisqa» tanlovi qoladi; karta banner ostida JOYIDA ochiladi (popup/varaq yo'q — PM 77/58 dagi qatlam yechimi bekor), «Topshiriq kartasi · TO'LIQ» sarlavha-qatori olindi (tanlangan chip bilan takror), maydonlar quti, qadamlar raqam-doira, bitta ustun; «Keyingi dars» karta ichida; HW ochilganda Yakun siqilmaydi (:has(.hw-chips) qoidalari olindi), banner 138px.
+✎ F-1015-112 (15.10): Yakun 207-qonunga keltirildi — tartib CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Nishonlar · (Erta tugatdingizmi) · (Keyingi dars); «Bugungi asosiy fikr» yo'q; tugma «Yakunlash ✓».
 
 ## Nishonlar
 - **Road Builder!** (4-ekran) — Uch ufqli rejani oxirigacha yurdingiz

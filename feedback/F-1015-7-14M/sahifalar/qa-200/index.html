@@ -1,0 +1,282 @@
+<title>Intervyu darsi ko'rigi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: bitta ustun; har band = sizning so'zingiz → hozirgi surat → tashxis → taklif-namuna (dars palitrasida) → tanlov */
+:root {
+  --bg: #f4f3f8; --card: #ffffff; --ink: #1d1b2b; --ink2: #5d5a72; --line: #e2e0ec; --accent: #5b3fd6; --accent-soft: #ece8fd; --warn: #b4540f; --warn-soft: #fbeedd;
+  --f-body: 'Manrope', system-ui, sans-serif; --f-mono: 'JetBrains Mono', ui-monospace, monospace;
+  /* dars palitrasi — namuna oynasi ikki mavzuda ham dars qanday ko'rinsa shunday */
+  --d-bg: #F2F0FA; --d-paper: #FFFFFF; --d-line: #E7E3F4; --d-ink: #1B1630; --d-ink2: #565073; --d-accent: #5B3DE6; --d-asoft: #EBE5FD; --d-ok: #1F7A4D; --d-okfon: #E3F0E8; --d-err: #C2362B; --d-errfon: #FAE3E0; --d-mute: #F6F4FC;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #15141c; --card: #1f1d29; --ink: #ecebf4; --ink2: #a7a4ba; --line: #34314a; --accent: #a593ff; --accent-soft: #2c2650; --warn: #f0a35a; --warn-soft: #3a2a18; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #15141c; --card: #1f1d29; --ink: #ecebf4; --ink2: #a7a4ba; --line: #34314a; --accent: #a593ff; --accent-soft: #2c2650; --warn: #f0a35a; --warn-soft: #3a2a18; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 80px; }
+.wrap { max-width: 1060px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+h1 { font-size: clamp(22px, 3vw, 30px); margin: 0; text-wrap: balance; } h2 { font-size: 19px; margin: 0; text-wrap: balance; } h3 { font-size: 14px; margin: 0; color: var(--ink2); text-transform: uppercase; letter-spacing: .06em; }
+p { margin: 0; max-width: 78ch; } .lead { color: var(--ink2); }
+.band { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+.id { font-family: var(--f-mono); font-size: 12px; color: var(--accent); letter-spacing: .04em; }
+.soz { border-left: 3px solid var(--accent); padding: 4px 12px; color: var(--ink2); font-style: italic; }
+.ikki { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 16px; align-items: start; }
+@media (max-width: 860px) { .ikki { grid-template-columns: 1fr; } }
+figure { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+figure img { width: 100%; border-radius: 8px; border: 1px solid var(--line); display: block; }
+figcaption { font-size: 12.5px; color: var(--ink2); }
+.tanlov { display: flex; flex-direction: column; gap: 8px; }
+.tanlov .v { display: flex; gap: 10px; align-items: baseline; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; }
+.tanlov .v b { font-family: var(--f-mono); color: var(--accent); flex-shrink: 0; }
+.tanlov .v.tavsiya { border-color: var(--accent); background: var(--accent-soft); }
+.ogoh { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-weight: 600; }
+ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+/* ---- dars namunasi (mock) ---- */
+.dars { background: var(--d-bg); color: var(--d-ink); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+.dars .t { font-size: 20px; font-weight: 800; letter-spacing: -.01em; } .dars .t i { font-style: normal; color: var(--d-accent); }
+.dars .hol { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--d-ink2); }
+.k { background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.k .y { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--d-ink2); }
+.q { display: flex; align-items: center; gap: 10px; background: var(--d-mute); border-radius: 10px; padding: 9px 12px; }
+.q .n { width: 20px; color: var(--d-ink2); font-family: var(--f-mono); font-size: 12px; } .q b { flex: 1; font-weight: 700; } .q .s { color: var(--d-ink2); font-size: 12.5px; }
+.q.chet { color: var(--d-ink2); } .q.chet b { font-weight: 600; }
+.chip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--d-line); background: var(--d-paper); border-radius: 999px; padding: 6px 12px; font-weight: 700; font-size: 13px; }
+.chip.on { border-color: var(--d-accent); color: var(--d-accent); background: var(--d-asoft); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.ok { color: var(--d-ok); background: var(--d-okfon); border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 800; }
+.yoq { color: var(--d-err); background: var(--d-errfon); border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 800; }
+.mute { color: var(--d-ink2); font-size: 13px; }
+.form { display: flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--f-mono); font-size: 14px; flex-wrap: wrap; }
+.form .b { background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 8px; padding: 4px 10px; min-width: 38px; text-align: center; } .form .b.bosh { color: var(--d-ink2); }
+.form .r { background: var(--d-accent); color: #fff; border-radius: 8px; padding: 4px 10px; font-weight: 700; }
+.bar { display: grid; grid-template-columns: 20px minmax(0, 1fr) minmax(90px, 1.2fr) 42px; align-items: center; gap: 10px; background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 10px; padding: 8px 12px; }
+.bar.top { border-color: var(--d-accent); } .bar .n { color: var(--d-ink2); font-family: var(--f-mono); font-size: 12px; } .bar .f { font-family: var(--f-mono); font-size: 11px; color: var(--d-ink2); }
+.bar .tr { height: 8px; border-radius: 999px; background: var(--d-line); overflow: hidden; } .bar .tr i { display: block; height: 100%; background: var(--d-accent); border-radius: 999px; }
+.bar .v { font-family: var(--f-mono); font-weight: 700; color: var(--d-accent); text-align: right; }
+.bar.chet { opacity: .6; } .bar.chet .tr i { background: var(--d-ink2); } .bar.chet .v { color: var(--d-ink2); }
+.ok-qator { background: var(--d-okfon); color: var(--d-ok); border-radius: 10px; padding: 9px 12px; font-weight: 700; }
+.qadam { display: flex; gap: 8px; align-items: center; } .qadam .d { width: 22px; height: 22px; border-radius: 50%; background: var(--d-accent); color: #fff; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.uch { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; align-items: start; }
+.tug { display: inline-flex; align-items: center; border-radius: 10px; padding: 7px 14px; font-weight: 800; font-size: 13px; background: var(--d-accent); color: #fff; }
+.tug.ik { background: var(--d-paper); color: var(--d-accent); border: 1px solid var(--d-accent); }
+.voronka { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.voronka .s { background: var(--d-asoft); border-radius: 10px; padding: 8px 14px; font-weight: 700; display: flex; gap: 8px; align-items: baseline; } .voronka .s b { font-size: 20px; color: var(--d-accent); font-family: var(--f-mono); }
+.voronka .s.fin { background: var(--d-accent); color: #fff; } .voronka .s.fin b { color: #fff; }
+</style>
+<style>
+.sh { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.sh .col { background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 10px; padding: 8px 10px; display: flex; flex-direction: column; gap: 4px; }
+.sh .col b { font-size: 13px; } .sh .col .r { font-size: 11px; color: var(--d-ink2); text-transform: uppercase; letter-spacing: .06em; padding: 4px 0; border-top: 1px solid var(--d-line); }
+.sh .col .r i { font-style: normal; color: var(--d-ink); text-transform: none; letter-spacing: 0; font-size: 12.5px; display: block; }
+.javob { background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 10px; padding: 8px 12px; font-style: italic; }
+</style>
+<div class="wrap">
+  <header class="band">
+    <span class="id">F-1015-200 … 208 · 3-dars m9-03 «Ikki g'oyadan qaysi biri odamlarga kerak?» · tashxis 18.10</span>
+    <h1>3-dars ko'rigi: intervyu darsidan o'quvchi nima oladi</h1>
+    <p class="lead">Tartib 2-darsdagidek: har bandda hozirgi surat, tashxis, taklif-namuna va A/B. Kod tegilmagan. Tanlovni raqam bilan ayting yoki «hammasi A».</p>
+    <div class="ogoh">O'quvchi darsdan nima olib chiqadi: ikki g'oyasiga bir xil 5 savol varaqasi (faqat 1-savolda bo'lak har xil), «so'z emas, ish» farqi (harakat belgisi) va sinfdoshdan olingan birinchi haqiqiy yozuv. Qolgan 9 yozuv uyda, 4-darsda sanaladi. Bu halol: 10 intervyuni darsda qilib bo'lmaydi. Muammo mazmunda emas, ko'rsatishda: uchta ustunli og'ir ekranlar, bir xil tugmani 5 marta bosish, ichki yorliqlar, va Airbnb keysi 1-dars bilan takror.</div>
+  </header>
+
+  <section class="band">
+    <span class="id">F-1015-200 · 0-ekran (kirish)</span>
+    <h2>O'zgarmaydi</h2>
+    <p>Mentorning ikki g'oyasi kartasi (Muammo · Kim uchun · RICE) 2-dars natijasining davomi, so'rovnoma variantlari ikkita g'oya. Toza, tegilmaydi.</p>
+  </section>
+
+  <section class="band">
+    <span class="id">F-1015-201 · 1-ekran (reja)</span>
+    <h2>Yorliq ichki tilda, «qo'lingizda nima qoladi» aytilmagan</h2>
+    <div class="ikki">
+      <figure><img src="r/s1.jpg" alt="Hozirgi reja"><figcaption>Hozir: yorliq «DARS OXIRIDA: 10 INTERVYU, 1-QISM: IKKI G'OYA, BIR XIL SAVOLLAR» — dastur jadvalidan ko'chgan; shablon skeleti yaxshi.</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p><b>Tashxis.</b> «10 intervyu, 1-qism» o'quvchiga hech narsa demaydi. Skelet (ikki ustun, qator nomlari, ✓ odamlar) tushunarli, qoladi. 03-band Airbnb keysi 205 ga qarab yangilanadi.</p>
+        <div class="dars">
+          <span class="hol">Taklif A</span>
+          <div class="k">
+            <span class="y">Dars oxirida</span>
+            <div class="sh"><div class="col"><b>Jamoa yig'ish</b><span class="r">Kim</span><span class="r">Oxirgi marta</span><span class="r">Qanday qildi</span><span class="r">Eng qiyini</span></div><div class="col"><b>Mahalla to'garaklari</b><span class="r">Kim</span><span class="r">Oxirgi marta</span><span class="r">Qanday qildi</span><span class="r">Eng qiyini</span></div></div>
+            <div class="ok-qator">Qo'lingizda: ikki g'oyangizga bitta savol varaqasi va birinchi haqiqiy yozuv. Qolgan 9 yozuv — uyda, keyingi darsgacha.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tanlov">
+      <div class="v tavsiya"><b>A</b><span>Yorliq «Dars oxirida», skelet qoladi, ostida «Qo'lingizda» qatori. Reja 4 band qoladi, 03-band keys nomiga moslanadi.</span></div>
+      <div class="v"><b>B</b><span>Faqat yorliq matni almashadi.</span></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <span class="id">F-1015-202 · 2-ekran (savollarni ajratish)</span>
+    <h2>Savol kartasi havoda, bo'sh ustunlar o'ngda, qoida eslatilmagan</h2>
+    <div class="ikki">
+      <figure><img src="r/s2.jpg" alt="Hozirgi 2-ekran"><figcaption>Hozir: savol kartasi chapda, avatar o'rtada, ikki bo'sh ustun o'ngda; 9-Modul qoidasi (o'tgan ishni so'rash) faqat eyebrow'da.</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p><b>Tashxis.</b> Bu takror-ekran, lekin qoida bir qator bilan ham aytilmagan — 9-Modulni unutgan o'quvchi taxmin qiladi. Elementlar bog'lanmagan: savol, avatar, ustunlar uch alohida narsa. Avatar bezak.</p>
+        <div class="dars">
+          <span class="hol">Taklif A — bitta karta, qoida tepada, javob berilgani chipga ketadi</span>
+          <div class="k">
+            <p class="mute" style="margin:0"><b style="color:var(--d-ink)">9-Modul qoidasi:</b> bo'lib o'tgan ishni so'rang. «Ishlatarmidingiz?» — taxmin, javob emas.</p>
+            <div class="chips"><span class="chip">✓ o'tgan ish · 1</span><span class="chip">✕ so'ramaydi · 1</span></div>
+            <div class="q" style="font-size:15px"><b>«Oxirgi marta o'yinga odam yig'ganingiz qachon bo'ldi?»</b><span class="s">3 / 5</span></div>
+            <div class="chips"><span class="tug ik">Bo'lib o'tgan ishni so'raydi</span><span class="tug ik">So'ramaydi</span></div>
+          </div>
+          <span class="hol">5 tadan keyin — shablon keladi, savollar o'z joyiga tushadi, «to'garak»ka moslanadi</span>
+          <div class="sh"><div class="col"><b>Jamoa yig'ish</b><span class="r">Oxirgi marta<i>o'yinga odam yig'ganingiz qachon bo'ldi?</i></span><span class="r">Qanday qildi<i>O'shanda qanday qildingiz?</i></span><span class="r">Eng qiyini<i>Eng qiyini nima bo'ldi?</i></span></div><div class="col"><b>Mahalla to'garaklari</b><span class="r">Oxirgi marta<i><u>to'garak izlaganingiz</u> qachon bo'ldi?</i></span><span class="r">Qanday qildi<i>O'shanda qanday qildingiz?</i></span><span class="r">Eng qiyini<i>Eng qiyini nima bo'ldi?</i></span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="tanlov">
+      <div class="v tavsiya"><b>A</b><span>Qoida bitta qator kartaning tepasida. Savollar bittadan, ajratilgani ikki chipga yig'iladi. Avatar olinadi. Shablon faqat 5 tadan keyin chiqadi, o'tgan-ish savollari ustunlarga tushadi, ikkinchi ustunda bo'lak almashadi (hozirgi «To'garakka moslash» qadami qoladi).</span></div>
+      <div class="v"><b>B</b><span>Faqat qoida qatori qo'shiladi, joylashuv hozirgidek.</span></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <span class="id">F-1015-203 · 4-ekran («Hozir nima bilan»)</span>
+    <h2>Uch ustun, «Savolni berish» besh marta, telefon bezak</h2>
+    <div class="ikki">
+      <figure><img src="r/s4.jpg" alt="Hozirgi 4-ekran"><figcaption>Hozir: telefon maketi + ikki ustunli shablon + yozuvlar ro'yxati; har odamga «Savolni berish».</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p><b>Tashxis.</b> Ekranning maqsadi bitta: to'rtinchi savol odamlar hozir nima ishlatishini ochadi. Buning uchun shablonning 6 qatori ham, telefon ham kerak emas. Besh marta bir xil bosish ma'no qo'shmaydi.</p>
+        <div class="dars">
+          <span class="hol">Taklif A — bitta karta: savol + joriy odam + javob; berilganlari chip</span>
+          <div class="k">
+            <span class="y">Savol · hammaga bir xil</span>
+            <b style="font-size:15px">«Hozir buni nima bilan hal qilyapsiz?»</b>
+            <div class="chips"><span class="chip">o'yinchi, 15 · Telegram guruhi</span><span class="chip">o'yinchi, 14 · Telegram va qo'ng'iroq</span></div>
+            <div class="q"><b>o'yinchi, 16 yosh, o'yinni ko'pincha o'zi yig'adi</b><span class="tug">Savolni berish</span></div>
+          </div>
+          <span class="hol">5 tadan keyin — bitta natija qatori</span>
+          <div class="ok-qator">Jamoa yig'ish: 3 tadan 3 tasi — Telegram guruhi. To'garak: 2 tadan 2 tasi — tanishlar orqali. Yangi yechim shular bilan solishtiriladi.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tanlov">
+      <div class="v tavsiya"><b>A</b><span>Telefon va shablon olinadi; bitta karta, odam bittadan, javob chipga yig'iladi; oxirida sanoq qatori. Beshta bosish qoladi (har odam — bitta javob), lekin ekran yengil.</span></div>
+      <div class="v"><b>B</b><span>Telefon qoladi (javobni ko'rsatadi), shablon olinadi.</span></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <span class="id">F-1015-204 · 6-ekran (harakat belgisi)</span>
+    <h2>Taxmin va yozuv bir vaqtda; o'quvchi faqat «yakunlaydi», o'zi hukm qilmaydi</h2>
+    <div class="ikki">
+      <figure><img src="r/s6.jpg" alt="Hozirgi 6-ekran"><figcaption>Hozir: telefon «Sinov kunlari» + taxmin + 6 qatorli yozuv kartasi; «beshta yozuvni birma-bir yakunlang».</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p><b>Tashxis.</b> Darsning asosiy ko'nikmasi shu yerda: so'zni ishdan ajratish. Hozir o'quvchi Mentor yozuvini «yakunlaydi» — qaror qilmaydi. Taxmin va yozuv birga chiqadi (2-darsda tuzatilgan qolip).</p>
+        <div class="dars">
+          <span class="hol">Taklif A — 1-holat: taxmin yolg'iz (2-darsdagidek) · 2-holat: har odam uchun o'quvchi o'zi belgilaydi</span>
+          <div class="k">
+            <span class="y">o'smir, 14 yosh · 5-savol: «10 daqiqa berasizmi? Qaysi kun?»</span>
+            <div class="javob">«Zo'r g'oya, albatta ishlatardim!»</div>
+            <div class="chips"><span class="tug ik">Ha — kun belgiladi</span><span class="tug ik">Yo'q — belgilamadi</span></div>
+          </div>
+          <div class="ok-qator">To'g'ri: kun yo'q — bu so'z, ish emas. Harakat belgisi: yo'q.</div>
+          <span class="hol">5 tadan keyin — natija</span>
+          <div class="k"><div class="chips"><span class="chip on">Shanba · 2</span><span class="chip on">Yakshanba · 2</span><span class="chip">belgilamadi · 1</span></div><p class="mute" style="margin:0">5 odamdan 4 tasi kun belgiladi. Bu harakat belgisi: odam so'z bilan emas, ish bilan ko'rsatdi.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="tanlov">
+      <div class="v tavsiya"><b>A</b><span>Taxmin avval yolg'iz. Keyin besh javob bittadan: odamning gapi, o'quvchi «ha / yo'q» belgilaydi, bitta qator javob. Telefon olinadi, kunlar oxirida chip. Nishon shu ekranga o'tadi (birinchi urinishda 5/5).</span></div>
+      <div class="v"><b>B</b><span>Taxmin avval, qolgani hozirgidek («yakunlash»).</span></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <span class="id">F-1015-205 · 7-ekran (biznes keysi)</span>
+    <h2>Airbnb 1-darsda ham bor — bir modulda ikki marta</h2>
+    <div class="ikki">
+      <figure><img src="r/s7.jpg" alt="Hozirgi Airbnb ekrani"><figcaption>Hozir: 2007 konferensiya + havo to'shagi (1-darsdagi bilan bir xil kirish), keyin «kvartiralarga o'zlari borgan» taxmini.</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p><b>Tashxis.</b> Keys banki K1–K19 da intervyu mavzusiga faqat K4 Airbnb mos. Qoida: bosh-keys modul ichida takrorlanmaydi. Yechim: kompaniya o'sha, lekin bob boshqa.</p>
+        <div class="dars">
+          <span class="hol">Taklif A — Airbnb, keyingi bob (2009, Nyu-York)</span>
+          <div class="k">
+            <span class="y">1-darsda ko'rgansiz: muammoni o'z uyida topgan. Davomi:</span>
+            <p style="margin:0">2009-yilda sayt o'smay qoldi. Asoschilar Nyu-Yorkka borib, uy egalarining o'zi bilan gaplashdi va kvartiralarni o'zlari suratga oldi — e'lonlar yomon suratli edi. Shundan keyin band qilishlar oshdi.</p>
+            <span class="y">Avval o'zingiz belgilab ko'ring</span>
+            <b>Asoschilar muammoni qanday bilgan?</b>
+            <div class="chips"><span class="chip">Sayt statistikasidan</span><span class="chip">Uy egalariga so'rovnoma yuborib</span><span class="chip">Uy egalarining oldiga o'zlari borib</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tanlov">
+      <div class="v tavsiya"><b>A</b><span>Airbnb qoladi, lekin 2007 kirish olinadi («1-darsda ko'rgansiz» bitta qator), sahna Nyu-York 2009: uy egasi bilan suhbat va surat. Bank matni doirasida, raqamsiz. 8-ekran testi («to'garak muammosini qanday bilasiz») o'zgarmaydi.</span></div>
+      <div class="v"><b>B</b><span>K11 McDonald's milkshake (odamlardan «oxirgi marta qachon olgansiz» deb so'ragan tadqiqot) — 9-Modul 4-darsida bor, qayta ishlatiladi.</span></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <span class="id">F-1015-206 · 9-ekran (o'z shablonim)</span>
+    <h2>O'quvchi 1–2-darsda yozgan narsani yana yozadi</h2>
+    <div class="ikki">
+      <figure><img src="r/s9.jpg" alt="Hozirgi 9-ekran"><figcaption>Hozir: har g'oyaga uch maydon (Muammo · Kimdan · Bo'lak) + 3-qadam «qolgan savollar» tugmasi; shablon pastda.</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p><b>Tashxis.</b> Muammo va Kim uchun 1-darsda yozilgan, ikki g'oya 2-darsda tanlangan — hammasi saqlangan. Bu yerda yangi narsa bitta: «Oxirgi marta … qachon bo'ldi?» ga bo'lak. 2-darsdagi kabi (213.6): tayyor narsa yozilmaydi.</p>
+        <div class="dars">
+          <span class="hol">Taklif A — g'oya tayyor, faqat bo'lak yoziladi, bittadan</span>
+          <div class="k">
+            <span class="y">1-g'oya · 2-darsda tanlangan</span>
+            <div class="q"><div><b>oshxona menyusini oldindan ko'rsatadigan bot</b><br><span class="s">Muammo: tanaffusda navbat uzun · Kim uchun: sinfdoshlar</span></div></div>
+            <div><span class="mute">1-savol:</span> <b>Oxirgi marta</b> <span class="chip" style="color:var(--d-ink2)">masalan: oshxonada navbatda turganingiz</span> <b>qachon bo'ldi?</b></div>
+            <div class="chips"><span class="tug ik">Yordam</span><span class="tug">Shablonga yozish</span></div>
+          </div>
+          <span class="hol">Ikkala bo'lakdan keyin — qolgan 4 savol o'zi qo'shiladi, shablon tayyor</span>
+          <div class="sh"><div class="col"><b>1-g'oya</b><span class="r">Kimdan<i>sinfdoshlar</i></span><span class="r">Oxirgi marta<i><u>oshxonada navbatda turganingiz</u> qachon bo'ldi?</i></span><span class="r">+ 4 savol</span></div><div class="col"><b>2-g'oya</b><span class="r">Kimdan<i>sinfdoshlar</i></span><span class="r">Oxirgi marta<i><u>maydon izlaganingiz</u> qachon bo'ldi?</i></span><span class="r">+ 4 savol</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="tanlov">
+      <div class="v tavsiya"><b>A</b><span>Muammo va Kimdan 1-dars ma'lumotidan tayyor (o'zgartirish ✎ emas, «O'zgartirish» so'z-tugma). Faqat bo'lak maydoni, g'oyalar bittadan. 3-qadam tugmasi yo'q: qolgan to'rt savol o'zi qo'shiladi va shablonda ko'rinadi. Ma'lumot topilmasa — hozirgi to'liq forma.</span></div>
+      <div class="v"><b>B</b><span>Uch maydon qoladi, lekin Muammo va Kimdan oldindan to'ldirilgan.</span></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <span class="id">F-1015-207 · 10-ekran (sinfdosh bilan intervyu)</span>
+    <h2>Ikki bo'sh ustun pastda — yozuv qayerga tushishi ko'rinmaydi</h2>
+    <div class="ikki">
+      <figure><img src="r/s10.jpg" alt="Hozirgi 10-ekran"><figcaption>Hozir: 3 qadam (Kim · Savollar · Harakat belgisi), ostida ikki bo'sh ustun va kulrang yo'riq kartadan tashqarida.</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p><b>Tashxis.</b> Qadamlar to'g'ri (bittadan). Lekin javob yozilayotganda ikki bo'sh ustun pastda osilib turadi, yozuv qaysi ustunga tushishi ko'rinmaydi. Yakka rejim yo'rig'i kartadan tashqarida.</p>
+        <div class="dars">
+          <span class="hol">Taklif A — tanlangan g'oyaning bitta ustuni kartaning o'zida to'lib boradi</span>
+          <div class="k">
+            <div class="qadam"><span class="d">2</span><b>Savollar · 2 / 4</b></div>
+            <div class="q"><div><b>«O'shanda qanday qildingiz?»</b><br><span class="s">U nima dedi? — aytganidek yozing</span></div></div>
+            <div class="sh" style="grid-template-columns:1fr"><div class="col"><b>oshxona menyusi boti · 1-yozuv</b><span class="r">Kim<i>sinfdosh</i></span><span class="r">Oxirgi marta<i>kecha, 20 daqiqa turdim</i></span><span class="r">Qanday qildi<i>…</i></span></div></div>
+            <p class="mute" style="margin:0">Yoningizda odam bo'lmasa — uydagilardan biriga qo'ng'iroq qiling yoki bu qadamni uyda bajaring.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tanlov">
+      <div class="v tavsiya"><b>A</b><span>Pastdagi ikki ustun olinadi; tanlangan g'oyaning bitta yozuv-ustuni karta ichida javob sayin to'ladi. Yakka yo'riq karta ichida. Qadamlar va «Yozuvga qo'shish» hozirgidek.</span></div>
+      <div class="v"><b>B</b><span>Ikki ustun qoladi, lekin faqat tanlangan g'oya ustuni to'q, ikkinchisi xira.</span></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <span class="id">F-1015-208 · Yakun</span>
+    <h2>«Shablon tayyor — yozuvlar uyda»: qo'lda nima borligi emas, nima yo'qligi aytilgan</h2>
+    <div class="ikki">
+      <figure><img src="r/s15.jpg" alt="Hozirgi yakun"><figcaption>Hozir: sarlavha «Shablon tayyor — yozuvlar uyda».</figcaption></figure>
+      <div class="tanlov">
+        <div class="v tavsiya"><b>A</b><span>Sarlavha: «Savol varaqasi tayyor, birinchi yozuv olindi.» «Endi siz bilasiz» ro'yxatiga Airbnb qatori 205 ga moslanadi. Qolgani 207-qonun bo'yicha o'zgarmaydi.</span></div>
+        <div class="v"><b>B</b><span>Sarlavha qoladi.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <h3>Tartib (tasdiqdan keyin)</h3>
+    <ul>
+      <li>MD v4 (`feedback/F-1005-11modul/03-PmInterviewsOne-v4.md`), keyin kod; har ekranning oraliq holatlari surat bilan (uz 1280, uz 390, ru).</li>
+      <li>Darvozalar 12/12, dizayn o'z-ko'rigi, keyin sizga; QA 11-modul yangilanadi.</li>
+      <li>Keys qarori (205) 4-dars rejasiga ham ta'sir qiladi: u yerda K11 McDonald's yoki K15 YouTube rejalashtirilgan.</li>
+    </ul>
+  </section>
+</div>

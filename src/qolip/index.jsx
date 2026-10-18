@@ -88,7 +88,7 @@ const Bosh = ({ sarlavha, mentor }) => (
 const Z = ({ zoom: Zm, children }) => (Zm ? <Zm>{children}</Zm> : children);
 
 // ---------- 1. Kirish: sarlavha-savol · Mentor · bitta maket · 2–3 variant (texnik darslar standarti: radio-variant, DE-201) ----------
-// variantlar: [{ id, t }] · tanlov: id | null · yopiq: maket ochilmaguncha variantlar xira · savol: o'ng ustun yorlig'i
+// variantlar: [{ id, t }] · tanlov: id | null · yopiq: maket ochilmaguncha variantlar ko'rinmaydi (F-1015-164) · savol: o'ng ustun yorlig'i
 export const QKirish = ({ sarlavha, mentor, zoom, maket, savol, variantlar = [], tanlov = null, onTanla, yopiq = false, javob, children }) => (
   <div className="screen q-ekran q-kirish">
     <Bosh sarlavha={sarlavha} mentor={mentor} />
@@ -97,16 +97,17 @@ export const QKirish = ({ sarlavha, mentor, zoom, maket, savol, variantlar = [],
         <div className="q-col">{maket}</div>
         <div className="q-col">
           {savol && <span className="q-yorliq fade-up delay-2">{savol}</span>}
-          <div className="q-col q-variantlar-kol fade-up delay-3">
+          {/* F-1015-164 (160-sinf): maket ochilmaguncha variantlar ko'rinmaydi — bosib bo'lmaydigan xira tugma ko'rsatilmaydi */}
+          {!yopiq && <div className="q-col q-variantlar-kol fade-up">
             {variantlar.map(v => {
               const on = tanlov === v.id;
               return (
-                <button key={v.id} type="button" className={cx('q-variant', on && 'on')} disabled={tanlov !== null || yopiq} style={{ opacity: yopiq ? 0.55 : 1 }} onClick={() => onTanla && onTanla(v.id)}>
+                <button key={v.id} type="button" className={cx('q-variant', on && 'on')} disabled={tanlov !== null} onClick={() => onTanla && onTanla(v.id)}>
                   <span className="q-radio">{on && <span className="q-radio-dot" />}</span><span>{v.t}</span>
                 </button>
               );
             })}
-          </div>
+          </div>}
           {javob}
         </div>
       </div>
@@ -116,15 +117,17 @@ export const QKirish = ({ sarlavha, mentor, zoom, maket, savol, variantlar = [],
 );
 
 // ---------- 1b. Reja (Kirish turining ikkinchi ekrani): chap — dars oxirida nima bo'ladi · o'ng — «01 · matn · teg» qadam-kartalari ----------
-// qadamlar: [{ t, teg }]
+// qadamlar: [{ t, teg }] · zoom — e'tiborsiz (F-1015-165: reja sahifasida kattalashtirish kerak emas)
 export const QReja = ({ sarlavha, mentor, zoom, chapYorliq, chap, ongYorliq, qadamlar = [], children }) => (
   <div className="screen q-ekran q-reja">
     <Bosh sarlavha={sarlavha} mentor={mentor} />
-    <Z zoom={zoom}>
+    {/* F-1015-165: Reja ekranida ⛶ yo'q — zoom qabul qilinadi, lekin ishlatilmaydi */}
+    <>
       <div className="q-split">
         <div className="q-col">{chapYorliq && <span className="q-yorliq">{chapYorliq}</span>}{chap}</div>
         <div className="q-col">
-          {ongYorliq && <span className="q-yorliq">{ongYorliq}</span>}
+          {/* F-1015-176: chapda yorliq bo'lsa, o'ngda ham shu balandlikda joy — ikki ustun bir chiziqdan boshlanadi */}
+          {ongYorliq ? <span className="q-yorliq">{ongYorliq}</span> : chapYorliq ? <span className="q-yorliq" aria-hidden="true">{'\u00a0'}</span> : null}
           <ol className="q-reja-ro">
             {qadamlar.map((q, i) => (
               <li key={i} className="q-reja-k fade-up" style={{ animationDelay: `${0.08 + i * 0.06}s` }}>
@@ -135,7 +138,7 @@ export const QReja = ({ sarlavha, mentor, zoom, chapYorliq, chap, ongYorliq, qad
           </ol>
         </div>
       </div>
-    </Z>
+    </>
     {children}
   </div>
 );
@@ -306,10 +309,10 @@ export const QNatija = ({ sarlavha, mentor, karta, children }) => (
 // ---------- Qolipning o'z yorliqlari (kartochka, yakun) — ikki tilda; dars matni esa darsdan keladi ----------
 const QM = {
   uz: { org: "↻ O'rganilmoqda", bildim: '✓ Bildim', takror: '✗ Takrorlash', hammasi: 'Hammasini bilasiz!', yodlandi: 'atama yodlandi', qayta: '↻ Qaytadan takrorlash',
-    togri: "to'g'ri", bilasiz: 'Endi siz bilasiz', uyga: 'Uyga vazifa', uygaS: 'Amaliy topshiriqni bajarish →', nishon: 'Nishonlaringiz',
+    togri: "to'g'ri", testlar: 'Testlar', bilasiz: 'Endi siz bilasiz', uyga: 'Uyga vazifa', uygaS: 'Amaliy topshiriqni bajarish →', nishon: 'Nishonlaringiz',
     bajardim: 'Bajardim', qaytar: 'Qaytarish', nusxa: 'Nusxalash', nusxalandi: '✓ Nusxalandi', natija: 'kutilgan natija', ortda: 'Ortda qoldingizmi — mentor bilan:' },
   ru: { org: '↻ Изучается', bildim: '✓ Знаю', takror: '✗ Повторить', hammasi: 'Вы знаете всё!', yodlandi: 'терминов выучено', qayta: '↻ Повторить заново',
-    togri: 'верно', bilasiz: 'Теперь вы знаете', uyga: 'Домашнее задание', uygaS: 'Выполнить практическое задание →', nishon: 'Ваши значки',
+    togri: 'верно', testlar: 'Тесты', bilasiz: 'Теперь вы знаете', uyga: 'Домашнее задание', uygaS: 'Выполнить практическое задание →', nishon: 'Ваши значки',
     bajardim: 'Готово', qaytar: 'Вернуть', nusxa: 'Скопировать', nusxalandi: '✓ Скопировано', natija: 'ожидаемый результат', ortda: 'Отстали — вместе с ментором:' },
 };
 
@@ -362,9 +365,10 @@ export function QBlok({ til = 'uz', sarlavha, mentor, zoom, qadamlar = [], joriy
           {tugadi && tugadiMatn && <div className="q-blok-tugadi fade-step"><p>{tugadiMatn}</p></div>}
           {pastki}
         </div>
-        <div className="q-col">
-          <span className="q-yorliq">{natijaYorliq || M.natija}</span>
+        {/* F-1015-166 (159-sinf): yorliq natija OSTIDA izoh — ikki ustun bir chiziqdan boshlanadi; joy bo'lmasa ⛶ izoh qatorida, o'ngda */}
+        <div className="q-col q-blok-ong">
           <Z zoom={zoom}><div className="q-blok-natija">{natija}</div></Z>
+          <span className="q-yorliq q-blok-izoh">{natijaYorliq || M.natija}</span>
           {ortda.length > 0 && (
             <div className="q-blok-ortda"><span>{M.ortda}</span>{ortda.map((b, i) => <code key={i} className="q-blok-buyruq">{b}</code>)}</div>
           )}
@@ -450,7 +454,7 @@ export function QYakun({ til = 'uz', chip, togri, jami, sarlavha, cta, recap = [
   const royxat = Array.isArray(uyga);
   return (
     <div className="screen q-yakun">
-      <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {chip}</span><span className="score-chip fade-up">{togri}/{jami} {M.togri}</span></div><h2 className="title h-title fade-up d1">{sarlavha}</h2></div></div>
+      <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {chip}</span><span className={cx('score-chip', 'fade-up', jami > 0 && togri === jami ? 'toliq' : 'neytral')}>{M.testlar}: {togri}/{jami}</span></div><h2 className="title h-title fade-up d1">{sarlavha}</h2></div></div>
       {cta}
       {recap.length > 0 && <div className="card fade-up d3"><div className="card-lbl ok"><span className="tick">✓</span> {M.bilasiz}</div><ul className="recap">{recap.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>}
       {uyga && <div className="hw-big-wrap fade-up d4">

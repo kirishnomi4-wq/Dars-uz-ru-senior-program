@@ -145,12 +145,13 @@ namunalar: 13-Modul `02-PmMonetization-v3.md` + `02-FILTR.md` · pilot `01-PmInv
 - Sarlavha: **Bugun mahsulotingiz hikoyasini yozib, aytib ko'rasiz.** (53)
 - Mentor: O'tgan darsdagi pitch qoralamangiz saqlangan bo'lsa, uning Muammo va Yechimi kartalar ustida yordamga chiqadi.
 - Chap — «Dars oxirida» + kulrang yorliq **5 daqiqalik pitch — hikoya, funksiyalar ro'yxati emas** (App.jsx osti so'zma-so'z, P-015) +
-  vizual: `HikoyaSahna` skeleti — uchta nomsiz uya (kulrang uzuq), yonida kichik telefon siluet va taymer chizig'i 0–1:00; uyalar 0.6 s oraliqda birma-bir to'q bo'ladi, oxirida taymer 1:00 gacha yuradi. Matnsiz — 2-ekran kashfiyotini ochmaydi (P-015, §178).
+  vizual: kichik telefon siluet va taymer chizig'i 0–1:00 (oxirida 1:00 gacha yuradi). Uchta raqamli bo'sh uya olindi *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*. Matnsiz — 2-ekran kashfiyotini ochmaydi (P-015, §178).
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
-  - 01 · Funksiyalar ro'yxati bilan hikoya farqini ko'rasiz · `hikoya`
-  - 02 · Hikoya pitchning qaysi bo'laklariga tushishini bilib olasiz · `bo'laklar`
-  - 03 · O'z mahsulotingiz hikoyasini kartalarga yozasiz · `karta`
-  - 04 · Hikoyani telefonga aytib, o'zingiz tekshirasiz · `video`
+  (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*
+  - 01 · Funksiyalar ro'yxati bilan hikoya farqini ko'rasiz
+  - 02 · Hikoya pitchning qaysi bo'laklariga tushishini bilib olasiz
+  - 03 · O'z mahsulotingiz hikoyasini kartalarga yozasiz
+  - 04 · Hikoyani telefonga aytib, o'zingiz tekshirasiz
 - Harakat yo'q (reja ekrani) — vizual o'zi yoziladi. Tugmalar: Orqaga · Boshlaymiz · Keyingi bosiladigan joy: «Boshlaymiz» (vizual tugagach halqada).
 - O'qituvchi eslatmasi: Bir gap ayting: bugun yozilgan video faqat o'quvchining telefonida qoladi. O'tgan darsdagi qoralama bo'lmasa — dars to'xtamaydi, kartalar bo'sh ochiladi.
 - Izoh (MD): sarlavhada yangi atama yo'q (T-011): «hikoya» — 9-Moduldan o'tilgan, dars nomida bor. Uch qism (kim · lahza · o'zgarish) qadam matnida ham, tegda ham yo'q — 2-ekran kashfiyoti (§178). «mahsulotingiz» — final mahsulot o'quvchida bor (T-039).
@@ -160,9 +161,9 @@ namunalar: 13-Modul `02-PmMonetization-v3.md` + `02-FILTR.md` · pilot `01-PmInv
 - Sarlavha: **Ro'yxat o'rniga zalga nimani aytasiz?** (37) — 0-ekran savolining o'z so'zlari bilan (T-064, §163: «ro'yxat», «zal»)
 - Mentor: Tugmalarni birma-bir bosing va Mentor ro'yxat o'rniga nimani aytishiga qarang.
   (Birinchi harakat — bashorat; uning yo'rig'i `QBashorat` yorlig'ida, Mentor takrorlamaydi — T-047.)
-- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bitta o'lchov, o'sish tartibida): **Mentor ro'yxat o'rniga nechta voqeani aytadi?** · Bitta · Uchta · Hammasini — tanlangach ixcham qator; tugmalar shundan keyin yoqiladi.
+- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bitta o'lchov, o'sish tartibida): **Mentor ro'yxat o'rniga nechta voqeani aytadi?** · Bitta · Uchta · Hammasini — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*.
 - Vizual (`HikoyaSahna`, ro'yxat rejimi): **chapda** telefon («O'yin» ekrani, «8 / 10») · **o'ngda** funksiya nomlari tasmasi (6 ta) va ostida uchta bo'sh uya (kulrang uzuq).
-- Tugmalar (ixcham, bir qatorda; joriysi accent, bosilgani ✓): 1 Kim · 2 Lahza · 3 O'zgarish
+- Tugmalar (ixcham, bir qatorda; joriysi accent, bosilgani ✓): 1 Kim · 2 Lahza · 3 O'zgarish *(✎ F-1015-164: tugmalar bashoratdan keyin chiqadi; bosiladigani faqat joriysi, bosilgani — «✓ nom» yozuvi, keyingisi hali ko'rinmaydi)*
 - **Harakat → Vizual o'zgarish:**
   1. «Kim» → funksiya nomlari xiralashib chetga suriladi; 1-uyaga bitta odam qiyofasi kiradi, ostida yorliq «tashkilotchi».
      `QIzoh`: Ro'yxatda odam yo'q edi — bu yerda bitta odam bor: tashkilotchi.
@@ -197,7 +198,7 @@ namunalar: 13-Modul `02-PmMonetization-v3.md` + `02-FILTR.md` · pilot `01-PmInv
 ## 4 · iPhone  ← QVoqea (PM keys K19; SABOQ 2, 3, 8, 26)
 - Eyebrow: Biznes olamidan
 - Sarlavha: **iPhone 2007-yilda nima bilan ajralib turgan?** (44)
-- Nuqtalar (3) · yorliq **iPhone · N/3** (bashorat kartasida ham). Ekranda uch blok: sahna · nuqtalar qatori · bashorat (SABOQ 26).
+- Nuqtalar qatori yo'q — kadrni tugma «Voqea davomi (N/3)» aytadi; bashorat kartasi yorlig'i — **iPhone** *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*. Ekranda uch blok: Mentor · sahna · bashorat (SABOQ 26).
 - Brend tanishtiruvi (1/3 sahna ustidagi bitta kulrang qator, S-018): iPhone — Apple kompaniyasining telefoni. Nokia va BlackBerry — 2007-yilda telefon chiqargan kompaniyalar.
   Nomlar o'z rangida (iPhone — qora-kulrang · Nokia — ko'k · BlackBerry — qora; 11-Modul bilan bir), logotip yo'q.
 - Mentor — kadr gapini aytadi, har kadrda almashadi (≤ 2 gap; SABOQ 8). Sahnada faqat kadr nomi va jonli maket.
@@ -241,9 +242,9 @@ namunalar: 13-Modul `02-PmMonetization-v3.md` + `02-FILTR.md` · pilot `01-PmInv
 - Eyebrow: Tushuncha · hikoya va bo'laklar
 - Sarlavha: **Hikoya pitchning qaysi bo'laklariga tushadi?** (44)
 - Mentor: Tugmalarni birma-bir bosing va hikoya qismlari qaysi bo'lakka tushishini ko'ring.
-- Bashorat (ballsiz; S-015 — bitta o'lchov: son, o'sish tartibida): **Mentor hikoyasi nechta bo'lakka tushadi?** · Bittasiga · Ikkitasiga · Uchtasiga — tanlangach ixcham qator; tugmalar shundan keyin yoqiladi.
+- Bashorat (ballsiz; S-015 — bitta o'lchov: son, o'sish tartibida): **Mentor hikoyasi nechta bo'lakka tushadi?** · Bittasiga · Ikkitasiga · Uchtasiga — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*.
 - Vizual (keng; telefonsiz — SABOQ 24): `HikoyaSahna` — **tepada** uch uya (2-ekrandan, to'liq: tashkilotchi · lahza · o'zgarish) · **pastda** pitch tasmasi: olti bo'lak, har birida Mentor qoralamasining birinchi qatori kulrang, ostida taymer chizig'i 0–5:00 (40·30·90·60·30·50); Muammo ustida kichik pufak `HAKAM_SAVOL` «Bu muammo borligini qayerdan bilasiz?».
-- Tugmalar (ixcham, bir qatorda): 1 Muammo · 2 Yechim · 3 Raqamlar
+- Tugmalar (ixcham, bir qatorda): 1 Muammo · 2 Yechim · 3 Raqamlar *(✎ F-1015-164: tugmalar bashoratdan keyin chiqadi; bosiladigani faqat joriysi, bosilgani — «✓ nom» yozuvi, keyingisi hali ko'rinmaydi)*
 - **Harakat → Vizual o'zgarish:**
   1. «Muammo» → kim uyasidagi odam qiyofasi va lahza uyasidagi gap birga Muammo bo'lagi boshiga uchadi (qiyofa bo'lak yonida qoladi, gap accent), undan keyin kulrang Mentor gaplari turadi: «O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 5 o'yinchidan 4 tasida…»; taymerdagi Muammo qismining boshi (≈8 s) yashil bo'yaladi.
      `QIzoh`: Lahza Muammoni ochadi; dalil esa bu bitta odamda emasligini aytadi: 5 o'yinchidan 4 tasida.
@@ -281,8 +282,8 @@ namunalar: 13-Modul `02-PmMonetization-v3.md` + `02-FILTR.md` · pilot `01-PmInv
   - `pm-m12d1-pitch.bolaklar.muammo` (`string`) → Lahza kartasi ustida kulrang qator «Pitchingizdagi Muammo: {matn}» (uzun bo'lsa «…» bilan bir qatorga).
   - `pm-m12d1-pitch.bolaklar.yechim` (`string`) → O'zgarish kartasi ustida kulrang qator «Pitchingizdagi Yechim: {matn}».
   - Kalit yo'q yoki maydon `null` — qator chiqmaydi, karta bo'sh. `pm-m12d2-hikoya` oldin saqlangan bo'lsa — kartalar shundan to'ldiriladi (tahrir rejimi).
-- **Tepada — ixcham chiziq «Hikoyam · n/3»:** qism nomlari (Kim · Lahza · O'zgarish), saqlangani ✓ (bo'sh uzuq qatorlar yo'q, SABOQ 17).
-- **Markazda — bitta katta karta (joriy; qism tugmalari 1–3 — joriysi accent, saqlangani ✓):** karta sarlavhasi — qism nomi; maydon (yorliq input ichida — E 43: raqam belgisi + placeholder); belgi sanog'i; ostida bitta kulrang qator; tugmalar bir qatorda: «Saqlash» · o'ngda «Yordam».
+- **Tepada — ixcham chiziq «Hikoyam»** (sanoq tugmada *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*): qism nomlari (Kim · Lahza · O'zgarish), saqlangani ✓ (bo'sh uzuq qatorlar yo'q, SABOQ 17).
+- **Markazda — bitta katta karta (joriy; qism tugmalari 1–3 — joriysi accent, saqlangani ✓):** karta sarlavhasi — faqat qism nomi (raqami tugmada) *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*; maydon (yorliq input ichida — E 43: raqam belgisi + placeholder); belgi sanog'i; ostida bitta kulrang qator; tugmalar bir qatorda: «Saqlash» · o'ngda «Yordam».
   1. **Kim** — placeholder `Kimning lahzasi? Rolini yozing, ism emas` · sanoq «n / 60» · kulrang: Rol bilan yozing: o'yinchi, sotuvchi, ota-ona — ism emas.
   2. **Lahza** — placeholder `Qaysi kuni, qayerda, nima bo'ldi?` · sanoq «n / 160» · kulrang: Bo'lib o'tgan voqeani yozing — o'ylab topilmaydi.
   3. **O'zgarish** — placeholder `Mahsulot bilan hozir nima boshqacha?` · sanoq «n / 160» · kulrang: Mahsulot bugun ko'rsata oladigan narsani yozing, va'dani emas.
@@ -307,7 +308,7 @@ namunalar: 13-Modul `02-PmMonetization-v3.md` + `02-FILTR.md` · pilot `01-PmInv
 - Xulosa (o'quvchi ma'lumotidan, P-046; faqat 3/3 da): Hikoyangiz yozildi: kim, lahza va o'zgarish — uchalasi kartada. (63)
 - Tugma (pastki): Uch kartani yozing (N/3) → Davom etish (jonli darsda mentor o'tkazishi mumkin — `optionalLive`).
 - Keyingi bosiladigan joy: joriy maydon (accent, to'lqin) → «Saqlash» (maydon yozilgach halqada) → «Davom etish».
-- Artefakt-strip (U-042): shu ekrandan — «Hikoyam · n/3» (ixcham); 9, 10-ekranlarda ko'rinadi; test, arena, podium va yakunda yo'q (E 50).
+- Artefakt-strip (U-042): shu ekrandan — «Hikoyam» (ixcham; «Hikoyam» kartasi sarlavhasida ham sanoq yo'q — bo'sh qator o'zi ko'rinadi *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*); 9, 10-ekranlarda ko'rinadi; test, arena, podium va yakunda yo'q (E 50).
 - Nishon: My Story! (3/3 saqlanganda — bonus, ish bajarilgan; P-048).
 - Mentor rejimi: forma o'rniga Mentor misolining «Hikoyam» kartasi (A-6 jadvali); o'quvchilar o'z ekranida yozadi. Mentor statistikasi: «Uch kartani yozganlar».
 - O'qituvchi eslatmasi: ≈18 daqiqa. Eng ko'p xato: lahza o'rniga umumiy gap («o'quvchilar qiynaladi») · lahza o'rniga funksiyalar · o'zgarish o'rniga va'da («hamma ishlatadi»). Lahza — o'quvchi o'zi ko'rgan yoki intervyuda eshitgan voqea (9-Modul qoidasi: o'ylab topilmaydi).
@@ -318,13 +319,13 @@ namunalar: 13-Modul `02-PmMonetization-v3.md` + `02-FILTR.md` · pilot `01-PmInv
 - Eyebrow: Mustaqil ish · video
 - Sarlavha: **Hikoyangizni 1 daqiqada telefonga yozing.** (41)
 - Mentor: Avval ota-onangiz bilan gaplashganingizni belgilang, so'ng «Taymerni boshlash»ni bosib hikoyani aytib bering.
-- Chap: «Hikoyam» kartasi (8-ekrandan, ixcham; uch qator) — aytayotganda qarab turish uchun. Karta yo'q bo'lsa — Mentor misolining kartasi, ustida kulrang yorliq «Mentor misoli».
+- Chap: «Hikoyam» kartasi (8-ekrandan, ixcham; uch qator) — aytayotganda qarab turish uchun. Karta yo'q bo'lsa — Mentor misolining kartasi (sarlavhasi «Mentor misoli»; ustidagi kulrang yorliq takrorlardi — olindi *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*; 9 va 10-ekran).
 - O'ng: taymer — chiziq 0–1:00 va son «m:ss»; 1:00 dan keyin to'xtamaydi — chiziq oxirigacha yetadi, yonida kulrang «+m:ss» (12-Modul taymer naqshi). Taymer ostida ikki kulrang qator:
   - Video faqat telefoningizda qoladi: hech kimga yuborilmaydi va internetga qo'yilmaydi. (85)
   - Yuzingiz ko'rinishi shart emas — ovoz yetadi. Kadrda boshqa odam bo'lmasin. (75)
 - **Rozilik qatori (taymerdan oldin; 9-dars so'zlari — M-q7 A; 02-FILTR 1):** Video yozishdan oldin tanlang: **«Ota-onam rozi»** · **«Hali gaplashmadim»** (har birining o'z chegarasi). «Ota-onam rozi» → «Taymerni boshlash» yoqiladi — yozish yo'li.
   «Hali gaplashmadim» → kulrang qator: Hikoyani taymer bilan ovoz chiqarib ayting — bu ham tugagan ish. (64) · «Taymerni boshlash» yoqiladi, to'xtatilgach faqat **«Aytdim»** tugmasi (video yozilmaydi; `video.yozildi: false`). Tanlov kalitga yozilmaydi (sessiya); «Hali gaplashmadim» — to'g'ri javob, sanalmaydi.
-- Tugmalar: «Taymerni boshlash» → (bosilgach) «To'xtatish» → (to'xtatilgach) ikki tugma bir qatorda: «Video yozildi» · «Yozib bo'lmadi».
+- Tugmalar: «Taymerni boshlash» (rozilik tanlangach chiqadi; undan oldin ko'rinmaydi *(✎ F-1015-164)*) → (bosilgach) «To'xtatish» → (to'xtatilgach) ikki tugma bir qatorda: «Video yozildi» · «Yozib bo'lmadi».
   - «Yozib bo'lmadi» → kulrang qator: Hikoyani taymer bilan ovoz chiqarib ayting. Uyda ruxsat va imkon bo'lsa, keyin yozasiz. (87) (shartsiz «uyda yozasiz» yo'q — 02-FILTR 12)
 - **Harakat → Vizual o'zgarish:** «Taymerni boshlash» → chiziq uzaya boshlaydi, son sanaydi, «Hikoyam» kartasida qatorlar navbat bilan yengil yonadi (kim → lahza → o'zgarish; vaqtga bog'liq emas, har 20 s da keyingisi);
   «To'xtatish» → son qotadi (masalan «0:52»), 1:00 dan oshgan bo'lsa yonida «+m:ss» qoladi; «Video yozildi» → kartaning tepasida kichik yorliq «video ✓»; «Yozib bo'lmadi» yoki «Aytdim» → yorliq «aytildi».
@@ -420,6 +421,7 @@ namunalar: 13-Modul `02-PmMonetization-v3.md` + `02-FILTR.md` · pilot `01-PmInv
 - Nishonlaringiz — n/4 (pastda; mentor rejimida yo'q).
 - Tartib (E 50): belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Uyga vazifa · Keyingi dars · Nishonlaringiz. «Bugungi asosiy fikr» qutisi, holat yorliqlari, artefakt-strip — yakunda yo'q. Ichki skroll qutisi yo'q (SABOQ 18).
 - Tugmalar: Orqaga · Qaytadan · Yakunlash ✓
+✎ F-1015-123 (16.10): uy vazifasi kartasi P-025 ko'rinishida — qadam raqami ①②③ belgisi o'rniga raqam-doira (24px), maydonlar ramkali quti; matn o'zgarmagan.
 - Izoh (MD): «Kim uchun» — HwCard yorlig'i (01 bilan bir). Muddat «keyingi darsgacha» — keyingi dars nomi faqat «Keyingi dars» qatorida (T-038; 3-dars mazmuni va'da qilinmaydi). ② — ixtiyoriy («Xohlasangiz» — 02-FILTR 19), real odam bilan, lekin baho so'ralmaydi: faqat qaysi lahza esda qolgani (javob yozilmaydi, kalitga tushmaydi).
   ① va ③ — shartli (ishi qolmagan o'quvchiga ko'rinmaydi — sinf 14). Video uyda ham telefonda qoladi.
 
