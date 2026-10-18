@@ -1,0 +1,11 @@
+import { chromium } from 'playwright-core';
+const OUT = process.argv[2]; const ID = 'pm-m9d16-v2';
+const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome', headless: true });
+const ctx = await b.newContext({ viewport: { width: 390, height: 844 } }); await ctx.route(/^https?:\/\//, r => r.abort());
+await ctx.addInitScript((id) => { for (const r of ['mentor','learner','student','self']) { localStorage.setItem('inetOnboarded_'+r,'1'); localStorage.setItem('hcOnboarded_'+r,'1'); } localStorage.setItem('liveSession:'+id, JSON.stringify({mode:'self'})); localStorage.setItem('ccProgress:'+id, JSON.stringify({screen:4,maxReached:4,answers:{},earned:[],startedAt:Date.now(),total:11,savedAt:Date.now()})); }, ID);
+const p = await ctx.newPage(); await p.goto('file://' + OUT + '/m916-uz/_p.html'); await p.waitForSelector('.lesson-root'); await p.waitForTimeout(900);
+await (await p.$$('.q-bashorat button'))[0].click(); await p.waitForTimeout(1500);
+const r = await p.evaluate(() => { const q = document.querySelector('.pt-qq'); const t = document.querySelector('.pt-tel, .pt-uch, .zoomable'); const c = document.querySelector('.stage-content'); return { qqTop: q && Math.round(q.getBoundingClientRect().top), vizTop: t && Math.round(t.getBoundingClientRect().top), vh: innerHeight, scroll: c && c.scrollTop }; });
+console.log(JSON.stringify(r));
+await p.screenshot({ path: OUT + '/m916-uz/t344-taxmindan-keyin-390.png' });
+await b.close();

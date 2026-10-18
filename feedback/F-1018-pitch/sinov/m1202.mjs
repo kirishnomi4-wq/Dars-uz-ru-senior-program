@@ -1,0 +1,41 @@
+// F-1018-12 · m12-02 Screen10 (2-raund: sherikka 1 daqiqa → uch savol) tekshiruvi. Chaqirish: node feedback/F-1018-pitch/sinov/m1202.mjs <suratlar/m1202>
+import { chromium } from 'playwright-core';
+const OUT = process.argv[2]; const ID = 'pm-m12d2-v2';
+const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome', headless: true });
+const errs = [];
+const HIK = { kim: 'Mahalla futbol tashkilotchisi', lahza: "Juma kuni 18:00 da maydonga 6 kishi keldi, o'yin bo'lmadi.", ozgarish: "Ilovada «Boraman» bosildi — shanba 10 kishi keldi.", video: { yozildi: true, vaqt: 58, lahzaBilan: null, royxatYoq: null, vaqtgaSigdi: null }, savedAt: Date.now() };
+const ochish = async (prog, hik, w = 1280, h = 820) => {
+  const ctx = await b.newContext({ viewport: { width: w, height: h } }); await ctx.route(/^https?:\/\//, r => r.abort());
+  await ctx.addInitScript(([id, pr, hk]) => { for (const r of ['mentor','learner','student','self']) { localStorage.setItem('inetOnboarded_'+r,'1'); localStorage.setItem('hcOnboarded_'+r,'1'); } localStorage.setItem('liveSession:'+id, JSON.stringify({mode:'self'})); localStorage.setItem('ccProgress:'+id, pr); if (hk) localStorage.setItem('pm-m12d2-hikoya', hk); }, [ID, JSON.stringify(prog), hik ? JSON.stringify(hik) : null]);
+  const p = await ctx.newPage(); p.on('pageerror', e => errs.push(e.message));
+  await p.goto('file://' + OUT + '/m1202-uz/_p.html'); await p.waitForSelector('.lesson-root'); await p.waitForTimeout(900); return p;
+};
+const nav = (p) => p.evaluate(() => { const b = [...document.querySelectorAll('.stage-nav button')].pop(); return b ? { t: b.innerText.trim(), d: b.disabled } : null; });
+const mentor = (p) => p.innerText('.mentor').then(t => t.replace(/\n/g, ' ').slice(0, 110)).catch(() => '?');
+const log = (x) => console.log(x);
+const pr = { screen: 6, maxReached: 6, answers: {}, earned: [], startedAt: Date.now(), total: 10, savedAt: Date.now() };
+let p = await ochish(pr, HIK);
+log('boshida: ' + JSON.stringify(await nav(p)) + ' · chip yopiq: ' + (await p.$eval('.sp-vq .q-chip', x => x.disabled)) + ' · mentor: ' + await mentor(p));
+await p.screenshot({ path: OUT + '/m1202-uz/t-r2-boshi.png' });
+await p.locator('button', { hasText: '1 daqiqani boshlash' }).click(); await p.waitForTimeout(1500);
+log('yurmoqda: ' + (await p.innerText('.sp-r2')).replace(/\n/g, ' ') + ' · mentor: ' + await mentor(p));
+await p.locator('.sp-r2 button', { hasText: "To'xtatish" }).click(); await p.waitForTimeout(400);
+log("to'xtagach: " + JSON.stringify(await nav(p)) + ' · mentor: ' + await mentor(p) + ' · vaqt yozuvi: ' + (await p.innerText('.sp-vq-vaqt').catch(() => "yo'q")));
+const rows = await p.$$('.sp-vq');
+await (await rows[0].$('text=Ha')).click(); await p.waitForTimeout(200);
+await (await rows[1].$("text=Yo'q")).click(); await p.waitForTimeout(300);
+log("Yo'q dan keyin: maslahat=" + !!(await rows[1].$('.sp-vq-m')) + ' · Kartani ochish=' + !!(await p.$('text=Kartani ochish')));
+await (await rows[2].$('text=Ha')).click(); await p.waitForTimeout(800);
+log('uchala: ' + JSON.stringify(await nav(p)) + ' · xulosa: ' + (await p.innerText('.q-xulosa').catch(() => "YO'Q")).slice(0, 80) + ' · nishon: ' + !!(await p.$('.acu-overlay')));
+if (await p.$('.acu-overlay')) { await p.click('.acu-overlay'); await p.waitForTimeout(400); }
+await p.screenshot({ path: OUT + '/m1202-uz/t-r2-tugadi.png' });
+const prog = await p.evaluate((id) => JSON.parse(localStorage.getItem('ccProgress:' + id) || '{}'), ID);
+const hk = await p.evaluate(() => JSON.parse(localStorage.getItem('pm-m12d2-hikoya') || '{}'));
+log('saqlandi: earned=' + JSON.stringify(prog.earned) + ' · video=' + JSON.stringify(hk.video));
+const p2 = await ochish({ ...prog, screen: 6 }, hk);
+log('qayta ochildi: ' + JSON.stringify(await nav(p2)) + ' · ha/yoq: ' + (await p2.$$('.sp-vq.ha')).length + '/' + (await p2.$$('.sp-vq.yoq')).length);
+const p3 = await ochish({ ...prog, screen: 9 }, hk);
+log('yakun sarlavha: ' + (await p3.innerText('.q-yakun h1, .q-yakun h2, h1').catch(() => '?')).slice(0, 80));
+const pm = await ochish(pr, HIK, 390, 844); await pm.screenshot({ path: OUT + '/m1202-uz/t-r2-390.png', fullPage: true });
+log('pageerror: ' + errs.length + (errs.length ? ' ' + errs[0] : ''));
+await b.close();

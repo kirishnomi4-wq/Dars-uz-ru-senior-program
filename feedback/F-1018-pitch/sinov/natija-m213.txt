@@ -1,0 +1,34 @@
+✅ eski v1 progress → 01/11 — 01/11
+✅ eski progress: pageerror yo'q
+✅ 01/11 kirish
+✅ 02/11 reja: «ikki marta ovoz chiqarib» + «saytingizni tekshirasiz»
+✅ 03/11 so'z-elagi
+✅ so'z-elagi: 3 so'z topildi → Davom — hit 3
+✅ 04/11 o'xshatish
+✅ o'xshatish: 3 qatlam → Davom
+✅ 05/11 pitch matni: do'kon eslatmasi (ccDokon)
+✅ pitch matni: 5 bo'lak saqlandi → Davom
+✅ 06/11 test: «tushunmadim»
+✅ test: to'g'ri izoh
+✅ 07/11 bitta gap: o'z pitchidan yig'ildi
+✅ 08/11 yoddan ayting: 3 hukm tugmasi
+✅ sherik «Tushundim» → Davom
+✅ 09/11 sayt: do'kon nomi + havola tugmasi + 3 karta
+✅ sayt: ✗ → yo'riq + «To'g'riladim»
+✅ sayt: Gemini so'rov namunasi (script.js bilan)
+✅ sayt: 3/3 → Davom
+✅ 10/11 natijalar
+✅ 11/11 yakun: nishonlar 4/4 (jargon, plain, ear, site) — 4/4
+✅ onFinished: 1 ballik savol (final 1/1), passed — tq 1 fin 1/1
+✅ oqim: pageerror yo'q
+✅ RECAPS kaliti = test indeksi — RECAPS {5} · test 5
+✅ INLINE_KEYS = { s5: 0, ustaxona: -1 }
+✅ screens 11 = SCREEN_META 11
+✅ HtmlCompiler importi yo'q · ScreenFlashcards yo'q · KODING_KEY yo'q
+✅ 390px ekran 2: toshish yo'q, xato 0
+✅ 390px ekran 5: toshish yo'q, xato 0
+✅ 390px ekran 7: toshish yo'q, xato 0
+✅ 390px ekran 8: toshish yo'q, xato 0
+✅ 390px ekran 9: toshish yo'q, xato 0
+
+32/32

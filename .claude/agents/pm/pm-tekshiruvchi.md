@@ -208,3 +208,14 @@ keyin `disabled` bo'ladigan tugma ichidagi har belgi/matn `span`ining o'z `color
 7. **Emoji zichligi** — 161-qonun. Ovlash: `npm run lint:emoji -- <fayl>` — 0 error.
 8. **Codemod maydonni o'chirgan** — e4d4ced emoji-tozalash `ico:` maydonini olib tashlagan, kod esa `s.ico === '🎯'` bilan yorliq tanlardi
    (1, 4, 7-darslar). Qoida: kod belgiga emas, alohida `phase`/`kind` maydoniga tayansin. Ovlash: `grep -n "\.ico === '"` → maydon borligini tekshir.
+
+## 🔴 F-1018-10 OV-BANDI — DARS CSS'IDAN «O'LIK» DEB O'CHIRILGAN KEYFRAMES QOLIP/JONLI-MODULGA KERAK EDI (2026-10-18; 5 pitch darsida yakun «Endi siz bilasiz» ro'yxati ko'rinmas edi)
+- Belgi: `src/qolip/qolipCss.js` (`.recap li { animation: fade-in-up …; opacity: 0 }`) va `src/live/*` klasslari animatsiya NOMINI dars faylidagi `@keyframes` dan oladi. Dars CSS'i ichida nom ishlatilmagani — o'lik emas.
+- Ov: dars `<style>` ida `@keyframes` ro'yxatini zaxira/skelet (`src/skelet/NamunaDars.jsx`) bilan solishtir; kamaygan bo'lsa — har yo'qolgan nomni `qolipCss.js`, `src/live/`, dars JSX'ida (`style={{ animation }}`) qidir. `fade-in-up`, `cs-charge`, `rev-in`, `think-pulse`, `tap-hint-pulse`, `bot-status-danger`, `ns-dots-pulse`, `rz-shake`, `fl-move`, `lp-done-pop` — har qolip-darsda bo'lishi shart.
+- Tez tekshiruv (brauzer): yakun ekranida `.recap li` computed `opacity` 1 va `animationName` aniqlangan keyframes'da bor (`document.styleSheets` → type 7). Namuna: `feedback/F-1018-pitch/sinov/recap-debug.mjs`.
+- Tuzatish: keyframes'ni zaxiradan qaytarish (`}</style>` oldiga); o'lik-CSS tozalovchilarda keyframe-o'tish o'chirilgan (F-1018-10).
+
+## 🔴 F-1018-13 OV-BANDI — O'ZGARUVCHI NOMINI REGEX BILAN ALMASHTIRISH O'QUVCHI/MENTOR MATNIGA HAM TEGADI (2026-10-19; m9-16 Mentor eslatmasida «1 daqiqada aytildi aytadi»)
+- Belgi: qurish-skriptida nom to'qnashuvi (`qayta` → `aytildi`) butun faylga `re.sub` bilan qo'llangan; `tr({ uz: "… qayta aytadi" })` ichidagi so'z ham almashib, buzuq gap qoldi. esbuild, undef, til-lint buni ko'rmaydi (gap grammatik jihatdan «so'z»lardan iborat).
+- Ov: qurish-skriptidagi har nom-almashtirish uchun eski so'zni matn satrlarida qidir (`grep -n "<yangi nom> " <fayl>` — yangi nomdan keyin fe'l/so'z kelsa shubhali); diff'da `tr({` ichidagi o'zgarishlarni alohida ko'r.
+- Tuzatish: almashtirishni faqat identifikator chegarasida qil (`\bqayta\b(?=\s*[)=,;.&|?])` yoki aniq satrlar ro'yxati), matn satrlariga tegma.

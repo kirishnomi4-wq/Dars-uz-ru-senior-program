@@ -1,0 +1,12 @@
+s11 tuzatilgan: {"t":"Qayta ayting (1 daqiqa)","d":true} · 2-raund bloki: true
+taymer yurdi: 2-raund: tuzatilgan bo'lakni ovoz chiqarib 1 daqiqada qayta ayting — endi zal savoliga javob bo'ldimi?  0:01 Hozir siz gapirasiz T
+to'xtagach: {"t":"Davom etish","d":false} · xulosa: 1 · nishon toast: true
+saqlandi: earned=["threeMinutes","fixedIt","secondTake"] · answers[7].qayta=1
+qayta ochildi: {"t":"Davom etish","d":false} · xulosa: 1
+ilova boshida: {"t":"Tekshiring (0/3)","d":true} · kartalar: 3 · havola tugmasi: false
+manzil yozilgach havola: https://mening-ilovam.onrender.com
+1 ✓, 2 ✗: {"t":"Tekshiring (1/3)","d":true} · tuzatish ko'rsatmasi: true
+3/3: {"t":"Davom etish","d":false} · xulosa: 1
+saqlandi: answers[8].ilova={"ochildi":"ok","harakat":"fixed","tuzatish":"ok"} · artefakt ilova=mening-ilovam.onrender.com · qayta=undefined
+ilova qayta ochildi: {"t":"Davom etish","d":false} · havola: https://mening-ilovam.onrender.com
+pageerror: 0

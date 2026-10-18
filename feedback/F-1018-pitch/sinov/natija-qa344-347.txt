@@ -1,0 +1,9 @@
+344 qadamlar: ["1 Ilovani oldindan oching"] · mentor: Mentor · ko'rsatmani ochish ▾ 1-qadam: tugmani bosing — «Ilovani oldindan oching».
+344 bosilgach mentor: Mentor · ko'rsatmani ochish ▾ Telefonga qarang — nima o'zgaryapti?
+344 2-qadamda: ["✓\nIlovani oldindan oching","2 Asosiy harakatni ko'rsating"] · mentor: Mentor · ko'rsatmani ochish ▾ 2-qadam: tugmani bosing — «Asosiy harakatni ko'rsating».
+345 1-bosish (1 s): 0:01 Hali erta: pitch 3 daqiqa — oxirigacha ayting. Baribir to'xtatish
+345 2-bosish: varaq faol=true · mentor: Mentor Har bo'lakka o'zingiz ✓ yoki ✗ qo'ying, keyin «Saqlash»ni bosin
+346 Tuzatish belgisi: 1 · xira: 3 · mentor: Mentor «Muammo» bo'lagi ✗ oldi — varaqda «Tuzatish»ni bosing.
+346 ochilgach mentor: Mentor «Muammo» bo'lagini izohga qarab qayta yozing va «Saqlash»ni bosing.
+347 savol: Kitob ilovangiz Database'ida 12 ta kitob bor; 5 tasini sinab ko'rish uchun o'zingiz qo'shgansiz. Nima deysiz? · vizual: false
+pageerror: 0

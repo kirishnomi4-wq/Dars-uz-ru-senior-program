@@ -62,8 +62,9 @@ function useIsMobile(breakpoint = 640) {
   return isMobile;
 }
 
-const LESSON_META = { lessonId: 'pm-m12d1-v1', lessonTitle: { uz: 'Investorga pitchni qanday tuzasiz?', ru: 'Как построить питч для инвестора?' } }; // 14-Modul 1-dars (LMS), 1-to'lqin pilot — MD feedback/F-1008-14modul/01-PmInvestorPitch-v3.md
-// 16 ekran (MD v3) · ballik testlar 4, 6, 8, 12 (ketma-ket emas — P-012)
+const LESSON_META = { lessonId: 'pm-m12d1-v2', lessonTitle: { uz: 'Investorga pitchni qanday tuzasiz?', ru: 'Как построить питч для инвестора?' } }; // 14-Modul 1-dars (LMS), 1-to'lqin pilot — MD feedback/F-1008-14modul/01-PmInvestorPitch-v3.md
+// 10 ekran (v2 · F-1018-11 · 222-qonun): kirish · reja · olti bo'lak · UCH YANGI BO'LAK (Bozor → Jamoa → Keyingi qadam bitta ekranda, chip-qator) · tartib-mashqi · qoralama (ustaxona) · SHERIKKA O'QING (2 daq, sherik — investor: olti savolga javob bormi) · yakuniy savol · podium · yakun.
+//   Olindi: Airbnb (s3), 1-, 2-, 3-savol (s4, s6, s8), kartochkalar. Ballik test — bitta (s12). Yakuniy MD: feedback/F-1018-pitch/YAKUNIY-08-m12-01.md
 const HW_TOKENS = [
   { t: { uz: 'pitch', ru: 'питч' }, l: 8, tp: 22, s: 13, d: 6 },
   { t: { uz: 'qoralama', ru: 'черновик' }, l: 66, tp: 16, s: 12, d: 7.5 },
@@ -71,22 +72,16 @@ const HW_TOKENS = [
   { t: { uz: "so'rov", ru: 'просьба' }, l: 78, tp: 68, s: 13, d: 6.8 }
 ];
 const SCREEN_META = [
-  { id: 's0',        type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },
-  { id: 's1',        type: 'rule',        template: 'custom',   scored: false, scope: null },
-  { id: 'oltiBolak', type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 'airbnb',    type: 'case',        template: 'custom',   scored: false, scope: null },
-  { id: 's4',        type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
-  { id: 'bozor',     type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's6',        type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
-  { id: 'jamoa',     type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's8',        type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
-  { id: 'keyingi',   type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 'tartib',    type: 'practice',    template: 'custom',   scored: false, scope: null },
-  { id: 'practice',  type: 'practice',    template: 'custom',   scored: false, scope: null },
-  { id: 's12',       type: 'test',        template: 'MCScreen', scored: true,  scope: 'final' },
-  { id: 'podium',    type: 'stats',       template: 'custom',   scored: false, scope: null },
-  { id: 'sflash',    type: 'flashcards',  template: 'custom',   scored: false, scope: null },
-  { id: 's15',       type: 'summary',     template: 'custom',   scored: false, scope: null }
+  { id: 's0',        type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },   // 0 · QKirish
+  { id: 's1',        type: 'rule',        template: 'custom',   scored: false, scope: null },     // 1 · QReja
+  { id: 'oltiBolak', type: 'exploration', template: 'custom',   scored: false, scope: null },     // 2 · olti bo'lak
+  { id: 'uchBolak',  type: 'exploration', template: 'custom',   scored: false, scope: null },     // 3 · Bozor → Jamoa → Keyingi qadam (bitta ekran, 3 qism)
+  { id: 'tartib',    type: 'practice',    template: 'custom',   scored: false, scope: null },     // 4 · Mentor qoralamasi — tartib
+  { id: 'practice',  type: 'practice',    template: 'custom',   scored: false, scope: null },     // 5 · pitch qoralamasi (ustaxona)
+  { id: 'sherik',    type: 'practice',    template: 'custom',   scored: false, scope: null },     // 6 · sherikka o'qing (222.1, 1-raund)
+  { id: 's12',       type: 'test',        template: 'MCScreen', scored: true,  scope: 'final' },  // 7 · yakuniy savol
+  { id: 'podium',    type: 'stats',       template: 'custom',   scored: false, scope: null },     // 8 · podium
+  { id: 's15',       type: 'summary',     template: 'custom',   scored: false, scope: null }      // 9 · QYakun
 ];
 const TOTAL_SCREENS = SCREEN_META.length;
 const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => i !== null);
@@ -286,36 +281,11 @@ const RcFlow = ({ items, sep = '→' }) => (
 );
 
 // ⚡ JONLI: javob kaliti (ekran id → to'g'ri variant indeksi). -1 — sentinel (variant yo'q, ballsiz ekran).
-// To'g'ri javob o'rinlari (MD): s4 B · s6 D · s8 A · s12 C — har biri har xil.
-// MD KOD 14 dagi ballsiz ekran sentinel'lari (oltiBolak, airbnb, bozor, jamoa, keyingi, tartib) — jsx-lint «o'lik kalit» (submitAnswer ga uzatilmaydi), shuning uchun yo'q; practice — 11-ekran signali.
-const INLINE_KEYS = { s4: 1, s6: 3, s8: 0, s12: 2, practice: -1 };
+// v2 (222-qonun): ballik test bitta — s12 C. Ballsiz ekran sentinel'lari yo'q (jsx-lint «o'lik kalit»); practice — ustaxona signali.
+const INLINE_KEYS = { s12: 2, practice: -1 };
 // 📖 RECAPS — har ballik test uchun 3 karta (kalit = ekran INDEKSI; PM: emoji o'rniga raqam — S-026)
 const RECAPS = {
-  4: {
-    title: { uz: "Investor uchun nima qo'shiladi", ru: 'Что добавляется для инвестора' },
-    cards: [
-      { ic: '1', h: { uz: "Airbnb taqdimotida muammo va yechimdan keyin bozor, mahsulot va jamoa bo'lgan.", ru: 'В презентации Airbnb после проблемы и решения были рынок, продукт и команда.' } },
-      { ic: '2', h: { uz: "Bizning pitchga ham Bozor va Jamoa bo'laklari qo'shildi.", ru: 'В наш питч тоже добавились части «Рынок» и «Команда».' } },
-      { ic: '3', h: { uz: 'Jonli demo pitchda qoladi — Yechim ichida.', ru: 'Живое демо остаётся в питче — внутри Решения.' }, ask: { uz: "Pitchingizdagi qaysi ikki bo'lak yangi?", ru: 'Какие две части в вашем питче новые?' } }
-    ]
-  },
-  6: {
-    title: { uz: 'Bozorda qaysi son', ru: 'Какое число в Рынке' },
-    cards: [
-      { ic: '1', h: { uz: 'Bozor — mahsulotga muhtoj odamlar va biz bilgan ularning soni.', ru: 'Рынок — люди, которым нужен продукт, и известное нам их число.' } },
-      { ic: '2', h: { uz: 'Mentor misolida: guruhda 60 kishi, ilovada 6 tashkilotchi.', ru: 'В примере Ментора: в группе 60 человек, в приложении 6 организаторов.' } },
-      { ic: '3', h: { uz: "Manbasi yo'q son o'rniga — «hali tekshirilmagan».", ru: 'Вместо числа без источника — «ещё не проверено».' }, ask: { uz: 'Bozoringizdagi son qayerdan olingan?', ru: 'Откуда взято число в вашем Рынке?' } }
-    ]
-  },
-  8: {
-    title: { uz: "Jamoa bo'lagi", ru: 'Часть «Команда»' },
-    cards: [
-      { ic: '1', h: { uz: "Jamoa bo'lagida kim nima qilgani rost aytiladi.", ru: 'В Команде честно говорится, кто что сделал.' } },
-      { ic: '2', h: { uz: "Agent — dastur, jamoa a'zosi emas.", ru: 'Агент — инструмент, а не член команды.' } },
-      { ic: '3', h: { uz: "Sinab ko'rgan real odamlar ham aytiladi, lekin a'zo deb emas.", ru: 'Реальные люди, которые пробовали, тоже называются, но не как члены.' }, ask: { uz: 'Mahsulotingizda kim nima qildi?', ru: 'Кто что сделал в вашем продукте?' } }
-    ]
-  },
-  12: {
+  7: {
     title: { uz: 'Keyingi qadam', ru: 'Следующий шаг' },
     cards: [
       { ic: '1', h: { uz: "Keyingi qadamda — keyingi ish va bitta aniq so'rov.", ru: 'В Следующем шаге — следующее дело и одна точная просьба.' } },
@@ -594,21 +564,14 @@ const Kw = Jx; // kod bo'yog'i: kalit so'z (tag rangi)
 
 // ===== DARSNING BITTA VIZUALI (163, 180) — OltiBolakSahna: telefon (JamoaTelefon) · bo'laklar (besh | olti) · taymer chizig'i + «savol-javob» · hakamlar =====
 // Hakamlar — rol yorlig'i «hakam» + savol pufagi; odam figurasi chizilmaydi (13-Modul SABOQ P1).
-// Bitta manba: JAMOA_PITCH · JAMOA_PITCH_12 · HAKAM_SAVOL · BOZOR_SON · AIRBNB_KADR + o'quvchi qoralamasi (pm-m12d1-pitch).
+// Bitta manba: JAMOA_PITCH · JAMOA_PITCH_12 · HAKAM_SAVOL · BOZOR_SON + o'quvchi qoralamasi (pm-m12d1-pitch).
 // 12-Modul BeshDaqiqaSahna dan ko'chirilmagan — dars ichida yozildi (K-020). Rangli yon chiziq yo'q; reduced-motion — CSS da.
 // qolip-maket: ip-son ip-tahrir ip-uya q-dd-chip q-dd-slot
 const cxx = (...a) => a.filter(Boolean).join(' ');
 const NB = ' ';
 const MJ_RANG = '#2E9E4F'; // «Maydon Jamoa» — 11-Modul 9.62 yashili (9–13-Modul darslari bilan bir), logotipsiz
-const AIRBNB_RANG = '#FF5A5F'; // Airbnb — o'z rangi (10-Modul TAYANCHGA SAVOL 9), logotipsiz
 const MJ = () => <span className="ip-mj">Maydon Jamoa</span>;
-const Brend = ({ nom, rang }) => <span className="ip-brend" style={{ color: rang }}>{nom}</span>;
 const A = ({ children }) => <span className="italic" style={{ color: T.accent }}>{children}</span>;
-const brendAjrat = (s) => (typeof s === 'string' && s.includes('Airbnb'))
-  ? s.split('Airbnb').map((p, i) => <React.Fragment key={i}>{i > 0 && <Brend nom="Airbnb" rang={AIRBNB_RANG} />}{p}</React.Fragment>)
-  : s;
-
-// --- Saqlanadigan natija (tayanch 8) va o'qiladigan kalitlar (12, 13-Modul) ---
 const PITCH_KEY = 'pm-m12d1-pitch';
 const P12_KEY = 'pm-m10d12-pitch';
 const HISOBOT_KEY = 'pm-m10d10-hisobot';
@@ -666,14 +629,6 @@ const BOZOR_SON = [
   { id: 'ilova', son: { uz: '6 tashkilotchi', ru: '6 организаторов' }, kim: { uz: 'ilovada', ru: 'в приложении' }, manba: { uz: 'Database', ru: 'Database' }, gap: { uz: '; ilovada — 6 tashkilotchi.', ru: '; в приложении — 6 организаторов.' } },
   { id: 'boshqa', son: { uz: '?', ru: '?' }, kim: { uz: 'boshqa mahallalar', ru: 'другие махалли' }, manba: null, gap: { uz: 'Boshqa mahallalarni hali tekshirmaganmiz.', ru: 'Другие махалли мы ещё не проверяли.' } }
 ];
-// 3-ekran — K12 Airbnb pitch deck (bank so'zi aynan, raqamsiz; PM_Prompt_v8.md 228–231, tayanch 5)
-const AIRBNB_KADR = [
-  { h: { uz: 'Investorlar uchun taqdimot', ru: 'Презентация для инвесторов' }, m: { uz: "Airbnb — begonaning uyida ijaraga turish xizmati. Uning investorlar uchun birinchi taqdimoti — o'nga yaqin oddiy slayd.", ru: 'Airbnb — сервис, где можно снять жильё у незнакомого человека. Его первая презентация для инвесторов — около десятка простых слайдов.' } },
-  { h: { uz: 'Muammo va yechim', ru: 'Проблема и решение' }, m: { uz: 'Taqdimot muammo va yechimdan boshlangan.', ru: 'Презентация начиналась с проблемы и решения.' } },
-  { h: { uz: 'Muammodan jamoagacha', ru: 'От проблемы до команды' }, m: { uz: "Tartib shunday: muammo, yechim, bozor, mahsulot, jamoa. Taqdimot ochiq turadi: u eng ko'p tahlil qilinadigan pitchlardan biri.", ru: 'Порядок такой: проблема, решение, рынок, продукт, команда. Презентация лежит в открытом доступе: это один из самых разбираемых питчей.' } }
-];
-const SLAYD_NOM = [{ uz: 'Muammo', ru: 'Проблема' }, { uz: 'Yechim', ru: 'Решение' }, { uz: 'Bozor', ru: 'Рынок' }, { uz: 'Mahsulot', ru: 'Продукт' }, { uz: 'Jamoa', ru: 'Команда' }];
-const SLAYD_SONI = 10; // «o'nga yaqin» — ekranda son yozilmaydi
 
 // --- Ekran maqsadlari (PM: quruvchi + SCREEN_INTENTS; ekranga chiqmaydi) ---
 const SCREEN_INTENTS = [
@@ -921,7 +876,7 @@ const REJA = [
   { t: { uz: "Investor uchun pitch qanday tuzilishini bilib olasiz", ru: 'Узнаете, как устроен питч для инвестора' }, teg: { uz: "olti bo'lak", ru: 'шесть частей' } },
   { t: { uz: "Mahsulot kimga kerakligini va uni kim qilayotganini aytishni o'rganasiz", ru: 'Научитесь говорить, кому нужен продукт и кто его делает' }, teg: { uz: 'bozor · jamoa', ru: 'рынок · команда' } },
   { t: { uz: "Pitch oxirida nima so'rashni bilib olasiz", ru: 'Узнаете, о чём просить в конце питча' }, teg: { uz: 'keyingi qadam', ru: 'следующий шаг' } },
-  { t: { uz: "O'z mahsulotingiz uchun pitch qoralamasini yozasiz", ru: 'Напишете черновик питча для своего продукта' }, teg: { uz: 'qoralama', ru: 'черновик' } }
+  { t: { uz: "O'z mahsulotingiz uchun pitch qoralamasini yozasiz va uni sherigingizga 2 daqiqada o'qib berasiz", ru: 'Напишете черновик питча для своего продукта и прочитаете его партнёру за 2 минуты' }, teg: { uz: 'qoralama · sherik', ru: 'черновик · партнёр' } }
 ];
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const [tayyor, setTayyor] = useState(false);
@@ -988,91 +943,21 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 3 — AIRBNB (QVoqea; K12; Mentor kadr gapini aytadi, sahnada kadr nomi va jonli tasma; bashorat 2/3 da, ballsiz) =====
-const S3_TAXMIN = [{ k: 'boshida', t: { uz: 'Boshida', ru: 'В начале' } }, { k: 'ortasida', t: { uz: "O'rtasida", ru: 'В середине' } }, { k: 'oxirida', t: { uz: 'Oxirida', ru: 'В конце' } }];
-const AirbnbTasma = ({ b }) => (
-  <div className="ip-ab">
-    <div className="ip-ab-bosh"><Brend nom="Airbnb" rang={AIRBNB_RANG} /></div>
-    <div className="ip-ab-tasma">
-      {Array.from({ length: SLAYD_SONI }).map((_, i) => {
-        const nom = (i < 2 && b >= 1) || (i >= 2 && i < 5 && b >= 2) ? SLAYD_NOM[i] : null;
-        const savol = i >= 2 && i < 5 && b === 1;
-        return (
-          <span key={i} className={cxx('ip-ab-s', b >= 2 && (i === 2 || i === 4) && 'ajrat')} style={{ animationDelay: (i * 0.09) + 's' }}>
-            {nom ? <b key={'n' + b} style={{ animationDelay: ((i % 3) * 0.12) + 's' }}>{tr(nom)}</b> : savol ? <em>?</em> : null}
-          </span>
-        );
-      })}
-    </div>
-  </div>
-);
-const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [b, setB] = useState(storedAnswer ? 2 : 0);
-  const [taxmin, setTaxmin] = useState(storedAnswer?.taxmin ?? null);
-  const done = b >= 2;
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true, taxmin }); }, [done]); // eslint-disable-line
-  const tanla = (k) => { if (taxmin || b !== 1) return; setTaxmin(k); setTimeout(() => setB(2), kamHarakat() ? 0 : 650); };
-  const kadr = AIRBNB_KADR[b];
-  const tx = S3_TAXMIN.find(t => t.k === taxmin);
-  const davom = () => { if (b < 2) setB(b + 1); else onNext(); };
-  const yorliq = <Brend nom="Airbnb" rang={AIRBNB_RANG} />;
-  return (
-    <Stage eyebrow={tr({ uz: 'Biznes olamidan', ru: 'Из мира бизнеса' })} screen={screen} scrollSignal={b} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={b === 0 || done || (b === 1 && !!taxmin)} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Voqea davomi (${b + 1}/3)`, ru: `Продолжение истории (${b + 1}/3)` })} onClick={davom} /></>}>
-      <QVoqea
-        sarlavha={tr({ uz: <><Brend nom="Airbnb" rang={AIRBNB_RANG} /> investorlarga <A>qanday taqdimot ko'rsatgan?</A></>, ru: <>Какую презентацию <Brend nom="Airbnb" rang={AIRBNB_RANG} /> <A>показал инвесторам?</A></> })}
-        nuqtalar={<>
-          <Mentor key={'m' + b}>{brendAjrat(tr(kadr.m))}</Mentor>
-        </>}
-        karta={<div className="ip-voqea">
-          <span className="ip-voqea-h" key={'h' + b}>{tr(kadr.h)}</span>
-          <Zoomable><AirbnbTasma b={b} /></Zoomable>
-          {(b === 1 || (done && taxmin)) && ixchamBashorat(taxmin, <QBashorat yorliq={yorliq}
-            savol={tr({ uz: 'Shu besh slayd ichida Jamoa qayerda turgan?', ru: 'Где среди этих пяти слайдов стояла Команда?' })}
-            variantlar={S3_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) + (done && taxmin === v.k ? (v.k === 'oxirida' ? ' ✓' : ' ✕') : '') }))} tanlov={taxmin} onTanla={tanla} />)}
-          {done && <QXulosa><XulosaQ taxmin={tx && <TaxminQ togri={taxmin === 'oxirida'} aslida={tr({ uz: 'shu besh slayd ichida — oxirida', ru: 'среди этих пяти слайдов — в конце' })} />}
-            matn={tr({ uz: "Bu voqeada investorlar uchun taqdimotda bozor va jamoa slaydi ham bo'lgan.", ru: 'В этой истории в презентации для инвесторов были и слайды о рынке и команде.' })} /></QXulosa>}
-        </div>}
-      />
-    </Stage>
-  );
-};
-
-// ===== SCREEN 4 — 1-SAVOL (QuestionScreen → QTest; INLINE_KEYS.s4 = 1) =====
-const Screen4 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: "Tekshiruv · Airbnb'dagidek", ru: 'Проверка · как у Airbnb' })}
-    questionText="Airbnb'dagidek, zalga aytilgan pitchni investorga qanday moslaysiz?"
-    question={tr({ uz: <h2 className="title h-ask">Airbnb'dagidek, zalga aytilgan pitchni <A>investorga qanday moslaysiz?</A></h2>, ru: <h2 className="title h-ask">Как, по примеру Airbnb, <A>адаптировать для инвестора</A> питч, сказанный залу?</h2> })}
-    options={[
-      { uz: 'Jonli demoni pitchdan olib tashlayman', ru: 'Уберу живое демо из питча' },
-      { uz: "Bozor va Jamoa bo'laklarini qo'shaman", ru: 'Добавлю части «Рынок» и «Команда»' },
-      { uz: "Har bo'lakka uzun matn va jadval qo'shaman", ru: 'Добавлю в каждую часть длинный текст и таблицу' },
-      { uz: "Muammo bo'lagini pitch oxiriga ko'chiraman", ru: 'Перенесу часть «Проблема» в конец питча' }
-    ]} correctIdx={1}
-    explainCorrect={{ uz: 'Airbnb taqdimotida ham bozor va jamoa slaydi bo\'lgan.', ru: 'В презентации Airbnb тоже были слайды о рынке и команде.' }}
-    explainWrong={{
-      0: { uz: "Jonli demo pitchda qoladi — u Yechim ichida.", ru: 'Живое демо остаётся в питче — оно внутри Решения.' },
-      2: { uz: "Airbnb slaydlari oddiy bo'lgan, uzun emas.", ru: 'Слайды Airbnb были простыми, не длинными.' },
-      3: { uz: 'Airbnb taqdimoti muammodan boshlangan.', ru: 'Презентация Airbnb начиналась с проблемы.' },
-      default: { uz: 'Airbnb taqdimotida qaysi slaydlar bor edi?', ru: 'Какие слайды были в презентации Airbnb?' }
-    }}
-    vizual={<MiniOlti ajrat={['bozor', 'jamoa']} />} />
-);
-
-// ===== SCREEN 5 — BOZOR (QTushuncha; bashorat → 3 son kartasi ketma-ket: 1, 2 — Bozor bo'lagiga uchadi, 3 — silkinadi; telefonsiz — SABOQ 24) =====
+// ===== SCREEN 3 (v2) — UCH YANGI BO'LAK: QISM 1 BOZOR (QTushuncha; bashorat → 3 son kartasi ketma-ket: 1, 2 — Bozor bo'lagiga uchadi, 3 — silkinadi; telefonsiz — SABOQ 24) =====
 const S5_TAXMIN = [{ k: 'ilova', t: { uz: 'Faqat ilovadagi sonlar', ru: 'Только числа из приложения' } }, { k: 'ikki', t: { uz: 'Ilova va guruhdagi sonlar', ru: 'Числа из приложения и группы' } }, { k: 'shahar', t: { uz: 'Butun shahar sonlari', ru: 'Числа по всему городу' } }];
 const S5_IZOH = [
   { uz: "60 kishi — biz biladigan guruh a'zolari; hammasiga ilova kerakligi hali tekshirilmagan.", ru: '60 человек — участники известной нам группы; нужно ли приложение всем, ещё не проверено.' },
   { uz: "60 va 6 qo'shilmaydi: biri guruhdagi odamlar, biri ilovadagi tashkilotchilar.", ru: '60 и 6 не складываются: одно — люди в группе, другое — организаторы в приложении.' },
   { uz: "Manbasi yo'q son Bozorga yozilmaydi — «hali tekshirilmagan» deyiladi.", ru: 'Число без источника в Рынок не пишется — говорят «ещё не проверено».' }
 ];
-const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+const QismBozor = ({ storedAnswer, onAnswer, onSig }) => {
   const [taxmin, setTaxmin] = useState(storedAnswer?.taxmin ?? null);
   const [n, setN] = useState(storedAnswer ? 3 : 0);
   const [band, setBand] = useState(null); // { i, tur: 'uch' | 'silk' }
   const done = n >= 3;
   const tugadi = useTugadi(done, 1100, !!storedAnswer);
   const ipucha = useIpucha(!!taxmin && !done, n);
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true, taxmin }); }, [done]); // eslint-disable-line
+  useEffect(() => { if (done && storedAnswer === undefined) onAnswer({ correct: true, picked: true, taxmin }); }, [done]); // eslint-disable-line
   const kartaRef = useRef([]); const qatorRef = useRef([]);
   const [uch, setUch] = useState(null); // { i, x, y, w, h, dx, dy, bor }
   const bos = (i) => {
@@ -1106,8 +991,9 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const sahna = <OltiBolakSahna fokus="bozor" investor={{ savollar: [{ matn: tr(HAKAM_SAVOL.bozor), ok: n >= 3 }] }}
     bolaklar={fokusOlti('bozor', { nom: tr(BOLAK_NOM.bozor), matn, holat: n >= 3 ? 'ok' : 'joriy', qosh: qatorlar })} />;
   const tx = S5_TAXMIN.find(t => t.k === taxmin);
+  useEffect(() => { if (onSig) onSig(); }, [n]); // eslint-disable-line — ota-ekran mobilda pastga suradi
   return (
-    <Stage eyebrow={tr({ uz: "Tushuncha · Bozor bo'lagi", ru: 'Понятие · часть «Рынок»' })} screen={screen} scrollSignal={n} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={done} disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Kartalarni bosing (${n}/3)`, ru: `Нажмите карточки (${n}/3)` })} onClick={onNext} /></>}>
+    <>
       <div className="ip-teskari">
         <QTushuncha zoom={Zoomable} tugadi={tugadi}
           sarlavha={tr({ uz: <>Bozor bo'lagiga <A>qaysi sonlar yoziladi?</A></>, ru: <>Какие числа <A>пишутся в часть «Рынок»?</A></> })}
@@ -1137,32 +1023,11 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         style={{ left: uch.x, top: uch.y, width: uch.w, height: uch.h, transform: uch.bor ? 'translate(' + uch.dx + 'px,' + uch.dy + 'px) scale(' + Math.max(0.55, uch.sx * 0.9) + ')' : 'none' }}>
         <b>{tr(BOZOR_SON[uch.i].son)}</b><span>{tr(BOZOR_SON[uch.i].kim)}</span>
       </div>}
-    </Stage>
+    </>
   );
 };
 
-// ===== SCREEN 6 — 2-SAVOL (QuestionScreen; INLINE_KEYS.s6 = 3; ikkinchi misol — kitob almashish ilovasi, P-002) =====
-const Screen6 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: "Tekshiruv · Bozor bo'lagi", ru: 'Проверка · часть «Рынок»' })}
-    questionText="Kitob almashish ilovasi: shahar sonini topolmadingiz. Bozorda nima deysiz?"
-    question={tr({ uz: <h2 className="title h-ask">Kitob almashish ilovasi: shahar sonini topolmadingiz. <A>Bozorda nima deysiz?</A></h2>, ru: <h2 className="title h-ask">Приложение для обмена книгами: число по городу вы не нашли. <A>Что скажете в Рынке?</A></h2> })}
-    options={[
-      { uz: "«Shahardagi minglab o'quvchiga bu kerak» deyman", ru: '«Это нужно тысячам школьников города», — скажу' },
-      { uz: "«Yil oxirigacha hamma maktabga yetamiz» deyman", ru: '«К концу года дойдём до всех школ», — скажу' },
-      { uz: "«Bozor haqida pitchda gapirmayman» deyman", ru: '«О рынке в питче говорить не буду», — скажу' },
-      { uz: "«Chatda 120 kishi, shahar hali noma'lum» deyman", ru: '«В чате 120 человек, город пока неизвестен», — скажу' }
-    ]} correctIdx={3}
-    explainCorrect={{ uz: "Manbasi bor son aytiladi, qolgani — hali tekshirilmagan.", ru: 'Называется число с источником, остальное — ещё не проверено.' }}
-    explainWrong={{
-      0: { uz: "Bu son qayerdan? Manbasiz son Bozorga yozilmaydi.", ru: 'Откуда это число? Число без источника в Рынок не пишется.' },
-      1: { uz: "Bu va'da — bugun bilgan soningiz qancha?", ru: 'Это обещание — какое число вы знаете сегодня?' },
-      2: { uz: "Bozor bo'lagi «qancha odamga kerak?» savoliga javob.", ru: 'Часть «Рынок» отвечает на вопрос «скольким людям нужно?».' },
-      default: { uz: "Mentor boshqa mahallalar haqida nima degan edi?", ru: 'Что Ментор сказал о других махаллях?' }
-    }}
-    vizual={<MiniBolak id="bozor" />} />
-);
-
-// ===== SCREEN 7 — JAMOA (QTushuncha keng; bashorat → 3 tugma: rol yorliqlari · agent — dastur · sinab ko'rganlar alohida qatorda; odam figurasi yo'q — SABOQ P1) =====
+// ===== QISM 2 JAMOA (QTushuncha keng; bashorat → 3 tugma: rol yorliqlari · agent — dastur · sinab ko'rganlar alohida qatorda; odam figurasi yo'q — SABOQ P1) =====
 const S7_TUGMA = [{ uz: 'Kim nima qildi', ru: 'Кто что сделал' }, { uz: 'Agent', ru: 'Агент' }, { uz: "Sinab ko'rganlar", ru: 'Кто пробовал' }];
 const S7_TAXMIN = [{ k: 'bitta', t: { uz: 'Bitta', ru: 'Один' } }, { k: 'uchta', t: { uz: 'Uchta', ru: 'Трое' } }, { k: 'beshta', t: { uz: 'Beshta', ru: 'Пятеро' } }];
 const S7_IZOH = [null,
@@ -1170,13 +1035,13 @@ const S7_IZOH = [null,
   { uz: "Sinab ko'rgan real odamlar ham aytiladi, lekin ular jamoa a'zosi deb aytilmaydi.", ru: 'Реальные люди, которые пробовали, тоже называются, но не как члены команды.' }];
 const ROL_YORLIQ = [{ uz: "g'oya", ru: 'идея' }, { uz: 'mahsulot', ru: 'продукт' }, { uz: 'kod', ru: 'код' }];
 const DasturIc = () => <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.1L3 17.7 6.3 21l6.3-6.3a4 4 0 0 0 5.1-5.4l-2.6 2.6-2.4-.6-.6-2.4z" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" /></svg>;
-const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+const QismJamoa = ({ storedAnswer, onAnswer, onSig }) => {
   const [taxmin, setTaxmin] = useState(storedAnswer?.taxmin ?? null);
   const [q, setQ] = useState(storedAnswer ? 3 : 0);
   const done = q >= 3;
   const tugadi = useTugadi(done, 1100, !!storedAnswer);
   const ipucha = useIpucha(!!taxmin && !done, q);
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true, taxmin }); }, [done]); // eslint-disable-line
+  useEffect(() => { if (done && storedAnswer === undefined) onAnswer({ correct: true, picked: true, taxmin }); }, [done]); // eslint-disable-line
   const matn = q === 0 ? null : <span key={'j' + Math.min(q, 2)} className="ip-yangi-q">{q === 1 ? tr({ uz: "Men — g'oya, mahsulot va kod.", ru: 'Я — идея, продукт и код.' }) : tr(JAMOA_PITCH.birinchi.jamoa)}{q >= 3 && <> {tr({ uz: "Sinab ko'rganlar — 6 tashkilotchi va o'yinchilar.", ru: 'Пробовали — 6 организаторов и игроки.' })}</>}</span>;
   const panel = <div className="ip-jm">
     <span className="ip-rol">{tr({ uz: 'men', ru: 'я' })}</span>
@@ -1187,8 +1052,9 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const sahna = <OltiBolakSahna fokus="jamoa" investor={{ savollar: [{ matn: tr(HAKAM_SAVOL.jamoa), ok: q >= 3 }] }}
     bolaklar={fokusOlti('jamoa', { nom: tr(BOLAK_NOM.jamoa), matn, holat: q >= 3 ? 'ok' : 'joriy', qosh: panel })} ostida={sinab} />;
   const tx = S7_TAXMIN.find(t => t.k === taxmin);
+  useEffect(() => { if (onSig) onSig(); }, [q]); // eslint-disable-line — ota-ekran mobilda pastga suradi
   return (
-    <Stage eyebrow={tr({ uz: "Tushuncha · Jamoa bo'lagi", ru: 'Понятие · часть «Команда»' })} screen={screen} scrollSignal={q} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={done} disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Tugmalarni bosing (${q}/3)`, ru: `Нажмите кнопки (${q}/3)` })} onClick={onNext} /></>}>
+    <>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng harakatAvval
         sarlavha={tr({ uz: <>Mahsulotni kim qilayotganini <A>qanday aytasiz?</A></>, ru: <>Как сказать, <A>кто делает продукт?</A></> })}
         mentor={<Mentor>{tr({ uz: "Tugmalarni birma-bir bosing va Jamoa bo'lagi qanday yozilishini ko'ring.", ru: 'Нажимайте кнопки по одной и смотрите, как пишется часть «Команда».' })}</Mentor>}
@@ -1203,39 +1069,18 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           matn={tr({ uz: "Bu misolda Jamoa bo'lagida bitta odam: kim nima qilgani rost aytilgan, yolg'on rol yo'q.", ru: 'В этом примере в Команде один человек: кто что сделал, сказано честно, выдуманных ролей нет.' })}
           izoh={tr(S7_IZOH[2])} />}
       />
-    </Stage>
+    </>
   );
 };
 
-// ===== SCREEN 8 — 3-SAVOL (QuestionScreen; INLINE_KEYS.s8 = 0) =====
-const Screen8 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: "Tekshiruv · Jamoa bo'lagi", ru: 'Проверка · часть «Команда»' })}
-    questionText="Mahsulotni yolg'iz qurdingiz. Jamoa bo'lagida nima deysiz?"
-    question={tr({ uz: <h2 className="title h-ask">Mahsulotni yolg'iz qurdingiz. <A>Jamoa bo'lagida nima deysiz?</A></h2>, ru: <h2 className="title h-ask">Вы построили продукт в одиночку. <A>Что скажете в части «Команда»?</A></h2> })}
-    options={[
-      { uz: "«Men — g'oya va kod, agent bilan»", ru: '«Я — идея и код, с агентом»' },
-      { uz: "«Jamoamiz besh kishi, hammasi dasturchi»", ru: '«Нас в команде пятеро, все программисты»' },
-      { uz: "«Agent — jamoamizning ikkinchi a'zosi»", ru: '«Агент — второй член нашей команды»' },
-      { uz: "«Jamoamiz kichik, lekin juda kuchli»", ru: '«Команда у нас маленькая, но очень сильная»' }
-    ]} correctIdx={0}
-    explainCorrect={{ uz: "Jamoa bo'lagida kim nima qilgani rost aytiladi.", ru: 'В Команде честно говорится, кто что сделал.' }}
-    explainWrong={{
-      1: { uz: "Bu odamlar yo'q — Jamoa bo'lagida faqat bor odamlar.", ru: 'Этих людей нет — в Команде только те, кто есть.' },
-      2: { uz: "Agent — dastur, jamoa a'zosi emas.", ru: 'Агент — инструмент, а не член команды.' },
-      3: { uz: "Bu maqtov — kim nima qilganini ayting.", ru: 'Это похвала — скажите, кто что сделал.' },
-      default: { uz: "Mentor Jamoa bo'lagida o'zini qanday aytgan edi?", ru: 'Как Ментор назвал себя в части «Команда»?' }
-    }}
-    vizual={<MiniBolak id="jamoa" />} />
-);
-
-// ===== SCREEN 9 — KEYINGI QADAM (QTushuncha keng; bashorat → 3 tugma: hisoblagich 44 → 51 · keyingi ish · aniq so'rov; «Investitsiya summasi» kartasi chizilib chiqib ketadi) =====
+// ===== QISM 3 KEYINGI QADAM (QTushuncha keng; bashorat → 3 tugma: hisoblagich 44 → 51 · keyingi ish · aniq so'rov; «Investitsiya summasi» kartasi chizilib chiqib ketadi) =====
 const S9_TUGMA = [{ uz: 'Maqsad 50', ru: 'Цель 50' }, { uz: 'Keyingi ish', ru: 'Следующее дело' }, { uz: "Aniq so'rov", ru: 'Точная просьба' }];
 const S9_TAXMIN = [{ k: 'bitta', t: { uz: 'Bitta', ru: 'Одну' } }, { k: 'ikkita', t: { uz: 'Ikkita', ru: 'Две' } }, { k: 'uchta', t: { uz: 'Uchta', ru: 'Три' } }];
 const S9_IZOH = [
   { uz: "12-Moduldagi sonli qadam 51 ga yetdi — endi Keyingi qadam yangilanadi.", ru: 'Числовой шаг из 12-го модуля дошёл до 51 — теперь Следующий шаг обновляется.' },
   null,
   { uz: "Bu kursda pul so'ralmaydi — aniq so'rov: tanishtirish, maslahat yoki sinash joyi.", ru: 'На этом курсе деньги не просят — точная просьба: познакомить, посоветовать или дать место для проверки.' }];
-const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+const QismKeyingi = ({ storedAnswer, onAnswer, onSig }) => {
   const [taxmin, setTaxmin] = useState(storedAnswer?.taxmin ?? null);
   const [q, setQ] = useState(storedAnswer ? 3 : 0);
   const [son, setSon] = useState(storedAnswer ? 51 : 44);
@@ -1243,7 +1088,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = q >= 3;
   const tugadi = useTugadi(done, 2900, !!storedAnswer);
   const ipucha = useIpucha(!!taxmin && !done, q);
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true, taxmin }); }, [done]); // eslint-disable-line
+  useEffect(() => { if (done && storedAnswer === undefined) onAnswer({ correct: true, picked: true, taxmin }); }, [done]); // eslint-disable-line
   useEffect(() => { if (q !== 3 || storedAnswer) return undefined; setInv(true); const t = setTimeout(() => setInv(false), kamHarakat() ? 1200 : 2700); return () => clearTimeout(t); }, [q]); // eslint-disable-line
   const panel = <div className="ip-kq">
     {q >= 1 && <div className="ip-sanoq">
@@ -1259,8 +1104,9 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const sahna = <OltiBolakSahna fokus="keyingi" investor={{ savollar: [{ matn: tr(HAKAM_SAVOL.keyingi), ok: q >= 3 }] }}
     bolaklar={fokusOlti('keyingi', { nom: tr(BOLAK_NOM.keyingi), matn: eski, holat: q >= 3 ? 'ok' : 'joriy', qosh: panel })} />;
   const tx = S9_TAXMIN.find(t => t.k === taxmin);
+  useEffect(() => { if (onSig) onSig(); }, [q]); // eslint-disable-line — ota-ekran mobilda pastga suradi
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · Keyingi qadam', ru: 'Понятие · Следующий шаг' })} screen={screen} scrollSignal={q} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={done} disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Tugmalarni bosing (${q}/3)`, ru: `Нажмите кнопки (${q}/3)` })} onClick={onNext} /></>}>
+    <>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng harakatAvval
         sarlavha={tr({ uz: <>Pitch oxirida <A>hakamdan nima so'raysiz?</A></>, ru: <>О чём вы <A>попросите судью</A> в конце питча?</> })}
         mentor={<Mentor>{tr({ uz: "Tugmalarni birma-bir bosing va Keyingi qadam bo'lagi qanday o'zgarishini ko'ring.", ru: 'Нажимайте кнопки по одной и смотрите, как меняется часть «Следующий шаг».' })}</Mentor>}
@@ -1275,6 +1121,33 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           matn={tr({ uz: "Bu misolda Keyingi qadam — keyingi ish va bitta aniq so'rov: pul emas, tanishtirish.", ru: 'В этом примере Следующий шаг — следующее дело и одна точная просьба: не деньги, а знакомство.' })}
           izoh={tr(S9_IZOH[2])} />}
       />
+    </>
+  );
+};
+
+// ===== SCREEN UCH — UCH YANGI BO'LAK BITTA EKRANDA (F-1018-11, 222-qonun: Bozor → Jamoa → Keyingi qadam; 213.1 — bitta faol qism, bajarilgani tepadagi chip-qatorga, keyingisi «Keyingi bo'lak» bilan keladi) =====
+const UCH_ID = ['bozor', 'jamoa', 'keyingi'];
+const UCH_QISM = { bozor: QismBozor, jamoa: QismJamoa, keyingi: QismKeyingi };
+const ScreenUch = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const st = storedAnswer || {};
+  const [qism, setQism] = useState(() => st.qismlar || {});
+  const [joriy, setJoriy] = useState(() => UCH_ID.find(id => !(st.qismlar || {})[id]) || 'keyingi');
+  const [sig, setSig] = useState(0);
+  const n = UCH_ID.filter(id => qism[id]).length;
+  const done = n === UCH_ID.length;
+  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true, qismlar: qism }); }, [done]); // eslint-disable-line
+  const och = (id) => { setJoriy(id); setSig(x => x + 1); };
+  const keyingiQism = UCH_ID[UCH_ID.indexOf(joriy) + 1] || null;
+  const Qism = UCH_QISM[joriy];
+  const navKeyingi = !!qism[joriy] && keyingiQism && !qism[keyingiQism];
+  return (
+    <Stage eyebrow={tr({ uz: "Tushuncha · uch yangi bo'lak", ru: 'Понятие · три новые части' })} screen={screen} scrollSignal={sig} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={done || navKeyingi} disabled={!done && !navKeyingi} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : navKeyingi ? `${tr({ uz: "Keyingi bo'lak:", ru: 'Следующая часть:' })} ${tr(BOLAK_NOM[keyingiQism])}` : tr({ uz: `Uch bo'lakni ko'ring (${n}/3)`, ru: `Посмотрите три части (${n}/3)` })} onClick={done ? onNext : () => och(keyingiQism)} /></>}>
+      <div className="ip-uch">
+        <div className="ip-strip ip-uch-strip">
+          {UCH_ID.map((id, i) => <QChip key={id} holat={joriy === id ? 'on' : qism[id] ? 'ok' : undefined} className="ip-tab" disabled={!qism[id] && joriy !== id} onClick={() => och(id)}><i>{qism[id] ? '✓' : i + 1}</i>{tr(BOLAK_NOM[id])}</QChip>)}
+        </div>
+        <Qism key={joriy} storedAnswer={qism[joriy]} onAnswer={(d) => setQism(q => ({ ...q, [joriy]: d }))} onSig={() => setSig(x => x + 1)} />
+      </div>
     </Stage>
   );
 };
@@ -1495,6 +1368,92 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev, live }) => {
   );
 };
 
+// ===== SCREEN SHERIK — QORALAMANI SHERIKKA O'QING (222.1 · F-1018-11: 1-raund — 2 daqiqa o'qiladi, sherik investor bo'lib olti savolga javob eshitdimi belgilaydi; ballsiz, nishon readAloud; 213.3 — qatorlar chegarasiz, fon bilan) =====
+const SH_VAQT = 120;
+const mssS = (sek) => { const v = Math.max(0, Math.floor(sek || 0)); return `${Math.floor(v / 60)}:${String(v % 60).padStart(2, '0')}`; };
+const ScreenSherik = ({ screen, storedAnswer, onAnswer, onNext, onPrev, live }) => {
+  const gate = useContext(LiveGateCtx) || {};
+  const _live = live || gate.live;
+  const isMentor = !!(_live && _live.mode === 'mentor');
+  const juft = !!(_live && _live.mode === 'student');
+  const st = storedAnswer || {};
+  const b = useMemo(() => { if (isMentor) return {}; const p = pitchOl(); return (p && p.bolaklar) || {}; }, []); // eslint-disable-line
+  const yozilgan = saqlanganSoni(b);
+  const pitchYoq = !isMentor && yozilgan === 0;
+  const [vaqt, setVaqt] = useState(st.vaqt ?? 0);
+  const [yur, setYur] = useState(false);
+  const [toxtadi, setToxtadi] = useState(st.vaqt != null);
+  const [belgi, setBelgi] = useState(st.belgi || {});
+  const sentRef = useRef(!!st.solved);
+  useEffect(() => { if (!yur) return undefined; const t = setInterval(() => setVaqt(v => v + 1), 1000); return () => clearInterval(t); }, [yur]);
+  const hammasi = BOLAK_ID.every(id => belgi[id]);
+  const done = pitchYoq || (toxtadi && hammasi);
+  const yoqlar = BOLAK_ID.filter(id => belgi[id] === 'yoq');
+  useEffect(() => {
+    if (!done || pitchYoq || isMentor || sentRef.current) return;
+    sentRef.current = true;
+    lsY(PITCH_KEY, { ...(lsO(PITCH_KEY) || {}), sherik: { vaqt, belgi, savedAt: Date.now() } });
+    onAnswer(screen, { stage: 'sherik', screenIdx: screen, solved: true, correct: true, picked: true, vaqt, belgi, yoqSoni: yoqlar.length });
+    if (_live && _live.mode === 'student') _live.submitAnswer(PRACTICE_BASE + screen, 'sherik', 0, true, 0);
+  }, [done]); // eslint-disable-line
+  const boshla = () => { setVaqt(0); setYur(true); setToxtadi(false); };
+  const toxtat = () => { setYur(false); setToxtadi(true); };
+  const qoy = (id, v) => { if (!toxtadi || isMentor) return; setBelgi(x => ({ ...x, [id]: v })); };
+  const bolaklar = isMentor ? mentorOlti('yozildi') : BOLAK_ID.map(id => ({ id, nom: tr(BOLAK_NOM[id]), matn: b[id] || null, holat: b[id] ? 'yozildi' : 'bosh' }));
+  const mentorT = pitchYoq ? { uz: "Qoralama hali saqlanmagan — oldingi ekranga qaytib, olti bo'lakni saqlang, keyin sherigingizga o'qing.", ru: 'Черновик ещё не сохранён — вернитесь на предыдущий экран, сохраните шесть частей, потом прочитайте партнёру.' }
+    : done ? (yoqlar.length ? { uz: "Javobsiz savol bor — o'sha bo'lak yetishmaydi. Keyingi darsgacha qoralamani to'ldiring; xohlasangiz hozir qaytib tuzating.", ru: 'Есть вопрос без ответа — этой части не хватает. Дополните черновик до следующего урока; если хотите, вернитесь и исправьте сейчас.' } : { uz: 'Olti savolga ham javob bor — qoralama keyingi darsga tayyor.', ru: 'На все шесть вопросов есть ответ — черновик готов к следующему уроку.' })
+    : toxtadi ? (juft ? { uz: "Endi qurilmani sherigingizga bering: u har savolga «Javob bor» yoki «Javob yo'q» qo'yadi.", ru: 'Теперь дайте устройство партнёру: он поставит каждому вопросу «Ответ есть» или «Ответа нет».' } : { uz: "Endi har savolni o'zingiz belgilang: investor shu savolni bersa, qoralamada javob bormi?", ru: 'Теперь отметьте каждый вопрос сами: если инвестор его задаст, есть ли ответ в черновике?' })
+    : (juft ? { uz: "Qoralamangizni sherigingizga 2 daqiqada o'qib bering. U — investor: olti savolga javob eshitdimi, belgilaydi.", ru: 'Прочитайте черновик партнёру за 2 минуты. Он — инвестор: отметит, услышал ли ответ на шесть вопросов.' } : { uz: "Qoralamangizni ovoz chiqarib 2 daqiqada o'qing, keyin olti savolga javob bormi — o'zingiz belgilang.", ru: 'Прочитайте черновик вслух за 2 минуты, потом сами отметьте, есть ли ответ на шесть вопросов.' });
+  const navY = isMentor || done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !toxtadi ? tr({ uz: "2 daqiqada o'qing", ru: 'Прочитайте за 2 минуты' }) : tr({ uz: 'Olti savolni belgilang', ru: 'Отметьте шесть вопросов' });
+  return (
+    <Stage eyebrow={juft ? tr({ uz: 'Juftlikda ish · qoralama', ru: 'Работа в паре · черновик' }) : tr({ uz: 'Mustaqil ish · qoralama', ru: 'Самостоятельная работа · черновик' })} screen={screen} scrollSignal={(toxtadi ? 10 : 0) + (done ? 100 : 0)} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={done && !pitchYoq} disabled={!done && !isMentor} label={navY} onClick={onNext} /></>}>
+      <QMustaqil
+        sarlavha={tr({ uz: <>Qoralamangiz investorning <A>olti savoliga javob beradimi?</A></>, ru: <>Отвечает ли ваш черновик <A>на шесть вопросов инвестора?</A></> })}
+        mentor={<Mentor>{tr(mentorT)}</Mentor>}
+        qadamlar={<div className="ip-sh">
+          <div className="ip-sh-ch">
+            <Zoomable><OltiBolakSahna yorliq={isMentor ? tr({ uz: 'Mentor misoli', ru: 'Пример Ментора' }) : tr({ uz: 'Pitch qoralamam', ru: 'Мой черновик питча' })} bolaklar={bolaklar} /></Zoomable>
+            {pitchYoq && <QTugma ikkinchi onClick={onPrev}>{tr({ uz: 'Qoralamaga qaytish', ru: 'Вернуться к черновику' })}</QTugma>}
+          </div>
+          <div className="ip-sh-on">
+            {!isMentor && !pitchYoq && <div className={cxx('ip-sh-tmr', yur && 'yur')}>
+              <b className={cxx(vaqt > SH_VAQT && 'oshdi')}>{mssS(vaqt)}</b>
+              {yur && <span className="ip-sh-gapir">{tr({ uz: "Hozir siz o'qiyapsiz", ru: 'Сейчас читаете вы' })}</span>}
+              <span className="ip-sh-tug">
+                {!yur && !toxtadi && <QTugma className="ip-halqa" onClick={boshla}>{tr({ uz: '2 daqiqani boshlash', ru: 'Запустить 2 минуты' })}</QTugma>}
+                {yur && <QTugma className="ip-halqa" onClick={toxtat}>{tr({ uz: "To'xtatish", ru: 'Остановить' })}</QTugma>}
+                {!yur && toxtadi && !done && <QTugma ikkinchi onClick={boshla}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</QTugma>}
+              </span>
+            </div>}
+            {!pitchYoq && <>
+              <span className="q-yorliq">{juft ? tr({ uz: 'Sherik — investor: javob eshitildimi?', ru: 'Партнёр — инвестор: ответ прозвучал?' }) : tr({ uz: 'Investor savollari: javob bormi?', ru: 'Вопросы инвестора: есть ли ответ?' })}</span>
+              {BOLAK_ID.map((id, i) => { const v = belgi[id]; return (
+                <div key={id} className={cxx('ip-sh-q', v === 'bor' && 'bor', v === 'yoq' && 'yoq', !toxtadi && 'kutadi')}>
+                  <span className="ip-sh-nom"><i>{i + 1}</i>{tr(BOLAK_NOM[id])}</span>
+                  <span className="ip-sh-t">{tr(HAKAM_SAVOL[id])}</span>
+                  <span className="ip-sh-b">
+                    <QChip holat={v === 'bor' ? 'ok' : undefined} disabled={!toxtadi || isMentor} onClick={() => qoy(id, 'bor')}>{tr({ uz: '✓ Javob bor', ru: '✓ Ответ есть' })}</QChip>
+                    <QChip holat={v === 'yoq' ? 'err' : undefined} disabled={!toxtadi || isMentor} onClick={() => qoy(id, 'yoq')}>{tr({ uz: "✗ Javob yo'q", ru: '✗ Ответа нет' })}</QChip>
+                  </span>
+                </div>
+              ); })}
+              {done && !isMentor && <>
+                <QXulosa>{yoqlar.length
+                  ? tr({ uz: `${yoqlar.length} ta savolga javob yo'q: ${yoqlar.map(id => tr(BOLAK_NOM[id])).join(', ')} — shu bo'laklarni to'ldiring.`, ru: `Нет ответа на ${yoqlar.length} вопр.: ${yoqlar.map(id => tr(BOLAK_NOM[id])).join(', ')} — дополните эти части.` })
+                  : tr({ uz: 'Olti savolga ham javob bor — qoralama tayyor.', ru: 'На все шесть вопросов есть ответ — черновик готов.' })}</QXulosa>
+                {yoqlar.length > 0 && <div className="ip-sh-tug"><QTugma ikkinchi onClick={onPrev}>{tr({ uz: 'Qoralamaga qaytib tuzatish', ru: 'Вернуться и исправить черновик' })}</QTugma></div>}
+              </>}
+            </>}
+            {isMentor && <p className="ip-kulrang">{tr({ uz: "Juftlik: A qoralamani 2 daqiqada o'qiydi, B — investor: olti savolga javob eshitdimi, belgilaydi; keyin almashadilar (≈ 6 daqiqa). «Javob yo'q» — hukm emas, savol: shu bo'lak keyingi darsgacha to'ldiriladi.", ru: 'Пара: A читает черновик за 2 минуты, B — инвестор: отмечает, прозвучал ли ответ на шесть вопросов; потом меняются (≈ 6 минут). «Ответа нет» — не приговор, а вопрос: эту часть дополнят до следующего урока.' })}</p>}
+            <MentorPracticeStats live={_live} screen={screen} yorliq={{ uz: "Sherikka o'qib, belgilatganlar", ru: 'Прочитали партнёру и получили отметки' }} />
+          </div>
+        </div>}
+        forma={null}
+      />
+    </Stage>
+  );
+};
+
 // ===== SCREEN 12 — YAKUNIY SAVOL (QuestionScreen; INLINE_KEYS.s12 = 2) =====
 const Screen12 = (props) => (
   <QuestionScreen {...props} scope="final" eyebrow={tr({ uz: 'Yakuniy tekshiruv', ru: 'Итоговая проверка' })}
@@ -1513,18 +1472,19 @@ const Screen12 = (props) => (
       3: { uz: "Keyingi qadam bo'sh qoldi — keyin nima qilasiz?", ru: 'Следующий шаг остался пустым — что будете делать дальше?' },
       default: { uz: 'Mentor Keyingi qadamda nimani aytgan edi?', ru: 'Что Ментор сказал в Следующем шаге?' }
     }}
-    vizual={<MiniBolak id="keyingi" />} />
+ />
 );
 
-// ===== 🏅 BADGES (nishonlar, 4 — PM: «!» bilan, 9.23) — faqat ish qilingan ekranlarda (S-034) =====
+// ===== 🏅 BADGES (nishonlar, 5 — PM: «!» bilan, 9.23) — faqat ish qilingan ekranlarda (S-034) =====
 const ACHIEVEMENTS = {
   rightOrder: { icon: '🧩', name: 'Right Order!', desc: { uz: 'Qoralamani birinchi urinishda tartibladingiz', ru: 'Вы расставили черновик с первой попытки' } },
   sixParts: { icon: '📝', name: 'Six Parts!', desc: { uz: "Pitch qoralamasini olti bo'lakka yozdingiz", ru: 'Вы написали черновик питча из шести частей' } },
   freshNumbers: { icon: '🔢', name: 'Fresh Numbers!', desc: { uz: "Raqamlar bo'lagini yangilab yozdingiz", ru: 'Вы обновили часть «Цифры»' } },
-  clearAsk: { icon: '🎯', name: 'Clear Ask!', desc: { uz: "Keyingi qadamni pul va va'dasiz yozdingiz", ru: 'Вы написали Следующий шаг без денег и обещаний' } }
+  clearAsk: { icon: '🎯', name: 'Clear Ask!', desc: { uz: "Keyingi qadamni pul va va'dasiz yozdingiz", ru: 'Вы написали Следующий шаг без денег и обещаний' } },
+  readAloud: { icon: '🎤', name: 'Read Aloud!', desc: { uz: "Qoralamani sherigingizga o'qib, olti savolga tekshirtirdingiz", ru: 'Прочитали черновик партнёру и проверили его на шесть вопросов' } }
 };
 // Ekran id → nishon (birinchi urinish). 11-ekran nishonlari — Screen11 ichida (saqlashga qarab), AchMissCtx.earn orqali.
-const ACH_TRIGGERS = { tartib: 'rightOrder' };
+const ACH_TRIGGERS = { tartib: 'rightOrder', sherik: 'readAloud' };
 
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -1580,12 +1540,9 @@ const Confetti = () => {
 };
 
 
-// Podium savol yorliqlari (SCORED_IDX: 4, 6, 8, 12 — q22)
+// Podium savol yorliqlari (SCORED_IDX: 7 — yakuniy)
 const Q_LABELS = {
-  4: { uz: "1 — Investor uchun nima qo'shiladi", ru: '1 — Что добавляется для инвестора' },
-  6: { uz: '2 — Bozorda qaysi son', ru: '2 — Какое число в Рынке' },
-  8: { uz: "3 — Jamoa bo'lagi", ru: '3 — Часть «Команда»' },
-  12: { uz: '4 — Keyingi qadam', ru: '4 — Следующий шаг' }
+  7: { uz: 'Yakuniy — Keyingi qadam', ru: 'Итоговый — Следующий шаг' }
 };
 const QUIZ_MS = 15000;
 // Kapsula ichida suzuvchi tokenlar — darsning lug'ati (MD «Fon so'zlari», R-008: {uz, ru}; emoji yo'q)
@@ -1605,8 +1562,8 @@ const QZ_BG_SHAPES = [
 const QUIZ_BANK = [
   { q: { uz: "Bizda Bozor qaysi bo'lakdan keyin turadi?", ru: 'После какой части у нас стоит Рынок?' }, opts: [{ uz: 'Muammodan keyin', ru: 'После Проблемы' }, { uz: 'Yechimdan keyin', ru: 'После Решения' }, { uz: 'Jamoadan keyin', ru: 'После Команды' }, { uz: 'Raqamlardan keyin', ru: 'После Цифр' }], correct: 0 },
   { q: { uz: "Mentor misolida Raqamlar bo'lagida nechta foydalanuvchi aytilgan?", ru: 'Сколько пользователей названо в Цифрах у Ментора?' }, opts: [{ uz: '44 foydalanuvchi', ru: '44 пользователя' }, { uz: '51 foydalanuvchi', ru: '51 пользователь' }, { uz: '60 foydalanuvchi', ru: '60 пользователей' }, { uz: '6 foydalanuvchi', ru: '6 пользователей' }], correct: 1 },
-  { q: { uz: 'Airbnb qanday xizmat?', ru: 'Что за сервис Airbnb?' }, opts: [{ uz: 'Shahar ichida tez taksi chaqirish xizmati', ru: 'Сервис быстрого вызова такси по городу' }, { uz: 'Internetda kitob sotib olish xizmati', ru: 'Сервис покупки книг в интернете' }, { uz: 'Begonaning uyida ijaraga turish xizmati', ru: 'Сервис, где снимают жильё у незнакомых' }, { uz: 'Uyga tayyor ovqat yetkazish xizmati', ru: 'Сервис доставки готовой еды домой' }], correct: 2 },
-  { q: { uz: "Airbnb'ning besh slayd nomi ichida jamoa qayerda?", ru: 'Где команда среди пяти названий слайдов Airbnb?' }, opts: [{ uz: 'Besh nomning boshida', ru: 'В начале пяти названий' }, { uz: 'Muammo slaydidan keyin', ru: 'После слайда о проблеме' }, { uz: 'Yechim slaydi ichida', ru: 'Внутри слайда о решении' }, { uz: 'Besh nomning oxirida', ru: 'В конце пяти названий' }], correct: 3 },
+  { q: { uz: "Bozor bo'lagi hakamning qaysi savoliga javob beradi?", ru: 'На какой вопрос судьи отвечает часть «Рынок»?' }, opts: [{ uz: '«Buni kim qilyapti?»', ru: '«Кто это делает?»' }, { uz: '«Endi nima qilasiz?»', ru: '«Что будете делать дальше?»' }, { uz: '«Yana qancha odamga kerak?»', ru: '«Скольким ещё людям нужно?»' }, { uz: '«Mahsulot nima qiladi?»', ru: '«Что делает продукт?»' }], correct: 2 },
+  { q: { uz: 'Pitchning 5 daqiqasi tugagach nima bo\'ladi?', ru: 'Что происходит, когда 5 минут питча заканчиваются?' }, opts: [{ uz: 'Hakam darhol ball qo\'yadi', ru: 'Судья сразу ставит балл' }, { uz: 'Keyingi o\'quvchi chiqadi', ru: 'Выходит следующий ученик' }, { uz: 'Pitch boshidan takrorlanadi', ru: 'Питч повторяется с начала' }, { uz: 'Savol-javob boshlanadi', ru: 'Начинаются вопросы-ответы' }], correct: 3 },
   { q: { uz: "Hakam «Buni kim qilyapti?» desa, qaysi bo'lak javob beradi?", ru: 'Судья спросил «Кто это делает?» — какая часть отвечает?' }, opts: [{ uz: "Jamoa bo'lagi", ru: 'Часть «Команда»' }, { uz: "Bozor bo'lagi", ru: 'Часть «Рынок»' }, { uz: "Yechim bo'lagi", ru: 'Часть «Решение»' }, { uz: "Muammo bo'lagi", ru: 'Часть «Проблема»' }], correct: 0 },
   { q: { uz: 'Mentor misolida boshqa mahallalar haqida nima deyilgan?', ru: 'Что сказано у Ментора о других махаллях?' }, opts: [{ uz: 'Ularda ham 60 kishidan bor', ru: 'Там тоже по 60 человек' }, { uz: 'Ularga ilova kerak emas ekan', ru: 'Им приложение не нужно' }, { uz: 'Ularni hali tekshirmaganmiz', ru: 'Их мы ещё не проверяли' }, { uz: "Ularda o'yin tashkil qilinmaydi", ru: 'Там игры не проводят' }], correct: 2 },
   { q: { uz: "Mentor Jamoa bo'lagida agentni qanday aytgan?", ru: 'Как Ментор назвал агента в Команде?' }, opts: [{ uz: "Agentni jamoa a'zosi deb aytgan", ru: 'Назвал агента членом команды' }, { uz: 'Agentni bosh dasturchimiz deb aytgan', ru: 'Назвал агента главным программистом' }, { uz: 'Agent haqida hech narsa demagan', ru: 'Ничего не сказал об агенте' }, { uz: 'Kodni agent bilan yozganini aytgan', ru: 'Сказал, что писал код с агентом' }], correct: 3 },
@@ -2171,38 +2128,6 @@ const MentorPracticeStats = ({ live, screen, sig, yorliq }) => {
   );
 };
 
-// 🃏 KARTOCHKALAR — 12 (MD 14-ekran; kartochka mexanikasi va ko'rinishi — qolipda: QKartochka, DE-204). Mentorsiz (SABOQ 16).
-const FLASHCARDS = [
-  { front: { uz: "Bizda investor pitchi qaysi olti bo'lakdan iborat?", ru: 'Из каких шести частей у нас состоит питч для инвестора?' }, back: { uz: 'Muammo, Bozor, Yechim, Raqamlar, Jamoa va Keyingi qadam', ru: 'Проблема, Рынок, Решение, Цифры, Команда и Следующий шаг' } },
-  { front: { uz: "12-Moduldagi besh bo'lakli pitchga qaysi ikki bo'lak qo'shildi?", ru: 'Какие две части добавились к питчу из пяти частей 12-го модуля?' }, back: { uz: 'Bozor va Jamoa', ru: 'Рынок и Команда' } },
-  { front: { uz: 'Jonli demo endi pitchning qayerida?', ru: 'Где теперь живое демо в питче?' }, back: { uz: "Yechim bo'lagi ichida", ru: 'Внутри части «Решение»' } },
-  { front: { uz: 'Savol-javob pitchning qayerida bo\'ladi?', ru: 'Где в питче бывают вопросы-ответы?' }, back: { uz: '5 daqiqalik pitchdan keyin: hakamlar savol beradi, siz javob berasiz (inglizchasi: Q&A)', ru: 'После 5-минутного питча: судьи задают вопросы, вы отвечаете (по-английски: Q&A)' } },
-  { front: { uz: 'Hakam kim?', ru: 'Кто такой судья?' }, back: { uz: 'Pitchni baholaydigan odam: investor yoki tadbirkor', ru: 'Человек, который оценивает питч: инвестор или предприниматель' } },
-  { front: { uz: "Bozor bo'lagiga qanday son yoziladi?", ru: 'Какое число пишется в часть «Рынок»?' }, back: { uz: 'Manbasi bor son; qolgani — «hali tekshirilmagan»', ru: 'Число с источником; остальное — «ещё не проверено»' } },
-  { front: { uz: "Mentor misolida Bozor bo'lagida nima yozilgan?", ru: 'Что написано в Рынке в примере Ментора?' }, back: { uz: "Mahalla futbol guruhida — 60 kishi; ilovada — 6 tashkilotchi; boshqa mahallalar hali tekshirilmagan", ru: 'В футбольной группе махалли — 60 человек; в приложении — 6 организаторов; другие махалли ещё не проверены' } },
-  { front: { uz: "Nega 60 kishi va 6 tashkilotchi qo'shilmaydi?", ru: 'Почему 60 человек и 6 организаторов не складываются?' }, back: { uz: "Biri guruhdagi odamlar, biri ilovadagi tashkilotchilar: o'lchovi har xil", ru: 'Одно — люди в группе, другое — организаторы в приложении: мера разная' } },
-  { front: { uz: "Airbnb investorlarga qanday taqdimot ko'rsatgan?", ru: 'Какую презентацию Airbnb показал инвесторам?' }, back: { uz: "O'nga yaqin oddiy slayd: muammo, yechim, bozor, mahsulot, jamoa", ru: 'Около десятка простых слайдов: проблема, решение, рынок, продукт, команда' } },
-  { front: { uz: "Jamoa bo'lagida nima aytiladi?", ru: 'Что говорится в части «Команда»?' }, back: { uz: "Kim nima qilgani — rost, rol bilan; agent — dastur, jamoa a'zosi emas", ru: 'Кто что сделал — честно, ролями; агент — инструмент, а не член команды' } },
-  { front: { uz: "Keyingi qadamda hakamdan nima so'raladi?", ru: 'О чём просят судью в Следующем шаге?' }, back: { uz: "Bitta aniq so'rov: tanishtirish, maslahat yoki sinash joyi — pul emas", ru: 'Одна точная просьба: познакомить, посоветовать или дать место для проверки — не деньги' } },
-  { front: { uz: 'Yozma tasdiq pitchda qanday aytiladi?', ru: 'Как в питче называют письменное подтверждение?' }, back: { uz: "Dalil sifatida, «bu hali to'lov emas» gapi bilan", ru: 'Как довод, с фразой «это ещё не оплата»' } }
-];
-const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
-  const [bosildi, setBosildi] = useState(false);
-  const belgila = (e) => { if (e.target && e.target.closest && e.target.closest('.fc-card')) setBosildi(true); };
-  return (
-    <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'zingizni <A>sinab ko'ring.</A></>, ru: <>Проверьте <A>себя.</A></> })}</h2></div>
-        <div className={cxx('ip-flash', !bosildi && 'yangi')} onClickCapture={belgila} onKeyDownCapture={(e) => { if (e.key === 'Enter' || e.key === ' ') belgila(e); }}>
-          <QKartochka til={__lang} cards={FLASHCARDS.map(c => ({ front: tr(c.front), back: tr(c.back) }))} />
-          {!bosildi && <p className="ip-fc-ipucha"><i aria-hidden="true" />{tr({ uz: 'Kartani bosing — javob ochiladi', ru: 'Нажмите на карточку — откроется ответ' })}</p>}
-        </div>
-      </div>
-    </Stage>
-  );
-};
-
 // ===== UYGA VAZIFA — PM HwCard (P-025: «Kim uchun · Nechta · Muddat» + ①②③; alohida .homework.jsx yo'q) =====
 const HW_KARTA = [
   { k: { uz: 'Kim uchun', ru: 'Для кого' }, v: { uz: "o'z mahsulotingiz pitchi", ru: 'питч вашего продукта' } },
@@ -2345,11 +2270,8 @@ export default function PmInvestorPitchLesson({ lang: langProp, onFinished, live
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);
   useEffect(() => { live.reportScreen(screen); }, [screen, live.mode, live.pin]); // eslint-disable-line
-  // 🃏 Flashcard ekrani jonli darsda (mentor boshqaruvida) o'quvchida ko'rsatilmaydi
-  const FLASH_IDX = SCREEN_META.findIndex(m => m.id === 'sflash');
-  const flashHidden = () => live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
-  const next = () => setScreen(s => { let n = Math.min(s + 1, TOTAL_SCREENS - 1); if (n === FLASH_IDX && flashHidden()) n = Math.min(n + 1, TOTAL_SCREENS - 1); return n; });
-  const prev = () => setScreen(s => { let n = Math.max(s - 1, 0); if (n === FLASH_IDX && flashHidden()) n = Math.max(n - 1, 0); return n; });
+  const next = () => setScreen(s => Math.min(s + 1, TOTAL_SCREENS - 1));
+  const prev = () => setScreen(s => Math.max(s - 1, 0));
   const recordAnswer = (idx, data) => {
     setAnswers(a => ({ ...a, [idx]: data }));
     const _m = SCREEN_META[idx];
@@ -2394,7 +2316,7 @@ export default function PmInvestorPitchLesson({ lang: langProp, onFinished, live
     if (typeof onFinished === 'function') onFinished(sealPayload(LESSON_META.lessonId, payload));
   };
 
-  const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, Screen12, ScreenPodium, ScreenFlashcards, SummaryScreen];
+  const screens = [Screen0, Screen1, Screen2, ScreenUch, Screen10, Screen11, ScreenSherik, Screen12, ScreenPodium, SummaryScreen];
   const Current = screens[screen];
   return (
     <LangContext.Provider value={lang}>
@@ -2410,7 +2332,6 @@ export default function PmInvestorPitchLesson({ lang: langProp, onFinished, live
         .zoomable.zoom-on, .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(1040px, 94vw); max-height: 90vh; overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px, 4vw, 42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); }
         .lesson-root :has(.zoom-on) { animation: none !important; transform: none !important; filter: none !important; will-change: auto !important; contain: none !important; }
         .ip-mj { font-weight: 800; font-style: normal; color: ${MJ_RANG}; white-space: nowrap; }
-        .ip-brend { font-weight: 800; font-style: normal; letter-spacing: -0.01em; white-space: nowrap; }
         @keyframes ip-kir { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
         @keyframes ip-puls { 0% { box-shadow: 0 0 0 0 ${fon(T.accent, 0.35)}; } 70%, 100% { box-shadow: 0 0 0 9px ${fon(T.accent, 0)}; } }
         @keyframes ip-chorla { 0% { box-shadow: 0 0 0 0 ${fon(T.accent, 0.32)}; } 70%, 100% { box-shadow: 0 0 0 7px ${fon(T.accent, 0)}; } }
@@ -2544,16 +2465,6 @@ export default function PmInvestorPitchLesson({ lang: langProp, onFinished, live
         .ip-skelet-b { padding: 7px 12px; border-radius: 10px; border: 1.5px solid ${T.line}; background: ${T.paper}; font-size: 13px; font-weight: 700; animation: ip-toq .5s ease-out both; }
         @keyframes ip-toq { from { color: ${fon(T.ink, 0.18)}; border-color: ${T.line}; } to { color: ${T.ink}; border-color: ${fon(T.accent, 0.45)}; } }
         /* Airbnb tasmasi */
-        .ip-voqea { display: flex; flex-direction: column; gap: 12px; }
-        .ip-voqea-h { font-weight: 800; font-size: 15px; color: ${T.ink}; animation: ip-kir .35s ease-out both; }
-        .ip-ab { display: flex; flex-direction: column; gap: 10px; background: ${T.bg}; border-radius: 14px; padding: 14px; }
-        .ip-ab-bosh { font-size: 19px; }
-        .ip-ab-tasma { display: grid; grid-template-columns: repeat(10, minmax(0,1fr)); gap: 7px; }
-        .ip-ab-s { aspect-ratio: 16 / 10; min-height: 0; min-width: 0; background: #fff; border: 1.5px solid ${T.line}; border-radius: 6px; box-shadow: 0 3px 10px -5px rgba(${T.shadowBase},0.3); display: flex; align-items: center; justify-content: center; padding: 2px; font-size: 12.5px; color: ${T.ink}; animation: ip-kir .35s ease-out both; }
-        .ip-ab-s b { font-weight: 700; animation: ip-kir .4s ease-out both; }
-        .ip-ab-s em { font-style: normal; font-weight: 700; font-size: 16px; color: ${T.ink2}; }
-        .ip-ab-s.ajrat { border-color: ${T.accent}; animation: ip-kir .35s ease-out both, ip-halqa-i 1.4s ease-in-out .4s 2; }
-        @media (max-width: 760px) { .ip-ab-tasma { grid-template-columns: repeat(5, minmax(0,1fr)); } .ip-ab-s { font-size: 10px; } .ip-ab { padding: 10px; } }
         /* 5-ekran son kartalari */
         .ip-sonlar { display: flex; flex-direction: column; gap: 10px; }
         /* 5-ekran (F-1008-575): Bozor bo'lagi ichida uch qator — karta o'z qatoriga uchib tushadi; manbasiz son — kulrang «hali tekshirilmagan» */
@@ -2683,13 +2594,31 @@ export default function PmInvestorPitchLesson({ lang: langProp, onFinished, live
         .ip-karta-tug { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
         .ip-karta-tug .ip-o { margin-left: auto; }
         .ip-fokus { display: flex; flex-direction: column; gap: 12px; }
+        /* Uch yangi bo'lak bitta ekranda (F-1018-11) */
+        .ip-uch { display: flex; flex-direction: column; gap: 12px; flex: 1 0 auto; }
+        /* Sherikka o'qing (F-1018-11; 213.3 — qatorlar chegarasiz, holat fon bilan) */
+        .ip-sh { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 16px; align-items: start; width: 100%; }
+        .ip-sh-ch, .ip-sh-on { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+        .ip-sh-tmr { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 10px 14px; border-radius: 12px; background: ${T.paper}; }
+        .ip-sh-tmr > b { font-family: 'JetBrains Mono', monospace; font-size: 26px; font-weight: 700; letter-spacing: .02em; }
+        .ip-sh-tmr > b.oshdi { color: ${T.err}; }
+        .ip-sh-gapir { font-size: 13px; color: ${T.ink2}; }
+        .ip-sh-tug { display: flex; gap: 8px; margin-left: auto; }
+        .ip-sh-q { display: grid; grid-template-columns: minmax(0,1fr) auto; grid-template-areas: 'nom b' 't b'; column-gap: 12px; row-gap: 2px; align-items: center; padding: 8px 12px; border-radius: 12px; background: ${T.paper}; }
+        .ip-sh-nom { grid-area: nom; } .ip-sh-t { grid-area: t; } .ip-sh-b { grid-area: b; }
+        .ip-sh-b .q-chip { padding: 6px 10px; font-size: 13px; }
+        .ip-sh-q.kutadi { opacity: .72; }
+        .ip-sh-q.bor { background: ${T.okFon}; }
+        .ip-sh-q.yoq { background: ${fon(T.err, 0.1)}; }
+        .ip-sh-nom { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: ${T.ink2}; }
+        .ip-sh-nom i { font-style: normal; display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: ${fon(T.accent, 0.14)}; color: ${T.accent}; font-size: 11px; }
+        .ip-sh-q.bor .ip-sh-nom i { background: ${T.ok}; color: #fff; }
+        .ip-sh-q.yoq .ip-sh-nom i { background: ${T.err}; color: #fff; }
+        .ip-sh-t { font-size: 14px; line-height: 1.4; color: ${T.ink}; }
+        .ip-sh-b { display: flex; flex-wrap: nowrap; gap: 6px; }
+        @media (max-width: 760px) { .ip-sh { grid-template-columns: 1fr; } .ip-sh-q { grid-template-columns: 1fr; grid-template-areas: 'nom' 't' 'b'; row-gap: 6px; } }
         /* Kartochka: birinchi bosishgacha yengil halqa va ipucha (SABOQ 16, E 49) */
-        .ip-flash.yangi .fc-card:not(.flip) .fc-front { border-color: ${fon(T.accent, 0.45)}; animation: ip-puls 1.8s ease-out .4s 3; }
         /* Kartochka (F-1008-593, global): orqa yuz — neytral to'q (qolipdagi zarg'aldoq gradiyent o'rniga), qizil/zarg'aldoq soya yo'q */
-        .ip-flash .fc-back { background: ${T.ink}; color: #fff; box-shadow: 0 16px 36px -18px rgba(${T.shadowBase},0.55); }
-        .ip-flash .fc-front { box-shadow: 0 14px 34px -20px rgba(${T.shadowBase},0.35); }
-        p.ip-fc-ipucha { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 12px 0 0; font-size: 13px; font-weight: 700; color: ${T.ink2}; }
-        p.ip-fc-ipucha i { width: 8px; height: 8px; border-radius: 50%; background: ${T.accent}; }
         /* Yakun: ✓ faqat to'liq holatda; uyga vazifa kartasi */
         .ip-yakun.belgisiz .done-chip .tick { display: none; }
         .ip-hw { display: flex; flex-direction: column; gap: 12px; }
@@ -2712,8 +2641,6 @@ export default function PmInvestorPitchLesson({ lang: langProp, onFinished, live
         .ip-teskari .ip-harakat { flex-direction: column; align-items: stretch; }
         .ip-bash .q-bashorat { flex-direction: row; flex-wrap: wrap; align-items: center; column-gap: 14px; row-gap: 6px; padding: 10px 14px; }
         .ip-bash .q-bashorat > .q-yorliq { flex-basis: 100%; }
-        .ip-voqea { align-items: stretch; text-align: left; width: 100%; }
-        .ip-voqea > .zoomable { width: 100%; }
         .q-mustaqil:has(.ip-karta), .q-mustaqil:has(.ip-fokus) { max-width: none; }
         @media (max-width: 640px) { .ip-bolak:not(.fokus):not(.oraliq) { flex-direction: column; gap: 2px; } .ip-bolak:not(.fokus) .ip-bolak-m { -webkit-line-clamp: 2; } }
         @media (prefers-reduced-motion: reduce) {
@@ -2839,7 +2766,6 @@ export default function PmInvestorPitchLesson({ lang: langProp, onFinished, live
         @media (prefers-reduced-motion: reduce) { .lp-step.on .lp-check, .lp-done-btn.is-done { animation: none !important; } }
         .lp-mstats { background: ${T.accentSoft}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 6px; }
 
-        /* === 🃏 FLASHCARDS — qolipda: QKartochka (DE-204) === */
 
         /* === 🔤 KOD-ATAMA CHIP (fmtCode) === */
         .qcode { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }

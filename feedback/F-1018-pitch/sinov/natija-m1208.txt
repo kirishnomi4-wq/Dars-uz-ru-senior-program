@@ -1,0 +1,9 @@
+boshida: {"t":"Tekshiring (0/3)","d":true} · qatorlar: ["Ilova telefonda ochildi — birinchi ekran chiqdi"] · ssenariy: 5 · havola: https://mening-ilovam.onrender.com
+  mentor: Mentor Demo Day'da sahnada shu ilova ochiladi. Telefonda oching: 1-tekshiruv.
+1 joyida: ["✓ Ilova telefonda ochildi — birinchi ekran chiqdi","Ssenariydagi asosiy harakat oxirigacha ishlaydi"]
+2 kamchilik: B-yo'l=true · mentor: Mentor Kamchilikni VS Code'da to'g'rilang va push qiling. Darsda ulgurmasangiz — B-yo'lni sahnaga tayyorlab qo'ying.
+uchala: {"t":"Davom etish","d":false} · qatorlar: ["✓ Ilova telefonda ochildi — birinchi ekran chiqdi","✓ Ssenariydagi asosiy harakat oxirigacha ishlaydi","✓ Savol-javobda ko'rsatadigan ekraningiz ochiladi"] · xulosa: true
+saqlandi: answers[8]={"ochildi":"ok","harakat":"fixed","savol":"ok"} · final.tekshiruv={"holat":{"ochildi":"ok","harakat":"fixed","savol":"ok"},"link":"mening-ilovam.onrender.com"}
+qayta ochildi: {"t":"Davom etish","d":false} · yig'ilgan: 3
+ma'lumotsiz: {"t":"Tekshiring (0/3)","d":true} · ssenariy matni: 6-darsdagi ssenariy topilmadi — Jonli demo bo'lagingizdagi h · havola tugmasi: false
+pageerror: 0

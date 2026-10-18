@@ -1,0 +1,7 @@
+s11 tuzatilgan: {"t":"Qayta ayting (1 daqiqa)","d":true} · 2-raund bloki: true · mentor: Mentor
+Bo'lak o'zgartirildi: endi uni ovoz chiqarib 1 daqiqada qayta a
+taymer yurdi: 2-raund: o'zgartirilgan bo'lakni ovoz chiqarib 1 daqiqada qayta ayting — endi zal savoliga javob bo'ldimi?  0:01 Hozir siz gapiras
+to'xtagach: {"t":"Davom etish","d":false} · xulosa: 1 · nishon toast: true
+saqlandi: earned=["livePitch","partFixed","secondTake"] · answers[7].qayta=1
+qayta ochildi: {"t":"Davom etish","d":false} · xulosa: 1
+pageerror: 0

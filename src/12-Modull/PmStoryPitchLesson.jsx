@@ -4,9 +4,10 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // ============================================================
 // 14-Modul (LMS) 2-dars (PM) — «Mahsulotingiz hikoyasini qanday aytasiz?» · kalit m12-02 · 15 ekran · palitra pm.
 // Manba-haqiqat: feedback/F-1008-14modul/02-PmStoryPitch-v3.md (+ 02-FILTR.md); skelet — src/skelet/NamunaDars.jsx; pilot naqshi — PmInvestorPitchLesson.jsx (kod ko'chirilmagan).
-// Ekranlar: s0 QKirish · s1 QReja · s2 QTushuncha (ro'yxat va lahza) · s3 test · s4 QVoqea (K19 iPhone) · s5 test · s6 QTushuncha (hikoya pitchda) · s7 test ·
-//   s8 QMustaqil (uch karta) · s9 QMustaqil (video, rozilik darvozasi) · s10 QMustaqil (o'zini tekshirish) · s11 yakuniy test · podium · QKartochka · QYakun.
-// Bitta vizual — HikoyaSahna (telefon · uch uya · funksiyalar ro'yxati · pitch tasmasi); keys — IphoneSahna. Saqlaydi: pm-m12d2-hikoya (tayanch 8); o'qiydi: pm-m12d1-pitch.
+// v2 (F-1018-12 · 222-qonun, 10 ekran): s0 QKirish · s1 QReja · s2 QTushuncha (ro'yxat va lahza) · s6 QTushuncha (hikoya pitchda) ·
+//   s8 QMustaqil (uch karta) · s9 QMustaqil (video / taymer — 1-raund) · s10 QMustaqil (2-RAUND: sherikka 1 daqiqa, sherik uch savolni belgilaydi) · s11 yakuniy test · podium · QYakun.
+//   Olindi: iPhone keysi (s4), 1-, 2-, 3-savol (s3, s5, s7), kartochkalar. Yakuniy MD: feedback/F-1018-pitch/YAKUNIY-09-m12-02.md
+// Bitta vizual — HikoyaSahna (telefon · uch uya · funksiyalar ro'yxati · pitch tasmasi). Saqlaydi: pm-m12d2-hikoya (tayanch 8); o'qiydi: pm-m12d1-pitch.
 // JONLI: useLiveSession + INLINE_KEYS + CodeStrike arena + Podium. PRODUCTION: <style> ichidagi @import OLIB TASHLANADI.
 // ============================================================
 
@@ -62,7 +63,7 @@ function useIsMobile(breakpoint = 640) {
   return isMobile;
 }
 
-const LESSON_META = { lessonId: 'pm-m12d2-v1', lessonTitle: { uz: "Mahsulotingiz hikoyasini qanday aytasiz?", ru: 'Как рассказать историю вашего продукта?' } }; // 14-Modul 2-dars (LMS), 2-to'lqin — MD feedback/F-1008-14modul/02-PmStoryPitch-v3.md
+const LESSON_META = { lessonId: 'pm-m12d2-v2', lessonTitle: { uz: "Mahsulotingiz hikoyasini qanday aytasiz?", ru: 'Как рассказать историю вашего продукта?' } }; // 14-Modul 2-dars (LMS), 2-to'lqin — MD feedback/F-1008-14modul/02-PmStoryPitch-v3.md
 // 15 ekran (MD v3): kirish → reja → ro'yxat va lahza → test → iPhone → test → hikoya pitchda → test → hikoyangiz → video → tekshirish → yakuniy test → podium → kartochkalar → yakun.
 const HW_TOKENS = [
   { t: { uz: 'hikoya', ru: 'история' }, l: 8, tp: 22, s: 13, d: 6 },
@@ -71,21 +72,16 @@ const HW_TOKENS = [
   { t: { uz: 'pitch', ru: 'питч' }, l: 78, tp: 68, s: 13, d: 6.8 }
 ];
 const SCREEN_META = [
-  { id: 's0',            type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },
-  { id: 's1',            type: 'rule',        template: 'custom',   scored: false, scope: null },
-  { id: 'royxatLahza',   type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's3',            type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
-  { id: 'iphone',        type: 'case',        template: 'custom',   scored: false, scope: null },
-  { id: 's5',            type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
-  { id: 'pitchdaHikoya', type: 'exploration', template: 'custom',   scored: false, scope: null },
-  { id: 's7',            type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
-  { id: 'hikoya',        type: 'practice',    template: 'custom',   scored: false, scope: null },
-  { id: 'video',         type: 'practice',    template: 'custom',   scored: false, scope: null },
-  { id: 'tekshirish',    type: 'practice',    template: 'custom',   scored: false, scope: null },
-  { id: 's11',           type: 'test',        template: 'MCScreen', scored: true,  scope: 'final' },
-  { id: 'podium',        type: 'stats',       template: 'custom',   scored: false, scope: null },
-  { id: 'sflash',        type: 'flashcards',  template: 'custom',   scored: false, scope: null },
-  { id: 's14',           type: 'summary',     template: 'custom',   scored: false, scope: null }
+  { id: 's0',            type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },   // 0 · QKirish
+  { id: 's1',            type: 'rule',        template: 'custom',   scored: false, scope: null },     // 1 · QReja
+  { id: 'royxatLahza',   type: 'exploration', template: 'custom',   scored: false, scope: null },     // 2 · ro'yxat va lahza
+  { id: 'pitchdaHikoya', type: 'exploration', template: 'custom',   scored: false, scope: null },     // 3 · hikoya pitchda
+  { id: 'hikoya',        type: 'practice',    template: 'custom',   scored: false, scope: null },     // 4 · uch karta (ustaxona)
+  { id: 'video',         type: 'practice',    template: 'custom',   scored: false, scope: null },     // 5 · video / taymer — 1-raund
+  { id: 'tekshirish',    type: 'practice',    template: 'custom',   scored: false, scope: null },     // 6 · sherikka 1 daqiqa — 2-raund (222.1)
+  { id: 's11',           type: 'test',        template: 'MCScreen', scored: true,  scope: 'final' },  // 7 · yakuniy savol
+  { id: 'podium',        type: 'stats',       template: 'custom',   scored: false, scope: null },     // 8 · podium
+  { id: 's14',           type: 'summary',     template: 'custom',   scored: false, scope: null }      // 9 · QYakun
 ];
 const TOTAL_SCREENS = SCREEN_META.length;
 const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => i !== null);
@@ -286,34 +282,10 @@ const RcFlow = ({ items, sep = '→' }) => (
 
 // MD KOD 12 dagi royxatLahza/iphone/pitchdaHikoya/hikoya/video/tekshirish: -1 — jsx darvozasi «o'lik kalit» deydi (ballsiz ekran nomi submitAnswer ga uzatilmaydi);
 // amaliyot signallari submitAnswer(PRACTICE_BASE + ekran, 'practice', …) — shuning uchun bitta 'practice' sentinel (1-dars naqshi).
-const INLINE_KEYS = { s3: 1, s5: 3, s7: 2, s11: 0, practice: -1 };
+const INLINE_KEYS = { s11: 0, practice: -1 };
 // 📖 RECAPS — har ballik test uchun 3 karta (kalit = ekran INDEKSI; PM: belgi o'rnida raqam — S-026). «Sinfga savol» — oxirgi kartada.
 const RECAPS = {
-  3: {
-    title: { uz: 'Hikoyani boshlaydigan gap', ru: 'Фраза, с которой начинается история' },
-    cards: [
-      { ic: '1', h: { uz: "Funksiyalar ro'yxatida odam ham, lahza ham yo'q.", ru: 'В списке функций нет ни человека, ни момента.' } },
-      { ic: '2', h: { uz: "Lahza — bo'lib o'tgan bitta voqea: kuni, soati va nima bo'lgani.", ru: 'Момент — один случай, который произошёл: день, час и что случилось.' } },
-      { ic: '3', h: { uz: "Umumiy gap va va'da — lahza emas.", ru: 'Общая фраза и обещание — не момент.' }, ask: { uz: 'Mahsulotingiz hikoyasi qaysi lahzadan boshlanadi?', ru: 'С какого момента начинается история вашего продукта?' } }
-    ]
-  },
-  5: {
-    title: { uz: 'iPhone va Mentor hikoyasi', ru: 'iPhone и история Ментора' },
-    cards: [
-      { ic: '1', h: { uz: "2007-yilda telefon kompaniyalari ko'p tugma bilan bellashgan.", ru: 'В 2007 году телефонные компании соревновались числом кнопок.' } },
-      { ic: '2', h: { uz: "Apple ko'p tugmani olib tashlagan: bitta ekran va Home tugmasi qolgan.", ru: 'Apple убрала много кнопок: остались один экран и кнопка Home.' } },
-      { ic: '3', h: { uz: "Mentor ham pitch boshida ro'yxat o'rniga bitta lahzani qoldirdi.", ru: 'Ментор тоже в начале питча оставил вместо списка один момент.' }, ask: { uz: 'Pitchingizdan nimani olib tashlaysiz?', ru: 'Что вы уберёте из своего питча?' } }
-    ]
-  },
   7: {
-    title: { uz: 'Hikoya pitchda qayerdan', ru: 'Где в питче история' },
-    cards: [
-      { ic: '1', h: { uz: "Lahza Muammo bo'lagini ochadi.", ru: 'Момент открывает часть «Проблема».' } },
-      { ic: '2', h: { uz: "O'zgarish Yechimda, jonli demo bilan ko'rinadi.", ru: 'Изменение видно в Решении, с живым демо.' } },
-      { ic: '3', h: { uz: "Raqamlar — hikoyaning qismi emas: mahsulotda nechta foydalanuvchi borligi.", ru: 'Цифры — не часть истории: сколько у продукта пользователей.' }, ask: { uz: "Sizning lahzangiz qaysi bo'lakni ochadi?", ru: 'Какую часть открывает ваш момент?' } }
-    ]
-  },
-  11: {
     title: { uz: "Videoda ro'yxat chiqsa", ru: 'Если в видео получился список' },
     cards: [
       { ic: '1', h: { uz: "Videodan keyin uch savol: lahza bilan boshlandimi, ro'yxatsiz gapirdimmi, 1 daqiqaga sig'dimi.", ru: 'После видео три вопроса: начал ли с момента, говорил ли без списка, уложился ли в 1 минуту.' } },
@@ -593,7 +565,7 @@ const Kw = Jx; // kod bo'yog'i: kalit so'z (tag rangi)
 
 // ===== DARSNING BITTA VIZUALI (163, 180) — HikoyaSahna: telefon (JamoaTelefon) · hikoya chizig'i (kim · lahza · o'zgarish) · funksiyalar ro'yxati · pitch tasmasi + taymer · zal =====
 // Odam figurasi chizilmaydi (SABOQ P1): kim — bitta urg'uli rol kartasi, zal va o'yinchilar — doirachalar qatori; hakam savoli — rol kartasi (pufak emas).
-// Bitta manba: MENTOR_HIKOYA · FUNKSIYA_ROYXAT · JAMOA_PITCH · VAQT · HAKAM_SAVOL · IPHONE_KADR · VIDEO_SAVOL + o'quvchi kaliti pm-m12d2-hikoya (tayanch 8).
+// Bitta manba: MENTOR_HIKOYA · FUNKSIYA_ROYXAT · JAMOA_PITCH · VAQT · HAKAM_SAVOL · VIDEO_SAVOL + o'quvchi kaliti pm-m12d2-hikoya (tayanch 8).
 // 1-dars OltiBolakSahna dan ko'chirilmagan — dars ichida yozildi (K-020). reduced-motion — CSS da va kamHarakat() bilan.
 // qolip-maket: sp-tahrir
 const cxx = (...a) => a.filter(Boolean).join(' ');
@@ -601,7 +573,6 @@ const NB = ' ';
 const MJ_RANG = '#2E9E4F'; // «Maydon Jamoa» — 11-Modul 9.62 yashili (9–13-Modul darslari bilan bir), logotipsiz
 const MJ = () => <span className="sp-mj">Maydon Jamoa</span>;
 const A = ({ children }) => <span className="italic" style={{ color: T.accent }}>{children}</span>;
-const Brend = ({ r, children }) => <b className={cxx('sp-brend', r)}>{children}</b>; // iPhone · Nokia · BlackBerry — 11-Modul ranglari (9.97), logotipsiz
 
 // --- Saqlanadigan natija (tayanch 8) va o'qiladigan kalit (1-dars) ---
 const HIKOYA_KEY = 'pm-m12d2-hikoya';
@@ -611,7 +582,7 @@ const lsY = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catc
 const QISM_ID = ['kim', 'lahza', 'ozgarish'];
 const QISM_NOM = { kim: { uz: 'Kim', ru: 'Кто' }, lahza: { uz: 'Lahza', ru: 'Момент' }, ozgarish: { uz: "O'zgarish", ru: 'Изменение' } };
 const QISM_MAX = { kim: 60, lahza: 160, ozgarish: 160 };
-const VIDEO_BOSH = { yozildi: null, lahzaBilan: null, royxatYoq: null, vaqtgaSigdi: null, vaqt: null };
+const VIDEO_BOSH = { yozildi: null, lahzaBilan: null, royxatYoq: null, vaqtgaSigdi: null, vaqt: null, qayta: null }; // qayta — 2-raund vaqti (F-1018-12)
 const hikoyaOl = () => {
   const h = lsO(HIKOYA_KEY) || {};
   const v = h.video && typeof h.video === 'object' ? h.video : {};
@@ -652,10 +623,9 @@ const birinchiGap = (s) => { const t = String(s || '').trim(); const m = t.match
 
 // --- Ekran maqsadlari (PM: quruvchi + SCREEN_INTENTS; ekranga chiqmaydi) ---
 const SCREEN_INTENTS = [
-  "kirish: ro'yxat bilan boshlangan pitchdan zal nimani bilib oladi", "reja: hikoya yozib, telefonga aytib ko'rish", "ro'yxat o'rniga kim · lahza · o'zgarish; mahsulot hikoyasi tug'iladi",
-  "test: lahzali gap (kitob almashish)", "iPhone: ko'p tugma olib tashlangan, keraklisi qolgan", "test: o'xshash usul", "hikoya ikki bo'lakka: Muammo va Yechim; Raqamlar tashqarida",
-  "test: hikoya Muammo boshida", "o'z hikoyasi uch kartaga, pm-m12d2-hikoya", "telefonga 1 daqiqa; rozilik darvozasi", "o'zini tekshirish: uch savol",
-  "yakuniy test: videoda ro'yxat chiqsa", 'podium', 'kartochkalar', 'yakun: 5 holat'
+  "kirish: ro'yxat bilan boshlangan pitchdan zal nimani bilib oladi", "reja: hikoya yozib, telefonga va sherikka aytish", "ro'yxat o'rniga kim · lahza · o'zgarish; mahsulot hikoyasi tug'iladi",
+  "hikoya ikki bo'lakka: Muammo va Yechim; Raqamlar tashqarida", "o'z hikoyasi uch kartaga, pm-m12d2-hikoya", "telefonga 1 daqiqa; rozilik darvozasi (1-raund)",
+  "sherikka 1 daqiqa; sherik uch savolni belgilaydi (2-raund)", "yakuniy test: videoda ro'yxat chiqsa", 'podium', 'yakun: 5 holat'
 ];
 
 // --- Matn tekshiruvi (8, 10-ekranlar): ikki tilli; apostrof shakllari normT bilan bir xil (PM-108 — node da sinalgan) ---
@@ -915,7 +885,7 @@ const REJA = [
   { t: { uz: "Funksiyalar ro'yxati bilan hikoya farqini ko'rasiz", ru: 'Увидите разницу между списком функций и историей' }, teg: { uz: 'hikoya', ru: 'история' } },
   { t: { uz: "Hikoya pitchning qaysi bo'laklariga tushishini bilib olasiz", ru: 'Узнаете, в какие части питча попадает история' }, teg: { uz: "bo'laklar", ru: 'части' } },
   { t: { uz: "O'z mahsulotingiz hikoyasini kartalarga yozasiz", ru: 'Запишете историю своего продукта на карточки' }, teg: { uz: 'karta', ru: 'карточка' } },
-  { t: { uz: "Hikoyani telefonga aytib, o'zingiz tekshirasiz", ru: 'Расскажете историю на телефон и проверите себя' }, teg: { uz: 'video', ru: 'видео' } }
+  { t: { uz: "Hikoyani telefonga aytasiz, keyin sherigingizga — u uch savol bilan tekshiradi", ru: 'Расскажете историю на телефон, потом партнёру — он проверит её тремя вопросами' }, teg: { uz: 'video · sherik', ru: 'видео · партнёр' } }
 ];
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const [tayyor, setTayyor] = useState(false);
@@ -977,118 +947,6 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     </Stage>
   );
 };
-
-// ===== SCREEN 3 — 1-SAVOL (QuestionScreen → QTest; INLINE_KEYS.s3 = 1; ikkinchi misol — kitob almashish ilovasi, P-002) =====
-const Screen3 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Tekshiruv · lahza', ru: 'Проверка · момент' })}
-    questionText="Kitob almashish ilovasi pitchida qaysi gap hikoyani boshlaydi?"
-    question={tr({ uz: <h2 className="title h-ask">Kitob almashish ilovasi pitchida <A>qaysi gap hikoyani boshlaydi?</A></h2>, ru: <h2 className="title h-ask">Какая фраза <A>начинает историю</A> в питче приложения для обмена книгами?</h2> })}
-    options={[
-      { uz: 'Ilovada kitob qidiruvi, chat va xarita bor', ru: 'В приложении есть поиск книг, чат и карта' },
-      { uz: 'Dushanba tanaffusida sinfdosh kitob topolmadi', ru: 'В понедельник на перемене одноклассник не нашёл книгу' },
-      { uz: "O'quvchilar ko'pincha kitob topishda qiynaladi", ru: 'Ученикам часто трудно найти книгу' },
-      { uz: 'Yil oxirigacha hamma maktab kitob almashadi', ru: 'К концу года все школы будут обмениваться книгами' }
-    ]} correctIdx={1}
-    explainCorrect={{ uz: "Unda bitta odam va bo'lib o'tgan bitta lahza bor.", ru: 'В ней есть один человек и один момент, который произошёл.' }}
-    explainWrong={{
-      0: { uz: "Bu funksiyalar ro'yxati — unda odam bormi?", ru: 'Это список функций — есть ли в нём человек?' },
-      2: { uz: "Bu umumiy gap — qaysi kuni, kim bilan bo'ldi?", ru: 'Это общая фраза — в какой день, с кем это было?' },
-      3: { uz: "Bu va'da — bo'lib o'tgan lahza qayerda?", ru: 'Это обещание — где момент, который произошёл?' },
-      default: { uz: 'Mentor lahzasida qaysi kun va soat bor edi?', ru: 'Какие день и час были в моменте Ментора?' }
-    }}
-    vizual={<MiniUyalar items={[{ n: tr({ uz: 'kim', ru: 'кто' }), t: tr({ uz: 'sinfdosh', ru: 'одноклассник' }) }, { n: tr({ uz: 'lahza', ru: 'момент' }), t: tr({ uz: 'dushanba, tanaffus', ru: 'понедельник, перемена' }) }, { n: tr({ uz: "o'zgarish", ru: 'изменение' }), t: '?', kulrang: true }]} />} />
-);
-
-// ===== SCREEN 4 — iPHONE (QVoqea; PM keys K19 — bank so'zi aynan, raqamsiz; kadr gapi Mentorda; nomlar o'z rangida, logotipsiz — SABOQ 2, 3, 8, 26) =====
-const IPHONE_KADR = [
-  { h: { uz: "Ko'p tugma", ru: 'Много кнопок' }, m: { uz: "2007-yilda telefon kompaniyalari kim ko'proq tugma qilishi bilan bellashgan. Nokia va BlackBerry'da klaviatura va stilus bo'lgan.", ru: 'В 2007 году телефонные компании соревновались, у кого больше кнопок. У Nokia и BlackBerry были клавиатура и стилус.' } },
-  { h: { uz: 'Bitta ekran', ru: 'Один экран' }, m: { uz: "Apple esa klaviatura, stilus va deyarli hamma tugmani olib tashlagan. Telefonda bitta ekran va Home tugmasi qolgan.", ru: 'А Apple убрала клавиатуру, стилус и почти все кнопки. В телефоне остались один экран и кнопка Home.' } },
-  { h: { uz: 'Uch qurilma bittada', ru: 'Три устройства в одном' }, m: { uz: "Stiv Jobs iPhone'ni «uch qurilma bittada» deb taqdim etgan: iPod, telefon va internet. iPod — Apple'ning musiqa pleeri.", ru: 'Стив Джобс представил iPhone как «три устройства в одном»: iPod, телефон и интернет. iPod — музыкальный плеер Apple.' } }
-];
-const S4_TAXMIN = [{ k: 'olib', t: { uz: 'Deyarli hammasini olib tashlagan', ru: 'Убрала почти все' } }, { k: 'oshancha', t: { uz: "O'shancha qoldirgan", ru: 'Оставила столько же' } }, { k: 'kop', t: { uz: "Ko'paytirgan", ru: 'Добавила' } }];
-const QURILMA = [{ k: 'ipod', t: 'iPod' }, { k: 'tel', t: { uz: 'telefon', ru: 'телефон' } }, { k: 'net', t: { uz: 'internet', ru: 'интернет' } }];
-const QurilmaBelgi = ({ k }) => (k === 'ipod'
-  ? <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5" fill="none" stroke="currentColor" strokeWidth="1.8" /><circle cx="12" cy="15" r="3.2" fill="none" stroke="currentColor" strokeWidth="1.8" /><path d="M9 5.5h6v4H9z" fill="currentColor" /></svg>
-  : k === 'tel'
-    ? <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5h2.6l1.4 4-2 1.4a10.5 10.5 0 0 0 6.5 6.5l1.4-2 4 1.4v2.6a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2Z" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" /></svg>
-    : <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="2" fill="none" stroke="currentColor" strokeWidth="1.8" /><path d="M2.5 8.5h19" stroke="currentColor" strokeWidth="1.8" /><circle cx="5.5" cy="6.3" r=".9" fill="currentColor" /><circle cx="8.3" cy="6.3" r=".9" fill="currentColor" /></svg>);
-const IphoneSahna = ({ b }) => (
-  <div className={cxx('sp-ip', 'k' + b)} key={'k' + b}>
-    {b === 0 && <div className="sp-ip-eski">
-      <div className="sp-ip-tel klav"><span className="sp-ip-ekr kichik" /><span className="sp-ip-klav">{Array.from({ length: 24 }).map((_, i) => <i key={i} style={{ animationDelay: (0.15 + i * 0.07) + 's' }} />)}</span></div>
-      <div className="sp-ip-tel stilus"><span className="sp-ip-ekr" /><span className="sp-ip-klav kam">{Array.from({ length: 6 }).map((_, i) => <i key={i} style={{ animationDelay: (1.9 + i * 0.1) + 's' }} />)}</span><span className="sp-ip-qalam" /></div>
-      <span className="sp-ip-nomlar"><Brend r="nokia">Nokia</Brend> · <Brend r="bb">BlackBerry</Brend></span>
-    </div>}
-    {b === 1 && <div className="sp-ip-otish">
-      <div className="sp-ip-tel klav ketadi"><span className="sp-ip-ekr kichik" /><span className="sp-ip-klav">{Array.from({ length: 24 }).map((_, i) => <i key={i} style={{ animationDelay: (i * 0.04) + 's' }} />)}</span><span className="sp-ip-qalam ketadi" /></div>
-      <div className="sp-ip-iphone"><span className="sp-ip-katta" /><span className="sp-ip-home" /><em className="sp-ip-hy">Home</em><Brend r="iphone">iPhone</Brend></div>
-    </div>}
-    {b === 2 && <div className="sp-ip-uch">
-      <div className="sp-ip-qur">{QURILMA.map((d, i) => <span key={d.k} className="sp-ip-q" style={{ animationDelay: (0.4 + i * 0.75) + 's' }}><QurilmaBelgi k={d.k} /><em>{tr(d.t)}</em></span>)}</div>
-      <div className="sp-ip-iphone"><span className="sp-ip-katta ichida">{QURILMA.map((d, i) => <i key={d.k} style={{ animationDelay: (1.0 + i * 0.75) + 's' }}><QurilmaBelgi k={d.k} /></i>)}</span><span className="sp-ip-home" /><Brend r="iphone">iPhone</Brend></div>
-      <span className="sp-ip-ibora">{tr({ uz: 'uch qurilma bittada', ru: 'три устройства в одном' })}</span>
-    </div>}
-  </div>
-);
-const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [b, setB] = useState(storedAnswer ? 2 : 0);
-  const [taxmin, setTaxmin] = useState(storedAnswer?.taxmin ?? null);
-  const done = b >= 2;
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true, taxmin }); }, [done]); // eslint-disable-line
-  const tanla = (k) => { if (taxmin || b !== 0) return; setTaxmin(k); setTimeout(() => setB(1), kamHarakat() ? 0 : 650); };
-  const kadr = IPHONE_KADR[b];
-  const tx = S4_TAXMIN.find(t => t.k === taxmin);
-  const davom = () => { if (b < 2) setB(b + 1); else onNext(); };
-  return (
-    <Stage eyebrow={tr({ uz: 'Biznes olamidan', ru: 'Из мира бизнеса' })} screen={screen} scrollSignal={b} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={(b === 1) || done} disabled={b === 0 && !taxmin} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Voqea davomi (${b + 1}/3)`, ru: `Продолжение истории (${b + 1}/3)` })} onClick={davom} /></>}>
-      <QVoqea
-        sarlavha={tr({ uz: <><Brend r="iphone">iPhone</Brend> 2007-yilda <A>nima bilan ajralib turgan?</A></>, ru: <>Чем <Brend r="iphone">iPhone</Brend> <A>выделялся в 2007 году?</A></> })}
-        nuqtalar={<>
-          <Mentor key={'m' + b}>{tr(kadr.m)}</Mentor>
-        </>}
-        karta={<Zoomable><div className="voqea-tola" data-zoom-asosiy><div className="sp-voqea">
-          <span className="sp-voqea-h" key={'h' + b}>{tr(kadr.h)}</span>
-          {b === 0 && <p className="sp-tanish"><Brend r="iphone">iPhone</Brend> — {tr({ uz: 'Apple kompaniyasining telefoni.', ru: 'телефон компании Apple.' })} <Brend r="nokia">Nokia</Brend> {tr({ uz: 'va', ru: 'и' })} <Brend r="bb">BlackBerry</Brend> — {tr({ uz: '2007-yilda telefon chiqargan kompaniyalar.', ru: 'компании, выпускавшие телефоны в 2007 году.' })}</p>}
-          {b === 2 && <p className="sp-tanish">{tr({ uz: "Stiv Jobs — o'sha paytdagi Apple rahbari.", ru: 'Стив Джобс — руководитель Apple в то время.' })}</p>}
-          <div className="sp-voqea-g"><IphoneSahna b={b} /><div className="sp-voqea-o">
-          {ixchamBashorat(taxmin, <QBashorat yorliq={<Brend r="iphone">iPhone</Brend>}
-            savol={tr({ uz: "Apple iPhone'da tugmalarni nima qilgan?", ru: 'Что Apple сделала с кнопками в iPhone?' })}
-            variantlar={S4_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) + (b >= 1 && taxmin === v.k ? (v.k === 'olib' ? ' ✓' : ' ✕') : '') }))} tanlov={taxmin} onTanla={tanla} />)}
-          {b >= 1 && tx && <QXulosa><XulosaQ taxmin={<TaxminQ togri={taxmin === 'olib'} aslida={tr({ uz: 'deyarli hammasini olib tashlagan', ru: 'убрала почти все' })} />}
-            matn={done && tr({ uz: "Bu voqeada Apple ko'p tugmani olib tashlagan, Jobs esa iPhone'ni tanish uch narsa bilan atagan.", ru: 'В этой истории Apple убрала много кнопок, а Джобс назвал iPhone тремя знакомыми вещами.' })} /></QXulosa>}
-          </div></div>
-        </div></div></Zoomable>}
-      />
-    </Stage>
-  );
-};
-
-// ===== SCREEN 5 — 2-SAVOL (QuestionScreen; INLINE_KEYS.s5 = 3; keys ko'prigi — «o'xshash usul») =====
-const Screen5 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Tekshiruv · iPhone voqeasi', ru: 'Проверка · история iPhone' })}
-    questionText="iPhone voqeasi va Mentor hikoyasida qaysi usul o'xshash?"
-    question={tr({ uz: <h2 className="title h-ask">iPhone voqeasi va Mentor hikoyasida <A>qaysi usul o'xshash?</A></h2>, ru: <h2 className="title h-ask">Какой приём <A>похож</A> в истории iPhone и в истории Ментора?</h2> })}
-    options={[
-      { uz: 'Ikkalasida hamma funksiya birma-bir sanalgan', ru: 'В обеих все функции перечислены по одной' },
-      { uz: "Ikkalasida voqea 2007-yilda bo'lib o'tgan", ru: 'В обеих событие произошло в 2007 году' },
-      { uz: "Ikkalasida tugmalar soni ko'paytirilgan", ru: 'В обеих число кнопок увеличили' },
-      { uz: "Ikkalasida ko'p o'rniga keraklisi qolgan", ru: 'В обеих вместо многого осталось нужное' }
-    ]} correctIdx={3}
-    explainCorrect={{ uz: "Apple tugmani, Mentor esa pitch boshidagi ro'yxatni olgan.", ru: 'Apple убрала кнопки, а Ментор — список в начале питча.' }}
-    explainWrong={{
-      0: { uz: 'Mentor hikoyasida funksiyalar sanaldimi?', ru: 'Перечислялись ли функции в истории Ментора?' },
-      1: { uz: "Mentor lahzasi qaysi kuni bo'lgan edi?", ru: 'В какой день был момент Ментора?' },
-      2: { uz: "Apple tugmalarni ko'paytirganmi?", ru: 'Разве Apple увеличила число кнопок?' },
-      default: { uz: "Ikkalasida nima o'rniga nima qolganini eslang.", ru: 'Вспомните, что и вместо чего осталось в обеих.' }
-    }}
-    vizual={<div className="sp-mini-ikki">
-      <div className="sp-mini-ip"><span className="sp-ip-katta" /><span className="sp-ip-home" /><Brend r="iphone">iPhone</Brend></div>
-      <div className="sp-mini-o">
-        <div className="sp-mini-fn">{FUNKSIYA_ROYXAT.map((f, i) => <span key={i}>{tr(f)}</span>)}</div>
-        <MiniUyalar items={QISM_ID.map(id => ({ n: tr(QISM_NOM[id]).toLowerCase(), t: id === 'kim' ? tr(MENTOR_HIKOYA.kim) : id === 'lahza' ? tr({ uz: 'Shanba, 18:00', ru: 'Суббота, 18:00' }) : `9${NB}/${NB}10`, yon: true }))} />
-      </div>
-    </div>} />
-);
 
 // ===== SCREEN 6 — HIKOYA PITCHDA (QTushuncha keng; bashorat → 3 tugma: Muammo · Yechim · Raqamlar; hikoya qismi bo'lakka ko'rinib uchadi — SABOQ P3; telefonsiz — SABOQ 24) =====
 const S6_TUGMA = [{ uz: 'Muammo', ru: 'Проблема' }, { uz: 'Yechim', ru: 'Решение' }, { uz: 'Raqamlar', ru: 'Цифры' }];
@@ -1154,27 +1012,6 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     </Stage>
   );
 };
-
-// ===== SCREEN 7 — 3-SAVOL (QuestionScreen; INLINE_KEYS.s7 = 2; o'quvchining o'z pitchi) =====
-const Screen7 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: "Tekshiruv · hikoya va bo'laklar", ru: 'Проверка · история и части' })}
-    questionText="Hikoyangizni pitchning qayerida boshlaysiz?"
-    question={tr({ uz: <h2 className="title h-ask">Hikoyangizni pitchning <A>qayerida boshlaysiz?</A></h2>, ru: <h2 className="title h-ask">В каком месте питча <A>вы начнёте свою историю?</A></h2> })}
-    options={[
-      { uz: 'Keyingi qadamdan keyin, pitch oxirida', ru: 'После Следующего шага, в конце питча' },
-      { uz: 'Pitchdan oldin, 5 daqiqadan tashqarida', ru: 'До питча, за пределами 5 минут' },
-      { uz: "Muammo bo'lagi boshida, lahza bilan", ru: 'В начале части «Проблема», с момента' },
-      { uz: "Funksiyalar ro'yxatini aytib bo'lgach", ru: 'После того как назову список функций' }
-    ]} correctIdx={2}
-    explainCorrect={{ uz: "Muammo bo'lagi lahza bilan boshlanadi.", ru: 'Часть «Проблема» начинается с момента.' }}
-    explainWrong={{
-      0: { uz: "Lahza muammoni ochadi — Muammo qaysi bo'lakda?", ru: 'Момент открывает проблему — в какой части Проблема?' },
-      1: { uz: 'Pitch 5 daqiqa — hikoya shu vaqt ichidami?', ru: 'Питч — 5 минут; история внутри этого времени?' },
-      3: { uz: "Ro'yxat bilan boshlansa, zal avval nimani eshitadi?", ru: 'Если начать со списка, что зал услышит первым?' },
-      default: { uz: "Mentor lahzasi qaysi bo'lakni ochgan edi?", ru: 'Какую часть открыл момент Ментора?' }
-    }}
-    vizual={<div className="sp-mini-t">{BOLAK_ID.map((id, i) => <span key={id} className={cxx('sp-mini-tb', (id === 'muammo' || id === 'yechim') && 'on')} style={{ animationDelay: (i * 0.06) + 's' }}><b>{tr(BOLAK_NOM[id])}</b>{id === 'muammo' && <em>{tr({ uz: 'lahza', ru: 'момент' })}</em>}{id === 'yechim' && <em>9{NB}/{NB}10</em>}</span>)}</div>} />
-);
 
 // ===== SCREEN 8 — HIKOYANGIZ (QMustaqil, USTAXONA — bittadan karta, 3 karta; E 43, E 53) · yozadi pm-m12d2-hikoya · o'qiydi pm-m12d1-pitch (faqat kulrang qator) · nishon My Story! =====
 const S8_PLACE = { kim: { uz: 'Kimning lahzasi? Rolini yozing, ism emas', ru: 'Чей это момент? Напишите роль, а не имя' }, lahza: { uz: "Qaysi kuni, qayerda, nima bo'ldi?", ru: 'В какой день, где, что произошло?' }, ozgarish: { uz: 'Mahsulot bilan hozir nima boshqacha?', ru: 'Что сейчас иначе благодаря продукту?' } };
@@ -1370,7 +1207,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev, live }) => {
   );
 };
 
-// ===== SCREEN 10 — O'ZINGIZ TEKSHIRING (QMustaqil; VIDEO_SAVOL varag'i «Ha»/«Yo'q»; «Yo'q» → maslahat + «Kartani ochish»; sarlavha video holatiga qarab — E 54) · nishon Self Check! =====
+// ===== SCREEN 10 — 2-RAUND: SHERIK TEKSHIRADI (QMustaqil; F-1018-12, 222.1: hikoya sherikka 1 daqiqada aytiladi, sherik VIDEO_SAVOL varag'ini «Ha»/«Yo'q» bilan to'ldiradi; «Yo'q» → maslahat + «Kartani ochish»; yakka rejimda o'zi) · nishon Pair Check! =====
 const VIDEO_SAVOL = [
   { id: 'lahzaBilan', t: { uz: 'Hikoya lahza bilan boshlandimi?', ru: 'История началась с момента?' }, maslahat: { uz: "Lahzani birinchi gapga qo'ying: kun, soat va nima bo'ldi.", ru: 'Поставьте момент в первую фразу: день, час и что произошло.' }, karta: ['lahza'] },
   { id: 'royxatYoq', t: { uz: "Funksiyalar ro'yxatisiz gapirdingizmi?", ru: 'Вы говорили без списка функций?' }, maslahat: { uz: "Funksiyalar o'rniga bitta o'zgarishni ayting.", ru: 'Вместо функций назовите одно изменение.' }, karta: ['ozgarish'] },
@@ -1380,27 +1217,34 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev, live }) => {
   const gate = useContext(LiveGateCtx) || {};
   const _live = live || gate.live;
   const isMentor = !!(_live && _live.mode === 'mentor');
+  const juft = !!(_live && _live.mode === 'student');
   const achMiss = useContext(AchMissCtx);
   const [h, setH] = useState(() => hikoyaOl());
-  const video = !isMentor && h.video.yozildi === true;
   const bor = kartaSoni(h) > 0;
-  const [javob, setJavob] = useState(() => Object.fromEntries(VIDEO_SAVOL.map(v => [v.id, h.video[v.id]])));
+  const tm = useTaymer();
+  const [vaqt, setVaqt] = useState(() => (typeof h.video.qayta === 'number' ? h.video.qayta : null));
+  const toxtadi = vaqt !== null;
+  const [javob, setJavob] = useState(() => (typeof h.video.qayta === 'number' ? Object.fromEntries(VIDEO_SAVOL.map(v => [v.id, h.video[v.id]])) : {}));
   const [ozgardi, setOzgardi] = useState({});
   const [ochiq, setOchiq] = useState(null); // { savol, qism }
   const [yon, setYon] = useState({});
-  const [xato, setXato] = useState(false);
   const soni = VIDEO_SAVOL.filter(v => typeof javob[v.id] === 'boolean').length;
   const toliq = soni === 3;
+  const done = isMentor || (toxtadi && toliq);
+  const yon2 = tm.ish ? QISM_ID[Math.min(2, Math.floor(tm.s / 20))] : null;
   const chaqn = (qismlar, tur) => { setYon(Object.fromEntries(qismlar.map(k => [k, tur]))); setTimeout(() => setYon({}), 1100); };
+  const boshla = () => { setVaqt(null); setJavob({}); setOchiq(null); tm.boshla(); };
+  const toxtat = () => { tm.toxtat(); const v = Math.round(tm.s); setVaqt(v); if (!isMentor) setH(hikoyaYoz(null, { qayta: v })); };
   const bel = (v, val) => {
+    if (!toxtadi || isMentor) return;
     const yangi = { ...javob, [v.id]: val };
-    setJavob(yangi); setXato(false);
-    if (!isMentor) hikoyaYoz(null, { [v.id]: val });
+    setJavob(yangi);
+    setH(hikoyaYoz(null, { [v.id]: val }));
     if (val) chaqn(v.karta, 'ok');
     if (ochiq && ochiq.savol === v.id && val) setOchiq(null);
     if (VIDEO_SAVOL.every(x => typeof yangi[x.id] === 'boolean') && !toliq) {
-      if (achMiss && achMiss.earn) achMiss.earn('selfCheck');
-      if (storedAnswer === undefined) onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: 'tekshirish', solved: true, correct: true, picked: true });
+      if (achMiss && achMiss.earn) achMiss.earn('pairCheck');
+      if (storedAnswer === undefined) onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: 'sherik', solved: true, correct: true, picked: true, vaqt });
       if (_live && _live.mode === 'student') _live.submitAnswer(PRACTICE_BASE + screen, 'practice', 0, true, 0);
     }
   };
@@ -1408,29 +1252,39 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev, live }) => {
     const d = isMentor ? { ...h, [qism]: m } : hikoyaYoz({ [qism]: m });
     setH(d); setOzgardi(o => ({ ...o, [ochiq.savol]: true })); chaqn([qism], 'acc'); setOchiq(null);
   };
-  const davom = () => { if (video && !toliq) { setXato(true); return; } onNext(); };
+  const birinchiBosh = VIDEO_SAVOL.findIndex(x => typeof javob[x.id] !== 'boolean');
   const varaq = <div className="sp-varaq">
+    <span className="q-yorliq">{juft ? tr({ uz: "Sherik varag'i", ru: 'Лист партнёра' }) : tr({ uz: 'Uch savol', ru: 'Три вопроса' })}</span>
     {VIDEO_SAVOL.map((v, i) => {
       const j = javob[v.id];
       return (
-        <div key={v.id} className={cxx('sp-vq', video && j === true && 'ha', video && j === false && 'yoq', video && j == null && i === VIDEO_SAVOL.findIndex(x => javob[x.id] == null) && 'navbat')}>
+        <div key={v.id} className={cxx('sp-vq', j === true && 'ha', j === false && 'yoq', toxtadi && j == null && i === birinchiBosh && 'navbat', !toxtadi && 'kutadi')}>
           <div className="sp-vq-r">
-            <span className="sp-vq-t"><b>{i + 1}</b>{tr(v.t)}{v.id === 'vaqtgaSigdi' && typeof h.video.vaqt === 'number' && <em className="sp-vq-vaqt">{tr({ uz: 'Taymerda:', ru: 'На таймере:' })} {mss(h.video.vaqt)}</em>}</span>
-            {video && <span className="sp-vq-tug">
-              <QChip holat={j === true ? 'ok' : undefined} onClick={() => bel(v, true)}>{tr({ uz: 'Ha', ru: 'Да' })}</QChip>
-              <QChip holat={j === false ? 'err' : undefined} onClick={() => bel(v, false)}>{tr({ uz: "Yo'q", ru: 'Нет' })}</QChip>
+            <span className="sp-vq-t"><b>{i + 1}</b>{tr(v.t)}{v.id === 'vaqtgaSigdi' && toxtadi && <em className="sp-vq-vaqt">{tr({ uz: 'Taymerda:', ru: 'На таймере:' })} {mss(vaqt)}</em>}</span>
+            {!isMentor && <span className="sp-vq-tug">
+              <QChip holat={j === true ? 'ok' : undefined} disabled={!toxtadi} onClick={() => bel(v, true)}>{tr({ uz: 'Ha', ru: 'Да' })}</QChip>
+              <QChip holat={j === false ? 'err' : undefined} disabled={!toxtadi} onClick={() => bel(v, false)}>{tr({ uz: "Yo'q", ru: 'Нет' })}</QChip>
               {j === false && ozgardi[v.id] && <em className="sp-vq-oz">{tr({ uz: "karta o'zgartirildi", ru: 'карточка изменена' })}</em>}
             </span>}
           </div>
-          {video && j === false && <div className="sp-vq-m">
+          {j === false && <div className="sp-vq-m">
             <p className="sp-kulrang">{tr(v.maslahat)}</p>
             {bor && <QTugma ikkinchi onClick={() => setOchiq({ savol: v.id, qism: v.karta[0] })}>{tr({ uz: 'Kartani ochish', ru: 'Открыть карточку' })}</QTugma>}
           </div>}
         </div>
       );
     })}
-    {xato && <QXato>{tr({ uz: "Har savolga «Ha» yoki «Yo'q»ni bosing.", ru: 'Нажмите «Да» или «Нет» на каждый вопрос.' })}</QXato>}
-    {isMentor && <MentorPracticeStats live={_live} screen={screen} yorliq={{ uz: 'Uchala savolga javob berganlar', ru: 'Ответили на все три вопроса' }} />}
+    {isMentor && <p className="sp-kulrang">{tr({ uz: "Juftlik: A hikoyani 1 daqiqada aytadi, B uch savolga «Ha»/«Yo'q» qo'yadi; keyin almashadilar (≈ 4 daqiqa). «Yo'q» chiqsa — o'sha kartani shu yerda tuzatadi.", ru: 'Пара: A рассказывает историю за 1 минуту, B ставит «Да»/«Нет» на три вопроса; потом меняются (≈ 4 минуты). Если «Нет» — эту карточку исправляют здесь же.' })}</p>}
+    {isMentor && <MentorPracticeStats live={_live} screen={screen} yorliq={{ uz: 'Sherikka aytib, belgilatganlar', ru: 'Рассказали партнёру и получили отметки' }} />}
+  </div>;
+  const taymerQ = !isMentor && <div className="sp-r2">
+    <Taymer s={tm.ish ? tm.s : (vaqt || 0)} ish={tm.ish} />
+    <div className="sp-r2-tug">
+      {tm.ish && <span className="sp-r2-h">{tr({ uz: 'Hozir siz gapirasiz', ru: 'Сейчас говорите вы' })}</span>}
+      {tm.ish ? <QTugma className="sp-halqa" onClick={toxtat}>{tr({ uz: "To'xtatish", ru: 'Остановить' })}</QTugma>
+        : toxtadi ? <QTugma ikkinchi onClick={boshla}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</QTugma>
+          : <QTugma className="sp-halqa" onClick={boshla}>{tr({ uz: '1 daqiqani boshlash', ru: 'Запустить 1 минуту' })}</QTugma>}
+    </div>
   </div>;
   const ochiqSavol = ochiq && VIDEO_SAVOL.find(v => v.id === ochiq.savol);
   const chap = ochiq
@@ -1438,22 +1292,26 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev, live }) => {
       {ochiqSavol.karta.length > 1 && <div className="sp-strip">{ochiqSavol.karta.map((k, i) => <QChip key={k} holat={ochiq.qism === k ? 'on' : undefined} className="sp-tab" onClick={() => setOchiq(o => ({ ...o, qism: k }))}><i>{i + 1}</i>{tr(QISM_NOM[k])}</QChip>)}</div>}
       <KartaTahrir key={ochiq.savol + ochiq.qism} qism={ochiq.qism} boshMatn={h[ochiq.qism] || ''} onSaqla={kartaSaqla} />
     </div>
-    : <div className="sp-v-chap"><HikoyamKarta h={h} mentor={isMentor || !bor} yonadi={yon} /></div>;
+    : <div className="sp-v-chap"><HikoyamKarta h={h} mentor={isMentor || !bor} yonadi={yon2 ? { [yon2]: 'yon' } : yon} /></div>;
   const hammasiHa = toliq && VIDEO_SAVOL.every(v => javob[v.id] === true);
+  const mentorT = isMentor ? { uz: "O'quvchilar juftlikda: biri hikoyani 1 daqiqada aytadi, sherigi uch savolni belgilaydi.", ru: 'Ученики в парах: один рассказывает историю за 1 минуту, партнёр отмечает три вопроса.' }
+    : tm.ish ? { uz: "Gapiring; hikoya tugagach «To'xtatish»ni bosing.", ru: 'Говорите; когда история закончится, нажмите «Остановить».' }
+      : !toxtadi ? (juft ? { uz: "Endi hikoyani sherigingizga ayting: «1 daqiqani boshlash»ni bosing. U tinglab, uch savolga javob beradi.", ru: 'Теперь расскажите историю партнёру: нажмите «Запустить 1 минуту». Он слушает и отвечает на три вопроса.' } : { uz: "Hikoyani yana bir marta ovoz chiqarib ayting: «1 daqiqani boshlash»ni bosing, keyin uch savolga o'zingiz javob bering.", ru: 'Расскажите историю ещё раз вслух: нажмите «Запустить 1 минуту», потом сами ответьте на три вопроса.' })
+        : !toliq ? (juft ? { uz: "Qurilmani sherigingizga bering: u har savolga «Ha» yoki «Yo'q»ni bosadi.", ru: 'Дайте устройство партнёру: он нажмёт «Да» или «Нет» на каждый вопрос.' } : { uz: "Har savolga «Ha» yoki «Yo'q»ni bosing.", ru: 'Нажмите «Да» или «Нет» на каждый вопрос.' })
+          : hammasiHa ? { uz: "Uchala savolga «Ha» — «Davom etish»ni bosing.", ru: 'На все три вопроса «Да» — нажмите «Продолжить».' } : { uz: "«Yo'q» chiqqan kartani oching va tuzating — uyda shu karta bilan qayta yozasiz.", ru: 'Откройте карточку с «Нет» и исправьте — дома перезапишете по ней.' };
   return (
-    <Stage eyebrow={tr({ uz: 'Mustaqil ish · tekshirish', ru: 'Самостоятельная работа · проверка' })} screen={screen} scrollSignal={soni + (ochiq ? 10 : 0)} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={!video || toliq} label={!video || toliq || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Savollarga javob bering (${soni}/3)`, ru: `Ответьте на вопросы (${soni}/3)` })} onClick={davom} /></>}>
+    <Stage eyebrow={juft ? tr({ uz: 'Juftlikda ish · 2-raund', ru: 'Работа в паре · раунд 2' }) : tr({ uz: 'Mustaqil ish · 2-raund', ru: 'Самостоятельная работа · раунд 2' })} screen={screen} scrollSignal={soni + (toxtadi ? 5 : 0) + (ochiq ? 10 : 0)} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={done} disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !toxtadi ? tr({ uz: '1 daqiqada ayting', ru: 'Расскажите за 1 минуту' }) : tr({ uz: `Savollarga javob bering (${soni}/3)`, ru: `Ответьте на вопросы (${soni}/3)` })} onClick={onNext} /></>}>
       <QMustaqil
-        sarlavha={video
-          ? tr({ uz: <>Videongizni ko'ring: <A>hikoya qanday chiqdi?</A></>, ru: <>Посмотрите видео: <A>как получилась история?</A></> })
-          : tr({ uz: <>Video yozsangiz, <A>shu uch savolga javob berasiz.</A></>, ru: <>Если запишете видео, <A>ответите на эти три вопроса.</A></> })}
-        mentor={<Mentor>{video
-          ? tr({ uz: "Videoni bir marta ko'ring va har savolga «Ha» yoki «Yo'q»ni bosing.", ru: 'Посмотрите видео один раз и на каждый вопрос нажмите «Да» или «Нет».' })
-          : tr({ uz: "Bu uch savolni eslab qoling — video yozsangiz, shu savollar bilan tekshirasiz.", ru: 'Запомните эти три вопроса — если запишете видео, проверите себя по ним.' })}</Mentor>}
-        forma={<div className="sp-video">{chap}{varaq}</div>}
+        sarlavha={juft
+          ? tr({ uz: <>Hikoyangizni sherigingizga ayting: <A>u nimani eshitdi?</A></>, ru: <>Расскажите историю партнёру: <A>что он услышал?</A></> })
+          : tr({ uz: <>Hikoyani yana bir marta ayting: <A>qanday chiqdi?</A></>, ru: <>Расскажите историю ещё раз: <A>как получилось?</A></> })}
+        mentor={<Mentor>{tr(mentorT)}</Mentor>}
+        forma={<div className="sp-video">{chap}<div className="sp-v-ong">{taymerQ}{varaq}</div></div>}
       >
-        {video && toliq && !ochiq && <QXulosa>{hammasiHa
+        {toxtadi && toliq && !ochiq && !isMentor && <QXulosa>{hammasiHa
           ? tr({ uz: "Uchala savolga «Ha»: hikoya lahzadan boshlandi va 1 daqiqaga sig'di.", ru: 'На все три вопроса «Да»: история началась с момента и уложилась в 1 минуту.' })
-          : tr({ uz: "Videoda tuzatadigan joy topildi — kartani o'zgartirib, uyda qayta yozasiz.", ru: 'В видео нашлось что исправить — измените карточку и дома запишете заново.' })}</QXulosa>}
+          : juft ? tr({ uz: "Sherik tuzatadigan joy topdi — kartani o'zgartiring, uyda shu karta bilan qayta yozasiz.", ru: 'Партнёр нашёл, что исправить, — измените карточку, дома перезапишете по ней.' })
+            : tr({ uz: "Tuzatadigan joy topildi — kartani o'zgartiring, uyda shu karta bilan qayta yozasiz.", ru: 'Нашлось, что исправить, — измените карточку, дома перезапишете по ней.' })}</QXulosa>}
       </QMustaqil>
     </Stage>
   );
@@ -1479,19 +1337,17 @@ const Screen11 = (props) => {
         3: { uz: 'Video telefoningizda qoladi, hech kimga yuborilmaydi.', ru: 'Видео остаётся на вашем телефоне и никому не отправляется.' },
         default: { uz: 'Videodan keyingi ikkinchi savolni eslang.', ru: 'Вспомните второй вопрос после видео.' }
       }}
-      vizual={<div className="sp-mini-hk"><HikoyamKarta h={h} mentor={!bor} yonadi={{ lahza: 'acc' }} /></div>} />
+ />
   );
 };
 
 // ===== 🏅 BADGES (nishonlar) — faqat REAL bosqichlar uchun (tekin emas) =====
 const ACHIEVEMENTS = {
-  oneMoment: { icon: '📍', name: 'One Moment!', desc: { uz: 'Lahzali gapni birinchi urinishda topdingiz', ru: 'Вы с первой попытки нашли фразу с моментом' } },
-  fewerButtons: { icon: '📱', name: 'Fewer Buttons!', desc: { uz: "iPhone voqeasidagi o'xshash usulni topdingiz", ru: 'Вы нашли похожий приём в истории iPhone' } },
   myStory: { icon: '📝', name: 'My Story!', desc: { uz: 'Mahsulot hikoyangizni uch kartaga yozdingiz', ru: 'Вы записали историю продукта на три карточки' } },
-  selfCheck: { icon: '🎬', name: 'Self Check!', desc: { uz: "Videongizni ko'rib, uch savolga javob berdingiz", ru: 'Вы посмотрели своё видео и ответили на три вопроса' } }
+  pairCheck: { icon: '🤝', name: 'Pair Check!', desc: { uz: 'Hikoyani sherigingizga aytib, uch savolga tekshirtirdingiz', ru: 'Рассказали историю партнёру и проверили её тремя вопросами' } }
 };
-// Ekran id → nishon (birinchi urinish; faqat ballik test). My Story! va Self Check! — 8, 10-ekranlar ichida (ish qilinganda), AchMissCtx.earn orqali.
-const ACH_TRIGGERS = { s3: 'oneMoment', s5: 'fewerButtons' };
+// v2: ballik test nishoni yo'q (bitta yakuniy test). My Story! va Pair Check! — ustaxona va 2-raund ichida, AchMissCtx.earn orqali.
+const ACH_TRIGGERS = {};
 
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -1549,10 +1405,7 @@ const Confetti = () => {
 
 // Podium savol yorliqlari (SCORED_IDX indekslariga mos: 4, 8, 11, 14, 15)
 const Q_LABELS = {
-  3: { uz: '1 — Hikoyani boshlaydigan gap', ru: '1 — Фраза, с которой начинается история' },
-  5: { uz: '2 — iPhone va Mentor hikoyasi', ru: '2 — iPhone и история Ментора' },
-  7: { uz: '3 — Hikoya pitchda qayerdan', ru: '3 — Где в питче история' },
-  11: { uz: "Yakuniy — Videoda ro'yxat chiqsa", ru: 'Итог — Если в видео получился список' }
+  7: { uz: "Yakuniy — Videoda ro'yxat chiqsa", ru: 'Итог — Если в видео получился список' }
 };
 const QUIZ_MS = 15000;
 // Kapsula ichida suzuvchi tokenlar — darsning lug'ati (R-008: o'quvchi so'zi {uz, ru}; kod-belgi o'zgarmaydi)
@@ -1575,9 +1428,9 @@ const QUIZ_BANK = [
   { q: { uz: "Mentor lahzasida maydonda nechta odam bo'lgan?", ru: 'Сколько человек было на площадке в моменте Ментора?' }, opts: [{ uz: '10 kishi', ru: '10 человек' }, { uz: '9 kishi', ru: '9 человек' }, { uz: '8 kishi', ru: '8 человек' }, { uz: '2 kishi', ru: '2 человека' }], correct: 2 },
   { q: { uz: "Mentor hikoyasida o'zgarishdan keyin ekranda nima ko'rinadi?", ru: 'Что видно на экране после изменения в истории Ментора?' }, opts: [{ uz: "8 / 10, ikki joy hali bo'sh", ru: '8 / 10, два места ещё свободны' }, { uz: "10 / 10, hamma joy to'ldi", ru: '10 / 10, все места заняты' }, { uz: "0 / 10, hech kim yozilmadi", ru: '0 / 10, никто не записался' }, { uz: "9 / 10, bitta joy bo'sh", ru: '9 / 10, одно место свободно' }], correct: 3 },
   { q: { uz: "Funksiyalar ro'yxati zalga nimani aytadi?", ru: 'Что список функций говорит залу?' }, opts: [{ uz: 'Mahsulotda nimalar borligini', ru: 'Что есть в продукте' }, { uz: "Kimda qanday muammo bo'lganini", ru: 'У кого какая была проблема' }, { uz: "Qaysi kuni nima bo'lganini", ru: 'Что случилось в какой день' }, { uz: "Mahsulot nima o'zgartirganini", ru: 'Что изменил продукт' }], correct: 0 },
-  { q: { uz: 'Telefon kompaniyalari 2007-yilda nima bilan bellashgan?', ru: 'Чем соревновались телефонные компании в 2007 году?' }, opts: [{ uz: 'Kimda tugma kamroq ekani bilan', ru: 'У кого меньше кнопок' }, { uz: 'Kimda Home tugmasi borligi bilan', ru: 'У кого есть кнопка Home' }, { uz: "Kimda tugma ko'proq ekani bilan", ru: 'У кого больше кнопок' }, { uz: 'Kimda iPod pleeri borligi bilan', ru: 'У кого есть плеер iPod' }], correct: 2 },
-  { q: { uz: "Apple iPhone'dan nimalarni olib tashlagan?", ru: 'Что Apple убрала из iPhone?' }, opts: [{ uz: 'Ekran va Home tugmasini', ru: 'Экран и кнопку Home' }, { uz: 'Klaviatura va stilusni', ru: 'Клавиатуру и стилус' }, { uz: 'Telefon va internetni', ru: 'Телефон и интернет' }, { uz: 'iPod musiqa pleerini', ru: 'Музыкальный плеер iPod' }], correct: 1 },
-  { q: { uz: "Jobs iPhone'ni qaysi ibora bilan taqdim etgan?", ru: 'Какой фразой Джобс представил iPhone?' }, opts: [{ uz: 'Ikki qurilma bittada', ru: 'Два устройства в одном' }, { uz: "To'rt qurilma bittada", ru: 'Четыре устройства в одном' }, { uz: 'Bitta tugmali telefon', ru: 'Телефон с одной кнопкой' }, { uz: 'Uch qurilma bittada', ru: 'Три устройства в одном' }], correct: 3 },
+  { q: { uz: "Sherik «Ro'yxatsiz gapirdingizmi?» savoliga «Yo'q» desa, nima qilasiz?", ru: 'Партнёр на вопрос «Говорили без списка?» ответил «Нет». Что сделаете?' }, opts: [{ uz: "Ro'yxatni tezroq aytaman", ru: 'Скажу список быстрее' }, { uz: "Ro'yxatga funksiya qo'shaman", ru: 'Добавлю функцию в список' }, { uz: "Bitta o'zgarishni aytaman", ru: 'Назову одно изменение' }, { uz: 'Hikoyani olib tashlayman', ru: 'Уберу историю' }], correct: 2 },
+  { q: { uz: 'Mahsulot hikoyasi qaysi gap bilan boshlanadi?', ru: 'С какой фразы начинается история продукта?' }, opts: [{ uz: 'Mahsulot nomi bilan', ru: 'С названия продукта' }, { uz: 'Bitta lahza bilan', ru: 'С одного момента' }, { uz: 'Funksiyalar soni bilan', ru: 'С числа функций' }, { uz: 'Foydalanuvchilar soni bilan', ru: 'С числа пользователей' }], correct: 1 },
+  { q: { uz: "Hikoya necha daqiqaga sig'ishi kerak?", ru: 'Во сколько минут должна уложиться история?' }, opts: [{ uz: '3 daqiqaga', ru: 'В 3 минуты' }, { uz: '5 daqiqaga', ru: 'В 5 минут' }, { uz: '2 daqiqaga', ru: 'В 2 минуты' }, { uz: '1 daqiqaga', ru: 'В 1 минуту' }], correct: 3 },
   { q: { uz: "Hikoyadagi o'zgarish pitchning qaysi bo'lagida ko'rinadi?", ru: 'В какой части питча видно изменение из истории?' }, opts: [{ uz: "Bozor bo'lagida", ru: 'В части «Рынок»' }, { uz: "Muammo bo'lagida", ru: 'В части «Проблема»' }, { uz: "Yechim bo'lagida", ru: 'В части «Решение»' }, { uz: 'Keyingi qadamda', ru: 'В Следующем шаге' }], correct: 2 },
   { q: { uz: "Hikoyadan keyin Raqamlar bo'lagi nimani aytadi?", ru: 'Что после истории говорит часть «Цифры»?' }, opts: [{ uz: 'Mahsulotda nechta foydalanuvchi borligini', ru: 'Сколько пользователей у продукта' }, { uz: "Lahza qaysi kuni va soatda bo'lganini", ru: 'В какой день и час был момент' }, { uz: 'Mahsulotni kim va qanday qilayotganini', ru: 'Кто и как делает продукт' }, { uz: "Pitch oxirida hakamlardan nima so'ralishini", ru: 'О чём в конце питча просят судей' }], correct: 0 },
   { q: { uz: "Videoni ko'rgach o'zingizga qaysi savolni berasiz?", ru: 'Какой вопрос вы зададите себе после просмотра видео?' }, opts: [{ uz: "Video nechta layk to'plab oldi", ru: 'Сколько лайков собрало видео' }, { uz: 'Videoni qaysi chatga tashlayman', ru: 'В какой чат отправлю видео' }, { uz: 'Kadrda yuzim yaxshi chiqdimi', ru: 'Хорошо ли вышло моё лицо в кадре' }, { uz: 'Hikoya lahza bilan boshlandimi', ru: 'Началась ли история с момента' }], correct: 3 },
@@ -2138,38 +1991,6 @@ const MentorPracticeStats = ({ live, screen, sig, yorliq }) => {
   );
 };
 
-// 🃏 Kartochka mexanikasi va ko'rinishi — qolipda: QKartochka (DE-204). Rang — neytral (SABOQ P10): orqa yuz T.ink, old yuz chegarasi fon(accent, .45).
-const FLASHCARDS = [
-  { front: { uz: 'Mahsulot hikoyasi nima?', ru: 'Что такое история продукта?' }, back: { uz: "Bitta odam, bitta lahza va mahsulot bilan kelgan o'zgarish (inglizchasi: storytelling)", ru: 'Один человек, один момент и изменение, которое пришло с продуктом (по-английски: storytelling)' } },
-  { front: { uz: "Funksiyalar ro'yxati nega hikoya emas?", ru: 'Почему список функций — не история?' }, back: { uz: "Unda odam ham, lahza ham yo'q: faqat mahsulotda nima borligi", ru: 'В нём нет ни человека, ни момента: только то, что есть в продукте' } },
-  { front: { uz: "Lahzada nima bo'ladi?", ru: 'Что есть в моменте?' }, back: { uz: "Kun yoki soat, joy va nima bo'lgani: bo'lib o'tgan bitta voqea", ru: 'День или час, место и что случилось: один случай, который произошёл' } },
-  { front: { uz: "9-Modulda hikoya qanday ta'riflangan?", ru: 'Как в 9-м модуле определили историю?' }, back: { uz: "Bitta real odam bilan bo'lib o'tgan ish: u yozuvdan olinadi, o'ylab topilmaydi", ru: 'Случай с одним реальным человеком: его берут из записей, а не выдумывают' } },
-  { front: { uz: 'Mentor misolida lahza qanday?', ru: 'Какой момент в примере Ментора?' }, back: { uz: "«Shanba, 18:00. Maydonda 8 kishi, yana 2 kishi kelmadi — o'yin bo'lmadi.»", ru: '«Суббота, 18:00. На площадке 8 человек, ещё 2 не пришли — игра не состоялась.»' } },
-  { front: { uz: "Mentor misolida o'zgarish qanday?", ru: 'Какое изменение в примере Ментора?' }, back: { uz: `«Endi tashkilotchi juma kuni ko'radi: 9${NB}/${NB}10, bitta joy bo'sh.»`, ru: `«Теперь организатор в пятницу видит: 9${NB}/${NB}10, одно место свободно.»` } },
-  { front: { uz: "Hikoya pitchning qaysi bo'lagini ochadi?", ru: 'Какую часть питча открывает история?' }, back: { uz: "Muammo bo'lagini: u lahza bilan boshlanadi", ru: 'Часть «Проблема»: она начинается с момента' } },
-  { front: { uz: "Hikoyadagi o'zgarish pitchda qayerda ko'rinadi?", ru: 'Где в питче видно изменение из истории?' }, back: { uz: "Yechim bo'lagida, jonli demo bilan", ru: 'В части «Решение», с живым демо' } },
-  { front: { uz: "Apple 2007-yilda iPhone'dan nimani olib tashlagan?", ru: 'Что Apple в 2007 году убрала из iPhone?' }, back: { uz: 'Klaviatura, stilus va deyarli hamma tugmani: bitta ekran va Home tugmasi qolgan', ru: 'Клавиатуру, стилус и почти все кнопки: остались один экран и кнопка Home' } },
-  { front: { uz: "Jobs iPhone'ni qanday taqdim etgan?", ru: 'Как Джобс представил iPhone?' }, back: { uz: '«Uch qurilma bittada»: iPod, telefon va internet', ru: '«Три устройства в одном»: iPod, телефон и интернет' } },
-  { front: { uz: "Videoni ko'rgach qaysi uch savolga javob berasiz?", ru: 'На какие три вопроса вы отвечаете после просмотра видео?' }, back: { uz: "Hikoya lahza bilan boshlandimi, funksiyalar ro'yxatisiz gapirdimmi, 1 daqiqaga sig'dimi", ru: 'Началась ли история с момента, говорил ли я без списка функций, уложился ли в 1 минуту' } },
-  { front: { uz: 'Hikoya videosi qayerda qoladi?', ru: 'Где остаётся видео с историей?' }, back: { uz: "Faqat sizning telefoningizda: hech kimga yuborilmaydi va internetga qo'yilmaydi", ru: 'Только на вашем телефоне: никому не отправляется и не выкладывается в интернет' } }
-];
-const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
-  const [bosildi, setBosildi] = useState(false);
-  const belgila = (e) => { if (e.target && e.target.closest && e.target.closest('.fc-card')) setBosildi(true); };
-  return (
-    <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'zingizni <A>sinab ko'ring.</A></>, ru: <>Проверьте <A>себя.</A></> })}</h2></div>
-        <div className={cxx('sp-flash', !bosildi && 'yangi')} onClickCapture={belgila} onKeyDownCapture={(e) => { if (e.key === 'Enter' || e.key === ' ') belgila(e); }}>
-          <QKartochka til={__lang} cards={FLASHCARDS.map(c => ({ front: tr(c.front), back: tr(c.back) }))} />
-          {!bosildi && <p className="sp-fc-ipucha"><i aria-hidden="true" />{tr({ uz: 'Kartani bosing — javob ochiladi', ru: 'Нажмите на карточку — откроется ответ' })}</p>}
-        </div>
-      </div>
-    </Stage>
-  );
-};
-
 // ===== UYGA VAZIFA — PM HwCard (P-025: «Kim uchun · Nechta · Muddat» + ①②③; ① holatga qarab, ③ shartli — sinf 14; alohida .homework.jsx yo'q) =====
 const HW_KARTA = [
   { k: { uz: 'Kim uchun', ru: 'Для кого' }, v: { uz: "o'z pitchingiz", ru: 'ваш питч' } },
@@ -2193,9 +2014,9 @@ const HwCard = ({ bandlar, keyingi }) => (
 // ===== YAKUN — qolip QYakun (DE-204) + holatga qarab sarlavha (5 holat, E 54). Standart (E 50): chip · ball · sarlavha · CODE STRIKE · «Endi siz bilasiz» · uyga vazifa · nishonlar =====
 // «Bugungi asosiy fikr» qutisi va artefakt-strip — ko'rsatilmaydi (E 50). Belgi ✓ — faqat birinchi holatda.
 const SARLAVHA = {
-  tayyor: { uz: 'Hikoyangiz yozildi va videoda tekshirildi.', ru: 'Ваша история записана и проверена на видео.' },
-  yoq: { uz: 'Hikoya yozildi — videoda tuzatadigan joy topildi.', ru: 'История записана — в видео нашлось что исправить.' },
-  tekshiruvYoq: { uz: 'Hikoya yozildi, video tekshiruvi hali qilinmagan.', ru: 'История записана, проверка видео ещё не сделана.' },
+  tayyor: { uz: 'Hikoyangiz yozildi va ikki marta aytib tekshirildi.', ru: 'Ваша история записана и проверена в двух рассказах.' },
+  yoq: { uz: 'Hikoya yozildi — tekshiruvda tuzatadigan joy topildi.', ru: 'История записана — при проверке нашлось, что исправить.' },
+  tekshiruvYoq: { uz: 'Hikoya yozildi, 2-raund tekshiruvi hali qilinmagan.', ru: 'История записана, проверка во втором раунде ещё не сделана.' },
   qisman: (n) => ({ uz: `Hikoya hali tugamagan: ${n}${NB}/${NB}3 karta.`, ru: `История ещё не готова: ${n}${NB}/${NB}3 карточки.` }),
   bosh: { uz: 'Mahsulot hikoyasi hali yozilmagan.', ru: 'История продукта ещё не записана.' }
 };
@@ -2203,7 +2024,7 @@ const RECAP = [
   { uz: "Mahsulot hikoyasi — bitta odam, bitta lahza va mahsulot bilan kelgan o'zgarish.", ru: 'История продукта — один человек, один момент и изменение, которое пришло с продуктом.' },
   { uz: "Funksiyalar ro'yxatida odam ham, lahza ham yo'q.", ru: 'В списке функций нет ни человека, ни момента.' },
   { uz: "Pitchda lahza Muammo bo'lagini ochadi, o'zgarish Yechimda ko'rinadi.", ru: 'В питче момент открывает Проблему, изменение видно в Решении.' },
-  { uz: "iPhone voqeasida Apple ko'p tugmani olib tashlab, keraklisini qoldirgan.", ru: 'В истории iPhone Apple убрала много кнопок и оставила нужное.' },
+  { uz: "Hikoyani ikki marta aytasiz: telefonga, keyin sherikka — u uch savol bilan tekshiradi.", ru: 'Историю рассказывают дважды: на телефон, потом партнёру — он проверяет её тремя вопросами.' },
   { uz: 'Hikoya videosi faqat sizning telefoningizda qoladi.', ru: 'Видео с историей остаётся только на вашем телефоне.' }
 ];
 const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
@@ -2226,7 +2047,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const h = hikoyaOl(); const n = kartaSoni(h); const v = h.video;
   const jv = [v.lahzaBilan, v.royxatYoq, v.vaqtgaSigdi];
   const holat = isMentorL ? 'tayyor'
-    : n === 3 ? (v.yozildi === true && jv.every(x => x === true) ? 'tayyor' : v.yozildi === true && jv.some(x => x === false) ? 'yoq' : 'tekshiruvYoq')
+    : n === 3 ? (jv.every(x => x === true) ? 'tayyor' : jv.some(x => x === false) ? 'yoq' : 'tekshiruvYoq')
       : n > 0 ? 'qisman' : 'bosh';
   const sarlavha = holat === 'qisman' ? SARLAVHA.qisman(n) : SARLAVHA[holat];
   const belgisiz = holat !== 'tayyor'; // ✓ belgisi faqat to'liq holatda (E 54)
@@ -2320,11 +2141,8 @@ export default function PmStoryPitchLesson({ lang: langProp, onFinished, liveTok
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);
   useEffect(() => { live.reportScreen(screen); }, [screen, live.mode, live.pin]); // eslint-disable-line
-  // 🃏 Flashcard ekrani jonli darsda (mentor boshqaruvida) o'quvchida ko'rsatilmaydi
-  const FLASH_IDX = SCREEN_META.findIndex(m => m.id === 'sflash');
-  const flashHidden = () => live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
-  const next = () => setScreen(s => { let n = Math.min(s + 1, TOTAL_SCREENS - 1); if (n === FLASH_IDX && flashHidden()) n = Math.min(n + 1, TOTAL_SCREENS - 1); return n; });
-  const prev = () => setScreen(s => { let n = Math.max(s - 1, 0); if (n === FLASH_IDX && flashHidden()) n = Math.max(n - 1, 0); return n; });
+  const next = () => setScreen(s => Math.min(s + 1, TOTAL_SCREENS - 1));
+  const prev = () => setScreen(s => Math.max(s - 1, 0));
   const recordAnswer = (idx, data) => {
     setAnswers(a => ({ ...a, [idx]: data }));
     const _m = SCREEN_META[idx];
@@ -2369,7 +2187,7 @@ export default function PmStoryPitchLesson({ lang: langProp, onFinished, liveTok
     if (typeof onFinished === 'function') onFinished(sealPayload(LESSON_META.lessonId, payload));
   };
 
-  const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, Screen7, Screen8, Screen9, Screen10, Screen11, ScreenPodium, ScreenFlashcards, SummaryScreen];
+  const screens = [Screen0, Screen1, Screen2, Screen6, Screen8, Screen9, Screen10, Screen11, ScreenPodium, SummaryScreen];
   const Current = screens[screen];
   return (
     <LangContext.Provider value={lang}>
@@ -2385,7 +2203,6 @@ export default function PmStoryPitchLesson({ lang: langProp, onFinished, liveTok
         .zoomable.zoom-on, .zoom-on { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(1040px, 94vw); max-height: 90vh; overflow: auto; z-index: 1001; background: ${T.paper}; border-radius: 18px; padding: clamp(20px, 4vw, 42px); box-shadow: 0 30px 80px -20px rgba(${T.shadowBase},0.5); }
         .lesson-root :has(.zoom-on) { animation: none !important; transform: none !important; filter: none !important; will-change: auto !important; contain: none !important; }
         .sp-mj { font-weight: 800; font-style: normal; color: ${MJ_RANG}; white-space: nowrap; }
-        .sp-brend { font-weight: 800; font-style: normal; white-space: nowrap; } .sp-brend.iphone { color: #3A3A3C; } .sp-brend.nokia { color: #124191; } .sp-brend.bb { color: #111111; }
         @keyframes sp-kir { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
         @keyframes sp-puls { 0% { box-shadow: 0 0 0 0 ${fon(T.accent, 0.35)}; } 70%, 100% { box-shadow: 0 0 0 9px ${fon(T.accent, 0)}; } }
         @keyframes sp-chorla { 0% { box-shadow: 0 0 0 0 ${fon(T.accent, 0.32)}; } 70%, 100% { box-shadow: 0 0 0 7px ${fon(T.accent, 0)}; } }
@@ -2408,7 +2225,6 @@ export default function PmStoryPitchLesson({ lang: langProp, onFinished, liveTok
         @keyframes sp-sahna-kirdi { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
         @media (prefers-reduced-motion: reduce) { .sp-bash.ix ~ .q-split, .sp-bash.ix ~ .q-col { animation: none; } }
         .sp-bash.ix .q-bashorat > .q-yorliq { display: none; }
-        .q-yorliq .sp-brend { text-transform: none; }
         .sp-bash.ix .q-variantlar { flex-wrap: wrap; }
         @media (min-width: 761px) { .sp-k .q-split { grid-template-columns: minmax(0,1.25fr) minmax(0,1fr); gap: 28px; } }
         .sp-k, .sp-yakun { display: flex; flex-direction: column; flex: 1 0 auto; }
@@ -2434,7 +2250,6 @@ export default function PmStoryPitchLesson({ lang: langProp, onFinished, liveTok
         .sp-rolk.zal { align-self: flex-start; }
         .sp-rolk.hakam { align-self: stretch; }
         .sp-tasma.katta .sp-bo.hikoya { box-shadow: 0 0 0 4px ${fon(T.accent, 0.12)}; }
-        .sp-ip-tel.stilus { margin-right: 12px; }
         .sp-sahna-ong { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
         .sp-tel { width: 166px; height: 290px; border-radius: 30px; background: #1E1B26; padding: 7px; box-shadow: 0 14px 30px -14px rgba(${T.shadowBase},0.5); display: flex; flex: none; }
         .sp-tel-ekran { flex: 1; min-width: 0; background: ${T.paper}; border-radius: 23px; padding: 13px 12px 12px; display: flex; flex-direction: column; gap: 3px; padding-top: 35px; position: relative; }
@@ -2542,48 +2357,11 @@ export default function PmStoryPitchLesson({ lang: langProp, onFinished, liveTok
         .sp-skelet-tel { width: 54px; height: 88px; border-radius: 12px; background: #1E1B26; padding: 5px; flex: none; display: flex; }
         .sp-skelet-tel i { flex: 1; border-radius: 8px; background: ${T.paper}; }
         .sp-skelet-tm .sp-40-l > i { animation-delay: 2.2s; animation-duration: 2s; }
-        /* iPhone sahnasi (K19) */
-        .sp-voqea { display: flex; flex-direction: column; gap: 8px; }
-        .sp-voqea-g { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 18px; align-items: center; }
-        .sp-voqea-o { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
-        @media (max-width: 760px) { .sp-voqea-g { grid-template-columns: minmax(0,1fr); } }
-        .sp-voqea-h { font-size: 13px; font-weight: 800; color: ${T.accent}; text-transform: uppercase; letter-spacing: .06em; animation: sp-kir .4s ease-out both; }
-        p.sp-tanish { margin: 0; font-size: 13px; color: ${T.ink2}; }
-        .sp-ip { min-height: 196px; display: flex; align-items: center; justify-content: center; padding: 6px 0; }
-        .sp-ip-eski, .sp-ip-otish, .sp-ip-uch { display: flex; align-items: flex-end; justify-content: center; gap: 34px; flex-wrap: wrap; position: relative; }
-        .sp-ip-eski { padding-bottom: 26px; }
-        .sp-ip-nomlar { position: absolute; left: 0; right: 0; bottom: 0; text-align: center; font-size: 15px; }
-        .sp-ip-tel { width: 92px; height: 168px; border-radius: 14px; background: #2B2B30; padding: 8px 7px; display: flex; flex-direction: column; gap: 6px; position: relative; }
-        .sp-ip-ekr { height: 72px; border-radius: 6px; background: #CFE3F2; flex: none; }
-        .sp-ip-ekr.kichik { height: 52px; }
-        .sp-ip-klav { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
-        .sp-ip-klav.kam { grid-template-columns: repeat(3, 1fr); }
-        .sp-ip-klav i { height: 10px; border-radius: 3px; background: #6E6E78; animation: sp-tugma .35s ease-out both; }
         @keyframes sp-tugma { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: none; } }
-        .sp-ip-qalam { position: absolute; right: -16px; top: 18px; width: 5px; height: 120px; border-radius: 3px; background: #8A8A94; }
-        .sp-ip-otish .klav.ketadi { animation: sp-ket 1.4s ease-in .9s both; }
-        .sp-ip-otish .klav.ketadi .sp-ip-klav i { animation: sp-sondi .4s ease-in both; }
         @keyframes sp-sondi { to { opacity: 0; transform: scale(.3); } }
         @keyframes sp-ket { to { opacity: .18; } }
-        .sp-ip-qalam.ketadi { animation: sp-qalam .8s ease-in .3s both; }
         @keyframes sp-qalam { to { transform: translateY(-160px); opacity: 0; } }
-        .sp-ip-iphone { width: 100px; height: 186px; border-radius: 20px; background: #1E1B26; padding: 10px 8px 8px; display: flex; flex-direction: column; align-items: center; gap: 7px; position: relative; animation: sp-kir .5s ease-out 1s both; }
-        .sp-ip-uch .sp-ip-iphone { animation: none; }
-        .sp-ip-iphone > .sp-brend { position: absolute; bottom: -24px; font-size: 15px; }
-        .sp-ip-katta { width: 100%; flex: 1; border-radius: 6px; background: linear-gradient(160deg, #DDEBF7, #B7CFE6); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
-        .sp-ip-katta.ichida i { width: 26px; height: 26px; border-radius: 7px; background: ${T.paper}; color: #3A3A3C; display: flex; align-items: center; justify-content: center; animation: sp-kir .35s ease-out both; }
-        .sp-ip-katta.ichida i svg { width: 18px; height: 18px; }
-        .sp-ip-home { width: 18px; height: 18px; border-radius: 50%; border: 2px solid #8A8A94; flex: none; }
-        .sp-ip-hy { position: absolute; right: -44px; bottom: 6px; font-style: normal; font-size: 12.5px; font-weight: 800; color: ${T.ink2}; }
-        .sp-ip-uch { align-items: center; gap: 20px; padding-bottom: 26px; }
-        .sp-ip-qur { display: flex; flex-direction: column; gap: 10px; }
-        .sp-ip-q { display: flex; align-items: center; gap: 8px; color: #3A3A3C; }
-        .sp-ip-q svg { animation: sp-uchib 0.7s cubic-bezier(.5,0,.6,1) both; animation-delay: inherit; }
-        .sp-ip-q svg { width: 28px; height: 28px; }
-        .sp-ip-q em { font-style: normal; font-size: 14px; font-weight: 700; color: ${T.ink}; }
         @keyframes sp-uchib { 0% { transform: none; opacity: 1; } 100% { transform: translateX(150px) scale(.4); opacity: 0; } }
-        .sp-ip-ibora { position: absolute; left: 0; right: 0; bottom: 0; text-align: center; font-size: 15px; font-weight: 800; color: ${T.accent}; animation: sp-kir .5s ease-out 3.2s both; }
-        .sp-ip-uch .sp-ip-iphone > .sp-brend { display: none; }
         /* Testlardan keyingi kichik vizual */
         .sp-mini { display: flex; flex-wrap: wrap; gap: 6px; }
         .sp-mini-u { display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; color: ${T.ink}; background: ${T.paper}; border: 1.5px solid ${T.line}; border-radius: 9px; padding: 4px 10px; animation: sp-kir .35s ease-out both; }
@@ -2592,7 +2370,6 @@ export default function PmStoryPitchLesson({ lang: langProp, onFinished, liveTok
         .sp-mini-u.yon { border-color: ${fon(T.ok, 0.55)}; }
         .sp-mini-ikki { display: flex; gap: 16px; align-items: center; }
         .sp-mini-ip { width: 64px; height: 112px; border-radius: 14px; background: #1E1B26; padding: 7px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 5px; flex: none; }
-        .sp-mini-ip .sp-ip-home { width: 12px; height: 12px; } .sp-mini-ip .sp-brend { display: none; }
         .sp-mini-o { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
         .sp-mini-fn { display: flex; flex-wrap: wrap; gap: 4px; opacity: .45; }
         .sp-mini-fn span { font-size: 12px; font-weight: 700; color: ${T.ink2}; border: 1px solid ${T.line}; border-radius: 6px; padding: 1px 7px; text-decoration: line-through; }
@@ -2664,8 +2441,16 @@ export default function PmStoryPitchLesson({ lang: langProp, onFinished, liveTok
         .sp-ikki .sp-var { box-shadow: inset 0 0 0 1.5px ${fon(T.accent, 0.55)}; animation: sp-chorla 1.8s ease-out .3s 2; }
         .sp-varaq { display: flex; flex-direction: column; gap: 8px; }
         .sp-vq { display: flex; flex-direction: column; gap: 7px; padding: 10px 12px; border-radius: 12px; background: ${T.paper}; border: 1.5px solid ${T.line}; transition: background .3s, border-color .3s; }
-        .sp-vq.ha { background: ${T.okFon}; border-color: ${fon(T.ok, 0.55)}; }
-        .sp-vq.yoq { border-color: ${T.err}; }
+        .sp-vq.ha { background: ${T.okFon}; border-color: transparent; }
+        .sp-vq.yoq { background: ${fon(T.err, 0.1)}; border-color: transparent; }
+        .sp-vq.kutadi { opacity: .6; }
+        /* 2-raund (F-1018-12): taymer + tugma bitta qatorda */
+        .sp-r2 { display: flex; flex-direction: column; gap: 10px; padding: 12px 14px; border-radius: 14px; background: ${T.paper}; border: 1.5px solid ${T.line}; }
+        .sp-r2 .sp-taymer { padding: 0; border: 0; background: transparent; }
+        .sp-r2-tug { display: flex; align-items: center; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
+        .sp-vq-t { display: grid !important; grid-template-columns: auto minmax(0,1fr); column-gap: 8px; align-items: baseline; }
+        .sp-vq-t > em { grid-column: 2; }
+        .sp-r2-h { margin-right: auto; font-size: 13px; font-weight: 700; color: ${T.accent}; }
         .sp-vq.navbat .q-chip { border-color: ${fon(T.accent, 0.6)}; animation: sp-chorla 1.8s ease-out .4s 2; }
         .sp-vq-r { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         .sp-vq-t { flex: 1 1 220px; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; font-size: 15px; font-weight: 700; color: ${T.ink}; }
@@ -2675,11 +2460,6 @@ export default function PmStoryPitchLesson({ lang: langProp, onFinished, liveTok
         .sp-vq-oz { font-style: normal; font-size: 12px; font-weight: 800; color: ${T.accent}; }
         .sp-vq-m { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         /* Kartochka — neytral (SABOQ P10) */
-        .sp-flash.yangi .fc-card:not(.flip) .fc-front { border-color: ${fon(T.accent, 0.45)}; animation: sp-puls 1.8s ease-out .4s 3; }
-        .sp-flash .fc-back { background: ${T.ink}; color: #fff; box-shadow: 0 16px 36px -18px rgba(${T.shadowBase},0.55); }
-        .sp-flash .fc-front { border-color: ${fon(T.accent, 0.45)}; box-shadow: 0 14px 34px -20px rgba(${T.shadowBase},0.35); }
-        p.sp-fc-ipucha { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 12px 0 0; font-size: 13px; font-weight: 700; color: ${T.ink2}; }
-        p.sp-fc-ipucha i { width: 8px; height: 8px; border-radius: 50%; background: ${T.accent}; }
         /* Yakun */
         .sp-yakun.belgisiz .done-chip .tick { display: none; }
         .sp-hw { display: flex; flex-direction: column; gap: 12px; }
@@ -2702,7 +2482,6 @@ export default function PmStoryPitchLesson({ lang: langProp, onFinished, liveTok
         @media (max-width: 560px) { .sp-tm-bo em { visibility: hidden; } .sp-tasma-b { grid-template-columns: repeat(2, minmax(0,1fr)); } }
         @media (prefers-reduced-motion: reduce) {
           .sp-halqa, .sp-k.kutish .q-variant, .q-bashorat .q-chip, .sp-qadamlar .q-chip, .sp-rolk, .sp-rolk-s > i, .sp-tel-juma, .sp-tel-son, .sp-tel-bosh, .sp-fn, .sp-fn-uya, .sp-40-l > i, .sp-uya, .sp-mdn-joy i, .sp-mekran b, .sp-bo, .sp-bo-rol, .sp-bo-hk, .sp-demo-son, .sp-tm-t > i, .sp-voqea-h, .sp-ip-klav i, .sp-ip-tel, .sp-ip-qalam, .sp-ip-iphone, .sp-ip-katta.ichida i, .sp-ip-q svg, .sp-ip-ibora, .sp-mini-u, .sp-mini-tb, .sp-tab, .sp-karta, .sp-maydon.chorla textarea.sp-inp, .sp-hk-b, .sp-hk-q, .sp-rozi-v .q-chip, .sp-ikki .sp-var, .sp-vq .q-chip, .sp-flash .fc-front, .sp-uchar, .sp-royxat, .sp-taymer-l > i { animation: none !important; transition: none !important; }
-          .sp-ip-q svg { opacity: 0; } .sp-ip-otish .klav.ketadi { opacity: .18; } .sp-ip-qalam.ketadi { opacity: 0; }
         }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }
         .btn-white-accent:hover:not(:disabled) { background: ${T.accent}; color: #fff; box-shadow: 0 12px 28px -6px rgba(255,79,40,0.55); }
@@ -2717,7 +2496,6 @@ export default function PmStoryPitchLesson({ lang: langProp, onFinished, liveTok
         .zoomable.z-float > .zoom-btn { visibility: hidden; } /* ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun) */
         .flow-label:has(+ .zoomable.z-empty) { display: none; } /* bo'sh ustun ustida yorliq yolg'iz osilmasin (bridge 40-band, F-0926-01) */
         .zoom-btn { position: absolute; top: 6px; right: 6px; z-index: 5; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(255,255,255,0.82); color: ${T.ink2}; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(${T.shadowBase},0.22); transition: all 0.2s; }
-        .q-voqea > .zoomable { align-self: stretch; } .voqea-tola { width: 100%; display: flex; flex-direction: column; align-items: center; } /* F-1015-140: ⛶ karta burchagida — Zoomable butun karta kengligida */
         .ring-iz { margin: 0; font-size: 13px; line-height: 1.4; color: ${T.ink2}; text-align: center; } /* F-1015-147: hisob qoidasi */
         /* F-1015-158: natija — bitta karta (m5-08 namunasi): halqa, nishonlar, 💡 izoh; halqa atrofida qo'shimcha chiziq yo'q */
         .pod-card { position: relative; width: 100%; max-width: 480px; margin-top: 6px; background: ${T.paper}; border-radius: 20px; padding: 0 clamp(14px,2.4vw,20px) clamp(14px,2.4vw,20px); display: flex; flex-direction: column; gap: 12px; box-shadow: 0 16px 34px -20px rgba(${T.shadowBase},0.35); }
@@ -2821,7 +2599,6 @@ export default function PmStoryPitchLesson({ lang: langProp, onFinished, liveTok
         @media (prefers-reduced-motion: reduce) { .lp-step.on .lp-check, .lp-done-btn.is-done { animation: none !important; } }
         .lp-mstats { background: ${T.accentSoft}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 6px; }
 
-        /* === 🃏 FLASHCARDS — qolipda: QKartochka (DE-204) === */
 
         /* === 🔤 KOD-ATAMA CHIP (fmtCode) === */
         .qcode { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }

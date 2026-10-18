@@ -1,0 +1,8 @@
+pitch yo'q: {"t":"Davom etish","d":false} · qaytish tugmasi: true
+boshida: {"t":"2 daqiqada ayting","d":true} · gaplar: 2 (kutilgan 2: olib tashlangan sanalmaydi) · chip yopiq: true
+taymer: 0:01 Hozir siz gapirasiz To'xtatish
+to'xtagach: {"t":"Har gapni belgilang","d":true} · chip ochiq: true
+belgilangach: {"t":"Davom etish","d":false} · xulosa: 1 ta gapga «Dalil yo'q» qo'yildi — uyga vazifada dalil qo'shasiz yoki olib tashlaysiz. · nishon toast: true
+saqlandi: earned=["pairCheck"] · answers[8]={"vaqt":1,"belgi":{"d1":"bor","d2":"yoq"},"yoqSoni":1} · artefakt juftlik={"d1":"bor","d2":"yoq"}
+qayta ochildi: {"t":"Davom etish","d":false} · bor/yoq: 1/1
+pageerror: 0

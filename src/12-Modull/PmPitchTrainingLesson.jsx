@@ -66,8 +66,9 @@ function useIsMobile(breakpoint = 640) {
   return isMobile;
 }
 
-const LESSON_META = { lessonId: 'pm-m12d5-v1', lessonTitle: { uz: "Guruh pitchingizda nimani tuzatishni aytadi?", ru: 'Что группа советует исправить в вашем питче?' } }; // 14-Modul 5-dars (LMS), 2-to'lqin — MD feedback/F-1008-14modul/05-PmPitchTraining-v3.md
-// 12 ekran (keyssiz PM shakli — tayanch 4): kirish → reja → Mentor varag'i → 1-savol → tuzatishlar ro'yxati → 2-savol → guruhda pitch → tuzatishlaringiz → yakuniy savol → podium → kartochkalar → yakun.
+const LESSON_META = { lessonId: 'pm-m12d5-v2', lessonTitle: { uz: "Guruh pitchingizda nimani tuzatishni aytadi?", ru: 'Что группа советует исправить в вашем питче?' } }; // 14-Modul 5-dars (LMS), 2-to'lqin — MD feedback/F-1008-14modul/05-PmPitchTraining-v3.md
+// 9 ekran (v2 · F-1018-14 · 222-qonun): kirish → reja → Mentor varag'i → tuzatishlar ro'yxati → guruhda pitch → tuzatishlaringiz → yakuniy savol → podium → yakun.
+//   Olindi: 1-, 2-savol (s3, s5), kartochkalar. Guruh raundi (har kishi 5 daq ≈ 20–25 daq) — bitta raund (QAROR 4 istisno); 2-raund — m12-08. Yakuniy MD: feedback/F-1018-pitch/YAKUNIY-10-m12-05.md
 // Bitta vizual — GuruhVaraqSahna (guruh · taymer chizig'i · baholash varag'i · tuzatishlar ro'yxati). Saqlaydi: pm-m12d5-varaq (tayanch 8); o'qiydi: pm-m12d1-pitch, pm-m12d2-hikoya.
 const HW_TOKENS = [
   { t: { uz: 'pitch', ru: 'питч' }, l: 8, tp: 22, s: 13, d: 6 },
@@ -76,18 +77,15 @@ const HW_TOKENS = [
   { t: { uz: 'varaq', ru: 'лист' }, l: 78, tp: 68, s: 13, d: 6.8 }
 ];
 const SCREEN_META = [
-  { id: 's0',  type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },
-  { id: 's1',  type: 'rule',        template: 'custom',   scored: false, scope: null },
-  { id: 'varaq', type: 'exploration', template: 'custom', scored: false, scope: null },
-  { id: 's3',  type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
-  { id: 'tuzatish', type: 'exploration', template: 'custom', scored: false, scope: null },
-  { id: 's5',  type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
-  { id: 'guruh', type: 'practice',  template: 'custom',   scored: false, scope: null },
-  { id: 'royxat', type: 'practice', template: 'custom',   scored: false, scope: null },
-  { id: 's8',  type: 'test',        template: 'MCScreen', scored: true,  scope: 'final' },
-  { id: 'podium',   type: 'stats',      template: 'custom', scored: false, scope: null },
-  { id: 'sflash',   type: 'flashcards', template: 'custom', scored: false, scope: null },
-  { id: 'yakun', type: 'summary',   template: 'custom',   scored: false, scope: null }
+  { id: 's0',  type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },          // 0 · QKirish
+  { id: 's1',  type: 'rule',        template: 'custom',   scored: false, scope: null },            // 1 · QReja
+  { id: 'varaq', type: 'exploration', template: 'custom', scored: false, scope: null },            // 2 · Mentor varag'i
+  { id: 'tuzatish', type: 'exploration', template: 'custom', scored: false, scope: null },         // 3 · tuzatishlar ro'yxati
+  { id: 'guruh', type: 'practice',  template: 'custom',   scored: false, scope: null },            // 4 · guruhda pitch (gapirish raundi)
+  { id: 'royxat', type: 'practice', template: 'custom',   scored: false, scope: null },            // 5 · tuzatishlaringiz
+  { id: 's8',  type: 'test',        template: 'MCScreen', scored: true,  scope: 'final' },         // 6 · yakuniy savol
+  { id: 'podium',   type: 'stats',      template: 'custom', scored: false, scope: null },          // 7 · podium
+  { id: 'yakun', type: 'summary',   template: 'custom',   scored: false, scope: null }             // 8 · QYakun
 ];
 const TOTAL_SCREENS = SCREEN_META.length;
 const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => i !== null);
@@ -288,26 +286,10 @@ const RcFlow = ({ items, sep = '→' }) => (
 
 // ⚡ JONLI: javob kaliti (ekran id → to'g'ri variant indeksi). s3/s5/s8 — ballik testlar (✔ C · A · D — MD). Qolgani — -1 sentinel (ballsiz ekranlar, praktika signali 500+).
 // MD KOD 12 «varaq/tuzatish/guruh/royxat: -1» — jsx-lint «o'lik kalit» deb rad etadi (submitAnswer ularni ishlatmaydi); praktika signali — 'practice' (500+).
-const INLINE_KEYS = { s3: 2, s5: 0, s8: 3, practice: -1 };
+const INLINE_KEYS = { s8: 3, practice: -1 };
 // 📖 RECAPS — har ballik test uchun 3 karta (kalit = ekran INDEKSI; S-026: PM darsida emoji o'rniga raqam 1/2/3)
 const RECAPS = {
-  3: {
-    title: { uz: 'Izoh nima haqida', ru: 'О чём замечание' },
-    cards: [
-      { ic: '1', h: { uz: "✗ yonidagi izoh bo'lak haqida yoziladi.", ru: 'Замечание рядом с ✗ пишут о части.' } },
-      { ic: '2', h: { uz: 'Unda nima yetishmagani aytiladi: kim, son yoki manba.', ru: 'В нём сказано, чего не хватило: кто, число или источник.' } },
-      { ic: '3', h: { uz: "Odam haqidagi gap va «qiziq emas» kabi fikr — izoh emas.", ru: 'Слова о человеке и мнение вроде «неинтересно» — не замечание.' }, ask: { uz: 'Mentor pitchiga yozilgan ikki izoh nima haqida edi?', ru: 'О чём были два замечания к питчу Ментора?' } }
-    ]
-  },
-  5: {
-    title: { uz: 'Aniq tuzatish', ru: 'Точное исправление' },
-    cards: [
-      { ic: '1', h: { uz: 'Tuzatish izohga javob beradi.', ru: 'Исправление отвечает на замечание.' } },
-      { ic: '2', h: { uz: "Unda qaysi bo'lak va nima o'zgarishi yoziladi.", ru: 'В нём написано, какая часть и что изменится.' } },
-      { ic: '3', h: { uz: "To'qilgan son va va'da qo'shilmaydi, bo'lak olib tashlanmaydi.", ru: 'Не добавляют выдуманное число и обещание, часть не убирают.' }, ask: { uz: '«Keyingi safar yaxshiroq aytaman» — bunda nima yetishmaydi?', ru: '«В следующий раз скажу лучше» — чего здесь не хватает?' } }
-    ]
-  },
-  8: {
+  6: {
     title: { uz: "✗ olgan bo'lak", ru: 'Часть с ✗' },
     cards: [
       { ic: '1', h: { uz: '✗ va izoh — tuzatish uchun material.', ru: '✗ и замечание — материал для исправления.' } },
@@ -659,9 +641,9 @@ const Ajrat = ({ matn, soz }) => {
   return i < 0 ? <>{matn}</> : <>{matn.slice(0, i)}<b className="gv-ajrat">{soz}</b>{matn.slice(i + soz.length)}</>;
 };
 const SCREEN_INTENTS = [
-  'kirish: guruhning qaysi gapi pitchni tuzatishga foyda beradi', 'reja: guruh varag\'idan tuzatish', 'Mentor varag\'i: ikki ✗, izohlar, hakam savoli',
-  'test: izoh bo\'lak haqida', 'Mentor varag\'idan uch tuzatish', 'test: aniq tuzatish', 'guruhda pitch: taymer, varaq, hakam savoli; yakka rejim',
-  'o\'z varag\'idan uch tuzatish', 'yakuniy test: ✗ olganda nima qilasiz', 'podium', 'kartochkalar', 'yakun: 4 holat'
+  'kirish: guruhning qaysi gapi pitchni tuzatishga foyda beradi', 'reja: guruh varag\'idan tuzatish', 'Mentor varag\'i: ikki ✗, izohlar (bo\'lak haqida), hakam savoli',
+  'Mentor varag\'idan uch tuzatish', 'guruhda pitch: taymer, varaq, hakam savoli; yakka rejim', 'o\'z varag\'idan uch tuzatish',
+  'yakuniy test: ✗ olganda nima qilasiz', 'podium', 'yakun: 4 holat'
 ];
 
 // --- Matn tekshiruvi (6, 7-ekran): ikki tilli; apostrof shakllari normT bilan bir xil ---
@@ -1023,27 +1005,6 @@ const MiniUchish = () => (
   </div>
 );
 
-// ===== SCREEN 3 — 1-SAVOL (QuestionScreen → QTest; INLINE_KEYS.s3 = 2; ikkinchi misol — kitob almashish ilovasi, P-002) =====
-const Screen3 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Tekshiruv · izoh', ru: 'Проверка · замечание' })}
-    questionText="Kitob almashish pitchida Jamoa bo'lagi tushunarsiz bo'ldi. Izohga nima yozasiz?"
-    question={tr({ uz: <h2 className="title h-ask">Kitob almashish pitchida Jamoa bo'lagi tushunarsiz bo'ldi. <A>Izohga nima yozasiz?</A></h2>, ru: <h2 className="title h-ask">В питче приложения для обмена книгами часть «Команда» оказалась непонятной. <A>Что напишете в замечании?</A></h2> })}
-    options={[
-      { uz: '«Siz bugun yaxshi gapira olmadingiz»', ru: '«Вы сегодня не смогли хорошо выступить»' },
-      { uz: '«Hamma bo\'lak yaxshi edi, izoh shart emas»', ru: '«Все части были хорошие, замечание не нужно»' },
-      { uz: '«Jamoa bo\'lagida kim nima qilgani yo\'q»', ru: '«В части „Команда“ нет, кто что сделал»' },
-      { uz: '«Jamoa bo\'lagi umuman qiziq emas edi»', ru: '«Часть „Команда“ была совсем неинтересной»' }
-    ]} correctIdx={2}
-    explainCorrect={{ uz: "Izoh bo'lak haqida: unda nima yetishmagani yoziladi.", ru: 'Замечание — о части: в нём пишут, чего в ней не хватило.' }}
-    explainWrong={{
-      0: { uz: "Bu odam haqida — Jamoa bo'lagida nima yetishmadi?", ru: 'Это о человеке — чего не хватило в части «Команда»?' },
-      1: { uz: 'Jamoa tushunarsiz edi — yashirilsa, tuzatilmaydi.', ru: '«Команда» была непонятной — если скрыть, её не исправят.' },
-      3: { uz: "Bu fikr — unda nima yetishmagani yo'q.", ru: 'Это мнение — в нём нет, чего не хватило.' },
-      default: { uz: 'Mentor pitchiga yozilgan izohlar nima haqida edi?', ru: 'О чём были замечания к питчу Ментора?' }
-    }}
-    vizual={<MiniQator bolak="jamoa" belgi="✗" matn={tr({ uz: "kim nima qilgani yo'q", ru: 'нет, кто что сделал' })} />} />
-);
-
 // ===== SCREEN 4 — TUZATISHLAR RO'YXATI (QTushuncha; ketma-ket 3 karta — E 53; to'g'ri — ro'yxatga uchadi, xato — silkinadi; bashorat yo'q — MD) =====
 const TUZATISH_KARTA = [
   { bolak: 'bozor', tur: 'x', manba: MENTOR_VARAQ[1].izoh, togri: 1,
@@ -1109,27 +1070,6 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     </Stage>
   );
 };
-
-// ===== SCREEN 5 — 2-SAVOL (QuestionScreen; INLINE_KEYS.s5 = 0; ikkinchi misol — kitob almashish ilovasi) =====
-const Screen5 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Tekshiruv · tuzatish', ru: 'Проверка · исправление' })}
-    questionText="Kitob almashish pitchida Raqamlar ✗ oldi: «son qayerdan?». Nima yozasiz?"
-    question={tr({ uz: <h2 className="title h-ask">Kitob almashish pitchida Raqamlar ✗ oldi: «son qayerdan?». <A>Nima yozasiz?</A></h2>, ru: <h2 className="title h-ask">В питче приложения для обмена книгами «Цифры» получили ✗: «откуда число?». <A>Что напишете?</A></h2> })}
-    options={[
-      { uz: 'Raqamlar: sonning manbasini aytaman', ru: 'Цифры: назову источник числа' },
-      { uz: 'Raqamlar: sonni ikki barobar qilaman', ru: 'Цифры: увеличу число вдвое' },
-      { uz: "Raqamlar: bo'lakni olib tashlayman", ru: 'Цифры: уберу эту часть' },
-      { uz: 'Raqamlar: keyin yaxshiroq qilib aytaman', ru: 'Цифры: потом расскажу получше' }
-    ]} correctIdx={0}
-    explainCorrect={{ uz: "Tuzatish izohga javob beradi va nima o'zgarishini aytadi.", ru: 'Исправление отвечает на замечание и говорит, что изменится.' }}
-    explainWrong={{
-      1: { uz: "Bu son o'ylab topilgan — izoh nimani so'radi?", ru: 'Это число выдумано — о чём спросило замечание?' },
-      2: { uz: "Bo'lak qoladi — unda nima o'zgaradi?", ru: 'Часть остаётся — что в ней изменится?' },
-      3: { uz: "«Yaxshiroq» — aniq nima o'zgaradi?", ru: '«Получше» — что конкретно изменится?' },
-      default: { uz: 'Mentor «tasdiq» izohiga qanday tuzatish yozgan edi?', ru: 'Какое исправление Ментор написал к замечанию про «подтверждение»?' }
-    }}
-    vizual={<MiniQator bolak="raqamlar" matn={tr({ uz: 'sonning manbasini aytaman', ru: 'назову источник числа' })} />} />
-);
 
 // ===== SCREEN 6 — GURUHDA PITCH (QMustaqil, USTAXONA: rejim → 3 qism ketma-ket; guruh + yakka) · yozadi pm-m12d5-varaq (tur, varaq, hakamSavoli, vaqt) · nishon pitchRound =====
 const PITCHDAN_OLDIN = [
@@ -1501,18 +1441,17 @@ const Screen8 = (props) => (
       2: { uz: "Bu guruh nimani ko'rsatdi — izohni o'qing.", ru: 'Что показала эта группа — прочитайте замечание.' },
       default: { uz: "Mentor ✗ olgan bo'laklar bilan nima qildi?", ru: 'Что Ментор сделал с частями, получившими ✗?' }
     }}
-    vizual={<MiniUchish />} />
+ />
 );
 
-// ===== 🏅 BADGES (nishonlar, 4 — PM: «!» bilan, 9.23) — faqat ish qilingan ekranlarda (S-034) =====
+// ===== 🏅 BADGES (nishonlar, 3 — PM: «!» bilan, 9.23) — faqat ish qilingan ekranlarda (S-034) =====
 const ACHIEVEMENTS = {
-  partNotPerson: { icon: '🎯', name: 'Part, Not Person!', desc: { uz: "Izohni bo'lak haqida yozishni tanladingiz", ru: 'Вы выбрали замечание о части' } },
   fixFinder: { icon: '🔧', name: 'Fix Finder!', desc: { uz: "Mentor varag'idan uch aniq tuzatishni topdingiz", ru: 'Вы нашли три точных исправления по листу Ментора' } },
   pitchRound: { icon: '⏱️', name: 'Pitch Round!', desc: { uz: 'Pitchni taymer bilan aytdingiz, varaq saqlandi', ru: 'Вы рассказали питч с таймером, лист сохранён' } },
   threeFixes: { icon: '✍️', name: 'Three Fixes!', desc: { uz: 'Varaqingizdan uchta tuzatish yozdingiz', ru: 'Вы написали три исправления по своему листу' } }
 };
-// Ekran id → nishon: s3 — ballik test (birinchi urinish) · tuzatish — 4-ekran kartalari (xatosiz). pitchRound, threeFixes — ish qilingan ekranda earn() bilan.
-const ACH_TRIGGERS = { s3: 'partNotPerson', tuzatish: 'fixFinder' };
+// Ekran id → nishon: tuzatish — tuzatishlar ro'yxati kartalari (xatosiz). pitchRound, threeFixes — ish qilingan ekranda earn() bilan.
+const ACH_TRIGGERS = { tuzatish: 'fixFinder' };
 
 function AchCelebrate({ ach, onDone }) {
   useEffect(() => { const t = setTimeout(onDone, 4000); return () => clearTimeout(t); }, []); // eslint-disable-line
@@ -1570,9 +1509,7 @@ const Confetti = () => {
 
 // Podium savol yorliqlari (SCORED_IDX indekslariga mos: 3, 5, 8)
 const Q_LABELS = {
-  3: { uz: '1 — Izoh nima haqida', ru: '1 — О чём замечание' },
-  5: { uz: '2 — Aniq tuzatish', ru: '2 — Точное исправление' },
-  8: { uz: 'Yakuniy — ✗ olganda nima qilasiz', ru: 'Итог — что делать, получив ✗' }
+  6: { uz: 'Yakuniy — ✗ olganda nima qilasiz', ru: 'Итог — что делать, получив ✗' }
 };
 const QUIZ_MS = 15000;
 // Kapsula ichida suzuvchi tokenlar — darsning lug'ati (R-008: {uz, ru}, emojisiz)
@@ -2157,38 +2094,6 @@ const MentorPracticeStats = ({ live, screen, sig, yorliq }) => {
   );
 };
 
-// 🃏 KARTOCHKALAR — 12 (MD 10-ekran; mexanika va ko'rinish — qolipda: QKartochka, DE-204). Mentorsiz (SABOQ 16); karta neytral (SABOQ P10).
-const FLASHCARDS = [
-  { front: { uz: 'Bu darsda varaqda nima yoziladi?', ru: 'Что на этом уроке пишут в листе?' }, back: { uz: "Har bo'lakka ✓ yoki ✗, ✗ yonida izoh va oxirida bitta hakam savoli", ru: 'Каждой части ✓ или ✗, рядом с ✗ — замечание, в конце — один вопрос судьи' }, note: { uz: "12-Moduldagi baholash varag'i — bugun olti qator", ru: 'Оценочный лист из 12-го модуля — сегодня шесть строк' } },
-  { front: { uz: "Varaq qachon to'ldiriladi?", ru: 'Когда заполняют лист?' }, back: { uz: 'Pitch oxirigacha aytilgandan keyin', ru: 'После того как питч рассказан до конца' }, note: { uz: 'Pitch davomida tinglovchilar jim', ru: 'Во время питча слушатели молчат' } },
-  { front: { uz: '✗ yonidagi izoh nima haqida bo\'ladi?', ru: 'О чём замечание рядом с ✗?' }, back: { uz: "Bo'lak haqida: unda nima yetishmagani", ru: 'О части: чего в ней не хватило' }, note: { uz: "Odam haqida gap yo'q", ru: 'Ни слова о человеке' } },
-  { front: { uz: 'Hakam savoli nima?', ru: 'Что такое вопрос судьи?' }, back: { uz: "Tinglovchi pitchdan keyin hakam o'rnida yozgan bitta savol", ru: 'Один вопрос, который слушатель после питча записал в роли судьи' }, note: { uz: 'Pitchdan keyin tinglovchida qolgan savol', ru: 'Вопрос, оставшийся у слушателя после питча' } },
-  { front: { uz: "Guruhda fikrlar har xil bo'lsa, belgi qanday qo'yiladi?", ru: 'Как ставят знак, если мнения в группе разные?' }, back: { uz: 'Muhokama qilib, bitta belgi — tushunarsiz joy izohda', ru: 'Обсудив, один знак — непонятное место в замечании' }, note: { uz: 'Varaq — guruhning bitta umumiy yozuvi', ru: 'Лист — одна общая запись группы' } },
-  { front: { uz: "Mentor misolida guruh qaysi bo'laklarga ✗ qo'ydi?", ru: 'Каким частям в примере Ментора группа поставила ✗?' }, back: { uz: 'Bozor va Raqamlar', ru: 'Рынок и Цифры' }, note: { uz: "Izohlar: «60 kishi kim — o'yinchimi, guruhmi?» va «tasdiq — to'lovmi?»", ru: 'Замечания: «60 человек — кто это: игроки или группа?» и «подтверждение — это оплата?»' } },
-  { front: { uz: "Tuzatishlar ro'yxati nima?", ru: 'Что такое список исправлений?' }, back: { uz: "Uch band: qaysi bo'lak va unda nima o'zgaradi", ru: 'Три пункта: какая часть и что в ней изменится' }, note: { uz: "Bugun bo'laklar qayta yozilmaydi", ru: 'Сегодня части не переписывают' } },
-  { front: { uz: "✗ ikkita bo'lsa, uchinchi band qayerdan olinadi?", ru: 'Если ✗ два, откуда берут третий пункт?' }, back: { uz: 'Hakam savolidan', ru: 'Из вопроса судьи' }, note: { uz: "Unga qaysi bo'lak javob berishi kerakligini tanlaysiz", ru: 'Вы выбираете, какая часть должна на него ответить' } },
-  { front: { uz: "Hammasi ✓ bo'lsa, tuzatish qayerdan olinadi?", ru: 'Если везде ✓, откуда берут исправление?' }, back: { uz: "Hakam savolidan va yanada aniqroq bo'ladigan bo'lakdan", ru: 'Из вопроса судьи и из части, которую можно сделать точнее' }, note: { uz: "Yo'q kamchilik o'ylab topilmaydi", ru: 'Несуществующий недостаток не выдумывают' } },
-  { front: { uz: 'Tuzatishda nima yoziladi?', ru: 'Что пишут в исправлении?' }, back: { uz: "Bo'lakda aynan qaysi gap yoki son o'zgarishi", ru: 'Какая именно фраза или число в части изменится' }, note: { uz: "To'qilgan son va va'da qo'shilmaydi — faqat manbasi bor son", ru: 'Выдуманное число и обещание не добавляют — только число с источником' } },
-  { front: { uz: "Mentor «tasdiq — to'lovmi?» izohiga qanday tuzatish yozdi?", ru: 'Какое исправление Ментор написал к замечанию «подтверждение — это оплата?»?' }, back: { uz: 'Tasdiq nima ekanini aytaman: yozma javob, pul emas', ru: 'Скажу, что такое подтверждение: письменный ответ, не деньги' }, note: { uz: "Gapda «to'lov emas» bor edi — tinglovchida savol qolgan", ru: 'Во фразе было «не оплата» — у слушателя остался вопрос' } },
-  { front: { uz: "Guruh bo'lmasa, varaqni kim to'ldiradi?", ru: 'Кто заполняет лист, если группы нет?' }, back: { uz: "O'zingiz: pitchni telefonga yozib, bir marta ko'rib", ru: 'Вы сами: записав питч на телефон и посмотрев один раз' }, note: { uz: 'Yozuv telefonda qoladi', ru: 'Запись остаётся в телефоне' } }
-];
-const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
-  const [bosildi, setBosildi] = useState(false);
-  const belgila = (e) => { if (e.target && e.target.closest && e.target.closest('.fc-card')) setBosildi(true); };
-  return (
-    <Stage eyebrow={tr({ uz: 'Takrorlash', ru: 'Повторение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={false} label={tr({ uz: 'Yakunlash →', ru: 'Завершить →' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'zingizni <A>sinab ko'ring.</A></>, ru: <>Проверьте <A>себя.</A></> })}</h2></div>
-        <div className={cxx('gv-flash', !bosildi && 'yangi')} onClickCapture={belgila} onKeyDownCapture={(e) => { if (e.key === 'Enter' || e.key === ' ') belgila(e); }}>
-          <QKartochka til={__lang} cards={FLASHCARDS.map(c => ({ front: tr(c.front), back: tr(c.back), note: tr(c.note) }))} />
-          {!bosildi && <p className="gv-fc-ipucha"><i aria-hidden="true" />{tr({ uz: 'Kartani bosing — javob ochiladi.', ru: 'Нажмите на карточку — откроется ответ.' })}</p>}
-        </div>
-      </div>
-    </Stage>
-  );
-};
-
 // ===== UYGA VAZIFA — PM HwCard (P-025: «Kim uchun · Nechta · Muddat» + ① ② + shartli ③; alohida .homework.jsx yo'q) =====
 const HW_KARTA = [
   { k: { uz: 'Kim uchun', ru: 'Для кого' }, v: { uz: "o'z pitchingiz", ru: 'ваш питч' } },
@@ -2340,11 +2245,8 @@ export default function PmPitchTrainingLesson({ lang: langProp, onFinished, live
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);
   useEffect(() => { live.reportScreen(screen); }, [screen, live.mode, live.pin]); // eslint-disable-line
-  // 🃏 Flashcard ekrani jonli darsda (mentor boshqaruvida) o'quvchida ko'rsatilmaydi
-  const FLASH_IDX = SCREEN_META.findIndex(m => m.id === 'sflash');
-  const flashHidden = () => live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
-  const next = () => setScreen(s => { let n = Math.min(s + 1, TOTAL_SCREENS - 1); if (n === FLASH_IDX && flashHidden()) n = Math.min(n + 1, TOTAL_SCREENS - 1); return n; });
-  const prev = () => setScreen(s => { let n = Math.max(s - 1, 0); if (n === FLASH_IDX && flashHidden()) n = Math.max(n - 1, 0); return n; });
+  const next = () => setScreen(s => Math.min(s + 1, TOTAL_SCREENS - 1));
+  const prev = () => setScreen(s => Math.max(s - 1, 0));
   const recordAnswer = (idx, data) => {
     setAnswers(a => ({ ...a, [idx]: data }));
     const _m = SCREEN_META[idx];
@@ -2389,7 +2291,7 @@ export default function PmPitchTrainingLesson({ lang: langProp, onFinished, live
     if (typeof onFinished === 'function') onFinished(sealPayload(LESSON_META.lessonId, payload));
   };
 
-  const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, Screen6, Screen7, Screen8, ScreenPodium, ScreenFlashcards, SummaryScreen];
+  const screens = [Screen0, Screen1, Screen2, Screen4, Screen6, Screen7, Screen8, ScreenPodium, SummaryScreen];
   const Current = screens[screen];
   return (
     <LangContext.Provider value={lang}>
@@ -2637,12 +2539,6 @@ export default function PmPitchTrainingLesson({ lang: langProp, onFinished, live
         .gv-mini-fly b { color: ${T.accent}; }
         @keyframes gv-tush { from { opacity: .3; transform: translateY(-48px); } to { opacity: 1; transform: none; } }
         /* Kartochka — neytral (SABOQ P10) */
-        .gv-flash.yangi .fc-card:not(.flip) .fc-front { border-color: ${fon(T.accent, 0.45)}; animation: gv-puls 1.8s ease-out .4s 3; }
-        .gv-flash .fc-front { border-color: ${fon(T.accent, 0.45)}; box-shadow: 0 14px 34px -20px rgba(${T.shadowBase},0.35); }
-        .gv-flash .fc-back { background: ${T.ink}; color: #fff; box-shadow: 0 16px 36px -18px rgba(${T.shadowBase},0.55); }
-        .gv-flash .fc-note { color: rgba(255,255,255,0.78); }
-        p.gv-fc-ipucha { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 12px 0 0; font-size: 13px; font-weight: 700; color: ${T.ink2}; }
-        p.gv-fc-ipucha i { width: 8px; height: 8px; border-radius: 50%; background: ${T.accent}; }
         /* Yakun */
         .gv-yakun.belgisiz .done-chip .tick { display: none; }
         .gv-hw { display: flex; flex-direction: column; gap: 12px; }
@@ -2663,7 +2559,7 @@ export default function PmPitchTrainingLesson({ lang: langProp, onFinished, live
         }
         @media (prefers-reduced-motion: reduce) {
           .gv-halqa, .gv-k.kutish .q-variant, .q-bashorat .q-chip, .gv-qadamlar .q-chip, .gv-pufak, .gv-tel, .gv-tel-son, .gv-tng, .gv-tng-s, .gv-tng-s > i, .gv-tm-bo.halqa .gv-tm-t, .gv-v-b, .gv-v-izm, .gv-v-q, .gv-v-hk, .gv-r-q,
-          .gv-karta, .gv-var, .gv-bt, textarea.gv-inp, .gv-bolak-t, .gv-mini-fly, .gv-flash .fc-front { animation: none !important; transition: none !important; }
+          .gv-karta, .gv-var, .gv-bt, textarea.gv-inp, .gv-bolak-t, .gv-mini-fly { animation: none !important; transition: none !important; }
           .gv-tm-t > i, .gv-uchar { transition: none !important; }
         }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px ${fon(T.accent, 0.35)}, 0 0 0 1px ${fon(T.accent, 0.12)}; }
@@ -2781,7 +2677,6 @@ export default function PmPitchTrainingLesson({ lang: langProp, onFinished, live
         @media (prefers-reduced-motion: reduce) { .lp-step.on .lp-check, .lp-done-btn.is-done { animation: none !important; } }
         .lp-mstats { background: ${T.accentSoft}; border-radius: 12px; padding: 13px 15px; display: flex; flex-direction: column; gap: 6px; }
 
-        /* === 🃏 FLASHCARDS — qolipda: QKartochka (DE-204) === */
 
         /* === 🔤 KOD-ATAMA CHIP (fmtCode) === */
         .qcode { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 700; font-size: 0.92em; background: rgba(20,17,14,0.08); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }

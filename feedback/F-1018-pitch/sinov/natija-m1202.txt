@@ -1,0 +1,9 @@
+boshida: {"t":"1 daqiqada ayting","d":true} · chip yopiq: true · mentor: Mentor Hikoyani yana bir marta ovoz chiqarib ayting: «1 daqiqani boshlash»ni bosing, keyin uch savolga o'zingi
+yurmoqda: 0:01 1:00 Hozir siz gapirasiz To'xtatish · mentor: Mentor Gapiring; hikoya tugagach «To'xtatish»ni bosing.
+to'xtagach: {"t":"Savollarga javob bering (0/3)","d":true} · mentor: Mentor Har savolga «Ha» yoki «Yo'q»ni bosing. · vaqt yozuvi: Taymerda: 0:02
+Yo'q dan keyin: maslahat=true · Kartani ochish=true
+uchala: {"t":"Davom etish","d":false} · xulosa: Tuzatadigan joy topildi — kartani o'zgartiring, uyda shu karta bilan qayta yozas · nishon: true
+saqlandi: earned=["pairCheck"] · video={"yozildi":true,"lahzaBilan":true,"royxatYoq":false,"vaqtgaSigdi":true,"vaqt":58,"qayta":2}
+qayta ochildi: {"t":"Davom etish","d":false} · ha/yoq: 2/1
+yakun sarlavha: Hikoya yozildi — tekshiruvda tuzatadigan joy topildi.
+pageerror: 0

@@ -1,0 +1,40 @@
+✅ eski v19 progress → 01/10 — 01/10
+✅ eski progress: pageerror yo'q
+✅ 01/10 kirish
+✅ kirish: javob qisqa (hook-ack ≤ 120)
+✅ 02/10 reja: «ikki ekranda yozasiz», 4 qadam
+✅ 03/10 muammo: sayt turi tanlanmagan — tugma «Sayt turingizni tanlang»
+✅ muammo: gap yig'ildi + birinchi savol maydoni chiqdi, tugma (3/4)
+✅ muammo: mikrofon yo'q
+✅ muammo: 4/4 → «Davom etish»
+✅ 04/10 yechim+demo: 2 ustun, tugma «Bitta jumla yozing»
+✅ yechim: namuna jumlasi chiqdi
+✅ yechim yozildi → tugma «Qadamlarni oching (0/3)»
+✅ demo 3/3: manzil maydoni Deploy darsidan to'lgan
+✅ demo 3/3 → «Davom etish»
+✅ saqlov: 6 blok to'la (qildim/keyin tayyor gap) — {"qildim":"Saytning bo'limlarini o'zim o'ylab tuzdi","keyin":"Keyingi modulda JavaScript o'rganaman va"}
+✅ 05/10 test: jonli demo savoli
+✅ test: to'g'ri javob izohi
+✅ 06/10 repetitsiya: nutq kartasi 6 qator, taymer, tugma «Sherik bilan mashqqa»
+✅ repetitsiya: mentor «HTML», «CSS» demang
+✅ 07/10 juftlik: 3 karta, tugma (0/3)
+✅ juftlik: 3-karta maslahati — o'quvchining o'z muammo gapi
+✅ juftlik: 3/3 → «o'rin almashing» + Davom
+✅ 08/10 sayt: havola tugmasi (Deploy manzili), 3 karta, tugma (0/3)
+✅ sayt: ✗ → to'g'rilash yo'rig'i + «To'g'riladim»
+✅ sayt: Gemini so'rov namunasi ochildi
+✅ sayt: 3/3 → Davom
+✅ 09/10 natijalar
+✅ 10/10 yakun: nutq kartasi + manzil + 4 band + nishonlar
+✅ yakun: nishonlar 5/5 (finder, demoman, stage, answers, graduate) — 5/5
+✅ onFinished: 2 ballik savol, final 1/1, passed — tq 2 fin 1/1
+✅ oqim: pageerror yo'q
+✅ RECAPS kaliti = test ekrani indeksi — RECAPS {4} · test indeks 4
+✅ INLINE_KEYS = { s4: 2, s5: -1 } — s4: 2, s5: -1
+✅ 390px ekran 3: gorizontal toshish yo'q, xato 0
+✅ 390px ekran 4: gorizontal toshish yo'q, xato 0
+✅ 390px ekran 6: gorizontal toshish yo'q, xato 0
+✅ 390px ekran 7: gorizontal toshish yo'q, xato 0
+✅ 390px ekran 8: gorizontal toshish yo'q, xato 0
+
+38/38

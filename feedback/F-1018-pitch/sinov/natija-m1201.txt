@@ -1,0 +1,15 @@
+uch boshida: {"t":"Uch bo'lakni ko'ring (0/3)","d":true} · chiplar: +1Bozor | -2Jamoa | -3Keyingi qadam
+  Bozor tugadi: nav={"t":"Keyingi bo'lak: Jamoa","d":false} · keyingi tugma: Keyingi bo'lak: Jamoa
+  Jamoa tugadi: nav={"t":"Keyingi bo'lak: Keyingi qadam","d":false} · keyingi tugma: Keyingi bo'lak: Keyingi qadam
+  Keyingi tugadi: nav={"t":"Davom etish","d":false} · keyingi tugma: yo'q
+uch saqlandi: answers[3] qismlar=["bozor","jamoa","keyingi"]
+uch qayta ochildi: {"t":"Davom etish","d":false} · chip ok: 2
+  Bozor chipi bosildi → xulosa bor: true
+sherik qoralama yo'q: {"t":"Davom etish","d":false} · qaytish: true
+sherik boshida: {"t":"2 daqiqada o'qing","d":true} · qatorlar: 6 · chip yopiq: true
+taymer: 0:01 Hozir siz o'qiyapsiz To'xtatish
+to'xtagach: {"t":"Olti savolni belgilang","d":true}
+belgilangach: {"t":"Davom etish","d":false} · xulosa: 1 ta savolga javob yo'q: Jamoa — shu bo'laklarni to'ldiring. · nishon toast: true
+saqlandi: earned=["readAloud"] · answers[6].yoqSoni=1 · artefakt sherik={"muammo":"bor","bozor":"bor","yechim":"bor","raqamlar":"bor","jamoa":"yoq","keyingi":"bor"} · bolaklar saqlandi: true
+sherik qayta ochildi: {"t":"Davom etish","d":false} · bor/yoq: 5/1
+pageerror: 0
