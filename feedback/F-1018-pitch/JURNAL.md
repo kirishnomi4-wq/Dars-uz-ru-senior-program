@@ -115,3 +115,6 @@ Qurish `qurish/f1018n.py`, zaxira `arxiv/F-1018-15-oldin/`. Test + kartochkalar 
 
 ## 🔴 14-MODUL YAKUNI (19.10 ~03:20)
 To'rt pitch darsi: m12-01 16→10 · m12-02 15→10 · m12-05 12→9 · m12-08 12→11 (jami 55 → 40 ekran). 222-qonun bo'yicha barcha 11 pitch darsi qurildi (1, 2, 9–14-M). Commit YO'Q. QA: 11-M (03:00) va 14-M (03:15) yangilandi; 9-, 10-, 12-, 13-M saytlari 02:22 da boshqa seans deployida mening versiyalarim bilan chiqqan. 1–2-Modul sayti (m1-12, m2-13) — yangilanmagan.
+
+## COMMIT · 2026-10-19 · ffd6e14a (push YO'Q)
+Foydalanuvchi: «commit qil». Faqat pitch-seans fayllari: 9 dars (1, 2, 7, 8, 9, 12-Modull × 4), pm-tekshiruvchi ov-bandlari, DARS_ETALON'dan faqat 222-qonun holat-bo'lagi (git apply --cached), feedback/F-1018-pitch/ (`_p.html` surat-bundlelarisiz, 39 MB), arxiv/F-1018-*-oldin/. Commitga KIRMADI: DE 213.15–213.18 bo'laklari va src/10-Modull dagi 213-tuzatishlar (7–14-M QA seansiniki, u «commitga hali ko'p bor» degan), boshqa seanslarning qolgan 270+ fayli. Eslatma: src/12-Modull 4 faylida QA seansining 213.16/17 kichik tuzatishlari ham bor edi (mening qurishim shu ishchi fayldan boshlangan) — ular shu commitga kirdi. vite build toza; gates: 7 dars 13/13, m1-12 va m2-13 11/13 (tell/emoji — zaxirada ham, YAKUNIY-01/02).
