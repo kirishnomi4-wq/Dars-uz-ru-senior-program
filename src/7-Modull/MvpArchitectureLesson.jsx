@@ -1117,7 +1117,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Bo'sh kataklar ham <Acc>Database'da turadimi?</Acc></>, ru: <>Свободные ячейки тоже <Acc>хранятся в Database?</Acc></> })}
         mentor={<Mentor>{tr({ uz: "Sayt kataklarni har ochilganda Backend'dan so'raydi. Qadamlarni bajaring va jadvalga qarang.", ru: 'Сайт при каждом открытии запрашивает ячейки у Backend. Выполните шаги и смотрите на таблицу.' })}</Mentor>}
         bashorat={<Bashorat savol={S5_SAVOL} variantlar={S5_TAXMIN} taxmin={taxmin} onTanla={setTaxmin} done={done} />}
-        harakat={(
+        harakat={!taxmin ? null : (
           <div className="q-col">
             <QQadamlar qadamlar={S5_QADAM.map(tr)} joriy={done ? undefined : q} />
             {faol && (
@@ -1128,7 +1128,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {faol && xato && <QXato>{tr(xato)}</QXato>}
           </div>
         )}
-        vizual={(
+        vizual={!taxmin ? null : <div className="q-kir">{(
           <MaydonChizma texno={{ sayt: true, backend: true, database: true }} yollar={yollar} konvert={konvert} dbYon={bJoriy}
             tugun={{ backend: bJoriy ? 'joriy' : 'oq' }}
             ichi={{
@@ -1139,7 +1139,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               backend: tekshir && <code className="mz-mono-q fade-step">bo'shmi? ✓</code>,
               database: <JadvalMock ixcham qatorlar={qatorlar} yonik={yonik} kulrang={kulrang} yangi={yangi} />
             }} />
-        )}
+        )}</div>}
         natija={<>
           {q >= 2 && <p className="mz-joriy fade-step">{tr({ uz: "Har yo'l (route) — method va manzil: GET o'qiydi, POST yozadi.", ru: 'Каждый маршрут (route) — метод и адрес: GET читает, POST записывает.' })}</p>}
           {done && <TaxminNatija variantlar={S5_TAXMIN} taxmin={taxmin} togri="band" haqiqat={{ uz: 'faqat bandlar', ru: 'только брони' }} />}
@@ -1232,8 +1232,8 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Bandlar ro'yxatini <Acc>kim ochib ko'ra oladi?</Acc></>, ru: <>Кто может <Acc>открыть список броней?</Acc></> })}
         mentor={<Mentor>{tr({ uz: "Ro'yxatda o'yinchilarning telefoni bor — uni begona ko'rmasligi kerak. Ega sahifasida qadamlarni bajaring.", ru: 'В списке телефоны игроков — чужой не должен их видеть. Выполните шаги на странице владельца.' })}</Mentor>}
         bashorat={<Bashorat savol={S7_SAVOL} variantlar={S7_TAXMIN} taxmin={taxmin} onTanla={setTaxmin} done={done} />}
-        harakat={<QQadamlar qadamlar={S7_QADAM.map(tr)} joriy={done ? undefined : q} />}
-        vizual={(
+        harakat={!taxmin ? null : <QQadamlar qadamlar={S7_QADAM.map(tr)} joriy={done ? undefined : q} />}
+        vizual={!taxmin ? null : <div className="q-kir">{(
           <MaydonChizma texno={{ sayt: true, backend: true, database: true }} yollar={yollar} konvert={konvert} dbYon={yonik.length > 0}
             tugun={{ backend: bHolat }}
             ichi={{
@@ -1243,7 +1243,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               backend: <><EnvBelgi yon={env} />{tokenOk && <code className="mz-mono-q fade-step">token ✓</code>}</>,
               database: <JadvalMock ixcham qatorlar={[QATOR_ALI, QATOR_BEK]} yonik={yonik} />
             }} />
-        )}
+        )}</div>}
         natija={<>
           {q >= 2 && <p className="mz-joriy fade-step">{tr({ uz: "Ega kirishi — oldingi darslardagi login: parol to'g'ri bo'lsa, Backend token beradi.", ru: 'Вход владельца — это логин из прошлых уроков: если пароль верный, Backend выдаёт токен.' })}</p>}
           {done && <TaxminNatija variantlar={S7_TAXMIN} taxmin={taxmin} togri="401" haqiqat={{ uz: '401 xatosi', ru: 'ошибка 401' }} />}
@@ -1319,7 +1319,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {['nest', 'django'].map(id => <QChip key={id} holat={tanlov === id ? 'on' : korildi.includes(id) ? 'ok' : undefined} onClick={() => bos(id)}>{korildi.includes(id) && '✓ '}{S9_KOD[id].nom}</QChip>)}
           </div>
         )}
-        vizual={(
+        vizual={!taxmin ? null : <div className="q-kir">{(
           <div className="q-col">
             <div className="mz-tqator">
               <Tugun id="sayt" texno />
@@ -1333,7 +1333,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
             )}
           </div>
-        )}
+        )}</div>}
         natija={<>
           {done && <p className="mz-joriy fade-step">{tr({ uz: "Birga ishlaydigan texnologiyalar to'plami — stack.", ru: 'Набор технологий, работающих вместе, — стек.' })}</p>}
           {done && <TaxminNatija variantlar={S9_TAXMIN} taxmin={taxmin} togri="tanish" yorliq={{ uz: 'MVP uchun', ru: 'для MVP' }} haqiqat={{ uz: 'tanishlari', ru: 'знакомые' }} />}
@@ -1397,8 +1397,8 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Do'stingiz «Maydon»ni <Acc>telefonidan ocha oladimi?</Acc></>, ru: <>Сможет ли друг <Acc>открыть «Maydon» с телефона?</Acc></> })}
         mentor={<Mentor>{tr({ uz: 'Hozir sayt va Backend sizning kompyuteringizda ishlaydi. Qadamlarni bajaring va natijaga qarang.', ru: 'Сейчас сайт и Backend работают на вашем компьютере. Выполните шаги и посмотрите на результат.' })}</Mentor>}
         bashorat={<Bashorat savol={S11_SAVOL} variantlar={S11_TAXMIN} taxmin={taxmin} onTanla={setTaxmin} done={done} />}
-        harakat={<QQadamlar qadamlar={S11_QADAM.map(tr)} joriy={done ? undefined : q} />}
-        vizual={(
+        harakat={!taxmin ? null : <QQadamlar qadamlar={S11_QADAM.map(tr)} joriy={done ? undefined : q} />}
+        vizual={!taxmin ? null : <div className="q-kir">{(
           <div className="mz-zchizma">
             <div className="mz-zonalar">
               <div className="mz-zona pc">
@@ -1421,7 +1421,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {q >= 3 && <SaytMock kun="shanba" band={['17:00', '18:00']} />}
             </TelefonMock>
           </div>
-        )}
+        )}</div>}
         natija={<>
           {joriy && <p key={q} className="mz-joriy fade-step">{fmtCode(tr(joriy))}</p>}
           {done && <TaxminNatija variantlar={S11_TAXMIN} taxmin={taxmin} togri="yoq" haqiqat={{ uz: 'sahifa ochilmadi', ru: 'страница не открылась' }} />}

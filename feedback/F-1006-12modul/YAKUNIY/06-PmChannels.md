@@ -9,7 +9,7 @@ Mentor misoli (dars bo'yi bir xil):
 
 | Joy | Turi | 1 · Auditoriyangiz shu yerdami? | 2 · Siz u yerda a'zomisiz? | 3 · U yerda post yozishga ruxsat bormi? |
 |---|---|---|---|---|
-| Mahalla futbol guruhi | Telegram guruhi · 60 kishi | 11-Modul intervyusi, «Hozir nima bilan»: 5 o'yinchidan 5 tasi Telegram guruhida «kim keladi?» deb yozishadi. — Ha | Mentor shu guruh a'zosi. — Ha | Guruh egasidan ruxsat olingan. — Ha |
+| Mahalla futbol guruhi | Telegram guruhi · 60 kishi | 11-Modul intervyusi, «Hozir nima bilan»: 3 o'yinchidan 3 tasi Telegram guruhida «kim keladi?» deb yozishadi. — Ha | Mentor shu guruh a'zosi. — Ha | Guruh egasidan ruxsat olingan. — Ha |
 | Shahar futbol kanali | Telegram kanali · katta | Intervyuda bu kanal tilga olinmagan — dalil yo'q. — ? | Mentor bu kanalda a'zo emas. — Yo'q | Kanalga post yozishga ruxsat yo'q. — Yo'q |
 
 - Mentorning uch kanali: Mahalla futbol guruhi · Sinf chati · O'z Instagram sahifasi.
@@ -208,7 +208,7 @@ Mentor misoli (dars bo'yi bir xil):
        - qolganlari: Guruh egasidan so'raladi.
   - 1 yoki 2-savolga «Yo'q»: Bu joy uch savoldan o'tmadi — kanallaringizga kirmaydi.
   - Tugmalar: Yordam · Yetarli (kamida bitta kanal o'tgach) · Saqlash
-  - Yordam ochilsa: Mentor misolida: mahalla futbol guruhi — ha · ha · ha (intervyuda 5 o'yinchidan 5 tasi Telegram guruhida; a'zo; egasidan ruxsat olingan). Shahar futbol kanali — a'zo emas, ruxsat yo'q: tanlanmadi.
+  - Yordam ochilsa: Mentor misolida: mahalla futbol guruhi — ha · ha · ha (intervyuda 3 o'yinchidan 3 tasi Telegram guruhida; a'zo; egasidan ruxsat olingan). Shahar futbol kanali — a'zo emas, ruxsat yo'q: tanlanmadi.
 - Xato izohlari:
   - Avval joy turini tanlang.
   - Guruh nomi va havolasi yozilmaydi — faqat turini yozing.

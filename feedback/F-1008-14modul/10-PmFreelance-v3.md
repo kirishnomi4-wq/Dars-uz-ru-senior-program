@@ -146,7 +146,7 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
 - Sarlavha: **Birinchi buyurtma qayerdan chiqishi mumkin?** (43) — 0-ekran savoliga javob beradigan ekran (T-064)
 - Mentor: Tugmalarni birma-bir bosing va har yo'lning shartiga qarang.
   (Birinchi harakat — bashorat; uning yo'rig'i `QBashorat` yorlig'ida «Avval o'zingiz belgilab ko'ring», Mentor takrorlamaydi — T-047.)
-- Bashorat (ballsiz, 181; S-015 — bitta o'lchov: son, o'sish tartibida): **Mentor bugun nechta yo'lni rejalaydi?** · Bitta · Ikkita · Uchta — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*.
+- Bashorat (ballsiz, 181; S-015 — bitta o'lchov: son, o'sish tartibida): **Mentor bugun nechta yo'lni rejalaydi?** · Bitta · Ikkita · Uchta — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*. · **213.7 (F-1015-305…317, 18.10 avtopilot): bashorat ekranda yolg'iz; tanlangach ixcham qatorga yig'iladi, sahna va harakat tugmalari shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin o'chiq tugma/xira sahna yo'q.**
 - Vizual (≤ 3 blok: telefon · varaq · tugmalar qatori): **chapda** telefon «Maydon Jamoa» · **o'ngda** varaq «Mentor misoli · Buyurtma va xatlar» — **Yo'llar** qismi joriy: uchta bo'sh karta (nomsiz, uzuq chegara); Buyurtma va Xatlar — ixcham kulrang qator.
 - Tugmalar (ixcham, bir qatorda; joriysi accent, bosilgani ✓): 1 Xalqaro sayt · 2 Tanish doira · 3 Kompaniya *(✎ F-1015-164: tugmalar bashoratdan keyin chiqadi; bosiladigani faqat joriysi, bosilgani — «✓ nom» yozuvi, keyingisi hali ko'rinmaydi)*
 - **Harakat → Vizual o'zgarish:**
@@ -191,7 +191,7 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
 - Eyebrow: Tushuncha · buyurtma rejasi
 - Sarlavha: **Birinchi buyurtma rejasida nima yoziladi?** (41)
 - Mentor: Tugmalarni birma-bir bosing va Mentor rejasi qanday to'lishini ko'ring.
-- Bashorat (ballsiz; S-015 — bitta o'lchov: ish qanchalik tanish, tanishdan notanishga): **Mentor buyurtmaga qanday ish tanlaydi?** · Kursda qurgan ishiga o'xshash · Qisman o'rgangan boshqa ish · Hali umuman qilmagan ish — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*.
+- Bashorat (ballsiz; S-015 — bitta o'lchov: ish qanchalik tanish, tanishdan notanishga): **Mentor buyurtmaga qanday ish tanlaydi?** · Kursda qurgan ishiga o'xshash · Qisman o'rgangan boshqa ish · Hali umuman qilmagan ish — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*. · **213.7 (F-1015-305…317, 18.10 avtopilot): bashorat ekranda yolg'iz; tanlangach ixcham qatorga yig'iladi, sahna va harakat tugmalari shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin o'chiq tugma/xira sahna yo'q.**
 - Vizual (≤ 3 blok): **chapda** telefon «Maydon Jamoa» · **o'ngda** varaq — **Buyurtma** qismi joriy: uch bo'sh katak «Kim · Nima · Qachon»; Yo'llar — ixcham qator («Tanish doira» kartasi accent), Xatlar — ixcham kulrang.
 - Tugmalar (ixcham, bir qatorda): 1 Kim · 2 Nima · 3 Qachon *(✎ F-1015-164: tugmalar bashoratdan keyin chiqadi; bosiladigani faqat joriysi, bosilgani — «✓ nom» yozuvi, keyingisi hali ko'rinmaydi)*
 - **Harakat → Vizual o'zgarish:**
@@ -233,7 +233,7 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
 - Eyebrow: Tushuncha · kompaniyaga xat
 - Sarlavha: **Kompaniyaga xatda nimani aytasiz?** (33)
 - Mentor: Tugmalarni birma-bir bosing va Mentor xati qanday yig'ilishini ko'ring.
-- Bashorat (ballsiz; S-015 — bitta o'lchov: son, o'sish tartibida): **Mentor bitta xatni nechta kompaniyaga yuboradi?** · Bittaga · Beshtaga · O'ntaga — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*.
+- Bashorat (ballsiz; S-015 — bitta o'lchov: son, o'sish tartibida): **Mentor bitta xatni nechta kompaniyaga yuboradi?** · Bittaga · Beshtaga · O'ntaga — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*. · **213.7 (F-1015-305…317, 18.10 avtopilot): bashorat ekranda yolg'iz; tanlangach ixcham qatorga yig'iladi, sahna va harakat tugmalari shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin o'chiq tugma/xira sahna yo'q.**
 - Vizual (≤ 3 blok): **chapda** telefon «Maydon Jamoa» · **o'ngda** varaq — **Xatlar** qismi joriy: ochiq konvert-karta «1-xat · mobil ilova qiladigan kompaniya» — ichida «Assalomu alaykum!», uch bo'sh qator (uzuq), «Hurmat bilan,»; Yo'llar va Buyurtma — ixcham kulrang.
 - Tugmalar (ixcham, bir qatorda): 1 Kimman · 2 Nima qurdim · 3 Nima so'rayman *(✎ F-1015-164: tugmalar bashoratdan keyin chiqadi; bosiladigani faqat joriysi, bosilgani — «✓ nom» yozuvi, keyingisi hali ko'rinmaydi)*
 - **Harakat → Vizual o'zgarish:**

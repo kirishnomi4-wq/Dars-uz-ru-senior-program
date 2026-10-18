@@ -938,7 +938,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           sarlavha={tr({ uz: <>Demo o'tishi <A>qaysi savollarga javob bermaydi?</A></>, ru: <>На какие вопросы <A>проход демо не отвечает?</A></> })}
           mentor={<Mentor>{tr({ uz: "Demo o'tishini ishga tushiring, keyin har savol uchun tanlang: o'tishda ko'rindimi?", ru: 'Запустите проход демо, затем для каждого вопроса выберите: видно ли это при проходе?' })}</Mentor>}
           bashorat={!done && ixchamBashorat(taxmin, <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr({ uz: "Uch savoldan nechtasiga demo o'tishi javob beradi?", ru: 'На сколько из трёх вопросов отвечает проход демо?' })} variantlar={S2_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} />)}
-          harakat={!done && <div className="dt-harakat">
+          harakat={!taxmin ? null : !done && <div className="dt-harakat">
             {/* F-1015-164: tugma bashoratdan keyin chiqadi; o'tish ketayotganda — tugma emas, holat yozuvi */}
             {!otildi && (oq >= 0
               ? <span className="dt-otmoqda" role="status">{tr({ uz: "Demo o'tmoqda…", ru: 'Демо идёт…' })}</span>
@@ -957,7 +957,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </>}
             {ipucha && IPUCHA(tr({ uz: 'Sahnadagi besh qadamdan biri shu savolga javob beradimi?', ru: 'Отвечает ли на этот вопрос один из пяти шагов на сцене?' }))}
           </div>}
-          vizual={sahna}
+          vizual={!taxmin ? null : sahna}
           xulosa={done && !tugadi && xulosaEl}
         />
         <Ustoz satrlar={[
@@ -1887,13 +1887,12 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext halqa={done} disabled={!ochiq} label={ochiq ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className={cxx('dt-blok', qulfli && 'qulf', done && 'tugadi')}>
         {strip}
-        <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
+        <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
           qadamlar={steps.map(c => ({ h: tr(c.h), t: c.t }))}
           joriy={stepN} onBajardim={bajardim} onQaytar={qaytar} mentorRejim={isMentorLive}
           tugadi={done} tugadiMatn={doneText ? tx(doneText) : null} natija={typeof natija === 'function' ? natija(done) : natija} natijaYorliq={tr(NATIJA_YORLIQ)}
           pastki={<MentorPracticeStats live={_live} screen={screen} />}>
           {ortda && !done && <p className="dt-ortda">{tx(ortda)}</p>}
-          {ulgur && !done && <p className="dt-ulgur">{tx(ulgur)}</p>}
           {ustoz && isMentorLive && <div className="dt-ustoz"><b>{tr({ uz: "O'qituvchi eslatmasi", ru: 'Заметка для учителя' })}</b>{ustoz.map((s, i) => <span key={i}>{tx(s)}</span>)}</div>}
         </QBlok>
       </div>
@@ -2510,6 +2509,9 @@ export default function PmDemoTestLesson({ lang: langProp, onFinished, liveToken
         .q-bashorat:not(:has(.q-chip.on)) .q-chip:not(:disabled) { border-color: ${fon(T.accent, 0.6)}; animation: dt-chorla 1.8s ease-out .5s 2; }
         .q-bashorat .q-chip:nth-child(2) { animation-delay: .75s; } .q-bashorat .q-chip:nth-child(3) { animation-delay: 1s; }
         .dt-bash .q-bashorat { flex-direction: row; flex-wrap: wrap; align-items: center; column-gap: 14px; row-gap: 6px; padding: 10px 14px; }
+        .dt-bash.ix ~ .q-split, .dt-bash.ix ~ .q-col { animation: dt-sahna-kirdi .45s ease-out both; }
+        @keyframes dt-sahna-kirdi { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .dt-bash.ix ~ .q-split, .dt-bash.ix ~ .q-col { animation: none; } }
         .dt-bash .q-bashorat > .q-yorliq { flex-basis: 100%; }
         .dt-k, .dt-teskari, .dt-risk, .dt-yakun { display: flex; flex-direction: column; flex: 1 0 auto; }
         @media (min-width: 761px) { .dt-k .q-split { grid-template-columns: minmax(0,1.3fr) minmax(0,1fr); gap: 26px; } .dt-teskari .q-split { grid-template-columns: minmax(0,1.35fr) minmax(0,1fr); gap: 24px; } .dt-risk .q-split { grid-template-columns: minmax(0,1fr) minmax(0,1.3fr); gap: 24px; } }

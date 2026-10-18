@@ -914,7 +914,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Qidiruv so'rovi telefon matnini <span className="italic" style={{ color: T.accent }}>qanday ishlatadi</span>?</>, ru: <>Как запрос поиска <span className="italic" style={{ color: T.accent }}>использует</span> текст телефона?</> })}
         mentor={<Mentor>{tr({ uz: "Agent qidiruv so'rovini ikki xil yozishi mumkin. Ikkala ko'rinishni bosib, so'rovga nima tushishiga qarang.", ru: 'Агент может написать запрос поиска двумя способами. Нажмите оба варианта и посмотрите, что попадает в запрос.' })}</Mentor>}
         bashorat={<Bashorat savol={tr(S2_SAVOL)} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
-        vizual={<div className="xr-chizma" ref={box}>
+        vizual={!taxmin ? null : <div className="q-kir">{<div className="xr-chizma" ref={box}>
           <EgaTelefon qidiruv={QIDIRUV_TEL} topildi={bq >= 3} yon={bq === 1 ? 'qidiruv' : undefined}>
           </EgaTelefon>
           <div className={cxx('xr-yol', taxmin && !tugadi && 'tanla', bq >= 3 && 'chap')}>
@@ -934,7 +934,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {v && bq >= 2 && !tugadi && <Gap t={v === 'a' ? 'err' : 'ok'}>{tr(S2_GAP[v])}</Gap>}
           </div>
           {uchlar.map(u => <Konvert key={u.k} u={u} />)}
-        </div>}
+        </div>}</div>}
         natija={done && <NatijaBlok tanlov={taxmin} togri="buyruq" variantlar={S2_TAXMIN} haqiqat={{ uz: "ba'zan buyruq bo'lib", ru: 'иногда как команда' }}
           izoh={tr({ uz: <>Foydalanuvchi yozgan matn Database so'roviga buyruq bo'lib qo'shilib ketishi — <b>SQL injection</b> deyiladi.</>, ru: <>Когда текст пользователя попадает в запрос к Database как команда — это называется <b>SQL injection</b>.</> })}
           xulosa={tr({ uz: "Qidiruv so'rovida telefon matnini qo'shmang. Parametrli so'rovda alohida uzatiladi, buyruq bo'lib o'qilmaydi.", ru: 'Не вставляйте текст телефона в запрос поиска. В параметризованном запросе значение передаётся отдельно — как команда не читается.' })} />}
@@ -993,7 +993,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Ism ekranda matn bo'lib chiqadimi yoki <span className="italic" style={{ color: T.accent }}>kod bo'lib</span>?</>, ru: <>Имя выходит на экран текстом или <span className="italic" style={{ color: T.accent }}>кодом</span>?</> })}
         mentor={<Mentor>{tr({ uz: "Agent ismni «qalinroq» ko'rsatish uchun ikki yo'ldan birini tanlagan. Ikki ko'rinishni bosib, ism qanday chiqishiga qarang.", ru: 'Чтобы показать имя «пожирнее», агент выбрал один из двух путей. Нажмите оба варианта и посмотрите, как выходит имя.' })}</Mentor>}
         bashorat={<Bashorat savol={tr(S4_SAVOL)} variantlar={S4_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
-        vizual={<div className="xr-chizma" ref={box}>
+        vizual={!taxmin ? null : <div className="q-kir">{<div className="xr-chizma" ref={box}>
           <EgaTelefon ismTur={v && bq >= 3 ? (v === 'a' ? 'html' : 'matn') : undefined} yon={bq === 2 ? 'ism' : undefined}>
           </EgaTelefon>
           <div className={cxx('xr-yol chap', taxmin && !tugadi && 'tanla')}>
@@ -1006,7 +1006,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {v && bq >= 3 && !tugadi && <Gap t={v === 'a' ? 'err' : 'ok'}>{tr(S4_GAP[v])}</Gap>}
           </div>
           {uchlar.map(u => <Konvert key={u.k} u={u} />)}
-        </div>}
+        </div>}</div>}
         natija={done && <NatijaBlok tanlov={taxmin} togri="kod" variantlar={S4_TAXMIN} haqiqat={{ uz: 'sahifa kodi bo\'ladi', ru: 'станут кодом страницы' }}
           izoh={tr({ uz: <>Foydalanuvchi yozgan matn boshqa odamning sahifasida kod bo'lib ishlab ketishi — <b>XSS (Cross-Site Scripting)</b> deyiladi.</>, ru: <>Когда текст пользователя срабатывает как код на странице другого человека — это называется <b>XSS (Cross-Site Scripting)</b>.</> })}
           xulosa={tr({ uz: "Bu ro'yxatda xavf ismni HTML bo'lib chiqarishda edi. React matni sifatida chiqarsa, shu zaiflik yopiladi.", ru: 'В этом списке опасность была в выводе имени как HTML. Если React выводит его текстом, эта уязвимость закрыта.' })} />}
@@ -1068,7 +1068,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Kalit topilmasa, Backend <span className="italic" style={{ color: T.accent }}>qayerdan oladi</span>?</>, ru: <>Если ключ не найден, <span className="italic" style={{ color: T.accent }}>откуда его берёт</span> Backend?</> })}
         mentor={<Mentor>{fmtCode(tr({ uz: "«Autentifikatsiya va .env» darsida ko'rgansiz: butun himoya maxfiy kalitga bog'liq. Agent ikki yo'ldan birini yozgan — ikkisini bosib, kalit qayerdan kelishiga qarang.", ru: 'Вы видели на уроке «Аутентификация и .env»: вся защита держится на секретном ключе. Агент написал один из двух путей — нажмите оба и посмотрите, откуда приходит ключ.' }))}</Mentor>}
         bashorat={<Bashorat savol={tr(S6_SAVOL)} variantlar={S6_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
-        vizual={<div className="xr-chizma" ref={box}>
+        vizual={!taxmin ? null : <div className="q-kir">{<div className="xr-chizma" ref={box}>
           <EgaTelefon ekran={bq >= 3 ? 'royxat' : 'kirish'} yon={bq === 1 ? 'kirish' : undefined}>
           </EgaTelefon>
           <div className={cxx('xr-yol', taxmin && !tugadi && 'tanla', bq >= 3 && 'chap')}>
@@ -1087,7 +1087,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {v && bq >= 2 && !tugadi && <Gap t={v === 'a' ? 'err' : 'ok'}>{fmtCode(tr(S6_GAP[v]))}</Gap>}
           </div>
           {uchlar.map(u => <Konvert key={u.k} u={u} />)}
-        </div>}
+        </div>}</div>}
         natija={done && <NatijaBlok tanlov={taxmin} togri="harkim" variantlar={S6_TAXMIN} haqiqat={{ uz: "har kim ko'radi", ru: 'видит любой' }}
           izoh={tr({ uz: <>Kalit topilmasa kodda turgan muqobil — <b>zaxira qiymat</b> deyiladi; maxfiy kalit uchun u xavfli.</>, ru: <>Значение в коде, которое берётся, если ключ не найден, называется <b>запасным значением</b>; для секретного ключа оно опасно.</> })}
           xulosa={fmtCode(tr({ uz: "Maxfiy kalitga zaxira qiymat yozmang. U faqat `.env` dan olinsin — yo'q bo'lsa Backend ishga tushmasin.", ru: 'Не пишите запасное значение для секретного ключа. Пусть он берётся только из `.env` — если его нет, Backend не запускается.' }))}
@@ -1151,7 +1151,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Parol begona qo'lga o'tsa, ega sahifasini <span className="italic" style={{ color: T.accent }}>kim ochadi</span>?</>, ru: <>Пароль в чужих руках: <span className="italic" style={{ color: T.accent }}>кто откроет страницу</span>?</> })}
         mentor={<Mentor>{tr({ uz: "Hozir ega faqat parol bilan kiradi. Qadamlarni bajaring va kirishga ikkinchi qadam qo'shilsa nima o'zgarishini ko'ring.", ru: 'Сейчас владелец входит только с паролем. Выполните шаги и посмотрите, что изменится, если добавить второй шаг.' })}</Mentor>}
         bashorat={<Bashorat savol={tr(S9_SAVOL)} variantlar={S9_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
-        vizual={<div className="xr-chizma s9" ref={box}>
+        vizual={!taxmin ? null : <div className="q-kir">{<div className="xr-chizma s9" ref={box}>
           <div className="xr-ikki">
             <EgaTelefon className="sayt" ekran={nn >= 3 ? 'royxat' : 'kirish'} parol={nn >= 1} kodMaydon={nn >= 1} kod={nn >= 2 ? KOD_2FA : ''} yon={nn === 1 ? 'kod' : nn === 2 ? 'kirish' : undefined} kirdi={nn >= 3}>
               {taxmin && !tugadi && n < 3 && <QTugma className={cxx('xr-tel-btn', !yur && 'xr-navbat')} disabled={yur} onClick={qadam}>{tr(S9_QADAMLAR[n])}</QTugma>}
@@ -1169,7 +1169,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {nn === 2 && !tugadi && <Gap t="ok">{tr({ uz: <>Parol + telefon ilovasidagi 6 xonali kod — <b>ikki bosqichli kirish (2FA)</b> deyiladi.</>, ru: <>Пароль + 6-значный код из приложения на телефоне — так называется <b>двухэтапный вход (2FA)</b>.</> })}</Gap>}
           </div>
           {uchlar.map(u => <Konvert key={u.k} u={u} />)}
-        </div>}
+        </div>}</div>}
         natija={done && <NatijaBlok tanlov={taxmin} togri="yoq" variantlar={S9_TAXMIN} haqiqat={{ uz: 'kod ham kerak', ru: 'нужен и код' }}
           izoh={tr({ uz: <>Parol + telefon ilovasidagi 6 xonali kod — <b>ikki bosqichli kirish (2FA)</b> deyiladi.</>, ru: <>Пароль + 6-значный код из приложения на телефоне — так называется <b>двухэтапный вход (2FA)</b>.</> })}
           xulosa={tr({ uz: "Parol begona qo'lga o'tsa ham, telefon ilovasidagi kodsiz ega sahifasi ochilmaydi.", ru: 'Даже если пароль попал в чужие руки, без кода из приложения страница владельца не откроется.' })}
@@ -1243,7 +1243,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Xavfli kod olib tashlanganini <span className="italic" style={{ color: T.accent }}>qanday bilasiz</span>?</>, ru: <>Как узнать, что опасный код <span className="italic" style={{ color: T.accent }}>убран</span>?</> })}
         mentor={<Mentor>{tr({ uz: "Bu darsda zaiflikni hujum qilmasdan tekshiramiz: kodni o'qiymiz va saytni oddiy ma'lumot bilan sinaymiz. «Tekshiring»ni bosing va uch belgiga qarang.", ru: 'На этом уроке проверяем уязвимость без атаки: читаем код и пробуем сайт на обычных данных. Нажмите «Проверьте» и посмотрите на три признака.' })}</Mentor>}
         bashorat={<Bashorat savol={tr(S11_SAVOL)} variantlar={S11_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
-        vizual={<div className="xr-chizma" ref={box}>
+        vizual={!taxmin ? null : <div className="q-kir">{<div className="xr-chizma" ref={box}>
           <EgaTelefon qidiruv={qq >= 2 ? QIDIRUV_TEL : ''} topildi={qq >= 2} yon={joriyI >= 0 ? S11_YON[joriyI] || undefined : undefined} kirdi>
             {taxmin && !tugadi && q === 0 && <QTugma className={cxx('xr-tel-btn', !yur && 'xr-navbat')} disabled={yur} onClick={tekshir}>{tr({ uz: 'Tekshiring', ru: 'Проверьте' })}</QTugma>}
           </EgaTelefon>
@@ -1252,7 +1252,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <XavfRuyxat holatlar={['yopilgan', 'yopilgan', 'yopilgan']} fa="qoshildi" belgilar={belgilar} />
           </div>
           {uchlar.map(u => <Konvert key={u.k} u={u} />)}
-        </div>}
+        </div>}</div>}
         natija={done && <NatijaBlok tanlov={taxmin} togri="oqib" variantlar={S11_TAXMIN} haqiqat={{ uz: "kodni o'qib va sinab", ru: 'прочитав код и проверив' }}
           izoh={tr({ uz: 'Bu tekshiruvni faqat o\'z saytingizda qilasiz. Boshqa saytni egasining ruxsatisiz tekshirmaysiz.', ru: 'Такую проверку вы делаете только на своём сайте. Чужой сайт без разрешения владельца не проверяете.' })}
           xulosa={tr({ uz: "Bugungi uch xavfli naqsh olib tashlanganini kodni o'qib va oddiy ma'lumot bilan sinab tekshirdik.", ru: 'Мы прочитали код, попробовали сайт на обычных данных и убедились: три сегодняшних опасных шаблона убраны.' })}

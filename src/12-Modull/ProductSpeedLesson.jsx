@@ -1068,11 +1068,11 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         mentor={<Mentor>{q === 0
           ? tr({ uz: "Chrome ichida o'lchov dasturi bor — o'ngdagi «Analyze page load» ni bosing.", ru: 'В Chrome есть инструмент измерения — нажмите справа «Analyze page load».' })
           : tr({ uz: "Endi tepadagi «Desktop» ni bosib, bahoni yana bir ko'ring.", ru: 'Теперь нажмите сверху «Desktop» и посмотрите оценку ещё раз.' })}</Mentor>}
-        vizual={<div className="tz-v">
+        bashorat={!tugadi && <Bashorat savol={{ uz: 'Bu dastur sahifaga qanday baho beradi?', ru: 'Какую оценку этот инструмент ставит странице?' }} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
+        vizual={!taxmin ? null : <div className="tz-v tz-sahna-kir">
           <div className={cx('tz-sahna', tugadi && 'tz-s2-tug')}>
             <div className="tz-chap"><Telefon manzil={K.manzil} yuk={yuk} sinf={dsk ? 'keng' : undefined} ost={<Sodda />}>{b >= 1 ? <KunSahifa b={b} /> : <div className="tz-sp" />}</Telefon></div>
             <div className="tz-ung">
-              {!tugadi && <Bashorat savol={{ uz: 'Bu dastur sahifaga qanday baho beradi?', ru: 'Какую оценку этот инструмент ставит странице?' }} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
               <LhHisobot rejim={device} olchov={dsk ? K.desktop : K.mobile} chizildi={chizildi} ochiq={ochiq} sayt={K}
                 izoh={dIzoh ? tr({ uz: 'boshqa sharoit', ru: 'другие условия' }) : null}
                 sozlama={!tugadi && <span className="tz-rep-soz">
@@ -1166,13 +1166,13 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         mentor={<Mentor>{q === 0
           ? tr({ uz: 'Sahifani qadamma-qadam oching — «Sekin ochish» ni bosing.', ru: 'Откройте страницу шаг за шагом — нажмите «Медленно открыть».' })
           : tr({ uz: "Endi o'sha narsani sahifaning o'zida bosib ko'rsating.", ru: 'Теперь нажмите на этот элемент прямо на странице.' })}</Mentor>}
-        vizual={<div className="tz-v">
+        bashorat={!tugadi && <Bashorat savol={{ uz: "Lighthouse qaysi narsaning ko'rinish vaqtini kuzatadi?", ru: 'Время появления чего отслеживает Lighthouse?' }} variantlar={S4_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
+        vizual={!taxmin ? null : <div className="tz-v tz-sahna-kir">
           <div className={cx('tz-sahna', tugadi && 'tz-tug')}>
             <div className="tz-chap">
               <Telefon manzil={OLX.manzil} yuk={yuk} ost={<Sodda />}>{b >= 1 ? <OlxSahifa b={b} tanla={q === 1 && !uchdi ? tanla : null} tanlangan={uchdi ? 'rasm' : null} silk={silk} /> : <div className="tz-sp" />}</Telefon>
             </div>
             <div className="tz-ung">
-              {!tugadi && <Bashorat savol={{ uz: "Lighthouse qaysi narsaning ko'rinish vaqtini kuzatadi?", ru: 'Время появления чего отслеживает Lighthouse?' }} variantlar={S4_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
               {!tugadi && <span className="tz-amal">
                 <Bo on={taxmin && q === 0 && !band ? sekin : undefined} className={cx('tz-btn', (q > 0 || band) && 'xira', halqa(!!taxmin && q === 0 && !band))}>{tr({ uz: 'Sekin ochish', ru: 'Медленно открыть' })}</Bo>
               </span>}
@@ -1262,7 +1262,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         mentor={<Mentor>{q === 0
           ? tr({ uz: "Avval «Sahifani ochish» ni, keyin «Qo'shilmoqchiman» ni bosing.", ru: 'Сначала нажмите «Открыть страницу», потом «Хочу присоединиться».' })
           : tx({ uz: 'Endi rasmga o\'lcham yozing — «`width` va `height`» o\'chirgichini yoqing.', ru: 'Теперь задайте картинке размер — включите переключатель «`width` и `height`».' })}</Mentor>}
-        vizual={<div className="tz-v">
+        bashorat={!tugadi && <Bashorat savol={{ uz: 'Rasm kelganda tugma nima bo\'ladi?', ru: 'Что будет с кнопкой, когда придёт картинка?' }} variantlar={S5_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
+        vizual={!taxmin ? null : <div className="tz-v tz-sahna-kir">
           {tugadi
             ? <div className="tz-sahna tz-tug">
               <div className="tz-ikki">{IKKI.map(x => (
@@ -1280,7 +1281,6 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </Telefon>
               </div>
               <div className="tz-ung">
-                <Bashorat savol={{ uz: 'Rasm kelganda tugma nima bo\'ladi?', ru: 'Что будет с кнопкой, когда придёт картинка?' }} variantlar={S5_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />
                 <span className="tz-amal">
                   <Bo on={taxmin && q === 0 && k === 'bosh' && !band ? och : undefined} className={cx('tz-btn', k !== 'bosh' && 'xira', halqa(!!taxmin && k === 'bosh' && !band))}>{tr({ uz: 'Sahifani ochish', ru: 'Открыть страницу' })}</Bo>
                   <Bo on={q === 1 && !band ? olchamYoz : undefined} className={cx('tz-olcham', olcham && 'on', q === 0 && 'xira', halqa(q === 1 && !band))}><i className="tz-sw" />{tx({ uz: '`width` va `height`: ', ru: '`width` и `height`: ' })}{olcham ? tr({ uz: 'bor', ru: 'есть' }) : tr({ uz: "yo'q", ru: 'нет' })}</Bo>
@@ -1379,7 +1379,8 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         mentor={<Mentor>{tr(q === 0 ? { uz: 'Ikki usulni solishtiring — avval «Hammasi birdan» ni bosing.', ru: 'Сравните два способа — сначала нажмите «Все сразу».' }
           : q === 1 ? { uz: "Endi pastdagi ikki rasmni keyinga qoldiring — «Keyin yuklash» ni bosing.", ru: 'Теперь отложите две нижние картинки — нажмите «Загрузить позже».' }
             : { uz: "Shu atributni tepadagi rasmga ham qo'yib ko'ring — «Tepadagisiga ham» ni bosing.", ru: 'Поставьте этот атрибут и верхней картинке — нажмите «И верхней тоже».' })}</Mentor>}
-        vizual={<div className="tz-v">
+        bashorat={!tugadi && <Bashorat savol={{ uz: 'Pastdagi rasm qachon yuklansa yaxshi?', ru: 'Когда лучше загружать нижнюю картинку?' }} variantlar={S7_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
+        vizual={!taxmin ? null : <div className="tz-v tz-sahna-kir">
           <div className={cx('tz-sahna', f && 'tz-tug')}>
             <div className="tz-chap">
               <Telefon manzil={tr({ uz: "e'lonlar sahifasi", ru: 'страница объявлений' })} yuk={f ? 100 : yuk} ost={<Sodda matn={{ uz: "e'lonlar sahifasi (namuna)", ru: 'страница объявлений (образец)' }} />}>
@@ -1387,7 +1388,6 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </Telefon>
             </div>
             <div className="tz-ung">
-              {!tugadi && <Bashorat savol={{ uz: 'Pastdagi rasm qachon yuklansa yaxshi?', ru: 'Когда лучше загружать нижнюю картинку?' }} variantlar={S7_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
               {!f && <span className="tz-amal">
                 {TUGMALAR.map((b, i) => <Bo key={i} on={taxmin && q === b.q && !band ? b.on : undefined} className={cx('tz-btn', q !== b.q && 'xira', halqa(!!taxmin && q === b.q && !band))}>{tr(b.t)}</Bo>)}
               </span>}
@@ -1494,7 +1494,8 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         mentor={<Mentor>{tr(q === 0 ? { uz: "Endi sahifani oching va «Qidirish» ni bosib ko'ring — «Ochish va bosish» ni bosing.", ru: 'Теперь откройте страницу и попробуйте нажать «Найти» — нажмите «Открыть и нажать».' }
           : q === 1 ? { uz: "Sahifa ishlatmaydigan kod ham yuklanadi — «Olib tashlash» ni bosing.", ru: 'Загружается и код, который страница не использует, — нажмите «Убрать».' }
             : { uz: "Endi «Qayta ochish» ni bosing va farqni ko'ring.", ru: 'Теперь нажмите «Открыть снова» и посмотрите на разницу.' })}</Mentor>}
-        vizual={<div className="tz-v">
+        bashorat={!tugadi && <Bashorat savol={{ uz: 'Tugma bosilmagan paytda brauzer nima qilyapti?', ru: 'Что делает браузер, пока кнопка не нажимается?' }} variantlar={S9_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
+        vizual={!taxmin ? null : <div className="tz-v tz-sahna-kir">
           <div className={cx('tz-sahna', tugadi && 'tz-tug')}>
             <div className="tz-chap">
               <Telefon manzil={OLX.manzil} yuk={yuk} sinf="ilova9" ost={<Sodda />}>{och || avval ? <OlxSahifa b={3} tugma={tugmaJsx} /> : <div className="tz-sp" />}</Telefon>
@@ -1504,7 +1505,6 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </span>
             </div>
             <div className="tz-ung">
-              {!tugadi && <Bashorat savol={{ uz: 'Tugma bosilmagan paytda brauzer nima qilyapti?', ru: 'Что делает браузер, пока кнопка не нажимается?' }} variantlar={S9_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
               {!tugadi && <span className="tz-amal">
                 {TUGMALAR.map((b, i) => <Bo key={i} on={taxmin && q === b.q && !band ? b.on : undefined} className={cx('tz-btn', q !== b.q && 'xira', halqa(!!taxmin && q === b.q && !band))}>{tr(b.t)}</Bo>)}
               </span>}
@@ -2544,13 +2544,12 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className={cx('tz-blok', qulfli && 'qulf', done && 'tugadi')}>
-        <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
+        <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
           qadamlar={steps.map(c => ({ h: tr(c.h), t: c.t, xato: c.xato }))}
           joriy={stepN} onBajardim={bajardim} onQaytar={qaytar} mentorRejim={isMentorLive}
           tugadi={done} tugadiMatn={doneText ? tr(doneText) : null} natija={natija} natijaYorliq={tr(NATIJA_YORLIQ)}
           pastki={<>{done && izoh && <QIzoh>{tr(izoh)}</QIzoh>}<MentorPracticeStats live={_live} screen={screen} /></>}>
           {ortda && !done && <p className="tz-ortda">{tx(ortda)}</p>}
-          {ulgur && !done && <p className="tz-ulgur">{tx(ulgur)}</p>}
           {ustoz && isMentorLive && <div className="tz-ustoz"><b>{tr({ uz: "O'qituvchi eslatmasi", ru: 'Заметка для учителя' })}</b>{ustoz.map((s, i) => <span key={i}>{tx(s)}</span>)}</div>}
         </QBlok>
       </div>
@@ -3040,6 +3039,9 @@ export default function ProductSpeedLesson({ lang: langProp, onFinished, liveTok
         .tz-ustoz { display: flex; flex-direction: column; gap: 4px; padding: 10px 12px; border-radius: 10px; background: ${T.paper}; border: 1px dashed ${T.line}; font-size: 12.5px; line-height: 1.45; color: ${T.ink2}; }
         .tz-ustoz b { color: ${T.ink}; }
         .tz-v { display: flex; flex-direction: column; gap: 10px; }
+        .tz-sahna-kir { animation: tz-kirdi .45s ease-out both; }
+        @keyframes tz-kirdi { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .tz-sahna-kir { animation: none; } }
         .tz-sahna { display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start; justify-content: center; }
         .tz-sahna.kirish { justify-content: flex-start; }
         .tz-chap { display: flex; flex-direction: column; align-items: center; gap: 10px; }

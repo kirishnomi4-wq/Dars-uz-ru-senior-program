@@ -930,7 +930,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>O'zgarish internetdagi saytga <span className="italic" style={{ color: T.accent }}>qanday yetib boradi?</span></>, ru: <>Как изменение <span className="italic" style={{ color: T.accent }}>доходит до сайта</span> в интернете?</> })}
         mentor={<Mentor>{tr({ uz: "O'zgarishni birlashtirishdan oldin ko'rsatish so'rovi Pull Request (PR) deyiladi — ikki yo'lni ham bosib ko'ring.", ru: "Запрос показать изменение до объединения называется Pull Request (PR) — нажмите на оба пути." })}</Mentor>}
         bashorat={<Bashorat savol={tr(S2_SAVOL)} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
-        vizual={<div className="pr-sahna pr-s2" ref={box}>
+        vizual={!taxmin ? null : <div className="q-kir">{<div className="pr-sahna pr-s2" ref={box}>
           <EgaSahifa holat={telHolat} kalit={telKalit} />
           <div className="pr-s2-ong">
             <TarmoqChizma yol={yol} b={b} />
@@ -953,7 +953,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           </div>
           {uchlar.map(u => <Uchar key={u.k} u={u} />)}
-        </div>}
+        </div>}</div>}
         natija={done && jim && <NatijaBlok tanlov={taxmin} togri="laptop" variantlar={S2_TAXMIN} haqiqat={fmtCode(tr({ uz: 'faqat laptopda — `prod` hali birlashtirilmagan', ru: "только на ноутбуке — ветка `prod` ещё не объединена" }))}
           xulosa={fmtCode(tr({ uz: "Bu repo'da sayt `main` dan chiqadi. PR'da kod oldindan o'qiladi, kamchilikni ertaroq ko'rish mumkin.", ru: "В этом репо сайт берётся из `main`. В PR код читают заранее, недостаток можно заметить раньше." }))} />}
       />

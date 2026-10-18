@@ -1050,7 +1050,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Oy oxirida yetganingizni <A>qanday bilasiz?</A></>, ru: <>Как вы <A>узнаете в конце месяца</A>, что достигли?</> })}
         mentor={<Mentor>{tr({ uz: "«Maydon» doskasida muammo hal bo'lgandagi holat yozilgan — o'yinchilar nima qiladi. Ostiga bo'laklarni birma-bir qo'shing va oy oxiri savoliga qarang.", ru: 'На доске «Maydon» записано, что будет, когда проблема решена: что делают игроки. Добавляйте под ней части по одной и смотрите на вопрос о конце месяца.' })}</Mentor>}
         bashorat={!done && <Bashorat savol={S2_SAVOL} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        vizual={vizual}
+        vizual={!taxmin ? null : <div className="q-kir">{vizual}</div>}
         natija={done && <NatijaBlok>
           {tx && <QTaxmin togri={taxmin === '3'}>{taxmin === '3'
             ? tr({ uz: <>Taxminingiz to'g'ri chiqdi: <b>3</b>.</>, ru: <>Ваше предположение оказалось верным: <b>3</b>.</> })
@@ -1225,7 +1225,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Foiz 24 dan 40 ga o'ssa, <A>nima o'zgaradi?</A></>, ru: <>Если процент вырастет с 24 до 40, <A>что изменится?</A></> })}
         mentor={<Mentor>{tr({ uz: "Bu darsdagi foiz — vaqtni tanlagan har 100 kishidan nechtasi band qilgani. Foizni o'ngga surib, «Band qildi» ustuniga qarang.", ru: 'Процент на этом уроке — сколько из каждых 100 выбравших время забронировали. Сдвигайте процент вправо и смотрите на столбец «Забронировали».' })}</Mentor>}
         bashorat={!yetdi && <Bashorat savol={S6_SAVOL} variantlar={S6_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        vizual={vizual}
+        vizual={!taxmin ? null : <div className="q-kir">{vizual}</div>}
         natija={yetdi && tx && <NatijaBlok>
           <QTaxmin togri={taxmin === '10'}>{taxmin === '10'
             ? tr({ uz: <>Taxminingiz to'g'ri chiqdi: <b>10</b>.</>, ru: <>Ваше предположение оказалось верным: <b>10</b>.</> })

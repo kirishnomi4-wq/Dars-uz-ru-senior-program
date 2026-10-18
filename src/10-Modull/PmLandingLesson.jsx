@@ -960,7 +960,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         bashorat={!taxmin
           ? <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr(S2_SAVOL)} variantlar={S2_TAXMIN.map(x => ({ k: x.k, t: tr(x.t) }))} tanlov={taxmin} onTanla={setTaxmin} />
           : !done && <BashoratQ savol={tr(S2_SAVOL)} javob={tr(tx.t)} />}
-        vizual={tugadi ? <div className="ld-fokus">{prdKarta}{sahifa}</div> : <div className="ld-split">{sahifa}{prdKarta}</div>}
+        vizual={!taxmin ? null : tugadi ? <div className="ld-fokus">{prdKarta}{sahifa}</div> : <div className="ld-split ld-karta-kir">{sahifa}{prdKarta}</div>}
         xulosa={done && <>{tx && <TaxminQ togri={!!tx.ok} haqiqat={tr({ uz: 'tepada kichik bo\'lib turadi', ru: 'остаётся маленьким наверху' })} />}{tr({ uz: 'Bizda sarlavha ikki savolga javob beradi: kim uchun va nima foyda. Nom esa tepada kichik turadi.', ru: 'У нас заголовок отвечает на два вопроса: для кого и какая польза. А название — маленькое наверху.' })}</>}
       />
       {qatlam}
@@ -1152,7 +1152,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         bashorat={!taxmin
           ? <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr(S6_SAVOL)} variantlar={S6_TAXMIN.map(x => ({ k: x.k, t: tr(x.t) }))} tanlov={taxmin} onTanla={setTaxmin} />
           : !done && <BashoratQ savol={tr(S6_SAVOL)} javob={tr(tx.t)} />}
-        vizual={tugadi ? <div className="ld-fokus">{ong}{sahifa}</div> : <div className="ld-split">{sahifa}{ong}</div>}
+        vizual={!taxmin ? null : tugadi ? <div className="ld-fokus">{ong}{sahifa}</div> : <div className="ld-split ld-karta-kir">{sahifa}{ong}</div>}
         xulosa={done && <>{tx && <TaxminQ togri={!!tx.ok} haqiqat={tr({ uz: "shu sahifadagi bo'lim", ru: 'раздел на этой же странице' })} />}{tr({ uz: "Bizda lending uch bo'lakdan iborat: sarlavha, uchta foyda va bitta asosiy tugma. U bor narsaga olib boradi.", ru: 'У нас лендинг состоит из трёх частей: заголовок, три пользы и одна главная кнопка. Она ведёт к тому, что есть.' })}</>}
       />
     </Stage>
@@ -2916,8 +2916,10 @@ export default function PmLandingLesson({ lang: langProp, onFinished, liveToken 
         .ig-mini-q { height: 10px; border-radius: 99px; background: ${fon(T.ink, 0.1)}; }
         .ig-mini-r { display: flex; flex-direction: column; gap: 3px; padding: 5px; border-radius: 8px; background: ${T.accentSoft}; }
         .ig-mini-r b { font-size: 11.5px; text-align: center; color: ${T.ink}; }
-        .ld-s9-chap { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+        .ld-s9-chap { display: flex; flex-direction: column; gap: 8px; min-width: 0; padding: 10px 12px 12px; border-radius: 18px; background: ${T.paper}; box-shadow: 0 12px 30px -18px rgba(${T.shadowBase},0.4); } /* F-1015-286: «Sahifam» yorlig'i karta ichida */
+        .ld-s9-chap > :not(.ld-sahifam) { box-shadow: none; }
         .ld-sahifam { align-self: flex-start; font-size: 12px; font-weight: 800; color: ${T.ink2}; text-transform: uppercase; letter-spacing: 0.05em; animation: ld-kir 0.4s ease-out both; }
+        .ld-karta-kir { animation: ld-kir 0.4s ease-out both; } /* F-1015-284/285: bashoratdan keyin mazmun kiradi (213.7) */
         .ld-maydon { display: flex; flex-direction: column; gap: 4px; font-size: 12px; font-weight: 700; color: ${T.ink2}; min-width: 0; }
         .ld-inp { width: 100%; font-family: 'Manrope', sans-serif; font-size: 14px; font-weight: 500; color: ${T.ink}; padding: 10px 12px; border-radius: 10px; border: 1.5px solid ${T.line}; background: ${T.paper}; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
         .ld-inp:focus { border-color: ${T.accent}; box-shadow: 0 0 0 3px ${fon(T.accent, 0.15)}; }
@@ -3028,7 +3030,7 @@ export default function PmLandingLesson({ lang: langProp, onFinished, liveToken 
           .ls-url-t, .ls-yoz, h3.ls-sar.yozildi, p.ls-osti.yozildi, .ls-foydalar.yozildi, .ls-sar-joy, .ls-yorliq, .ls-foydalar li, .ls-parda, .jt-ekran, .jt-halqa,
           .ld-halqa::after, .ls-halqa::after, .ld-halqa-i, .ld-odam, .ld-pufak, .ld-reja-url, .ld-rj,
           .ld-uch, .ld-atama, .ld-juftlar li, .ld-quti, .ld-quti.tushdi .ld-eslatma-chip, .ld-karta, .ld-tanlovlar.silk, .ld-tanlov, .ld-umami-s.yangi, .ld-voqea-h,
-          .ig-nom, .ig-q, .ig-menyu.ket .ig-q, .ig-rasm, .ld-sahifam, .ld-sanoq, .ld-puf, .ld-chiziq, .ld-flash.yangi .fc-card:not(.flip) .fc-front, p.ld-fc-ipucha i, .ld-kirish { animation: none !important; }
+          .ig-nom, .ig-q, .ig-menyu.ket .ig-q, .ig-rasm, .ld-sahifam, .ld-sanoq, .ld-puf, .ld-chiziq, .ld-flash.yangi .fc-card:not(.flip) .fc-front, p.ld-fc-ipucha i, .ld-kirish, .ld-karta-kir { animation: none !important; }
           .ig-menyu.ket { display: none; }
           .ls-ichi, .ls-nom, .ls-tugma { transition: none !important; }
         }

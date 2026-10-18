@@ -49,7 +49,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 12-Modul `12-PmGrowthPitch-v3.
 
 | Bo'lak (vaqt — «bu mashqda», tayanch 9.1) | Matn (o'quvchi ko'radi) | Holat |
 |---|---|---|
-| Muammo (≈40 soniya) | «O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.» | 1.1 aynan |
+| Muammo (≈40 soniya) | «O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.» | 1.1 aynan |
 | Bozor (≈30 soniya) | eski: «Mahalla futbol guruhida — 60 kishi; ilovada — 6 tashkilotchi. Boshqa mahallalarni hali tekshirmaganmiz.» → **yangi:** «Mahalla futbolining Telegram guruhida — 60 a'zo; ilovada — 6 tashkilotchi. Boshqa mahallalarni hali tekshirmaganmiz.» (116) | ✗ → qo'llandi (TAYANCHGA SAVOL 3) |
 | Yechim (≈1,5 daqiqa, jonli demo bilan) | «Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.» + jonli demo: 1-qurilmada «Qo'shilaman» → 2-qurilmada «8 / 10» o'rniga «9 / 10» | 1.1 aynan |
 | Raqamlar (≈1 daqiqa) | eski: «51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif havolasidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.» → **yangi:** «51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif havolasidan keldi. 3 tashkilotchi Pro uchun to'lashga tayyorligini yozdi — real to'lov hali yo'q.» (154) | ✗ → qo'llandi (TAYANCHGA SAVOL 3) |
@@ -154,7 +154,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 12-Modul `12-PmGrowthPitch-v3.
 - Sarlavha: **Hakam savoliga qanday javob berasiz?** (36) — 0-ekran savoliga javob beradigan ekran (T-064)
 - Mentor: Hakam javobni bir daqiqada eshitadi — har savol ostidagi ikki javobdan mosini bosing. (85)
   (Birinchi harakat — bashorat; uning yo'rig'i `QBashorat` yorlig'ida, Mentor takrorlamaydi — T-047.)
-- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bitta o'lchov, o'sish tartibida): **Mentor nechta savolga «tekshirib aytaman» deydi?** · Hech biriga · Bittasiga · Ikkitasiga — tanlangach ixcham qator; kartalar shundan keyin chiqadi *(✎ F-1015-164)*.
+- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bitta o'lchov, o'sish tartibida): **Mentor nechta savolga «tekshirib aytaman» deydi?** · Hech biriga · Bittasiga · Ikkitasiga — tanlangach ixcham qator; kartalar shundan keyin chiqadi *(✎ F-1015-164)*. · **213.7 (F-1015-305…317, 18.10 avtopilot): bashorat ekranda yolg'iz; tanlangach ixcham qatorga yig'iladi, sahna va harakat tugmalari shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin o'chiq tugma/xira sahna yo'q.**
 - Vizual (≤ 3 blok: sahna · javob kartalari · natija; telefonsiz — SABOQ 24): `FinalSahna` savol-javob rejimi — **tepada** uchta hakam qiyofasi va joriy savol pufagi · **o'rtada** savol-javob bo'lagi kattalashgan: uch katak «1:00» (joriy — accent) ·
   **pastda** joriy savolning ikki javob kartasi (oq, accent chegara; bir xil balandlikda). Kartalar ustida kulrang yorliq «Mentor misoli».
 - Kartalar (navbat bilan; `MENTOR_JAVOB` — A-6; har juftda ✔ o'rni: 1 — ikkinchi · 2 — birinchi · 3 — ikkinchi):
@@ -189,7 +189,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 12-Modul `12-PmGrowthPitch-v3.
 - Eyebrow: Tushuncha · tuzatish va taymer
 - Sarlavha: **Tuzatishlar qo'shilsa, pitch 5 daqiqaga sig'adimi?** (50)
 - Mentor: Tugmalarni birma-bir bosing va Mentor pitchi qanday o'zgarishiga qarang. (72)
-- Bashorat (ballsiz; S-015 — bitta o'lchov: gap uzunligi, o'sish tartibida): **Yangi gaplar eskisidan qanday?** · Qisqaroq · Taxminan teng · Uzunroq — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*. (Vaqt haqida bashorat yo'q — haqiqiy vaqt faqat aytilganda bilinadi; 08-FILTR 1.)
+- Bashorat (ballsiz; S-015 — bitta o'lchov: gap uzunligi, o'sish tartibida): **Yangi gaplar eskisidan qanday?** · Qisqaroq · Taxminan teng · Uzunroq — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*. (Vaqt haqida bashorat yo'q — haqiqiy vaqt faqat aytilganda bilinadi; 08-FILTR 1.) · **213.7 (F-1015-305…317, 18.10 avtopilot): bashorat ekranda yolg'iz; tanlangach ixcham qatorga yig'iladi, sahna va harakat tugmalari shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin o'chiq tugma/xira sahna yo'q.**
 - Vizual (`FinalSahna` to'liq; ≤ 3 blok: sahna · tugmalar qatori · natija): **chapda** telefon («O'yin» ekrani, «8 / 10») · **o'ngda** olti bo'lak — Mentor misoli (A-6 eski matnlari, bir qatordan), ostida taymer chizig'i olti bo'lakli, bo'sh; tepada kulrang yorliq «Mentor misoli · Maydon Jamoa».
 - Tugmalar (ixcham, bir qatorda; joriysi accent, bosilgani ✓): 1 Varaq · 2 Tuzatishlar · 3 Taymer *(✎ F-1015-164: tugmalar bashoratdan keyin chiqadi; bosiladigani faqat joriysi, bosilgani — «✓ nom» yozuvi, keyingisi hali ko'rinmaydi)*
 - **Harakat → Vizual o'zgarish:**

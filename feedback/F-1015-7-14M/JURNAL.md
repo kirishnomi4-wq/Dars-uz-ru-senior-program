@@ -1024,3 +1024,239 @@ Sahifalar (artifact): 10-dars qa-263 https://claude.ai/artifact/EehKfdsMvW5e7MXQ
 - **Commit yo'q** (buyruqsiz): src/9-Modull da 16 fayl o'zgargan + DARS_ETALON 213.11 + MD v4 + jurnal. Zaxiralar `arxiv/F-1015-177-oldin/`.
 - Ertalab qaror kutadi: (1) 16-dars s10 «Yordam» tugmasi kartadan tashqari; (2) 6-dars s0 tarqoq chiplar (ataylab); (3) 12-Modul darslarida eski «10 intervyu / 5 o'yinchidan 4» (`src/10-Modull`, KATTA); (4) smoke `ru m9-17 OCHILMADI` — App.jsx m9-17 «Demo Day 7» komponentsiz element; (5) commit.
 - **18.10 09:12 — foydalanuvchi:** «xolatni saqla, 1 soatlarda noutbukni o'chirib-yoqib YANGI SEANSdan davom etamiz». Yangi seans shu bo'limdan boshlaydi: (a) `npm run dev` — vite 5300 qayta yoqiladi (vA.mjs va v*.mjs suratlar shunga bog'liq); (b) ertalabki hisobot 06:1x da chatga yuborilgan (12 sahifa URL + 5 qaror bandi) — foydalanuvchi javobini kutamiz, so'ramasdan hech narsa o'zgartirilmaydi; (c) keyingi F-ID: **F-1015-275**; (d) `git status` da 16 fayl src/9-Modull + DE + MD + jurnal uncommitted — commit faqat buyruq bilan.
+
+### F-1015-275…278 — ertalabki 5 qaror bajarildi (18.10 11:00–11:15) · foydalanuvchi: 1 «ha ol» · 2 «kartaga tortamiz» · 3 «hozir, birma-bir to'liq» · 4 «xato bo'lmasa qoldir» · 5 «oxirida bir marta commit»
+- **275 · m9-16 (PmPrototypePitchLesson) s10 «Yordam» karta ichida.** `BolakForma` ga `yordam`/`yordamMatn` proplari; footer `.pt-forma-f` (chapda Yordam, o'ngda Saqlash), matn karta ichida; `QMustaqil yordam={null}`; `.pt-yordam` CSS olindi. 12/12.
+- **276 · m9-06 (PmRoadmapLesson) s0 chiplar.** «Bugun → Bitiruv» kartasida tartibsiz, aylantirilgan va chetga chiqqan 6 chip → karta ichida tekis `flex-wrap` qator (`.rm-tup`/`.rm-tup-k`, `TUP` koordinatalari o'chirildi, uchish animatsiyasi `data-uch` qoladi). 12/12.
+  Suratlar: `suratlar/F-1015-275-keyin/` (uz 1280 · 390 · ru; `vositalar/s177/v275.mjs`).
+  ⚠ **Parallel (praktika) seans 11:08 da `git add -A` bilan commit 2b58653 qildi** — 275/276 tahrirlari (darvozadan o'tgan) va 11-M tungi 16 fayl shu commitga kirib ketdi. Zarar yo'q; shu yozuv jurnalda.
+- **277 · 12-Modul (src/10-Modull) Mentor misoli sonlari 4-dars kanoniga** (F-1015-221: tanlangan g'oya «jamoa» — muammo 3 / 3, hozir 3 / 3 Telegram guruhi, belgi 3 / 3; jami olti intervyu):
+  `PmPitchReviewLesson` (m10-11): dalil «3 o'yinchidan 3 tasida…», izoh «Olti intervyu — kichik son; bu tanlov uchun dalil, isbot emas.» (16-dars bilan bir xil jumla), manba sarlavhasi «jamoa yig'ish · 3 o'yinchi · 11-Modul», qator `3 / 3`, `uchir('3 / 3')`, 1029 Mentor izohi «3 o'yinchidan 3 tasi — «hamma o'yinchi qiynaladi» degani emas». `PmChannelsLesson` (m10-06): «Hozir nima bilan»: 3 o'yinchidan 3 tasi Telegram guruhida (jadval + Yordam). `PmGrowthPitchLesson` (m10-12): JAMOA pitch dalili + kartochka «Men so'ragan 3 o'yinchidan 3 tasida». ru juftliklari ham. MD: `YAKUNIY/06, 11, 12` + `00-MODUL-TAYANCH` (116, 213, 559). Gates 12/12 ×3. Surat `suratlar/F-1015-277-keyin/d-uz-s2-dalil.jpg` (m10-11 s2: «3 / 3» ko'rindi).
+  **Qoldirildi (foydalanuvchi 11:2x «farqi yo'q, sen qaror qil» → qoldi):** `PmGrowthPitchLesson.jsx:1072` «5 sinfdoshdan 4 tasi vazifani chatda yo'qotgan» — m10-12 3-ekran testi, boshqa loyiha («Uy vazifalari ilovasi», P-002) namunasi; sonlar ataylab Mentornikidan farq qiladi, intervyu sanog'i bilan «Raqamlar» bo'lagini ajratish uchun. Mentor 3/3 bilan to'qnashmaydi.
+- **278 · sinf-supurish 14-Modul (src/12-Modull):** o'sha pitch dalili 5 darsda — `PmInvestorPitchLesson` (m12-01; + test varianti «So'ralgan 3 o'yinchining javobidan», ru «3 опрошенных»), `PmStoryPitchLesson` (m12-02; 642, 649 `S6_MUAMMO`, 1096 QIzoh «3 o'yinchidan 3 tasida»), `PmPitchTrainingLesson`, `PmProgramsLesson`, `PmFinalPitchLesson` (`muammo.eski`). MD v3: 01, 02, 05, 08, 11 + 14-M `00-MODUL-TAYANCH` (21, 108). Gates 12/12 ×5. 13-Modul (src/11-Modull) tekshirildi — 0 topilma. Qoldiq-grep `5 o'yinchi|4 / 5|4 из 5|5 игрок` 12–14-M: faqat 1072 (yuqorida).
+- **m9-17 «Demo Day 7»** — App.jsx da komponentsiz ro'yxat-elementi, smoke «OCHILMADI» xato emas → qoldirildi (foydalanuvchi roziligi).
+- `npm run lint:jsx` — TOZA. Qonun qo'shilmadi: topilma-sinfi = «Mentor misoli sonlari modullararo bir manbadan» — manba fayllar (`00-MODUL-TAYANCH.md` 12-M va 14-M) yangilandi.
+- **Keyingi:** QA deploy 9 (11-M), 10 (12-M), 12 (14-M) → natija quyida; commit — foydalanuvchi buyrug'i («oxirida bir marta»). Keyingi F-ID: **F-1015-279**.
+**QA deploy (11:15–11:23) + smoke (11:3x):** coddycamp-11modul 32/32 · coddycamp-12modul 24/24 · coddycamp-14modul 26/26 — hammasi TOZA (uz+ru). `deploy-qa.sh` smoke uchun `$S/kf.txt` (App.jsx `key … comp` ro'yxati) kerak — yangi scratchpad'da yo'q edi, qayta yaratildi.
+**Chala ro'yxati (11:3x, foydalanuvchiga aytildi):** (1) «Bittadan» 213 supurishi — 12-M 24 ekran / 13-M 11 / 14-M 22 (`b213-royxat.json`; 11-M 17 ekrani qayta qurishda qoplangan — tekshiriladi); (2) eski QA 103/105/107 (yo'nalish-fidbeklar, o'lchov kerak); doiradan tashqari: 5A kod oynasi, M-q5/KATTA 123, m11-06/m12-02 siyrak ustun (foydalanuvchi «xop»). Taklif: 12-M dan boshlash — javob kutilmoqda.
+
+### F-1015-279…283 — 12-Modul «Bittadan» (213) supurishi, 1-dars m10-10 `PmUsersCheckLesson.jsx` — TASHXIS (18.10 12:0x, javob kutilmoqda)
+**Foydalanuvchi (11:5x):** «12-Moduldan boshla, shoshilmasdan»; 213 ning mazmuni va tartibi to'liq aytildi → «ruxsat beraman». Tartib: oldin-surat → tashxis sahifa (A/B) → tasdiq → qurish → 12/12 → suratlar → MD → QA deploy.
+**Oldin suratlari:** `suratlar/F-1015-279-m10-10-oldin/` (vA.mjs, EKRAN=2,4,9,10,11, FULL). **Sahifa:** `sahifalar/qa-279/` → https://claude.ai/artifact/BR8xEAhYKwFKiCgF6uNkY1
+- 279 · s2: bashorat + 3 ramkali manba kartasi + hisobot birdan (213.7, 213.3). A: bashorat yolg'iz → qator → manbalar va hisobot kiradi; manbalar bitta kartada 3 qator.
+- 280 · s4: bashorat + to'liq hisobot birdan; `HvQator` qatorlari karta ichida ramkali. A: bashorat yolg'iz; qatorlar ramkasiz (umumiy CSS — 2/4/10/11-ekran, Mentor rejimi).
+- 281 · s9: savol + 3 qadam + web-trek izoh + Yordam + «Vaqt tugasa» birdan (936 belgi). A: savol yolg'iz; ustun tanlangach ✓ qator + qadamlar + Kun/Son; izohlar Yordam ichida; Neon ostida bitta izoh.
+- 282 · s10: `QatorKarta` 5–7 maydon birdan (213.11). A: Son → Manba → Sana → Oldingi ketma-ket, yig'ilgan yashil qatorlar, Saqlash doim; `PastkiKarta` 3 qadam. 11-ekran tuzatish kartasi shu komponent.
+- 283 · s11: deyarli to'g'ri. A: zaxira 1-qadamda bo'g'in tanlangach dalil maydoni; ogohlantirish faqat 3-qadamda.
+Tegilmaydi: 0, 1, 3, 5, 6, 7, 8, 12–15.
+
+### F-1015-279…283 — BAJARILDI (18.10 12:4x) · m10-10 «bittadan», hammasi A
+**Foydalanuvchi (12:1x):** «hammasi A, qur».
+**Kod** (`src/10-Modull/PmUsersCheckLesson.jsx`; zaxira `arxiv/F-1015-279-oldin/PmUsersCheckLesson.v-279-oldin.jsx`; skript `feedback/F-1015-7-14M/scratchpad/e279.py`):
+- 279 · s2 `vizual={!taxmin ? null : …}` + `.uc-karta-kir`; `.uc-manbalar` bitta karta (paper, chegara), `.uc-manba` ramkasiz `T.bg`, yonik binafsha.
+- 280 · s4 `vizual={!taxmin ? null : …}`; `.hv-q` chegara shaffof, fon `T.bg` (umumiy — 2/4/10/11, MentorVaraq); `.h-yalang` och kul.
+- 281 · s9: `gpick` bo'lsa savol o'rnida `span.uc-yig.yopiq` «✓ Ustun: namuna»; `ol.uc-vazifa` faqat `gpick`; web-trek izohi + «Vaqt tugasa» Yordam ichida (`QIzoh`); Neon ostidagi «Sizning qatorlaringiz…» olindi.
+- 282 · `QatorKarta` qayta yozildi: `s10Qadamlar` (bosh: nima→son→manba→sana · qaytgan: son→manba→sana · boshqalar: +oldin; `avtoOldin` bo'lsa oldin yo'q), `qi`/`otdi`, `S10_QADAM_F` (xato → tegishli savol ochiladi), `s10Yigma` (yig'ilgan qator matni), `S10_IZOH` (bitta izoh, Son savolida), Manba tanlangach o'zi yig'iladi, «Birinchi o'lchov» ham; «Keyingi»/Enter; Saqlash doim (halqa — hammasi yig'ilganda). `PastkiKarta` 3 qadam (`PASTKI_QADAM`). CSS: `.uc-qadamlar .uc-sav .uc-sav-y .uc-sav-t .uc-yig (QChip holat=ok) .uc-kul-q`.
+- 283 · s11 zaxira 1-qadam: dalil `Maydon` faqat `z.boginda`; «Soxta akkaunt…» faqat `zi === 2`.
+**Darvozalar:** 13/13 (yangi `preview-keys` darvozasi ham) · lint:jsx 256 fayl toza. Tutilgan: til-lint «Sana» (sen-imperativ) → `SANA_Y` qayta ishlatildi; lint-qolip q14 — yig'ilgan qator `button` emas `QChip holat="ok"`.
+**Suratlar:** `suratlar/F-1015-279-keyin/` 39 ta (uz 1280 · 390 · ru; oraliq: s2a/b, s4a/b, s9a/b/c, s10a/b/c/d, s11a/b; `vositalar/s177/v279.mjs`). O'z-ko'rik: kartasiz osilgan narsa yo'q; s4 hisobot uzun — ⛶ bor; mobil 390 bir ustun, savol kartasi to'liq.
+**MD:** `YAKUNIY/10-PmUsersCheck.md` §2, 4, 9, 10, 11 (✎ F-1015-279…283). ⚠ Xato: `10-PmUsersCheck-v3.md` (qoralama) ustiga cp qilib yuborgan edim — `git checkout` bilan qaytarildi; v3 qoralamaga tegilmaydi, faqat YAKUNIY.
+**Sahifa** yangilandi (keyingi holat suratlari): https://claude.ai/artifact/BR8xEAhYKwFKiCgF6uNkY1. **QA:** deploy-qa 10 → https://coddycamp-12modul.vercel.app (12:4x), smoke 24/24 TOZA (uz+ru).
+**Keyingi:** foydalanuvchi saytda ko'radi → 12-M 2-dars (m10-01 Landing, s0/s2/s6/s9) tashxisi. Keyingi F-ID: F-1015-284.
+
+### F-1015-284…286 — 12-M 2-dars m10-01 `PmLandingLesson.jsx` «bittadan» — TASHXIS (18.10 12:5x, javob kutilmoqda)
+Oldin suratlari `suratlar/F-1015-284-m10-01-oldin/` (s0, s2, s6, s9). Sahifa `sahifalar/qa-284/` → https://claude.ai/artifact/9JdtH5DNdcG5t37f3Ww9jM
+- s0 kirish — to'g'ri, tegilmaydi (telefon maketi ma'noli: «sahifada nom va telefon bor»).
+- 284 · s2: bashorat + sahifa + PRD birdan (213.7). A: `vizual={!taxmin ? null : …}` + kirish animatsiyasi.
+- 285 · s6: bashorat + sahifa + Umami birdan (213.7). A: shunday.
+- 286 · s9: 213.11 ga mos qurilgan (bo'lak bittadan, juft bittadan); faqat «Sahifam» yorlig'i kartasiz. A: yorliq maket kartasi ichiga.
+Tegilmaydi: 1, 3, 4, 5, 7, 8, 10, 11, 12–15.
+
+### F-1015-284…286 — BAJARILDI (18.10 13:0x) · m10-01 «bittadan», hammasi A
+**Kod** (`src/10-Modull/PmLandingLesson.jsx`; zaxira `arxiv/F-1015-279-oldin/PmLandingLesson.v-284-oldin.jsx`): 284 s2 va 285 s6 `vizual={!taxmin ? null : …}` + `.ld-karta-kir` (reduced-motion ro'yxatiga qo'shildi); 286 `.ld-s9-chap` karta (paper, radius, soya), ichidagi maket soyasiz — «Sahifam» yorlig'i karta ichida.
+**Darvozalar:** 13/13 (til-lint 17 warn — eski, 0 error) · lint:jsx toza. **Suratlar:** `suratlar/F-1015-284-keyin/` 15 ta (uz · 390 · ru; `v284.mjs`). **MD:** `YAKUNIY/01-PmLanding.md` §2, 6, 9. **Sahifa:** https://claude.ai/artifact/9JdtH5DNdcG5t37f3Ww9jM (keyingi holat qo'shildi). **QA:** deploy-qa 10 → coddycamp-12modul 13:1x, m10 smoke: ru m10-12 ochildi   TOZA: 24/24.
+**Keyingi:** 12-M 3-dars m10-02 WebSocket (s7, s10, s15, s16). Keyingi F-ID: F-1015-287.
+
+### F-1015-287…288 — 12-M 3-dars m10-02 `WebSocketBasicsLesson.jsx` «bittadan» — TASHXIS (18.10 13:1x, javob kutilmoqda)
+Oldin suratlari `suratlar/F-1015-287-m10-02-oldin/` (s7, s10, s15, s16). Sahifa `sahifalar/qa-287/`.
+- 287 · s7 token: bashorat + sahna + ikki kod kartasi birdan (213.7). A: `vizual={!taxmin ? null : …}`.
+- 288 · s10 ulanish holati: bashorat + sahna birdan. A: shunday (F-1015-168 «avval taxmin» eslatmasi ortiqcha bo'ladi — qoladi, zarar yo'q).
+- s15/s16 amaliyot — QBlok qolipi, tegilmaydi; «Ulgurmasangiz» qatori — modullararo standart (KATTA ga yozilmadi, foydalanuvchi aytsa).
+Qurishda 2/4/5-ekranlar ham tekshiriladi (bir xil `Bashorat` + `vizual` naqshi).
+
+### F-1015-287…288 — BAJARILDI (18.10 13:3x) · m10-02 «bittadan», hammasi A; sinf-supurish darsning o'zida: 2, 4, 5-ekran ham
+**Foydalanuvchi:** «hammasi A, qur shoshilmasdan, dizayn-metodika hammasini ko'rda».
+**Kod** (`src/10-Modull/WebSocketBasicsLesson.jsx`; zaxira `arxiv/F-1015-279-oldin/WebSocketBasicsLesson.v-287-oldin.jsx`): s2 `vizual={!taxmin ? null : <Sahna …`; s4, s5, s7, s10 `vizual={!taxmin ? null : <div className="ws-viz ws-kir">`; `.ws-kir` (ws-kirdi keyframes) + reduced-motion ro'yxatida. s12 (taxminsiz, tanlash topshiriq) tegilmadi. s10: `eslat` holati, `QXato «Avval taxminingizni belgilang»` va `onSamolyot` dagi taxminsiz shoxi olindi (F-1015-168 eslatmasi — sahna endi taxmindan keyin chiqadi, o'lik kod qolmasin).
+**Metodika:** Mentor gaplari o'zgarmadi — ular qadamga yo'l ko'rsatadi, bashorat yorlig'i «Avval o'zingiz belgilab ko'ring» o'z vazifasini qiladi (takror qo'shilmadi, 208).
+**Darvozalar:** 13/13 · lint:jsx toza. **Suratlar:** `suratlar/F-1015-287-keyin/` (s2/4/5/7/10 a·b; uz, 390, ru — `v287.mjs`). **MD:** `YAKUNIY/02-WebSocketBasics.md` 5 bashorat qatoriga 213.7 izohi. **Sahifa:** https://claude.ai/artifact/2Bei5XSjd2rMkv5YMBkqhP (keyingi holat). **QA:** deploy-qa 10 → coddycamp-12modul 13:5x, smoke 24/24 TOZA.
+**Keyingi:** 12-M 4-dars m10-03 Realtime spec (s4, s7). Keyingi F-ID: F-1015-289.
+
+### F-1015-289 — 12-M 4-dars m10-03 `PmRealtimeSpecLesson.jsx` «bittadan» — TASHXIS (18.10 13:5x, javob kutilmoqda)
+Oldin suratlari `suratlar/F-1015-289-m10-03-oldin/` (s2, s4, s7; birinchi s4 surati «Darsga qo'shilish» oynasi bilan chiqdi — qayta olindi). Sahifa `sahifalar/qa-289/`.
+- 289 · s2 (986) va s4 (1106): `Bashorat` + `vizual={<div className="rt-viz">` birdan (213.7). A: `!taxmin ? null : …` + `.rt-kir`; s4 `eslat/eslatBos` (F-1015-168) olinadi. Mentor «Avval javobingizni belgilang…» — qoladi.
+- s7 amaliyot 2 — QBlok, tegilmaydi.
+
+### F-1015-289 — BAJARILDI (18.10 14:0x) · m10-03 «bittadan», A
+**Foydalanuvchi:** «tasdiqlayman, qur» (+ savol: qaysi modul — 12-M, src/10-Modull; tartib aytildi).
+**Kod** (`src/10-Modull/PmRealtimeSpecLesson.jsx`; zaxira `arxiv/F-1015-279-oldin/PmRealtimeSpecLesson.v-289-oldin.jsx`): s2 (986) va s4 (1106) `vizual={!taxmin ? null : <div className="rt-viz rt-kir">`; `.rt-kir` (rt-kirdi) + reduced-motion; s4 `eslat`, `eslatBos`, `QXato «Avval taxminingizni belgilang»`, `onSamolyot/onQoshil` dagi `eslatBos ||` olindi (F-1015-168 — sahna taxmindan keyin).
+**Darvozalar:** 13/13 · lint:jsx toza. **Suratlar:** `suratlar/F-1015-289-keyin/` (s2/s4 a·b; uz, 390, ru — `v289.mjs`). **MD:** `YAKUNIY/03-PmRealtimeSpec.md` 2 bashorat qatoriga 213.7. **Sahifa:** https://claude.ai/artifact/Dr5shWcZ4QfaPBdfnMbwUd. **QA:** deploy-qa 10 → coddycamp-12modul 14:1x; smoke «uz m10-02 OCHILMADI» (1 nuqson) → qayta yurgizildi: m10-02/m10-03 uz+ru 4/4 TOZA — vaqtinchalik kutish xatosi, kod emas.
+**Keyingi:** 12-M 5-dars m10-05 BreakAndFix (s14, s15). Keyingi F-ID: F-1015-290.
+
+### F-1015-290…291 — 12-M 5-dars m10-05 `BreakAndFixLesson.jsx` «bittadan» — TASHXIS (18.10 14:1x, javob kutilmoqda)
+Oldin suratlari `suratlar/F-1015-290-m10-05-oldin/` (s2, s9, s14, s15). Sahifa `sahifalar/qa-290/` → https://claude.ai/artifact/3mBkoUUDFdaVg47cnR7XWF
+- 290 · s2 (984), s4 (1073), s6 (1165), s9 (1381), s11 (1476): `Bashorat` + `vizual={<div className="bf-viz">` birdan (213.7). A: `!taxmin ? null : …` + `.bf-kir`.
+- 291 · s14/s15 1-qadam: mobil va web trek ko'rsatmalari birdan (trek `TrekTanlov` bilan tanlangan bo'lsa ham). A: `trek` ga qarab faqat o'z trek matni; tanlanmagan — ikkalasi.
+
+### F-1015-290…291 — BAJARILDI (18.10 14:3x) · m10-05 «bittadan», hammasi A
+**Foydalanuvchi:** «tasdiqlayman, shoshilmasdan qur».
+**Kod** (`src/10-Modull/BreakAndFixLesson.jsx`; zaxira `arxiv/F-1015-279-oldin/BreakAndFixLesson.v-290-oldin.jsx`):
+- 290 · s2 (984), s4 (1073), s6 (1165), s9 (1381), s11 (1476): `vizual={!taxmin ? null : <div className="bf-viz bf-kir">`; `.bf-kir` + reduced-motion. Eslatma kodi bu darsda yo'q edi.
+- 291 · s14 1-qadam: `t` shablon-satr — web trekda Expo qavsi yo'q; `bandlar` — «Web-trekda…» bandi mobil trekda yo'q (`...(trek === 'mobil' ? [] : [...])`); 3-qadam «boshqa akkaunt» bandi trekka qarab uch variant. s15 1-qadam: web trekda `npx expo start` qavsi yo'q; 3-qadam bandi: mobil — Expo Go, web — git add/commit/push, tanlanmagan — ikkalasi. Trek `TrekTanlov` orqali `pm-m9d8-platforma.trek` da.
+**Darvozalar:** 13/13 · lint:jsx toza. **Suratlar:** `suratlar/F-1015-290-keyin/` (s2/s9 a·b, s14-mobil, s14-web, s15-web; uz, 390, ru — `v290.mjs`). **MD:** `YAKUNIY/05-BreakAndFix.md` 5 bashorat qatori + §14/§15 trek izohi. **Sahifa:** https://claude.ai/artifact/3mBkoUUDFdaVg47cnR7XWF. **QA:** deploy-qa 10 → coddycamp-12modul 14:4x, smoke 24/24 TOZA; suratlar 21 ta (uz · 390 · ru).
+**Keyingi:** 12-M 6-dars m10-07 PmFiftyUsers (s7). Keyingi F-ID: F-1015-292.
+
+### F-1015-292 — 12-M 6-dars m10-07 `PmFiftyUsersLesson.jsx` «bittadan» — TASHXIS (18.10 14:4x, javob kutilmoqda)
+Oldin suratlari `suratlar/F-1015-292-m10-07-oldin/` (s2, s4, s7). Sahifa `sahifalar/qa-292/` → https://claude.ai/artifact/XQccWarC5bUHvUjH9Ty1es
+- 292 · s2 (981) `vizual={tugadi ? … : <div className="fu-split">…}` va s4 (1067) `… : taxmin ? split : <div className="fu-yakka">{maket}</div>` — taxmindan oldin maket ko'rinadi (213.7). A: `!taxmin ? null : …` + `fu-kir`.
+- s7 amaliyot 2 — `pastQator={web && <WebQator>…}` allaqachon trekka bog'liq; tegilmaydi.
+
+### F-1015-292 — BAJARILDI (18.10 14:5x) · m10-07 «bittadan», A
+**Kod** (`src/10-Modull/PmFiftyUsersLesson.jsx`; zaxira `arxiv/F-1015-279-oldin/PmFiftyUsersLesson.v-292-oldin.jsx`): s2 (981) va s4 (1067) `vizual={!taxmin ? null : …}` + `.fu-karta-kir` (fu-kir keyframes, reduced-motion); s4 dagi taxmindan oldingi `fu-yakka` maket shoxi va CSS olindi.
+**Darvozalar:** 13/13 · lint:jsx toza. **Suratlar:** `suratlar/F-1015-292-keyin/` (s2/s4 a·b; uz, 390, ru — `v292.mjs`). **MD:** `YAKUNIY/07-PmFiftyUsers.md` §2 bashorat izohi, §4 «Bashoratgacha hech narsa». **Sahifa:** https://claude.ai/artifact/XQccWarC5bUHvUjH9Ty1es. **QA:** deploy-qa 10 → coddycamp-12modul 15:0x, m10 smoke: ru m10-12 ochildi   TOZA: 24/24.
+**Keyingi:** 12-M 8-dars m10-08 PmDropOff (s5). Keyingi F-ID: F-1015-293.
+
+### F-1015-293 — 12-M 7-dars m10-08 `PmDropOffLesson.jsx` «bittadan» — TASHXIS (18.10 15:0x, javob kutilmoqda)
+Oldin suratlari `suratlar/F-1015-293-m10-08-oldin/` (s2, s4, s5). Sahifa `sahifalar/qa-293/` → https://claude.ai/artifact/Dwmtvmgm7xM6LtuVQnTYSg
+- 293 · s2 (931) `vizual={tugadi ? … : <QadamSanoq maket={tel}>…}` taxmindan oldin ustunlar (46/27/12/9 — javob) ko'rinadi (213.7). A: `!taxmin ? null : …`.
+- s5 Netflix — QVoqea qolipi (telefonlar kontekst, bashorat karta ichida), tegilmaydi.
+
+### F-1015-293 — BAJARILDI (18.10 15:2x) · m10-08 «bittadan», A
+**Foydalanuvchi:** internet uzilib qoldi, «davom etsang bo'ladi» — A deb tushunildi (aytildi, B desa qaytariladi).
+**Kod** (`src/10-Modull/PmDropOffLesson.jsx`; zaxira `arxiv/F-1015-279-oldin/PmDropOffLesson.v-293-oldin.jsx`): s2 (931) `vizual={!taxmin ? null : …}`, `QadamSanoq` `.do-karta-kir` o'ramida (do-kir keyframes, reduced-motion).
+**Darvozalar:** 13/13 · lint:jsx toza. **Suratlar:** `suratlar/F-1015-293-keyin/` (s2 a·b; uz, 390, ru — `v293.mjs`). **MD:** `YAKUNIY/08-PmDropOff.md` §2. **Sahifa:** https://claude.ai/artifact/Dwmtvmgm7xM6LtuVQnTYSg. **QA:** deploy-qa 10 → coddycamp-12modul 15:3x, smoke 24/24 TOZA.
+**Keyingi:** m10-09 RetentionDay (s2, s3, s8) va m10-12 GrowthPitch (s2, s11) — oldin suratlari olindi (`F-1015-294-m10-09-oldin/`, `F-1015-295-m10-12-oldin/`).
+
+### F-1015-294 (m10-09 `RetentionDayLesson.jsx`) va F-1015-295 (m10-12 `PmGrowthPitchLesson.jsx`) — «bittadan» TASHXIS (18.10 15:4x, javob kutilmoqda)
+Oldin suratlari `suratlar/F-1015-294-m10-09-oldin/` (s2, s3, s8), `F-1015-295-m10-12-oldin/` (s2, s11). Sahifalar `sahifalar/qa-294/` → https://claude.ai/artifact/PQobjfrPi3KEzmYZuymmnx · `qa-295/` → https://claude.ai/artifact/6rx1ynP7vztXxXswpGkiPb
+- 294-A · m10-09 s2 (933), s5 (1026): `Bashorat` + `vizual={<div className="qs-viz">` (213.7). A: `!taxmin ? null : …` + `.qs-kir`.
+- 294-B · m10-09 s3 1-qadam (1927) «Mobil trekda … web-trekda …», 3-qadam bandi (1936); s8 bandi (2058) «Web-trekda: …» — trekka qarab (`useTrek`). A: m10-05 (291) naqshi.
+- 295-A · m10-12 s2 (1053) `vizual={<div className="gp-s2">…` (213.7). A: `!taxmin ? null : …` + `.gp-karta-kir`.
+- 295-B · m10-12 s11: `PITCHDAN_OLDIN` web qatori (1860) trekka qarab; «Ilova ochilmasa…» `gp-kulrang` (1997) → `gp-oldin` kartasi ichiga; `.gp-bolak-q` (3095) `white-space: nowrap; text-overflow: ellipsis` — o'quvchi matni kesiladi → o'raladi.
+
+### F-1015-294…295 — BAJARILDI (18.10 15:5x) · m10-09 va m10-12 «bittadan», hammasi A
+**Kod m10-09** (`RetentionDayLesson.jsx`; zaxira `arxiv/F-1015-279-oldin/RetentionDayLesson.v-294-oldin.jsx`): s2, s5 `vizual={!taxmin ? null : <div className="qs-viz qs-kir">`; `.qs-kir` (qs-kirdi) + reduced-motion. s3 1-qadam `t` shablon-satr trekka qarab (mobil — Expo, web — sayt, tanlanmagan — ikkalasi); 3-qadam bandi uch variant; s8 «Web-trekda» bandi `...(trek === 'mobil' ? [] : [...])`. `useTrek` holati tayyor edi.
+**Kod m10-12** (`PmGrowthPitchLesson.jsx`; zaxira `…v-295-oldin.jsx`): s2 `vizual={!taxmin ? null : <div className="gp-s2 gp-karta-kir">` + `.gp-karta-kir` (gp-kir) + reduced-motion. s11: `PITCHDAN_OLDIN` web qatoriga `web: true`, `trek` `lsO('pm-m9d8-platforma').trek` dan, `filter(q => !q.web || trek !== 'mobil')`; «Ilova ochilmasa…» `gp-oldin` kartasining oxirgi `gp-oldin-q` qatori; `.gp-bolak-q` nowrap/ellipsis → `overflow-wrap: anywhere`, `.gp-sahna.keng .gp-bolak-q` 2 qatorlik clamp olindi — pitch to'liq o'qiladi.
+**Darvozalar:** 13/13 ×2 · lint:jsx toza. **Suratlar:** `suratlar/F-1015-294-keyin/` (s2/s5 a·b, s3-mobil/web, s8-mobil), `F-1015-295-keyin/` (s2 a·b, s11-mobil/web); uz, 390, ru — `v294.mjs`, `v295.mjs`. **MD:** `YAKUNIY/09-RetentionDay.md` (§2, §5 bashorat; §3 1/3-qadam; §8 web bandi), `YAKUNIY/12-PmGrowthPitch.md` (§2; §11 uch band). **Sahifalar:** qa-294 https://claude.ai/artifact/PQobjfrPi3KEzmYZuymmnx · qa-295 https://claude.ai/artifact/6rx1ynP7vztXxXswpGkiPb. **QA:** deploy-qa 10 → coddycamp-12modul 16:0x, m10 smoke: ru m10-12 ochildi   TOZA: 24/24 — 12-M to'liq saytda.
+
+## 12-MODUL «BITTADAN» SUPURISHI YOPILDI (18.10 ~15:00) — F-1015-279…295
+9 dars, 24 o'lchov-ekran + sinf-supurishda topilgan 14 ekran: m10-10 (5 ekran, forma bittadan) · m10-01 (3) · m10-02 (5 tushuncha) · m10-03 (2) · m10-05 (5 tushuncha + 2 amaliyot trek) · m10-07 (2) · m10-08 (1) · m10-09 (2 tushuncha + 2 amaliyot trek) · m10-12 (1 tushuncha + s11 uch band). Tegilmagan (hukm bilan): amaliyot QBlok ekranlari (qadam bittadan), QVoqea ekranlari, kirish/reja/test/yakun.
+**Topilma-sinflari:** (1) 213.7 — bashorat sahna bilan birga: 12-M da 22 ekran; (2) 213.11 — forma bir yo'la (m10-10 s10); (3) **yangi sinf — trek tanlangan bo'lsa ham ikkala trek matni** (m10-05, m10-09; m10-12 s11): DE ga band sifatida muhrlash kerak (quyida 213.12 taklifi); (4) kartasiz osilgan izoh (m10-01 s9 «Sahifam», m10-12 s11 izoh); (5) o'quvchi matni ellipsis bilan kesilgan (m10-12 s11).
+**Qonun:** DE 213 ga 213.12 band qo'shiladi (foydalanuvchi roziligi bilan): «Trek (mobil/web) tanlangan bo'lsa, ko'rsatma faqat o'sha trek uchun; tanlanmagan — ikkalasi». KATTA: 13–14-M amaliyot bloklarida ham shu sinf bo'lishi mumkin — ularning supurishida tekshiriladi.
+**Keyingi:** 13-M (src/11-Modull, 7 dars, 11 ekran) — tartib: m11-04, 05, 06, 07, 09, 11, 12. Keyingi F-ID: F-1015-296.
+
+## 🔴🔴🔴 DAVOM — YANGI SEANS SHU YERDAN (18.10 15:05 `date`; seans yopildi)
+
+**Foydalanuvchi:** «barcha ma'lumotlarni saqla, 1–2 soatda yangi seansdan yozaman, davom etamiz».
+**Ish:** chala-1 — «Bittadan» (DE 213) supurishi, 7–14-M. **12-M YOPILDI** (yuqoridagi «12-MODUL «BITTADAN» SUPURISHI YOPILDI», F-1015-279…295; QA coddycamp-12modul 24/24). Bugun avval: F-1015-275…278 (Yordam karta ichida, roadmap chiplar, 12-M+14-M intervyu sonlari 3/3, m9-17 qoldi).
+**Javob kutilayotgan 2 savol (yangi seans birinchi so'raydi):**
+1. DE 213 ga **213.12** bandini yozaymi: «Trek (mobil/web) tanlangan bo'lsa, ko'rsatma faqat o'sha trek uchun; tanlanmagan — ikkalasi» (m10-05, m10-09, m10-12 da qo'llandi).
+2. **13-M** ga o'tamizmi — src/11-Modull, 7 dars, 11 o'lchov-ekran: m11-04, 05, 06, 07, 09, 11, 12 (`vositalar/s177/b213-royxat.json`); keyin 14-M (src/12-Modull, 11 dars, 22 ekran).
+**Har dars tartibi (o'zgarmaydi):** vA.mjs oldin-surat (KEY/LID/N/OUT/EKRAN, FULL=1) → kodni o'qish → tashxis sahifa `sahifalar/qa-NNN/` (qa-279 qolipi, A/B) → foydalanuvchi tasdig'i → zaxira `arxiv/F-1015-279-oldin/` → python tahrir-skript (aniq anchorlar) → `npm run gates` 13/13 + `npm run lint:jsx` → suratlar (uz 1280, W=390, LANG_DARS=ru; `vNNN.mjs` — v279.mjs dan sed bilan) → MD YAKUNIY → sahifaga «QURILDI» bo'limi → jurnal → `deploy-qa.sh <N>` (13-M = 11, 14-M = 12; `$S/kf.txt` kerak — yangi scratchpad'da App.jsx dan qayta yaratiladi, 11:3x yozuvi). Smoke bir marta vaqtinchalik «OCHILMADI» berishi mumkin — qayta yurgizish (`sayt-smoke.mjs`, KEYS=).
+**Sinflar (13–14-M da ham qidiriladi):** 213.7 bashorat + sahna birga (`vizual={!taxmin ? null : …}` + kirish-animatsiya + reduced-motion; eslat/eslatBos kodi bo'lsa olinadi) · 213.11 forma bir yo'la · trek matni (ikkala trek birdan) · kartasiz osilgan izoh · ellipsis bilan kesilgan o'quvchi matni · QBlok amaliyot va QVoqea — tegilmaydi (hukm bilan).
+**Commit:** YO'Q — foydalanuvchi «oxirida bir marta». Uncommitted: src/10-Modull 9 fayl, src/9-Modull 2 (275/276 — aslida 2b58653 da), src/12-Modull 5 (278), MD YAKUNIY 12-M 9 fayl + 14-M v3 5 + tayanchlar, DARS_ETALON — boshqa (praktika/nazorat) seansning 221-qonuni (F-1017-226) uncommitted, meniki emas; 213.12 hali yozilmagan, jurnal, sahifalar/suratlar/vositalar. ⚠ Parallel praktika-seans 11:08 da `git add -A` commit qilgan edi — yangi commit oldidan `git status` ko'riladi.
+⚠ **Vaqt-yorliqlari:** 11:15 dan keyingi yozuvlardagi soatlar (12:0x…16:0x) taxmin bilan yozilgan — haqiqiy `date` 15:05 (seans yopilishida); tartib to'g'ri, soatlar ~1 soat oldinga ketgan. Yangi seansda har yozuv `date` bilan ([[jurnal-vaqti-date-bilan]]).
+**Vite 5300** noutbuk o'chsa qayta: `npx vite --port 5300 --strictPort` (fonda). Chegara: src/5…12-Modull; umumiy fayllar faqat foydalanuvchi qarori. Chat — o'zbekcha; F-ID/qonun raqami izoh bilan; har tahrir oldidan reja + rozilik.
+
+### F-1015-296 — DE 213.12 yozildi (18.10 16:20)
+**Foydalanuvchi:** «1. ha yoz · 2. ha o'tamiz 13-M». 213.12 «Trek tanlangan bo'lsa — faqat o'sha trek ko'rsatmasi» DARS_ETALON 213 ga 12-band + Holat (18.10). Vite 5300 qayta yoqildi. Keyingi: 13-M m11-04. Keyingi F-ID: F-1015-297.
+
+### F-1015-297…298 — 13-M 1-dars m11-04 `PmPricingLesson.jsx` «bittadan» — TASHXIS (18.10 16:25, javob kutilmoqda)
+Oldin suratlari `suratlar/F-1015-297-m11-04-oldin/` (12 ekran, N=12 — avval N=14 bilan olingani s0 da qolgan edi: `total` mos kelmasa progress o'qilmaydi). Sahifa `sahifalar/qa-297/` → https://claude.ai/artifact/ATzddqkVPUZPnT4KiJ7MGF
+- 297 · s2 (1046–1048): `Bashorat` + `harakat` (xira xizmatlar) + `vizual` (bo'sh Narx varag'i) birdan (213.7). A: `!taxmin ? null : …` + kirish-animatsiya; `.xira` olinadi.
+- 298 · s4 (1158–1160): `Bashorat` + `vizual={sahna}` (telefon + Backend) birdan (213.7). A: `!taxmin ? null : …`.
+- s7 (a2): `trekGap` bilan trek matni allaqachon tanlovga bog'liq (213.12 ✓); «Ulgurmasangiz» — QBlok qolip elementi, doiradan tashqari → tegilmaydi.
+**Foydalanuvchi savoli:** parallel seans (QA fidbeklari 11/12-M) yoki shu seansda avtopilot 13+14-M — javob kutilmoqda; tavsiya chatda aytildi.
+
+### F-1015-297…298 — BAJARILDI (18.10 16:29) · m11-04 «bittadan», hammasi A · foydalanuvchi: «tavsiyang maqul, uxlayman, avtopilotda 13–14-M; A menga maqul»
+**Kod** (`src/11-Modull/PmPricingLesson.jsx`; zaxira `arxiv/F-1015-279-oldin/PmPricingLesson.v-297-oldin.jsx`): s2 `harakat`/`vizual` `!taxmin ? null : …`, `.xira` olindi; s4 `vizual={!taxmin ? null : <div className="pz-sahna-kir">{sahna}</div>}`; `.pz-sahna-kir` (keyframe `pz-kirdi`; `pz-kir` keyframe darsda allaqachon bor edi — nom to'qnashmasin deb klass `pz-sahna-kir`) + reduced-motion.
+**Darvozalar:** 13/13 · lint:jsx toza. **Suratlar:** `suratlar/F-1015-297-keyin/` (s2/s4 a·b; uz, 390, ru — `v297.mjs`). **MD:** `feedback/F-1007-13modul/04-PmPricing-v3.md` §2, §4 bashorat qatori. **Sahifa:** https://claude.ai/artifact/ATzddqkVPUZPnT4KiJ7MGF (QURILDI bo'limi).
+**AVTOPILOT qoidalari (foydalanuvchi roziligi):** faqat 5 sinf (213.7 · 213.11 · 213.12 trek · kartasiz izoh · kesilgan matn); shubhali — «ertalabki qaror» ro'yxatiga; umumiy fayllarga tegilmaydi; commit yo'q; QA deploy — modul yopilganda (13-M → 11, 14-M → 12) va oxirida.
+**Keyingi:** m11-05 PaymentDay (s6, s8). Keyingi F-ID: F-1015-299.
+
+### F-1015-299 — 13-M 2-dars m11-05 `PaymentDayLesson.jsx` «bittadan» — BAJARILDI (18.10 16:43, avtopilot)
+**O'lchov ekranlari s6 (a2), s8 (a3):** QBlok amaliyot — qadam bittadan, trek tugmalari 1-qadamda (213.12 ✓) → tegilmaydi. **Sinf-supurish:** s2 va s5 (tushuncha) — bashorat + sahna birga (213.7).
+**Kod** (zaxira `arxiv/F-1015-279-oldin/PaymentDayLesson.v-299-oldin.jsx`): s2 `vizual={!taxmin ? null : tugadi ? … : <div className="pd-viz pd-sahna-kir">`; s5 `vizual={!taxmin ? null : <div className={cx('pd-viz', 'pd-s5', 'pd-sahna-kir', …)}>`; `.pd-sahna-kir` (keyframe `pd-kirdi`) + reduced-motion. a2/a3 da `w ? web : mobil` — trek tanlanmaganda mobil matn + trek tugmalari (TrekTanlov) — 213.12 ga yaqin, tegilmadi (ertalabki savol emas, tugmalar tanlovni majburlaydi).
+**XATO (saboq):** birinchi oldin-surat yurishi zsh so'z-bo'linishi tufayli (`set -- $spec`) ishlamadi; m11-05 ni tahrirlab, keyin qayta yurgizdim — s2/s5 «oldin» surati tahrirdan KEYINGI holat. Sahifada faqat «keyin» a/b; haqiqiy oldin — zaxira kodda. Qolgan 5 dars (06, 07, 09, 11, 12) oldin-suratlari tahrirdan oldin olinmoqda (fon).
+**Darvozalar:** 13/13 · lint:jsx toza. **Suratlar:** `suratlar/F-1015-299-keyin/` (s2/s5 a·b; uz, 390, ru — `v299.mjs`); `F-1015-299-m11-05-oldin/` (s6/s8 haqiqiy oldin). **MD:** `05-PaymentDay-v3.md` §2, §5. **Sahifa:** https://claude.ai/artifact/SGVQGaQ2r6xQHQwFpcyCcU
+**Keyingi:** m11-06 PmMoneyTalk (s4). Keyingi F-ID: F-1015-300.
+
+### F-1015-300 — m11-06 `PmMoneyTalkLesson.jsx` — TEGILMAYDI (18.10 16:51, avtopilot)
+s4 (o'lchov): sahna + jadval (bitta faol qator) + 4 belgi — allaqachon bittadan; s2, s6 ham. Kod o'zgarmadi. Sahifa https://claude.ai/artifact/J3gNEKrEAowByWRiZBjxyu. **Ertalabki savol:** s4 tugmalar ostidagi «Javob yo'q — odam javob bermasa.» kulrang qatori kartasiz (A: tugma izohi · B: qoldirish).
+
+### F-1015-301 — m11-07 `PmTermsLesson.jsx` — TEGILMAYDI (18.10 16:51, avtopilot)
+s5 (o'lchov): bitta band kartasi (2 maydon) + «Ofertam» ro'yxati — 213.11 ✓; s2/s4 bitta savol/band; amaliyot `trekGap` (213.12 ✓). Kod o'zgarmadi. Sahifa https://claude.ai/artifact/FAwXkZQDGT2f6tGcS4z9bg. **Ertalabki savol:** s4 tugmalar ostidagi «Real ishga tushirish — ota-onaning…» kulrang matni kartasiz (300 bilan bir sinf).
+
+### F-1015-302 — m11-09 `PmPayCheckLesson.jsx` — BAJARILDI (18.10 16:51, avtopilot) · s4 213.7 + s6 213.11
+**Kod** (zaxira `arxiv/F-1015-279-oldin/PmPayCheckLesson.v-302-oldin.jsx`): s4 `vizual={!taxmin ? null : …}` + `.tv-sahna-kir`. s6 1-qism «Uydagi suhbat» formasi bittadan (m10-10 s10 qolipi): `S6_QADAM` (kim → belgi → gap → narx → hozir → qachon), `S6_QADAM_NOM`, `S6_QADAM_X` (xato → tegishli savol), `q1Yigma`, holat `qi`/`otdi` (karta kaliti o'zgarganda tiklanadi; tahrirlashda hammasi yig'ilgan), `q1Keyingi` («Keyingi»/Enter; belgi chip bosilgach o'zi o'tadi), «Javob yo'q» izohi belgi qadamining ichida; Saqlash / + Yana bitta / Yordam doim. CSS `.tv-qadamlar .tv-sav .tv-sav-y .tv-sav-t .tv-yig .tv-kul-q`. 2–3-qism tegilmadi (allaqachon bosqichli).
+**Darvozalar:** 13/13 · lint:jsx toza. **Suratlar:** `suratlar/F-1015-302-keyin/` (s4 a·b, s6 a·b·c·d; uz, 390, ru — `v302.mjs`). **MD:** `09-PmPayCheck-v3.md` §4, §6. **Sahifa:** https://claude.ai/artifact/LwmNTjCwpaNJiKH8YtW4q3. **Ertalabki savol:** s4 «Uchtaga yetmaslik — tuzatish sababi emas.» kartasiz qator.
+
+### F-1015-303 — m11-11 `PmReflectionLesson.jsx` — TEGILMAYDI (18.10 16:51, avtopilot)
+s1 (o'lchov, Reja): standart QReja (Mentor misoli roadmap + 3 qadam) — «bittadan» emas, natija-namuna. Kod o'zgarmadi. Sahifa https://claude.ai/artifact/Gxti54JCm7ZC8wDEee6EPi.
+
+### F-1015-304 — m11-12 `StabilizeDayLesson.jsx` — BAJARILDI (18.10 16:51, avtopilot) · s2 213.7
+**O'lchov s3 (a1), s6 (a2):** QBlok, trek tugmalari 1-qadamda — tegilmaydi. **Sinf-supurish s2:** bashorat + telefon + bo'sh karta + o'chiq «Tekshiruvni ko'rish» birdan. **Kod** (zaxira `…/StabilizeDayLesson.v-304-oldin.jsx`): `harakat`/`vizual` `!taxmin ? null : …` + `.sb-sahna-kir`. **Darvozalar:** 13/13 · lint:jsx toza. **Suratlar:** `F-1015-304-keyin/` (s2 a·b; uz, 390, ru — `v304.mjs`). **MD:** `12-StabilizeDay-v3.md` §2. **Sahifa:** https://claude.ai/artifact/AeKgVu6yAV2AUC6zN7t9AX.
+
+## 13-MODUL «BITTADAN» SUPURISHI YOPILDI (18.10 16:51, avtopilot) — F-1015-297…304
+7 dars ko'rildi (o'lchov 11 ekran + sinf-supurish). **O'zgargan 4 fayl:** m11-04 (s2, s4 — 213.7), m11-05 (s2, s5 — 213.7), m11-09 (s4 — 213.7; s6 — 213.11 forma bittadan), m11-12 (s2 — 213.7). **Tegilmagan:** m11-06, m11-07, m11-11 (allaqachon bittadan / QReja); barcha QBlok amaliyotlar (qadam bittadan, 213.12 ✓).
+**Ertalabki qaror ro'yxati (o'zgartirilmadi):** (1) tugmalar/karta ostidagi kartasiz kulrang izoh — m11-06 s4 «Javob yo'q…», m11-07 s4 «Real ishga tushirish…», m11-09 s4 «Uchtaga yetmaslik…» (A: karta ichiga / tugma izohi · B: qoldirish); (2) QBlok «Ulgurmasangiz» qatori kartasiz — qolip (umumiy fayl), 7–14-M hammasida; (3) m11-05 a2/a3: trek tanlanmaganda mobil matn + trek tugmalari (213.12 «ikkalasi» emas) — tugmalar tanlovni majburlaydi, tegilmadi.
+**Saboq:** zsh `set -- $spec` so'z-bo'linishi yo'q → oldin-surat yurishi jim o'tib ketdi; m11-05 oldin-surati tahrirdan keyin olingan (zaxira kod — haqiqiy oldin). Keyingi: QA deploy 11 (coddycamp-13modul) fonda → 14-M (src/12-Modull, 11 dars, 22 ekran). Keyingi F-ID: F-1015-305.
+**QA deploy 11 (16:52):** coddycamp-13modul — build+deploy ✓, smoke 24/24 TOZA (uz+ru). 13-M saytda.
+
+### F-1015-305…317 — 14-MODUL (src/12-Modull) «bittadan» — KOD BAJARILDI (18.10 17:02, avtopilot)
+**Oldin-suratlar:** 13 dars, tahrirdan OLDIN (`suratlar/F-1015-3NN-m12-NN-oldin/`, vA.mjs, N = SCREEN_META soni). **O'lchov 22 ekran + sinf-supurish.**
+**213.7 — 25 bashorat ekrani, 11 fayl** (zaxiralar `arxiv/F-1015-279-oldin/*.v-305-oldin.jsx`, ProductSpeed `.v-307`, PolishDay `.v-308`):
+- 9 PM dars (`scratchpad/e14.py`): `harakat={!taxmin ? null : …}` + `vizual={!taxmin ? null : …}` — m12-01 PmInvestorPitch (s2, s5, s7, s9) · m12-02 PmStoryPitch (s2, s6) · m12-05 PmPitchTraining (s2) · m12-06 DemoPrep (s2, s5; harakat yo'q — tugmalar sahna ichida) · m12-07 PmDemoTest (s2) · m12-08 PmFinalPitch (s2, s3) · m12-10 PmFreelance (s2, s4, s6) · m12-11 PmPrograms (s4, s6) · m12-13 PmDressRehearsal (s2). Kirish-animatsiya CSS o'ramsiz: `.XX-bash.ix ~ .q-split, .XX-bash.ix ~ .q-col { animation }` (ixchamBashorat o'rami bashoratdan keyin `.ix` oladi) + reduced-motion. Qadamlar3/Tugmalar3 `faol={!!taxmin}` o'chiq holati endi ko'rinmaydi.
+- 2 texnik dars (`e14b.py`): `<Bashorat/>` vizual ichidan (o'ng ustun) QTushuncha `bashorat` propiga ko'chdi, `vizual={!taxmin ? null : <div className="tz-v tz-sahna-kir">` — m12-03 ProductSpeed (s2, s4, s5, s7, s9), m12-04 PolishDay (s2, s5).
+**Darvozalar:** 11 fayl 13/13 · lint:jsx toza. **MD:** `feedback/F-1008-14modul/*-v3.md` — 25 «- Bashorat (» qatoriga 213.7 izohi (01: 4, 02: 2, 03: 5, 04: 2, 05: 1, 06: 2, 07: 1, 08: 2, 10: 3, 11: 2, 13: 1).
+**Tegilmadi (hukm):** amaliyot QBlok (m12-04 s3/s6, m12-06 s6, m12-07 s6/s7, m12-09 s3/s6), QReja (m12-09 s1), QKirish (m12-11 s0), m12-10 s7 (QMustaqil — bitta maydon kartasi ✓), m12-12 s4 (karta tanlash — bashoratsiz).
+**Ertalabki qaror:** m12-12 s6 «Olti oylik reja» — `YonalishKarta` 5 maydon + tanlov chip birdan (213.11 sinfi); taklif-tugmalar (13-Modul rejasi, 10-dars xatlari) va yo'nalishga bog'liq izohlar ko'p — m11-09 s6 qolipida ketma-ket qilish mumkin, avtopilotda qilinmadi (shubhali). Surat: sahifada.
+**Keyin:** keyin-suratlar `vB.mjs` (uz · 390 · ru, a/b) → modul-sahifa `sahifalar/qa-14m/` (bitta sahifa, dars bo'limlari) → deploy-qa 12.
+**Suratlar (18.10 17:07):** `vB.mjs` 11 dars × (uz 1280 · 390 · ru) — 33 yurish, xato 0; `suratlar/F-1015-3NN-keyin/` (s{N}a — bashorat yolg'iz, s{N}b — tanlangach sahna). **Sahifa (bitta modul-sahifa, 25 ekran oldin/keyin-a/keyin-b + m12-12 s6 savoli):** https://claude.ai/artifact/3ovHfXoyScHK5uxb11auW1 (`sahifalar/qa-14m/`, `scratchpad/p14.py`).
+**QA deploy 12 (17:02–17:03):** coddycamp-14modul — build+deploy ✓, smoke 26/26 TOZA (uz+ru). 14-M saytda.
+
+## 14-MODUL «BITTADAN» SUPURISHI YOPILDI (18.10 17:07, avtopilot) — F-1015-305…317
+11 dars o'zgardi (25 bashorat ekrani, bitta sinf 213.7), 2 dars tegilmadi (m12-09, m12-12). O'lchov 22 ekran: 11 tasi bashorat (tuzatildi), 11 tasi QBlok/QReja/QKirish/QMustaqil (tegilmadi, hukm). Darvozalar 11 × 13/13, lint:jsx toza, MD 25 izoh, QA 26/26.
+**Ertalabki qaror:** m12-12 s6 «Olti oylik reja» formasi (213.11) — A/B sahifada.
+
+## 🔴🔴🔴 DAVOM — AVTOPILOT YAKUNI (18.10 17:07) · foydalanuvchi uyg'ongach shu yerdan
+**Bajarildi (16:00–17:07):** DE 213.12 ✓ · 13-M (F-1015-297…304: 4 dars o'zgardi, 3 tegilmadi; QA coddycamp-13modul 24/24) · 14-M (F-1015-305…317: 11 dars, 25 ekran; QA coddycamp-14modul 26/26). «Bittadan» supurishi 7–14-M bo'yicha: 11-M ✓ 12-M ✓ 13-M ✓ 14-M ✓ (7–10-M — o'lchov ro'yxatida yo'q edi).
+**Sahifalar:** 13-M — qa-297 ATzddqkVPUZPnT4KiJ7MGF · qa-299 SGVQGaQ2r6xQHQwFpcyCcU · qa-300 J3gNEKrEAowByWRiZBjxyu · qa-301 FAwXkZQDGT2f6tGcS4z9bg · qa-302 LwmNTjCwpaNJiKH8YtW4q3 · qa-303 Gxti54JCm7ZC8wDEee6EPi · qa-304 AeKgVu6yAV2AUC6zN7t9AX; 14-M — qa-14m 3ovHfXoyScHK5uxb11auW1 (hammasi https://claude.ai/artifact/…).
+**Ertalabki qaror ro'yxati (hech biri o'zgartirilmagan):** (1) kartasiz kulrang izoh tugmalar ostida — m11-06 s4, m11-07 s4, m11-09 s4 (A: karta ichiga / tugma izohi · B: qoldirish); (2) QBlok «Ulgurmasangiz» qatori kartasiz — qolip (umumiy fayl, 7–14-M hammasi); (3) m12-12 s6 olti oylik reja formasi 5 maydon birdan — 213.11 (A: m11-09 s6 qolipi · B: qoldirish); (4) m11-05 a2/a3 trek tanlanmaganda mobil matn + trek tugmalari (213.12 «ikkalasi» emas) — tugmalar majburlaydi.
+**Xatolarim:** m11-05 oldin-surati tahrirdan keyin olingan (zsh `set --` so'z-bo'linmaydi → birinchi yurish jim o'tdi); zaxira kod — haqiqiy oldin. Boshqa dars oldin-suratlari to'g'ri.
+**Commit YO'Q** (foydalanuvchi «oxirida bir marta»). Uncommitted: src/11-Modull 4 fayl, src/12-Modull 11 fayl, DARS_ETALON (213.12), MD 13-M 4 + 14-M 11, jurnal, sahifalar/suratlar/arxiv. ⚠ Parallel pitch-seans (m1-12…m9-16) 13-M ga yetganda aytadi — src/11-Modull o'zgarganini unga ayting. Keyingi: foydalanuvchi QA fidbeklari (retsept B). Keyingi F-ID: **F-1015-318**.
+
+### F-1015-318 — foydalanuvchi qarori (18.10 17:12): 1 A · 2 A (qolipga ruxsat) · 3 A · 4 A · 5 ha · 6 ha (bitta commit, nomma-nom). Tartib: 4 → 1 → 3 → 2 → 5 → deploy → commit.
+
+### F-1015-318 — m11-05 trek matni (4-band, A) — BAJARILDI (18.10 17:27)
+`PaymentDayLesson.jsx` (zaxira `.v-318-oldin`): `trekMatn(tk, mobil, web, ikkala)` yordamchisi; a1 1-qadam, a1 3-qadam Band, a3 1-qadam, a3 Band — 4 joyda `tx(w ? web : mobil)` → trek tanlanmaguncha ikkala matn («… · web-trekda …»), tanlangach faqat o'ziniki (213.12). Darvozalar 13/13.
+
+### F-1015-319…321 — kartasiz izohlar (1-band, A) + DE 213.13 — BAJARILDI (18.10 17:27)
+- **319 · m11-06 s2/s4** (`PmMoneyTalkLesson.jsx`, zaxira `.v-319-oldin`): `varaq` → `varaq(ichki)` funksiyasi; belgi/Savol tugmalari va «Javob yo'q — odam javob bermasa» qatori varaq kartasining ichida, chiziq bilan ajratilgan (`.mt-varaq .mt-harakat`). Ekranda bitta karta.
+- **320 · m11-07 s4** (`PmTermsLesson.jsx`, zaxira `.v-320-oldin`): «Real ishga tushirish — ota-onaning roziligi…» doim turmaydi — `halol` holati, «Real ishga tushirishda» birinchi bosilganda band kartasi ichida (`.st-bkarta-iz`); yakunda XulosaQ izohida. Tashqaridagi ikki `p.st-halol` olindi. (Birinchi urinishda fragment qavsi xato — esbuild tutdi, tuzatildi.)
+- **321 · m11-09 s4** (`PmPayCheckLesson.jsx`, zaxira `.v-321-oldin`): «Uchtaga yetmaslik — tuzatish sababi emas» savol kartasining ichida, faqat taxmin «qabul» bo'lmaganda (xato taxminni to'g'rilaydi).
+- **DE 213.13** yozildi: izoh kartasiz osilmaydi; kontekstga bog'liq izoh — o'sha javob tanlanganda, karta ichida.
+Darvozalar 13/13 ×3. Suratlar `suratlar/F-1015-318-keyin/` (uz · 390 · ru).
+
+### F-1015-322 — QBlok «Ulgurmasangiz» karta ichida (2-band, A, qolipga ruxsat) — BAJARILDI (18.10 17:27)
+Tekshiruv: `ulgur` qolipda EMAS edi — har darsning o'z `ScreenBlok` nusxasi QBlok `children` sifatida `<p className="XX-ulgur">` chiqarardi (kartasiz, 63 fayl). **Qolip** (`src/qolip/index.jsx`, `qolipCss.js`; zaxira `qolip-index.v-322-oldin.jsx`, `qolipCss.v-322-oldin.js`): QBlok ga `ulgur` propi — joriy qadam kartasining ichida yig'iq `<details className="q-blok-ulgur">` («Ulgurmasangiz ▾» / «Если не успеваете»), M.ulgur yorlig'i, CSS. **Darslar (7–14-M, 19 fayl):** `<p>` olindi, `<QBlok ulgur={ulgur && !done ? tx(ulgur) : null}` (zaxiralar `*.v-322-oldin.jsx`): 10-Modull 6 (Retention, WebSocketBasics, DropOff, BreakAndFix, FiftyUsers, RealtimeSpec), 11-Modull 6 (Stabilize, WinBack, PaymentDay, Pricing, Terms, Referral), 12-Modull 6 (Polish, DemoPrep, DemoTest, NextSteps, ProductSpeed, VideoPortfolio), 10-Modull LiveNotifyDay. Darvozalar 19 × 13/13, lint:jsx toza, lint:prompt toza. **1–6-M (44 fayl: 1…4c, 5, 6-Modull, pm/)** — doiradan tashqari → KATTA_TOZALASH.
+
+### F-1015-323 — 7–10-M sinf-supurish 213.7 (5-band) — BAJARILDI (18.10 17:27)
+Grep: `bashorat={` + gatesiz `vizual=`/`harakat=` — 7-M (src/5-Modull) 0 · 8-M (src/6-Modull) 0 (SystemArchitecture allaqachon `taxmin &&`) · **9-M (src/7-Modull) 11 fayl 21 ekran · 10-M (src/8-Modull) 9 fayl 26 ekran = 47 ekran, 20 fayl.** Skript `scratchpad/e7.py`: `vizual={!taxmin ? null : <div className="q-kir">…</div>}` (qavs-moslash; `harakat` gatesiz bo'lsa `!taxmin ? null :`), QVoqea ekranlari o'tkazildi. Qolip CSS: `.q-kir` kirish-animatsiya + reduced-motion (`qolipCss.js`). Zaxiralar `*.v-323-oldin.jsx`. **Xato:** birinchi qavs-moslash JSX matnidagi apostrofni satr-boshi deb oldi — 3 fayl (MvpArchitecture, ProductionDeploy, ProdUpgrade) esbuild'da yiqildi → zaxiradan tiklandi, moslash tuzatildi (faqat shablon-satr kuzatiladi), qayta qo'llandi. Darvozalar 20 × 13/13, lint:jsx toza. ⚠ **Oldin-surat olinmagan** (xato — sinf-supurish shoshib qo'llandi); zaxira kod — haqiqiy oldin; sahifada keyin a/b. ⚠ m7-12 (PmUserStoryPitch) va m8-11 (PmPitchRehearsal) — parallel pitch-seans ham tegayotgan fayllar; mening o'zgarishim 1–2 qator (vizual/harakat gate) — unga aytilsin.
+
+### F-1015-324 — m12-12 s6 «Olti oylik reja» formasi ketma-ket (3-band, A) — BAJARILDI (18.10 17:27)
+`PmNextStepsLesson.jsx` (zaxira `.v-324-oldin`): `YonalishKarta` — `QADAM_YON` (mahsulot: yo'l → sabab → oy oxirida → olti oyda → birinchi qadam → sana; ko'nikma: nima → …; ish: yo'l → nima → …), `QADAM_NOM`, holat `qi`/`otdi` (tahrirlashda hammasi yig'ilgan), `keyingi()` — `tekshirYon` bilan joriy/oldingi qadam xatosi bo'lsa to'xtaydi, `xato.m` → tegishli qadam ochiladi, Enter = Keyingi; taklif-tugmalar o'z qadamida (13-Modul rejasi → oy oxirida; 10-dars buyurtma/xat/Diamond → yo'l); yo'nalish izohlari yo'l qadamida; Saqlash/Yordam doim. CSS `.nx-qadamlar .nx-sav .nx-sav-y .nx-sav-t .nx-yig .nx-kul-q`. til-lint: «Nega»/«Sana» yorliqlari sen-imperativ deb tutildi → «Sabab»/«Qadam sanasi». Darvozalar 13/13.
+**QA deploy 7/8/11/12 (17:28–17:32):** coddycamp-9modul 24/24 · coddycamp-10modul 22/22 · coddycamp-13modul 24/24 · coddycamp-14modul 26/26 — hammasi TOZA (uz+ru). Qolip o'zgarishi (QBlok ulgur, .q-kir) 7/8-M saytlariga ta'sir qilmaydi (prop/klass ishlatilmagan) — deploy qilinmadi.
+**Keyin-suratlar 9–10-M (vB.mjs, 20 dars × uz/390/ru):** ekran indeksi `ScreenN` nomidan emas, SCREEN_META dagi `sN` o'rnidan olinadi (a1/a2 bor darslarda siljiydi — m7-07, m7-09, m8-03, m8-08, m8-11 qayta olindi). Sahifa `sahifalar/qa-323/`.
+
+**XATO (323, 17:40, tutildi):** o'ram `<div className="q-kir">` ichida `vizual` qiymati JS-ifoda bo'lganda (`tugadi ? … : maket`, `vizual={vizual}`, `{xarita}`) JSX matn bo'lib chiqdi — keyin-suratda «tugadi ?» / «: maket» ko'rindi (m7-07 s5); esbuild buni tutmaydi. Tuzatish: 47 joyda `<div className="q-kir">{…}</div>` (ifoda qavsda), `e7.py` ham tuzatildi. Darvozalar 20 × 13/13 qayta, lint:jsx toza; 9/10-M suratlari qayta olinmoqda; 7/8 QA qayta deploy. **Saboq:** JSX ichiga ifoda o'rash — har doim qavs ichida; surat ko'z bilan ko'rilmaguncha sahifa chiqarilmaydi (shu safar ko'rildi — tutildi). Jurnalga printf bilan yozish yana tuzoq bo'ldi (brace expansion) — faqat heredoc.
+**QA deploy 7/8 qayta (17:39–17:42):** coddycamp-9modul 24/24 · coddycamp-10modul 22/22 TOZA. Keyin-suratlar 20 dars × 3 variant qayta — xato 0; sahifa `qa-323` (surat ko'z bilan tekshirildi: m7-07 s5, m7-09 s2, m8-07 s6, m7-05 s9 — matn-artefakt yo'q).

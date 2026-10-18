@@ -930,7 +930,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Yopiq ilova boshqa odamning <span className="italic" style={{ color: T.accent }}>o'zgarishini biladimi</span>?</>, ru: <>Знает ли закрытое приложение <span className="italic" style={{ color: T.accent }}>о чужих изменениях</span>?</> })}
         mentor={<Mentor>{tr(mentor)}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={{ uz: "Ilova yopiq paytda yangi o'yin e'lon qilindi. Siz buni qachon bilasiz?", ru: 'Пока приложение закрыто, объявили новую игру. Когда вы об этом узнаете?' }} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        vizual={<div className="qs-viz">
+        vizual={!taxmin ? null : <div className="qs-viz qs-kir">
           <QaytishSahna
             t1={{ kor: kor1, belgi, son: son1, sonYangi: son1 === 8 && !avval, yangiElon, jonli, jonliKet, kartalar: [], osti: t1osti }}
             be={{ db, dbYangi, qator: beQator ? { uz: "+1 o'yin", ru: '+1 игра' } : null }}
@@ -1023,7 +1023,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Telefon ekraniga <span className="italic" style={{ color: T.accent }}>qanday eslatma</span> chiqsin?</>, ru: <><span className="italic" style={{ color: T.accent }}>Какое напоминание</span> показать на телефоне?</> })}
         mentor={<Mentor>{tr(mentor)}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={{ uz: "To'rt matndan nechtasi qoidadan o'tadi?", ru: "Сколько из четырёх текстов проходит правило?" }} variantlar={S5_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        vizual={<div className="qs-viz">
+        vizual={!taxmin ? null : <div className="qs-viz qs-kir">
           <div className="qs-s5">
             <div className="qs-s5-tel"><QaytishSahna t1={{ yorliq: QAYTISH_SAHNA.yopiqYorliq, kor: 'qulf', kartalar, ustki }} /></div>
             <div className="qs-s5-btn">{osti}</div>
@@ -1828,7 +1828,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
     : { uz: `Keyingi bo'lim — «${stepN + 1} · ${steps[stepN].h.uz}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующий раздел — «${stepN + 1} · ${steps[stepN].h.ru}»: выполните и нажмите «Готово».` };
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? DAVOM : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
-      <QBlok til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{ustida}</>} zoom={Zoomable}
+      <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{ustida}</>} zoom={Zoomable}
         qadamlar={steps.map(c => ({
           h: tr(c.h),
           t: <>{tx(c.t)}{c.bandlar && c.bandlar.map((b, i) => (b.prompt
@@ -1840,7 +1840,6 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
         tugadi={done} tugadiMatn={tr(doneText)} natija={natija} natijaYorliq={tr(NATIJA_YORLIQ)}
         pastki={<MentorPracticeStats live={_live} screen={screen} />}>
         {done && osti}
-        {ulgur && !done && <p className="qs-ulgur">{tx(ulgur)}</p>}
         {ortda && <p className="qs-ortda">{tr({ uz: "Ortda qoldingizmi — Mentor misolini alohida papkada ochib ko'ring:", ru: "Отстали? Откройте пример Ментора в отдельной папке:" })} <code className="qs-buyruq">{ORTDA[0]}</code> · <code className="qs-buyruq">{ORTDA[1]}</code> · <code className="qs-buyruq">{ORTDA[2]}</code> {tx(ortda)}</p>}
       </QBlok>
     </Stage>
@@ -1924,7 +1923,8 @@ const ScreenA1 = (props) => {
       mentor={{ uz: "Talabni uch qatorda o'zingiz yozasiz, Mentor namunasi «Yordam» ortida; «1 · Ochish»dan boshlang.", ru: "Требование вы пишете сами в три строки, образец Ментора — в «Подсказке»; начните с «1 · Открыть»." }}
       ustida={trekTugma}
       steps={[
-        { h: { uz: 'Ochish', ru: 'Открыть' }, t: { uz: "Antigravity'da o'z repo'ngizni oching — 8-darsda to'xtagan joyingizdan. Terminalda `git status`: `.env` fayllari ro'yxatda ko'rinmasin. Mobil trekda `npx expo start` ishlab tursin, ilova telefoningizda ochiq bo'lsin; web-trekda saytingiz ochiq tursin.", ru: 'Откройте свой репозиторий в Antigravity — с места, где остановились на 8-м уроке. В терминале `git status`: файлов `.env` в списке быть не должно. В мобильном треке пусть работает `npx expo start` и приложение открыто на телефоне; в веб-треке пусть открыт сайт.' },
+        // F-1015-294: trek tanlangan bo'lsa faqat o'sha trek jumlasi; tanlanmagan — ikkalasi
+        { h: { uz: 'Ochish', ru: 'Открыть' }, t: { uz: `Antigravity'da o'z repo'ngizni oching — 8-darsda to'xtagan joyingizdan. Terminalda \`git status\`: \`.env\` fayllari ro'yxatda ko'rinmasin.${trek === 'web' ? ' Saytingiz ochiq tursin.' : trek === 'mobil' ? " `npx expo start` ishlab tursin, ilova telefoningizda ochiq bo'lsin." : " Mobil trekda `npx expo start` ishlab tursin, ilova telefoningizda ochiq bo'lsin; web-trekda saytingiz ochiq tursin."}`, ru: `Откройте свой репозиторий в Antigravity — с места, где остановились на 8-м уроке. В терминале \`git status\`: файлов \`.env\` в списке быть не должно.${trek === 'web' ? ' Пусть открыт сайт.' : trek === 'mobil' ? ' Пусть работает `npx expo start` и приложение открыто на телефоне.' : ' В мобильном треке пусть работает `npx expo start` и приложение открыто на телефоне; в веб-треке пусть открыт сайт.'}` },
           bandlar: [
             { uz: "Ikki savolga javob toping: ilova ochiq turganda foydalanuvchi qaysi o'zgarishni bilsa, biror ish qiladi? Xabarda nima yoziladi? (Mentor misolida: o'zi qo'shilmagan o'yinda bir yoki ikki joy qolsa — «Shanba, 18:00 — 2 joy qoldi».)", ru: "Найдите ответы на два вопроса: о каком изменении пользователю важно узнать при открытом приложении, чтобы он что-то сделал? Что написать в сообщении? (В примере Ментора: если в игре, к которой он не присоединился, осталось одно или два места, — «Суббота, 18:00 — осталось 2 места».)" },
             { uz: "Mahsulotingizda shunday o'zgarish bo'lmasa — 4-darsdagi jonli xabarlaringizdan birini foydaliroq qiling: matni foydalanuvchiga keyin nima qilishini aytsin.", ru: 'Если в вашем продукте такого изменения нет — сделайте полезнее одно из живых сообщений 4-го урока: пусть текст говорит пользователю, что делать дальше.' }
@@ -1933,7 +1933,11 @@ const ScreenA1 = (props) => {
           vazifa: { uz: "Ilova ochiq turganda foydalanuvchi o'zi uchun foydali o'zgarishni jonli xabarda ko'radi — ism yo'q, o'z harakati uchun emas.", ru: 'При открытом приложении пользователь видит в живом сообщении полезное для себя изменение — без имени, не на своё действие.' },
           prompt: { satrlar: P_SATRLAR, joylar: P_JOYLAR }, yordam: trek === 'mobil' ? A1_YORDAM.filter(l => !l.web) : A1_YORDAM },
         { h: { uz: 'Ishga tushirish', ru: 'Запуск' }, t: { uz: "agent tugatgach: `git status` — o'zgargan fayllar agent aytgani bilan bir xil, `.env` yo'q; har faylni `git add <fayl>` bilan qo'shing, `git commit -m \"jonli xabar: joy qoldi\"`, `git push`.", ru: 'когда агент закончит: `git status` — изменённые файлы совпадают с тем, что сказал агент, `.env` нет; добавьте каждый файл через `git add <fayl>`, `git commit -m "jonli xabar: joy qoldi"`, `git push`.' },
-          bandlar: [{ uz: "Mobil trekda Expo Go ilovani odatda o'zi qayta yuklaydi (bo'lmasa — terminalda `r`). Web-trekda push'dan keyin Netlify saytni odatda o'zi yangilaydi.", ru: 'В мобильном треке Expo Go обычно сам перезагружает приложение (если нет — `r` в терминале). В веб-треке после push Netlify обычно сам обновляет сайт.' }],
+          bandlar: [trek === 'mobil'
+            ? { uz: "Expo Go ilovani odatda o'zi qayta yuklaydi (bo'lmasa — terminalda `r`).", ru: 'Expo Go обычно сам перезагружает приложение (если нет — `r` в терминале).' }
+            : trek === 'web'
+              ? { uz: "Push'dan keyin Netlify saytni odatda o'zi yangilaydi.", ru: 'После push Netlify обычно сам обновляет сайт.' }
+              : { uz: "Mobil trekda Expo Go ilovani odatda o'zi qayta yuklaydi (bo'lmasa — terminalda `r`). Web-trekda push'dan keyin Netlify saytni odatda o'zi yangilaydi.", ru: 'В мобильном треке Expo Go обычно сам перезагружает приложение (если нет — `r` в терминале). В веб-треке после push Netlify обычно сам обновляет сайт.' }],
           err: XATO_GAP },
         { h: { uz: 'Tekshirish', ru: 'Проверка' }, t: { uz: "talabingizning har qatorini ko'ring:", ru: 'проверьте каждую строку требования:' },
           bandlar: [
@@ -2055,7 +2059,7 @@ const ScreenA3 = (props) => {
           bandlar: [
             { uz: "Bu son eslatma bosilganini aytadi; eslatma bo'lmasa ham ochgan bo'larmidi — buni aytmaydi.", ru: 'Это число говорит, что на напоминание нажали; открыл бы человек и без напоминания — этого оно не говорит.' },
             { uz: "O'chirgich qayerda turishini o'ylang (Mentor misolida — «Hisobdan chiqish» yonida, nomi «Eslatmalar»; sozlama ekani ko'rinib tursin — chiqish tugmasiga o'xshamasin).", ru: "Подумайте, где будет переключатель (в примере Ментора — рядом с «Hisobdan chiqish» («Выйти из аккаунта»), название «Eslatmalar» («Напоминания»); пусть видно, что это настройка, — не похоже на кнопку выхода)." },
-            { uz: "Web-trekda: sanoq yozuvi `xabardan-ochdi` — «Siz yo'q paytingizda» qatori bosilib o'yin ochilganda (sahifa ochilishining o'zi emas); o'chirgich nomi «Xabarlar».", ru: "В веб-треке: запись подсчёта `xabardan-ochdi` — когда нажали строку «Пока вас не было» и открылась игра (а не само открытие страницы); название переключателя «Xabarlar»." }
+            ...(trek === 'mobil' ? [] : [{ uz: "Web-trekda: sanoq yozuvi `xabardan-ochdi` — «Siz yo'q paytingizda» qatori bosilib o'yin ochilganda (sahifa ochilishining o'zi emas); o'chirgich nomi «Xabarlar».", ru: "В веб-треке: запись подсчёта `xabardan-ochdi` — когда нажали строку «Пока вас не было» и открылась игра (а не само открытие страницы); название переключателя «Xabarlar»." }]) // F-1015-294: mobil trekda yo'q
           ] },
         { h: { uz: 'Prompt', ru: 'Промпт' }, t: P_BAND,
           vazifa: { uz: "Eslatma bosilib ilova ochilganda sanoq yozuvi qo'shiladi; foydalanuvchi eslatmalarni o'zi o'chira oladi.", ru: 'Когда по напоминанию нажали и приложение открылось, добавляется запись подсчёта; пользователь может сам выключить напоминания.' },
@@ -2322,6 +2326,7 @@ export default function RetentionDayLesson({ lang: langProp, onFinished, liveTok
         .qs-pop { display: inline-block; animation: qs-pop 0.55s cubic-bezier(.3,1.5,.5,1); color: ${T.accent}; }
         @keyframes qs-pop { 0% { transform: scale(1.45); } 100% { transform: scale(1); } }
         .qs-viz { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+        .qs-kir { animation: qs-kirdi .4s ease-out both; } /* F-1015-294: sahna bashoratdan keyin kiradi (213.7) */
         p.qs-joriy { margin: 0; padding: 8px 12px; border-radius: 10px; background: ${T.paper}; border: 1px solid ${T.line}; font-size: 14px; line-height: 1.45; color: ${T.ink}; }
         /* Yashil xulosa ichida: taxmin qatori (kichik) · xulosa · izoh (ingichka ajratgich) — E 42 */
         .q-xulosa .qs-x-tx { display: block; margin-bottom: 4px; font-size: 12.5px; font-weight: 700; color: ${T.ink2}; }
@@ -2554,7 +2559,7 @@ export default function RetentionDayLesson({ lang: langProp, onFinished, liveTok
           .qs-sahna.tik.ikki .qs-tel-ust, .qs-sahna.tik.ikki .qs-telefon { width: 168px; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .qs-halqa, .qs-halqa-i, .qs-k.faol .q-variant, .qs-halqa-g .q-chip, .qs-chorla > .q-chip, .qs-flash.yangi .fc-card .fc-front { animation: none !important; }
+          .qs-halqa, .qs-halqa-i, .qs-k.faol .q-variant, .qs-halqa-g .q-chip, .qs-chorla > .q-chip, .qs-flash.yangi .fc-card .fc-front, .qs-kir { animation: none !important; }
           .qs-kv { display: none !important; }
           .qs-pop, .qs-chiziq-i, .qs-tel-ekran, .qs-eslatma, .qs-jonli, .qs-karta, .qs-belgi, .qs-belgi i, .qs-katak i, .qs-br-jonli, .qs-tasma-q, .qs-siz-yoq, .qs-sanoq-r { animation: none !important; transition: none !important; }
           .qs-jonli.ket { opacity: 0; } .qs-eslatma.h-xato { opacity: 0.35; }

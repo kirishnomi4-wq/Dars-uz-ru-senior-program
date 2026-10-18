@@ -976,7 +976,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Demoni ikkinchi marta ko'rsatsangiz, <span className="italic" style={{ color: T.accent }}>nima bo'ladi?</span></>, ru: <>Что будет, если показать демо <span className="italic" style={{ color: T.accent }}>второй раз?</span></> })}
         mentor={<Mentor>{tr(mGap)}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={{ uz: "Mentor demoni ikkinchi marta ko'rsatsa, nima bo'ladi?", ru: 'Что будет, если Ментор покажет демо второй раз?' }} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        vizual={<div className="dp-sahna">
+        vizual={!taxmin ? null : <div className="dp-sahna">
           <SsenariyChiziq holat={yakun ? [] : chip} yorliq={yakun ? {} : yorl} />
           <Taymer tol={yakun ? 0 : tol} reja max={120} dur={q === 0 && band ? 9800 : 900} />
           {qatorlar && <span className="dp-tk-qator">
@@ -1090,7 +1090,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Internet uzildi — <span className="italic" style={{ color: T.accent }}>demoni qanday davom ettirasiz?</span></>, ru: <>Интернет пропал — <span className="italic" style={{ color: T.accent }}>как продолжить демо?</span></> })}
         mentor={<Mentor>{tr(mGap)}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={{ uz: "Uch yo'ldan nechtasi Yechim bo'lagining 90 soniyasiga sig'adi?", ru: 'Сколько из трёх путей уложатся в 90 секунд части «Решение»?' }} variantlar={S5_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        vizual={<div className="dp-sahna">
+        vizual={!taxmin ? null : <div className="dp-sahna">
           <SsenariyChiziq holat={['ok', 'ok']} yorliq={{ 1: { t: { uz: "internet yo'q", ru: 'нет интернета' }, tur: 'qizil' } }} />
           <Taymer tol={tol} holat={tmHolat} max={90} yechim ust={tmUst} dur={dur} />
           <div className="dp-qurilma bir">
@@ -1945,13 +1945,12 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!ochiq} label={ochiq ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className={cx('dp-blok', qulfli && 'qulf', done && 'tugadi')}>
-        <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tx(mGap)}</Mentor>} zoom={Zoomable}
+        <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tx(mGap)}</Mentor>} zoom={Zoomable}
           qadamlar={steps.map(c => ({ h: tx(c.h), t: c.t }))}
           joriy={stepN} onBajardim={bajardim} onQaytar={qaytar} mentorRejim={isMentorLive}
           tugadi={done} tugadiMatn={doneText ? tr(doneText) : null} natija={natija} natijaYorliq={tr(NATIJA_YORLIQ)}
           pastki={<MentorPracticeStats live={_live} screen={screen} />}>
           {ortda && !done && <p className="dp-ortda">{tx(ortda)}</p>}
-          {ulgur && !done && <p className="dp-ulgur">{tx(ulgur)}</p>}
           {ustoz && isMentorLive && <div className="dp-ustoz"><b>{tr({ uz: "O'qituvchi eslatmasi", ru: 'Заметка для учителя' })}</b>{ustoz.map((s, i) => <span key={i}>{tx(s)}</span>)}</div>}
         </QBlok>
       </div>
@@ -2576,6 +2575,9 @@ export default function DemoPrepLesson({ lang: langProp, onFinished, liveToken }
         @keyframes dp-chorla-v { 0% { box-shadow: inset 0 0 0 1.5px ${fon(T.accent, 0.55)}, 0 0 0 0 ${fon(T.accent, 0.38)}; } 70%, 100% { box-shadow: inset 0 0 0 1.5px ${fon(T.accent, 0.55)}, 0 0 0 9px ${fon(T.accent, 0)}; } }
         @keyframes dp-chorla-c { 0% { box-shadow: 0 0 0 0 ${fon(T.accent, 0.38)}; } 70%, 100% { box-shadow: 0 0 0 8px ${fon(T.accent, 0)}; } }
         .dp-bash-ix { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; padding: 7px 12px; border-radius: 10px; background: ${T.paper}; border: 1px solid ${T.line}; font-size: 13.5px; color: ${T.ink2}; }
+        .dp-bash-ix ~ .q-split, .dp-bash-ix ~ .q-col { animation: dp-sahna-kirdi .45s ease-out both; }
+        @keyframes dp-sahna-kirdi { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .dp-bash-ix ~ .q-split, .dp-bash-ix ~ .q-col { animation: none; } }
         .dp-bash-ix b { color: ${T.ink}; font-weight: 700; padding: 1px 8px; border-radius: 999px; background: ${T.accentSoft}; }
         .q-xulosa .dp-x-tx { display: block; margin-bottom: 4px; font-size: 12.5px; font-weight: 700; color: ${T.ink2}; }
         .q-xulosa .dp-x-tx b { color: ${T.ink}; } .q-xulosa .dp-x-tx.ok, .q-xulosa .dp-x-tx.ok b { color: ${T.ok}; } .q-xulosa .dp-x-tx b.yoq { color: ${T.err}; }

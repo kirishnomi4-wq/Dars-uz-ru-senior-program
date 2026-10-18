@@ -1111,8 +1111,8 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <b className="tv-savol-s">{tr(s.savol)}</b>
         <span className="tv-savol-q"><b>{tr(NIMAGA)}</b> {tr(s.q4)}</span>
         <span className="tv-kulrang">{tr({ uz: 'Varaqdan bosib toping', ru: 'Найдите и нажмите на листе' })}</span>
+        {taxmin && taxmin !== 'qabul' && <span className="tv-kulrang">{tr({ uz: 'Uchtaga yetmaslik — tuzatish sababi emas.', ru: 'Не набралось трёх — не причина для исправления.' })}</span>}
       </div>
-      <p className="tv-kulrang">{tr({ uz: 'Uchtaga yetmaslik — tuzatish sababi emas.', ru: 'Не набралось трёх — не причина для исправления.' })}</p>
       {xato && <QXato>{tr(S4_XATO[xato])}</QXato>}
       {ipucha && !xato && <p className="tv-ipucha fade-step"><span className="tv-ip-d">{tr({ uz: "O'ngdagi savolni o'qing va javobini chapdagi varaqdan bosing.", ru: 'Прочитайте вопрос справа и нажмите ответ на листе слева.' })}</span><span className="tv-ip-m">{tr({ uz: "Pastdagi savolni o'qing va javobini yuqoridagi varaqdan bosing.", ru: 'Прочитайте вопрос ниже и нажмите ответ на листе выше.' })}</span></p>}
     </div>
@@ -1126,7 +1126,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         bashorat={!taxmin
           ? <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr(S4_SAVOL)} variantlar={S4_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} />
           : <>{!done && <BashoratQ savol={tr(S4_SAVOL)} javob={tx ? tr(tx.t) : ''} />}</>}
-        vizual={tugadi ? <div className="tv-fokus">{varaq}</div> : <div className="tv-ikki s4"><div className="tv-o">{varaq}</div>{karta}</div>}
+        vizual={!taxmin ? null : tugadi ? <div className="tv-fokus">{varaq}</div> : <div className="tv-ikki s4 tv-sahna-kir"><div className="tv-o">{varaq}</div>{karta}</div>}
         xulosa={done && <XulosaQ natija={tx && <TaxminQ togri={taxmin === 'qabul'} haqiqat={tr({ uz: 'qabul', ru: 'принято' })} />}
           matn={tr({ uz: "Bu misolda 6 dan 3 yozma tasdiq — qabul: tekshiruv halollikni ko'radi, sonni emas.", ru: 'В этом примере 3 подтверждения из 6 — принято: проверка смотрит на честность, а не на число.' })}
           izoh={tr({ uz: '12-Modulda hisobotni shunday tekshirgansiz — bugun uch savol yozma tasdiqlar uchun.', ru: 'В 12-м модуле вы так проверяли отчёт — сегодня три вопроса для письменных подтверждений.' })} />}
@@ -1401,6 +1401,18 @@ const S7_PRACTICE = { tekshirildi: PRACTICE_BASE + 7, tuzatish: PRACTICE_BASE + 
 const MANBA_T = [{ k: 'chat', t: { uz: 'chat', ru: 'чат' } }, { k: 'qogoz', t: { uz: "qog'oz", ru: 'бумага' } }];
 // ===== SCREEN 6 — YOZMA TASDIQLARINGIZ (QMustaqil; ketma-ket karta, 3 qism: Suhbatlar · Xabar · Javoblar — SABOQ 9, 13, 29, E 43, E 53) =====
 const yangiQ1 = () => ({ id: null, kim: '', gap: '', javob: null, narx: '', hozir: '', qachon: bugun() });
+// 213.11: 1-qism savollari ketma-ket (F-1015-302)
+const S6_QADAM = ['kim', 'belgi', 'gap', 'narx', 'hozir', 'qachon'];
+const S6_QADAM_NOM = { kim: { uz: 'Kim edi', ru: 'Кто это был' }, belgi: { uz: 'Javobi', ru: 'Ответ' }, gap: { uz: 'Nima dedi', ru: 'Что сказал' }, narx: { uz: 'Narx', ru: 'Цена' }, hozir: { uz: 'Hozir nima qiladi', ru: 'Что делает сейчас' }, qachon: { uz: 'Qachon', ru: 'Когда' } };
+const S6_QADAM_X = { kimBosh: 0, rol: 0, belgi: 1, gapBosh1: 2, xulosa1: 2 };
+const q1Yigma = (k, f) => {
+  if (k === 'kim') return String(f.kim || '').trim() || '—';
+  if (k === 'belgi') { const b = BELGI1.find(x => x.k === f.javob); return b ? tr(b.t) : '—'; }
+  if (k === 'gap') return String(f.gap || '').trim() ? '«' + String(f.gap).trim() + '»' : '—';
+  if (k === 'narx') { const n = narxSon(f.narx); return n ? sonFmt(n) : '—'; }
+  if (k === 'hozir') return String(f.hozir || '').trim() || '—';
+  return f.qachon || '—';
+};
 const s6Boshla = () => {
   const realN = realSuhbatlar().length;
   return { qism: realN >= 3 ? 1 : 0, q1: yangiQ1(), q1Otdi: realN >= 3, qoshildi: [], xabar: (() => { const n = narxOl(); return { nima: '', narx: n && n.narx ? String(n.narx) : '', davr: n && n.davrKun ? String(n.davrKun) : '' }; })(), xabarSaqlandi: false, ota: false, odamlar: null, boshqa: '', yubormaydi: false, javob: {}, jn: 0, tidN: 0 };
@@ -1410,6 +1422,11 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [st, setSt] = useState(() => (storedAnswer && storedAnswer.st) || s6Boshla());
   const [xato, setXato] = useState(null);
   const [yordam, setYordam] = useState(false);
+  // 213.11 (F-1015-302): 1-qism formasi bittadan — joriy savol ramkali kartada, javob berilgani yashil qatorga yig'iladi
+  const [qi, setQi] = useState(0);
+  const [otdi, setOtdi] = useState(0);
+  const q1Kalit = (st.q1 && st.q1.id) || 'yangi' + ((st.qoshildi && st.qoshildi.length) || 0);
+  useEffect(() => { setQi(0); setOtdi(st.q1 && st.q1.id ? S6_QADAM.length : 0); }, [q1Kalit]);
   const [suhbatlar, setSuhbatlar] = useState(() => suhbatOl().suhbatlar);
   const [yangiR, setYangiR] = useYangi(1200);
   const [uch, qatlam] = useUchish();
@@ -1434,8 +1451,8 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const q1Saqla = (yana) => {
     const f = st.q1;
     const r = s6Q1(f);
-    if (r.blok) { setXato({ k: r.blok }); return; }
-    if (r.yumshoq && !(xato && xato.yumshoq && xato.k === r.yumshoq)) { setXato({ k: r.yumshoq, yumshoq: true }); return; }
+    if (r.blok) { setXato({ k: r.blok }); setQi(S6_QADAM_X[r.blok] ?? 0); return; }
+    if (r.yumshoq && !(xato && xato.yumshoq && xato.k === r.yumshoq)) { setXato({ k: r.yumshoq, yumshoq: true }); setQi(S6_QADAM_X[r.yumshoq] ?? 0); return; }
     const d = suhbatOl();
     const maxN = d.suhbatlar.reduce((m, s) => Math.max(m, Number(String(s && s.id || '').replace(/\D/g, '')) || 0), 0);
     const yoz = { id: f.id || 's' + (maxN + 1), tur: 'real', kim: f.kim.trim(), hozir: String(f.hozir || '').trim() || null, gap: String(f.gap || '').trim(), javob: f.javob, narxi: f.javob === 'javobsiz' ? null : narxSon(f.narx), qachon: f.qachon || bugun() };
@@ -1539,23 +1556,41 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     const f = st.q1;
     const q1Y = (p) => yangila(s => ({ ...s, q1: { ...s.q1, ...p } }));
     const xk = xato && xato.k;
+    const q1Keyingi = (belgi) => {
+      const k = S6_QADAM[qi];
+      if (k === 'kim') { const kim = String(f.kim || '').trim(); if (!kim) { setXato({ k: 'kimBosh' }); return; } if (rolBlok(kim)) { setXato({ k: 'rol' }); return; } }
+      if (k === 'belgi' && !(belgi || f.javob)) { setXato({ k: 'belgi' }); return; }
+      if (k === 'gap' && !String(f.gap || '').trim() && f.javob !== 'javobsiz') { setXato({ k: 'gapBosh1' }); return; }
+      setXato(null);
+      const n = Math.min(qi + 1, S6_QADAM.length);
+      setOtdi(o => Math.max(o, n)); setQi(n < S6_QADAM.length ? n : S6_QADAM.length);
+    };
     karta = realN >= 3 && !f.id
       ? <div className="tv-karta"><p className="tv-kulrang katta">{tr({ uz: 'Real suhbatlar uchtagacha yoziladi.', ru: 'Реальных разговоров записывают до трёх.' })}</p></div>
       : (
         <div ref={kartaRef} key={'q1' + (f.id || st.qoshildi.length)} className="tv-karta">
           <span className="tv-karta-h">{tr({ uz: 'Uydagi suhbat', ru: 'Разговор дома' })}</span>
-          <div className="tv-qator2 kb">
-            <Kirit n="1" value={f.kim} max={40} ph={tr({ uz: 'Kim edi? Rolini yozing', ru: 'Кто это был? Напишите роль' })} err={xk === 'kimBosh' || xk === 'rol'} halqa={!f.kim} onChange={(v) => q1Y({ kim: v })} />
-            <div className="tv-bk">
-              <div className={cxx('tv-belgilar', xk === 'belgi' && 'err')}>{BELGI1.map(b => <QChip key={b.k} holat={f.javob === b.k ? 'on' : undefined} onClick={() => q1Y({ javob: b.k })}>{tr(b.t)}</QChip>)}</div>
-              <p className="tv-kulrang">{tr({ uz: "Javob yo'q — odam javob bermasa.", ru: 'Нет ответа — если человек не ответил.' })}</p>
-            </div>
-          </div>
-          <Matn n="2" value={f.gap} max={160} ph={tr({ uz: "U nima dedi? So'zma-so'z", ru: 'Что он сказал? Дословно' })} err={xk === 'gapBosh1' || xk === 'xulosa1'} halqa={!!f.kim && !f.gap} onChange={(v) => q1Y({ gap: v })} />
-          <div className="tv-qator3">
-            <Kirit n="3" son value={f.narx} max={9} ph={tr({ uz: "Narx, so'm — aytgan bo'lsa", ru: 'Цена, сумы — если назвал' })} onChange={(v) => q1Y({ narx: v })} />
-            <Kirit n="4" value={f.hozir} max={80} ph={tr({ uz: "Hozir nima qiladi? Yozgan bo'lsangiz", ru: 'Что он делает сейчас? Если записали' })} onChange={(v) => q1Y({ hozir: v })} />
-            <Kirit n="5" tur="date" value={f.qachon} ph={tr({ uz: 'Qachon gaplashdingiz?', ru: 'Когда говорили?' })} onChange={(v) => q1Y({ qachon: v })} />
+          <div className="tv-qadamlar" onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey && e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) { e.preventDefault(); q1Keyingi(); } }}>
+            {S6_QADAM.map((k, i) => {
+              const nom = tr(S6_QADAM_NOM[k]);
+              if (i === qi) return (
+                <div key={k} className="tv-sav fade-step">
+                  <span className="tv-sav-y">{i + 1} · {nom}</span>
+                  {k === 'kim' && <Kirit value={f.kim} max={40} ph={tr({ uz: 'Kim edi? Rolini yozing', ru: 'Кто это был? Напишите роль' })} err={xk === 'kimBosh' || xk === 'rol'} halqa={!f.kim} onChange={(v) => q1Y({ kim: v })} />}
+                  {k === 'belgi' && <>
+                    <div className={cxx('tv-belgilar', xk === 'belgi' && 'err')}>{BELGI1.map(b => <QChip key={b.k} holat={f.javob === b.k ? 'on' : undefined} onClick={() => { q1Y({ javob: b.k }); q1Keyingi(b.k); }}>{tr(b.t)}</QChip>)}</div>
+                    <p className="tv-kulrang">{tr({ uz: "Javob yo'q — odam javob bermasa.", ru: 'Нет ответа — если человек не ответил.' })}</p>
+                  </>}
+                  {k === 'gap' && <Matn value={f.gap} max={160} ph={f.javob === 'javobsiz' ? tr({ uz: "Nima dedi — bo'lsa, so'zma-so'z", ru: 'Что сказал — если было, дословно' }) : tr({ uz: "U nima dedi? So'zma-so'z", ru: 'Что он сказал? Дословно' })} err={xk === 'gapBosh1' || xk === 'xulosa1'} halqa={!f.gap && f.javob !== 'javobsiz'} onChange={(v) => q1Y({ gap: v })} />}
+                  {k === 'narx' && <Kirit son value={f.narx} max={9} ph={tr({ uz: "Narx, so'm — aytgan bo'lsa", ru: 'Цена, сумы — если назвал' })} onChange={(v) => q1Y({ narx: v })} />}
+                  {k === 'hozir' && <Kirit value={f.hozir} max={80} ph={tr({ uz: "Hozir nima qiladi? Yozgan bo'lsangiz", ru: 'Что он делает сейчас? Если записали' })} onChange={(v) => q1Y({ hozir: v })} />}
+                  {k === 'qachon' && <Kirit tur="date" value={f.qachon} ph={tr({ uz: 'Qachon gaplashdingiz?', ru: 'Когда говорили?' })} onChange={(v) => q1Y({ qachon: v })} />}
+                  {k !== 'belgi' && <div className="tv-sav-t"><QTugma ikkinchi onClick={() => q1Keyingi()}>{i < S6_QADAM.length - 1 ? tr({ uz: 'Keyingi', ru: 'Дальше' }) : tr({ uz: 'Tayyor', ru: 'Готово' })}</QTugma></div>}
+                </div>
+              );
+              if (i < otdi) return <QChip key={k} className="tv-yig" holat="ok" onClick={() => setQi(i)}><i>✓</i><span>{nom}:</span><b>{q1Yigma(k, f)}</b></QChip>;
+              return <span key={k} className="tv-kul-q">{i + 1} · {nom}</span>;
+            })}
           </div>
           <XatoQ x={xato} />
           <div className="tv-tugmaq">
@@ -2952,6 +2987,16 @@ export default function PmPayCheckLesson({ lang: langProp, onFinished, liveToken
         .tv-chorla > .q-chip:not(:disabled) { border-color: ${fon(T.accent, 0.6)}; animation: tv-chorla 1.8s ease-out .4s 2; }
         .tv-chorla > :nth-child(2) { animation-delay: .65s; } .tv-chorla > :nth-child(3) { animation-delay: .9s; } .tv-chorla > :nth-child(4) { animation-delay: 1.15s; }
         .tv-skol { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+        .tv-sahna-kir { animation: tv-kirdi .45s ease-out both; }
+        @keyframes tv-kirdi { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .tv-sahna-kir { animation: none; } }
+        .tv-qadamlar { display: flex; flex-direction: column; gap: 8px; }
+        .tv-sav { display: flex; flex-direction: column; gap: 8px; padding: 12px 14px; border-radius: 12px; border: 1.5px solid ${T.accent}; background: ${T.paper}; min-width: 0; }
+        .tv-sav-y { font-size: 11px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: ${T.accent}; }
+        .tv-sav-t { display: flex; justify-content: flex-end; }
+        .q-chip.tv-yig, .tv-yig { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; width: 100%; padding: 8px 14px; border-radius: 12px; border: 0; background: ${T.okFon}; color: ${T.ok}; font-family: inherit; font-size: 13.5px; font-weight: 600; text-align: left; cursor: pointer; }
+        .tv-yig i { font-style: normal; font-weight: 800; } .tv-yig b { font-weight: 700; min-width: 0; overflow-wrap: anywhere; }
+        .tv-kul-q { padding: 8px 14px; border-radius: 12px; background: ${T.bg}; color: ${T.ink2}; font-size: 13px; font-weight: 600; }
         .tv-sq-done { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 10px; background: ${T.okFon}; font-size: 12.5px; color: ${T.ink}; }
         .tv-sq-done b { color: ${T.ok}; } .tv-sq-done em { margin-left: auto; font-style: normal; font-weight: 800; color: ${T.ok}; }
         .tv-savol { display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; border-radius: 14px; background: ${T.paper}; border: 1.5px solid ${fon(T.accent, 0.5)}; box-shadow: 0 10px 24px -14px rgba(${T.shadowBase},0.35); animation: tv-kir .4s ease-out both; }

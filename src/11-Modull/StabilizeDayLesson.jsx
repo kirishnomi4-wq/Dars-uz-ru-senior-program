@@ -1004,9 +1004,9 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
         sarlavha={tr({ uz: <>Besh tekshiruvning qaysilarida <span className="italic" style={{ color: T.accent }}>ilova buzildi?</span></>, ru: <>В каких из пяти проверок <span className="italic" style={{ color: T.accent }}>приложение сломалось?</span></> })}
         mentor={<Mentor>{tr(mGap)}</Mentor>}
-        harakat={!done && yoz < 3 && <div className="sb-harakat"><button type="button" className={cx('sb-korish', halqa(!!taxmin && !yurdi))} disabled={!taxmin || yurdi} onClick={korish}>{tr({ uz: "Tekshiruvni ko'rish", ru: 'Посмотреть проверку' })}</button></div>}
+        harakat={!taxmin ? null : !done && yoz < 3 && <div className="sb-harakat sb-sahna-kir"><button type="button" className={cx('sb-korish', halqa(!!taxmin && !yurdi))} disabled={!taxmin || yurdi} onClick={korish}>{tr({ uz: "Tekshiruvni ko'rish", ru: 'Посмотреть проверку' })}</button></div>}
         bashorat={<Bashorat savol={{ uz: 'Besh tekshiruvdan nechtasida Mentor ilovasi buzildi?', ru: 'В скольких из пяти проверок сломалось приложение Ментора?' }} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        vizual={<div className={cx('sb-s2', tugadi && 'tugadi')}>
+        vizual={!taxmin ? null : <div className={cx('sb-s2', 'sb-sahna-kir', tugadi && 'tugadi')}>
           <YolSahna kadr={done ? YOL_SAHNA.xabar[YOL_SAHNA.xabar.length - 1] : kd} />
           <div className="sb-s2-ong">
             {!done && <S2Karta i={q} yoz={yoz} onBelgi={belgila} xatoK={xato} xato={xato > 0} />}
@@ -1897,7 +1897,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className={cx('sb-blok', qulfli && 'qulf')}>
-        <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
+        <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
           qadamlar={steps.map((c, i) => ({
             h: otkaz.includes(i) ? <span className="sb-otk">{tr(c.h)} <em>· {tr({ uz: "o'tkazildi", ru: 'пропущен' })}</em></span> : tr(c.h),
             t: c.t,
@@ -1906,7 +1906,6 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
           tugadi={done} tugadiMatn={done && doneText ? tx(doneText) : null} natija={natija} natijaYorliq={tr(NATIJA_YORLIQ)}
           pastki={<>{done && izoh && <QIzoh>{tx(izoh)}</QIzoh>}{done && pastQator}<MentorPracticeStats live={_live} screen={screen} /></>}>
           {ortda && <p className="sb-ortda">{tx(ortda)}</p>}
-          {ulgur && !done && <p className="sb-ulgur">{tx(ulgur)}</p>}
           {ustoz && isMentorLive && <div className="sb-ustoz"><b>{tr({ uz: "O'qituvchi eslatmasi", ru: 'Заметка для учителя' })}</b>{ustoz.map((s, i) => <span key={i}>{tx(s)}</span>)}</div>}
         </QBlok>
       </div>
@@ -2649,6 +2648,9 @@ export default function StabilizeDayLesson({ lang: langProp, onFinished, liveTok
         p.sb-reja-past2 { margin: 0; font-size: 13px; color: ${T.ink2}; }
         /* 2-ekran: yozuv kartasi */
         .sb-s2 { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 22px; align-items: start; }
+        .sb-sahna-kir { animation: sb-kirdi .45s ease-out both; }
+        @keyframes sb-kirdi { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .sb-sahna-kir { animation: none; } }
         .sb-s2-ong { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
         .sb-yz { display: flex; flex-direction: column; gap: 6px; padding: 12px 14px; border-radius: 12px; background: ${T.paper}; border: 1px solid ${T.line}; box-shadow: 0 8px 20px -14px rgba(${T.shadowBase},0.5); animation: sb-kir .4s ease both; }
         .sb-yz.silk { animation: sb-silk .45s ease; }

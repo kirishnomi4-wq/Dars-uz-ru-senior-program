@@ -1849,13 +1849,12 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} deskSignal={done ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className={cx('rf-blok', qulfli && 'qulf')}>
-        <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
+        <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
           qadamlar={qadamlar}
           joriy={stepN} onBajardim={bajardim} onQaytar={qaytar} mentorRejim={isMentorLive}
           tugadi={done} tugadiMatn={holat && holat.yashil ? tx(holat.matn) : null} natija={natija} natijaYorliq={tr(NATIJA_YORLIQ)}
           pastki={<>{holat && !holat.yashil && <p className="rf-boshqa fade-step">{tx(holat.matn)}</p>}{done && pastQator && <p className="rf-past fade-step">{tx(pastQator)}</p>}{done && izoh && <QIzoh>{tx(izoh)}</QIzoh>}{done && ostida}<MentorPracticeStats live={_live} screen={screen} /></>}>
           {ortda && <p className="rf-ortda">{tx(ortda)}</p>}
-          {ulgur && !done && <p className="rf-ulgur">{tx(ulgur)}</p>}
         </QBlok>
       </div>
     </Stage>

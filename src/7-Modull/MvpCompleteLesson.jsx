@@ -908,7 +908,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Ikki o'yinchi bitta katakni band qilsa, <span className="italic" style={{ color: T.accent }}>kim oladi?</span></>, ru: <>Если два игрока бронируют одну ячейку, <span className="italic" style={{ color: T.accent }}>кому она достанется?</span></> })}
         mentor={<Mentor>{tr({ uz: "Ikkala telefonda 18:00 hozir bo'sh ko'rinadi. Avval birinchisidan, keyin ikkinchisidan band qiling.", ru: 'На обоих телефонах 18:00 сейчас выглядит свободным. Забронируйте сначала с первого, потом со второго.' })}</Mentor>}
         bashorat={bashoratQismi(S2_SAVOL, S2_TAXMIN, taxmin, setTaxmin, done)}
-        vizual={xarita}
+        vizual={!taxmin ? null : <div className="q-kir">{xarita}</div>}
         natija={done && taxminQator(S2_TAXMIN, taxmin, 'yoq', { uz: 'ikkinchi band yozilmadi — Backend rad etdi', ru: 'вторая бронь не записалась — Backend отклонил' })}
         xulosa={done && fk(tr({ uz: "Backend tekshiradi, Database bir katakni ikki marta yozdirmaydi. `band-qildi` faqat band saqlangach yoziladi.", ru: 'Backend проверяет, Database не даст записать одну ячейку дважды. `band-qildi` пишется только после сохранения брони.' }))}
       />
@@ -1025,7 +1025,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             ))}
           </div>
         )}
-        vizual={xarita}
+        vizual={!taxmin ? null : <div className="q-kir">{xarita}</div>}
         natija={done && taxminQator(S4_TAXMIN, taxmin, 'yoq', { uz: "manzil yetmadi — ro'yxat faqat token bilan keldi", ru: 'адреса не хватило — список пришёл только с токеном' })}
         xulosa={done && fk(tr({ uz: "Ega sahifasi manzili sir emas. Ro'yxatni Backend faqat token bilan beradi, parol `.env` da turadi.", ru: 'Адрес страницы владельца — не секрет. Список Backend отдаёт только по токену, пароль лежит в `.env`.' }))}
       />

@@ -57,8 +57,9 @@ Telefon «Maydon Jamoa»: O'yinlar ekrani (O'yinlar · Shanba · «Shanba, 18:00
   - Son va manbasi
   - Son, manbasi va sanasi
   - Tanlangach ixcham qator: savol · Taxminingiz: <tanlov>
+  - Bashorat yolg'iz chiqadi; tanlangach qatorga yig'iladi, shundan keyin manbalar va varaq kirib keladi. *(✎ F-1015-279, 213.7)*
 - Qadam qatori yo'q — qator nomlari varaqda, bosiladigan joy ham varaq; hisob tugmada. *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
-- Vizual: chapda uch manba maketi — «Neon · Database» (kichik jadval, `oyinchilar`) · brauzer `lending/sanoq.html` — «sanoq sahifasi», kulrang «kalit bilan» · «Umami» (Tashriflar · «Qo'shilmoqchiman»); o'ngda varaq «Maydon Jamoa» — to'rt qator nomi va yalang'och son (38 · 19 · 1 · 37%), manba va sana joyi uzuq chiziq.
+- Vizual: chapda bitta «Manbalar» kartasi — uch qator, ramkasiz, yongani binafsha chegarada *(✎ F-1015-279, 213.3)* — «Neon · Database» (kichik jadval, `oyinchilar`) · brauzer `lending/sanoq.html` — «sanoq sahifasi», kulrang «kalit bilan» · «Umami» (Tashriflar · «Qo'shilmoqchiman»); o'ngda varaq «Maydon Jamoa» — to'rt qator nomi va yalang'och son (38 · 19 · 1 · 37%), manba va sana joyi uzuq chiziq. Varaq qatorlari ramkasiz, och fonda; joriy qator binafsha chegarada *(✎ F-1015-280, 213.3 — 4, 10, 11-ekranda ham)*.
 - Qatorlar tartib bilan bosiladi (joriysi halqada); bosilgach tegishli manba maketi yonadi, manba va sana yorlig'i varaqqa uchadi, son ostida kulrang izoh chiqadi:
   1. Ro'yxatdan o'tgan — 38 / 50 · hisob · Database · 7 kun keyin; 11 tasi — sinfdosh · namuna va tekshiruv akkauntlarisiz; oldin: 27 — 3 kun keyin
   2. Asosiy harakatni qilgan — 19 · hisob · Database · 7 kun keyin; hozir kamida bitta o'yinda qatnashayotgan yoki o'yin e'lon qilgan; oldin: 13 — 3 kun keyin
@@ -91,8 +92,9 @@ Telefon «Maydon Jamoa»: O'yinlar ekrani (O'yinlar · Shanba · «Shanba, 18:00
   - Bitta tuzatishdan keyin qabul
   - Qabul
   - Tanlangach ixcham qator: savol · Taxminingiz: <tanlov>
+  - Bashorat yolg'iz chiqadi; tanlangach qatorga yig'iladi, shundan keyin varaq va savol kartasi kirib keladi. *(✎ F-1015-280, 213.7)*
 - Qadam qatori yo'q — joriy savol kartada, hisob tugmada. *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
-- Chapda — Mentor varag'i (to'liq); o'ngda — bitta savol kartasi (navbat bilan): yorliq «Mentor tekshiruvi», savol, «Nimaga qarang» qatori, ostida kulrang «Varaqdan bosib toping»; javob — varaqdagi joyni bosish:
+- Chapda — Mentor varag'i (to'liq; qatorlar ramkasiz); o'ngda — bitta savol kartasi (navbat bilan): yorliq «Mentor tekshiruvi», savol, «Nimaga qarang» qatori, ostida kulrang «Varaqdan bosib toping»; javob — varaqdagi joyni bosish:
   1. Son qayerdan? — Nimaga qarang: har son yonida manba va sana bormi? (manba yoki sana yorlig'i bosiladi — to'rttala qatorning yorliqlari yashil yonadi)
   2. Kimlar sanalgan? — Nimaga qarang: namuna va tekshiruv akkauntlari chiqarilganmi, sinfdoshlar alohida aytilganmi? (1-qator ostidagi «11 tasi — sinfdosh · namuna va tekshiruv akkauntlarisiz»)
   3. Oldingi son bormi? — Nimaga qarang: son yonida oldingi son va sanasi turibdimi — solishtirsa bo'ladimi? («oldin: 27 — 3 kun keyin» yoki «oldin: 13»; «birinchi o'lchov» yozuvlari ham yashil yonadi)
@@ -175,17 +177,19 @@ Telefon «Maydon Jamoa»: O'yinlar ekrani (O'yinlar · Shanba · «Shanba, 18:00
 - Sarlavha: Ro'yxatdan o'tganlarni sanaydigan *SQL yozamiz.*
 - Mentor: Hisobotning birinchi qatori Database'dan olinadi — Neon'dagi SQL Editor'da uni kunlar bo'yicha o'zingiz sanang.
 - Tepada ixcham qator: Hisobot · n / 4 — Ro'yxatdan o'tgan · Asosiy harakatni qilgan · Bosh raqam · Qaytganlar foizi
-- Savol (SQL oldidan): Namuna va tekshiruv akkauntlarini qaysi ustun ajratadi? · `login` · `yaratilgan` · ✔ `namuna`
+- Savol (SQL oldidan, yolg'iz — qadamlar va maydonlar hali yo'q): Namuna va tekshiruv akkauntlarini qaysi ustun ajratadi? · `login` · `yaratilgan` · ✔ `namuna`
+  - To'g'ri tanlangach savol o'rnida yashil qator «✓ Ustun: namuna», shundan keyin qadamlar va Kun · Son kiradi. *(✎ F-1015-281, 213.1)*
   - `login` tanlansa: `login` — o'zi tanlagan nom: namuna akkauntda ham bor.
   - `yaratilgan` tanlansa: `yaratilgan` — qachon ro'yxatdan o'tgani: u kunni beradi.
 - Qadamlar:
   1. Neon'da loyihangizni oching va SQL Editor'ga o'ting.
   2. Bo'sh joyni to'ldirib, SQL'ni o'zingiz yozing va «Run»ni bosing.
   3. Neon ko'rsatgan qatorlarni pastga yozing: kun va son.
-- Web-trekda (kulrang): Web-trekda — saytingizning foydalanuvchilar jadvali; unda vaqt ustuni bo'lmasa, kunlarsiz jami: `SELECT COUNT(*) FROM {jadval} WHERE namuna = false;`
 - Maydon: Kun · Son · «+ Qator» (har qator yonida ✕); ostida: Jami: N
 - Tekshiruv: Neon ko'rsatgan sonni shu yerga yozing. · Qaysi kun? Neon'dagi `kun` ustunidan oling. · Bu kun yuqorida bor — sonini o'sha qatorga yozing.
-- Yordam (bosilsa ochiladi):
+- Yordam (bosilsa ochiladi) *(✎ F-1015-281: web-trek izohi va «Vaqt tugasa» shu yerga ko'chdi)*:
+  - Web-trekda — saytingizning foydalanuvchilar jadvali; unda vaqt ustuni bo'lmasa, kunlarsiz jami: `SELECT COUNT(*) FROM {jadval} WHERE namuna = false;` (faqat web-trekda)
+  - Vaqt tugasa — keyingi mashqda 1-qatorga sanoq sahifasidagi sonni yozing va manbani «sanoq sahifasi» deb belgilang; kunlar — uyda.
   - Eslatma (SQL darslaridan): `date(…)` — vaqtdan faqat kunni oladi · `AS kun` — ustunga nom beradi · `COUNT(*)` — qatorlarni sanaydi · `WHERE` — qaysi qatorlar olinadi · `GROUP BY kun` — har kun uchun alohida sanaydi · `ORDER BY kun` — kunlar tartibida chiqaradi.
   - Jadval nomini bilmasangiz — agentga yozing: Ro'yxatdan o'tganlar qaysi jadvalda? Faqat nomini ayt, hech narsani o'zgartirma.
   - `SELECT *` yozmang: jadvalda ism va login bor — hisobotga faqat son kerak.
@@ -198,11 +202,9 @@ GROUP BY kun
 ORDER BY kun;
 ```
   - jadval: `kun` · `count`, uch qator «?»; ostida: `oyinchilar` — Mentor misolidagi jadval. Sizda — ishga tushirishdan oldin `namuna` ustuni qo'shilgan jadval.
-  - Sizning qatorlaringiz shu yerda chiqadi. Mentor misolida bir haftada jami — 38.
 - Qator kiritilgach: Sanoq sahifasidagi «ro'yxatdan o'tgan» bilan solishtiring — odatda bir xil; farq bo'lsa, qaysi biri qachon sanalganini qarang.
 - Tugma: Bajardim — SQL ishladi, qatorlar yozildi (qulfda: Avval ustun savolini yeching · Avval Neon ko'rsatgan qatorlarni yozing)
 - Bajarilgach (yashil): Birinchi qator Database'dan olindi — namuna va tekshiruv akkauntlarisiz.
-- Pastki qator: Vaqt tugasa — keyingi mashqda 1-qatorga sanoq sahifasidagi sonni yozing va manbani «sanoq sahifasi» deb belgilang; kunlar — uyda.
 - Tugmalar: Orqaga · Davom etish
 
 ## 10 · Metrika hisobotingiz
@@ -211,12 +213,12 @@ ORDER BY kun;
 - Mentor: Birinchi qator SQL'dan keldi — qolganini sanoq sahifasi, Database va Umami'dan bittalab yozing. · 9-ekranda jami yozilmagan bo'lsa: Birinchi qatordan boshlang: sonni sanoq sahifasidan yozing.
 - Tepada ixcham qator yo'q — qatorlar chapdagi varaqda yoziladi, hisob tugmada «Yana N ta qator yozing». *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
 - Chapda — o'quvchi varag'i: nom (yoki kulrang «mahsulot nomi») · metrika hisoboti · to'rt qator (sanalmagani — kulrang «sanalmagan»)
-- O'ngda — bitta katta karta (yorliqsiz; tahrirda «Tahrirlash» *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*), har birida: Son · Manba (Database · sanoq sahifasi · Umami) · Sana · tugmalar: Saqlash · Hali sanalmagan · Yordam
+- O'ngda — bitta qator kartasi (yorliqsiz; tahrirda «Tahrirlash» *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*). **Savollar ketma-ket** *(✎ F-1015-282, 213.11)*: Son → Manba (Database · sanoq sahifasi · Umami; tanlangach o'zi yig'iladi) → Sana (bugun tayyor turadi) → Oldingi son (1 va 2-qatorda). Joriy savol binafsha ramkali kartada, «Keyingi» tugmasi yoki Enter bilan o'tiladi; javob berilgani yashil qatorga yig'iladi (✓ Son: 23 / 50 — bosilsa qayta ochiladi), navbati kelmagani kulrang qator. Oldingi darsdan kelgan qiymat (SQL soni, reja) yig'ilgan holda boshlanadi. Har qatorga bitta izoh — Son savolida. Tugmalar (doim): Saqlash · Hali sanalmagan · Yordam; yetishmagani joriy savol kartasida aytiladi va o'sha savol ochiladi.
   1. Ro'yxatdan o'tgan — Son « / 50» · shundan sinfdosh (ostida kulrang: ishga tushirish kunidagi son — bilsangiz, yangilang (ixtiyoriy)) · Oldingi son va sanasi + Sana yoki «Birinchi o'lchov»; kulrang: Namuna va tekshiruv akkauntlari sanalmaydi; sinfdoshlar sanaladi, lekin alohida aytiladi.
   2. Asosiy harakatni qilgan — Son · oldingi son yoki «Birinchi o'lchov»; kulrang: Mentor misolida — hozir kamida bitta o'yinda qatnashayotgan yoki o'yin e'lon qilgan; navbatda turgani — qo'shilgan emas.
   3. Bosh raqam — Nimani sanaydi (placeholder: Qaysi bitta raqam mahsulot ishini ko'rsatadi?) · Son
   4. Qaytganlar foizi — Birinchi davrda ochgan · Keyingi davrda ham ochgan (foiz o'zi hisoblanadi) · Davrlar; birlik — qurilma (web-trekda — brauzer); kulrang: Keyingi davrga faqat birinchi davrda ochgan qurilmalar kiradi — yangi kelganlar emas.
-  5. Pastda: qadamlar va lending — Qadamlar (har qadamga son) · Lending: tashriflar · tugma bosilishi · tashrif · bosish · eslatmadan ochdi (web-trekda — xabardan ochdi); kulrang: Bo'sh qoldirsangiz bo'ladi — zaxira rejada qayerda kamligini shu sonlar ko'rsatadi. · 9-darsdagi tekshiruv yozuvlarini o'chirmagan bo'lsangiz — yoniga «o'z qurilmam ham bor» deb yozing.
+  5. Pastda: qadamlar va lending — uch savol ketma-ket *(✎ F-1015-282)*: Qadamlar (har qadamga son) → Lending: tashriflar · tugma bosilishi → eslatmadan ochdi (web-trekda — xabardan ochdi); hammasi ixtiyoriy, «Keyingi» bilan o'tiladi; kulrang: Bo'sh qoldirsangiz bo'ladi — zaxira rejada qayerda kamligini shu sonlar ko'rsatadi. · 9-darsdagi tekshiruv yozuvlarini o'chirmagan bo'lsangiz — yoniga «o'z qurilmam ham bor» deb yozing.
 - Tekshiruv: Son yozing yoki «Hali sanalmagan»ni bosing. · Bu son qayerdan olindi? Manbani tanlang. · Qachon sanalgan? Sanani yozing. · Sinfdoshlar jami sondan ko'p bo'lolmaydi. · Asosiy harakatni qilganlar ro'yxatdan o'tganlar ichida. · Yana ochganlar birinchi davrdagidan ko'p bo'lolmaydi. · Bosh raqam nimani sanaydi? Bir qatorda yozing. · Umami — lending sonlari; ilova sonini Database beradi. · Shunday qoldirsangiz — yana «Saqlash»ni bosing.
 - Yordam (qatorga qarab):
   1. Mentor misolida: «38 / 50 · 11 tasi — sinfdosh · Database · 7 kun keyin».
@@ -242,7 +244,7 @@ ORDER BY kun;
 - 3/3 dan keyin muhr: Qabul (jonli darsda) · Tuzatish topilmadi (yakka rejimda) · Tuzatish: <qator nomi> («Uyda tuzataman» bosilgan bo'lsa); ostida: Qabul — bugungi tekshiruv natijasi: sonlar keyin yangilanadi.
 - Zaxira reja (ketma-ket uch karta):
   1. Qaysi bo'g'inda odam kam? — Kanal (6-darsdagi kanallar; yuborilgan bo'lsa «· yuborildi») · Lending (tashrif · tugma) · O'rnatish va ro'yxat (ochdi · ro'yxatdan o'tdi; web-trekda — saytni ochib ro'yxatdan o'tish) · Asosiy harakat (ro'yxatdan o'tgan · asosiy harakatni qilgan · hisob); kulrang: Bo'g'inlarning birligi har xil: sonlari solishtirilmaydi — har birining ichiga qaraladi. · 8-darsda tuzatish chiqargansiz — undan keyin kelgan qurilmalarni alohida sanash mumkin (Yordam).
-     - Maydon: Qaysi son yoki fakt buni ko'rsatadi?
+     - Maydon (bo'g'in tanlangach chiqadi *(✎ F-1015-283)*): Qaysi son yoki fakt buni ko'rsatadi?
   2. Gipoteza — maydon (placeholder: Agar …, …, chunki …)
   3. Bir haftada bajariladigan bitta ish — maydon (placeholder: Nima qilasiz?); Kanal tanlangan bo'lsa: Post yozsangiz — 6-darsdagi xavfsizlik ro'yxati (bosilsa ochiladi):
      - Faqat o'zim a'zo bo'lgan joyga yuboraman.
@@ -252,7 +254,7 @@ ORDER BY kun;
      - Bitta xabarni ko'p guruhga tashlamayman, notanish odamga shaxsiy xabar yozmayman.
      - Soxta akkaunt va sotib olingan obunachi ishlatmayman.
      - Uchrashuv taklifi kelsa — faqat kattalar bilan. Yangi akkaunt ochish shart emas.
-  - Har kartada: Saqlash · Yordam; ostida kulrang: Soxta akkaunt, o'zingiz qayta ro'yxatdan o'tish va sovg'a va'dasi — yo'q.
+  - Har kartada: Saqlash · Yordam; 3-kartada ostida kulrang *(✎ F-1015-283)*: Soxta akkaunt, o'zingiz qayta ro'yxatdan o'tish va sovg'a va'dasi — yo'q.
   - Yordam (Mentor misoli): Kanal: post faqat ikki joyga yetdi (60 kishilik guruh va sinf chati). · Agar har o'yin e'loni bilan birga havola yuborilsa, yangi odamlar keladi, chunki tashkilotchi o'z jamoasini o'zi chaqiradi. · E'lon berilgach ilovada «Havolani ulashish» tugmasi.
   - «O'rnatish va ro'yxat» tanlanganda, 8-darsda tuzatish chiqqan bo'lsa — Agentga: Neon SQL Editor uchun bitta `SELECT` yoz, o'zing ishga tushirma: `hodisalar` da birinchi `ochdi` yozuvi {tuzatish chiqqan vaqt} dan keyin bo'lgan turli qurilmalar soni va ulardan ro'yxatdan o'tgan qadami borlari soni. Natijada faqat ikki son. Jadvallarni o'zgartirma. · Mentor misolida: 15 qurilmadan 11 tasi — kam son: farq bor, lekin bu isbot emas.
 - 50 ga yetganda: 50 ga yetdingiz — zaxira reja shart emas. · tugma: Baribir bitta ish yozaman

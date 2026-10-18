@@ -1050,7 +1050,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Bashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr({ uz: "To'rttadan nechtasini odamlar o'z ishi uchun ishlatadi?", ru: 'Сколькими из четырёх люди пользуются для своего дела?' })} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />
           {taxmin && faza === 0 && <QTugma className="pp-bos" onClick={() => setFaza(1)}>{tr({ uz: 'Sizsiz bir kun', ru: 'День без вас' })}</QTugma>}
         </div>}
-        vizual={<div className={cxx('pp-s2', `f${faza}`, storedAnswer && 'qayt')}>
+        vizual={!taxmin ? null : <div className="q-kir">{<div className={cxx('pp-s2', `f${faza}`, storedAnswer && 'qayt')}>
           {faza >= 1 && <div className={cxx('pp-kun', faza === 1 && 'yur')} aria-hidden="true">
             <span>{tr({ uz: 'ertalab', ru: 'утро' })}</span>
             <span className="pp-kun-yol"><i /><b /></span>
@@ -1068,7 +1068,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="pp-s2-juft">{['yandex', 'payme'].map(karta)}</div>
             </div>
           </div>
-        </div>}
+        </div>}</div>}
         natija={done && tx && <QTaxmin togri={tx === '2'}>{tx === '2'
           ? tr({ uz: "Taxminingiz to'g'ri chiqdi", ru: 'Ваше предположение оказалось верным' })
           : <>{tr({ uz: 'Taxminingiz', ru: 'Ваше предположение' })}: {tx} · {tr({ uz: 'haqiqatda', ru: 'на деле' })}: <b>2</b></>}</QTaxmin>}

@@ -48,6 +48,7 @@ Telefon maketi: «Maydon Jamoa» · O'yinlar · Shanba · «Shanba, 18:00» · �
   - Tepada kichik bo'lib turadi
   - Eng katta yozuv bo'lib qoladi
   - Tanlangach ixcham qator: Sarlavha yozilgach, «Maydon Jamoa» nomi qanday turadi? · Taxminingiz: <tanlov>
+  - Bashorat yolg'iz chiqadi; tanlangach qatorga yig'iladi, shundan keyin sahifa va PRD kartasi kirib keladi. *(✎ F-1015-284, 213.7)*
 - Chapda — brauzer maketi (0-ekrandagi qoralama: nom katta, sarlavha qatori bo'sh, tugma, telefon).
 - O'ngda — karta «11-Moduldan · PRD» (teg: Mentor misoli):
   - **Muammo:** O'yinchilar o'yindan oldin jamoaga yetarli odam yig'ishda va kim aniq kelishini bilishda qiynaladi.
@@ -140,6 +141,7 @@ Telefon maketi: «Maydon Jamoa» · O'yinlar · Shanba · «Shanba, 18:00» · �
   - Shu sahifadagi bo'lim
   - Boshqa sayt — ilova do'koni
   - Tanlangach ixcham qator: «Qo'shilmoqchiman» bosilganda nima ochiladi? · Taxminingiz: <tanlov>
+  - Bashorat yolg'iz chiqadi; tanlangach qatorga yig'iladi, shundan keyin sahifa va Umami kartasi kirib keladi. *(✎ F-1015-285, 213.7)*
 - Chapda — brauzer maketi, to'liq Mentor lendingi; «Qo'shilmoqchiman» tugmasi halqada.
 - O'ngda — kichik karta: Umami · tugma bosilishi: 0
 - Tugma bosilgach:
@@ -199,7 +201,7 @@ Telefon maketi: «Maydon Jamoa» · O'yinlar · Shanba · «Shanba, 18:00» · �
   - 11-Modul ma'lumoti bo'lmasa: Avval muammo gapingiz va yechimingizni bir qatordan yozing, keyin sarlavhaga o'ting.
 - Tepada — ixcham qator «11-Moduldan · PRD» (bosilsa ochiladi): Muammo: <muammo gapingiz> · Kim uchun: <…> · Yechim: <…> · Uchta asosiy funksiya: <…>
   - Ma'lumot bo'lmasa — ikki maydon: «Muammo gapi — kim nimadan qiynaladi?» · «Yechim — mahsulot nima qiladi?»
-- Chapda — o'quvchi sahifasi brauzer maketida, yozilgani sari to'lib boradi; tepada yorliq: Sahifam (hisob tugmada «Yana N ta bo'lak» *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*). Nom bo'lmasa — kulrang «mahsulot nomi».
+- Chapda — o'quvchi sahifasi brauzer maketida, yozilgani sari to'lib boradi; maket kartasining ichida, tepada yorliq: Sahifam *(✎ F-1015-286: yorliq karta ichida)* (hisob tugmada «Yana N ta bo'lak» *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*). Nom bo'lmasa — kulrang «mahsulot nomi».
 - O'ngda — bitta karta (joriy bo'lak), belgi hisoblagichi bilan:
   - (nom bo'lmasa, birinchi) Mahsulot nomi · 40 belgigacha
   1. Sarlavha · 1 / 4 — Kim uchun va nima foyda? · «Bir qator, odamga qaratib» · 60 belgigacha

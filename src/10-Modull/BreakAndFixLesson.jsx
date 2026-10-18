@@ -981,7 +981,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Internet qaytgach, ekranda <span className="italic" style={{ color: T.accent }}>qaysi son</span> turadi?</>, ru: <>Какое число будет на экране, <span className="italic" style={{ color: T.accent }}>когда вернётся интернет</span>?</> })}
         mentor={<Mentor>{tr({ uz: 'Birinchi telefonda uchish rejimini yoqing va qadamlarni tartib bilan bajaring.', ru: 'Включите режим полёта на первом телефоне и выполните шаги по порядку.' })}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={{ uz: "Belgi yana «Ulangan» bo'lgach, birinchi telefonda qaysi son turadi?", ru: 'Когда значок снова станет «Подключено», какое число будет на первом телефоне?' }} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        vizual={<div className="bf-viz">
+        vizual={!taxmin ? null : <div className="bf-viz bf-kir">
           <IkkiTelefonSahna
             t1={{ belgi, son: 8, eski: eski && SAHNA.eski, qoshildi: true, samolyot, onSamolyot: taxmin && !band && !tugadi ? samBos : null, samolyotHalqa: !!(taxmin && !band && samBos && !tugadi),
               qadam: !taxmin || band || tugadi ? null : q === 0 ? { n: 1, t: { uz: 'Uchish rejimini yoqing', ru: 'Включите режим полёта' } } : q === 2 ? { n: 3, t: { uz: "Uchish rejimini o'chiring", ru: 'Выключите режим полёта' } } : null }}
@@ -1070,7 +1070,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Qayta ulanganda <span className="italic" style={{ color: T.accent }}>qaysi kod</span> yana ishlaydi?</>, ru: <>Какой код <span className="italic" style={{ color: T.accent }}>снова срабатывает</span> при переподключении?</> })}
         mentor={<Mentor>{tr({ uz: "Backend tugunidagi «Yangi versiya» ni bosing va telefon ostidagi kodning yonadigan qatorlariga qarang.", ru: "Нажмите «Новая версия» в узле Backend и посмотрите на загорающиеся строки кода под телефоном." })}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={{ uz: 'Qayta ulangach, bitta qo\'shilishga nechta jonli xabar chiqadi?', ru: 'Сколько живых сообщений появится на одно присоединение после переподключения?' }} variantlar={S4_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        vizual={<div className="bf-viz">
+        vizual={!taxmin ? null : <div className="bf-viz bf-kir">
           <IkkiTelefonSahna
             t1={{ belgi, son: son1, sonYangi: son1 === 9 && !avval, qoshildi: true, qoshilYoq: true, jx }}
             be={{ db: qoshildi ? 9 : 8, dbYangi: qoshildi && !avval, qator: beQator, yonadi: !!beQator,
@@ -1162,7 +1162,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Qayta ulangan ilova <span className="italic" style={{ color: T.accent }}>o'yin xonasida</span> bormi?</>, ru: <>Переподключённое приложение <span className="italic" style={{ color: T.accent }}>в комнате игры</span>?</> })}
         mentor={<Mentor>{tr({ uz: "Avval «Yangi versiya» ni bosing, keyin ikkinchi telefonda o'yinni oching.", ru: "Сначала нажмите «Новая версия», потом откройте игру на втором телефоне." })}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={{ uz: "Ikkinchi telefon o'yinni ochganda «Hozir ko'ryapti» nechani ko'rsatadi?", ru: "Сколько покажет счётчик «Сейчас смотрят», когда второй телефон откроет игру?" }} variantlar={S6_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        vizual={<div className="bf-viz">
+        vizual={!taxmin ? null : <div className="bf-viz bf-kir">
           <IkkiTelefonSahna
             t1={{ belgi, son: 8, koryapti: 1, koryEski, qoshildi: true }}
             be={{ db: 8, ichi: <>
@@ -1378,7 +1378,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Uch usuldan qaysilari <span className="italic" style={{ color: T.accent }}>Mentor ilovasini buzadi</span>?</>, ru: <>Какие из трёх способов <span className="italic" style={{ color: T.accent }}>ломают приложение Ментора</span>?</> })}
         mentor={<Mentor>{tr(done ? { uz: "Uch urinish yozildi — pastdagi xulosaga qarang.", ru: 'Три попытки записаны — посмотрите на вывод ниже.' } : { uz: "Har urinishni bosing: kutilgani bilan bo'lganini solishtirib, belgi qo'ying.", ru: 'Нажимайте каждую попытку: сравните ожидаемое с тем, что произошло, и поставьте отметку.' })}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={{ uz: 'Uch usuldan nechtasi Mentor ilovasini buzadi?', ru: 'Сколько из трёх способов ломают приложение Ментора?' }} variantlar={S9_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        vizual={<div className="bf-viz">
+        vizual={!taxmin ? null : <div className="bf-viz bf-kir">
           <div className="bf-bz">
             <div className="bf-bz-tel"><IkkiTelefonSahna t1={tugadi ? { ...TEL_BOSH } : tel} /></div>
             <div className="bf-bz-ong">
@@ -1473,7 +1473,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Agent «tuzatdim» desa, buni <span className="italic" style={{ color: T.accent }}>qanday bilasiz</span>?</>, ru: <>Если агент говорит «исправил», <span className="italic" style={{ color: T.accent }}>как вы это узнаете</span>?</> })}
         mentor={<Mentor>{tr({ uz: "Avval yozuvni agentga yuboring, keyin «buzildi» belgili ikki urinishni o'sha usul bilan qaytaring.", ru: 'Сначала отправьте запись агенту, потом повторите две попытки с отметкой «сломалось» тем же способом.' })}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={{ uz: 'Tuzatishni qanday tekshirasiz?', ru: 'Как вы проверите исправление?' }} variantlar={S11_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        vizual={<div className="bf-viz">
+        vizual={!taxmin ? null : <div className="bf-viz bf-kir">
           <div className={cx('bf-tx', tugadi && 'tugadi')}>
             {!tugadi && <div className="bf-tx-tel"><IkkiTelefonSahna t1={{ qoshildi: true, ...tel }} be={{ db: 8, qator: beQator }} c1={c1} k1={k1} /></div>}
             <div className="bf-tx-ong">
@@ -2379,7 +2379,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className={cx('bf-blok', qulfla && 'bf-qulf')}>
-      <QBlok til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{ustida}</>} zoom={Zoomable}
+      <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{ustida}</>} zoom={Zoomable}
         qadamlar={steps.map(c => ({
           h: tr(c.h),
           t: <>{tx(c.t)}{!c.ichkiKeyin && c.ichki}{c.bandlar && c.bandlar.map((b, i) => <span key={i} className="bf-band">{tx(b)}</span>)}{c.prompt && <BfPrompt satrlar={c.prompt} namuna={c.namuna} toldir={c.toldir} />}{c.ichkiKeyin && c.ichki}{c.keyin && c.keyin.map((b, i) => <span key={'k' + i} className="bf-band">{tx(b)}</span>)}</>,
@@ -2389,7 +2389,6 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
         tugadi={done} tugadiMatn={doneText ? tr(doneText) : null} natija={natija} natijaYorliq={tr(NATIJA_YORLIQ)}
         pastki={<>{done && izoh && <QIzoh>{tr(izoh)}</QIzoh>}<MentorPracticeStats live={_live} screen={screen} /></>}>
         {ortda && <p className="bf-ortda">{tr({ uz: "Ortda qoldingizmi — Mentor misolini alohida papkada ochib ko'ring:", ru: 'Отстали — откройте пример Ментора в отдельной папке:' })} <code className="bf-buyruq">{ORTDA[0]}</code> · <code className="bf-buyruq">{ORTDA[1]}</code> · <code className="bf-buyruq">{ORTDA[2]}</code> {tx(ortda)}</p>}
-        {ulgur && !done && <p className="bf-ulgur">{tx(ulgur)}</p>}
         {ustoz && isMentorLive && <Ustoz satrlar={ustoz} />}
       </QBlok>
       </div>
@@ -2500,17 +2499,22 @@ const ScreenA1 = (props) => {
       mentor={{ uz: "Kod yozilmaydi: agent faqat boshqa akkaunt nomidan o'zgarish qiladi, kuzatish va yozuv — sizda; «1 · Ochish»dan boshlang.", ru: "Код не пишем: агент только вносит изменение от имени другого аккаунта, наблюдение и запись — за вами; начните с «1 · Открыть»." }}
       ustida={<TrekTanlov trek={trek} onTanla={tanla} />}
       steps={[
-        { h: { uz: 'Ochish', ru: 'Открыть' }, t: { uz: "ilovangiz telefonda ochiq va kirgan holda bo'lsin (mobil trekda: `cd mobil`, `npx expo start`, Expo Go). Real vaqt nuqtangiz turgan ekranni oching — Mentor misolida «O'yin»: belgi «Ulangan» bo'lishi kerak.", ru: "приложение должно быть открыто на телефоне, вход выполнен (в мобильном треке: `cd mobil`, `npx expo start`, Expo Go). Откройте экран с вашей точкой реального времени — в примере Ментора экран игры: значок должен быть «Подключено»." },
+        // F-1015-291: trek tanlangan bo'lsa faqat o'sha trekning ko'rsatmasi (mobil — Expo qatori, web — brauzer bandi); tanlanmagan — ikkalasi
+        { h: { uz: 'Ochish', ru: 'Открыть' }, t: { uz: `ilovangiz telefonda ochiq va kirgan holda bo'lsin${trek === 'web' ? '' : ' (mobil trekda: `cd mobil`, `npx expo start`, Expo Go)'}. Real vaqt nuqtangiz turgan ekranni oching — Mentor misolida «O'yin»: belgi «Ulangan» bo'lishi kerak.`, ru: `приложение должно быть открыто на телефоне, вход выполнен${trek === 'web' ? '' : ' (в мобильном треке: `cd mobil`, `npx expo start`, Expo Go)'}. Откройте экран с вашей точкой реального времени — в примере Ментора экран игры: значок должен быть «Подключено».` },
           ichki: <span className="bf-band">{tx({ uz: "Terminalda `git status`: `.env` fayllari ro'yxatda ko'rinmasin.", ru: 'В терминале `git status`: файлы `.env` не должны быть в списке.' })} <b>{tr({ uz: "Buzish faqat o'z ilovangizda: boshqa odamning ilovasi yoki sayti tekshirilmaydi.", ru: 'Ломаем только своё приложение: чужое приложение или сайт не проверяют.' })}</b></span>,
           bandlar: [
             { uz: "Sherik bo'lsa — uning telefonida ham shu ekran ochiq tursin (web havola yoki Android'dagi Expo Go; Expo akkauntingiz ma'lumoti berilmaydi).", ru: "Если есть партнёр — пусть у него на телефоне тоже будет открыт этот экран (веб-ссылка или Expo Go на Android; данные вашего аккаунта Expo не передаются)." },
-            { uz: "Web-trekda: saytingizni telefon brauzerida oching — uchish rejimi telefonda yoqiladi (kompyuterda Wi-Fi'ni o'chirish dars sahifasini ham uzadi); «ilovani yopib qayta ochish» o'rniga — sahifani yangilang.", ru: 'В веб-треке: откройте сайт в браузере телефона — режим полёта включается на телефоне (выключение Wi-Fi на компьютере отключит и страницу урока); вместо «закрыть и снова открыть приложение» — обновите страницу.' }
+            ...(trek === 'mobil' ? [] : [{ uz: "Web-trekda: saytingizni telefon brauzerida oching — uchish rejimi telefonda yoqiladi (kompyuterda Wi-Fi'ni o'chirish dars sahifasini ham uzadi); «ilovani yopib qayta ochish» o'rniga — sahifani yangilang.", ru: 'В веб-треке: откройте сайт в браузере телефона — режим полёта включается на телефоне (выключение Wi-Fi на компьютере отключит и страницу урока); вместо «закрыть и снова открыть приложение» — обновите страницу.' }])
           ] },
         { h: { uz: 'Prompt', ru: 'Промпт' }, t: { uz: "qavsni to'ldiring (yonida kulrang namuna), «Nusxalash»ni bosing va Antigravity'ga yuboring:", ru: 'заполните скобку (рядом серый образец), нажмите «Скопировать» и отправьте в Antigravity:' },
           prompt: A1_PROMPT, namuna: A1_NAMUNA.map(x => ({ joy: tr(x.joy), n: x.n })), yordam: A1_YORDAM },
         { h: { uz: 'Buzish', ru: 'Ломаем' }, t: { uz: "uch usul, bittadan; har urinishdan oldin ilovani yopib qayta oching. Har urinishdan keyin yozuv kartasida «Nima bo'ldi» qatorini yozing va «Buzildi» yoki «Buzilmadi» ni tanlang; keyin agentga «O'chir» deng va ro'yxatni pastga torting — son boshidagidek bo'lishi kerak.", ru: 'три способа, по одному; перед каждой попыткой закройте и снова откройте приложение. После каждой попытки в карточке записи заполните строку «Что произошло» и выберите «Сломалось» или «Не сломалось»; потом скажите агенту «O\'chir» и потяните список вниз — число должно быть как в начале.' },
           bandlar: [
-            { uz: "O'zgarishni boshqa akkaunt qiladi: sherik o'z telefonida yoki web-trekda o'zingiz kompyuterdagi yashirin oynada (11-Moduldagi ikkinchi namuna akkaunt bilan; keyin o'zgarishni o'zingiz qaytarasiz), bo'lmasa — agent («Yubor»).", ru: 'Изменение делает другой аккаунт: партнёр на своём телефоне или в веб-треке вы сами в скрытом окне на компьютере (со вторым образцовым аккаунтом из 11-го модуля; потом изменение отмените сами), иначе — агент («Yubor»).' },
+            trek === 'mobil'
+              ? { uz: "O'zgarishni boshqa akkaunt qiladi: sherik o'z telefonida, bo'lmasa — agent («Yubor»).", ru: 'Изменение делает другой аккаунт: партнёр на своём телефоне, иначе — агент («Yubor»).' }
+              : trek === 'web'
+                ? { uz: "O'zgarishni boshqa akkaunt qiladi: sherik o'z telefonida yoki o'zingiz kompyuterdagi yashirin oynada (11-Moduldagi ikkinchi namuna akkaunt bilan; keyin o'zgarishni o'zingiz qaytarasiz), bo'lmasa — agent («Yubor»).", ru: 'Изменение делает другой аккаунт: партнёр на своём телефоне или вы сами в скрытом окне на компьютере (со вторым образцовым аккаунтом из 11-го модуля; потом изменение отмените сами), иначе — агент («Yubor»).' }
+                : { uz: "O'zgarishni boshqa akkaunt qiladi: sherik o'z telefonida yoki web-trekda o'zingiz kompyuterdagi yashirin oynada (11-Moduldagi ikkinchi namuna akkaunt bilan; keyin o'zgarishni o'zingiz qaytarasiz), bo'lmasa — agent («Yubor»).", ru: 'Изменение делает другой аккаунт: партнёр на своём телефоне или в веб-треке вы сами в скрытом окне на компьютере (со вторым образцовым аккаунтом из 11-го модуля; потом изменение отмените сами), иначе — агент («Yubor»).' },
             { uz: "(1) Internetni uzish — uchish rejimini yoqing va belgi «Ulanmoqda…» bo'lishini kuting (bir daqiqagacha). Keyin o'zgarish qilinsin; bo'lgach uchish rejimini o'chiring. Belgi «Ulangan» bo'lgach, ekranga qarang.", ru: '(1) Отключить интернет — включите режим полёта и дождитесь значка «Подключается…» (до минуты). Потом пусть будет сделано изменение; после этого выключите режим полёта. Когда значок станет «Подключено», посмотрите на экран.' },
             { uz: "(2) Fonga olib qaytarish — boshqa ilovaga o'ting va o'zgarish qilinsin. Bir daqiqadan keyin ilovaga qayting va ekranga qarang.", ru: '(2) Свернуть и вернуться — перейдите в другое приложение, и пусть будет сделано изменение. Через минуту вернитесь в приложение и посмотрите на экран.' },
             { uz: "(3) Backend'ning yangi versiyasi — ilova ochiq tursin. Render sahifasida Backend xizmatingizni oching: «Manual Deploy» → «Deploy latest commit». Belgi «Ulanmoqda…» ga o'tib, yana «Ulangan» bo'lishi kerak — bu bir necha daqiqa cho'zilishi mumkin; kutayotganda 1 va 2-urinish yozuvini qayta o'qing. «Ulangan» bo'lgach, o'zgarish qilinsin va ekranga qarang (sherik bo'lsa — uning telefonidagi «Hozir ko'ryapti» ga ham).", ru: "(3) Новая версия Backend — приложение должно быть открыто. На странице Render откройте свой сервис Backend: «Manual Deploy» → «Deploy latest commit». Значок должен перейти в «Подключается…» и снова стать «Подключено» — это может занять несколько минут; пока ждёте, перечитайте записи попыток 1 и 2. Когда станет «Подключено», пусть будет сделано изменение, и посмотрите на экран (если есть партнёр — и на «Сейчас смотрят» на его телефоне)." },
@@ -2603,13 +2607,17 @@ const ScreenA2 = (props) => {
       mentor={{ uz: "Yozuvingizni agentga so'zma-so'z berasiz: tuzatishni u qiladi, natijani esa siz tekshirasiz; «1 · Ochish»dan boshlang.", ru: "Свою запись вы отдаёте агенту слово в слово: исправляет он, а результат проверяете вы; начните с «1 · Открыть»." }}
       ustida={<TrekTanlov trek={trek} onTanla={tanla} />}
       steps={[
-        { h: { uz: 'Ochish', ru: 'Открыть' }, t: { uz: "1-amaliyotdagi yozuvingiz pastdagi talabga o'zi qo'yilgan — «buzildi» belgili urinishlarni o'qib chiqing. Ilovangiz telefonda ochiq tursin (mobil trekda `npx expo start` ishlab tursin).", ru: "ваша запись из 1-й практики уже подставлена в требование ниже — прочитайте попытки с отметкой «сломалось». Приложение должно быть открыто на телефоне (в мобильном треке должен работать `npx expo start`)." },
+        { h: { uz: 'Ochish', ru: 'Открыть' }, t: { uz: `1-amaliyotdagi yozuvingiz pastdagi talabga o'zi qo'yilgan — «buzildi» belgili urinishlarni o'qib chiqing. Ilovangiz telefonda ochiq tursin${trek === 'web' ? '' : ' (mobil trekda `npx expo start` ishlab tursin)'}.`, ru: `ваша запись из 1-й практики уже подставлена в требование ниже — прочитайте попытки с отметкой «сломалось». Приложение должно быть открыто на телефоне${trek === 'web' ? '' : ' (в мобильном треке должен работать `npx expo start`)'}.` },
           bandlar: [{ uz: "Hech biri «buzildi» bo'lmasa — 2 va 3-qadamni o'tkazib yuboring: 4-qadamda faqat `BUZISH.md` yoziladi.", ru: 'Если ни одной «сломалось» нет — пропустите шаги 2 и 3: на шаге 4 пишется только `BUZISH.md`.' }] },
         { h: { uz: 'Prompt', ru: 'Промпт' }, t: { uz: "qavslarni tekshiring (tahrirlasangiz bo'ladi), «Nusxalash»ni bosing va Antigravity'ga yuboring:", ru: 'проверьте скобки (можно отредактировать), нажмите «Скопировать» и отправьте в Antigravity:' },
           prompt: a2Prompt(trek, satrlar), namuna: ish ? [] : [{ joy: tr(A2_JOY_ISH), n: A2_ISH_NAMUNA }], toldir: ish ? { [tr(A2_JOY_ISH)]: ish } : {}, yordam: a2Yordam(trek) },
         { h: { uz: 'Ishga tushirish', ru: 'Запуск' }, t: { uz: "agent tugatgach: `git status` — o'zgargan fayllar agent aytgani bilan bir xil, `.env` ro'yxatda yo'q. Agent aytgan sabablarni o'qing — ular uning so'zi; natijani 4-qadam ko'rsatadi.", ru: 'когда агент закончит: `git status` — изменённые файлы совпадают с тем, что сказал агент, `.env` в списке нет. Прочитайте причины, которые назвал агент, — это его слова; результат покажет шаг 4.' },
           bandlar: [
-            { uz: "Mobil trekda Expo Go ilovani odatda o'zi qayta yuklaydi (bo'lmasa — terminalda `r`). Web-trekda: `git add <fayl>` → `git commit -m \"qayta ulanish tuzatishi\"` → `git push` — Netlify saytni odatda o'zi yangilaydi.", ru: 'В мобильном треке Expo Go обычно сам перезагружает приложение (если нет — `r` в терминале). В веб-треке: `git add <fayl>` → `git commit -m "qayta ulanish tuzatishi"` → `git push` — Netlify обычно сам обновляет сайт.' },
+            trek === 'mobil'
+              ? { uz: "Expo Go ilovani odatda o'zi qayta yuklaydi (bo'lmasa — terminalda `r`).", ru: 'Expo Go обычно сам перезагружает приложение (если нет — `r` в терминале).' }
+              : trek === 'web'
+                ? { uz: "`git add <fayl>` → `git commit -m \"qayta ulanish tuzatishi\"` → `git push` — Netlify saytni odatda o'zi yangilaydi.", ru: '`git add <fayl>` → `git commit -m "qayta ulanish tuzatishi"` → `git push` — Netlify обычно сам обновляет сайт.' }
+                : { uz: "Mobil trekda Expo Go ilovani odatda o'zi qayta yuklaydi (bo'lmasa — terminalda `r`). Web-trekda: `git add <fayl>` → `git commit -m \"qayta ulanish tuzatishi\"` → `git push` — Netlify saytni odatda o'zi yangilaydi.", ru: 'В мобильном треке Expo Go обычно сам перезагружает приложение (если нет — `r` в терминале). В веб-треке: `git add <fayl>` → `git commit -m "qayta ulanish tuzatishi"` → `git push` — Netlify обычно сам обновляет сайт.' },
             { uz: "Agent `backend/` ni ham o'zgartirgan bo'lsa — ikkala trekda shu fayllarni `git push` qiling va Render'da yangi versiya tugashini kuting.", ru: 'Если агент изменил и `backend/` — в обоих треках сделайте `git push` этих файлов и дождитесь окончания новой версии на Render.' },
             { uz: "Agent har muammo uchun qaysi faylni o'zgartirganini aytgan va u `git status` da ko'ringan bo'lsa, o'sha urinishga «Tuzatish qilindi» ni belgilang — bu ish fakti: kodda o'zgartirish qilindi; to'g'riligini 4-qadam ko'rsatadi.", ru: 'Если агент назвал, какой файл изменил для каждой проблемы, и он виден в `git status`, отметьте у этой попытки «Исправление сделано» — это факт работы: в коде внесено изменение; правильность покажет шаг 4.' },
             { uz: "Agentdan o'zgartirgan kodidagi ikki joyni ko'rsatishni so'rang — darsda ko'rgan `connect` va tinglovchini o'z loyihangizda topasiz:", ru: 'Попросите агента показать два места в изменённом коде — найдёте в своём проекте `connect` и слушателя, которых видели на уроке:' }
@@ -2891,6 +2899,7 @@ export default function BreakAndFixLesson({ lang: langProp, onFinished, liveToke
         @keyframes bf-pop { 0% { transform: scale(1.45); } 100% { transform: scale(1); } }
         .bf-k { display: contents; }
         .bf-viz { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+        .bf-kir { animation: bf-kirdi .4s ease-out both; } /* F-1015-290: sahna bashoratdan keyin kiradi (213.7) */
         p.bf-nom { margin: 0; padding: 8px 12px; border-radius: 10px; background: ${T.paper}; border: 1px solid ${T.line}; font-size: 14px; line-height: 1.45; color: ${T.ink}; }
         p.bf-nom b { color: ${T.accent}; }
         /* Yashil xulosa ichida: taxmin qatori (kichik) · asosiy gap · izoh (kichik, ingichka ajratgich) — quti qalin bo'lmaydi (F-1006-380/382) */
@@ -3317,7 +3326,7 @@ export default function BreakAndFixLesson({ lang: langProp, onFinished, liveToke
           .bf-sahna.tik.ikki .bf-tel-ust, .bf-sahna.tik.ikki .bf-telefon { width: 168px; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .bf-halqa, .bf-k.faol .q-variant, .bf-halqa-g .q-chip, .bf-chorla > .q-chip, .bf-flash.yangi .fc-card .fc-front { animation: none !important; }
+          .bf-halqa, .bf-k.faol .q-variant, .bf-halqa-g .q-chip, .bf-chorla > .q-chip, .bf-flash.yangi .fc-card .fc-front, .bf-kir { animation: none !important; }
           .bf-kv { display: none !important; }
           .bf-pop, .bf-son.yangi, .bf-doiralar i.yangi, .bf-chiziq-i, .bf-chiziq-i::after, .bf-chiziq-r.aylan, .bf-belgi, .bf-belgi-n, .bf-tel-ekran, .bf-backend.tugildi, .bf-karta.yangi, .bf-sx-r.yangi, .bf-rd-r, .bf-ms-q, .bf-konvert, .bf-readme, .bf-eski, .bf-chiziq-y { animation: none !important; transition: none !important; }
         }

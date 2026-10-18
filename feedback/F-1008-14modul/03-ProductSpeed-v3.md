@@ -127,7 +127,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–3 ≈ 7 · 4–6
 - Mentor (bosqichga qarab):
   - boshida: Chrome ichida o'lchov dasturi bor — o'ngdagi «Analyze page load» ni bosing.
   - 1-qadamdan keyin: Endi tepadagi «Desktop» ni bosib, bahoni yana bir ko'ring.
-- Bashorat (ballsiz, yorliq «Avval o'zingiz belgilab ko'ring»; tanlangach ixcham qator): **Bu dastur sahifaga qanday baho beradi?** · 1 dan 5 gacha · 0 dan 10 gacha · 0 dan 100 gacha
+- Bashorat (ballsiz, yorliq «Avval o'zingiz belgilab ko'ring»; tanlangach ixcham qator): **Bu dastur sahifaga qanday baho beradi?** · 1 dan 5 gacha · 0 dan 10 gacha · 0 dan 100 gacha · **213.7 (F-1015-305…317, 18.10 avtopilot): bashorat ekranda yolg'iz; tanlangach ixcham qatorga yig'iladi, sahna va harakat tugmalari shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin o'chiq tugma/xira sahna yo'q.**
 - Sahna: chapda brauzer (lending, ochilgan holat) · o'ngda Lighthouse paneli: sozlama qatori `Mode: Navigation` · `Device: Mobile` (tanlangan) `| Desktop` · `Categories: Performance` · tugma «Analyze page load» (halqada); baho doirasi bo'sh. Qadam belgilari yo'q — har qadamni Mentor nomi bilan aytadi, hisob tugmada *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*.
 - **Harakat → Vizual o'zgarish:**
   1. «Analyze page load» → brauzerdagi sahifa boshidan qayta ochiladi (0-ekrandagidek, qisqa); panelda doira chiziladi → o'rtada `{oldin baho}` ⛔, doira shu son turgan oraliq rangida; shkalada o'sha bo'lak yonadi; ostida besh qator chiqadi:
@@ -167,7 +167,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–3 ≈ 7 · 4–6
 - Mentor (bosqichga qarab):
   - boshida: Lendingni qadamma-qadam oching — «Sekin ochish» ni bosing.
   - 1-qadamdan keyin: Endi o'sha narsani sahifaning o'zida bosib ko'rsating.
-- Bashorat (ballsiz; tanlangach ixcham qator): **Lighthouse qaysi narsaning ko'rinish vaqtini kuzatadi?** · Birinchi harfning · Eng katta narsaning · Oxirgi rasmning (03-FILTR 9: odam hissi emas — dastur nimani kuzatadi)
+- Bashorat (ballsiz; tanlangach ixcham qator): **Lighthouse qaysi narsaning ko'rinish vaqtini kuzatadi?** · Birinchi harfning · Eng katta narsaning · Oxirgi rasmning (03-FILTR 9: odam hissi emas — dastur nimani kuzatadi) · **213.7 (F-1015-305…317, 18.10 avtopilot): bashorat ekranda yolg'iz; tanlangach ixcham qatorga yig'iladi, sahna va harakat tugmalari shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin o'chiq tugma/xira sahna yo'q.**
 - Sahna: chapda brauzer (lending, bo'sh) · o'ngda **vaqt chizig'i** (4 belgi kulrang: «ochildi» · «birinchi matn» · «eng katta narsa» · «hamma rasm») va Lighthouse panelidan bitta qator «LCP · `{oldin LCP}` s» ⛔ (kulrang). Ostida tugma «Sekin ochish» (halqada). Qadam belgilari yo'q — har qadamni Mentor nomi bilan aytadi, hisob tugmada *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*.
 - **Harakat → Vizual o'zgarish:**
   1. «Sekin ochish» → sahifa bosqichma-bosqich chiziladi: oq → «Maydon Jamoa» va sarlavha (chiziqda «birinchi matn» yonadi) → tepadagi rasm (chiziqda «eng katta narsa» accent bilan yonadi) → pastdagi rasmlar («hamma rasm»). Brauzerdagi sahifa bosiladigan bo'ladi (sarlavha, rasm, tugma — har birining o'z yengil chegarasi).
@@ -189,7 +189,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–3 ≈ 7 · 4–6
 - Mentor (bosqichga qarab):
   - boshida: Avval «Sahifani ochish» ni, keyin «Qo'shilmoqchiman» ni bosing.
   - 1-qadamdan keyin: Endi rasmga o'lcham yozing — «`width` va `height`» o'chirgichini yoqing.
-- Bashorat (ballsiz; tanlangach ixcham qator): **Rasm kelganda tugma nima bo'ladi?** · Joyida qoladi · Pastga suriladi
+- Bashorat (ballsiz; tanlangach ixcham qator): **Rasm kelganda tugma nima bo'ladi?** · Joyida qoladi · Pastga suriladi · **213.7 (F-1015-305…317, 18.10 avtopilot): bashorat ekranda yolg'iz; tanlangach ixcham qatorga yig'iladi, sahna va harakat tugmalari shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin o'chiq tugma/xira sahna yo'q.**
 - Sahna: chapda brauzer (lending; tepadagi rasm joyi bo'sh, balandligi yo'q — tugma sarlavhaning ostida) · o'ngda Lighthouse panelidan qator «CLS · `{oldin CLS}`» ⛔ (kulrang;) · brauzer ostida tugma «Sahifani ochish» (halqada) va o'chirgich «`width` va `height`: yo'q» (xira, 1-qadamgacha bosilmaydi).
   Qadam belgilari yo'q — har qadamni Mentor nomi bilan aytadi, hisob tugmada *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*.
 - Kod kartasi (sahna ostida — E 46; o'qish uchun — P-065), yorlig'i `lending/index.html` · tepadagi rasm; ikki holat, o'chirgichga qarab:
@@ -237,7 +237,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–3 ≈ 7 · 4–6
   - boshida: Ikki usulni solishtiring — avval «Hammasi birdan» ni bosing.
   - 1-qadamdan keyin: Endi pastdagi ikki rasmni keyinga qoldiring — «Keyin yuklash» ni bosing.
   - 2-qadamdan keyin: Shu atributni tepadagi rasmga ham qo'yib ko'ring — «Tepadagisiga ham» ni bosing.
-- Bashorat (ballsiz; tanlangach ixcham qator): **Pastdagi rasm qachon yuklansa yaxshi?** · Sahifa ochilishi bilan · Unga yaqinlashganda · Faqat bosilganda
+- Bashorat (ballsiz; tanlangach ixcham qator): **Pastdagi rasm qachon yuklansa yaxshi?** · Sahifa ochilishi bilan · Unga yaqinlashganda · Faqat bosilganda · **213.7 (F-1015-305…317, 18.10 avtopilot): bashorat ekranda yolg'iz; tanlangach ixcham qatorga yig'iladi, sahna va harakat tugmalari shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin o'chiq tugma/xira sahna yo'q.**
 - Sahna: chapda brauzer (lending, uzun sahifa; birinchi ekran chegarasi — kulrang uzuq chiziq, yorliq «birinchi ekran»; pastdagi ikki rasm chiziqdan pastda) · o'ngda ro'yxat «Yuklanmoqda» — uch rasm nomi va hisoblagich «Yuklangan: n / 3» · vaqt chizig'ida «eng katta narsa» belgisi (4-ekrandan).
   Ostida tugmalar «Hammasi birdan» (halqada) · «Keyin yuklash» · «Tepadagisiga ham» (keyingilari xira). Qadam belgilari yo'q — har qadamni Mentor nomi bilan aytadi, hisob tugmada *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*.
 - **Harakat → Vizual o'zgarish:**
@@ -277,7 +277,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–1 ≈ 5 · 2–3 ≈ 7 · 4–6
   - boshida: Endi ilovaning brauzer ko'rinishini oching — «Ochish va bosish» ni bosing.
   - 1-qadamdan keyin: Bu ilova kodiga kerak bo'lmagan kutubxona ham yuklanadi — «Olib tashlash» ni bosing.
   - 2-qadamdan keyin: Endi «Qayta ochish» ni bosing va farqni ko'ring.
-- Bashorat (ballsiz; tanlangach ixcham qator): **Tugma bosilmagan paytda brauzer nima qilyapti?** · Rasmlarni yuklayapti · Kodni bajaryapti · Hech narsa qilmayapti
+- Bashorat (ballsiz; tanlangach ixcham qator): **Tugma bosilmagan paytda brauzer nima qilyapti?** · Rasmlarni yuklayapti · Kodni bajaryapti · Hech narsa qilmayapti · **213.7 (F-1015-305…317, 18.10 avtopilot): bashorat ekranda yolg'iz; tanlangach ixcham qatorga yig'iladi, sahna va harakat tugmalari shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin o'chiq tugma/xira sahna yo'q.**
 - Sahna: chapda brauzer — manzil satri brauzer ko'rinishi (`….netlify.app`), sahifa: «O'yinlar» · karta «Shanba, 18:00 · Mahalla maydoni · 8 / 10» · tugma «Qo'shilaman» · o'ngda **kod ustuni** «Yuklanadigan kod» (uch blok: «ilova kodi» · «kerakli kutubxonalar» · «import qilingan, lekin kerak emas» — kulrang, ustida «yuklanadi, ishlatilmaydi») va
   Lighthouse panelidan qator «TBT · ms» (kulrang). Ostida tugmalar «Ochish va bosish» (halqada) · «Olib tashlash» · «Qayta ochish» (xira). Qadam belgilari yo'q — har qadamni Mentor nomi bilan aytadi, hisob tugmada *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*.
 - **Harakat → Vizual o'zgarish:**

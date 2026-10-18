@@ -612,7 +612,7 @@ const JAMI = 300;
 const BOSH_SEK = VAQT.map((_, i) => VAQT.slice(0, i).reduce((a, v) => a + v, 0));
 // Mentor pitchi — tayanch 1.1 aynan (9.2; 1-dars bilan bir manba)
 const JAMOA_PITCH = {
-  muammo: { uz: "O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.", ru: 'Игрокам трудно собрать людей в команду. У 4 из 5 игроков, которых я спросил, на последней игре не хватило людей или кто-то не пришёл.' },
+  muammo: { uz: "O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.", ru: 'Игрокам трудно собрать людей в команду. У 3 из 3 игроков, которых я спросил, на последней игре не хватило людей или кто-то не пришёл.' },
   bozor: { uz: "Mahalla futbol guruhida — 60 kishi; ilovada — 6 tashkilotchi. Boshqa mahallalarni hali tekshirmaganmiz.", ru: 'В футбольной группе махалли — 60 человек; в приложении — 6 организаторов. Другие махалли мы ещё не проверяли.' },
   yechim: { uz: "Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.", ru: 'Организатор объявляет игру, игроки присоединяются в одно нажатие и в день игры подтверждают, что придут.' },
   raqamlar: { uz: "51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif havolasidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.", ru: '51 пользователь; 11 — мои одноклассники, 7 пришли по ссылке-приглашению. 3 организатора дали письменное подтверждение на Pro — это ещё не оплата.' },
@@ -995,12 +995,12 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Mentor pitchini eshitgan guruh <A>varaqqa nima yozdi?</A></>, ru: <>Что группа, услышав питч Ментора, <A>записала в лист?</A></> })}
         mentor={<Mentor>{tr({ uz: 'Tugmalarni birma-bir bosing va har bosishdan keyin varaqqa qarang.', ru: 'Нажимайте кнопки по одной и после каждого нажатия смотрите на лист.' })}</Mentor>}
         bashorat={!done && ixchamBashorat(taxmin, <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr({ uz: "Guruh Mentor pitchining nechta bo'lagiga ✗ qo'ydi?", ru: 'Скольким частям питча Ментора группа поставила ✗?' })} variantlar={S2_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} />)}
-        harakat={!done && <div className="gv-harakat">
+        harakat={!taxmin ? null : !done && <div className="gv-harakat">
           <Qadamlar3 nomlar={S2_TUGMA} q={q} faol={!!taxmin} onBos={bos} />
           {q > 0 && <QIzoh key={q}>{tr(S2_IZOH[q - 1])}</QIzoh>}
           {ipucha && IPUCHA(tr({ uz: "Yoqilgan tugmani bosing — varaq qanday to'lishini ko'ring.", ru: 'Нажмите активную кнопку — посмотрите, как заполняется лист.' }))}
         </div>}
-        vizual={sahna}
+        vizual={!taxmin ? null : sahna}
       />
       {uchEl}
     </Stage>
@@ -2421,6 +2421,9 @@ export default function PmPitchTrainingLesson({ lang: langProp, onFinished, live
         .q-bashorat:not(:has(.q-chip.on)) .q-chip:not(:disabled) { border-color: ${fon(T.accent, 0.6)}; animation: gv-chorla 1.8s ease-out .5s 2; }
         .q-bashorat .q-chip:nth-child(2) { animation-delay: .75s; } .q-bashorat .q-chip:nth-child(3) { animation-delay: 1s; }
         .gv-bash.ix .q-bashorat { flex-direction: row; align-items: center; flex-wrap: wrap; gap: 6px 12px; padding-top: 8px; padding-bottom: 8px; }
+        .gv-bash.ix ~ .q-split, .gv-bash.ix ~ .q-col { animation: gv-sahna-kirdi .45s ease-out both; }
+        @keyframes gv-sahna-kirdi { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .gv-bash.ix ~ .q-split, .gv-bash.ix ~ .q-col { animation: none; } }
         .gv-bash.ix .q-bashorat > .q-yorliq, .gv-bash.ix .q-bashorat .q-chip:not(.on) { display: none; }
         @media (min-width: 761px) { .gv-k .q-split { grid-template-columns: minmax(0,1.25fr) minmax(0,1fr); gap: 28px; } }
         @media (min-width: 761px) { .gv-k .zoomable:not(.zoom-on) > .zoom-btn { right: auto; left: calc(55.5% - 52px); } } /* ⛶ maket burchagida, variant ustida emas (SABOQ P7) */

@@ -57,7 +57,7 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 · **1.1 — olti bo'lak, Mentor pitchining ol
 
 | Bo'lak (vaqt — «bu mashqda», tayanch 9.1) | Matn (o'quvchi ko'radi) | Hakam savoli (`HAKAM_SAVOL`, 9.3) |
 |---|---|---|
-| Muammo (40 s) | «O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.» | «Bu muammo borligini qayerdan bilasiz?» |
+| Muammo (40 s) | «O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.» | «Bu muammo borligini qayerdan bilasiz?» |
 | Bozor (30 s) | «Mahalla futbol guruhida — 60 kishi; ilovada — 6 tashkilotchi. Boshqa mahallalarni hali tekshirmaganmiz.» | «Bu mahsulot yana qancha odamga kerak?» |
 | Yechim (90 s, jonli demo bilan) | «Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.» + jonli demo: «8 / 10» → «9 / 10» | «Mahsulot nima qiladi?» |
 | Raqamlar (60 s) | «51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif havolasidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.» | «Bu son qayerdan va nimani sanaydi?» |
@@ -168,7 +168,7 @@ Manba: `00-MODUL-TAYANCH.md` (1.0 · **1.1 — olti bo'lak, Mentor pitchining ol
 - Sarlavha: **Mentor pitchini eshitgan guruh varaqqa nima yozdi?** (50)
 - Mentor: Tugmalarni birma-bir bosing va har bosishdan keyin varaqqa qarang.
   (Birinchi harakat — bashorat; uning yo'rig'i `QBashorat` yorlig'ida, Mentor takrorlamaydi — T-047.)
-- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bitta o'lchov, o'sish tartibida): **Guruh Mentor pitchining nechta bo'lagiga ✗ qo'ydi?** · Bitta · Ikkita · Uchta — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*.
+- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bitta o'lchov, o'sish tartibida): **Guruh Mentor pitchining nechta bo'lagiga ✗ qo'ydi?** · Bitta · Ikkita · Uchta — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*. · **213.7 (F-1015-305…317, 18.10 avtopilot): bashorat ekranda yolg'iz; tanlangach ixcham qatorga yig'iladi, sahna va harakat tugmalari shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin o'chiq tugma/xira sahna yo'q.**
 - Vizual (`GuruhVaraqSahna`, to'liq; ≤ 3 blok: guruh va taymer · varaq · tugmalar qatori): **chapda** — guruh (Mentor gapiradi, uch tinglovchi; ustida yorliq «Mentor misoli · Maydon Jamoa», nom o'z yashil rangida) va taymer chizig'i (olti bo'lak, hali bo'sh) ·
   **o'ngda** — bo'sh baholash varag'i: olti qator (bo'lak nomi + `HAKAM_SAVOL` kulrang, belgi va izoh kataklari bo'sh), pastda bo'sh «Hakam savoli» qatori (uzuq ramka).
 - Tugmalar (ixcham, bir qatorda; joriysi accent, bosilgani ✓): 1 Pitch · 2 Varaq · 3 Hakam savoli *(✎ F-1015-164: tugmalar bashoratdan keyin chiqadi; bosiladigani faqat joriysi, bosilgani — «✓ nom» yozuvi, keyingisi hali ko'rinmaydi)*

@@ -50,6 +50,7 @@ Chiziq bo'ylab uchadigan konvertlar yorlig'i: so'rov · javob · `oyin-ozgardi`.
   - 1-qadamdan keyin: Yetib bormadi: 1-telefon so'ramagan. Endi 1-telefonni pastga torting yoki undagi «↓ Pastga torting» ni bosing.
   - tugagach: Son faqat ilova so'raganda yangilandi — «Davom etish» ni bosing.
 - Bashorat (Avval o'zingiz belgilab ko'ring): Backend yangi sonni birinchi telefonga o'zi yubora oladimi? · Ha, istagan payt · Yo'q, faqat so'rovga javoban
+  - Bashorat yolg'iz chiqadi; tanlangach ixcham qatorga yig'iladi, shundan keyin sahna (telefonlar · Backend) kirib keladi. *(✎ F-1015-287 (2-ekran ham, bir sinf), 213.7)*
   - Tanlangach ixcham qator: savol · tanlov
 - Sahna: 1-telefon «8 / 10» (yorliq «eski») · Backend («Database: 9»; ichida tugma «1-telefonga yuborish», yonida qadam: 1 Yuborib ko'ring) · 2-telefon «9 / 10», «Qo'shildingiz»
   - «1-telefonga yuborish» → konvert Backend'dan chiqadi va yo'l boshida to'xtab orqaga qaytadi; Backend ichida: so'rov yo'q — yo'l yopiq; chiziqda ✕. 1-telefonda tugma «↓ Pastga torting», yonida qadam: 2 Pastga torting
@@ -80,6 +81,7 @@ Chiziq bo'ylab uchadigan konvertlar yorlig'i: so'rov · javob · `oyin-ozgardi`.
 - Sarlavha: Ulanish ochiq tursa, *nima o'zgaradi*?
 - Mentor: 10-Modulda dashboard Backend'dan qayta-qayta so'rardi — bugun boshqa yo'l: birinchi telefonda Maydon Jamoa'ni oching.
 - Bashorat (Avval o'zingiz belgilab ko'ring): Ulanish ochiq turganda Backend ilovaga qachon xabar yubora oladi? · Faqat ilova so'raganda · Har 5 soniyada · Istagan payt
+  - Bashorat yolg'iz chiqadi; tanlangach ixcham qatorga yig'iladi, shundan keyin sahna (telefonlar · Backend) kirib keladi. *(✎ F-1015-287 (4-ekran ham), 213.7)*
 - Sahna: 1-telefon — bosh ekran, ilova belgisi «Maydon Jamoa» (halqada; qadam: 1 Ilovani oching) · Backend («Database: 8») · 2-telefon — O'yin ekrani, «Qo'shilaman»
   - Ilova belgisi → O'yin ekrani ochiladi: «so'rov» borib, «javob» qaytadi, «8 / 10»; chiziq chiziladi va ochiq qoladi, ustida «ochiq»
   - Nom qatori: Ilova bilan Backend orasida ochiq turadigan ulanish — **doimiy ulanish**.
@@ -95,6 +97,7 @@ Chiziq bo'ylab uchadigan konvertlar yorlig'i: so'rov · javob · `oyin-ozgardi`.
 - Mentor: Birinchi telefon chetidagi konvertni bosib oching.
   - konvert ochilgach: Ichida son yo'q: «Qayta so'rash» ni bosing.
 - Bashorat (Avval o'zingiz belgilab ko'ring): Konvert ichida nima bor? · Faqat qaysi o'yin o'zgargani · O'yinning yangi soni · O'yinlarning to'liq ro'yxati
+  - Bashorat yolg'iz chiqadi; tanlangach ixcham qatorga yig'iladi, shundan keyin sahna (telefonlar · Backend) kirib keladi. *(✎ F-1015-287 (5-ekran ham), 213.7)*
 - Sahna: 1-telefon «8 / 10», chetida yopiq konvert «ochilmagan» (halqada) · Backend («Database: 9») · 2-telefon «9 / 10»; 1-telefon ostida tugma «Qayta so'rash» (konvert ochilguncha xira)
   - Konvert → ochiladi: nomi `oyin-ozgardi` · ma'lumoti `{ oyinId: 1, sabab: 'qoshildi' }`; son o'zgarmaydi
   - Nom qatori: Ulanish orqali yuboriladigan nomli xabar — **hodisa**: nomi va ma'lumoti bor.
@@ -126,6 +129,7 @@ Chiziq bo'ylab uchadigan konvertlar yorlig'i: so'rov · javob · `oyin-ozgardi`.
 - Sarlavha: Backend kim ulanayotganini *qayerdan biladi*?
 - Mentor: Mentor misolida ulanishni socket.io kutubxonasi ochadi — avval «Tokensiz ulanish» ni, keyin «Token bilan ulanish» ni bosing.
 - Bashorat (Avval o'zingiz belgilab ko'ring): Ulanayotgan ilova Backend'ga o'zi haqida nimani yuboradi? · Hech narsa · Tokenni · Ism va parolni
+  - Bashorat yolg'iz chiqadi; tanlangach ixcham qatorga yig'iladi, shundan keyin sahna (telefonlar · Backend) kirib keladi. *(✎ F-1015-287, 213.7)*
 - Sahna: 1-telefon (O'yinlar ekrani, belgi joyi — kulrang nuqta) · Backend
 - Ostida ikki ustun:
   - Chap — tugmalar «Tokensiz ulanish» (halqada) · «Token bilan ulanish»; kod kartasi `mobil/src/ulanish.ts`:
@@ -250,6 +254,7 @@ document.querySelector('.boshqa').addEventListener('click', function () {
 - Sarlavha: Ulanish uzilsa, o'yinchi buni *qayerdan biladi*?
 - Mentor: Doimiy ulanish ham uziladi — birinchi telefonda uchish rejimini yoqing va tepadagi belgiga qarang.
 - Bashorat (Avval o'zingiz belgilab ko'ring): Uchish rejimida belgi nimani ko'rsatadi? · «Ulangan» · «Ulanmoqda…» · «Ulanmagan»
+  - Bashorat yolg'iz chiqadi; tanlangach ixcham qatorga yig'iladi, shundan keyin sahna (telefonlar · Backend) kirib keladi. *(✎ F-1015-288, 213.7)*
 - Sahna: 1-telefon — O'yinlar ekrani, belgi «Ulangan», telefon tepasida uchish rejimi tugmasi (samolyot) · Backend («Database: 8»; ostida tugma «Token: yaroqli») · 2-telefon — O'yin ekrani, «Qo'shilaman». Qadam belgilari:
   1. Uchish rejimini yoqing → chiziq uziladi (↻), belgi «Ulanmoqda…»
   2. Ikkinchi telefonda qo'shiling → 2-telefonda «9 / 10», «Database: 9»; konvert `oyin-ozgardi` uzilgan joyda so'nadi, yorliq «kelmadi»; 1-telefonda «8 / 10»

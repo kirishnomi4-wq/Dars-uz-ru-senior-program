@@ -945,7 +945,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Backend bir daqiqada <span className="italic" style={{ color: T.accent }}>nechta so'rovni</span> qabul qilsin?</>, ru: <>Сколько <span className="italic" style={{ color: T.accent }}>запросов в минуту</span> для Backend?</> })}
         mentor={<Mentor>{tr({ uz: "Hozir Backend har so'rovni yozadi — ularni hech kim sanamaydi. Uch yo'lga so'rov yuborib, hisoblagichni kuzating.", ru: 'Сейчас Backend записывает каждый запрос — их никто не считает. Отправьте запросы на три пути и следите за счётчиком.' })}</Mentor>}
         bashorat={<Bashorat savol={tr(S2_SAVOL)} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
-        vizual={<div className="pu-s2-ust">
+        vizual={!taxmin ? null : <div className="q-kir">{<div className="pu-s2-ust">
           <div className={cxx('pu-s2', tugadi && 'tugadi')} ref={box}>
             <MaydonTelefon tex holat={tugadi ? 'ega' : tel} xabar={tugadi ? 'kop' : (xabar && xabar.sahifa === tel ? xabar.k : undefined)} />
             {/* F-1015-164: yo'l tugmalari bashoratdan keyin chiqadi (joyi saqlanadi — maket siljimaydi) */}
@@ -965,7 +965,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {uchlar.map(u => <Konvert key={u.k} u={u} />)}
           </div>
           {kordi && !done && <p className="pu-joriy">{fmtCode(tr(S2_JORIY))}</p>}
-        </div>}
+        </div>}</div>}
         natija={done && <NatijaBlok tanlov={taxmin} togri="yoq" variantlar={S2_TAXMIN}
           haqiqat={{ uz: "har yo'lga o'z soni — kirishga eng kami: u yerda parol va kod tekshiriladi", ru: 'у каждого пути своё число — у входа самое маленькое: там проверяются пароль и код' }}
           izoh={fmtCode(tr(S2_JORIY))}
@@ -1075,7 +1075,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Backend kechiksa, o'yinchi <span className="italic" style={{ color: T.accent }}>nima qilishini</span> biladimi?</>, ru: <>Если Backend медлит, <span className="italic" style={{ color: T.accent }}>что делать игроку</span>?</> })}
         mentor={<Mentor>{tr({ uz: "Ikki telefon bir xil holatga tushadi: chapdagisi hozirgi sayt, o'ngdagisi — prod ro'yxati bo'yicha. Backend holatini tanlab, ikkalasini solishtiring.", ru: 'Два телефона попадают в одно и то же состояние: левый — текущий сайт, правый — по прод-списку. Выберите состояние Backend и сравните оба.' })}</Mentor>}
         bashorat={<Bashorat savol={tr(S4_SAVOL)} variantlar={S4_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
-        vizual={<div className={cxx('pu-s4', tugadi && 'tugadi')} ref={box}>
+        vizual={!taxmin ? null : <div className="q-kir">{<div className={cxx('pu-s4', tugadi && 'tugadi')} ref={box}>
           <div className="pu-s4-tel">
             <MaydonTelefon className="pu-s4-hozir" yorliq={tr({ uz: 'Hozir', ru: 'Сейчас' })} rang="hozir" holat={hozir.h} xabar={hozir.x}><Belgilar tur="xato" korildi={korildi} /></MaydonTelefon>
             <MaydonTelefon className="pu-s4-prod" yorliq="Prod" rang="prod" holat={prod.h} xabar={prod.x}><Belgilar tur="ok" korildi={korildi} /></MaydonTelefon>
@@ -1093,7 +1093,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             })}</div>
           </BackendQuti>
           {uchlar.map(u => <Konvert key={u.k} u={u} />)}
-        </div>}
+        </div>}</div>}
         natija={done && <NatijaBlok tanlov={taxmin} togri="turadi" variantlar={S4_TAXMIN}
           haqiqat={{ uz: 'hozirgi sayt «Yuklanmoqda…» deb turaveradi', ru: 'текущий сайт так и пишет «Загрузка…»' }}
           izoh={tr({ uz: "Kutishni yoki xatoni o'yinchiga aytish — kutish va xato holatlari.", ru: 'Сообщать игроку об ожидании или ошибке — это состояния ожидания и ошибки.' })}

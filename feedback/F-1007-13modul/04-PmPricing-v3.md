@@ -158,7 +158,7 @@ namunalar: 12-Modul `07-PmFiftyUsers-v3.md` + `07-FILTR.md` (PM+PRAKT shakli) ·
   - 1/3: Bepul Backend uxlaydi, to'lov xabari esa kechikmasin — Backend kartasidagi «uxlaydi» belgisini bosing.
   - 2/3: Tashkilotchi o'yinni bugun nima bilan yig'ishini ko'ring — «Bugun qanday?» ni bosing.
   - 3/3: Pro tashkilotchiga nima berishini ko'ring — «Har hafta takrorlansin» belgisini bosing.
-- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bitta o'lchov, o'sish tartibida): **Mentor 1-darsdagi 10 000 ni nima qiladi?** · Kamaytiradi · O'zgartirmaydi · Oshiradi
+- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bitta o'lchov, o'sish tartibida): **Mentor 1-darsdagi 10 000 ni nima qiladi?** · Kamaytiradi · O'zgartirmaydi · Oshiradi · **213.7 (F-1015-297/298, 18.10): bashorat ekranda yolg'iz; tanlangach «Taxminingiz: …» qatoriga yig'iladi, sahna (chap karta + vizual) shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin xira sahna yo'q.**
   — tanlangach yopilmaydi: ixcham qator «Taxminingiz: …» natijagacha turadi.
 - Vizual (≤ 3 blok: sahna · varaq · harakat tugmasi): chapda telefon yoki xizmat kartalari (qadamga qarab) · o'ngda **«Narx varag'i»** — to'rt qator, nomlari «?», qiymatlari bo'sh · varaq ostida hisob qatori bo'sh.
 - **Harakat → Vizual o'zgarish** (qadamlar tartibda, bittasi halqada; N/3):
@@ -212,7 +212,7 @@ namunalar: 12-Modul `07-PmFiftyUsers-v3.md` + `07-FILTR.md` (PM+PRAKT shakli) ·
   - 1/3: Pro'si yo'q tashkilotchi pullik qulaylikni bosadi — yonib turgan belgini bosing.
   - 2/3: Endi to'lov taklifi ekranidagi «To'lovga o'tish» ni bosing.
   - 3/3: Mashq sahifasida «To'lash (mashq)» ni bosing va ilovada nima o'zgarishini kuzating.
-- Bashorat (ballsiz, 181; S-015 — bitta o'lchov, o'sish tartibida): **Ekranda Pro haqida nimalar turadi?** · Faqat «To'lovga o'tish» tugmasi · Narx va «To'lovga o'tish» · Nima ochilishi, narx va tugma — tanlangach yopilmaydi.
+- Bashorat (ballsiz, 181; S-015 — bitta o'lchov, o'sish tartibida): **Ekranda Pro haqida nimalar turadi?** · Faqat «To'lovga o'tish» tugmasi · Narx va «To'lovga o'tish» · Nima ochilishi, narx va tugma — tanlangach yopilmaydi. · **213.7 (F-1015-297/298, 18.10): bashorat ekranda yolg'iz; tanlangach «Taxminingiz: …» qatoriga yig'iladi, sahna (chap karta + vizual) shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin xira sahna yo'q.**
 - Vizual (≤ 3 blok): chapda **telefon** («Maydon Jamoa», «E'lon berish», Pro yo'q) · o'ngda **Backend tuguni** (mini-jadval `tolovlar` — oxirgi qator 3-darsdan kulrang; qator `pro_gacha` — bo'sh) · ostida harakat tugmasi. Telefon va Backend orasida ochiq chiziq — konvert yo'li.
 - **Harakat → Vizual o'zgarish** (qadamlar tartibda, bittasi halqada; N/3):
   1. Telefonda belgi «Har hafta takrorlansin» halqada. Bosilganda pastdan to'lov taklifi ekrani sirg'alib chiqadi (tayanch 1.4 so'zma-so'z): **«Doimiy o'yin — Pro'da»** · «Har hafta shu kun va soatda o'yin o'zi e'lon qilinadi.» · **«30 kun — 15 000 so'm»** (yonida kichik kulrang «Mentorning taxmini») · tugma **«To'lovga o'tish»** · pastda kulrang **«Test rejim: pul yechilmaydi»**.

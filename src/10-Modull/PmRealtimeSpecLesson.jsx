@@ -983,7 +983,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Mentor talabida real vaqt uchun <A>nima yozilgan?</A></>, ru: <>Что в требовании Ментора <A>для реального времени?</A></> })}
         mentor={<Mentor>{tr(mentor)}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={S2_SAVOL} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        vizual={<div className="rt-viz">
+        vizual={!taxmin ? null : <div className="rt-viz rt-kir">
           {tugadi ? varaq : <TalabSahna sahna={{ t1: { ekran: 'oyinlar', belgi: sh.belgi, son: sh.son, sonYangi: sh.son === 9 && !avval, tort: sh.tort }, be: { db: sh.db, dbYangi: sh.dbYangi }, c1: sh.c1, k1: sh.k1 }} varaq={varaq} />}
           {done && <p className="rt-nom fade-step">{tr({ uz: <>Talabning real vaqt funksiyasi uchun uch bo'limi — <b>real vaqt talabi</b>.</>, ru: <>Три раздела требования для функции реального времени — <b>требование к реальному времени</b>.</> })}</p>}
         </div>}
@@ -1036,8 +1036,6 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useKorin(tugadi, '.q-xulosa');
   const yozildi = (i) => { setVq(i + 1); setYangiQ(i); ketma([[1200, () => setYangiQ(-1)]]); };
   const tayyor = taxmin && !sh.faol && !done;
-  const [eslat, setEslat] = useState(0); // F-1015-168: taxmindan oldin telefondagi tugma bosilsa — sabab
-  const eslatBos = !taxmin && !done ? () => setEslat(n => n + 1) : null;
   // 1-vaziyat: samolyot → uzilish → 2-telefonda qo'shilish → konvert uzilgan joyda so'nadi («kelmadi») → ~2 s → qayta ulanish → «8 / 10 · eski»
   const v1 = () => {
     if (!tayyor || vq !== 0) return;
@@ -1084,12 +1082,12 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   };
   const t1 = {
     ekran: sh.t1ekran, belgi: sh.belgi, son: sh.t1son, sonYangi: sh.t1yangi, sonK: sh.t1sonK, eski: sh.t1eski,
-    samolyot: sh.samolyot, onSamolyot: eslatBos || (tayyor && vq === 0 ? v1 : null), samolyotHalqa: tayyor && vq === 0,
+    samolyot: sh.samolyot, onSamolyot: tayyor && vq === 0 ? v1 : null, samolyotHalqa: tayyor && vq === 0,
     onBosh: tayyor && vq === 2 ? v3 : null, boshHalqa: tayyor && vq === 2,
     onIkon: sh.ikonHalqa ? ikon : null, ikonHalqa: sh.ikonHalqa,
     osti: sh.sorovN > 0 && <span className="rt-sanoq fade-step" key={sh.sorovN}>{tr(TS.y.sorovN)}: <b>{sh.sorovN}</b></span>
   };
-  const t2 = { ekran: 'oyin', son: sh.t2son, sonYangi: sh.t2son === 9, qoshildi: sh.t2qoshildi, onQoshil: eslatBos || (tayyor && vq === 1 ? v2 : null), qoshilHalqa: tayyor && vq === 1 };
+  const t2 = { ekran: 'oyin', son: sh.t2son, sonYangi: sh.t2son === 9, qoshildi: sh.t2qoshildi, onQoshil: tayyor && vq === 1 ? v2 : null, qoshilHalqa: tayyor && vq === 1 };
   const bolim = { n: 3, nom: done ? tr(TS.chekkaNom) : tr(TS.bolim[2]), nomK: done ? 1 : 0, nomYangi: done && !avval, qatorlar: MH.chekka.slice(0, vq).map((c, i) => ({ t: tr(c), yangi: yangiQ === i })), bosh: 3 - vq };
   const mentor = !taxmin ? { uz: "Avval javobingizni belgilang, keyin uch vaziyatni birma-bir ko'ring.", ru: 'Сначала отметьте ответ, потом посмотрите три ситуации по одной.' }
     : done ? { uz: "Talab har vaziyatda nima bo'lishi kerakligini aytadi — qanday qilish agentning tanloviga qoladi.", ru: 'Требование говорит, что должно быть в каждой ситуации, — как это сделать, остаётся на выбор агента.' }
@@ -1102,8 +1100,8 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
         sarlavha={tr({ uz: <>Ekran qachon kutilganidek <A>yangilanmaydi?</A></>, ru: <>Когда экран <A>не обновляется</A>, как ожидалось?</> })}
         mentor={<Mentor>{tr(mentor)}</Mentor>}
-        bashorat={!tugadi && <><Bashorat savol={S4_SAVOL} variantlar={S4_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />{eslat > 0 && !taxmin && <QXato key={eslat}>{tr({ uz: 'Avval taxminingizni belgilang.', ru: 'Сначала отметьте свой прогноз.' })}</QXato>}</>}
-        vizual={<div className="rt-viz">
+        bashorat={!tugadi && <Bashorat savol={S4_SAVOL} variantlar={S4_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
+        vizual={!taxmin ? null : <div className="rt-viz rt-kir">
           {tugadi ? bolimV : <TalabSahna yorliq={{ uz: "Shunday bo'lishi mumkin", ru: 'Так может быть' }} sahna={{ t1, t2, be: { db: sh.db, dbYangi: sh.dbYangi }, c1: sh.c1, c2: sh.c2, k1: sh.k1, k2: sh.k2, y1: sh.y1, y1ok: sh.y1ok }} varaq={bolimV} />}
           {done && <p className="rt-nom fade-step">{tr({ uz: <>Kam uchraydigan, lekin bo'ladigan vaziyat — <b>chekka holat</b>: talabda unda nima bo'lishi yoziladi.</>, ru: <>Редкая, но реальная ситуация — <b>крайний случай</b>: в требовании пишут, что в ней должно быть.</> })}</p>}
         </div>}
@@ -2093,7 +2091,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
     : { uz: `Keyingi bo'lak — «${stepN + 1} · ${steps[stepN].h.uz}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующая часть — «${stepN + 1} · ${steps[stepN].h.ru}»: выполните и нажмите «Готово».` };
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
-      <QBlok til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{ustida}</>} zoom={Zoomable}
+      <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{ustida}</>} zoom={Zoomable}
         qadamlar={steps.map(c => ({
           h: tr(c.h),
           t: <>{tx(c.t)}{c.bandlar && c.bandlar.map((b, i) => <span key={i} className="rt-band">{tx(b)}</span>)}{c.oldin}{c.prompt && <RtPrompt satrlar={c.prompt} namuna={c.namuna} toldir={c.toldir} tahrir={c.tahrir} onNusxa={c.onNusxa} />}{c.ichi}</>,
@@ -2103,7 +2101,6 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
         tugadi={done} tugadiMatn={tr(doneText)} natija={natija} natijaYorliq={tr(NATIJA_YORLIQ)}
         pastki={<MentorPracticeStats live={_live} screen={screen} />}>
         {ortda && <p className="rt-ortda">{tr({ uz: 'Ortda qoldingizmi — Mentor misolini alohida papkada oching:', ru: 'Отстали — откройте пример Ментора в отдельной папке:' })} <code className="rt-buyruq">{ORTDA[0]}</code> · <code className="rt-buyruq">{ORTDA[1]}</code> · <code className="rt-buyruq">{ORTDA[2]}</code> {tx(ortda)}</p>}
-        {ulgur && !done && <p className="rt-ulgur">{tx(ulgur)}</p>}
         {ustoz && <Ustoz matn={ustoz} />}
       </QBlok>
     </Stage>
@@ -2558,6 +2555,7 @@ export default function PmRealtimeSpecLesson({ lang: langProp, onFinished, liveT
         .rt-pop { display: inline-block; animation: rt-pop 0.55s cubic-bezier(.3,1.5,.5,1); color: ${T.accent}; }
         @keyframes rt-pop { 0% { transform: scale(1.45); } 100% { transform: scale(1); } }
         .rt-viz { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+        .rt-kir { animation: rt-kirdi .4s ease-out both; } /* F-1015-289: sahna bashoratdan keyin kiradi (213.7) */
         p.rt-nom { margin: 0; padding: 8px 12px; border-radius: 10px; background: ${T.paper}; border: 1px solid ${T.line}; font-size: 14px; line-height: 1.45; color: ${T.ink}; }
         p.rt-nom b { color: ${T.accent}; }
         /* Yashil xulosa ichida: taxmin qatori (kichik) · asosiy gap · izoh (kichik, ingichka ajratgich) — E 42 */
@@ -2855,7 +2853,7 @@ export default function PmRealtimeSpecLesson({ lang: langProp, onFinished, liveT
           .rt-mini-r { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
         @media (prefers-reduced-motion: reduce) {
-          .rt-halqa, .rt-k.faol .q-variant, .rt-halqa-g .q-chip, .rt-chorla > .q-chip, .rt-flash.yangi .fc-card .fc-front { animation: none !important; }
+          .rt-halqa, .rt-k.faol .q-variant, .rt-halqa-g .q-chip, .rt-chorla > .q-chip, .rt-flash.yangi .fc-card .fc-front, .rt-kir { animation: none !important; }
           .rt-kv, .rt-uch, .rt-n-kv { display: none !important; }
           .rt-pop, .rt-son.yangi, .rt-doiralar i.yangi, .rt-chiziq-i, .rt-chiziq-i::after, .rt-chiziq-r.aylan, .rt-belgi, .rt-belgi-n, .rt-tel-ekran, .rt-vb, .rt-vb-q, .rt-vb-h b, .rt-ms-karta, .rt-ms-q, .rt-eski, .rt-chiziq-y, .rt-kursor, .rt-rd-h2, .rt-rd-q, .rt-fokus, .rt-ms-chip { animation: none !important; transition: none !important; }
         }

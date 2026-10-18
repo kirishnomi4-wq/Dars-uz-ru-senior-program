@@ -65,6 +65,7 @@ Mentor talabi (dars bo'yi bir xil):
   - 3-bo'lim oldidan: Oxirgi bo'limni oching — uning qatorlari hozircha bo'sh.
   - uch bo'lim ochilgach: 11-Modulda PRD yozgansiz — u nima qurilishini aytadi; real vaqt talabi esa o'zgarish qanday ko'rinishini.
 - Bashorat (yorliq «Avval o'zingiz belgilab ko'ring», ballsiz): Agentga faqat «ro'yxat o'zi yangilansin» deb yozilsa, nechta narsa uning tanloviga qoladi? · Hech narsa · Bir-ikkitasi · Ko'p narsa
+  - Bashorat yolg'iz chiqadi; tanlangach ixcham qatorga yig'iladi, shundan keyin sahna va talab varag'i kirib keladi. *(✎ F-1015-289, 213.7)*
   - tanlangach ixcham qator: savol · Taxminingiz: <tanlov>
 - Vizual: chapda telefon «O'yinlar» (belgi «Ulangan», karta «Shanba, 18:00 · Mahalla maydoni · 8 / 10») va Backend («Database: 8»); o'ngda talab varag'i «Mentor talabi · Maydon Jamoa» — boshida kulrang: Qayerda (Mentor talabidagi qator) · Nima qilsin: uch bo'sh uya (1 · 2 · 3) · Nima buzilmasin (Mentor talabidagi qator). Varaq ostida tugma «Keyingi bo'lim» (hisob faqat pastki tugmada *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*).
 - Har bosish:
@@ -103,6 +104,7 @@ Mentor talabi (dars bo'yi bir xil):
   - 3-vaziyat: Birinchi telefonda ilovani fonga olib keting — pastdagi bosh ekran chizig'ini bosing.
   - uch vaziyatdan keyin: Talab har vaziyatda nima bo'lishi kerakligini aytadi — qanday qilish agentning tanloviga qoladi.
 - Bashorat (ballsiz): Internet bir necha soniyaga uzilib qaytdi. Shu payt bo'lgan qo'shilish birinchi telefonda qachon ko'rinadi? · O'sha zahoti · Ulanish qaytganda · Pastga tortganda
+  - Bashorat yolg'iz chiqadi; tanlangach ixcham qatorga yig'iladi, shundan keyin sahna va talab varag'i kirib keladi. *(✎ F-1015-289, 213.7)*
 - Vizual: sahna tepasida kulrang yorliq «Shunday bo'lishi mumkin» (hisob tugmada *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*); ikki telefonli sahna — 1-telefon «O'yinlar» (belgi «Ulangan», «8 / 10»), o'rtada Backend («Database: 8»), 2-telefon «O'yin» («Qo'shilaman»); o'ngda varaq «Mentor talabi · Maydon Jamoa» — «3 · Kam uchraydigan vaziyatlar», uchta bo'sh qator.
 - Vaziyatlar:
   1. Samolyot (1-telefon) → belgi «Ulanmoqda…», chiziq uzilgan; 2-telefonda qo'shilish → «Database: 9», 2-telefonda «9 / 10»; konvert `oyin-ozgardi` uzilgan joyda so'nadi — yorliq «kelmadi»; keyin uchish rejimi o'chadi, belgi «Ulangan»; 1-telefonda «8 / 10» va kulrang «eski». Varaqqa 1-qator: Internet uzilib qaytsa — ro'yxat yangi holatni ko'rsatsin.

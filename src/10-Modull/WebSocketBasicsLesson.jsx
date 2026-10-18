@@ -933,7 +933,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             : q === 1 ? { uz: "Yetib bormadi: 1-telefon so'ramagan. Endi 1-telefonni pastga torting yoki undagi «↓ Pastga torting» ni bosing.", ru: 'Не дошло: телефон 1 не запрашивал. Теперь потяните телефон 1 вниз или нажмите на нём «↓ Потяните вниз».' }
               : { uz: "Son faqat ilova so'raganda yangilandi — «Davom etish» ni bosing.", ru: 'Число обновилось только по запросу приложения — нажмите «Продолжить».' })}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={{ uz: 'Backend yangi sonni birinchi telefonga o\'zi yubora oladimi?', ru: 'Может ли Backend сам отправить новое число на первый телефон?' }} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        vizual={<Sahna
+        vizual={!taxmin ? null : <Sahna
           t1={{ son, sonYangi: son === 9, eski: son === 8 && SAHNA.eski, onTort: q === 1 && !band && !tugadi ? tort : null, tortHalqa: q === 1 && !band, qadam: q === 1 && !band && !tugadi ? { n: 2, t: { uz: 'Pastga torting', ru: 'Потяните вниз' } } : null }}
           be={{ db: 9, qator: beQator, qadam: taxmin && q === 0 && !band ? { n: 1, t: { uz: "Yuborib ko'ring", ru: 'Попробуйте отправить' } } : null,
             ichi: !tugadi && q === 0 && taxmin && !band && <button type="button" className={cx('ws-yubor', halqa(true), 'fade-step')} onClick={yubor}>{tr({ uz: '1-telefonga yuborish', ru: 'Отправить на телефон 1' })}</button> }} /* F-1015-164: dars tugmasi bashoratdan keyin chiqadi */
@@ -1002,7 +1002,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Ulanish ochiq tursa, <span className="italic" style={{ color: T.accent }}>nima o'zgaradi</span>?</>, ru: <>Если соединение открыто, <span className="italic" style={{ color: T.accent }}>что меняется</span>?</> })}
         mentor={<Mentor>{tr({ uz: "10-Modulda dashboard Backend'dan qayta-qayta so'rardi — bugun boshqa yo'l: birinchi telefonda Maydon Jamoa'ni oching.", ru: 'В 10-м модуле дашборд снова и снова спрашивал Backend — сегодня другой путь: откройте «Maydon Jamoa» на первом телефоне.' })}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={{ uz: 'Ulanish ochiq turganda Backend ilovaga qachon xabar yubora oladi?', ru: 'Когда Backend может отправить приложению сообщение, пока соединение открыто?' }} variantlar={S4_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        vizual={<div className="ws-viz">
+        vizual={!taxmin ? null : <div className="ws-viz ws-kir">
           <Sahna
             t1={{ ekran, son: son1, onIkon: taxmin && q === 0 && !band ? och : null, ikonHalqa: taxmin && q === 0 && !band, qoshilYoq: true, konvert: konvert && 'yopiq',
               qadam: taxmin && q === 0 && !band ? { n: 1, t: { uz: 'Ilovani oching', ru: 'Откройте приложение' } } : null }}
@@ -1054,7 +1054,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           ? tr({ uz: 'Birinchi telefon chetidagi konvertni bosib oching.', ru: 'Нажмите на конверт у края первого телефона и откройте его.' })
           : tr({ uz: "Ichida son yo'q: «Qayta so'rash» ni bosing.", ru: 'Внутри нет числа: нажмите «Запросить заново».' })}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={{ uz: 'Konvert ichida nima bor?', ru: 'Что внутри конверта?' }} variantlar={S5_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        vizual={<div className="ws-viz">
+        vizual={!taxmin ? null : <div className="ws-viz ws-kir">
           <Sahna
             t1={{ son, sonYangi: son === 9 && !avval, qoshilYoq: true, konvert: q === 0 ? 'yopiq' : 'ochiq', onKonvert: taxmin && q === 0 ? och : null, konvertHalqa: taxmin && q === 0,
               osti: <>{q >= 1 && <KonvertIchi />}{!tugadi && q === 1 && !band && <button type="button" className={cx('ws-qayta', halqa(true), 'fade-step')} onClick={qayta}>{tr({ uz: "Qayta so'rash", ru: 'Запросить заново' })}</button>}</> }} /* F-1015-164: konvert ochilgach chiqadi */
@@ -1131,7 +1131,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Backend kim ulanayotganini <span className="italic" style={{ color: T.accent }}>qayerdan biladi</span>?</>, ru: <>Откуда Backend <span className="italic" style={{ color: T.accent }}>знает</span>, кто подключается?</> })}
         mentor={<Mentor>{tr({ uz: "Mentor misolida ulanishni socket.io kutubxonasi ochadi — avval «Tokensiz ulanish» ni, keyin «Token bilan ulanish» ni bosing.", ru: 'В примере Ментора соединение открывает библиотека socket.io — сначала нажмите «Подключиться без токена», затем «Подключиться с токеном».' })}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={{ uz: "Ulanayotgan ilova Backend'ga o'zi haqida nimani yuboradi?", ru: 'Что подключающееся приложение отправляет Backend о себе?' }} variantlar={S7_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        vizual={<div className="ws-viz">
+        vizual={!taxmin ? null : <div className="ws-viz ws-kir">
           <Sahna t1={{ ekran: 'oyinlar', belgi, son: 8 }} be={{ ok: gwYon === 'ok', xato: gwYon === 'err', qator: gwYon === 'ok' ? { uz: 'token yaroqli ✓', ru: 'токен действителен ✓' } : gwYon === 'err' ? { uz: "token yo'q — yopdi", ru: 'токена нет — закрыл' } : null }} c1={c1} k1={k1} />
           <div className="ws-kodlar">
             <div className="ws-kodlar-ch">
@@ -1312,7 +1312,6 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [kelmadi, setKelmadi] = useState(false);
   const [eski, setEski] = useState(avval);
   const [token, setToken] = useState(avval ? 'yaroqsiz' : 'yaroqli');
-  const [eslat, setEslat] = useState(0); // F-1015-168: taxmindan oldin telefondagi tugma bosilsa — sabab
   const ketma = useKetma();
   const done = q >= 4;
   const tugadi = useTugadi(done, 1300, avval);
@@ -1340,10 +1339,10 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
         sarlavha={tr({ uz: <>Ulanish uzilsa, o'yinchi buni <span className="italic" style={{ color: T.accent }}>qayerdan biladi</span>?</>, ru: <>Если соединение оборвётся, <span className="italic" style={{ color: T.accent }}>откуда</span> игрок это узнает?</> })}
         mentor={<Mentor>{tr({ uz: 'Doimiy ulanish ham uziladi — birinchi telefonda uchish rejimini yoqing va tepadagi belgiga qarang.', ru: 'Постоянное соединение тоже обрывается — включите режим полёта на первом телефоне и посмотрите на значок вверху.' })}</Mentor>}
-        bashorat={!tugadi && <><Bashorat savol={{ uz: 'Uchish rejimida belgi nimani ko\'rsatadi?', ru: 'Что покажет значок в режиме полёта?' }} variantlar={S10_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />{eslat > 0 && !taxmin && <QXato key={eslat}>{tr({ uz: 'Avval taxminingizni belgilang.', ru: 'Сначала отметьте свой прогноз.' })}</QXato>}</>}
-        vizual={<div className="ws-viz">
+        bashorat={!tugadi && <Bashorat savol={{ uz: 'Uchish rejimida belgi nimani ko\'rsatadi?', ru: 'Что покажет значок в режиме полёта?' }} variantlar={S10_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
+        vizual={!taxmin ? null : <div className="ws-viz ws-kir">
           <Sahna
-            t1={{ ekran: 'oyinlar', belgi, son: 8, eski: eski && SAHNA.eskiMumkin, samolyot, onSamolyot: !taxmin && !tugadi ? () => setEslat(n => n + 1) : taxmin && !band && !tugadi ? samBos : null, samolyotHalqa: !!(taxmin && !band && samBos),
+            t1={{ ekran: 'oyinlar', belgi, son: 8, eski: eski && SAHNA.eskiMumkin, samolyot, onSamolyot: taxmin && !band && !tugadi ? samBos : null, samolyotHalqa: !!(taxmin && !band && samBos),
               qadam: !taxmin || band || tugadi ? null : q === 0 ? { n: 1, t: { uz: 'Uchish rejimini yoqing', ru: 'Включите режим полёта' } } : q === 2 ? { n: 3, t: { uz: "Uchish rejimini o'chiring", ru: 'Выключите режим полёта' } } : null,
               osti: tugadi && <div className="ws-uch-belgi fade-step"><UlanishBelgisi holat="ulangan" /><UlanishBelgisi holat="ulanmoqda" /><UlanishBelgisi holat="ulanmagan" /></div> }}
             be={{ db, dbYangi: db === 9 && !avval, qadam: q === 3 && !band ? { n: 4, t: { uz: 'Tokenni yaroqsiz qiling', ru: 'Сделайте токен недействительным' } } : null,
@@ -2329,7 +2328,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
     : { uz: `Keyingi qadam — «${stepN + 1} · ${steps[stepN].h.uz}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующий шаг — «${stepN + 1} · ${steps[stepN].h.ru}»: выполните и нажмите «Готово».` };
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
-      <QBlok til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{ustida}</>} zoom={Zoomable}
+      <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{ustida}</>} zoom={Zoomable}
         qadamlar={steps.map(c => ({
           h: tr(c.h),
           t: <>{tx(c.t)}{c.bandlar && c.bandlar.map((b, i) => <span key={i} className="ws-band">{tx(b)}</span>)}{c.prompt && <WsPrompt satrlar={c.prompt} namuna={c.namuna} toldir={c.toldir} />}</>,
@@ -2339,7 +2338,6 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
         tugadi={done} tugadiMatn={tr(doneText)} natija={natija} natijaYorliq={tr(NATIJA_YORLIQ)}
         pastki={<>{done && izoh && <QIzoh>{tr(izoh)}</QIzoh>}<MentorPracticeStats live={_live} screen={screen} /></>}>
         {ortda && <p className="ws-ortda">{tr({ uz: 'Ortda qoldingizmi — Mentor misolini yangi papkada oching:', ru: 'Отстали? Откройте пример Ментора в новой папке:' })} <code className="ws-buyruq">{ORTDA[0]}</code> · <code className="ws-buyruq">{ORTDA[1]}</code> · <code className="ws-buyruq">{ORTDA[2]}</code> {tx(ortda)}</p>}
-        {ulgur && !done && <p className="ws-ulgur">{tx(ulgur)}</p>}
         {ustoz && isMentorLive && <div className="ws-ustoz"><b>{tr({ uz: "O'qituvchi eslatmasi", ru: 'Заметка для учителя' })}</b><span>{tr(ustoz)}</span></div>}
       </QBlok>
     </Stage>
@@ -2740,6 +2738,7 @@ export default function WebSocketBasicsLesson({ lang: langProp, onFinished, live
         @keyframes ws-pop { 0% { transform: scale(1.45); } 100% { transform: scale(1); } }
         .ws-k { display: contents; }
         .ws-viz { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+        .ws-kir { animation: ws-kirdi .4s ease-out both; } /* F-1015-287/288: sahna bashoratdan keyin kiradi (213.7) */
         p.ws-nom { margin: 0; padding: 8px 12px; border-radius: 10px; background: ${T.paper}; border: 1px solid ${T.line}; font-size: 14px; line-height: 1.45; color: ${T.ink}; }
         p.ws-nom b { color: ${T.accent}; }
         /* Yashil xulosa ichida: taxmin qatori (kichik) · asosiy gap · izoh (kichik, ingichka ajratgich) — quti qalin bo'lmaydi (F-1006-380/382) */
@@ -3084,7 +3083,7 @@ export default function WebSocketBasicsLesson({ lang: langProp, onFinished, live
           .ws-sahna.tik.ikki .ws-tel-ust, .ws-sahna.tik.ikki .ws-telefon { width: 168px; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .ws-halqa, .ws-k.faol .q-variant, .ws-halqa-g .q-chip, .ws-chorla > .q-chip, .ws-flash.yangi .fc-card .fc-front { animation: none !important; }
+          .ws-halqa, .ws-k.faol .q-variant, .ws-halqa-g .q-chip, .ws-chorla > .q-chip, .ws-flash.yangi .fc-card .fc-front, .ws-kir { animation: none !important; }
           .ws-kv { display: none !important; }
           .ws-pop, .ws-son.yangi, .ws-doiralar i.yangi, .ws-chiziq-i, .ws-chiziq-i::after, .ws-chiziq-r.aylan, .ws-belgi, .ws-belgi-n, .ws-tel-ekran, .ws-backend.tugildi, .ws-karta.yangi, .ws-sx-r.yangi, .ws-rd-r, .ws-ms-q, .ws-konvert, .ws-readme, .ws-eski, .ws-chiziq-y { animation: none !important; transition: none !important; }
         }

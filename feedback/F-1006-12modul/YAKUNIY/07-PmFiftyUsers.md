@@ -67,6 +67,7 @@ Maxfiylik sahifasi (brauzer `…/maxfiylik.html`):
   - 1/3–3/3: Keyingi bo'lakni ochish uchun «Keyingi bosqich»ni bosing.
   - 3/3 dan keyin: Rejadagi sonlar — kutilgan sonlar; haqiqiysini ko'rish uchun «Ishga tushirish kuni»ni bosing.
 - Bashorat (yorliq: Avval o'zingiz belgilab ko'ring): «Ilova chiqdi» postidan keyin Mentor nechta kishi kutyapti? · 20 kishi · 35 kishi · 50 kishi
+  - Bashorat yolg'iz chiqadi; tanlangach ixcham qatorga yig'iladi, shundan keyin post maketi va jadval kirib keladi. *(✎ F-1015-292, 213.7)*
   - Tanlangach qator: «Ilova chiqdi» postidan keyin Mentor nechta kishi kutyapti? · Taxminingiz: …
 - Chapda chat oynasi «Mahalla futbol guruhi · 60 a'zo» (ichida birinchi post) · o'ngda reja jadvali (qatorsiz) va 0…50 chizig'i
 - «Keyingi bosqich N/3» bosilganda jadvalga navbatdagi qator kiradi (yuqoridagi Mentor rejasi), chiziqda son belgisi, yorliq «Mentorning taxmini»:
@@ -104,7 +105,7 @@ Maxfiylik sahifasi (brauzer `…/maxfiylik.html`):
   - 3/3: Oxirgisi — lendingdagi «Qo'shilmoqchiman»ni bosing: odam ilovaga qanday yetadi?
 - Bashorat (yorliq: Avval o'zingiz belgilab ko'ring): Mentor ilovasi hoziroq yuborilsa, nechta narsa yetmay qoladi? · Hech narsa · Bitta narsa · Uchta narsa
   - Tanlangach qator: Mentor ilovasi hoziroq yuborilsa, nechta narsa yetmay qoladi? · Taxminingiz: …
-- Bashoratgacha faqat telefon «Ro'yxatdan o'tish» (Ism · Telefon · Parol); tanlangach o'ngda «Yuborishdan oldin» jadvali (sanoqsiz — hisob tugmada *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*), qatorlari navbat bilan kiradi:
+- Bashoratgacha hech narsa — bashorat yolg'iz *(✎ F-1015-292, 213.7)*; tanlangach telefon «Ro'yxatdan o'tish» (Ism · Telefon · Parol) va o'ngda «Yuborishdan oldin» jadvali (sanoqsiz — hisob tugmada *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*), qatorlari navbat bilan kiradi:
 
 | | Savol | Hozir | Qayerda |
 |---|---|---|---|

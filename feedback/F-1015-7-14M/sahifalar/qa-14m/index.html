@@ -1,0 +1,123 @@
+<title>14-Modul «Bittadan» tashxisi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: bitta ustun; har band = sizning so'zingiz → hozirgi surat → tashxis → taklif-namuna (dars palitrasida) → tanlov */
+:root {
+  --bg: #f4f3f8; --card: #ffffff; --ink: #1d1b2b; --ink2: #5d5a72; --line: #e2e0ec; --accent: #5b3fd6; --accent-soft: #ece8fd; --warn: #b4540f; --warn-soft: #fbeedd;
+  --f-body: 'Manrope', system-ui, sans-serif; --f-mono: 'JetBrains Mono', ui-monospace, monospace;
+  /* dars palitrasi — namuna oynasi ikki mavzuda ham dars qanday ko'rinsa shunday */
+  --d-bg: #F2F0FA; --d-paper: #FFFFFF; --d-line: #E7E3F4; --d-ink: #1B1630; --d-ink2: #565073; --d-accent: #5B3DE6; --d-asoft: #EBE5FD; --d-ok: #1F7A4D; --d-okfon: #E3F0E8; --d-err: #C2362B; --d-errfon: #FAE3E0; --d-mute: #F6F4FC;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #15141c; --card: #1f1d29; --ink: #ecebf4; --ink2: #a7a4ba; --line: #34314a; --accent: #a593ff; --accent-soft: #2c2650; --warn: #f0a35a; --warn-soft: #3a2a18; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #15141c; --card: #1f1d29; --ink: #ecebf4; --ink2: #a7a4ba; --line: #34314a; --accent: #a593ff; --accent-soft: #2c2650; --warn: #f0a35a; --warn-soft: #3a2a18; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 80px; }
+.wrap { max-width: 1060px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+h1 { font-size: clamp(22px, 3vw, 30px); margin: 0; text-wrap: balance; } h2 { font-size: 19px; margin: 0; text-wrap: balance; } h3 { font-size: 14px; margin: 0; color: var(--ink2); text-transform: uppercase; letter-spacing: .06em; }
+p { margin: 0; max-width: 78ch; } .lead { color: var(--ink2); }
+.band { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+.id { font-family: var(--f-mono); font-size: 12px; color: var(--accent); letter-spacing: .04em; }
+.soz { border-left: 3px solid var(--accent); padding: 4px 12px; color: var(--ink2); font-style: italic; }
+.ikki { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 16px; align-items: start; }
+@media (max-width: 860px) { .ikki { grid-template-columns: 1fr; } }
+figure { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+figure img { width: 100%; border-radius: 8px; border: 1px solid var(--line); display: block; }
+figcaption { font-size: 12.5px; color: var(--ink2); }
+.tanlov { display: flex; flex-direction: column; gap: 8px; }
+.tanlov .v { display: flex; gap: 10px; align-items: baseline; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; }
+.tanlov .v b { font-family: var(--f-mono); color: var(--accent); flex-shrink: 0; }
+.tanlov .v.tavsiya { border-color: var(--accent); background: var(--accent-soft); }
+.ogoh { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-weight: 600; }
+ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+/* ---- dars namunasi (mock) ---- */
+.dars { background: var(--d-bg); color: var(--d-ink); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+.dars .t { font-size: 20px; font-weight: 800; letter-spacing: -.01em; } .dars .t i { font-style: normal; color: var(--d-accent); }
+.dars .hol { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--d-ink2); }
+.k { background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.k .y { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--d-ink2); }
+.q { display: flex; align-items: center; gap: 10px; background: var(--d-mute); border-radius: 10px; padding: 9px 12px; }
+.q .n { width: 20px; color: var(--d-ink2); font-family: var(--f-mono); font-size: 12px; } .q b { flex: 1; font-weight: 700; } .q .s { color: var(--d-ink2); font-size: 12.5px; }
+.q.chet { color: var(--d-ink2); } .q.chet b { font-weight: 600; }
+.chip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--d-line); background: var(--d-paper); border-radius: 999px; padding: 6px 12px; font-weight: 700; font-size: 13px; }
+.chip.on { border-color: var(--d-accent); color: var(--d-accent); background: var(--d-asoft); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.ok { color: var(--d-ok); background: var(--d-okfon); border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 800; }
+.yoq { color: var(--d-err); background: var(--d-errfon); border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 800; }
+.mute { color: var(--d-ink2); font-size: 13px; }
+.form { display: flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--f-mono); font-size: 14px; flex-wrap: wrap; }
+.form .b { background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 8px; padding: 4px 10px; min-width: 38px; text-align: center; } .form .b.bosh { color: var(--d-ink2); }
+.form .r { background: var(--d-accent); color: #fff; border-radius: 8px; padding: 4px 10px; font-weight: 700; }
+.bar { display: grid; grid-template-columns: 20px minmax(0, 1fr) minmax(90px, 1.2fr) 42px; align-items: center; gap: 10px; background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 10px; padding: 8px 12px; }
+.bar.top { border-color: var(--d-accent); } .bar .n { color: var(--d-ink2); font-family: var(--f-mono); font-size: 12px; } .bar .f { font-family: var(--f-mono); font-size: 11px; color: var(--d-ink2); }
+.bar .tr { height: 8px; border-radius: 999px; background: var(--d-line); overflow: hidden; } .bar .tr i { display: block; height: 100%; background: var(--d-accent); border-radius: 999px; }
+.bar .v { font-family: var(--f-mono); font-weight: 700; color: var(--d-accent); text-align: right; }
+.bar.chet { opacity: .6; } .bar.chet .tr i { background: var(--d-ink2); } .bar.chet .v { color: var(--d-ink2); }
+.ok-qator { background: var(--d-okfon); color: var(--d-ok); border-radius: 10px; padding: 9px 12px; font-weight: 700; }
+.qadam { display: flex; gap: 8px; align-items: center; } .qadam .d { width: 22px; height: 22px; border-radius: 50%; background: var(--d-accent); color: #fff; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.uch { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; align-items: start; }
+.tug { display: inline-flex; align-items: center; border-radius: 10px; padding: 7px 14px; font-weight: 800; font-size: 13px; background: var(--d-accent); color: #fff; }
+.tug.ik { background: var(--d-paper); color: var(--d-accent); border: 1px solid var(--d-accent); }
+.voronka { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.voronka .s { background: var(--d-asoft); border-radius: 10px; padding: 8px 14px; font-weight: 700; display: flex; gap: 8px; align-items: baseline; } .voronka .s b { font-size: 20px; color: var(--d-accent); font-family: var(--f-mono); }
+.voronka .s.fin { background: var(--d-accent); color: #fff; } .voronka .s.fin b { color: #fff; }
+</style>
+
+<div class="wrap">
+  <header class="band">
+    <span class="id">F-1015-305…317 · 14-Modul (src/12-Modull) · «Bittadan» (213) supurishi · 18.10 (avtopilot, foydalanuvchi uxlagan paytda)</span>
+    <h1>25 bashorat ekranida sahna va tugmalar taxmindan oldin ochiq edi — 11 darsda tuzatildi</h1>
+    <p class="lead">O'lchov ro'yxatida 22 ekran (11 dars). Topilma-sinfi bitta: 213.7 — bashorat sahna bilan birga (o'chiq qadam-tugmalar bilan). Qolgan o'lchov ekranlari — amaliyot bloklari (QBlok), reja, kirish, bir maydonli mustaqil ish — tegilmadi. Har bo'limda: <b>oldin</b> · <b>keyin a</b> (taxmindan oldin — bashorat yolg'iz) · <b>keyin b</b> (tanlangach — sahna kirdi).</p>
+    <p class="ogoh">Ertalabki qaror: m12-12 6-ekran «Olti oylik reja» formasi (pastda) — 5 maydon + tanlov birdan (213.11); taklif-tugmalar ko'p, avtopilotda tegilmadi. A: m11-09 6-ekran qolipida ketma-ket · B: qoldirish.</p>
+  </header>
+  <section class="band" id="m12-01"><span class="id">F-1015-305 · m12-01 · PmInvestorPitch «Investor pitchi»</span><h2>4 ekran: s2, s5, s7, s9</h2>
+    <h3>2-ekran</h3><div class="uch"><figure><img src="r/o-m12-01-s2.jpg" alt="m12-01 s2 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-01-s2a.jpg" alt="m12-01 s2 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-01-s2b.jpg" alt="m12-01 s2 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>5-ekran</h3><div class="uch"><figure><img src="r/o-m12-01-s5.jpg" alt="m12-01 s5 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-01-s5a.jpg" alt="m12-01 s5 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-01-s5b.jpg" alt="m12-01 s5 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>7-ekran</h3><div class="uch"><figure><img src="r/o-m12-01-s7.jpg" alt="m12-01 s7 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-01-s7a.jpg" alt="m12-01 s7 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-01-s7b.jpg" alt="m12-01 s7 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>9-ekran</h3><div class="uch"><figure><img src="r/o-m12-01-s9.jpg" alt="m12-01 s9 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-01-s9a.jpg" alt="m12-01 s9 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-01-s9b.jpg" alt="m12-01 s9 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m12-02"><span class="id">F-1015-306 · m12-02 · PmStoryPitch «Hikoya pitchi»</span><h2>2 ekran: s2, s6</h2>
+    <h3>2-ekran</h3><div class="uch"><figure><img src="r/o-m12-02-s2.jpg" alt="m12-02 s2 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-02-s2a.jpg" alt="m12-02 s2 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-02-s2b.jpg" alt="m12-02 s2 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>6-ekran</h3><div class="uch"><figure><img src="r/o-m12-02-s6.jpg" alt="m12-02 s6 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-02-s6a.jpg" alt="m12-02 s6 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-02-s6b.jpg" alt="m12-02 s6 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m12-03"><span class="id">F-1015-307 · m12-03 · ProductSpeed «Mahsulot tezligi»</span><h2>5 ekran: s2, s4, s5, s7, s9</h2>
+    <h3>2-ekran</h3><div class="uch"><figure><img src="r/o-m12-03-s2.jpg" alt="m12-03 s2 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-03-s2a.jpg" alt="m12-03 s2 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-03-s2b.jpg" alt="m12-03 s2 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>4-ekran</h3><div class="uch"><figure><img src="r/o-m12-03-s4.jpg" alt="m12-03 s4 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-03-s4a.jpg" alt="m12-03 s4 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-03-s4b.jpg" alt="m12-03 s4 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>5-ekran</h3><div class="uch"><figure><img src="r/o-m12-03-s5.jpg" alt="m12-03 s5 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-03-s5a.jpg" alt="m12-03 s5 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-03-s5b.jpg" alt="m12-03 s5 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>7-ekran</h3><div class="uch"><figure><img src="r/o-m12-03-s7.jpg" alt="m12-03 s7 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-03-s7a.jpg" alt="m12-03 s7 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-03-s7b.jpg" alt="m12-03 s7 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>9-ekran</h3><div class="uch"><figure><img src="r/o-m12-03-s9.jpg" alt="m12-03 s9 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-03-s9a.jpg" alt="m12-03 s9 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-03-s9b.jpg" alt="m12-03 s9 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m12-04"><span class="id">F-1015-308 · m12-04 · PolishDay «Loyiha kuni: sayqal»</span><h2>2 ekran: s2, s5</h2>
+    <h3>2-ekran</h3><div class="uch"><figure><img src="r/o-m12-04-s2.jpg" alt="m12-04 s2 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-04-s2a.jpg" alt="m12-04 s2 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-04-s2b.jpg" alt="m12-04 s2 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>5-ekran</h3><div class="uch"><figure><img src="r/o-m12-04-s5.jpg" alt="m12-04 s5 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-04-s5a.jpg" alt="m12-04 s5 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-04-s5b.jpg" alt="m12-04 s5 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m12-05"><span class="id">F-1015-309 · m12-05 · PmPitchTraining «Pitch mashqi»</span><h2>1 ekran: s2</h2>
+    <h3>2-ekran</h3><div class="uch"><figure><img src="r/o-m12-05-s2.jpg" alt="m12-05 s2 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-05-s2a.jpg" alt="m12-05 s2 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-05-s2b.jpg" alt="m12-05 s2 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m12-06"><span class="id">F-1015-310 · m12-06 · DemoPrep «Demo tayyorlash»</span><h2>2 ekran: s2, s5</h2>
+    <h3>2-ekran</h3><div class="uch"><figure><img src="r/o-m12-06-s2.jpg" alt="m12-06 s2 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-06-s2a.jpg" alt="m12-06 s2 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-06-s2b.jpg" alt="m12-06 s2 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>5-ekran</h3><div class="uch"><figure><img src="r/o-m12-06-s5.jpg" alt="m12-06 s5 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-06-s5a.jpg" alt="m12-06 s5 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-06-s5b.jpg" alt="m12-06 s5 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m12-07"><span class="id">F-1015-311 · m12-07 · PmDemoTest «Demo tekshiruvi»</span><h2>1 ekran: s2</h2>
+    <h3>2-ekran</h3><div class="uch"><figure><img src="r/o-m12-07-s2.jpg" alt="m12-07 s2 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-07-s2a.jpg" alt="m12-07 s2 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-07-s2b.jpg" alt="m12-07 s2 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m12-08"><span class="id">F-1015-312 · m12-08 · PmFinalPitch «Yakuniy pitch»</span><h2>2 ekran: s2, s3</h2>
+    <h3>2-ekran</h3><div class="uch"><figure><img src="r/o-m12-08-s2.jpg" alt="m12-08 s2 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-08-s2a.jpg" alt="m12-08 s2 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-08-s2b.jpg" alt="m12-08 s2 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>3-ekran</h3><div class="uch"><figure><img src="r/o-m12-08-s3.jpg" alt="m12-08 s3 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-08-s3a.jpg" alt="m12-08 s3 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-08-s3b.jpg" alt="m12-08 s3 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m12-10"><span class="id">F-1015-314 · m12-10 · PmFreelance «Frilans»</span><h2>3 ekran: s2, s4, s6</h2>
+    <h3>2-ekran</h3><div class="uch"><figure><img src="r/o-m12-10-s2.jpg" alt="m12-10 s2 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-10-s2a.jpg" alt="m12-10 s2 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-10-s2b.jpg" alt="m12-10 s2 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>4-ekran</h3><div class="uch"><figure><img src="r/o-m12-10-s4.jpg" alt="m12-10 s4 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-10-s4a.jpg" alt="m12-10 s4 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-10-s4b.jpg" alt="m12-10 s4 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>6-ekran</h3><div class="uch"><figure><img src="r/o-m12-10-s6.jpg" alt="m12-10 s6 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-10-s6a.jpg" alt="m12-10 s6 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-10-s6b.jpg" alt="m12-10 s6 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m12-11"><span class="id">F-1015-315 · m12-11 · PmPrograms «Dasturlar»</span><h2>2 ekran: s4, s6</h2>
+    <h3>4-ekran</h3><div class="uch"><figure><img src="r/o-m12-11-s4.jpg" alt="m12-11 s4 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-11-s4a.jpg" alt="m12-11 s4 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-11-s4b.jpg" alt="m12-11 s4 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>6-ekran</h3><div class="uch"><figure><img src="r/o-m12-11-s6.jpg" alt="m12-11 s6 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-11-s6a.jpg" alt="m12-11 s6 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-11-s6b.jpg" alt="m12-11 s6 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m12-13"><span class="id">F-1015-317 · m12-13 · PmDressRehearsal «Yakuniy repetitsiya»</span><h2>1 ekran: s2</h2>
+    <h3>2-ekran</h3><div class="uch"><figure><img src="r/o-m12-13-s2.jpg" alt="m12-13 s2 oldin" loading="lazy"><figcaption>Oldin</figcaption></figure><figure><img src="r/k-m12-13-s2a.jpg" alt="m12-13 s2 keyin a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/k-m12-13-s2b.jpg" alt="m12-13 s2 keyin b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m12-12"><span class="id">F-1015-316 · m12-12 PmNextSteps «Keyingi qadamlar» · ertalabki savol</span><h2>6-ekran: «Mahsulot» kartasi — tanlov + 5 maydon birdan</h2>
+    <div class="ikki"><figure><img src="r/o-m12-12-s6.jpg" alt="m12-12 s6" loading="lazy"></figure><p>213.11 sinfi. Kartada taklif-tugmalar (13-Modul rejasi, 10-dars xatlari, Diamond Challenge) va yo'nalishga bog'liq izohlar ko'p — ketma-ket qolipga o'tkazish katta ish, avtopilotda qilinmadi. <b>A:</b> m11-09 6-ekran qolipi (joriy savol ramkada, yig'ilgan yashil qatorlar) · <b>B:</b> qoldirish.</p></div></section>
+  <section class="band"><span class="id">Tegilmadi (hukm bilan)</span><h2>m12-04 s3/s6, m12-06 s6, m12-07 s6/s7, m12-09 s3/s6 — QBlok amaliyot (qadam bittadan, trek 213.12 ✓) · m12-09 s1 — QReja · m12-11 s0 — QKirish · m12-10 s7 — QMustaqil bitta maydon ✓ · m12-12 s4 — karta tanlash, bashoratsiz</h2></section>
+</div>

@@ -837,8 +837,8 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         bashorat={!taxmin
           ? <div className="mi-navbat-k"><QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr(S2_SAVOL)} variantlar={SON_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} /></div>
           : !tartib && <TaxminIxcham savol={tr(S2_SAVOL)} taxmin={taxmin} />}
-        harakat={<KuzatuvKarta holat={holat} tartib={tartib} onQator={bos} navbat={navbatQ} yorliqlar yopiq={!taxmin} />}
-        vizual={tugadi ? <div className="mi-fokus">{vz}</div> : vz}
+        harakat={!taxmin ? null : <KuzatuvKarta holat={holat} tartib={tartib} onQator={bos} navbat={navbatQ} yorliqlar yopiq={!taxmin} />}
+        vizual={!taxmin ? null : <div className="q-kir">{tugadi ? <div className="mi-fokus">{vz}</div> : vz}</div>}
         natija={tartib && (
           <QTaxmin togri={taxmin === '1'}>{taxmin === '1'
             ? tr({ uz: "Taxminingiz to'g'ri chiqdi", ru: 'Ваше предположение верно' })

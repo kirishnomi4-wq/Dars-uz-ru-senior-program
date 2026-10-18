@@ -1019,12 +1019,12 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Birinchi buyurtma <A>qayerdan chiqishi mumkin?</A></>, ru: <>Откуда может <A>прийти первый заказ?</A></> })}
         mentor={<Mentor>{tr({ uz: "Tugmalarni birma-bir bosing va har yo'lning shartiga qarang.", ru: 'Нажимайте кнопки по одной и смотрите на условие каждого пути.' })}</Mentor>}
         bashorat={!done && ixchamBashorat(taxmin, <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr({ uz: "Mentor bugun nechta yo'lni rejalaydi?", ru: 'Сколько путей Ментор планирует сегодня?' })} variantlar={S2_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} />)}
-        harakat={!done && <div className="fr-harakat">
+        harakat={!taxmin ? null : !done && <div className="fr-harakat">
           <Tugmalar3 nomlar={S2_TUGMA} q={q} faol={!!taxmin} onBos={bos} />
           {q > 0 && <QIzoh key={q}>{tr(S2_IZOH[q - 1])}</QIzoh>}
           {ipucha && IPUCHA(tr({ uz: "Yoqilgan tugmani bosing va yo'l kartasiga qarang.", ru: 'Нажмите активную кнопку и посмотрите на карточку пути.' }))}
         </div>}
-        vizual={sahna}
+        vizual={!taxmin ? null : sahna}
         xulosa={done && <XulosaQ taxmin={tx && <TaxminQ togri={taxmin === '2'} aslida={tr({ uz: 'ikkita', ru: 'два' })} />}
           matn={tr({ uz: "Bu misolda bugun ikki yo'l rejalanadi: tanish doiradan buyurtma va kompaniyaga xat.", ru: 'В этом примере сегодня планируются два пути: заказ через круг знакомых и письмо в компанию.' })}
           izoh={tr(S2_IZOH[2])} />}
@@ -1104,12 +1104,12 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Birinchi buyurtma rejasida <A>nima yoziladi?</A></>, ru: <>Что пишут <A>в плане первого заказа?</A></> })}
         mentor={<Mentor>{tr({ uz: 'Tugmalarni birma-bir bosing va Mentor rejasi qanday to\'lishini ko\'ring.', ru: 'Нажимайте кнопки по одной и смотрите, как заполняется план Ментора.' })}</Mentor>}
         bashorat={!done && ixchamBashorat(taxmin, <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr({ uz: 'Mentor buyurtmaga qanday ish tanlaydi?', ru: 'Какую работу Ментор выберет для заказа?' })} variantlar={S4_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} />)}
-        harakat={!done && <div className="fr-harakat">
+        harakat={!taxmin ? null : !done && <div className="fr-harakat">
           <Tugmalar3 nomlar={S4_TUGMA} q={q} faol={!!taxmin && !(q === 2 && !nima)} onBos={bos} />
           {q > 0 && <QIzoh key={q}>{tr(S4_IZOH[q - 1])}</QIzoh>}
           {ipucha && IPUCHA(tr({ uz: 'Yoqilgan tugmani bosing va reja katagiga qarang.', ru: 'Нажмите активную кнопку и посмотрите на ячейку плана.' }))}
         </div>}
-        vizual={sahna}
+        vizual={!taxmin ? null : sahna}
         xulosa={done && <XulosaQ taxmin={tx && <TaxminQ togri={taxmin === 'oxshash'} aslida={tr({ uz: "kursda qurgan ishiga o'xshash", ru: 'похожую на то, что строил на курсе' })} />}
           matn={tr({ uz: 'Bu darsda buyurtma rejasi uch qatordan iborat: kim, nima va qachon.', ru: 'На этом уроке план заказа состоит из трёх строк: кто, что и когда.' })}
           izoh={tr(S4_IZOH[2])} />}
@@ -1199,12 +1199,12 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Kompaniyaga xatda <A>nimani aytasiz?</A></>, ru: <>Что вы скажете <A>в письме компании?</A></> })}
         mentor={<Mentor>{tr({ uz: 'Tugmalarni birma-bir bosing va Mentor xati qanday yig\'ilishini ko\'ring.', ru: 'Нажимайте кнопки по одной и смотрите, как собирается письмо Ментора.' })}</Mentor>}
         bashorat={!done && ixchamBashorat(taxmin, <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr({ uz: 'Mentor bitta xatni nechta kompaniyaga yuboradi?', ru: 'В сколько компаний Ментор отправит одно письмо?' })} variantlar={S6_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} />)}
-        harakat={!done && <div className="fr-harakat">
+        harakat={!taxmin ? null : !done && <div className="fr-harakat">
           <Tugmalar3 nomlar={S6_TUGMA} q={q} faol={!!taxmin && !(q === 2 && !qurdim)} onBos={bos} />
           {q > 0 && <QIzoh key={q}>{tr(S6_IZOH[q - 1])}</QIzoh>}
           {ipucha && IPUCHA(tr({ uz: 'Yoqilgan tugmani bosing va xatga qarang.', ru: 'Нажмите активную кнопку и посмотрите на письмо.' }))}
         </div>}
-        vizual={sahna}
+        vizual={!taxmin ? null : sahna}
         xulosa={done && <XulosaQ taxmin={tx && <TaxminQ togri={taxmin === '1'} aslida={tr({ uz: 'bittaga', ru: 'в одну' })} />}
           matn={tr({ uz: 'Bu darsda kompaniyaga xat uch qismdan iborat: kimman, nima qurdim va nima so\'rayman.', ru: 'На этом уроке письмо в компанию состоит из трёх частей: кто я, что я построил и о чём прошу.' })}
           izoh={tr(S6_IZOH[2])} />}
@@ -2412,6 +2412,9 @@ export default function PmFreelanceLesson({ lang: langProp, onFinished, liveToke
         .q-bashorat:not(:has(.q-chip.on)) .q-chip:not(:disabled) { border-color: ${fon(T.accent, 0.6)}; animation: fr-chorla 1.8s ease-out .5s 2; }
         .q-bashorat .q-chip:nth-child(2) { animation-delay: .75s; } .q-bashorat .q-chip:nth-child(3) { animation-delay: 1s; }
         .fr-bash .q-bashorat { flex-direction: row; flex-wrap: wrap; align-items: center; column-gap: 14px; row-gap: 6px; padding: 10px 14px; }
+        .fr-bash.ix ~ .q-split, .fr-bash.ix ~ .q-col { animation: fr-sahna-kirdi .45s ease-out both; }
+        @keyframes fr-sahna-kirdi { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .fr-bash.ix ~ .q-split, .fr-bash.ix ~ .q-col { animation: none; } }
         .fr-bash .q-bashorat > .q-yorliq { flex-basis: 100%; }
         @media (min-width: 761px) { .fr-k .q-split { grid-template-columns: minmax(0,1.25fr) minmax(0,1fr); gap: 28px; } }
         .fr-k, .fr-yakun { display: flex; flex-direction: column; flex: 1 0 auto; }

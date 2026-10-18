@@ -928,9 +928,9 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         bashorat={!taxmin
           ? <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr(S2_SAVOL)} variantlar={S2_TAXMIN.map(x => ({ k: x.k, t: tr(x.t) }))} tanlov={taxmin} onTanla={setTaxmin} />
           : !done && <BashoratQ savol={tr(S2_SAVOL)} javob={tr(tx.t)} />}
-        vizual={tugadi
+        vizual={!taxmin ? null : tugadi
           ? <div className="do-fokus">{ustunlar}</div>
-          : <QadamSanoq maket={tel}>{ustunlar}{joriy}</QadamSanoq>}
+          : <div className="do-karta-kir"><QadamSanoq maket={tel}>{ustunlar}{joriy}</QadamSanoq></div>}
         xulosa={done && <>{tx && <TaxminQ togri={!!tx.ok} haqiqat={tr({ uz: "qo'shildi — 44%, ro'yxatdan o'tdi — 59%", ru: 'присоединился — 44%, зарегистрировался — 59%' })} />}{tr({ uz: "Bu misolda to'xtab qolish qadamlari — ro'yxatdan o'tish va qo'shilish. Eng kichik son — 9 — ulardan emas.", ru: "В этом примере шаги, где останавливаются, — регистрация и присоединение. Самое маленькое число — 9 — не из них." })}</>}
       />
     </Stage>
@@ -2096,7 +2096,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, eyebrow, t
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className="do-blok">
-        <QBlok til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{ustida}</>} zoom={Zoomable}
+        <QBlok ulgur={ulgur && !done ? fmtCode(tr(ulgur)) : null} til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{ustida}</>} zoom={Zoomable}
           qadamlar={steps.map(c => ({
             h: tr(c.h),
             t: <>{c.t}{c.prompt && <DoPrompt satrlar={c.prompt.satrlar} namuna={c.prompt.namuna} toldir={c.prompt.toldir} />}</>,
@@ -2106,7 +2106,6 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, eyebrow, t
           tugadi={done} tugadiMatn={doneText ? tr(doneText) : null} natija={natija} natijaYorliq={tr(NATIJA_YORLIQ)}
           pastki={<>{(done || isMentorLive) && keyin}<MentorPracticeStats live={_live} screen={screen} /></>}>
           {pastQator}
-          {ulgur && !done && <p className="do-ulgur">{fmtCode(tr(ulgur))}</p>}
           {ortda && <p className="do-ortda">{tr({ uz: 'Ortda qoldingizmi — Mentor misolini alohida papkada oching:', ru: 'Отстали — откройте пример Ментора в отдельной папке:' })} <code className="do-buyruq">{ORTDA[0]}</code> · <code className="do-buyruq">{ORTDA[1]}</code> · <code className="do-buyruq">{ORTDA[2]}</code> {fmtCode(tr(ortda))}</p>}
         </QBlok>
       </div>
@@ -2828,6 +2827,8 @@ export default function PmDropOffLesson({ lang: langProp, onFinished, liveToken 
         .do-yakun.belgisiz .done-chip .tick { display: none; }
         .do-yakun-osti { display: block; margin-top: 6px; font-family: 'Manrope', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0; color: ${T.ink2}; }
         @keyframes do-kir { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+        .do-karta-kir { animation: do-kir .4s ease-out both; } /* F-1015-293: sahna bashoratdan keyin kiradi (213.7) */
+        @media (prefers-reduced-motion: reduce) { .do-karta-kir { animation: none; } }
         @keyframes do-yashil { 0%, 45% { background: ${T.okFon}; } 100% { background: transparent; } }
         @keyframes do-pop { from { transform: scale(1.25); } to { transform: none; } }
         @keyframes do-ekran { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: none; } }

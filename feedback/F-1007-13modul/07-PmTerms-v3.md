@@ -212,7 +212,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
 - Izoh (MD): distraktorlar darsning o'z qoidasi bo'yicha noto'g'ri, yolg'on fakt emas (S-004): A — 2-ekran ta'rifi «nima beriladi» (bugun beriladigani); C, D — to'lovchi rozi bo'ladigan shart emas. Savol ekrandan ko'chirilmaydi (§106): Mentor misoli emas, boshqa mahsulot va savol «nimani yozasiz».
   «Yaqinda» — distraktor ichidagi so'z; 4-ekran va 5-ekran tekshiruvi shuni rad etadi.
 
-## 4 · Mentor ofertasi  ← QTushuncha (ketma-ket 6 karta — SABOQ 9/13, E 53)
+## 4 · Mentor ofertasi  ← QTushuncha (ketma-ket 6 karta — SABOQ 9/13, E 53) **213.13 (F-1015-320, 18.10): «Real ishga tushirish — ota-onaning roziligi…» izohi doim turmaydi — o'quvchi birinchi marta «Real ishga tushirishda» ni bosganda band kartasining ichida chiqadi; yakunda xulosa izohida.**
 - Eyebrow: Tushuncha · oferta bandlari
 - Sarlavha: **Mentor ofertaga qaysi shartlarni bugun yoza oladi?** (50)
 - Mentor: Har band uchun tanlang: u bugun yoziladimi yoki real ishga tushirishda?

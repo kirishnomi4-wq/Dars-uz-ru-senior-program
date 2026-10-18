@@ -1036,6 +1036,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [n, setN] = useState(avval ? 6 : 0);
   const [xato, setXato] = useState(null);
   const [silk, setSilk] = useState(null);
+  const [halol, setHalol] = useState(false);
   const xatoRef = useRef(!!storedAnswer && storedAnswer.correct === false);
   const kartaRef = useRef(null);
   const refs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
@@ -1046,6 +1047,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const ipucha = useIpucha(!done, n);
   const javob = (kalit) => {
     if (done) return;
+    if (kalit === 'real') setHalol(true); // 213.13 (F-1015-320): izoh faqat shu javob tanlanganda, karta ichida
     const b = MENTOR_OFERTA.bandlar[n];
     if (kalit !== b.kalit) {
       xatoRef.current = true;
@@ -1073,6 +1075,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <span className="st-skarta-h">{tr({ uz: 'Band', ru: 'Пункт' })}</span>
           <b className="st-bkarta-nom">{tr(joriy.nom)}</b>
           <span className="st-bkarta-s">{tr(joriy.savol)}</span>
+          {halol && <span className="st-bkarta-iz fade-step">{tr(HALOL_GAP)}</span>}
         </div>}
         {joriy && <div className={cx('st-tug2', 'st-chorla')}>
           <button type="button" className={cx('st-tug st-bugun', silk === 'bugun' && 'silk')} onClick={() => javob('bugun')}>{tr({ uz: 'Bugun yoziladi', ru: 'Пишется сегодня' })}</button>
@@ -1080,13 +1083,11 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>}
         {xato && <QXato>{tr(xato)}</QXato>}
         {ipucha && !xato && <p className="st-ipucha fade-step">{tr({ uz: 'Bu bandni Mentor bugun rost yoza oladimi?', ru: 'Может ли Ментор сегодня честно написать этот пункт?' })}</p>}
-        <p className="st-halol">{tr(HALOL_GAP)}</p>
     </div>
   );
   const sahna = (
     <div className={cx('st-s4-v', tugadi && 'tugadi')}>
       {sahifa}
-      {tugadi && <p className="st-halol keng">{tr(HALOL_GAP)}</p>}
     </div>
   );
   return (
@@ -1100,7 +1101,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           vizual={sahna}
           xulosa={done && tugadi && <XulosaQ
             matn={tr({ uz: 'Bu mashqda ofertaga bugun ishlaydigan narsa yoziladi; qolgani — real ishga tushirishda.', ru: 'В этом упражнении в оферту пишут то, что работает сегодня; остальное — при реальном запуске.' })}
-            izoh={tr({ uz: "«Mashq hujjati» va «yuridik maslahat emas» qatorlari sahifa mashq ekanini ochiq aytadi.", ru: 'Строки «Учебный документ» и «не юридическая консультация» открыто говорят, что страница учебная.' })} />}
+            izoh={<>{tr({ uz: "«Mashq hujjati» va «yuridik maslahat emas» qatorlari sahifa mashq ekanini ochiq aytadi.", ru: 'Строки «Учебный документ» и «не юридическая консультация» открыто говорят, что страница учебная.' })} {tr(HALOL_GAP)}</>} />}
         >
           <Ustoz satrlar={USTOZ.s4} />
         </QTushuncha>
@@ -2079,7 +2080,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, answ
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={tor ? 0 : stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
       <div className="st-blok">
-        <QBlok til={__lang} sarlavha={<>{tr(title)}<Artefakt answers={answers} /></>} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
+        <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={<>{tr(title)}<Artefakt answers={answers} /></>} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
           qadamlar={steps.map(c => ({
             h: tr(c.h),
             t: <>{tx(c.t)}{c.bandlar && c.bandlar.filter(Boolean).map((b, i) => (b && (b.accent !== undefined || b.kul) ? <Band key={i} accent={b.accent} kul={b.kul}>{tx(b.t || b)}</Band> : <Band key={i}>{tx(b)}</Band>))}{c.prompt && <StPrompt satrlar={c.prompt} namuna={c.namuna} toldir={c.toldir} tahrir={c.tahrir !== false} tekshir={c.tekshir} />}{c.ichi}</>,
@@ -2089,7 +2090,6 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, answ
           tugadi={done} tugadiMatn={dt ? tr(dt) : null} natija={natija} natijaYorliq={tr(NATIJA_YORLIQ)}
           pastki={<>{done && di && <p className="st-blok-iz">{tr(di)}</p>}<MentorPracticeStats live={_live} screen={screen} />{ustoz && <Ustoz satrlar={ustoz} />}</>}>
           {ortda && <p className="st-ortda">{tx(ortda)}</p>}
-          {ulgur && !done && <p className="st-ulgur">{tx(ulgur)}</p>}
         </QBlok>
       </div>
     </Stage>
@@ -2741,6 +2741,7 @@ export default function PmTermsLesson({ lang: langProp, onFinished, liveToken })
         .st-skarta-h { font: 700 11.5px 'JetBrains Mono', monospace; color: ${T.ink2}; }
         .st-bkarta-nom { font-size: 16px; font-weight: 800; color: ${T.ink}; }
         .st-bkarta-s { font-size: 13px; color: ${T.ink2}; }
+        .st-bkarta-iz { font-size: 12px; line-height: 1.45; color: ${T.ink2}; padding-top: 8px; border-top: 1px solid ${T.line}; }
         .st-tug2 { display: flex; gap: 8px; flex-wrap: wrap; }
         .st-tug { flex: 1 1 120px; font: 700 13.5px 'Manrope', sans-serif; padding: 10px 12px; border-radius: 12px; border: 1.5px solid ${T.line}; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: background .2s, border-color .2s; }
         .st-tug:hover:not(:disabled) { background: ${T.accentSoft}; border-color: ${T.accent}; }

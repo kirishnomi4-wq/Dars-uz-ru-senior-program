@@ -61,7 +61,7 @@ namunalar: 13-Modul `02-PmMonetization-v3.md` + `02-FILTR.md` · pilot `01-PmInv
 | o'zgarish | «Endi tashkilotchi juma kuni ko'radi: 9 / 10, bitta joy bo'sh.» | 1.2 aynan |
 | funksiyalar ro'yxati (juftligi) | «Maydon Jamoa»da o'yin e'loni, qo'shilish, eslatmalar, Telegram xabari, taklif havolasi va Pro bor. | 1.0 («13-Modul oxirida bor» — real funksiyalar; son yo'q — TAYANCHGA SAVOL 11) |
 
-   - **Mentor pitchi (1-dars qoralamasi, tayanch 1.1 aynan — 6-ekranda kulrang):** Muammo — «O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.» ·
+   - **Mentor pitchi (1-dars qoralamasi, tayanch 1.1 aynan — 6-ekranda kulrang):** Muammo — «O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.» ·
      Bozor — «Mahalla futbol guruhida — 60 kishi; ilovada — 6 tashkilotchi. Boshqa mahallalarni hali tekshirmaganmiz.» · Yechim — «Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.» + jonli demo ·
      Raqamlar — «51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif havolasidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.» · Jamoa — «Men — g'oya, mahsulot va kod (agent bilan). Sinab ko'rganlar — 6 tashkilotchi va o'yinchilar.» ·
      Keyingi qadam — «Uch tashkilotchi bilan "Doimiy o'yin"ni test rejimda sinayman. Sizdan bitta so'rov: mahalladagi maydon egalari bilan tanishtiring.»
@@ -161,7 +161,7 @@ namunalar: 13-Modul `02-PmMonetization-v3.md` + `02-FILTR.md` · pilot `01-PmInv
 - Sarlavha: **Ro'yxat o'rniga zalga nimani aytasiz?** (37) — 0-ekran savolining o'z so'zlari bilan (T-064, §163: «ro'yxat», «zal»)
 - Mentor: Tugmalarni birma-bir bosing va Mentor ro'yxat o'rniga nimani aytishiga qarang.
   (Birinchi harakat — bashorat; uning yo'rig'i `QBashorat` yorlig'ida, Mentor takrorlamaydi — T-047.)
-- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bitta o'lchov, o'sish tartibida): **Mentor ro'yxat o'rniga nechta voqeani aytadi?** · Bitta · Uchta · Hammasini — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*.
+- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bitta o'lchov, o'sish tartibida): **Mentor ro'yxat o'rniga nechta voqeani aytadi?** · Bitta · Uchta · Hammasini — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*. · **213.7 (F-1015-305…317, 18.10 avtopilot): bashorat ekranda yolg'iz; tanlangach ixcham qatorga yig'iladi, sahna va harakat tugmalari shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin o'chiq tugma/xira sahna yo'q.**
 - Vizual (`HikoyaSahna`, ro'yxat rejimi): **chapda** telefon («O'yin» ekrani, «8 / 10») · **o'ngda** funksiya nomlari tasmasi (6 ta) va ostida uchta bo'sh uya (kulrang uzuq).
 - Tugmalar (ixcham, bir qatorda; joriysi accent, bosilgani ✓): 1 Kim · 2 Lahza · 3 O'zgarish *(✎ F-1015-164: tugmalar bashoratdan keyin chiqadi; bosiladigani faqat joriysi, bosilgani — «✓ nom» yozuvi, keyingisi hali ko'rinmaydi)*
 - **Harakat → Vizual o'zgarish:**
@@ -242,12 +242,12 @@ namunalar: 13-Modul `02-PmMonetization-v3.md` + `02-FILTR.md` · pilot `01-PmInv
 - Eyebrow: Tushuncha · hikoya va bo'laklar
 - Sarlavha: **Hikoya pitchning qaysi bo'laklariga tushadi?** (44)
 - Mentor: Tugmalarni birma-bir bosing va hikoya qismlari qaysi bo'lakka tushishini ko'ring.
-- Bashorat (ballsiz; S-015 — bitta o'lchov: son, o'sish tartibida): **Mentor hikoyasi nechta bo'lakka tushadi?** · Bittasiga · Ikkitasiga · Uchtasiga — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*.
+- Bashorat (ballsiz; S-015 — bitta o'lchov: son, o'sish tartibida): **Mentor hikoyasi nechta bo'lakka tushadi?** · Bittasiga · Ikkitasiga · Uchtasiga — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*. · **213.7 (F-1015-305…317, 18.10 avtopilot): bashorat ekranda yolg'iz; tanlangach ixcham qatorga yig'iladi, sahna va harakat tugmalari shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin o'chiq tugma/xira sahna yo'q.**
 - Vizual (keng; telefonsiz — SABOQ 24): `HikoyaSahna` — **tepada** uch uya (2-ekrandan, to'liq: tashkilotchi · lahza · o'zgarish) · **pastda** pitch tasmasi: olti bo'lak, har birida Mentor qoralamasining birinchi qatori kulrang, ostida taymer chizig'i 0–5:00 (40·30·90·60·30·50); Muammo ustida kichik pufak `HAKAM_SAVOL` «Bu muammo borligini qayerdan bilasiz?».
 - Tugmalar (ixcham, bir qatorda): 1 Muammo · 2 Yechim · 3 Raqamlar *(✎ F-1015-164: tugmalar bashoratdan keyin chiqadi; bosiladigani faqat joriysi, bosilgani — «✓ nom» yozuvi, keyingisi hali ko'rinmaydi)*
 - **Harakat → Vizual o'zgarish:**
-  1. «Muammo» → kim uyasidagi odam qiyofasi va lahza uyasidagi gap birga Muammo bo'lagi boshiga uchadi (qiyofa bo'lak yonida qoladi, gap accent), undan keyin kulrang Mentor gaplari turadi: «O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 5 o'yinchidan 4 tasida…»; taymerdagi Muammo qismining boshi (≈8 s) yashil bo'yaladi.
-     `QIzoh`: Lahza Muammoni ochadi; dalil esa bu bitta odamda emasligini aytadi: 5 o'yinchidan 4 tasida.
+  1. «Muammo» → kim uyasidagi odam qiyofasi va lahza uyasidagi gap birga Muammo bo'lagi boshiga uchadi (qiyofa bo'lak yonida qoladi, gap accent), undan keyin kulrang Mentor gaplari turadi: «O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 3 o'yinchidan 3 tasida…»; taymerdagi Muammo qismining boshi (≈8 s) yashil bo'yaladi.
+     `QIzoh`: Lahza Muammoni ochadi; dalil esa bu bitta odamda emasligini aytadi: 3 o'yinchidan 3 tasida.
   2. «Yechim» → o'zgarish uyasidagi gap Yechim bo'lagiga uchadi; Yechimdagi kulrang yorliq «jonli demo» yonadi va uning ichidagi kichik son «8 / 10» → «9 / 10» bo'ladi.
      `QIzoh`: O'zgarish Yechimda jonli demo bilan ko'rinadi: ekranda «9 / 10».
   3. «Raqamlar» → hikoya uyalaridan hech narsa uchmaydi: Raqamlar bo'lagi o'zi alohida yonadi (accent), kulrang gap «51 foydalanuvchi; 11 tasi — sinfdoshlarim…» ko'rinadi; Muammo yonidagi odam qiyofasi joyida qoladi (02-FILTR 3: hikoyaning uchinchi joyi emas).

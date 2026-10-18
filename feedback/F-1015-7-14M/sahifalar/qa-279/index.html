@@ -1,0 +1,133 @@
+<title>Metrika hisoboti tashxisi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: bitta ustun; har band = sizning so'zingiz → hozirgi surat → tashxis → taklif-namuna (dars palitrasida) → tanlov */
+:root {
+  --bg: #f4f3f8; --card: #ffffff; --ink: #1d1b2b; --ink2: #5d5a72; --line: #e2e0ec; --accent: #5b3fd6; --accent-soft: #ece8fd; --warn: #b4540f; --warn-soft: #fbeedd;
+  --f-body: 'Manrope', system-ui, sans-serif; --f-mono: 'JetBrains Mono', ui-monospace, monospace;
+  /* dars palitrasi — namuna oynasi ikki mavzuda ham dars qanday ko'rinsa shunday */
+  --d-bg: #F2F0FA; --d-paper: #FFFFFF; --d-line: #E7E3F4; --d-ink: #1B1630; --d-ink2: #565073; --d-accent: #5B3DE6; --d-asoft: #EBE5FD; --d-ok: #1F7A4D; --d-okfon: #E3F0E8; --d-err: #C2362B; --d-errfon: #FAE3E0; --d-mute: #F6F4FC;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #15141c; --card: #1f1d29; --ink: #ecebf4; --ink2: #a7a4ba; --line: #34314a; --accent: #a593ff; --accent-soft: #2c2650; --warn: #f0a35a; --warn-soft: #3a2a18; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #15141c; --card: #1f1d29; --ink: #ecebf4; --ink2: #a7a4ba; --line: #34314a; --accent: #a593ff; --accent-soft: #2c2650; --warn: #f0a35a; --warn-soft: #3a2a18; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 80px; }
+.wrap { max-width: 1060px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+h1 { font-size: clamp(22px, 3vw, 30px); margin: 0; text-wrap: balance; } h2 { font-size: 19px; margin: 0; text-wrap: balance; } h3 { font-size: 14px; margin: 0; color: var(--ink2); text-transform: uppercase; letter-spacing: .06em; }
+p { margin: 0; max-width: 78ch; } .lead { color: var(--ink2); }
+.band { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+.id { font-family: var(--f-mono); font-size: 12px; color: var(--accent); letter-spacing: .04em; }
+.soz { border-left: 3px solid var(--accent); padding: 4px 12px; color: var(--ink2); font-style: italic; }
+.ikki { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 16px; align-items: start; }
+@media (max-width: 860px) { .ikki { grid-template-columns: 1fr; } }
+figure { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+figure img { width: 100%; border-radius: 8px; border: 1px solid var(--line); display: block; }
+figcaption { font-size: 12.5px; color: var(--ink2); }
+.tanlov { display: flex; flex-direction: column; gap: 8px; }
+.tanlov .v { display: flex; gap: 10px; align-items: baseline; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; }
+.tanlov .v b { font-family: var(--f-mono); color: var(--accent); flex-shrink: 0; }
+.tanlov .v.tavsiya { border-color: var(--accent); background: var(--accent-soft); }
+.ogoh { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-weight: 600; }
+ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+/* ---- dars namunasi (mock) ---- */
+.dars { background: var(--d-bg); color: var(--d-ink); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+.dars .t { font-size: 20px; font-weight: 800; letter-spacing: -.01em; } .dars .t i { font-style: normal; color: var(--d-accent); }
+.dars .hol { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--d-ink2); }
+.k { background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.k .y { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--d-ink2); }
+.q { display: flex; align-items: center; gap: 10px; background: var(--d-mute); border-radius: 10px; padding: 9px 12px; }
+.q .n { width: 20px; color: var(--d-ink2); font-family: var(--f-mono); font-size: 12px; } .q b { flex: 1; font-weight: 700; } .q .s { color: var(--d-ink2); font-size: 12.5px; }
+.q.chet { color: var(--d-ink2); } .q.chet b { font-weight: 600; }
+.chip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--d-line); background: var(--d-paper); border-radius: 999px; padding: 6px 12px; font-weight: 700; font-size: 13px; }
+.chip.on { border-color: var(--d-accent); color: var(--d-accent); background: var(--d-asoft); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.ok { color: var(--d-ok); background: var(--d-okfon); border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 800; }
+.yoq { color: var(--d-err); background: var(--d-errfon); border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 800; }
+.mute { color: var(--d-ink2); font-size: 13px; }
+.form { display: flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--f-mono); font-size: 14px; flex-wrap: wrap; }
+.form .b { background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 8px; padding: 4px 10px; min-width: 38px; text-align: center; } .form .b.bosh { color: var(--d-ink2); }
+.form .r { background: var(--d-accent); color: #fff; border-radius: 8px; padding: 4px 10px; font-weight: 700; }
+.bar { display: grid; grid-template-columns: 20px minmax(0, 1fr) minmax(90px, 1.2fr) 42px; align-items: center; gap: 10px; background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 10px; padding: 8px 12px; }
+.bar.top { border-color: var(--d-accent); } .bar .n { color: var(--d-ink2); font-family: var(--f-mono); font-size: 12px; } .bar .f { font-family: var(--f-mono); font-size: 11px; color: var(--d-ink2); }
+.bar .tr { height: 8px; border-radius: 999px; background: var(--d-line); overflow: hidden; } .bar .tr i { display: block; height: 100%; background: var(--d-accent); border-radius: 999px; }
+.bar .v { font-family: var(--f-mono); font-weight: 700; color: var(--d-accent); text-align: right; }
+.bar.chet { opacity: .6; } .bar.chet .tr i { background: var(--d-ink2); } .bar.chet .v { color: var(--d-ink2); }
+.ok-qator { background: var(--d-okfon); color: var(--d-ok); border-radius: 10px; padding: 9px 12px; font-weight: 700; }
+.qadam { display: flex; gap: 8px; align-items: center; } .qadam .d { width: 22px; height: 22px; border-radius: 50%; background: var(--d-accent); color: #fff; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.uch { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; align-items: start; }
+.tug { display: inline-flex; align-items: center; border-radius: 10px; padding: 7px 14px; font-weight: 800; font-size: 13px; background: var(--d-accent); color: #fff; }
+.tug.ik { background: var(--d-paper); color: var(--d-accent); border: 1px solid var(--d-accent); }
+.voronka { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.voronka .s { background: var(--d-asoft); border-radius: 10px; padding: 8px 14px; font-weight: 700; display: flex; gap: 8px; align-items: baseline; } .voronka .s b { font-size: 20px; color: var(--d-accent); font-family: var(--f-mono); }
+.voronka .s.fin { background: var(--d-accent); color: #fff; } .voronka .s.fin b { color: #fff; }
+</style>
+<div class="wrap">
+  <header class="band">
+    <span class="id">F-1015-279 … 283 · 12-Modul 10-dars m10-10 «50 foydalanuvchiga yetdingizmi?» · «Bittadan» (213) tashxisi · 18.10</span>
+    <h1>Besh ekran: nima bir yo'la to'lgan, nima taklif</h1>
+    <p class="lead"><b>Dars oxirida o'quvchi:</b> o'z mahsulotining metrika hisobotini to'rt qatorda yozadi (son · manba · sana), uni Mentor tekshiruvidan o'tkazadi va 50 ga yetmagan bo'lsa zaxira reja yozadi.</p>
+    <p class="lead">O'lchov ro'yxatida 5 ekran bor edi. Ko'rib chiqdim: 4 tasida o'zgarish kerak, 1 tasi (11-ekran) deyarli to'g'ri. Har bandda <b>A</b> — tavsiyam. Hech narsa hali o'zgartirilmagan.</p>
+  </header>
+
+  <section class="band"><span class="id">F-1015-279 · 2-ekran · Tushuncha</span><h2>Bashorat, uchta manba kartasi va hisobot — hammasi birdan</h2>
+    <div class="ikki"><figure><img src="r/s02.jpg" alt="2-ekran hozir"></figure>
+    <div>
+      <p><b>Tashxis.</b> «Avval o'zingiz belgilab ko'ring» kartasi bilan birga chapda 3 ta alohida chegarali manba kartasi (Neon, sanoq sahifasi, Umami) va o'ngda hisobot turibdi. O'quvchi taxmin qilmasdan javobni ko'rib turadi (213.7). Manbalar — 3 ta mustaqil ramkali quti (213.3: bir ekranda bitta chegarali karta).</p>
+      <div class="tanlov">
+        <div class="v tavsiya"><b>A</b><span>Bashorat yolg'iz chiqadi; tanlangach bitta qatorga yig'iladi («Taxminingiz: …»), shundan keyin manbalar va hisobot kirib keladi (0,4 s). Uchta manba — bitta «Manbalar» kartasida uchta qator (ramkasiz, oraliq bilan); qaysi manba yonsa — o'sha qator binafsha. Qatorlarni birma-bir bosish mexanikasi o'zgarmaydi.</span></div>
+        <div class="v"><b>B</b><span>Faqat bashoratni yolg'iz qilish; manbalar uch karta bo'lib qoladi.</span></div>
+      </div>
+    </div></div></section>
+
+  <section class="band"><span class="id">F-1015-280 · 4-ekran · Mentor tekshiruvi</span><h2>Bashorat bilan birga to'liq hisobot; hisobot qatorlari — karta ichida 4 ta ramkali karta</h2>
+    <div class="ikki"><figure><img src="r/s04.jpg" alt="4-ekran hozir"></figure>
+    <div>
+      <p><b>Tashxis.</b> Taxmin kartasi va to'liq Mentor hisoboti (4 qator + «Qadamlar» + «Lending» matni, 946 belgi) bir vaqtda. Hisobot ichida har qator alohida oq ramkali quti — karta ichida karta (213.3). Savol kartasi (o'ngda) taxmindan keyin chiqadi — bu to'g'ri.</p>
+      <p>To'liq hisobot bu ekranda kerak: o'quvchi uch savolning javobini hisobotdan bosib topadi. Shuning uchun hisobot qisqarmaydi, faqat tartib va ko'rinish.</p>
+      <div class="tanlov">
+        <div class="v tavsiya"><b>A</b><span>Bashorat yolg'iz → qatorga yig'iladi → hisobot va savol kartasi kiradi. Hisobot qatorlari ramkasiz: och fon, oraliq bilan ajratilgan (joriy/bosiladigan qator binafsha chegara bilan qoladi). Bu CSS umumiy — 2, 4, 10, 11-ekran va Mentor rejimi bir xil bo'ladi.</span></div>
+        <div class="v"><b>B</b><span>Faqat bashorat yolg'iz; qatorlar ramkali qoladi.</span></div>
+      </div>
+    </div></div></section>
+
+  <section class="band"><span class="id">F-1015-281 · 9-ekran · Kod yozish · Neon</span><h2>Vazifa kartasida savol, 3 qadam, web-trek izohi, Yordam, «Vaqt tugasa» — birdan</h2>
+    <div class="ikki"><figure><img src="r/s09.jpg" alt="9-ekran hozir"></figure>
+    <div>
+      <p><b>Tashxis.</b> Birinchi ish — ustun savoli (login / yaratilgan / namuna). U yechilmaguncha 1–2–3 qadamlar, web-trek SQL izohi, Yordam tugmasi, «Avval ustun savolini yeching» yozuvi va «Vaqt tugasa» eslatmasi — hammasi ko'rinib turibdi (936 belgi). Pastki tugma «Davom etish» faol. Neon oynasi ostida ikki izoh («oyinchilar — Mentor jadvali» va «Sizning qatorlaringiz shu yerda chiqadi»).</p>
+      <div class="tanlov">
+        <div class="v tavsiya"><b>A</b><span>Savol yolg'iz (hisobot chizig'i + savol + 3 tugma). To'g'ri ustun tanlangach ✓ qator («Ustun: namuna»), shundan keyin 1–2–3 qadam va Kun · Son · «+ Qator» kiradi. Web-trek SQL izohi va «Vaqt tugasa» eslatmasi — Yordam ichiga. Neon ostida bitta izoh qoladi («oyinchilar — Mentor jadvali; sizda — namuna ustunli jadval»), «Sizning qatorlaringiz shu yerda chiqadi» jadval bo'sh kataklarining o'zida ko'rinadi — olinadi.</span></div>
+        <div class="v"><b>B</b><span>Qadamlar savoldan keyin; izohlar joyida qoladi.</span></div>
+      </div>
+    </div></div></section>
+
+  <section class="band"><span class="id">F-1015-282 · 10-ekran · Mustaqil ish · Metrika hisoboti</span><h2>Qator kartasida 5–7 maydon, 3 tugma va 2 izoh birdan</h2>
+    <div class="ikki"><figure><img src="r/s10.jpg" alt="10-ekran hozir"></figure>
+    <div>
+      <p><b>Tashxis.</b> Qatorlar bittadan keladi — bu to'g'ri. Lekin bitta qator kartasining ichi bir yo'la: Son, «shundan sinfdosh», Manba (3 tugma), Sana, Oldingi son, Sana, «Birinchi o'lchov», izoh, Saqlash · Hali sanalmagan · Yordam. 213.11 (bittadan forma) buzilgan. «Bosh raqam» qatorida yana «Nimani sanaydi» maydoni, «Qaytganlar» da 2 son + davr. Pastki kartada (qadamlar + lending) 5–6 maydon birdan.</p>
+      <div class="tanlov">
+        <div class="v tavsiya"><b>A</b><span>Qator kartasi — savollar ketma-ket: <i>Son</i> (ro'yxat: yonida «shundan sinfdosh»; qaytganlar: ikki son + foiz o'zi chiqadi; bosh raqam: avval «Nimani sanaydi») → <i>Manba</i> (3 tugma, tanlangach o'zi yig'iladi) → <i>Sana</i> (bugun tayyor turadi, «Keyingi» bilan o'tiladi) → <i>Oldingi son</i> (faqat ro'yxat/asosiy: «Birinchi o'lchov» tugmasi yoki son + sana). Javob berilgani yashil qatorga yig'iladi, bosilsa qayta ochiladi. Har qatorga bitta qisqa izoh (Son qadamida). Saqlash doim bosiladi, yetishmagani joriy savol kartasida. «Hali sanalmagan» va Yordam pastki qatorda. Pastki karta: Qadamlar (bir qator) → Lending (2 son) → «eslatmadan ochdi» — uch qadam. 11-ekrandagi tuzatish kartasi shu komponent — o'zi yangilanadi.</span></div>
+        <div class="v"><b>B</b><span>Faqat izohlarni qisqartirish va tugmalarni bir qatorga olish; maydonlar birdan qoladi.</span></div>
+      </div>
+      <p class="lead">Ma'lumot formati (pm-m10d10-hisobot) o'zgarmaydi — 11-ekran va 12-dars o'qiydi.</p>
+    </div></div></section>
+
+  <section class="band"><span class="id">F-1015-283 · 11-ekran · Tekshiruv va zaxira reja</span><h2>Deyarli to'g'ri: bitta savol, bitta karta</h2>
+    <div class="ikki"><figure><img src="r/s11.jpg" alt="11-ekran hozir"></figure>
+    <div>
+      <p><b>Tashxis.</b> Savollar birma-bir, zaxira reja 3 qadamda — 213 ga mos. O'lchov ro'yxatiga hisobot qatorlarining ramkalari uchun tushgan (280-A bilan hal bo'ladi). Ikki mayda joy: zaxira rejaning 1-qadamida bo'g'in tanlovi (4 katta tugma) va «dalil» maydoni birdan; «Soxta akkaunt … yo'q» ogohlantirishi uchala qadamda turadi.</p>
+      <div class="tanlov">
+        <div class="v tavsiya"><b>A</b><span>Bo'g'in tanlangach dalil maydoni chiqadi; ogohlantirish faqat 3-qadamda («bir haftalik ish»). Qolgani tegilmaydi.</span></div>
+        <div class="v"><b>B</b><span>Butunlay tegilmaydi.</span></div>
+      </div>
+    </div></div></section>
+
+  <section class="band"><span class="id">QURILDI · 18.10 12:4x · hammasi A</span><h2>Keyingi holat (uz 1280; mobil 390 va ru ham olingan — suratlar/F-1015-279-keyin)</h2>
+    <div class="ikki"><figure><img src="r/k-s2b.jpg" alt="2-ekran keyin"><figcaption>2-ekran: taxmin qatorga yig'ildi, manbalar bitta kartada, qatorlar ramkasiz</figcaption></figure>
+    <figure><img src="r/k-s4b.jpg" alt="4-ekran keyin"><figcaption>4-ekran: taxmindan keyin hisobot va savol kartasi</figcaption></figure></div>
+    <div class="ikki"><figure><img src="r/k-s9b.jpg" alt="9-ekran keyin"><figcaption>9-ekran: ✓ Ustun: namuna, shundan keyin qadamlar va Kun · Son</figcaption></figure>
+    <figure><img src="r/k-s10c.jpg" alt="10-ekran keyin"><figcaption>10-ekran: Son ✓, Manba ✓, Sana ochiq, Oldingi son navbatda; Saqlash doim</figcaption></figure></div>
+    <div class="ikki"><figure><img src="r/k-s11b.jpg" alt="11-ekran keyin"><figcaption>11-ekran: bo'g'in tanlangach dalil maydoni</figcaption></figure><p>Darvozalar 13/13 · lint:jsx toza · MD YAKUNIY/10 yangilandi · QA: coddycamp-12modul (deploy quyida, jurnalda).</p></div></section>
+  <section class="band"><span class="id">Tegilmaydi</span><h2>0 (kirish), 1 (reja), 3 / 5 / 7 / 12 (testlar), 6 (Duolingo voqeasi), 8 (zaxira reja tushunchasi — ketma-ket qurilgan), 13–15 (yakun, kartochka, nishon)</h2>
+    <p>Qurishdan keyin: 12/12 darvoza, suratlar (uz 1280 · 390 · ru, oraliq holatlar), MD YAKUNIY/10 yangilanadi, QA deploy 12-M.</p></section>
+</div>

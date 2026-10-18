@@ -626,7 +626,7 @@ const UCH_SAVOL = [
 const MENTOR_JOYLAR = [
   { id: 'guruh', nom: { uz: 'Mahalla futbol guruhi', ru: 'Футбольная группа махалли' }, tur: { uz: 'Telegram guruhi · 60 kishi', ru: 'Telegram-группа · 60 человек' },
     javoblar: [
-      { yozuv: { uz: "11-Modul intervyusi, «Hozir nima bilan»: 5 o'yinchidan 5 tasi Telegram guruhida «kim keladi?» deb yozishadi.", ru: 'Интервью 11-го модуля, «Чем сейчас»: 5 игроков из 5 пишут в Telegram-группе «кто придёт?».' }, togri: true },
+      { yozuv: { uz: "11-Modul intervyusi, «Hozir nima bilan»: 3 o'yinchidan 3 tasi Telegram guruhida «kim keladi?» deb yozishadi.", ru: 'Интервью 11-го модуля, «Чем сейчас»: 3 игрока из 3 пишут в Telegram-группе «кто придёт?».' }, togri: true },
       { yozuv: { uz: "Mentor shu guruh a'zosi.", ru: 'Ментор состоит в этой группе.' }, togri: true },
       { yozuv: { uz: 'Guruh egasidan ruxsat olingan.', ru: 'Разрешение владельца группы получено.' }, togri: true }
     ] },
@@ -1486,7 +1486,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       </div>}
       {oTmadi && <QIzoh>{tr({ uz: "Bu joy uch savoldan o'tmadi — kanallaringizga kirmaydi.", ru: 'Это место не прошло три вопроса — в ваши каналы не входит.' })}</QIzoh>}
       {xato && <QXato>{tr(S9_XATO[xato])}</QXato>}
-      {yordam && <p className="kn-yordam fade-step">{tr({ uz: "Mentor misolida: mahalla futbol guruhi — ha · ha · ha (intervyuda 5 o'yinchidan 5 tasi Telegram guruhida; a'zo; egasidan ruxsat olingan). Shahar futbol kanali — a'zo emas, ruxsat yo'q: tanlanmadi.", ru: 'В примере Ментора: футбольная группа махалли — да · да · да (в интервью 5 игроков из 5 — в Telegram-группе; состоит; разрешение владельца получено). Городской футбольный канал — не состоит, разрешения нет: не выбран.' })}</p>}
+      {yordam && <p className="kn-yordam fade-step">{tr({ uz: "Mentor misolida: mahalla futbol guruhi — ha · ha · ha (intervyuda 3 o'yinchidan 3 tasi Telegram guruhida; a'zo; egasidan ruxsat olingan). Shahar futbol kanali — a'zo emas, ruxsat yo'q: tanlanmadi.", ru: 'В примере Ментора: футбольная группа махалли — да · да · да (в интервью 3 игрока из 3 — в Telegram-группе; состоит; разрешение владельца получено). Городской футбольный канал — не состоит, разрешения нет: не выбран.' })}</p>}
       <div className="kn-karta-tug">
         <QTugma ikkinchi aria-expanded={yordam} onClick={() => setYordam(y => !y)}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>
         {!tahrirda && otganlar.length > 0 && <QTugma ikkinchi onClick={yetarliBos}>{tr({ uz: 'Yetarli', ru: 'Достаточно' })}</QTugma>}

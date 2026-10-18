@@ -54,7 +54,7 @@ namunalar: 12-Modul `12-PmGrowthPitch-v3.md` + `12-FILTR.md` · 10-Modul `11-PmP
 
 | Bo'lak (vaqt — «bu mashqda», TAYANCHGA SAVOL 3) | Matn (o'quvchi ko'radi) | Tayanch |
 |---|---|---|
-| Muammo (≈40 soniya) | «O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.» (129) | 1.1 + 12-Modul 1.12 (12-Modul pitchidagi muammo gapi — TAYANCHGA SAVOL 2) |
+| Muammo (≈40 soniya) | «O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.» (129) | 1.1 + 12-Modul 1.12 (12-Modul pitchidagi muammo gapi — TAYANCHGA SAVOL 2) |
 | Bozor (≈30 soniya) | «Mahalla futbol guruhida — 60 kishi; ilovada — 6 tashkilotchi. Boshqa mahallalarni hali tekshirmaganmiz.» (103) | 1.1 (T2), 1.14 |
 | Yechim (≈1,5 daqiqa, jonli demo bilan) | «Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.» (107) + jonli demo (≈1 daqiqa): 1-telefonda «Qo'shilaman» → 2-telefonda «8 / 10» o'rniga «9 / 10» | 1.1, 12-Modul 1.12 |
 | Raqamlar (≈1 daqiqa) | «51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif havolasidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.» (139) | 1.1, 1.14 |
@@ -146,7 +146,7 @@ namunalar: 12-Modul `12-PmGrowthPitch-v3.md` + `12-FILTR.md` · 10-Modul `11-PmP
 - Sarlavha: **Investor uchun pitchga nima qo'shiladi?** (39) — 0-ekran savoliga javob beradigan ekran (T-064)
 - Mentor: Tugmalarni birma-bir bosing va pitch qanday o'zgarishiga qarang.
   (Birinchi harakat — bashorat; uning yo'rig'i `QBashorat` yorlig'ida, Mentor takrorlamaydi — T-047.)
-- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bitta o'lchov, o'sish tartibida): **Mentor pitchiga nechta yangi bo'lak qo'shiladi?** · Bitta · Ikkita · Uchta — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*.
+- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bitta o'lchov, o'sish tartibida): **Mentor pitchiga nechta yangi bo'lak qo'shiladi?** · Bitta · Ikkita · Uchta — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*. · **213.7 (F-1015-305…317, 18.10 avtopilot): bashorat ekranda yolg'iz; tanlangach ixcham qatorga yig'iladi, sahna va harakat tugmalari shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin o'chiq tugma/xira sahna yo'q.**
 - Vizual (`OltiBolakSahna`, besh bo'lak holati): **chapda** telefon («O'yin» ekrani) · **o'ngda** besh bo'lak — Muammo · Yechim · Jonli demo · Raqamlar · Keyingi qadam (`JAMOA_PITCH_12`, bir qatordan), ostida taymer chizig'i 0–5:00 (besh bo'lakli) · **ustida** uchta hakam qiyofasi, pufakda «?».
 - Tugmalar (ixcham, bir qatorda; joriysi accent, bosilgani ✓): 1 Investor savollari · 2 Yangi bo'laklar · 3 Besh daqiqa va savol-javob *(✎ F-1015-164: tugmalar bashoratdan keyin chiqadi; bosiladigani faqat joriysi, bosilgani — «✓ nom» yozuvi, keyingisi hali ko'rinmaydi)*
 - **Harakat → Vizual o'zgarish:**
@@ -208,7 +208,7 @@ namunalar: 12-Modul `12-PmGrowthPitch-v3.md` + `12-FILTR.md` · 10-Modul `11-PmP
 - Eyebrow: Tushuncha · Bozor bo'lagi
 - Sarlavha: **Bozor bo'lagiga qaysi sonlar yoziladi?** (38)
 - Mentor: Son kartalarini birma-bir bosing: qaysi biri Bozor bo'lagiga tushishini ko'ring.
-- Bashorat (ballsiz; S-015 — bitta o'lchov: qamrov, kichikdan kattaga): **Mentor misolida Bozorga qaysi sonlar yoziladi?** · Faqat ilovadagi sonlar · Ilova va guruhdagi sonlar · Butun shahar sonlari — tanlangach ixcham qator; kartalar shundan keyin chiqadi *(✎ F-1015-164)*.
+- Bashorat (ballsiz; S-015 — bitta o'lchov: qamrov, kichikdan kattaga): **Mentor misolida Bozorga qaysi sonlar yoziladi?** · Faqat ilovadagi sonlar · Ilova va guruhdagi sonlar · Butun shahar sonlari — tanlangach ixcham qator; kartalar shundan keyin chiqadi *(✎ F-1015-164)*. · **213.7 (F-1015-305…317, 18.10 avtopilot): bashorat ekranda yolg'iz; tanlangach ixcham qatorga yig'iladi, sahna va harakat tugmalari shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin o'chiq tugma/xira sahna yo'q.**
 - Vizual (keng, ≤ 3 blok; telefon bu ekranda yo'q — SABOQ 24): `OltiBolakSahna` — Bozor bo'lagi joriy (bo'sh, accent chegara), qolgan bo'laklar ixcham; ustida Investor kartasi — savol «Bu mahsulot yana qancha odamga kerak?».
   O'ngda uchta son kartasi (har birida: son · kimlar · kulrang manba yorlig'i):
   1 «60 kishi» · mahalla futbol guruhi · manba: Telegram guruhi
@@ -249,7 +249,7 @@ namunalar: 12-Modul `12-PmGrowthPitch-v3.md` + `12-FILTR.md` · 10-Modul `11-PmP
 - Eyebrow: Tushuncha · Jamoa bo'lagi
 - Sarlavha: **Mahsulotni kim qilayotganini qanday aytasiz?** (44)
 - Mentor: Tugmalarni birma-bir bosing va Jamoa bo'lagi qanday yozilishini ko'ring.
-- Bashorat (ballsiz; S-015 — bitta o'lchov: son, o'sish tartibida): **Mentor misolida mahsulotni nechta odam qilyapti?** · Bitta · Uchta · Beshta — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*.
+- Bashorat (ballsiz; S-015 — bitta o'lchov: son, o'sish tartibida): **Mentor misolida mahsulotni nechta odam qilyapti?** · Bitta · Uchta · Beshta — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*. · **213.7 (F-1015-305…317, 18.10 avtopilot): bashorat ekranda yolg'iz; tanlangach ixcham qatorga yig'iladi, sahna va harakat tugmalari shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin o'chiq tugma/xira sahna yo'q.**
 - Vizual (keng; telefonsiz): `OltiBolakSahna` — Jamoa bo'lagi joriy (bo'sh), ustida Investor kartasi — savol «Buni kim qilyapti?»; Jamoa bo'lagi yonida bitta odam qiyofasi (rol yorlig'i hali yo'q).
 - Tugmalar (ixcham, bir qatorda): 1 Kim nima qildi · 2 Agent · 3 Sinab ko'rganlar *(✎ F-1015-164: tugmalar bashoratdan keyin chiqadi; bosiladigani faqat joriysi, bosilgani — «✓ nom» yozuvi, keyingisi hali ko'rinmaydi)*
 - **Harakat → Vizual o'zgarish:**
@@ -283,7 +283,7 @@ namunalar: 12-Modul `12-PmGrowthPitch-v3.md` + `12-FILTR.md` · 10-Modul `11-PmP
 - Eyebrow: Tushuncha · Keyingi qadam
 - Sarlavha: **Pitch oxirida hakamdan nima so'raysiz?** (38)
 - Mentor: Tugmalarni birma-bir bosing va Keyingi qadam bo'lagi qanday o'zgarishini ko'ring.
-- Bashorat (ballsiz; S-015 — bitta o'lchov: son): **Mentor hakamdan nechta narsa so'raydi?** · Bitta · Ikkita · Uchta — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*.
+- Bashorat (ballsiz; S-015 — bitta o'lchov: son): **Mentor hakamdan nechta narsa so'raydi?** · Bitta · Ikkita · Uchta — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*. · **213.7 (F-1015-305…317, 18.10 avtopilot): bashorat ekranda yolg'iz; tanlangach ixcham qatorga yig'iladi, sahna va harakat tugmalari shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin o'chiq tugma/xira sahna yo'q.**
 - Vizual (keng; telefonsiz): `OltiBolakSahna` — Keyingi qadam bo'lagi joriy, ichida 12-Moduldagi gap: «E'lon berilgach «Havolani ulashish» tugmasi bilan tashkilotchi havolani o'z jamoasiga yuboradi — maqsad 50.»; ustida Investor kartasi — savol «Endi nima qilasiz?».
 - Tugmalar (ixcham, bir qatorda): 1 Maqsad 50 · 2 Keyingi ish · 3 Aniq so'rov *(✎ F-1015-164: tugmalar bashoratdan keyin chiqadi; bosiladigani faqat joriysi, bosilgani — «✓ nom» yozuvi, keyingisi hali ko'rinmaydi)*
 - **Harakat → Vizual o'zgarish:**
@@ -357,7 +357,7 @@ namunalar: 12-Modul `12-PmGrowthPitch-v3.md` + `12-FILTR.md` · 10-Modul `11-PmP
   - Keyingi qadam: «tez orada», «albatta», «yetamiz», «aniq bo'ladi» (yo'naltiradi; 12-Modul `VADA_RE`): Bu va'da — keyingi haftada aynan nima qilasiz?
   - Yorliq (yo'naltiruvchi xatodan keyin): Shunday qoldirsangiz — yana «Saqlash»ni bosing.
 - Yordam (bo'lakka qarab bitta qator — Mentor misolidan, A-6 jadvali aynan):
-  1 — Mentor misolida: «O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.»
+  1 — Mentor misolida: «O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.»
   2 — Mentor misolida: «Mahalla futbol guruhida — 60 kishi; ilovada — 6 tashkilotchi. Boshqa mahallalarni hali tekshirmaganmiz.»
   3 — Mentor misolida: «Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.» Jonli demo — shu gapdan keyin.
   4 — Mentor misolida: «51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif havolasidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.»
@@ -527,7 +527,7 @@ Ekran testlari va kartochkalar nusxasi emas (§144, S-021): boshqa holat, boshqa
 12. Mentor misolida Muammo dalili qayerdan olingan? (2, 10)
     - Ilovadagi 51 foydalanuvchidan
     - Mahalla futbol guruhidagi 60 kishidan
-    - ✔ So'ralgan 5 o'yinchining javobidan
+    - ✔ So'ralgan 3 o'yinchining javobidan
     - Uch tashkilotchining tasdig'idan
 - Arena yozuvlari — platforma shabloni (namuna 12-Modul YAKUNIY dagidek).
 - **Fon so'zlari** (R-008, kodda {uz, ru}): arena — pitch, bo'lak, bozor, jamoa, hakam, investor, slayd, taymer, savol, so'rov · uyga vazifa banneri — pitch, qoralama, bozor, so'rov (faqat so'z, emojisiz).

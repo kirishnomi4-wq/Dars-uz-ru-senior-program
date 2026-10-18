@@ -265,7 +265,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `11-PmReflection-v3.m
 - Nishon: First Step! — birinchi urinishda to'g'ri.
 - Izoh (MD): savol 4-ekran kartalarining nusxasi emas (§106): boshqa mahsulot va boshqa maqsad; o'quvchi maqsadni harakatdan ajratadi. «Uch sinfdosh» — tanish doira (TAQIQLAR 3), ism yo'q. Ikkala trekka to'g'ri.
 
-## 6 · Rejangiz  ← QMustaqil (USTAXONA 1/2 — bittadan karta, 3 yo'nalish; SABOQ 9, 13, 17, 29, E 43, E 53)
+## 6 · Rejangiz  ← QMustaqil (USTAXONA 1/2 — bittadan karta, 3 yo'nalish; SABOQ 9, 13, 17, 29, E 43, E 53) **213.11 (F-1015-324, 18.10): yo'nalish kartasi ketma-ket — yo'l → sabab/nima → oy oxirida → olti oyda → birinchi qadam → sana; joriy savol ramkada («Keyingi»/Enter), javob berilgani yashil qatorga yig'iladi (bosilsa qayta ochiladi); taklif-tugmalar o'z qadamida; Saqlash doim, yetishmagani tegishli qadamni ochadi.**
 - Eyebrow: Mustaqil ish · olti oylik reja
 - Sarlavha: **Olti oylik rejangizni uch yo'nalishda yozing.** (45)
 - Mentor: Har kartani yuqoridan pastga to'ldirib, «Saqlash»ni bosing — Mentor misoli «Yordam»da. (86)

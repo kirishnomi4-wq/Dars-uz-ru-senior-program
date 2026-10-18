@@ -18,7 +18,7 @@
   12-Modul besh bo'lagidan farqi: **Bozor** va **Jamoa** qo'shiladi; «Jonli demo» «Yechim» ichiga kiradi; pitchdan keyin — **savol-javob**. Vaqt — 5 daqiqa (Demo Day 8: «5 daqiqa pitch + Q&A», dastur).
 - **K12 Airbnb pitch deck** (bank so'zi aynan, raqamsiz): «Investorlar uchun birinchi taqdimot — o'nga yaqin oddiy slayd: muammo → yechim → bozor → mahsulot → jamoa. Eng ko'p tahlil qilinadigan pitchlardan biri, ochiq turadi.» (T18; dasturdagi «YC Demo Day tahlili» o'rniga).
 - **Mentor pitchining qoralamasi (1-darsda yoziladi; keyin 5, 8, 13-darslarda tuzatiladi):**
-  · Muammo: «O'yinchilar jamoaga odam yig'ishda qiynaladi.» + dalil «Men so'ragan 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.» (12-Modul pitchi aynan — kalit ≤160; 9.2) ·
+  · Muammo: «O'yinchilar jamoaga odam yig'ishda qiynaladi.» + dalil «Men so'ragan 3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.» (12-Modul pitchi aynan — kalit ≤160; 9.2) ·
   · Bozor (T2): «Mahalla futbol guruhida — 60 kishi; ilovada — 6 tashkilotchi. Boshqa mahallalarni hali tekshirmaganmiz.» — **yangi son yo'q** ·
   · Yechim: «Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.» + jonli demo (1 daqiqa) ·
   · Raqamlar: «51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif havolasidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.» (halol gap — 12-Modul naqshi) ·
@@ -105,7 +105,7 @@
 | Dars | Son | Manba |
 |---|---|---|
 | 1, 5, 8, 13 (pitch) | 51 foydalanuvchi (11 sinfdosh, 7 taklif havolasidan) · 6 tashkilotchi · 3 yozma tasdiq (15 000 — 2, 10 000 — 1) · mahalla futbol guruhi — 60 kishi · qaytganlar 61 dan 26 (43%) · narx 15 000 so'm / 30 kun | 13-Modul 1.13, 12-Modul 1.13 |
-| 1 (Muammo) | 5 o'yinchidan 4 tasi | 12-Modul pitchi |
+| 1 (Muammo) | 3 o'yinchidan 3 tasi | 12-Modul pitchi |
 | 3 | Lighthouse va bundle — **⛔ pilotda o'lchanadi** | — |
 | 6 | demo 5 qadam, 60–90 soniya · B reja video 60 soniya | Mentor rejasi |
 | 7 | buzish natijalari — **⛔ pilotda** | — |

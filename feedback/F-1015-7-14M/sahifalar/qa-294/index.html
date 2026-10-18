@@ -1,0 +1,85 @@
+<title>Retention kuni tashxisi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: bitta ustun; har band = sizning so'zingiz → hozirgi surat → tashxis → taklif-namuna (dars palitrasida) → tanlov */
+:root {
+  --bg: #f4f3f8; --card: #ffffff; --ink: #1d1b2b; --ink2: #5d5a72; --line: #e2e0ec; --accent: #5b3fd6; --accent-soft: #ece8fd; --warn: #b4540f; --warn-soft: #fbeedd;
+  --f-body: 'Manrope', system-ui, sans-serif; --f-mono: 'JetBrains Mono', ui-monospace, monospace;
+  /* dars palitrasi — namuna oynasi ikki mavzuda ham dars qanday ko'rinsa shunday */
+  --d-bg: #F2F0FA; --d-paper: #FFFFFF; --d-line: #E7E3F4; --d-ink: #1B1630; --d-ink2: #565073; --d-accent: #5B3DE6; --d-asoft: #EBE5FD; --d-ok: #1F7A4D; --d-okfon: #E3F0E8; --d-err: #C2362B; --d-errfon: #FAE3E0; --d-mute: #F6F4FC;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #15141c; --card: #1f1d29; --ink: #ecebf4; --ink2: #a7a4ba; --line: #34314a; --accent: #a593ff; --accent-soft: #2c2650; --warn: #f0a35a; --warn-soft: #3a2a18; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #15141c; --card: #1f1d29; --ink: #ecebf4; --ink2: #a7a4ba; --line: #34314a; --accent: #a593ff; --accent-soft: #2c2650; --warn: #f0a35a; --warn-soft: #3a2a18; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 80px; }
+.wrap { max-width: 1060px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+h1 { font-size: clamp(22px, 3vw, 30px); margin: 0; text-wrap: balance; } h2 { font-size: 19px; margin: 0; text-wrap: balance; } h3 { font-size: 14px; margin: 0; color: var(--ink2); text-transform: uppercase; letter-spacing: .06em; }
+p { margin: 0; max-width: 78ch; } .lead { color: var(--ink2); }
+.band { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+.id { font-family: var(--f-mono); font-size: 12px; color: var(--accent); letter-spacing: .04em; }
+.soz { border-left: 3px solid var(--accent); padding: 4px 12px; color: var(--ink2); font-style: italic; }
+.ikki { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 16px; align-items: start; }
+@media (max-width: 860px) { .ikki { grid-template-columns: 1fr; } }
+figure { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+figure img { width: 100%; border-radius: 8px; border: 1px solid var(--line); display: block; }
+figcaption { font-size: 12.5px; color: var(--ink2); }
+.tanlov { display: flex; flex-direction: column; gap: 8px; }
+.tanlov .v { display: flex; gap: 10px; align-items: baseline; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; }
+.tanlov .v b { font-family: var(--f-mono); color: var(--accent); flex-shrink: 0; }
+.tanlov .v.tavsiya { border-color: var(--accent); background: var(--accent-soft); }
+.ogoh { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-weight: 600; }
+ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+/* ---- dars namunasi (mock) ---- */
+.dars { background: var(--d-bg); color: var(--d-ink); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+.dars .t { font-size: 20px; font-weight: 800; letter-spacing: -.01em; } .dars .t i { font-style: normal; color: var(--d-accent); }
+.dars .hol { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--d-ink2); }
+.k { background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.k .y { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--d-ink2); }
+.q { display: flex; align-items: center; gap: 10px; background: var(--d-mute); border-radius: 10px; padding: 9px 12px; }
+.q .n { width: 20px; color: var(--d-ink2); font-family: var(--f-mono); font-size: 12px; } .q b { flex: 1; font-weight: 700; } .q .s { color: var(--d-ink2); font-size: 12.5px; }
+.q.chet { color: var(--d-ink2); } .q.chet b { font-weight: 600; }
+.chip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--d-line); background: var(--d-paper); border-radius: 999px; padding: 6px 12px; font-weight: 700; font-size: 13px; }
+.chip.on { border-color: var(--d-accent); color: var(--d-accent); background: var(--d-asoft); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.ok { color: var(--d-ok); background: var(--d-okfon); border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 800; }
+.yoq { color: var(--d-err); background: var(--d-errfon); border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 800; }
+.mute { color: var(--d-ink2); font-size: 13px; }
+.form { display: flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--f-mono); font-size: 14px; flex-wrap: wrap; }
+.form .b { background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 8px; padding: 4px 10px; min-width: 38px; text-align: center; } .form .b.bosh { color: var(--d-ink2); }
+.form .r { background: var(--d-accent); color: #fff; border-radius: 8px; padding: 4px 10px; font-weight: 700; }
+.bar { display: grid; grid-template-columns: 20px minmax(0, 1fr) minmax(90px, 1.2fr) 42px; align-items: center; gap: 10px; background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 10px; padding: 8px 12px; }
+.bar.top { border-color: var(--d-accent); } .bar .n { color: var(--d-ink2); font-family: var(--f-mono); font-size: 12px; } .bar .f { font-family: var(--f-mono); font-size: 11px; color: var(--d-ink2); }
+.bar .tr { height: 8px; border-radius: 999px; background: var(--d-line); overflow: hidden; } .bar .tr i { display: block; height: 100%; background: var(--d-accent); border-radius: 999px; }
+.bar .v { font-family: var(--f-mono); font-weight: 700; color: var(--d-accent); text-align: right; }
+.bar.chet { opacity: .6; } .bar.chet .tr i { background: var(--d-ink2); } .bar.chet .v { color: var(--d-ink2); }
+.ok-qator { background: var(--d-okfon); color: var(--d-ok); border-radius: 10px; padding: 9px 12px; font-weight: 700; }
+.qadam { display: flex; gap: 8px; align-items: center; } .qadam .d { width: 22px; height: 22px; border-radius: 50%; background: var(--d-accent); color: #fff; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.uch { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; align-items: start; }
+.tug { display: inline-flex; align-items: center; border-radius: 10px; padding: 7px 14px; font-weight: 800; font-size: 13px; background: var(--d-accent); color: #fff; }
+.tug.ik { background: var(--d-paper); color: var(--d-accent); border: 1px solid var(--d-accent); }
+.voronka { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.voronka .s { background: var(--d-asoft); border-radius: 10px; padding: 8px 14px; font-weight: 700; display: flex; gap: 8px; align-items: baseline; } .voronka .s b { font-size: 20px; color: var(--d-accent); font-family: var(--f-mono); }
+.voronka .s.fin { background: var(--d-accent); color: #fff; } .voronka .s.fin b { color: #fff; }
+</style>
+<div class="wrap">
+  <header class="band">
+    <span class="id">F-1015-294 · 12-Modul 9-dars m10-09 «Retention kuni» · «Bittadan» (213) tashxisi · 18.10</span>
+    <h1>Ikki sinf: tushuncha ekranlarida bashorat yolg'iz emas; amaliyotda ikkala trek matni birdan</h1>
+    <p class="lead"><b>Dars oxirida o'quvchi:</b> ilovasiga foydali jonli xabar, yopiq paytdagi eslatma va «eslatmadan ochdi» sanog'ini qo'shadi, o'chirgich bilan.</p>
+    <p class="lead">O'lchov ro'yxatida 2, 3, 8-ekran. Ko'rib chiqdim: 2-ekran (va o'sha sinfdagi 5-ekran) — bashorat sahna bilan birga; 3 va 8-ekran — amaliyot bloki, qadam bittadan, lekin matnda ikkala trek birdan (m10-05 dagi sinf).</p>
+  </header>
+  <section class="band"><span class="id">F-1015-294-A · 2 va 5-ekran · Tushuncha</span><h2>Bashorat bilan birga ikki telefon va Backend</h2>
+    <div class="ikki"><figure><img src="r/s02.jpg" alt="2-ekran"></figure>
+    <div><p><b>Tashxis.</b> «Ilova yopiq paytda yangi o'yin e'lon qilindi — qachon bilasiz?» savoli bilan birga sahna va «Ilovani yopish» / «E'lon berish» tugmalari turibdi (213.7). 5-ekran (foydali eslatma) ham shu naqsh.</p>
+    <div class="tanlov"><div class="v tavsiya"><b>A</b><span>Ikkalasida bashorat yolg'iz; tanlangach sahna kirib keladi.</span></div><div class="v"><b>B</b><span>Tegilmaydi.</span></div></div></div></div></section>
+  <section class="band"><span class="id">F-1015-294-B · 3 va 8-ekran · Amaliyot 1 va 3</span><h2>1-qadamda «Mobil trekda … web-trekda …» bir gapda; 3-qadam bandida ham</h2>
+    <div class="ikki"><figure><img src="r/s03.jpg" alt="3-ekran"></figure><figure><img src="r/s08.jpg" alt="8-ekran"></figure></div>
+    <p><b>Tashxis.</b> 3-ekranda tepada trek tanlanadi, Yordam allaqachon trekka qarab filtrlanadi — lekin 1-qadam matni («Mobil trekda npx expo start … web-trekda saytingiz ochiq tursin») va 3-qadam bandi («Mobil trekda Expo Go … Web-trekda push…») ikkalasini aytadi. 8-ekranda «Web-trekda: sanoq yozuvi …» bandi — trek mobil bo'lsa ham ko'rinadi (qurishda kodda tekshiriladi).</p>
+    <div class="tanlov"><div class="v tavsiya"><b>A</b><span>m10-05 dagidek: trek tanlangan bo'lsa faqat o'sha trek jumlasi; tanlanmagan — ikkalasi. Qadamlar soni va tartibi o'zgarmaydi.</span></div><div class="v"><b>B</b><span>Tegilmaydi.</span></div></div></section>
+  <section class="band"><span class="id">QURILDI · 18.10 15:5x · hammasi A</span><h2>Keyingi holat</h2>
+    <div class="ikki"><figure><img src="r/k-s2b.jpg" alt="2-ekran keyin"><figcaption>2-ekran: taxmindan keyin sahna (5-ekran ham)</figcaption></figure>
+    <figure><img src="r/k-s3-mobil.jpg" alt="3-ekran mobil"><figcaption>3-ekran, mobil trek: faqat Expo jumlasi</figcaption></figure></div>
+    <div class="ikki"><figure><img src="r/k-s8-mobil.jpg" alt="8-ekran mobil"><figcaption>8-ekran, mobil trek: «Web-trekda» bandi yo'q</figcaption></figure><p>Darvozalar 13/13 · lint:jsx toza · MD YAKUNIY/09 · suratlar uz · 390 · ru · QA coddycamp-12modul (jurnalda).</p></div></section>
+  <section class="band"><span class="id">Tegilmaydi</span><h2>0 (kirish), 1 (reja), 4 / 7 (testlar), 6 (amaliyot 2), 9–11</h2></section>
+</div>

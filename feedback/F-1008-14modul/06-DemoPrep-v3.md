@@ -165,7 +165,7 @@ parol va `.env` qiymatlari hech qayerga (`DEMO.md`, repo, agent chati, video), l
   - 1-harakatdan keyin: Endi xuddi shu demoni «Yana bir marta» bilan ko'rsating. (56)
   - 2-harakatdan keyin: 3-qadam to'xtadi — «Boshiga qaytarish»ni bosing. (48)
   - tugagach: Natijani taxminingiz bilan solishtiring. (40)
-- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bir o'lchov, o'sish tartibida): **Mentor demoni ikkinchi marta ko'rsatsa, nima bo'ladi?** · Birinchisidek o'tadi (20) · O'rtasida to'xtaydi (19) · Boshidanoq ochilmaydi (21) —
+- Bashorat (ballsiz, 181; `QBashorat`, yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — bir o'lchov, o'sish tartibida): **Mentor demoni ikkinchi marta ko'rsatsa, nima bo'ladi?** · Birinchisidek o'tadi (20) · O'rtasida to'xtaydi (19) · Boshidanoq ochilmaydi (21) — · **213.7 (F-1015-305…317, 18.10 avtopilot): bashorat ekranda yolg'iz; tanlangach ixcham qatorga yig'iladi, sahna va harakat tugmalari shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin o'chiq tugma/xira sahna yo'q.**
   tanlangach yopilmaydi: ixcham qator «Taxminingiz: …» natijagacha turadi; «Demoni ko'rsatish» shundan keyin yoqiladi.
 - Vizual (≤ 3 blok: sahna · sahna tugmalari · natija): tepada ssenariy chizig'i va taymer (yorliq «Mentor rejasi: 60–90 soniya») · o'ngda laptop brauzeri («O'yin» ekrani, 1-namuna akkaunt) · chapda telefon (2-namuna akkaunt) ·
   sahna ostida uch tugma (chegarali, navbat bilan yoqiladi): «Demoni ko'rsatish» · «Yana bir marta» · «Boshiga qaytarish».
@@ -269,7 +269,7 @@ parol va `.env` qiymatlari hech qayerga (`DEMO.md`, repo, agent chati, video), l
   - 1-harakatdan keyin: Endi «Havoladagi video»ni bosing. (33)
   - 2-harakatdan keyin: Oxirgisi — «Laptopdagi video fayl». (35)
   - tugagach: Natijani taxminingiz bilan solishtiring. (40)
-- Bashorat (ballsiz, `QBashorat`, «Avval o'zingiz belgilab ko'ring»; S-015 — o'sish tartibida): **Uch yo'ldan nechtasi Yechim bo'lagining 90 soniyasiga sig'adi?** · Bittasi (7) · Ikkitasi (8) · Uchalasi (8) — tanlangach ixcham qator natijagacha turadi.
+- Bashorat (ballsiz, `QBashorat`, «Avval o'zingiz belgilab ko'ring»; S-015 — o'sish tartibida): **Uch yo'ldan nechtasi Yechim bo'lagining 90 soniyasiga sig'adi?** · Bittasi (7) · Ikkitasi (8) · Uchalasi (8) — tanlangach ixcham qator natijagacha turadi. · **213.7 (F-1015-305…317, 18.10 avtopilot): bashorat ekranda yolg'iz; tanlangach ixcham qatorga yig'iladi, sahna va harakat tugmalari shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin o'chiq tugma/xira sahna yo'q.**
 - Vizual (≤ 3 blok): tepada ssenariy chizig'i — 1, 2-chip ✓, 2-chip ustida qizil «internet yo'q»; ostida taymer chizig'i, yorliq «Yechim bo'lagi: 90 soniya» (bu mashqda — 9.1) · o'ngda laptop: Wi-Fi belgisi kesilgan, «O'yinlar» o'rnida «Sahifa ochilmadi» ·
   sahna ostida uch tugma (chegarali, navbat bilan yoqiladi): «Internet qaytishini kutish» · «Havoladagi video» · «Laptopdagi video fayl». Telefon bu ekranda yo'q (≤ 3 blok).
 - **Harakat → Vizual o'zgarish:**

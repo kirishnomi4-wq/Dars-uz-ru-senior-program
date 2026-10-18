@@ -170,7 +170,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–2 ≈ 13 · 1-amaliyot ≈ 25 �
   - 2-qadamdan keyin: Endi «Rad etish (mashq)» ni bosing.
   - 3-qadamdan keyin: Oxirgisi — «Noto'g'ri imzo» ni bosing.
   - tugagach: Natijani taxminingiz bilan solishtiring.
-- Bashorat (ballsiz, yorliq «Avval o'zingiz belgilab ko'ring»; tanlangach ixcham qator): **To'rt usuldan nechtasi Mentor misolida to'lovni buzadi?** · Hech biri · Ikkitasi · To'rttalasi (S-015: bir o'lchov, o'sish tartibida)
+- Bashorat (ballsiz, yorliq «Avval o'zingiz belgilab ko'ring»; tanlangach ixcham qator): **To'rt usuldan nechtasi Mentor misolida to'lovni buzadi?** · Hech biri · Ikkitasi · To'rttalasi (S-015: bir o'lchov, o'sish tartibida) · **213.7 (F-1015-299, 18.10): bashorat ekranda yolg'iz; tanlangach qatorga yig'iladi, sahna (telefon + Backend + yozuv) shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q).**
 - Sahna (`TOLOV_SAHNA`): telefon — brauzer, «Mashq to'lov» sahifasi (tekshiruv tugmalari faol, joriysi halqada) · Backend — «Mashq to'lov» va `POST /tolov/webhook` qismlari, `tolovlar`, «Pro muddati: —».
   Qadam chiplari yo'q — har qadamni Mentor aytadi, hisob tugmada *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*. Har urinish oldidan sahna o'zi boshlang'ich holatga qaytadi: kichik kulrang qator «Pro yo'q — yangi to'lov raqami».
 - **Harakat → Vizual o'zgarish:**
@@ -192,7 +192,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–2 ≈ 13 · 1-amaliyot ≈ 25 �
   Rad — «Pro +30 kun» qatori faqat `tolandi` uchun (A-bo'lim 4 jadvali: rad — buzilmadi). Natijalar — `MENTOR_YOZUV` (⛔ «qur» pilotida haqiqiy natija bilan almashadi). Har urinish yangi raqam bilan — tayanch 9.7 (sahna buni «yangi to'lov raqami» qatori bilan ko'rsatadi).
 - O'qituvchi eslatmasi: haqiqiy to'lov xizmatlarida ham xabar ikki marta kelishi mumkin — Payme javob yo'qolsa xuddi shu so'rovni qayta yuboradi, uning test muhiti ba'zi so'rovlarni ataylab ikki marta yuboradi; Stripe — «bir xabar bir necha marta kelishi mumkin», xabarlar yaratilgan tartibda kelmasligi ham mumkin (tayanch 6). Darsda brend tilga olinmaydi (3-darsda ko'rilgan).
 
-## 3 · Amaliyot 1 — qolgan holatlar  ← amaliyot bloki (QBlok + `ScreenBlok`, ≈25 daq)
+## 3 · Amaliyot 1 — qolgan holatlar  ← amaliyot bloki (QBlok + `ScreenBlok`, ≈25 daq) **213.12 (F-1015-318, 18.10): trek tanlanmaguncha 1-qadam va «Ishga tushirish» bandi ikkala trek matnini ko'rsatadi («… · web-trekda …»), tanlangach faqat o'ziniki; 8-ekran (Amaliyot 3) ham.**
 - Eyebrow: Amaliyot 1 · o'z repo'ngiz
 - Sarlavha: **Mahsulotingizda to'lovning qolgan holatlari ko'rinsin.** (54)
 - Mentor: Talab tayyor — uch joyni o'z mahsulotingiz bilan to'ldirasiz; «1 · Ochish»dan boshlang.
@@ -273,7 +273,7 @@ Vaqt (reja, o'lchov emas): ≈ 90 daqiqa — 0–2 ≈ 13 · 1-amaliyot ≈ 25 �
   - ilovada «Javob kutilmoqda» chiqqach: Ilovadagi «Qayta tekshirish» ni bosing.
   - 3-qadamdan keyin: Oxirgisi — «Qayta: ikki marta yuborish» ni bosing.
   - tugagach: Natijani taxminingiz bilan solishtiring.
-- Bashorat (ballsiz; tanlangach ixcham qator): **Kech kelgan xabarda Pro oxiri yoqildi. Bu urinish buzildimi?** · Yo'q — Pro oxiri yoqildi, demak to'lov ishladi · Ha — foydalanuvchiga noto'g'ri holat ko'rsatildi
+- Bashorat (ballsiz; tanlangach ixcham qator): **Kech kelgan xabarda Pro oxiri yoqildi. Bu urinish buzildimi?** · Yo'q — Pro oxiri yoqildi, demak to'lov ishladi · Ha — foydalanuvchiga noto'g'ri holat ko'rsatildi · **213.7 (F-1015-299, 18.10): bashorat ekranda yolg'iz; tanlangach qatorga yig'iladi, sahna (telefon + Backend + yozuv) shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q).**
 - Chap — telefon (ilova, «Javob kutilmoqda»). O'ng — buzish yozuvi kartasi (bittadan; `MENTOR_YOZUV` 2-qatori): «Kechiktirib yuborish» · uch qator yorlig'i «Nima qildim» · «Nima kutdim» · «Nima bo'ldi» (matni — A-bo'lim 4 jadvali) · belgi joyi bo'sh; ostida tugma «Solishtirish» (halqada);
   karta ustida kichik qator — boshqa uch urinish ixcham: «1 · Ikki marta yuborish · buzildi» · «3 · Rad etish · buzilmadi» · «4 · Noto'g'ri imzo · buzilmadi». Qadam belgilari yo'q — har qadamni Mentor aytadi *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*.
 - **Harakat → Vizual o'zgarish:**

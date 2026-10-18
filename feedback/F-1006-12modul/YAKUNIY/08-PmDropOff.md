@@ -46,6 +46,7 @@ Telefon ekranlari: Kirish (Login · Parol · «Kirish» · «Ro'yxatdan o'tish»
   - oraliqlar bosilayotganda: Keyingi oraliqni bosing — telefonda shu qadam ekrani ochiladi.
   - uchala oraliq ochilgach: Foizlarni solishtirib, «Davom etish»ni bosing.
 - Bashorat (yorliq: Avval o'zingiz belgilab ko'ring): Qaysi qadamga o'tganlar foizi eng kichik?
+  - Bashorat yolg'iz chiqadi; tanlangach ixcham qatorga yig'iladi, shundan keyin telefon va ustunlar kirib keladi. *(✎ F-1015-293, 213.7)*
   - Ro'yxatdan o'tdi
   - Qo'shildi
   - Kelishini tasdiqladi

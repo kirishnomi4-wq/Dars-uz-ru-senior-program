@@ -51,6 +51,7 @@ Jonli xabar — ilova ichida, ekran tepasida: «Maydon Jamoa» + «Shanba, 18:00
   - 2-harakatdan keyin: Endi birinchi telefonda «Ilovani ochish»ni bosing.
   - tugagach: Uchala harakat tugadi — natijani taxminingiz bilan solishtiring.
 - Bashorat (ballsiz, yorliq «Avval o'zingiz belgilab ko'ring»): Ilova yopiq paytda yangi o'yin e'lon qilindi. Siz buni qachon bilasiz? · Shu zahoti — telefon ekranida · Ilovani o'zingiz ochganingizda
+  - Bashorat yolg'iz chiqadi; tanlangach ixcham qatorga yig'iladi, shundan keyin sahna kirib keladi. *(✎ F-1015-294, 213.7)*
   - Tanlangach ixcham qator: Taxminingiz · savol · tanlangan variant
 - Sahna:
   - 1-telefon · siz — «O'yinlar»: Ulangan · Shanba, 18:00 · Mahalla maydoni · 7 / 10; telefon ostida tugma «Ilovani yopish» (yopilgach — «Ilovani ochish»)
@@ -74,6 +75,7 @@ Jonli xabar — ilova ichida, ekran tepasida: «Maydon Jamoa» + «Shanba, 18:00
 - Trek tanlanmagan bo'lsa (mentor ostida): Trekingiz: Mobil trek · Web-trek
 - Bandlar (bittadan ochiladi, har birida «Bajardim»):
   1. **Ochish** — Antigravity'da o'z repo'ngizni oching — 8-darsda to'xtagan joyingizdan. Terminalda `git status`: `.env` fayllari ro'yxatda ko'rinmasin. Mobil trekda `npx expo start` ishlab tursin, ilova telefoningizda ochiq bo'lsin; web-trekda saytingiz ochiq tursin.
+     - *(✎ F-1015-294)* Trek tanlangan bo'lsa faqat o'sha trek jumlasi (mobil — Expo, web — sayt ochiq); tanlanmagan — ikkalasi.
      - Ikki savolga javob toping: ilova ochiq turganda foydalanuvchi qaysi o'zgarishni bilsa, biror ish qiladi? Xabarda nima yoziladi? (Mentor misolida: o'zi qo'shilmagan o'yinda bir yoki ikki joy qolsa — «Shanba, 18:00 — 2 joy qoldi».)
      - Mahsulotingizda shunday o'zgarish bo'lmasa — 4-darsdagi jonli xabarlaringizdan birini foydaliroq qiling: matni foydalanuvchiga keyin nima qilishini aytsin.
   2. **Prompt** — uch qatorni o'zingiz yozing, «Nusxalash»ni bosing va Antigravity'ga yuboring:
@@ -91,6 +93,7 @@ Jonli xabar — ilova ichida, ekran tepasida: «Maydon Jamoa» + «Shanba, 18:00
        - Web-trekda (mobil trek tanlanmagan bo'lsa): Web-trekda: «Qayerda» qatorida ilova o'rniga sayt papkangizdagi jonli xabarlar va o'yinlar sahifasi turadi; xabar «Xabarlar» tasmasiga ham tushadi (4-darsdagidek), qolgani o'sha.
   3. **Ishga tushirish** — agent tugatgach: `git status` — o'zgargan fayllar agent aytgani bilan bir xil, `.env` yo'q; har faylni `git add <fayl>` bilan qo'shing, `git commit -m "jonli xabar: joy qoldi"`, `git push`.
      - Mobil trekda Expo Go ilovani odatda o'zi qayta yuklaydi (bo'lmasa — terminalda `r`). Web-trekda push'dan keyin Netlify saytni odatda o'zi yangilaydi.
+       *(✎ F-1015-294: trekka qarab — mobil: Expo Go qayta yuklash; web: Netlify yangilash; tanlanmagan — ikkalasi)*
      - Xato chiqsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»
   4. **Tekshirish** — talabingizning har qatorini ko'ring:
      - (1) Ilovangiz ochiq tursin. O'zgarishni boshqa akkaunt qilsin: sherigingiz o'z akkauntidan — ilovangiz o'rnatilgan telefonida yoki brauzer ko'rinishida (web-trekda — kompyuterdagi ikkinchi oynada, ikkinchi akkaunt bilan).
@@ -133,6 +136,7 @@ Jonli xabar — ilova ichida, ekran tepasida: «Maydon Jamoa» + «Shanba, 18:00
   - to'rttasidan keyin: Endi telefon ostidagi «Eslatmalar» o'chirgichini bosing.
   - tugagach: Natijani taxminingiz bilan solishtiring.
 - Bashorat (ballsiz, yorliq «Avval o'zingiz belgilab ko'ring»): To'rt matndan nechtasi qoidadan o'tadi? · Bittasi · Ikkitasi · Uchtasi
+  - Bashorat yolg'iz chiqadi; tanlangach ixcham qatorga yig'iladi, shundan keyin sahna kirib keladi. *(✎ F-1015-294, 213.7)*
 - Chap: telefon, ustida yorliq «o'yinchi · ilova yopiq» va hisoblagich «Bu hafta: 0 / 2»; qulf ekraniga matn kartasi bittadan tushadi, «Matn N / 4» sanog'i yo'q — hisob tugmada (2-kartada ustida: «4-darsdagi o'yin eslatmasi»). *(✎ F-1015-117, 208-qonun 0-band: takror olindi)* Telefon ostida tugma «Qoidadan o'tkazish» va o'chirgich «Eslatmalar» (yoqiq; to'rt matngacha xira).
 - O'ng: tekshiruv kartasi «Foydali eslatma», ostida «bu kursda · rejalashtirilgan eslatma uchun» — uch katak:
   - O'z ishiga tegishli, foydasi aniq
@@ -228,6 +232,7 @@ Jonli xabar — ilova ichida, ekran tepasida: «Maydon Jamoa» + «Shanba, 18:00
      - Bu son eslatma bosilganini aytadi; eslatma bo'lmasa ham ochgan bo'larmidi — buni aytmaydi.
      - O'chirgich qayerda turishini o'ylang (Mentor misolida — «Hisobdan chiqish» yonida, nomi «Eslatmalar»; sozlama ekani ko'rinib tursin — chiqish tugmasiga o'xshamasin).
      - Web-trekda: sanoq yozuvi `xabardan-ochdi` — «Siz yo'q paytingizda» qatori bosilib o'yin ochilganda (sahifa ochilishining o'zi emas); o'chirgich nomi «Xabarlar».
+       *(✎ F-1015-294: mobil trek tanlangan bo'lsa bu band chiqmaydi)*
   2. **Prompt** — uch qatorni o'zingiz yozing, «Nusxalash»ni bosing va Antigravity'ga yuboring:
      - Vazifa: Eslatma bosilib ilova ochilganda sanoq yozuvi qo'shiladi; foydalanuvchi eslatmalarni o'zi o'chira oladi.
      - Prompt qutisi (Siz → Antigravity · Nusxalash):

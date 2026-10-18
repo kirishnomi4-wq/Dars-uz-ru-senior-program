@@ -68,7 +68,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `07-PmTerms-v3.md` + 
    Bu darsda **aytilmaydi**: sovrin miqdori (sahifada bor — pul, TAYANCHGA SAVOL 12) · qatnashish puli (sahifada aniq yo'q) · Diamond Challenge'ning hamkor shaharlari · Y Combinator bergan pul va ulush · Y Combinator'ning norasmiy yosh gaplari (`00-MANBA.md` 5: ikkinchi darajali manba — da'vo qilinmaydi).
    Sanalar **2027-yil tanlovi uchun**, 08.10.2026 holatida; o'quvchi matnida «sana saytda o'zgarishi mumkin» (sinf 18).
 7. **Mentor misoli (tayanch 1.1, 1.12 — AYNAN; yangi tafsilot — TAYANCHGA SAVOL 3, 4; o'quvchiga «Mentor misolida»):**
-   - **Pitch** (`JAMOA_PITCH`, 1-dars, tayanch 1.1 aynan — tasmada har bo'lakning birinchi qatori): Muammo «O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.» ·
+   - **Pitch** (`JAMOA_PITCH`, 1-dars, tayanch 1.1 aynan — tasmada har bo'lakning birinchi qatori): Muammo «O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.» ·
      Bozor «Mahalla futbol guruhida — 60 kishi; ilovada — 6 tashkilotchi. Boshqa mahallalarni hali tekshirmaganmiz.» · Yechim «Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.» ·
      Raqamlar, Jamoa («Men — g'oya, mahsulot va kod (agent bilan). Sinab ko'rganlar — 6 tashkilotchi va o'yinchilar.»), Keyingi qadam — 1-dars aynan.
    - **Konsept qoralamasi** (`MENTOR_KONSEPT`; 6-ekran, 7-ekran Yordam): Muammo — pitchdagi Muammo aynan · **Kim uchun — «Mahallada mini-futbol o'ynaydigan o'yinchilar va o'yin e'lon qiladigan tashkilotchilar.»** (yangi gap — tayanch 1.0 dagi mahsulot va rollardan; TAYANCHGA SAVOL 4) · Yechim — pitchdagi Yechim aynan.
@@ -212,7 +212,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `07-PmTerms-v3.md` + 
 - Eyebrow: Tushuncha · ikki dastur
 - Sarlavha: **Y Combinator bugun sizga mos yo'lmi?** (36) (huquqiy «bera olasizmi» emas — kurs tavsiyasi, 11-FILTR 6)
 - Mentor: Tugmalarni birma-bir bosing: ikki dastur sahifasi bir xil savolga nima deydi?
-- Bashorat (ballsiz; S-015 — bitta o'lchov: yosh): **Y Combinator sahifasida yosh chegarasi qanday yozilgan?** · 14 yoshdan · 16 yoshdan · Yozilmagan — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*.
+- Bashorat (ballsiz; S-015 — bitta o'lchov: yosh): **Y Combinator sahifasida yosh chegarasi qanday yozilgan?** · 14 yoshdan · 16 yoshdan · Yozilmagan — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*. · **213.7 (F-1015-305…317, 18.10 avtopilot): bashorat ekranda yolg'iz; tanlangach ixcham qatorga yig'iladi, sahna va harakat tugmalari shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin o'chiq tugma/xira sahna yo'q.**
 - Vizual (≤ 3 blok: brauzer · varaq «Solishtirish» · tugmalar): **chapda** — brauzer `ycombinator.com/faq`: nom «Y Combinator» (o'z rangida, logotipsiz), ostida kulrang izoh «Amerikadagi, yangi kompaniya asoschilari uchun dastur» (53) (S-018);
   sahifa qatorlari (A-6; kulrang): 1 Sahifa: o'qiyotgan yoki ishlayotgan odam ham ariza berishi mumkin · 2 Asoschilar dastur davomida va keyin o'z kompaniyasida to'liq vaqt ishlaydi · 3 Dastur San-Fransiskoda, yuzma-yuz o'tadi.
   **o'ngda** — varaq «Solishtirish»: ikki ustun **Diamond Challenge** | **Y Combinator**; uch qator (bo'sh, uzuq): Kim uchun · Nima kutiladi · Qayerda.
@@ -257,12 +257,12 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `07-PmTerms-v3.md` + 
 - Eyebrow: Tushuncha · konsept
 - Sarlavha: **Konsept qoralamasini pitchdan qanday boshlaysiz?** (48) («arizaga ko'chadi» — rasmiy forma xaritasidek edi, 11-FILTR 9)
 - Mentor: Tugmalarni birma-bir bosing: Mentor qoralamasi pitchdan qanday boshlanishini ko'ring.
-- Bashorat (ballsiz; S-015 — bitta o'lchov: son, o'sish tartibida): **Qoralamaga nechta pitch bo'lagidan boshlang'ich gap olasiz?** · Bitta · Ikkita · Uchta — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*.
+- Bashorat (ballsiz; S-015 — bitta o'lchov: son, o'sish tartibida): **Qoralamaga nechta pitch bo'lagidan boshlang'ich gap olasiz?** · Bitta · Ikkita · Uchta — tanlangach ixcham qator; tugmalar shundan keyin chiqadi *(✎ F-1015-164)*. · **213.7 (F-1015-305…317, 18.10 avtopilot): bashorat ekranda yolg'iz; tanlangach ixcham qatorga yig'iladi, sahna va harakat tugmalari shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin o'chiq tugma/xira sahna yo'q.**
 - Vizual (≤ 3 blok: tasma · varaq · tugmalar; brauzer bu ekranda yo'q): **pastda** — Mentor pitchi tasmasi (olti bo'lak, bir qatordan; yorliq «Mentor misoli · Maydon Jamoa»; A-7) ·
   **o'ngda** — varaq «Ariza qoralamasi · Maydon Jamoa», pastki qismi «Konsept»: uch bo'sh qator (uzuq) — Muammo · Kim uchun · Yechim.
 - Tugmalar (ixcham, bir qatorda): 1 Muammo · 2 Kim uchun · 3 Yechim *(✎ F-1015-164: tugmalar bashoratdan keyin chiqadi; bosiladigani faqat joriysi, bosilgani — «✓ nom» yozuvi, keyingisi hali ko'rinmaydi)*
 - **Harakat → Vizual o'zgarish:**
-  1. «Muammo» → tasmadagi Muammo bo'lagi accent bilan yonadi, matni varaqdagi «Muammo» qatoriga boshlang'ich gap sifatida uchadi (keyin moslashtiriladi — 11-FILTR 10): «O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.»
+  1. «Muammo» → tasmadagi Muammo bo'lagi accent bilan yonadi, matni varaqdagi «Muammo» qatoriga boshlang'ich gap sifatida uchadi (keyin moslashtiriladi — 11-FILTR 10): «O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.»
   2. «Kim uchun» → tasmadagi Bozor bo'lagi yonadi; undagi «60 kishi» va «6 tashkilotchi» kulrang bo'lib tasmada qoladi (uchmaydi); varaqdagi «Kim uchun» qatoriga yangi gap yoziladi: «Mahallada mini-futbol o'ynaydigan o'yinchilar va o'yin e'lon qiladigan tashkilotchilar.»
      `QIzoh`: Kim uchun — qancha emas, kimlar: sonlar pitchdagi Bozor bo'lagida qoladi. (73)
   3. «Yechim» → Yechim bo'lagi yonadi, matni varaqqa boshlang'ich gap sifatida uchadi: «Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.»
@@ -316,7 +316,7 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `07-PmTerms-v3.md` + 
   1 — Mentor misolida: Diamond Challenge — «Maydon Jamoa» konsepti uchun; saytda ro'yxat — hali yo'q.
   2 — Mentor misolida: Jamoa bo'lagida bitta odam — Diamond Challenge'ga yana kamida bitta o'quvchi kerak.
   3 — Mentor misolida: maslahatchi hali aniqlanmagan.
-  4 — Mentor misolida: «O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.»
+  4 — Mentor misolida: «O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.»
   5 — Mentor misolida: «Mahallada mini-futbol o'ynaydigan o'yinchilar va o'yin e'lon qiladigan tashkilotchilar.»
   6 — Mentor misolida: «Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.»
 - **Harakat → Vizual o'zgarish:** variant yoki maydon → karta ichida tanlangani accent; «Saqlash» → karta kichrayib varaqdagi o'z qatoriga uchadi (~1 s yashil), tepadagi chiziqda ✓; shartlar qatorida belgi o'zgaradi:

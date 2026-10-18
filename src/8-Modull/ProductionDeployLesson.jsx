@@ -960,7 +960,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Tasodifiy manzil o'rniga <span className="italic" style={{ color: T.accent }}>qanday nom</span> qo'yasiz?</>, ru: <>Какое <span className="italic" style={{ color: T.accent }}>имя</span> поставите вместо случайного адреса?</> })}
         mentor={<Mentor>{tr({ uz: "Manzil boshidagi nomni Netlify o'zi tanlagan — o'yinchi uni eslab qololmaydi. Yangi nom yozing va saytni telefonda oching.", ru: 'Имя в начале адреса Netlify выбрал сам — игрок его не запомнит. Напишите новое имя и откройте сайт на телефоне.' })}</Mentor>}
         bashorat={<Bashorat savol={tr(S2_SAVOL)} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
-        vizual={<div className="pd-sahna pd-s2" ref={box}>
+        vizual={!taxmin ? null : <div className="q-kir">{<div className="pd-sahna pd-s2" ref={box}>
           <div className="pd-ust-chap">
             <Telefon manzil={'https://' + sayt(joriyNom)} sahifa={sahifa} kKey={'k' + n} />
             {taxmin && !done && n >= 1 && <QTugma className={cxx('pd-tel-btn', !yur && 'pd-navbat')} disabled={yur} onClick={n === 1 ? och : yangila}>{fmtCode(tr(S2_QADAM[qi]))}</QTugma>}
@@ -1002,7 +1002,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               qoshimcha={fmtCode(tr({ uz: "Bu manzil bepul: `….netlify.app` ning boshini o'zingiz tanlaysiz.", ru: 'Этот адрес бесплатный: начало `….netlify.app` вы выбираете сами.' }))} />}
           </div>
           {uchlar.map(u => <Konvert key={u.k} u={u} />)}
-        </div>}
+        </div>}</div>}
       />
     </Stage>
   );
@@ -1064,7 +1064,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Telefon raqami Backend'ga yetguncha <span className="italic" style={{ color: T.accent }}>kim ko'ra oladi</span>?</>, ru: <>Кто видит номер <span className="italic" style={{ color: T.accent }}>на пути к Backend</span>?</> })}
         mentor={<Mentor>{tr({ uz: "O'yinchi bepul Wi-Fi'dan ham band qilishi mumkin — unda so'rov begona tarmoqdan o'tadi. Ikki xil manzil bilan yuborib, Wi-Fi tugunida nima ko'rinishiga qarang.", ru: "Игрок может бронировать и через бесплатный Wi-Fi — тогда запрос идёт через чужую сеть. Отправьте через два разных адреса и посмотрите, что видно в узле Wi-Fi." })}</Mentor>}
         bashorat={<Bashorat savol={fmtCode(tr(S4_SAVOL))} variantlar={S4_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
-        vizual={<div className="pd-sahna pd-s4" ref={box}>
+        vizual={!taxmin ? null : <div className="q-kir">{<div className="pd-sahna pd-s4" ref={box}>
           <div className="pd-ust-chap">
             <Telefon manzil={proto + sayt(NOMLAR.yangi)} nom={NOMLAR.yangi} faraz={proto === 'http://'} sahifa="forma"
               onBelgi={taxmin && (n >= 2) ? belgi : undefined} belgiOn={panel}
@@ -1090,7 +1090,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               xulosa={fmtCode(tr({ uz: "HTTPS bilan ma'lumot yo'lda shifrlangan. Netlify'ning `*.netlify.app` manzilida u o'zi yoqilgan.", ru: 'С HTTPS данные в пути зашифрованы. На адресе `*.netlify.app` Netlify включил его сам.' }))} />}
           </div>
           {uchlar.map(u => <Konvert key={u.k} u={u} />)}
-        </div>}
+        </div>}</div>}
       />
     </Stage>
   );
@@ -1174,7 +1174,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <><code className="qcode">/health</code> Database'ni ham so'rasa, <span className="italic" style={{ color: T.accent }}>nima bo'ladi</span>?</>, ru: <>Что будет, если <code className="qcode">/health</code> <span className="italic" style={{ color: T.accent }}>спросит и Database</span>?</> })}
         mentor={<Mentor>{fmtCode(tr({ uz: "UptimeRobot `/health` ni har 5 daqiqada so'raydi. Kalitni tanlab, oy davomida bepul Database'ga nima bo'lishiga qarang.", ru: "UptimeRobot спрашивает `/health` каждые 5 минут. Выберите положение переключателя и посмотрите, что за месяц будет с бесплатной Database." }))}</Mentor>}
         bashorat={<Bashorat savol={tr(S6_SAVOL)} variantlar={S6_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
-        vizual={<div className={cxx('pd-sahna pd-s6', done && 'tugadi')}>
+        vizual={!taxmin ? null : <div className="q-kir">{<div className={cxx('pd-sahna pd-s6', done && 'tugadi')}>
           <div className="pd-ust-chap">
             <Telefon manzil={'https://' + sayt(NOMLAR.yangi)} nom={NOMLAR.yangi} sahifa={sahifa} kKey={'s6' + korildi.length} />
             {taxmin && !done && <QTugma className={cxx('pd-tel-btn', kalit && !yur && 'pd-navbat')} disabled={!kalit || !!yur} onClick={boshla}>{tr({ uz: 'Oyni boshlang', ru: 'Запустите месяц' })}</QTugma>}
@@ -1207,7 +1207,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 qoshimcha={tr({ uz: 'Narxi: Database to\'xtasa, monitoring buni sezmaydi — buni dashboard va o\'yinchi sahifasi ko\'rsatadi.', ru: 'Цена: если Database остановится, мониторинг этого не заметит — это покажут дашборд и страница игрока.' })} />
             </>}
           </div>
-        </div>}
+        </div>}</div>}
       />
     </Stage>
   );
@@ -1297,7 +1297,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Sayt yiqilsa, buni siz <span className="italic" style={{ color: T.accent }}>qanday bilib qolasiz</span>?</>, ru: <>Если сайт упадёт, <span className="italic" style={{ color: T.accent }}>как вы об этом узнаете</span>?</> })}
         mentor={<Mentor>{tr({ uz: "UptimeRobot — saytlarni kuzatadigan xizmat: u ikki manzilni har 5 daqiqada so'raydi. Tunni boshlang va telefoningizga qarang.", ru: 'UptimeRobot — сервис, который следит за сайтами: он спрашивает два адреса каждые 5 минут. Запустите ночь и смотрите на свой телефон.' })}</Mentor>}
         bashorat={<Bashorat savol={tr(S8_SAVOL)} variantlar={S8_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
-        vizual={<div className="pd-s8" ref={box}>
+        vizual={!taxmin ? null : <div className="q-kir">{<div className="pd-s8" ref={box}>
           <div className="pd-uch">
             <Telefon manzil={'https://' + sayt(NOMLAR.yangi)} sahifa={sahifa} kKey={'s8' + bosq}>
               {taxmin && bosq === 0 && <QTugma className={cxx('pd-tel-btn', !yur && 'pd-navbat')} disabled={yur} onClick={tun}>▶ {tr({ uz: 'Tunni boshlang', ru: 'Запустите ночь' })}</QTugma>}
@@ -1319,7 +1319,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <QIzoh>{tr({ uz: "«Saytingiz hozir ochilyaptimi?» darsidagi o'lchagich va signal — shu monitoring va ogohlantirish.", ru: "Измеритель и сигнал из урока «Ваш сайт сейчас открывается?» — это и есть мониторинг и оповещение." })}</QIzoh>
           </div>}
           {uchlar.map(u => <Konvert key={u.k} u={u} />)}
-        </div>}
+        </div>}</div>}
       />
     </Stage>
   );
@@ -1387,7 +1387,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Sotib olingan domen saytga <span className="italic" style={{ color: T.accent }}>qanday ulanadi</span>?</>, ru: <>Как купленный домен <span className="italic" style={{ color: T.accent }}>подключается к сайту</span>?</> })}
         mentor={<Mentor>{tr({ uz: "Bugun bepul manzil yetadi, o'z domeni esa pullik — shuning uchun uni Mentor misolida ko'ramiz. Qadamlarni bajaring va brauzerdagi belgiga qarang.", ru: 'Сегодня хватит бесплатного адреса, а свой домен платный — поэтому смотрим его на примере ментора. Выполните шаги и смотрите на значок в браузере.' })}</Mentor>}
         bashorat={<Bashorat savol={tr(S10_SAVOL)} variantlar={S10_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
-        vizual={<div className="pd-sahna pd-s10" ref={box}>
+        vizual={!taxmin ? null : <div className="q-kir">{<div className="pd-sahna pd-s10" ref={box}>
           <div className="pd-ust-chap">
             <Telefon manzil={(https ? 'https://www.' : 'www.') + NOMLAR.domen} nom={NOMLAR.yangi} sahifa={sahifa} kKey={'s10' + n} />
             {taxmin && !done && <QTugma className={cxx('pd-tel-btn', !yur && 'pd-navbat')} disabled={yur} onClick={harakat}>{tr(S10_QADAM[n])}</QTugma>}
@@ -1417,7 +1417,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {n === 2 && <Joriy>{tr({ uz: 'Domen qaysi saytga olib borishini aytadigan yozuv — DNS yozuvi. DNS manzilni shu yozuvdan topadi.', ru: 'Запись, которая говорит, к какому сайту ведёт домен, — DNS-запись. DNS находит адрес по этой записи.' })}</Joriy>}
           </div>
           {uchlar.map(u => <Konvert key={u.k} u={u} />)}
-        </div>}
+        </div>}</div>}
         natija={done && <NatijaBlok tanlov={taxmin} togri="yoq" variantlar={S10_TAXMIN} haqiqat={{ uz: "avval DNS domenni Netlify'ga olib boradi, keyin sertifikat tayyorlanadi", ru: 'сначала DNS ведёт домен в Netlify, потом готовится сертификат' }}
           izoh={tr({ uz: 'Domen qaysi saytga olib borishini aytadigan yozuv — DNS yozuvi. DNS manzilni shu yozuvdan topadi.', ru: 'Запись, которая говорит, к какому сайту ведёт домен, — DNS-запись. DNS находит адрес по этой записи.' })}
           xulosa={tr({ uz: "DNS domenni Netlify'ga olib borgach, Netlify sertifikatni o'zi oladi. Bunga vaqt ketishi mumkin.", ru: 'Когда DNS приведёт домен в Netlify, Netlify сам получит сертификат. На это может уйти время.' })} />}

@@ -310,10 +310,10 @@ export const QNatija = ({ sarlavha, mentor, karta, children }) => (
 const QM = {
   uz: { org: "↻ O'rganilmoqda", bildim: '✓ Bildim', takror: '✗ Takrorlash', hammasi: 'Hammasini bilasiz!', yodlandi: 'atama yodlandi', qayta: '↻ Qaytadan takrorlash',
     togri: "to'g'ri", testlar: 'Testlar', bilasiz: 'Endi siz bilasiz', uyga: 'Uyga vazifa', uygaS: 'Amaliy topshiriqni bajarish →', nishon: 'Nishonlaringiz',
-    bajardim: 'Bajardim', qaytar: 'Qaytarish', nusxa: 'Nusxalash', nusxalandi: '✓ Nusxalandi', natija: 'kutilgan natija', ortda: 'Ortda qoldingizmi — mentor bilan:' },
+    bajardim: 'Bajardim', qaytar: 'Qaytarish', nusxa: 'Nusxalash', nusxalandi: '✓ Nusxalandi', natija: 'kutilgan natija', ortda: 'Ortda qoldingizmi — mentor bilan:', ulgur: 'Ulgurmasangiz' },
   ru: { org: '↻ Изучается', bildim: '✓ Знаю', takror: '✗ Повторить', hammasi: 'Вы знаете всё!', yodlandi: 'терминов выучено', qayta: '↻ Повторить заново',
     togri: 'верно', testlar: 'Тесты', bilasiz: 'Теперь вы знаете', uyga: 'Домашнее задание', uygaS: 'Выполнить практическое задание →', nishon: 'Ваши значки',
-    bajardim: 'Готово', qaytar: 'Вернуть', nusxa: 'Скопировать', nusxalandi: '✓ Скопировано', natija: 'ожидаемый результат', ortda: 'Отстали — вместе с ментором:' },
+    bajardim: 'Готово', qaytar: 'Вернуть', nusxa: 'Скопировать', nusxalandi: '✓ Скопировано', natija: 'ожидаемый результат', ortda: 'Отстали — вместе с ментором:', ulgur: 'Если не успеваете' },
 };
 
 // ---------- 7b. Amaliyot bloki (172/173, GATE M M-q4): chap — qadamlar bittadan («Bajardim» qulfi), o'ng — kutilgan natija + «Ortda qoldingizmi» ----------
@@ -333,7 +333,7 @@ export function QPrompt({ kimga, satrlar = [], til = 'uz' }) {
 // qadamlar: [{ h, t, prompt?: [satr], kimga?, xato? }] — tarjima qilingan (t, xato — darsning fmtCode'i bilan) · joriy: bajarilgan qadamlar soni ·
 // onBajardim() · onQaytar(i) · mentorRejim: hamma qadam ochiq, tugmasiz · tugadi + tugadiMatn: yashil natija-karta ·
 // natija: kutilgan natija maketi (chat / terminal / ekran — darsdan) · natijaYorliq (sukut: «kutilgan natija») · ortda: buyruq satrlari (M-q7/q8) · pastki: mentor statistikasi.
-export function QBlok({ til = 'uz', sarlavha, mentor, zoom, qadamlar = [], joriy = 0, onBajardim, onQaytar, mentorRejim = false, tugadi = false, tugadiMatn, natija, natijaYorliq, ortda = [], pastki, children }) {
+export function QBlok({ til = 'uz', sarlavha, mentor, zoom, qadamlar = [], joriy = 0, onBajardim, onQaytar, mentorRejim = false, tugadi = false, tugadiMatn, natija, natijaYorliq, ortda = [], ulgur, pastki, children }) {
   const M = QM[til] || QM.uz;
   const korinadi = mentorRejim ? qadamlar.length : Math.min(joriy + 1, qadamlar.length);
   return (
@@ -357,6 +357,8 @@ export function QBlok({ til = 'uz', sarlavha, mentor, zoom, qadamlar = [], joriy
                     {c.prompt && <QPrompt kimga={c.kimga} satrlar={c.prompt} til={til} />}
                     {c.xato && <p className="q-blok-xato">{c.xato}</p>}
                     {!mentorRejim && <QTugma onClick={onBajardim}>{M.bajardim}</QTugma>}
+                    {/* 213.13 (F-1015-322): «Ulgurmasangiz» — karta ichida, yig'iq; bosilsa ochiladi (kartasiz osilmaydi) */}
+                    {ulgur && !tugadi && <details className="q-blok-ulgur"><summary>{M.ulgur}</summary><p>{ulgur}</p></details>}
                   </div>
                 </li>
               );

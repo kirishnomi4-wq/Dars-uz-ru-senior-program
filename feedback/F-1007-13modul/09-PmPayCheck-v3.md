@@ -209,12 +209,12 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` + `10-FILTR.md` (Mentor tekshiruvi �
 - Izoh (MD): distraktorlar darsning o'z qoidasi bo'yicha noto'g'ri, yolg'on fakt emas (S-004): A — narx yo'q (2-ekran: «Narx va nima uchun yozdi» tugmasi) · C — pul olinmaydi (2-ekran `QIzoh`; C kuchsiz dalil degani emas — bu darsda real pul olinmaydi, F-1007-467) · D — gapni odam yozmagan (2-ekran 1-javob `QIzoh`).
   C hayotda kuchliroq va'da bo'lishi mumkin, lekin u yozma tasdiq emas va bu kursda taqiqlangan — savol aynan «qaysi biri yozma tasdiq» deb so'raydi. Ikkala trekka to'g'ri.
 
-## 4 · Mentor tekshiruvi  ← QTushuncha (ketma-ket, 3 savol; dalilni varaqdan bosib topish — 12-Modul 10-dars 4-ekran shakli)
+## 4 · Mentor tekshiruvi  ← QTushuncha (ketma-ket, 3 savol; dalilni varaqdan bosib topish — 12-Modul 10-dars 4-ekran shakli) **213.13 (F-1015-321, 18.10): «Uchtaga yetmaslik — tuzatish sababi emas» savol kartasining ichida, faqat taxmin «qabul» bo'lmaganda.**
 - Eyebrow: Tushuncha · Mentor tekshiruvi
 - Sarlavha: **Yozma tasdiqlarni qaysi savollar bilan tekshirasiz?** (51)
 - Mentor: Har savolning javobini Mentor varag'idan bosib toping.
   (Birinchi harakat — bashorat; yo'rig'i `QBashorat` yorlig'ida.)
-- Bashorat (ballsiz; S-015 — bitta o'lchov: varaq qanchalik o'tadi, kam → ko'p): **6 dan 3 yozma tasdiq — Mentor tekshiruvi nima deydi?** ·
+- Bashorat (ballsiz; S-015 — bitta o'lchov: varaq qanchalik o'tadi, kam → ko'p): **6 dan 3 yozma tasdiq — Mentor tekshiruvi nima deydi?** · · **213.7 (F-1015-302, 18.10): bashorat ekranda yolg'iz; tanlangach qatorga yig'iladi, Mentor varag'i va savol kartasi shundan keyin kirib keladi.**
   Tuzatish: oltidan uchtasi kam (29) · Bitta tuzatishdan keyin qabul (29) · Qabul (5) — tanlangach ixcham qator «Taxminingiz: …» natijagacha turadi.
 - Qadam qatori yo'q — joriy savol kartada, kartada «n / 3» ham yo'q; hisob tugmada *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*.
 - **Chapda — `TasdiqVaraq` to'liq** (2-ekrandan; tepada xabar qatori «Xabar: «…»» — `MENTOR_XABAR` to'liq) · **o'ngda — bitta savol kartasi** (navbat bilan): savol · «Nimaga qarang» bir qatori · ostida kulrang «Varaqdan bosib toping». Tugma yo'q — javob varaqdagi bosish. Varaq kataklari bashoratdan keyin bosiladi; undan oldin — oddiy matn (o'chiq tugma emas) *(✎ F-1015-164)*.
@@ -273,7 +273,7 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` + `10-FILTR.md` (Mentor tekshiruvi �
 - Joylashuv (≤ 3 blok): **chapda** — 1-qismda «Yozuvlarim» ro'yxati, 2–3-qismda telefon (chat) · **o'ngda — bitta katta karta (joriy qism)** · ostida ixcham chiziq «Yozma tasdiqlarim · so'ralgan n · yozma tasdiq n».
 - **1-qism · Suhbatlar** (tayanch 9.10 — uy suhbatlari shu darsda kiritiladi):
   - Chapda «Yozuvlarim» (`pm-m11d6-suhbat.suhbatlar`): har qator «{kim} · «{gap}» · {belgi} · {narx}», o'ngida yorliq «real» (yashil) yoki «mashq» (kulrang). Kalit yo'q bo'lsa — kulrang qator: 6-darsdan yozuv yo'q.
-  - O'ngda karta **«Uydagi suhbat»** (real yozuvlar jami uchtagacha; maydonlarda yorliq input ichida — E 43):
+  - O'ngda karta **«Uydagi suhbat»** (real yozuvlar jami uchtagacha; maydonlarda yorliq input ichida — E 43): **213.11 (F-1015-302, 18.10): karta ichida maydonlar bittadan — 1 Kim edi → 2 Javobi (belgi) → 3 Nima dedi → 4 Narx → 5 Hozir nima qiladi → 6 Qachon; joriy savol ramkali kartada («Keyingi»/Enter), javob berilgani yashil qatorga yig'iladi (bosilsa qayta ochiladi), navbati kelmagani kulrang qator; «Saqlash» / «+ Yana bitta» / «Yordam» doim, yetishmagani tegishli savolni ochadi.**
     ① Kim edi? Rolini yozing (≤ 30) · ② U nima dedi? So'zma-so'z (≤ 160) · belgi tugmalari: ha · qimmat · yo'q · javob yo'q (ostida doimiy qator «Javob yo'q — odam javob bermasa.») ·
     ③ Narx, so'm — aytgan bo'lsa · ④ Hozir nima qiladi? Yozgan bo'lsangiz (ixtiyoriy, ≤ 80).
     Tugmalar bir qatorda: «Saqlash» · «+ Yana bitta» · o'ngda «Yordam»; karta ostida kichik tugma «Uyda suhbat bo'lmadi →». Real yozuvlar uchta bo'lsa karta yopiladi, kulrang qator: Real suhbatlar uchtagacha yoziladi. (35)

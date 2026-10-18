@@ -9,7 +9,7 @@ Bo'laklar va zal savollari (dars bo'yi bir xil):
 
 | № | Bo'lak | Zal savoli | Vaqt | Mentor misoli |
 |---|---|---|---|---|
-| 1 | Muammo | Bu muammo borligini qayerdan bilasiz? | ≈40 s | O'yinchilar jamoaga odam yig'ishda qiynaladi. · Men so'ragan 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan. |
+| 1 | Muammo | Bu muammo borligini qayerdan bilasiz? | ≈40 s | O'yinchilar jamoaga odam yig'ishda qiynaladi. · Men so'ragan 3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan. |
 | 2 | Yechim | Mahsulot nima qiladi? | ≈20 s | Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi. · Bir bosishda jamoadasiz · Nechta odam yig'ilganini so'rab o'tirmaysiz · Kim aniq kelishini o'yindan oldin bilasiz |
 | 3 | Jonli demo | Ishlayotganini ko'rsata olasizmi? | ≈1,5 daqiqa | 1-telefonda «Shanba, 18:00» o'yinida «Qo'shilaman» bosiladi · 2-telefonda «8 / 10» o'rniga «9 / 10» o'zi chiqadi |
 | 4 | Raqamlar | Bu son qayerdan va nimani sanaydi? | ≈1,5 daqiqa | grafik «Ro'yxatdan o'tganlar, jami»: ishga tushirish kuni — 20 · bir hafta o'tib — 38 · ikki hafta o'tib — 44 · Haftada to'lgan o'yinlar: birinchi haftada 1, ikkinchi haftada 3 · 44 kishidan 11 tasi — sinfdoshlarim; ikkinchi haftada o'sish sekinlashdi (18 dan keyin 6). |
@@ -53,6 +53,7 @@ Telefon maketi: «O'yinlar» · Shanba · karta «Shanba, 18:00» · Mahalla may
 - Sarlavha: Besh daqiqalik pitchda *sonlar qayerda turadi?*
 - Mentor: O'tgan modulda pitch 3 daqiqa va to'rt bo'lak edi: tugmalarni birma-bir bosib, taymerga qarang.
 - Bashorat (Avval o'zingiz belgilab ko'ring): Sonlar pitchning qayeriga qo'shiladi? · Muammodan oldin · Jonli demodan keyin · Keyingi qadamdan keyin
+  - Bashorat yolg'iz chiqadi; tanlangach ixcham qatorga yig'iladi, shundan keyin telefon, bo'laklar va taymer kirib keladi. *(✎ F-1015-295, 213.7)*
   - Tanlangach ixcham qator: savol · Taxminingiz: …
 - Sahna: chapda telefon («O'yinlar»); o'ngda to'rt bo'lak — Muammo · Yechim · Jonli demo · Keyingi qadam (Mentor matni, burchakda ✓), ostida taymer chizig'i 0:00 — 3:00, ustida zal.
 - Tugmalar (bashoratdan keyin yoqiladi): 1 Yangi bo'lak · 2 Halol gap · 3 Besh daqiqa
@@ -164,6 +165,7 @@ Telefon maketi: «O'yinlar» · Shanba · karta «Shanba, 18:00» · Mahalla may
      - Izoh: 2-telefonda son pastga tortmasdan, odatda bir necha soniyada o'zgaradi — zal real vaqtni shunda ko'radi.
   3. Zaxira yo'li → 2-telefon o'rnida uch karta navbat bilan: sherik telefoni · brauzer ko'rinishi · ekran videosi
      - Kulrang qator: Ilova ochilmasa — ekran videosini ko'rsating yoki jonli demoni og'zaki aytib bering.
+       *(✎ F-1015-295: bu qator «Pitchdan oldin» kartasining oxirgi qatori — kartasiz osilmaydi)*
 - Ipucha: Yoqilgan tugmani bosing — qaysi qurilmada nima o'zgarishini ko'ring.
 - Natija: Taxminingiz to'g'ri chiqdi ✓ · yoki: Taxminingiz ✕ — aslida: ikkita
 - Xulosa: Bu misolda jonli demo ikki qurilmada: birida bosiladi, ikkinchisida son o'zi o'zgaradi.
@@ -266,7 +268,7 @@ haftalar.forEach(function (h) {
   - Keyingi haftadagi bitta ishni yozing.
   - yo'naltiruvchi xatodan keyin: Shunday qoldirsangiz — yana «Saqlash»ni bosing.
 - Yordam (bo'lakka qarab bitta qator):
-  - Muammo: Mentor misolida: «O'yinchilar jamoaga odam yig'ishda qiynaladi.» Dalil: «Men so'ragan 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.» (intervyu yozuvlari).
+  - Muammo: Mentor misolida: «O'yinchilar jamoaga odam yig'ishda qiynaladi.» Dalil: «Men so'ragan 3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.» (intervyu yozuvlari).
   - Yechim: Mentor misolida: «Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.» va lendingdagi foydalar: «Bir bosishda jamoadasiz», «Nechta odam yig'ilganini so'rab o'tirmaysiz», «Kim aniq kelishini o'yindan oldin bilasiz».
   - Jonli demo: Mentor misolida: 1-telefonda «Shanba, 18:00» o'yinida «Qo'shilaman» bosiladi, 2-telefonda «8 / 10» o'rniga «9 / 10» o'zi chiqadi.
   - Raqamlar: Mentor misolida: grafik «Ro'yxatdan o'tganlar, jami» — 20, 38, 44; bosh raqam — haftada to'lgan o'yinlar: birinchi haftada 1, ikkinchi haftada 3; halol gap — «44 kishidan 11 tasi — sinfdoshlarim; ikkinchi haftada o'sish sekinlashdi (18 dan keyin 6).» Sonlarni o'zini ayting: «uch barobar oshdi» emas — «1 ta edi, 3 ta bo'ldi».
@@ -289,10 +291,12 @@ haftalar.forEach(function (h) {
     - Ikki qurilmada ilova ochiq, ikkinchisida — boshqa akkaunt; «O'yinlar» ekranida belgi «Ulangan».
     - Demo uchun real odamlar qo'shilmagan o'yinni tanlang; demodan keyin «O'yindan chiqish».
     - Web-trekda: ikkinchi oyna — boshqa brauzer yoki telefon brauzeri.
+      *(✎ F-1015-295: faqat web trekda; mobil tanlangan bo'lsa yo'q)*
     - Laptopda Neon, sanoq sahifasi va .env yopiq — ekran zalga ko'rinadi.
   - Taymer: 5 daqiqani boshlash → Hozir siz gapirasiz · m:ss · To'xtatish → Vaqt: m:ss · Qaytadan
   - juftlikda: Avval A gapiradi, B tinglaydi; keyin almashasiz.
   - Ilova ochilmasa — ekran videosini ko'rsating yoki jonli demoni og'zaki aytib bering.
+    *(✎ F-1015-295: «Pitchdan oldin» kartasi ichida; bo'lak matnlari kesilmaydi — qator o'raladi)*
   - Sahna: o'quvchining besh bo'lagi (10-ekrandan) va besh bo'lakli taymer chizig'i; taymer yurganda joriy bo'lak ochiq, Raqamlar bo'lagida grafik kattalashadi.
 - 2 Baholang — Baholash varag'i: besh qator — bo'lak nomi · zal savoli · ✓ / ✗ · izoh (Nima yetishmadi?); pastda «Vaqt: m:ss» · tugma Saqlash
 - 3 Tuzating — ✗ olgan qator bosiladi → shu bo'lak kartasi (10-ekrandagi matn bilan) → o'zgartirib «Saqlash»; varaq qatorida ✗ yonida yorliq «o'zgartirildi».

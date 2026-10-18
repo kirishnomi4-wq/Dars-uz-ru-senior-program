@@ -1090,7 +1090,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Ism va telefon «Maydon»da <A>qayerga boradi</A>?</>, ru: <>Куда в «Maydon» <A>уходят имя и телефон</A>?</> })}
         mentor={<Mentor>{tr({ uz: "O'yinchi bo'lib «Band qilish»ni bosing va ism bilan telefon qayerda paydo bo'lishini kuzating.", ru: 'Нажмите «Забронировать» как игрок и следите, где появятся имя и телефон.' })}</Mentor>}
         bashorat={!isMentor && <Bashorat savol={tr(S2_SAVOL)} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
-        vizual={<div className={cxx('ta-sahna', tugadi && 'tugadi')} ref={box}>
+        vizual={!taxmin ? null : <div className="q-kir">{<div className={cxx('ta-sahna', tugadi && 'tugadi')} ref={box}>
           {!tugadi && <Telefon holat={qadam >= 1 ? 'band' : 'toldi'} onBand={taxmin && qadam === 0 ? band : undefined} bandNavbat={!!taxmin && qadam === 0}
             onKatak={navbatId && !kor.has('oyinchi') ? () => joy('oyinchi') : undefined} katakNavbat={navbatId === 'oyinchi'} katakOk={kor.has('oyinchi')}>
             {kor.has('oyinchi') && <span className="ta-tugun-y ta-tel-y fade-step"><code>18:00 · band</code><em className="ta-pill yoq">{tr(YORLIQ.yoq)}</em></span>}
@@ -1098,7 +1098,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {!tugadi && <div className={cxx('ta-ulagich', qadam === 1 && 'yur')} aria-hidden="true"><code>POST /bandlar</code><i /></div>}
           <Xarita bor={bor} yangi={yangi} kor={kor} onJoy={joylar ? joy : undefined} navbatId={navbatId} fokus={tugadi} />
           <Konvertlar uchlar={uchlar} />
-        </div>}
+        </div>}</div>}
         natija={done && <NatijaBlok tanlov={taxmin} togri="1" variantlar={S2_TAXMIN}
           haqiqat={tr({ uz: <>bitta — <K>bandlar</K> jadvali; ega sahifasi uni ko'rsatadi, o'zida saqlamaydi</>, ru: <>одно — таблица <K>bandlar</K>; страница владельца её показывает, но у себя не хранит</> })}
           joriy={tr({ uz: <>Ism va telefon odamni aniqlashga imkon beradi: bunday ma'lumot <b>shaxsiy ma'lumot</b> deyiladi.</>, ru: <>Имя и телефон позволяют определить человека: такие сведения называются <b>личными данными</b>.</> })}
@@ -1152,7 +1152,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Ega sahifasi ochiq qolsa, <A>begona nimani ko'radi</A>?</>, ru: <>Страница владельца открыта — <A>что видно чужому</A>?</> })}
         mentor={<Mentor>{tr({ uz: <>Ega laptopini yopmay ketdi, unda <K>/ega</K> ochiq — begona nimani ko'rishini bilish uchun kunlarni orqaga suring.</>, ru: <>Владелец ушёл, не закрыв ноутбук, на нём открыт <K>/ega</K> — чтобы узнать, что увидит чужой, двигайте дни назад.</> })}</Mentor>}
         bashorat={!isMentor && <Bashorat savol={tr(S4_SAVOL)} variantlar={S4_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={bosqich >= 1} />}
-        vizual={<div className={cxx('ta-sahna s4', tugadi && 'tugadi')}>
+        vizual={!taxmin ? null : <div className="q-kir">{<div className={cxx('ta-sahna s4', tugadi && 'tugadi')}>
           <EgaBrauzer kun={kun} ochirildi={bosqich >= 2} onOldin={taxmin && !tugadi ? () => sur(kun + 1) : undefined} onKeyin={taxmin && !tugadi ? () => sur(kun - 1) : undefined} />
           <div className="ta-s4-ong">
             <KunChizigi kun={kun} onKun={sur} ochirildi={bosqich >= 2} faol={!!taxmin && !tugadi && !isMentor} navbat={!!taxmin && bosqich === 0} />
@@ -1164,7 +1164,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             )}
             <BandJadval ochirildi={bosqich >= 2} />
           </div>
-        </div>}
+        </div>}</div>}
         natija={bosqich >= 1 && <NatijaBlok tanlov={taxmin} togri="hammasi" variantlar={S4_TAXMIN}
           haqiqat={tr({ uz: "hammasini — eski bandlar o'chirilmaydi", ru: 'все — старые брони не удаляются' })}
           joriy={tr({ uz: <>Ma'lumot ruxsatsiz begona qo'lga o'tishi <b>sizib chiqish</b> deyiladi.</>, ru: <>Когда данные без разрешения попадают в чужие руки, это называется <b>утечкой</b>.</> })}

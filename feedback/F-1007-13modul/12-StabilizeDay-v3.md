@@ -167,7 +167,7 @@ to'lov taklifi ekrani maketida «Test rejim: pul yechilmaydi», mashq sahifasi m
   - bashoratgacha: Mentor bugun besh yo'lni yozuv bilan qayta ko'rdi — avval taxminingizni belgilang.
   - harakat paytida: Tekshiruvni ko'ring va kutilgani bilan bo'lganini solishtirib belgi qo'ying.
   - tugagach: Besh belgi qo'yildi — natijani taxminingiz bilan solishtiring.
-- Bashorat (ballsiz, 181; yorliq «Avval o'zingiz belgilab ko'ring»; tanlangach ixcham qator): **Besh tekshiruvdan nechtasida Mentor ilovasi buzildi?** · Bittasida · Ikkitasida · Uchtasida (S-015: bir o'lchov, o'sish tartibida)
+- Bashorat (ballsiz, 181; yorliq «Avval o'zingiz belgilab ko'ring»; tanlangach ixcham qator): **Besh tekshiruvdan nechtasida Mentor ilovasi buzildi?** · Bittasida · Ikkitasida · Uchtasida (S-015: bir o'lchov, o'sish tartibida) · **213.7 (F-1015-304, 18.10): bashorat ekranda yolg'iz; tanlangach qatorga yig'iladi, telefon + yozuv kartasi + «Tekshiruvni ko'rish» shundan keyin kirib keladi (o'chiq tugma holati yo'q).**
 - Chap — telefon («Maydon Jamoa»; ekran tekshiruvga qarab). Raqamli chiziq «1 · 2 · 3 · 4 · 5» yo'q — joriy yo'l kartada, tayyorlari pastdagi ixcham qatorlarda, hisob tugmada *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*.
 - O'ng — buzish yozuvi kartasi (bittadan, SABOQ 9, E 53): sarlavha «N · {yo'l}» · kulrang qator «Bu yo'lga tekkan darslar: …» · «Nima qildim» · «Nima kutdim» · «Nima bo'ldi» (avval yopiq) · tugma **«Tekshiruvni ko'rish»** (halqada) → keyin ikki tugma **«Buzildi»** · **«Buzilmadi»** (har birining o'z chegarasi, E 40).
   Matn — A-bo'lim 4-band jadvali (`MENTOR_TEKSHIRUV`, aynan).

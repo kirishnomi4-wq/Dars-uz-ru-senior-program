@@ -902,9 +902,9 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Bitta bosish jadvalga <span className="italic" style={{ color: T.accent }}>qanday yetib boradi</span>?</>, ru: <>Как одно нажатие <span className="italic" style={{ color: T.accent }}>доходит до таблицы</span>?</> })}
         mentor={<Mentor>{tr({ uz: "Odam qaysi qadamda to'xtaganini ko'rish uchun har harakat yozib boriladi. Uch harakatni navbat bilan bajaring va chizmaga qarang.", ru: "Чтобы видеть, на каком шаге человек остановился, каждое действие записывается. Выполните три действия по очереди и следите за схемой." })}</Mentor>}
         bashorat={<Bashorat savol={fmtCode(tr(S2_SAVOL))} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
-        vizual={<Chizma boxRef={box} uchlar={uchlar} tel={o.tel} yolak={o.yolak} umami={o.umami} backend={o.backend} band={o.band} qatorlar={o.qatorlar} yangiK={o.yangiK}
+        vizual={!taxmin ? null : <div className="q-kir">{<Chizma boxRef={box} uchlar={uchlar} tel={o.tel} yolak={o.yolak} umami={o.umami} backend={o.backend} band={o.band} qatorlar={o.qatorlar} yangiK={o.yangiK}
           telBola={taxmin && !done && <QTugma className={cxx('et-tel-btn', !o.yur && 'et-navbat')} disabled={o.yur} onClick={o.keyingi}>{tr(S2_QADAMLAR[qadamI])}</QTugma>}
-          izoh={n >= 1 && !done && <Joriy>{fmtCode(tr({ uz: "Umami ochilishni o'zi yozardi. O'z jadvalimizga esa ochilish ham nom bilan keladi — `ochdi`.", ru: 'Umami записывал открытие сам. А в нашу таблицу открытие тоже приходит с названием — `ochdi`.' }))}</Joriy>} />}
+          izoh={n >= 1 && !done && <Joriy>{fmtCode(tr({ uz: "Umami ochilishni o'zi yozardi. O'z jadvalimizga esa ochilish ham nom bilan keladi — `ochdi`.", ru: 'Umami записывал открытие сам. А в нашу таблицу открытие тоже приходит с названием — `ochdi`.' }))}</Joriy>} />}</div>}
         natija={done && <NatijaBlok tanlov={taxmin} togri="3" variantlar={S2_TAXMIN} haqiqat={{ uz: 'uchta', ru: 'три' }}
           izoh={tr({ uz: 'Jadvaldagi har qator — bitta hodisa.', ru: 'Каждая строка в таблице — одно событие.' })}
           xulosa={tr({ uz: "Biz tanlagan uch harakatni sayt Backend'ga yuboradi; so'rov o'tsa, Backend jadvalga bitta qator yozadi.", ru: 'Три выбранных нами действия сайт отправляет в Backend; если запрос прошёл, Backend пишет в таблицу одну строку.' })} />}
@@ -1005,7 +1005,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Nomi xato yozilgan hodisa <span className="italic" style={{ color: T.accent }}>jadvalga kiradimi</span>?</>, ru: <>Попадёт ли в таблицу событие <span className="italic" style={{ color: T.accent }}>с ошибкой в названии</span>?</> })}
         mentor={<Mentor>{tr({ uz: "Sayt kodida bitta harf adashsa, hodisa boshqa nom bilan keladi. Har so'rovni Backend'ga yuboring va jadvalga qarang.", ru: "Если в коде сайта ошибиться в одной букве, событие придёт с другим названием. Отправьте каждый запрос в Backend и следите за таблицей." })}</Mentor>}
         bashorat={<Bashorat savol={fmtCode(tr(S4_SAVOL))} variantlar={S4_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
-        vizual={<Chizma boxRef={box} uchlar={uchlar} tel="ochiq" telEkran={kor < S4_SOROVLAR.length ? <SorovEkran i={kor} /> : null} backend={holat}
+        vizual={!taxmin ? null : <div className="q-kir">{<Chizma boxRef={box} uchlar={uchlar} tel="ochiq" telEkran={kor < S4_SOROVLAR.length ? <SorovEkran i={kor} /> : null} backend={holat}
           telBola={taxmin && kor < S4_SOROVLAR.length && <QTugma className={cxx('et-tel-btn', !yur && 'et-navbat')} disabled={yur} onClick={yubor}>{tr({ uz: 'Yuborish', ru: 'Отправить' })}</QTugma>}
           beIchi={<>
             <NomRoyxat kulrang={!tk} yon={yon} />
@@ -1018,7 +1018,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           qatorlar={qatorlar} yangiK={yangiK}
           jadvalIchi={!tk && qayta >= S4_RAD.length && <div className="hc-sanoq fade-step">{S4_SANOQ.map(nm => <span key={nm}><code>{nm}</code> 1</span>)}</div>}
           izoh={birinchi400 && !done && <Joriy>{tr({ uz: "Nom ro'yxatda bo'lmasa, Backend 400 qaytaradi — so'rov rad etiladi.", ru: 'Если названия нет в списке, Backend возвращает 400 — запрос отклоняется.' })}</Joriy>}
-          pastki={yub.length > 0 && !tugadi && <div className="hc-otgan">{yub.map(i => <span key={i} className={S4_SOROVLAR[i].xato ? 'err' : 'ok'}><code>{S4_SOROVLAR[i].nom}</code> {S4_SOROVLAR[i].xato ? '✗' : '✓'}</span>)}</div>} />}
+          pastki={yub.length > 0 && !tugadi && <div className="hc-otgan">{yub.map(i => <span key={i} className={S4_SOROVLAR[i].xato ? 'err' : 'ok'}><code>{S4_SOROVLAR[i].nom}</code> {S4_SOROVLAR[i].xato ? '✗' : '✓'}</span>)}</div>} />}</div>}
         natija={done && <NatijaBlok tanlov={taxmin} togri="rad" variantlar={S4_TAXMIN} haqiqat={{ uz: 'rad etildi', ru: 'отклонён' }}
           xulosa={tr({ uz: "«Maydon» Backend'i faqat shu uchta nomni qabul qiladi. Shunda bitta harakat ikki xil nom bilan sanalmaydi.", ru: 'Backend «Maydon» принимает только эти три названия. Так одно действие не считается под двумя разными названиями.' })} />}
       />
@@ -1088,7 +1088,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Qaysi brauzer ochganini <span className="italic" style={{ color: T.accent }}>qanday ajratamiz</span>?</>, ru: <>Как <span className="italic" style={{ color: T.accent }}>различить</span>, какой браузер открыл?</> })}
         mentor={<Mentor>{tr({ uz: 'Ism va telefonni hodisaga yozmaymiz — sahifani ochgan odam ularni hali bermagan. Uch harakatni bajaring va jadvalning yangi ustuniga qarang.', ru: 'Имя и телефон в событие не пишем — человек, открывший страницу, их ещё не дал. Выполните три действия и смотрите на новый столбец таблицы.' })}</Mentor>}
         bashorat={<Bashorat savol={tr(S6_SAVOL)} variantlar={S6_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
-        vizual={<div className="hc-s6" ref={box}>
+        vizual={!taxmin ? null : <div className="q-kir">{<div className="hc-s6" ref={box}>
           <div className="hc-ikki">
             <Telefon className="hc-t1" holat={q >= 1 ? 'ochiq' : 'yopiq'} xotira={q >= 1 ? '7f3a…' : null} yorliq={tr({ uz: '1-telefon', ru: 'Телефон 1' })} rang="b1" yangila={q >= 2 ? 'y2' : undefined} aylana={q === 2}>{tugma(1)}</Telefon>
             <Telefon className="hc-t2" holat={q >= 3 ? 'ochiq' : 'yopiq'} xotira={q >= 3 ? 'c91e…' : null} yorliq={tr({ uz: '2-telefon', ru: 'Телефон 2' })} rang="b2">{tugma(2)}</Telefon>
@@ -1099,7 +1099,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {n >= 1 && <Joriy>{tr({ uz: <>Brauzerni ajratadigan tasodifiy harf va raqamlar <b>brauzer ID</b> deyiladi. U odamning ismini ham, telefonini ham bildirmaydi.</>, ru: <>Случайные буквы и цифры, которые различают браузер, называются <b>ID браузера</b>. Он не сообщает ни имени человека, ни его телефона.</> })}</Joriy>}
           </div>
           {uchlar.map(u => <Uchar key={u.k} u={u} />)}
-        </div>}
+        </div>}</div>}
         natija={done && <NatijaBlok tanlov={taxmin} togri="yoq" variantlar={S6_TAXMIN} haqiqat={{ uz: "o'sha brauzer", ru: 'тот же браузер' }}
           xulosa={tr({ uz: 'Brauzer ID brauzer xotirasida turadi: sahifa yangilansa ham o\'zgarmaydi, boshqa brauzerda yangisi olinadi.', ru: 'ID браузера хранится в памяти браузера: при обновлении страницы не меняется, в другом браузере берётся новый.' })}
           qoshimcha={tr({ uz: 'Brauzer ID odamni emas, brauzerni ajratadi: bitta odam ikki telefonda — ikki brauzer.', ru: 'ID браузера различает не человека, а браузер: один человек на двух телефонах — два браузера.' })} />}
@@ -1183,7 +1183,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Qatorlarni sanaysizmi yoki <span className="italic" style={{ color: T.accent }}>brauzerlarni</span>?</>, ru: <>Считаете строки или <span className="italic" style={{ color: T.accent }}>браузеры</span>?</> })}
         mentor={<Mentor>{tr({ uz: "«Birinchi odam kirganda nimani ko'rasiz?» darsida uch son uch xil usulda sanalgan edi. Ikki usulni sinab, qaysi biri uch qadamni bir xil sanashini ko'ring.", ru: "На уроке «Что вы увидите, когда придёт первый человек?» три числа считались тремя разными способами. Попробуйте два способа и посмотрите, какой считает три шага одинаково." })}</Mentor>}
         bashorat={<Bashorat savol={tr(S9_SAVOL)} variantlar={S9_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
-        vizual={<div className="hc-s9" ref={box}>
+        vizual={!taxmin ? null : <div className="q-kir">{<div className="hc-s9" ref={box}>
           <Jadval nom="hodisalar" ustunlar={['id', 'nom', 'brauzer_id']} qatorlar={NAMUNA_QATORLAR.map((q, i) => ({ k: q[0], c: q, rang: BRAUZER_RANG[q[2]], xira: xira.includes(i), yon: yurmoqda && i === kk - 1 }))} />
           <div className="hc-s9-ong">
             <div className="hc-uch">
@@ -1198,7 +1198,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>}
           </div>
           {uchlar.map(x => <Uchar key={x.k} u={x} />)}
-        </div>}
+        </div>}</div>}
         natija={done && <NatijaBlok tanlov={taxmin} togri="bir" variantlar={S9_TAXMIN} haqiqat={{ uz: 'bir marta', ru: 'один раз' }}
           izoh={tr({ uz: 'Bu darsda sanoq sharti — har qadamda turli brauzerlar soni.', ru: 'Условие подсчёта на этом уроке — число разных браузеров на каждом шаге.' })}
           xulosa={tr({ uz: "Qatorlar bitta brauzerni bir necha marta sanaydi. O'z jadvalimizdagi uch qadam bitta sanoq qoidasida bo'ladi.", ru: 'Строки считают один браузер несколько раз. Три шага в нашей таблице считаются по одному правилу.' })} />}
@@ -1268,7 +1268,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Ikki tizim nega <span className="italic" style={{ color: T.accent }}>bir xil son</span> bermadi?</>, ru: <>Почему две системы дали <span className="italic" style={{ color: T.accent }}>разные числа</span>?</> })}
         mentor={<Mentor>{tr({ uz: "Mentor misolida «Maydon»ning bir kuni ikki tizimda sanaldi. Kunni boshlang va har brauzer qayerga yetib borishiga qarang.", ru: "В примере Ментора день «Maydon» считают две системы. Начните день и следите за каждым браузером." })}</Mentor>}
         bashorat={<Bashorat savol={tr(S11_SAVOL)} variantlar={S11_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
-        vizual={<div className="hc-s11" aria-label={tr({ uz: 'brauzerlar', ru: 'браузеры' })}>
+        vizual={!taxmin ? null : <div className="q-kir">{<div className="hc-s11" aria-label={tr({ uz: 'brauzerlar', ru: 'браузеры' })}>
           <Telefon className="hc-s11-tel" tex ekran={ekran} tosgich={joriyTos}>
             {taxmin && !boshlandi && <QTugma className="et-tel-btn et-navbat" onClick={boshla}>{tr({ uz: 'Kunni boshlang', ru: 'Начните день' })}</QTugma>}
           </Telefon>
@@ -1283,7 +1283,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {oxirgi.map(i => <i key={i} className="hc-nq" />)}
           </div>
           <div className="hc-hisob-k biz"><span className="hc-hisob-n">{fmtCode(tr({ uz: "O'z tizimimiz · `ochdi`, turli brauzer ID", ru: 'Наша система · `ochdi`, разные ID браузера' }))}</span><b key={k}>{k}</b><small>{tr({ uz: 'biz: brauzer xotirasidagi ID', ru: 'мы: ID из памяти браузера' })}</small></div>
-        </div>}
+        </div>}</div>}
         natija={done && <NatijaBlok tanlov={taxmin} togri="biz" variantlar={S11_TAXMIN} haqiqat={{ uz: "o'z jadvalimiz", ru: 'наша таблица' }}
           izoh={tr({ uz: 'Ikki tizim brauzerni turlicha taniydi: Umami — o\'z usuli bilan, biz — brauzer ID bilan. Shuning uchun sonlar teng bo\'lishi shart emas.', ru: 'Две системы узнают браузер по-разному: Umami — своим способом, мы — по ID браузера. Поэтому числа не обязаны совпадать.' })}
           xulosa={tr({ uz: "O'z jadvalimizda qoida aniq: har hodisada turli brauzer ID lar. Farq sabablaridan biri — reklama to'sgichi.", ru: "В нашей таблице правило чёткое: для каждого события — разные ID браузера. Одна из причин разницы — блокировщик рекламы." })} />}

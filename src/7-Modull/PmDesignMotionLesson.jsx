@@ -894,7 +894,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             )}
           </div>
         )}
-        vizual={vizual}
+        vizual={!taxmin ? null : <div className="q-kir">{vizual}</div>}
         natija={!tugadi && natijaQ}
         xulosa={done && tr({ uz: 'Bu mashqda dizayner ekranidan avval bitta usul olamiz — eng muhim savolga javob beradiganini.', ru: 'В этом упражнении сначала берём с экрана дизайнера один приём — тот, что отвечает на самый важный вопрос.' })}
       >

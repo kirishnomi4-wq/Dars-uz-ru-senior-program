@@ -658,7 +658,7 @@ const BOLAK_NOM = {
   raqamlar: { uz: 'Raqamlar', ru: 'Цифры' }, jamoa: { uz: 'Jamoa', ru: 'Команда' }, keyingi: { uz: 'Keyingi qadam', ru: 'Следующий шаг' }
 };
 const JAMOA_PITCH = {
-  muammo: { uz: "O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.", ru: 'Игрокам трудно собрать людей в команду. У 4 из 5 игроков, которых я спросил, в последней игре не хватило людей или кто-то не пришёл.' },
+  muammo: { uz: "O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.", ru: 'Игрокам трудно собрать людей в команду. У 3 из 3 игроков, которых я спросил, в последней игре не хватило людей или кто-то не пришёл.' },
   bozor: { uz: 'Mahalla futbol guruhida — 60 kishi; ilovada — 6 tashkilotchi. Boshqa mahallalarni hali tekshirmaganmiz.', ru: 'В футбольной группе махалли — 60 человек; в приложении — 6 организаторов. Другие махалли мы ещё не проверяли.' },
   yechim: { uz: "Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.", ru: 'Организатор объявляет игру, игроки присоединяются одним нажатием и в день игры подтверждают, что придут.' },
   raqamlar: { uz: "51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif havolasidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.", ru: '51 пользователь; 11 из них — мои одноклассники, 7 пришли по ссылке-приглашению. 3 организатора дали письменное подтверждение на Pro — это ещё не оплата.' },
@@ -1036,12 +1036,12 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <><YC /> <A>bugun sizga mos yo'lmi?</A></>, ru: <><YC /> — <A>подходящий ли путь для вас сегодня?</A></> })}
         mentor={<Mentor>{tr({ uz: 'Tugmalarni birma-bir bosing: ikki dastur sahifasi bir xil savolga nima deydi?', ru: 'Нажимайте кнопки по одной: что страницы двух программ отвечают на один и тот же вопрос?' })}</Mentor>}
         bashorat={!done && ixchamBashorat(taxmin, <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr({ uz: 'Y Combinator sahifasida yosh chegarasi qanday yozilgan?', ru: 'Как на странице Y Combinator указан возрастной предел?' })} variantlar={S4_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} />)}
-        harakat={!done && <div className="xd-harakat">
+        harakat={!taxmin ? null : !done && <div className="xd-harakat">
           <Qadamlar3 nomlar={SOL_QATOR} q={q} faol={!!taxmin} onBos={bos} />
           {q === 2 && <QIzoh>{tr({ uz: "To'liq vaqt — butun ish kunini o'z kompaniyasiga berish.", ru: 'Полный день — отдавать своей компании весь рабочий день.' })}</QIzoh>}
           {ipucha && IPUCHA(tr({ uz: "Yoqilgan tugmani bosing — ikki ustun qanday to'lishini ko'ring.", ru: 'Нажмите активную кнопку — посмотрите, как заполняются два столбца.' }))}
         </div>}
-        vizual={tugadi ? varaq : <div className="xd-ikki">{brauzer}{varaq}</div>}
+        vizual={!taxmin ? null : tugadi ? varaq : <div className="xd-ikki">{brauzer}{varaq}</div>}
         xulosa={done && <XulosaQ taxmin={tx && <TaxminQ togri={taxmin === 'yoq'} aslida={tr({ uz: 'yozilmagan', ru: 'не указан' })} />}
           matn={tr({ uz: "Sahifada yosh chegarasi yo'q; bu kursda to'liq vaqt va yuzma-yuz format sabab u bugungi yo'l emas.", ru: 'На странице возрастного предела нет; на этом курсе из-за полного дня и очного формата это не путь на сегодня.' })}
           izoh={tr({ uz: "Universitet yillarida Early Decision yo'li bor: u o'qishini tugatmoqchi talabalar uchun.", ru: 'В годы университета есть путь Early Decision: он для студентов, которые хотят окончить учёбу.' })} />}
@@ -1115,12 +1115,12 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Konsept qoralamasini <A>pitchdan qanday boshlaysiz?</A></>, ru: <>Как начать черновик концепта <A>из питча?</A></> })}
         mentor={<Mentor>{tr({ uz: "Tugmalarni birma-bir bosing: Mentor qoralamasi pitchdan qanday boshlanishini ko'ring.", ru: 'Нажимайте кнопки по одной: посмотрите, как черновик Ментора начинается из питча.' })}</Mentor>}
         bashorat={!done && ixchamBashorat(taxmin, <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr({ uz: "Qoralamaga nechta pitch bo'lagidan boshlang'ich gap olasiz?", ru: 'Из скольких частей питча вы возьмёте начальную фразу для черновика?' })} variantlar={S6_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} />)}
-        harakat={!done && <div className="xd-harakat">
+        harakat={!taxmin ? null : !done && <div className="xd-harakat">
           <Qadamlar3 nomlar={KONSEPT_ID.map(id => KONSEPT_NOM[id])} q={q} faol={!!taxmin} onBos={bos} />
           {q === 2 && <QIzoh>{tr({ uz: 'Kim uchun — qancha emas, kimlar: sonlar pitchdagi Bozor bo\'lagida qoladi.', ru: 'Для кого — не сколько, а кто: числа остаются в части «Рынок» питча.' })}</QIzoh>}
           {ipucha && IPUCHA(tr({ uz: "Yoqilgan tugmani bosing — varaqqa nima yozilishini ko'ring.", ru: 'Нажмите активную кнопку — посмотрите, что запишется в лист.' }))}
         </div>}
-        vizual={tugadi ? varaq : <div className="xd-kons"><PitchTasma kichik matnlar={matnlar} mentor refs={tasRef} fokus={fokus} kulrang={q >= 2 || (band && q === 1) ? { bozor: bozorKul(matnlar.bozor) } : {}} />{varaq}</div>}
+        vizual={!taxmin ? null : tugadi ? varaq : <div className="xd-kons"><PitchTasma kichik matnlar={matnlar} mentor refs={tasRef} fokus={fokus} kulrang={q >= 2 || (band && q === 1) ? { bozor: bozorKul(matnlar.bozor) } : {}} />{varaq}</div>}
         xulosa={done && <XulosaQ taxmin={tx && <TaxminQ togri={taxmin === '2'} aslida={tr({ uz: 'ikkita', ru: 'двух' })} />}
           matn={tr({ uz: "Bu misolda Muammo va Yechim pitchdan boshlang'ich gap bo'ldi, kim uchun — yangi gap.", ru: 'В этом примере Проблема и Решение стали начальными фразами из питча, «для кого» — новая фраза.' })}
           izoh={tr({ uz: 'Bu darsdagi konsept qoralamasi uch narsani aytadi: muammo, kim uchun va yechim.', ru: 'Черновик концепта на этом уроке говорит о трёх вещах: проблема, для кого и решение.' })} />}
@@ -2328,6 +2328,9 @@ export default function PmProgramsLesson({ lang: langProp, onFinished, liveToken
         .q-bashorat:not(:has(.q-chip.on)) .q-chip:not(:disabled) { border-color: ${fon(T.accent, 0.6)}; animation: xd-chorla 1.8s ease-out .5s 2; }
         .q-bashorat .q-chip:nth-child(2) { animation-delay: .75s; } .q-bashorat .q-chip:nth-child(3) { animation-delay: 1s; }
         .xd-bash .q-bashorat { flex-direction: row; flex-wrap: wrap; align-items: center; column-gap: 14px; row-gap: 6px; padding: 10px 14px; }
+        .xd-bash.ix ~ .q-split, .xd-bash.ix ~ .q-col { animation: xd-sahna-kirdi .45s ease-out both; }
+        @keyframes xd-sahna-kirdi { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .xd-bash.ix ~ .q-split, .xd-bash.ix ~ .q-col { animation: none; } }
         .xd-bash .q-bashorat > .q-yorliq { flex-basis: 100%; }
         .xd-bash.ix .q-bashorat { padding-top: 8px; padding-bottom: 8px; }
         .xd-br.nomsiz .xd-br-ich { gap: 6px; }

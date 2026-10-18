@@ -1022,9 +1022,9 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {ipucha && <p className="uc-ipucha fade-step">{tr({ uz: "Varaqdagi yoqilgan qatorni bosing — chap tomonda nima yonishini ko'ring.", ru: "Нажмите подсвеченную строку отчёта — посмотрите, что загорится слева." })}</p>}
         </>}
         harakatAvval
-        vizual={tugadi
+        vizual={!taxmin ? null : tugadi
           ? <div className="uc-fokus">{varaq}</div>
-          : <div className="uc-split"><ManbaMaketlar yonik={yonik} mRefs={mRefs} />{varaq}</div>}
+          : <div className="uc-split uc-karta-kir"><ManbaMaketlar yonik={yonik} mRefs={mRefs} />{varaq}</div>}
         xulosa={done && <XulosaQ natija={tx && <TaxminQ togri={!!tx.ok} haqiqat={tr({ uz: 'son, manbasi va sanasi', ru: "число, источник и дата" })} />}
           matn={tr({ uz: "Bu misolda har son yonida manba va sana bor: kim ko'rsa, qayerdan olinganini tekshira oladi.", ru: "В этом примере рядом с каждым числом есть источник и дата: любой может проверить, откуда оно взято." })}
           izoh={tr({ uz: "Bizda to'rt son, har birining manbasi va sanasi bilan — metrika hisoboti deyiladi.", ru: "У нас четыре числа, каждое с источником и датой, — это называется отчётом по метрикам." })} />}
@@ -1144,9 +1144,9 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           ? <div className="uc-chorla-b"><QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr(S4_SAVOL)} variantlar={S4_TAXMIN.map(x => ({ k: x.k, t: tr(x.t) }))} tanlov={taxmin} onTanla={setTaxmin} /></div>
           : !done && <BashoratQ savol={tr(S4_SAVOL)} javob={tr(tx.t)} />}
         harakatAvval
-        vizual={tugadi
+        vizual={!taxmin ? null : tugadi
           ? <div className="uc-fokus">{varaq}</div>
-          : <div className="uc-split uc-split-v">{varaq}{karta || <span />}</div>}
+          : <div className="uc-split uc-split-v uc-karta-kir">{varaq}{karta || <span />}</div>}
         xulosa={done && <XulosaQ natija={tx && <TaxminQ togri={!!tx.ok} haqiqat={tr({ uz: 'qabul', ru: "принять" })} />}
           matn={tr({ uz: 'Bu misolda 38 / 50 — qabul: tekshiruv sonning halolligini ko\'radi, kattaligini emas.', ru: "В этом примере 38 / 50 — «принять»: проверка смотрит на честность числа, а не на его величину." })}
           izoh={tr({ uz: '11-Modulda PRD ni shunday tekshirgansiz — bugungi uch savol sonlar uchun. Javob — qabul yoki tuzatish.', ru: "В 11-м модуле вы так проверяли PRD — сегодня три вопроса для чисел. Ответ — «принять» или «исправить»." })} />}
@@ -1489,7 +1489,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         mentor={<Mentor>{tr({ uz: "Hisobotning birinchi qatori Database'dan olinadi — Neon'dagi SQL Editor'da uni kunlar bo'yicha o'zingiz sanang.", ru: "Первая строка отчёта берётся из Database — посчитайте её сами по дням в SQL Editor в Neon." })}</Mentor>}
         vazifa={<>
           <HisobotStrip h={h} sRef={stripRef} s9 />
-          <div className={cxx('uc-darvoza', !gpick && !isMentor && 'uc-chorla')}>
+          {gpick ? <span className="uc-yig yopiq"><i>✓</i><span>{tr({ uz: 'Ustun', ru: 'Столбец' })}:</span><b className="mono">{gpick}</b></span> : <div className={cxx('uc-darvoza', !isMentor && 'uc-chorla')}>
             <span className="uc-darvoza-s">{tr({ uz: 'Namuna va tekshiruv akkauntlarini qaysi ustun ajratadi?', ru: "Какой столбец отделяет аккаунты-образцы и проверочные?" })}</span>
             <div className={cxx('uc-darvoza-t', !gpick && 'uc-chorla')}>
               {S9_DARVOZA.map(g => {
@@ -1498,9 +1498,8 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               })}
             </div>
             {miss && !gpick && <QXato>{fmtCode(tr(S9_DARVOZA.find(g => g.id === miss.id).x))}</QXato>}
-          </div>
-          <ol className="uc-vazifa">{S9_VAZIFA.map((v, i) => <li key={i}><i>{i + 1}</i><span>{fmtCode(tr(v))}</span></li>)}</ol>
-          {webQator && <span className="uc-kulrang">{fmtCode(tr({ uz: "Web-trekda — saytingizning foydalanuvchilar jadvali; unda vaqt ustuni bo'lmasa, kunlarsiz jami: `SELECT COUNT(*) FROM {jadval} WHERE namuna = false;`", ru: "В веб-треке — таблица пользователей вашего сайта; если в ней нет столбца времени, итог без дней: `SELECT COUNT(*) FROM {jadval} WHERE namuna = false;`" }))}</span>}
+          </div>}
+          {gpick && <ol className="uc-vazifa fade-step">{S9_VAZIFA.map((v, i) => <li key={i}><i>{i + 1}</i><span>{fmtCode(tr(v))}</span></li>)}</ol>}
           {qatorlar.length > 0 && <div className="uc-kunlar">{qatorlar.map(q => (
             <span key={q.sana} className={cxx('uc-kun-q', yangi === q.sana && 'yangi')}><i>✓</i><span>{q.sana}</span><b>{q.soni}</b>{!done && <button type="button" className="uc-tahrir" onClick={() => olib(q.sana)} aria-label={tr({ uz: "Qatorni o'chirish", ru: "Удалить строку" })}>✕</button>}</span>
           ))}</div>}
@@ -1515,6 +1514,8 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>}
           {xato && <QXato>{fmtCode(tr(S9_XATO[xato]))}</QXato>}
           {yordam && !done && <div className="uc-yordam fade-step">
+            {webQator && <QIzoh>{fmtCode(tr({ uz: "Web-trekda — saytingizning foydalanuvchilar jadvali; unda vaqt ustuni bo'lmasa, kunlarsiz jami: `SELECT COUNT(*) FROM {jadval} WHERE namuna = false;`", ru: "В веб-треке — таблица пользователей вашего сайта; если в ней нет столбца времени, итог без дней: `SELECT COUNT(*) FROM {jadval} WHERE namuna = false;`" }))}</QIzoh>}
+            <QIzoh>{tr({ uz: "Vaqt tugasa — keyingi mashqda 1-qatorga sanoq sahifasidagi sonni yozing va manbani «sanoq sahifasi» deb belgilang; kunlar — uyda.", ru: "Если время вышло — в следующем упражнении впишите в 1-ю строку число со страницы подсчёта и отметьте источник «страница подсчёта»; дни — дома." })}</QIzoh>
             <QIzoh>{fmtCode(tr({ uz: 'Eslatma (SQL darslaridan): `date(…)` — vaqtdan faqat kunni oladi · `AS kun` — ustunga nom beradi · `COUNT(*)` — qatorlarni sanaydi · `WHERE` — qaysi qatorlar olinadi · `GROUP BY kun` — har kun uchun alohida sanaydi · `ORDER BY kun` — kunlar tartibida chiqaradi.', ru: "Напоминание (из уроков SQL): `date(…)` — берёт из времени только день · `AS kun` — даёт столбцу имя · `COUNT(*)` — считает строки · `WHERE` — какие строки берутся · `GROUP BY kun` — считает отдельно по каждому дню · `ORDER BY kun` — выводит по порядку дней." }))}</QIzoh>
             <QIzoh>{tr({ uz: 'Jadval nomini bilmasangiz — agentga yozing:', ru: "Если не знаете имя таблицы — напишите агенту:" })}</QIzoh>
             <QPrompt til={__lang} satrlar={[tr({ uz: "Ro'yxatdan o'tganlar qaysi jadvalda? Faqat nomini ayt, hech narsani o'zgartirma.", ru: "В какой таблице зарегистрировавшиеся? Скажи только название, ничего не меняй." })]} />
@@ -1530,12 +1531,10 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {qulf
               ? <span className="uc-talab">{qulf}</span>
               : <QTugma className="uc-halqa" disabled={isMentor} onClick={bajardim}>{tr({ uz: 'Bajardim — SQL ishladi, qatorlar yozildi', ru: "Готово — SQL сработал, строки записаны" })}</QTugma>}
-            <span className="uc-kulrang uc-kichik">{tr({ uz: "Vaqt tugasa — keyingi mashqda 1-qatorga sanoq sahifasidagi sonni yozing va manbani «sanoq sahifasi» deb belgilang; kunlar — uyda.", ru: "Если время вышло — в следующем упражнении впишите в 1-ю строку число со страницы подсчёта и отметьте источник «страница подсчёта»; дни — дома." })}</span>
           </>}
         {...{ [QKOD_ONG]: <div className="uc-kod-ong">
           <Zoomable><NeonMaket ustun={gpick} ajrat={ajrat} qatorlar={qatorlar} yangi={yangi} /></Zoomable>
           <span className="uc-kulrang">{fmtCode(tr({ uz: '`oyinchilar` — Mentor misolidagi jadval. Sizda — ishga tushirishdan oldin `namuna` ustuni qo\'shilgan jadval.', ru: "`oyinchilar` — таблица из примера Ментора. У вас — таблица, в которую до запуска добавили столбец `namuna`." }))}</span>
-          <QIzoh>{tr({ uz: 'Sizning qatorlaringiz shu yerda chiqadi. Mentor misolida bir haftada jami — 38.', ru: "Здесь появятся ваши строки. В примере Ментора за неделю всего — 38." })}</QIzoh>
           {isMentor && <MentorPracticeStats live={live} screen={screen} />}
         </div> }}
       />
@@ -1657,61 +1656,120 @@ const s10Qiymat = (id, d, reja) => {
 };
 const sanalmaganQiymat = (id, d) => (id === 'qaytgan' ? null : id === 'bosh' ? { nima: String(d.nima || '').trim(), soni: null, manba: null, sana: null }
   : id === 'royxat' ? { soni: null, sinfdosh: null, manba: null, sana: null, oldin: null } : { soni: null, manba: null, sana: null, oldin: null });
+// F-1015-282 (213.11): qator kartasi — savollar ketma-ket; javob berilgani yashil qatorga yig'iladi (bosilsa qayta ochiladi), navbati kelmagani kulrang qator; Saqlash doim bosiladi
+const S10_QADAM_NOM = {
+  nima: { uz: 'Nimani sanaydi', ru: 'Что считает' }, son: { uz: 'Son', ru: 'Число' }, manba: { uz: 'Manba', ru: 'Источник' },
+  sana: SANA_Y, oldin: { uz: 'Oldingi son', ru: 'Предыдущее число' }
+};
+const S10_QADAM_F = { nima: ['nima'], son: ['soni', 'sinfdosh', 'birinchi', 'keyingi', 'davr'], manba: ['manba'], sana: ['sana'], oldin: ['oldinSon', 'oldinSana'] };
+const S10_IZOH = {
+  reja: { uz: 'ishga tushirish kunidagi son — bilsangiz, yangilang (ixtiyoriy)', ru: "число из дня запуска — если знаете, обновите (по желанию)" },
+  royxat: { uz: 'Namuna va tekshiruv akkauntlari sanalmaydi; sinfdoshlar sanaladi, lekin alohida aytiladi.', ru: "Аккаунты-образцы и проверочные не считаются; одноклассники считаются, но называются отдельно." },
+  asosiy: { uz: "Mentor misolida — hozir kamida bitta o'yinda qatnashayotgan yoki o'yin e'lon qilgan; navbatda turgani — qo'shilgan emas.", ru: "В примере Ментора — сейчас участвуют хотя бы в одной игре или объявили игру; кто стоит в очереди — не присоединился." },
+  qaytgan: { uz: 'Keyingi davrga faqat birinchi davrda ochgan qurilmalar kiradi — yangi kelganlar emas.', ru: "В следующий период входят только устройства, открывшие в первый, — не новые." }
+};
+const s10Qadamlar = (id, avtoOldin) => (id === 'bosh' ? ['nima', 'son', 'manba', 'sana'] : id === 'qaytgan' || avtoOldin ? ['son', 'manba', 'sana'] : ['son', 'manba', 'sana', 'oldin']);
+const s10Toldi = (k, id, d, qatiy) => (k === 'nima' ? !!String(d.nima || '').trim()
+  : k === 'son' ? (id === 'qaytgan' ? sonmi(d.birinchi) && sonmi(d.keyingi) : sonmi(d.soni))
+    : k === 'manba' ? !!d.manba : k === 'sana' ? !!d.sana
+      : qatiy ? !!(d.birinchiOlchov || (sonmi(d.oldinSon) && d.oldinSana)) : true);
+const s10Foiz = (d) => (sonmi(d.birinchi) && sonmi(d.keyingi) && Number(d.birinchi) > 0 ? Math.round((Number(d.keyingi) / Number(d.birinchi)) * 100) : null);
+const s10Yigma = (k, id, d) => {
+  if (k === 'nima') return d.nima;
+  if (k === 'son') {
+    if (id === 'qaytgan') { const f = s10Foiz(d); return `${d.birinchi} → ${d.keyingi}${f != null ? ' · ' + f + '%' : ''}${String(d.davr || '').trim() ? ' · ' + d.davr : ''}`; }
+    return id === 'royxat' ? `${d.soni} / 50${sonmi(d.sinfdosh) ? ' · ' + tr({ uz: `${d.sinfdosh} tasi — sinfdosh`, ru: `${d.sinfdosh} из них — одноклассники` }) : ''}` : d.soni;
+  }
+  if (k === 'manba') return d.manba ? tr(MANBA_NOM[d.manba] || { uz: d.manba, ru: d.manba }) : '';
+  if (k === 'sana') return d.sana;
+  return d.birinchiOlchov ? tr(BIRINCHI_OLCHOV) : sonmi(d.oldinSon) && d.oldinSana ? `${d.oldinSon} — ${d.oldinSana}` : tr({ uz: "yo'q", ru: 'нет' });
+};
 const QatorKarta = ({ id, h, reja, prd, trek, kRef, sarlavha, onSaqla, onSanalmagan, uyda, onUyda }) => {
   const [d, setD] = useState(() => qoralamaBosh(id, h, reja, prd));
+  const avtoOldin = (id === 'royxat' || id === 'asosiy') && rejaOldin(id, reja);
+  const qadamlar = s10Qadamlar(id, avtoOldin);
+  // Boshlang'ich: to'lgan savollar (SQL dan kelgan son, reja) yig'ilgan holda, birinchi bo'shi ochiq
+  const [qi, setQi] = useState(() => { const i = qadamlar.findIndex(k => !s10Toldi(k, id, d, true)); return i < 0 ? qadamlar.length : i; });
+  const [otdi, setOtdi] = useState(qi);
   const [xato, setXato] = useState(null);
   const [yumshoq, setYumshoq] = useState(null);
   const [yordam, setYordam] = useState(false);
   const iRef = useRef(null);
   const o = (k) => (v) => { setD(x => ({ ...x, [k]: k === 'soni' || k === 'sinfdosh' || k === 'birinchi' || k === 'keyingi' || k === 'oldinSon' ? v.replace(/[^\d]/g, '') : v })); setXato(null); };
-  const avtoOldin = (id === 'royxat' || id === 'asosiy') && rejaOldin(id, reja);
+  const oldinga = () => { setXato(null); const n = qi + 1 < otdi ? otdi : qi + 1; setOtdi(m => Math.max(m, n)); setQi(n); };
+  const keyingi = () => {
+    const k = qadamlar[qi];
+    if (!s10Toldi(k, id, d)) { setXato({ x: k === 'nima' ? 'nima' : k, f: k === 'son' && id === 'qaytgan' ? (!sonmi(d.birinchi) ? 'birinchi' : 'keyingi') : S10_QADAM_F[k][0] }); return; }
+    oldinga();
+  };
+  const och = (i) => { setQi(i); setXato(null); };
+  const tanlaManba = (m) => { setD(x => ({ ...x, manba: m })); setXato(null); if (qadamlar[qi] === 'manba') { const n = qi + 1 < otdi ? otdi : qi + 1; setOtdi(mm => Math.max(mm, n)); setQi(n); } };
+  const birinchiOlchov = () => { setD(x => ({ ...x, birinchiOlchov: true, oldinSon: '', oldinSana: '' })); oldinga(); };
   const saqla = () => {
     const t = s10Tekshir(id, d, h);
     const imzo = JSON.stringify(d);
-    if (t && (t.blok || !(yumshoq && yumshoq === imzo))) { setXato(t); if (!t.blok) setYumshoq(imzo); return; }
+    if (t && (t.blok || !(yumshoq && yumshoq === imzo))) {
+      setXato(t); if (!t.blok) setYumshoq(imzo);
+      const i = qadamlar.findIndex(k => S10_QADAM_F[k].includes(t.f)); if (i >= 0) setQi(i);
+      return;
+    }
     onSaqla(id, s10Qiymat(id, d, reja), iRef.current);
   };
-  const foiz = id === 'qaytgan' && sonmi(d.birinchi) && sonmi(d.keyingi) && Number(d.birinchi) > 0 ? Math.round((Number(d.keyingi) / Number(d.birinchi)) * 100) : null;
   const ef = xato && xato.f;
   const tayyor = id === 'qaytgan' ? sonmi(d.birinchi) && sonmi(d.keyingi) && d.manba && d.sana : sonmi(d.soni) && d.manba && d.sana && (id !== 'bosh' || String(d.nima || '').trim());
+  const izoh = id === 'royxat' ? (reja && reja.sinfdosh != null ? S10_IZOH.reja : S10_IZOH.royxat) : S10_IZOH[id] || null;
+  const foiz = s10Foiz(d);
+  const savol = (k) => {
+    if (k === 'nima') return <Maydon iRef={iRef} y={tr(S10_QADAM_NOM.nima)} keng value={d.nima} onChange={o('nima')} max={120} err={ef === 'nima'} halqa={!String(d.nima || '').trim()} onEnter={keyingi} ph={tr({ uz: "Qaysi bitta raqam mahsulot ishini ko'rsatadi?", ru: "Какое одно число показывает работу продукта?" })} />;
+    if (k === 'son') return id !== 'qaytgan'
+      ? <div className="uc-qator-m">
+          <Maydon iRef={iRef} y={tr(S10_QADAM_NOM.son)} son value={d.soni} onChange={o('soni')} max={7} err={ef === 'soni'} halqa={!d.soni} onEnter={keyingi} />
+          {id === 'royxat' && <span className="uc-50">/ 50</span>}
+          {id === 'royxat' && <Maydon y={tr({ uz: 'shundan sinfdosh', ru: "из них одноклассники" })} son value={d.sinfdosh} onChange={o('sinfdosh')} max={5} err={ef === 'sinfdosh'} onEnter={keyingi} />}
+        </div>
+      : <>
+          <div className="uc-qator-m">
+            <Maydon iRef={iRef} y={tr({ uz: 'Birinchi davrda ochgan', ru: "Открыли в первый период" })} son value={d.birinchi} onChange={o('birinchi')} max={6} err={ef === 'birinchi'} halqa={!d.birinchi} onEnter={keyingi} />
+            <Maydon y={tr({ uz: 'Keyingi davrda ham ochgan', ru: "Открыли и в следующий период" })} son value={d.keyingi} onChange={o('keyingi')} max={6} err={ef === 'keyingi'} onEnter={keyingi} />
+            <span className="uc-foiz">{foiz != null ? <b key={foiz}>{foiz}%</b> : '— %'} <i className="hv-birlik">{tr(birlikQ(trek))}</i></span>
+          </div>
+          <Maydon y={tr({ uz: 'Davrlar', ru: "Периоды" })} keng value={d.davr} onChange={o('davr')} max={40} ph={tr({ uz: 'Davrlar', ru: "Периоды" })} onEnter={keyingi} />
+        </>;
+    if (k === 'manba') return <div className={cxx('uc-manba-t', !d.manba && 'uc-chorla')}>
+      {MANBALAR.map(m => <QChip key={m} className="uc-chip" holat={d.manba === m ? 'on' : ef === 'manba' && !d.manba ? 'err' : undefined} onClick={() => tanlaManba(m)}>{tr(MANBA_NOM[m])}</QChip>)}
+    </div>;
+    if (k === 'sana') return <Maydon y={tr(SANA_Y)} type="date" value={d.sana} onChange={o('sana')} err={ef === 'sana'} onEnter={keyingi} />;
+    return <div className="uc-qator-m">
+      {!d.birinchiOlchov && <Maydon y={tr({ uz: 'Oldingi son', ru: "Предыдущее число" })} son value={d.oldinSon} onChange={o('oldinSon')} max={6} onEnter={keyingi} />}
+      {!d.birinchiOlchov && <Maydon y={tr(SANA_Y)} type="date" value={d.oldinSana} onChange={o('oldinSana')} onEnter={keyingi} />}
+      <QChip className="uc-chip" holat={d.birinchiOlchov ? 'on' : undefined} onClick={d.birinchiOlchov ? () => setD(x => ({ ...x, birinchiOlchov: false })) : birinchiOlchov}>{tr({ uz: "Birinchi o'lchov", ru: "Первое измерение" })}</QChip>
+    </div>;
+  };
   return (
     <div ref={kRef} className={cxx('uc-karta', 'uc-kirish', xato && 'err')}>
       {sarlavha && <span className="q-yorliq">{sarlavha}</span>}
       <b className="uc-karta-nom">{tr(QATOR_NOM[id])}</b>
-      {id === 'bosh' && <Maydon y={tr({ uz: 'Nimani sanaydi', ru: "Что считает" })} keng value={d.nima} onChange={o('nima')} max={120} err={ef === 'nima'} halqa={!String(d.nima || '').trim()} ph={tr({ uz: "Qaysi bitta raqam mahsulot ishini ko'rsatadi?", ru: "Какое одно число показывает работу продукта?" })} />}
-      {id !== 'qaytgan'
-        ? <div className="uc-qator-m">
-            <Maydon iRef={iRef} y={tr({ uz: 'Son', ru: "Число" })} son value={d.soni} onChange={o('soni')} max={7} err={ef === 'soni'} halqa={!d.soni && id !== 'bosh'} onEnter={saqla} />
-            {id === 'royxat' && <span className="uc-50">/ 50</span>}
-            {id === 'royxat' && <Maydon y={tr({ uz: 'shundan sinfdosh', ru: "из них одноклассники" })} son value={d.sinfdosh} onChange={o('sinfdosh')} max={5} err={ef === 'sinfdosh'} />}
-          </div>
-        : <div className="uc-qator-m">
-            <Maydon iRef={iRef} y={tr({ uz: 'Birinchi davrda ochgan', ru: "Открыли в первый период" })} son value={d.birinchi} onChange={o('birinchi')} max={6} err={ef === 'birinchi'} halqa={!d.birinchi} />
-            <Maydon y={tr({ uz: 'Keyingi davrda ham ochgan', ru: "Открыли и в следующий период" })} son value={d.keyingi} onChange={o('keyingi')} max={6} err={ef === 'keyingi'} />
-            <span className="uc-foiz">{foiz != null ? <b key={foiz}>{foiz}%</b> : '— %'} <i className="hv-birlik">{tr(birlikQ(trek))}</i></span>
-          </div>}
-      {id === 'qaytgan' && <Maydon y={tr({ uz: 'Davrlar', ru: "Периоды" })} keng value={d.davr} onChange={o('davr')} max={40} ph={tr({ uz: 'Davrlar', ru: "Периоды" })} />}
-      <div className={cxx('uc-manba-t', !d.manba && 'uc-chorla')}>
-        <i className="uc-y">{tr({ uz: 'Manba', ru: "Источник" })}</i>
-        {MANBALAR.map(m => <QChip key={m} className="uc-chip" holat={d.manba === m ? 'on' : ef === 'manba' && !d.manba ? 'err' : undefined} onClick={() => { setD(x => ({ ...x, manba: m })); setXato(null); }}>{tr(MANBA_NOM[m])}</QChip>)}
+      {avtoOldin && <span className="uc-kulrang">{oldinMatn(avtoOldin)}</span>}
+      <div className="uc-qadamlar">
+        {qadamlar.map((k, i) => {
+          if (i === qi) return (
+            <div key={k} className="uc-sav fade-step">
+              {k !== 'manba' && k !== 'son' && k !== 'nima' && <span className="uc-sav-y">{tr(S10_QADAM_NOM[k])}</span>}
+              {k === 'manba' && <span className="uc-sav-y">{tr({ uz: 'Bu son qayerdan olindi?', ru: "Откуда взято это число?" })}</span>}
+              {savol(k)}
+              {i === 0 && izoh && <span className="uc-kulrang">{tr(izoh)}</span>}
+              {xato && <QXato>{tr(S10_XATO[xato.x])}</QXato>}
+              {xato && !xato.blok && <span className="uc-kulrang">{tr({ uz: 'Shunday qoldirsangiz — yana «Saqlash»ni bosing.', ru: "Если оставить так — снова нажмите «Сохранить»." })}</span>}
+              {k !== 'manba' && <div className="uc-sav-t"><QTugma ikkinchi className={cxx(s10Toldi(k, id, d) && 'uc-halqa')} onClick={keyingi}>{tr({ uz: 'Keyingi', ru: 'Дальше' })}</QTugma></div>}
+            </div>
+          );
+          if (i < otdi) return <QChip key={k} className="uc-yig" holat="ok" onClick={() => och(i)}><i>✓</i><span>{tr(S10_QADAM_NOM[k])}:</span><b>{s10Yigma(k, id, d)}</b></QChip>;
+          return <span key={k} className="uc-kul-q">{tr(S10_QADAM_NOM[k])}</span>;
+        })}
       </div>
-      <Maydon y={tr(SANA_Y)} type="date" value={d.sana} onChange={o('sana')} err={ef === 'sana'} />
-      {(id === 'royxat' || id === 'asosiy') && (avtoOldin
-        ? <span className="uc-kulrang">{oldinMatn(avtoOldin)}</span>
-        : <div className="uc-qator-m">
-            {!d.birinchiOlchov && <Maydon y={tr({ uz: 'Oldingi son va sanasi', ru: "Предыдущее число и дата" })} son value={d.oldinSon} onChange={o('oldinSon')} max={6} />}
-            {!d.birinchiOlchov && <Maydon y={tr(SANA_Y)} type="date" value={d.oldinSana} onChange={o('oldinSana')} />}
-            <QChip className="uc-chip" holat={d.birinchiOlchov ? 'on' : undefined} onClick={() => setD(x => ({ ...x, birinchiOlchov: !x.birinchiOlchov }))}>{tr({ uz: "Birinchi o'lchov", ru: "Первое измерение" })}</QChip>
-          </div>)}
-      {id === 'royxat' && !(reja && reja.sinfdosh != null) ? null : id === 'royxat' && <span className="uc-kulrang">{tr({ uz: 'ishga tushirish kunidagi son — bilsangiz, yangilang (ixtiyoriy)', ru: "число из дня запуска — если знаете, обновите (по желанию)" })}</span>}
-      {id === 'royxat' && <span className="uc-kulrang">{tr({ uz: 'Namuna va tekshiruv akkauntlari sanalmaydi; sinfdoshlar sanaladi, lekin alohida aytiladi.', ru: "Аккаунты-образцы и проверочные не считаются; одноклассники считаются, но называются отдельно." })}</span>}
-      {id === 'asosiy' && <span className="uc-kulrang">{tr({ uz: "Mentor misolida — hozir kamida bitta o'yinda qatnashayotgan yoki o'yin e'lon qilgan; navbatda turgani — qo'shilgan emas.", ru: "В примере Ментора — сейчас участвуют хотя бы в одной игре или объявили игру; кто стоит в очереди — ещё не присоединился." })}</span>}
-      {id === 'qaytgan' && <span className="uc-kulrang">{tr({ uz: 'Keyingi davrga faqat birinchi davrda ochgan qurilmalar kiradi — yangi kelganlar emas.', ru: "В следующий период входят только устройства, открывшие в первый, — не новые." })}</span>}
-      {xato && <QXato>{tr(S10_XATO[xato.x])}</QXato>}
-      {xato && !xato.blok && <span className="uc-kulrang">{tr({ uz: 'Shunday qoldirsangiz — yana «Saqlash»ni bosing.', ru: "Если оставить так — снова нажмите «Сохранить»." })}</span>}
       {yordam && <YordamBlok satrlar={S10_YORDAM[id]} />}
       <div className="uc-karta-tug">
-        <QTugma className={cxx(tayyor && 'uc-halqa')} onClick={saqla}>{tr({ uz: 'Saqlash', ru: "Сохранить" })}</QTugma>
+        <QTugma className={cxx(tayyor && qi >= qadamlar.length && 'uc-halqa')} onClick={saqla}>{tr({ uz: 'Saqlash', ru: "Сохранить" })}</QTugma>
         <QTugma ikkinchi onClick={() => onSanalmagan(id, sanalmaganQiymat(id, d), iRef.current)}>{tr({ uz: 'Hali sanalmagan', ru: "Ещё не посчитано" })}</QTugma>
         {uyda && <QTugma ikkinchi onClick={onUyda}>{tr({ uz: 'Uyda tuzataman', ru: "Исправлю дома" })}</QTugma>}
         <QTugma ikkinchi className="uc-yordam-t" aria-expanded={yordam} onClick={() => setYordam(y => !y)}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>
@@ -1720,30 +1778,48 @@ const QatorKarta = ({ id, h, reja, prd, trek, kRef, sarlavha, onSaqla, onSanalma
   );
 };
 const MENTOR_QADAM_NOM = MENTOR_HISOBOT.qadamlar.map(q => q.nom);
+// F-1015-282 (213.11): pastki karta — uch qadam: qadamlar → lending → eslatmadan ochdi; hammasi ixtiyoriy, Saqlash doim
+const PASTKI_QADAM = ['qadam', 'lending', 'eslatma'];
 const PastkiKarta = ({ p0, nomlar, trek, kRef, onSaqla }) => {
   const [p, setP] = useState(() => ({ qadamlar: nomlar.map((_, i) => (p0 && p0.qadamlar && p0.qadamlar[i] != null ? String(p0.qadamlar[i]) : '')), lending: { tashrif: p0?.lending?.tashrif ?? '', bosish: p0?.lending?.bosish ?? '' }, eslatmadanOchdi: p0?.eslatmadanOchdi ?? '' }));
+  const [qi, setQi] = useState(p0 ? PASTKI_QADAM.length : 0);
+  const [otdi, setOtdi] = useState(qi);
   const [yordam, setYordam] = useState(false);
   const raq = (v) => String(v).replace(/[^\d]/g, '');
+  const keyingi = () => { const n = qi + 1 < otdi ? otdi : qi + 1; setOtdi(m => Math.max(m, n)); setQi(n); };
+  const nom = { qadam: tr({ uz: 'Qadamlar', ru: "Шаги" }) + ' · ' + tr(birlikQ(trek)), lending: tr({ uz: 'Lending', ru: "Лендинг" }) + ' · ' + tr({ uz: 'tashrif · bosish', ru: "посещение · нажатие" }), eslatma: trek === 'web' ? tr({ uz: 'xabardan ochdi', ru: "открыл из сообщения" }) : tr({ uz: 'eslatmadan ochdi', ru: "открыл из напоминания" }) };
+  const yigma = (k) => (k === 'qadam' ? (nomlar.map((n, i) => (p.qadamlar[i] !== '' ? `${n.yoz || tr(n.mentor)} ${p.qadamlar[i]}` : null)).filter(Boolean).join(' · ') || '—')
+    : k === 'lending' ? tr({ uz: `tashriflar ${p.lending.tashrif || '—'} · tugma ${p.lending.bosish || '—'}`, ru: `посещения ${p.lending.tashrif || '—'} · кнопка ${p.lending.bosish || '—'}` })
+      : (p.eslatmadanOchdi || '—'));
+  const savol = (k) => (k === 'qadam'
+    ? <div className="uc-qator-m">{nomlar.map((n, i) => <Maydon key={i} y={n.yoz || tr(n.mentor)} son value={p.qadamlar[i]} onChange={(v) => setP(x => ({ ...x, qadamlar: x.qadamlar.map((q, j) => (j === i ? raq(v) : q)) }))} max={6} onEnter={keyingi} />)}</div>
+    : k === 'lending'
+      ? <div className="uc-qator-m">
+          <Maydon y={tr({ uz: 'tashriflar', ru: "посещения" })} son value={p.lending.tashrif} onChange={(v) => setP(x => ({ ...x, lending: { ...x.lending, tashrif: raq(v) } }))} max={6} onEnter={keyingi} />
+          <Maydon y={tr({ uz: 'tugma bosilishi', ru: "нажатия кнопки" })} son value={p.lending.bosish} onChange={(v) => setP(x => ({ ...x, lending: { ...x.lending, bosish: raq(v) } }))} max={6} onEnter={keyingi} />
+        </div>
+      : <Maydon y={nom.eslatma} son value={p.eslatmadanOchdi} onChange={(v) => setP(x => ({ ...x, eslatmadanOchdi: raq(v) }))} max={6} onEnter={keyingi} />);
   return (
     <div ref={kRef} className="uc-karta uc-kirish">
       <span className="q-yorliq">{tr({ uz: 'Pastda: qadamlar va lending', ru: "Внизу: шаги и лендинг" })}</span>
-      <div className="uc-qism">
-        <i className="uc-y">{tr({ uz: 'Qadamlar', ru: "Шаги" })} · {tr(birlikQ(trek))}</i>
-        <div className="uc-qator-m">{nomlar.map((n, i) => <Maydon key={i} y={n.yoz || tr(n.mentor)} son value={p.qadamlar[i]} onChange={(v) => setP(x => ({ ...x, qadamlar: x.qadamlar.map((q, j) => (j === i ? raq(v) : q)) }))} max={6} />)}</div>
+      <div className="uc-qadamlar">
+        {PASTKI_QADAM.map((k, i) => {
+          if (i === qi) return (
+            <div key={k} className="uc-sav fade-step">
+              <span className="uc-sav-y">{nom[k]}</span>
+              {savol(k)}
+              {k === 'qadam' && <span className="uc-kulrang">{tr({ uz: "Bo'sh qoldirsangiz bo'ladi — zaxira rejada qayerda kamligini shu sonlar ko'rsatadi.", ru: "Можно оставить пустым — в запасном плане эти числа покажут, где мало." })}</span>}
+              {k === 'eslatma' && <span className="uc-kulrang">{tr({ uz: "9-darsdagi tekshiruv yozuvlarini o'chirmagan bo'lsangiz — yoniga «o'z qurilmam ham bor» deb yozing.", ru: "Если не удалили проверочные записи 9-го урока — допишите рядом «есть и моё устройство»." })}</span>}
+              <div className="uc-sav-t"><QTugma ikkinchi className="uc-halqa" onClick={keyingi}>{tr({ uz: 'Keyingi', ru: 'Дальше' })}</QTugma></div>
+            </div>
+          );
+          if (i < otdi) return <QChip key={k} className="uc-yig" holat="ok" onClick={() => setQi(i)}><i>✓</i><span>{nom[k]}:</span><b>{yigma(k)}</b></QChip>;
+          return <span key={k} className="uc-kul-q">{nom[k]}</span>;
+        })}
       </div>
-      <div className="uc-qism">
-        <i className="uc-y">{tr({ uz: 'Lending', ru: "Лендинг" })} · {tr({ uz: 'tashrif · bosish', ru: "посещение · нажатие" })}</i>
-        <div className="uc-qator-m">
-          <Maydon y={tr({ uz: 'tashriflar', ru: "посещения" })} son value={p.lending.tashrif} onChange={(v) => setP(x => ({ ...x, lending: { ...x.lending, tashrif: raq(v) } }))} max={6} />
-          <Maydon y={tr({ uz: 'tugma bosilishi', ru: "нажатия кнопки" })} son value={p.lending.bosish} onChange={(v) => setP(x => ({ ...x, lending: { ...x.lending, bosish: raq(v) } }))} max={6} />
-        </div>
-      </div>
-      <span className="uc-kulrang">{tr({ uz: 'Bo\'sh qoldirsangiz bo\'ladi — zaxira rejada qayerda kamligini shu sonlar ko\'rsatadi.', ru: "Можно оставить пустым — в запасном плане эти числа покажут, где мало." })}</span>
-      <Maydon y={trek === 'web' ? tr({ uz: 'xabardan ochdi', ru: "открыл из сообщения" }) : tr({ uz: 'eslatmadan ochdi', ru: "открыл из напоминания" })} son value={p.eslatmadanOchdi} onChange={(v) => setP(x => ({ ...x, eslatmadanOchdi: raq(v) }))} max={6} />
-      <span className="uc-kulrang">{tr({ uz: "9-darsdagi tekshiruv yozuvlarini o'chirmagan bo'lsangiz — yoniga «o'z qurilmam ham bor» deb yozing.", ru: "Если не удалили проверочные записи 9-го урока — допишите рядом «есть и моё устройство»." })}</span>
       {yordam && <YordamBlok satrlar={S10_YORDAM.pastki} />}
       <div className="uc-karta-tug">
-        <QTugma className="uc-halqa" onClick={() => onSaqla(p)}>{tr({ uz: 'Saqlash', ru: "Сохранить" })}</QTugma>
+        <QTugma className={cxx(qi >= PASTKI_QADAM.length && 'uc-halqa')} onClick={() => onSaqla(p)}>{tr({ uz: 'Saqlash', ru: "Сохранить" })}</QTugma>
         <QTugma ikkinchi className="uc-yordam-t" aria-expanded={yordam} onClick={() => setYordam(y => !y)}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>
       </div>
     </div>
@@ -1995,7 +2071,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev, answers }) =
           ))}
         </div>
         <span className="uc-kulrang">{tr({ uz: "Bo'g'inlarning birligi har xil: sonlari solishtirilmaydi — har birining ichiga qaraladi.", ru: "У звеньев разные единицы: их числа не сравнивают — смотрят внутрь каждого." })}</span>
-        <Maydon y="1" keng value={z.dalil} max={120} err={xato === 'dalil'} halqa={!!z.boginda && !String(z.dalil).trim()} onChange={(v) => { setZ(x => ({ ...x, dalil: v })); setXato(null); }} onEnter={zSaqla} ph={tr({ uz: 'Qaysi son yoki fakt buni ko\'rsatadi?', ru: "Какое число или факт это показывает?" })} />
+        {z.boginda && <Maydon y="1" keng value={z.dalil} max={120} err={xato === 'dalil'} halqa={!String(z.dalil).trim()} onChange={(v) => { setZ(x => ({ ...x, dalil: v })); setXato(null); }} onEnter={zSaqla} ph={tr({ uz: 'Qaysi son yoki fakt buni ko\'rsatadi?', ru: "Какое число или факт это показывает?" })} />}
       </>}
       {zi === 1 && <>
         <b className="uc-karta-nom">{tr({ uz: 'Gipoteza', ru: "Гипотеза" })}</b>
@@ -2028,7 +2104,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev, answers }) =
         <QTugma className={cxx(((zi === 0 && z.boginda && String(z.dalil).trim()) || (zi === 1 && String(z.gipoteza).trim()) || (zi === 2 && String(z.ish).trim())) && 'uc-halqa')} onClick={zSaqla}>{tr({ uz: 'Saqlash', ru: "Сохранить" })}</QTugma>
         <QTugma ikkinchi className="uc-yordam-t" aria-expanded={yordam} onClick={() => setYordam(y => !y)}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>
       </div>
-      <span className="uc-kulrang">{tr({ uz: "Soxta akkaunt, o'zingiz qayta ro'yxatdan o'tish va sovg'a va'dasi — yo'q.", ru: "Фейковые аккаунты, своя повторная регистрация и обещание подарков — нет." })}</span>
+      {zi === 2 && <span className="uc-kulrang">{tr({ uz: "Soxta akkaunt, o'zingiz qayta ro'yxatdan o'tish va sovg'a va'dasi — yo'q.", ru: "Фейковые аккаунты, своя повторная регистрация и обещание подарков — нет." })}</span>}
     </div>
   );
   const yetdiKarta = savolDone && !kerak && !zaxiraOch && !isMentor && (
@@ -3071,10 +3147,10 @@ export default function PmUsersCheckLesson({ lang: langProp, onFinished, liveTok
         .hv-muhr.mini { min-width: 0; height: auto; padding: 4px 10px; border-radius: 10px; font-size: 12px; }
         .hv-muhr-ost { font-size: 12px; color: ${T.ink2}; }
         .hv-qatorlar { display: flex; flex-direction: column; gap: 6px; }
-        .hv-q { display: grid; grid-template-columns: minmax(0, 1.1fr) auto minmax(0, auto); grid-template-areas: "nom son yor" "izoh izoh izoh" "oldin oldin oldin" "tuz tuz tuz"; gap: 2px 12px; align-items: center; padding: 8px 10px; border-radius: 10px; border: 1.5px solid ${T.line}; background: ${T.paper}; text-align: left; font-family: 'Manrope', sans-serif; width: 100%; position: relative; transition: border-color .3s, background .3s; }
+        .hv-q { display: grid; grid-template-columns: minmax(0, 1.1fr) auto minmax(0, auto); grid-template-areas: "nom son yor" "izoh izoh izoh" "oldin oldin oldin" "tuz tuz tuz"; gap: 2px 12px; align-items: center; padding: 8px 10px; border-radius: 10px; border: 1.5px solid transparent; background: ${T.bg}; text-align: left; font-family: 'Manrope', sans-serif; width: 100%; position: relative; transition: border-color .3s, background .3s; } /* F-1015-280: qatorlar ramkasiz (213.3) */
         button.hv-q { color: inherit; font: inherit; }
         .hv-q.bos { cursor: pointer; }
-        .hv-q.h-yalang { border-style: solid; background: ${T.bg}; }
+        .hv-q.h-yalang { background: ${fon(T.ink, 0.04)}; }
         .hv-q.h-joriy { border-color: ${T.accent}; box-shadow: 0 0 0 3px ${fon(T.accent, 0.12)}; animation: uc-tolqin-i 2.4s ease-in-out .3s 3; }
         .hv-q.h-sanalmagan { background: ${T.bg}; }
         .hv-q.h-tuzatish { border-color: ${fon(T.accent, 0.6)}; }
@@ -3149,8 +3225,8 @@ export default function PmUsersCheckLesson({ lang: langProp, onFinished, liveTok
         .uc-reja-q { padding: 9px 12px; border-radius: 10px; border: 1.5px solid ${T.line}; font-size: 13px; font-weight: 700; color: ${T.ink}; }
         .uc-reja-p { font-size: 12px; color: ${T.ink2}; padding-top: 6px; border-top: 1px solid ${T.line}; }
         /* --- 2-ekran: uch manba maketi --- */
-        .uc-manbalar { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
-        .uc-manba { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border-radius: 12px; background: ${T.paper}; border: 1.5px solid ${T.line}; transition: border-color .3s, box-shadow .3s; }
+        .uc-manbalar { display: flex; flex-direction: column; gap: 6px; min-width: 0; padding: 10px 12px; border-radius: 14px; background: ${T.paper}; border: 1px solid ${T.line}; } /* F-1015-279: uch manba bitta kartada, qatorlar ramkasiz */
+        .uc-manba { display: flex; flex-direction: column; gap: 6px; padding: 8px 10px; border-radius: 10px; background: ${T.bg}; border: 1.5px solid transparent; transition: border-color .3s, box-shadow .3s; }
         .uc-manba.yonik { border-color: ${T.accent}; box-shadow: 0 0 0 4px ${fon(T.accent, 0.14)}; }
         .uc-manba-h { font-size: 13px; font-weight: 700; color: ${T.ink}; }
         .uc-manba-k { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: ${T.ink2}; }
@@ -3164,6 +3240,16 @@ export default function PmUsersCheckLesson({ lang: langProp, onFinished, liveTok
         .uc-umami-r b { font-family: 'JetBrains Mono', monospace; color: ${T.ink}; }
         .uc-v-bos, .uc-v-ust { min-width: 0; display: flex; flex-direction: column; gap: 8px; }
         /* --- Karta (bittadan; E 53) --- */
+        /* F-1015-282 (213.11): savol kartasi · yig'ilgan yashil qator · navbatdagi kulrang qator */
+        .uc-qadamlar { display: flex; flex-direction: column; gap: 8px; }
+        .uc-sav { display: flex; flex-direction: column; gap: 8px; padding: 12px 14px; border-radius: 12px; border: 1.5px solid ${T.accent}; background: ${T.paper}; min-width: 0; }
+        .uc-sav-y { font-size: 11px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: ${T.accent}; }
+        .uc-sav-t { display: flex; justify-content: flex-end; }
+        .q-chip.uc-yig, .uc-yig { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; width: 100%; padding: 8px 14px; border-radius: 12px; border: 0; background: ${T.okFon}; color: ${T.ok}; font-family: inherit; font-size: 13.5px; font-weight: 700; text-align: left; cursor: pointer; }
+        .uc-yig i { font-style: normal; font-weight: 800; } .uc-yig b { font-weight: 700; min-width: 0; overflow-wrap: anywhere; } .uc-yig.yopiq { cursor: default; }
+        .uc-kul-q { padding: 8px 14px; border-radius: 12px; background: ${T.bg}; color: ${T.ink2}; font-size: 13px; font-weight: 600; }
+        .uc-karta-kir { animation: uc-kir .4s ease-out both; }
+        @media (prefers-reduced-motion: reduce) { .uc-karta-kir { animation: none; } }
         .uc-karta { background: ${T.paper}; border-radius: 16px; padding: 16px 18px; box-shadow: 0 10px 26px -10px rgba(${T.shadowBase},0.22); display: flex; flex-direction: column; gap: 10px; min-width: 0; animation: uc-karta .4s ease-out both; transition: background .3s; }
         .uc-karta.err { background: ${T.errFon}; }
         .uc-kirish { animation: uc-juft-kir .45s cubic-bezier(.3,1.2,.5,1) both; }

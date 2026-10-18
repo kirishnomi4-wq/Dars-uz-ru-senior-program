@@ -1020,7 +1020,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <QTugma className="im-bos" onClick={och}>{tr(OCHISH)}</QTugma>
           </div>}
         </div>}
-        vizual={<SanoqDoska nom={tr(DOSKA_NOM)} yozuvlar={ochiq} yangiYozuv={yangi} qatorlar={sanoqQatorlar(ochiq, done && tugadi ? null : yangi)} />}
+        vizual={!taxmin ? null : <div className="q-kir">{<SanoqDoska nom={tr(DOSKA_NOM)} yozuvlar={ochiq} yangiYozuv={yangi} qatorlar={sanoqQatorlar(ochiq, done && tugadi ? null : yangi)} />}</div>}
         natija={done && tx && <QTaxmin togri={taxmin === '1'}>{taxmin === '1'
           ? tr({ uz: "Taxminingiz to'g'ri chiqdi", ru: 'Ваше предположение оказалось верным' })
           : <>{tr({ uz: 'Taxminingiz', ru: 'Ваше предположение' })}: {tr(tx.t).toLowerCase()} · {tr({ uz: 'haqiqatda', ru: 'на деле' })}: <b>{tr({ uz: 'bittasida', ru: 'в одной' })}</b></>}</QTaxmin>}

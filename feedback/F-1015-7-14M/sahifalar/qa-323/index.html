@@ -1,0 +1,160 @@
+<title>9–10-Modul sinf-supurishi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: bitta ustun; har band = sizning so'zingiz → hozirgi surat → tashxis → taklif-namuna (dars palitrasida) → tanlov */
+:root {
+  --bg: #f4f3f8; --card: #ffffff; --ink: #1d1b2b; --ink2: #5d5a72; --line: #e2e0ec; --accent: #5b3fd6; --accent-soft: #ece8fd; --warn: #b4540f; --warn-soft: #fbeedd;
+  --f-body: 'Manrope', system-ui, sans-serif; --f-mono: 'JetBrains Mono', ui-monospace, monospace;
+  /* dars palitrasi — namuna oynasi ikki mavzuda ham dars qanday ko'rinsa shunday */
+  --d-bg: #F2F0FA; --d-paper: #FFFFFF; --d-line: #E7E3F4; --d-ink: #1B1630; --d-ink2: #565073; --d-accent: #5B3DE6; --d-asoft: #EBE5FD; --d-ok: #1F7A4D; --d-okfon: #E3F0E8; --d-err: #C2362B; --d-errfon: #FAE3E0; --d-mute: #F6F4FC;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #15141c; --card: #1f1d29; --ink: #ecebf4; --ink2: #a7a4ba; --line: #34314a; --accent: #a593ff; --accent-soft: #2c2650; --warn: #f0a35a; --warn-soft: #3a2a18; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #15141c; --card: #1f1d29; --ink: #ecebf4; --ink2: #a7a4ba; --line: #34314a; --accent: #a593ff; --accent-soft: #2c2650; --warn: #f0a35a; --warn-soft: #3a2a18; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 80px; }
+.wrap { max-width: 1060px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+h1 { font-size: clamp(22px, 3vw, 30px); margin: 0; text-wrap: balance; } h2 { font-size: 19px; margin: 0; text-wrap: balance; } h3 { font-size: 14px; margin: 0; color: var(--ink2); text-transform: uppercase; letter-spacing: .06em; }
+p { margin: 0; max-width: 78ch; } .lead { color: var(--ink2); }
+.band { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+.id { font-family: var(--f-mono); font-size: 12px; color: var(--accent); letter-spacing: .04em; }
+.soz { border-left: 3px solid var(--accent); padding: 4px 12px; color: var(--ink2); font-style: italic; }
+.ikki { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 16px; align-items: start; }
+@media (max-width: 860px) { .ikki { grid-template-columns: 1fr; } }
+figure { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+figure img { width: 100%; border-radius: 8px; border: 1px solid var(--line); display: block; }
+figcaption { font-size: 12.5px; color: var(--ink2); }
+.tanlov { display: flex; flex-direction: column; gap: 8px; }
+.tanlov .v { display: flex; gap: 10px; align-items: baseline; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; }
+.tanlov .v b { font-family: var(--f-mono); color: var(--accent); flex-shrink: 0; }
+.tanlov .v.tavsiya { border-color: var(--accent); background: var(--accent-soft); }
+.ogoh { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-weight: 600; }
+ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+/* ---- dars namunasi (mock) ---- */
+.dars { background: var(--d-bg); color: var(--d-ink); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+.dars .t { font-size: 20px; font-weight: 800; letter-spacing: -.01em; } .dars .t i { font-style: normal; color: var(--d-accent); }
+.dars .hol { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--d-ink2); }
+.k { background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.k .y { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--d-ink2); }
+.q { display: flex; align-items: center; gap: 10px; background: var(--d-mute); border-radius: 10px; padding: 9px 12px; }
+.q .n { width: 20px; color: var(--d-ink2); font-family: var(--f-mono); font-size: 12px; } .q b { flex: 1; font-weight: 700; } .q .s { color: var(--d-ink2); font-size: 12.5px; }
+.q.chet { color: var(--d-ink2); } .q.chet b { font-weight: 600; }
+.chip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--d-line); background: var(--d-paper); border-radius: 999px; padding: 6px 12px; font-weight: 700; font-size: 13px; }
+.chip.on { border-color: var(--d-accent); color: var(--d-accent); background: var(--d-asoft); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.ok { color: var(--d-ok); background: var(--d-okfon); border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 800; }
+.yoq { color: var(--d-err); background: var(--d-errfon); border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 800; }
+.mute { color: var(--d-ink2); font-size: 13px; }
+.form { display: flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--f-mono); font-size: 14px; flex-wrap: wrap; }
+.form .b { background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 8px; padding: 4px 10px; min-width: 38px; text-align: center; } .form .b.bosh { color: var(--d-ink2); }
+.form .r { background: var(--d-accent); color: #fff; border-radius: 8px; padding: 4px 10px; font-weight: 700; }
+.bar { display: grid; grid-template-columns: 20px minmax(0, 1fr) minmax(90px, 1.2fr) 42px; align-items: center; gap: 10px; background: var(--d-paper); border: 1px solid var(--d-line); border-radius: 10px; padding: 8px 12px; }
+.bar.top { border-color: var(--d-accent); } .bar .n { color: var(--d-ink2); font-family: var(--f-mono); font-size: 12px; } .bar .f { font-family: var(--f-mono); font-size: 11px; color: var(--d-ink2); }
+.bar .tr { height: 8px; border-radius: 999px; background: var(--d-line); overflow: hidden; } .bar .tr i { display: block; height: 100%; background: var(--d-accent); border-radius: 999px; }
+.bar .v { font-family: var(--f-mono); font-weight: 700; color: var(--d-accent); text-align: right; }
+.bar.chet { opacity: .6; } .bar.chet .tr i { background: var(--d-ink2); } .bar.chet .v { color: var(--d-ink2); }
+.ok-qator { background: var(--d-okfon); color: var(--d-ok); border-radius: 10px; padding: 9px 12px; font-weight: 700; }
+.qadam { display: flex; gap: 8px; align-items: center; } .qadam .d { width: 22px; height: 22px; border-radius: 50%; background: var(--d-accent); color: #fff; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.uch { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; align-items: start; }
+.tug { display: inline-flex; align-items: center; border-radius: 10px; padding: 7px 14px; font-weight: 800; font-size: 13px; background: var(--d-accent); color: #fff; }
+.tug.ik { background: var(--d-paper); color: var(--d-accent); border: 1px solid var(--d-accent); }
+.voronka { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.voronka .s { background: var(--d-asoft); border-radius: 10px; padding: 8px 14px; font-weight: 700; display: flex; gap: 8px; align-items: baseline; } .voronka .s b { font-size: 20px; color: var(--d-accent); font-family: var(--f-mono); }
+.voronka .s.fin { background: var(--d-accent); color: #fff; } .voronka .s.fin b { color: #fff; }
+</style>
+
+<div class="wrap">
+  <header class="band">
+    <span class="id">F-1015-323 · 5-band · 9-Modul (src/7-Modull) va 10-Modul (src/8-Modull) sinf-supurishi · «bashorat sahna bilan birga» (213.7) · 18.10 (avtopilot)</span>
+    <h1>47 bashorat ekranida sahna taxmindan oldin ochiq edi — 20 darsda tuzatildi</h1>
+    <p class="lead">7-M (src/5-Modull) va 8-M (src/6-Modull) — topilma 0 (8-M SystemArchitecture allaqachon taxmindan keyin). Har ekranda: <b>keyin a</b> (bashorat yolg'iz) · <b>keyin b</b> (tanlangach sahna kirdi).</p>
+    <p class="ogoh">Xatoim: bu supurishda «oldin» suratlari olinmagan (tahrir shoshib qo'llandi) — oldingi holat zaxira kodda (<code>arxiv/F-1015-279-oldin/*.v-323-oldin.jsx</code>). Oldingi holat har ekranda bir xil edi: «Avval o'zingiz belgilab ko'ring» kartasi ostida sahna + o'chiq qadam-tugmalar.</p>
+  </header>
+  <section class="band" id="m7-01"><span class="id">m7-01 · PmProductProblemLesson</span><h2>1 ekran: s2</h2>
+    <h3>2-ekran</h3><div class="ikki"><figure><img src="r/m7-01-s2a.jpg" alt="m7-01 s2 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m7-01-s2b.jpg" alt="m7-01 s2 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m7-03"><span class="id">m7-03 · PmInterviewMvpLesson</span><h2>1 ekran: s2</h2>
+    <h3>2-ekran</h3><div class="ikki"><figure><img src="r/m7-03-s2a.jpg" alt="m7-03 s2 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m7-03-s2b.jpg" alt="m7-03 s2 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m7-04"><span class="id">m7-04 · MvpArchitectureLesson</span><h2>4 ekran: s5, s7, s9, s11</h2>
+    <h3>5-ekran</h3><div class="ikki"><figure><img src="r/m7-04-s5a.jpg" alt="m7-04 s5 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m7-04-s5b.jpg" alt="m7-04 s5 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>7-ekran</h3><div class="ikki"><figure><img src="r/m7-04-s7a.jpg" alt="m7-04 s7 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m7-04-s7b.jpg" alt="m7-04 s7 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>9-ekran</h3><div class="ikki"><figure><img src="r/m7-04-s9a.jpg" alt="m7-04 s9 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m7-04-s9b.jpg" alt="m7-04 s9 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>11-ekran</h3><div class="ikki"><figure><img src="r/m7-04-s11a.jpg" alt="m7-04 s11 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m7-04-s11b.jpg" alt="m7-04 s11 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m7-05"><span class="id">m7-05 · AnimationLesson</span><h2>4 ekran: s2, s3, s6, s9</h2>
+    <h3>2-ekran</h3><div class="ikki"><figure><img src="r/m7-05-s2a.jpg" alt="m7-05 s2 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m7-05-s2b.jpg" alt="m7-05 s2 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>3-ekran</h3><div class="ikki"><figure><img src="r/m7-05-s3a.jpg" alt="m7-05 s3 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m7-05-s3b.jpg" alt="m7-05 s3 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>6-ekran</h3><div class="ikki"><figure><img src="r/m7-05-s6a.jpg" alt="m7-05 s6 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m7-05-s6b.jpg" alt="m7-05 s6 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>9-ekran</h3><div class="ikki"><figure><img src="r/m7-05-s9a.jpg" alt="m7-05 s9 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m7-05-s9b.jpg" alt="m7-05 s9 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m7-06"><span class="id">m7-06 · PmAnalyticsDayOneLesson</span><h2>2 ekran: s2, s3</h2>
+    <h3>2-ekran</h3><div class="ikki"><figure><img src="r/m7-06-s2a.jpg" alt="m7-06 s2 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m7-06-s2b.jpg" alt="m7-06 s2 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>3-ekran</h3><div class="ikki"><figure><img src="r/m7-06-s3a.jpg" alt="m7-06 s3 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m7-06-s3b.jpg" alt="m7-06 s3 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m7-07"><span class="id">m7-07 · MvpFirstScreenLesson</span><h2>2 ekran: s2, s5</h2>
+    <h3>2-ekran</h3><div class="ikki"><figure><img src="r/m7-07-s2a.jpg" alt="m7-07 s2 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m7-07-s2b.jpg" alt="m7-07 s2 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>5-ekran</h3><div class="ikki"><figure><img src="r/m7-07-s5a.jpg" alt="m7-07 s5 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m7-07-s5b.jpg" alt="m7-07 s5 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m7-08"><span class="id">m7-08 · PmDesignMotionLesson</span><h2>1 ekran: s2</h2>
+    <h3>2-ekran</h3><div class="ikki"><figure><img src="r/m7-08-s2a.jpg" alt="m7-08 s2 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m7-08-s2b.jpg" alt="m7-08 s2 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m7-09"><span class="id">m7-09 · MvpCompleteLesson</span><h2>2 ekran: s2, s5</h2>
+    <h3>2-ekran</h3><div class="ikki"><figure><img src="r/m7-09-s2a.jpg" alt="m7-09 s2 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m7-09-s2b.jpg" alt="m7-09 s2 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>5-ekran</h3><div class="ikki"><figure><img src="r/m7-09-s5a.jpg" alt="m7-09 s5 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m7-09-s5b.jpg" alt="m7-09 s5 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m7-10"><span class="id">m7-10 · PmUsabilityTestLesson</span><h2>2 ekran: s2, s4</h2>
+    <h3>2-ekran</h3><div class="ikki"><figure><img src="r/m7-10-s2a.jpg" alt="m7-10 s2 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m7-10-s2b.jpg" alt="m7-10 s2 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>4-ekran</h3><div class="ikki"><figure><img src="r/m7-10-s4a.jpg" alt="m7-10 s4 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m7-10-s4b.jpg" alt="m7-10 s4 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m7-11"><span class="id">m7-11 · MvpIterationLesson</span><h2>1 ekran: s2</h2>
+    <h3>2-ekran</h3><div class="ikki"><figure><img src="r/m7-11-s2a.jpg" alt="m7-11 s2 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m7-11-s2b.jpg" alt="m7-11 s2 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m7-12"><span class="id">m7-12 · PmUserStoryPitchLesson</span><h2>1 ekran: s2</h2>
+    <h3>2-ekran</h3><div class="ikki"><figure><img src="r/m7-12-s2a.jpg" alt="m7-12 s2 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m7-12-s2b.jpg" alt="m7-12 s2 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m8-01"><span class="id">m8-01 · PmOkrLesson</span><h2>2 ekran: s2, s6</h2>
+    <h3>2-ekran</h3><div class="ikki"><figure><img src="r/m8-01-s2a.jpg" alt="m8-01 s2 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-01-s2b.jpg" alt="m8-01 s2 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>6-ekran</h3><div class="ikki"><figure><img src="r/m8-01-s6a.jpg" alt="m8-01 s6 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-01-s6b.jpg" alt="m8-01 s6 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m8-02"><span class="id">m8-02 · EventTrackingLesson</span><h2>5 ekran: s2, s4, s6, s9, s11</h2>
+    <h3>2-ekran</h3><div class="ikki"><figure><img src="r/m8-02-s2a.jpg" alt="m8-02 s2 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-02-s2b.jpg" alt="m8-02 s2 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>4-ekran</h3><div class="ikki"><figure><img src="r/m8-02-s4a.jpg" alt="m8-02 s4 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-02-s4b.jpg" alt="m8-02 s4 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>6-ekran</h3><div class="ikki"><figure><img src="r/m8-02-s6a.jpg" alt="m8-02 s6 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-02-s6b.jpg" alt="m8-02 s6 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>9-ekran</h3><div class="ikki"><figure><img src="r/m8-02-s9a.jpg" alt="m8-02 s9 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-02-s9b.jpg" alt="m8-02 s9 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>11-ekran</h3><div class="ikki"><figure><img src="r/m8-02-s11a.jpg" alt="m8-02 s11 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-02-s11b.jpg" alt="m8-02 s11 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m8-03"><span class="id">m8-03 · LiveDashboardLesson</span><h2>2 ekran: s2, s5</h2>
+    <h3>2-ekran</h3><div class="ikki"><figure><img src="r/m8-03-s2a.jpg" alt="m8-03 s2 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-03-s2b.jpg" alt="m8-03 s2 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>5-ekran</h3><div class="ikki"><figure><img src="r/m8-03-s5a.jpg" alt="m8-03 s5 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-03-s5b.jpg" alt="m8-03 s5 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m8-05"><span class="id">m8-05 · SecurityBasicsLesson</span><h2>5 ekran: s2, s4, s6, s9, s11</h2>
+    <h3>2-ekran</h3><div class="ikki"><figure><img src="r/m8-05-s2a.jpg" alt="m8-05 s2 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-05-s2b.jpg" alt="m8-05 s2 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>4-ekran</h3><div class="ikki"><figure><img src="r/m8-05-s4a.jpg" alt="m8-05 s4 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-05-s4b.jpg" alt="m8-05 s4 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>6-ekran</h3><div class="ikki"><figure><img src="r/m8-05-s6a.jpg" alt="m8-05 s6 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-05-s6b.jpg" alt="m8-05 s6 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>9-ekran</h3><div class="ikki"><figure><img src="r/m8-05-s9a.jpg" alt="m8-05 s9 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-05-s9b.jpg" alt="m8-05 s9 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>11-ekran</h3><div class="ikki"><figure><img src="r/m8-05-s11a.jpg" alt="m8-05 s11 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-05-s11b.jpg" alt="m8-05 s11 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m8-06"><span class="id">m8-06 · PmTrustAuditLesson</span><h2>2 ekran: s2, s4</h2>
+    <h3>2-ekran</h3><div class="ikki"><figure><img src="r/m8-06-s2a.jpg" alt="m8-06 s2 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-06-s2b.jpg" alt="m8-06 s2 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>4-ekran</h3><div class="ikki"><figure><img src="r/m8-06-s4a.jpg" alt="m8-06 s4 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-06-s4b.jpg" alt="m8-06 s4 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m8-07"><span class="id">m8-07 · ProductionDeployLesson</span><h2>5 ekran: s2, s4, s6, s8, s10</h2>
+    <h3>2-ekran</h3><div class="ikki"><figure><img src="r/m8-07-s2a.jpg" alt="m8-07 s2 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-07-s2b.jpg" alt="m8-07 s2 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>4-ekran</h3><div class="ikki"><figure><img src="r/m8-07-s4a.jpg" alt="m8-07 s4 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-07-s4b.jpg" alt="m8-07 s4 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>6-ekran</h3><div class="ikki"><figure><img src="r/m8-07-s6a.jpg" alt="m8-07 s6 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-07-s6b.jpg" alt="m8-07 s6 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>8-ekran</h3><div class="ikki"><figure><img src="r/m8-07-s8a.jpg" alt="m8-07 s8 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-07-s8b.jpg" alt="m8-07 s8 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>10-ekran</h3><div class="ikki"><figure><img src="r/m8-07-s10a.jpg" alt="m8-07 s10 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-07-s10b.jpg" alt="m8-07 s10 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m8-08"><span class="id">m8-08 · ProdUpgradeLesson</span><h2>2 ekran: s2, s5</h2>
+    <h3>2-ekran</h3><div class="ikki"><figure><img src="r/m8-08-s2a.jpg" alt="m8-08 s2 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-08-s2b.jpg" alt="m8-08 s2 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>5-ekran</h3><div class="ikki"><figure><img src="r/m8-08-s5a.jpg" alt="m8-08 s5 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-08-s5b.jpg" alt="m8-08 s5 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m8-09"><span class="id">m8-09 · ProdReviewLesson</span><h2>1 ekran: s2</h2>
+    <h3>2-ekran</h3><div class="ikki"><figure><img src="r/m8-09-s2a.jpg" alt="m8-09 s2 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-09-s2b.jpg" alt="m8-09 s2 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+  <section class="band" id="m8-11"><span class="id">m8-11 · PmPitchRehearsalLesson</span><h2>2 ekran: s2, s3</h2>
+    <h3>2-ekran</h3><div class="ikki"><figure><img src="r/m8-11-s2a.jpg" alt="m8-11 s2 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-11-s2b.jpg" alt="m8-11 s2 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+    <h3>3-ekran</h3><div class="ikki"><figure><img src="r/m8-11-s3a.jpg" alt="m8-11 s3 a" loading="lazy"><figcaption>Keyin · a</figcaption></figure><figure><img src="r/m8-11-s3b.jpg" alt="m8-11 s3 b" loading="lazy"><figcaption>Keyin · b</figcaption></figure></div>
+  </section>
+</div>

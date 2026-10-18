@@ -1155,6 +1155,9 @@ const YORDAM = {
 };
 const YORDAM_OXIR = { uz: "2–5-oylarni keyin yozasiz — bugun 1-oy, 6-oy va birinchi qadam yetadi.", ru: '2–5-й месяцы напишете позже — сегодня достаточно 1-го, 6-го месяца и первого шага.' };
 const BOSH_D = { tanlov: null, sabab: '', nima: '', m1: '', m6: '', qadam: '', sana: '' };
+// 213.11 (F-1015-324): yo'nalish kartasi savollari ketma-ket — joriy savol ramkali kartada, javob berilgani yashil qatorga yig'iladi
+const QADAM_YON = { mahsulot: ['tanlov', 'sabab', 'm1', 'm6', 'qadam', 'sana'], konikma: ['nima', 'm1', 'm6', 'qadam', 'sana'], ish: ['tanlov', 'nima', 'm1', 'm6', 'qadam', 'sana'] };
+const QADAM_NOM = { tanlov: { uz: "Yo'l", ru: 'Путь' }, sabab: { uz: 'Sabab', ru: 'Причина' }, nima: { uz: 'Nima', ru: 'Что' }, m1: { uz: 'Oy oxirida', ru: 'К концу месяца' }, m6: { uz: 'Olti oyda', ru: 'За полгода' }, qadam: { uz: 'Birinchi qadam', ru: 'Первый шаг' }, sana: { uz: 'Qadam sanasi', ru: 'Дата шага' } };
 const yozuvdanD = (y) => (y ? { tanlov: y.tanlov || null, sabab: y.sabab || '', nima: y.nima || '', m1: (y.nishonlar && y.nishonlar[0]) || '', m6: (y.nishonlar && y.nishonlar[5]) || '', qadam: y.birinchiQadam || '', sana: y.sana || '' } : null);
 
 // Bitta yo'nalish kartasi — 6-ekranda va 7-ekrandagi «Rejani yangilayman»da (o'sha tekshiruvlar — SABOQ 29)
@@ -1167,6 +1170,19 @@ const YonalishKarta = ({ tur, boshD, oraliq, ctx, bosh, onSaqla, onQoralama, kar
   const [taklif, setTaklif] = useState({});
   const [sirg, setSirg] = useState(null);
   const bugun = bugunISO();
+  const qadamlar = QADAM_YON[tur];
+  const [qi, setQi] = useState(0);
+  const [otdi, setOtdi] = useState(() => (boshD && String(boshD.m1 || '').trim() ? qadamlar.length : 0));
+  useEffect(() => { if (xato && xato.m) { const i = qadamlar.indexOf(xato.m); if (i >= 0) setQi(i); } }, [xato]); // eslint-disable-line
+  const keyingi = () => {
+    if (uchish || mentorRejim) return;
+    const t = tekshirYon(tur, d, bugun, bosh, otk);
+    if (t && t.blok && qadamlar.indexOf(t.m) <= qi) { setXato(t); return; }
+    setXato(null);
+    const n = Math.min(qi + 1, qadamlar.length);
+    setOtdi(o => Math.max(o, n)); setQi(n);
+  };
+  const yigma = (k) => (k === 'tanlov' ? (d.tanlov ? tr(TANLOV_NOM[d.tanlov]) : '—') : k === 'sana' ? (d.sana || '—') : (String(d[k] || '').trim() || '—'));
   const yangila = (patch) => { setD(o => { const n = { ...o, ...patch }; if (onQoralama) onQoralama(tur, n); return n; }); setXato(null); };
   const taklifQoy = (id, patch) => { yangila(patch); setTaklif(t => ({ ...t, [id]: true })); setSirg(Object.keys(patch)); setTimeout(() => setSirg(null), 900); };
   const tanlovQoy = (v) => {
@@ -1213,32 +1229,53 @@ const YonalishKarta = ({ tur, boshD, oraliq, ctx, bosh, onSaqla, onQoralama, kar
     ctx.dastur === 'diamond' && <button key="d" type="button" className={cxx('nx-taklif', taklif.d && 'qoyildi')} disabled={!!taklif.d} onClick={() => taklifQoy('d', { tanlov: 'dastur', nima: tr({ uz: "Diamond Challenge'ga ariza", ru: 'Заявка в Diamond Challenge' }) })}>{taklif.d && '✓ '}{tr({ uz: '11-darsdagi dasturingiz: Diamond Challenge', ru: 'Ваша программа из 11-го урока: Diamond Challenge' })}</button>,
     ctx.dastur === 'boshqa' && <p key="o" className="nx-kul">{tr(KULRANG.boshqa)}</p>
   ].filter(Boolean) : [];
-  return (
-    <div ref={kartaRef} key={tur} className={cxx('nx-karta', xato && xato.blok && 'err', uchish && 'uch')}>
-      <span className="q-yorliq">{tr(YON_NOM[tur])}</span>
-      {yolTugma.length > 0 && <div className={cxx('nx-yol', !d.tanlov && 'chorla')}>
+  const ichki = (k, n) => {
+    if (k === 'tanlov') return <>
+      <div className={cxx('nx-yol', !d.tanlov && 'chorla')}>
         {yolTugma.map(v => <QChip key={v} holat={d.tanlov === v ? 'on' : undefined} onClick={() => tanlovQoy(v)}>{tr(TANLOV_NOM[v])}</QChip>)}
-      </div>}
+      </div>
       {xatoQ('tanlov')}
       {tur === 'mahsulot' && d.tanlov === 'toxtataman' && <p className="nx-kul">{tr(KULRANG.toxtat1)} {tr(KULRANG.toxtat2)}</p>}
       {ishTaklif}
       {tur === 'ish' && d.tanlov && <p className="nx-kul">{tr(KULRANG[d.tanlov])}</p>}
       {tur === 'ish' && d.tanlov === 'dastur' && ctx && ctx.dastur === 'diamond' && <p className="nx-kul">{tr(DC_MATN)}.</p>}
       {tur === 'ish' && d.tanlov === 'dastur' && ctx && ctx.dastur && ctx.maslahatchiYoq && <p className="nx-kul">{tr(KULRANG.maslahatchi)}</p>}
-      {maydon(tur === 'mahsulot' ? 'sabab' : 'nima', 1)}
-      {tur === 'mahsulot' && <p className="nx-kul">{tr(KULRANG.sabab)}</p>}
+    </>;
+    if (k === 'sabab') return <>{maydon('sabab', n)}<p className="nx-kul">{tr(KULRANG.sabab)}</p></>;
+    if (k === 'nima') return maydon('nima', n);
+    if (k === 'm1') return <>
       {tur === 'mahsulot' && ctx && ctx.keyingi && <button type="button" className={cxx('nx-taklif', taklif.k && 'qoyildi')} disabled={!!taklif.k} onClick={() => taklifQoy('k', { m1: ctx.keyingi })}>{taklif.k && '✓ '}{tr({ uz: '13-Moduldagi rejangiz:', ru: 'Ваш план из 13-го модуля:' })} «{ctx.keyingi}»</button>}
-      {maydon('m1', 2)}
-      {maydon('m6', 3)}
-      {maydon('qadam', 4)}
+      {maydon('m1', n)}
+    </>;
+    if (k === 'm6' || k === 'qadam') return maydon(k, n);
+    return (
       <div className="nx-mq">
         <label className={cxx('nx-maydon', 'sana', xato && xato.m === 'sana' && 'err', birinchiBosh === 'sana' && 'chorla')}>
-          <i className="nx-maydon-n">5</i>
+          <i className="nx-maydon-n">{n}</i>
           <span className="nx-sana-y">{tr({ uz: 'Birinchi qadam sanasi', ru: 'Дата первого шага' })}</span>
           <input type="date" min={bugun} value={d.sana} aria-label={tr({ uz: 'Birinchi qadam sanasi', ru: 'Дата первого шага' })} onChange={(e) => yangila({ sana: e.target.value })} />
         </label>
         {xatoQ('sana')}
         <p className="nx-kul">{tr(KULRANG.sana)}</p>
+      </div>
+    );
+  };
+  return (
+    <div ref={kartaRef} key={tur} className={cxx('nx-karta', xato && xato.blok && 'err', uchish && 'uch')}>
+      <span className="q-yorliq">{tr(YON_NOM[tur])}</span>
+      <div className="nx-qadamlar" onKeyDown={(e) => { if (e.key === 'Enter' && e.target && e.target.tagName === 'INPUT') { e.preventDefault(); keyingi(); } }}>
+        {qadamlar.map((k, i) => {
+          const nom = tr(QADAM_NOM[k]);
+          if (i === qi) return (
+            <div key={k} className="nx-sav fade-step">
+              <span className="nx-sav-y">{i + 1} · {nom}</span>
+              {ichki(k, i + 1)}
+              <div className="nx-sav-t"><QTugma ikkinchi onClick={keyingi}>{i < qadamlar.length - 1 ? tr({ uz: 'Keyingi', ru: 'Дальше' }) : tr({ uz: 'Tayyor', ru: 'Готово' })}</QTugma></div>
+            </div>
+          );
+          if (i < otdi) return <QChip key={k} className="nx-yig" holat="ok" onClick={() => setQi(i)}><i>✓</i><span>{nom}:</span><b>{yigma(k)}</b></QChip>;
+          return <span key={k} className="nx-kul-q">{i + 1} · {nom}</span>;
+        })}
       </div>
       {yordam && <div className="nx-yordam fade-step">
         {YORDAM[tur].map((y, i) => <p key={i}>{tr(y)}</p>)}
@@ -2546,6 +2583,13 @@ export default function PmNextStepsLesson({ lang: langProp, onFinished, liveToke
         @keyframes nx-uch { to { opacity: 0; transform: translateX(-46px) scale(.7); } }
         .nx-karta.err { box-shadow: inset 0 0 0 1.5px ${T.err}, 0 10px 26px -10px rgba(${T.shadowBase},0.22); }
         .nx-yol, .nx-ikki { display: flex; flex-wrap: wrap; gap: 8px; }
+        .nx-qadamlar { display: flex; flex-direction: column; gap: 8px; }
+        .nx-sav { display: flex; flex-direction: column; gap: 8px; padding: 12px 14px; border-radius: 12px; border: 1.5px solid ${T.accent}; background: ${T.paper}; min-width: 0; }
+        .nx-sav-y { font-size: 11px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: ${T.accent}; }
+        .nx-sav-t { display: flex; justify-content: flex-end; }
+        .q-chip.nx-yig, .nx-yig { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; width: 100%; padding: 8px 14px; border-radius: 12px; border: 0; background: ${T.okFon}; color: ${T.ok}; font-family: inherit; font-size: 13.5px; font-weight: 600; text-align: left; cursor: pointer; }
+        .nx-yig i { font-style: normal; font-weight: 800; } .nx-yig b { font-weight: 700; min-width: 0; overflow-wrap: anywhere; }
+        .nx-kul-q { padding: 8px 14px; border-radius: 12px; background: ${T.bg}; color: ${T.ink2}; font-size: 13px; font-weight: 600; }
         .nx-yol.chorla .q-chip, .nx-ikki.chorla .q-chip { border-color: ${fon(T.accent, 0.6)}; animation: nx-chorla 1.8s ease-out .5s 2; }
         .nx-yol.chorla .q-chip:nth-child(2), .nx-ikki.chorla .q-chip:nth-child(2) { animation-delay: .75s; } .nx-yol.chorla .q-chip:nth-child(3) { animation-delay: 1s; } .nx-yol.chorla .q-chip:nth-child(4) { animation-delay: 1.25s; }
         .nx-mq { display: flex; flex-direction: column; gap: 4px; }

@@ -881,7 +881,8 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
         sarlavha={tr({ uz: <>Yangi ekransiz demo yo'li <span className="italic" style={{ color: T.accent }}>qanday yaxshilanadi?</span></>, ru: <>Как улучшить путь демо <span className="italic" style={{ color: T.accent }}>без нового экрана?</span></> })}
         mentor={<Mentor>{tr(mentor)}</Mentor>}
-        vizual={<div className="py-v">
+        bashorat={!tugadi && <Bashorat savol={{ uz: "Mentor demo yo'li uchun yangi funksiya qo'shadimi?", ru: 'Добавит ли Ментор новую функцию для пути демо?' }} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
+        vizual={!taxmin ? null : <div className="py-v py-sahna-kir">
           {tugadi
             ? <div className="py-sahna py-tug">
               <div className="py-chap"><Brauzer ong={SAYQAL_SAHNA.yorliq}>{ilova}</Brauzer></div>
@@ -897,7 +898,6 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <Brauzer chap={<Rejim rejim={rejim} onKeyin={q === 2 && !band ? keyin : undefined} />} ost={<span className="py-sekin">{tr(SAYQAL_SAHNA.sekin)}</span>}>{ilova}</Brauzer>
               </div>
               <div className="py-ung">
-                <Bashorat savol={{ uz: "Mentor demo yo'li uchun yangi funksiya qo'shadimi?", ru: 'Добавит ли Ментор новую функцию для пути демо?' }} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />
                 <span className="py-amal">
                   <Bo on={ochHalqa ? och : undefined} className={cx('py-btn sq-oyinlar', q > 0 && 'xira', halqa(ochHalqa))}>{tr({ uz: "«O'yinlar»ni ochish", ru: 'Открыть «Игры»' })}</Bo>
                   <span className={cx('py-hisob', flash && 'on')}>{tr(HISOB)}</span>
@@ -996,7 +996,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
         sarlavha={tr({ uz: <>Harakat kamaytirilsa, <span className="italic" style={{ color: T.accent }}>ekranda nima qoladi?</span></>, ru: <>Если уменьшить движение, <span className="italic" style={{ color: T.accent }}>что останется на экране?</span></> })}
         mentor={<Mentor>{tr(mentor)}</Mentor>}
-        vizual={<div className="py-v">
+        bashorat={!tugadi && <Bashorat savol={{ uz: 'Harakat kamaytirilsa, sayqaldan nima qoladi?', ru: 'Если уменьшить движение, что останется от шлифовки?' }} variantlar={S5_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
+        vizual={!taxmin ? null : <div className="py-v py-sahna-kir">
           {tugadi
             ? <div className="py-sahna py-tug">
               <div className="py-chap"><Brauzer>{ilova}</Brauzer></div>
@@ -1005,7 +1006,6 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             : <div className="py-sahna">
               <div className="py-chap"><Brauzer>{ilova}</Brauzer></div>
               <div className="py-ung">
-                <Bashorat savol={{ uz: 'Harakat kamaytirilsa, sayqaldan nima qoladi?', ru: 'Если уменьшить движение, что останется от шлифовки?' }} variantlar={S5_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />
                 <Kalit on={kalit} onYoq={taxmin && q === 0 && !band ? yoq : undefined} />
                 <span className="py-hj-ust"><HolatJadval muhr={muhr} /></span>
                 <NomQator matn={q >= 2 ? NOM_PRM : null} />
@@ -1823,13 +1823,12 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className={cx('py-blok', qulfli && 'qulf', done && 'tugadi')}>
-        <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
+        <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
           qadamlar={qadamlar}
           joriy={stepN} onBajardim={bajardim} onQaytar={qaytar} mentorRejim={isMentorLive}
           tugadi={done} tugadiMatn={done && tk === 'ok' && doneText ? tx(doneText) : null} natija={natija} natijaYorliq={tr(NATIJA_YORLIQ)}
           pastki={<>{done && tk === 'boshqa' && <p className="py-boshqa fade-step">{tr(TK_BOSHQA)}</p>}{done && izoh && <QIzoh>{tx(izoh)}</QIzoh>}<MentorPracticeStats live={_live} screen={screen} /></>}>
           {ortda && !done && <p className="py-ortda">{tx(ortda)}</p>}
-          {ulgur && !done && <p className="py-ulgur">{tx(ulgur)}</p>}
           {ustoz && isMentorLive && <div className="py-ustoz"><b>{tr({ uz: "O'qituvchi eslatmasi", ru: 'Заметка для учителя' })}</b>{ustoz.map((s, i) => <span key={i}>{tx(s)}</span>)}</div>}
         </QBlok>
       </div>
@@ -2311,6 +2310,9 @@ export default function PolishDayLesson({ lang: langProp, onFinished, liveToken 
         .py-ustoz b { color: ${T.ink}; font-size: 12px; letter-spacing: .05em; text-transform: uppercase; }
         /* Sahna: brauzer oynasi (o'lcham barqaror) va ichida telefon kengligidagi ilova */
         .py-v { width: 100%; }
+        .py-sahna-kir { animation: py-kirdi .45s ease-out both; }
+        @keyframes py-kirdi { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .py-sahna-kir { animation: none; } }
         .py-sahna { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: 22px; align-items: start; }
         .py-sahna.py-tug { align-items: center; }
         .py-chap, .py-ung { display: flex; flex-direction: column; gap: 12px; min-width: 0; }

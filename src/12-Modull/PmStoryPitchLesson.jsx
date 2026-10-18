@@ -639,14 +639,14 @@ const BOLAK_ID = ['muammo', 'bozor', 'yechim', 'raqamlar', 'jamoa', 'keyingi'];
 const BOLAK_NOM = { muammo: { uz: 'Muammo', ru: 'Проблема' }, bozor: { uz: 'Bozor', ru: 'Рынок' }, yechim: { uz: 'Yechim', ru: 'Решение' }, raqamlar: { uz: 'Raqamlar', ru: 'Цифры' }, jamoa: { uz: 'Jamoa', ru: 'Команда' }, keyingi: { uz: 'Keyingi qadam', ru: 'Следующий шаг' } };
 const VAQT = [40, 30, 90, 60, 30, 50]; // tayanch 9.1 — bu mashqda, jami 5:00
 const JAMOA_PITCH = {
-  muammo: { uz: "O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.", ru: 'Игрокам трудно собрать людей в команду. У 4 из 5 игроков, которых я спросил, в последней игре не хватило людей или кто-то не пришёл.' },
+  muammo: { uz: "O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.", ru: 'Игрокам трудно собрать людей в команду. У 3 из 3 игроков, которых я спросил, в последней игре не хватило людей или кто-то не пришёл.' },
   bozor: { uz: "Mahalla futbol guruhida — 60 kishi; ilovada — 6 tashkilotchi. Boshqa mahallalarni hali tekshirmaganmiz.", ru: 'В футбольной группе махалли — 60 человек; в приложении — 6 организаторов. Другие махалли мы ещё не проверяли.' },
   yechim: { uz: "Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.", ru: 'Организатор объявляет игру, игроки присоединяются одним нажатием и в день игры подтверждают, что придут.' },
   raqamlar: { uz: "51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif havolasidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.", ru: '51 пользователь; 11 из них — мои одноклассники, 7 пришли по ссылке-приглашению. 3 организатора письменно подтвердили Pro — это ещё не оплата.' },
   jamoa: { uz: "Men — g'oya, mahsulot va kod (agent bilan). Sinab ko'rganlar — 6 tashkilotchi va o'yinchilar.", ru: 'Я — идея, продукт и код (с агентом). Пробовали — 6 организаторов и игроки.' },
   keyingi: { uz: "Uch tashkilotchi bilan \"Doimiy o'yin\"ni test rejimda sinayman. Sizdan bitta so'rov: mahalladagi maydon egalari bilan tanishtiring.", ru: 'С тремя организаторами проверю «Постоянную игру» в тестовом режиме. Одна просьба к вам: познакомьте с владельцами площадок в махалле.' }
 };
-const S6_MUAMMO = { uz: "O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 5 o'yinchidan 4 tasida…", ru: 'Игрокам трудно собрать людей в команду. У 4 из 5 игроков, которых я спросил…' }; // MD 6-ekran 1-qadam aynan
+const S6_MUAMMO = { uz: "O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 3 o'yinchidan 3 tasida…", ru: 'Игрокам трудно собрать людей в команду. У 3 из 3 игроков, которых я спросил…' }; // MD 6-ekran 1-qadam aynan
 const HAKAM_SAVOL = { muammo: { uz: 'Bu muammo borligini qayerdan bilasiz?', ru: 'Откуда вы знаете, что эта проблема есть?' } };
 const birinchiGap = (s) => { const t = String(s || '').trim(); const m = t.match(/^.+?[.!?](\s|$)/); return m ? m[0].trim() : t; };
 
@@ -964,12 +964,12 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Ro'yxat o'rniga zalga <A>nimani aytasiz?</A></>, ru: <>Что вы скажете залу <A>вместо списка?</A></> })}
         mentor={<Mentor>{tr({ uz: "Tugmalarni birma-bir bosing va Mentor ro'yxat o'rniga nimani aytishiga qarang.", ru: 'Нажимайте кнопки по одной и смотрите, что Ментор говорит вместо списка.' })}</Mentor>}
         bashorat={!done && ixchamBashorat(taxmin, <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr({ uz: "Mentor ro'yxat o'rniga nechta voqeani aytadi?", ru: 'Сколько случаев Ментор назовёт вместо списка?' })} variantlar={S2_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} />)}
-        harakat={!done && <div className="sp-harakat">
+        harakat={!taxmin ? null : !done && <div className="sp-harakat">
           <Qadamlar3 nomlar={S2_TUGMA} q={q} faol={!!taxmin} onBos={() => setQ(n => Math.min(3, n + 1))} />
           {q > 0 && <QIzoh key={q}>{tr(S2_IZOH[q - 1])}</QIzoh>}
           {ipucha && IPUCHA(tr({ uz: "Yoqilgan tugmani bosing — uyaga nima tushishini ko'ring.", ru: 'Нажмите активную кнопку — посмотрите, что попадёт в ячейку.' }))}
         </div>}
-        vizual={sahna}
+        vizual={!taxmin ? null : sahna}
         xulosa={done && <XulosaQ taxmin={tx && <TaxminQ togri={taxmin === 'bitta'} aslida={tr({ uz: 'bitta', ru: 'один' })} />}
           matn={tr({ uz: "Mahsulot hikoyasi — bitta odam, bitta lahza va mahsulot bilan kelgan o'zgarish.", ru: 'История продукта — один человек, один момент и изменение, которое пришло с продуктом.' })}
           izoh={tr(S2_IZOH[2])} />}
@@ -1093,7 +1093,7 @@ const Screen5 = (props) => (
 // ===== SCREEN 6 — HIKOYA PITCHDA (QTushuncha keng; bashorat → 3 tugma: Muammo · Yechim · Raqamlar; hikoya qismi bo'lakka ko'rinib uchadi — SABOQ P3; telefonsiz — SABOQ 24) =====
 const S6_TUGMA = [{ uz: 'Muammo', ru: 'Проблема' }, { uz: 'Yechim', ru: 'Решение' }, { uz: 'Raqamlar', ru: 'Цифры' }];
 const S6_IZOH = [
-  { uz: "Lahza Muammoni ochadi; dalil esa bu bitta odamda emasligini aytadi: 5 o'yinchidan 4 tasida.", ru: 'Момент открывает Проблему; а довод говорит, что это не у одного человека: у 4 из 5 игроков.' },
+  { uz: "Lahza Muammoni ochadi; dalil esa bu bitta odamda emasligini aytadi: 3 o'yinchidan 3 tasida.", ru: 'Момент открывает Проблему; а довод говорит, что это не у одного человека: у 3 из 3 игроков.' },
   { uz: "O'zgarish Yechimda jonli demo bilan ko'rinadi: ekranda «9 / 10».", ru: 'Изменение видно в Решении с живым демо: на экране «9 / 10».' },
   { uz: "Hikoya bitta odamni ko'rsatadi; Raqamlar — bu odamdan tashqaridagi son: 51 foydalanuvchi.", ru: 'История показывает одного человека; Цифры — число за пределами этого человека: 51 пользователь.' }
 ];
@@ -1136,12 +1136,12 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Hikoya pitchning <A>qaysi bo'laklariga tushadi?</A></>, ru: <>В какие части питча <A>попадает история?</A></> })}
         mentor={<Mentor>{tr({ uz: "Tugmalarni birma-bir bosing va hikoya qismlari qaysi bo'lakka tushishini ko'ring.", ru: 'Нажимайте кнопки по одной и смотрите, в какую часть попадают части истории.' })}</Mentor>}
         bashorat={!done && ixchamBashorat(taxmin, <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr({ uz: "Mentor hikoyasi nechta bo'lakka tushadi?", ru: 'В сколько частей попадает история Ментора?' })} variantlar={S6_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} />)}
-        harakat={!done && <div className="sp-harakat">
+        harakat={!taxmin ? null : !done && <div className="sp-harakat">
           <Qadamlar3 nomlar={S6_TUGMA} q={q} faol={!!taxmin} onBos={bos} />
           {q > 0 && <QIzoh key={q}>{tr(S6_IZOH[q - 1])}</QIzoh>}
           {ipucha && IPUCHA(tr({ uz: "Yoqilgan tugmani bosing — hikoya qismi qaysi bo'lakka uchishini ko'ring.", ru: 'Нажмите активную кнопку — посмотрите, в какую часть полетит часть истории.' }))}
         </div>}
-        vizual={sahna}
+        vizual={!taxmin ? null : sahna}
         xulosa={done && <XulosaQ taxmin={tx && <TaxminQ togri={taxmin === 'ikki'} aslida={tr({ uz: 'ikkitasiga', ru: 'в две' })} />}
           matn={tr({ uz: "Bu misolda hikoya ikki bo'lakda: lahza Muammoni ochadi, o'zgarish Yechimda; Raqamlar — tashqaridagi son.", ru: 'В этом примере история в двух частях: момент открывает Проблему, изменение — в Решении; Цифры — внешнее число.' })}
           izoh={tr(S6_IZOH[2])} />}
@@ -2404,6 +2404,9 @@ export default function PmStoryPitchLesson({ lang: langProp, onFinished, liveTok
         .q-bashorat:not(:has(.q-chip.on)) .q-chip:not(:disabled) { border-color: ${fon(T.accent, 0.6)}; animation: sp-chorla 1.8s ease-out .5s 2; }
         .q-bashorat .q-chip:nth-child(2) { animation-delay: .75s; } .q-bashorat .q-chip:nth-child(3) { animation-delay: 1s; }
         .sp-bash.ix .q-bashorat { padding-top: 8px; padding-bottom: 8px; flex-direction: row; flex-wrap: wrap; align-items: center; column-gap: 14px; row-gap: 6px; }
+        .sp-bash.ix ~ .q-split, .sp-bash.ix ~ .q-col { animation: sp-sahna-kirdi .45s ease-out both; }
+        @keyframes sp-sahna-kirdi { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .sp-bash.ix ~ .q-split, .sp-bash.ix ~ .q-col { animation: none; } }
         .sp-bash.ix .q-bashorat > .q-yorliq { display: none; }
         .q-yorliq .sp-brend { text-transform: none; }
         .sp-bash.ix .q-variantlar { flex-wrap: wrap; }

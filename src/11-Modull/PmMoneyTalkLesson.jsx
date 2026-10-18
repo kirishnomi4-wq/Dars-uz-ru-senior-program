@@ -972,7 +972,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   };
   const tolgan = (u) => S2_GAPLAR.findIndex(g => g.uya === u) < i;
   const sotishN = S2_GAPLAR.slice(0, i).filter(g => g.k === 'sotish').length;
-  const varaq = (
+  const varaq = (ichki = null) => (
     <Varaq sKey={done ? 'm' : 'v'} sarlavha={done ? tr({ uz: 'Mentorning suhbat savollari', ru: 'Вопросы разговора Ментора' }) : <>{tr({ uz: 'Mentor misoli', ru: 'Пример Ментора' })} · <MJ /></>}>
       <Bolim nom={tr({ uz: 'Savollar', ru: 'Вопросы' })}>
         <div className="mt-uyalar">
@@ -981,6 +981,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>
       </Bolim>
       <p key={sotishN} className={cxx('mt-demaydi', sotishN > 0 && 'bor')}>{tr({ uz: 'Mentor bunday demaydi', ru: 'Ментор так не говорит' })} · <b>{sotishN}</b></p>
+      {ichki}
     </Varaq>
   );
   const karta = !done && (
@@ -1007,7 +1008,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
         sarlavha={tr({ uz: <>Mentor tashkilotchiga <A>qaysi gaplarni aytadi?</A></>, ru: <>Какие фразы Ментор <A>говорит организатору?</A></> })}
         mentor={<Mentor>{tr({ uz: "Mentor misolida Pro tashkilotchi uchun, o'yinchilar bepul — har gapga mos tugmani bosing.", ru: 'В примере Ментора Pro — для организатора, игрокам бесплатно: нажимайте подходящую кнопку для каждой фразы.' })}</Mentor>}
-        vizual={tugadi ? <div className="mt-fokus">{varaq}</div> : <div className="mt-ikki">{sahna}<div className="mt-o">{varaq}{tugmalar}</div></div>}
+        vizual={tugadi ? <div className="mt-fokus">{varaq()}</div> : <div className="mt-ikki">{sahna}<div className="mt-o">{varaq(tugmalar)}</div></div>}
         xulosa={done && <XulosaQ
           matn={tr({ uz: "Bu darsda suhbat — sotish emas, savol: avval odamning hozirgi ishi so'raladi, keyin narx.", ru: 'На этом уроке разговор — не продажа, а вопрос: сначала спрашивают о том, что человек делает сейчас, потом — цена.' })}
           izoh={tr({ uz: "Suhbat savollari — har odamga bir xil tartibda beriladigan asosiy savollar.", ru: 'Вопросы разговора — основные вопросы, которые задают каждому в одном порядке.' })} />}
@@ -1079,12 +1080,13 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const qatorlar = MENTOR_SUHBAT.map((s, n) => (n < j
     ? { k: 's' + n, kim: tr(s.kim), gap: tr(s.gap), javob: s.javob, narx: narxKatak(s.narxi), yangi: yangiQ === n }
     : n === j ? { k: 's' + n, kim: tr(s.kim), joriy: true, err: xato && xato.j === n } : { k: 's' + n, uzuq: true }));
-  const varaq = (
+  const varaq = (ichki = null) => (
     <Varaq sarlavha={<>{tr({ uz: 'Mentor misoli', ru: 'Пример Ментора' })} · <MJ /></>}>
       <Bolim nom={tr({ uz: 'Suhbatlar', ru: 'Разговоры' })}>
         <Jadval qatorlar={qatorlar} bRef={bRef} nRef={nRef} />
       </Bolim>
       {done && <p className="mt-mentor-yozuv fade-step">{tr(MENTOR_XULOSA[1])}</p>}
+      {ichki}
     </Varaq>
   );
   const s = MENTOR_SUHBAT[Math.min(j, 2)];
@@ -1106,7 +1108,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
         sarlavha={tr({ uz: <>Uch tashkilotchi <A>narx haqida nima dedi?</A></>, ru: <>Что три организатора <A>сказали о цене?</A></> })}
         mentor={<Mentor>{tr({ uz: "Mentor javoblarni intervyudagidek so'zma-so'z yozgan — har yozuvga mos belgini bosing.", ru: 'Ментор записал ответы слово в слово, как на интервью, — нажмите подходящую отметку для каждой записи.' })}</Mentor>}
-        vizual={tugadi ? <div className="mt-fokus">{varaq}</div> : <div className="mt-ikki">{sahna}<div className="mt-o">{varaq}{tugmalar}</div></div>}
+        vizual={tugadi ? <div className="mt-fokus">{varaq()}</div> : <div className="mt-ikki">{sahna}<div className="mt-o">{varaq(tugmalar)}</div></div>}
         xulosa={done && <XulosaQ
           matn={tr({ uz: "Bu darsda javob so'zma-so'z yoziladi va belgi oladi: ha, qimmat, yo'q yoki javob yo'q.", ru: 'На этом уроке ответ записывают слово в слово и ставят отметку: да, дорого, нет или нет ответа.' })}
           izoh={tr(MENTOR_XULOSA[0])} />}
@@ -2725,6 +2727,7 @@ export default function PmMoneyTalkLesson({ lang: langProp, onFinished, liveToke
         .mt-mini { display: flex; flex-direction: column; gap: 6px; max-width: 560px; }
         .mt-mini .mt-uya:not(.faol) { color: ${T.ink2}; }
         .mt-harakat { display: flex; flex-direction: column; gap: 8px; }
+        .mt-varaq .mt-harakat { margin-top: 2px; padding-top: 10px; border-top: 1px solid ${T.line}; }  /* 213.13 (F-1015-319): tugmalar va izoh varaq kartasining ichida */
         .mt-tugmalar { display: flex; flex-wrap: wrap; gap: 8px; }
         .mt-belgilar { gap: 6px; }
         .mt-tugmalar.silk { animation: mt-silk .4s ease-in-out; }

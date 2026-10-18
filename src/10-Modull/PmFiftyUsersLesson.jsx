@@ -978,9 +978,9 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         bashorat={!taxmin
           ? <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr(S2_SAVOL)} variantlar={S2_TAXMIN.map(x => ({ k: x.k, t: tr(x.t) }))} tanlov={taxmin} onTanla={setTaxmin} />
           : !done && <BashoratQ savol={tr(S2_SAVOL)} javob={tr(tx.t)} />}
-        vizual={tugadi
+        vizual={!taxmin ? null : tugadi
           ? <div className="fu-fokus">{jadval}{sanoq}</div>
-          : <div className="fu-split">{maket}<div className="fu-ong">{jadval}{joriy}{sanoq}{harakat}</div></div>}
+          : <div className="fu-split fu-karta-kir">{maket}<div className="fu-ong">{jadval}{joriy}{sanoq}{harakat}</div></div>}
         xulosa={done && <>{tx && <TaxminQ togri={!!tx.ok} haqiqat={tr({ uz: '20 kishi — 35 va 50 keyingi bosqichlarda kutilyapti', ru: '20 человек — 35 и 50 ожидаются на следующих этапах' })} />}{tr({ uz: "Bu misolda 20 — taxmin; kunning oxirida ikki son sanaldi: ro'yxatdan o'tgan va asosiy harakatni qilgan.", ru: 'В этом примере 20 — предположение; в конце дня посчитали два числа: зарегистрировавшихся и сделавших основное действие.' })}<IzohQ>{tr({ uz: "Bu misolda taxmin va haqiqiy son teng chiqdi — sizda farq qilishi mumkin.", ru: 'В этом примере предположение и настоящее число совпали — у вас может быть иначе.' })}</IzohQ></>}
       />
     </Stage>
@@ -1064,9 +1064,9 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         bashorat={!taxmin
           ? <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr(S4_SAVOL)} variantlar={S4_TAXMIN.map(x => ({ k: x.k, t: tr(x.t) }))} tanlov={taxmin} onTanla={setTaxmin} />
           : !done && <BashoratQ savol={tr(S4_SAVOL)} javob={tr(tx.t)} />}
-        vizual={tugadi
+        vizual={!taxmin ? null : tugadi
           ? <div className="fu-fokus"><YuborishJadval n={3} /></div>
-          : taxmin ? <div className="fu-split">{maket}<div className="fu-ong"><YuborishJadval n={n} yangi={yangi} />{joriy}</div></div> : <div className="fu-yakka">{maket}</div>}
+          : <div className="fu-split fu-karta-kir">{maket}<div className="fu-ong"><YuborishJadval n={n} yangi={yangi} />{joriy}</div></div>}
         xulosa={done && <>{tx && <TaxminQ togri={!!tx.ok} haqiqat={tr({ uz: "uchta narsa — ma'lumot, o'lchov, havola", ru: 'три вещи — данные, измерение, ссылка' })} />}{tr({ uz: "Bu misolda uchalasi ham tayyor emas edi: telefon so'ralardi, qadamlar sanalmasdi, havola yo'q edi.", ru: "В этом примере ни одна из трёх не была готова: спрашивали телефон, шаги не считались, ссылки не было." })}</>}
       />
     </Stage>
@@ -1984,7 +1984,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, eyebrow, t
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className={cxx('fu-blok', qulf && 'fu-qulf')}>
-        <QBlok til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{ustida}</>} zoom={Zoomable}
+        <QBlok ulgur={ulgur && !done ? fmtCode(tr(ulgur)) : null} til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{ustida}</>} zoom={Zoomable}
           qadamlar={steps.map(c => ({
             h: tr(c.h),
             t: <>{c.t}{c.prompt && <FuPrompt satrlar={c.prompt.satrlar} namuna={c.prompt.namuna} toldir={c.prompt.toldir} />}</>,
@@ -1994,7 +1994,6 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, eyebrow, t
           tugadi={done} tugadiMatn={tr(doneText)} natija={natija} natijaYorliq={tr(NATIJA_YORLIQ)}
           pastki={<MentorPracticeStats live={_live} screen={screen} />}>
           {pastQator}
-          {ulgur && !done && <p className="fu-ulgur">{fmtCode(tr(ulgur))}</p>}
           {ortda && <p className="fu-ortda">{tr({ uz: 'Ortda qoldingizmi — Mentor misolini alohida papkada oching:', ru: "Отстали? Откройте пример Ментора в отдельной папке:" })} <code className="fu-buyruq">{ORTDA[0]}</code> · <code className="fu-buyruq">{ORTDA[1]}</code> · <code className="fu-buyruq">{ORTDA[2]}</code> {fmtCode(tr(ortda))}</p>}
         </QBlok>
       </div>
@@ -2666,8 +2665,6 @@ export default function PmFiftyUsersLesson({ lang: langProp, onFinished, liveTok
         .fu-ong { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
         .fu-fokus { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 760px; margin: 0 auto; }
         .fu-harakat { display: flex; justify-content: flex-start; }
-        .fu-yakka { display: flex; justify-content: center; }
-        .fu-yakka > .it-maket { width: 300px; max-width: 100%; }
         .fu-n { font-family: 'JetBrains Mono', monospace; font-size: 12px; opacity: 0.85; margin-left: 4px; }
         .fu-joriy-q { display: flex; flex-direction: column; gap: 6px; }
         p.fu-joriy { margin: 0; padding: 10px 12px; border-radius: 10px; background: ${T.paper}; border: 1px solid ${T.line}; font-size: 13.5px; line-height: 1.5; color: ${T.ink}; animation: fu-kir .45s ease-out both; }
@@ -2784,6 +2781,8 @@ export default function PmFiftyUsersLesson({ lang: langProp, onFinished, liveTok
         .fu-yakun { display: contents; }
         .fu-yakun.belgisiz .done-chip .tick { display: none; }
         @keyframes fu-kir { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+        .fu-karta-kir { animation: fu-kir .4s ease-out both; } /* F-1015-292: sahna bashoratdan keyin kiradi (213.7) */
+        @media (prefers-reduced-motion: reduce) { .fu-karta-kir { animation: none; } }
         @keyframes fu-yoz { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: none; } }
         @keyframes fu-sirg { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: none; } }
         @keyframes fu-yashil { 0%, 45% { background: ${T.okFon}; } 100% { background: transparent; } }

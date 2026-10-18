@@ -144,7 +144,7 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
   - 2-harakatdan keyin: Endi tepadagi «Keyin»ni bosing — Mentor o'zgartirgan ilova ochiladi.
   - 3-harakatdan keyin: Endi «Qo'shilaman»ni yana bir marta bosing.
   - tugagach: Natijani taxminingiz bilan solishtiring.
-- Bashorat (ballsiz, 181; yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — qo'shiladigan narsa o'sish tartibida): **Mentor demo yo'li uchun yangi funksiya qo'shadimi?** · Yo'q, qo'shmaydi · Bitta yangi tugma · Bitta yangi ekran (04-FILTR 21: kutish belgisi va kulrang karta — UI elementi, funksiya emas)
+- Bashorat (ballsiz, 181; yorliq «Avval o'zingiz belgilab ko'ring»; S-015 — qo'shiladigan narsa o'sish tartibida): **Mentor demo yo'li uchun yangi funksiya qo'shadimi?** · Yo'q, qo'shmaydi · Bitta yangi tugma · Bitta yangi ekran (04-FILTR 21: kutish belgisi va kulrang karta — UI elementi, funksiya emas) · **213.7 (F-1015-305…317, 18.10 avtopilot): bashorat ekranda yolg'iz; tanlangach ixcham qatorga yig'iladi, sahna va harakat tugmalari shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin o'chiq tugma/xira sahna yo'q.**
   Tanlangach yopilmaydi: ixcham qator «TAXMININGIZ · savol · tanlangan variant» natija chiqquncha turadi.
 - Sahna (`SayqalSahna`): tepada tanlov tugmalari «Oldin» (tanlangan) · «Keyin» (2-harakatdan oldin xira) · brauzer oynasi · pastda demo yo'li chizig'i (uch kulrang nuqta: yuklanish · bosish · muvaffaqiyat) · kulrang yorliq «Backend sekin javob beradi — namuna».
   Sahna tugmasi (chegarali, ramkadan tashqarida): «O'yinlar»ni ochish (halqada). Ostida kichik hisoblagich: «Ekranlar: 2 · tugmalar: o'sha».
@@ -256,7 +256,7 @@ Mentor misolida yangi son yo'q: sahnadagi yagona son — namuna o'yin «8 / 10»
   - bashoratdan keyin: Endi o'ngdagi «Harakatni kamaytirish» kalitini yoqing.
   - 1-harakatdan keyin: Endi «O'yin» ekranida «Qo'shilaman»ni bosing va jadvalni kuzating.
   - tugagach: Natijani taxminingiz bilan solishtiring.
-- Bashorat (ballsiz, 181; tanlangach ixcham qator; S-015 — qoladigan narsa o'sish tartibida): **Harakat kamaytirilsa, sayqaldan nima qoladi?** · Hech narsa qolmaydi · Faqat yozuvlar qoladi · Yozuv, kartalar va son qoladi
+- Bashorat (ballsiz, 181; tanlangach ixcham qator; S-015 — qoladigan narsa o'sish tartibida): **Harakat kamaytirilsa, sayqaldan nima qoladi?** · Hech narsa qolmaydi · Faqat yozuvlar qoladi · Yozuv, kartalar va son qoladi · **213.7 (F-1015-305…317, 18.10 avtopilot): bashorat ekranda yolg'iz; tanlangach ixcham qatorga yig'iladi, sahna va harakat tugmalari shundan keyin kirib keladi (kirish-animatsiya, reduced-motion'da yo'q). Taxmindan oldin o'chiq tugma/xira sahna yo'q.**
 - Chap: `SayqalSahna` «Keyin» holatida (brauzer, «O'yinlar» ekrani). O'ng: chizilgan kalit «Harakatni kamaytirish» (o'chiq; halqada) va jadval «Harakat · Holat» — besh bo'sh qator (bitta manba `HARAKAT_HOLAT`):
   «kulrang kartalar» · «kutish belgisi aylanishi» · «Qo'shilmoqda… yozuvi» · «son kattalashishi» · «9 / 10».
 - **Harakat → Vizual o'zgarish:**

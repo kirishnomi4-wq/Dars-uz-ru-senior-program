@@ -604,7 +604,7 @@ const joriyBolak = (sek) => { let acc = 0; for (let i = 0; i < VAQT.length; i++)
 
 // Mentor misoli — «Maydon Jamoa» final pitchi (tayanch 1.1 AYNAN + 5-darsdagi uch tuzatish — 9.2, 9.16; sonlar 1.14)
 const JAMOA_PITCH = {
-  muammo: { eski: { uz: "O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.", ru: 'Игрокам трудно собрать людей в команду. У 4 из 5 игроков, которых я спросил, в последней игре не хватило людей или кто-то не пришёл.' } },
+  muammo: { eski: { uz: "O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.", ru: 'Игрокам трудно собрать людей в команду. У 3 из 3 игроков, которых я спросил, в последней игре не хватило людей или кто-то не пришёл.' } },
   bozor: {
     eski: { uz: "Mahalla futbol guruhida — 60 kishi; ilovada — 6 tashkilotchi. Boshqa mahallalarni hali tekshirmaganmiz.", ru: 'В футбольной группе махалли — 60 человек; в приложении — 6 организаторов. Другие махалли мы ещё не проверяли.' },
     yangi: { uz: "Mahalla futbolining Telegram guruhida — 60 a'zo; ilovada — 6 tashkilotchi. Boshqa mahallalarni hali tekshirmaganmiz.", ru: 'В Telegram-группе футбола махалли — 60 участников; в приложении — 6 организаторов. Другие махалли мы ещё не проверяли.' }
@@ -1008,7 +1008,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Hakam savoliga <A>qanday javob berasiz?</A></>, ru: <>Как вы <A>ответите на вопрос судьи?</A></> })}
         mentor={<Mentor>{tr({ uz: "Hakam javobni bir daqiqada eshitadi — har savol ostidagi ikki javobdan mosini bosing.", ru: 'Судья слушает ответ минуту — под каждым вопросом нажмите подходящий из двух ответов.' })}</Mentor>}
         bashorat={!done && ixchamBashorat(taxmin, <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr({ uz: "Mentor nechta savolga «tekshirib aytaman» deydi?", ru: 'На сколько вопросов Ментор скажет «проверю и скажу»?' })} variantlar={S2_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} />)}
-        harakat={!done && <div className="fp-harakat">
+        harakat={!taxmin ? null : !done && <div className="fp-harakat">
           {/* F-1015-164: javob kartalari bashoratdan keyin chiqadi (o'chiq turmaydi); uchish paytidagi bosish bos() ichida to'xtatiladi */}
           {!!taxmin && <>
             <span className="fp-kulyor">{tr({ uz: 'Mentor misoli', ru: 'Пример Ментора' })}</span>
@@ -1025,7 +1025,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {!(xatoBor.current) && <p className="fp-nishon-q">{tr({ uz: "Birinchi urinishda to'g'ri bajarsangiz — nishon sizniki.", ru: 'Сделаете верно с первой попытки — значок ваш.' })}</p>}
           {ipucha && IPUCHA(tr({ uz: "Hakam nimani so'radi — javob aynan shunga javob beradimi?", ru: 'О чём спросил судья — отвечает ли ответ именно на это?' }))}
         </div>}
-        vizual={sahna}
+        vizual={!taxmin ? null : sahna}
         xulosa={done && <XulosaQ taxmin={tx && <TaxminQ togri={taxmin === '1'} aslida={tr({ uz: 'bittasiga', ru: 'на один' })} />}
           matn={tr({ uz: "Bu misolda Mentor bilganini son va fakt bilan aytdi, bilmaganiga — «tekshirib aytaman».", ru: 'В этом примере Ментор то, что знал, сказал числом и фактом, а на то, чего не знал, — «проверю и скажу».' })}
           izoh={tr(S2_IZOH[1])} />}
@@ -1080,12 +1080,12 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Tuzatishlar qo'shilsa, pitch <A>5 daqiqaga sig'adimi?</A></>, ru: <>Если добавить исправления, <A>уложится ли питч в 5 минут?</A></> })}
         mentor={<Mentor>{tr({ uz: "Tugmalarni birma-bir bosing va Mentor pitchi qanday o'zgarishiga qarang.", ru: 'Нажимайте кнопки по одной и смотрите, как меняется питч Ментора.' })}</Mentor>}
         bashorat={!done && ixchamBashorat(taxmin, <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr({ uz: 'Yangi gaplar eskisidan qanday?', ru: 'Какие новые фразы по сравнению со старыми?' })} variantlar={S3_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} />)}
-        harakat={!done && <div className="fp-harakat">
+        harakat={!taxmin ? null : !done && <div className="fp-harakat">
           <Qadamlar3 nomlar={S3_TUGMA} q={q} faol={!!taxmin && q < 3} onBos={() => setQ(n => Math.min(3, n + 1))} />
           {q === 2 && <QIzoh>{tr(S3_IZOH[0])}</QIzoh>}
           {ipucha && IPUCHA(tr({ uz: "Yoqilgan tugmani bosing — Mentor pitchi qanday o'zgarishini ko'ring.", ru: 'Нажмите активную кнопку — посмотрите, как меняется питч Ментора.' }))}
         </div>}
-        vizual={sahna}
+        vizual={!taxmin ? null : sahna}
         xulosa={done && <XulosaQ taxmin={tx && <TaxminQ togri={taxmin === 'uzun'} aslida={tr({ uz: 'uzunroq — uchala yangi gap eskisidan uzun', ru: 'длиннее — все три новые фразы длиннее старых' })} />}
           matn={tr({ uz: "Bu misolda uch gap almashdi, reja 5 daqiqaligicha qoldi; haqiqiy vaqt — faqat taymer bilan aytganda.", ru: 'В этом примере сменились три фразы, план остался на 5 минут; настоящее время — только когда рассказываете с таймером.' })}
           izoh={tr(S3_IZOH[1])} />}
@@ -2464,6 +2464,9 @@ export default function PmFinalPitchLesson({ lang: langProp, onFinished, liveTok
         .q-bashorat .q-chip:nth-child(2) { animation-delay: .75s; } .q-bashorat .q-chip:nth-child(3) { animation-delay: 1s; }
         .q-chip.chorla:not(:disabled) { border-color: ${fon(T.accent, 0.6)}; animation: fp-chorla 1.8s ease-out .5s 2; }
         .fp-bash .q-bashorat { flex-direction: row; flex-wrap: wrap; align-items: center; column-gap: 14px; row-gap: 6px; padding: 10px 14px; }
+        .fp-bash.ix ~ .q-split, .fp-bash.ix ~ .q-col { animation: fp-sahna-kirdi .45s ease-out both; }
+        @keyframes fp-sahna-kirdi { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .fp-bash.ix ~ .q-split, .fp-bash.ix ~ .q-col { animation: none; } }
         .fp-bash .q-bashorat > .q-yorliq { flex-basis: 100%; }
         .fp-bash.ix .q-bashorat { padding-top: 8px; padding-bottom: 8px; }
         @media (min-width: 761px) { .fp-k .q-split { grid-template-columns: minmax(0,1.3fr) minmax(0,1fr); gap: 26px; } }

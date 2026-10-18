@@ -970,7 +970,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>O'yinchi «Maydon»da <A>qayerda to'xtaydi?</A></>, ru: <>Где игрок <A>застрянет в «Maydon»?</A></> })}
         mentor={<Mentor>{tr({ uz: "2-darsda odamdan bo'lib o'tgan ishini so'ragansiz. Bugun so'ramaysiz: o'yinchi vazifani bajaradi, siz har to'xtashini yozasiz.", ru: 'На 2-м уроке вы спрашивали человека о том, что уже было. Сегодня не спрашиваете: игрок выполняет задание, а вы записываете каждую его остановку.' })}</Mentor>}
         bashorat={!tugadi && <Bashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr({ uz: "O'yinchi necha marta to'xtaydi?", ru: 'Сколько раз игрок застрянет?' })} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        vizual={vizual}
+        vizual={!taxmin ? null : <div className="q-kir">{vizual}</div>}
         natija={done && <div className="ut-natija">
           {taxmin && <QTaxmin togri={taxmin === '3'}>{taxmin === '3'
             ? tr({ uz: "Taxminingiz to'g'ri chiqdi", ru: 'Ваше предположение оказалось верным' })
@@ -1085,7 +1085,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Yordam bersangiz, <A>yozuvda nima qoladi?</A></>, ru: <>Если помогать, <A>что останется в записи?</A></> })}
         mentor={<Mentor>{tr({ uz: "Bu safar o'yinchi to'xtagan har joyda unga yo'lni ko'rsating. Keyin ikki yozuvni solishtiring.", ru: 'На этот раз в каждом месте, где игрок застрял, покажите ему путь. Потом сравните две записи.' })}</Mentor>}
         bashorat={!tugadi && <Bashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr({ uz: "Ko'rsatsangiz, yozuvda nechta to'xtash qoladi?", ru: 'Если показывать, сколько остановок останется в записи?' })} variantlar={S4_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        vizual={vizual}
+        vizual={!taxmin ? null : <div className="q-kir">{vizual}</div>}
         natija={done && taxmin && <QTaxmin togri={taxmin === '0'}>{taxmin === '0'
           ? tr({ uz: "Taxminingiz to'g'ri chiqdi", ru: 'Ваше предположение оказалось верным' })
           : <>{tr({ uz: 'Taxminingiz', ru: 'Ваше предположение' })}: {taxmin} · {tr({ uz: 'haqiqatda', ru: 'на деле' })}: <b>0</b></>}</QTaxmin>}

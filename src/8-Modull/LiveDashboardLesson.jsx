@@ -961,14 +961,14 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>O'yinchi uch katakni bosdi. Dashboard <span className="italic" style={{ color: T.accent }}>nechta desin?</span></>, ru: <>Игрок нажал три ячейки. Сколько <span className="italic" style={{ color: T.accent }}>покажет дашборд?</span></> })}
         mentor={<Mentor>{tr({ uz: <>Umami'da <code className="qcode">vaqt-tanladi</code> har bosishda oshardi; o'yinchi bo'lib bo'sh kataklarni bosing.</>, ru: <>В Umami <code className="qcode">vaqt-tanladi</code> рос с каждым нажатием; станьте игроком и нажмите свободные ячейки.</> })}</Mentor>}
         bashorat={<Bashorat savol={tr(S2_SAVOL)} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
-        vizual={<div className="ld-s2" ref={box}>
+        vizual={!taxmin ? null : <div className="q-kir">{<div className="ld-s2" ref={box}>
           <Telefon yorliq={tr({ uz: "o'yinchi telefoni", ru: 'телефон игрока' })} tanlangan={bosish[n - 1]} navbat={faol ? S2_TAVSIYA[n] : null} onKatak={faol ? bos : undefined} bos={bosish[n - 1]} bosN={bosN} />
           <div className="ld-s2-ong">
             <HodisaJadval qatorlar={qatorlar} yangiK={yangiK} />
             <SanoqKarta son={son} tugadi={done} joyida={sanaldi >= 2 ? sanaldi : null} />
           </div>
           {uchlar.map(u => <Konvert key={u.k} u={u} />)}
-        </div>}
+        </div>}</div>}
         natija={done && <NatijaBlok tanlov={taxmin} togri="1" variantlar={S2_TAXMIN} haqiqat={{ uz: 'bitta — qator uchta, brauzer bitta', ru: 'один — строк три, браузер один' }}
           izoh={tr({ uz: 'Har qatorda brauzer ID bor: u bitta brauzerni ajratadi, odamning ismini bildirmaydi.', ru: "В каждой строке есть ID браузера: он отмечает один браузер, имени человека не раскрывает." })}
           xulosa={tr({ uz: "Bu dashboard'da har qadam — turli brauzerlar soni. Shunda qadamlarni foiz bilan mazmunliroq solishtira olamiz.", ru: "В этом дашборде каждый шаг — число разных браузеров. Тогда шаги можно осмысленно сравнивать в процентах." })} />}
@@ -1057,7 +1057,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Yangi o'yinchi kirdi. Dashboard buni <span className="italic" style={{ color: T.accent }}>qachon ko'radi?</span></>, ru: <>Зашёл новый игрок. <span className="italic" style={{ color: T.accent }}>Когда это увидит</span> дашборд?</> })}
         mentor={<Mentor>{tr({ uz: "Telefonda o'yinchi bo'lib saytni oching va dashboard raqami qachon o'zgarishini kuzating.", ru: 'Станьте игроком: откройте сайт на телефоне и следите, когда изменится число на дашборде.' })}</Mentor>}
         bashorat={<Bashorat savol={tr(S4_SAVOL)} variantlar={S4_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} done={done} />}
-        vizual={<div className="ld-s4" ref={box}>
+        vizual={!taxmin ? null : <div className="q-kir">{<div className="ld-s4" ref={box}>
           <Telefon yorliq={tr({ uz: "o'yinchi telefoni", ru: 'телефон игрока' })} ochiq={tel !== 'yopiq'} tanlangan={tel === 'tanladi' ? '18:00' : null} faqat="18:00"
             navbat={taxmin && tel === 'ochiq' && !yolda && birinchi ? '18:00' : null} onKatak={taxmin && tel === 'ochiq' && !yolda && birinchi ? tanla : undefined} bos={tel === 'tanladi' ? '18:00' : null} bosN={0}>
             {taxmin && tel === 'yopiq' && <QTugma className="ld-navbat" onClick={och}>{tr({ uz: 'Saytni ochish', ru: 'Открыть сайт' })}</QTugma>}
@@ -1065,7 +1065,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <BackendQuti qator={beQator} tok={tok} />
           <DashMaket className={kutish ? 'ld-kuz' : undefined} son={korinadi} yangi={yangi} izoh taymer={taymerOn ? qoldi : null} />
           {uchlar.map(u => <Konvert key={u.k} u={u} />)}
-        </div>}
+        </div>}</div>}
         natija={done
           ? <NatijaBlok tanlov={taxmin} togri="besh" variantlar={S4_TAXMIN} haqiqat={{ uz: "keyingi so'rovda — odatda 5 soniya ichida", ru: 'при следующем запросе — обычно в течение 5 секунд' }}
               izoh={tr(POLLING)}

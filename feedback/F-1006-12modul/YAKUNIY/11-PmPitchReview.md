@@ -10,7 +10,7 @@ Mentor misoli pitchi:
 - Yechim (kulrang, yorliq «jonli demoda ko'rinadi»): Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.
 - Jonli demo: Telefonda «Qo'shilaman» bosiladi: «8 / 10» o'rniga «9 / 10». (kulrang, «jonli demoda ko'rinadi») · Ilovani odamlar ishlatyapti. · O'yinchilarga ilova yoqdi.
 - Keyingi qadam: Tez orada 50 ga yetamiz.
-Mentor manbalari (yorliq «Mentor misolida»): intervyu yozuvlari — «jamoa yig'ish · 5 o'yinchi · 11-Modul», qator «oxirgi marta muammo bo'lgan · 4 / 5» · Database — ro'yxatdan o'tgan · 38 · asosiy harakatni qilgan · 19 · sanoq sahifasi (yorliq «qurilma») — ochdi 61 · ro'yxatdan o'tdi 38 · qo'shildi 18 · kelishini tasdiqladi 14 · Umami (yorliq «tashrif») — tashriflar 74 · Qo'shilmoqchiman 41.
+Mentor manbalari (yorliq «Mentor misolida»): intervyu yozuvlari — «jamoa yig'ish · 3 o'yinchi · 11-Modul», qator «oxirgi marta muammo bo'lgan · 3 / 3» · Database — ro'yxatdan o'tgan · 38 · asosiy harakatni qilgan · 19 · sanoq sahifasi (yorliq «qurilma») — ochdi 61 · ro'yxatdan o'tdi 38 · qo'shildi 18 · kelishini tasdiqladi 14 · Umami (yorliq «tashrif») — tashriflar 74 · Qo'shilmoqchiman 41.
 
 ## 0 · Kirish
 - Eyebrow: Kirish
@@ -47,7 +47,7 @@ Mentor manbalari (yorliq «Mentor misolida»): intervyu yozuvlari — «jamoa yi
 - Bashorat yo'q — «Dalil bor / yo'q» belgilashning o'zi topshiriq (208/0 e). *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
 - Vizual: chapda manba oynasi (bo'sh — «Manba»), o'ngda «Mentor misoli · Maydon Jamoa pitchi» (to'rt bo'lak; joriy gap halqada), chap ostida ikki tugma: Dalil bor · Dalil yo'q
 - Gaplar navbat bilan:
-  1. Muammo · «O'yinchilar jamoaga odam yig'ishda qiynaladi.» — ✔ Dalil bor. Manba oynasida intervyu yozuvlari: jamoa yig'ish · 5 o'yinchi · 11-Modul · oxirgi marta muammo bo'lgan · 4 / 5; «4 / 5» gapga uchadi, gap ostida: 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan. · kulrang: 5 o'yinchi — kichik son: bu tanlov uchun dalil, isbot emas.
+  1. Muammo · «O'yinchilar jamoaga odam yig'ishda qiynaladi.» — ✔ Dalil bor. Manba oynasida intervyu yozuvlari: jamoa yig'ish · 3 o'yinchi · 11-Modul · oxirgi marta muammo bo'lgan · 3 / 3; «3 / 3» gapga uchadi, gap ostida: 3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan. · kulrang: Olti intervyu — kichik son; bu tanlov uchun dalil, isbot emas.
   2. Jonli demo · «Ilovani odamlar ishlatyapti.» — ✔ Dalil bor. Manba oynasida Database (yorliq «Mentor misolida»): ro'yxatdan o'tgan · 38 · asosiy harakatni qilgan · 19; gap ostida: 38 kishi ro'yxatdan o'tdi, 19 tasi asosiy harakatni qildi. · kulrang: asosiy harakat — hozir kamida bitta o'yinda qatnashayotgan yoki o'yin e'lon qilgan
      - Izoh: Dalil pitchda yo'q edi, Database'da bor — pitchga qo'shildi.
   3. Jonli demo · «O'yinchilarga ilova yoqdi.» — ✔ Dalil yo'q. Manba oynasi navbat bilan Database · sanoq sahifasi · Umami · intervyu yozuvlarini ochadi, har birida: ✕ yoqdi — sanalmagan; gap ostida yorliq «dalil yo'q». So'ng eski gap chiziladi, o'rniga: Birinchi uch kunda ilovani ochgan 46 qurilmadan 17 tasi keyingi ikki kunda yana ochdi. (Database, yorliq «Mentor misolida · qurilma»: birinchi 3 kunda ochgan · 46 · keyingi 2 kunda yana ochgan · 17)
@@ -73,7 +73,7 @@ Mentor manbalari (yorliq «Mentor misolida»): intervyu yozuvlari — «jamoa yi
   1. Son — Ko'p odam ishlatyapti · ✔ 38 kishi ro'yxatdan o'tdi, 19 tasi asosiy harakatni qildi
      - To'g'ri: katakka son yoziladi, gap ostida kulrang: shundan 11 tasi — sinfdosh · asosiy harakat — hozir kamida bitta o'yinda qatnashayotgan yoki o'yin e'lon qilgan; zal pufagi: Bu son qayerdan?
      - Xato: «Ko'p» — son emas: necha kishi?
-  2. Manba — ✔ Database · Umami · Intervyu yozuvlari (bosilgan manba oynada ochiladi, yorliq «Mentor misolida»: Database — ro'yxatdan o'tgan · 38 · asosiy harakatni qilgan · 19; Umami — tashriflar · 74 · Qo'shilmoqchiman · 41; intervyu yozuvlari — jamoa yig'ish · 5 o'yinchi · 11-Modul)
+  2. Manba — ✔ Database · Umami · Intervyu yozuvlari (bosilgan manba oynada ochiladi, yorliq «Mentor misolida»: Database — ro'yxatdan o'tgan · 38 · asosiy harakatni qilgan · 19; Umami — tashriflar · 74 · Qo'shilmoqchiman · 41; intervyu yozuvlari — jamoa yig'ish · 3 o'yinchi · 11-Modul)
      - To'g'ri: katakka «Database» yoziladi; izoh: Dalil qayerdan olingani — manba. · zal pufagi: Qachon sanalgan?
      - Umami: Umami lendingga tashrifni sanaydi — ilovadagi ishni emas.
      - Intervyu yozuvlari: Intervyular ilova chiqishidan oldin bo'lgan.

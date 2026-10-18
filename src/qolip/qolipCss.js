@@ -49,6 +49,11 @@ export const qolipCss = (Q) => `
   /* --- DE-199: ish tugadi — natija butun enga chiqadi va bir lahza kattalashib e'tiborni tortadi --- */
   .q-fokus { animation: q-fokus 0.62s cubic-bezier(.2,.9,.3,1.15) both; }
   .q-fokus > * { border-radius: 14px; }
+  /* 213.7 (F-1015-323): bashoratdan keyin kirib keladigan sahna — darslar vizualni .q-kir ga o'raydi */
+  .q-kir { animation: q-kirdi .45s ease-out both; min-width: 0; }
+  .q-col > .q-kir:last-child { flex-grow: 1; display: flex; flex-direction: column; }
+  .q-kir > .q-karta:last-child, .q-kir > .q-vizual-karta:last-child { flex-grow: 1; }
+  @keyframes q-kirdi { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
   @keyframes q-fokus { 0% { opacity: 0.4; transform: scale(0.96); } 60% { opacity: 1; transform: scale(1.012); } 100% { transform: scale(1); } }
   /* --- Tanlov-chip: holat rangi faqat holatda --- */
   .q-chip { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.45vw,14px); line-height: 1.35; text-align: left; color: ${Q.ink}; background: ${Q.paper}; border: 1.5px solid ${Q.line}; border-radius: 11px; padding: 9px 13px; cursor: pointer; min-width: 0; overflow-wrap: anywhere; transition: border-color 0.15s, background 0.15s; }
@@ -153,6 +158,12 @@ export const qolipCss = (Q) => `
   .q-blok-tana { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
   p.q-blok-t { margin: 0; line-height: 1.5; overflow-wrap: break-word; }
   p.q-blok-xato { margin: 0; font-size: 12.5px; line-height: 1.45; color: ${Q.ink2}; }
+  .q-blok-ulgur { font-size: 12.5px; line-height: 1.5; color: ${Q.ink2}; border-top: 1px solid ${Q.line}; padding-top: 8px; }
+  .q-blok-ulgur summary { cursor: pointer; font-weight: 700; list-style: none; display: flex; align-items: center; gap: 6px; }
+  .q-blok-ulgur summary::-webkit-details-marker { display: none; }
+  .q-blok-ulgur summary::after { content: '▾'; font-size: 11px; opacity: .7; }
+  .q-blok-ulgur[open] summary::after { content: '▴'; }
+  .q-blok-ulgur p { margin: 6px 0 0; }
   .q-blok-tugadi { background: ${Q.okFon}; border-radius: 12px; padding: clamp(12px,2vw,16px); }
   .q-blok-tugadi p { margin: 0; color: ${Q.ink}; line-height: 1.5; }
   .q-blok-natija { display: flex; flex-direction: column; min-width: 0; }
@@ -276,6 +287,7 @@ export const qolipCss = (Q) => `
   @media (max-width: 560px) { .ach-grid { grid-template-columns: repeat(2, 1fr); } }
 
   @media (prefers-reduced-motion: reduce) {
+    .q-kir,
     .q-halqa::after, .q-chip.q-silk, .q-xulosa, .q-xato, .q-fokus, .q-test-v.kutish, .q-test-javob, .q-dd-slot.ok, .q-dd-slot.bad, .q-dd-chip.in { animation: none; }
   }
 `;

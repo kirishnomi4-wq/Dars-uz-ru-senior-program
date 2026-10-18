@@ -1024,12 +1024,12 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Pitch, demo va savollar <A>birga qanday o'tadi?</A></>, ru: <>Как питч, демо и вопросы <A>проходят вместе?</A></> })}
         mentor={<Mentor>{tr({ uz: "Tugmalarni birma-bir bosing va Mentor chiqishi chiziqda qanday yig'ilishiga qarang.", ru: 'Нажимайте кнопки по одной и смотрите, как выступление Ментора собирается на линии.' })}</Mentor>}
         bashorat={!done && ixchamBashorat(taxmin, <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr({ uz: 'Mentor misolida butun chiqish necha daqiqagacha boradi?', ru: 'До скольких минут идёт всё выступление в примере Ментора?' })} variantlar={S2_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} />)}
-        harakat={!done && <div className="cs-harakat">
+        harakat={!taxmin ? null : !done && <div className="cs-harakat">
           <Qadamlar3 nomlar={S2_TUGMA} q={q} faol={!!taxmin && (q === 0 || f >= 4)} onBos={() => setQ(n => Math.min(3, n + 1))} />
           {q > 0 && <QIzoh key={q}>{tr(S2_IZOH[q - 1])}</QIzoh>}
           {ipucha && IPUCHA(tr({ uz: "Yoqilgan tugmani bosing — chiziqqa nima qo'shiladi?", ru: 'Нажмите активную кнопку — что добавится на линию?' }))}
         </div>}
-        vizual={sahna}
+        vizual={!taxmin ? null : sahna}
         xulosa={done && f >= 6 && <XulosaQ taxmin={tx && <TaxminQ togri={taxmin === '8'} aslida={tr({ uz: '8 daqiqagacha', ru: 'до 8 минут' })} />}
           matn={tr({ uz: "Chiqish 8 daqiqagacha; demo ochilmasa taymer to'xtamaydi — video bo'lsa B reja, bo'lmasa og'zaki.", ru: 'Выступление — до 8 минут; если демо не откроется, таймер не останавливается: есть видео — план Б, нет — устно.' })}
           izoh={tr(S2_IZOH[2])} />}
@@ -2476,6 +2476,9 @@ export default function PmDressRehearsalLesson({ lang: langProp, onFinished, liv
         .q-bashorat:not(:has(.q-chip.on)) .q-chip:not(:disabled) { border-color: ${fon(T.accent, 0.6)}; animation: cs-chorla 1.8s ease-out .5s 2; }
         .q-bashorat .q-chip:nth-child(2) { animation-delay: .75s; } .q-bashorat .q-chip:nth-child(3) { animation-delay: 1s; }
         .cs-bash.ix .q-bashorat { padding-top: 10px; padding-bottom: 10px; }
+        .cs-bash.ix ~ .q-split, .cs-bash.ix ~ .q-col { animation: cs-sahna-kirdi .45s ease-out both; }
+        @keyframes cs-sahna-kirdi { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .cs-bash.ix ~ .q-split, .cs-bash.ix ~ .q-col { animation: none; } }
         @media (min-width: 761px) { .cs-k .q-split { grid-template-columns: minmax(0,1.25fr) minmax(0,1fr); gap: 28px; } }
         .cs-k { display: flex; flex-direction: column; flex: 1 0 auto; }
         .cs-harakat { display: flex; flex-direction: column; gap: 10px; }

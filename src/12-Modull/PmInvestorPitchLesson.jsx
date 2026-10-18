@@ -627,7 +627,7 @@ const VAQT_OLTI = [40, 30, 90, 60, 30, 50]; // tayanch 9.1 — bu mashqda, jami 
 const VAQT_BESH = [40, 20, 90, 90, 60]; // 12-Modul taqsimoti
 // Mentor misoli — «Maydon Jamoa» qoralamasi (tayanch 1.1 AYNAN; sonlar 1.14)
 const JAMOA_PITCH = {
-  muammo: { uz: "O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 5 o'yinchidan 4 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.", ru: 'Игрокам трудно собрать людей в команду. У 4 из 5 игроков, которых я спросил, в последней игре не хватило людей или кто-то не пришёл.' },
+  muammo: { uz: "O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.", ru: 'Игрокам трудно собрать людей в команду. У 3 из 3 игроков, которых я спросил, в последней игре не хватило людей или кто-то не пришёл.' },
   bozor: { uz: "Mahalla futbol guruhida — 60 kishi; ilovada — 6 tashkilotchi. Boshqa mahallalarni hali tekshirmaganmiz.", ru: 'В футбольной группе махалли — 60 человек; в приложении — 6 организаторов. Другие махалли мы ещё не проверяли.' },
   yechim: { uz: "Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.", ru: 'Организатор объявляет игру, игроки присоединяются одним нажатием и в день игры подтверждают, что придут.' },
   raqamlar: { uz: "51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif havolasidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.", ru: '51 пользователь; 11 из них — мои одноклассники, 7 пришли по ссылке-приглашению. 3 организатора дали письменное подтверждение на Pro — это ещё не оплата.' },
@@ -974,12 +974,12 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Investor uchun pitchga <A>nima qo'shiladi?</A></>, ru: <>Что добавляется <A>в питч для инвестора?</A></> })}
         mentor={<Mentor>{tr({ uz: "Tugmalarni birma-bir bosing va pitch qanday o'zgarishiga qarang.", ru: 'Нажимайте кнопки по одной и смотрите, как меняется питч.' })}</Mentor>}
         bashorat={!done && ixchamBashorat(taxmin, <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr({ uz: "Mentor pitchiga nechta yangi bo'lak qo'shiladi?", ru: 'Сколько новых частей добавится в питч Ментора?' })} variantlar={S2_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} />)}
-        harakat={!done && <div className="ip-harakat">
+        harakat={!taxmin ? null : !done && <div className="ip-harakat">
           <Qadamlar3 nomlar={S2_TUGMA} q={q} faol={!!taxmin} onBos={() => setQ(n => Math.min(3, n + 1))} />
           {q > 0 && <QIzoh key={q}>{tr(S2_IZOH[q - 1])}</QIzoh>}
           {ipucha && IPUCHA(tr({ uz: "Yoqilgan tugmani bosing — pitch qanday o'zgarishini ko'ring.", ru: 'Нажмите активную кнопку — посмотрите, как меняется питч.' }))}
         </div>}
-        vizual={sahna}
+        vizual={!taxmin ? null : sahna}
         xulosa={done && <XulosaQ taxmin={tx && <TaxminQ togri={taxmin === '2'} aslida={tr({ uz: 'ikkita', ru: 'две' })} />}
           matn={tr({ uz: "Bizda investor pitchi olti bo'lakdan iborat: Muammo, Bozor, Yechim, Raqamlar, Jamoa va Keyingi qadam.", ru: 'У нас питч для инвестора состоит из шести частей: Проблема, Рынок, Решение, Цифры, Команда и Следующий шаг.' })}
           izoh={tr(S2_IZOH[2])} />}
@@ -1113,7 +1113,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           sarlavha={tr({ uz: <>Bozor bo'lagiga <A>qaysi sonlar yoziladi?</A></>, ru: <>Какие числа <A>пишутся в часть «Рынок»?</A></> })}
           mentor={<Mentor>{tr({ uz: "Son kartalarini birma-bir bosing: qaysi biri Bozor bo'lagiga tushishini ko'ring.", ru: 'Нажимайте карточки с числами по одной: смотрите, какая попадёт в часть «Рынок».' })}</Mentor>}
           bashorat={!done && ixchamBashorat(taxmin, <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr({ uz: 'Mentor misolida Bozorga qaysi sonlar yoziladi?', ru: 'Какие числа в примере Ментора пишутся в Рынок?' })} variantlar={S5_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} />)}
-          harakat={!done && <div className="ip-harakat">
+          harakat={!taxmin ? null : !done && <div className="ip-harakat">
             {/* F-1015-164: karta bashoratdan keyin chiqadi; tushgani — ✓ yozuv (tugma emas), joriysi — tugma, keyingisi ko'rinmaydi */}
             {!!taxmin && <div className="ip-sonlar fade-step">
               {BOZOR_SON.map((s, i) => {
@@ -1127,7 +1127,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {n > 0 && <QIzoh key={n}>{tr(S5_IZOH[n - 1])}</QIzoh>}
             {ipucha && IPUCHA(tr({ uz: "Yoqilgan kartani bosing — Bozor bo'lagi qanday to'lishini ko'ring.", ru: 'Нажмите активную карточку — посмотрите, как заполняется часть «Рынок».' }))}
           </div>}
-          vizual={sahna}
+          vizual={!taxmin ? null : sahna}
           xulosa={done && <XulosaQ taxmin={tx && <TaxminQ togri={taxmin === 'ikki'} aslida={tr({ uz: 'ilova va guruhdagi sonlar', ru: 'числа из приложения и группы' })} />}
             matn={tr({ uz: "Bu misolda Bozorda faqat manbasi bor sonlar turadi, qolgani — «hali tekshirilmagan».", ru: 'В этом примере в Рынке только числа с источником, остальное — «ещё не проверено».' })}
             izoh={tr(S5_IZOH[2])} />}
@@ -1193,12 +1193,12 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Mahsulotni kim qilayotganini <A>qanday aytasiz?</A></>, ru: <>Как сказать, <A>кто делает продукт?</A></> })}
         mentor={<Mentor>{tr({ uz: "Tugmalarni birma-bir bosing va Jamoa bo'lagi qanday yozilishini ko'ring.", ru: 'Нажимайте кнопки по одной и смотрите, как пишется часть «Команда».' })}</Mentor>}
         bashorat={!done && ixchamBashorat(taxmin, <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr({ uz: 'Mentor misolida mahsulotni nechta odam qilyapti?', ru: 'Сколько человек делает продукт в примере Ментора?' })} variantlar={S7_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} />)}
-        harakat={!done && <div className="ip-harakat">
+        harakat={!taxmin ? null : !done && <div className="ip-harakat">
           <Qadamlar3 nomlar={S7_TUGMA} q={q} faol={!!taxmin} onBos={() => setQ(x => Math.min(3, x + 1))} />
           {q > 0 && S7_IZOH[q - 1] && <QIzoh key={q}>{tr(S7_IZOH[q - 1])}</QIzoh>}
           {ipucha && IPUCHA(tr({ uz: "Yoqilgan tugmani bosing — Jamoa bo'lagiga nima yozilishini ko'ring.", ru: 'Нажмите активную кнопку — посмотрите, что пишется в часть «Команда».' }))}
         </div>}
-        vizual={sahna}
+        vizual={!taxmin ? null : sahna}
         xulosa={done && <XulosaQ taxmin={tx && <TaxminQ togri={taxmin === 'bitta'} aslida={tr({ uz: 'bitta', ru: 'один' })} />}
           matn={tr({ uz: "Bu misolda Jamoa bo'lagida bitta odam: kim nima qilgani rost aytilgan, yolg'on rol yo'q.", ru: 'В этом примере в Команде один человек: кто что сделал, сказано честно, выдуманных ролей нет.' })}
           izoh={tr(S7_IZOH[2])} />}
@@ -1265,12 +1265,12 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Pitch oxirida <A>hakamdan nima so'raysiz?</A></>, ru: <>О чём вы <A>попросите судью</A> в конце питча?</> })}
         mentor={<Mentor>{tr({ uz: "Tugmalarni birma-bir bosing va Keyingi qadam bo'lagi qanday o'zgarishini ko'ring.", ru: 'Нажимайте кнопки по одной и смотрите, как меняется часть «Следующий шаг».' })}</Mentor>}
         bashorat={!done && ixchamBashorat(taxmin, <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr({ uz: "Mentor hakamdan nechta narsa so'raydi?", ru: 'О скольких вещах Ментор просит судью?' })} variantlar={S9_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} />)}
-        harakat={!done && <div className="ip-harakat">
+        harakat={!taxmin ? null : !done && <div className="ip-harakat">
           <Qadamlar3 nomlar={S9_TUGMA} q={q} faol={!!taxmin} onBos={() => setQ(x => Math.min(3, x + 1))} />
           {q > 0 && S9_IZOH[q - 1] && <QIzoh key={q}>{tr(S9_IZOH[q - 1])}</QIzoh>}
           {ipucha && IPUCHA(tr({ uz: "Yoqilgan tugmani bosing — Keyingi qadam qanday o'zgarishini ko'ring.", ru: 'Нажмите активную кнопку — посмотрите, как меняется Следующий шаг.' }))}
         </div>}
-        vizual={sahna}
+        vizual={!taxmin ? null : sahna}
         xulosa={done && <XulosaQ taxmin={tx && <TaxminQ togri={taxmin === 'bitta'} aslida={tr({ uz: 'bitta', ru: 'одну' })} />}
           matn={tr({ uz: "Bu misolda Keyingi qadam — keyingi ish va bitta aniq so'rov: pul emas, tanishtirish.", ru: 'В этом примере Следующий шаг — следующее дело и одна точная просьба: не деньги, а знакомство.' })}
           izoh={tr(S9_IZOH[2])} />}
@@ -1614,7 +1614,7 @@ const QUIZ_BANK = [
   { q: { uz: "Mentor hakamdan nima so'raydi?", ru: 'О чём Ментор просит судью?' }, opts: [{ uz: 'Pro uchun yozma tasdiq berishlarini', ru: 'Дать письменное подтверждение на Pro' }, { uz: 'Ilovani mahalla guruhiga ulashishni', ru: 'Поделиться приложением в группе махалли' }, { uz: 'Ilova uchun kerakli pul summasini', ru: 'Нужную приложению сумму денег' }, { uz: 'Maydon egalari bilan tanishtirishni', ru: 'Познакомить с владельцами площадок' }], correct: 3 },
   { q: { uz: '12-Moduldagi «maqsad 50» nega yangilandi?', ru: 'Почему обновилась «цель 50» из 12-го модуля?' }, opts: [{ uz: 'Foydalanuvchilar 51 taga yetdi', ru: 'Пользователей стало 51' }, { uz: "Maqsad juda katta bo'lib qoldi", ru: 'Цель оказалась слишком большой' }, { uz: "Ro'yxatdagi sonlar xato chiqdi", ru: 'Числа в списке оказались ошибочными' }, { uz: 'Taklif havolasi ishlamay qoldi', ru: 'Ссылка-приглашение перестала работать' }], correct: 0 },
   { q: { uz: 'Mentor 3 yozma tasdiqni Raqamlarda qanday aytgan?', ru: 'Как Ментор назвал 3 письменных подтверждения в Цифрах?' }, opts: [{ uz: "Uch tashkilotchi Pro'ni sotib oldi", ru: 'Три организатора купили Pro' }, { uz: "Yozma tasdiq bor, to'lov hali yo'q", ru: 'Письменное подтверждение есть, оплаты ещё нет' }, { uz: "Hamma tashkilotchi Pro'ga yozildi", ru: 'Все организаторы подписались на Pro' }, { uz: 'Tasdiqlar pitchda umuman aytilmaydi', ru: 'Подтверждения в питче вообще не называют' }], correct: 1 },
-  { q: { uz: 'Mentor misolida Muammo dalili qayerdan olingan?', ru: 'Откуда взят довод Проблемы в примере Ментора?' }, opts: [{ uz: 'Ilovadagi 51 foydalanuvchidan', ru: 'От 51 пользователя приложения' }, { uz: 'Mahalla futbol guruhidagi 60 kishidan', ru: 'От 60 человек в футбольной группе махалли' }, { uz: "So'ralgan 5 o'yinchining javobidan", ru: 'Из ответов 5 опрошенных игроков' }, { uz: "Uch tashkilotchining tasdig'idan", ru: 'Из подтверждения трёх организаторов' }], correct: 2 },
+  { q: { uz: 'Mentor misolida Muammo dalili qayerdan olingan?', ru: 'Откуда взят довод Проблемы в примере Ментора?' }, opts: [{ uz: 'Ilovadagi 51 foydalanuvchidan', ru: 'От 51 пользователя приложения' }, { uz: 'Mahalla futbol guruhidagi 60 kishidan', ru: 'От 60 человек в футбольной группе махалли' }, { uz: "So'ralgan 3 o'yinchining javobidan", ru: 'Из ответов 3 опрошенных игроков' }, { uz: "Uch tashkilotchining tasdig'idan", ru: 'Из подтверждения трёх организаторов' }], correct: 2 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2427,6 +2427,9 @@ export default function PmInvestorPitchLesson({ lang: langProp, onFinished, live
         .q-bashorat:not(:has(.q-chip.on)) .q-chip:not(:disabled) { border-color: ${fon(T.accent, 0.6)}; animation: ip-chorla 1.8s ease-out .5s 2; }
         .q-bashorat .q-chip:nth-child(2) { animation-delay: .75s; } .q-bashorat .q-chip:nth-child(3) { animation-delay: 1s; }
         .ip-bash.ix .q-bashorat { padding-top: 10px; padding-bottom: 10px; }
+        .ip-bash.ix ~ .q-split, .ip-bash.ix ~ .q-col { animation: ip-sahna-kirdi .45s ease-out both; }
+        @keyframes ip-sahna-kirdi { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .ip-bash.ix ~ .q-split, .ip-bash.ix ~ .q-col { animation: none; } }
         @media (min-width: 761px) { .ip-k .q-split { grid-template-columns: minmax(0,1.2fr) minmax(0,1fr); gap: 28px; } }
         .ip-k, .ip-teskari, .ip-yakun { display: flex; flex-direction: column; flex: 1 0 auto; }
         .ip-teskari .q-split > .q-col:last-child { order: -1; }

@@ -1800,7 +1800,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
     : { uz: `Keyingi qadam — «${stepN + 1} · ${steps[stepN].h.uz}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующий шаг — «${stepN + 1} · ${steps[stepN].h.ru}»: выполните и нажмите «Готово».` };
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
-      <QBlok til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{ustida}</>} zoom={Zoomable}
+      <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{ustida}</>} zoom={Zoomable}
         qadamlar={steps.map(c => ({
           h: tr(c.h),
           t: <>{tx(c.t)}{c.bandlar && c.bandlar.map((b, i) => (b.prompt
@@ -1811,7 +1811,6 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
         joriy={stepN} onBajardim={bajardim} onQaytar={qaytar} mentorRejim={isMentorLive}
         tugadi={done} tugadiMatn={tr(doneText)} natija={natija} natijaYorliq={tr(NATIJA_YORLIQ)}
         pastki={<MentorPracticeStats live={_live} screen={screen} />}>
-        {ulgur && !done && <p className="jx-ulgur">{tx(ulgur)}</p>}
         {ortda && <p className="jx-ortda">{tr({ uz: 'Ortda qoldingizmi — Mentor misolini alohida papkada ochib ko\'ring:', ru: 'Отстали — откройте пример Ментора в отдельной папке:' })} <code className="jx-buyruq">{ORTDA[0]}</code> · <code className="jx-buyruq">{ORTDA[1]}</code> · <code className="jx-buyruq">{ORTDA[2]}</code> {tx(ortda)}</p>}
         {ustoz && <Ustoz satrlar={ustoz} />}
       </QBlok>

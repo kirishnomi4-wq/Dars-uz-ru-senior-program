@@ -58,6 +58,7 @@ Test ekranlarida (3, 5, 7, 10) javobdan keyingi sarlavha: To'g'ri · Qaytadan ur
 - Sarlavha: Internet qaytgach, ekranda *qaysi son* turadi?
 - Mentor: Birinchi telefonda uchish rejimini yoqing va qadamlarni tartib bilan bajaring.
 - Bashorat: Belgi yana «Ulangan» bo'lgach, birinchi telefonda qaysi son turadi? · «8 / 10» · «9 / 10»
+  - Bashorat yolg'iz chiqadi; tanlangach ixcham qatorga yig'iladi, shundan keyin sahna kirib keladi. *(✎ F-1015-290, 213.7)*
 - Sahna: 1-telefon (belgi «Ulangan», «8 / 10», «Qo'shildingiz», holat qatorida samolyot) · Backend «Database: 8» · 2-telefon («8 / 10», «Qo'shilaman»).
 - Qadamlar:
   1. Uchish rejimini yoqing — samolyot bosilgach chiziq uziladi (boshida ↻), 1-telefonda belgi «Ulanmoqda…».
@@ -89,6 +90,7 @@ Test ekranlarida (3, 5, 7, 10) javobdan keyingi sarlavha: To'g'ri · Qaytadan ur
 - Sarlavha: Qayta ulanganda *qaysi kod* yana ishlaydi?
 - Mentor: Backend tugunidagi «Yangi versiya» ni bosing va telefon ostidagi kodning yonadigan qatorlariga qarang.
 - Bashorat: Qayta ulangach, bitta qo'shilishga nechta jonli xabar chiqadi? · Bitta · Ikkita · Uchta
+  - Bashorat yolg'iz chiqadi; tanlangach ixcham qatorga yig'iladi, shundan keyin sahna kirib keladi. *(✎ F-1015-290, 213.7)*
 - Sahna: 1-telefon (belgi «Ulangan», «8 / 10») · Backend «Database: 8», ichida tugma «Yangi versiya» · 2-telefon («8 / 10», «Qo'shilaman»).
 - Telefon ostida kod kartasi — Mentor ilovasi · `m12-dars-05-start`:
 ```js
@@ -130,6 +132,7 @@ ulanish.on('connect', () => {
 - Sarlavha: Qayta ulangan ilova *o'yin xonasida* bormi?
 - Mentor: Avval «Yangi versiya» ni bosing, keyin ikkinchi telefonda o'yinni oching.
 - Bashorat: Ikkinchi telefon o'yinni ochganda «Hozir ko'ryapti» nechani ko'rsatadi? · 0 · 1 · 2
+  - Bashorat yolg'iz chiqadi; tanlangach ixcham qatorga yig'iladi, shundan keyin sahna kirib keladi. *(✎ F-1015-290, 213.7)*
 - Sahna: 1-telefon (belgi «Ulangan», «8 / 10», «Hozir ko'ryapti: 1») · Backend «Database: 8», ostida «Xona `oyin-1`: 1» (bitta nuqta — 1-telefon ulanishi) va tugma «Yangi versiya» · 2-telefon — «O'yinlar» ro'yxati: «Shanba» ostida karta «Shanba, 18:00 · Mahalla maydoni · 8 / 10».
 - Qadamlar:
   1. Yangi versiya — chiziqlar uziladi; nuqta xonadan chiqib ketadi: «Xona `oyin-1`: 0»; belgi «Ulanmoqda…» → ↻ → «Ulangan»; yangi ulanish Backend yonida, xonadan tashqarida turadi.
@@ -256,6 +259,7 @@ setTimeout(ulan, 500);
   - boshida: Har urinishni bosing: kutilgani bilan bo'lganini solishtirib, belgi qo'ying.
   - uch urinishdan keyin: Uch urinish yozildi — pastdagi xulosaga qarang.
 - Bashorat: Uch usuldan nechtasi Mentor ilovasini buzadi? · Bittasi · Ikkitasi · Uchalasi
+  - Bashorat yolg'iz chiqadi; tanlangach ixcham qatorga yig'iladi, shundan keyin sahna kirib keladi. *(✎ F-1015-290, 213.7)*
 - Chap — 1-telefon (belgi «Ulangan», «8 / 10»): urinishga qarab o'zgaradi — 1: samolyot yonadi, belgi «Ulanmoqda…», keyin «Ulangan», son «8 / 10» qoladi · 2: ekranni boshqa ilova (nomsiz kulrang oyna) yopadi, keyin «O'yin» qaytadi, «9 / 10» · 3: belgi «Ulanmoqda…» → «Ulangan», «9 / 10» va tepada ikkita jonli xabar.
 - O'ng — tepada faqat bajarilgan urinishlar qatori (raqam · usul · belgi); kutilayotganlar «1 · 2 · 3» bo'lib chiqmaydi — usul nomi kartada, hisob tugmada *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*; ostida buzish yozuvi kartasi (bittadan): usul nomi, «Nima qildim» · «Nima kutdim» · «Nima bo'ldi» (avval «…»), tugma «Urinishni ko'rish».
 - «Urinishni ko'rish» → telefon usulni o'ynaydi → kartada Mentor yozuvining qatorlari yoziladi → tugmalar «Buzildi» · «Buzilmadi».
@@ -288,6 +292,7 @@ setTimeout(ulan, 500);
 - Sarlavha: Agent «tuzatdim» desa, buni *qanday bilasiz*?
 - Mentor: Avval yozuvni agentga yuboring, keyin «buzildi» belgili ikki urinishni o'sha usul bilan qaytaring.
 - Bashorat: Tuzatishni qanday tekshirasiz? · Agentning so'zidan · Koddagi o'zgarishdan · O'sha usul bilan qayta buzib
+  - Bashorat yolg'iz chiqadi; tanlangach ixcham qatorga yig'iladi, shundan keyin sahna kirib keladi. *(✎ F-1015-290, 213.7)*
 - Chap — 1-telefon (belgi «Ulangan», «8 / 10») va Backend «Database: 8».
 - O'ng — Antigravity chati, ostida uchta raqamli tugma: 1 Yozuvni yuborish · 2 Qayta: internetni uzish · 3 Qayta: yangi versiya; pastda buzish yozuvi (ixcham): 1 · Internetni uzish · buzildi · 2 · Fonga olib qaytarish · buzilmadi · 3 · Backend'ning yangi versiyasi · buzildi
 - Qadamlar:
@@ -348,6 +353,7 @@ setTimeout(ulan, 500);
 - Trek tanlanmagan bo'lsa, blok tepasida: Trekingiz: · Mobil trek · Web-trek
 - Qadamlar (bittadan ochiladi, har birida «Bajardim»):
   1. **Ochish** — ilovangiz telefonda ochiq va kirgan holda bo'lsin (mobil trekda: `cd mobil`, `npx expo start`, Expo Go). Real vaqt nuqtangiz turgan ekranni oching — Mentor misolida «O'yin»: belgi «Ulangan» bo'lishi kerak.
+     - *(✎ F-1015-291)* Trek tanlangan bo'lsa faqat o'sha trek ko'rsatmasi: mobil — Expo qatori (qavs), web — «Web-trekda» bandi; «boshqa akkaunt» bandi ham trekka qarab. Tanlanmagan — ikkalasi.
      - Terminalda `git status`: `.env` fayllari ro'yxatda ko'rinmasin. **Buzish faqat o'z ilovangizda: boshqa odamning ilovasi yoki sayti tekshirilmaydi.**
      - Sherik bo'lsa — uning telefonida ham shu ekran ochiq tursin (web havola yoki Android'dagi Expo Go; Expo akkauntingiz ma'lumoti berilmaydi).
      - Web-trekda: saytingizni telefon brauzerida oching — uchish rejimi telefonda yoqiladi (kompyuterda Wi-Fi'ni o'chirish dars sahifasini ham uzadi); «ilovani yopib qayta ochish» o'rniga — sahifani yangilang.
@@ -389,6 +395,7 @@ setTimeout(ulan, 500);
 - Trek tanlanmagan bo'lsa, blok tepasida: Trekingiz: · Mobil trek · Web-trek
 - Qadamlar:
   1. **Ochish** — 1-amaliyotdagi yozuvingiz pastdagi talabga o'zi qo'yilgan — «buzildi» belgili urinishlarni o'qib chiqing. Ilovangiz telefonda ochiq tursin (mobil trekda `npx expo start` ishlab tursin).
+     - *(✎ F-1015-291)* Web-trekda «npx expo start» qavsi yo'q; 3-qadam bandi trekka qarab: mobil — Expo Go qayta yuklash, web — git add/commit/push.
      - Hech biri «buzildi» bo'lmasa — 2 va 3-qadamni o'tkazib yuboring: 4-qadamda faqat `BUZISH.md` yoziladi.
   2. **Prompt** — qavslarni tekshiring (tahrirlasangiz bo'ladi), «Nusxalash»ni bosing va Antigravity'ga yuboring:
      - Prompt qutisi (Siz → Antigravity · Nusxalash):

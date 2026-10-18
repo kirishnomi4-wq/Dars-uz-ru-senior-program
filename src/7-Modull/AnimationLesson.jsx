@@ -862,13 +862,13 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Bosilgan katak <span className="italic" style={{ color: T.accent }}>qanchaga kichraysin?</span></>, ru: <>Насколько <span className="italic" style={{ color: T.accent }}>уменьшить нажатую ячейку?</span></> })}
         mentor={<Mentor>{tr({ uz: "Ko'p ilovalarda tugma barmoq ostida biroz cho'kadi — odam shundan bosilganini sezadi. Qiymatni tanlang va 18:00–19:00 ni bosib turing.", ru: 'Во многих приложениях кнопка под пальцем чуть проседает — по этому человек чувствует нажатие. Выберите значение и зажмите 18:00–19:00.' })}</Mentor>}
         bashorat={<Bashorat savol={tr(S2_SAVOL)} variantlar={S2_TAXMIN} taxmin={taxmin} onTanla={setTaxmin} done={done} />}
-        harakat={<div className="q-col">
+        harakat={!taxmin ? null : <div className="q-col">
           {kod}
           {/* F-1015-164: qiymatlar bashoratdan keyin chiqadi (oldin xira o'chiq edi) */}
           {taxmin && <div className="an-qiymatlar fade-step">{S2_QIYMAT.map(v => <QChip key={v} className={cx('an-chip-kod', navbatQ === v && 'an-navbat')} holat={qiymat === v ? 'on' : undefined} onClick={() => setQiymat(v)}>{sinalgan.has(v) && qiymat !== v ? '✓ ' : ''}{v}</QChip>)}</div>}
           <QIzoh>{fmtCode(tr({ uz: '`:active` — bosib turilgan payt.', ru: '`:active` — момент, когда элемент зажат.' }))}</QIzoh>
         </div>}
-        vizual={tugadi ? <div className="an-fokus">{kod}{maket}</div> : maket}
+        vizual={!taxmin ? null : <div className="q-kir">{tugadi ? <div className="an-fokus">{kod}{maket}</div> : maket}</div>}
         natija={done && <>
           <NomQator>{fmtCode(tr({ uz: 'Elementni shunday kichraytirish yoki kattalashtirishni `transform` qiladi.', ru: 'Так уменьшает или увеличивает элемент `transform`.' }))}</NomQator>
           <TaxminNatija variantlar={S2_TAXMIN} taxmin={taxmin} togri="joyida" haqiqat={{ uz: 'joyida qoldi', ru: 'остались на месте' }} />
@@ -925,13 +925,13 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Kichrayish <span className="italic" style={{ color: T.accent }}>qancha vaqt davom etsin?</span></>, ru: <>Сколько <span className="italic" style={{ color: T.accent }}>должно длиться уменьшение?</span></> })}
         mentor={<Mentor>{tr({ uz: "Hozir katak bir zumda cho'kib, bir zumda qaytadi — ko'z buni sakrash deb ko'radi. Vaqtni tanlang va katakni bosing.", ru: 'Сейчас ячейка мгновенно проседает и мгновенно возвращается — глаз видит это как скачок. Выберите время и нажмите на ячейку.' })}</Mentor>}
         bashorat={<Bashorat savol={tr(S3_SAVOL)} variantlar={S3_TAXMIN} taxmin={taxmin} onTanla={setTaxmin} done={done} />}
-        harakat={<div className="q-col">
+        harakat={!taxmin ? null : <div className="q-col">
           {kod}
           {/* F-1015-164: vaqtlar bashoratdan keyin chiqadi (oldin xira o'chiq edi) */}
           {taxmin && <div className="an-qiymatlar fade-step">{S3_VAQT.map(v => <QChip key={v} className={cx('an-chip-kod', navbatV === v && 'an-navbat')} holat={vaqt === v ? 'on' : undefined} onClick={() => { setVaqt(v); setHisob(null); }}>{sinalgan.has(v) && vaqt !== v ? '✓ ' : ''}{v}</QChip>)}</div>}
           <QIzoh>{fmtCode(tr({ uz: '`s` — soniya.', ru: '`s` — секунда.' }))}</QIzoh>
         </div>}
-        vizual={tugadi ? <div className="an-fokus">{kod}{maket}</div> : maket}
+        vizual={!taxmin ? null : <div className="q-kir">{tugadi ? <div className="an-fokus">{kod}{maket}</div> : maket}</div>}
         natija={done && <>
           <NomQator>{fmtCode(tr({ uz: "Interfeysdagi shunday ko'rinadigan harakat — animatsiya; bu darsda biz holat o'zgarishini silliq qilamiz. CSS'da unga vaqtni `transition` beradi.", ru: 'Такое видимое движение в интерфейсе — анимация; в этом уроке мы делаем плавной смену состояния. В CSS время ей задаёт `transition`.' }))}</NomQator>
           <TaxminNatija variantlar={S3_TAXMIN} taxmin={taxmin} togri="silliq" haqiqat={{ uz: 'silliq', ru: 'плавно' }} />
@@ -1181,7 +1181,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Band bo'lgan katak <span className="italic" style={{ color: T.accent }}>rangi qanday o'zgaradi?</span></>, ru: <>Как <span className="italic" style={{ color: T.accent }}>меняется цвет</span> занятой ячейки?</> })}
         mentor={<Mentor>{fmtCode(tr({ uz: "Band katakka `band` klassi qo'shiladi, fon kulrang bo'ladi. Avval bo'sh katakni bosing, keyin `transition` ga rangni qo'shib, yana bittasini bosing.", ru: 'Занятой ячейке добавляется класс `band`, фон становится серым. Сначала нажмите свободную ячейку, потом добавьте цвет в `transition` и нажмите ещё одну.' }))}</Mentor>}
         bashorat={<Bashorat savol={fmtCode(tr(S6_SAVOL))} variantlar={S6_TAXMIN} taxmin={taxmin} onTanla={setTaxmin} done={done} />}
-        harakat={<div className="q-col">
+        harakat={!taxmin ? null : <div className="q-col">
           {kod}
           <QIzoh>{fmtCode(tr({ uz: '`.katak.band` — `katak` va `band` klassi ikkalasi bor element.', ru: '`.katak.band` — элемент, у которого есть оба класса: `katak` и `band`.' }))}</QIzoh>
           {/* F-1015-164: tugma birinchi band (rang sakradi) dan keyin chiqadi; bosilgach — ✓ yozuv */}
@@ -1189,7 +1189,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             ? <div className="an-amal"><span className="an-bajarildi">{fmtCode(tr({ uz: "✓ `, background-color 0.3s` qo'shildi", ru: '✓ `, background-color 0.3s` добавлено' }))}</span></div>
             : n >= 1 && <div className="an-amal fade-step"><QTugma className={qulf && taxmin ? 'an-navbat' : undefined} onClick={() => setQoshildi(true)}>{fmtCode(tr({ uz: "`, background-color 0.3s` ni qo'shish", ru: 'Добавить `, background-color 0.3s`' }))}</QTugma></div>}
         </div>}
-        vizual={tugadi ? <div className="an-fokus">{kod}{maket}</div> : maket}
+        vizual={!taxmin ? null : <div className="q-kir">{tugadi ? <div className="an-fokus">{kod}{maket}</div> : maket}</div>}
         natija={done && <TaxminNatija variantlar={S6_TAXMIN} taxmin={taxmin} togri="sakraydi" haqiqat={{ uz: "sakradi — `transition` da rang yo'q edi", ru: 'скачком — в `transition` не было цвета' }} />}
         xulosa={done && fmtCode(tr({ uz: "`transition` faqat unda yozilgan xususiyatni silliq qiladi; ikkinchisi vergul bilan qo'shiladi.", ru: '`transition` делает плавным только указанное в нём свойство; второе добавляется через запятую.' }))}
       />
@@ -1294,7 +1294,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         mentor={<Mentor>{tr({ uz: "Belgi oldin ekranda yo'q — React uni band qilingandan keyin chizadi va 3 soniyadan keyin olib tashlaydi. Ikkala maketda katakni bosing va kuzating.", ru: 'Сначала метки на экране нет — React рисует её после бронирования и через 3 секунды убирает. Нажмите на ячейку в обоих макетах и понаблюдайте.' })}</Mentor>}
         bashorat={<Bashorat savol={fmtCode(tr(S9_SAVOL))} variantlar={S9_TAXMIN} taxmin={taxmin} onTanla={setTaxmin} done={done} />}
         harakat={taxmin && <div className="an-amal"><QTugma ikkinchi onClick={() => setQayta(x => x + 1)}>{tr({ uz: '↻ Qayta', ru: '↻ Заново' })}</QTugma></div>}
-        vizual={vizual}
+        vizual={!taxmin ? null : <div className="q-kir">{vizual}</div>}
         natija={done && <>
           <NomQator>{fmtCode(tr({ uz: "O'ngdagini Motion (oldingi nomi Framer Motion) qiladi — React uchun animatsiya kutubxonasi, paketi `motion`.", ru: 'Правое делает Motion (прежнее название Framer Motion) — библиотека анимаций для React, пакет `motion`.' }))}</NomQator>
           <TaxminNatija variantlar={S9_TAXMIN} taxmin={taxmin} togri="birdan" haqiqat={{ uz: "birdan yo'qoldi", ru: 'исчезла сразу' }} />

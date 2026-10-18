@@ -1044,8 +1044,8 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           sarlavha={tr({ uz: <>Mentor Pro narxini <span className="italic" style={{ color: T.accent }}>nimaga qarab</span> qo'ydi?</>, ru: <>На что Ментор <span className="italic" style={{ color: T.accent }}>смотрел</span>, ставя цену Pro?</> })}
           mentor={mIdx !== null && <Mentor>{tr(S2_MENTOR[mIdx])}</Mentor>}
           bashorat={<Bashorat savol={S2_SAVOL} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-          harakat={<div className={cx('pz-s2-chap', !taxmin && 'xira')}>{chap}</div>}
-          vizual={<Varaq refs={refs} qatorlar={s2Qatorlar(q, !!taxmin)} hisob={hisob} className={cx(tugadi && 'keng')} />}
+          harakat={!taxmin ? null : <div className="pz-s2-chap pz-sahna-kir">{chap}</div>}
+          vizual={!taxmin ? null : <div className="pz-sahna-kir"><Varaq refs={refs} qatorlar={s2Qatorlar(q, !!taxmin)} hisob={hisob} className={cx(tugadi && 'keng')} /></div>}
           xulosa={done && tugadi && <XulosaQ togri={ok}
             natija={ok ? tr({ uz: "Taxminingiz to'g'ri chiqdi ✓", ru: 'Ваше предположение подтвердилось ✓' }) : tn({ uz: 'Taxminingiz ✕ — aslida: oshirdi, 10 000 dan 15 000 ga', ru: 'Ваше предположение ✕ — на деле: повысил, с 10 000 до 15 000' })}
             matn={tn({ uz: 'Uch qator narxni formula bilan chiqarmaydi: Mentor ularga qarab 15 000 ni yangi taxmin qildi.', ru: 'Три строки не выводят цену по формуле: глядя на них, Ментор сделал новое предположение — 15 000.' })}
@@ -1156,7 +1156,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           sarlavha={tr({ uz: <>Pullik qulaylik bosilganda <span className="italic" style={{ color: T.accent }}>nima ochiladi?</span></>, ru: <>Что откроется при нажатии <span className="italic" style={{ color: T.accent }}>платной функции?</span></> })}
           mentor={mIdx !== null && <Mentor>{tr(S4_MENTOR[mIdx])}</Mentor>}
           bashorat={<Bashorat savol={S4_SAVOL} variantlar={S4_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-          vizual={sahna}
+          vizual={!taxmin ? null : <div className="pz-sahna-kir">{sahna}</div>}
           xulosa={done && tugadi && <XulosaQ togri={ok}
             natija={ok ? tr({ uz: "Taxminingiz to'g'ri chiqdi ✓", ru: 'Ваше предположение подтвердилось ✓' }) : tr({ uz: 'Taxminingiz ✕ — aslida: nima ochilishi, narx va tugma', ru: 'Ваше предположение ✕ — на деле: что откроется, цена и кнопка' })}
             matn={tr({ uz: "Bu misolda karta ilovaga ham, Backend'ga ham kirmaydi: Pro'ni to'lov xabaridan keyin Backend yoqadi.", ru: 'В этом примере карта не попадает ни в приложение, ни в Backend: Pro включает Backend после сообщения об оплате.' })} />}
@@ -2160,7 +2160,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={tor ? 0 : stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
       <div className="pz-blok">
-        <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
+        <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
           qadamlar={steps.map(c => ({
             h: tr(c.h),
             t: <>{tx(c.t)}{c.bandlar && c.bandlar.filter(Boolean).map((b, i) => (b && (b.accent !== undefined || b.kul) && b.t ? <Band key={i} accent={b.accent} kul={b.kul}>{tx(b.t)}</Band> : <Band key={i}>{tx(b)}</Band>))}{c.prompt && <PzPrompt satrlar={c.prompt} namuna={c.namuna} toldir={c.toldir} tahrir={c.tahrir !== false} />}{c.ichi}</>,
@@ -2170,7 +2170,6 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
           tugadi={done} tugadiMatn={dt ? tr(dt) : null} natija={natija} natijaYorliq={tr(NATIJA_YORLIQ)}
           pastki={<>{done && di && <p className="pz-blok-iz">{tr(di)}</p>}<MentorPracticeStats live={_live} screen={screen} /></>}>
           {ortda && <p className="pz-ortda">{tx(ortda)}</p>}
-          {ulgur && !done && <p className="pz-ulgur">{tx(ulgur)}</p>}
           {ustoz && isMentorLive && <Ustoz satrlar={ustoz} />}
         </QBlok>
       </div>
@@ -2783,7 +2782,9 @@ export default function PmPricingLesson({ lang: langProp, onFinished, liveToken 
         .pz-xk-m { font-size: 11px; color: ${T.ink2}; }
         p.pz-xz-iz { grid-column: 1 / -1; margin: 0; font-size: 12px; color: ${T.ink2}; }
         .pz-s2-chap { display: flex; justify-content: center; width: 100%; }
-        .pz-s2-chap.xira { opacity: .55; }
+        .pz-sahna-kir { animation: pz-kirdi .45s ease-out both; }
+        @keyframes pz-kirdi { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .pz-sahna-kir { animation: none; } }
         /* Narx varag'i */
         .pz-varaq { display: flex; flex-direction: column; gap: 6px; padding: 12px 14px; background: ${T.paper}; border: 1.5px solid ${T.line}; border-radius: 14px; min-width: 0; width: 100%; box-shadow: 0 10px 24px -16px rgba(${T.shadowBase},0.35); }
         .pz-v-sar { font: 800 11.5px 'Manrope', sans-serif; letter-spacing: .06em; text-transform: uppercase; color: ${T.ink2}; }

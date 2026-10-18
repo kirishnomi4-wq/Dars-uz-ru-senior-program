@@ -1054,7 +1054,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>To'lov xabari <span className="italic" style={{ color: T.accent }}>kech yoki ikki marta</span> kelsa-chi?</>, ru: <>А если сообщение придёт <span className="italic" style={{ color: T.accent }}>поздно или дважды</span>?</> })}
         mentor={<Mentor>{tr(mGap)}</Mentor>}
         bashorat={<Bashorat savol={{ uz: "To'rt usuldan nechtasi Mentor misolida to'lovni buzadi?", ru: 'Сколько из четырёх способов ломают оплату в примере Ментора?' }} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        vizual={tugadi
+        vizual={!taxmin ? null : tugadi
           ? <div className="pd-viz pd-yakun2">
             <TolovSahna tel={telOn} be={{ ...be, ixcham: true }} />
             <div className="pd-yp">
@@ -1063,7 +1063,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <p className="pd-ost">{tr(ost)}</p>
             </div>
           </div>
-          : <div className="pd-viz">
+          : <div className="pd-viz pd-sahna-kir">
             {q > 0 && <span key={q} className={cx('pd-chip-n fade-step', q <= 2 ? 'err' : 'kul')}>{q} · {tr(S2_NATIJA[q - 1])}</span>}
             <TolovSahna tel={telOn} be={be} />
             <NomQator matn={nom} />
@@ -1201,7 +1201,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>«Buzildi» yonida <span className="italic" style={{ color: T.accent }}>yashil belgi</span> qachon chiqadi?</>, ru: <>Когда рядом с «сломалось» <span className="italic" style={{ color: T.accent }}>появится зелёная метка</span>?</> })}
         mentor={<Mentor>{tr(mGap)}</Mentor>}
         bashorat={<Bashorat savol={{ uz: 'Kech kelgan xabarda Pro oxiri yoqildi. Bu urinish buzildimi?', ru: 'При опоздавшем сообщении Pro в итоге включился. Эта попытка сломалась?' }} variantlar={S5_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        vizual={<div className={cx('pd-viz', 'pd-s5', tugadi && 'tugadi')}>
+        vizual={!taxmin ? null : <div className={cx('pd-viz', 'pd-s5', 'pd-sahna-kir', tugadi && 'tugadi')}>
           <div className="pd-s5-ust">
             <TolovSahna tel={telOn} be={tugadi ? { ...be, ixcham: true } : be} k={k} />
             <div className="pd-yp">
@@ -1934,6 +1934,8 @@ function useTrek() {
   const tanla = (t) => { const o = lsOqi(PLATFORMA_KALIT); lsYoz(PLATFORMA_KALIT, { ...(o && typeof o === 'object' ? o : {}), trek: t, savedAt: Date.now() }); setTrek(t); };
   return { web: trek === 'web', trek, sora, tanla };
 }
+// 213.12 (F-1015-318): trek tanlangan — o'sha trek matni; tanlanmagan — ikkalasi
+const trekMatn = (tk, mobil, web, ikkala) => (tk.trek === 'web' ? web : tk.trek === 'mobil' ? mobil : ikkala);
 const TrekTanlov = ({ tk }) => (tk.sora ? <span className="pd-trek-q">{['mobil', 'web'].map(t => (
   <button key={t} type="button" className={cx('pd-trek', tk.trek === t && 'on')} onClick={() => tk.tanla(t)}>{tr(t === 'mobil' ? { uz: 'Mobil trek', ru: 'Мобильный трек' } : { uz: 'Web-trek', ru: 'Веб-трек' })}</button>))}</span> : null);
 // «{avvalgidek …}» tekshiruvi: kamida ikkita ish vergul bilan; «hammasi», «ilova» kabi bitta so'z emas (ikki tilli)
@@ -2025,13 +2027,12 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={tor ? 0 : stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className={cx('pd-blok', qulfli && 'qulf')}>
-        <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
+        <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
           qadamlar={steps.map(c => ({ h: tr(c.h), t: c.t, xato: c.xato }))}
           joriy={stepN} onBajardim={bajardim} onQaytar={qaytar} mentorRejim={isMentorLive}
           tugadi={done} tugadiMatn={doneText ? tx(doneText) : null} natija={natija} natijaYorliq={tr(NATIJA_YORLIQ)}
           pastki={<>{done && izoh && <QIzoh>{tx(izoh)}</QIzoh>}<MentorPracticeStats live={_live} screen={screen} /></>}>
           {ortda && <p className="pd-ortda">{tx(ortda)}</p>}
-          {ulgur && !done && <p className="pd-ulgur">{tx(ulgur)}</p>}
           {ustoz && isMentorLive && <div className="pd-ustoz"><b>{tr({ uz: "O'qituvchi eslatmasi", ru: 'Заметка для учителя' })}</b>{ustoz.map((s, i) => <span key={i}>{tx(s)}</span>)}</div>}
         </QBlok>
       </div>
@@ -2100,9 +2101,7 @@ const ScreenA1 = (props) => {
       title={{ uz: <>Mahsulotingizda to'lovning <span className="italic" style={{ color: T.accent }}>qolgan holatlari</span> ko'rinsin.</>, ru: <>Пусть в продукте будут видны <span className="italic" style={{ color: T.accent }}>остальные состояния</span> оплаты.</> }}
       mentor={{ uz: "Talab tayyor — uch joyni o'z mahsulotingiz bilan to'ldirasiz; «1 · Ochish»dan boshlang.", ru: 'Требование готово — три места заполните под свой продукт; начните с «1 · Открыть».' }}
       steps={[
-        { h: { uz: 'Ochish', ru: 'Открыть' }, t: <><TrekTanlov tk={tk} />{tx(w
-          ? { uz: "Antigravity'da o'z repo'ngizni oching. Terminalda `git status`: `.env` fayllari ro'yxatda ko'rinmasin. Saytingiz brauzerda ochiq tursin.", ru: 'Откройте свой репозиторий в Antigravity. В терминале `git status`: файлов `.env` в списке быть не должно. Сайт пусть будет открыт в браузере.' }
-          : { uz: "Antigravity'da o'z repo'ngizni oching. Terminalda `git status`: `.env` fayllari ro'yxatda ko'rinmasin. Mobil trekda `cd mobil`, `npx expo start` ishlab tursin va ilova telefoningizda ochiq bo'lsin.", ru: 'Откройте свой репозиторий в Antigravity. В терминале `git status`: файлов `.env` в списке быть не должно. В мобильном треке `cd mobil`, `npx expo start` пусть работает, приложение открыто на телефоне.' })}
+        { h: { uz: 'Ochish', ru: 'Открыть' }, t: <><TrekTanlov tk={tk} />{tx(trekMatn(tk, { uz: 'Antigravity\'da o\'z repo\'ngizni oching. Terminalda `git status`: `.env` fayllari ro\'yxatda ko\'rinmasin. Mobil trekda `cd mobil`, `npx expo start` ishlab tursin va ilova telefoningizda ochiq bo\'lsin.', ru: 'Откройте свой репозиторий в Antigravity. В терминале `git status`: файлов `.env` в списке быть не должно. В мобильном треке `cd mobil`, `npx expo start` пусть работает, приложение открыто на телефоне.' }, { uz: 'Antigravity\'da o\'z repo\'ngizni oching. Terminalda `git status`: `.env` fayllari ro\'yxatda ko\'rinmasin. Saytingiz brauzerda ochiq tursin.', ru: 'Откройте свой репозиторий в Antigravity. В терминале `git status`: файлов `.env` в списке быть не должно. Сайт пусть будет открыт в браузере.' }, { uz: 'Antigravity\'da o\'z repo\'ngizni oching. Terminalda `git status`: `.env` fayllari ro\'yxatda ko\'rinmasin. Mobil trekda `cd mobil`, `npx expo start` ishlab tursin va ilova telefoningizda ochiq bo\'lsin · web-trekda saytingiz brauzerda ochiq tursin.', ru: 'Откройте свой репозиторий в Antigravity. В терминале `git status`: файлов `.env` в списке быть не должно. В мобильном треке `cd mobil`, `npx expo start` пусть работает, приложение открыто на телефоне · в веб-треке сайт пусть будет открыт в браузере.' }))}
           <Band>{tr({ uz: "4-darsdagi to'lov yo'li ishlab tursin: to'lov taklifi ekrani → to'lov tugmasi → «Mashq to'lov» sahifasi → pullik qulaylik yoqiladi.", ru: 'Путь оплаты из 4-го урока пусть работает: экран предложения оплаты → кнопка оплаты → страница «Mashq to\'lov» → платная возможность включается.' })}</Band>
           {!ishlaydi && <Band><b>{tr({ uz: "4-darsda to'lov yo'li tekshirilmagan ko'rinadi — avval o'shani tugating, keyin shu qadamga qayting.", ru: 'Похоже, путь оплаты в 4-м уроке не проверен — сначала закончите его, потом вернитесь к этому шагу.' })}</b></Band>}
           <Band>{tr({ uz: "Pullik qulaylik — 4-darsda to'lov taklifi ekraniga qo'yganingiz (Mentor misolida — Pro, «Doimiy o'yin»). Neon SQL Editor'da o'z hisob raqamingizni toping (3-darsdagidek):", ru: 'Платная возможность — то, что вы поставили на экран предложения оплаты в 4-м уроке (в примере Ментора — Pro, «Doimiy o\'yin»). В Neon SQL Editor найдите номер своего аккаунта (как в 3-м уроке):' })}</Band>
@@ -2114,7 +2113,7 @@ const ScreenA1 = (props) => {
         { h: { uz: 'Ishga tushirish', ru: 'Запустить' }, t: <>{tx({ uz: "agent tugatgach: `git status` — o'zgargan fayllar agent aytgani bilan bir xil, `.env` ro'yxatda yo'q; har faylni `git add <fayl>` bilan qo'shing, `git commit -m \"tolov holatlari\"`, `git push`.", ru: 'когда агент закончит: `git status` — изменённые файлы совпадают со списком агента, `.env` в списке нет; каждый файл добавьте `git add <файл>`, `git commit -m "tolov holatlari"`, `git push`.' })}
           <Band>{tr({ uz: "Render Backend'ning yangi versiyasini chiqaradi — tugashini kuting (bir necha daqiqa cho'zilishi mumkin). Kutayotganda agentdan uch joyni ko'rsatishni so'rang:", ru: 'Render выпустит новую версию Backend — дождитесь окончания (может занять несколько минут). Пока ждёте, попросите агента показать три места:' })}</Band>
           <PdPrompt satrlar={A1_KOD_PROMPT} />
-          <Band>{tx(w ? { uz: "Web-trekda `git push` dan keyin Netlify saytni odatda o'zi yangilaydi.", ru: 'В веб-треке после `git push` Netlify обычно сам обновляет сайт.' } : { uz: "Mobil trekda Expo Go ilovani odatda o'zi qayta yuklaydi (bo'lmasa — terminalda `r`).", ru: 'В мобильном треке Expo Go обычно сам перезагружает приложение (если нет — `r` в терминале).' })}</Band></>,
+          <Band>{tx(trekMatn(tk, { uz: 'Mobil trekda Expo Go ilovani odatda o\'zi qayta yuklaydi (bo\'lmasa — terminalda `r`).', ru: 'В мобильном треке Expo Go обычно сам перезагружает приложение (если нет — `r` в терминале).' }, { uz: 'Web-trekda `git push` dan keyin Netlify saytni odatda o\'zi yangilaydi.', ru: 'В веб-треке после `git push` Netlify обычно сам обновляет сайт.' }, { uz: 'Mobil trekda Expo Go ilovani odatda o\'zi qayta yuklaydi (bo\'lmasa — terminalda `r`) · web-trekda `git push` dan keyin Netlify saytni odatda o\'zi yangilaydi.', ru: 'В мобильном треке Expo Go обычно сам перезагружает приложение (если нет — `r` в терминале) · в веб-треке после `git push` Netlify обычно сам обновляет сайт.' }))}</Band></>,
           xato: tx({ uz: "Xato chiqsa — faqat xato qatorini agentga yuboring (`.env` dagi kalit va tokenlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»", ru: 'Если ошибка — отправьте агенту только строку ошибки (не ключи и токены из `.env`): «Вышла такая ошибка: {ошибка}. Исправь.»' }) },
         { h: { uz: 'Telefonda tekshirish', ru: 'Проверить на телефоне' }, t: <>{tr({ uz: "talabning har gapini o'zingiz ko'ring (web-trekda — saytingizda, telefon brauzerida yoki kompyuterda). Mentor misolida:", ru: 'проверьте сами каждую фразу требования (в веб-треке — на сайте, в браузере телефона или на компьютере). В примере Ментора:' })}
           <Band><b>{tr({ uz: '(1) «Javob kutilmoqda»', ru: '(1) «Javob kutilmoqda»' })}</b>{tr({ uz: " — «To'lovga o'tish» → mashq sahifasi ochilgach hech narsa bosmang, ilovaga qayting: «Javob kutilmoqda» bo'lishi kerak. Bu — ilova; mashq sahifasi kech javobda nima deyishini 2-amaliyotda «Kechiktirib yuborish» bilan ko'rasiz.", ru: ' — «To\'lovga o\'tish» → когда откроется учебная страница, ничего не нажимайте, вернитесь в приложение: должно быть «Javob kutilmoqda». Это приложение; что скажет учебная страница при позднем ответе, увидите в практике 2 кнопкой «Kechiktirib yuborish».' })}</Band>
@@ -2337,9 +2336,7 @@ const ScreenA3 = (props) => {
       mentor={{ uz: "Yozuvni agent oladi va kodni o'zgartiradi, to'g'riligini esa siz o'sha tugma bilan ko'rasiz; «1 · Ochish»dan boshlang.", ru: 'Запись получает агент и меняет код, а правильность вы проверяете той же кнопкой; начните с «1 · Открыть».' }}
       extra={() => ({ correct: ur.some(u => u.qayta !== null) })}
       steps={[
-        { h: { uz: 'Ochish', ru: 'Открыть' }, t: <><TrekTanlov tk={tk} />{tx(w
-          ? { uz: "2-amaliyotdagi yozuvingizning «buzildi» belgili urinishlari pastdagi talabga o'zi qo'yilgan — o'qib chiqing. Saytingiz brauzerda ochiq tursin.", ru: 'Попытки с меткой «сломалось» из записи практики 2 уже подставлены в требование ниже — прочтите. Сайт пусть будет открыт в браузере.' }
-          : { uz: "2-amaliyotdagi yozuvingizning «buzildi» belgili urinishlari pastdagi talabga o'zi qo'yilgan — o'qib chiqing. Ilovangiz telefonda ochiq tursin (mobil trekda `npx expo start` ishlab tursin).", ru: 'Попытки с меткой «сломалось» из записи практики 2 уже подставлены в требование ниже — прочтите. Приложение пусть будет открыто на телефоне (в мобильном треке `npx expo start` пусть работает).' })}
+        { h: { uz: 'Ochish', ru: 'Открыть' }, t: <><TrekTanlov tk={tk} />{tx(trekMatn(tk, { uz: '2-amaliyotdagi yozuvingizning «buzildi» belgili urinishlari pastdagi talabga o\'zi qo\'yilgan — o\'qib chiqing. Ilovangiz telefonda ochiq tursin (mobil trekda `npx expo start` ishlab tursin).', ru: 'Попытки с меткой «сломалось» из записи практики 2 уже подставлены в требование ниже — прочтите. Приложение пусть будет открыто на телефоне (в мобильном треке `npx expo start` пусть работает).' }, { uz: '2-amaliyotdagi yozuvingizning «buzildi» belgili urinishlari pastdagi talabga o\'zi qo\'yilgan — o\'qib chiqing. Saytingiz brauzerda ochiq tursin.', ru: 'Попытки с меткой «сломалось» из записи практики 2 уже подставлены в требование ниже — прочтите. Сайт пусть будет открыт в браузере.' }, { uz: '2-amaliyotdagi yozuvingizning «buzildi» belgili urinishlari pastdagi talabga o\'zi qo\'yilgan — o\'qib chiqing. Ilovangiz telefonda ochiq tursin (mobil trekda `npx expo start` ishlab tursin) · web-trekda saytingiz brauzerda ochiq tursin.', ru: 'Попытки с меткой «сломалось» из записи практики 2 уже подставлены в требование ниже — прочтите. Приложение пусть будет открыто на телефоне (в мобильном треке `npx expo start` пусть работает) · в веб-треке сайт пусть будет открыт в браузере.' }))}
           <Band>{tx({ uz: "Hech biri «buzildi» bo'lmasa — 2 va 3-qadamni o'tkazib yuboring: 4-qadamda yozuvingiz `BUZISH.md` da turganini ko'rasiz, boshqa ish yo'q.", ru: 'Если «сломалось» нет ни у одной — пропустите шаги 2 и 3: на шаге 4 увидите, что запись лежит в `BUZISH.md`, больше делать нечего.' })}</Band></> },
         { h: { uz: 'Prompt', ru: 'Промпт' }, t: bor ? <>{tr({ uz: "qavslarni tekshiring (tahrirlasangiz bo'ladi), «Nusxalash»ni bosing va Antigravity'ga yuboring:", ru: 'проверьте скобки (можно править), нажмите «Скопировать» и отправьте в Antigravity:' })}
           <PdPrompt satrlar={A3_PROMPT} joylar={A3_JOY} qiymat={q} onYoz={(k, v) => setQ(o => ({ ...o, [k]: v }))} oldindan={{ [tr(A3_PROMPT[2])]: buzMatn }} tekshir={(v) => (ikkiIsh(v.avval) ? null : IKKI_ISH_XATO)} />
@@ -2352,7 +2349,7 @@ const ScreenA3 = (props) => {
           <span className="pd-tk">{buzildi.map(({ u, i }) => (
             <span key={u.usul} className="pd-tk-q"><YozuvIx no={i + 1} usul={u.usul} belgi="buzildi" />
               <button type="button" className={cx('pd-tuz', u.tuzatishQilindi && 'on')} aria-pressed={!!u.tuzatishQilindi} onClick={() => yangila(i, { tuzatishQilindi: !u.tuzatishQilindi })}>{u.tuzatishQilindi ? '✓ ' : ''}{tr(BELGI.tuz)}</button></span>))}</span>
-          <Band>{tx(w ? { uz: "Web-trekda Netlify saytni odatda o'zi yangilaydi.", ru: 'В веб-треке Netlify обычно сам обновляет сайт.' } : { uz: "Mobil trekda Expo Go ilovani odatda o'zi qayta yuklaydi (bo'lmasa — terminalda `r`).", ru: 'В мобильном треке Expo Go обычно сам перезагружает приложение (если нет — `r` в терминале).' })}</Band></>
+          <Band>{tx(trekMatn(tk, { uz: 'Mobil trekda Expo Go ilovani odatda o\'zi qayta yuklaydi (bo\'lmasa — terminalda `r`).', ru: 'В мобильном треке Expo Go обычно сам перезагружает приложение (если нет — `r` в терминале).' }, { uz: 'Web-trekda Netlify saytni odatda o\'zi yangilaydi.', ru: 'В веб-треке Netlify обычно сам обновляет сайт.' }, { uz: 'Mobil trekda Expo Go ilovani odatda o\'zi qayta yuklaydi (bo\'lmasa — terminalda `r`) · web-trekda Netlify saytni odatda o\'zi yangilaydi.', ru: 'В мобильном треке Expo Go обычно сам перезагружает приложение (если нет — `r` в терминале) · в веб-треке Netlify обычно сам обновляет сайт.' }))}</Band></>
           : <Kulrang>{tr(otkaz)}</Kulrang>,
           xato: bor ? tx({ uz: "Xato chiqsa — faqat xato qatorini agentga yuboring (`.env` dagi kalit va tokenlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»", ru: 'Если ошибка — отправьте агенту только строку ошибки (не ключи и токены из `.env`): «Вышла такая ошибка: {ошибка}. Исправь.»' }) : null },
         { h: { uz: 'Qayta tekshirish va GitHub', ru: 'Перепроверка и GitHub' }, t: bor ? <>{tr({ uz: "«buzildi» belgili har urinishni ", ru: 'каждую попытку с меткой «сломалось» повторите ' })}<b>{tr({ uz: "o'sha usul bilan", ru: 'тем же способом' })}</b>{tr({ uz: " qaytaring (urinish oldidan pullik qulaylik yo'q bo'lsin — 2-amaliyotdagi birinchi so'rov). Tanlang:", ru: ' (перед попыткой платной возможности быть не должно — первый запрос из практики 2). Выберите:' })}
@@ -2638,6 +2635,9 @@ export default function PaymentDayLesson({ lang: langProp, onFinished, liveToken
         @keyframes pd-qator { 0% { opacity: 0; transform: translateY(-5px); background: ${T.okFon}; } 20% { opacity: 1; transform: none; } 75% { background: ${T.okFon}; } 100% { background: transparent; } }
         @keyframes pd-aylan { to { transform: rotate(360deg); } }
         .pd-viz { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+        .pd-sahna-kir { animation: pd-kirdi .45s ease-out both; }
+        @keyframes pd-kirdi { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .pd-sahna-kir { animation: none; } }
         /* Sahna: telefon · chiziq · Backend; telefonda (≤640) — ustma-ust, chiziq tik */
         .pd-sahna.yot { display: grid; grid-template-columns: 170px minmax(44px, 90px) minmax(214px, 250px); align-items: center; justify-content: center; }
         .pd-s-tel, .pd-s-ch, .pd-s-be { min-width: 0; display: flex; align-items: center; justify-content: center; }

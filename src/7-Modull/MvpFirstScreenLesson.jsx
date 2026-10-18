@@ -884,7 +884,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         bashorat={!taxmin
           ? <div className="mf-navbat-k"><QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr(S2_SAVOL)} variantlar={SON_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} /></div>
           : !done && <TaxminIxcham savol={tr(S2_SAVOL)} taxmin={taxmin} />}
-        harakat={(
+        harakat={!taxmin ? null : (
           <div className="q-col">
             <QKarta yorliq={tr({ uz: 'Prompt', ru: 'Промпт' })} className="mf-prompt">
               <p className="mf-pq">{tr({ uz: "Vaqtlarni Backend'dan olib kel.", ru: 'Принеси время из Backend.' })}</p>
@@ -914,7 +914,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             )}
           </div>
         )}
-        vizual={tugadi ? <div className="mf-fokus2"><TalabKarta />{maket}</div> : maket}
+        vizual={!taxmin ? null : <div className="q-kir">{tugadi ? <div className="mf-fokus2"><TalabKarta />{maket}</div> : maket}</div>}
         natija={done && (
           <div className="mf-natija">
             <p className="mf-joriy fade-step">{tr({ uz: <>Promptdagi bunday vazifa <b>talab</b> deyiladi: qayerda, nima qilsin, nima buzilmasin.</>, ru: <>Такая задача в промпте называется <b>требованием</b>: где, что сделать, что не сломать.</> })}</p>
@@ -1015,7 +1015,7 @@ const Screen4 =({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         bashorat={!taxmin
           ? <div className="mf-navbat-k"><QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr(S4_SAVOL)} variantlar={SON_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} /></div>
           : !done && <TaxminIxcham savol={tr(S4_SAVOL)} taxmin={taxmin} />}
-        harakat={(
+        harakat={!taxmin ? null : (
           <div className="q-col">
             <QKarta yorliq={tr({ uz: 'Talab', ru: 'Требование' })} className="mf-talab">
               {/* F-1015-164: taxmindan oldin talab — oddiy ro'yxat (bosib bo'lmaydigan karta emas); taxmindan keyin qatorlar bosiladigan kartaga aylanadi */}
@@ -1035,7 +1035,7 @@ const Screen4 =({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {izoh && <QIzoh>{tr(izoh)}</QIzoh>}
           </div>
         )}
-        vizual={tugadi ? <div className="mf-fokus2"><TalabKarta belgi />{maket}</div> : maket}
+        vizual={!taxmin ? null : <div className="q-kir">{tugadi ? <div className="mf-fokus2"><TalabKarta belgi />{maket}</div> : maket}</div>}
         natija={done && taxminQator(taxmin, '2', { uz: 'bu safar uchtadan ikkitasi ishladi, bittasini tuzatdingiz', ru: 'в этот раз работали две из трёх, одну вы исправили' })}
         xulosa={done && tr({ uz: 'Agent «Tayyor» desa ham, talabning har qatorini tekshirasiz. Mos kelmagan joyni aniq yozib, tuzattirasiz.', ru: 'Даже если агент сказал «Готово», вы проверяете каждую строку. Несовпавшее место точно описываете и просите исправить.' })}
       />

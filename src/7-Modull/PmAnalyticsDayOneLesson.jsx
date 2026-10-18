@@ -872,7 +872,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {oqdi && !topildi && xato && <QXato key={silk}>{tr({ uz: "Bu yerda 3 odam to'xtadi — ko'prog'i qayerda?", ru: 'Здесь остановились 3 человека — где больше?' })}</QXato>}
           </div>
         )}
-        vizual={panel}
+        vizual={!taxmin ? null : <div className="q-kir">{panel}</div>}
         natija={done && (
           <div className="ad-natija">
             <p className="ad-joriy fade-step">{tr({ uz: <>Odamlar saytda nima qilganini yozib, sanab beradigan dastur <b>analitika</b> deyiladi.</>, ru: <>Инструмент, который записывает и считает, что люди делали на сайте, называется <b>аналитикой</b>.</> })}</p>
@@ -928,7 +928,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             ))}
           </div>
         )}
-        vizual={panel}
+        vizual={!taxmin ? null : <div className="q-kir">{panel}</div>}
         natija={done && <TaxminNatija variantlar={S3_TAXMIN} taxmin={taxmin} togriK="2" haqiqat={{ uz: 'ikkitasi', ru: 'два' }} />}
         xulosa={done && tr({ uz: "Analitika ulangan kundan boshlab yozadi. Birinchi kunlarda to'xtaganlarning izi qolmaydi.", ru: 'Аналитика пишет с того дня, когда её подключили. От тех, кто ушёл в первые дни, следа не остаётся.' })}
       />

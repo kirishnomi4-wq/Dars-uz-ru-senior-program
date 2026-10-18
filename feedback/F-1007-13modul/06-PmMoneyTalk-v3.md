@@ -204,7 +204,7 @@ namunalar: 12-Modul `06-PmChannels-v3.md` + `06-FILTR.md` (juftlik va yakka reji
 - Nishon: Ask First! — birinchi urinishda to'g'ri.
 - Izoh (MD): distraktorlar darsning o'z qoidasi bo'yicha noto'g'ri, yolg'on fakt emas (S-004): A — narx suhbat savollarida uchinchi; B — odamdan hech narsa so'ralmaydi; D — 2-ekrandagi sotish gapi turi. B hayotda «yomon» emas — lekin savol suhbat haqida, u esa savol emas. Ikkala trekka to'g'ri.
 
-## 4 · Uch suhbat  ← QTushuncha (ketma-ket, 3 yozuv; SABOQ 9/13, E 53)
+## 4 · Uch suhbat  ← QTushuncha (ketma-ket, 3 yozuv; SABOQ 9/13, E 53) **213.13 (F-1015-319, 18.10): belgi tugmalari va «Javob yo'q — odam javob bermasa» izohi «Mentor misoli» kartasining ichida (chiziq bilan ajratilgan); 2-ekranda Savol/Sotish gapi tugmalari ham.**
 - Eyebrow: Tushuncha · javob
 - Sarlavha: **Uch tashkilotchi narx haqida nima dedi?** (39)
 - Mentor: Mentor javoblarni intervyudagidek so'zma-so'z yozgan — har yozuvga mos belgini bosing.
